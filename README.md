@@ -109,16 +109,38 @@ The algorithm opens several interesting research paths:
 - Combinatorial number theory (counting arguments for blocked positions)
 - Modular forms and L-functions (deeper arithmetic structure)
 
-## Additional Insights: Prime Blocking Patterns
+## Additional Observations: Prime Blocking Patterns
 
 **Hierarchical Coverage Property:**
-The algorithm reveals an interesting structural property about prime distribution. Consider why we only need primes up to √n - taking n = 100, we use primes {2, 3, 5, 7} but not 11.
+The algorithm reveals structural properties about prime distribution. Consider why we only need primes up to √n - taking n = 100, we use primes {2, 3, 5, 7} but not 11.
 
 When 11 creates its blocking pattern, it appears at multiples: 11, 22, 33, 44, 55, 66, 77, 88, 99... This creates 10-position gaps between consecutive multiples. Within each such gap, the blocking patterns from smaller primes {2, 3, 5, 7} provide complete coverage for identifying composite positions.
 
-This suggests a hierarchical structure: each layer of primes creates blocking patterns at its appropriate scale, with smaller primes providing sufficient density to fill the gaps left by larger primes.
+This suggests a hierarchical structure where each layer of primes creates blocking patterns at appropriate scales, with smaller primes providing sufficient density to fill gaps left by larger primes.
 
-**Implications for Twin Primes:**
-This blocking structure offers insight into twin prime formation. When a new prime p appears, it blocks its own position but then creates multiples at p×2, p×3, p×4, etc. Critically, these multiples are congruent to existing smaller primes (p×2 ≡ 2, p×3 ≡ 3, etc.), meaning they align with already-blocked positions rather than creating new blocking patterns.
+**Pattern Accumulation:**
+Working through the sequence of prime discoveries:
+- Prime 2 blocks all even positions: {2, 4, 6, 8, 10, 12, ...}
+- Prime 3 blocks positions: {3, 6, 9, 12, 15, 18, ...}
+- Together they create a repeating cycle with period lcm(2,3) = 6
 
-Since new primes never create novel blocking patterns that weren't already covered by smaller primes, they cannot prevent the formation of twin primes in positions that were previously unblocked. This suggests that the introduction of larger primes preserves the spacing patterns established by smaller primes, potentially explaining why twin primes continue to appear throughout the number line.
+When prime 5 is discovered, its multiples are: 5, 10, 15, 20, 25, 30, ... The first multiple after 5 itself is 5×2 = 10, which is already blocked by prime 2. Many subsequent multiples also align with existing blocks: 5×3 = 15 (blocked by 3), 5×4 = 20 (blocked by 2), 5×6 = 30 (blocked by both 2 and 3). However, some multiples like 5×5 = 25 do introduce genuinely new blocking positions.
+
+**Alignment Property:**
+Each new odd prime p has its first multiple after p at 2p, which is even and therefore already blocked by prime 2. This means new primes predominantly align their blocking patterns with existing blocked positions rather than creating entirely novel constraints.
+
+**Observations on Twin Prime Formation:**
+The blocking structure exhibits certain patterns when examined in relation to twin prime formation. A twin prime pair (p, p+2) would need both positions to be simultaneously blocked to be eliminated from consideration.
+
+The arithmetic constraints observed include:
+- New primes block their initial position and create multiples at regular intervals
+- Prime squares (p²) and composite products introduce additional blocking positions  
+- No clear mechanism emerges from the modular arithmetic for simultaneous blocking of adjacent odd positions
+
+These patterns raise questions about whether the interaction between prime blocking sequences permits elimination of potential twin prime pairs, though such questions require formal mathematical analysis to resolve.
+
+**Areas for Further Investigation:**
+- Formal analysis of how period expansions (2 → 6 → 30 → 210 → ...) preserve twin prime configurations
+- Mathematical proof of the apparent impossibility of simultaneous twin prime blocking
+- Connection between modular arithmetic constraints and twin prime distribution patterns
+- Relationship between the √n coverage property and broader prime gap preservation principles
