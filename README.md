@@ -225,10 +225,6 @@ jupyter notebook
 - Modular remainder calculations are optimized for batch processing
 - Progress indicators show status for long-running operations
 
-## Known Mersenne Primes
-
-As of 2018, there are 51 known Mersenne primes. The largest is M82589933 (2^82589933 - 1) with 24,862,048 digits. This project includes tools to work with all known Mersenne primes.
-
 ## Contributing
 
 Contributions are welcome! Areas for improvement:
