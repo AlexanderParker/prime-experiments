@@ -76,5 +76,5 @@ logs/
 temp/
 tmp/
 
-rust/target
+rust/target/**
 ~$*.xlsx
