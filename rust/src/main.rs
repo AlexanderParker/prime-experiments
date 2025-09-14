@@ -134,7 +134,7 @@ impl PrimeFinder {
 fn main() {
     let mut finder = PrimeFinder::new();
 
-    let test_n = 12172221;
+    let test_n = 1219721;
     //let test_n = 2305843009213693950; // Next prime is 2305843009213693951 (m9)
     let start = Instant::now();
     let our_guess = finder.next_prime_any(test_n);
