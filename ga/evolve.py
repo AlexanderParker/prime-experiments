@@ -4,7 +4,7 @@ import sys
 from typing import Any, Tuple, Union, List, Dict
 from dataclasses import dataclass
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(100000)
 
 
 def is_prime(n: int) -> bool:
