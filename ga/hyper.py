@@ -46,7 +46,7 @@ def create_random_hyperparams() -> HyperParams:
         keep_pct=keep_pct,
         crossover_pct=crossover_pct,
         random_pct=random_pct,
-        match_weight_factor=random.uniform(0.5, 10.0),
+        match_weight_factor=random.uniform(1.0, 10.0),
         mutation_rate=random.uniform(0.05, 1.0),
     )
 
@@ -64,7 +64,7 @@ def mutate_hyperparams(params: HyperParams, mutation_rate: float = 0.3) -> Hyper
         elif choice == 2:
             new_params.max_depth = random.choice([3, 4, 5, 6, 7, 8, 9, 10])
         elif choice == 3:
-            new_params.match_weight_factor = random.uniform(0.5, 10.0)
+            new_params.match_weight_factor = random.uniform(1.0, 10.0)
         elif choice == 4:
             new_params.mutation_rate = random.uniform(0.05, 1.0)
         else:
@@ -155,6 +155,10 @@ def hyperparameter_evolution(
                 )
 
                 fitness, matches, expression, best_ast = evaluate_hyperparams(params, stop_limit=stop_limit)
+
+                if fitness < 1.0:
+                    fitness = 1.0
+
                 fitness_scores.append((fitness, matches, expression, best_ast, params))
 
                 print(f"  Fitness: {fitness:.4f}, Matches: {matches}")
@@ -262,6 +266,9 @@ if __name__ == "__main__":
                 fitness, matches, expression, best_ast = evaluate_hyperparams(
                     best_params, stop_limit=1000, seed_ast=best_ever_ast
                 )
+
+                if fitness < 1.0:
+                    fitness = 1.0
 
                 print(f"Fitness: {fitness:.4f}, Matches: {matches}")
                 print(f"Expression: {expression}")
