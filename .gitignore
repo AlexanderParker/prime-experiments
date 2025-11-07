@@ -77,4 +77,5 @@ temp/
 tmp/
 
 rust/target/**
+rust2/target/**
 ~$*.xlsx
