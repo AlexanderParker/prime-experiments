@@ -27,8 +27,7 @@ impl PrimeFinder {
             if prime_number > max_range {
                 break;
             }
-            let blocked_prime_gap =
-                (prime_number - (self.last_known_prime() % prime_number)) ;
+            let blocked_prime_gap = prime_number - (self.last_known_prime() % prime_number);
             if blocked_prime_gap > max_range {
                 break;
             }
@@ -36,9 +35,7 @@ impl PrimeFinder {
             if blocked_prime_gap % 2 == 0 {
                 even_slot_found = true;
             }
-            print!("{}, " , blocked_prime_gap);
         }
-        print!(" ({}) \n", self.last_known_prime());
 
         if even_slot_found {
             for &prime_number in &self.known_primes[0..self.known_primes.len() - 1] {
@@ -47,9 +44,9 @@ impl PrimeFinder {
                 }
                 let mut cycle = 1u64;
                 loop {
-                    let blocked_prime_gap =
-                        (prime_number - (self.last_known_prime() % prime_number)) 
-                            + (prime_number * cycle);
+                    let blocked_prime_gap = (prime_number
+                        - (self.last_known_prime() % prime_number))
+                        + (prime_number * cycle);
                     if blocked_prime_gap > max_range {
                         break;
                     }
@@ -58,7 +55,9 @@ impl PrimeFinder {
                 }
             }
         } else {
-            println!("All blocked slots are odd, so the next prime gap is 2");
+            let next_prime = self.last_known_prime() + 2;
+            self.known_primes.push(next_prime);
+            return next_prime;
         }
 
         let mut check_empty_slot = 2;
@@ -118,8 +117,6 @@ impl PrimeFinder {
                     cycle += 1;
                 }
             }
-        } else {
-            println!("All blocked slots are odd, so the next prime gap is 2");
         }
 
         let mut check_empty_slot = if n % 2 == 0 { 1 } else { 2 };
@@ -134,7 +131,7 @@ impl PrimeFinder {
 fn main() {
     let mut finder = PrimeFinder::new();
 
-    let test_n = 1219721;
+    let test_n = 7213393222u64;
     //let test_n = 2305843009213693950; // Next prime is 2305843009213693951 (m9)
     let start = Instant::now();
     let our_guess = finder.next_prime_any(test_n);
