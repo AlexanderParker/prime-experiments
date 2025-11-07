@@ -59,7 +59,7 @@ def mutate_hyperparams(params: HyperParams, mutation_rate: float = 0.3) -> Hyper
         elif choice == 1:
             new_params.generations = random.choice([500, 1000, 1500, 2000, 3000, 4000, 5000])
         elif choice == 2:
-            new_params.max_depth = random.choice([3, 4, 5, 6, 7, 8])
+            new_params.max_depth = random.choice([3, 4, 5, 6, 7, 8, 9, 10])
         elif choice == 3:
             new_params.match_weight_factor = random.uniform(0.5, 10.0)
         elif choice == 4:
@@ -116,8 +116,12 @@ def hyperparameter_evolution(
 
         for i, params in enumerate(population):
             print(f"Evaluating hyperparameter set {i + 1}/{len(population)}...")
-            print(f"  population_size={params.population_size}, generations={params.generations}, max_depth={params.max_depth}")
-            print(f"  keep_pct={params.keep_pct:.3f}, crossover_pct={params.crossover_pct:.3f}, random_pct={params.random_pct:.3f}")
+            print(
+                f"  population_size={params.population_size}, generations={params.generations}, max_depth={params.max_depth}"
+            )
+            print(
+                f"  keep_pct={params.keep_pct:.3f}, crossover_pct={params.crossover_pct:.3f}, random_pct={params.random_pct:.3f}"
+            )
             print(f"  match_weight_factor={params.match_weight_factor:.3f}, mutation_rate={params.mutation_rate:.3f}")
 
             fitness, matches, expression = evaluate_hyperparams(params, stop_limit=stop_limit)
@@ -176,3 +180,46 @@ if __name__ == "__main__":
     print(f"match_weight_factor: {best_params.match_weight_factor:.3f}")
     print(f"mutation_rate: {best_params.mutation_rate:.3f}")
     print(f"\nBest fitness achieved: {best_fitness:.4f}")
+
+    print("\n" + "=" * 80)
+    print("RUNNING INDEFINITELY WITH BEST HYPERPARAMETERS")
+    print("Press Ctrl+C to stop")
+    print("=" * 80)
+
+    run_count = 0
+    best_ever_fitness = float("inf")
+    best_ever_matches = 0
+    best_ever_expression = None
+
+    try:
+        while True:
+            run_count += 1
+            print(f"\n{'='*80}")
+            print(f"Run #{run_count} with best hyperparameters")
+            print(f"{'='*80}\n")
+
+            fitness, matches, expression = evaluate_hyperparams(best_params, stop_limit=1000)
+
+            print(f"Fitness: {fitness:.4f}, Matches: {matches}")
+            print(f"Expression: {expression}")
+
+            if fitness < best_ever_fitness:
+                best_ever_fitness = fitness
+                best_ever_matches = matches
+                best_ever_expression = expression
+                print(f"\n*** NEW OVERALL BEST FITNESS: {best_ever_fitness:.4f} ***")
+                print(f"*** MATCHES: {best_ever_matches} ***")
+                print(f"*** EXPRESSION: {best_ever_expression} ***")
+
+            print(f"\nBest ever fitness: {best_ever_fitness:.4f}")
+            print(f"Best ever matches: {best_ever_matches}")
+            print(f"Best ever expression: {best_ever_expression}")
+
+    except KeyboardInterrupt:
+        print("\n\n" + "=" * 80)
+        print("STOPPED BY USER")
+        print("=" * 80)
+        print(f"Total runs completed: {run_count}")
+        print(f"\nBest ever fitness: {best_ever_fitness:.4f}")
+        print(f"Best ever matches: {best_ever_matches}")
+        print(f"Best ever expression: {best_ever_expression}")
