@@ -5,6 +5,7 @@ import evolve
 import csv
 import os
 from datetime import datetime
+import time
 
 
 @dataclass
@@ -80,8 +81,10 @@ def mutate_hyperparams(params: HyperParams, mutation_rate: float = 0.3) -> Hyper
 
 def evaluate_hyperparams(
     params: HyperParams, stop_limit: int = 100, seed_ast: evolve.ASTNode = None
-) -> Tuple[float, int, str, evolve.ASTNode]:
+) -> Tuple[float, int, str, evolve.ASTNode, float]:
     """Evaluate hyperparameters by running the genetic algorithm."""
+    start_time = time.time()
+
     results = evolve.genetic_algorithm(
         population_size=params.population_size,
         generations=params.generations,
@@ -96,7 +99,9 @@ def evaluate_hyperparams(
         seed_ast=seed_ast,
     )
 
-    return results["best_fitness"], results["best_matches"], results["expression"], results["best_ast"]
+    elapsed_time = time.time() - start_time
+
+    return results["best_fitness"], results["best_matches"], results["expression"], results["best_ast"], elapsed_time
 
 
 def hyperparameter_evolution(
@@ -130,6 +135,7 @@ def hyperparameter_evolution(
             "mutation_rate",
             "fitness",
             "matches",
+            "elapsed_time_seconds",
             "expression",
         ]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -140,7 +146,7 @@ def hyperparameter_evolution(
             print(f"Hyperparameter Generation {generation + 1}/{generations}")
             print(f"{'='*80}\n")
 
-            fitness_scores: List[Tuple[float, int, str, evolve.ASTNode, HyperParams]] = []
+            fitness_scores: List[Tuple[float, int, str, evolve.ASTNode, float, HyperParams]] = []
 
             for i, params in enumerate(population):
                 print(f"Evaluating hyperparameter set {i + 1}/{len(population)}...")
@@ -154,14 +160,13 @@ def hyperparameter_evolution(
                     f"  match_weight_factor={params.match_weight_factor:.3f}, mutation_rate={params.mutation_rate:.3f}"
                 )
 
-                fitness, matches, expression, best_ast = evaluate_hyperparams(params, stop_limit=stop_limit)
-
-                if fitness < 1.0:
-                    fitness = 1.0
-
-                fitness_scores.append((fitness, matches, expression, best_ast, params))
+                fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(
+                    params, stop_limit=stop_limit
+                )
+                fitness_scores.append((fitness, matches, expression, best_ast, elapsed_time, params))
 
                 print(f"  Fitness: {fitness:.4f}, Matches: {matches}")
+                print(f"  Elapsed time: {elapsed_time:.2f} seconds")
                 print(f"  Expression: {expression}")
 
                 writer.writerow(
@@ -178,6 +183,7 @@ def hyperparameter_evolution(
                         "mutation_rate": params.mutation_rate,
                         "fitness": fitness,
                         "matches": matches,
+                        "elapsed_time_seconds": elapsed_time,
                         "expression": expression,
                     }
                 )
@@ -198,7 +204,7 @@ def hyperparameter_evolution(
             print(f"Best fitness overall: {best_fitness:.4f}")
             print(f"Best matches overall: {best_matches}")
 
-            survivors = [params for _, _, _, _, params in fitness_scores[:keep_best]]
+            survivors = [params for _, _, _, _, _, params in fitness_scores[:keep_best]]
 
             new_population = survivors[:]
 
@@ -250,7 +256,7 @@ if __name__ == "__main__":
     infinite_csv_filename = f"infinite_runs_{timestamp}.csv"
 
     with open(infinite_csv_filename, "w", newline="") as csvfile:
-        fieldnames = ["run", "fitness", "matches", "expression", "is_new_best"]
+        fieldnames = ["run", "fitness", "matches", "elapsed_time_seconds", "expression", "is_new_best"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -263,14 +269,12 @@ if __name__ == "__main__":
                     print("Seeding with previous best solution")
                 print(f"{'='*80}\n")
 
-                fitness, matches, expression, best_ast = evaluate_hyperparams(
+                fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(
                     best_params, stop_limit=1000, seed_ast=best_ever_ast
                 )
 
-                if fitness < 1.0:
-                    fitness = 1.0
-
                 print(f"Fitness: {fitness:.4f}, Matches: {matches}")
+                print(f"Elapsed time: {elapsed_time:.2f} seconds")
                 print(f"Expression: {expression}")
 
                 is_new_best = False
@@ -289,6 +293,7 @@ if __name__ == "__main__":
                         "run": run_count,
                         "fitness": fitness,
                         "matches": matches,
+                        "elapsed_time_seconds": elapsed_time,
                         "expression": expression,
                         "is_new_best": is_new_best,
                     }
