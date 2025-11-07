@@ -4,7 +4,7 @@ import sys
 from typing import Any, Tuple, Union, List, Dict
 from dataclasses import dataclass
 
-sys.setrecursionlimit(100000)
+# sys.setrecursionlimit(50000)
 
 
 def is_prime(n: int) -> bool:
@@ -80,6 +80,15 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
         op = random.choice(unary_ops)
         left = create_random_ast(depth + 1, max_depth, n_var)
         return ASTNode(op=op, left=left)
+
+
+def get_tree_depth(node: ASTNode) -> int:
+    """Calculate the depth of the tree."""
+    if node.op in ["var", "const", "named_const"]:
+        return 1
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
+        return 1 + get_tree_depth(node.left)
+    return 1 + max(get_tree_depth(node.left), get_tree_depth(node.right))
 
 
 def count_nodes(node: ASTNode) -> int:
@@ -346,21 +355,27 @@ def get_all_paths(node: ASTNode, current_path: List[int] = None) -> List[List[in
     return paths
 
 
-def crossover(parent1: ASTNode, parent2: ASTNode) -> ASTNode:
-    """Perform crossover by swapping subtrees from both parents."""
+def crossover(parent1: ASTNode, parent2: ASTNode, max_depth: int = 10) -> ASTNode:
+    """Perform crossover by swapping subtrees from both parents, respecting max depth."""
     paths1 = get_all_paths(parent1)
     paths2 = get_all_paths(parent2)
 
-    path1 = random.choice(paths1)
-    path2 = random.choice(paths2)
+    max_attempts = 20
+    for attempt in range(max_attempts):
+        path1 = random.choice(paths1)
+        path2 = random.choice(paths2)
 
-    subtree_from_parent2 = get_node_at_path(parent2, path2)
+        subtree_from_parent2 = get_node_at_path(parent2, path2)
 
-    if not path1:
-        return copy_ast(subtree_from_parent2)
+        if not path1:
+            result = copy_ast(subtree_from_parent2)
+        else:
+            result = replace_node_at_path(parent1, path1, subtree_from_parent2)
 
-    result = replace_node_at_path(parent1, path1, subtree_from_parent2)
-    return result
+        if get_tree_depth(result) <= max_depth:
+            return result
+
+    return copy_ast(parent1)
 
 
 def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) -> ASTNode:
@@ -402,6 +417,9 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
     elif node.op not in ["var", "const", "named_const"]:
         node.left = mutate_ast(node.left, mutation_rate, max_depth)
         node.right = mutate_ast(node.right, mutation_rate, max_depth)
+
+    if get_tree_depth(node) > max_depth:
+        return create_random_ast(0, max_depth)
 
     return node
 
@@ -470,7 +488,7 @@ def genetic_algorithm(
         for _ in range(crossover_count):
             parent1 = random.choice(survivors)
             parent2 = random.choice(survivors)
-            child = crossover(parent1, parent2)
+            child = crossover(parent1, parent2, max_depth=max_depth)
             child = mutate_ast(child, mutation_rate=mutation_rate, max_depth=max_depth)
             new_population.append(child)
 
@@ -491,15 +509,15 @@ def genetic_algorithm(
 
 if __name__ == "__main__":
     stop_limit = 1000
-    match_weight_factor = 1.0
+    match_weight_factor = 2.0
 
     print(f"Starting genetic algorithm with stop_limit={stop_limit}, match_weight_factor={match_weight_factor}")
     print()
 
     results = genetic_algorithm(
-        population_size=200,
+        population_size=20,
         generations=2000,
-        max_depth=4,
+        max_depth=10,
         stop_limit=stop_limit,
         keep_pct=0.2,
         crossover_pct=0.6,

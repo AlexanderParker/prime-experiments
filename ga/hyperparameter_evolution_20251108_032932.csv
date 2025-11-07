@@ -1,0 +1,2 @@
+generation,individual,population_size,generations,max_depth,keep_pct,crossover_pct,random_pct,match_weight_factor,mutation_rate,fitness,matches,elapsed_time_seconds,expression
+1,1,1000,1000,4,0.6796625505143818,0.2061018808606979,0.11423556862492026,4.8011183146736665,0.9814024765961588,0.14579936467314056,4,19.905308723449707,sqrt((log(7) | (3 << n)))
