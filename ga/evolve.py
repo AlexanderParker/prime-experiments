@@ -417,12 +417,16 @@ def genetic_algorithm(
     match_weight_factor: float = 1.0,
     mutation_rate: float = 0.1,
     verbose: bool = True,
+    seed_ast: ASTNode = None,
 ) -> Dict[str, Any]:
     """Run the genetic algorithm and return results."""
     if abs(keep_pct + crossover_pct + random_pct - 1.0) > 0.001:
         raise ValueError("Percentages must sum to 1.0")
 
     population = [create_random_ast(0, max_depth) for _ in range(population_size)]
+
+    if seed_ast is not None:
+        population[0] = copy_ast(seed_ast)
 
     best_ever = None
     best_fitness_ever = float("inf")
