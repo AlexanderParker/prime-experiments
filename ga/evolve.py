@@ -1,7 +1,10 @@
 import random
 import math
+import sys
 from typing import Any, Tuple, Union, List, Dict
 from dataclasses import dataclass
+
+sys.setrecursionlimit(10000)
 
 
 def is_prime(n: int) -> bool:
@@ -484,7 +487,7 @@ def genetic_algorithm(
 
 if __name__ == "__main__":
     stop_limit = 1000
-    match_weight_factor = 5.0
+    match_weight_factor = 1.0
 
     print(f"Starting genetic algorithm with stop_limit={stop_limit}, match_weight_factor={match_weight_factor}")
     print()
@@ -492,7 +495,7 @@ if __name__ == "__main__":
     results = genetic_algorithm(
         population_size=200,
         generations=2000,
-        max_depth=10,
+        max_depth=4,
         stop_limit=stop_limit,
         keep_pct=0.2,
         crossover_pct=0.6,
