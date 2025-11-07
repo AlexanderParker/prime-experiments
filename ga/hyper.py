@@ -2,6 +2,9 @@ import random
 from typing import Dict, Any, List, Tuple
 from dataclasses import dataclass
 import evolve
+import csv
+import os
+from datetime import datetime
 
 
 @dataclass
@@ -75,7 +78,9 @@ def mutate_hyperparams(params: HyperParams, mutation_rate: float = 0.3) -> Hyper
     return new_params
 
 
-def evaluate_hyperparams(params: HyperParams, stop_limit: int = 100) -> Tuple[float, int, str]:
+def evaluate_hyperparams(
+    params: HyperParams, stop_limit: int = 100, seed_ast: evolve.ASTNode = None
+) -> Tuple[float, int, str, evolve.ASTNode]:
     """Evaluate hyperparameters by running the genetic algorithm."""
     results = evolve.genetic_algorithm(
         population_size=params.population_size,
@@ -88,9 +93,10 @@ def evaluate_hyperparams(params: HyperParams, stop_limit: int = 100) -> Tuple[fl
         match_weight_factor=params.match_weight_factor,
         mutation_rate=params.mutation_rate,
         verbose=False,
+        seed_ast=seed_ast,
     )
 
-    return results["best_fitness"], results["best_matches"], results["expression"]
+    return results["best_fitness"], results["best_matches"], results["expression"], results["best_ast"]
 
 
 def hyperparameter_evolution(
@@ -107,55 +113,99 @@ def hyperparameter_evolution(
     best_matches = 0
     best_expression = None
 
-    for generation in range(generations):
-        print(f"\n{'='*80}")
-        print(f"Hyperparameter Generation {generation + 1}/{generations}")
-        print(f"{'='*80}\n")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    csv_filename = f"hyperparameter_evolution_{timestamp}.csv"
 
-        fitness_scores: List[Tuple[float, int, str, HyperParams]] = []
+    with open(csv_filename, "w", newline="") as csvfile:
+        fieldnames = [
+            "generation",
+            "individual",
+            "population_size",
+            "generations",
+            "max_depth",
+            "keep_pct",
+            "crossover_pct",
+            "random_pct",
+            "match_weight_factor",
+            "mutation_rate",
+            "fitness",
+            "matches",
+            "expression",
+        ]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
 
-        for i, params in enumerate(population):
-            print(f"Evaluating hyperparameter set {i + 1}/{len(population)}...")
-            print(
-                f"  population_size={params.population_size}, generations={params.generations}, max_depth={params.max_depth}"
-            )
-            print(
-                f"  keep_pct={params.keep_pct:.3f}, crossover_pct={params.crossover_pct:.3f}, random_pct={params.random_pct:.3f}"
-            )
-            print(f"  match_weight_factor={params.match_weight_factor:.3f}, mutation_rate={params.mutation_rate:.3f}")
+        for generation in range(generations):
+            print(f"\n{'='*80}")
+            print(f"Hyperparameter Generation {generation + 1}/{generations}")
+            print(f"{'='*80}\n")
 
-            fitness, matches, expression = evaluate_hyperparams(params, stop_limit=stop_limit)
-            fitness_scores.append((fitness, matches, expression, params))
+            fitness_scores: List[Tuple[float, int, str, evolve.ASTNode, HyperParams]] = []
 
-            print(f"  Fitness: {fitness:.4f}, Matches: {matches}")
-            print(f"  Expression: {expression}")
+            for i, params in enumerate(population):
+                print(f"Evaluating hyperparameter set {i + 1}/{len(population)}...")
+                print(
+                    f"  population_size={params.population_size}, generations={params.generations}, max_depth={params.max_depth}"
+                )
+                print(
+                    f"  keep_pct={params.keep_pct:.3f}, crossover_pct={params.crossover_pct:.3f}, random_pct={params.random_pct:.3f}"
+                )
+                print(
+                    f"  match_weight_factor={params.match_weight_factor:.3f}, mutation_rate={params.mutation_rate:.3f}"
+                )
 
-            if fitness < best_fitness:
-                best_fitness = fitness
-                best_params = params
-                best_matches = matches
-                best_expression = expression
-                print(f"  *** NEW BEST FITNESS: {best_fitness:.4f} ***")
+                fitness, matches, expression, best_ast = evaluate_hyperparams(params, stop_limit=stop_limit)
+                fitness_scores.append((fitness, matches, expression, best_ast, params))
 
-        fitness_scores.sort(key=lambda x: x[0])
+                print(f"  Fitness: {fitness:.4f}, Matches: {matches}")
+                print(f"  Expression: {expression}")
 
-        print(f"\nGeneration {generation + 1} Summary:")
-        print(f"Best fitness this generation: {fitness_scores[0][0]:.4f}")
-        print(f"Best matches this generation: {fitness_scores[0][1]}")
-        print(f"Best fitness overall: {best_fitness:.4f}")
-        print(f"Best matches overall: {best_matches}")
+                writer.writerow(
+                    {
+                        "generation": generation + 1,
+                        "individual": i + 1,
+                        "population_size": params.population_size,
+                        "generations": params.generations,
+                        "max_depth": params.max_depth,
+                        "keep_pct": params.keep_pct,
+                        "crossover_pct": params.crossover_pct,
+                        "random_pct": params.random_pct,
+                        "match_weight_factor": params.match_weight_factor,
+                        "mutation_rate": params.mutation_rate,
+                        "fitness": fitness,
+                        "matches": matches,
+                        "expression": expression,
+                    }
+                )
+                csvfile.flush()
 
-        survivors = [params for _, _, _, params in fitness_scores[:keep_best]]
+                if fitness < best_fitness:
+                    best_fitness = fitness
+                    best_params = params
+                    best_matches = matches
+                    best_expression = expression
+                    print(f"  *** NEW BEST FITNESS: {best_fitness:.4f} ***")
 
-        new_population = survivors[:]
+            fitness_scores.sort(key=lambda x: x[0])
 
-        while len(new_population) < population_size:
-            parent = random.choice(survivors)
-            child = mutate_hyperparams(parent)
-            new_population.append(child)
+            print(f"\nGeneration {generation + 1} Summary:")
+            print(f"Best fitness this generation: {fitness_scores[0][0]:.4f}")
+            print(f"Best matches this generation: {fitness_scores[0][1]}")
+            print(f"Best fitness overall: {best_fitness:.4f}")
+            print(f"Best matches overall: {best_matches}")
 
-        population = new_population
+            survivors = [params for _, _, _, _, params in fitness_scores[:keep_best]]
 
+            new_population = survivors[:]
+
+            while len(new_population) < population_size:
+                parent = random.choice(survivors)
+                child = mutate_hyperparams(parent)
+                new_population.append(child)
+
+            population = new_population
+
+    print(f"\nHyperparameter evolution log saved to: {csv_filename}")
     return best_params, best_fitness
 
 
@@ -190,36 +240,64 @@ if __name__ == "__main__":
     best_ever_fitness = float("inf")
     best_ever_matches = 0
     best_ever_expression = None
+    best_ever_ast = None
 
-    try:
-        while True:
-            run_count += 1
-            print(f"\n{'='*80}")
-            print(f"Run #{run_count} with best hyperparameters")
-            print(f"{'='*80}\n")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    infinite_csv_filename = f"infinite_runs_{timestamp}.csv"
 
-            fitness, matches, expression = evaluate_hyperparams(best_params, stop_limit=1000)
+    with open(infinite_csv_filename, "w", newline="") as csvfile:
+        fieldnames = ["run", "fitness", "matches", "expression", "is_new_best"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
 
-            print(f"Fitness: {fitness:.4f}, Matches: {matches}")
-            print(f"Expression: {expression}")
+        try:
+            while True:
+                run_count += 1
+                print(f"\n{'='*80}")
+                print(f"Run #{run_count} with best hyperparameters")
+                if best_ever_ast is not None:
+                    print("Seeding with previous best solution")
+                print(f"{'='*80}\n")
 
-            if fitness < best_ever_fitness:
-                best_ever_fitness = fitness
-                best_ever_matches = matches
-                best_ever_expression = expression
-                print(f"\n*** NEW OVERALL BEST FITNESS: {best_ever_fitness:.4f} ***")
-                print(f"*** MATCHES: {best_ever_matches} ***")
-                print(f"*** EXPRESSION: {best_ever_expression} ***")
+                fitness, matches, expression, best_ast = evaluate_hyperparams(
+                    best_params, stop_limit=1000, seed_ast=best_ever_ast
+                )
 
+                print(f"Fitness: {fitness:.4f}, Matches: {matches}")
+                print(f"Expression: {expression}")
+
+                is_new_best = False
+                if fitness < best_ever_fitness:
+                    best_ever_fitness = fitness
+                    best_ever_matches = matches
+                    best_ever_expression = expression
+                    best_ever_ast = best_ast
+                    is_new_best = True
+                    print(f"\n*** NEW OVERALL BEST FITNESS: {best_ever_fitness:.4f} ***")
+                    print(f"*** MATCHES: {best_ever_matches} ***")
+                    print(f"*** EXPRESSION: {best_ever_expression} ***")
+
+                writer.writerow(
+                    {
+                        "run": run_count,
+                        "fitness": fitness,
+                        "matches": matches,
+                        "expression": expression,
+                        "is_new_best": is_new_best,
+                    }
+                )
+                csvfile.flush()
+
+                print(f"\nBest ever fitness: {best_ever_fitness:.4f}")
+                print(f"Best ever matches: {best_ever_matches}")
+                print(f"Best ever expression: {best_ever_expression}")
+
+        except KeyboardInterrupt:
+            print("\n\n" + "=" * 80)
+            print("STOPPED BY USER")
+            print("=" * 80)
+            print(f"Total runs completed: {run_count}")
             print(f"\nBest ever fitness: {best_ever_fitness:.4f}")
             print(f"Best ever matches: {best_ever_matches}")
             print(f"Best ever expression: {best_ever_expression}")
-
-    except KeyboardInterrupt:
-        print("\n\n" + "=" * 80)
-        print("STOPPED BY USER")
-        print("=" * 80)
-        print(f"Total runs completed: {run_count}")
-        print(f"\nBest ever fitness: {best_ever_fitness:.4f}")
-        print(f"Best ever matches: {best_ever_matches}")
-        print(f"Best ever expression: {best_ever_expression}")
+            print(f"\nInfinite runs log saved to: {infinite_csv_filename}")
