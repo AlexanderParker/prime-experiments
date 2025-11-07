@@ -68,7 +68,7 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
             const_name = random.choice(list(CONSTANTS.keys()))
             return ASTNode(op="named_const", value=const_name)
 
-    binary_ops = ["+", "-", "*", "//", "%", "**", "&", "|", "^", "<<", ">>"]
+    binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "nroot"]
     unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]
 
     if random.random() < 0.7:
@@ -83,12 +83,29 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
 
 
 def get_tree_depth(node: ASTNode) -> int:
-    """Calculate the depth of the tree."""
-    if node.op in ["var", "const", "named_const"]:
-        return 1
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
-        return 1 + get_tree_depth(node.left)
-    return 1 + max(get_tree_depth(node.left), get_tree_depth(node.right))
+    """Calculate the depth of the tree iteratively to avoid recursion issues."""
+    if node is None:
+        return 0
+
+    max_depth = 0
+    stack = [(node, 1)]
+
+    while stack:
+        current, depth = stack.pop()
+        max_depth = max(max_depth, depth)
+
+        if current.op in ["var", "const", "named_const"]:
+            continue
+        elif current.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
+            if current.left:
+                stack.append((current.left, depth + 1))
+        else:
+            if current.left:
+                stack.append((current.left, depth + 1))
+            if current.right:
+                stack.append((current.right, depth + 1))
+
+    return max_depth
 
 
 def count_nodes(node: ASTNode) -> int:
@@ -125,7 +142,7 @@ def is_trivial_solution(node: ASTNode) -> bool:
     return False
 
 
-def evaluate_ast(node: ASTNode, n: int) -> Union[int, None]:
+def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, float, None]:
     """Evaluate the AST with a given value of n."""
     try:
         if node.op == "var":
@@ -134,10 +151,10 @@ def evaluate_ast(node: ASTNode, n: int) -> Union[int, None]:
             return node.value
         if node.op == "named_const":
             const_val = CONSTANTS[node.value]
-            return int(math.floor(const_val))
+            return const_val
 
         if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
-            left_val = evaluate_ast(node.left, n)
+            left_val = evaluate_ast(node.left, n, is_root=False)
 
             if left_val is None:
                 return None
@@ -152,39 +169,41 @@ def evaluate_ast(node: ASTNode, n: int) -> Union[int, None]:
             elif node.op == "sqrt":
                 if left_val < 0:
                     return None
-                result = math.floor(math.sqrt(left_val))
+                result = math.sqrt(left_val)
             elif node.op == "abs":
                 result = abs(left_val)
             elif node.op == "sin":
-                result = math.floor(math.sin(left_val))
+                result = math.sin(left_val)
             elif node.op == "cos":
-                result = math.floor(math.cos(left_val))
+                result = math.cos(left_val)
             elif node.op == "tan":
-                result = math.floor(math.tan(left_val))
+                result = math.tan(left_val)
             elif node.op == "log":
                 if left_val <= 0:
                     return None
-                result = math.floor(math.log(left_val))
+                result = math.log(left_val)
             elif node.op == "factorial":
                 if not isinstance(left_val, int) or left_val < 0 or left_val > 20:
                     return None
                 result = math.factorial(left_val)
 
-            if not isinstance(result, int):
-                return None
-
             if abs(result) > 10**9:
                 return None
 
+            if is_root:
+                result = math.floor(result)
+                if not isinstance(result, int):
+                    return None
+
             return result
 
-        left_val = evaluate_ast(node.left, n)
-        right_val = evaluate_ast(node.right, n)
+        left_val = evaluate_ast(node.left, n, is_root=False)
+        right_val = evaluate_ast(node.right, n, is_root=False)
 
         if left_val is None or right_val is None:
             return None
 
-        if not isinstance(left_val, int) or not isinstance(right_val, int):
+        if not isinstance(left_val, (int, float)) or not isinstance(right_val, (int, float)):
             return None
 
         if node.op == "+":
@@ -193,6 +212,10 @@ def evaluate_ast(node: ASTNode, n: int) -> Union[int, None]:
             result = left_val - right_val
         elif node.op == "*":
             result = left_val * right_val
+        elif node.op == "/":
+            if right_val == 0:
+                return None
+            result = left_val / right_val
         elif node.op == "//":
             if right_val == 0:
                 return None
@@ -208,27 +231,48 @@ def evaluate_ast(node: ASTNode, n: int) -> Union[int, None]:
                 return None
             result = left_val**right_val
         elif node.op == "&":
+            if not isinstance(left_val, int) or not isinstance(right_val, int):
+                return None
             result = left_val & right_val
         elif node.op == "|":
+            if not isinstance(left_val, int) or not isinstance(right_val, int):
+                return None
             result = left_val | right_val
         elif node.op == "^":
+            if not isinstance(left_val, int) or not isinstance(right_val, int):
+                return None
             result = left_val ^ right_val
         elif node.op == "<<":
+            if not isinstance(left_val, int) or not isinstance(right_val, int):
+                return None
             if right_val < 0 or right_val > 30:
                 return None
             result = left_val << right_val
         elif node.op == ">>":
+            if not isinstance(left_val, int) or not isinstance(right_val, int):
+                return None
             if right_val < 0 or right_val > 30:
                 return None
             result = left_val >> right_val
+        elif node.op == "nroot":
+            if right_val <= 0 or right_val > 20:
+                return None
+            if left_val < 0 and right_val % 2 == 0:
+                return None
+            if left_val < 0:
+                result = -(abs(left_val) ** (1.0 / right_val))
+            else:
+                result = left_val ** (1.0 / right_val)
         else:
-            return None
-
-        if not isinstance(result, int):
             return None
 
         if abs(result) > 10**9:
             return None
+
+        if is_root:
+            result = math.floor(result)
+            if not isinstance(result, int):
+                return None
 
         return result
     except (OverflowError, ValueError, ZeroDivisionError, TypeError):
@@ -282,6 +326,9 @@ def ast_to_string(node: ASTNode) -> str:
 
     left_str = ast_to_string(node.left)
     right_str = ast_to_string(node.right)
+
+    if node.op == "nroot":
+        return f"nroot({left_str}, {right_str})"
 
     return f"({left_str} {node.op} {right_str})"
 
@@ -366,20 +413,31 @@ def crossover(parent1: ASTNode, parent2: ASTNode, max_depth: int = 10) -> ASTNod
         path2 = random.choice(paths2)
 
         subtree_from_parent2 = get_node_at_path(parent2, path2)
+        subtree_depth = get_tree_depth(subtree_from_parent2)
 
         if not path1:
-            result = copy_ast(subtree_from_parent2)
+            if subtree_depth <= max_depth:
+                return copy_ast(subtree_from_parent2)
         else:
-            result = replace_node_at_path(parent1, path1, subtree_from_parent2)
+            subtree_to_replace = get_node_at_path(parent1, path1)
+            old_subtree_depth = get_tree_depth(subtree_to_replace)
 
-        if get_tree_depth(result) <= max_depth:
-            return result
+            parent1_depth = get_tree_depth(parent1)
+            estimated_new_depth = parent1_depth - old_subtree_depth + subtree_depth
+
+            if estimated_new_depth <= max_depth:
+                result = replace_node_at_path(parent1, path1, subtree_from_parent2)
+                return result
 
     return copy_ast(parent1)
 
 
 def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) -> ASTNode:
     """Mutate an AST with improved mutation strategies."""
+    current_depth = get_tree_depth(node)
+    if current_depth > max_depth:
+        return create_random_ast(0, max_depth)
+
     node = copy_ast(node)
 
     if random.random() < mutation_rate:
@@ -399,7 +457,7 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
                 unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]
                 node.op = random.choice(unary_ops)
             else:
-                binary_ops = ["+", "-", "*", "//", "%", "**", "&", "|", "^", "<<", ">>"]
+                binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "nroot"]
                 node.op = random.choice(binary_ops)
 
         elif mutation_type < 0.66:
@@ -409,16 +467,31 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
             paths = get_all_paths(node)
             if len(paths) > 1:
                 path = random.choice(paths[1:])
+                old_subtree = get_node_at_path(node, path)
+                old_subtree_depth = get_tree_depth(old_subtree)
                 replacement = create_random_ast(0, max_depth)
-                node = replace_node_at_path(node, path, replacement)
+                replacement_depth = get_tree_depth(replacement)
+
+                estimated_new_depth = current_depth - old_subtree_depth + replacement_depth
+                if estimated_new_depth <= max_depth:
+                    node = replace_node_at_path(node, path, replacement)
+                else:
+                    return node
 
     if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
-        node.left = mutate_ast(node.left, mutation_rate, max_depth)
+        child_depth = get_tree_depth(node.left)
+        if child_depth < max_depth:
+            node.left = mutate_ast(node.left, mutation_rate, max_depth)
     elif node.op not in ["var", "const", "named_const"]:
-        node.left = mutate_ast(node.left, mutation_rate, max_depth)
-        node.right = mutate_ast(node.right, mutation_rate, max_depth)
+        left_depth = get_tree_depth(node.left)
+        right_depth = get_tree_depth(node.right)
+        if left_depth < max_depth:
+            node.left = mutate_ast(node.left, mutation_rate, max_depth)
+        if right_depth < max_depth:
+            node.right = mutate_ast(node.right, mutation_rate, max_depth)
 
-    if get_tree_depth(node) > max_depth:
+    final_depth = get_tree_depth(node)
+    if final_depth > max_depth:
         return create_random_ast(0, max_depth)
 
     return node
@@ -509,15 +582,15 @@ def genetic_algorithm(
 
 if __name__ == "__main__":
     stop_limit = 1000
-    match_weight_factor = 2.0
+    match_weight_factor = 1.0
 
     print(f"Starting genetic algorithm with stop_limit={stop_limit}, match_weight_factor={match_weight_factor}")
     print()
 
     results = genetic_algorithm(
-        population_size=20,
+        population_size=200,
         generations=2000,
-        max_depth=10,
+        max_depth=100,
         stop_limit=stop_limit,
         keep_pct=0.2,
         crossover_pct=0.6,
