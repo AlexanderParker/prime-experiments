@@ -1,2 +1,0 @@
-generation,individual,population_size,generations,max_depth,keep_pct,crossover_pct,random_pct,match_weight_factor,mutation_rate,fitness,matches,elapsed_time_seconds,expression
-1,1,100,2000,8,0.9340654327407064,0.008647623071478977,0.05728694418781461,4.836056619036551,0.11092640521656646,0.20678004390263363,2,2.2850117683410645,(n + sqrt3)
