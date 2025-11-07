@@ -41,16 +41,32 @@ class ASTNode:
     value: Any = None
 
 
+CONSTANTS = {
+    "pi": math.pi,
+    "e": math.e,
+    "phi": (1 + math.sqrt(5)) / 2,
+    "sqrt2": math.sqrt(2),
+    "sqrt3": math.sqrt(3),
+    "c": 299792458,
+    "h": 6.62607015e-34,
+    "G": 6.67430e-11,
+}
+
+
 def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
     """Create a random mathematical AST."""
     if depth >= max_depth or (depth > 0 and random.random() < 0.3):
-        if random.random() < 0.5:
+        choice = random.random()
+        if choice < 0.4:
             return ASTNode(op="var", value=n_var)
-        else:
+        elif choice < 0.7:
             return ASTNode(op="const", value=random.randint(1, 10))
+        else:
+            const_name = random.choice(list(CONSTANTS.keys()))
+            return ASTNode(op="named_const", value=const_name)
 
     binary_ops = ["+", "-", "*", "//", "%", "**", "&", "|", "^", "<<", ">>"]
-    unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]
+    unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]
 
     if random.random() < 0.7:
         op = random.choice(binary_ops)
@@ -65,9 +81,9 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
 
 def count_nodes(node: ASTNode) -> int:
     """Count the number of nodes in the AST."""
-    if node.op in ["var", "const"]:
+    if node.op in ["var", "const", "named_const"]:
         return 1
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
         return 1 + count_nodes(node.left)
     return 1 + count_nodes(node.left) + count_nodes(node.right)
 
@@ -76,9 +92,9 @@ def has_variable(node: ASTNode) -> bool:
     """Check if the AST contains the variable n."""
     if node.op == "var":
         return True
-    if node.op == "const":
+    if node.op in ["const", "named_const"]:
         return False
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
         return has_variable(node.left)
     return has_variable(node.left) or has_variable(node.right)
 
@@ -104,8 +120,11 @@ def evaluate_ast(node: ASTNode, n: int) -> Union[int, None]:
             return n
         if node.op == "const":
             return node.value
+        if node.op == "named_const":
+            const_val = CONSTANTS[node.value]
+            return int(math.floor(const_val))
 
-        if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+        if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
             left_val = evaluate_ast(node.left, n)
 
             if left_val is None:
@@ -134,6 +153,10 @@ def evaluate_ast(node: ASTNode, n: int) -> Union[int, None]:
                 if left_val <= 0:
                     return None
                 result = math.floor(math.log(left_val))
+            elif node.op == "factorial":
+                if not isinstance(left_val, int) or left_val < 0 or left_val > 20:
+                    return None
+                result = math.factorial(left_val)
 
             if not isinstance(result, int):
                 return None
@@ -238,8 +261,10 @@ def ast_to_string(node: ASTNode) -> str:
         return node.value
     if node.op == "const":
         return str(node.value)
+    if node.op == "named_const":
+        return node.value
 
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
         left_str = ast_to_string(node.left)
         return f"{node.op}({left_str})"
 
@@ -251,9 +276,9 @@ def ast_to_string(node: ASTNode) -> str:
 
 def copy_ast(node: ASTNode) -> ASTNode:
     """Create a deep copy of an AST."""
-    if node.op in ["var", "const"]:
+    if node.op in ["var", "const", "named_const"]:
         return ASTNode(op=node.op, value=node.value)
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
         return ASTNode(op=node.op, left=copy_ast(node.left))
     return ASTNode(op=node.op, left=copy_ast(node.left), right=copy_ast(node.right))
 
@@ -261,9 +286,9 @@ def copy_ast(node: ASTNode) -> ASTNode:
 def get_all_nodes(node: ASTNode) -> List[ASTNode]:
     """Get a list of all nodes in the tree."""
     nodes = [node]
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
         nodes.extend(get_all_nodes(node.left))
-    elif node.op not in ["var", "const"]:
+    elif node.op not in ["var", "const", "named_const"]:
         nodes.extend(get_all_nodes(node.left))
         nodes.extend(get_all_nodes(node.right))
     return nodes
@@ -309,9 +334,9 @@ def get_all_paths(node: ASTNode, current_path: List[int] = None) -> List[List[in
 
     paths = [current_path[:]]
 
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
         paths.extend(get_all_paths(node.left, current_path + [0]))
-    elif node.op not in ["var", "const"]:
+    elif node.op not in ["var", "const", "named_const"]:
         paths.extend(get_all_paths(node.left, current_path + [0]))
         paths.extend(get_all_paths(node.right, current_path + [1]))
 
@@ -343,13 +368,17 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
         mutation_type = random.random()
 
         if mutation_type < 0.33:
-            if node.op in ["var", "const"]:
-                if random.random() < 0.5:
+            if node.op in ["var", "const", "named_const"]:
+                choice = random.random()
+                if choice < 0.33:
                     return ASTNode(op="const", value=random.randint(1, 10))
-                else:
+                elif choice < 0.66:
                     return ASTNode(op="var", value="n")
-            elif node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
-                unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]
+                else:
+                    const_name = random.choice(list(CONSTANTS.keys()))
+                    return ASTNode(op="named_const", value=const_name)
+            elif node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
+                unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]
                 node.op = random.choice(unary_ops)
             else:
                 binary_ops = ["+", "-", "*", "//", "%", "**", "&", "|", "^", "<<", ">>"]
@@ -365,9 +394,9 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
                 replacement = create_random_ast(0, max_depth)
                 node = replace_node_at_path(node, path, replacement)
 
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log"]:
+    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "factorial"]:
         node.left = mutate_ast(node.left, mutation_rate, max_depth)
-    elif node.op not in ["var", "const"]:
+    elif node.op not in ["var", "const", "named_const"]:
         node.left = mutate_ast(node.left, mutation_rate, max_depth)
         node.right = mutate_ast(node.right, mutation_rate, max_depth)
 
@@ -455,7 +484,7 @@ def genetic_algorithm(
 
 if __name__ == "__main__":
     stop_limit = 1000
-    match_weight_factor = 10.0
+    match_weight_factor = 5.0
 
     print(f"Starting genetic algorithm with stop_limit={stop_limit}, match_weight_factor={match_weight_factor}")
     print()
@@ -463,7 +492,7 @@ if __name__ == "__main__":
     results = genetic_algorithm(
         population_size=200,
         generations=2000,
-        max_depth=4,
+        max_depth=10,
         stop_limit=stop_limit,
         keep_pct=0.2,
         crossover_pct=0.6,
