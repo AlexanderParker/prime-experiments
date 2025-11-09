@@ -94,6 +94,7 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
         "asin",
         "acos",
         "atan",
+        "neg",
     ]
 
     if random.random() < 0.7:
@@ -145,6 +146,7 @@ def get_tree_depth(node: ASTNode) -> int:
             "asin",
             "acos",
             "atan",
+            "neg",
         ]:
             if current.left:
                 stack.append((current.left, depth + 1))
@@ -179,6 +181,7 @@ def count_nodes(node: ASTNode) -> int:
         "asin",
         "acos",
         "atan",
+        "neg",
     ]:
         return 1 + count_nodes(node.left)
     return 1 + count_nodes(node.left) + count_nodes(node.right)
@@ -208,6 +211,7 @@ def has_variable(node: ASTNode) -> bool:
         "asin",
         "acos",
         "atan",
+        "neg",
     ]:
         return has_variable(node.left)
     return has_variable(node.left) or has_variable(node.right)
@@ -256,6 +260,7 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
             "asin",
             "acos",
             "atan",
+            "neg",
         ]:
             left_val = evaluate_ast(node.left, n, is_root=False)
 
@@ -313,6 +318,8 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
                 if not isinstance(left_val, int) or left_val < 0 or left_val > 20:
                     return None
                 result = math.factorial(left_val)
+            elif node.op == "neg":
+                result = -left_val
 
             if abs(result) > 10**9:
                 return None
@@ -473,6 +480,7 @@ def ast_to_string(node: ASTNode) -> str:
         "asin",
         "acos",
         "atan",
+        "neg",
     ]:
         left_str = ast_to_string(node.left)
         return f"{node.op}({left_str})"
@@ -511,6 +519,7 @@ def copy_ast(node: ASTNode) -> ASTNode:
         "asin",
         "acos",
         "atan",
+        "neg",
     ]:
         return ASTNode(op=node.op, left=copy_ast(node.left))
     return ASTNode(op=node.op, left=copy_ast(node.left), right=copy_ast(node.right))
@@ -537,6 +546,7 @@ def get_all_nodes(node: ASTNode) -> List[ASTNode]:
         "asin",
         "acos",
         "atan",
+        "neg",
     ]:
         nodes.extend(get_all_nodes(node.left))
     elif node.op not in ["var", "const", "named_const"]:
@@ -603,6 +613,7 @@ def get_all_paths(node: ASTNode, current_path: List[int] = None) -> List[List[in
         "asin",
         "acos",
         "atan",
+        "neg",
     ]:
         paths.extend(get_all_paths(node.left, current_path + [0]))
     elif node.op not in ["var", "const", "named_const"]:
@@ -679,6 +690,7 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
                 "asin",
                 "acos",
                 "atan",
+                "neg",
             ]:
                 unary_ops = [
                     "floor",
@@ -698,6 +710,7 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
                     "asin",
                     "acos",
                     "atan",
+                    "neg",
                 ]
                 node.op = random.choice(unary_ops)
             else:
@@ -757,6 +770,7 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
         "asin",
         "acos",
         "atan",
+        "neg",
     ]:
         child_depth = get_tree_depth(node.left)
         if child_depth < max_depth:
