@@ -1,0 +1,6 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-3835.0,10,590.1137526035309,((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))),True
+2,-5039.0,11,603.2446472644806,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),True
+3,-5039.0,11,754.9383037090302,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+4,-5039.0,11,759.5777921676636,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+5,-5039.0,11,721.3854467868805,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
