@@ -64,7 +64,34 @@ def load_best_hyperparams_from_csv(csv_filename: str) -> HyperParams:
     return best_params
 
 
-def load_top_expressions_from_csv(csv_filename: str, limit: int = 50) -> List[str]:
+def load_seeds_from_csv(seeds_filename: str = "seeds.csv") -> List[Tuple[float, int, str]]:
+    """Load seeds from seeds.csv file."""
+    seeds = []
+
+    with open(seeds_filename, "r") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            fitness = float(row["fitness"])
+            matches = int(row["matches"])
+            expression = row["expression"]
+            seeds.append((fitness, matches, expression))
+
+    seeds.sort(key=lambda x: x[0])
+    return seeds
+
+
+def save_seeds_to_csv(seeds: List[Tuple[float, int, str]], seeds_filename: str = "seeds.csv"):
+    """Save seeds to seeds.csv file."""
+    with open(seeds_filename, "w", newline="") as csvfile:
+        fieldnames = ["fitness", "matches", "expression"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for fitness, matches, expression in seeds:
+            writer.writerow({"fitness": fitness, "matches": matches, "expression": expression})
+
+
+def load_top_expressions_from_csv(csv_filename: str, limit: int = 50) -> List[Tuple[float, int, str]]:
     """Load the top scoring expressions from a hyperparameter evolution CSV file."""
     rows = []
 
@@ -72,13 +99,13 @@ def load_top_expressions_from_csv(csv_filename: str, limit: int = 50) -> List[st
         reader = csv.DictReader(csvfile)
         for row in reader:
             fitness = float(row["fitness"])
+            matches = int(row["matches"])
             expression = row["expression"]
-            rows.append((fitness, expression))
+            rows.append((fitness, matches, expression))
 
     rows.sort(key=lambda x: x[0])
 
-    expressions = [expr for _, expr in rows[:limit]]
-    return expressions
+    return rows[:limit]
 
 
 def expression_to_ast(expression: str) -> Optional[evolve.ASTNode]:
@@ -240,6 +267,22 @@ def evaluate_hyperparams(
     return results["best_fitness"], results["best_matches"], results["expression"], results["best_ast"], elapsed_time
 
 
+def update_seeds(
+    seeds: List[Tuple[float, int, str]], new_fitness: float, new_matches: int, new_expression: str, max_seeds: int = 100
+) -> Tuple[List[Tuple[float, int, str]], bool]:
+    """Update seeds list with new result if it's better. Returns updated seeds and whether it was added."""
+    existing_expressions = {expr for _, _, expr in seeds}
+
+    if new_expression in existing_expressions:
+        return seeds, False
+
+    seeds.append((new_fitness, new_matches, new_expression))
+    seeds.sort(key=lambda x: x[0])
+    seeds = seeds[:max_seeds]
+
+    return seeds, True
+
+
 if __name__ == "__main__":
 
     def signal_handler(sig, frame):
@@ -248,22 +291,35 @@ if __name__ == "__main__":
 
     signal.signal(signal.SIGINT, signal_handler)
 
+    seeds_filename = "seeds.csv"
+    seeds = []
+
     try:
+        if os.path.exists(seeds_filename):
+            print(f"Loading seeds from: {seeds_filename}")
+            seeds = load_seeds_from_csv(seeds_filename)
+            print(f"Loaded {len(seeds)} seeds")
+        else:
+            print(f"{seeds_filename} not found, loading from hyperparameter evolution file")
+            csv_filename = find_latest_hyperparameter_csv()
+            print(f"Loading from: {csv_filename}")
+            seeds = load_top_expressions_from_csv(csv_filename, limit=100)
+            print(f"Loaded {len(seeds)} expressions")
+
+            print(f"Saving initial seeds to: {seeds_filename}")
+            save_seeds_to_csv(seeds, seeds_filename)
+
         csv_filename = find_latest_hyperparameter_csv()
         print(f"Loading best hyperparameters from: {csv_filename}")
         best_params = load_best_hyperparams_from_csv(csv_filename)
 
-        print(f"Loading top expressions from: {csv_filename}")
-        expressions = load_top_expressions_from_csv(csv_filename, limit=best_params.population_size)
-        print(f"Loaded {len(expressions)} expressions")
-
-        seed_asts = []
-        for expr in expressions:
-            ast = expression_to_ast(expr)
-            if ast is not None:
-                seed_asts.append(ast)
-
-        print(f"Successfully parsed {len(seed_asts)} expressions into ASTs")
+        print("\n" + "=" * 80)
+        print("TOP SEED ASTs")
+        print("=" * 80)
+        for i, (fitness, matches, expr) in enumerate(seeds[:10]):
+            print(f"{i+1}. Fitness: {fitness:.4f}, Matches: {matches}, Expression: {expr}")
+        if len(seeds) > 10:
+            print(f"... and {len(seeds) - 10} more")
 
     except (FileNotFoundError, ValueError) as e:
         print(f"Error: {e}")
@@ -290,7 +346,6 @@ if __name__ == "__main__":
     best_ever_fitness = float("inf")
     best_ever_matches = 0
     best_ever_expression = None
-    best_ever_ast = None
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     infinite_csv_filename = f"infinite_runs_{timestamp}.csv"
@@ -306,16 +361,19 @@ if __name__ == "__main__":
                 print(f"\n{'='*80}")
                 print(f"Run #{run_count} with best hyperparameters")
 
-                current_seed_asts = seed_asts[:]
-                if best_ever_ast is not None:
-                    print("Adding previous best solution to seed population")
-                    current_seed_asts.insert(0, best_ever_ast)
+                seeds = load_seeds_from_csv(seeds_filename)
 
-                print(f"Seeding with {len(current_seed_asts)} ASTs")
+                seed_asts = []
+                for fitness, matches, expr in seeds[: best_params.population_size]:
+                    ast = expression_to_ast(expr)
+                    if ast is not None:
+                        seed_asts.append(ast)
+
+                print(f"Seeding with {len(seed_asts)} ASTs from seeds.csv")
                 print(f"{'='*80}\n")
 
                 fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(
-                    best_params, stop_limit=1000, seed_asts=current_seed_asts
+                    best_params, stop_limit=1000, seed_asts=seed_asts
                 )
 
                 print(f"Fitness: {fitness:.4f}, Matches: {matches}")
@@ -323,11 +381,16 @@ if __name__ == "__main__":
                 print(f"Expression: {expression}")
 
                 is_new_best = False
+                seeds, was_added = update_seeds(seeds, fitness, matches, expression, max_seeds=100)
+
+                if was_added:
+                    print(f"\n*** NEW SEED ADDED TO seeds.csv ***")
+                    save_seeds_to_csv(seeds, seeds_filename)
+
                 if fitness < best_ever_fitness:
                     best_ever_fitness = fitness
                     best_ever_matches = matches
                     best_ever_expression = expression
-                    best_ever_ast = best_ast
                     is_new_best = True
                     print(f"\n*** NEW OVERALL BEST FITNESS: {best_ever_fitness:.4f} ***")
                     print(f"*** MATCHES: {best_ever_matches} ***")
