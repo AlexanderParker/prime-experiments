@@ -1,7 +1,7 @@
 import random
 import math
 import sys
-from typing import Any, Tuple, Union, List, Dict
+from typing import Any, Tuple, Union, List, Dict, Optional
 from dataclasses import dataclass
 
 sys.setrecursionlimit(50000)
@@ -432,19 +432,16 @@ def calculate_fitness(
         expected_prime = get_nth_prime(n)
         if result == expected_prime:
             matches += 1
-            match_score += n ** match_weight_factor            
+            match_score += n**match_weight_factor
         else:
             break
-    
+
     complexity = count_nodes(node)
 
     if match_score == 0:
         fitness = float("inf")
     else:
-        # fitness = complexity / match_score
         fitness = -match_score * 10 + complexity
-
-    # fitness = -matches
 
     return fitness, matches, complexity, match_score
 
@@ -786,16 +783,23 @@ def genetic_algorithm(
     match_weight_factor: float = 1.0,
     mutation_rate: float = 0.1,
     verbose: bool = True,
-    seed_ast: ASTNode = None,
+    seed_ast: Optional[ASTNode] = None,
+    seed_asts: Optional[List[ASTNode]] = None,
 ) -> Dict[str, Any]:
     """Run the genetic algorithm and return results."""
     if abs(keep_pct + crossover_pct + random_pct - 1.0) > 0.001:
         raise ValueError("Percentages must sum to 1.0")
 
-    population = [create_random_ast(0, max_depth) for _ in range(population_size)]
+    population = []
 
-    if seed_ast is not None:
-        population[0] = copy_ast(seed_ast)
+    if seed_asts is not None:
+        for ast in seed_asts:
+            population.append(copy_ast(ast))
+    elif seed_ast is not None:
+        population.append(copy_ast(seed_ast))
+
+    while len(population) < population_size:
+        population.append(create_random_ast(0, max_depth))
 
     best_ever = None
     best_fitness_ever = float("inf")
