@@ -50,9 +50,16 @@ CONSTANTS = {
     "phi": (1 + math.sqrt(5)) / 2,
     "sqrt2": math.sqrt(2),
     "sqrt3": math.sqrt(3),
+    "sqrt5": math.sqrt(5),
+    "ln2": math.log(2),
+    "ln10": math.log(10),
+    "euler_gamma": 0.5772156649,
+    "catalan": 0.915965594,
     "c": 299792458,
     "h": 6.62607015e-34,
     "G": 6.67430e-11,
+    "avogadro": 6.02214076e23,
+    "boltzmann": 1.380649e-23,
 }
 
 
@@ -68,8 +75,26 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
             const_name = random.choice(list(CONSTANTS.keys()))
             return ASTNode(op="named_const", value=const_name)
 
-    binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "nroot", "logbase"]
-    unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]
+    binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "nroot", "logbase", "min", "max"]
+    unary_ops = [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]
 
     if random.random() < 0.7:
         op = random.choice(binary_ops)
@@ -86,17 +111,41 @@ def get_tree_depth(node: ASTNode) -> int:
     """Calculate the depth of the tree iteratively to avoid recursion issues."""
     if node is None:
         return 0
-    
+
     max_depth = 0
     stack = [(node, 1)]
-    
+
     while stack:
         current, depth = stack.pop()
         max_depth = max(max_depth, depth)
-        
+
         if current.op in ["var", "const", "named_const"]:
             continue
-        elif current.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+        elif current.op in [
+            "floor",
+            "ceil",
+            "sqrt",
+            "abs",
+            "sin",
+            "cos",
+            "tan",
+            "log",
+            "log2",
+            "log10",
+            "factorial",
+            "sinh",
+            "cosh",
+            "tanh",
+            "asin",
+            "acos",
+            "atan",
+            "sinh",
+            "cosh",
+            "tanh",
+            "asin",
+            "acos",
+            "atan",
+        ]:
             if current.left:
                 stack.append((current.left, depth + 1))
         else:
@@ -104,7 +153,7 @@ def get_tree_depth(node: ASTNode) -> int:
                 stack.append((current.left, depth + 1))
             if current.right:
                 stack.append((current.right, depth + 1))
-    
+
     return max_depth
 
 
@@ -112,7 +161,25 @@ def count_nodes(node: ASTNode) -> int:
     """Count the number of nodes in the AST."""
     if node.op in ["var", "const", "named_const"]:
         return 1
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]:
         return 1 + count_nodes(node.left)
     return 1 + count_nodes(node.left) + count_nodes(node.right)
 
@@ -123,7 +190,25 @@ def has_variable(node: ASTNode) -> bool:
         return True
     if node.op in ["const", "named_const"]:
         return False
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]:
         return has_variable(node.left)
     return has_variable(node.left) or has_variable(node.right)
 
@@ -153,7 +238,25 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
             const_val = CONSTANTS[node.value]
             return const_val
 
-        if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+        if node.op in [
+            "floor",
+            "ceil",
+            "sqrt",
+            "abs",
+            "sin",
+            "cos",
+            "tan",
+            "log",
+            "log2",
+            "log10",
+            "factorial",
+            "sinh",
+            "cosh",
+            "tanh",
+            "asin",
+            "acos",
+            "atan",
+        ]:
             left_val = evaluate_ast(node.left, n, is_root=False)
 
             if left_val is None:
@@ -178,6 +281,22 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
                 result = math.cos(left_val)
             elif node.op == "tan":
                 result = math.tan(left_val)
+            elif node.op == "sinh":
+                result = math.sinh(left_val)
+            elif node.op == "cosh":
+                result = math.cosh(left_val)
+            elif node.op == "tanh":
+                result = math.tanh(left_val)
+            elif node.op == "asin":
+                if left_val < -1 or left_val > 1:
+                    return None
+                result = math.asin(left_val)
+            elif node.op == "acos":
+                if left_val < -1 or left_val > 1:
+                    return None
+                result = math.acos(left_val)
+            elif node.op == "atan":
+                result = math.atan(left_val)
             elif node.op == "log":
                 if left_val <= 0:
                     return None
@@ -275,6 +394,10 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
             if left_val <= 0 or right_val <= 0 or right_val == 1:
                 return None
             result = math.log(left_val) / math.log(right_val)
+        elif node.op == "min":
+            result = min(left_val, right_val)
+        elif node.op == "max":
+            result = max(left_val, right_val)
         else:
             return None
 
@@ -309,16 +432,19 @@ def calculate_fitness(
         expected_prime = get_nth_prime(n)
         if result == expected_prime:
             matches += 1
-            match_score += n * match_weight_factor
+            match_score += n ** match_weight_factor            
         else:
             break
-
+    
     complexity = count_nodes(node)
 
     if match_score == 0:
         fitness = float("inf")
     else:
-        fitness = complexity / match_score
+        # fitness = complexity / match_score
+        fitness = -match_score * 10 + complexity
+
+    # fitness = -matches
 
     return fitness, matches, complexity, match_score
 
@@ -332,7 +458,25 @@ def ast_to_string(node: ASTNode) -> str:
     if node.op == "named_const":
         return node.value
 
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]:
         left_str = ast_to_string(node.left)
         return f"{node.op}({left_str})"
 
@@ -341,7 +485,7 @@ def ast_to_string(node: ASTNode) -> str:
 
     if node.op == "nroot":
         return f"nroot({left_str}, {right_str})"
-    
+
     if node.op == "logbase":
         return f"log_{{{right_str}}}({left_str})"
 
@@ -352,7 +496,25 @@ def copy_ast(node: ASTNode) -> ASTNode:
     """Create a deep copy of an AST."""
     if node.op in ["var", "const", "named_const"]:
         return ASTNode(op=node.op, value=node.value)
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]:
         return ASTNode(op=node.op, left=copy_ast(node.left))
     return ASTNode(op=node.op, left=copy_ast(node.left), right=copy_ast(node.right))
 
@@ -360,7 +522,25 @@ def copy_ast(node: ASTNode) -> ASTNode:
 def get_all_nodes(node: ASTNode) -> List[ASTNode]:
     """Get a list of all nodes in the tree."""
     nodes = [node]
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]:
         nodes.extend(get_all_nodes(node.left))
     elif node.op not in ["var", "const", "named_const"]:
         nodes.extend(get_all_nodes(node.left))
@@ -408,7 +588,25 @@ def get_all_paths(node: ASTNode, current_path: List[int] = None) -> List[List[in
 
     paths = [current_path[:]]
 
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]:
         paths.extend(get_all_paths(node.left, current_path + [0]))
     elif node.op not in ["var", "const", "named_const"]:
         paths.extend(get_all_paths(node.left, current_path + [0]))
@@ -429,30 +627,28 @@ def crossover(parent1: ASTNode, parent2: ASTNode, max_depth: int = 10) -> ASTNod
 
         subtree_from_parent2 = get_node_at_path(parent2, path2)
         subtree_depth = get_tree_depth(subtree_from_parent2)
-        
+
         if not path1:
             if subtree_depth <= max_depth:
                 return copy_ast(subtree_from_parent2)
         else:
             subtree_to_replace = get_node_at_path(parent1, path1)
             old_subtree_depth = get_tree_depth(subtree_to_replace)
-            
+
             parent1_depth = get_tree_depth(parent1)
             estimated_new_depth = parent1_depth - old_subtree_depth + subtree_depth
-            
+
             if estimated_new_depth <= max_depth:
                 result = replace_node_at_path(parent1, path1, subtree_from_parent2)
                 return result
-    
+
     return copy_ast(parent1)
 
 
 def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) -> ASTNode:
     """Mutate an AST with improved mutation strategies."""
     current_depth = get_tree_depth(node)
-    if current_depth > max_depth:
-        return create_random_ast(0, max_depth)
-    
+
     node = copy_ast(node)
 
     if random.random() < mutation_rate:
@@ -468,11 +664,64 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
                 else:
                     const_name = random.choice(list(CONSTANTS.keys()))
                     return ASTNode(op="named_const", value=const_name)
-            elif node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
-                unary_ops = ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]
+            elif node.op in [
+                "floor",
+                "ceil",
+                "sqrt",
+                "abs",
+                "sin",
+                "cos",
+                "tan",
+                "log",
+                "log2",
+                "log10",
+                "factorial",
+                "sinh",
+                "cosh",
+                "tanh",
+                "asin",
+                "acos",
+                "atan",
+            ]:
+                unary_ops = [
+                    "floor",
+                    "ceil",
+                    "sqrt",
+                    "abs",
+                    "sin",
+                    "cos",
+                    "tan",
+                    "log",
+                    "log2",
+                    "log10",
+                    "factorial",
+                    "sinh",
+                    "cosh",
+                    "tanh",
+                    "asin",
+                    "acos",
+                    "atan",
+                ]
                 node.op = random.choice(unary_ops)
             else:
-                binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "nroot", "logbase"]
+                binary_ops = [
+                    "+",
+                    "-",
+                    "*",
+                    "/",
+                    "//",
+                    "%",
+                    "**",
+                    "&",
+                    "|",
+                    "^",
+                    "<<",
+                    ">>",
+                    "nroot",
+                    "logbase",
+                    "min",
+                    "max",
+                ]
                 node.op = random.choice(binary_ops)
 
         elif mutation_type < 0.66:
@@ -486,14 +735,32 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
                 old_subtree_depth = get_tree_depth(old_subtree)
                 replacement = create_random_ast(0, max_depth)
                 replacement_depth = get_tree_depth(replacement)
-                
+
                 estimated_new_depth = current_depth - old_subtree_depth + replacement_depth
                 if estimated_new_depth <= max_depth:
                     node = replace_node_at_path(node, path, replacement)
                 else:
                     return node
 
-    if node.op in ["floor", "ceil", "sqrt", "abs", "sin", "cos", "tan", "log", "log2", "log10", "factorial"]:
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+    ]:
         child_depth = get_tree_depth(node.left)
         if child_depth < max_depth:
             node.left = mutate_ast(node.left, mutation_rate, max_depth)
@@ -504,10 +771,6 @@ def mutate_ast(node: ASTNode, mutation_rate: float = 0.1, max_depth: int = 4) ->
             node.left = mutate_ast(node.left, mutation_rate, max_depth)
         if right_depth < max_depth:
             node.right = mutate_ast(node.right, mutation_rate, max_depth)
-
-    final_depth = get_tree_depth(node)
-    if final_depth > max_depth:
-        return create_random_ast(0, max_depth)
 
     return node
 
@@ -530,7 +793,7 @@ def genetic_algorithm(
         raise ValueError("Percentages must sum to 1.0")
 
     population = [create_random_ast(0, max_depth) for _ in range(population_size)]
-    
+
     if seed_ast is not None:
         population[0] = copy_ast(seed_ast)
 
