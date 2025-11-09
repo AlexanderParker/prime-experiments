@@ -1,0 +1,9 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-5039.0,11,659.2768659591675,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),True
+2,-5039.0,11,624.0342442989349,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+3,-5039.0,11,629.500091791153,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+4,-5039.0,11,631.0709965229034,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+5,-5039.0,11,605.1072673797607,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+6,-5041.0,11,585.7088258266449,((pi ** 3) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),True
+7,-5041.0,11,553.9785394668579,((pi ** 3) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+8,-5041.0,11,549.8169419765472,((pi ** 3) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False

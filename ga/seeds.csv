@@ -1,4 +1,5 @@
 fitness,matches,expression
+-5041.0,11,((pi ** 3) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))
 -5039.0,11,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))
 -3835.0,10,((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))
 -2839.0,9,((sinh(n) % (cosh(n) % 3)) + (n ** sqrt2))
