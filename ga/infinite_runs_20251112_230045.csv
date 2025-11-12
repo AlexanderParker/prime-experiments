@@ -1,0 +1,2 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-6477.0,12,881.1258587837219,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),True

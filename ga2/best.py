@@ -23,6 +23,7 @@ class HyperParams:
     random_pct: float
     match_weight_factor: float
     mutation_rate: float
+    prune_rate: float
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -34,6 +35,7 @@ class HyperParams:
             "random_pct": self.random_pct,
             "match_weight_factor": self.match_weight_factor,
             "mutation_rate": self.mutation_rate,
+            "prune_rate": self.prune_rate,
         }
 
 
@@ -57,6 +59,7 @@ def load_best_hyperparams_from_csv(csv_filename: str) -> HyperParams:
                     random_pct=float(row["random_pct"]),
                     match_weight_factor=float(row["match_weight_factor"]),
                     mutation_rate=float(row["mutation_rate"]),
+                    prune_rate=float(row["prune_rate"]),
                 )
 
     if best_params is None:
@@ -259,6 +262,7 @@ def evaluate_hyperparams(
         random_pct=params.random_pct,
         match_weight_factor=params.match_weight_factor,
         mutation_rate=params.mutation_rate,
+        prune_rate=params.prune_rate,
         verbose=False,
         seed_asts=seed_asts,
     )
@@ -336,6 +340,7 @@ if __name__ == "__main__":
     print(f"random_pct: {best_params.random_pct:.3f}")
     print(f"match_weight_factor: {best_params.match_weight_factor:.3f}")
     print(f"mutation_rate: {best_params.mutation_rate:.3f}")
+    print(f"prune_rate: {best_params.prune_rate:.3f}")
 
     print("\n" + "=" * 80)
     print("RUNNING INDEFINITELY WITH BEST HYPERPARAMETERS")
@@ -364,15 +369,13 @@ if __name__ == "__main__":
                 seeds = load_seeds_from_csv(seeds_filename)
 
                 seed_asts = []
-                num_seeds_to_use = math.floor(min(len(seeds), 10))
+                num_seeds_to_use = min(10, len(seeds))
                 for fitness, matches, expr in seeds[:num_seeds_to_use]:
                     ast = expression_to_ast(expr)
                     if ast is not None:
                         seed_asts.append(ast)
 
-                print(
-                    f"Seeding with {len(seed_asts)} ASTs from seeds.csv (up to population size of {best_params.population_size})"
-                )
+                print(f"Seeding with {len(seed_asts)} ASTs from top {num_seeds_to_use} seeds in seeds.csv")
                 print(f"{'='*80}\n")
 
                 fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(
