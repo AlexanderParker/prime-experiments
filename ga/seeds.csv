@@ -1,4 +1,6 @@
 fitness,matches,expression
+-6480.0,12,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))"
+-6478.0,12,"((5 | floor(nroot(n, ln2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))"
 -6477.0,12,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))
 -5041.0,11,((pi ** 3) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))
 -5039.0,11,((n | (n + 10)) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))

@@ -48,11 +48,6 @@ CONSTANTS = {
     "pi": math.pi,
     "e": math.e,
     "phi": (1 + math.sqrt(5)) / 2,
-    "sqrt2": math.sqrt(2),
-    "sqrt3": math.sqrt(3),
-    "sqrt5": math.sqrt(5),
-    "ln2": math.log(2),
-    "ln10": math.log(10),
     "euler_gamma": 0.5772156649,
     "catalan": 0.915965594,
     "c": 299792458,
@@ -67,10 +62,8 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
     """Create a random mathematical AST."""
     if depth >= max_depth or (depth > 0 and random.random() < 0.3):
         choice = random.random()
-        if choice < 0.4:
+        if choice < 0.5:
             return ASTNode(op="var", value=n_var)
-        elif choice < 0.7:
-            return ASTNode(op="const", value=random.randint(1, 10))
         else:
             const_name = random.choice(list(CONSTANTS.keys()))
             return ASTNode(op="named_const", value=const_name)
@@ -778,9 +771,7 @@ def mutate_ast(
         elif mutation_type == "operator_change":
             if node.op in ["var", "const", "named_const"]:
                 choice = random.random()
-                if choice < 0.33:
-                    return ASTNode(op="const", value=random.randint(1, 10))
-                elif choice < 0.66:
+                if choice < 0.5:
                     return ASTNode(op="var", value="n")
                 else:
                     const_name = random.choice(list(CONSTANTS.keys()))
