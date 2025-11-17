@@ -1,0 +1,5 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-899.0,6,45.06688618659973,"((atan(cos(n)) + nroot(n, catalan)) + n)",True
+2,-899.0,6,52.43923902511597,"((atan(cos(n)) + nroot(n, catalan)) + n)",False
+3,-899.0,6,50.24931883811951,"((atan(cos(n)) + nroot(n, catalan)) + n)",False
+4,-899.0,6,54.655311822891235,"((atan(cos(n)) + nroot(n, catalan)) + n)",False
