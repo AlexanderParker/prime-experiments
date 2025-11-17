@@ -1,0 +1,41 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-2834.0,9,116.81107258796692,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),True
+2,-2834.0,9,109.02448463439941,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+3,-2834.0,9,95.60287666320801,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+4,-2834.0,9,107.75107288360596,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+5,-2834.0,9,106.30679202079773,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+6,-2834.0,9,120.48262763023376,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+7,-2834.0,9,128.025306224823,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+8,-2834.0,9,115.29898309707642,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+9,-2834.0,9,122.44750475883484,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+10,-2834.0,9,140.85916137695312,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+11,-2834.0,9,158.3226182460785,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+12,-2834.0,9,145.79086184501648,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+13,-2834.0,9,163.50791764259338,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+14,-2834.0,9,157.76245045661926,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+15,-2834.0,9,142.7529616355896,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+16,-2834.0,9,162.23484325408936,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+17,-2834.0,9,164.13804244995117,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+18,-2834.0,9,151.92362093925476,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+19,-3823.0,10,214.1857190132141,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),True
+20,-3823.0,10,150.364764213562,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+21,-3823.0,10,153.14699149131775,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+22,-3823.0,10,133.77733397483826,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+23,-3823.0,10,152.1543562412262,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+24,-3823.0,10,110.21332240104675,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+25,-3823.0,10,112.82984828948975,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+26,-3823.0,10,121.43735361099243,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+27,-3823.0,10,148.3994905948639,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+28,-3823.0,10,146.21810007095337,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+29,-3823.0,10,153.2069628238678,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+30,-3823.0,10,140.38127827644348,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+31,-3823.0,10,139.70231175422668,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+32,-3823.0,10,127.48105335235596,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+33,-3823.0,10,134.22450280189514,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+34,-3823.0,10,145.60372757911682,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+35,-3823.0,10,119.49695062637329,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+36,-3823.0,10,104.45204186439514,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+37,-3823.0,10,127.28687500953674,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+38,-3823.0,10,118.56350255012512,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+39,-3823.0,10,154.32825875282288,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+40,-3823.0,10,142.90326499938965,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False

@@ -379,14 +379,21 @@ if __name__ == "__main__":
 
                 seeds = load_seeds_from_csv(seeds_filename)
 
+                # Sample from top 50% of seeds for more diversity
+                top_50_percent = max(1, len(seeds) // 2)
+                available_seeds = seeds[:top_50_percent]
+                
+                # Randomly sample up to 50 seeds from the top 50%
+                num_seeds_to_use = min(50, len(available_seeds))
+                sampled_seeds = random.sample(available_seeds, num_seeds_to_use)
+                
                 seed_asts = []
-                num_seeds_to_use = min(100, len(seeds))
-                for fitness, matches, expr in seeds[:num_seeds_to_use]:
+                for fitness, matches, expr in sampled_seeds:
                     ast = expression_to_ast(expr)
                     if ast is not None:
                         seed_asts.append(ast)
 
-                print(f"Seeding with {len(seed_asts)} ASTs from top {num_seeds_to_use} seeds in seeds.csv")
+                print(f"Seeding with {len(seed_asts)} ASTs randomly sampled from top {top_50_percent} seeds (top 50%)")
                 print(f"{'='*80}\n")
 
                 fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(

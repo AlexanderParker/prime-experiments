@@ -1,0 +1,9 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-3823.0,10,109.01563477516174,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),True
+2,-2832.0,9,102.25035977363586,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+3,-3823.0,10,142.51377201080322,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+4,-2832.0,9,109.26518940925598,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+5,-2024.0,8,87.00483345985413,((((n + n) + atan(cos(n))) // phi) + cosh(log2(n))),False
+6,-2024.0,8,95.03239178657532,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c)),False
+7,-2832.0,9,89.06475639343262,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+8,-2830.0,9,119.3569848537445,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
