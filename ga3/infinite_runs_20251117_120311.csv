@@ -1,0 +1,15 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-2836.0,9,223.51790142059326,(cosh(log2(n)) + ceil(((n * cosh(cos(n))) min cosh(log2(n))))),True
+2,-2836.0,9,222.78389978408813,(cosh(log2(n)) + ceil(((n * cosh(cos(n))) min cosh(log2(n))))),False
+3,-2836.0,9,241.07913541793823,(cosh(log2(n)) + ceil(((n * cosh(cos(n))) min cosh(log2(n))))),False
+4,-2836.0,9,257.36993741989136,(cosh(log2(n)) + ceil(((n * cosh(cos(n))) min cosh(log2(n))))),False
+5,-2836.0,9,309.86092591285706,(cosh(log2(n)) + ceil(((n * cosh(cos(n))) min cosh(log2(n))))),False
+6,-2836.0,9,312.07446360588074,(cosh(log2(n)) + ceil(((n * cosh(cos(n))) min cosh(log2(n))))),False
+7,-3832.0,10,307.01407647132874,"(cosh(log2((n // nroot(catalan, catalan)))) + ceil(((n * cosh(cos(n))) min cosh(log2(n)))))",True
+8,-5040.0,11,364.48430466651917,"(cosh(log2((n // nroot(catalan, catalan)))) + ceil((((n / catalan) * cosh(cos(n))) min cosh(log2(n)))))",True
+9,-8167.0,13,485.89945673942566,"(cosh(log2((n // nroot(catalan, catalan)))) + ceil((((n / catalan) * cosh((cos(c) * cos(n)))) min cosh(log2(n)))))",True
+10,-8167.0,13,573.513261795044,"(cosh(log2((n // nroot(catalan, catalan)))) + ceil((((n / catalan) * cosh((cos(c) * cos(n)))) min cosh(log2(n)))))",False
+11,-8169.0,13,530.4138014316559,"(cosh(log2((n // nroot(catalan, catalan)))) + ceil((((n / catalan) * cosh(tanh(cos(n)))) min cosh(log2(n)))))",True
+12,-8169.0,13,430.99718141555786,"(cosh(log2((n // nroot(catalan, catalan)))) + ceil((((n / catalan) * cosh(tanh(cos(n)))) min cosh(log2(n)))))",False
+13,-8169.0,13,444.1590476036072,"(cosh(log2((n // nroot(catalan, catalan)))) + ceil((((n / catalan) * cosh(tanh(cos(n)))) min cosh(log2(n)))))",False
+14,-10125.0,14,551.2730894088745,"(cosh(log2((n // nroot(catalan, log10(nroot(c, abs(n))))))) + ceil((((n / catalan) * cosh(tanh(cos(n)))) min cosh(log2(n)))))",True

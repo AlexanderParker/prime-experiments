@@ -437,13 +437,45 @@ def calculate_fitness(
             break
 
     complexity = count_nodes(node)
+    constant_count = count_constants(node)
+    non_constant_nodes = complexity - constant_count
 
     if match_score == 0:
         fitness = float("inf")
     else:
-        fitness = -match_score * 10 + complexity
+        fitness = -match_score * 10 + complexity - non_constant_nodes
 
     return fitness, matches, complexity, match_score
+
+
+def count_constants(node: ASTNode) -> int:
+    """Count the number of named constants in the AST."""
+    if node.op == "named_const":
+        return 1
+    if node.op in ["var", "const"]:
+        return 0
+    if node.op in [
+        "floor",
+        "ceil",
+        "sqrt",
+        "abs",
+        "sin",
+        "cos",
+        "tan",
+        "log",
+        "log2",
+        "log10",
+        "factorial",
+        "sinh",
+        "cosh",
+        "tanh",
+        "asin",
+        "acos",
+        "atan",
+        "neg",
+    ]:
+        return count_constants(node.left)
+    return count_constants(node.left) + count_constants(node.right)
 
 
 def ast_to_string(node: ASTNode) -> str:

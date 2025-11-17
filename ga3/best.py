@@ -71,14 +71,17 @@ def load_best_hyperparams_from_csv(csv_filename: str) -> HyperParams:
 def load_seeds_from_csv(seeds_filename: str = "seeds.csv") -> List[Tuple[float, int, str]]:
     """Load seeds from seeds.csv file."""
     seeds = []
+    seen_expressions = set()
 
     with open(seeds_filename, "r") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            fitness = float(row["fitness"])
-            matches = int(row["matches"])
             expression = row["expression"]
-            seeds.append((fitness, matches, expression))
+            if expression not in seen_expressions:
+                fitness = float(row["fitness"])
+                matches = int(row["matches"])
+                seeds.append((fitness, matches, expression))
+                seen_expressions.add(expression)
 
     seeds.sort(key=lambda x: x[0])
     return seeds
@@ -86,12 +89,20 @@ def load_seeds_from_csv(seeds_filename: str = "seeds.csv") -> List[Tuple[float, 
 
 def save_seeds_to_csv(seeds: List[Tuple[float, int, str]], seeds_filename: str = "seeds.csv"):
     """Save seeds to seeds.csv file."""
+    seen_expressions = set()
+    unique_seeds = []
+
+    for fitness, matches, expression in seeds:
+        if expression not in seen_expressions:
+            unique_seeds.append((fitness, matches, expression))
+            seen_expressions.add(expression)
+
     with open(seeds_filename, "w", newline="") as csvfile:
         fieldnames = ["fitness", "matches", "expression"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
 
-        for fitness, matches, expression in seeds:
+        for fitness, matches, expression in unique_seeds:
             writer.writerow({"fitness": fitness, "matches": matches, "expression": expression})
 
 
@@ -369,7 +380,7 @@ if __name__ == "__main__":
                 seeds = load_seeds_from_csv(seeds_filename)
 
                 seed_asts = []
-                num_seeds_to_use = min(10, len(seeds))
+                num_seeds_to_use = min(100, len(seeds))
                 for fitness, matches, expr in seeds[:num_seeds_to_use]:
                     ast = expression_to_ast(expr)
                     if ast is not None:
