@@ -1,0 +1,248 @@
+fitness,matches,expression
+-5033.0,11,(((sqrt(n) ** tanh(cosh(((cos(tanh(n)) max (tanh(n) // cos(n))) % (n max (tanh(n) // cos(n))))))) ** sqrt(n)) + n)
+-3850.0,10,(((n ** log(n)) // (((n & n) & n) + (((n max n) // n) | n))) + ((n + cos(((n min n) + log10(n)))) + n))
+-3850.0,10,((cos(n) + n) + ceil(((n + ((cos(n) // (n * n)) + n)) ** (log10(n) / tanh(n)))))
+-3850.0,10,(((sqrt(n) ** tanh(cosh((cos((n // n)) max (tanh(n) // cos(n)))))) ** sqrt(n)) + n)
+-2850.0,9,(n + (sqrt(((factorial(n) // n) + (factorial(n) // (n | n)))) min ((n // (cosh((n min n)) % (n min n))) + n)))
+-2849.0,9,"(((sqrt((n << (n | n))) / nroot(n, (n + (n & n)))) + nroot(n, ((n min (log10(n) / (n / n))) max (n + n)))) min ((n + n) + nroot(n, (catalan + (sin((sin(n) % n)) % n)))))"
+-2040.0,8,(((n % atan(n)) + cosh(log2(n))) + cosh(log2(((((n / n) + n) + (n - cosh(log2((n max n))))) min n))))
+-2040.0,8,"(n + nroot(n, (sinh(sin(sqrt(n))) max sin((factorial((n >> n)) max sqrt(((n * n) & n)))))))"
+-2039.0,8,((n + (pi + n)) min ((n ** atan(n)) + ((cos((n * n)) max cos((n // n))) + (n / n))))
+-2039.0,8,(n + ((n ** log10((sqrt(factorial(n)) + n))) min (((n // pi) ** log10((n * n))) + n)))
+-2039.0,8,(n + ((sqrt(sinh(n)) // atan((n & n))) min ((sinh((n // pi)) - (tanh((n ** n)) // n)) + n)))
+-2037.0,8,"(n + (nroot(n, (catalan ** ((n / (n min e)) * abs(sin(((n ** e) * n)))))) + cos(n)))"
+-1400.0,7,((((n << n) / (atan(n) + ((n * n) max (n * n)))) min (atan(n) + ((n // cos(neg((n min n)))) max n))) + n)
+-1400.0,7,"((sqrt(n) ** ((n min sqrt(n)) ** tanh(n))) + ((n min n) min (n min tan(nroot(n, n)))))"
+-1400.0,7,(ceil(cosh(log2(n))) + cosh(log2(n)))
+-1400.0,7,"(nroot(((sqrt(sqrt(((n >> n) + (n ** n)))) max ((n // n) & n)) min ((atan(n) ** n) max (n + sqrt(n)))), nroot(atan(n), n)) + n)"
+-1400.0,7,(sqrt((sqrt((n max (n + n))) + n)) + (sqrt(cosh((n | n))) min (((n & (n + (n + n))) + sqrt((n max n))) + ((n * n) min n))))
+-1400.0,7,(((floor((n + (n & n))) + sqrt(sqrt(((n ** n) & n)))) + sqrt(sqrt(n))) min (floor((sin(n) + n)) + sqrt(sqrt((n ** n)))))
+-1400.0,7,(n + (((((n & (n ** n)) max (((n // n) % n) ** n)) | (n + n)) + ((n & (n ** n)) / (n + n))) ** log10(n)))
+-1400.0,7,((sqrt(n) min cosh((((n ** n) * n) & (n * n)))) + (n ** atan(n)))
+-1400.0,7,(cosh(log2((n min n))) + ceil(cosh(((n / n) * log2(n)))))
+-1400.0,7,((n // n) + (((n | n) + ((n | (n + n)) // (n // n))) ** log10((n + (n // n)))))
+-1399.0,7,"(cos(n) + (nroot((((n << n) min n) // tanh(nroot((n min n), n))), (cos(n) max (catalan % n))) + n))"
+-1399.0,7,(((n + n) // phi) + ((n ** log10((n + n))) min (n + n)))
+-1399.0,7,"(n + (cos(sinh(n)) + (nroot(n, catalan) max (cos(cos(sinh(n))) - tan(sinh(n))))))"
+-1399.0,7,((n / ceil((atan(n) * asin((G max (cos((n | n)) max cos((n | n)))))))) + ((n + n) min cosh((n / ceil(atan((n + n)))))))
+-1399.0,7,(n + (((n max sqrt(sinh(n))) // atan(n)) min ((n max ((sqrt(sinh(n)) / e) % (sinh(n) / sqrt(n)))) // atan((n / n)))))
+-1399.0,7,"cosh((cosh(nroot(n, (e max log10(factorial(n))))) max cosh(log(n))))"
+-1399.0,7,"((nroot(n, catalan) + ((n - ((n + tan(cosh(n))) min n)) max (n min n))) + cos(cosh(n)))"
+-1399.0,7,"(nroot((n // log2(phi)), cosh(sin(((tan(n) min (cos((n & n)) - cos(n))) min cos(n))))) + n)"
+-1398.0,7,(cos((n * n)) + (((((n max (n << n)) ^ ((n * n) + n)) / ((n * n) - log2((h * h)))) + n) + n))
+-1398.0,7,"(nroot((n / n), n) + ((phi ** (n | (n min n))) min (((n / (n % pi)) max n) + (n & n))))"
+-1397.0,7,(((n * asin(catalan)) % asin(catalan)) + ((n * asin(catalan)) + (n + cos(n))))
+-1397.0,7,((cosh(log2(n)) + (log2(n) // (phi * phi))) + ((n + n) // phi))
+-910.0,6,"((n | n) + ((n + ((n + n) % nroot(n, ((n min n) + log2((n + n)))))) / nroot((cos(n) % (n + log2(n))), n)))"
+-910.0,6,(((cos(((cos((n + (n >> n))) max tan((n - n))) + n)) + log10(n)) + n) + n)
+-910.0,6,((n + n) + ((log(n) // (cos(n) * n)) max (log(n) min (cos(n) * n))))
+-910.0,6,((n + (n | n)) + atan(((cos(n) + log10(n)) * n)))
+-910.0,6,"(log2((cosh((nroot(n, n) - (n min n))) + (cosh(((cos(n) % n) - n)) max n))) + (n max n))"
+-910.0,6,"((sin(n) + sqrt((n << n))) min ((n + nroot(n, n)) + n))"
+-910.0,6,((n | n) + (tanh(sinh((n / cos(n)))) + n))
+-910.0,6,(n + (((n ** tanh(n)) ** log2(sqrt(n))) min (log2(sqrt(n)) + (n min n))))
+-910.0,6,(n + ((((((n * n) | (n + n)) % n) | (n % n)) - log10(n)) + n))
+-910.0,6,(n + (((n | n) + (n / n)) min (atan((sqrt(n) + n)) ** n)))
+-910.0,6,((((n + n) ** log10((n + n))) min ((n + n) max (n + n))) + ((n / n) ** n))
+-910.0,6,(((n + cos(n)) - (n % cos(((n ** n) // n)))) + n)
+-910.0,6,"(nroot(((n & n) ** n), (nroot(((n max n) max n), n) + (n // atan(n)))) + n)"
+-910.0,6,"(n + ((((n % n) | n) + nroot(n, (n + n))) min (((n & n) << n) / (((n % n) | ((n | n) * n)) + nroot(n, (n + n))))))"
+-910.0,6,((n + (sqrt(sinh(n)) // atan(n))) min (n + ((sinh(n) min n) + (atan(n) min atan(n)))))
+-910.0,6,(tanh(((n << n) // ((n / n) / sinh(cos(n))))) + (n + n))
+-910.0,6,(((cos(n) max cos((n * n))) + sinh(log10(n))) + (n + n))
+-910.0,6,abs((n + (n + (log_{cosh((neg(n) ^ n))}(n) + cos((floor(n) max (n / n)))))))
+-910.0,6,"(sqrt(((n << n) / (((ceil((n min n)) & (n * n)) + n) // (sqrt(n) max sqrt(n))))) + (n // nroot(n, n)))"
+-910.0,6,(((n + (n - log10(n))) max sqrt((factorial(n) + (n max n)))) min ((n + (n + cosh(log10(n)))) max (log10(n) - n)))
+-910.0,6,"(n + sinh(nroot(n, (nroot(((n + (log(n) + n)) + n), n) max log(n)))))"
+-910.0,6,"((n + (((n + nroot(n, n)) min cos(n)) + n)) - log10((n * ((sin(sqrt(n)) / n) / n))))"
+-910.0,6,"((((n | n) min (n min n)) / (((n + n) / n) // (nroot(n, n) / atan(ceil(n))))) + cosh((((n | (n min n)) min (n min n)) / ((n + n) / n))))"
+-910.0,6,((n + tanh((((n ^ (n * (n & n))) + (n >> n)) / cos(n)))) + n)
+-910.0,6,(((n - n) max (n // n)) + (((n + n) ** log10((n + n))) min (n + n)))
+-910.0,6,((((cos(n) min cos(sinh(n))) + (n min n)) * sinh((n // (n min n)))) + n)
+-910.0,6,(n + (n + (cos(n) max ((cos(n) * (n min n)) min cos((n ^ n))))))
+-910.0,6,((((n & (((n // (n & n)) + n) * (n + n))) + n) / atan(n)) + n)
+-910.0,6,((((sqrt(n) ** sqrt((n | n))) min ((n + sqrt(n)) - (n / n))) ** tanh((n | n))) + n)
+-910.0,6,(cosh(cosh((log(((cos(n) / n) + n)) min log((((cos(n) // tan(n)) / n) + n))))) + n)
+-910.0,6,(((n + n) + (cos((n max n)) max ((n - n) * (n - n)))) + (log_{(n << n)}(n) / cos((n max n))))
+-910.0,6,"(sqrt((n + sqrt(((n // atan((n << n))) ** (n + nroot(n, n)))))) + n)"
+-910.0,6,((n + cos(n)) + (n max (log10(((((n // (n & n)) min (n ** n)) + cos(n)) max ((n min n) + cos(n)))) + n)))
+-910.0,6,((((sinh(log10(n)) min n) + n) + cos(n)) + n)
+-910.0,6,"(((((n % n) max (n - n)) max n) & n) + nroot((sqrt((n max sqrt((n ** ((n - n) | n))))) min (n + nroot(n, nroot((n + n), n)))), sqrt(sqrt(nroot((n | n), n)))))"
+-910.0,6,"(((n + ((n // n) min (n // sqrt(n)))) min ((nroot(n, atan(atan(((n << n) + (n << n))))) ** sqrt(n)) / n)) + n)"
+-910.0,6,((n max (((n max n) max n) * (atan(sqrt(n)) min atan(sqrt(n))))) + (cos((cos(n) + n)) + n))
+-910.0,6,"((n + ((((((n << n) // n) ^ n) % (n ** floor(n))) // n) // nroot((n + n), n))) max (n + ((((((n << n) // n) ^ n) % n) | n) // nroot(nroot(n, n), n))))"
+-910.0,6,(((n // n) max (n - tanh(((n << n) + (n - ((n ** n) / n)))))) + n)
+-910.0,6,(n + (((cos((n ** n)) max (cos((n & n)) * n)) min (cos((n & n)) max (n / n))) + n))
+-910.0,6,(((sqrt(cosh((n | n))) / atan(n)) min ((sqrt(ceil(n)) / atan(n)) + n)) + (n min n))
+-910.0,6,"((((n min n) // nroot(n, (n + sqrt(n)))) + ((((n ** n) >> n) max n) % n)) + n)"
+-910.0,6,((n - tanh((tan(log(n)) * abs(sinh(n))))) + n)
+-909.0,6,sinh(sqrt((n + sinh((sqrt(n) min (tan(asin(catalan)) max tan((n + n))))))))
+-909.0,6,(((phi ** n) min (n + n)) + (n / n))
+-909.0,6,"(sinh((e min nroot(n, nroot((nroot((n + (n max (n % n))), n) + ((n + n) ^ n)), n)))) + n)"
+-909.0,6,"(cos(cosh(n)) + (n + nroot(n, catalan)))"
+-909.0,6,((n | n) + (sqrt((n ** tanh(((n % e) + (n // n))))) ** sqrt(n)))
+-909.0,6,"((((n min phi) ** n) min (n + n)) + (nroot((cosh(n) // n), atan(n)) min nroot((n // n), atan(n))))"
+-909.0,6,"(nroot(((n // (n // n)) / floor(n)), ((n | n) + n)) + ((n + n) min (phi ** n)))"
+-909.0,6,(n + ((n ** (n / ((cosh(tanh(n)) + e) max (neg(tanh((n / n))) + n)))) max (n / n)))
+-909.0,6,((((n ** phi) ** log10(n)) min (n + atan(n))) + n)
+-909.0,6,((n + (n * log(pi))) + cos(n))
+-909.0,6,(((phi ** n) min (n + n)) + (n // n))
+-909.0,6,(n + ((n * log(pi)) + cos(n)))
+-909.0,6,"((nroot(n, catalan) + (n | (n max n))) + (cos(n) min (n & (n // n))))"
+-909.0,6,((sinh(sqrt((n ** atan((log(n) ** log(n)))))) + n) min (sinh(e) + n))
+-909.0,6,"(n + (nroot((n ** n), (pi + ((n & n) / n))) min (n + (n / n))))"
+-909.0,6,"((n + cos(n)) + nroot(n, ((catalan max cos(n)) min (n + cos((n << n))))))"
+-909.0,6,"((n max n) + (nroot((nroot(n, nroot(n, (((n min n) & (n min n)) max (n / n)))) ** ((n & n) max n)), pi) min (n / atan((n // n)))))"
+-909.0,6,(n + ((log(pi) * n) + cos(n)))
+-909.0,6,(((n / (n / n)) / tan(log10(e))) + cos((n & n)))
+-909.0,6,sinh(sqrt((sinh(sqrt(n)) + (sqrt(log2(c)) min n))))
+-909.0,6,(cosh((n * ((abs(floor(n)) / (n + n)) min (e / n)))) + n)
+-909.0,6,"((((sin(((n & n) / n)) // sin(cos(n))) max nroot(n, (n + n))) + n) ** ((log10(n) - sin(cos((n / e)))) max nroot(n, ((n + n) max n))))"
+-909.0,6,"((n + nroot(n, catalan)) + atan(cos((((n min n) | ceil((n max n))) min n))))"
+-909.0,6,((n max floor((n >> n))) + ((n ** (log10((n | n)) min (cos(log10(n)) % n))) ** phi))
+-909.0,6,"((cos(cosh(n)) + (n % n)) + (n + nroot(ceil(n), catalan)))"
+-909.0,6,"((n // nroot(n, n)) + sqrt((n + sinh((n min ((n + n) min nroot(sqrt(c), n)))))))"
+-909.0,6,"(((n - n) max n) + ((cos((n / n)) min cos(n)) + nroot(n, catalan)))"
+-909.0,6,"((n | n) + sqrt(((factorial(n) // (n / (nroot(n, (n min n)) % acos(cos((n + log(tanh(euler_gamma)))))))) + n)))"
+-909.0,6,"(n + (cos(sinh(n)) + (nroot(n, catalan) max log10(n))))"
+-909.0,6,(ceil((n / ((e max ((n & (n * n)) - (n / n))) / n))) + sinh((n // n)))
+-909.0,6,"((nroot((((n - n) max n) min ((n * n) max n)), (catalan % n)) + (cos(n) min cos((n / n)))) + n)"
+-909.0,6,"(n + (nroot(n, catalan) + cos((cosh(n) max (n min n)))))"
+-909.0,6,"((n min n) + (sqrt(((((cosh(n) // n) ** nroot(n, n)) max nroot(n, n)) + nroot((n - n), (n + (n // n))))) min sinh(e)))"
+-909.0,6,(n + ((n / catalan) + cos((n + cos((n + cos(n)))))))
+-909.0,6,(sqrt(((cosh((atan(((n max n) // n)) - (n min n))) / ceil(((n & n) % phi))) + (n // atan(n)))) + n)
+-908.0,6,((n | n) + ((n ** phi) ** (log10(n) min log2(phi))))
+-908.0,6,"(nroot((floor(n) + sqrt(n)), cosh(((nroot(n, n) // (phi % euler_gamma)) / n))) + n)"
+-908.0,6,(n + ((n ** log10((n ** phi))) min (n + log10((n ** phi)))))
+-908.0,6,(sqrt((n max n)) + sqrt((n + sinh((n min (e + e))))))
+-908.0,6,((((n + log(((((n / pi) ** n) % (pi * n)) max n))) / n) ** n) + (n | n))
+-907.0,6,((((n % ceil((e ** phi))) + (((n ** log10(e)) / atan(n)) ** (n + (n ^ n)))) max n) max (n ** tanh((n + n))))
+-550.0,5,((n / n) + ((n + (n & n)) ** log10((n + n))))
+-550.0,5,(((sqrt(n) ** sqrt(n)) ** tanh(n)) + n)
+-550.0,5,(((sqrt(n) ** sqrt(n)) ** (tanh(n) max log10(n))) + n)
+-550.0,5,"cosh(sqrt(((n / asin(tanh(nroot(n, n)))) + n)))"
+-550.0,5,((sqrt(cosh(ceil(n))) // atan(n)) + n)
+-550.0,5,((n ** log2(sqrt((n ** tanh(n))))) + n)
+-550.0,5,((n ^ n) + sinh(sqrt((n + sinh(sqrt((n & n)))))))
+-550.0,5,((n // n) + ((n + n) ** log10((n + n))))
+-550.0,5,(n + sinh((sqrt((n << (n max n))) / floor((n | (n - n))))))
+-550.0,5,((sqrt(n) ** sqrt(n)) + ((n min n) ** tanh(n)))
+-550.0,5,(n + (sqrt(n) ** ((sqrt(n) * tanh(n)) min n)))
+-550.0,5,((n & n) + (((n & n) min sqrt(n)) ** (tanh(n) * sqrt(n))))
+-550.0,5,(((((n << n) - n) max (n // n)) // (n * n)) + n)
+-550.0,5,((sqrt(sinh(n)) // atan(n)) + n)
+-550.0,5,(sqrt(((n - n) + ((n | n) | (n | n)))) + sqrt((sinh(n) + n)))
+-550.0,5,"(n + nroot(sqrt(factorial(n)), nroot(n, (n + nroot(n, n)))))"
+-550.0,5,((((((((n << n) max (n + n)) min n) // ((n max n) min n)) << ((n + n) | n)) % n) | n) + (n ** (tanh(n) ** (n + floor(n)))))
+-550.0,5,(((sqrt(n) ** tanh(n)) ** sqrt(n)) + n)
+-550.0,5,(sinh((sqrt((n << n)) / n)) + n)
+-550.0,5,((((n << n) max n) ** (atan(n) % tanh(n))) + n)
+-550.0,5,(sin(n) + sqrt(ceil((n << n))))
+-550.0,5,(n + ((((n << n) - n) / n) / (n max n)))
+-550.0,5,(n + (n ** log10(((((n * log(n)) ** tanh(n)) + n) max n))))
+-550.0,5,"(cosh(((n & n) / nroot((n * n), n))) + floor(n))"
+-550.0,5,"(nroot(sqrt(factorial(n)), nroot(n, (((n // (n / n)) + sqrt(n)) max sqrt(n)))) + n)"
+-550.0,5,"(sqrt(((n & n) + nroot(factorial(n), nroot(n, n)))) + n)"
+-550.0,5,"(nroot(n, nroot((n min n), n)) + sqrt(cosh(n)))"
+-550.0,5,(sqrt((n << n)) + sin(n))
+-550.0,5,(n + sqrt(((factorial(n) / n) + sqrt(((n << n) max (n max (n / n)))))))
+-550.0,5,((n max (n & ((n * n) + (n * n)))) + ((sqrt(n) ** tanh(n)) ** sqrt(n)))
+-550.0,5,(sin(n) + sqrt((n << n)))
+-550.0,5,"(n + floor((((log2(n) ** log2(n)) max n) // (n min nroot(nroot(n, n), (n & n))))))"
+-550.0,5,((((n & n) << (n & n)) / ((n / n) + (n * n))) + n)
+-550.0,5,((n - n) + sinh(sqrt((n + sinh(sqrt(n))))))
+-550.0,5,(sqrt((n max cosh(n))) + sqrt((n + cosh(sin(n)))))
+-550.0,5,(sqrt(((factorial(n) + factorial(n)) / n)) + (n | n))
+-550.0,5,"((n max n) + nroot(sqrt(factorial(n)), nroot(n, (n + sqrt(n)))))"
+-550.0,5,((n max (tan(((n | (n * n)) + log10((n max n)))) max n)) + (n - log10(((n ^ (n & n)) | n))))
+-550.0,5,(sqrt(((factorial(n) / n) + (factorial(n) / n))) + n)
+-550.0,5,(n + cosh(((n / (n + n)) * n)))
+-550.0,5,(sqrt(((factorial(n) // n) + (factorial((n & n)) // n))) + (((n / n) // n) max n))
+-550.0,5,"(n + nroot(factorial(n), (nroot(sqrt(n), n) / (sqrt(n) / n))))"
+-550.0,5,((sqrt((atan((n & (n * n))) * (n << n))) + ((n - n) & n)) max ((n // atan(n)) + (n & n)))
+-550.0,5,(sqrt(((factorial(n) // n) + (factorial(n) // n))) + n)
+-550.0,5,(((sqrt(n) ** sqrt(n)) ** tanh((n + n))) + n)
+-550.0,5,((n max (atan(n) + ((atan(n) max atan(((n << n) | n))) ** n))) + log10(n))
+-550.0,5,(sqrt(((factorial(n) + factorial(n)) // n)) + n)
+-550.0,5,((n | n) + (((n + cosh(n)) ** log10(n)) / (n ** log10(n))))
+-550.0,5,((sqrt((n max (n - n))) ** sqrt((n * tanh(n)))) + n)
+-550.0,5,"(((abs(n) ** log2(sqrt(n))) // (nroot(nroot(n, n), (n min n)) min n)) + n)"
+-550.0,5,(cosh(cosh(log(((n / n) + n)))) + (n / n))
+-550.0,5,(sqrt(cosh(n)) + sqrt(ceil(((abs(n) // n) + n))))
+-550.0,5,"(nroot((n ** log(n)), nroot(n, n)) + n)"
+-550.0,5,"(sqrt(cosh(n)) + sqrt((((n ^ n) | n) + (n / nroot(n, (n / n))))))"
+-550.0,5,(sqrt((n + sqrt(n))) + sqrt(cosh(n)))
+-550.0,5,"((n max (n + (n // nroot(n, ((n + n) max n))))) max ((((n // n) << n) >> (n // n)) - n))"
+-550.0,5,(sqrt((((factorial(n) // (n + n)) + (factorial(n) // n)) + n)) + n)
+-550.0,5,(n + sqrt(((factorial(n) / n) + floor(floor(((factorial(n) max factorial(n)) / n))))))
+-550.0,5,"(n + (((n & n) ** log(n)) // nroot(sqrt(n), (nroot(sqrt(n), n) min nroot(sqrt(n), n)))))"
+-550.0,5,(n + ((sqrt((n max n)) ** tanh(n)) ** log2((n | (n & n)))))
+-550.0,5,(n + sqrt(((factorial(n) / (n / atan(n))) + n)))
+-550.0,5,sinh(sqrt((sinh(sqrt(n)) + abs(n))))
+-550.0,5,(sqrt(cosh(n)) + sqrt((n + sqrt((cosh(n) // cosh(n))))))
+-550.0,5,(sinh(sqrt((sinh(sqrt(n)) + (n ^ (n ^ n))))) + (n >> n))
+-550.0,5,((n min ((n min (n >> n)) & n)) + sinh(sqrt((sinh(sqrt(n)) + (n + (n - n))))))
+-550.0,5,"((sqrt(sinh(n)) // nroot((n | n), (n | (n & n)))) + n)"
+-550.0,5,"(sqrt((n + cosh(neg((n - nroot((sqrt(n) / ceil(n)), n)))))) + n)"
+-550.0,5,((cosh(sinh(log((n min n)))) max (n min n)) + cosh(sinh(log(n))))
+-550.0,5,(n + ((n + (cos(n) * n)) max (n + cos(n))))
+-550.0,5,(((floor(n) max n) max (log10(sinh(n)) + sqrt(sinh(n)))) + (floor(n) / n))
+-550.0,5,(sin(n) + sqrt((n << (n max n))))
+-550.0,5,(sinh(sqrt((sinh(sqrt(n)) + n))) + (n % n))
+-550.0,5,(sqrt(((((sinh(n) + factorial(n)) - (floor(n) * ceil(n))) // n) + (n / atan(n)))) + n)
+-549.0,5,(atan((n // n)) + (phi ** n))
+-549.0,5,"sinh((cosh(nroot(n, e)) max log(n)))"
+-549.0,5,ceil(sqrt((cosh(n) * phi)))
+-549.0,5,((atan(((n ** (euler_gamma min n)) + n)) ** n) + n)
+-549.0,5,((n + (n ** tanh(n))) max (phi ** n))
+-549.0,5,"(((((n ** ((n min n) / n)) + n) - nroot((n - cos(n)), n)) + (((n // n) max n) / n)) max (phi ** n))"
+-549.0,5,(n max (log_{phi}((factorial(n) + n)) + tanh(n)))
+-549.0,5,(sin(sin(atan(n))) + (phi ** n))
+-549.0,5,(n + (phi ** (n - ((((n // n) | n) max n) / n))))
+-549.0,5,((phi ** n) max ((n ** tanh(n)) + n))
+-549.0,5,(sqrt(cosh(n)) + sqrt((n + phi)))
+-549.0,5,((phi ** n) + (n / (((abs(n) min abs(log2(n))) + n) + cos(n))))
+-549.0,5,(n + (factorial(n) ** cos(asin(catalan))))
+-549.0,5,"((phi ** n) + (nroot(n, atan(nroot(((n min n) min n), atan(n)))) / n))"
+-549.0,5,(cos(log10(n)) + ((phi ** n) max n))
+-549.0,5,((n / ((n + n) min atan(n))) + abs((sinh(n) ** log(phi))))
+-549.0,5,"(nroot(((n min n) ** n), ((n / n) + pi)) + n)"
+-548.0,5,((phi ** n) + atan(atan(pi)))
+-547.0,5,(phi / (log10((e / euler_gamma)) ** (n max n)))
+-300.0,4,"(n + nroot(n, nroot(n, (n * n))))"
+-300.0,4,((n + (n - sqrt(n))) + (n // (n min n)))
+-300.0,4,"(nroot(n, nroot(n, (n max (n + n)))) + n)"
+-300.0,4,(n + (n + cos(cosh(n))))
+-300.0,4,((n + n) - sqrt(log(sqrt(n))))
+-300.0,4,((n + n) + cos(n))
+-300.0,4,(n + (n / atan(n)))
+-300.0,4,"((n // nroot(nroot(n, n), n)) + n)"
+-300.0,4,(n + cosh(log2(n)))
+-300.0,4,(n + (cos(n) + n))
+-300.0,4,(n + sinh(sqrt(n)))
+-300.0,4,((n - log10(n)) + n)
+-300.0,4,(((n min n) + n) + cos(n))
+-300.0,4,((n / atan(n)) + n)
+-300.0,4,(n + (ceil((n & n)) ** tanh(ceil(n))))
+-300.0,4,((n min n) + (n - log10(n)))
+-300.0,4,((n // atan(n)) + n)
+-300.0,4,((n ** tanh(n)) + n)
+-300.0,4,((n ** sin(((n + n) // n))) + n)
+-300.0,4,(n + (cos(sinh(n)) + n))
+-300.0,4,"(nroot(n, nroot(n, (n + n))) + n)"
+-300.0,4,"((n & n) + (n / nroot(sinh(atan(n)), (n min sinh(n)))))"
+-300.0,4,"(n + (n // nroot(n, (n + nroot(n, n)))))"
+-300.0,4,(abs(n) + (n ** (sinh(n) / cosh(n))))
+-300.0,4,"((n // nroot(n, ((n max n) max (n + cosh(((n ^ n) >> n)))))) + n)"
+-300.0,4,"abs(((n // nroot(n, ((n // nroot(n, n)) + n))) + n))"
+-300.0,4,((n + n) + ((n // (((n // n) << (n // n)) min n)) min cos((n * n))))
+-300.0,4,"((n / nroot(n, (((n << n) // n) + n))) + n)"
+-300.0,4,"(n + (n / nroot(n, (n + n))))"
+-300.0,4,"(n + nroot(n, nroot(n, (n + (log((n + n)) % n)))))"
+-300.0,4,"((n // nroot(n, (n * n))) + n)"
+-299.0,4,(n + (n ** catalan))
+-139.0,3,(atan(n) * (pi - cos(n)))
+-138.0,3,((phi + n) / catalan)
+-50.0,2,(sqrt(n) + n)
+-50.0,2,cosh((tan((n min n)) max n))
+-50.0,2,((n / n) + n)

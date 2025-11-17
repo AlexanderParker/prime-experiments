@@ -423,6 +423,7 @@ def calculate_fitness(
 
     matches = 0
     match_score = 0.0
+    first_mismatch_penalty = 0
     test_limit = stop_limit if stop_limit is not None else max_test
 
     for n in range(1, test_limit + 1):
@@ -434,19 +435,18 @@ def calculate_fitness(
             matches += 1
             match_score += n**match_weight_factor
         else:
+            first_mismatch_penalty = abs(result - expected_prime)
             break
 
     complexity = count_nodes(node)
     constant_count = count_constants(node)
-    non_constant_nodes = complexity - constant_count
 
     if match_score == 0:
         fitness = float("inf")
     else:
-        fitness = -match_score * 10 + complexity - non_constant_nodes
+        fitness = -match_score * 10 + complexity + constant_count + first_mismatch_penalty
 
     return fitness, matches, complexity, match_score
-
 
 def count_constants(node: ASTNode) -> int:
     """Count the number of named constants in the AST."""
