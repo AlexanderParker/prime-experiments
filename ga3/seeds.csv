@@ -1,10 +1,16 @@
 fitness,matches,expression
 -3823.0,10,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n)
 -2834.0,9,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n)
+-2834.0,9,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n)))
 -2833.0,9,(((cos((n * n)) min cos(n)) + n) + (n // cos(log10(n))))
 -2833.0,9,((n + (n // cos(log10(n)))) + (cos((n * n)) min cos(n)))
+-2832.0,9,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))"
+-2832.0,9,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n))))
+-2830.0,9,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n))))
 -2829.0,9,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) - log_{h}(euler_gamma))))
+-2822.0,9,"(((log10((n * ((n / n) max nroot(sinh(n), pi)))) + n) + cosh(log2(n))) + (cos((n * n)) // n))"
 -2024.0,8,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c))
+-2024.0,8,((((n + n) + atan(cos(n))) // phi) + cosh(log2(n)))
 -2023.0,8,(cosh(log2(((e * e) min n))) + ceil(cosh(log2(n))))
 -2022.0,8,(cos(((n * (n + n)) >> n)) + ((log10(n) + cosh(log2(n))) + n))
 -2021.0,8,((n + (cos(n) min cos(factorial(n)))) + (n + (n - ceil((n min pi)))))
