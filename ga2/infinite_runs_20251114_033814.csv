@@ -1,0 +1,251 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-901.0,6,518.1985511779785,sinh(sqrt((sinh(sqrt(n)) + (n min 5)))),True
+2,-2024.0,8,669.4422373771667,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + tanh((n // (7 | n))))))),True
+3,-3832.0,10,823.1286458969116,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + ((n // 7) * cos((n min 8))))))),True
+4,-3832.0,10,941.8269259929657,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + ((n // 7) * cos((n min 8))))))),False
+5,-3832.0,10,865.7323532104492,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + ((n // 7) * cos((n min 8))))))),False
+6,-3832.0,10,857.0277240276337,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + ((n // 7) * cos((n min 8))))))),False
+7,-3832.0,10,1012.8589465618134,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + ((n // 7) * cos((n min 8))))))),False
+8,-3832.0,10,931.4324510097504,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + ((n // 7) * cos((n min 8))))))),False
+9,-3832.0,10,939.3320350646973,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + ((n // 7) * cos((n min 8))))))),False
+10,-3834.0,10,885.4011328220367,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),True
+11,-3834.0,10,518.8282806873322,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+12,-3834.0,10,628.6220741271973,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+13,-3834.0,10,829.6239504814148,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+14,-3834.0,10,569.5741612911224,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+15,-3834.0,10,629.0751988887787,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+16,-3834.0,10,650.4516825675964,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+17,-3834.0,10,682.3984620571136,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+18,-3834.0,10,901.1312522888184,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+19,-3834.0,10,880.1497144699097,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+20,-3834.0,10,540.1368179321289,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+21,-3834.0,10,542.4622657299042,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+22,-3834.0,10,794.7407681941986,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+23,-3834.0,10,635.7682385444641,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+24,-3834.0,10,630.7960767745972,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+25,-3834.0,10,650.8412718772888,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+26,-3834.0,10,541.2937734127045,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+27,-3834.0,10,515.4595258235931,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+28,-3834.0,10,537.7478866577148,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+29,-3834.0,10,601.1834545135498,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+30,-3834.0,10,569.5271968841553,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+31,-3834.0,10,625.1979672908783,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+32,-3834.0,10,510.18886637687683,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+33,-3834.0,10,519.1805727481842,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+34,-3834.0,10,831.5167362689972,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+35,-3834.0,10,795.5328533649445,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+36,-3834.0,10,725.5578844547272,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+37,-3834.0,10,833.6508905887604,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+38,-3834.0,10,988.8535113334656,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+39,-3834.0,10,513.6098294258118,sinh(sqrt((sinh(sqrt(n)) + ((n min 5) + (9 % cos((n max pi))))))),False
+40,-3835.0,10,880.0436418056488,sinh(sqrt((cosh(sqrt(n)) + ((n min 5) + (log10(boltzmann) % cos(n)))))),True
+41,-3835.0,10,896.0756404399872,sinh(sqrt((cosh(sqrt(n)) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+42,-3835.0,10,882.8368048667908,sinh(sqrt((cosh(sqrt(n)) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+43,-3835.0,10,894.187096118927,sinh(sqrt((cosh(sqrt(n)) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+44,-3835.0,10,885.6551668643951,sinh(sqrt((cosh(sqrt(n)) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+45,-3835.0,10,879.7272357940674,sinh(sqrt((cosh(sqrt(n)) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+46,-5041.0,11,861.1880633831024,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),True
+47,-5041.0,11,874.5774230957031,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+48,-5041.0,11,897.1507308483124,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+49,-5041.0,11,902.8931972980499,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+50,-5041.0,11,907.1640727519989,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+51,-5041.0,11,935.4142203330994,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+52,-5041.0,11,927.1608929634094,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+53,-5041.0,11,913.7077033519745,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+54,-5041.0,11,934.624470949173,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+55,-5041.0,11,884.9249224662781,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+56,-5041.0,11,893.8207352161407,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+57,-5041.0,11,895.619588136673,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+58,-5041.0,11,924.6283538341522,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+59,-5041.0,11,912.4686691761017,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+60,-5041.0,11,911.1467409133911,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+61,-5041.0,11,929.9875128269196,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+62,-5041.0,11,913.9346933364868,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+63,-5041.0,11,906.624927520752,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+64,-5041.0,11,900.5008153915405,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+65,-5041.0,11,885.6576101779938,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+66,-5041.0,11,879.270589351654,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+67,-5041.0,11,886.1179180145264,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+68,-5041.0,11,885.8239192962646,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+69,-5041.0,11,914.1961045265198,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+70,-5041.0,11,895.0288014411926,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+71,-5041.0,11,923.9005591869354,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+72,-5041.0,11,928.6548616886139,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+73,-5041.0,11,916.4730730056763,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+74,-5041.0,11,906.1181919574738,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+75,-5041.0,11,910.647102355957,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+76,-5041.0,11,908.526148557663,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+77,-5041.0,11,912.9680104255676,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+78,-5041.0,11,936.8114411830902,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+79,-5041.0,11,906.5775094032288,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+80,-5041.0,11,868.4034562110901,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+81,-5041.0,11,914.296945810318,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+82,-5041.0,11,916.0660126209259,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+83,-5041.0,11,926.0277163982391,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+84,-5041.0,11,923.7990944385529,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+85,-5041.0,11,908.3586118221283,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+86,-5041.0,11,916.3400962352753,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+87,-5041.0,11,908.4122216701508,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+88,-5041.0,11,889.6707799434662,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+89,-5041.0,11,943.7953100204468,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+90,-5041.0,11,899.134847164154,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+91,-5041.0,11,876.7151458263397,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+92,-5041.0,11,898.8346796035767,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+93,-5041.0,11,936.6476058959961,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+94,-5041.0,11,912.6531839370728,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+95,-5041.0,11,908.0606851577759,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+96,-5041.0,11,887.2737140655518,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+97,-5041.0,11,894.8030807971954,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+98,-5041.0,11,902.7642252445221,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+99,-5041.0,11,911.94011759758,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+100,-5041.0,11,912.1959896087646,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+101,-5041.0,11,913.2239000797272,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+102,-5041.0,11,928.4692888259888,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+103,-5041.0,11,911.714989900589,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+104,-5041.0,11,907.837432384491,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+105,-5041.0,11,918.5995373725891,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+106,-5041.0,11,904.0630271434784,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+107,-5041.0,11,905.313928604126,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+108,-5041.0,11,914.8713128566742,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+109,-5041.0,11,910.4119646549225,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+110,-5041.0,11,923.3026587963104,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+111,-5041.0,11,905.0616443157196,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+112,-5041.0,11,927.8691792488098,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+113,-5041.0,11,920.6143517494202,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+114,-5041.0,11,926.4418339729309,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+115,-5041.0,11,923.586021900177,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+116,-5041.0,11,919.4299247264862,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+117,-5041.0,11,924.7795996665955,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+118,-5041.0,11,912.7646563053131,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+119,-5041.0,11,920.3982436656952,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+120,-5041.0,11,913.8115203380585,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+121,-5041.0,11,925.1245818138123,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+122,-5041.0,11,925.0002465248108,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+123,-5041.0,11,923.9348011016846,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+124,-5041.0,11,918.3332045078278,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+125,-5041.0,11,938.5689561367035,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+126,-5041.0,11,919.9743015766144,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+127,-5041.0,11,928.3679573535919,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+128,-5041.0,11,918.4750699996948,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+129,-5041.0,11,915.6631920337677,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+130,-5041.0,11,938.2178616523743,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+131,-5041.0,11,932.5798768997192,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+132,-5041.0,11,942.6043734550476,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+133,-5041.0,11,925.5084161758423,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+134,-5041.0,11,929.450293302536,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+135,-5041.0,11,920.3068273067474,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+136,-5041.0,11,909.1547918319702,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+137,-5041.0,11,915.8378880023956,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+138,-5041.0,11,909.7264800071716,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+139,-5041.0,11,923.6339418888092,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+140,-5041.0,11,913.5367820262909,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+141,-5041.0,11,926.1942844390869,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+142,-5041.0,11,918.9223954677582,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+143,-5041.0,11,929.1147451400757,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+144,-5041.0,11,921.5181164741516,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+145,-5041.0,11,933.8747351169586,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+146,-5041.0,11,935.6969542503357,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+147,-5041.0,11,917.982381105423,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+148,-5041.0,11,902.7258269786835,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+149,-5041.0,11,910.7896237373352,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+150,-5041.0,11,889.9738035202026,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+151,-5041.0,11,927.6933212280273,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+152,-5041.0,11,948.1222314834595,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+153,-5041.0,11,923.5458669662476,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+154,-5041.0,11,935.9748225212097,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+155,-5041.0,11,938.656777381897,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+156,-5041.0,11,929.3248956203461,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+157,-5041.0,11,936.6212205886841,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+158,-5041.0,11,923.9904692173004,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+159,-5041.0,11,945.6350169181824,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+160,-5041.0,11,947.1131722927094,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+161,-5041.0,11,950.3297770023346,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+162,-5041.0,11,932.2389879226685,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+163,-5041.0,11,946.1685526371002,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+164,-5041.0,11,938.7807009220123,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+165,-5041.0,11,950.7588996887207,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+166,-5041.0,11,944.0998706817627,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+167,-5041.0,11,918.3580350875854,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+168,-5041.0,11,922.0197529792786,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+169,-5041.0,11,913.3162715435028,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+170,-5041.0,11,934.7487127780914,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+171,-5041.0,11,926.398535490036,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+172,-5041.0,11,927.1242916584015,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+173,-5041.0,11,928.0899245738983,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+174,-5041.0,11,929.8717551231384,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+175,-5041.0,11,935.2985672950745,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+176,-5041.0,11,932.3771963119507,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+177,-5041.0,11,930.917338848114,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+178,-5041.0,11,927.9423925876617,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+179,-5041.0,11,914.5074343681335,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+180,-5041.0,11,903.6577064990997,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+181,-5041.0,11,917.2067542076111,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+182,-5041.0,11,924.8221199512482,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+183,-5041.0,11,947.4588465690613,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+184,-5041.0,11,918.7334213256836,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+185,-5041.0,11,916.3573703765869,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+186,-5041.0,11,915.0175294876099,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+187,-5041.0,11,920.3566009998322,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+188,-5041.0,11,941.2057414054871,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+189,-5041.0,11,927.3077483177185,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+190,-5041.0,11,926.2265734672546,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+191,-5041.0,11,920.2731010913849,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+192,-5041.0,11,900.7255892753601,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+193,-5041.0,11,906.9823360443115,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+194,-5041.0,11,925.266280412674,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+195,-5041.0,11,933.2462158203125,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+196,-5041.0,11,933.359188079834,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+197,-5041.0,11,885.1280961036682,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+198,-5041.0,11,929.231603384018,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+199,-5041.0,11,922.6870691776276,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+200,-5041.0,11,932.4346189498901,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+201,-5041.0,11,935.5419020652771,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+202,-5041.0,11,918.8669254779816,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+203,-5041.0,11,917.8268082141876,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+204,-5041.0,11,914.7569625377655,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+205,-5041.0,11,915.8021824359894,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+206,-5041.0,11,924.06494140625,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+207,-5041.0,11,925.4586985111237,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+208,-5041.0,11,929.8234078884125,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+209,-5041.0,11,920.9764547348022,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+210,-5041.0,11,940.3390200138092,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+211,-5041.0,11,920.6452074050903,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+212,-5041.0,11,931.0012657642365,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+213,-5041.0,11,933.1139137744904,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+214,-5041.0,11,928.3706245422363,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+215,-5041.0,11,944.0018038749695,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+216,-5041.0,11,932.5232894420624,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+217,-5041.0,11,934.2998316287994,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+218,-5041.0,11,920.8566453456879,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+219,-5041.0,11,929.8824870586395,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+220,-5041.0,11,911.9164474010468,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+221,-5041.0,11,942.5647945404053,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+222,-5041.0,11,924.6218476295471,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+223,-5041.0,11,955.8333542346954,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+224,-5041.0,11,1482.6548671722412,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+225,-5041.0,11,916.546195268631,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+226,-5041.0,11,912.3787031173706,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+227,-5041.0,11,976.5586924552917,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+228,-5041.0,11,921.00221824646,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+229,-5041.0,11,911.0295598506927,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+230,-5041.0,11,903.1512675285339,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+231,-5041.0,11,914.9531207084656,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+232,-5041.0,11,928.9373462200165,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+233,-5041.0,11,928.1549987792969,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+234,-5041.0,11,923.1939561367035,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+235,-5041.0,11,933.097145318985,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+236,-5041.0,11,913.0862522125244,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+237,-5041.0,11,912.3619122505188,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+238,-5041.0,11,914.7321734428406,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+239,-5041.0,11,922.2083475589752,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+240,-5041.0,11,908.947646856308,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+241,-5041.0,11,953.8857164382935,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+242,-5041.0,11,932.9736552238464,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+243,-5041.0,11,936.3212788105011,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+244,-5041.0,11,939.5136072635651,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+245,-5041.0,11,923.7303133010864,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+246,-5041.0,11,930.2244470119476,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+247,-5041.0,11,924.5704827308655,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+248,-5041.0,11,910.7619433403015,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+249,-5041.0,11,903.06627368927,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False
+250,-5041.0,11,920.6170816421509,sinh(sqrt((cosh(sqrt((n min (pi + 7)))) + ((n min 5) + (log10(boltzmann) % cos(n)))))),False

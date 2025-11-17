@@ -1,0 +1,405 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-6477.0,12,871.3932456970215,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),True
+2,-6477.0,12,818.6628613471985,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+3,-6477.0,12,988.0048871040344,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+4,-6477.0,12,1019.7210683822632,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+5,-6477.0,12,1085.1778917312622,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+6,-6477.0,12,1027.7822637557983,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+7,-6477.0,12,1040.597707748413,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+8,-6477.0,12,1047.660094499588,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+9,-6477.0,12,1012.6382913589478,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+10,-6477.0,12,1091.6074113845825,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+11,-6477.0,12,979.6808233261108,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+12,-6477.0,12,1074.959400177002,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+13,-6477.0,12,1016.8800060749054,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+14,-6477.0,12,1033.1955018043518,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+15,-6477.0,12,1016.0361709594727,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+16,-6477.0,12,1026.381620168686,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+17,-6477.0,12,958.8459460735321,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+18,-6477.0,12,1047.6630411148071,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+19,-6477.0,12,1037.2034618854523,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+20,-6477.0,12,1031.667811870575,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+21,-6477.0,12,1080.040014743805,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+22,-6477.0,12,1000.2740983963013,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+23,-6477.0,12,1071.953855752945,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+24,-6477.0,12,942.7465391159058,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+25,-6477.0,12,1095.0318467617035,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+26,-6477.0,12,1002.8658618927002,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+27,-6477.0,12,1077.7894542217255,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+28,-6477.0,12,887.4941971302032,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+29,-6477.0,12,1092.967379808426,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+30,-6477.0,12,1003.132862329483,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+31,-6477.0,12,1086.6698706150055,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+32,-6477.0,12,965.9537718296051,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+33,-6477.0,12,1078.2865581512451,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+34,-6477.0,12,972.9701144695282,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+35,-6477.0,12,1025.2869725227356,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+36,-6477.0,12,991.938248872757,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+37,-6477.0,12,1064.3488519191742,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+38,-6477.0,12,1020.922931432724,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+39,-6477.0,12,1057.4600992202759,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+40,-6477.0,12,1008.0184834003448,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+41,-6477.0,12,983.9600939750671,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+42,-6477.0,12,1043.7347445487976,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+43,-6477.0,12,943.6204569339752,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+44,-6477.0,12,1013.5150852203369,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+45,-6477.0,12,1011.0228741168976,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+46,-6477.0,12,999.4156353473663,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+47,-6477.0,12,1025.936466217041,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+48,-6477.0,12,943.7718415260315,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+49,-6477.0,12,1053.0271162986755,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+50,-6477.0,12,969.6221675872803,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+51,-6477.0,12,1040.761040687561,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+52,-6477.0,12,964.2767465114594,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+53,-6477.0,12,714.270792722702,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+54,-6477.0,12,832.7506632804871,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+55,-6477.0,12,741.7989869117737,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+56,-6477.0,12,857.8822717666626,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+57,-6477.0,12,766.9144854545593,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+58,-6477.0,12,859.5673627853394,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+59,-6477.0,12,802.8588778972626,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+60,-6477.0,12,962.5803143978119,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+61,-6477.0,12,839.19837641716,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+62,-6477.0,12,854.9860007762909,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+63,-6477.0,12,880.2835116386414,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+64,-6477.0,12,901.4466986656189,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+65,-6477.0,12,926.7122886180878,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+66,-6477.0,12,876.9589524269104,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+67,-6477.0,12,967.8056101799011,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+68,-6477.0,12,797.0875890254974,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+69,-6477.0,12,996.0772161483765,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+70,-6477.0,12,968.4873390197754,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+71,-6477.0,12,1082.496733903885,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+72,-6477.0,12,1009.8229854106903,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+73,-6477.0,12,1092.3239076137543,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+74,-6477.0,12,975.697173833847,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+75,-6477.0,12,1080.1423530578613,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+76,-6477.0,12,1016.2523446083069,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+77,-6477.0,12,828.4881074428558,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+78,-6477.0,12,1093.4630603790283,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+79,-6477.0,12,994.0522854328156,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+80,-6477.0,12,1093.9797575473785,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+81,-6477.0,12,967.2903580665588,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+82,-6477.0,12,1071.0101962089539,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+83,-6477.0,12,992.3744730949402,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+84,-6477.0,12,1082.9551475048065,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+85,-6477.0,12,1007.2231469154358,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+86,-6477.0,12,1091.821575641632,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+87,-6477.0,12,1032.6681475639343,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+88,-6477.0,12,1083.924644947052,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+89,-6477.0,12,1018.8479146957397,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+90,-6477.0,12,1091.3334517478943,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+91,-6477.0,12,1022.3125722408295,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+92,-6477.0,12,1108.922301530838,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+93,-6477.0,12,987.1829192638397,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+94,-6477.0,12,1040.2686014175415,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+95,-6477.0,12,1030.9880855083466,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+96,-6477.0,12,976.783037185669,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+97,-6477.0,12,1068.576924085617,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+98,-6477.0,12,932.8276023864746,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+99,-6477.0,12,1095.9218411445618,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+100,-6477.0,12,1048.6332721710205,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+101,-6477.0,12,906.0501737594604,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+102,-6477.0,12,1091.7395703792572,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+103,-6477.0,12,927.6840584278107,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+104,-6477.0,12,816.1014270782471,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+105,-6477.0,12,835.2817125320435,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+106,-6477.0,12,809.5213553905487,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+107,-6477.0,12,830.3713564872742,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+108,-6477.0,12,813.239129781723,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+109,-6477.0,12,816.037849187851,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+110,-6477.0,12,820.000411272049,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+111,-6477.0,12,832.2706084251404,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+112,-6477.0,12,831.8848972320557,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+113,-6477.0,12,801.8790938854218,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+114,-6477.0,12,807.7177727222443,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+115,-6477.0,12,800.3513593673706,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+116,-6477.0,12,828.4155933856964,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+117,-6477.0,12,831.7953383922577,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+118,-6477.0,12,790.7089500427246,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+119,-6477.0,12,806.432391166687,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+120,-6477.0,12,806.8965609073639,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+121,-6477.0,12,839.7704453468323,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+122,-6477.0,12,809.3135633468628,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+123,-6477.0,12,800.7904543876648,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+124,-6477.0,12,827.7406885623932,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+125,-6477.0,12,840.2721617221832,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+126,-6477.0,12,832.679690361023,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+127,-6477.0,12,807.877345085144,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+128,-6477.0,12,836.3959686756134,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+129,-6477.0,12,840.6932747364044,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+130,-6477.0,12,797.4366457462311,((5 | (n + (5 << 2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5)))))),False
+131,-6478.0,12,776.8530750274658,"((5 | floor(nroot(n, ln2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))",True
+132,-6478.0,12,763.8679807186127,"((5 | floor(nroot(n, ln2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))",False
+133,-6478.0,12,785.1471047401428,"((5 | floor(nroot(n, ln2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))",False
+134,-6478.0,12,764.0813386440277,"((5 | floor(nroot(n, ln2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))",False
+135,-6478.0,12,783.9090023040771,"((5 | floor(nroot(n, ln2))) min ((n min (5 + sqrt5)) + cosh(log2((sinh(sqrt(n)) + (n // 5))))))",False
+136,-6480.0,12,758.9036064147949,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",True
+137,-6480.0,12,691.7437222003937,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+138,-6480.0,12,702.4128088951111,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+139,-6480.0,12,695.161126613617,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+140,-6480.0,12,710.559820652008,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+141,-6480.0,12,695.2000389099121,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+142,-6480.0,12,713.2118449211121,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+143,-6480.0,12,705.9422409534454,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+144,-6480.0,12,703.091490983963,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+145,-6480.0,12,690.6763656139374,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+146,-6480.0,12,688.719277381897,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+147,-6480.0,12,698.173734664917,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+148,-6480.0,12,706.4606182575226,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+149,-6480.0,12,710.0112545490265,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+150,-6480.0,12,715.1299695968628,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+151,-6480.0,12,720.4470567703247,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+152,-6480.0,12,744.8651275634766,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+153,-6480.0,12,734.466653585434,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+154,-6480.0,12,743.6138515472412,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+155,-6480.0,12,711.8795166015625,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+156,-6480.0,12,750.5051035881042,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+157,-6480.0,12,700.4583282470703,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+158,-6480.0,12,710.2328221797943,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+159,-6480.0,12,704.9865415096283,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+160,-6480.0,12,720.6028363704681,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+161,-6480.0,12,725.5821821689606,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+162,-6480.0,12,731.792929649353,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+163,-6480.0,12,718.973863363266,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+164,-6480.0,12,720.5374341011047,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+165,-6480.0,12,751.0298888683319,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+166,-6480.0,12,731.3658194541931,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+167,-6480.0,12,714.0632615089417,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+168,-6480.0,12,712.7673764228821,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+169,-6480.0,12,721.2231104373932,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+170,-6480.0,12,694.1119475364685,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+171,-6480.0,12,706.7986633777618,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+172,-6480.0,12,706.0471620559692,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+173,-6480.0,12,696.922402381897,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+174,-6480.0,12,690.5704891681671,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+175,-6480.0,12,741.1501181125641,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+176,-6480.0,12,707.0611855983734,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+177,-6480.0,12,724.5439085960388,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+178,-6480.0,12,733.0999245643616,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+179,-6480.0,12,739.9285228252411,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+180,-6480.0,12,721.732579946518,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+181,-6480.0,12,712.198370218277,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+182,-6480.0,12,725.4609551429749,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+183,-6480.0,12,720.0014371871948,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+184,-6480.0,12,710.1691744327545,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+185,-6480.0,12,732.2731997966766,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+186,-6480.0,12,738.9813976287842,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+187,-6480.0,12,722.4500386714935,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+188,-6480.0,12,704.7310328483582,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+189,-6480.0,12,697.8149647712708,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+190,-6480.0,12,718.910493850708,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+191,-6480.0,12,734.606912612915,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+192,-6480.0,12,729.3387806415558,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+193,-6480.0,12,726.786497592926,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+194,-6480.0,12,737.9245569705963,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+195,-6480.0,12,722.726975440979,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+196,-6480.0,12,729.5068485736847,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+197,-6480.0,12,716.095329284668,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+198,-6480.0,12,718.135274887085,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+199,-6480.0,12,705.3320915699005,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+200,-6480.0,12,712.2782428264618,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+201,-6480.0,12,696.1106603145599,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+202,-6480.0,12,714.1355304718018,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+203,-6480.0,12,698.766571521759,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+204,-6480.0,12,715.7042326927185,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+205,-6480.0,12,746.6016983985901,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+206,-6480.0,12,724.2801377773285,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+207,-6480.0,12,721.5278387069702,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+208,-6480.0,12,720.7342610359192,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+209,-6480.0,12,704.5206270217896,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+210,-6480.0,12,712.8231465816498,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+211,-6480.0,12,708.8899672031403,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+212,-6480.0,12,726.2531781196594,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+213,-6480.0,12,719.1042931079865,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+214,-6480.0,12,729.133095741272,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+215,-6480.0,12,735.6745300292969,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+216,-6480.0,12,731.7401306629181,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+217,-6480.0,12,724.9935789108276,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+218,-6480.0,12,717.2662837505341,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+219,-6480.0,12,725.1107914447784,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+220,-6480.0,12,733.9082653522491,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+221,-6480.0,12,722.8845255374908,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+222,-6480.0,12,725.8263924121857,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+223,-6480.0,12,712.4851655960083,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+224,-6480.0,12,700.9268908500671,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+225,-6480.0,12,723.6435132026672,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+226,-6480.0,12,736.0539598464966,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+227,-6480.0,12,716.757340669632,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+228,-6480.0,12,716.5957374572754,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+229,-6480.0,12,725.35893201828,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+230,-6480.0,12,745.6988317966461,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+231,-6480.0,12,733.1143424510956,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+232,-6480.0,12,734.4648950099945,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+233,-6480.0,12,728.1454844474792,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+234,-6480.0,12,730.111346244812,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+235,-6480.0,12,725.5484125614166,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+236,-6480.0,12,731.580783367157,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+237,-6480.0,12,718.7442219257355,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+238,-6480.0,12,728.8061242103577,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+239,-6480.0,12,724.760146856308,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+240,-6480.0,12,733.6826763153076,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+241,-6480.0,12,737.0502083301544,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+242,-6480.0,12,736.7735514640808,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+243,-6480.0,12,731.0093245506287,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+244,-6480.0,12,729.9157485961914,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+245,-6480.0,12,735.7810761928558,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+246,-6480.0,12,742.1766579151154,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+247,-6480.0,12,726.2099959850311,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+248,-6480.0,12,736.3188087940216,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+249,-6480.0,12,730.3146052360535,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+250,-6480.0,12,733.7829642295837,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+251,-6480.0,12,730.150741815567,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+252,-6480.0,12,736.7404968738556,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+253,-6480.0,12,734.2687783241272,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+254,-6480.0,12,746.5982372760773,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+255,-6480.0,12,725.3003213405609,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+256,-6480.0,12,742.519157409668,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+257,-6480.0,12,735.0054085254669,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+258,-6480.0,12,740.9623379707336,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+259,-6480.0,12,711.4932525157928,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+260,-6480.0,12,733.5027101039886,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+261,-6480.0,12,720.6229448318481,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+262,-6480.0,12,721.7032628059387,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+263,-6480.0,12,732.848042011261,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+264,-6480.0,12,728.8599891662598,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+265,-6480.0,12,721.82301902771,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+266,-6480.0,12,734.5837638378143,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+267,-6480.0,12,728.1434879302979,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+268,-6480.0,12,734.2092709541321,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+269,-6480.0,12,737.8186824321747,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+270,-6480.0,12,736.8470840454102,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+271,-6480.0,12,735.5561413764954,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+272,-6480.0,12,744.5428488254547,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+273,-6480.0,12,725.8913462162018,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+274,-6480.0,12,714.4903736114502,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+275,-6480.0,12,724.9977357387543,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+276,-6480.0,12,721.6065256595612,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+277,-6480.0,12,705.7997612953186,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+278,-6480.0,12,728.7138221263885,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+279,-6480.0,12,745.0549461841583,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+280,-6480.0,12,741.8346495628357,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+281,-6480.0,12,730.9278848171234,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+282,-6480.0,12,745.7823166847229,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+283,-6480.0,12,750.4819402694702,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+284,-6480.0,12,735.4839754104614,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+285,-6480.0,12,744.2345297336578,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+286,-6480.0,12,737.1560616493225,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+287,-6480.0,12,732.3955361843109,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+288,-6480.0,12,742.6229810714722,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+289,-6480.0,12,749.3611359596252,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+290,-6480.0,12,754.2834603786469,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+291,-6480.0,12,761.300440788269,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+292,-6480.0,12,741.1192080974579,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+293,-6480.0,12,737.3224699497223,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+294,-6480.0,12,751.5107884407043,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+295,-6480.0,12,746.6151103973389,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+296,-6480.0,12,745.3154137134552,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+297,-6480.0,12,750.7857158184052,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+298,-6480.0,12,728.1458456516266,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+299,-6480.0,12,740.600766658783,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+300,-6480.0,12,724.6537027359009,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+301,-6480.0,12,727.5346531867981,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+302,-6480.0,12,735.9579613208771,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+303,-6480.0,12,729.5508728027344,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+304,-6480.0,12,748.5317854881287,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+305,-6480.0,12,722.6116342544556,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+306,-6480.0,12,737.5642619132996,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+307,-6480.0,12,744.8354215621948,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+308,-6480.0,12,736.7803239822388,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+309,-6480.0,12,744.5700635910034,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+310,-6480.0,12,741.9329891204834,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+311,-6480.0,12,740.3878047466278,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+312,-6480.0,12,742.3173542022705,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+313,-6480.0,12,723.3506362438202,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+314,-6480.0,12,724.6384942531586,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+315,-6480.0,12,717.2434704303741,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+316,-6480.0,12,723.4613454341888,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+317,-6480.0,12,726.5673842430115,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+318,-6480.0,12,747.9601428508759,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+319,-6480.0,12,713.7661979198456,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+320,-6480.0,12,730.5839638710022,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+321,-6480.0,12,721.6586294174194,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+322,-6480.0,12,730.4072813987732,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+323,-6480.0,12,720.9830799102783,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+324,-6480.0,12,733.7360551357269,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+325,-6480.0,12,732.8886740207672,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+326,-6480.0,12,747.5655195713043,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+327,-6480.0,12,728.7191505432129,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+328,-6480.0,12,733.3283891677856,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+329,-6480.0,12,724.7721362113953,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+330,-6480.0,12,721.7841048240662,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+331,-6480.0,12,712.9807183742523,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+332,-6480.0,12,723.1707606315613,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+333,-6480.0,12,746.6114444732666,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+334,-6480.0,12,734.914057970047,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+335,-6480.0,12,739.7465102672577,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+336,-6480.0,12,714.953131198883,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+337,-6480.0,12,712.3177335262299,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+338,-6480.0,12,739.9975669384003,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+339,-6480.0,12,732.0999529361725,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+340,-6480.0,12,738.2903451919556,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+341,-6480.0,12,743.9698541164398,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+342,-6480.0,12,730.8971536159515,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+343,-6480.0,12,731.0694653987885,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+344,-6480.0,12,730.2818503379822,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+345,-6480.0,12,726.7182266712189,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+346,-6480.0,12,728.6913340091705,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+347,-6480.0,12,718.1055347919464,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+348,-6480.0,12,741.460422039032,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+349,-6480.0,12,734.2408621311188,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+350,-6480.0,12,736.6933064460754,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+351,-6480.0,12,728.0343840122223,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+352,-6480.0,12,731.0491700172424,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+353,-6480.0,12,743.7542450428009,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+354,-6480.0,12,731.3449540138245,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+355,-6480.0,12,735.3495736122131,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+356,-6480.0,12,732.0552425384521,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+357,-6480.0,12,739.5561780929565,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+358,-6480.0,12,743.5983889102936,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+359,-6480.0,12,744.2044179439545,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+360,-6480.0,12,743.0194265842438,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+361,-6480.0,12,746.9562721252441,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+362,-6480.0,12,718.5604205131531,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+363,-6480.0,12,732.3924052715302,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+364,-6480.0,12,739.9744362831116,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+365,-6480.0,12,720.6739120483398,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+366,-6480.0,12,722.1789183616638,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+367,-6480.0,12,751.432092666626,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+368,-6480.0,12,731.9771907329559,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+369,-6480.0,12,751.0847458839417,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+370,-6480.0,12,758.8377254009247,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+371,-6480.0,12,730.2583394050598,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+372,-6480.0,12,721.6023497581482,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+373,-6480.0,12,714.7710399627686,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+374,-6480.0,12,731.0355324745178,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+375,-6480.0,12,724.8247287273407,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+376,-6480.0,12,726.7991786003113,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+377,-6480.0,12,730.76935338974,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+378,-6480.0,12,724.0889656543732,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+379,-6480.0,12,713.1744396686554,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+380,-6480.0,12,726.8538393974304,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+381,-6480.0,12,736.5441565513611,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+382,-6480.0,12,740.5361547470093,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+383,-6480.0,12,726.7517197132111,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+384,-6480.0,12,728.4228982925415,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+385,-6480.0,12,739.4652917385101,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+386,-6480.0,12,736.8990678787231,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+387,-6480.0,12,721.9709558486938,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+388,-6480.0,12,725.2517054080963,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+389,-6480.0,12,721.1666719913483,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+390,-6480.0,12,725.8444149494171,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+391,-6480.0,12,724.9815275669098,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+392,-6480.0,12,731.2717387676239,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+393,-6480.0,12,752.1468796730042,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+394,-6480.0,12,737.8751776218414,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+395,-6480.0,12,737.9664859771729,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+396,-6480.0,12,749.0611100196838,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+397,-6480.0,12,743.3547413349152,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+398,-6480.0,12,738.0123472213745,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+399,-6480.0,12,736.3588356971741,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+400,-6480.0,12,725.7705099582672,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+401,-6480.0,12,734.2487869262695,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+402,-6480.0,12,718.8845911026001,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+403,-6480.0,12,713.6820957660675,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
+404,-6480.0,12,724.6205704212189,"((5 | floor(nroot(n, ln2))) min ((n min 5) + cosh(log2((cosh(sqrt(n)) + (n // pi))))))",False
