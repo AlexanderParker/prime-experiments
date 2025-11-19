@@ -1,0 +1,2 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-283.0,4,236.60717916488647,(((n - n) ** log_{3}(n)) + ((n + n) - (n / n))),True

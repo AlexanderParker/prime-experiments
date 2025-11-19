@@ -7,3 +7,324 @@ run,fitness,matches,elapsed_time_seconds,expression,is_new_best
 6,-2024.0,8,95.03239178657532,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c)),False
 7,-2832.0,9,89.06475639343262,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
 8,-2830.0,9,119.3569848537445,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
+9,-2832.0,9,141.6966004371643,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n)))),False
+10,-2822.0,9,131.7053234577179,"(((log10((n * ((n / n) max nroot(sinh(n), pi)))) + n) + cosh(log2(n))) + (cos((n * n)) // n))",False
+11,-2834.0,9,141.70797085762024,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+12,-2024.0,8,113.00369048118591,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c)),False
+13,-2834.0,9,150.53725242614746,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+14,-2024.0,8,119.02088212966919,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c)),False
+15,-2834.0,9,159.98068714141846,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+16,-2834.0,9,180.0057065486908,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+17,-2834.0,9,148.91136026382446,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+18,-2834.0,9,125.84976887702942,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+19,-2834.0,9,131.36097812652588,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+20,-2834.0,9,146.5602695941925,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+21,-2024.0,8,124.07254910469055,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c)),False
+22,-3823.0,10,195.0686457157135,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+23,-3823.0,10,203.22176504135132,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+24,-2834.0,9,189.3858060836792,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+25,-2834.0,9,187.98774027824402,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+26,-2834.0,9,163.26252055168152,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+27,-2834.0,9,193.45970940589905,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+28,-2834.0,9,198.84873175621033,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+29,-2834.0,9,161.31014227867126,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+30,-3823.0,10,144.28244709968567,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+31,-2834.0,9,182.69115686416626,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+32,-2834.0,9,192.4032974243164,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+33,-2834.0,9,190.6605191230774,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+34,-2834.0,9,179.49174404144287,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+35,-3823.0,10,185.52625799179077,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+36,-2834.0,9,194.39605402946472,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+37,-3823.0,10,186.03717279434204,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+38,-2834.0,9,167.09038758277893,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+39,-2834.0,9,158.14627599716187,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+40,-2834.0,9,164.41041612625122,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+41,-2834.0,9,188.11229372024536,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+42,-2832.0,9,167.2338263988495,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+43,-2834.0,9,183.16463088989258,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+44,-2834.0,9,196.27381134033203,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+45,-3823.0,10,194.35461854934692,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+46,-2834.0,9,192.3187963962555,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+47,-2834.0,9,174.61310029029846,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+48,-2022.0,8,166.0592782497406,(cos(((n * (n + n)) >> n)) + ((log10(n) + cosh(log2(n))) + n)),False
+49,-2834.0,9,151.90833473205566,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+50,-2832.0,9,134.19819164276123,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+51,-3823.0,10,176.79904913902283,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+52,-2834.0,9,174.25811624526978,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+53,-2834.0,9,171.5130376815796,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+54,-2023.0,8,124.37208223342896,(cosh(log2(((e * e) min n))) + ceil(cosh(log2(n)))),False
+55,-2834.0,9,136.67993116378784,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+56,-2834.0,9,141.7473623752594,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+57,-2834.0,9,170.2748143672943,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+58,-2830.0,9,192.06486320495605,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
+59,-2834.0,9,194.8699450492859,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+60,-2834.0,9,196.7529170513153,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+61,-2834.0,9,191.4669704437256,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+62,-2024.0,8,164.9030783176422,((((n + n) + atan(cos(n))) // phi) + cosh(log2(n))),False
+63,-2834.0,9,185.03178024291992,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+64,-2834.0,9,163.44736576080322,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+65,-2834.0,9,142.7909243106842,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+66,-3823.0,10,139.8074996471405,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+67,-2834.0,9,142.0658130645752,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+68,-2834.0,9,187.0832815170288,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+69,-2834.0,9,194.01575088500977,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+70,-2834.0,9,194.71141910552979,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+71,-2022.0,8,202.5099482536316,(cos(((n * (n + n)) >> n)) + ((log10(n) + cosh(log2(n))) + n)),False
+72,-2834.0,9,194.65807366371155,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+73,-2834.0,9,196.67980194091797,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+74,-2834.0,9,186.20834612846375,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+75,-3823.0,10,169.28701448440552,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+76,-2834.0,9,151.3852424621582,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+77,-2834.0,9,141.88012647628784,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+78,-2832.0,9,146.23967099189758,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n)))),False
+79,-2023.0,8,136.155038356781,(cos(((c >> n) >> n)) + ((log10(n) + cosh(log2(n))) + n)),False
+80,-2834.0,9,171.80913424491882,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+81,-2834.0,9,194.14416813850403,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+82,-2834.0,9,198.11833667755127,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+83,-2834.0,9,195.32747840881348,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+84,-2834.0,9,194.23299503326416,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+85,-2834.0,9,193.9847252368927,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+86,-2024.0,8,150.8581244945526,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c)),False
+87,-2834.0,9,178.24236750602722,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+88,-2834.0,9,165.5694558620453,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+89,-2834.0,9,176.67693305015564,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+90,-2834.0,9,176.15325951576233,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+91,-2834.0,9,174.86995840072632,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+92,-2834.0,9,171.39450931549072,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+93,-2834.0,9,165.90790486335754,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+94,-2834.0,9,179.01408290863037,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+95,-2834.0,9,195.99270677566528,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+96,-2834.0,9,195.0601782798767,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+97,-2834.0,9,184.1225128173828,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+98,-2834.0,9,183.3881185054779,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+99,-2832.0,9,184.382488489151,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n)))),False
+100,-3823.0,10,193.00264048576355,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+101,-3825.0,10,194.26435542106628,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",True
+102,-3823.0,10,182.50981998443604,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+103,-2834.0,9,178.09592056274414,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+104,-2834.0,9,175.75905179977417,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+105,-3823.0,10,174.68941378593445,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+106,-3827.0,10,223.97312116622925,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",True
+107,-2834.0,9,183.79464530944824,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+108,-3823.0,10,189.78123092651367,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+109,-3823.0,10,184.79848170280457,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+110,-2834.0,9,175.4435784816742,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+111,-2834.0,9,166.30627965927124,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+112,-2834.0,9,169.36029601097107,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+113,-3827.0,10,252.62442708015442,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+114,-3825.0,10,191.7741768360138,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+115,-2834.0,9,184.61460542678833,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+116,-2834.0,9,175.61885452270508,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+117,-3823.0,10,174.17054271697998,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+118,-3827.0,10,221.06060481071472,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+119,-2834.0,9,149.29621243476868,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+120,-2834.0,9,142.95946502685547,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+121,-2834.0,9,170.44969606399536,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+122,-3827.0,10,229.28380513191223,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+123,-3825.0,10,180.36137700080872,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+124,-2834.0,9,195.15429401397705,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+125,-3827.0,10,261.73643136024475,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+126,-3827.0,10,254.565288066864,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+127,-2022.0,8,190.15099716186523,(cos(((n * (n + n)) >> n)) + ((log10(n) + cosh(log2(n))) + n)),False
+128,-2834.0,9,182.00785851478577,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+129,-3823.0,10,172.59418272972107,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+130,-2832.0,9,169.86127877235413,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n)))),False
+131,-3825.0,10,171.85121369361877,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+132,-2834.0,9,170.47159075737,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+133,-3825.0,10,169.00419855117798,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+134,-2834.0,9,193.93749618530273,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+135,-2830.0,9,216.7138102054596,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
+136,-2834.0,9,196.07081961631775,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+137,-3827.0,10,254.53386902809143,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+138,-3823.0,10,177.29306173324585,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+139,-2834.0,9,160.91096091270447,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+140,-2834.0,9,174.52723240852356,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+141,-3827.0,10,228.06025910377502,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+142,-2832.0,9,174.39588856697083,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n)))),False
+143,-2834.0,9,177.93008732795715,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+144,-2834.0,9,195.15984511375427,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+145,-3825.0,10,195.17599487304688,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+146,-2834.0,9,191.66718459129333,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+147,-2834.0,9,183.44366097450256,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+148,-2834.0,9,171.08249402046204,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+149,-2834.0,9,169.18226504325867,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+150,-2834.0,9,171.54578852653503,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+151,-2834.0,9,184.81580233573914,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+152,-2830.0,9,200.8622863292694,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
+153,-2830.0,9,197.6925458908081,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
+154,-3827.0,10,230.93880367279053,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+155,-3827.0,10,223.91358709335327,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+156,-3825.0,10,164.30188274383545,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+157,-2834.0,9,165.7967278957367,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+158,-3825.0,10,153.50588178634644,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+159,-3827.0,10,191.18801832199097,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+160,-3825.0,10,166.4719853401184,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+161,-3827.0,10,228.80726790428162,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+162,-2832.0,9,185.95934104919434,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n)))),False
+163,-3827.0,10,257.9472405910492,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+164,-2834.0,9,192.43661451339722,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+165,-2832.0,9,199.79961252212524,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log(n) + log10(n)))),False
+166,-3827.0,10,245.0086863040924,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+167,-2834.0,9,173.19613075256348,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+168,-3825.0,10,175.05290699005127,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+169,-3827.0,10,221.89337944984436,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+170,-2834.0,9,186.16878080368042,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+171,-2024.0,8,144.42313408851624,((cosh(log2(n)) + ceil(cosh(log2(n)))) min log(c)),False
+172,-3825.0,10,154.88589763641357,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+173,-3825.0,10,168.2531774044037,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+174,-2824.0,9,206.45037579536438,"(((log10((n * (n max nroot(sinh(n), pi)))) + n) + cosh(log2(n))) + (cos((n * n)) // n))",False
+175,-2834.0,9,174.48230600357056,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+176,-3827.0,10,178.37519311904907,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+177,-2834.0,9,187.87260484695435,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+178,-3827.0,10,263.36762857437134,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+179,-3827.0,10,255.74405884742737,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+180,-2834.0,9,180.9733636379242,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+181,-2832.0,9,155.36120700836182,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+182,-3827.0,10,216.83951044082642,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+183,-2834.0,9,173.72836756706238,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+184,-3823.0,10,177.01264333724976,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+185,-3827.0,10,232.32564568519592,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+186,-3827.0,10,243.49801778793335,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+187,-3827.0,10,256.1133167743683,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+188,-2834.0,9,191.28070402145386,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+189,-2834.0,9,173.76300406455994,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+190,-2834.0,9,159.57871341705322,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+191,-2834.0,9,143.08842778205872,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+192,-2834.0,9,148.93258953094482,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+193,-2834.0,9,191.3143765926361,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+194,-2834.0,9,196.64332151412964,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+195,-2834.0,9,193.61086583137512,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+196,-2022.0,8,187.619127035141,(((log10((n * n)) + n) + cosh(log2(n))) + (cos((n * n)) // n)),False
+197,-3823.0,10,173.25526356697083,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+198,-3823.0,10,184.0912482738495,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+199,-3827.0,10,261.40736865997314,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+200,-2832.0,9,179.43151211738586,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+201,-2024.0,8,158.57388830184937,((((n + n) + atan(cos(n))) // phi) + cosh(log2(n))),False
+202,-3827.0,10,217.0263786315918,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+203,-3823.0,10,174.865149974823,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+204,-3827.0,10,230.29197597503662,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+205,-2834.0,9,169.07395005226135,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+206,-2834.0,9,185.99219393730164,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+207,-3823.0,10,199.04154586791992,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+208,-2834.0,9,196.6276035308838,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+209,-2834.0,9,180.65620732307434,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+210,-2834.0,9,196.75349712371826,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+211,-3827.0,10,262.3247835636139,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+212,-3823.0,10,187.8591034412384,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+213,-3827.0,10,236.0842320919037,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+214,-3827.0,10,246.77413535118103,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+215,-3827.0,10,223.14051723480225,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+216,-2834.0,9,178.97759985923767,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+217,-3823.0,10,194.84093379974365,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+218,-2832.0,9,172.8787260055542,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+219,-2834.0,9,173.75689387321472,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+220,-2834.0,9,192.27963948249817,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+221,-2834.0,9,197.31164956092834,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+222,-3827.0,10,246.62488532066345,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+223,-3823.0,10,180.6592583656311,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+224,-2824.0,9,143.19389271736145,"(((log10((n * (n max nroot(sinh(n), pi)))) + n) + cosh(log2(n))) + (cos((n * n)) // n))",False
+225,-3825.0,10,179.484112739563,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+226,-3827.0,10,210.7061972618103,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+227,-2834.0,9,166.47149848937988,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+228,-6474.0,12,291.71462655067444,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",True
+229,-2834.0,9,196.6916913986206,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+230,-3825.0,10,189.79469656944275,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+231,-2834.0,9,182.6733362674713,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+232,-3825.0,10,196.6276729106903,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+233,-3825.0,10,185.36039519309998,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+234,-3827.0,10,242.62644624710083,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+235,-2834.0,9,195.43791007995605,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+236,-3825.0,10,174.18048334121704,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+237,-2833.0,9,158.28926491737366,"((nroot(n, catalan) // catalan) + cosh(log_{log10(pi)}(n)))",False
+238,-3825.0,10,182.7393500804901,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+239,-2832.0,9,136.58476781845093,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+240,-6474.0,12,221.55090880393982,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+241,-3827.0,10,237.70518827438354,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+242,-2834.0,9,197.99518966674805,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+243,-6474.0,12,253.41316318511963,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+244,-6474.0,12,314.8127839565277,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+245,-2834.0,9,183.30239081382751,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+246,-2834.0,9,180.75982880592346,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+247,-6474.0,12,321.95365858078003,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+248,-3827.0,10,234.45430397987366,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+249,-2834.0,9,169.403639793396,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+250,-2834.0,9,161.34305953979492,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+251,-3827.0,10,231.0650405883789,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+252,-2834.0,9,175.94472765922546,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+253,-3827.0,10,240.532390832901,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+254,-2834.0,9,197.00485944747925,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+255,-2834.0,9,180.16306519508362,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+256,-3823.0,10,194.9975163936615,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+257,-3827.0,10,255.39292907714844,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+258,-2834.0,9,188.07912254333496,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+259,-2023.0,8,170.4549605846405,(cos(((c >> n) >> n)) + ((log10(n) + cosh(log2(n))) + n)),False
+260,-2834.0,9,175.91783928871155,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+261,-3823.0,10,140.51782488822937,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+262,-3825.0,10,183.64841413497925,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+263,-2834.0,9,197.07682299613953,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+264,-6474.0,12,240.28587579727173,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+265,-2834.0,9,175.45845651626587,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+266,-2834.0,9,188.97750520706177,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+267,-6474.0,12,307.66104531288147,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+268,-3827.0,10,244.55228519439697,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+269,-3823.0,10,145.40771961212158,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+270,-6474.0,12,246.99956274032593,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+271,-2834.0,9,165.98552465438843,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+272,-2834.0,9,195.20977544784546,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+273,-6474.0,12,295.26872873306274,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+274,-6474.0,12,309.9530370235443,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+275,-3823.0,10,189.78943991661072,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+276,-2834.0,9,184.9167788028717,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+277,-3825.0,10,161.38164234161377,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+278,-2834.0,9,183.0142741203308,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+279,-6474.0,12,210.24172496795654,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+280,-6474.0,12,132.69231414794922,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+281,-2834.0,9,101.26775169372559,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+282,-3827.0,10,178.0933678150177,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+283,-2834.0,9,146.54718565940857,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+284,-2022.0,8,136.77304410934448,(((log10((n * n)) + n) + cosh(log2(n))) + (cos((n * n)) // n)),False
+285,-2826.0,9,145.0039074420929,"(((log10((n * nroot(sinh(n), pi))) + n) + cosh(log2(n))) + (cos((n * n)) // n))",False
+286,-2834.0,9,168.87002873420715,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+287,-6474.0,12,275.90320444107056,"((((cos(n) // factorial(n)) min cos((n * n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+288,-2834.0,9,164.63021874427795,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+289,-2834.0,9,153.3803014755249,(((n // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+290,-2830.0,9,151.18101024627686,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
+291,-3825.0,10,135.4614040851593,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+292,-2834.0,9,146.52577114105225,((n + (n // cos(log10(n)))) + (cos(log2((n ** n))) min cos(n))),False
+293,-2830.0,9,186.02413845062256,(((cosh(log2(n)) + n) // log2(pi)) + cosh((log2(n) + log_{h}(n)))),False
+294,-2834.0,9,175.56523966789246,((n + (n // cos(log10(n)))) + (cos(log2((n ** n))) min cos(n))),False
+295,-2834.0,9,170.8290295600891,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+296,-2834.0,9,170.09109830856323,((n + (n // cos(log10(n)))) + (cos(factorial(n)) min cos(n))),False
+297,-3823.0,10,170.7846803665161,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+298,-6474.0,12,254.52876138687134,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+299,-2832.0,9,155.7339928150177,"((nroot(n, catalan) // catalan) + cosh(log2((n ** tanh(pi)))))",False
+300,-2834.0,9,168.41922426223755,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+301,-6474.0,12,250.590393781662,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+302,-2834.0,9,140.01355695724487,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+303,-6474.0,12,318.46126437187195,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+304,-3825.0,10,170.0893156528473,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+305,-2834.0,9,169.4573254585266,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+306,-6474.0,12,315.3839981555939,"((((cos(n) // factorial(n)) min cos((n * n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+307,-2834.0,9,169.6596179008484,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+308,-6474.0,12,281.9014060497284,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+309,-3827.0,10,224.9871723651886,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+310,-2834.0,9,165.25496125221252,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+311,-6474.0,12,222.01505661010742,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+312,-6474.0,12,238.81068301200867,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+313,-2834.0,9,141.58805418014526,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+314,-2834.0,9,169.1404197216034,(((cos(n) min cos(factorial(n))) + n) + (n // cos(log10(n)))),False
+315,-6474.0,12,259.6984643936157,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+316,-2834.0,9,170.52707147598267,(((cos(factorial(n)) min cos(n)) + n) + (n // cos(log10(n)))),False
+317,-2834.0,9,170.05517268180847,((n + (cos(n) min cos(factorial(n)))) + (n // cos(log10(n)))),False
+318,-2834.0,9,170.60273027420044,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+319,-3823.0,10,172.83967232704163,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+320,-3823.0,10,171.29405617713928,(((((sqrt(phi) ** n) max n) // cos(log10(n))) + (cos(factorial(n)) min cos(n))) + n),False
+321,-3827.0,10,219.65937519073486,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+322,-6474.0,12,249.08649682998657,"(((cos(n) min (cos((n * n)) / factorial(n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+323,-6474.0,12,292.93040800094604,"((((cos(n) // factorial(n)) min cos((n * n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+324,-6474.0,12,314.7252287864685,"((((cos(n) // factorial(n)) min cos((n * n))) + n) + ((n // nroot(catalan, (n % pi))) // cos(log10(n))))",False
+325,-2834.0,9,168.24017143249512,((n + (n // cos(log10(n)))) + (cos(log2((n ** n))) min cos(n))),False
+326,-3827.0,10,232.11309337615967,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, catalan)) // cos(log10(n))))",False
+327,-2834.0,9,143.50732803344727,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
+328,-3825.0,10,135.08640384674072,"(((cos(n) min cos(factorial(n))) + n) + ((n // nroot(catalan, tan(tanh(catalan)))) // cos(log10(n))))",False
+329,-2834.0,9,105.33409380912781,((n + (n // cos(log10(n)))) + (cos(n) min cos(factorial(n)))),False
