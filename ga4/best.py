@@ -1,3 +1,4 @@
+# Updated best.py with unique expression handling and email notifications
 import math
 import random
 from typing import Dict, Any, List, Tuple, Optional
@@ -9,6 +10,7 @@ from datetime import datetime
 import time
 import sys
 import signal
+import email_notifier
 
 
 @dataclass
@@ -69,7 +71,7 @@ def load_best_hyperparams_from_csv(csv_filename: str) -> HyperParams:
 
 
 def load_seeds_from_csv(seeds_filename: str = "seeds.csv") -> List[Tuple[float, int, str]]:
-    """Load seeds from seeds.csv file."""
+    """Load unique seeds from seeds.csv file."""
     seeds = []
     seen_expressions = set()
 
@@ -82,13 +84,13 @@ def load_seeds_from_csv(seeds_filename: str = "seeds.csv") -> List[Tuple[float, 
                 matches = int(row["matches"])
                 seeds.append((fitness, matches, expression))
                 seen_expressions.add(expression)
-
-    seeds.sort(key=lambda x: x[0])
+    
+    seeds.sort(key=lambda x: x[0])    
     return seeds
 
 
 def save_seeds_to_csv(seeds: List[Tuple[float, int, str]], seeds_filename: str = "seeds.csv"):
-    """Save seeds to seeds.csv file."""
+    """Save only unique seeds to seeds.csv file."""
     seen_expressions = set()
     unique_seeds = []
 
@@ -107,19 +109,21 @@ def save_seeds_to_csv(seeds: List[Tuple[float, int, str]], seeds_filename: str =
 
 
 def load_top_expressions_from_csv(csv_filename: str) -> List[Tuple[float, int, str]]:
-    """Load the top scoring expressions from a hyperparameter evolution CSV file."""
+    """Load the top scoring unique expressions from a hyperparameter evolution CSV file."""
     rows = []
+    seen_expressions = set()
 
     with open(csv_filename, "r") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            fitness = float(row["fitness"])
-            matches = int(row["matches"])
             expression = row["expression"]
-            rows.append((fitness, matches, expression))
+            if expression not in seen_expressions:
+                fitness = float(row["fitness"])
+                matches = int(row["matches"])
+                rows.append((fitness, matches, expression))
+                seen_expressions.add(expression)
 
     rows.sort(key=lambda x: x[0])
-
     return rows
 
 
@@ -286,7 +290,7 @@ def evaluate_hyperparams(
 def update_seeds(
     seeds: List[Tuple[float, int, str]], new_fitness: float, new_matches: int, new_expression: str
 ) -> Tuple[List[Tuple[float, int, str]], bool]:
-    """Update seeds list with new result if it's better. Returns updated seeds and whether it was added."""
+    """Update seeds list with new result if it's unique. Returns updated seeds and whether it was added."""
     existing_expressions = {expr for _, _, expr in seeds}
 
     if new_expression in existing_expressions:
@@ -313,13 +317,13 @@ if __name__ == "__main__":
         if os.path.exists(seeds_filename):
             print(f"Loading seeds from: {seeds_filename}")
             seeds = load_seeds_from_csv(seeds_filename)
-            print(f"Loaded {len(seeds)} seeds")
+            print(f"Loaded {len(seeds)} unique seeds")
         else:
             print(f"{seeds_filename} not found, loading from hyperparameter evolution file")
             csv_filename = find_latest_hyperparameter_csv()
             print(f"Loading from: {csv_filename}")
             seeds = load_top_expressions_from_csv(csv_filename)
-            print(f"Loaded {len(seeds)} expressions")
+            print(f"Loaded {len(seeds)} unique expressions")
 
             print(f"Saving initial seeds to: {seeds_filename}")
             save_seeds_to_csv(seeds, seeds_filename)
@@ -383,7 +387,7 @@ if __name__ == "__main__":
                 top_50_percent = max(1, len(seeds) // 2)
                 available_seeds = seeds[:top_50_percent]
 
-                # Randomly sample up to 50 seeds from the top 50%
+                # Randomly sample up to 50 unique seeds from the top 50%
                 num_seeds_to_use = min(50, len(available_seeds))
                 sampled_seeds = random.sample(available_seeds, num_seeds_to_use)
 
@@ -393,7 +397,9 @@ if __name__ == "__main__":
                     if ast is not None:
                         seed_asts.append(ast)
 
-                print(f"Seeding with {len(seed_asts)} ASTs randomly sampled from top {top_50_percent} seeds (top 50%)")
+                print(
+                    f"Seeding with {len(seed_asts)} unique ASTs randomly sampled from top {top_50_percent} seeds (top 50%)"
+                )
                 print(f"{'='*80}\n")
 
                 fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(
@@ -408,7 +414,7 @@ if __name__ == "__main__":
                 seeds, was_added = update_seeds(seeds, fitness, matches, expression)
 
                 if was_added:
-                    print(f"\n*** NEW SEED ADDED TO seeds.csv ***")
+                    print(f"\n*** NEW UNIQUE SEED ADDED TO seeds.csv ***")
                     save_seeds_to_csv(seeds, seeds_filename)
 
                 if fitness < best_ever_fitness:
@@ -419,6 +425,16 @@ if __name__ == "__main__":
                     print(f"\n*** NEW OVERALL BEST FITNESS: {best_ever_fitness:.4f} ***")
                     print(f"*** MATCHES: {best_ever_matches} ***")
                     print(f"*** EXPRESSION: {best_ever_expression} ***")
+
+                    # Send email notification for new unique best match
+                    if was_added:
+                        print("Sending email notification...")
+                        email_notifier.send_new_match_notification(
+                            matches=best_ever_matches,
+                            fitness=best_ever_fitness,
+                            expression=best_ever_expression,
+                            run=run_count,
+                        )
 
                 writer.writerow(
                     {
@@ -445,3 +461,10 @@ if __name__ == "__main__":
             print(f"Best ever matches: {best_ever_matches}")
             print(f"Best ever expression: {best_ever_expression}")
             print(f"\nInfinite runs log saved to: {infinite_csv_filename}")
+
+# .env file example for email configuration
+# SMTP_SERVER=smtp.gmail.com
+# SMTP_PORT=587
+# SENDER_EMAIL=your_email@gmail.com
+# SENDER_PASSWORD=your_app_password
+# RECIPIENT_EMAIL=recipient@example.com
