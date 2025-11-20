@@ -1,2 +1,0 @@
-run,fitness,matches,elapsed_time_seconds,expression,is_new_best
-1,-122.0,3,165.59339952468872,(n + ((n + ((n ** n) / n)) / (n + n))),True

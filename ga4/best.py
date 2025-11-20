@@ -84,8 +84,8 @@ def load_seeds_from_csv(seeds_filename: str = "seeds.csv") -> List[Tuple[float, 
                 matches = int(row["matches"])
                 seeds.append((fitness, matches, expression))
                 seen_expressions.add(expression)
-    
-    seeds.sort(key=lambda x: x[0])    
+
+    seeds.sort(key=lambda x: x[0])
     return seeds
 
 
@@ -383,13 +383,24 @@ if __name__ == "__main__":
 
                 seeds = load_seeds_from_csv(seeds_filename)
 
-                # Sample from top 50% of seeds for more diversity
-                top_50_percent = max(1, len(seeds) // 2)
-                available_seeds = seeds[:top_50_percent]
+                # Weighted random sampling: better fitness = higher probability
+                # Convert fitness to weights (lower fitness is better, so invert)
+                if len(seeds) > 0:
+                    # Calculate weights inversely proportional to fitness
+                    # Add small constant to avoid division by zero
+                    max_fitness = max(fitness for fitness, _, _ in seeds)
+                    weights = [(max_fitness - fitness + 1) for fitness, _, _ in seeds]
 
-                # Randomly sample up to 50 unique seeds from the top 50%
-                num_seeds_to_use = min(50, len(available_seeds))
-                sampled_seeds = random.sample(available_seeds, num_seeds_to_use)
+                    # Normalize weights to probabilities
+                    total_weight = sum(weights)
+                    probabilities = [w / total_weight for w in weights]
+
+                    # Sample with replacement according to probabilities
+                    num_seeds_to_use = min(50, len(seeds))
+                    sampled_indices = random.choices(range(len(seeds)), weights=probabilities, k=num_seeds_to_use)
+                    sampled_seeds = [seeds[i] for i in sampled_indices]
+                else:
+                    sampled_seeds = []
 
                 seed_asts = []
                 for fitness, matches, expr in sampled_seeds:
@@ -398,7 +409,7 @@ if __name__ == "__main__":
                         seed_asts.append(ast)
 
                 print(
-                    f"Seeding with {len(seed_asts)} unique ASTs randomly sampled from top {top_50_percent} seeds (top 50%)"
+                    f"Seeding with {len(seed_asts)} ASTs using weighted random sampling from {len(seeds)} total seeds"
                 )
                 print(f"{'='*80}\n")
 

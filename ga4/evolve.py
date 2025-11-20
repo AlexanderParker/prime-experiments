@@ -6,6 +6,8 @@ from dataclasses import dataclass
 
 sys.setrecursionlimit(50000)
 
+_PRIME_CACHE = []
+
 
 def is_prime(n: int) -> bool:
     """Check if a number is prime."""
@@ -22,16 +24,24 @@ def is_prime(n: int) -> bool:
 
 
 def get_nth_prime(n: int) -> int:
-    """Get the nth prime number (1-indexed)."""
-    count = 0
-    num = 2
-    while count < n:
-        if is_prime(num):
-            count += 1
-            if count == n:
-                return num
-        num += 1
-    return num
+    """Get the nth prime number (1-indexed) with caching."""
+    global _PRIME_CACHE
+
+    # If we already have this prime cached, return it
+    if n <= len(_PRIME_CACHE):
+        return _PRIME_CACHE[n - 1]
+
+    # Otherwise, compute primes up to the nth one
+    if len(_PRIME_CACHE) == 0:
+        current = 2
+    else:
+        current = _PRIME_CACHE[-1] + 1
+    while len(_PRIME_CACHE) < n:
+        if is_prime(current):
+            _PRIME_CACHE.append(current)
+        current += 1
+
+    return _PRIME_CACHE[n - 1]
 
 
 @dataclass
@@ -260,6 +270,11 @@ def is_trivial_solution(node: ASTNode) -> bool:
 
     return False
 
+def clean_float(value: float) -> Union[int, float]:
+    """Round values very close to integers back to integers."""
+    if abs(value - round(value)) < 1e-9:
+        return int(round(value))
+    return value
 
 def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, float, None]:
     """Evaluate the AST with a given value of n."""
@@ -341,7 +356,7 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
                 if not isinstance(result, int):
                     return None
 
-            return result
+            return clean_float(result)
 
         left_val = evaluate_ast(node.left, n, is_root=False)
         right_val = evaluate_ast(node.right, n, is_root=False)
@@ -428,7 +443,7 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
             if not isinstance(result, int):
                 return None
 
-        return result
+        return clean_float(result)
     except (OverflowError, ValueError, ZeroDivisionError, TypeError):
         return None
 
@@ -443,19 +458,51 @@ def calculate_fitness(
     matches = 0
     match_score = 0.0
     first_mismatch_penalty = 0
+    lookahead_matches = 0
     test_limit = stop_limit if stop_limit is not None else max_test
 
+    # Find sequential matches
+    
     for n in range(1, test_limit + 1):
         result = evaluate_ast(node, n)
         if result is None:
             break
-        expected_prime = get_nth_prime(n)
-        if result == expected_prime:
-            matches += 1
-            match_score += n**match_weight_factor
-        else:
-            first_mismatch_penalty = abs(result - expected_prime)
+        if not isinstance(result, (int, float)):
             break
+
+        expected_prime = get_nth_prime(n)
+
+        if abs(result - round(result)) < 1e-9:
+            rounded_result = int(round(result))
+            if rounded_result == expected_prime:
+                matches += 1
+                match_score += n**match_weight_factor
+            else:
+                first_mismatch_penalty = abs(rounded_result - expected_prime)
+                break
+        else:
+            rounded_result = int(round(result))
+            first_mismatch_penalty = abs(rounded_result - expected_prime)
+            break
+    
+    # Lookahead scoring: check (matches * 2) values after last sequential match
+    if matches > 0:
+        lookahead_start = matches + 1
+        lookahead_count = matches
+        lookahead_end = min(lookahead_start + lookahead_count, test_limit + 1)
+        
+        for n in range(lookahead_start, lookahead_end):
+            result = evaluate_ast(node, n)
+            if result is None:
+                continue
+            if not isinstance(result, (int, float)):
+                continue
+
+            if abs(result - round(result)) < 1e-9:
+                rounded_result = int(round(result))
+                expected_prime = get_nth_prime(n)
+                if rounded_result == expected_prime:
+                    lookahead_matches += 1
 
     complexity = count_nodes(node)
     named_const_count = count_named_constants(node)
@@ -464,7 +511,14 @@ def calculate_fitness(
     if match_score == 0:
         fitness = float("inf")
     else:
-        fitness = -match_score * 10 + complexity + named_const_count + (int_const_count * 3) + first_mismatch_penalty
+        fitness = (
+            -match_score * 10
+            - lookahead_matches
+            + complexity
+            + named_const_count
+            + (int_const_count * 3)
+            + first_mismatch_penalty
+        )
 
     return fitness, matches, complexity, match_score
 

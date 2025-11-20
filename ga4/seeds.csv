@@ -1,12 +1,29 @@
 fitness,matches,expression
+-24656.0,19,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // (catalan ** catalan)) % atan(n))))) ** atan(n)) + (n ** euler_gamma))
+-14922.0,16,((((n ** ((catalan ** catalan) min (catalan ** cos(sin(n))))) + (atan(n) % tanh(((n // (catalan ** catalan)) % atan(n))))) ** atan(n)) + (n ** euler_gamma))
+-12369.0,15,((((n ** (catalan ** catalan)) + (atan(n) % tanh(((n // (catalan ** catalan)) % atan(n))))) ** atan(n)) + (n ** euler_gamma))
+-10103.0,14,"((cos((n * n)) + (nroot((floor(nroot(n, (catalan ** log_{10}(n)))) // catalan), (catalan ** (nroot(n, ((catalan max sin(n)) ** log_{10}(n))) / cosh(pi)))) / catalan)) + n)"
+-8162.0,13,(n + (n ** log_{(pi + ((n // cosh(phi)) min ((pi max (n // cosh(acos(h)))) * catalan)))}(n)))
+-8162.0,13,(n + (n ** log_{(pi + ((n // cosh(phi)) min (((n // cosh(acos(G))) max pi) * catalan)))}(n)))
+-8149.0,13,"((cos((n * n)) + (nroot((floor(nroot(n, (catalan ** log_{10}(n)))) // catalan), (catalan ** (nroot(n, (catalan ** log_{10}(n))) / cosh(pi)))) / catalan)) + n)"
+-8148.0,13,"((cos((n * n)) + (nroot(floor((floor(nroot(n, (catalan ** log_{10}(n)))) / catalan)), (catalan ** (nroot(n, (catalan ** log_{10}(n))) / cosh(pi)))) / catalan)) + n)"
+-8146.0,13,"((cos((n * n)) + nroot(nroot(floor((floor(nroot(n, (catalan ** log_{10}(n)))) / catalan)), (catalan ** (nroot(floor(nroot(n, pi)), (catalan ** n)) / cosh(pi)))), catalan)) + n)"
+-8145.0,13,"((cos((n * n)) + nroot(nroot(floor((floor(nroot(n, (catalan ** log_{10}(n)))) / catalan)), (catalan ** (nroot(floor(nroot(n, pi)), (catalan ** (n + euler_gamma))) / n))), catalan)) + n)"
 -6474.0,12,"((n ** log_{(pi + nroot((n // cosh(phi)), log_{cosh(phi)}(e)))}(n)) + (n // catalan))"
+-6472.0,12,((n ** log_{(atan(phi) + ((n + phi) // (atan(factorial(n)) ** atan(n))))}(n)) + ((n // catalan) // tanh(phi)))
+-6472.0,12,((n ** log_{(atan(phi) + ((n + euler_gamma) // (atan(n) ** atan(n))))}(n)) + ((n // tanh(atan(factorial(n)))) // catalan))
+-6471.0,12,(n + (n ** (log_{(pi + (n // cosh(phi)))}(n) ** log_{(pi + (n // phi))}((n // catalan)))))
 -6470.0,12,(((n + (cosh((n // phi)) // (n + ((cosh((n // phi)) // n) // atan(factorial(n)))))) min cosh((n / ceil(phi)))) + n)
+-6470.0,12,((n ** log_{(atan(phi) + ((n + euler_gamma) // (atan(n) ** atan(n))))}(n)) + ((n // catalan) // tanh(phi)))
 -6469.0,12,"(((n ** log_{ceil((n + nroot(ceil((pi - n)), nroot(n, n))))}(n)) ** tanh(pi)) + ((n // catalan) // catalan))"
+-6468.0,12,((n ** log_{(atan(phi) + ((n + euler_gamma) // (atan(n) ** atan(n))))}(n)) + ((n // (catalan ** catalan)) // catalan))
 -6457.0,12,"((cos((n * n)) + nroot(nroot(floor((floor(nroot(n, (catalan ** log_{10}(n)))) / catalan)), (catalan ** (nroot(floor(nroot(n, pi)), (catalan ** n)) / n))), catalan)) + n)"
 -5036.0,11,((n ** log_{(atan(phi) + ((n + euler_gamma) // (atan(n) ** atan(n))))}(n)) + (n // catalan))
 -5033.0,11,((((n ** (catalan ** catalan)) + (atan(n) % atan((n % atan(n))))) ** atan(n)) + (n ** euler_gamma))
+-5030.0,11,"(n + (cos((n * (cosh(e) ** (n // cosh(e))))) + nroot(n, ((catalan ** catalan) ** (n // pi)))))"
 -5028.0,11,((n ** log_{ceil(log_{ceil(pi)}(((n | ceil(pi)) ** pi)))}((n ** tanh(n)))) + (n // catalan))
 -5027.0,11,"((n ** log_{(ceil(pi) + (floor(nroot(n, pi)) + (sin(n) ** (n // catalan))))}(n)) + (n // catalan))"
+-5026.0,11,"((n // (n % (cosh(cos(nroot(nroot((n // catalan), catalan), n))) ** cosh((tanh(cos(n)) min h))))) + (tanh(cos(n)) + nroot(n, catalan)))"
 -5024.0,11,"(((n + (cos(n) // (n - tan((n << n))))) ** nroot(((n - cos((sin(n) + n))) - cos(n)), (10 max n))) + n)"
 -5024.0,11,"((n // (n % (cosh(cos(nroot(nroot((n // catalan), catalan), n))) ** cosh((tanh(cos(n)) min tanh(sin(h))))))) + (tanh(cos(n)) + nroot(n, catalan)))"
 -3827.0,10,(phi + (n ** atan(((n + (cos(n) + cosh(tan((avogadro % n))))) // atan((n + n))))))
@@ -18,6 +35,7 @@ fitness,matches,expression
 -3816.0,10,((n ** atan(((((n / (n ** ((cos(n) % (n ** phi)) % n))) + n) + phi) // phi))) + phi)
 -3815.0,10,"((n + floor(cos(n))) + nroot(((((n // nroot(catalan, euler_gamma)) // catalan) // catalan) // nroot(catalan, catalan)), nroot(euler_gamma, 4)))"
 -3802.0,10,(((n + (n min ((log_{5}(n) ** n) min (e ** log_{5}((n max (log_{5}(n) ** n))))))) min ((n ** asin(catalan)) ** log_{5}(n))) + n)
+-2835.0,9,(((log_{5}(n) ** 6) + floor(cos(n))) + (n + n))
 -2831.0,9,(((n / n) + n) + (tan(catalan) * floor(log_{7}((n ** n)))))
 -2829.0,9,"(nroot(n, catalan) + ((nroot(n, catalan) // catalan) + (cos((n * n)) // (n ** n))))"
 -2828.0,9,(((log_{5}(n) ** 6) + (cos(n) // n)) + (n + n))
