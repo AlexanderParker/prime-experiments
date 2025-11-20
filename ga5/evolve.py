@@ -6,6 +6,8 @@ from dataclasses import dataclass
 
 sys.setrecursionlimit(50000)
 
+_PRIME_CACHE = []
+
 
 def is_prime(n: int) -> bool:
     """Check if a number is prime."""
@@ -22,16 +24,25 @@ def is_prime(n: int) -> bool:
 
 
 def get_nth_prime(n: int) -> int:
-    """Get the nth prime number (1-indexed)."""
-    count = 0
-    num = 2
-    while count < n:
-        if is_prime(num):
-            count += 1
-            if count == n:
-                return num
-        num += 1
-    return num
+    """Get the nth prime number (1-indexed) with caching."""
+    global _PRIME_CACHE
+
+    # If we already have this prime cached, return it
+    if n <= len(_PRIME_CACHE):
+        return _PRIME_CACHE[n - 1]
+
+    # Otherwise, compute primes up to the nth one
+    if len(_PRIME_CACHE) == 0:
+        current = 2
+    else:
+        current = _PRIME_CACHE[-1] + 1
+
+    while len(_PRIME_CACHE) < n:
+        if is_prime(current):
+            _PRIME_CACHE.append(current)
+        current += 1
+
+    return _PRIME_CACHE[n - 1]
 
 
 @dataclass
@@ -66,7 +77,7 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
             return ASTNode(op="named_const", value=const_name)
 
     binary_ops = ["+", "-", "*", "/", "**", "nroot", "logbase"]
-    unary_ops = ["abs", "neg"]
+    unary_ops = ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]
 
     if random.random() < 0.7:
         op = random.choice(binary_ops)
@@ -98,7 +109,7 @@ def get_tree_depth(node: ASTNode) -> int:
 
         if current.op in ["var", "const", "named_const", "int_const"]:
             continue
-        elif current.op in ["abs", "neg"]:
+        elif current.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
             if current.left:
                 stack.append((current.left, depth + 1))
         else:
@@ -114,7 +125,7 @@ def count_nodes(node: ASTNode) -> int:
     """Count the number of nodes in the AST."""
     if node.op in ["var", "const", "named_const", "int_const"]:
         return 1
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         return 1 + count_nodes(node.left)
     return 1 + count_nodes(node.left) + count_nodes(node.right)
 
@@ -125,7 +136,7 @@ def count_named_constants(node: ASTNode) -> int:
         return 1
     if node.op in ["var", "const", "int_const"]:
         return 0
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         return count_named_constants(node.left)
     return count_named_constants(node.left) + count_named_constants(node.right)
 
@@ -136,7 +147,7 @@ def count_int_constants(node: ASTNode) -> int:
         return 1
     if node.op in ["var", "const", "named_const"]:
         return 0
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         return count_int_constants(node.left)
     return count_int_constants(node.left) + count_int_constants(node.right)
 
@@ -147,7 +158,7 @@ def has_variable(node: ASTNode) -> bool:
         return True
     if node.op in ["const", "named_const", "int_const"]:
         return False
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         return has_variable(node.left)
     return has_variable(node.left) or has_variable(node.right)
 
@@ -166,6 +177,13 @@ def is_trivial_solution(node: ASTNode) -> bool:
     return False
 
 
+def clean_float(value: float) -> Union[int, float]:
+    """Round values very close to integers back to integers."""
+    if abs(value - round(value)) < 1e-9:
+        return int(round(value))
+    return value
+
+
 def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, float, None]:
     """Evaluate the AST with a given value of n."""
     try:
@@ -174,12 +192,11 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
         if node.op == "const":
             return node.value
         if node.op == "named_const":
-            const_val = CONSTANTS[node.value]
-            return const_val
+            return clean_float(CONSTANTS[node.value])
         if node.op == "int_const":
             return node.value
 
-        if node.op in ["abs", "neg"]:
+        if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
             left_val = evaluate_ast(node.left, n, is_root=False)
 
             if left_val is None:
@@ -192,11 +209,27 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
                 result = abs(left_val)
             elif node.op == "neg":
                 result = -left_val
+            elif node.op == "sin":
+                result = math.sin(left_val)
+            elif node.op == "cos":
+                result = math.cos(left_val)
+            elif node.op == "tan":
+                result = math.tan(left_val)
+            elif node.op == "asin":
+                if left_val < -1 or left_val > 1:
+                    return None
+                result = math.asin(left_val)
+            elif node.op == "acos":
+                if left_val < -1 or left_val > 1:
+                    return None
+                result = math.acos(left_val)
+            elif node.op == "atan":
+                result = math.atan(left_val)
 
             if abs(result) > 10**9:
                 return None
 
-            return result
+            return clean_float(result)
 
         left_val = evaluate_ast(node.left, n, is_root=False)
         right_val = evaluate_ast(node.right, n, is_root=False)
@@ -242,7 +275,7 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
         if abs(result) > 10**9:
             return None
 
-        return result
+        return clean_float(result)
     except (OverflowError, ValueError, ZeroDivisionError, TypeError):
         return None
 
@@ -257,8 +290,10 @@ def calculate_fitness(
     matches = 0
     match_score = 0.0
     first_mismatch_penalty = 0
+    lookahead_matches = 0
     test_limit = stop_limit if stop_limit is not None else max_test
 
+    # Find sequential matches
     for n in range(1, test_limit + 1):
         result = evaluate_ast(node, n)
         if result is None:
@@ -268,7 +303,6 @@ def calculate_fitness(
 
         expected_prime = get_nth_prime(n)
 
-        # Check if result is very close to an integer prime
         if abs(result - round(result)) < 1e-9:
             rounded_result = int(round(result))
             if rounded_result == expected_prime:
@@ -278,10 +312,28 @@ def calculate_fitness(
                 first_mismatch_penalty = abs(rounded_result - expected_prime)
                 break
         else:
-            # Result is not close to an integer, calculate penalty based on nearest integer
             rounded_result = int(round(result))
             first_mismatch_penalty = abs(rounded_result - expected_prime)
             break
+
+    # Lookahead scoring: check (matches * 2) values after last sequential match
+    if matches > 0:
+        lookahead_start = matches + 1
+        lookahead_count = matches * 2
+        lookahead_end = min(lookahead_start + lookahead_count, test_limit + 1)
+
+        for n in range(lookahead_start, lookahead_end):
+            result = evaluate_ast(node, n)
+            if result is None:
+                continue
+            if not isinstance(result, (int, float)):
+                continue
+
+            if abs(result - round(result)) < 1e-9:
+                rounded_result = int(round(result))
+                expected_prime = get_nth_prime(n)
+                if rounded_result == expected_prime:
+                    lookahead_matches += 1
 
     complexity = count_nodes(node)
     named_const_count = count_named_constants(node)
@@ -290,7 +342,14 @@ def calculate_fitness(
     if match_score == 0:
         fitness = float("inf")
     else:
-        fitness = -match_score * 10 + complexity + named_const_count + (int_const_count * 3) + first_mismatch_penalty
+        fitness = (
+            -match_score * 10
+            - lookahead_matches
+            + complexity
+            + named_const_count
+            + (int_const_count * 3)
+            + first_mismatch_penalty
+        )
 
     return fitness, matches, complexity, match_score
 
@@ -306,7 +365,7 @@ def ast_to_string(node: ASTNode) -> str:
     if node.op == "int_const":
         return str(node.value)
 
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         left_str = ast_to_string(node.left)
         return f"{node.op}({left_str})"
 
@@ -326,7 +385,7 @@ def copy_ast(node: ASTNode) -> ASTNode:
     """Create a deep copy of an AST."""
     if node.op in ["var", "const", "named_const", "int_const"]:
         return ASTNode(op=node.op, value=node.value)
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         return ASTNode(op=node.op, left=copy_ast(node.left))
     return ASTNode(op=node.op, left=copy_ast(node.left), right=copy_ast(node.right))
 
@@ -334,7 +393,7 @@ def copy_ast(node: ASTNode) -> ASTNode:
 def get_all_nodes(node: ASTNode) -> List[ASTNode]:
     """Get a list of all nodes in the tree."""
     nodes = [node]
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         nodes.extend(get_all_nodes(node.left))
     elif node.op not in ["var", "const", "named_const", "int_const"]:
         nodes.extend(get_all_nodes(node.left))
@@ -382,7 +441,7 @@ def get_all_paths(node: ASTNode, current_path: List[int] = None) -> List[List[in
 
     paths = [current_path[:]]
 
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         paths.extend(get_all_paths(node.left, current_path + [0]))
     elif node.op not in ["var", "const", "named_const", "int_const"]:
         paths.extend(get_all_paths(node.left, current_path + [0]))
@@ -396,7 +455,7 @@ def validate_int_constants(node: ASTNode) -> bool:
     if node.op in ["var", "const", "named_const", "int_const"]:
         return True
 
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         return validate_int_constants(node.left)
 
     # Binary operators
@@ -479,7 +538,7 @@ def mutate_ast(
 
         if mutation_type == "prune":
             if random.random() < 0.5:
-                if node.op in ["abs", "neg"]:
+                if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
                     return copy_ast(node.left)
                 elif node.op not in ["var", "const", "named_const", "int_const"]:
                     return copy_ast(node.left) if random.random() < 0.5 else copy_ast(node.right)
@@ -497,7 +556,7 @@ def mutate_ast(
                     path = random.choice(non_leaf_paths)
                     node_to_prune = get_node_at_path(node, path)
 
-                    if node_to_prune.op in ["abs", "neg"]:
+                    if node_to_prune.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
                         replacement = node_to_prune.left
                     else:
                         replacement = node_to_prune.left if random.random() < 0.5 else node_to_prune.right
@@ -543,8 +602,8 @@ def mutate_ast(
                 else:
                     const_name = random.choice(list(CONSTANTS.keys()))
                     return ASTNode(op="named_const", value=const_name)
-            elif node.op in ["abs", "neg"]:
-                unary_ops = ["abs", "neg"]
+            elif node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
+                unary_ops = ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]
                 node.op = random.choice(unary_ops)
             else:
                 has_int_const_right = node.right and node.right.op == "int_const"
@@ -574,7 +633,7 @@ def mutate_ast(
                 else:
                     return node
 
-    if node.op in ["abs", "neg"]:
+    if node.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
         child_depth = get_tree_depth(node.left)
         if child_depth < max_depth:
             node.left = mutate_ast(node.left, mutation_rate, prune_rate, duplicate_mutate_rate, max_depth)
