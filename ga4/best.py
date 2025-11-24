@@ -383,24 +383,39 @@ if __name__ == "__main__":
 
                 seeds = load_seeds_from_csv(seeds_filename)
 
-                # Weighted random sampling: better fitness = higher probability
-                # Convert fitness to weights (lower fitness is better, so invert)
                 if len(seeds) > 0:
-                    # Calculate weights inversely proportional to fitness
-                    # Add small constant to avoid division by zero
-                    max_fitness = max(fitness for fitness, _, _ in seeds)
-                    weights = [(max_fitness - fitness + 1) for fitness, _, _ in seeds]
+                    # Randomly choose split method
+                    split_method = random.choice(["thirds", "quarters"])
 
-                    # Normalize weights to probabilities
-                    total_weight = sum(weights)
-                    probabilities = [w / total_weight for w in weights]
+                    if split_method == "thirds":
+                        third = max(1, len(seeds) // 3)
+                        tiers = {"top": seeds[:third], "middle": seeds[third : third * 2], "bottom": seeds[third * 2 :]}
+                    else:  # quarters
+                        quarter = max(1, len(seeds) // 4)
+                        tiers = {
+                            "top": seeds[:quarter],
+                            "upper_mid": seeds[quarter : quarter * 2],
+                            "lower_mid": seeds[quarter * 2 : quarter * 3],
+                            "bottom": seeds[quarter * 3 :],
+                        }
 
-                    # Sample with replacement according to probabilities
-                    num_seeds_to_use = min(50, len(seeds))
-                    sampled_indices = random.choices(range(len(seeds)), weights=probabilities, k=num_seeds_to_use)
-                    sampled_seeds = [seeds[i] for i in sampled_indices]
+                    # Pick random tier from available
+                    tier_name = random.choice(list(tiers.keys()))
+                    selected_tier = tiers[tier_name]
+
+                    # Handle empty tier
+                    if not selected_tier:
+                        selected_tier = seeds
+                        tier_name = "all"
+
+                    # Uniformly sample from selected tier
+                    num_seeds_to_use = min(50, len(selected_tier))
+                    sampled_seeds = random.sample(selected_tier, num_seeds_to_use)
+
+                    print(f"Split: {split_method}, Tier: {tier_name} ({len(selected_tier)} available)")
                 else:
                     sampled_seeds = []
+                    tier_name = "none"
 
                 seed_asts = []
                 for fitness, matches, expr in sampled_seeds:
@@ -408,9 +423,7 @@ if __name__ == "__main__":
                     if ast is not None:
                         seed_asts.append(ast)
 
-                print(
-                    f"Seeding with {len(seed_asts)} ASTs using weighted random sampling from {len(seeds)} total seeds"
-                )
+                print(f"Seeding with {len(seed_asts)} ASTs from {tier_name} tier out of {len(seeds)} total seeds")
                 print(f"{'='*80}\n")
 
                 fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(

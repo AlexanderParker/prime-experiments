@@ -1,0 +1,18 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-24657.0,19,4195.855433225632,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // (catalan ** catalan)) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),True
+2,-24657.0,19,4389.841861963272,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // (catalan ** catalan)) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+3,-24657.0,19,4461.736358165741,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // (catalan ** catalan)) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+4,-24658.0,19,4483.196225166321,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),True
+5,-24658.0,19,4437.968929052353,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+6,-24653.0,19,3993.4885306358337,"((((n ** ((catalan ** (cos(n) max catalan)) min (catalan ** cos(sin(nroot(c, n)))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma))",False
+7,-24658.0,19,4456.111738681793,((((n ** (catalan ** (cos((n ** (catalan ** (n ** euler_gamma)))) max catalan))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+8,-24658.0,19,3747.5719225406647,((((n ** (catalan ** (cos((n ** (catalan ** (n ** euler_gamma)))) max catalan))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+9,-24658.0,19,3499.049376010895,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+10,-24658.0,19,3426.334944009781,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+11,-24658.0,19,3626.188591003418,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+12,-24658.0,19,4163.989639282227,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+13,-24658.0,19,3681.657888174057,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+14,-24658.0,19,4093.6706671714783,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+15,-24658.0,19,4135.467923641205,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+16,-24658.0,19,4125.008796453476,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False
+17,-24658.0,19,4004.3735032081604,((((n ** (catalan ** (catalan max cos((n ** (catalan ** (n ** euler_gamma))))))) + (atan(n) % tanh(((n // cos(sin(e))) % atan(n))))) ** atan(n)) + (n ** euler_gamma)),False

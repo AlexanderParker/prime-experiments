@@ -1,0 +1,58 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-293.0,4,274.55288672447205,((n + cos(n)) + n),True
+2,-893.0,6,822.4262580871582,"ceil(sinh((nroot(n, cosh(catalan)) min cosh(cosh(atan(e))))))",True
+3,-293.0,4,396.71567702293396,(n + (cos(n) + n)),False
+4,-293.0,4,401.7352330684662,(cos(n) + (n + n)),False
+5,-895.0,6,728.5630362033844,"cosh(tan(nroot((n min (e + e)), 7)))",True
+6,-542.0,5,422.38599848747253,"sinh(tan(nroot(n, 7)))",False
+7,-293.0,4,401.5420250892639,((n + cos(n)) + n),False
+8,-293.0,4,400.53072810173035,(n + (n + cos(n))),False
+9,-293.0,4,394.79556608200073,((n + cos(n)) + n),False
+10,-293.0,4,400.92473888397217,(n + (n + cos(n))),False
+11,-896.0,6,688.7089161872864,"sinh(cosh((nroot(n, e) min tan(avogadro))))",True
+12,-293.0,4,401.14447712898254,((cos(n) + n) + n),False
+13,-293.0,4,397.49812269210815,(cos(n) + (n + n)),False
+14,-2013.0,8,1033.754725933075,"cosh(cosh(nroot((n min (e + ((sin(sin(n)) + e) max e))), e)))",True
+15,-293.0,4,403.9776873588562,((cos(n) + n) + n),False
+16,-542.0,5,426.12462854385376,"cosh(tan(nroot(n, 7)))",False
+17,-293.0,4,401.0836856365204,((n + cos(n)) + n),False
+18,-896.0,6,695.3265295028687,"sinh(cosh((nroot(n, e) min tan(avogadro))))",False
+19,-293.0,4,402.92962646484375,(n + (cos(n) + n)),False
+20,-896.0,6,757.2724101543427,"sinh(tan(nroot((n min sinh(sinh(phi))), 7)))",False
+21,-896.0,6,928.587290763855,"sinh(tan((cosh(tanh(catalan)) min nroot(n, 7))))",False
+22,-2013.0,8,1245.0366144180298,"cosh(cosh(nroot((n min (((sin(sin(n)) max h) + e) + e)), e)))",False
+23,-293.0,4,404.01371335983276,((n + cos(n)) + n),False
+24,-896.0,6,697.5473692417145,"sinh(cosh((nroot(n, e) min tan(avogadro))))",False
+25,-293.0,4,398.68485593795776,((n + cos(n)) + n),False
+26,-895.0,6,721.4273347854614,"cosh(tan(nroot(((e + e) min n), 7)))",False
+27,-293.0,4,401.4062204360962,((n + cos(n)) + n),False
+28,-896.0,6,695.6505534648895,"sinh(cosh((nroot(n, e) min tan(avogadro))))",False
+29,-896.0,6,754.6606628894806,"sinh(tan(nroot((sinh(sinh(phi)) min n), 7)))",False
+30,-2013.0,8,1245.3432590961456,"cosh(cosh(nroot((n min (((sin(sin(n)) max h) + e) + e)), e)))",False
+31,-293.0,4,398.3113260269165,(n + (n + cos(n))),False
+32,-293.0,4,401.10553336143494,((n + cos(n)) + n),False
+33,-539.0,5,425.88108682632446,"sinh(tan(nroot(n, 7)))",False
+34,-542.0,5,426.4687786102295,"cosh(tan(nroot(n, 7)))",False
+35,-2014.0,8,1309.910587310791,"cosh(cosh(nroot((n min (((sin((sinh(e) min n)) max h) + e) + e)), e)))",True
+36,-2015.0,8,1144.3159136772156,"cosh(tan(nroot((n min (e + ((boltzmann max sin(n)) + e))), 7)))",True
+37,-895.0,6,727.6547803878784,"cosh(tan(nroot((n min (e + e)), 7)))",False
+38,-293.0,4,398.1371352672577,(n + (n + cos(n))),False
+39,-2819.0,9,1686.4813923835754,"cosh(tan(nroot((n min (e + ((((e % nroot(n, 7)) ** atan(pi)) max sin(n)) + e))), 7)))",True
+40,-894.0,6,738.2175705432892,"sinh(cosh(nroot(((e + e) min n), e)))",False
+41,-1381.0,7,904.3769845962524,"sinh(tan(nroot(((atan(7) + (atan((((7 min n) / n) & n)) + 4)) min n), 7)))",False
+42,-2016.0,8,1233.402584552765,"cosh(tan(nroot(((atan(7) + ((atan(ceil(sin(n))) max sin(n)) + 4)) min n), 7)))",False
+43,-896.0,6,825.3803329467773,"cosh(tan(nroot(((atan(7) + 4) min n), 7)))",False
+44,-896.0,6,810.0749847888947,"cosh(tan(nroot((n min (atan(7) + 4)), 7)))",False
+45,-896.0,6,738.7590267658234,"cosh((tan(nroot(n, 7)) min cosh(tan(avogadro))))",False
+46,-896.0,6,768.6615042686462,"sinh(tan((cosh(tanh(catalan)) min nroot(n, 7))))",False
+47,-2016.0,8,938.692008972168,"cosh(tan(nroot((n min (atan(7) + (tanh((n % ceil((e + e)))) + 4))), 7)))",False
+48,-1381.0,7,1231.5149474143982,"sinh(tan(nroot(((atan(7) + (atan((((7 min n) / n) & n)) + 4)) min n), 7)))",False
+49,-2819.0,9,1780.7390043735504,"cosh(tan(nroot((n min (e + ((((e % nroot(n, 7)) ** atan(pi)) max sin(n)) + e))), 7)))",False
+50,-2017.0,8,1399.496327638626,"cosh(cosh(nroot((((atan((n % sinh(sinh(phi)))) + 4) * atan(e)) min n), e)))",False
+51,-896.0,6,816.3376774787903,"sinh(tan(nroot(((atan(7) + 4) min n), 7)))",False
+52,-2013.0,8,1078.4860475063324,"sinh(cosh(nroot((((tan(4) + (tan(4) min abs(tan(n)))) + 4) min n), e)))",False
+53,-896.0,6,802.7291855812073,"cosh(tan(nroot(((atan(7) + 4) min n), 7)))",False
+54,-542.0,5,417.9514672756195,"sinh(tan(nroot(n, 7)))",False
+55,-2018.0,8,1593.148134469986,"cosh(tan(nroot((n min (atan(7) + (tanh((n % 6)) + 4))), 7)))",False
+56,-896.0,6,736.4408950805664,"cosh(cosh((nroot(n, e) min tan(avogadro))))",False
+57,-896.0,6,874.828145980835,"sinh(tan(nroot(((atan(7) + 4) min n), 7)))",False
