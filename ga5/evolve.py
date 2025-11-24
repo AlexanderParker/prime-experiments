@@ -291,6 +291,7 @@ def calculate_fitness(
     match_score = 0.0
     first_mismatch_penalty = 0
     lookahead_matches = 0
+    nan_result = False
     test_limit = stop_limit if stop_limit is not None else max_test
 
     # Find sequential matches
@@ -327,6 +328,7 @@ def calculate_fitness(
             if result is None:
                 continue
             if not isinstance(result, (int, float)):
+                nan_result = True
                 continue
 
             if abs(result - round(result)) < 1e-9:
@@ -338,8 +340,11 @@ def calculate_fitness(
     complexity = count_nodes(node)
     named_const_count = count_named_constants(node)
     int_const_count = count_int_constants(node)
+    longrange_check = evaluate_ast(node, n ** n)
 
-    if match_score == 0:
+    if not isinstance(longrange_check, (int, float)) or nan_result:
+        fitness = 0.0
+    elif match_score == 0:
         fitness = float("inf")
     else:
         fitness = (

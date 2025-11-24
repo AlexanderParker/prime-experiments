@@ -460,6 +460,7 @@ def calculate_fitness(
     first_mismatch_penalty = 0
     lookahead_matches = 0
     test_limit = stop_limit if stop_limit is not None else max_test
+    nan_result = False
 
     # Find sequential matches
     
@@ -468,6 +469,7 @@ def calculate_fitness(
         if result is None:
             break
         if not isinstance(result, (int, float)):
+            nan_result = True
             break
 
         expected_prime = get_nth_prime(n)
@@ -507,8 +509,11 @@ def calculate_fitness(
     complexity = count_nodes(node)
     named_const_count = count_named_constants(node)
     int_const_count = count_int_constants(node)
+    longrange_check = evaluate_ast(node, n ** n)
 
-    if match_score == 0:
+    if not isinstance(longrange_check, (int, float)) or nan_result:
+        fitness = 0.0
+    elif match_score == 0:
         fitness = float("inf")
     else:
         fitness = (

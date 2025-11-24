@@ -1,0 +1,13 @@
+run,fitness,matches,elapsed_time_seconds,expression,is_new_best
+1,-2018.0,8,1473.4767026901245,"sinh(tan(nroot(((atan(7) + (tanh((n % (4 // euler_gamma))) + 4)) min n), 7)))",True
+2,-2810.0,9,1525.2513678073883,"sinh(tan(nroot((n min ((e / cos((sin(n) min nroot((cos(n) max (tan(n) / atan(n))), 7)))) + e)), 7)))",True
+3,-895.0,6,754.4900393486023,"cosh(tan(nroot((n min (e + e)), 7)))",False
+4,-3820.0,10,2190.9994928836823,"sinh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (acos(sin(sin(n))) / catalan)) max sin(n)) + e)) min n), 7)))",True
+5,-2016.0,8,890.0091691017151,"cosh(tan(nroot((n min (7 - tan(cos(sin(tan(tan(sin(n)))))))), 7)))",False
+6,-5021.0,11,2388.1365501880646,"cosh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (acos(atan(sin(n))) / catalan)) max sin(n)) + e)) min n), 7)))",True
+7,-1379.0,7,993.9993195533752,"cosh(tan(nroot((((atan(7) + 4) + atan((G max tan((7 min n))))) min n), 7)))",False
+8,-5021.0,11,2377.3359129428864,"sinh(tan(nroot((n min ((((e % nroot(n, 7)) ** (acos(atan(sin(n))) / catalan)) max sin(n)) + (e + e))), 7)))",False
+9,-2017.0,8,1087.653272151947,"sinh(tan(nroot(((cosh(cosh((tan((7 min n)) max sin(n)))) + 4) min n), 7)))",False
+10,-2017.0,8,1487.4455213546753,"cosh(tan(nroot((n min (atan(7) + (tanh((n % floor((e + 4)))) + 4))), 7)))",False
+11,-3820.0,10,2133.191687822342,"sinh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (acos(sin(sin(n))) / catalan)) max sin(n)) + e)) min n), 7)))",False
+12,-896.0,6,714.8173739910126,"sinh(cosh((nroot(n, e) min tan(avogadro))))",False
