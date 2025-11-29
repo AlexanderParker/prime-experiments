@@ -384,38 +384,47 @@ if __name__ == "__main__":
                 seeds = load_seeds_from_csv(seeds_filename)
 
                 if len(seeds) > 0:
-                    # Randomly choose split method
-                    split_method = random.choice(["thirds", "quarters"])
+                    # Randomly choose approach: thirds, quarters, or fresh start
+                    approach = random.choice(["thirds", "quarters", "fresh"])
 
-                    if split_method == "thirds":
-                        third = max(1, len(seeds) // 3)
-                        tiers = {"top": seeds[:third], "middle": seeds[third : third * 2], "bottom": seeds[third * 2 :]}
-                    else:  # quarters
-                        quarter = max(1, len(seeds) // 4)
-                        tiers = {
-                            "top": seeds[:quarter],
-                            "upper_mid": seeds[quarter : quarter * 2],
-                            "lower_mid": seeds[quarter * 2 : quarter * 3],
-                            "bottom": seeds[quarter * 3 :],
-                        }
+                    if approach == "fresh":
+                        sampled_seeds = []
+                        tier_name = "fresh start"
+                        print(f"Starting fresh (no seeds)")
+                    else:
+                        if approach == "thirds":
+                            third = max(1, len(seeds) // 3)
+                            tiers = {
+                                "top": seeds[:third],
+                                "middle": seeds[third : third * 2],
+                                "bottom": seeds[third * 2 :],
+                            }
+                        else:  # quarters
+                            quarter = max(1, len(seeds) // 4)
+                            tiers = {
+                                "top": seeds[:quarter],
+                                "upper_mid": seeds[quarter : quarter * 2],
+                                "lower_mid": seeds[quarter * 2 : quarter * 3],
+                                "bottom": seeds[quarter * 3 :],
+                            }
 
-                    # Pick random tier from available
-                    tier_name = random.choice(list(tiers.keys()))
-                    selected_tier = tiers[tier_name]
+                        # Pick random tier from available
+                        tier_name = random.choice(list(tiers.keys()))
+                        selected_tier = tiers[tier_name]
 
-                    # Handle empty tier
-                    if not selected_tier:
-                        selected_tier = seeds
-                        tier_name = "all"
+                        # Handle empty tier
+                        if not selected_tier:
+                            selected_tier = seeds
+                            tier_name = "all"
 
-                    # Uniformly sample from selected tier
-                    num_seeds_to_use = min(50, len(selected_tier))
-                    sampled_seeds = random.sample(selected_tier, num_seeds_to_use)
+                        # Uniformly sample from selected tier
+                        num_seeds_to_use = min(50, len(selected_tier))
+                        sampled_seeds = random.sample(selected_tier, num_seeds_to_use)
 
-                    print(f"Split: {split_method}, Tier: {tier_name} ({len(selected_tier)} available)")
+                        print(f"Split: {approach}, Tier: {tier_name} ({len(selected_tier)} available)")
                 else:
                     sampled_seeds = []
-                    tier_name = "none"
+                    tier_name = "fresh start (no seeds available)"
 
                 seed_asts = []
                 for fitness, matches, expr in sampled_seeds:
@@ -423,9 +432,9 @@ if __name__ == "__main__":
                     if ast is not None:
                         seed_asts.append(ast)
 
-                print(f"Seeding with {len(seed_asts)} ASTs from {tier_name} tier out of {len(seeds)} total seeds")
+                print(f"Seeding with {len(seed_asts)} ASTs ({tier_name}) out of {len(seeds)} total seeds")
                 print(f"{'='*80}\n")
-
+                
                 fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(
                     best_params, stop_limit=1000, seed_asts=seed_asts
                 )
