@@ -2,6 +2,7 @@ fitness,matches,expression
 -283.0,4,(((n - n) ** log_{3}(n)) + ((n - (n / n)) + n))
 -127.0,3,(n - (phi * (n - (phi ** n))))
 -125.0,3,(((n - (n / n)) ** log_{3}(n)) + n)
+-125.0,3,(n + (n / abs((n * cos(((pi + pi) / n))))))
 -123.0,3,"(n + ((n + (nroot(((n ** n) ** n), n) / n)) / (n + n)))"
 -123.0,3,(((((n ** acos(cos(n))) / n) + n) / (n + n)) + n)
 -123.0,3,(((n + ((acos(cos(n)) ** n) / n)) / (n + n)) + n)

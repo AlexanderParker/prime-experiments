@@ -48,8 +48,10 @@ fitness,matches,expression
 -5021.0,11,"sinh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (acos(atan(sin(n))) / catalan)) max sin(n)) + e)) min n), 7)))"
 -5021.0,11,"sinh(tan(nroot((n min ((sin(n) max ((e % nroot(n, 7)) ** (acos(atan(sin(n))) / catalan))) + (e + e))), 7)))"
 -5021.0,11,"sinh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (acos(tanh(sin(n))) / catalan)) max sin(n)) + e)) min n), 7)))"
+-5021.0,11,"cosh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (acos(tanh(sin(n))) / catalan)) max sin(n)) + e)) min n), 7)))"
 -5020.0,11,"cosh(tan(nroot(((n min (7 - (euler_gamma % sinh(sin(n))))) min (log_{atan(n)}(n) + (acos(cos(n)) min atan(7)))), 7)))"
 -5019.0,11,"sinh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (e min (acos(sin(n)) / catalan))) max sin(n)) + e)) min n), 7)))"
+-5019.0,11,"sinh(tan(nroot(((e + ((((e % nroot(n, 7)) ** (acos(sin(tanh(asin(sin(n))))) / catalan)) max sin(n)) + e)) min n), 7)))"
 -5018.0,11,"sinh(tan(nroot((((e + ((((e % nroot(n, 7)) ** (acos(sin(n)) / catalan)) max sin(n)) + e)) min n) min sinh(e)), 7)))"
 -5015.0,11,"sinh(tan(nroot((n min (e + (((((e % nroot(n, 7)) + (G * c)) ** acos((sin(n) max cos(c)))) max sin(n)) + e))), 7)))"
 -5014.0,11,"sinh(tan(nroot(((e + (((((e % nroot(n, 7)) + (G * c)) ** acos((sin(n) max sin(cos(pi))))) max sin(n)) + e)) min n), 7)))"
@@ -109,6 +111,7 @@ fitness,matches,expression
 -2820.0,9,"cosh(tan(nroot(((floor(e) + (((sin(euler_gamma) + sin(euler_gamma)) % (n % sin(euler_gamma))) + tan(nroot(n, 7)))) min n), 7)))"
 -2820.0,9,"cosh(tan(nroot(((phi ** 4) min (n min ((7 - tan(cos(n))) - (cos(nroot(n, 4)) / cos(n))))), 7)))"
 -2820.0,9,"sinh(tan(nroot(((phi ** 4) min (n min ((7 - tan(cos(n))) - (cos(nroot(n, 4)) / cos(n))))), 7)))"
+-2820.0,9,"cosh(tan(nroot((n min (7 - tan(cos((cosh(cos(n)) min ((7 % n) - cos(7))))))), (7 % avogadro))))"
 -2819.0,9,"(n + (nroot((n // tanh(nroot(n, n))), tanh(nroot((nroot((n // nroot(n, n)), tanh(tanh(atan((n ** n))))) + n), n))) + cos((n * n))))"
 -2819.0,9,(((((catalan + (sin((n ** n)) // (e / n))) + (n ** catalan)) + (n ** catalan)) ** log_{8}(n)) + n)
 -2819.0,9,"cosh(tan(nroot((n min (e + ((((e % nroot(n, 7)) ** atan(pi)) max sin(n)) + e))), 7)))"
@@ -122,7 +125,9 @@ fitness,matches,expression
 -2815.0,9,"cosh(tan(nroot(((cosh((cosh((tan((7 & n)) max sin(n))) max cosh(tan((7 & n))))) + 4) min ((7 / atan(phi)) min n)), 7)))"
 -2815.0,9,"cosh(tan(nroot(((cosh((tan(sinh(cos(n))) min (tan(floor(cos(n))) min tan((atan(n) + cos(n)))))) + 4) min n), 7)))"
 -2814.0,9,"sinh(tan(nroot((n min (e + ((catalan / log_{7}(avogadro)) + (e + (sin(n) max (e % nroot(n, 7))))))), 7)))"
+-2812.0,9,"sinh(tan(nroot(((7 - ((((cos(n) // n) << 7) | n) % (cosh(sinh(tan(7))) / tanh(7)))) min n), 7)))"
 -2811.0,9,"((floor((floor((n ** asin(catalan))) ** nroot(acos(boltzmann), (7 + 7)))) ** nroot(acos(h), 7)) + (n + floor(cos(n))))"
+-2811.0,9,"cosh(tan(nroot((n min (7 - ((((cos(n) // 7) << 7) | n) % cosh((sinh(tan(7)) ** sinh(tan(7))))))), 7)))"
 -2810.0,9,"sinh(tan(nroot((n min ((e / cos((sin(n) min nroot((cos(n) max (tan(n) / atan(n))), 7)))) + e)), 7)))"
 -2024.0,8,"(cos(n) + (nroot(n, sin(cosh(cos(cosh(n))))) + n))"
 -2023.0,8,((floor((n * asin(catalan))) * acos(sin(c))) + cos(n))
@@ -155,6 +160,7 @@ fitness,matches,expression
 -2021.0,8,"cosh(tan(nroot((n min (atan(7) + (tanh((9 & n)) + 4))), 7)))"
 -2021.0,8,"sinh(tan(nroot((n min (atan(7) + (tanh((9 & n)) + 4))), 7)))"
 -2021.0,8,"cosh(tan(nroot(((cosh(cosh((tan((7 ** (7 / n))) max sin(n)))) + 4) min n), 7)))"
+-2021.0,8,"cosh(tan(nroot((n min (cosh(cosh((tan((7 ** (7 / n))) max sin(n)))) + 4)), 7)))"
 -2020.0,8,"((n + (nroot(((n * pi) // e), catalan) // catalan)) + cos(n))"
 -2020.0,8,(n + ((n ** log_{(pi + (n // e))}(n)) min (pi + n)))
 -2020.0,8,((n + cosh((n / floor(e)))) min (n + (n + cosh((n // pi)))))
@@ -171,6 +177,7 @@ fitness,matches,expression
 -2020.0,8,"sinh(tan(nroot(((7 - tan(cos((tan(n) ** (2 & n))))) min n), 7)))"
 -2020.0,8,"sinh(tan(nroot(((cosh(cosh((tan((7 & n)) max sin(n)))) + 4) min (7 min n)), 7)))"
 -2020.0,8,"cosh(tan(nroot((n min (7 - (tan(cos(ceil(sin(n)))) max tan(n)))), 7)))"
+-2020.0,8,"sinh(tan(nroot((n min (7 - tan(cos((tan(n) ** (2 & n)))))), 7)))"
 -2019.0,8,"(n + ((n + (sin(factorial(n)) + pi)) ** tanh((n - nroot(n, atan(e))))))"
 -2019.0,8,"((n + euler_gamma) + (((n + sin(factorial(n))) * nroot(n, n)) min nroot(factorial(n), e)))"
 -2019.0,8,"(floor(cos(n)) + ((n // cos(cos((n | c)))) + nroot(n, catalan)))"
@@ -189,6 +196,11 @@ fitness,matches,expression
 -2019.0,8,"cosh(tan(nroot(((7 - tan(cos(tanh(ceil(tan(sin(n))))))) min n), 7)))"
 -2019.0,8,"sinh(tan(nroot((n min (7 - tan(cos(cos((7 % acos(sin(sin(n))))))))), 7)))"
 -2019.0,8,"cosh(tan(nroot((n min (7 - tan((cos((tan(sin(n)) % tan(n))) % cos(sin(n)))))), 7)))"
+-2019.0,8,"cosh(tan(nroot(((7 - tan(cos(tanh((n % (7 ** catalan)))))) min n), 7)))"
+-2019.0,8,"cosh(tan(nroot((n min (7 - tan(cos((tan(sin(n)) ** (7 // n)))))), 7)))"
+-2019.0,8,"cosh(tan(nroot((n min (7 - tan(cos(tanh((n % (7 ** catalan))))))), 7)))"
+-2019.0,8,"cosh(tan(nroot((n min (7 - tan(cos(tanh((n % 6)))))), 7)))"
+-2019.0,8,"sinh(tan(nroot((n min (7 - tan(cos(tanh(((7 // cos(7)) & n)))))), 7)))"
 -2018.0,8,"(((n + tan(floor(log_{7}(n)))) + atan(cos(n))) + nroot(n, catalan))"
 -2018.0,8,"(n + (nroot(n, cos((euler_gamma % sin(n)))) + cos((n / catalan))))"
 -2018.0,8,(cos(n) + (n + (n * asin(((catalan max sin(n)) max sin(sinh(n)))))))
@@ -204,6 +216,9 @@ fitness,matches,expression
 -2018.0,8,"cosh(tan(nroot(((atan(7) + nroot((cosh(e) min n), atan(pi))) min n), 7)))"
 -2018.0,8,"cosh(tan(nroot((n min (7 - tan(cos(tanh((n % (e + pi))))))), 7)))"
 -2018.0,8,"cosh(tan(nroot(((atan(7) + (tanh(((7 // cos(7)) & n)) + 4)) min n), 7)))"
+-2018.0,8,"cosh(tan(nroot((n min (7 - ((((cos(n) // 7) << 7) | n) % cosh(sinh(tan(7)))))), 7)))"
+-2018.0,8,"sinh(tan(nroot(((atan(7) + nroot((sinh(e) min n), atan(pi))) min n), 7)))"
+-2018.0,8,"cosh(tan(nroot(((7 - tan(cos(tanh(((c // euler_gamma) & n))))) min n), 7)))"
 -2017.0,8,"(n + (nroot(n, (catalan min (tan(n) % (n * acos(euler_gamma))))) + sin(cos(n))))"
 -2017.0,8,"ceil((phi ** ((nroot(n, n) + nroot((cosh(e) min n), tan(catalan))) min n)))"
 -2017.0,8,"((cos((cosh(n) - factorial(n))) + n) + ((cos(n) // n) + nroot(nroot(n, catalan), catalan)))"
@@ -234,6 +249,12 @@ fitness,matches,expression
 -2017.0,8,"sinh(tan(nroot((n min (7 - tan(cos(tanh(sinh(tan(n))))))), 7)))"
 -2017.0,8,"sinh(tan(nroot((n min (tanh(abs(ceil(tan(sin(n))))) + (atan(7) + 4))), 7)))"
 -2017.0,8,"cosh(tan(nroot((n min (cosh(cosh((tan((7 min n)) max sin(n)))) + 4)), 7)))"
+-2017.0,8,"sinh(tan(nroot(((7 - tan(cos(sin(tan((tan(n) + cosh(tanh(n)))))))) min n), 7)))"
+-2017.0,8,"sinh(tan(nroot((n min (7 - tan(cos((tan(sin(n)) min tanh((7 / cos(n)))))))), 7)))"
+-2017.0,8,"cosh(tan(nroot(((tanh(((c // euler_gamma) & n)) + (atan(7) + 4)) min n), 7)))"
+-2017.0,8,"sinh(tan(nroot((n min ((sin(n) max abs(floor(cos(n)))) + (e + e))), 7)))"
+-2017.0,8,"cosh(tan(nroot((n min ((e + (sin(n) max ceil(neg(cos(n))))) + e)), 7)))"
+-2017.0,8,"cosh(tan(nroot((n min (7 - tan(cos(sin(tan((tan(tanh(n)) + tan(n)))))))), 7)))"
 -2016.0,8,(((n // sin(sinh(catalan))) + cos(n)) + ((n // sin(sinh(catalan))) / sin(sinh(catalan))))
 -2016.0,8,((n ** atan(((n % (n % atan(n))) + ((atan(n) ** 5) / pi)))) + n)
 -2016.0,8,"(n + ((nroot((n + (log_{8}(n) // catalan)), catalan) // catalan) + cos(n)))"
@@ -265,6 +286,9 @@ fitness,matches,expression
 -2016.0,8,"sinh(tan(nroot((n min (((sin(n) max neg((cos(n) // n))) + e) + e)), 7)))"
 -2016.0,8,"cosh(tan(nroot(((cosh((tan(floor(cos(n))) min tan((atan(n) + cos(n))))) + 4) min n), 7)))"
 -2016.0,8,"sinh(tan(nroot(((cosh((cosh(tan((sinh(e) min n))) min cosh(tanh(7)))) + 4) min n), 7)))"
+-2016.0,8,"cosh(tan(nroot(((cosh((tan(tanh(4)) min cosh(tan((n min sinh(e)))))) + 4) min n), 7)))"
+-2016.0,8,"cosh(tan(nroot((n min (cosh((cosh(tanh(n)) min cosh(tan((sinh(e) min n))))) + 4)), 7)))"
+-2016.0,8,"cosh(tan(nroot(((cosh((cosh(tan((sinh(e) min n))) min cosh(tanh(n)))) + 4) min n), 7)))"
 -2015.0,8,"((cos(cosh(n)) + nroot(((cosh(h) % cos((cosh(n) - factorial(n)))) + n), catalan)) + nroot(n, catalan))"
 -2015.0,8,"(n + (n ** ((e * (n % catalan)) min nroot(pi, (n ** (tan(cos(n)) max catalan))))))"
 -2015.0,8,"((cos(n) + n) + (nroot(nroot(n, (cos(n) max nroot(catalan, catalan))), catalan) * nroot(euler_gamma, n)))"
@@ -306,6 +330,10 @@ fitness,matches,expression
 -2015.0,8,"sinh(tan(nroot((((phi + tan(nroot(n, (7 - euler_gamma)))) min n) min (7 - euler_gamma)), 7)))"
 -2015.0,8,"cosh(tan(nroot((n min ((phi + tan(nroot(n, (7 - euler_gamma)))) min (7 - euler_gamma))), 7)))"
 -2015.0,8,"sinh(tan(nroot((((atan(((7 ** 4) & n)) ** (7 // n)) + (atan(7) + 4)) min n), 7)))"
+-2015.0,8,"cosh(tan(nroot((((e + (boltzmann max sin(n))) + e) min n), 7)))"
+-2015.0,8,"cosh(tan(nroot(((cosh((atan(cosh(4)) min cosh(tan(n)))) + 4) min n), 7)))"
+-2015.0,8,"sinh(tan(nroot((((tan(nroot(n, (7 - euler_gamma))) + phi) min n) min (7 - euler_gamma)), 7)))"
+-2015.0,8,"cosh(tan(nroot((((cos((n & 4)) % (sin(7) + sin(n))) + (atan(n) + 4)) min n), 7)))"
 -2014.0,8,(n + (n ** (log_{(pi + (n // cosh(phi)))}(n) ** log_{(pi + (n // cosh(phi)))}(n))))
 -2014.0,8,"(n + nroot((n ** n), (phi + (((n // e) max (n - (e + phi))) + phi))))"
 -2014.0,8,(((log_{9}(cosh((n * cos(sinh((atan(ceil(e)) - n)))))) + n) + cos(n)) + n)
@@ -313,6 +341,7 @@ fitness,matches,expression
 -2014.0,8,"((nroot((n ** catalan), ceil(log_{floor(pi)}(sinh(n)))) ** n) + (nroot(n, ceil((n ** catalan))) ** n))"
 -2014.0,8,((n + cosh((n / floor(e)))) min (n + ((n * cosh((n / cosh(e)))) min (pi + n))))
 -2014.0,8,"cosh(cosh(nroot((n min (((sin((sinh(e) min n)) max h) + e) + e)), e)))"
+-2014.0,8,"cosh(tan(nroot((n min ((e / cos(sin((nroot(7, abs(tanh(e))) min n)))) + e)), 7)))"
 -2013.0,8,(((cos(n) + (n % (n + (n % ((n % tan(n)) min neg(pi)))))) + n) + n)
 -2013.0,8,(cos(n) + (n + (asin((catalan max sin(n))) * (n + ((asin(catalan) * (n * (n ** n))) % asin(catalan))))))
 -2013.0,8,(((n * asin((catalan max sin(n)))) + ((((n ** n) * (n * asin(catalan))) % asin(catalan)) + cos(n))) + n)
@@ -330,6 +359,8 @@ fitness,matches,expression
 -2013.0,8,"cosh(tan(nroot((n min (atan(n) + (tan(nroot((n min (e * e)), 7)) ** acos(sin(e))))), 7)))"
 -2013.0,8,"cosh(tan(nroot((n min (7 - asin(cos(((7 - cos((7 & n))) - (7 min n)))))), 7)))"
 -2013.0,8,"cosh(tan(nroot(((atan(n) + (tan((cosh(sin(catalan)) min nroot(n, 7))) ** log_{e}(pi))) min n), 7)))"
+-2013.0,8,"cosh(tan(nroot((((e + (cos(cos(n)) % (n % e))) + e) min n), 7)))"
+-2013.0,8,"sinh(tan(nroot((((cos(n) % (atan(cos(cos(n))) + (atan(7) / 4))) + (atan(n) + 4)) min n), 7)))"
 -2012.0,8,ceil(((phi ** tanh((e ** (tanh(acos(cos((n & neg(c))))) ** cosh(acos(cos(n))))))) ** n))
 -2012.0,8,((cosh(((euler_gamma - n) * euler_gamma)) min (cosh(pi) min (cosh(e) * cosh(tan(n))))) + n)
 -2012.0,8,(((n + cos(n)) + (asin((catalan max sin(n))) * n)) + ((asin(catalan) * n) % asin(catalan)))
@@ -354,6 +385,7 @@ fitness,matches,expression
 -2011.0,8,"sinh(tan(nroot((((phi * 4) min ((e / cos(sin(n))) + e)) min n), 7)))"
 -2011.0,8,"cosh(tan(nroot((((e + (e / cos(sin(n)))) min n) min (7 - euler_gamma)), 7)))"
 -2011.0,8,"cosh(tan(nroot((((e / cos(sin(n))) + e) min (n min (7 - euler_gamma))), 7)))"
+-2011.0,8,"sinh(tan(nroot(((7 - euler_gamma) min (n min (e + (e ** cosh(sin(n)))))), 7)))"
 -2010.0,8,((n + (sinh(log_{floor(e)}(cosh((log_{floor(e)}(n) + (n % cos(n)))))) // n)) + cosh(log_{2}(n)))
 -2010.0,8,((log_{euler_gamma}(n) / (neg((n + n)) * (cos(n) min (n % euler_gamma)))) + ((n max (n / cos((n ** n)))) + n))
 -2010.0,8,((cos(n) + (floor((n * asin(catalan))) * asin(catalan))) + (floor((n * asin(catalan))) * asin((catalan * catalan))))
@@ -370,6 +402,7 @@ fitness,matches,expression
 -2001.0,8,"(n + ((n ** sinh((log_{5}(n) min nroot(catalan, n)))) max ((n ** (n // abs(n))) ** log_{(5 max (5 ^ n))}(n))))"
 -1388.0,7,"cosh(tan(nroot(((cosh(cosh(tan(n))) + 4) min n), 7)))"
 -1388.0,7,"cosh(tan(nroot((n min (cosh(cosh(tan(n))) + 4)), 7)))"
+-1388.0,7,"sinh(tan(nroot(((cosh(cosh(tan(n))) + 4) min n), 7)))"
 -1387.0,7,((n ** atan((n - sin(sinh(n))))) + phi)
 -1387.0,7,(phi + (n ** atan((n - cos(tan(n))))))
 -1386.0,7,((n ** atan((sin((n ** n)) + n))) + phi)
@@ -391,6 +424,8 @@ fitness,matches,expression
 -1383.0,7,"(n + (nroot((n max (n // tan(n))), catalan) + sin(cos(n))))"
 -1383.0,7,"((nroot(n, catalan) + atan(cos(n))) + ((n / tan(n)) max n))"
 -1383.0,7,"sinh(tan(nroot(((atan(ceil(sin(n))) + (atan(7) + 4)) min n), 7)))"
+-1383.0,7,"cosh(tan(nroot(((7 - (tan(7) max tan((7 % n)))) min n), 7)))"
+-1383.0,7,"cosh(tan(nroot((n min (atan(ceil(sin(n))) + (atan(7) + 4))), 7)))"
 -1382.0,7,"(n + nroot(((factorial(n) min cosh(n)) ** euler_gamma), atan((n << (c & n)))))"
 -1382.0,7,(((n + cos(n)) / cos(sinh(sin((n + cosh(n)))))) + n)
 -1382.0,7,(phi + (n ** atan(log_{(n - cos((n * n)))}((n ** n)))))
@@ -399,6 +434,7 @@ fitness,matches,expression
 -1382.0,7,"(nroot((n << n), (e / catalan)) + (cos((n * n)) + n))"
 -1382.0,7,((n / atan((cos(cos(n)) max (cos((n % sinh(e))) % n)))) + n)
 -1382.0,7,"cosh(tan(nroot((((cos(n) % catalan) + (atan(7) + 4)) min n), 7)))"
+-1382.0,7,"cosh(tan(nroot((n min (7 - tan(cos(tan(sin(n)))))), 7)))"
 -1381.0,7,"(n + (nroot((n + cos(n)), catalan) + sin((n + (n + n)))))"
 -1381.0,7,"(nroot((sin((n + (n + n))) + n), catalan) + (cos(n) + n))"
 -1381.0,7,"(nroot(n, catalan) + ((n // nroot(euler_gamma, 4)) + sin(cos(n))))"
@@ -600,6 +636,7 @@ fitness,matches,expression
 -896.0,6,"cosh(tan(nroot((n min (7 - atan(n))), 7)))"
 -896.0,6,"cosh(tan(nroot((sinh(sinh(phi)) min n), 7)))"
 -896.0,6,"cosh((tan(nroot(n, 7)) min cosh(tan(avogadro))))"
+-896.0,6,"sinh((tan(nroot(n, 7)) min cosh(tan(avogadro))))"
 -895.0,6,(log_{9}(n) + ((n + n) + cos(n)))
 -895.0,6,(n + (log_{9}(n) + (cos(n) + n)))
 -895.0,6,((cos(n) + n) + (n + log_{9}(n)))
