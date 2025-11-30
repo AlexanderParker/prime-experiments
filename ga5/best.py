@@ -154,7 +154,7 @@ def expression_to_ast(expression: str) -> Optional[evolve.ASTNode]:
             except ValueError:
                 pass
 
-            unary_ops = ["abs", "neg"]
+            unary_ops = ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]
 
             for op in unary_ops:
                 if expr.startswith(f"{op}(") and expr.endswith(")"):
@@ -414,6 +414,8 @@ if __name__ == "__main__":
                     ast = expression_to_ast(expr)
                     if ast is not None:
                         seed_asts.append(ast)
+                    else:
+                        print(f"Failed to parse: {expr}")
 
                 print(f"Seeding with {len(seed_asts)} ASTs ({tier_name}) out of {len(seeds)} total seeds")
                 print(f"{'='*80}\n")
