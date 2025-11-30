@@ -583,7 +583,7 @@ def mutate_ast(
                     max_depth=max_depth,
                 )
 
-                binary_ops = ["+", "-", "*", "/", "**"]
+                binary_ops = ["+", "-", "*", "/", "**", "nroot", "logbase"]
                 chosen_op = random.choice(binary_ops)
 
                 new_subtree = ASTNode(op=chosen_op, left=copy_ast(subtree), right=mutated_copy)

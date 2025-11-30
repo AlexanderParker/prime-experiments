@@ -156,21 +156,18 @@ def expression_to_ast(expression: str) -> Optional[evolve.ASTNode]:
             unary_ops = [
                 "floor",
                 "ceil",
-                "sqrt",
                 "abs",
                 "sin",
                 "cos",
                 "tan",
-                "log",
-                "log2",
-                "log10",
-                "factorial",
                 "sinh",
                 "cosh",
                 "tanh",
                 "asin",
                 "acos",
                 "atan",
+                "neg",
+                "factorial",
             ]
 
             for op in unary_ops:
@@ -434,7 +431,7 @@ if __name__ == "__main__":
 
                 print(f"Seeding with {len(seed_asts)} ASTs ({tier_name}) out of {len(seeds)} total seeds")
                 print(f"{'='*80}\n")
-                
+
                 fitness, matches, expression, best_ast, elapsed_time = evaluate_hyperparams(
                     best_params, stop_limit=1000, seed_asts=seed_asts
                 )

@@ -79,8 +79,8 @@ def create_random_ast(depth: int, max_depth: int, n_var: str = "n") -> ASTNode:
         else:
             const_name = random.choice(list(CONSTANTS.keys()))
             return ASTNode(op="named_const", value=const_name)
-
-    binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "nroot", "logbase", "min", "max"]
+    
+    binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "min", "max", "nroot", "logbase"]
     unary_ops = [
         "floor",
         "ceil",
@@ -858,7 +858,7 @@ def mutate_ast(
                     max_depth=max_depth,
                 )
 
-                binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "min", "max"]
+                binary_ops = ["+", "-", "*", "/", "//", "%", "**", "&", "|", "^", "<<", ">>", "min", "max", "nroot", "logbase"]
                 chosen_op = random.choice(binary_ops)
 
                 new_subtree = ASTNode(op=chosen_op, left=copy_ast(subtree), right=mutated_copy)
