@@ -2,3 +2,4 @@ fitness,matches,expression
 -125.0,3,(n + (n / abs((n * cos(((pi + pi) / n))))))
 -44.0,2,(n + (n / n))
 -44.0,2,((n / n) + n)
+-44.0,2,(n - cos(pi))

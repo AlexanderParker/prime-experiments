@@ -340,7 +340,7 @@ def calculate_fitness(
     complexity = count_nodes(node)
     named_const_count = count_named_constants(node)
     int_const_count = count_int_constants(node)
-    longrange_check = evaluate_ast(node, n ** n)
+    longrange_check = evaluate_ast(node, n**n)
 
     if not isinstance(longrange_check, (int, float)) or nan_result:
         fitness = 0.0
