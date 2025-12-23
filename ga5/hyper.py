@@ -49,8 +49,8 @@ def create_random_hyperparams() -> HyperParams:
 
     return HyperParams(
         population_size=random.choice([50, 100, 200, 300, 500, 1000, 1500, 2000]),
-        generations=random.choice([500, 1000, 1500, 2000, 3000, 4000, 5000]),
-        max_depth=random.choice([3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20]),
+        generations=random.choice([500, 1000, 1500, 2000, 3000, 4000, 5000, 10000]),
+        max_depth=random.choice([3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 30]),
         keep_pct=keep_pct,
         crossover_pct=crossover_pct,
         random_pct=random_pct,
@@ -70,9 +70,9 @@ def mutate_hyperparams(params: HyperParams, mutation_rate: float = 0.3) -> Hyper
         if choice == 0:
             new_params.population_size = random.choice([50, 100, 200, 300, 500, 1000, 1500, 2000])
         elif choice == 1:
-            new_params.generations = random.choice([500, 1000, 1500, 2000, 3000, 4000, 5000])
+            new_params.generations = random.choice([500, 1000, 1500, 2000, 3000, 4000, 5000, 10000])
         elif choice == 2:
-            new_params.max_depth = random.choice([3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20])
+            new_params.max_depth = random.choice([3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20, 30])
         elif choice == 3:
             new_params.mutation_rate = random.uniform(0.05, 1.0)
         elif choice == 4:
