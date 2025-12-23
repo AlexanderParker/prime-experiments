@@ -163,16 +163,34 @@ def has_variable(node: ASTNode) -> bool:
     return has_variable(node.left) or has_variable(node.right)
 
 
+# In is_trivial_solution(), add more linear/polynomial checks:
+
+
 def is_trivial_solution(node: ASTNode) -> bool:
-    """Check if the solution is trivial (constant or n+1)."""
+    """Check if the solution is trivial (constant, n+1, simple polynomials)."""
     if not has_variable(node):
         return True
 
     if node.op == "+":
+        # n + 1 or 1 + n (check int_const and const)
+        if node.left.op == "var" and node.right.op == "int_const" and node.right.value == 1:
+            return True
+        if node.right.op == "var" and node.left.op == "int_const" and node.left.value == 1:
+            return True
         if node.left.op == "var" and node.right.op == "const" and node.right.value == 1:
             return True
         if node.right.op == "var" and node.left.op == "const" and node.left.value == 1:
             return True
+        # n + n (2n)
+        if node.left.op == "var" and node.right.op == "var":
+            return True
+        # n² + n
+        if node.left.op == "*" and node.left.left.op == "var" and node.left.right.op == "var":
+            if node.right.op == "var":
+                return True
+        if node.right.op == "*" and node.right.left.op == "var" and node.right.right.op == "var":
+            if node.left.op == "var":
+                return True
 
     return False
 
@@ -280,11 +298,374 @@ def evaluate_ast(node: ASTNode, n: int, is_root: bool = True) -> Union[int, floa
         return None
 
 
+def has_constant_generating_patterns(node: ASTNode) -> bool:
+    """Check if node contains patterns that generate constants."""
+    if node.op in ["var", "const", "named_const", "int_const"]:
+        return False
+    
+    # Reject neg with suspicious patterns
+    if node.op == "neg":
+        if node.left.op == "neg":
+            return True
+        # neg(neg(n) - n) = 2n
+        if node.left.op == "-":
+            if node.left.left.op == "neg" and node.left.left.left.op == "var" and node.left.right.op == "var":
+                return True
+        # neg(neg(n) + neg(n)) = neg(-2n) = 2n
+        if node.left.op == "+":
+            if (node.left.left.op == "neg" and node.left.left.left.op == "var" and
+                node.left.right.op == "neg" and node.left.right.left.op == "var"):
+                return True
+        # neg(n * n) for making positive things negative
+        if node.left.op == "*":
+            if node.left.left.op == "var" and node.left.right.op == "var":
+                return True
+        if not has_variable(node.left):
+            return True
+    
+    # Reject abs entirely
+    if node.op == "abs":
+        return True
+    
+    # Reject trig inverse pairs
+    if node.op == "tan" and node.left.op == "atan":
+        return True
+    if node.op == "cos" and node.left.op == "acos":
+        return True
+    if node.op == "sin" and node.left.op == "asin":
+        return True
+    
+    # Reject cos patterns that evaluate to constants
+    if node.op == "cos":
+        # cos(sin(n * pi)) ≈ cos(0) = 1 for integer n
+        if node.left.op == "sin":
+            if node.left.left.op == "*":
+                if ((node.left.left.left.op == "var" and node.left.left.right.op == "named_const" and node.left.left.right.value == "pi") or
+                    (node.left.left.right.op == "var" and node.left.left.left.op == "named_const" and node.left.left.left.value == "pi")):
+                    return True
+        # cos(tan(n * pi)) ≈ cos(0) = 1 for integer n
+        if node.left.op == "tan":
+            if node.left.left.op == "*":
+                if ((node.left.left.left.op == "var" and node.left.left.right.op == "named_const" and node.left.left.right.value == "pi") or
+                    (node.left.left.right.op == "var" and node.left.left.left.op == "named_const" and node.left.left.left.value == "pi")):
+                    return True
+        # cos(pi * (n + n)) = cos(2*pi*n) = 1
+        if node.left.op == "*":
+            if node.left.left.op == "named_const" and node.left.left.value == "pi":
+                if node.left.right.op == "+" and node.left.right.left.op == "var" and node.left.right.right.op == "var":
+                    return True
+            if node.left.right.op == "named_const" and node.left.right.value == "pi":
+                if node.left.left.op == "+" and node.left.left.left.op == "var" and node.left.left.right.op == "var":
+                    return True
+    
+    # Reject asin(neg(sin(n))) = -n
+    if node.op == "asin":
+        if node.left.op == "neg" and node.left.left.op == "sin":
+            return True
+    
+    # Check for multiplication patterns
+    if node.op == "*":
+        # (const / n) * (n / const) = 1
+        if node.left.op == "/" and node.right.op == "/":
+            if (node.left.left.op == "named_const" and node.left.right.op == "var" and
+                node.right.left.op == "var" and node.right.right.op == "named_const" and
+                node.left.left.value == node.right.right.value):
+                return True
+            # Also reversed: (n / const) * (const / n)
+            if (node.left.left.op == "var" and node.left.right.op == "named_const" and
+                node.right.left.op == "named_const" and node.right.right.op == "var" and
+                node.left.right.value == node.right.left.value):
+                return True
+    
+    # Check for division patterns
+    if node.op == "/":
+        if ast_equals(node.left, node.right):
+            return True
+        # (n + n) / n = 2, (n - n) / n = 0
+        if node.right.op == "var":
+            if node.left.op == "+" and node.left.left.op == "var" and node.left.right.op == "var":
+                return True
+            if node.left.op == "-" and node.left.left.op == "var" and node.left.right.op == "var":
+                return True
+            # ((n + n) * n) / n = 2n
+            if node.left.op == "*" and node.left.right.op == "var":
+                if node.left.left.op == "+" and node.left.left.left.op == "var" and node.left.left.right.op == "var":
+                    return True
+            # (n * n) / n = n
+            if node.left.op == "*" and node.left.left.op == "var" and node.left.right.op == "var":
+                return True
+            # (n * (n + n)) / n = 2n
+            if node.left.op == "*" and node.left.left.op == "var" and node.left.right.op == "+":
+                if node.left.right.left.op == "var" and node.left.right.right.op == "var":
+                    return True
+        # ((n * const) + const) / const = n + 1
+        if node.right.op == "named_const" and node.left.op == "+":
+            # (n * const) + const
+            if node.left.left.op == "*" and node.left.right.op == "named_const":
+                if (node.left.left.right.op == "named_const" and 
+                    node.left.left.right.value == node.right.value and
+                    node.left.right.value == node.right.value and
+                    node.left.left.left.op == "var"):
+                    return True
+            # const + (n * const)
+            if node.left.right.op == "*" and node.left.left.op == "named_const":
+                if (node.left.right.right.op == "named_const" and 
+                    node.left.right.right.value == node.right.value and
+                    node.left.left.value == node.right.value and
+                    node.left.right.left.op == "var"):
+                    return True
+            # Also check for (const * n) + const
+            if node.left.left.op == "*" and node.left.right.op == "named_const":
+                if (node.left.left.left.op == "named_const" and 
+                    node.left.left.left.value == node.right.value and
+                    node.left.right.value == node.right.value and
+                    node.left.left.right.op == "var"):
+                    return True
+            # const + (const * n)
+            if node.left.right.op == "*" and node.left.left.op == "named_const":
+                if (node.left.right.left.op == "named_const" and 
+                    node.left.right.left.value == node.right.value and
+                    node.left.left.value == node.right.value and
+                    node.left.right.right.op == "var"):
+                    return True
+        # n / ((n + n) - n) = n / n = 1
+        if node.left.op == "var" and node.right.op == "-":
+            if (node.right.left.op == "+" and 
+                node.right.left.left.op == "var" and node.right.left.right.op == "var" and
+                node.right.right.op == "var"):
+                return True
+        # ((n + n) - n) / n = n / n = 1
+        if node.right.op == "var" and node.left.op == "-":
+            if (node.left.left.op == "+" and 
+                node.left.left.left.op == "var" and node.left.left.right.op == "var" and
+                node.left.right.op == "var"):
+                return True
+        # n / (n - (n + n)) = -1
+        if node.left.op == "var" and node.right.op == "-":
+            if node.right.left.op == "var" and node.right.right.op == "+":
+                if node.right.right.left.op == "var" and node.right.right.right.op == "var":
+                    return True
+        # n / (n + n) = 1/2
+        if node.left.op == "var" and node.right.op == "+":
+            if node.right.left.op == "var" and node.right.right.op == "var":
+                return True
+        # n / (const + (n - const)) = n / n = 1
+        if node.left.op == "var" and node.right.op == "+":
+            # Check pattern: const + (n - const)
+            if node.right.left.op == "named_const" and node.right.right.op == "-":
+                if (node.right.right.left.op == "var" and 
+                    node.right.right.right.op == "named_const" and
+                    node.right.left.value == node.right.right.right.value):
+                    return True
+            # Also reversed: (n - const) + const
+            if node.right.right.op == "named_const" and node.right.left.op == "-":
+                if (node.right.left.left.op == "var" and 
+                    node.right.left.right.op == "named_const" and
+                    node.right.right.value == node.right.left.right.value):
+                    return True
+        # (n + const) / (const + n) = 1
+        if node.left.op == "+" and node.right.op == "+":
+            if ((node.left.left.op == "var" and node.left.right.op == "named_const" and
+                 node.right.left.op == "named_const" and node.right.right.op == "var" and
+                 node.left.right.value == node.right.left.value) or
+                (node.left.left.op == "named_const" and node.left.right.op == "var" and
+                 node.right.left.op == "var" and node.right.right.op == "named_const" and
+                 node.left.left.value == node.right.right.value)):
+                return True
+        # n / ((n / const) * const) = n / n = 1
+        if node.left.op == "var" and node.right.op == "*":
+            if node.right.left.op == "/" and node.right.right.op == "named_const":
+                if (node.right.left.left.op == "var" and 
+                    node.right.left.right.op == "named_const" and
+                    node.right.left.right.value == node.right.right.value):
+                    return True
+            # Also check reversed: (const * (n / const))
+            if node.right.right.op == "/" and node.right.left.op == "named_const":
+                if (node.right.right.left.op == "var" and 
+                    node.right.right.right.op == "named_const" and
+                    node.right.right.right.value == node.right.left.value):
+                    return True
+        # Commutative cancellation
+        if node.left.op == "*" and node.right.op == "*":
+            if ast_equals(node.left.left, node.right.right) and ast_equals(node.left.right, node.right.left):
+                return True
+        # (n - (n - const)) / const = 1
+        if node.left.op == "-" and node.right.op == "named_const":
+            if (node.left.left.op == "var" and node.left.right.op == "-" and
+                node.left.right.left.op == "var" and node.left.right.right.op == "named_const" and
+                node.left.right.right.value == node.right.value):
+                return True
+        # neg patterns
+        if node.left.op == "neg" and node.left.left.op == "var" and node.right.op == "var":
+            return True
+        if node.left.op == "var" and node.right.op == "neg" and node.right.left.op == "var":
+            return True
+        if node.left.op == "var" and node.right.op == "neg":
+            if node.right.left.op == "neg" and node.right.left.left.op == "var":
+                return True
+        if node.right.op == "var" and node.left.op == "neg":
+            if node.left.left.op == "neg" and node.left.left.left.op == "var":
+                return True
+        # (const * (n / const)) / n
+        if node.left.op == "*" and node.right.op == "var":
+            if (node.left.left.op == "named_const" and 
+                node.left.right.op == "/" and
+                node.left.right.left.op == "var" and
+                node.left.right.right.op == "named_const" and
+                node.left.left.value == node.left.right.right.value):
+                return True
+    
+    # Check for addition patterns
+    if node.op == "+":
+        # n + neg(n) = 0
+        if node.left.op == "var" and node.right.op == "neg" and node.right.left.op == "var":
+            return True
+        if node.right.op == "var" and node.left.op == "neg" and node.left.left.op == "var":
+            return True
+        # n + ((n + n) - n) = n + n = 2n
+        if node.left.op == "var" and node.right.op == "-":
+            if (node.right.left.op == "+" and 
+                node.right.left.left.op == "var" and node.right.left.right.op == "var" and
+                node.right.right.op == "var"):
+                return True
+        if node.right.op == "var" and node.left.op == "-":
+            if (node.left.left.op == "+" and 
+                node.left.left.left.op == "var" and node.left.left.right.op == "var" and
+                node.left.right.op == "var"):
+                return True
+        # n + ((n * n) / n) = n + n = 2n
+        if node.left.op == "var" and node.right.op == "/":
+            if node.right.right.op == "var" and node.right.left.op == "*":
+                if node.right.left.left.op == "var" and node.right.left.right.op == "var":
+                    return True
+        if node.right.op == "var" and node.left.op == "/":
+            if node.left.right.op == "var" and node.left.left.op == "*":
+                if node.left.left.left.op == "var" and node.left.left.right.op == "var":
+                    return True
+    
+    # Check for subtraction patterns  
+    if node.op == "-":
+        if ast_equals(node.left, node.right):
+            return True
+        # n - neg(n) = 2n
+        if node.left.op == "var" and node.right.op == "neg" and node.right.left.op == "var":
+            return True
+        # n - neg(n * n) = n + n²
+        if node.left.op == "var" and node.right.op == "neg":
+            if node.right.left.op == "*" and node.right.left.left.op == "var" and node.right.left.right.op == "var":
+                return True
+        # n - (n + n) = -n
+        if node.left.op == "var" and node.right.op == "+":
+            if node.right.left.op == "var" and node.right.right.op == "var":
+                return True
+        # ((n + n) + n) - n = 2n
+        if node.left.op == "+" and node.right.op == "var":
+            if (node.left.left.op == "+" and 
+                node.left.left.left.op == "var" and node.left.left.right.op == "var" and
+                node.left.right.op == "var"):
+                return True
+        # n - sin(pi / n) ≈ n + 1
+        if node.left.op == "var" and node.right.op == "sin":
+            if node.right.left.op == "/":
+                if ((node.right.left.left.op == "named_const" and node.right.left.left.value == "pi" and node.right.left.right.op == "var") or
+                    (node.right.left.right.op == "named_const" and node.right.left.right.value == "pi" and node.right.left.left.op == "var")):
+                    return True
+        # n - cos((pi + n) - n) = n - cos(pi) = n + 1
+        if node.left.op == "var" and node.right.op == "cos":
+            if node.right.left.op == "-":
+                if node.right.left.left.op == "+":
+                    if ((node.right.left.left.left.op == "named_const" and node.right.left.left.left.value == "pi" and 
+                         node.right.left.left.right.op == "var" and node.right.left.right.op == "var") or
+                        (node.right.left.left.right.op == "named_const" and node.right.left.left.right.value == "pi" and 
+                         node.right.left.left.left.op == "var" and node.right.left.right.op == "var")):
+                        return True
+        # n - (neg(trig(n)) / trig(n)) = n + 1
+        if node.left.op == "var" and node.right.op == "/":
+            if node.right.left.op == "neg" and node.right.right.op in ["sin", "cos", "tan", "asin", "acos", "atan"]:
+                # Check if both are the same function of n
+                if (node.right.left.left.op == node.right.right.op and 
+                    node.right.left.left.left.op == "var" and node.right.right.left.op == "var"):
+                    return True
+        # (const * const) - (const - n) patterns
+        if node.left.op == "*":
+            if (node.left.left.op == "named_const" and node.left.right.op == "named_const" and
+                node.right.op == "-" and node.right.left.op == "named_const"):
+                return True
+        # (n + const*const) - const type patterns
+        if node.left.op == "+" and node.right.op == "named_const":
+            if (node.left.left.op == "var" and node.left.right.op == "*" and
+                node.left.right.left.op == "named_const" and node.left.right.right.op == "named_const"):
+                return True
+    
+    # Check for inverse trig pairs
+    if node.op in ["acos", "asin", "atan"]:
+        inverse_map = {"acos": "cos", "asin": "sin", "atan": "tan"}
+        if node.left.op == inverse_map[node.op]:
+            return True
+    
+    # Check for log patterns
+    if node.op == "logbase":
+        if ast_equals(node.left, node.right):
+            return True
+        # log_x(x * x) = 2 (constant!)
+        if node.left.op == "*":
+            if ast_equals(node.left.left, node.right) and ast_equals(node.left.right, node.right):
+                return True
+        # Commutative patterns
+        if (node.left.op == "*" and node.right.op == "*"):
+            if ((node.left.left.op == "var" and node.left.right.op == "named_const" and
+                 node.right.left.op == "named_const" and node.right.right.op == "var" and
+                 node.left.right.value == node.right.left.value) or
+                (node.left.left.op == "named_const" and node.left.right.op == "var" and
+                 node.right.left.op == "var" and node.right.right.op == "named_const" and
+                 node.left.left.value == node.right.right.value)):
+                return True
+        if not has_variable(node.left) or not has_variable(node.right):
+            return True
+    
+    # Check for operations on constants only
+    if node.op == "**":
+        if not has_variable(node.left) or not has_variable(node.right):
+            return True
+    
+    if node.op == "nroot":
+        if not has_variable(node.left) or not has_variable(node.right):
+            return True
+    
+    # Check for unary trig functions on constants
+    if node.op in ["sin", "cos", "tan", "asin", "acos", "atan"]:
+        if not has_variable(node.left):
+            return True
+    
+    # Recursively check children
+    if node.op in ["neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
+        return has_constant_generating_patterns(node.left)
+    elif node.op not in ["var", "const", "named_const", "int_const"]:
+        return has_constant_generating_patterns(node.left) or has_constant_generating_patterns(node.right)
+    
+    return False
+
+
+def ast_equals(node1: ASTNode, node2: ASTNode) -> bool:
+    """Check if two AST nodes are structurally identical."""
+    if node1.op != node2.op:
+        return False
+
+    if node1.op in ["var", "const", "named_const", "int_const"]:
+        return node1.value == node2.value
+
+    if node1.op in ["abs", "neg", "sin", "cos", "tan", "asin", "acos", "atan"]:
+        return ast_equals(node1.left, node2.left)
+
+    # Binary ops
+    return ast_equals(node1.left, node2.left) and ast_equals(node1.right, node2.right)
+
+
 def calculate_fitness(
     node: ASTNode, max_test: int = 20, stop_limit: int = None, match_weight_factor: float = 1.0
 ) -> Tuple[float, int, int, float]:
     """Calculate fitness based on matches and complexity."""
-    if is_trivial_solution(node):
+    if is_trivial_solution(node) or has_constant_generating_patterns(node):
         return float("inf"), 0, count_nodes(node), 0.0
 
     matches = 0
@@ -493,6 +874,11 @@ def crossover(parent1: ASTNode, parent2: ASTNode, max_depth: int = 10) -> ASTNod
         path2 = random.choice(paths2)
 
         subtree_from_parent2 = get_node_at_path(parent2, path2)
+
+        # Don't allow transplanting int_const nodes - they can only be used in specific positions
+        if subtree_from_parent2.op == "int_const":
+            continue
+
         subtree_depth = get_tree_depth(subtree_from_parent2)
 
         if not path1:
@@ -566,6 +952,10 @@ def mutate_ast(
                     else:
                         replacement = node_to_prune.left if random.random() < 0.5 else node_to_prune.right
 
+                    # Don't allow pruning to expose an int_const
+                    if replacement.op == "int_const":
+                        return node
+
                     node = replace_node_at_path(node, path, replacement)
 
         elif mutation_type == "duplicate_mutate":
@@ -591,13 +981,16 @@ def mutate_ast(
 
                 if not path:
                     if new_subtree_depth <= max_depth:
-                        return new_subtree
+                        if validate_int_constants(new_subtree):
+                            return new_subtree
                 else:
                     old_subtree_depth = get_tree_depth(subtree)
                     estimated_new_depth = current_depth - old_subtree_depth + new_subtree_depth
 
                     if estimated_new_depth <= max_depth:
-                        node = replace_node_at_path(node, path, new_subtree)
+                        result = replace_node_at_path(node, path, new_subtree)
+                        if validate_int_constants(result):
+                            node = result
 
         elif mutation_type == "operator_change":
             if node.op in ["var", "const", "named_const", "int_const"]:
@@ -634,7 +1027,11 @@ def mutate_ast(
 
                 estimated_new_depth = current_depth - old_subtree_depth + replacement_depth
                 if estimated_new_depth <= max_depth:
-                    node = replace_node_at_path(node, path, replacement)
+                    result = replace_node_at_path(node, path, replacement)
+                    if validate_int_constants(result):
+                        node = result
+                    else:
+                        return node
                 else:
                     return node
 
