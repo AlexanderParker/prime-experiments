@@ -81,3 +81,11 @@ rust2/target/**
 ~$*.xlsx
 
 .env
+# Lean build artifacts
+proofs/.lake/
+
+# Resumable search checkpoints
+research/max_gap_state_*.json
+
+# Crash dumps
+*.stackdump
