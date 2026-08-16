@@ -841,3 +841,72 @@ extending the exact table to thirteen values. Checks:
 
 Exact values now: `y = 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47` giving
 `F_h = 6, 15, 21, 33, 54, 75, 102, 129, 174, 264, 273, 309, 354`.
+
+## 17. The bound as a hazard-rate condition
+
+### 17a. The equivalent statement
+
+Writing `G(L)` for the number of gaps exceeding `L` and `N(L) = sum_{j>=L} G(j)` as in section 15,
+the bound is exactly
+
+    **h(L) := G(L) / N(L) >= d   for every L**
+
+- the *hazard rate* of the gap distribution is at least `d` everywhere. This is the cleanest form
+the open problem has taken: no offset vectors, no coverings, no separations, and no sub-problems.
+
+At `L = 1` the condition is automatic. Every gap is a multiple of 3, so `G(1)` counts all of them,
+`G(1) = P d`; and `N(1) = P(1 - d)` counts the blocked positions. So
+
+    h(1) = d/(1 - d) > d      always
+
+and measured, `h(1)` is exactly `1/(1-d)` times `d` in every case - 1.1667, 1.1324, 1.1098, 1.0956,
+1.0847, 1.0768 for gears to 7, 11, 13, 17, 19, 23.
+
+### 17b. The hazard rate is not monotone
+
+Increasing hazard rate would finish the proof, since the minimum would then be `h(1)`. It is false:
+`h` dips at `k = 3, 6, 8, 9` in every set tested. For gears to 19, by `k`:
+
+    0.0847  0.1014  0.0996  0.1074  0.1336  0.1132  0.1316  0.1023  0.1024
+
+with drops from `k = 2` to `3`, `5` to `6`, `7` to `8`. So the distribution is not IHR.
+
+What does hold in every case tested is the weaker statement that the minimum is at `k = 1`:
+
+| gears to | d | h(1) = d/(1-d) | min h | at k | F_k |
+| --- | --- | --- | --- | --- | --- |
+| 7 | 0.142857 | 0.166667 | 0.166667 | 1 | 5 |
+| 11 | 0.116883 | 0.132353 | 0.132353 | 1 | 7 |
+| 13 | 0.098901 | 0.109756 | 0.109756 | 1 | 11 |
+| 17 | 0.087266 | 0.095609 | 0.095609 | 1 | 18 |
+| 19 | 0.078080 | 0.084693 | 0.084693 | 1 | 25 |
+| 23 | 0.071290 | 0.076763 | 0.076763 | 1 | 34 |
+
+The `F_k` column is an independent check: computed here from the gap distribution, it matches the
+pruned covering search of `maxgap.rs` at every `y` - 5, 7, 11, 18, 25, 34 against
+`F_h = 15, 21, 33, 54, 75, 102`.
+
+### 17c. The second-tightest point, and an honest caveat
+
+The binding constraint after `k = 1` is `k = 3`, and its margin over `d` is shrinking:
+
+    y        7      11      13      17      19      23
+    h(3)/d   1.400  1.418   1.362   1.313   1.275   1.247
+
+with decrements `+0.018, -0.056, -0.049, -0.038, -0.028` - falling, which suggests convergence to a
+limit above 1 rather than a crossing. But that is extrapolation from six points, and this programme
+has already been wrong three times by generalising from small sets. The measured fact is that
+`h(k) >= d` holds at every `k` for every gear set computed, with the tightest genuine constraint at
+`k = 3` retaining a 25 percent margin at `y = 23`.
+
+### 17d. What a proof needs now
+
+Either of:
+
+* `h(k) >= h(1)` for all `k` - the minimum is at the first gap value. Verified at six gear sets, and
+  it would finish the proof immediately since `h(1) = d/(1-d) > d`;
+* or directly `h(k) >= d`, which is weaker still and has the margins above.
+
+Both are statements about the gap distribution of the admissible pattern alone. The distribution is
+fully computable - the counts for gears to 23 are `{1: 189, 2: 504, ...}` style multisets with
+7952175 gaps - so this is a concrete combinatorial object rather than a probabilistic one.
