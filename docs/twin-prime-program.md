@@ -1620,6 +1620,11 @@ steps of the pair index `k`. Two quantities must be kept apart:
 The machine slip is the one that governs blocking. Because `gcd(P_S, q) = 1`, gear `q`'s
 tooth visits all `q` residues in exactly `q` turns of `S`, each once.
 
+**Frame note, from section 26a.** Sections 17 to 25 speak of each gear having "two teeth". That
+is a statement in twin-slot coordinates and it is derived, not primitive: in `n`-space a gear
+blocks **once per rotation**, and of every six rotations exactly two land on a twin member. Read
+"two teeth" as "two threatening rotations in every six" throughout.
+
 ### 17b. The turn law, in closed form
 
 Let `k0` be open under `S`. The positions `k0 + t P_S`, for `t = 0 .. q - 1`, are all
@@ -2949,8 +2954,14 @@ factors, hence exponentially small in the number of gears taking part. Measured:
 | 3 | 1728 | 0.0123 | 0.0448 |
 | 4 | 2880 | 0.0022 | 0.0032 |
 
-So genuine multi-gear interference beyond pairs carries only **4.8%** of the signal energy. The
-exposure signal is dominated by first-order, single-gear structure.
+So genuine multi-gear interference beyond pairs carries **4.8%** of the signal energy.
+
+**Correction, from section 36.** Grouping beats by energy share and treating the small shares as
+minor is the wrong reading of this machine. A single low-amplitude combination tone landing on a
+slot is a gear blocking a prime; discarding it loses the answer outright. The quantity that
+governs whether a beat may be dropped is the L1 norm, not the energy, and section 36b measures it
+growing like `2.06^n`. Nothing here may be discarded, and the table above should be read as a
+description of where the amplitude sits, not as a licence to truncate.
 
 ### 35c. Low-order truncation localises perfectly, and why that is not a shortcut
 
@@ -3126,3 +3137,33 @@ occurs, and no counting argument of this shape can close it.
 That is a sharper statement of the barrier than section 19's: there the deficit was priced, here
 the extremal configurations are shown to genuinely realise the capacity, so the price is not
 negotiable by tightening the accounting.
+
+## 38. A counting route to the bound, by contradiction
+
+Written up separately as `docs/covering-bound-route.md`, with `research/covering_bound.py`.
+
+The route takes the proof-by-contradiction shape rather than a statistical one. The constructor
+finds a twin in the window unless the whole window is threatened; that means a covering exists;
+and coverings are offset vectors, of which there are only `P = prod q`. If the number of covering
+vectors is provably below 1 there are none, and the failure is impossible. The count is an integer,
+so nothing probabilistic enters.
+
+Everything reduces to one inequality:
+
+    **N(L) <= P (1 - d)^L**,  where N(L) counts offset vectors covering a run of length L
+                              and d = prod (1 - 2/q)
+
+Given it, `F_h(y) <= ceil(log P / -log(1 - d))`, of order `y log^2 y`, which is below the `y^2/2`
+the window requires for every `y >= 23`. Since the exact values settle `y <= 43`, the two ranges
+overlap and the union is complete.
+
+Verified with zero violations for every gear set containing 3 up to `P = 4.8` million, recovering
+`F_h = 6, 15, 21, 33, 54, 75` exactly. It **fails** for sets omitting 3, and the mechanism is
+identified: adjacent positions are the only positively-correlated pairs, and their per-gear factor
+at `q = 3` is `1 - 3/3 = 0` exactly - gear 3 blocks `{o, o+1}` of three residues, so of any two
+adjacent positions at least one is always blocked by it. The 6-cycle annihilates the one term that
+would break the count.
+
+Status: the inequality is a conjecture, not a theorem. It is the single missing step, and any
+proof of it must use the `q = 3` adjacency annihilation rather than a generic correlation
+inequality - precisely because it is false without 3.
