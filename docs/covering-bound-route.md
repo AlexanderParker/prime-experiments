@@ -703,6 +703,19 @@ This is the third overclaim in this area, and the cause is the same each time: e
 over separation vectors, but only for gear sets small enough to enumerate. Five gears held; six
 did not.
 
+### 14a-bis. Corroborated by an independent computation
+
+An exhaustive scan over *every* separation vector for `{5,7,11,13,17}` - not just the all-adjacent
+one - gives `max E(2) = 1.06747` against the available slack `kappa^2 = 1.06100`. The shortfall is
+
+    1.06747 / 1.06100 = 1.006099
+
+which matches the direct counterexample's ratio of `1.006102` to six significant figures. So the
+two computations agree: the counterexample's excess over the bound is exactly the amount by which
+the sub-problem's worst case overruns the slack that gear 3 buys. That is a useful cross-check on
+both, since they were computed by different code paths - one enumerating the six-gear set with
+gear 3 present, the other the five-gear sub-problem with gear 3 removed.
+
 ### 14b. What the failing configuration is, and why it is not the machine
 
 The failure is at separations `s_q = 3` for every gear above 3. Under the reduction of section 13c
