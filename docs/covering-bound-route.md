@@ -810,3 +810,21 @@ What must be shown, in full:
 
 with `d = prod (1 - 2/q)`. Equivalently: the gap distribution has no heavier tail than geometric
 with ratio `1 - d`.
+
+## 16. New exact value: F(2,47) = 354
+
+The pruned covering search of `rust2/src/bin/maxgap.rs`, run from `L = 309`, completed:
+
+    F(2,47) = 354        F_k(47) = 118
+
+extending the exact table to thirteen values. Checks:
+
+* **mod 3.** `354 = 3 * 118`, as section 15b requires of every `F_h`.
+* **window.** `F_k = 118` against `y^2/6 = 368.2`, ratio `0.320` - inside the `0.31` to `0.61` band
+  of the twelve earlier values, and consistent with the `0.055 y^2` fit, which predicts
+  `0.055 * 2209 = 121` against the true 118.
+* **the conjectured bound.** `L_0(47) = 770`, and `354 < 770`, so the bound is satisfied with the
+  expected factor of about 2.2.
+
+Exact values now: `y = 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47` giving
+`F_h = 6, 15, 21, 33, 54, 75, 102, 129, 174, 264, 273, 309, 354`.
