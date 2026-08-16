@@ -508,3 +508,94 @@ Three sub-routes, all priced:
 The step law itself remains verified and unproved: zero violations across every gear set tested,
 100 billion offset vectors at `y = 31`, margin widening with `L/q` exactly as the spread lemma
 of section 9c predicts.
+
+## 12. The recursion, and the unified failure condition
+
+### 12a. Smallest-gear-first splitting
+
+Removing the smallest gear `q_1` splits `[0,L)` into the `q_1 - 2` residue classes it leaves
+open. Each class reindexes to an interval of length `L/q_1`: writing a position as `c + t q_1`,
+gear `q` blocks `t = (o_q - c) q_1^{-1}` and `(o_q + s_q - c) q_1^{-1}`, so the remaining gears act
+on the shorter interval with **separations rescaled to `s_q q_1^{-1} mod q`**.
+
+Note `q_1 = 3` blocks two of three classes, so it leaves **exactly one** sub-problem - which is why
+the gear-3 conditioning of section 6a was clean and needed no correlation assumption. Gear 5 leaves
+three, gear 7 leaves five, and so on.
+
+### 12b. The recursion closes
+
+Let `f(L)` be the chance the full gear set covers `[0,L)`, and `f'` the same for the reduced set
+with rescaled separations. If the sub-problems are negatively correlated then
+
+    f(L) <= f'(L/q_1)^{q_1 - 2}                     sub-problem negative correlation
+         <= (1 - d')^{(L/q_1)(q_1 - 2)}             induction, one fewer gear
+          = (1 - d')^{L(1 - 2/q_1)}
+         <= (1 - d'(1 - 2/q_1))^L = (1 - d)^L       Bernoulli
+
+with a trivial base case, since no gears cover no interval. **So the entire bound follows from the
+one correlation statement**, and the reduction is genuine rather than circular - each level consumes
+a gear and shortens the interval.
+
+Measured, in t-space with gear 5 removed and `{7, 11, 13}` remaining:
+
+| m | Pr[all 3 sub-intervals covered] | product of the three | ratio |
+| --- | --- | --- | --- |
+| 1 | 0.075924 | 0.129166 | 0.588 |
+| 2 | 0.007992 | 0.018137 | 0.441 |
+| 3 | 0 | 0.001121 | 0 |
+
+Zero violations, also for `{7,11,13,17}` and for removing gear 7 from `{11,13,17}`.
+
+### 12c. It fails only under uniform adjacency
+
+Forcing every remaining gear to separation 1 breaks it: `{7,11,13}` gives ratio `1.2065` at
+`m = 1`, and `{11,13,17}` gives `1.1064`. So sub-problem negative correlation, like the step law of
+section 8 and the bound of section 5, fails **only when all gears share tooth separation 1** - and
+holds when the separations are mixed.
+
+That is now the single failure condition behind every route tried:
+
+| route | fails when | section |
+| --- | --- | --- |
+| the bound `N(L) <= P(1-d)^L` | all gears adjacent, at `L = 2, 3` | 5, 6a |
+| the step law | all gears help at distance 1 | 8 |
+| sub-problem negative correlation | all gears adjacent | 12c |
+
+### 12d. Uniform adjacency cannot occur
+
+**Law.** Under the recursion, gear `q` reaches separation 1 exactly when `s_q q_1^{-1} = 1 mod q`,
+that is `s_q = q_1`, and with `s_q = 3^{-1} mod q` that is `3 q_1 = 1 mod q`:
+
+    **gear q becomes adjacent at level q_1  <=>  q | 3 q_1 - 1**
+
+Verified with zero mismatches for every `q_1` up to 60 against all gears to 200. Measured:
+
+    q_1 = 3    3q_1-1 = 8    = 2          no gear
+    q_1 = 5    3q_1-1 = 14   = 2 * 7      gear 7
+    q_1 = 7    3q_1-1 = 20   = 2^2 * 5    gear 5
+    q_1 = 11   3q_1-1 = 32   = 2^5        no gear
+    q_1 = 29   3q_1-1 = 86   = 2 * 43     gear 43
+    q_1 = 1009 3q_1-1 = 3026 = 2 * 17 * 89  gears 17, 89
+
+So at every level the gears pushed to adjacency are exactly the prime divisors of `3 q_1 - 1`, at
+most `omega(3 q_1 - 1) <= log_2 (3 q_1)` of them - one, two or three in practice. **Uniform
+adjacency never occurs at any level**, because that would require every gear to divide the single
+number `3 q_1 - 1`.
+
+### 12e. The argument as it now stands
+
+> The mechanism generates a twin in every window: gears 2 and 3 leave slots 1 and 5, each gear
+> `q <= y` blocks two of every `q` slots, and inside the window any slot they all leave open is a
+> twin pair.
+>
+> To prevent it, a covering of the whole window must exist, which requires the covering count to
+> exceed `P (1-d)^L`.
+>
+> That count bound fails only under uniform adjacency - all gears sharing tooth separation 1.
+>
+> Uniform adjacency is impossible, because the machine's separations are `3^{-1} mod q`, and at any
+> level of the recursion the gears attaining separation 1 are exactly the prime divisors of
+> `3 q_1 - 1`, at most `log_2 (3 q_1)` of them.
+
+Every step is verified computationally and the last is proved. The gap is the third: "fails only
+under uniform adjacency" is an observed pattern across four independent routes, not yet a theorem.
