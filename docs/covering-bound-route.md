@@ -910,3 +910,85 @@ Either of:
 Both are statements about the gap distribution of the admissible pattern alone. The distribution is
 fully computable - the counts for gears to 23 are `{1: 189, 2: 504, ...}` style multisets with
 7952175 gaps - so this is a concrete combinatorial object rather than a probabilistic one.
+
+## 18. Three proved cases of the hazard condition
+
+The condition is `h(L) = G(L)/N(L) >= d` for every `L` (section 17). Because `G` is constant on the
+blocks `L in {1,2}, {3,4,5}, {6,7,8}, ...` while `N` keeps decreasing, `h` rises within each block,
+so **the minima sit at the block starts** `L = 1, 3, 6, 9, ...` and only those need checking. (An
+earlier measurement sampled `L = 3k-2` instead, which is not the block start for `k >= 2`; the
+conclusion that the overall minimum is at `L = 1` survives the correction, verified at five gear
+sets.)
+
+Notation, with `G` denoting the gears at least 5 and gear 3 present:
+
+    A = prod_G (q-2)      M = prod_G q      P = 3M      d = A/P
+    B = #{gaps = 3}       C = #{gaps = 6}
+    alpha = A/M = prod_G (1 - 2/q)          beta = prod_G (1 - 4/q)
+
+### 18a. Two mechanical blocking laws
+
+**Gear 3 blocks one of any two adjacent positions.** It blocks `{o, o+1}` of three residues, so
+its two forbidden offsets for positions `m, m+1` are `{m-1, m, m+1}` - all three residues. Hence no
+two adjacent positions are both exposed, every gap is a multiple of 3, and `F_h = 0 mod 3`.
+
+**Gear 5 blocks one of any three positions spaced 3 apart.** For `m, m+3, m+6` the forbidden
+offsets are `{m-1, m, m+2, m+3, m+5, m+6}`, which modulo 5 is `{m+4, m, m+2, m+3, m+1}` - all five
+residues. Hence `Y := #{m, m+3, m+6 all exposed} = 0`, verified directly for three gear sets.
+
+### 18b. L = 1, proved
+
+Every gap is a multiple of 3, so `G(1)` counts all gaps, `G(1) = A`; and `N(1)` counts the blocked
+positions, `N(1) = P - A`. So
+
+    h(1) = A/(P - A) = d/(1 - d) > d
+
+### 18c. L = 3, proved
+
+`N(3) = sum (g - 3) = P - 3A`, since all gaps are at least 3. And `B = #{gaps = 3} = #{m, m+3 both
+exposed}`, whose per-gear factor is `1` at `q = 3` and `q - 4` for `q >= 5`, giving `B = prod_G
+(q-4)`. So `G(3) = A - B` and the condition `h(3) >= d` rearranges to
+
+    **A^2 >= M B**,  equivalently  prod_G (1 - 2/q)^2 >= prod_G (1 - 4/q)
+
+which holds factor by factor, since
+
+    (1 - 2/q)^2 / (1 - 4/q) = 1 + 4/(q(q-4)) > 1   for every q >= 5
+
+The margin `A^2/(MB)` is `2.143, 2.254, 2.331, 2.373, 2.407, 2.429, 2.474, 2.502, 2.518` for gears
+to `7, 11, 13, 17, 19, 23, 43, 101, 1009` - increasing to a limit near `2.52`, since
+`sum 4/(q(q-4))` converges. Bounded, but bounded well away from 1.
+
+### 18d. L = 6, proved
+
+`C = #{gaps = 6} = X - Y` where `X = #{m, m+6 both exposed}`. The per-gear factors of `X` are `1` at
+`q = 3`, `2` at `q = 5`, `4` at `q = 7`, and `q - 4` beyond, so
+
+    X/B = (1 * 2 * 4)/(1 * 1 * 3) = 8/3
+
+and `Y = 0` by the gear-5 law of 18a. Hence **`C = (8/3) B`**, verified exactly for five gear sets -
+`B, C` equal `3, 8` then `21, 56` then `189, 504` then `2457, 6552` then `36855, 98280`.
+
+Then `N(6) = P - 6A + 3B` and `G(6) = A - B - C`, and `h(6) >= d` rearranges to
+
+    2 alpha^2 >= beta (alpha + 11/3)
+
+Using `alpha^2/beta >= 2.142857` from 18c and `alpha <= 0.4286` for any gear set containing 5 and
+7, the right side is at most `alpha^2 (alpha + 11/3)/2.142857 <= alpha^2 * 1.913 < 2 alpha^2`.
+Verified numerically with ratios `1.047, 1.122, 1.176, 1.208, 1.234, 1.252, 1.293, 1.324, 1.355` for
+gears to `7 .. 1009` - increasing, so the margin widens.
+
+For `{3,5}` alone the case is vacuous, since `F_h = 6` there and no gap exceeds 6.
+
+### 18e. Status
+
+Proved: `L = 1, 3, 6`. Each block start needs its own inequality, and the method is explicit -
+express `#{gaps = 3j}` through inclusion-exclusion over "`m, m+3, m+6, ...` all exposed" counts,
+each a product of per-gear factors, then rearrange. The gear-5 law kills the triple term, which is
+what made `L = 6` clean.
+
+What is not yet proved is the general block start `L = 3j`. The obstruction is bookkeeping rather
+than principle: the counts `#{gaps = 3j}` require inclusion-exclusion over longer configurations,
+and the per-gear factors depend on `q` case by case for small `q`. Whether the resulting
+inequalities all reduce to products bounded away from 1, as `L = 3` and `L = 6` did, is the open
+question.
