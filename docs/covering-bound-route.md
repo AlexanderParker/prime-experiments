@@ -240,6 +240,51 @@ The worst ratio is exactly `1 - d` in every passing case, attained at `L = 1` wh
 an equality by definition, and strict thereafter. Every violation is the `delta = 1` conspiracy and
 nothing else.
 
+### 8c-bis. Correction: the helper account had the dominant effect backwards
+
+Measuring the conditional blocking probability per gear - `Pr[gear q blocks the new position |
+[0,L-1) covered]` against the unconditional `2/q` - shows it almost always **below** `2/q`, not
+above. Conditioning on earlier coverage makes each gear *less* likely to block the next position,
+because an offset spent at the far end of the run contributes nothing to covering the rest of it.
+Aggregate escape probabilities measured for gears `5,7,11,13`: `0.368, 0.356, 0.387, 0.522, 0.448,
+0.552, 0.423, 0.400, 0.667, 1.000` against `d = 0.297` - the step law holds with a wide margin,
+and for the opposite reason to the one section 8b gives.
+
+The correct decomposition splits the two offsets that block position `i = L-1`:
+
+    o_q = i      blocks i and i+s   - contributes nothing earlier, so it is DISFAVOURED
+    o_q = i - s  blocks i-s and i   - dual use, so it is FAVOURED
+
+and the disfavouring dominates. Section 8b's divisor condition `q | 3 delta -/+ 1` correctly
+identifies which gears can serve two positions at distance `delta` from one offset, and it does
+govern the `L = 2` violation, where the earlier run is the single position 0 and the dual-use
+offset covers exactly it. It does **not** govern the general step, because the general step
+involves every earlier position rather than one distance.
+
+**Lemma A (proved).** If `i < q` and `s_q < q - i`, then
+`Pr[o_q = i | [0,i) covered] <= 1/q`.
+
+*Proof.* Under those conditions the offset `o_q = i` blocks no position of `[0,i)`: the first
+tooth needs `i >= q` to wrap back into the run, and the second, at `i + s_q`, needs
+`s_q >= q - i`. So vectors carrying that offset require the remaining gears to cover `[0,i)`
+unaided, while every other offset of `q` is at least as useful. Hence `N(i) >= q N_{-q}(i)`, and
+`Pr[o_q = i | cover] = N_{-q}(i)/N(i) <= 1/q`. QED
+
+Verified: 20 applicable cases, zero failures, and every violation of the inequality occurs exactly
+where the hypothesis fails - `q = 7, s = 5` at `i = 2, 3, 7`; `q = 13, s = 9` at `i = 4, 5, 8`.
+
+**But Lemma A does not reach the regime that matters.** Since `s_q = 3^{-1} mod q` equals
+`(q+1)/3` or `(2q+1)/3`, the hypothesis `s_q < q - i` requires roughly `q > 3i` - gears *larger*
+than the run. In the target regime the run has length `L` of order `y log^2 y` while gears go only
+to `y`, so no gear qualifies.
+
+### 8c-ter. Scale of the verification, stated honestly
+
+The bound is only needed for `L <= F_h(y)`, since `N(L) = 0` beyond that. As `F_h` behaves like
+`0.165 y^2`, the ratio `L/q` that matters grows like `0.165 y`. The exhaustive checks reach gears
+up to 19 with `L` up to 80, so `L/q` of about 4. The tests are therefore in the right qualitative
+regime but at small scale, and the conjecture is unverified where `L/q` is large.
+
 ### 8d. What remains, stated precisely
 
 The step law is now the only gap, and it has been reduced from a global statement about all gears
