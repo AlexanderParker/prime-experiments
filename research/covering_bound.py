@@ -71,7 +71,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 # exact F_h values established by the covering search in rust2/src/bin/maxgap.rs
 EXACT_FH = {5: 6, 7: 15, 11: 21, 13: 33, 17: 54, 19: 75, 23: 102,
-            29: 129, 31: 174, 37: 264, 41: 273, 43: 309}
+            29: 129, 31: 174, 37: 264, 41: 273, 43: 309, 47: 354}
 
 
 def odd_primes_upto(limit):
