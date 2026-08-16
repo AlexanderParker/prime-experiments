@@ -546,7 +546,7 @@ Measured, in t-space with gear 5 removed and `{7, 11, 13}` remaining:
 
 Zero violations, also for `{7,11,13,17}` and for removing gear 7 from `{11,13,17}`.
 
-### 12c. It fails only under uniform adjacency
+### 12c. It fails only under uniform adjacency - WRONG, see section 13
 
 Forcing every remaining gear to separation 1 breaks it: `{7,11,13}` gives ratio `1.2065` at
 `m = 1`, and `{11,13,17}` gives `1.1064`. So sub-problem negative correlation, like the step law of
@@ -561,7 +561,7 @@ That is now the single failure condition behind every route tried:
 | the step law | all gears help at distance 1 | 8 |
 | sub-problem negative correlation | all gears adjacent | 12c |
 
-### 12d. Uniform adjacency cannot occur
+### 12d. Uniform adjacency cannot occur - the divisor law is correct, the conclusion drawn from it is not, see section 13
 
 **Law.** Under the recursion, gear `q` reaches separation 1 exactly when `s_q q_1^{-1} = 1 mod q`,
 that is `s_q = q_1`, and with `s_q = 3^{-1} mod q` that is `3 q_1 = 1 mod q`:
@@ -599,3 +599,83 @@ number `3 q_1 - 1`.
 
 Every step is verified computationally and the last is proved. The gap is the third: "fails only
 under uniform adjacency" is an observed pattern across four independent routes, not yet a theorem.
+
+## 13. Correction, and the gear-3 lemma
+
+### 13a. Sections 12c and 12d overclaimed
+
+Section 12c asserted that the bound fails **only** under uniform adjacency - every gear sharing
+tooth separation 1. That is false, and an exhaustive search over separation vectors finds it
+immediately:
+
+| gears | separation vectors | bound fails for | of those, not uniformly adjacent |
+| --- | --- | --- | --- |
+| 5, 7, 11 | 240 | 56 | **55** |
+| 5, 7, 11, 13 | 2880 | 512 | **511** |
+
+For instance `{5,7,11}` with separations `(1, 1, 2)` fails at ratio `1.0534`. So uniform adjacency
+was pattern-matching on the handful of cases tested, and the "unified failure condition" of
+section 12c does not exist in that form. The divisor law of 12d - gear `q` reaches separation 1 at
+level `q_1` exactly when `q | 3 q_1 - 1`, verified with zero mismatches - is correct as arithmetic;
+what was wrong was concluding from it that failure is impossible.
+
+### 13b. The real condition is gear 3, and it is separation-independent
+
+The same search shows something much stronger. Exhaustively over **every** assignment of tooth
+separations:
+
+| gears | separation vectors | failures | worst ratio |
+| --- | --- | --- | --- |
+| 3, 5 | 8 | **0** | 1.000000 |
+| 3, 5, 7 | 48 | **0** | 1.000000 |
+| 3, 5, 7, 11 | 480 | **0** | 1.000000 |
+| 3, 5, 7, 11, 13 | 5760 | **0** | 1.000000 |
+| 5, 7 | 24 | 4 (17%) | 1.1375 |
+| 5, 7, 11 | 240 | 56 (23%) | 1.1026 |
+| 5, 7, 11, 13 | 2880 | 512 (18%) | 1.0805 |
+
+> **Gear-3 lemma (conjectured).** For any gear set containing 3, and *any* assignment of tooth
+> separations, `N(L) <= P (1 - d)^L`.
+
+The worst ratio is exactly `1.000000` in every case with gear 3 - the `L = 1` equality - so the
+bound holds strictly for all `L >= 2`. This is a stronger statement than the original conjecture,
+since it drops all reference to the machine's particular separations `3^{-1} mod q`, and it is a
+cleaner one, since the failure condition is a single membership question rather than a property of
+the separation vector.
+
+### 13c. Why gear 3 suffices - the slack absorbs the failure
+
+Gear 3 blocks two of its three residues, so it leaves exactly one class mod 3: an arithmetic
+progression of difference 3, which reindexes to an interval of length `L/3` carrying the remaining
+gears at separations `s_q 3^{-1}`. That gives
+
+    N(L) = sum over o_3 of N'(M),  M approx L/3
+
+and combining with the reduced bound and Bernoulli, `(1 - d')^{L/3} <= (1 - d'/3)^L = (1 - d)^L`.
+The Bernoulli step is not tight, and the slack it leaves is exactly what absorbs the t-space
+failures:
+
+| gears (no 3) | worst t-space failure | Bernoulli slack at L=6 | at L=12 | at L=24 |
+| --- | --- | --- | --- | --- |
+| 5, 7 | 1.1375 | **1.2145** | 1.4750 | 2.1756 |
+| 5, 7, 11 | 1.1026 | **1.1250** | 1.2656 | 1.6018 |
+
+The slack exceeds the failure at the matching length and widens with `L`. So the reduction can
+afford a failing sub-problem: gear 3 does not prevent the t-space bound from breaking, it makes the
+breakage harmless. Confirmed directly - prepending gear 3 to the separation vectors that fail
+worst without it gives worst ratio exactly `1.000000` in every case.
+
+### 13d. What this changes
+
+The gap is now a single implication with no reference to the machine's separations:
+
+> for any gear set containing 3 and any tooth separations, the covering count satisfies
+> `N(L) <= P (1 - d)^L`
+
+with the mechanism identified - gear 3 reduces the problem by a factor of 3 in length while
+reducing `d` by a factor of 3 in strength, and Bernoulli makes that trade favourable by a margin
+that grows with `L` and exceeds the worst possible sub-problem failure.
+
+This supersedes sections 8b, 12c and 12d as accounts of *why* the bound holds. What survives from
+them: the divisor law `q | 3 q_1 - 1` is correct arithmetic, Lemma A of 8c-bis is correct and
+limited, and the spread lemma of 9c is correct and exact.
