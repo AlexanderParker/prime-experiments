@@ -43,6 +43,22 @@ Consistently with that, the lemma is violated by gear sets omitting 3 - `{5,7}` 
 has been checked. The machine always contains 3: it is half of the `2, 3` block that makes the
 6-cycle.
 
+**Scope of that account.** Adjacency controls the bound at `L = 2` exactly, not at every `L`, and
+non-adjacent teeth do *not* make all pairs negatively correlated - in `t`-space five of the first
+twelve distances are positively correlated and the bound holds anyway. The bound is therefore not
+a correlation inequality. See `helpers_at` and `step_law` below for the form that does govern it:
+
+    step law:  N(L)/N(L-1) <= 1 - d,  which gives the lemma by induction
+
+A gear can only make covering `L` easier when its **tooth separation** equals the distance
+involved, so the gears able to help at distance `delta` are exactly those with `s_q = +/- delta`.
+With adjacent teeth that is every gear at `delta = 1` - the single conspiracy that breaks the
+bound - while in `t`-space `s_q = 3^{-1} mod q` gives the divisor condition
+
+    q | 3 delta - 1   or   q | 3 delta + 1
+
+at most `2 log2(3 delta + 1)` gears, never all of them.
+
 **Status: conjecture.** Verified exhaustively for the sets below, not proved.
 """
 
@@ -177,3 +193,69 @@ if __name__ == "__main__":
         print(f"  {y:>5} {str(ex) if ex else '-':>10} {L0:>9} {y * y / 2:>9.1f} "
               f"{str(ex < y * y / 2) if ex else '-':>9} {str(L0 < y * y / 2):>9}")
     print("\n  the two ranges overlap from y = 23 to y = 43, so the union is complete.")
+
+
+# ---------------------------------------------------------------------------
+# The step law (section 8 of docs/covering-bound-route.md)
+#
+# N(L+1) counts the vectors covering [0,L) that also cover L, so the lemma follows by
+# induction from  N(L)/N(L-1) <= 1 - d.  A gear can make covering L easier only when its
+# tooth separation equals the distance involved, and in t-space that separation is
+# 3^{-1} mod q - so the gears able to help at distance delta are exactly the prime
+# divisors of 3*delta - 1 and 3*delta + 1, at most 2 log2(3 delta + 1) of them.
+# ---------------------------------------------------------------------------
+
+
+def tooth_separation(q, mode="t"):
+    """Distance between gear `q`'s two blocked residues: 1 adjacent, else `3^{-1} mod q`."""
+    return pow(3, -1, q) if mode == "t" else 1
+
+
+def helpers_at(primes, delta, mode="t"):
+    """Gears whose tooth separation equals +/- delta - the only ones that can help."""
+    out = []
+    for q in primes:
+        s = tooth_separation(q, mode) % q
+        if delta % q in (s, (-s) % q):
+            out.append(q)
+    return out
+
+
+def helpers_by_divisor_law(primes, delta):
+    """The same set, predicted from the divisor condition `q | 3 delta -/+ 1`."""
+    return [q for q in primes
+            if (3 * delta - 1) % q == 0 or (3 * delta + 1) % q == 0]
+
+
+def counts_with_separation(primes, Lmax, mode="t"):
+    """`N(L)` for every `L <= Lmax`, with the given tooth separation."""
+    acc = [0]
+    for q in primes:
+        s = tooth_separation(q, mode)
+        masks = []
+        for r in range(q):
+            m = 0
+            for i in range(Lmax):
+                if i % q in (r % q, (r + s) % q):
+                    m |= 1 << i
+            masks.append(m)
+        acc = [a | m for a in acc for m in masks]
+    full = lambda L: (1 << L) - 1
+    return [sum(1 for a in acc if a & full(L) == full(L)) for L in range(1, Lmax + 1)]
+
+
+def step_law(primes, Lmax, mode="t"):
+    """Per-step ratios `N(L)/N(L-1)` against `1 - d`, with the helpers at each step."""
+    P = prod(primes)
+    d = density(primes)
+    counts = counts_with_separation(primes, Lmax, mode)
+    rows = []
+    for L in range(1, Lmax + 1):
+        prev = P if L == 1 else counts[L - 2]
+        if prev == 0:
+            break
+        ratio = counts[L - 1] / prev
+        rows.append({"L": L, "N": counts[L - 1], "ratio": ratio,
+                     "holds": ratio <= 1 - d + 1e-12,
+                     "helpers": helpers_at(primes, L - 1, mode) if L > 1 else []})
+    return rows

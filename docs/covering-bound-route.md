@@ -178,3 +178,77 @@ What is verified: the lemma holds with zero violations for every gear set contai
 been checked exhaustively, up to `P = 4.8` million and `L = 80`; it fails without 3; the mechanism
 distinguishing the two cases is identified exactly; and if it holds, the twin prime conjecture
 follows from it together with the computed values for `y <= 43`.
+
+## 8. The step law, and the residue condition that governs it
+
+This is the sharpest form the route has taken, and it is a statement about modular residues
+rather than about counting.
+
+### 8a. The lemma is an induction with one step
+
+A vector covers `[0, L+1)` exactly when it covers `[0, L)` **and** covers position `L`. So
+
+    N(L+1) = #{vectors covering [0,L) that also cover L}
+
+and the lemma `N(L) <= P (1 - d)^L` follows by induction from the single step
+
+    **step law:  N(L) / N(L-1) <= 1 - d**
+
+Since `1 - d` is the unconditional chance a position is covered, the step law says: covering the
+earlier positions must not make covering the next one *easier*.
+
+### 8b. When it can be easier - the residue condition
+
+One offset serves two positions exactly when their distance equals that gear's **tooth
+separation**. Gear `q` blocks `{r, r + s_q}`, so it covers both `i` and `i + delta` from a single
+offset precisely when `delta = +/- s_q mod q`. Those are the gears that "help" at distance
+`delta`, and they are the only route to a violation.
+
+* **Adjacent teeth** (`s_q = 1` for every gear): *every* gear helps at `delta = 1`. All of them
+  conspire at once, and the step law fails at `L = 2`.
+* **`t`-space** (`s_q = 3^{-1} mod q`, after conditioning on gear 3): gear `q` helps at `delta`
+  iff `3^{-1} = +/- delta mod q`, that is
+
+      **q | 3 delta - 1   or   q | 3 delta + 1**
+
+  so the helpers at distance `delta` are exactly the prime divisors of `3 delta - 1` and
+  `3 delta + 1`. Verified with zero mismatches over gears 5 to 299 and `delta` 1 to 39.
+
+The count of helpers is therefore at most `omega(3 delta - 1) + omega(3 delta + 1)`, which is at
+most `2 log_2 (3 delta + 1)` - six gears at `delta = 2`, ten at `delta = 10`, twenty-four at
+`delta = 1000`. **Never all `pi(y)` of them.** The conspiracy that breaks the adjacent case cannot
+recur, because no single distance is the tooth separation of more than a logarithmic number of
+gears.
+
+### 8c. Measured
+
+| gears | tooth separation | steps tested | violations | worst ratio / (1-d) |
+| --- | --- | --- | --- | --- |
+| 5, 7 | 3^-1 | 10 | 0 | 1.00000 |
+| 5, 7, 11 | 3^-1 | 14 | 0 | 1.00000 |
+| 5, 7, 11, 13 | 3^-1 | 14 | 0 | 1.00000 |
+| 5, 7, 11, 13, 17 | 3^-1 | 20 | 0 | 1.00000 |
+| 3, 5, 7 | 1 | 18 | 0 | 1.00000 |
+| 3, 5, 7, 11 | 1 | 24 | 0 | 1.00000 |
+| 3, 5, 7, 11, 13 | 1 | 34 | 0 | 1.00000 |
+| 3, 5, 7, 11, 13, 17 | 1 | 40 | 0 | 1.00000 |
+| 5, 7 | 1 | 10 | **1** (at L=2) | 1.13750 |
+| 5, 7, 11 | 1 | 12 | **1** (at L=2) | 1.10264 |
+| 7, 11, 13 | 1 | 14 | **1** (at L=2) | 1.29408 |
+
+The worst ratio is exactly `1 - d` in every passing case, attained at `L = 1` where the step law is
+an equality by definition, and strict thereafter. Every violation is the `delta = 1` conspiracy and
+nothing else.
+
+### 8d. What remains, stated precisely
+
+The step law is now the only gap, and it has been reduced from a global statement about all gears
+to a local one about an explicitly identified set:
+
+> At each `L`, the gears that can push `N(L)/N(L-1)` above `1 - d` are exactly the prime divisors
+> of `3(L-1) - 1` and `3(L-1) + 1`. Show that a set of at most `2 log_2 (3L)` gears cannot do so.
+
+That is a finite, modular condition at each step rather than a correlation inequality over the
+whole run, and it is the form a mechanical proof should take: the mechanism places twins, the only
+thing that could stop it is a simultaneous conspiracy of every gear at one distance, and the
+divisors of `3 delta -/+ 1` are too few for that conspiracy to exist.
