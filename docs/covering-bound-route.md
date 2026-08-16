@@ -992,3 +992,72 @@ than principle: the counts `#{gaps = 3j}` require inclusion-exclusion over longe
 and the per-gear factors depend on `q` case by case for small `q`. Whether the resulting
 inequalities all reduce to products bounded away from 1, as `L = 3` and `L = 6` did, is the open
 question.
+
+## 19. Closed-form machinery for the block starts
+
+Built as `research/hazard.py`.
+
+### 19a. Gap counts in closed form
+
+For a set `S` of positions, `#{m : every position of m + S is exposed}` is a product of per-gear
+factors, `prod_q (q - |W_q(S)|)` with `W_q(S) = {s-1, s : s in S} mod q`, since gear `q` blocks
+position `s` exactly when its offset is `s - 1` or `s`. Then
+
+    #{gaps = L} = sum over subsets T of the interior multiples of 3 of
+                  (-1)^{|T|} * #{ {0} u T u {L} all exposed }
+
+A term vanishes exactly when its position set contains three points spaced 3 apart, by the gear-5
+law of 18a, which prunes most of the sum. Verified against direct enumeration for `{3,5,7}`,
+`{3,5,7,11}`, `{3,5,7,11,13}`: the predicted profile equals the measured one exactly.
+
+**A pruning bug worth recording.** The first version also discarded any subset whose first interior
+point was `3` or whose last was `L - 3`, on the mistaken view that those adjoin the endpoints to
+make a triple. They do not - `{0, 3, 9}` holds no three points spaced 3 apart - and the error
+produced negative gap counts (`-4` at `L = 21`) and nonsense hazard values including `-1.43`. The
+correct test is for an actual chain `s, s+3, s+6` inside the set.
+
+### 19b. Only the first j gap counts are needed
+
+The full profile is not required. Since every gap is a multiple of 3,
+
+    N(3j) = P - 3j A + sum_{i<j} 3(j-i) * #{gaps = 3i}
+    G(3j) = A - sum_{i<=j} #{gaps = 3i}
+
+so the block start `L = 3j` needs only the gap counts up to `3j`. That is what makes larger `y`
+tractable: the inclusion-exclusion for `#{gaps = 3j}` is over an interior of `j - 1` points, not
+over the whole period.
+
+### 19c. Verified block starts
+
+Hazard `h(L)` computed this way, as a ratio to `d`:
+
+| y | L=3 | L=6 | L=9 | L=12 | L=15 | h(1)/d = 1/(1-d) |
+| --- | --- | --- | --- | --- | --- | --- |
+| 7 | 1.400 | 1.167 | 1.167 | 2.333 | - | 1.167 |
+| 11 | 1.300 | 1.216 | 1.316 | 2.037 | 1.901 | 1.132 |
+| 13 | 1.241 | 1.200 | 1.304 | 1.758 | 1.509 | 1.110 |
+| 17 | 1.205 | 1.179 | 1.271 | 1.609 | 1.373 | 1.096 |
+| 19 | 1.179 | 1.160 | 1.242 | 1.510 | 1.303 | 1.085 |
+| 23 | 1.160 | 1.146 | 1.219 | 1.443 | 1.259 | 1.077 |
+| 29 | 1.147 | 1.134 | 1.201 | 1.397 | 1.230 | 1.071 |
+| 43 | 1.113 | 1.105 | 1.154 | 1.289 | 1.165 | 1.056 |
+
+All hold. Every column decreases with `y`, and so does the last - but **the last column is the
+smallest in every row from `y = 11` onward**, so the binding constraint is `L = 1`, which is the case
+that is automatic. That is the useful structural observation: the genuine cases sit above the free
+one, with the gap between them roughly constant.
+
+### 19d. The clean pattern does not continue
+
+`C = (8/3) B` held exactly for `#{gaps = 6}` against `#{gaps = 3}` (section 18d). The analogous ratio
+for `#{gaps = 9}` is **not** constant: `D/B` is `2/3` at `y = 7` and `22/21` at `y = 11`. So each
+block start needs its own computation, with per-gear special cases at small `q`, and there is no
+single product identity covering them all.
+
+The `L = 9` condition itself reduces to
+
+    9 A^2 >= 14 A B + 11 M B + 3 M D
+
+using `C = (8/3)B` and `P = 3M`, so a closed form for `D` would settle it by the same route that
+settled `L = 3` and `L = 6`. That closed form exists - it is
+`f({0,9}) - 2 f({0,3,9})`, both products - but its small-`q` factors differ case by case.
