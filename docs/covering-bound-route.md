@@ -636,6 +636,8 @@ separations:
 
 > **Gear-3 lemma (conjectured).** For any gear set containing 3, and *any* assignment of tooth
 > separations, `N(L) <= P (1 - d)^L`.
+>
+> **REFUTED - see section 14.**
 
 The worst ratio is exactly `1.000000` in every case with gear 3 - the `L = 1` equality - so the
 bound holds strictly for all `L >= 2`. This is a stronger statement than the original conjecture,
@@ -679,3 +681,73 @@ that grows with `L` and exceeds the worst possible sub-problem failure.
 This supersedes sections 8b, 12c and 12d as accounts of *why* the bound holds. What survives from
 them: the divisor law `q | 3 q_1 - 1` is correct arithmetic, Lemma A of 8c-bis is correct and
 limited, and the spread lemma of 9c is correct and exact.
+
+## 14. The gear-3 lemma is false, and what survives
+
+### 14a. The counterexample
+
+Section 13b conjectured that gear 3's presence guarantees the bound for *any* separations, on the
+strength of exhaustive searches over sets up to `{3,5,7,11,13}`. Adding one gear breaks it:
+
+    gears {3, 5, 7, 11, 13, 17},  separations (1, 3, 3, 3, 3, 3),  L = 6
+
+    P = 255255,  d = 0.087265676,  (1-d)^6 = 0.578184305
+    N(6) = 148485
+    P (1-d)^6 = 147584.435
+    ratio = 1.006102        BOUND FAILS
+
+Verified twice, the second time by direct enumeration of all 255255 offset tuples with no
+bitmasking, to rule out an implementation error. Both `s_3 = 1` and `s_3 = 2` fail identically.
+
+This is the third overclaim in this area, and the cause is the same each time: exhaustive search
+over separation vectors, but only for gear sets small enough to enumerate. Five gears held; six
+did not.
+
+### 14b. What the failing configuration is, and why it is not the machine
+
+The failure is at separations `s_q = 3` for every gear above 3. Under the reduction of section 13c
+those induce sub-problem separations `3 * 3^{-1} = 1` - all adjacent, the worst case for the
+sub-problem. So the counterexample is precisely the configuration engineered to hand the
+sub-problem its worst case, and it is not the machine's.
+
+The machine, in the halved-coordinate frame of `maxgap.rs`, has **every separation equal to 1**.
+At the very same gear set and length:
+
+    separations (3,3,3,3,3,3) -> ratio 1.006102   fails
+    separations (1,1,1,1,1,1) -> ratio 0.873913   holds, with wide margin
+
+### 14c. Status of the three statements
+
+| statement | status |
+| --- | --- |
+| bound at the machine's separations (all 1, gear 3 present) | verified to 100 billion offset vectors, `y <= 31`, no counterexample |
+| bound for any separations **with** gear 3 | **false** - section 14a |
+| bound for any separations **without** gear 3 | **false** - 17 to 23 percent of separation vectors, section 13b |
+
+So there is no separation-independent generalisation, and the attempt to find one has now failed
+in both directions. The machine's configuration is special rather than generic - which is
+consistent with the whole programme's premise, but it removes the clean lemma of section 13 and
+returns the open statement to its original, narrower form:
+
+> for the gear set `{3, 5, ..., y}` with every tooth separation equal to 1,
+> `N(L) <= P (1 - d)^L`
+
+verified exhaustively at `y = 19, 23, 29, 31` over 4.8 million, 111 million, 3.2 billion and 100
+billion offset vectors, with worst ratio exactly `1.000000` throughout.
+
+### 14d. What this rules out for a proof
+
+Any proof of the narrow statement must use the separations, not merely gear 3's presence. In
+particular:
+
+* the reduction of section 13c is sound as arithmetic but cannot be closed by a *uniform* bound on
+  the sub-problem, since the sub-problem's bound genuinely fails for some induced separations;
+* it can only be closed by using the fact that the machine's induced separations are `3^{-1} mod q`
+  - the t-space case - where the sub-problem excess `E(m)` was measured at `0.907, 0.943, 0.961,
+  0.971, 0.977` of the available slack `kappa^m`, covered in every case but with the margin
+  narrowing as gears are added.
+
+That narrowing is the thing to watch: at `m = 1` the ratio is exactly `1/kappa`, and
+`kappa - 1 = d'^2 (9 - d')/27` tends to zero as `d'` does. The margin is strictly positive at every
+finite stage but shrinks, so a proof along these lines needs the `m >= 2` behaviour to compensate,
+which is where the measured ratios do fall away.
