@@ -381,3 +381,61 @@ Stated as the contradiction, the argument is complete except for that link:
 > offset of every gear blocks within 2 of the same number of run positions - exactly 0 apart when
 > the gear divides the run length - and the difference vanishes like `q/L` in the regime the
 > window requires.
+
+## 10. Two results on what has to be proved
+
+### 10a. Sub-multiplicativity is false, so that route is closed
+
+Since covering `[0, a+b)` means covering `[0,a)` and covering `[a, a+b)`, and the second has the
+same count as covering `[0,b)` by translation, the natural stronger statement is
+
+    N(a+b) * P <= N(a) * N(b)
+
+- the two covering events negatively correlated - which would give the bound by induction from
+`L = 1`. **It is false.** For gears `{3, 5, 7}` at `a = b = 6`:
+
+    N(6) = 24,  N(12) = 6,  P = 105
+    N(12) * P = 630  >  N(6) * N(6) = 576      ratio 1.09375
+
+Checked over all `(a,b)` pairs: this is the only violation among the sets tested, and the four
+other sets - `{3,5,7,11}`, `{3,5,7,11,13}` adjacent, `{5,7,11}`, `{5,7,11,13}` in t-space - have
+none. But one counterexample settles it.
+
+Worth noting the bound itself still holds at that point: `N(12) = 6` against
+`P (1-d)^12 = 16.5`. So the bound is **strictly weaker** than sub-multiplicativity, and proving it
+cannot go through negative correlation of block-covering events.
+
+### 10b. The bound needed is far weaker than the bound conjectured
+
+The argument needs `L_0 = log P / -log(rho) < y^2/2` for whatever decay rate `rho` is available,
+so it needs only
+
+    rho <= exp(-2 log P / y^2),   that is a decay rate of about  2 log P / y^2 ~ 2/y
+
+while the conjectured rate is `d`, of order `1/log^2 y`. The slack:
+
+| y | log P | d | needed rate | d / needed |
+| --- | --- | --- | --- | --- |
+| 19 | 15.39 | 0.078080 | 0.085288 | 0.92 (short) |
+| 23 | 18.53 | 0.071290 | 0.070057 | 1.02 |
+| 29 | 21.90 | 0.066374 | 0.052074 | 1.27 |
+| 43 | 36.42 | 0.053271 | 0.039391 | 1.35 |
+| 101 | 87.65 | 0.037539 | 0.017185 | 2.18 |
+| 1009 | 962.47 | 0.017278 | 0.001891 | 9.14 |
+| 10007 | 0.99e4 | 0.009787 | 0.000198 | 49.5 |
+| 10^6 | 1.0e6 | 0.004361 | 0.0000020 | 2184 |
+
+The slack grows like `y / (2 log^2 y)`, unbounded. So **the sharp bound is far more than the
+argument requires**: any per-step decay of at least `2 log P / y^2` suffices, and at `y = 29` the
+measured maximum step ratio is `0.933626` against a permitted `0.947926` - a margin of `0.0143`
+already, widening without limit.
+
+This reframes the remaining work. The target is not the tight inequality
+`N(L)/N(L-1) <= 1 - d`, which is an equality at `L = 1` and therefore has no slack at all there.
+It is the loose inequality
+
+    N(L)/N(L-1) <= 1 - 2 log P / y^2
+
+which has slack everywhere for `y >= 23`, and which needs only that the conditional escape
+probability at each step be at least about `2/y` - rather than at least `d`. A far weaker
+statement about the mechanics of section 9.
