@@ -259,3 +259,21 @@ def step_law(primes, Lmax, mode="t"):
                      "holds": ratio <= 1 - d + 1e-12,
                      "helpers": helpers_at(primes, L - 1, mode) if L > 1 else []})
     return rows
+
+
+def usefulness_spread(q, i, mode="t"):
+    """How much the offsets of gear `q` differ in how much of `[0,i)` they block.
+
+    Spread lemma: offset `o` blocks `#{j < i : j = o or o + s mod q}` positions, and each of the
+    two residues contributes `floor(i/q)` or `ceil(i/q)`. So every offset blocks between
+    `2 floor(i/q)` and `2 floor(i/q) + 2` positions - a spread of at most 2 whatever `i` and `q`,
+    and exactly 0 when `q` divides `i`, where all `q` offsets are perfectly interchangeable.
+
+    This is the mechanism behind the step law: an offset can only be favoured by the covering
+    requirement if it is more useful than its alternatives, and in the window regime none is.
+    """
+    s = tooth_separation(q, mode)
+    counts = [sum(1 for j in range(i) if j % q in (o % q, (o + s) % q)) for o in range(q)]
+    return {"q": q, "i": i, "min": min(counts), "max": max(counts),
+            "spread": max(counts) - min(counts),
+            "relative": (max(counts) - min(counts)) / max(1, min(counts))}

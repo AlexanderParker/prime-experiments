@@ -138,6 +138,39 @@ fn main() {
         suffix[l] = suffix[l + 1] + hist[l];
     }
 
+    // Step law: N(L)/N(L-1) against 1 - d. The offset-usefulness spread is at most 2 and
+    // vanishes relatively like q/L, so the margin should widen as L/q_max grows.
+    let qmax = *primes.last().unwrap();
+    println!("\n  step law: N(L)/N(L-1) vs 1-d = {:.6}", 1.0 - d);
+    println!(
+        "  {:>5} {:>8} {:>14} {:>12} {:>10} {:>7}",
+        "L", "L/qmax", "N(L)", "step ratio", "margin", "holds"
+    );
+    let mut step_violations = 0usize;
+    for l in 1..=lmax {
+        let prev = if l == 1 { period as f64 } else { suffix[l - 1] as f64 };
+        if prev == 0.0 {
+            break;
+        }
+        let ratio = suffix[l] as f64 / prev;
+        let margin = (1.0 - d) - ratio;
+        if margin < -1e-12 {
+            step_violations += 1;
+        }
+        if l <= 3 || l % 10 == 0 {
+            println!(
+                "  {:>5} {:>8.2} {:>14} {:>12.6} {:>10.6} {:>7}",
+                l,
+                l as f64 / qmax as f64,
+                suffix[l],
+                ratio,
+                margin,
+                margin >= -1e-12
+            );
+        }
+    }
+    println!("  step-law violations: {step_violations}");
+
     println!("\n  {:>5} {:>18} {:>18} {:>10} {:>8}", "L", "N(L)", "P (1-d)^L", "ratio", "holds");
     let mut violations = 0usize;
     let mut worst = 0.0f64;

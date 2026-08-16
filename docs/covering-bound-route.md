@@ -297,3 +297,87 @@ That is a finite, modular condition at each step rather than a correlation inequ
 whole run, and it is the form a mechanical proof should take: the mechanism places twins, the only
 thing that could stop it is a simultaneous conspiracy of every gear at one distance, and the
 divisors of `3 delta -/+ 1` are too few for that conspiracy to exist.
+
+## 9. The mechanism, stated as the contradiction
+
+This is the argument in the form the whole route was aiming at: a mechanism, the condition that
+would have to hold to stop it, and the reason that condition cannot hold.
+
+### 9a. The mechanism
+
+Gears 2 and 3 leave slots 1 and 5 of every six. Each gear `q <= y` then blocks exactly two of
+every `q` twin slots, at `k = +/- 6^{-1} mod q`. Inside the window `(y, y^2]` those gears decide
+primality outright, so **any slot they all leave open is a twin pair**. That is the generating
+mechanism, and it is exact - no estimate enters.
+
+### 9b. What would have to happen to stop it
+
+A twin fails to appear in the window only if every slot of the window is blocked - a **covering**.
+Coverings are offset vectors, so writing `N(L)` for the number covering a run of length `L`,
+prevention requires `N(L) >= 1` at `L` equal to the window length.
+
+Now `N` decays step by step: a vector covers `[0,L+1)` exactly when it covers `[0,L)` and covers
+`L`, so
+
+    N(L) = N(L-1) * Pr[block the new position | earlier run covered]
+
+If that conditional probability never exceeds `1 - d`, then `N(L) <= P (1-d)^L`, which is below 1
+for `L >= L_0` of order `y log^2 y` - far short of the window. So **prevention requires the step
+ratio to exceed `1 - d`**, that is, it requires conditioning on the covered run to *favour* the
+offsets that also block the next position.
+
+### 9c. Why that cannot happen in the window regime
+
+An offset can be favoured only by being more useful for covering the run than its alternatives.
+And the usefulness of every offset of a given gear is almost identical:
+
+> **Spread lemma.** For gear `q` with tooth separation `s`, the offset `o` blocks
+> `#{j < i : j = o or o+s mod q}` positions of the run. Each of the two residues contributes
+> `floor(i/q)` or `ceil(i/q)`, so every offset blocks between `2 floor(i/q)` and
+> `2 floor(i/q) + 2` positions - **a spread of at most 2, whatever `i` and `q`. When `q` divides
+> `i` the spread is exactly 0** and all `q` offsets are perfectly interchangeable.
+
+Measured for `q = 5, 7, 11, 29`: spread 0 at every `i` that is a multiple of `q`, and relative
+spread falling like `q/i` - `1.0` at `i = 4, q = 5`, then `0.0000` from `i = q` onward.
+
+So in the window regime, where the run is far longer than any gear, no offset of any gear is
+materially more useful than another, and the conditioning cannot concentrate on the offsets that
+block the next position. Conversely, when `i < q` the offsets differ absolutely - some block no
+position of the run at all - and that is precisely the regime where every violation was found, at
+`L = 2` and `L = 3`.
+
+### 9d. Measured signature of the mechanism
+
+If this is the right mechanism, the step-law margin should widen as `L/q` grows. At `y = 29`,
+3.2 billion offset vectors enumerated exhaustively:
+
+| L | L / q_max | step ratio | margin above `1-d` |
+| --- | --- | --- | --- |
+| 1 | 0.03 | 0.933626 | 0.000000 |
+| 10 | 0.34 | 0.920303 | 0.013323 |
+| 30 | 1.03 | 0.884753 | 0.048873 |
+| 60 | 2.07 | 0.861040 | 0.072586 |
+| 90 | 3.10 | 0.724816 | 0.208810 |
+| 120 | 4.14 | 0.642857 | 0.290769 |
+
+Zero step-law violations, and the margin is zero only at `L = 1`, where the step law is an
+equality by construction. The margin grows monotonically in trend, exactly as the spread lemma
+predicts.
+
+### 9e. The gap that is left
+
+The spread lemma is proved and exact. What is not proved is the implication
+
+    offsets nearly equally useful  =>  step ratio at most 1 - d
+
+Usefulness is not the only thing conditioning responds to: *where* an offset blocks matters as
+well as how much, since overlaps with other gears differ. So the mechanism is identified and its
+signature measured, but the final implication is still a conjecture.
+
+Stated as the contradiction, the argument is complete except for that link:
+
+> The mechanism generates a twin in every window. To stop it, the covered run would have to
+> favour the offsets that block the next slot. Those offsets cannot be favoured, because every
+> offset of every gear blocks within 2 of the same number of run positions - exactly 0 apart when
+> the gear divides the run length - and the difference vanishes like `q/L` in the regime the
+> window requires.
