@@ -56,8 +56,10 @@ number of offsets that would block either of them:
 | distance `>= 2` | `{i-1, i, j-1, j}`, four of them | `1 - 4/q` | smaller - **negatively** correlated |
 | adjacent | `{i-1, i, i+1}`, only three | `1 - 3/q` | larger for `q >= 5` - **positively** correlated |
 
-Adjacent positions are the sole source of positive correlation, and at `q = 3` their factor is
-`1 - 3/3 = 0` exactly. **Gear 3 blocks `{o, o+1}` of its three residues, leaving only `o+2`, so of
+Adjacent positions are the sole source of positive correlation *in this frame*, and at `q = 3`
+their factor is `1 - 3/3 = 0` exactly. (Section 6a corrects the scope of this: adjacency controls
+the bound at `L = 2` exactly, not at every `L`, and positive correlations reappear at other
+distances once the frame changes.) **Gear 3 blocks `{o, o+1}` of its three residues, leaving only `o+2`, so of
 any two adjacent positions at least one is always blocked by gear 3 alone.** The positive
 correlation is annihilated by the 6-cycle itself.
 
@@ -111,19 +113,66 @@ The window needs `F_h(y) < y^2/2`. Exact values settle `y <= 43`; the bound must
 **The two ranges overlap on `23 <= y <= 43`, so their union is every `y`.** The bound's margin
 widens without limit, since `y log^2 y` against `y^2/2` is a growing gap.
 
+## 6a. Conditioning on gear 3, and where the failure mode actually lives
+
+Conditioning on gear 3 sharpens the picture. The positions gear 3 leaves open form an arithmetic
+progression of difference 3; reindexing those by `t`, gear `q` blocks two residues mod `q`
+separated by `s_q = 3^{-1} mod q`. Adjacency in `t` would need `s_q = +/-1`, that is `q | 3 -/+ 1`,
+so `q = 2` - impossible for a gear. Checked for every gear from 5 to 199: **no gear has adjacent
+teeth in `t`-space.**
+
+The reduction is valid and gives a stronger statement than the lemma:
+
+    N(L) = sum over o_3 of N'(M),  M approx L/3
+    N'(M) <= P' (1 - d')^M                       (the t-space bound)
+    (1 - d')^{L/3} <= (1 - d'/3)^L = (1 - d)^L   since 0 <= d'^2 (9 - d')/27
+
+so the `t`-space bound implies the lemma. And the `t`-space bound holds with zero violations for
+exactly the gear sets that violate the adjacent-teeth version:
+
+| gears | adjacent teeth, worst ratio | t-space, worst ratio |
+| --- | --- | --- |
+| 5, 7 | 1.1375 (1 violation) | 1.0000 (0) |
+| 5, 7, 11 | 1.1026 (2) | 1.0000 (0) |
+| 5, 7, 11, 13 | 1.0805 (2) | 1.0000 (0) |
+| 5, 7, 11, 13, 17 | - | 1.0000 (0) |
+
+**Correction to the account in section 4.** Tooth adjacency controls the bound at `M = 2` exactly,
+and empirically at `M = 3`: at `M = 2` the bound reads `1 - 2d + Pr[both escape]` against
+`1 - 2d + d^2`, so it holds precisely when the distance-1 escape probability is at most `d^2`, and
+gear 3 forces that probability to zero. But it is **not** true that non-adjacent teeth make all
+pairs negatively correlated. Measured in `t`-space for gears `5, 7, 11, 13`, five of the twelve
+distances `1..12` are positively correlated - distances 2, 5, 7, 10, 12, corresponding to gears
+dividing `3 delta -/+ 1` - and the bound holds regardless. So the bound is not a pairwise
+consequence, and any proof needs more than a correlation inequality.
+
+What the measurement does establish is that the failure mode is confined to very small `M`. The
+adjacent-teeth ratio exceeds 1 only at `M = 2, 3`, and is below 1 from `M = 4` onward; the ratio
+then decays roughly geometrically, reaching 0.08 by `M = 10`. Since the argument needs the bound
+at `M = L_0`, of order `y log^2 y`, it is needed only in the regime where the measured margin is
+enormous - which is favourable, but is not yet a proof.
+
 ## 7. What remains
 
-Prove the lemma. Two properties would suffice, and both are standard in form:
+Prove the lemma - and section 6a narrows what has to be proved in two useful ways.
 
-1. For a single prime, the family of escape indicators over `[0, L)` behaves at least as well as
-   independent when the adjacent pairs are excluded.
-2. Independent gears compose, so the per-gear property lifts to the product.
+**It is not a correlation inequality.** Pairwise negativity is neither available nor sufficient:
+in `t`-space five of the first twelve distances are positively correlated, and the bound holds
+anyway. So negative association, Harris, FKG and the like are the wrong tools; the escape
+indicators for one prime come from a *cyclic shift* of a fixed pattern, and cyclic-shift families
+are not negatively associated in general.
 
-The obstacle to quoting standard negative-association machinery directly is that the escape
-indicators for one prime come from a *cyclic shift* of a fixed pattern, not from sampling without
-replacement, and cyclic-shift families are not negatively associated in general. That is exactly
-why the lemma fails for gear sets without 3, so any proof must use the `q = 3` adjacency
-annihilation rather than a generic correlation inequality.
+**It is only needed for large `L`.** Every violation observed sits at `L = 2` or `L = 3`. From
+`L = 4` onward the ratio is below 1 in every case measured, adjacent teeth included, and decays
+roughly geometrically - reaching 0.08 by `L = 10`. The argument needs the bound at `L = L_0`, of
+order `y log^2 y`, so the required statement is asymptotic, not universal:
+
+    for all sufficiently large L,  N(L) <= P (1 - d)^L
+
+with the small-`L` cases irrelevant. A proof of geometric decay - `N(L+1) <= c N(L)` for some
+`c <= 1 - d` once `L` exceeds a small threshold - would suffice, and would be a statement about
+how adding one more position to a covering constrains the offsets, rather than about correlations
+between positions.
 
 What is verified: the lemma holds with zero violations for every gear set containing 3 that has
 been checked exhaustively, up to `P = 4.8` million and `L = 80`; it fails without 3; the mechanism
