@@ -439,3 +439,72 @@ It is the loose inequality
 which has slack everywhere for `y >= 23`, and which needs only that the conditional escape
 probability at each step be at least about `2/y` - rather than at least `d`. A far weaker
 statement about the mechanics of section 9.
+
+## 11. Three sub-routes to the step law, priced
+
+### 11a. The relaxation does not reduce the problem, only parameterises it
+
+Section 10b showed any decay rate above `2 log P / y^2` suffices. But "prove decay rate `rho`"
+at `L = y^2/2` is equivalent to `N(y^2/2) < 1`, which is the goal itself. So the relaxation does
+not weaken the target; it weakens what a *method* must achieve. It is useful only for grading
+methods, which is what the rest of this section does.
+
+### 11b. Induction on the number of gears: the algebra works, the hypothesis does not
+
+The natural recursion is exact:
+
+    M_n(S) = sum over o_n of M_{n-1}( S \ B_n(o_n) )
+
+where `M_n(S)` counts offset vectors of gears `q_1..q_n` covering the set `S`, and `B_n(o_n)` is
+what gear `n` blocks. Gear `n` removes a `2/q_n` fraction of `S` on average, so if the inductive
+hypothesis were `M_{n-1}(S) <= P_{n-1} (1 - d_{n-1})^{|S|}`, the step would need
+
+    (1 - a)^t <= 1 - a t   for  a = d_{n-1},  t = 1 - 2/q_n
+
+which is exactly Bernoulli's inequality and holds - verified over 25 `(a,t)` pairs with zero
+violations. **The recursion delivers precisely `P_n (1 - d_n)^{|S|}`, so the structure is sound.**
+
+The hypothesis is not. A size-only bound is false for arbitrary `S`: if `S` lies inside two
+residue classes mod `q_n` then gear `n` covers it alone, so `M_n(S) >= P_{n-1}`, while the target
+`q_n P_{n-1} (1 - d_n)^{|S|}` drops below `P_{n-1}` as `|S|` grows. Explicit:
+
+| gears | S | M(S) | target | |
+| --- | --- | --- | --- | --- |
+| 3, 5 | 3 multiples of 5 | 6 | 7.680 | ok |
+| 3, 5 | 5 multiples of 5 | 6 | 4.915 | **fails** |
+| 3, 5 | 12 multiples of 5 | 6 | 1.031 | **fails** |
+| 3, 5, 7 | 5 multiples of 7 | 50 | 48.580 | **fails** |
+| 3, 5, 7 | 12 multiples of 7 | 30 | 16.513 | **fails** |
+
+So the inductive hypothesis must be **spread-aware** - it has to record how `S` sits modulo each
+remaining gear, not just how large it is. In the recursion the sets that actually arise are
+intervals minus unions of arithmetic progressions, which is the sieve setting, and that is where
+the difficulty relocates.
+
+### 11c. Second moment: valid, and short by a factor of `P/(Ld)`
+
+Let `U(v)` be the number of uncovered positions of `[0,L)` for offset vector `v`. Then
+`E[U] = L d`, and if all covariances are at most zero, `Var(U) <= L d`. Chebyshev gives
+
+    N(L)/P = Pr[U = 0] <= Var(U)/E[U]^2 <= 1/(L d)
+
+so `N(L) <= P/(L d)`. Valid but far too weak: at `y = 29, L = 129` it reads
+`N <= 3.23e9 / 8.57 = 3.8e8`, against the truth `N = 0`. To reach `N < 1` it would need
+`L d > P`, that is `L > e^y / d`, where the window offers only `y^2/2`.
+
+The Poisson heuristic says the right answer is `Pr[U = 0] ~ e^{-Ld}` with
+`L d ~ C y^2 / (2 log^2 y)`, comfortably past the `e^{-y}` needed. So the gap between second
+moment and the truth is the whole of the concentration, and closing it needs control of all
+moments - the sieve again.
+
+### 11d. Where this leaves the route
+
+Three sub-routes, all priced:
+
+* **sub-multiplicativity** - false, counterexample at gears `{3,5,7}`, `a = b = 6` (section 10a);
+* **size-only induction on gears** - algebra sound, hypothesis false, needs spread awareness;
+* **second moment** - valid, short by a factor of `P/(Ld)`.
+
+The step law itself remains verified and unproved: zero violations across every gear set tested,
+100 billion offset vectors at `y = 31`, margin widening with `L/q` exactly as the spread lemma
+of section 9c predicts.
