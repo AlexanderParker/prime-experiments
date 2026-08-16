@@ -751,3 +751,62 @@ That narrowing is the thing to watch: at `m = 1` the ratio is exactly `1/kappa`,
 `kappa - 1 = d'^2 (9 - d')/27` tends to zero as `d'` does. The margin is strictly positive at every
 finite stage but shrinks, so a proof along these lines needs the `m >= 2` behaviour to compensate,
 which is where the measured ratios do fall away.
+
+## 15. The gap-distribution reformulation
+
+Rather than generalise the machine further - which failed three times in sections 12 to 14 - this
+section restates the open problem as a property of the pattern itself.
+
+### 15a. An exact identity
+
+By CRT, offset vectors correspond bijectively to positions in the period, so `N(L)` counts the
+positions from which `L` consecutive slots are all blocked. A position starts such a run exactly
+when the next exposed point is more than `L` away, giving
+
+    **N(L) = sum over gaps g of the exposed set of max(0, g - L)**
+
+Verified with zero mismatches for `{3,5,7}`, `{3,5,7,11}`, `{3,5,7,11,13}` over all `L` up to and
+past `F_h`, against direct enumeration. The identity also recovers `F_h` as the largest gap - 15,
+21, 33 for those sets, matching the covering search.
+
+### 15b. Every gap is a multiple of 3, so `F_h` is
+
+Gear 3 leaves exactly one residue class mod 3, so all exposed points are congruent mod 3 and every
+gap is a multiple of 3. Measured gap distributions:
+
+    {3,5,7}          3, 6, 9, 15
+    {3,5,7,11}       3, 6, 9, 12, 15, 18, 21
+    {3,5,7,11,13}    3, 6, 9, 12, 15, 18, 21, 24, 30, 33
+    {3,5,7,11,13,17} 3, 6, ..., 48, 54
+
+Consequently `F_h(y) = 0 mod 3`, and all twelve known values comply: 6, 15, 21, 33, 54, 75, 102,
+129, 174, 264, 273, 309. This is why `F_k = F_h/3` is always an integer, which the programme had
+been using without having derived it.
+
+### 15c. The bound is exponential tail decay of the gap distribution
+
+Differencing the identity, `N(L) - N(L+1) = G(L)` where `G(L)` counts gaps exceeding `L`, and
+`N(L) = sum over j >= L of G(j)`. So the step law `N(L+1) <= (1-d) N(L)` is exactly
+
+    **G(L) >= d * sum over j >= L of G(j)**
+
+that is, the gap-count tail decays at least geometrically with ratio `1 - d`. Verified with zero
+violations over every `L` for `{3,5,7}`, `{3,5,7,11}`, `{3,5,7,11,13}`, `{3,5,7,11,13,17}` -
+the last with 22275 gaps in a period of 255255.
+
+### 15d. Why this is a better home for the problem
+
+The statement no longer mentions offset vectors, coverings, separations or sub-problems. It is a
+property of the twin-admissible pattern's gap distribution, which is the object `F_h` already
+measures - `F_h` is its maximum, and the bound is a tail condition on the same distribution. So the
+open problem and the quantity it bounds are now expressed in the same terms, and the three failed
+generalisations of sections 12 to 14 are seen to have been about a different object entirely: the
+behaviour of the machine under separations it does not have.
+
+What must be shown, in full:
+
+> for the admissible pattern of the primes up to `y`, the number of gaps exceeding `L` is at least
+> `d` times the total excess of all gaps over `L`
+
+with `d = prod (1 - 2/q)`. Equivalently: the gap distribution has no heavier tail than geometric
+with ratio `1 - d`.
