@@ -1126,3 +1126,70 @@ smallest gear set, so no argument with slack to spare at `L = 6` can be correct 
 to be exact, as the one above is. It also suggests the general `L = 3j` condition will have the form
 `c_j r + e_j alpha >= f_j` with rational `c_j, e_j, f_j` determined by the gap counts `n_1 .. n_{j-1}`,
 and that the tightest case will again be the smallest admissible gear set.
+
+## 21. The general condition, and a proof strategy with its gap identified
+
+### 21a. The condition for every block start
+
+Writing gaps as `3k`, `n_i = #{gaps = 3i}`, and
+
+    s_j = (sum_{i<=j} n_i)/M      t_j = (sum_{i<j} (j-i) n_i)/M      alpha = A/M
+
+the condition `h(3j) >= h(1)` is exactly
+
+    **(3j - 1) alpha^2 + alpha (s_j - 3 t_j) >= 3 s_j**
+
+It reproduces both proved cases: `j = 1` has `s = beta, t = 0` giving `2 alpha^2 + alpha beta >= 3
+beta`, and `j = 2` has `s = (11/3)beta, t = beta` giving `5 alpha^2 + (2/3) alpha beta >= 11 beta`.
+Verified against the directly computed hazard for `y = 7 .. 29` and `j = 1 .. 5`, all holding.
+
+### 21b. The extremal configuration is the smallest gear set
+
+The ratio of the two sides, by `j` and `y`:
+
+| j | 7 | 11 | 13 | 17 | 19 | 23 | 29 | 31 | 37 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 1.5714 | 1.6197 | 1.6531 | 1.6696 | 1.6826 | 1.6905 | 1.6945 | 1.6980 | 1.7000 |
+| 2 | **1.0000** | 1.0459 | 1.0776 | 1.0947 | 1.1082 | 1.1170 | 1.1221 | 1.1267 | 1.1297 |
+| 3 | **1.0000** | 1.0449 | 1.0798 | 1.1007 | 1.1174 | 1.1288 | 1.1361 | 1.1424 | 1.1468 |
+| 4 | 1.0659 | 1.1121 | 1.1482 | 1.1749 | 1.1975 | 1.2139 | 1.2250 | 1.2348 | 1.2421 |
+| 5 | **1.0000** | 1.0225 | 1.0345 | 1.0419 | 1.0490 | 1.0543 | 1.0578 | 1.0609 | 1.0631 |
+
+Every row increases with `y`, and the minimum over everything tested is exactly `1.0000`, attained
+at gears `{3,5,7}` at `j = 2, 3, 5`. So for that set `h(1) = h(6) = h(9) = 1/6` - the minimum is
+attained at three separate block starts, which is why `{3,5,7}` keeps appearing as the tight case.
+
+### 21c. The strategy, and its gap
+
+If the ratio is monotone in the gear set, then for each `j` it suffices to verify the smallest gear
+set at which `L = 3j` is non-vacuous. Monotonicity is verified for `j = 1 .. 5` across nine gear
+sets.
+
+But the base cases are not a single computation. `L = 3j` is vacuous unless `F_h >= 3j`, so the
+thresholds are:
+
+    j = 1..5     base {3,5,7}          F_h = 15
+    j = 6..7     base {3,5,7,11}       F_h = 21
+    j = 8..11    base {3,5,7,11,13}    F_h = 33
+    j = 12..18   base to 17            F_h = 54
+    j = 19..25   base to 19            F_h = 75
+    ...
+
+one base case per threshold, infinitely many. So monotonicity alone does not close it; it reduces the
+problem from "all `(gear set, j)`" to "the threshold diagonal", which is a strictly smaller family
+but still infinite.
+
+### 21d. Status
+
+Settled:
+
+* `h(1) = d/(1-d) > d`, from the mod-3 law;
+* `h(3) >= h(1)` and `h(6) >= h(1)`, proved outright in section 20, the second exactly tight at
+  `{3,5,7}`;
+* the condition derived exactly for every `j`, in the form of 21a;
+* monotonicity in the gear set verified for `j = 1 .. 5` over nine gear sets;
+* the base case at `{3,5,7}` verified for all of its `j`, minimum exactly 1.
+
+Open: monotonicity as a theorem, and the base case along the threshold diagonal. The second is the
+harder half, since it concerns `L` close to `F_h` - the top of the gap distribution, where `N(L)` is
+smallest and the condition is about the few largest gaps.
