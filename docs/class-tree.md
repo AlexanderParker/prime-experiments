@@ -220,3 +220,22 @@ operating live.
 Each twin carries a stack certificate: per-gear rooms, minima = the binding gears. Slot 23 =
 (137,139): gear 5 room right 0, gear 7 room left 0, gear 11 room right 0 - the twin pinched to
 width 1 from three directions. Twins sit in needle's eyes, and the certificate names the needles.
+
+## Umbrella-stack pinpointing at scale (windows to y = 2003)
+
+    y      window   twins   quads  max stride  stride/window
+    101     1700     202     10       35         2.1%
+    199     6600     574     20       83         1.3%
+    499    41500    2557     56      154         0.37%
+    997   165668    8087    161      242         0.15%
+    2003  668668   26870    460      252         0.04%
+
+All twins verified prime; 26,870 twins to ~4e6 generated from umbrella arithmetic alone in 3.2s.
+The stride/window ratio collapses by two orders of magnitude across the range - Reduction A's
+slack measured live. Quadruplet share (width-2 umbrellas) holds near 1.7% throughout.
+
+**Bug caught and fixed en route** (recorded per the build-and-test discipline): computing a joint
+umbrella with the certifying set of its first slot and extending rightward claims slots where the
+tower has activated a NEW gear inside the interval (a square crossing mid-umbrella) - one false
+twin per large window, exposed by full verification. The fix judges every slot at its own graded
+depth; the failure mode is the horizon law in miniature.
