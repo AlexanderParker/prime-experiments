@@ -236,12 +236,108 @@ as `y` grows, so the margin the bound has over the threshold is thin but exactly
 for every `y`.
 
 Mechanically `rho(L) <= rho(1)` says: **conditioning on a long blocked run makes the next position
-less likely to be blocked than it is unconditionally.** That is the gear-exhaustion statement - a gear
-whose one block per rotation has been spent inside the run is not available to block just past it - and
-it is the form in which the remaining gap is most directly about the mechanics rather than about
-counting.
+less likely to be blocked than it is unconditionally.** It is tempting to read that as gear exhaustion
+- a gear whose one block per rotation has been spent inside the run is not available to block just past
+it - but section 7 measures exactly that and finds the opposite happens gear by gear. The statement is
+true jointly and false per gear.
 
-## 6. Status
+## 7. The hazard is not a per-gear effect: two refutations
+
+Script: `research/negative_association.py`. Everything here is exact enumeration over `[0, P)`, so the
+numbers are integers rather than estimates.
+
+Gear `q` blocks the absolute positions `= 0, 1 mod q`, so a window starting at `m` sees gear `q` at
+effective offset `-m mod q`, and ranging `m` over `[0, P)` ranges over all offset vectors bijectively by
+CRT. With `A(L) = {m : m, ..., m+L-1 all blocked}` we have `|A(L)| = N(L)`, and the `m in A(L)` whose
+next position is exposed number one per maximal blocked run of length at least `L`, so
+
+    h(L) = P( position m+L exposed | m in A(L) ),
+
+the hazard as a conditional probability. Unconditionally the per-gear events "gear `q` blocks the next
+position" are independent with probability `2/q`, and `d` is the product of their complements. So
+`h(L) >= d` would follow from two claims, both of which were tested:
+
+    (M)  the per-gear marginals do not rise:  P( q blocks m+L | m in A(L) ) <= 2/q
+    (N)  weak negative association:  h(L) >= prod_q ( 1 - P( q blocks m+L | m in A(L) ) )
+
+**(M) is false, and badly.** The conditional marginals routinely *exceed* `2/q` - at `y = 17` it fails
+at 36 of the 53 values of `L`, with the worst ratio `marg / (2/q) = 1.4875` at `L = 50, q = 7`, and at
+`y = 13` reaching `1.625` at `L = 27, q = 13`. So conditioning on a blocked run makes each individual
+gear **more** likely to block the next position, not less. Gear exhaustion is not the mechanism, and
+the intuitive reading of section 6 is wrong at the per-gear level.
+
+**(N) is false, but only just.** It fails once at `y = 17` (at `L = 2`, `h = 0.105717` against a product
+bound of `0.108535`, short by 2.6%) and twice each at `y = 11` and `y = 13`, always at small `L`, and
+holds at every other `L`.
+
+Together these say the bound is a genuinely **joint** property. The gears become strongly correlated
+under the conditioning, and the union of their blocking events is smaller than independence would
+predict even though each marginal has risen. No argument that treats gears one at a time, or that
+multiplies per-gear conditional probabilities, can reach it.
+
+## 8. The tight cases are a short fixed list of small L
+
+Because `G` is constant on the blocks `{1,2}, {3,4,5}, {6,7,8}, ...` while `N` decreases, `h` rises
+within a block, so the minima of `h/d` sit at the block starts `L = 1, 3, 6, 9, ...`. Ranking those:
+
+    y     F_h    tightest block starts, as (h/d, L)
+    7     15     (1.1667, 1) (1.1667, 6) (1.1667, 9) (1.4000, 3) (2.3333, 12)
+    11    21     (1.1324, 1) (1.2162, 6) (1.3004, 3) (1.3162, 9) (1.9012, 15)
+    13    33     (1.1098, 1) (1.2002, 6) (1.2409, 3) (1.3039, 9) (1.3481, 24) (1.4259, 21)
+    17    54     (1.0956, 1) (1.1787, 6) (1.2052, 3) (1.2207, 24) (1.2481, 21) (1.2711, 9)
+    19    75     (1.0847, 1) (1.1602, 6) (1.1788, 3) (1.1885, 21) (1.1896, 24) (1.2420, 9)
+    23    102    (1.0768, 1) (1.1455, 6) (1.1600, 3) (1.1833, 21) (1.1845, 24) (1.2186, 9)
+
+Two things stand out.
+
+**The tight `L` are fixed small numbers, not a fixed fraction of `F_h`.** The list is
+`1, 3, 6, 9, 21, 24` with `39` and `54` entering at larger `y`, while `L/F_h` for `L = 24` falls from
+`0.727` at `y = 13` to `0.32` at `y = 19`. So the tight set does not spread out as the gear set grows.
+
+**The four tightest are `1, 6, 3, 9` - exactly the four cases already proved** (sections 18b, 18c, 18d
+and 24c of `covering-bound-route.md`). The next tier is `21` and `24`, then `39` and `54`, with margins
+stable around `1.16` to `1.25` rather than drifting towards 1.
+
+That reopens the per-`j` recipe of section 24b, which was abandoned because it needs a condition per
+value of `j` and the number of those grows like `0.055 y^2`. If only a fixed finite list of `j` is
+actually tight, the rest need nothing better than a crude bound with a factor of `1.16` of slack, and
+the recipe handles the short list. The falsification test is whether the tight list keeps growing with
+`y`; the measurement above says it has not through `y = 19`.
+
+## 9. The per-`j` recipe does scale, because almost every term vanishes
+
+Script: `research/closed_hazard.py`. Section 25b judged the per-`j` recipe unusable because `c_j(L)` is
+a sum over `2^L` subsets. That estimate ignores how aggressively the head gears annihilate terms:
+`prod (q - |W_q(T)|)` is zero the moment **one** gear has `W_q(T) = Z_q`, and a depth-first scan that
+prunes on the first fully covered gear never visits the rest.
+
+    L        1    3    6    9   15    21     24     25     30       39
+    visited  2    4   10   19   61   181    289    353    721     2548
+    2^L      2    8   64  512  32768  2.1e6  1.7e7  3.4e7  1.1e9   5.5e11
+
+Every visited subset contributes; nothing is wasted. At `L = 39` that is 2548 terms instead of
+`5.5 * 10^11`. So the recipe reaches every tight block start comfortably, and the exact coefficients are
+
+    L =  1   c_0=1,        c_2=-1
+    L =  3   c_0=3,        c_2=-3
+    L =  6   c_0=15,       c_2=-18,       c_4=3
+    L =  9   c_0=105,      c_2=-135,      c_4=42
+    L = 15   c_0=15015,    c_2=-22275,    c_4=9792,      c_6=-1272
+    L = 21   c_0=4849845,  c_2=-7952175,  c_4=4454838,   c_6=-1038864, c_8=94284,   c_10=-1920
+    L = 24   c_0=111546435, c_2=-190852200, c_4=118032579, c_6=-33045960, c_8=4138290, c_10=-167856
+
+**Validity condition.** `c_j(L)` is built from the gears `q <= L`, so it describes the machine only when
+the gear set contains all of them. The hazard at `L` needs `N(L)` and `N(L+1)`, so its condition is
+`y >= L + 1`. Both halves of this were caught by the checks rather than by inspection: at `y = 13,
+L = 21` the formula returns `406008` against a true `N(21) = 312`, and at `y = 29, L = 30` the `N(31)`
+term invents a gear 31 the machine does not have and the hazard comes out at `h/d = -536`. With the
+guard on `L + 1` the closed forms reproduce `N(L)` exactly at every tight `L` in range, checked against
+direct construction of the pattern at `y = 13, 17, 19, 23`.
+
+This is what makes the tight list of section 8 actionable: each of those cases is a finite, explicit
+inequality between products over the gear set, with no enumeration of the pattern required.
+
+## 10. Status
 
 New and verified here:
 
@@ -251,9 +347,24 @@ New and verified here:
 * the factorisation law with the correct `span + 1` threshold;
 * the `c_j(L)` decomposition, with the gear set entering only through `prod (q - j)`;
 * `G(L) = N(L) - N(L+1)`, hence the step form `rho(L) <= rho(1)`;
-* `rho` peaking at `L = 1` for all `L`, all gear sets to `y = 19`.
+* `rho` peaking at `L = 1` for all `L`, all gear sets to `y = 19`;
+* `rho(1) = (1-2d)/(1-d)` proved, from `prod (1 - 3/q) = 0` via gear 3;
+* the tight block starts being a short fixed list of small `L`, stable through `y = 23`;
+* the per-`j` recipe scaling after all, 2548 contributing terms at `L = 39` rather than `5.5 * 10^11`;
+* every tight case verified from closed forms alone for `y = 23` through `199`, worst case always the
+  proved `L = 1`.
 
-Corrected here: the "`q >= 13`: none within span 27" claim, and the single-word forbidden lists for
-gears 5 and 7.
+Refuted here: the finite-automaton route in both its forms; the per-gear marginal claim `(M)`, which
+fails by up to 63%; weak negative association `(N)`, which fails narrowly at small `L`.
 
-Still open: `rho(L) <= rho(1)`, now the whole of the remaining gap in one inequality.
+Corrected here: the "`q >= 13`: none within span 27" claim; the single-word forbidden lists for gears 5
+and 7; the `span` versus `span + 1` factorisation threshold; the gear-exhaustion reading of the step
+form; and the validity range of the closed forms, which needs `y >= L + 1`, not `y >= L`.
+
+Still open: `rho(L) <= rho(1)`, the whole of the remaining gap in one inequality. The route this
+section suggests is now concrete rather than open-ended - prove the short tight list case by case from
+the closed forms, which are in hand, and cover every other `L` with a crude bound, which needs only the
+`1.14` of slack the measurements show at `y = 23`. What is not yet established is that the tight list
+stays finite as `y` grows, and the margins at its members do drift slowly downward
+(`h(6)/h(1)` runs `1.0740, 1.0815, 1.0759, 1.0696, 1.0638` over `y = 11` to `23`), so the slack cannot
+be assumed constant.

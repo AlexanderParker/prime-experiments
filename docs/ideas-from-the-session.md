@@ -76,6 +76,25 @@ combinatorial depth, and the factorisation is exact.
 closed forms. If the spectral expression needs as many terms as the inclusion-exclusion did, nothing
 is gained.
 
+## 3a. The tight cases are a short fixed list, and the recipe reaches them
+
+**Known.** `h` rises within each block `{1,2}, {3,4,5}, {6,7,8}, ...`, so the minima of `h/d` sit at the
+block starts. Ranking them (`docs/forbidden-configurations.md` section 8), the tight starts are
+`1, 6, 3, 9, 21, 24` with `15, 39, 54` behind them - the **same small absolute values for every gear
+set**, not a fixed fraction of `F_h`, stable from `y = 13` through `y = 23`. The four tightest are
+`1, 6, 3, 9`, exactly the four already proved.
+
+**Why the recipe now works.** Section 25b rejected the per-`j` recipe because `c_j(L)` sums over `2^L`
+subsets. But the head gears annihilate almost every term, and pruning on the first fully covered gear
+visits only survivors: 2548 contributing terms at `L = 39` instead of `5.5 * 10^11`. So each tight case
+is an explicit finite inequality between products over the gear set, and all of them check out from
+closed forms alone for `y = 23` through `199`.
+
+**What is left.** Prove the short list case by case, and cover every other `L` with a crude bound - the
+measurements leave `1.14` of slack at `y = 23`. **Falsifies quickly:** extend the tight-list measurement
+past `y = 23`. If new members keep appearing, the list is not finite and the case-by-case half fails.
+The margins at existing members also drift slowly down, so the slack is not constant.
+
 ## 4. Recursion in the gear set rather than in L
 
 **Known.** The per-`j` recipe (section 24b) recurses on `L` and stalls because the number of
@@ -109,4 +128,9 @@ Recorded so the next attempt does not repeat them:
 * a **per-gear** usefulness argument for the step form - the offsets that block position `L` are
   jointly below average at covering `[0, L)` only when `L mod q >= q/4`, so for gears with
   `L mod q < q/4` the conditioning pushes the wrong way. Exact, checked over 4525 pairs `(q, L)` with
-  zero exceptions. Any proof has to treat the gears jointly.
+  zero exceptions. Any proof has to treat the gears jointly;
+* **per-gear conditional marginals** - measured directly, they *rise* under the conditioning rather than
+  fall, by up to 63%, so gear exhaustion is not the mechanism (section 7 of
+  `forbidden-configurations.md`);
+* **weak negative association**, `h(L) >= prod (1 - marginal_q)` - fails narrowly at small `L`, once at
+  `y = 17` and twice each at `y = 11, 13`. Nearly true is not true.
