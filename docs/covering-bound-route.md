@@ -1244,3 +1244,65 @@ Conditional on `F_h`, and therefore unusable in the chain:
 So the open range is `L >= 9` in full, not `9 <= L <= F_h - (1-d)/d` as the previous section's
 framing suggested. The universal bound is a true statement about the gap distribution and a useful
 sanity check on the data, but it is not a step in the proof.
+
+## 23. Verification at every block start, and the L = 9 case
+
+### 23a. The condition holds at every block start, not just the first few
+
+Earlier sections checked `L = 3, 6, 9, 12, 15`. Computing the full gap distribution and testing
+every block start:
+
+| gears to | P | F_h | block starts checked | failures | min h/h(1) |
+| --- | --- | --- | --- | --- | --- |
+| 19 | 4849845 | 75 | 25 | **0** | 1.000000 at L=1 |
+| 23 | 111546435 | 102 | 34 | **0** | 1.000000 at L=1 |
+
+So the hazard condition is not merely true at the ends - it holds throughout, with the minimum
+exactly at `L = 1` where it is free. The ratios `h(L)/h(1)` for `y = 23` begin `1.000, 1.077, 1.064,
+1.132, 1.340, 1.170, 1.325, 1.099, 1.100, 1.348, ...` and end `1.897, 2.480, 1.854, 3.108, 2.546,
+2.533, 2.605, 4.342`, so the tightest genuine constraint is `L = 9` at `1.064`.
+
+### 23b. #{gaps = 9} in closed form
+
+By inclusion-exclusion, with the `{0,3,6,9}` term killed by the gear-5 law and
+`f({0,3,9}) = f({0,6,9})` since the two are reflections,
+
+    **D = #{gaps = 9} = f({0,9}) - 2 f({0,3,9})**
+
+Verified exactly for gears to 7, 11, 13, 17, 19, 23: `D = 2, 22, 238, 3374, 53690, 1060150` against
+`f({0,9}) = 6, 42, 378, 4914, 73710, 1400490` and `f({0,3,9}) = 2, 10, 70, 770, 10010, 170170`.
+
+Per-gear factors: `f({0,9})` is `1, 2, 3` at `q = 3, 5, 7` and `q - 4` beyond;
+`f({0,3,9})` is `1, 1, 2, 5` at `q = 3, 5, 7, 11` and `q - 6` beyond.
+
+### 23c. The L = 9 condition, tight again at {3,5,7}
+
+With `s_3 = (17/3)beta - 2gamma` and `t_3 = (14/3)beta`, where `gamma = f({0,3,9})/M`, the condition
+of 21a at `j = 3` becomes
+
+    **8 alpha^2 >= beta (17 + 25 alpha/3) - gamma (6 - 2 alpha)**
+
+and at gears `{3,5,7}`, where `alpha = 3/7, beta = 3/35, gamma = 2/35`:
+
+    LHS = 72/49 = 1.469388
+    RHS = (3/35)(144/7) - (2/35)(36/7) = 432/245 - 72/245 = 360/245 = 72/49
+
+**exact equality.** So `{3,5,7}` is tight at `L = 1, 6` and `9` - three block starts - and the
+margin then grows: `1.0000, 1.0449, 1.0798, 1.1007, 1.1174, 1.1288, 1.1361` for `y = 7 .. 29`.
+
+### 23d. Status
+
+The recurring shape is now unmistakable. At every block start proved or examined, the condition is an
+exact equality at `{3,5,7}` and strict beyond it, with the margin increasing as gears are added. That
+holds at `L = 6` (section 20c), at `L = 9` (above), and vacuously at `L = 15`.
+
+So the proof reduces to two statements, the same two as section 21c but now with a third case of
+evidence:
+
+1. the condition is exactly tight at the smallest admissible gear set for each `L`;
+2. adding a gear increases the margin.
+
+The first is verifiable case by case and has been verified at `L = 6, 9`. The second is the
+monotonicity conjecture, verified for `j = 1 .. 5` across nine gear sets, and it remains the single
+unproved ingredient - together with the base cases along the threshold diagonal, which section 21c
+identified and which the circularity of section 22 leaves untouched.
