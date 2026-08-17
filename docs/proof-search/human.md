@@ -2,24 +2,24 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-We assume twins run out somewhere (condition X) and hunt the contradiction. Three rounds in, every
-easy door has been checked and priced honestly: the local door is closed (real numbers behave
-exactly as the forgery would, near the start); the "audit the whole book" door turns out to BE the
-original problem in disguise (proved equivalent, nothing gained); and the elegant "every band has
-a twin" shortcut turns out to need something as hard as a famous 100-year-old open problem
-(Legendre's: a prime between consecutive squares) before twin-ness even enters.
+Four rounds in, the hunt has boiled the whole problem down to ONE number. Here is the story: if
+twins ever ran out (condition X), the machine's account books would have to balance exactly - we
+now have both sides of that balance as explicit formulas (a demand side, machine-verified in Lean,
+and a supply side that is one big exact sum, checked at every step at two scales). The books CAN
+balance in terms of raw amounts - we proved there is always enough supply, so no contradiction
+there. The entire difference between the real world (twins forever) and the fake world (X) comes
+down to how tightly the supply gets PACKED: reality packs its double-blocks at 4.38 per slot, the
+fake world needs 4.50 - a 2.6% packing difference. That packing number is now the whole game.
 
-What is genuinely alive is a loop the machine built itself: the "double-blocked" slots that X
-desperately needs are supplied, with zero freedom, by the primes and prime-GAPS at the smaller
-scale - and pairs with gap exactly 2 (twins!) are the only gap type whose supply is guaranteed at
-every scale. So a twin-free stretch at scale N would have its books balanced by twin structure at
-scale sqrt(N). Round 4's flagship: write that balance as one exact equation (demand pinned by X,
-supply pinned by arithmetic) and see whether the equation can be satisfied at all. If it is
-overdetermined - if no arrangement of primes can pay both sides - that is the contradiction.
-
-Also: the margin bookkeeping is now measured to forty billion numbers per window with a formula
-accurate to 0.1%, and five machinery bricks are computer-verified at the highest standard of
-certainty (the fifth, the supply ledger, landed this round).
+Two more things worth knowing. First, when we measured the forced "prime floor" that X requires,
+it sits at exactly HALF of what the best unconditional theorems allow - that factor of two is the
+famous parity barrier, the deep reason twin primes are hard, showing up in our own ledger as a
+literal 1/2. We did not break it; we photographed it. Second, the new fifth teammate (harvester)
+checked the neighbouring famous problems honestly - none is secretly easy - but formalised our
+framework for ALL even gaps (not just 2) and for Goldbach into the machine-verified ledger, which
+now holds seven files. The unique thing twins have that no other gap has: their supply
+contribution to the higher scale is guaranteed unconditionally. Round 5 attacks the packing
+number: what unconditional mathematics can say about pile-up, and exactly where parity blocks it.
 
 ## Round 1 (2026-08-18)
 
@@ -112,3 +112,32 @@ required. Tool: research/margin_trajectory.py + CSVs.
 layer-band = Legendre-class. Live: the quantified self-reference. Round 4 flagship = the
 X-consistency equation (demand side pinned by zero-slack, supply side pinned by the freedom-free
 gap functional); mechanic builds per-gear R_q(t); formalist pins zero-slack census in Lean.
+
+## Round 4 (2026-08-18)
+
+**Constructor** - X-consistency equation written and tested: X <=> P(t) = t - D(t) (the
+unconditional floor) at every prefix; SATISFIABLE - no overdetermination; the floor sits at
+exactly half the Montgomery-Vaughan ceiling (parity factor live); g=2 pins the unique guaranteed
+budget line (5-9%). Tool: research/x_consistency.py.
+
+**Mechanic** - R_q(t) trajectories (verified vs independent spf count, one bug self-caught):
+capacity NEVER the contradiction (slack 3.2-4.5x, loosening); the reality-to-X distance is
+compression: multiplicity 4.38 vs demanded 4.50 (2.6%). Tool: research/supply_trajectory.py.
+
+**Lateral** - master formula: overcount(t) as one signed sum, exact at every prefix (y=101, 211);
+n2(t) = B(t) - U(t) exactly (U = finite u'-pin list, bottom band); availability schedule matches
+the measured onset to the slot. Flagship now two-sided: under X, N-P = B-U at every t. Tool:
+research/supply_formula.py.
+
+**Formalist** - Census.lean kernel-checked: census identities, n0_eq_zero_iff (= Condition X),
+census_pinned + prefix form - the demand leg formal. Six libs then, seven with Polignac.
+
+**Harvester (round 1)** - survey: band statements unreachable (0.525 wall), constant-2 HL-class;
+bite: Polignac.lean kernel-checked - per-gap transfer (slot_cap_gap: q | both members iff q | d),
+per-d equivalence Polignac_d <=> windowed survivor, Goldbach window reduction; sharpens
+Ziller-Morack to machine-checked per-difference equivalences.
+
+**Manager synthesis** - the equation is satisfiable; the contradiction, if reachable, is a
+second-moment/compression statement (4.38 vs 4.50) - the corpus's kappa frontier reached
+independently with exact arithmetic. Parity visible as the exact 1/2. Round 5 = the compression
+frontier from all five sides.

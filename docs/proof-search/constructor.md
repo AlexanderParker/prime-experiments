@@ -442,3 +442,98 @@ exactly 4*sqrt(x) + 4. Even the THICKEST band available inside a given window is
 > squares", before its twin content is even engaged.
 
 Stop.
+
+---
+
+# Constructor round 4 (flagship, with Lateral): the X-consistency equation
+
+Script: `research/x_consistency.py` (consumes Lateral's `research/split_gap_law.py`
+closed forms; every identity asserted slot-by-slot at y = 101, 211, 503). Mechanic's
+per-gear R_q(t) CSV was not yet posted at computation time; the attribution grading
+below is by gear pair (Lateral's axis), the per-gear refinement composes with theirs
+when it lands.
+
+## 13. The equation, the overdetermination test, and the verdict
+
+**The arithmetic census theorem** (unconditional; the equation's substrate). Classify
+window slot k by gear marks (gear q marks a member it divides):
+
+    type 0 (no mark)    <=> both members prime   (twin)      - horizon theorem
+    type 1 (one mark)   <=> exactly one prime    (fragile)   - marked => composite
+    type 2 (both marked)<=> both composite       (double)
+
+So with d_k = [k is type 2], D(t) = sum d_k, and p_k = # prime members:
+
+    P(t) = t - D(t) + n0(t)    for every prefix t          (identity, no hypothesis)
+
+**THE X-CONSISTENCY EQUATION.** X(y) (zero twins in the window) holds iff
+
+    P(t) = t - D(t)   for every t in [1, N]      iff      p_k + d_k = 1 at every slot.
+
+Demand side: P(t), the prime census of (y, y^2). Supply side: D(t), freedom-free
+arithmetic below y - by the roots-of-unity law the double set is the union of the
+split classes +-x_{qq'} mod qq', and Lateral's gap law gives every representative in
+closed form: x = (q'(b0 + iq) - 1)/6, b0 = (2 + m0 q)/g, m0 = (-2 q^{-1}) mod g,
+i = the mod-6 alignment. **Prefix grading of the supply:** a pair contributes nothing
+before its first landing; g = 2 pairs (twins below y) are the unique gap class with
+m0 = 0, pinning at u' <= (y+1)/6 - anchored at the window's bottom edge,
+unconditionally; every other gap class enters at depth ~ P/(6g) and only when the
+alignment i = 0 lands (~51% of large pairs, measured by Lateral). So D(t) =
+(guaranteed part, from the twins below y) + (alignment-rated part, from all other
+prime pairs below y) - an explicit functional of the primes and prime gaps below y.
+
+**Computed, real windows** (all assertions pass at every one of the N prefixes):
+
+    y     N       P       D       n0     floor t-D   max rho    g=2 share of
+                                         at t=N      (MV test)  split incidences
+    101   1682    1225    658     201    1024        0.4687     8.9% (bottom band 8.9%)
+    211   7384    4579    3431    626    3953        0.4785     7.0% (bottom band 6.4%)
+    503   42083   22186   22482   2585   19601       0.4828     5.4% (bottom band 6.0%)
+
+    violation profile n0(t) = P(t) - (t - D(t)): grows ~linearly from the first
+    slots (y=503: 30 at t=200, 392 at t=4208, 2585 at t=N) - the equation fails
+    everywhere, by exactly the twin count.
+
+**The overdetermination test, answered exactly.**
+
+* Degrees of freedom: ZERO. Both sides are determined by the same integers; X
+  selects nothing. Formally the system is N ~ y^2/6 equations over the ~ pi(y) gap
+  variables below y (the supply side's only inputs) - overdetermination ratio
+  ~ y ln y / 6 - but the constraints are not independent tests against anything
+  free: the census theorem makes the demand side ITSELF gear arithmetic (the horizon
+  theorem is precisely the statement that primality above y = non-divisibility below
+  y). Each slot equation p_k + d_k = 1 fails exactly on twin slots. The equation
+  system collapses back to "n0(t) = 0 for all t" with no residual structure.
+* What X needs P(t) to do: sit at its unconditional POINTWISE FLOOR t - D(t) at
+  every one of N consecutive prefixes. Conflict from below: impossible - the floor
+  is the unconditional minimum (P >= t - D is the identity with n0 >= 0 dropped).
+  Conflict from above (Montgomery-Vaughan pi(y+H) - pi(y) <= 2H/lnH, H = 6t+2, fair
+  game): the headroom ratio rho(t) = (t - D(t)) / (2H/lnH) is provably <= 1
+  (rho <= P lnH/2H <= 1 is MV itself applied to the floor's majorant) and measured
+  at max 0.47-0.48, drifting monotonically toward 1/2. **The forced floor sits at
+  half the MV ceiling - the parity factor 2, photographed live in the ledger.** Any
+  unconditional theorem separating P(t) from its floor (P(t) > t - D(t) for a single
+  t) IS a twin-existence theorem, since the separation equals n0(t).
+
+> **Verdict: the equation is satisfiable, for an exact reason.** The forced value is
+> the unconditional pointwise minimum of the demand side, and every unconditional
+> ceiling sits a parity factor above it (measured 0.48 -> 1/2). The
+> overdetermination hope fails not for lack of constraints (there are y^2/6 of them
+> per window) but because the census theorem makes the two sides one arithmetic:
+> the prime census above y is not an external quantity X must luckily match - it IS
+> the gear structure below y, evaluated upward. The residual, genuinely new content
+> of the equation is the SUPPLY DECOMPOSITION: the doubles ledger X leans on has
+> exactly one unconditionally guaranteed supply line - the g = 2 classes pinned at
+> u' by the twins below y - measured at 5-9% of split incidences at every scale and
+> depth tested, the rest alignment-conditional. The self-reference of the programme
+> is now a measured line item in X's own budget: a twin-free window above requires,
+> among its doubles, the pins manufactured by the twins below. It quantifies the
+> recursion; it does not close it, because the alignment-rated 91-95% is empirically
+> ample and nothing unconditional forbids it from covering the loss.
+
+Where a count-level attack could still bite, stated for completeness and priced: an
+improvement of the MV/Brun-Titchmarsh constant 2 toward 1 at H ~ y^2 would squeeze
+the measured rho -> 1/2 against the ceiling; that constant's rigidity is itself
+parity-class (improving Brun-Titchmarsh uniformly is known to force Siegel-zero
+consequences - Motohashi's classical observation for the progression form). The
+ledger and the analytic wall are the same wall, seen from opposite sides.

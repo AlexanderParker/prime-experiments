@@ -299,3 +299,94 @@ structure must enter through per-gear/attribution objects.
   last_below columns ARE exact (every slot).
 - li computed by trapezoid on 4000-point geomspace; error << 1 at these
   scales.
+
+## Round 4 - per-gear supply trajectories R_q(t) (2026-08-18)
+
+Script: `research/supply_trajectory.py` (lpf-attribution sieve: ascending
+gears claim unclaimed members, so first claim = smallest prime factor;
+y=50021 full window incl. the 13.2M-pair schedule in 85s). Data (append
+mode): `research/data/supply_load.csv` (per-checkpoint load metrics),
+`supply_pergear.csv` (R_q(t) for every gear at y<=2003, 24 log-spaced
+representatives above).
+
+Definitions. R_q(t) = composite members among the first t slots with
+lpf = q. Supply identity sum_q R_q(t) = C(t) = 2t - P(t): asserted per
+checkpoint, exact everywhere. Boundary: the member equal to y (prime) is
+not attributed (consistent with rounds 1-3).
+
+### (1) Band signature - verified definitionally, staircase graded
+
+The margin was gear-blind; R_q(t) is where bands live, and the sieve was
+verified against an independent spf-table count
+  R_q(t) == #{c in [max(q, ceil(m0/q)), floor(m(t)/q)] : spf(c) >= q}
+at every checkpoint for every gear with y^2/q <= 8e6 (all 302 gears at
+y=2003): 0 mismatches in 3384/13892/23313/28764 checks at y=503/2003/
+10007/50021. (One real bug caught by this: cofactors c < q belong to gear
+lpf(c), not q - build-and-test discipline note.)
+
+- Gears q <= sqrt(y): active from slot 1 - these are C4's servers of every
+  prefix. No activation delay; composite-cofactor term dominates their
+  staircase (T_q share of R_q at window end: 69% for gear 5 at y=503, 76%
+  at 2003; declining in q).
+- Fresh gears q in (sqrt(y), y): R_q = 0 until exactly
+  t_act = (q^2-1)/6 - k_lo + 1 (activation = own square), then the
+  layer-law staircase R_q(t) = 1 + pi(m(t)/q) - pi(q) + T_q(t) with
+  T_q == 0 while m(t) < q^3 - EXACT (max measured T_q share for
+  q > y^(2/3): 0.0000 at all four y). Worked examples y=2003: q=997:
+  R(W) = 389 = 1 + pi(4024) - pi(997) exactly; q=1999: R(W) = 2 (square
+  3996001 + one semiprime step 1999*2003).
+
+### (2) Load under X and the pair-coincidence schedule
+
+Per checkpoint: active set A(t) = pi(sqrt(m(t))) - 2; mean load
+C(t)/A(t); gear 5's share of all supply; rho(t) = 2(t-P)/(2t-P) =
+fraction of kills X forces into pair-coincidences; S_pair(t) = exact count
+of nontrivial (cross) root-class hits k <= t over ALL gear pairs (the
+roots-of-unity supply schedule, 2 classes mod qq' per pair, trivial
+same-member roots excluded); tau(t) = (t-P)/S_pair(t) = X-demand share of
+the schedule.
+
+    y=50021 trajectory (excerpt):
+    t          member       A     g5%    rho    tau   S_pair/n2
+    133        50815        46    27.2  0.636  0.167    5.39
+    13335      130027       70    27.2  0.642  0.160    5.53
+    1333521    8051143      410   25.1  0.747  0.187    5.03
+    133352143  800162875    3078  23.6  0.818  0.217    4.47
+    417008404  2502100441   5132  23.4  0.829  0.222    4.38
+
+    peak tau (always at t = W):  0.314 (y=503)  0.282 (2003)
+                                 0.249 (10007)  0.222 (50021)
+
+### (3) Answer to the key question
+
+NO depth range exists where X's demand exceeds the freedom-free pair
+schedule at the counting level - and none can appear at larger y:
+- tau(t) rises monotonically through the window (no interior peak) and
+  its maximum, at the window END, DECLINES with y: 0.31 -> 0.22 across
+  the ladder. Slack is 3.2-4.5x and loosening (S_pair(W)/W grows like
+  (sum 1/q)^2 ~ lnln^2 while demand/W -> 1).
+- In reality t - P <= n2 <= S_pair holds identically (every cross-class
+  hit lands on a double slot, every double slot is cross-hit), so no real
+  window can ever exhibit a deficit; the computation quantifies how far
+  X sits from the cap.
+- Where the equation actually lives: compression. S_pair class hits must
+  compress into n2 distinct slots; measured mean multiplicity
+  S_pair/n2 = 4.38 at the 50021 window end vs the X-required
+  S_pair/(t-P) = 4.50. The entire distance between reality and X is the
+  n0 term (7.8M twin slots out of 3.03e8 doubles, 2.6%) - X demands the
+  same class hits compress 2.6% harder, not more capacity. The
+  contradiction's home, if anywhere in this frame, is the multiplicity/
+  union structure of the cross classes (how hard root classes CAN
+  overlap), not their count.
+
+### Caveats
+
+- S_pair excludes trivial roots by construction; it counts class hits
+  with multiplicity (a slot cross-hit by 3 pairs contributes 3). The
+  union equals n2 exactly (both directions verified by the identity
+  n2 = t - P + n0 holding at every checkpoint).
+- tau at t <= ~10 is noisy (counts of 0-2); the monotone claim is for
+  t beyond ~100.
+- Multiplicity growth S_pair/n2 ~ 4.4-5.5 measured, rising with y at
+  fixed member scale but declining through each window; no closed form
+  fitted this round (candidate: second moment of active-pair density).

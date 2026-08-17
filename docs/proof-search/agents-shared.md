@@ -2,32 +2,36 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 3. The landscape is fully mapped, with honest prices on every route: (i) local
-attack dead (round 2); (ii) the cumulative statement is EXACTLY equivalent to Reduction A -
-lossless reparametrization, gears drop out, diagnostic value only; (iii) the layer-band descent
-dies at T1, "a prime in every band" - Legendre-class, technology (Alweiss-Luo) stops at exponent
-0.525 vs the needed 0.5, before bounded gaps (T2) or parity (T3) even engage. Thinnest bands occur
-exactly at twin endpoints - the self-reference sits at the binding case.
+State after round 4. THE FLAGSHIP CONVERGED TO ONE OBJECT: under X, the two-sided prefix identity
+N(t) - P(t) = B(t) - U(t) at every t - demand pinned by the zero-slack census (now kernel-checked:
+Census.lean, n0_eq_zero_iff IS Condition X), supply pinned by the master formula (one signed sum
+over coprime squarefree product pairs, pure floor arithmetic, verified at EVERY prefix at two
+scales; n2 = B - U exactly, U = the finite u'-pin list confined to the bottom y/6 slots).
 
-The genuinely live structure is the QUANTIFIED SELF-REFERENCE: the window's double supply is a
-freedom-free functional of prime gaps below y (gap-graded split law, closed form, verified on all
-2850 pairs to 400; overcount formula exact at three scales), and GAP 2 IS THE UNIQUE GAP CLASS
-whose contribution is unconditionally guaranteed at every scale (pins at u' <= y/6, bottom band).
-Meanwhile the margin census is gear-blind and rigid: M(t) follows t - li(6t+m0) + li(m0) to 0.1%,
-min margin is 0/-1 at t <= 3 with NO later dip through 6.67e9-slot windows (y to 200003), and
-layer bands are invisible to it at 1e-4 - band structure can only enter via per-gear attribution.
+VERDICTS, honest: the equation is SATISFIABLE count-wise (constructor: X <=> P(t) sits at its
+unconditional floor t - D(t) everywhere; the floor sits at exactly HALF the Montgomery-Vaughan
+ceiling - the parity factor photographed live). Capacity can NEVER be the contradiction (mechanic:
+slack 3.2-4.5x and loosening). The entire reality-to-X distance is a COMPRESSION number: reality
+piles cross-root hits into doubles at multiplicity 4.38 where X demands 4.50 - 2.6%. The
+contradiction, if reachable, is a multiplicity/second-moment statement about cross-root pile-up -
+the same second-moment frontier the corpus's kappa forms hit, reached independently with exact
+arithmetic instead of expansions. The g=2 pins (twins below y) remain the unique unconditionally
+guaranteed supply line (5-9% at every scale).
 
-ROUND-4 FLAGSHIP (constructor + lateral converge): the X-CONSISTENCY EQUATION. Under X the doubles
-demand is pinned exactly (n2(t) = N(t) - P(t), zero slack); the doubles supply is freedom-free
-semiprime/split arithmetic - an explicit functional of primes and gaps below y. Equate them: X
-imposes an exact equation between the prime census of (y, y^2) and the gap structure below y.
-Write it, and determine whether ANY admissible configuration can satisfy it - overdetermination is
-the contradiction candidate. Mechanic feeds the attribution side (per-gear R_q(t) trajectories);
-formalist pins the zero-slack census (substrate of the demand side).
+Harvester joined: band statements honestly unreachable (0.525 wall), constant-2 law HL-class;
+first bite delivered - Polignac.lean kernel-checked (per-gap transfer condition slot_cap_gap:
+q blocks both members of a gap-2d slot iff q | d; per-d equivalence Polignac_d <=> windowed
+survivor; Goldbach window reduction) - sharpens Ziller-Morack to machine-checked per-difference
+equivalences. Kernel ledger: 7 files (BlockedSlots, Horizon, Layer, Supply, Census, Polignac,
+AxiomCheck), all standard axioms.
 
-Kernel-checked so far (5 files, all standard axioms): reduction (iff), horizon (strict p < y),
-slot-cap, layer novelty (strongest form), supply identity + distinct-roots corollary (Supply.lean,
-first composing file).
+ROUND-5 FOCUS: the compression frontier. Mechanic: cross-root multiplicity distribution vs
+independent-classes model (the moment structure). Constructor: state the compression bound X needs
+exactly and inventory unconditional tools for multiplicity moments (union bounds, MV, second
+moments) - where exactly does parity block them. Formalist: the bridge identity
+sum R_q(t) = n1 + 2n2 (formal skeleton of the equation). Lateral: overdetermination scan +
+enumeration pruning toward y ~ 10^4. Harvester: the g=2 pinning theorem (first exact fact
+distinguishing twins from other gaps inside the general frame).
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
@@ -200,6 +204,38 @@ margin_checkpoints.csv, margin_bands.csv. COMPLETE windows, every slot checked.
   (0.058 at 2e5). "M(t) >= Mhat(t) - 0.2*sqrt(6t+y)" held at every checkpoint
   of every window tested (checkpoints log-spaced, 8/decade; envelope is
   checkpoint-level, min/last-below columns are exact every-slot).
+
+## Mechanic round 4 (2026-08-18) - per-gear supply R_q(t) + pair schedule
+Tool: research/supply_trajectory.py (lpf-attribution sieve; y=50021 full window
+incl. 13.2M-pair schedule, 85s). Data: research/data/supply_load.csv (t, member,
+P, n0, n2, C, A_active, mean_load, g5_share, rho, S_pair, tau per checkpoint),
+supply_pergear.csv (R_q(t): every gear at y<=2003, 24 reps above).
+- R_q(t) verified DEFINITIONALLY against an independent spf-table count at every
+  checkpoint, 0 mismatches (28764 checks at 50021). Supply identity
+  sum_q R_q = 2t - P asserted exact at every checkpoint.
+- BAND SIGNATURE (what the gear-blind margin could not see): gears q <= sqrt(y)
+  active from slot 1 (C4's servers); fresh gears activate at exactly
+  t_act = (q^2-1)/6 - k_lo + 1 and follow R_q(t) = 1 + pi(m(t)/q) - pi(q) +
+  T_q(t) with T_q == 0 for m(t) < q^3 EXACTLY (measured 0.0000 for all
+  q > y^(2/3); worked: q=997 at y=2003, R(W) = 389 = 1 + pi(4024) - pi(997)).
+  Composite-cofactor term dominates small gears (gear 5: 76% of R at y=2003).
+- LOAD/SCHEDULE: S_pair(t) = exact nontrivial cross-root class hits over all
+  pairs (roots-of-unity schedule); tau(t) = (t-P)/S_pair = X-demand share.
+  tau rises monotonically in t (no interior peak), maxes at window END, and the
+  max DECLINES with y: 0.314/0.282/0.249/0.222 at y=503/2003/10007/50021.
+  KEY ANSWER: no depth range exists where X's demand exceeds the freedom-free
+  schedule, and the slack (3.2-4.5x) grows with y (S_pair/W ~ lnln^2 vs
+  demand/W -> 1). Capacity can never be the contradiction.
+- WHERE THE EQUATION LIVES: compression. In reality t-P <= n2 <= S_pair
+  identically (cross-hit <=> double, both directions checked). Measured mean
+  multiplicity S_pair/n2 = 4.38 at 50021 window end; X requires
+  S_pair/(t-P) = 4.50. The full distance reality-to-X is the n0 term (2.6%):
+  X demands the same class hits compress 2.6% harder into distinct slots.
+  The X-consistency equation should be phrased as a MULTIPLICITY/union bound
+  on cross-root overlaps (how hard root classes can pile up), not a count.
+  Multiplicity profile measured: 5.4 near window bottom -> 4.4 at end (y=50021),
+  rising with y; no closed form fitted yet (candidate: second moment of active-
+  pair density - offered to Constructor/Lateral for the flagship equation).
 
 ## Formalist round 1 (2026-08-18)
 The HORIZON THEOREM is now kernel-checked: proofs/Horizon.lean (namespace `Horizon`,
@@ -393,3 +429,134 @@ S is any Finset - intervals, the ±1 mod 6 members, or prefixes all instantiate 
 constructor's prefix statements can be built on these fibers directly. Next target:
 zero-slack census pinning under Condition X (n1 = P, n2 = N - P as prefix Finset
 statements - the substrate C2 sits on); alternative: h(2) >= d product inequality.
+
+## Constructor round 4 (2026-08-18) - flagship: the X-consistency equation
+Tool: research/x_consistency.py (consumes Lateral's split_gap_law closed forms;
+all identities asserted at every prefix, y = 101, 211, 503). Full text:
+constructor.md section 13.
+- ARITHMETIC CENSUS THEOREM (unconditional substrate): slot type by gear marks =
+  census exactly: no mark <=> twin (horizon), one mark <=> fragile, both <=> double.
+  Identity at every prefix: P(t) = t - D(t) + n0(t).
+- THE EQUATION: X(y) <=> P(t) = t - D(t) for every t <=> p_k + d_k = 1 at every
+  slot. Demand = prime census of (y,y^2); supply D(t) = union of split classes
+  +-x_{qq'} mod qq' in Lateral's closed form - explicit functional of primes/gaps
+  below y. Prefix-graded: g=2 pairs (twins below y) are the UNIQUE unconditionally
+  pinned supply (m0=0, pin u' <= (y+1)/6, bottom-anchored); all other gaps enter at
+  depth ~P/(6g) only on mod-6 alignment (~51% of large pairs).
+- OVERDETERMINATION TEST, answered: degrees of freedom ZERO on both sides; formally
+  y^2/6 equations over pi(y) gap inputs, but the census theorem makes demand side
+  ITSELF gear arithmetic (horizon = "primality above y IS non-divisibility below"),
+  so the system collapses to n0(t) = 0 - no residual structure. What X needs P(t)
+  to do: sit at its unconditional POINTWISE FLOOR t - D(t) at all N prefixes.
+  Below-conflict impossible (floor = the identity's minimum). Above-conflict vs
+  Montgomery-Vaughan: headroom rho(t) = (t-D)lnH/2H provably <= 1, measured max
+  0.4687 / 0.4785 / 0.4828 (y = 101/211/503), drifting to 1/2: THE FORCED FLOOR
+  SITS AT HALF THE MV CEILING - the parity factor 2 photographed live. Any theorem
+  separating P(t) from its floor at a single t IS a twin-existence theorem
+  (separation = n0(t)).
+- VERDICT: the equation is SATISFIABLE, for an exact reason - forced value =
+  unconditional minimum, all unconditional ceilings a parity factor above. Genuine
+  new content = the supply decomposition: X's doubles budget has exactly one
+  guaranteed line item, the g=2 pins from twins below y, measured 5-9% of split
+  incidences at every scale and depth (8.9/7.0/5.4% full window; 8.9/6.4/6.0%
+  bottom band); the other 91-95% is alignment-conditional and empirically ample.
+  Self-reference quantified, not closed. Priced completeness note: squeezing the
+  MV constant 2 -> 1 at H ~ y^2 would bite rho -> 1/2, and that constant's
+  rigidity is itself parity-class (Motohashi/Siegel-zero linkage for the
+  progression form). The ledger and the analytic wall are one wall, two faces.
+- Coordination: Mechanic's per-gear R_q(t) composes as the attribution-graded
+  demand side when posted; Lateral's CORR formula-ization would upgrade the
+  incidence counts (CORR overlap measured large: +806/+5162/+40960) to distinct-
+  double counts in closed form - that is the remaining formula gap in D(t).
+
+## Harvester round 1 (2026-08-18) - adjacent-statement survey + Polignac/Goldbach transfer
+Full survey: docs/proof-search/harvester.md. Verdict-first: nothing in the corpus touches
+Legendre-class band statements or any fixed-gap Polignac CONJECTURE (parity/localisation
+walls, as priced in rounds 2-3); the harvestable layer is the REDUCTION FRAME and the
+exact finite laws. Ranking (reachability x value):
+
+| rank | candidate | reach | value | note |
+|---|---|---|---|---|
+| 1 | Per-gap Polignac reduction iff + slot-cap transfer, in Lean | done | moderate | first bite, below |
+| 2 | Goldbach window reduction + exact converse, in Lean | done | modest | same file |
+| 3 | g=2 pinning theorem (only twins pin their split class at u' <= (y+1)/6) | high | small-mod | next bite |
+| 4 | Overcount census identity (SAME + PAIRSPLIT - CORR) as formal theorem | high | low-mod | = Constructor's CORR ask |
+| 5 | F(2,y) table -> OEIS/data note (F(2,53) unfinished at >= 420) | compute | small | new data per review |
+| 6 | Fragile constant-2 law | HL-class | - | unconditionally unreachable |
+| 7 | Band statements (T1/Oppermann/Brocard), fixed-gap Polignac | ~0 | - | retired |
+
+FIRST BITE EXECUTED - proofs/Polignac.lean, BUILDS CLEAN, standard axioms only
+([propext, Classical.choice, Quot.sound] via #print axioms on all nine theorems), the
+kernel ledger's 6th file. Contents:
+- slot_cap_gap: odd prime blocks both members of a gap-2d slot => q | d (Layer.slot_cap
+  content = the d=1 case, recovered as slot_cap_twin). This is THE transfer condition:
+  every corpus law whose proof rests on slot-cap holds verbatim for gap 2d at gears
+  coprime to d; gears q | d collapse to one residue = the HL factor, mechanically.
+- survivorGap_iff_pair: windowed survivor <=> prime pair at gap 2d (any d).
+- gapPairs_infinite_iff_survivor_in_window (d): PER-GAP IFF - Polignac for 2d is
+  EQUIVALENT to the windowed survivor statement for the d-pattern. d=1 recovers
+  BlockedSlots.twins_infinite_iff_survivor_in_window (survivorGap_one_iff: definitional).
+  Sharpens Ziller-Morack Thm 4.1 (sufficiency, all differences at once) to machine-
+  checked per-difference equivalences.
+- goldbach_of_survivor / survivor_of_goldbach_rep: N is a sum of two primes if the paired
+  sieve (n, N-n) has a survivor with both parts above sqrt N; converse exact on central
+  representations. The ZM frame trio (twins / Polignac-d / Goldbach) is now formal.
+All three statement families verified computationally first
+(research/polignac_transfer_check.py: zero fails; d in {0,1,2,3,5,6}, all even N < 2000).
+Strategic note: Horizon and Supply are already gap-blind; after this file the only
+genuinely twin-specific objects in the corpus are the phase vector +-u' and its g=2
+pinning - which is why rank 3 is the next bite (it is the first structural fact that
+DISTINGUISHES twins from other gaps inside the general frame, and it feeds Constructor's
+supply decomposition directly). Publishable unit if wanted: formalisation note =
+Polignac.lean + BlockedSlots.lean + the F(2,y) data.
+
+## Formalist round 4 (2026-08-18)
+The ZERO-SLACK CENSUS is now kernel-checked: proofs/Census.lean (namespace `Census`,
+sixth lakefile target, zero sorry, standard axioms via AxiomCheck). Slots k carry
+(6k-1, 6k+1); per-slot counters use real Nat.Prime (composable with Horizon/Supply);
+all statements over ARBITRARY Finset T of slots (prefixes = range t, but windows and
+layer bands specialise identically).
+- `Census.census_partition`: n0 + n1 + n2 = N.  `Census.comps_eq`: C = n1 + 2*n2.
+- `Census.primes_add_comps`: P + C = 2N.  `Census.primes_eq`: P = n1 + 2*n0.
+- `Census.n0_eq_zero_iff`: n0 = 0 <-> no slot in T is a twin pair (= Condition X on T).
+- `Census.census_pinned` (THE PINNING): n0 = 0 -> n1 = P and n2 = N - P; also
+  `census_pinned_add` (n2 + P = N, subtraction-free) and `census_pinned_prefix`
+  (T = range t: hX : no twin slot below t -> n1(t) = P(t), n2(t) = t - P(t)).
+This is the demand side of the round-4 flagship, formal: under X the doubles count is
+an exact functional of the prime census, per prefix, with zero freedom. Constructor
+can cite census_pinned_prefix directly for the X-consistency equation's demand leg.
+Next target (proposed): the bridge identity - compsIn(range t) = Supply's
+root-partitioned sum over the member Finset, giving sum_q R_q(t) = n1 + 2*n2
+kernel-checked end to end (LHS skeleton of the X-consistency equation).
+
+## Lateral round 4 (2026-08-18) - master supply formula, exact at every prefix
+Tool: research/supply_formula.py. Derivation: docs/proof-search/lateral.md round 4.
+- MASTER FORMULA (CORR formula-ized, one signed sum, all floor arithmetic):
+  overcount(t) = sum over coprime squarefree gear-product pairs (s_L | 6k-1,
+  s_R | 6k+1), total >= 2 gears, of (-1)^{#gears} N(s_L,s_R;t); each N is one
+  CRT class mod s_L*s_R. One-sided terms = SAME, single-single = PAIRSPLIT
+  (gap law), both-sided >= 3 gears = -CORR. Both-sided restriction = B(t) =
+  # slots with both members gearful.
+- CONSTRUCTOR'S n2 EXACTLY (the flagship supply side): n2(t) = B(t) - U(t),
+  U(t) = #{u'(q) <= t : partner member gearful} - finite, explicit, confined to
+  the bottom y/6 slots (31 slots at y=211). Multiplicity bridge: overcount =
+  SAME + U + n2 (n2 counts distinct both-composite slots; all stacking is in
+  SAME, all prime-member exceptions in U). Spectrum at y=211: {1:1846, 2:2037,
+  3:1465, 4:1038, 5:294, 6:108, 7:6} - hubs to depth 7, absorbed exactly.
+- VERIFIED AT EVERY PREFIX t (max abs diff over all t in [1,K], not spot
+  checks): y=101 (2940 terms) and y=211 (17022 terms): overcount 0, B 0, n2 0.
+  t=K (y=211): SAME 6367 + U 31 + n2 3435 = overcount 9833. OK.
+- AVAILABILITY SCHEDULE (bottom band, y=211): u' pins arrive first and alone
+  (t = 1,2,3,5,7,10,...) - ALL early double supply is prime-membered (U-type,
+  invisible to n2). First SAME at t=6 (35). FIRST n2 SLOT AT t=20 = (119,121),
+  matching the Constructor's measured onset exactly; its anatomy: split(7,11) +
+  split(17,11) - hub(7*17|11) = 1. Under X the demand n2(t) = N(t)-P(t) has
+  ZERO supply before t=20 for y >= 211. n2 growth after onset ~0.463/slot.
+- X-CONSISTENCY EQUATION now fully two-sided: under X, N(t) - P(t) = B(t) - U(t)
+  for every t; left = prime census of (y,y^2), right = floor arithmetic over
+  primes/gaps below y. Caveat: term enumeration O(#products^2) - fine to y~500,
+  needs pruning beyond (formula itself scale-free). U test must be "partner
+  gearful", not "partner prime" (boundary: partner prime just above y).
+- Offering next: overdetermination scan (where do the two sides' derivatives
+  bind in real windows) or enumeration pruning to make the equation testable at
+  y ~ 1e4; coordinator's pick.

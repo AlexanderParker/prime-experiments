@@ -1,0 +1,176 @@
+# Harvester workstream - side theorems and adjacent conjectures
+
+Round 1 (2026-08-18). Mission: statements weaker or adjacent to twin primes where this
+session's machinery yields actual results. Everything below is priced honestly; "not
+reachable" is stated where true.
+
+## 1. Survey of candidates
+
+### C1. Legendre / Oppermann / Brocard band statements
+Statement class: a prime (Legendre: in (n^2, (n+1)^2); Oppermann: both halves; Brocard:
+>= 4 primes between consecutive prime squares) in every band. This is the team's own T1,
+the terminus of the layer-band descent.
+- Machinery that applies: margin census (M(t) law, li-model to 0.1%), band tiling,
+  exact censuses to 6.67e9 slots. All DIAGNOSTIC: the margin is gear-blind (mechanic
+  round 3) and the bands are invisible to it at 1e-4.
+- Honest distance: localisation technology stops at exponent 0.525 (Alweiss-Luo, anchored
+  at Baker-Harman-Pintz); needed 0.5. Not implied by RH. The machinery contains no new
+  localisation idea - the gears frame is a sieve reparametrisation and inherits the wall.
+- Verdict: NOTHING REACHABLE beyond known. Value enormous, reachability ~0.
+
+### C2. Polignac for a fixed even gap 2d - the conjecture itself
+- Machinery: everything transfers (see C3); research/general_gap.py already derives the
+  class count prod(q - r_q), r_q = 1 iff q | d - the Hardy-Littlewood factor from the
+  blocking rule alone.
+- Honest distance: parity wall per fixed d. Maynard-Tao/Polymath give SOME d <= 246
+  infinitely often, never a chosen d. Same wall as twins for every single d.
+- Verdict: conjecture not reachable for any fixed d. (The machinery does not even prefer
+  small d: the blocked-residue structure is isomorphic up to the q | d collapse.)
+
+### C3. The per-gap reduction as a standalone kernel-checked theorem  <- TOP PICK (with C4)
+Statement: for EVERY d, {p : p, p+2d both prime} is infinite IFF every scale has a window
+(y, y^2] containing a gap-2d survivor of the gears <= y. Plus the transfer law: an odd
+gear blocks both members of a gap-2d slot iff q | d (slot-cap generalised).
+- Machinery: BlockedSlots.lean's twin proof is gap-agnostic in all but bookkeeping;
+  Horizon's per-member argument never sees the gap. general_gap.py has the numerics.
+- Honest distance: DAYS. First bite executed this round (proofs/Polignac.lean, below).
+- Value: moderate and real. Ziller-Morack (arXiv:1706.00317, Thm 4.1) prove their
+  paired-Jacobsthal bound sufficient for Goldbach + all even differences at once; per-
+  difference EQUIVALENCES, machine-checked, are new (the review already established the
+  d=1 iff is sharper than ZM). It also makes the session's whole corpus formally
+  applicable to every even gap: the horizon, layer, supply, census files compose with
+  SurvivorGap d unchanged. Harvestable as a formalisation note.
+
+### C4. Goldbach via the paired-Jacobsthal frame
+Two very different objects here:
+- The CONJECTURE (or ZM Conjecture 6, the h_2 bound): Reduction-A class or harder (h_2 is
+  a max over all differences). NOT reachable.
+- The windowed REDUCTION: "if some n in (sqrt N, N - sqrt N) has n and N - n free of prime
+  factors <= sqrt N, then N is a sum of two primes", with the converse exact on the
+  representations with both parts above sqrt N. Same horizon argument, reachable NOW,
+  kernel-checked this round in the same file. Value: modest, citable; completes the
+  ZM-frame trio (twins / Polignac-d / Goldbach) in Lean.
+
+### C5. Prime quadruplets and k-tuples
+- Machinery: found live as width-2 umbrellas (six quadruplets of the 47-window, 180504 at
+  y=100003, share ~1.7% steady); exact alignment-count laws already session-proven:
+  p(x) = prod(q - 2 + 2x), positions with k consecutive exposed = prod(q - 2k) with exact
+  validity condition q >= 6(k-1).
+- Honest distance: the counting laws are provable elementary CRT facts (and effectively
+  proven in-corpus); their external novelty is low (standard sieve-support counting).
+  Infinitude of quadruplets is strictly beyond twins. The k-tuple version of C3's
+  reduction is a mechanical extension (pattern = finite offset set) if ever wanted.
+- Verdict: no standalone publishable theorem beyond a k-tuple version of C3. Low value.
+
+### C6. The overcount census theorem (Lateral rounds 2-3)
+Statement: machine overcount = SAME + PAIRSPLIT - CORR, with SAME = squarefree-product
+floor counting, PAIRSPLIT = the gap-graded split-class law, verified exactly at three
+scales; plus the closed-form split representative x = (q'(b0 + iq) - 1)/6.
+- Honest distance: fully provable, elementary; Lateral already calls the census identity
+  "mechanisable". A finite-identity Lean target of the same genre as Supply.lean.
+- Value: mostly internal (upgrades D(t) in the X-consistency equation to closed form via
+  CORR). As standalone publication: a remark-level identity. Medium-low.
+
+### C7. The g=2 pinning corollary as a stated theorem (Lateral round 3)
+Statement: among all prime pairs (q, q+g) below y, ONLY g = 2 has m0 = 0, i.e. only twin
+pairs have their split double-kill class pinned at depth u' <= (y+1)/6 in every window at
+every scale; all other gaps enter at depth ~P/(6g) conditionally on mod-6 alignment.
+- Honest distance: provable now by the CRT computation already verified on all 2850 pairs
+  to 400. The quantified self-reference ("twins below y are the unique unconditionally
+  guaranteed line item of the level-y^2 doubles ledger") is the session's most
+  distinctive exact structural fact.
+- Value: small-moderate; the natural centrepiece lemma if the team ever writes the
+  ledger paper. Reachable; second bite candidate.
+
+### C8. The constant-2 fragile law (Mechanic rounds 1-2)
+Statement (measured): fragile * pi_win / (twins * W1) -> 2, exact to 0.43% at y=50021,
+Poisson-clean per gear band with the size-corrected form.
+- Honest distance: this is a Hardy-Littlewood-class asymptotic (its ingredients are
+  twin-HL and semiprime counting); unconditional proof is beyond current technology.
+  A CONDITIONAL derivation (under HL for pairs) looks writable and would explain the
+  constant 2 as the two ways a lone-composite member pairs with a prime; that is an
+  exercise in heuristic bookkeeping, not a theorem of independent standing.
+- Verdict: not harvestable unconditionally. Low.
+
+### C9. Universal double-onset bound (Constructor round 2)
+L0(y) <= 27129 for every y via Montgomery-Vaughan. Already proved in-corpus; it is a
+Brun-Titchmarsh corollary, known-class. Diagnostic value only. Low.
+
+### C10. The F(2,y) table as data (review section 7a)
+The difference-2 paired-Jacobsthal values are genuinely new data (ZM compute none);
+F(2,53) >= 420 stands unfinished. Finishing it and publishing the table (OEIS + note) is
+reachable pure compute with small permanent value. Compute-bound (Rust search, tens of
+minutes per increment); not this round's bite.
+
+## 2. Ranking (reachability x value)
+
+| rank | candidate | reachability | value | product |
+|------|-----------|--------------|-------|---------|
+| 1 | C3 per-gap reduction iff + slot-cap transfer (Lean) | high (done this round) | moderate | HIGH |
+| 2 | C4 Goldbach window reduction (Lean) | high (done this round) | modest | HIGH |
+| 3 | C7 g=2 pinning theorem | high | small-moderate | MED |
+| 4 | C6 overcount census identity | high | low-moderate | MED |
+| 5 | C10 F(2,y) data / OEIS | high (compute) | small | LOW-MED |
+| 6 | C8 fragile law (conditional only) | medium | low | LOW |
+| 7 | C5 k-tuple counting laws | high | very low | LOW |
+| 8 | C9 onset bound | done | low | LOW |
+| 9 | C1 band statements | ~0 | huge | ~0 |
+| 10 | C2 fixed-gap Polignac | ~0 | huge | ~0 |
+
+Top pick: C3 + C4 together, one Lean file - they share the horizon lemma and together
+turn the kernel ledger from a twin-specific artifact into the general ZM frame.
+
+## 3. First bite: proofs/Polignac.lean (executed)
+
+New file, registered in lakefile.toml (targets now include Polignac). Contents:
+
+- `prime_of_no_factor_le_sqrt`: sqrt-graded horizon lemma (per-member, gap-blind).
+- `SurvivorGap d y m`: the gap-2d survivor predicate; `survivorGap_one_iff`: d = 1 is
+  definitionally `BlockedSlots.Survivor`.
+- `slot_cap_gap`: odd prime blocks both members of a gap-2d slot => q | d; corollary
+  `slot_cap_twin` recovers Layer.slot_cap's content. This is the exact transfer
+  condition for the whole corpus: every law whose proof uses slot-cap holds verbatim
+  for gap 2d at the gears coprime to d, and the q | d gears collapse to one residue
+  (the HL factor, mechanically).
+- `survivorGap_iff_pair`: windowed equivalence survivor <=> prime pair at gap 2d.
+- `gapPairs_infinite_iff_survivor_in_window (d)`: THE per-gap iff - Polignac for 2d
+  is equivalent to the windowed survivor statement, both directions, every d (d = 0
+  degenerates gracefully to infinitude of primes).
+- `goldbach_of_survivor` / `goldbach_rep_of_survivor` / `survivor_of_goldbach_rep`:
+  the Goldbach window reduction with its exact converse on central representations.
+
+Verification discipline: all three statement families checked computationally first
+(research/polignac_transfer_check.py: windowed iff for d in {0,1,2,3,5,6}, y in
+{13,23,47}, zero fails; Goldbach frame exact for all even N < 2000; slot cap exact for
+d < 20, q < 100). Lean build status recorded below.
+
+BUILD STATUS: BUILDS CLEAN. `lake build Polignac` succeeds (one deprecation warning on
+push_neg, same as the existing files), zero sorry. Axiom audit (lake env lean, #print
+axioms on all nine theorems): standard axioms only - [propext, Classical.choice,
+Quot.sound]; `survivorGap_one_iff` needs only [propext] and `survivor_of_goldbach_rep`
+only [propext, Quot.sound]. Registered in lakefile.toml (defaultTargets + lean_lib).
+One rename during build: this mathlib has `Nat.dvd_sub` where older versions had
+`Nat.dvd_sub'`. The kernel ledger is now 6 files.
+
+## 4. What this buys the team
+
+- Every kernel-checked file now has a stated generalisation path: Horizon and Supply are
+  already gap-blind (per-member arguments); Layer's slot_cap is the d = 1 case of
+  slot_cap_gap; the one genuinely twin-specific object in the corpus is the phase vector
+  +-u' (self-blocking at u' = round(q/6)) and its g=2 pinning (C7).
+- Polignac vocabulary for the X-consistency programme: Condition X for gap 2d has the
+  same zero-slack census with doubles counted by the d-pattern's split classes; the
+  "unique guaranteed supply line" story (C7) is a statement ABOUT d = 2 from inside the
+  general frame - the first structural fact that distinguishes twins from other gaps.
+- A publishable unit exists if the manager wants one: "Machine-checked reductions of
+  Polignac-type and Goldbach-type statements to paired-Jacobsthal window bounds"
+  (Polignac.lean + BlockedSlots.lean + the F(2,y) data of C10). Modest but real; no
+  overselling - it contains no progress on any conjecture, it is the frame made formal.
+
+## 5. Next bites (in order)
+
+1. C7: state and prove the g=2 pinning theorem (paper-form proof from the split law's
+   closed form; optional Lean of the m0 = 0 iff g = 2 step, which is one mod-g inverse).
+2. C6: CORR formula-ization (also requested by Constructor round 4) - harvest and
+   flagship coincide there.
+3. C10: restart the F(2,53) search if compute budget allows; package table for OEIS.

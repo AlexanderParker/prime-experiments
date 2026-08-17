@@ -2,6 +2,7 @@ import BlockedSlots
 import Horizon
 import Layer
 import Supply
+import Census
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -21,3 +22,10 @@ open BlockedSlots
 #print axioms Supply.card_composites_eq_sum_roots
 #print axioms Supply.card_eq_primes_add_sum_roots
 #print axioms Supply.roots_ne
+#print axioms Census.census_partition
+#print axioms Census.comps_eq
+#print axioms Census.primes_add_comps
+#print axioms Census.primes_eq
+#print axioms Census.census_pinned
+#print axioms Census.census_pinned_prefix
+#print axioms Census.n0_eq_zero_iff

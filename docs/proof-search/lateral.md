@@ -288,3 +288,82 @@ law at the bottom band: the g=2 pins sit at u' <= y/6, i.e. the guaranteed
 doubles live exactly in the bottom band the team has made the proof target -
 derive the bottom-band double-onset supply (which pairs can place a split below
 a given slot t) as an explicit finite list per window.
+
+## Round 4 (2026-08-18): the master supply formula - exact at every prefix depth
+
+Steering taken: formula-ize CORR, prefix-grade everything, answer the multiplicity
+question. Tool: `research/supply_formula.py`. All checks are max-abs-diff over
+EVERY prefix t in [1, K], not spot checks.
+
+### The master formula (CORR formula-ized)
+
+Using (c-1)[c>=1] = c - 1 + [c=0] and inclusion-exclusion on both members
+simultaneously, the whole round-3 decomposition collapses into ONE signed sum
+over coprime pairs of squarefree gear products (s_L | 6k-1, s_R | 6k+1), each
+pair one CRT class mod s_L s_R, each count pure floor arithmetic:
+
+    overcount(t) = sum_{|s_L|+|s_R| >= 2} (-1)^{#gears} N(s_L, s_R; t)
+
+Taxonomy: one-sided terms = SAME; (q,q') single-single terms = PAIRSPLIT (the
+gap-law classes); both-sided terms with >= 3 gears = -CORR. So CORR is now the
+same floor arithmetic as everything else - round 3's census crutch is gone. The
+both-sided restriction of the sum is
+
+    B(t) = # slots <= t with both members gearful
+         = sum_{s_L, s_R both nonempty} (-1)^{#gears} N(s_L, s_R; t).
+
+### The Constructor's n2, exactly
+
+In the window every composite member has a gear factor (horizon), and the only
+PRIME gearful members are the gears themselves, sitting at their self-block
+slots u'(q). Hence, with U(t) = #{u'(q) <= t : partner member gearful}:
+
+    n2(t) = B(t) - U(t)          (distinct both-composite slots)
+    overcount(t) = SAME(t) + U(t) + n2(t)     (the multiplicity bridge)
+
+U is finite, explicit, and confined to the bottom y/6 slots (max u' = u'(y)).
+This answers the multiplicity question exactly: n2 counts distinct slots, ALL
+same-member stacking lives in SAME, all prime-member exceptions in U - no
+approximation anywhere. Deep hubs are real at scale: kill-multiplicity spectrum
+at y=211 is {1:1846, 2:2037, 3:1465, 4:1038, 5:294, 6:108, 7:6} (cnt up to 7),
+and B/n2 absorb them correctly because the signed sum telescopes per slot.
+
+### Verification, prefix granularity
+
+    y=101 (K=1700):  2940 terms; max over ALL t of |formula - census|:
+                     overcount 0, B 0, n2 0
+    y=211 (K=7420): 17022 terms; max over ALL t: overcount 0, B 0, n2 0
+    t=K components (y=211): SAME 6367, PAIRSPLIT 8651, CORR 5185, B 3466,
+                     U 31, n2 3435; bridge 6367+31+3435 = 9833 = overcount. OK.
+
+### The availability schedule (supply-arrival curve for the Constructor)
+
+Bottom band of y=211, exact event list (excerpt): u' pins arrive first and
+alone - t = 1 (5,7), 2 (11,13), 3 (17,19), 5 (29,31), 7 (41,43), 10, 12, 17,
+18, 23, 25, 30, 32, 33 - all prime-member B slots (they feed U, not n2). First
+SAME at t=6 (35 = 5*7). **First n2 slot at t=20 = (119,121)** - matching the
+Constructor's measured "first double never before k=20" exactly, now with its
+anatomy: 119 = 7*17, 121 = 11^2, B-contribution = split(7,11) + split(17,11)
+- hub(119|11) = 2 - 1 = 1. Between t=1 and t=19 the ledger's entire double
+supply is prime-membered (U-type): under X, demand n2(t) = N(t) - P(t) has NO
+supply to draw on before t=20 at any y >= 211 - consistent with (and now
+explaining) the Constructor's onset findings. Decile curves printed in the
+tool; n2 grows near-linearly (~0.463 per slot at y=211) after onset.
+
+### Honest caveats
+
+- Term enumeration is O(#products^2) (4M candidate combos at y=211, 17022
+  surviving). Fine to y ~ 500; beyond that needs pruning (e.g. meet-in-the-
+  middle on product size). The FORMULA is scale-free; only enumeration costs.
+- U's definition has boundary sensitivity (partner prime just above y is not
+  gearful), handled exactly by the arithmetic; anyone reusing U should keep the
+  "partner gearful", not "partner prime", test.
+
+### Proposed next chunk
+
+The flagship's supply side is now delivered: under X, N(t) - P(t) = B(t) - U(t)
+at every t, left side pure prime census of (y, y^2), right side pure floor
+arithmetic over primes/gaps below y. Offer: (1) overdetermination scan - measure
+in real windows where the two sides' DERIVATIVES disagree (real windows have
+slack; X has none; locate the slots where the rigidity binds); (2) close the
+enumeration cost so the equation is testable at y ~ 10^4.

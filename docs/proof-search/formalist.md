@@ -220,3 +220,71 @@ n1 + 2*n2 = C and n1 + n2 = N together with P = n1 — the census pinning
 n1(t) = P(t), n2(t) = N(t) − P(t) as Finset statements over prefixes.
 That is the formal substrate C2 (prefix pigeonhole) sits on. Alternative:
 h(2) ≥ d's product inequality.
+
+## Round 4 — Zero-slack census pinning (2026-08-18)
+
+### What was done
+
+New file `proofs/Census.lean` (namespace `Census`), the demand side of the
+round-4 flagship (X-consistency equation), formalized. Sixth lakefile
+target; AxiomCheck extended. One build iteration (a missing `smul_eq_mul`
+under minimal imports — replaced by `Finset.sum_const_nat`, which is the
+right ℕ-native lemma anyway); second build clean, zero sorry, zero warnings.
+
+### Setup
+
+Slot `k` carries the pair `(6k−1, 6k+1)` (`lo`/`hi`). Per-slot counters
+`slotPrimes k`, `slotComps k` (0/1/2 via decidable `Nat.Prime` ifs — tied to
+real primality, not abstract blocking, so Horizon/Supply compose directly).
+Over an arbitrary `T : Finset ℕ` of slots: `primesIn` (= P), `compsIn`
+(= C), `n0`/`n1`/`n2` = card of the filter `slotComps k = 0/1/2`, N = `T.card`.
+
+### Final theorem statements (all over arbitrary T)
+
+```lean
+theorem census_partition : n0 T + n1 T + n2 T = T.card
+theorem comps_eq         : compsIn T = n1 T + 2 * n2 T
+theorem primes_add_comps : primesIn T + compsIn T = 2 * T.card
+theorem primes_eq        : primesIn T = n1 T + 2 * n0 T
+theorem n0_eq_zero_iff   : n0 T = 0 ↔ ∀ k ∈ T, ¬ ((lo k).Prime ∧ (hi k).Prime)
+theorem census_pinned (h0 : n0 T = 0) :
+    n1 T = primesIn T ∧ n2 T = T.card - primesIn T
+theorem census_pinned_add (h0 : n0 T = 0) : n2 T + primesIn T = T.card
+theorem census_pinned_prefix (t) (hX : ∀ k < t, ¬ ((lo k).Prime ∧ (hi k).Prime)) :
+    n1 (range t) = primesIn (range t) ∧ n2 (range t) = t - primesIn (range t)
+```
+
+### Proof route
+
+- Partition: `Finset.card_eq_sum_card_fiberwise` with fibering function
+  `slotComps` into `range 3` (MapsTo from `slotComps_le_two`), then
+  `sum_range_succ` twice + `sum_range_one` + `rfl`.
+- `comps_eq`: `Finset.sum_fiberwise_of_maps_to`, each fiber's sum collapsed
+  by `Finset.sum_const_nat` (constant value b on the fiber) to `card * b`;
+  the b = 0 term vanishes.
+- `primes_add_comps`: `sum_add_distrib` + per-slot `slotPrimes + slotComps
+  = 2` (four-way `by_cases` + simp) + `sum_const_nat`.
+- `primes_eq`, `census_pinned`: pure `omega` over the three identities —
+  omega handles the card/sum terms as opaque atoms, including the ℕ
+  subtraction in `n2 = N − P`. `census_pinned_add` is the subtraction-free
+  form for downstream composition.
+- `n0_eq_zero_iff` makes the hypothesis exactly Condition X:
+  `card_eq_zero` + `filter_eq_empty_iff` + the per-slot iff.
+
+### Build status
+
+`lake build`: **Build completed successfully (976 jobs)**, zero sorry.
+All five earlier libs unchanged and building.
+
+### Axiom audit
+
+All seven checked Census theorems: `[propext, Classical.choice, Quot.sound]`.
+
+### Proposed next target
+
+The demand side is now pinned; the natural next chunk is the BRIDGE to the
+supply side: identify `compsIn (range t)` with Supply's root-partitioned
+count over the corresponding member Finset (S = image of slots' members),
+giving Σ_q R_q(t) = n1(t) + 2·n2(t) kernel-checked end to end — the formal
+skeleton of the X-consistency equation's left-hand side. Alternative:
+h(2) ≥ d's product inequality.
