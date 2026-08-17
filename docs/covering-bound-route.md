@@ -1368,3 +1368,65 @@ finite threshold. That needs `f_j / c_j < r_inf = 2.519651`, where `c_j` is the 
 `alpha^2` and `f_j` the constant on the right. So far `f_j/c_j` is `3/2 = 1.5`, `11/5 = 2.2` and
 `17/8 = 2.125` - all below `r_inf`, but with no margin to spare at `j = 2`, and no argument yet that
 the ratio stays below it for all `j`.
+
+## 25. n_4, and an honest assessment of the per-j recipe
+
+### 25a. n_4 in closed form
+
+By inclusion-exclusion over the interior `{3,6,9}`, with `{0,3,6,12}` and `{0,6,9,12}` vanishing
+because each holds a 3-chain,
+
+    **n_4 = #{gaps = 12} = f({0,12}) - f({0,3,12}) - f({0,6,12}) - f({0,9,12}) + f({0,3,9,12})**
+
+Verified exactly for gears to 7, 11, 13, 17, 19, 23: `n_4 = 0, 6, 96, 1536, 26208, 539136`.
+
+The `j = 4` condition `11 alpha^2 + alpha(s_4 - 3 t_4) >= 3 s_4` holds throughout, with ratios
+`1.0659, 1.1121, 1.1482, 1.1749, 1.1975, 2139, 1.2250, 1.2537` for `y = 7 .. 43` - increasing, and
+with the `alpha` term genuinely negative (`s_4 - 3 t_4 = -68/35` at `y = 7`), so it cannot be dropped.
+
+### 25b. The recipe cannot cover all j
+
+The route needs the hazard condition at every block start `L = 3j` for `j = 1 .. F_k`, and
+
+| y | F_k | conditions needed | terms in the last inclusion-exclusion |
+| --- | --- | --- | --- |
+| 7 | 5 | 5 | 2^4 |
+| 23 | 34 | 34 | 2^33 |
+| 43 | 103 | 103 | 2^102 |
+| 47 | 118 | 118 | 2^117 |
+
+The count of conditions grows like `F_k ~ 0.055 y^2`, and the inclusion-exclusion for `n_j` grows
+exponentially in `j` even after the 3-chain pruning. So the per-`j` recipe, which has proved
+`L = 1, 3, 6, 9`, cannot be pushed to all of them: it is a method for finitely many small cases, not
+a proof schema.
+
+Nor does a uniform bound substitute for it. The crude bounds `s_j <= alpha` and `t_j <= (j-1) alpha`
+reduce the condition to `2 alpha^2 >= 3 alpha`, that is `alpha >= 3/2`, which is false. And the
+polynomial form degenerates at the top: as `j` approaches `F_k`, `s_j -> alpha` and
+`t_j -> j alpha - 1`, making both sides equal `3 alpha` - the condition becomes `0 >= 0`, carrying no
+information exactly where `N(L)` vanishes.
+
+### 25c. What the route has established
+
+Solid, and independent of the above:
+
+* the covering bound is equivalent to a hazard condition on the gap distribution of the admissible
+  pattern (sections 15, 17);
+* every gap is a multiple of 3, hence `F_h = 0 mod 3` - verified against all thirteen known values
+  (18a, 15b);
+* gear 3 blocks one of any two adjacent positions; gear 5 blocks one of any three spaced 3 apart
+  (18a);
+* closed forms for `n_1, n_2, n_3, n_4`, each verified exactly against direct enumeration;
+* the condition proved unconditionally at `L = 1, 3, 6, 9`;
+* the condition verified at **every** block start for `y = 19` and `y = 23` - 25 and 34 of them,
+  zero failures, minimum exactly at `L = 1` (23a);
+* `{3,5,7}` identified as the extremal gear set, exactly tight at `L = 1, 6, 9`.
+
+Not established, and now known not to follow from this method:
+
+* the condition for general `j`, and therefore the bound, and therefore `F_h <= L_0`.
+
+The route is a genuine reformulation with four proved cases and strong numerical support, but closing
+it needs an argument that treats all `j` at once. The two candidates tried - monotonicity in the gear
+set (section 24a) and the universal bound `h >= 1/(F_h - L)` (section 22) - are respectively false and
+circular.
