@@ -239,3 +239,21 @@ umbrella with the certifying set of its first slot and extending rightward claim
 tower has activated a NEW gear inside the interval (a square crossing mid-umbrella) - one false
 twin per large window, exposed by full verification. The fix judges every slot at its own graded
 depth; the failure mode is the horizon law in miniature.
+
+## Stride/window collapse to y = 100003 (members to 10^10)
+
+Full-set sieving is provably equivalent to graded inside a window (below its square a gear's bites
+are always shadowed; no member > y can be a bare gear), so big windows sieve flat. Results:
+
+    y       window slots   twins      quads   max stride  stride/window
+    5003        4.17e6      130543     1718      365       8.8e-5
+    10007       1.67e7      440665     4760      478       2.9e-5
+    20011       6.67e7     1508853    13707      634       9.5e-6
+    50021       4.17e8     7816169    58845      882       2.1e-6
+    100003      1.67e9    27412929   180504     1005       6.0e-7
+
+Joined with the small-window table, stride/window collapses from 2.1e-2 (y=101) to 6.0e-7 - five
+orders of magnitude across three orders of y. The stride itself tracks ~ 0.45-0.49 * log^3(member)/6
+slots across the whole range - the twin-Cramer cube-of-log shape. The maximal twin-free stretch
+grows polylogarithmically while the horizon grows quadratically; the widening gap between those two
+growth rates is Reduction A's slack, measured across ten orders of magnitude of members.
