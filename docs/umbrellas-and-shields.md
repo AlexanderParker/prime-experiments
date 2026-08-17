@@ -95,6 +95,27 @@ rows are twin gears sharing their tooth. The machine's own tooth-index list dupl
 the twin slots - the self-reference of section 17d (each level's twins become components of the next
 level's machine) visible in one column.
 
+## Umbrella growth
+
+Two teeth cut the gear's circle into exactly two arcs. Written as residues 0..q-1, the arc holding
+residue 0 wraps the ends - and it is always the *small* one, because it is the shield-centred arc
+with teeth at +-u' around it. Both umbrellas grow linearly, ratio locked at 1:2 (short ~ q/3,
+long ~ 2q/3, the remaining 3 residues being the two teeth and nothing else - the shield is inside
+the short umbrella):
+
+    gear    5   11   17   23   29   41   101   1009
+    short   1    3    5    7    9   13    33    335
+    long    2    6   10   14   18   26    66    672
+
+So every gear is always exactly one-third-plus-two-thirds umbrella, while its teeth thin out in
+absolute terms: 2 kills per q slots, kill density 2/q -> 0. Large gears are almost pure umbrella,
+and their rare teeth are precisely the fresh semiprime kills that the band-attribution matrix shows
+doing the deciding work at the twin margin.
+
+Per lap (six rotations = q slots): one shield, landing on the midpoint of one pair and protecting
+both its members; the short umbrella widens around that shield as gears grow - a shield-effect whose
+neighbourhood extends like q/3.
+
 ## The machine statement in this vocabulary
 
 A twin slot is a slot standing under every relevant gear's umbrella at once (shield-centre or plain
