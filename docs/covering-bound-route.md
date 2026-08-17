@@ -1193,3 +1193,54 @@ Settled:
 Open: monotonicity as a theorem, and the base case along the threshold diagonal. The second is the
 harder half, since it concerns `L` close to `F_h` - the top of the gap distribution, where `N(L)` is
 smallest and the condition is about the few largest gaps.
+
+## 22. A universal hazard bound, and why it is circular here
+
+### 22a. The bound
+
+Since `N(L) = sum_{g>L} (g - L)` has `G(L)` terms each at most `F_h - L`,
+
+    **h(L) = G(L)/N(L) >= 1/(F_h - L)**
+
+Verified for every `L` at gears `{3,5,7}`, `{3,5,7,11}`, `{3,5,7,11,13}`, `{3,5,7,11,13,17}`. It is
+exactly tight where only the maximal gaps contribute: at the last non-vacuous block start
+`L = F_h - 3` it gives `h = 1/3`, and at `L = 9` for `{3,5,7}` it gives `1/6`, both attained.
+
+Combined with `h(1) = d/(1-d)`, the condition `h(L) >= h(1)` is therefore automatic once
+
+    F_h - L <= (1 - d)/d
+
+which covers the top `(1-d)/d` of the range - `6.0, 7.6, 9.1, 10.5, 11.8, 13.0, 14.1, 15.1, 16.0,
+16.9, 17.8, 18.6` for `y = 7 .. 47`.
+
+### 22b. Why it does not help
+
+**It presupposes `F_h`.** The purpose of the hazard condition is to derive `F_h <= L_0` *without*
+knowing `F_h`: the chain is "condition at every `L` gives `N(L) <= P(1-d)^L`, hence `N(L_0) < 1`,
+hence no gap exceeds `L_0`". A step that quotes `F_h` cannot appear in that chain.
+
+Nor can it be rescued by contradiction. Assuming `F_h > L_0` and applying the bound at `L < L_0`
+gives `h(L) >= 1/(F_h - L)` with `F_h` unknown and possibly huge, so the bound is weak exactly where
+it would need to be strong.
+
+The apparent completion of `{3,5,7}` in this iteration is hollow for the same reason. There
+`F_h = 15` and `L_0 = 31`, so `F_h <= L_0` is directly verifiable and the hazard route establishes
+nothing new. Every block start of that set is covered - `L = 1, 3, 6` by section 20 and `L = 9, 12`
+by the bound above - but the covering at `L = 9, 12` uses the value of `F_h` it is meant to bound.
+
+### 22c. What is actually available
+
+Unconditional, not quoting `F_h`:
+
+* `h(1) = d/(1-d) > d`, from the mod-3 law (section 18b);
+* `h(3) >= h(1)`, from `2r + alpha >= 3` (section 20b);
+* `h(6) >= h(1)`, from `5r + (2/3) alpha >= 11`, exactly tight at `{3,5,7}` (section 20c);
+* the exact condition at every block start (section 21a).
+
+Conditional on `F_h`, and therefore unusable in the chain:
+
+* `h(L) >= 1/(F_h - L)`, covering the top `(1-d)/d` of the range.
+
+So the open range is `L >= 9` in full, not `9 <= L <= F_h - (1-d)/d` as the previous section's
+framing suggested. The universal bound is a true statement about the gap distribution and a useful
+sanity check on the data, but it is not a step in the proof.
