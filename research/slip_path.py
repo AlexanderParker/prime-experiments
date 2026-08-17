@@ -55,6 +55,50 @@ def next_joint_opening(gears, n):
         if blocker is None:
             return k
 
+def gear_state(k, q):
+    """Full methodology state of gear q at slot k:
+    'L' left-kill tooth, 'R' right-kill tooth, 'S' shield,
+    's' short umbrella, 'U' long umbrella."""
+    u = pow(6, -1, q)
+    ru = (q - u) % q
+    lo, hi = min(u, ru), max(u, ru)
+    m = k % q
+    if m == u: return 'L'
+    if m == ru: return 'R'
+    if m == 0: return 'S'
+    return 's' if (m > hi or m < lo) else 'U'
+
+def state_walk(gears, start, verbose=True):
+    """Walk to the next all-umbrella slot, naming every gear's state and every
+    kill's member and factor on the way - the umbrella/shield methodology, not
+    a bare membership test."""
+    k = start
+    while True:
+        k += 1
+        st = [gear_state(k, q) for q in gears]
+        if all(s not in 'LR' for s in st):
+            if verbose:
+                print(f"slot {k} ({6*k-1},{6*k+1}): {''.join(st)}  ALL UMBRELLAS")
+            return k
+        if verbose:
+            kills = ', '.join(f"gear {q} {'kills left ' + str(6*k-1) if s == 'L' else 'kills right ' + str(6*k+1)}"
+                              for q, s in zip(gears, st) if s in 'LR')
+            print(f"slot {k} ({6*k-1},{6*k+1}): {''.join(st)}  {kills}")
+
+def mex_jump(gears, k0, horizon=64):
+    """The constructor jump: stride = mex of all gears' tooth offsets from k0."""
+    hit = set()
+    for q in gears:
+        u = pow(6, -1, q)
+        for t in (u, (q - u) % q):
+            d = (t - k0) % q
+            while d <= horizon:
+                if d >= 1: hit.add(d)
+                d += q
+    m = 1
+    while m in hit: m += 1
+    return k0 + m
+
 def stride_anatomy(gears, k_from, k_to):
     """Level-1 condition: name every interior slot's blocker in a stride."""
     us = {q: pow(6, -1, q) for q in gears}
