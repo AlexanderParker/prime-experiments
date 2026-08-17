@@ -10,32 +10,35 @@ The conceptual frame these all sit inside - the machine as gears turning togethe
 gear at infinity - is recorded separately in `docs/gear-at-infinity.md`. It is not a proof, but four of
 its six steps are theorems, and it is where the `+/-1` walk law and both blocking laws came from.
 
-## 1. The gap sequence is a constrained word (verified structure, strongest lead)
+## 1. The gap sequence is a constrained word - TESTED, REFUTED, but it paid out
 
-**Known.** Gear 3 blocks one of any two adjacent positions; gear 5 blocks one of any three spaced 3
-apart (section 18a). Extending the search, each gear forbids its own minimal configurations of
-exposed positions:
+Tested in full; see `docs/forbidden-configurations.md`. The idea itself fails on three counts, and two
+of the figures quoted in the original version of this section were wrong.
 
-    q = 5   12 minimal triples, including (0,3,6), (0,3,12), (0,6,18), (0,9,12)
-    q = 7    7 minimal quadruples, including (0,3,9,12), (0,9,18,27)
-    q = 11   4 minimal sextuples
-    q >= 13  none within a span of 27
+**Corrections to what was written here.** "`q >= 13`: none within a span of 27" is false - gear 13 has a
+forbidden configuration of span 24. And gear 5 forbids ten minimal gap words, not just `11`
+(`11, 13, 16, 24, 31, 42, 61, 121, 151, 222`); gear 7 forbids seventeen, not just `121`. The exact
+minimal size for gear `q` is `(q+1)/2` positions, and the minimal span grows like `1.9 q`.
 
-**Idea.** Read those as forbidden *factors of the gap word*. Writing gaps in units of 3, gear 5
-forbidding `(0,3,6)` says no three consecutive exposed slots, that is **the factor `11` never
-occurs**; gear 7 forbidding `(0,3,9,12)` says **the factor `121` never occurs**. Verified: over gear
-sets to 7, 11, 13 the counts of `11` and `121` are zero, while `212` occurs 2, 6, 30 times - so the
-restriction is real and not vacuous.
+**Why the idea fails.** The antidictionary is not finite - minimal forbidden words keep appearing at
+every length, still rising at the boundary of a box of length 16. And even granting an automaton, its
+letter statistics count *which words can occur*, a quantity independent of `y`, whereas the `n_j` count
+how often they *do* occur and scale with `P`. Measured side by side the two frequency distributions are
+nowhere near each other and move in opposite directions with `y`. Getting `n_j` out would need the
+automaton weighted by the CRT measure, and those weights are the `n_j` - circular in the same way
+section 22b was.
 
-A word avoiding a finite set of factors is recognised by a finite automaton, so its letter statistics
-- which *are* the gap counts `n_i` - come from a transfer matrix, as eigenvalues rather than as
-inclusion-exclusion sums. That is a different computational route to `n_i` than the one that stalled
-in section 25b, where the inclusion-exclusion grew like `2^j`.
+**What it paid out.** Three things, all verified and all new:
 
-**Falsifies quickly.** Enumerate the forbidden factors contributed by gears to 19, build the
-automaton, and check whether its letter frequencies reproduce the measured `n_1 .. n_4`. If the
-automaton is not finite - because larger gears contribute longer and longer forbidden factors without
-bound - the idea fails immediately.
+* **the minimal size law** - gear `q` can force a block only in a configuration of at least `(q+1)/2`
+  positions, and that bound is attained. Equivalently, in exposure form: **any `(q-1)/2` positions can
+  be simultaneously exposed to gear `q`**. Gear 3 and gear 5's laws are its first two cases;
+* **large gears force nothing new** - within a box of length 16 and letters to 6, gears 29 through 47
+  contribute zero minimal forbidden words beyond what gears to 23 already forbid, and this is not a box
+  artefact for 29 and 31, whose own minimal configurations fit inside it;
+* **the step form of the remaining gap** - `G(L) = N(L) - N(L+1)`, so `min_L h(L) = h(1)` is exactly
+  `rho(L) <= rho(1)` with `rho(L) = N(L+1)/N(L)`. Verified at every `L` up to `F_h`, not just the block
+  starts, for all gear sets to `y = 19`.
 
 ## 2. Exposed runs have length at most 2 (immediate corollary, exact)
 
@@ -100,4 +103,10 @@ Recorded so the next attempt does not repeat them:
 * tail-fraction bounds from `N(L) <= N(1) - (L-1)G(L)` - **too crude** from `L = 6` (27b);
 * the per-`j` recipe beyond small `j` - **does not scale** (25b);
 * any argument resting only on "gaps are multiples of 3 and at least 3" - the multiset `{3,3,15}`
-  satisfies both and violates the claim (27c).
+  satisfies both and violates the claim (27c);
+* a finite automaton over the gap word, whether via a finite antidictionary or via transfer-matrix
+  letter statistics - **both fail**, section 5 of `forbidden-configurations.md`;
+* a **per-gear** usefulness argument for the step form - the offsets that block position `L` are
+  jointly below average at covering `[0, L)` only when `L mod q >= q/4`, so for gears with
+  `L mod q < q/4` the conditioning pushes the wrong way. Exact, checked over 4525 pairs `(q, L)` with
+  zero exceptions. Any proof has to treat the gears jointly.
