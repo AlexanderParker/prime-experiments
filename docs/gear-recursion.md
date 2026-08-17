@@ -53,16 +53,16 @@ to lie inside the certified window,
 
 Measured, this holds with a factor of about 2.5 in hand, and the ratio is flat rather than climbing:
 
-    y                7     11     13     17     19     23     29     31     37     41
-    F_adjacent      15     21     33     54     75    102    129    174    264    273
-    F_k              5      7     11     18     25     34     43     58     88     91
-    (y^2 - y)/6    7.0   18.3   26.0   45.3   57.0   84.3  135.3  155.0  222.0  273.3
-    ratio        0.714  0.382  0.423  0.397  0.439  0.403  0.318  0.374  0.396  0.333
+    y                7     11     13     17     19     23     29     31     37     41     43
+    F_adjacent      15     21     33     54     75    102    129    174    264    273    309
+    F_k              5      7     11     18     25     34     43     58     88     91    103
+    (y^2 - y)/6    7.0   18.3   26.0   45.3   57.0   84.3  135.3  155.0  222.0  273.3  301.0
+    ratio        0.714  0.382  0.423  0.397  0.439  0.403  0.318  0.374  0.396  0.333  0.342
 
-`F(2,37) = 264` and `F(2,41) = 273` are new, computed with `rust2/src/bin/maxgap.rs` started from the
-previous value, which is a valid lower bound since `F` is non-decreasing in `y`. Note the increments are
-lumpy - `+90` at gear 37, then `+9` at gear 41 - so single increments say little; the running ratio is the
-stable quantity.
+`F(2,37) = 264`, `F(2,41) = 273` and `F(2,43) = 309` are new, computed with `rust2/src/bin/maxgap.rs`
+started from the previous value, which is a valid lower bound since `F` is non-decreasing in `y`. Note the
+increments are lumpy - `+90` at gear 37, then `+9` at gear 41, then `+36` at gear 43 - so single increments
+say little; the running ratio is the stable quantity.
 
 ## 3. The merge transform, exactly
 
@@ -209,13 +209,14 @@ large and pinned to within 1 of a multiple of `q`. Every maximum observed has `k
 
 Individual increments straddle `q`, and the running total tracks `sum_{q <= y} q`:
 
-    y             7     11     13     17     19     23     29     31     37     41
-    F_adjacent   15     21     33     54     75    102    129    174    264    273
-    sum of q     15     26     39     56     75     98    127    158    195    236
-    C = F/sum  1.000  0.808  0.846  0.964  1.000  1.041  1.016  1.101  1.354  1.157
+    y             7     11     13     17     19     23     29     31     37     41     43
+    F_adjacent   15     21     33     54     75    102    129    174    264    273    309
+    sum of q     15     26     39     56     75     98    127    158    195    236    279
+    C = F/sum  1.000  0.808  0.846  0.964  1.000  1.041  1.016  1.101  1.354  1.157  1.108
 
 So `F_adjacent(y) ~ C sum_{3<=q<=y} q` and `F_k(y) ~ (C/3) sum q`, with `C` measured between `0.81` and
-`1.354`. At `y = 29`, `sum q / 3 = 42.3` against the true `F_k = 43`.
+`1.354`. At `y = 29`, `sum q / 3 = 42.3` against the true `F_k = 43`. `C` rises to its peak at `y = 37` and
+falls back to `1.108` by `y = 43`, so the peak is a spike rather than a trend.
 
 **Correction to an earlier version of this section**, which recorded `C` in `[0.81, 1.10]` on the strength
 of data up to `y = 31` plus `y = 47`. Filling in `y = 37` gives `C = 1.354`, above that range - the gear-37
@@ -274,7 +275,7 @@ Established here:
 * the increment law `F ~ C sum_{q <= y} q` with `C` measured in `[0.81, 1.354]`, and a skeleton in which
   **any proved `C <= 1.8` finishes the bound for `y >= 29`**, by an elementary step that needs no prime
   counting;
-* two new values, `F(2,37) = 264` and `F(2,41) = 273`.
+* three new values, `F(2,37) = 264`, `F(2,41) = 273` and `F(2,43) = 309`.
 
 Corrected here: `C` was recorded as at most `1.10` from data that skipped `y = 37`; it is `1.354` there, so
 the margin against the threshold is `1.37` rather than `1.6`, and `C` is not monotone.
