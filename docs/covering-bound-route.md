@@ -1123,7 +1123,8 @@ covering bound and hence `F_h(y) <= L_0(y)`, holds as far as the first three blo
 
 The equality at `{3,5,7}` is the informative part. It says the chain of inequalities is tight at the
 smallest gear set, so no argument with slack to spare at `L = 6` can be correct - the proof there has
-to be exact, as the one above is. It also suggests the general `L = 3j` condition will have the form
+to be exact, as the one above is. (Qualification, from section 26: that applies to the *stronger*
+condition `h >= h(1)`. The bound itself needs only `h >= d`, which does have slack at `{3,5,7}`.) It also suggests the general `L = 3j` condition will have the form
 `c_j r + e_j alpha >= f_j` with rational `c_j, e_j, f_j` determined by the gap counts `n_1 .. n_{j-1}`,
 and that the tightest case will again be the smallest admissible gear set.
 
@@ -1430,3 +1431,59 @@ The route is a genuine reformulation with four proved cases and strong numerical
 it needs an argument that treats all `j` at once. The two candidates tried - monotonicity in the gear
 set (section 24a) and the universal bound `h >= 1/(F_h - L)` (section 22) - are respectively false and
 circular.
+
+## 26. The bound needs only h >= d, and the margin does not collapse
+
+### 26a. Two different targets
+
+Sections 20 to 24 proved `h(L) >= h(1) = d/(1-d)`. The covering bound needs only
+
+    **h(L) >= d**
+
+which is strictly weaker, since `d/(1-d) > d`. In the exact form, `h(3j) >= d` rearranges to
+
+    3j A^2 >= P S_j + 3 A T_j
+
+and at `{3,5,7}` this has slack where the stronger condition was exactly tight - ratios `2.143,
+1.047, 1.015, 1.047` at `j = 1..4`, the only `1.000000` being `j = 5`, which is the vacuous case
+`L = F_h = 15`. So an argument with slack to spare is not ruled out after all, and the qualification
+has been added to section 20d.
+
+### 26b. A measurement error, and its correction
+
+Normalising that condition as `3j A^2 / (P S_j + 3 A T_j)` suggested the margin was collapsing:
+`1.015, 1.009, 1.0018, 1.00010, 1.0000052, 1.000000056` for gears to `7, 11, 13, 17, 19, 23` - 56
+parts per billion at `y = 23`, which would have made any coarse argument hopeless.
+
+**That was an artefact of the normalisation.** The same difference divided by a denominator that grows
+much faster than it does tends to 1 regardless. The exact integer differences were *growing* -
+`51555900` at `y = 19` and `350759640` at `y = 23` - which is the signal I should have read.
+
+Normalised properly, as `h(L)/d`:
+
+| gears to | F_k | min h/d | at L | 1/(1-d) | max h/d |
+| --- | --- | --- | --- | --- | --- |
+| 7 | 5 | 1.166667 | 1 | 1.166667 | 2.333333 |
+| 11 | 7 | 1.132353 | 1 | 1.132353 | 2.851852 |
+| 13 | 11 | 1.109756 | 1 | 1.109756 | 3.370370 |
+| 17 | 18 | 1.095609 | 1 | 1.095609 | 3.819753 |
+| 19 | 25 | 1.084693 | 1 | 1.084693 | 4.269136 |
+| 23 | 34 | 1.076763 | 1 | 1.076763 | 4.675720 |
+
+The minimum is `1/(1-d)` exactly, attained at `L = 1`, in every case - checked over every block start.
+It decreases toward 1 as `d -> 0` but is provably above 1 for every gear set, since `d > 0`. No
+collapse.
+
+### 26c. What the route now needs, in one line
+
+Since `h(1) = d/(1-d)` is free and the measurements say it is the minimum,
+
+> **prove that `min_L h(L) = h(1)`**
+
+and the bound follows immediately. Three cases of it are proved - `h(3), h(6), h(9) >= h(1)`,
+sections 20 and 24c - and it is verified at every block start for six gear sets, up to 34 block starts
+at `y = 23`.
+
+That is the whole of the remaining gap, stated without reference to coverings, offsets, separations,
+`F_h`, or the per-`j` recipe. It is a single minimisation claim about the gap distribution of the
+admissible pattern.
