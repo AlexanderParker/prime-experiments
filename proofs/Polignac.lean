@@ -23,6 +23,7 @@ q | d, derived here from divisibility alone.
 -/
 
 import BlockedSlots
+import Census
 import Mathlib.Data.Nat.ModEq
 
 namespace Polignac
@@ -378,5 +379,236 @@ theorem own_slot_pin_gap_two {q g k : ℕ} (hq : q.Prime) (hgp : (q + g).Prime)
   obtain ⟨m, hm⟩ : ∃ m, q = 2 * m + 1 := ⟨q / 2, by omega⟩
   obtain ⟨n, hn⟩ : ∃ n, q + g = 2 * n + 1 := ⟨(q + g) / 2, by omega⟩
   omega
+
+/-! ## The SAME-side census: one CRT class and its floor count
+
+First layer of the master supply formula (Lateral round 4): for any modulus m
+coprime to 6 - in particular any squarefree gear product - the slots whose
+left member 6k-1 is divisible by m form ONE residue class mod m (the slot map
+is invertible), and the count of that class among the first t slots is
+closed-form floor arithmetic. Instantiated at m = q*r this is the SAME-side
+pair census; the window corollary is the composite root law's "exactly once
+if it fits", with the window hypotheses explicit. -/
+
+/-- Class representatives below the modulus are unique. -/
+theorem class_rep_unique {m a b : ℕ} (ha : a < m) (hb : b < m)
+    (h : a ≡ b [MOD m]) : a = b := by
+  have h1 : a % m = a := Nat.mod_eq_of_lt ha
+  have h2 : b % m = b := Nat.mod_eq_of_lt hb
+  have h3 : a % m = b % m := h
+  omega
+
+/-- Inverting the slot map: for m coprime to 6 and any target residue c, the
+k with 6k ≡ c (mod m) form exactly one class mod m. -/
+theorem six_mul_class {m : ℕ} (c : ℕ) (hco : Nat.Coprime 6 m) (hm : 1 < m) :
+    ∃ a, a < m ∧ 6 * a ≡ c [MOD m] ∧
+      ∀ k, (6 * k ≡ c [MOD m] ↔ k ≡ a [MOD m]) := by
+  obtain ⟨b, hbm, hb⟩ := Nat.exists_mul_mod_eq_of_coprime c hco (by omega)
+  have hb' : 6 * b ≡ c [MOD m] := hb
+  refine ⟨b, hbm, hb', fun k => ⟨?_, ?_⟩⟩
+  · intro hk
+    exact Nat.ModEq.cancel_left_of_coprime (Nat.Coprime.symm hco) (hk.trans hb'.symm)
+  · intro hk
+    exact (Nat.ModEq.mul_left 6 hk).trans hb'
+
+/-- Left-member divisibility is the residue condition 6k ≡ 1, for k ≥ 1. -/
+theorem left_dvd_iff {m k : ℕ} (hk : 1 ≤ k) :
+    m ∣ 6 * k - 1 ↔ 6 * k ≡ 1 [MOD m] := by
+  rw [← Nat.modEq_iff_dvd' (by omega : 1 ≤ 6 * k)]
+  exact ⟨Nat.ModEq.symm, Nat.ModEq.symm⟩
+
+/-- Right-member divisibility is the residue condition 6k ≡ m - 1. -/
+theorem right_dvd_iff {m k : ℕ} (hm : 1 ≤ m) :
+    m ∣ 6 * k + 1 ↔ 6 * k ≡ m - 1 [MOD m] := by
+  constructor
+  · intro hd
+    have h0 : 6 * k + 1 ≡ 0 [MOD m] := Nat.modEq_zero_iff_dvd.mpr hd
+    have h1 : (0 : ℕ) ≡ (m - 1) + 1 [MOD m] := by
+      rw [show (m - 1) + 1 = m by omega]
+      exact (Nat.modEq_zero_iff_dvd.mpr (dvd_refl m)).symm
+    exact Nat.ModEq.add_right_cancel' 1 (h0.trans h1)
+  · intro hmod
+    have h2 : 6 * k + 1 ≡ (m - 1) + 1 [MOD m] := hmod.add_right 1
+    have h4 : ((m - 1) + 1 : ℕ) ≡ 0 [MOD m] := by
+      rw [show (m - 1) + 1 = m by omega]
+      exact Nat.modEq_zero_iff_dvd.mpr (dvd_refl m)
+    exact Nat.modEq_zero_iff_dvd.mp (h2.trans h4)
+
+/-- **The floor count.** Among the slots 1..t, the residue class of a
+(mod m), 1 ≤ a ≤ m, has exactly (t + m - a) / m members. -/
+theorem card_class_Ico {m a : ℕ} (hm : 0 < m) (ha1 : 1 ≤ a) (ham : a ≤ m)
+    (t : ℕ) :
+    ((Finset.Ico 1 (t + 1)).filter (fun k => k % m = a % m)).card
+      = (t + m - a) / m := by
+  induction t with
+  | zero =>
+    simp only [Nat.zero_add]
+    rw [Finset.Ico_self, Finset.filter_empty, Finset.card_empty]
+    exact (Nat.div_eq_of_lt (by omega)).symm
+  | succ n ih =>
+    have hins : Finset.Ico 1 (n + 1 + 1) = insert (n + 1) (Finset.Ico 1 (n + 1)) :=
+      Nat.Ico_succ_right_eq_insert_Ico (by omega)
+    rw [hins, Finset.filter_insert]
+    by_cases hc : (n + 1) % m = a % m
+    · rw [if_pos hc]
+      have hnot : (n + 1) ∉ (Finset.Ico 1 (n + 1)).filter
+          (fun k => k % m = a % m) := by
+        intro hmem
+        have h1 := (Finset.mem_filter.mp hmem).1
+        have h2 := (Finset.mem_Ico.mp h1).2
+        omega
+      rw [Finset.card_insert_of_notMem hnot, ih]
+      have h1 : a ≡ n + 1 + m [MOD m] := by
+        have hx : (n + 1) ≡ a [MOD m] := hc
+        have hy : (n + 1 + m) ≡ (n + 1) [MOD m] := Nat.add_mod_right (n + 1) m
+        exact (hy.trans hx).symm
+      have hdvd : m ∣ (n + m - a) + 1 := by
+        have h0 : m ∣ (n + 1 + m) - a := (Nat.modEq_iff_dvd' (by omega)).mp h1
+        rwa [show (n + 1 + m) - a = (n + m - a) + 1 by omega] at h0
+      rw [show n + 1 + m - a = (n + m - a) + 1 by omega,
+        Nat.succ_div_of_dvd hdvd]
+    · rw [if_neg hc, ih]
+      have hnd : ¬ m ∣ (n + m - a) + 1 := by
+        intro h0
+        have h1 : m ∣ (n + 1 + m) - a := by
+          rwa [show (n + m - a) + 1 = (n + 1 + m) - a by omega] at h0
+        have h2 : a ≡ n + 1 + m [MOD m] := (Nat.modEq_iff_dvd' (by omega)).mpr h1
+        have hy : (n + 1 + m) ≡ (n + 1) [MOD m] := Nat.add_mod_right (n + 1) m
+        exact hc ((h2.trans hy).symm)
+      rw [show n + 1 + m - a = (n + m - a) + 1 by omega,
+        Nat.succ_div_of_not_dvd hnd]
+
+/-- A prime at or above 5 does not divide 6. -/
+theorem not_dvd_six {q : ℕ} (hq : q.Prime) (hq5 : 5 ≤ q) : ¬ q ∣ 6 := by
+  intro hd
+  have hle := Nat.le_of_dvd (by norm_num) hd
+  interval_cases q <;> revert hd <;> revert hq <;> decide
+
+/-- **SAME-side pair census, left member.** For distinct primes q, r ≥ 5, the
+slots whose LEFT member 6k-1 is divisible by both are exactly one CRT class
+mod q*r, and the class count over the first t slots is (t + qr - a) / qr -
+pure floor arithmetic. -/
+theorem same_left_census {q r : ℕ} (hq : q.Prime) (hr : r.Prime)
+    (hq5 : 5 ≤ q) (hr5 : 5 ≤ r) (hne : q ≠ r) :
+    ∃ a, 1 ≤ a ∧ a < q * r ∧
+      (∀ k, 1 ≤ k → ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1) ↔ k ≡ a [MOD q * r])) ∧
+      (∀ t, ((Finset.Ico 1 (t + 1)).filter
+          (fun k => k % (q * r) = a % (q * r))).card
+        = (t + q * r - a) / (q * r)) := by
+  have h25 : 25 ≤ q * r := by
+    calc 25 = 5 * 5 := by norm_num
+    _ ≤ q * r := Nat.mul_le_mul hq5 hr5
+  have hco6 : Nat.Coprime 6 (q * r) :=
+    Nat.Coprime.mul_right
+      (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hq).mpr (not_dvd_six hq hq5)))
+      (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hr).mpr (not_dvd_six hr hr5)))
+  have hcoqr : Nat.Coprime q r := (Nat.coprime_primes hq hr).mpr hne
+  obtain ⟨a, ham, ha6, hiff⟩ := six_mul_class 1 hco6 (by omega)
+  have ha1 : 1 ≤ a := by
+    rcases Nat.eq_zero_or_pos a with h0 | h1
+    · exfalso
+      subst h0
+      have h6 : (0 : ℕ) ≡ 1 [MOD q * r] := by simpa using ha6
+      have hd : q * r ∣ 1 := by
+        have h7 := (Nat.modEq_iff_dvd' (by omega)).mp h6
+        simpa using h7
+      have := Nat.le_of_dvd (by norm_num) hd
+      omega
+    · exact h1
+  refine ⟨a, ha1, ham, ?_, ?_⟩
+  · intro k hk
+    have hboth : (q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1) ↔ q * r ∣ 6 * k - 1 :=
+      ⟨fun h => hcoqr.mul_dvd_of_dvd_of_dvd h.1 h.2,
+       fun h => ⟨dvd_trans (dvd_mul_right q r) h, dvd_trans (dvd_mul_left r q) h⟩⟩
+    rw [hboth, left_dvd_iff hk]
+    exact hiff k
+  · intro t
+    exact card_class_Ico (by omega) ha1 (by omega) t
+
+/-- **SAME-side pair census, right member.** The mirror statement for 6k+1,
+with target residue -1: one CRT class, same floor count. No k ≥ 1 hypothesis
+is needed (slot 0's right member is 1, divisible by nothing above 1). -/
+theorem same_right_census {q r : ℕ} (hq : q.Prime) (hr : r.Prime)
+    (hq5 : 5 ≤ q) (hr5 : 5 ≤ r) (hne : q ≠ r) :
+    ∃ a, 1 ≤ a ∧ a < q * r ∧
+      (∀ k, ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1) ↔ k ≡ a [MOD q * r])) ∧
+      (∀ t, ((Finset.Ico 1 (t + 1)).filter
+          (fun k => k % (q * r) = a % (q * r))).card
+        = (t + q * r - a) / (q * r)) := by
+  have h25 : 25 ≤ q * r := by
+    calc 25 = 5 * 5 := by norm_num
+    _ ≤ q * r := Nat.mul_le_mul hq5 hr5
+  have hco6 : Nat.Coprime 6 (q * r) :=
+    Nat.Coprime.mul_right
+      (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hq).mpr (not_dvd_six hq hq5)))
+      (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hr).mpr (not_dvd_six hr hr5)))
+  have hcoqr : Nat.Coprime q r := (Nat.coprime_primes hq hr).mpr hne
+  obtain ⟨a, ham, ha6, hiff⟩ := six_mul_class (q * r - 1) hco6 (by omega)
+  have ha1 : 1 ≤ a := by
+    rcases Nat.eq_zero_or_pos a with h0 | h1
+    · exfalso
+      subst h0
+      have h6 : (0 : ℕ) ≡ q * r - 1 [MOD q * r] := by simpa using ha6
+      have hd : q * r ∣ q * r - 1 := by
+        have h7 := (Nat.modEq_iff_dvd' (by omega)).mp h6
+        simpa using h7
+      have := Nat.le_of_dvd (by omega) hd
+      omega
+    · exact h1
+  refine ⟨a, ha1, ham, ?_, ?_⟩
+  · intro k
+    have hboth : (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1) ↔ q * r ∣ 6 * k + 1 :=
+      ⟨fun h => hcoqr.mul_dvd_of_dvd_of_dvd h.1 h.2,
+       fun h => ⟨dvd_trans (dvd_mul_right q r) h, dvd_trans (dvd_mul_left r q) h⟩⟩
+    rw [hboth, right_dvd_iff (by omega : 1 ≤ q * r)]
+    exact hiff k
+  · intro t
+    exact card_class_Ico (by omega) ha1 (by omega) t
+
+/-- **Composite root law, windowed ("exactly once if it fits").** If the class
+representative a lands within the first t slots and the window stops before
+the next period return a + P, the coincidence occurs EXACTLY once. -/
+theorem same_census_once {P a t : ℕ} (hP : 0 < P) (ha1 : 1 ≤ a) (haP : a ≤ P)
+    (hat : a ≤ t) (htw : t < a + P) :
+    ((Finset.Ico 1 (t + 1)).filter (fun k => k % P = a % P)).card = 1 := by
+  rw [card_class_Ico hP ha1 haP t]
+  exact Nat.div_eq_of_lt_le (by omega) (by omega)
+
+/-- **The product acts at its own value** (left member): when q*r = 5 mod 6,
+the slot (q*r + 1)/6 holds q*r itself as left member, and both gears strike
+it there - the class representative made explicit. -/
+theorem same_left_own_value {q r : ℕ} (h25 : 25 ≤ q * r) (h56 : q * r % 6 = 5) :
+    1 ≤ (q * r + 1) / 6 ∧ (q * r + 1) / 6 < q * r ∧
+      6 * ((q * r + 1) / 6) - 1 = q * r ∧
+      q ∣ 6 * ((q * r + 1) / 6) - 1 ∧ r ∣ 6 * ((q * r + 1) / 6) - 1 := by
+  refine ⟨by omega, by omega, by omega, ?_, ?_⟩
+  · rw [show 6 * ((q * r + 1) / 6) - 1 = q * r by omega]
+    exact dvd_mul_right q r
+  · rw [show 6 * ((q * r + 1) / 6) - 1 = q * r by omega]
+    exact dvd_mul_left r q
+
+/-! ## The self-block, composed with the census -/
+
+/-- **The self-block, formal.** The twin pair's pin slot u is an actual twin
+slot of the census (both members prime) - yet it is NEVER a survivor of any
+machine whose divisor bound reaches p: the machine is blind to its own pair.
+This is why the u'-pin list U of the master supply formula is invisible to
+n2: its slots are prime-membered, blocked only by their own gears. -/
+theorem twin_pin_self_block {p y u : ℕ} (hp : p.Prime) (hp2 : (p + 2).Prime)
+    (h3 : 3 < p) (hpy : p ≤ y) (hu : 6 * u = p + 1) :
+    Census.slotComps u = 0 ∧ ¬ BlockedSlots.Survivor y (Census.lo u) := by
+  have hlo : Census.lo u = p := by
+    unfold Census.lo
+    omega
+  have hhi : Census.hi u = p + 2 := by
+    unfold Census.hi
+    omega
+  constructor
+  · rw [Census.slotComps_eq_zero_iff u, hlo, hhi]
+    exact ⟨hp, hp2⟩
+  · intro hs
+    have h1 := (hs p hp hpy).1
+    rw [hlo] at h1
+    exact h1 (dvd_refl p)
 
 end Polignac

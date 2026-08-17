@@ -358,3 +358,68 @@ the fiber at a single gear q (R_q alone) and prove the ledger's per-gear
 cap R_q(T) ≤ (number of multiples of q among members), connecting to the
 deletion-spacing law; that is the first step toward the supply side's
 freedom-free semiprime arithmetic. Alternative: h(2) ≥ d.
+
+## Round 6 — Per-gear fiber and caps (2026-08-18)
+
+### What was done
+
+New file `proofs/Gear.lean` (namespace `Gear`), eighth lakefile target.
+First file to import BlockedSlots for reuse (`card_blocked_by_le` becomes
+the interval bound). Compiled first try, zero sorry, zero warnings.
+
+### Final theorem statements
+
+```lean
+def R (q : ℕ) (S : Finset ℕ) : ℕ :=
+  (S.filter fun m => ¬ m.Prime ∧ m.minFac = q).card
+
+theorem supply_eq_sum_R (hS : window) :
+    (S.filter fun m => ¬ m.Prime).card = ∑ p ∈ (range y).filter Nat.Prime, R p S
+theorem sum_R_eq_census (hwin : slot window) :
+    (∑ p ∈ (range y).filter Nat.Prime, R p (Bridge.members T))
+      = Census.n1 T + 2 * Census.n2 T
+theorem R_le_card_multiples : R q S ≤ (S.filter fun m => q ∣ m).card
+theorem R_prefix_le (hq : 0 < q) :
+    R q (Bridge.members (Finset.range t)) ≤ 6 * t / q + 2
+theorem sq_le_of_minFac_eq (h1 : 1 < m) (hnp : ¬ m.Prime)
+    (hfac : m.minFac = q) : q * q ≤ m
+theorem R_eq_zero_of_below_sq (hS : ∀ m ∈ S, 1 < m ∧ m < q * q) : R q S = 0
+```
+
+### Proof route / design notes
+
+- `R` is a def, and the two restatements (`supply_eq_sum_R`,
+  `sum_R_eq_census`) are definitional repackagings of Supply/Bridge —
+  zero-cost, but they give downstream files a named handle on one gear's
+  ledger line.
+- Set cap: `minFac m = q → q ∣ m` (rewrite `Nat.minFac_dvd`), filter-subset,
+  `card_le_card`. Four lines.
+- Interval cap: members of `range t` sit below `6t`, so the multiples
+  filter injects into `(range (6t)).filter (q ∣ 0 + ·)` — literally
+  `BlockedSlots.card_blocked_by_le 0 q (6t)`, giving `6t/q + 2`. Sharpness
+  not fought for (per instructions): the bound composes and the `6t/q` term
+  is what matters.
+- Shadow law: `Nat.minFac_sq_le_self` — a gear's ledger line is empty below
+  `q²`. Found and guarded a genuine edge case: `minFac 0 = 2`, so without
+  `1 < m` the number 0 lands in gear 2's class and the law is false. The
+  window hypotheses used everywhere else already give `1 < m`, so the guard
+  costs callers nothing.
+
+### Build status
+
+`lake build` (all 8 targets, Polignac now green upstream): **Build
+completed successfully (988 jobs)**, zero sorry.
+
+### Axiom audit
+
+All six checked Gear theorems: `[propext, Classical.choice, Quot.sound]`.
+
+### Proposed next target
+
+The gear ledger now has: its line (`R`), its total (bridge), its cap
+(interval), and its onset (`q²`, shadow law). The natural next chunk is the
+SEMIPRIME REFINEMENT of one line: in the window `(y, y²)` with `q < y ≤ q²`,
+every member of gear q's class is `q * c` with `c` prime (this is exactly
+`Layer.eq_mul_prime_of_minFac_eq` applied member-wise), giving
+`R q S = #(primes c with q*c ∈ S)` — the freedom-free supply arithmetic's
+first exact formula. Alternative: h(2) ≥ d.

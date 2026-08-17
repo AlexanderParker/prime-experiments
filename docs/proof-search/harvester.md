@@ -220,6 +220,52 @@ decompose to a single modulus with explicit witnesses; this mathlib needs
 `import Mathlib.Data.Nat.ModEq` for the [MOD n] notation (BlockedSlots does not pull
 it in); `Nat.dvd_sub` here is the old `Nat.dvd_sub'`.
 
+## 7. Round 3 (coordinator-approved): the SAME-side census, kernel-checked
+
+First layer of the master supply formula formalised - the SAME-side pair census as one
+CRT class plus its floor count, with the composite root law's "exactly once if it fits"
+as a windowed corollary with explicit hypotheses. New section in proofs/Polignac.lean
+(now also imports Census - first file composing with the formalist's census):
+
+- `six_mul_class`: slot-map inversion - for any m coprime to 6 and target residue c,
+  {k : 6k = c mod m} is exactly one class mod m (existence via
+  Nat.exists_mul_mod_eq_of_coprime, uniqueness via cancel_left_of_coprime).
+- `left_dvd_iff` / `right_dvd_iff`: member divisibility = residue condition
+  (6k = 1 for the left member, 6k = m-1 for the right).
+- `card_class_Ico` (THE FLOOR COUNT): #{k in [1,t] : k = a mod m} = (t + m - a)/m
+  for 1 <= a <= m - proved by induction with Nat.succ_div_of_dvd/not_dvd; this is
+  the count primitive every floor-arithmetic term of SAME/PAIRSPLIT reduces to.
+- `same_left_census` / `same_right_census`: for distinct primes q, r >= 5, the slots
+  whose left (resp. right) member both gears divide are ONE CRT class mod qr, count
+  (t + qr - a)/qr over the first t slots - the SAME-side pair term, exact.
+- `same_census_once` (COMPOSITE ROOT LAW, windowed): a <= t < a + P => count exactly 1.
+  "Exactly once if it fits", with the fit hypotheses explicit.
+- `same_left_own_value`: when qr = 5 mod 6 the class representative IS the slot
+  holding qr itself ((qr+1)/6, member qr) - "acts at its own value" explicit.
+- `class_rep_unique`, `not_dvd_six`: small reusable pieces.
+
+Second bite (coordinator's): `twin_pin_self_block` - the pin slot u of a twin pair
+(p, p+2) satisfies Census.slotComps u = 0 (a REAL twin slot, both members prime) AND
+is never a BlockedSlots.Survivor of any machine with divisor bound >= p: the machine
+is blind to its own pair. This is the formal reason the U-pin list is invisible to n2.
+
+Verification discipline: research/same_census_check.py ran first - 105 prime pairs
+(5 <= q < r < 60): class membership iff exhaustive over two periods (left + right),
+floor count at 11 t-values per pair, window "exactly once", own-value reps: zero fails.
+
+BUILD STATUS ROUND 3: BUILDS CLEAN - whole ledger green: `lake build` all 8 targets
+(incl. Bridge + Gear), "Build completed successfully" (988 jobs), zero sorry. Axiom
+audit on all 28 Polignac theorems: standard axioms only ([propext, Classical.choice,
+Quot.sound]; several need only [propext, Quot.sound]).
+
+Additional Lean notes for the team (this mathlib): `Finset.card_insert_of_not_mem` is
+now `Finset.card_insert_of_notMem` (not_mem -> notMem rename);
+`Ico_succ_right_eq_insert_Ico` lives in namespace `Nat`, not `Finset`; beware
+`rwa [show m = ... ] at h` when m is also the ModEq modulus - the rewrite hits the
+modulus occurrence too; rewrite in the goal with the equation oriented the other way.
+Count primitive proof pattern: induction + Nat.succ_div_of_dvd/not_dvd avoids all
+division-by-variable omega limitations.
+
 What this buys: the finite u'-pin list U in the round-4 master formula (n2 = B - U,
 U confined to the bottom y/6 slots) now has its kernel formally characterised: existence
 (twin_pin), location bound (twin_pin_le), exactness of the class (twin_split_class_iff),

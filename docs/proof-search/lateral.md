@@ -444,3 +444,93 @@ load vs run length at fixed depth (the quantitative object the bound must
 dominate); (2) feed the Harvester: the per-slot identity P = t + T - B + U is
 kernel-checkable bookkeeping (all four terms are census objects; no analysis),
 a natural next Lean target coupling Census.lean to the supply side.
+
+## Round 6 (2026-08-18): the load-length frontier
+
+Steering taken: map max prime load vs twin-free run length against the X-ceiling
+(load 1 per slot - the C2 pigeonhole ceiling: a twin-free slot carries at most
+one prime member). Tool: `research/load_frontier.py`, open interior only
+(slots with both members > y), scales y = 1009, 3163, 10007.
+
+### The frontier curve, and its first surprise: it is ABSOLUTE
+
+maxload(L) = max over twin-free L-windows of prime-members/L:
+
+    L        1..13   14     16     20    25    32    50    100   200   478
+    maxload  1.0000  .9286  .875   .85   .80   .7188 .60   .52   .43   .32
+
+The frontier touches the X-ceiling exactly up to **L* = 13**, then the gap
+opens by exactly one missing prime (13/14), and decays like a staircase of
+fixed rationals (20/25, 23/32, 52/100...). The surprise: these values are
+IDENTICAL across all three scales because the record-holders are the SAME
+absolute integer landmarks - L* = 13 is achieved at slots 2452-2464 (members
+14713..14783: primes 14713R 14717L 14723L 14731R 14737R 14741L 14747L 14753L
+14759L 14767R 14771L 14779R 14783L, alternating sides, no twins) at every y.
+The L=100 record sits at absolute slot ~31,350 at every y. The frontier is a
+property of the integers; the window only truncates it from below (s0 ~ y/6).
+
+**Renewability check** (does the ceiling-touching survive when the landmarks
+exit the window?): restricting run starts to depth >= 0.1 and >= 0.5 of the
+window still gives saturated (load-1) runs of length 9-12 at every scale
+(e.g. y=10007: L*=11 at members ~1.9e7, L*=10 at members ~5.1e7). So gap(L)=0
+for L <= ~10 is renewable at ALL depths tested, and L <= 13 near the bottom.
+Caveat, labelled: nothing known FORCES saturated runs to persist at all
+depths forever - that persistence is itself a prime-constellation statement
+(HL-admissible, so expected true, and unprovable by current technology).
+
+### Where the gap is narrowest - the target scale
+
+gap(L) = 0 for L <= 13; opens at L = 14 with 1/14 and stays < 0.29 through
+L = 32. **The compression-bound target is L ~ 14-32**: reality hugs the
+X-ceiling there, renewably, at every depth. For L >= 63 the gap exceeds 0.44
+and the bound would be fighting a phantom - reality never gets close.
+
+### Bottom-band branch (for the inversion-zone push)
+
+At y = 10007 the bottom band [s0, s0+y] = [1669, 11676] CONTAINS the global
+record runs up to L ~ 100: the band frontier equals the global frontier at
+small L (load 1 through L = 13 inside the band). Round 5 said the bottom band
+is stride-HOSTILE (short runs); this round adds: it is load-OPTIMAL (the
+ceiling-touching runs live there, where prime density ~6/ln y is highest).
+The constructor's starved band is starved of length, not of load - the
+mirror-aware third-moment push must handle short saturated runs in its own
+band. Inside every record run the twin-free identity is visible exactly:
+P-rate + n2-rate = 1 per slot (L=25 record: 0.80 + 0.20; L=100: 0.52 + 0.48).
+
+### Anatomy of the record-holders
+
+- L <= 13 records: n2-inside = 0 - pure n1 (every slot one prime, one lone
+  composite). The X-local pattern at maximal load is the perfect alternation
+  the constructor found forced on onset prefixes - reality DOES realize it,
+  at length up to 13.
+- lpf of the interior composites: 57-70% are killed by gears <= 13 at every
+  record examined - the small gears do the composite work in ceiling runs
+  (consistent with mechanic's bottom-decile ownership at scale).
+- Composite members inside record runs are lone-killed (n1), so record runs
+  are fragile-dense: every slot of a saturated run is a pseudo-twin slot.
+
+### Part 3: frontier runs vs chain/fuel maximal strides - DIFFERENT objects
+
+For L <= ~126 the record-load windows sit in ORDINARY parent strides (lengths
+32-154, mostly below the top-1% cut); only for L >= ~160 does the record
+necessarily live inside a top-1% stride, converging at L = maxstride to the
+max stride itself with load 0.32-0.43 (round 5's long-run loads). Two
+distinct extremal families:
+  - load-extremal runs: short, shallow/absolute, prime-dense, n1-saturated -
+    governed by prime constellations, NOT by gear chains;
+  - length-extremal runs (the chain/fuel objects): deep, load-depressed
+    (~0.3), governed by gap-word arithmetic.
+They merge only at the top of the length range. The chain-condition analysis
+cannot see the frontier's binding region (L ~ 14-32), and the frontier
+analysis adds nothing to max-stride growth - complementary tools, not rivals.
+
+### Proposed next chunk
+
+The frontier says the bound must kill "saturated runs of length >= L0" for
+some L0 it can reach. Offer: (1) exact census of saturated runs by length and
+depth (how many L-saturated runs exist per window - the object whose
+NON-emptiness reality keeps demonstrating; its count curve vs the inversion
+zone's R(t) may localize the fight); (2) the alternation structure: saturated
+runs force strict L/R alternation patterns (visible in the exhibit) - check
+whether the mirror/parity structure of alternation words is constrained by
+the machine's laws (connects to constructor's mirror-aware third moments).

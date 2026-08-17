@@ -2,32 +2,37 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 5. THE ROUND'S NOVELTY: the INVERSION ZONE (constructor) - an unconditional,
-moment-only twin-forcing criterion: where R(t) = (S1^2/M2)/(t-P) > 1, Cauchy-Schwarz arithmetic
-alone forces n0 >= 1 (a twin in the prefix), no primality input. Zone nonempty at every y tested
-(sup R: 19.6 at y=101 declining to 1.44 at y=10007); worked instance: (521,523) proved from four
-slots of floor arithmetic. Closing the zone for all y = the superdense/parity wall; the identified
-edge is MIRROR-AWARE THIRD MOMENTS on the starved bottom band (freedom-free placement + U-pin
-exclusions are what create the zone; generic large sieve cannot see them).
+State after round 6: THE MOMENT PROGRAM IS CLOSED, by convergent independent verdicts. The
+inversion zone is a bottom-twin DETECTOR, never a generator (it revives exactly when a twin sits
+in a window's first slots - "zone revives infinitely often" IS the conjecture); it dies
+generically at y ~ 3-5e6 (empty at 5,000,011 and 10,000,019; (sup-1) ~ y^-0.6; killed by the
+twin-surplus/prime-density side, not M2). Mirror-awareness is VACUOUS at moment level, any order
+(two-line theorem: k -> -k swaps omega_L/omega_R, fixes m_k). Depth is not a lever (twin-mass
+decline is pure density falloff to 0.3%). LP/order-3 ceilings move the needle <3% against a 48%
+chasm. The Constructor's count/moment toolkit is spent - by their own account.
 
-Honest refutation alongside: the hoped 2x compression-ceiling story is dead - the Cauchy-Schwarz
-ceiling DIVERGES from the need (1.26->1.58 vs 1.22->1.05). And the compression gap is a ZEROTH
-MOMENT statement only (mechanic): variance/tails carry real product-structure (exact slot-cap
-covariance ~ primezeta(2) - 1/4 - 1/9) but none of the X-gap; the joint zero-mass IS the twin mass
-(real at 0.77-0.85 of its product baseline). The reality identity is now per-slot exact to 16.7M
-slots (lateral): P(t) = t + T_win(t) - B(t) + U(t) - THE X-EQUATION'S DEFECT IS EXACTLY THE TWIN
-COUNT. Geometry warning: the bottom band is stride-hostile and top strides carry 87-90% of prime
-load - bounds binding only in the bottom band fight reality at its strongest.
+WHAT THE ZONE LEAVES BEHIND (real, finite, kernel-checkable): where R(t) = (S1^2/M2)/(t-P) > 1,
+moments force n0 >= 1 unconditionally - at y=2003, t*=24 the histogram forces n0 >= 6 (six real
+twins from floor arithmetic). Valid for every y < ~3e6 and sporadically beyond.
 
-Kernel ledger GREEN, verified by manager: 986 jobs, 8 files. New this round: Bridge.lean
-(sum R_p = n1 + 2*n2 - the equation's formal skeleton complete) and the g=2 PINNING THEOREM
-(7 theorems in Polignac.lean incl. UNIQUENESS: only twin pairs split-kill their own slot; the
-guaranteed double lives in the bottom band of every window unconditionally).
+STRUCTURAL RESIDUE (the live fronts): the load-length frontier is ABSOLUTE - record twin-free
+runs are the same integer landmarks at every scale (perfect X-alternation realized to length 13
+at slots 2452-2464); binding scale for any bound is L ~ 14-32; long-run bounds fight a phantom;
+chain/fuel objects differ from binding-region objects below L ~ 160. Saturated-run persistence is
+itself HL-constellation-class (flagged caveat).
 
-ROUND-6 FOCUS: (a) the zone's fate - track sup R(y) to larger y with exact moments: does it cross
-1, and where/why (mechanic+constructor share this); (b) mirror-aware third moments on the bottom
-band - the unexhausted edge (constructor); (c) load-length frontier (lateral); (d) per-gear fiber
-+ cap in Lean (formalist); (e) overcount identity in Lean (harvester).
+LEAN LEDGER (green, 988 jobs, manager-verified): 9 files. New this round: Gear.lean (per-gear
+ledger lines R_q, caps, prefix bound 6t/q+2, shadow law R_q = 0 below q^2) and Polignac.lean's
+SAME-side census (slot-map inversion, floor-count primitive, the pair term of the master formula
+exact, the windowed composite root law "once if it fits", own-value law) + twin_pin_self_block
+(the machine is formally blind to its own pair) - first composition with Census.
+
+ROUND-7 (the strategic turn): Constructor -> THE IMPOSSIBILITY MAP (definitive write-up of every
+closed route with its exact reason - the programme's key prose artifact). Mechanic -> saturated-
+run census by (length, depth) vs R(t). Lateral -> alternation-word structure vs the mirror laws +
+scope the HL-constellation caveat honestly. Formalist -> semiprime refinement (R_q = #partner
+primes in the thin layer - first exact supply formula formal). Harvester -> PAIRSPLIT closed-form
+rep in Lean (completes the master formula's formal core).
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
@@ -259,6 +264,33 @@ exactly; sum mu = S_pair and #{mu>=1} = n2 reproduce round-4 values exactly.
   singles-mass deficit. The compression frontier is exactly: how low can
   P(omega_L=0 & omega_R=0) (the twin mass) go below the product baseline -
   everything else in the distribution is product-structure bookkeeping.
+
+## Mechanic round 6 (2026-08-18) - THE ZONE DIES AT y ~ 2-5 x 10^6
+Tools: research/inversion_zone.py, twinmass_deciles.py. Data:
+research/data/zone_summary.csv, zone_curves.csv (S1/M2/P/R dense checkpoints),
+zone_anatomy.csv, twinmass_deciles.csv. Calibration matches Constructor (6.5,
+2.9 at 503/2003; extent 3..17206 at 10007). Full-window scans to y=100003
+(1.67e9 slots); prefix T=8y above (justified: zone_hi/y collapses 5.5 -> 0.031
+across full scans, R declines past the zone).
+- sup R(y) CROSSES 1: zone nonempty through y=2000003 (16 slots, t in [14,72],
+  sup 1.031), EMPTY at 5000011 and 10000019. Near-threshold flicker (500009
+  bulk-dips to 0.983 with a 21-slot zone at t in [29,50]). Bulk sup (t>=64,
+  convention-robust): 2.652 (503) -> 1.103 (50021) -> 1.010 (2e5) -> 0.944
+  (1e7); (supB-1) ~ y^-0.6 (fit). Density reading: CS efficiency stays
+  0.92-0.97 while bottom-band prime density 6/ln y fattens t-P; crossing at
+  ln y ~ 15 as measured. WARNING for zone-based hopes: raw sup at t<10 is
+  partially CIRCULAR (an actual boundary twin spikes R by shrinking t-P) -
+  at 5e4-2e6 the zone is mostly an early-twin detector, as Constructor
+  predicted; no moment-only forcing survives past y ~ 5e6.
+- ANATOMY at argmax: double mass concentrated at m in {4,6,9,12} (products of
+  omega 2-4); m=1,2,3 absent from the bottom band (lone-gear members sit beside
+  primes - the fragile census). Concentration = the zone's engine. Worked
+  y=2003 t*=24: {0:15,4:7,6:2}, CS=8.70 > t-P=3 forces n0>=6; 6 twins real.
+- TWIN MASS BY DEPTH (round-5 question closed): ratio to flat product baseline
+  declines 0.98 -> 0.70 across deciles (y=50021), but an HL 1/ln^2(member)
+  allocation reproduces every decile to 1.000 +- 0.003: NO band structure in
+  the twin mass at 0.3% precision - the 0.77 global is pure density falloff.
+  Depth cannot be a lever in the compression frontier.
 
 ## Formalist round 1 (2026-08-18)
 The HORIZON THEOREM is now kernel-checked: proofs/Horizon.lean (namespace `Horizon`,
@@ -713,3 +745,122 @@ formally characterised (existence + location + class-exactness + twin-uniqueness
 U-membership ("partner gearful") and the B-side remain the open formal gap.
 Next bites offered: overcount census identity in Lean (= Formalist's bridge line from
 the supply side), or F(2,53) completion for the data note; coordinator's pick.
+
+## Formalist round 6 (2026-08-18)
+The PER-GEAR FIBER + CAPS are kernel-checked: proofs/Gear.lean (namespace `Gear`,
+eighth target, zero sorry, standard axioms; first file to REUSE BlockedSlots -
+card_blocked_by_le is the interval bound).
+- `Gear.R q S` := #{m in S : composite, minFac m = q} - one gear's ledger line, named.
+- `Gear.supply_eq_sum_R` / `Gear.sum_R_eq_census`: Supply identity and Bridge restated
+  in R form (definitional; cite these when talking per-gear).
+- `Gear.R_le_card_multiples`: R q S <= #multiples of q in S (root => divisible).
+- `Gear.R_prefix_le`: R q (members (range t)) <= 6t/q + 2 (members live below 6t;
+  BlockedSlots.card_blocked_by_le on [0,6t) does the rest). Not fought sharper.
+- `Gear.sq_le_of_minFac_eq` + `Gear.R_eq_zero_of_below_sq` (SHADOW LAW): a gear
+  supplies nothing below q^2 - its ledger line opens at q^2. Guard discovered during
+  proof: minFac 0 = 2, so the law needs 1 < m (window hypotheses give it for free);
+  anyone doing per-gear counting over raw Finsets should carry the same guard.
+Gear ledger state: line (R), total (= n1 + 2*n2), cap (6t/q + 2), onset (q^2). Next
+target (proposed): semiprime refinement - for q < y <= q^2, gear q's class in the
+window is exactly {q*c : c prime} member-wise (Layer.eq_mul_prime_of_minFac_eq),
+giving R q = #(partner primes) - first exact formula of the freedom-free supply side.
+
+## Lateral round 6 (2026-08-18) - the load-length frontier is ABSOLUTE; target L ~ 14-32
+Tool: research/load_frontier.py. Full log + tables: docs/proof-search/lateral.md round 6.
+- FRONTIER: maxload(L) = max prime load on twin-free L-runs (open interior; X-ceiling
+  = 1/slot). Curve: 1.0000 up to L* = 13, then 13/14, 0.85 (L=20), 0.80 (25),
+  0.7188 (32), 0.52 (100), 0.32-0.43 at L = maxstride. IDENTICAL at y = 1009/
+  3163/10007 because the record-holders are ABSOLUTE integer landmarks: L* = 13
+  at slots 2452-2464 (primes 14713..14783, perfect L/R alternation, no twins) at
+  every scale; the L=100 record at absolute slot ~31,350. The frontier is a
+  property of the integers; the window truncates it from below at s0 ~ y/6.
+- RENEWABLE: restricting to depth >= 0.5 still gives saturated (load-1) runs of
+  length 9-10 at every scale (members to 5e7). gap(L) = 0 for L <= ~10 at ALL
+  depths. Caveat: persistence of saturated runs at all depths is itself an
+  HL-admissible constellation statement (expected true, unprovable).
+- TARGET SCALE for any compression bound: L ~ 14-32 (gap 0.07-0.28, renewable).
+  For L >= 63 the gap is > 0.44 - reality never gets close; bounds aimed at
+  long runs fight a phantom.
+- BOTTOM BAND double face: round 5 said stride-hostile; round 6 adds LOAD-
+  OPTIMAL - at y=10007 the band [s0, s0+y] contains the global record runs up
+  to L ~ 100 (ceiling touched inside the inversion zone's own band). Starved of
+  length, not of load. Record-run interiors show P-rate + n2-rate = 1 exactly
+  (0.80+0.20 at L=25; 0.52+0.48 at L=100) - the constructor's forced perfect
+  alternation is REALIZED by reality up to length 13 (saturated runs are pure
+  n1: every slot one prime + one lone composite = fragile-dense).
+- lpf anatomy of record runs: 57-70% of interior composites killed by gears
+  <= 13 - small gears do the composite work at the frontier.
+- PART 3 VERDICT: frontier runs and chain/fuel maximal strides are DIFFERENT
+  extremal families. Load-extremal: short, absolute, prime-dense, constellation-
+  governed. Length-extremal: deep, load ~0.3, gap-word-governed. They merge only
+  at L = maxstride. Chain analysis cannot see the binding region L ~ 14-32.
+- Offering next: (1) exact census of saturated runs by (length, depth) - the
+  count curve of the object X must kill, vs the inversion zone's R(t);
+  (2) alternation-word structure of saturated runs vs the machine's mirror laws
+  (feeds constructor's mirror-aware third moments).
+
+## Constructor round 6 (2026-08-18) - zone fate settled; third-moment front closed
+Tool: research/zone_fate.py (ladder to y = 10^7; LP moment ceilings). Full text:
+constructor.md sections 17-18. Mechanic round-5 CSVs consumed; their "X-gap is
+zeroth-moment only" corroborated independently at orders 2-3.
+- ZONE FATE: R = eff * boost (eff = CS efficiency, boost = 1 + n0/(t-P)). No
+  single crossing: the zone dies GENERICALLY between y ~ 3e6 and 5e6 (sup R:
+  1.44 at 1e4 -> 1.01-1.03 at 1e6-3e6; first EMPTY windows y = 5000011 and
+  10000019, confirmed at T = 200000) and revives sporadically. KILLER = the
+  boost side: twin surplus n0/(t-P) collapses ~1/ln^2 y (2.00 -> 1.08-1.13 at
+  argmax) while eff erodes slowly (0.96 -> 0.86-0.94, lnln dispersion).
+- REVIVAL LAW + adversarial verdict (max skepticism as ordered): windows opening
+  with a twin in <= 4 slots revive the zone at ANY y - verified at y = 5000087,
+  5000101, 5000539 (sup R = 1.923). But every twin (p,p+2) sits in the first
+  slots of the window of any prime y just below p, so "the zone revives i.o."
+  IS the twin prime conjecture. The inversion zone is a bottom-twin DETECTOR
+  (certifies from moments + P without exhibiting the pair), never a generator.
+  Unconditional content exhausted.
+- MIRROR THEOREM (2 lines): k -> -k swaps omega_L/omega_R and fixes m; all
+  mirror-augmented moments double, every ratio invariant. Mirror-awareness is
+  VACUOUS at moment level, any order. (Answers both round-6 mirror questions.)
+- THIRD-MOMENT CEILINGS (sharp LP moment-problem bounds): integer order-2 LP
+  beats continuous CS by 0.3-0.5% (still refutes at the y=10007 zone edge
+  t=17204 where CS breaks even: 7744 > 7702). Order-3 conservative: adds ZERO
+  (cubic never in basis). Order-3 with the legitimate cap m <= (log_5 y^2)^2:
+  +0.6-2.8% (basis (5,6,cap)); y=50021 band: 25,093 vs demand 25,157 - short by
+  64. Window scale: ceiling 5.24 vs need 3.54 - the ~48% chasm untouched.
+- NET: the moment ladder converges too slowly; the X-gap is zeroth-moment (twin
+  mass), invisible to all power moments; the positional strip beyond moments =
+  bottom-twin detection = the conjecture. Constructor's count/moment toolkit is
+  fully spent - recommend reassignment to structural fronts (or wind-down).
+
+## Harvester round 3 (2026-08-18) - SAME-side census kernel-checked; self-block composed with Census
+Coordinator-approved bites executed. Full detail: docs/proof-search/harvester.md sec 7.
+proofs/Polignac.lean extended (now imports Census - first file composing with the
+formalist's census); computational verification FIRST (research/same_census_check.py:
+105 prime pairs 5 <= q < r < 60, class-iff exhaustive over two periods left+right,
+floor count at 11 t-values per pair, window "exactly once", own-value reps: zero fails).
+New theorems (12), the first layer of the master supply formula formal:
+- `six_mul_class`: slot-map inversion - for m coprime to 6, {k : 6k = c mod m} is ONE
+  class mod m, any target c. `left_dvd_iff`/`right_dvd_iff`: member divisibility =
+  residue condition (6k = 1 left, 6k = m-1 right). `class_rep_unique`, `not_dvd_six`.
+- `card_class_Ico` (THE FLOOR-COUNT PRIMITIVE): #{k in [1,t] : k = a mod m}
+  = (t + m - a)/m for 1 <= a <= m. Every floor term of SAME/PAIRSPLIT reduces to it.
+- `same_left_census` / `same_right_census`: distinct primes q, r >= 5 - slots whose
+  left (resp. right) member both divide are ONE CRT class mod qr, count
+  (t + qr - a)/qr over the first t slots. The SAME-side pair term, exact.
+- `same_census_once` (COMPOSITE ROOT LAW, windowed): a <= t < a + P => exactly one
+  coincidence - "exactly once if it fits" with the fit hypotheses explicit.
+- `same_left_own_value`: qr = 5 mod 6 => the class rep IS slot (qr+1)/6, member qr
+  itself - "acts at its own value" explicit.
+- `twin_pin_self_block` (second bite): the pin slot u of twin (p,p+2) has
+  Census.slotComps u = 0 (a REAL twin slot, both members prime) yet is never a
+  BlockedSlots.Survivor of any machine with bound >= p - the machine is blind to its
+  own pair; the formal reason the U-pin list is invisible to n2.
+STATUS: whole ledger GREEN - `lake build`, all 8 targets, 988 jobs, zero sorry. Axiom
+audit: all 28 Polignac theorems standard axioms only. Polignac.lean is now 28 theorems:
+the ZM-frame reductions (r1), the g=2 pinning (r2), the SAME census + self-block (r3).
+Lean gotchas added to harvester.md: card_insert_of_notMem rename;
+Ico_succ_right_eq_insert_Ico lives in namespace Nat; rwa-at rewrites the ModEq modulus
+too (orient the equation and rewrite in the goal); induction + succ_div_of_dvd/not_dvd
+sidesteps omega's no-division-by-variables limit.
+Remaining formula gap after this layer: multi-gear products (squarefree s_L, s_R with
+>= 3 gears - the signed CORR terms) and PAIRSPLIT's closed-form rep (Lateral's
+m0/b0/i law) - the latter is the natural next Lean bite if wanted; both reduce to
+six_mul_class + card_class_Ico instances.

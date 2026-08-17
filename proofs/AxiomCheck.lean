@@ -4,6 +4,7 @@ import Layer
 import Supply
 import Census
 import Bridge
+import Gear
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -36,3 +37,9 @@ open BlockedSlots
 #print axioms Bridge.sum_roots_eq_census
 #print axioms Bridge.sum_roots_pinned
 #print axioms Bridge.slot_roots_ne
+#print axioms Gear.supply_eq_sum_R
+#print axioms Gear.sum_R_eq_census
+#print axioms Gear.R_le_card_multiples
+#print axioms Gear.R_prefix_le
+#print axioms Gear.sq_le_of_minFac_eq
+#print axioms Gear.R_eq_zero_of_below_sq

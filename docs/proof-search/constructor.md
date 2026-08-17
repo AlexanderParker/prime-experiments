@@ -639,3 +639,94 @@ third-moment bounds on the starved bottom band, seeking R > 1 forced by arithmet
 with a sub-superdense prime input. That is the one unexhausted direction this
 inventory leaves standing; everything else terminates at the parity wall by
 measurement, not metaphor.
+
+---
+
+# Constructor round 6: the zone's fate, and the third-moment front opened and closed
+
+Scripts: `research/zone_fate.py` (bottom-band ladder scan to y = 10^7 + LP moment
+ceilings). Mechanic's round-5 moment data consumed (multiplicity_summary.csv /
+hist.csv - their "the X-gap is zeroth-moment only" verdict is corroborated
+independently below by direct LP computation at orders 2 and 3).
+
+## 17. The fate of the inversion zone
+
+R(t) = (S1^2/M2)/(t-P) decomposes exactly as R = eff * boost: eff = (S1^2/M2)/n2
+(Cauchy-Schwarz efficiency, eroded by the m-dispersion) and boost = n2/(t-P) =
+1 + n0/(t-P) (the twin surplus, the zone's only fuel). Ladder (T = 50000 band,
+empties re-confirmed at T = 200000):
+
+    y          sup R    at t     eff     boost    zone
+    10007      1.442      22    0.962    1.500    [5, 17204]
+    20011      1.923       4    0.962    2.000    [4, 24886]
+    50021      2.000       5    1.000    2.000    [5, 40496]
+    100003     1.032     416    0.919    1.123    [25, 39858]
+    200003     1.010    1636    0.910    1.111    [726, 6216]
+    500009     1.056      38    0.864    1.222    [28, 49]
+    1000003    1.020     153    0.902    1.131    [103, 193]
+    2000003    1.031      13    0.928    1.111    [13, 71]
+    3000017    1.021      60    0.943    1.083    [19, 67]
+    5000011    1.000       -       -        -     EMPTY (T = 200000)
+    7000003    1.019      21    0.934    1.091    [21, 24]
+    10000019   1.000       -       -        -     EMPTY (T = 200000)
+
+**Answers to the mandate.** (i) sup R does NOT cross 1 at a single y - the zone
+dies GENERICALLY (shrinking extents, sup -> 1+) with first empty windows at
+y = 5000011 and 10000019, but revives sporadically. (ii) The killer is the
+P-side/boost: the twin surplus n0/(t-P) collapses like the bottom-band twin share
+(~1/ln^2 y: boost at argmax 2.00 -> 1.08-1.13 down the ladder), while eff erodes
+slowly (0.96 -> 0.86-0.94, the lnln m-dispersion). The zone needs boost > 1/eff
+and loses when the first bottom twin arrives after ~10 doubles have accumulated.
+(iii) Mirror-restricted prefix pairs change nothing - proof in section 18.
+
+**The revival law, and the adversarial conclusion the manager ordered.** Windows
+that open with a twin in their first few slots revive the zone at ANY y: found and
+verified at y = 5000087, 5000101, 5000539 (twin within <= 4 slots; sup R = 1.923,
+eff 0.962, boost 2.0 - the (n2, demand) = (2, 1) pattern). But this is a
+self-reference, stated exactly: every twin (p, p+2) lies in the first slots of the
+window of any prime y just below p, so **"the zone revives for infinitely many y"
+is equivalent to the twin prime conjecture**, and a revival's fuel IS a bottom
+twin. Maximum-skepticism verdict, as demanded: no certificate "R(t*) > 1 for all
+y" can exist short of the conjecture itself - the inversion zone is a DETECTOR of
+bottom twins (it certifies them from moments + P without exhibiting the pair),
+never a generator. Its unconditional content is now exhausted.
+
+## 18. The third-moment front: opened, computed, closed
+
+**The mirror theorem (two lines, answering both chunks' mirror questions).** The
+involution k -> -k (any period) maps members 6k+-1 to -(6k-+1), so it swaps
+omega_L and omega_R and fixes m(k) = omega_L*omega_R. Every mirror-augmented
+prefix-pair moment is therefore exactly twice the original, P doubles too, and
+every ratio in this programme (R, eff, boost, M_X, every ceiling) is invariant.
+**Mirror-awareness is vacuous at the moment level** - any edge from the mirror
+must use positions jointly with signs, not moments of any order.
+
+**LP moment-problem ceilings** (the sharp lower bound on n2 given S1, M2, M3 is a
+small LP; solved by active-set enumeration, feasibility on the full range; the
+arithmetic cap m <= (log_5 y^2)^2 is a theorem and is used where stated):
+
+    scale                       C_CS    C2_int   C3(capped)  need M_X   true M_real
+    y=2003  full window         5.431   5.387    5.241       3.543      3.311
+    y=5003  full window         6.007   6.006    -           3.813      3.631
+    y=10007 zone prefix 17204   5.793   5.761    5.726       5.793      5.043
+    y=50021 band 50000          6.303   6.271    6.247       6.231      5.624
+
+* The integer order-2 LP beats continuous CS by 0.3-0.5%: at the y=10007 zone edge
+  (t = 17204, where CS exactly breaks even, R = 1) it still refutes: n2 >= 7744 >
+  7702 = demand. A real but cosmetic extension of the zone.
+* Order 3 with conservative tail handling adds NOTHING (LP2 = LP3 everywhere; the
+  cubic never enters the optimal basis). With the legitimate arithmetic cap the
+  cubic enters (basis (5, 6, cap)) and tightens a further 0.6-2.8% - at y=50021's
+  band the bound reaches 25,093 vs demand 25,157: short by 64. At window scale the
+  ceiling is 5.24 vs need 3.54 - the ~48% chasm is untouched.
+
+**Verdict, honest both ways.** Third moments and mirror-awareness do NOT tighten
+the ceiling toward M_X in any material way: the moment ladder converges to
+exactness far too slowly, and the mirror contributes nothing by symmetry. This
+corroborates Mechanic's round-5 finding by an independent route: the X-gap lives
+entirely in the zeroth moment (the twin mass P(omega_L = omega_R = 0)), which no
+power moment of m sees. The compression frontier at fixed moment order is closed;
+what the zone analysis adds is that the POSITIONAL bottom-band content - the one
+strip beyond moments this inventory left standing - is exactly bottom-twin
+detection, i.e. the conjecture again. The constructor's count/moment toolkit is
+now fully spent; remaining live fronts belong to the structural workstreams.

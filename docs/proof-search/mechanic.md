@@ -462,3 +462,83 @@ Findings:
 - Null2 sides treat the two members as independent; the slot-cap
   covariance shows up as the exact mean gap (item 3), not corrected away.
 - "Tail >= 9" etc. are shares of ALL slots (not conditional on mu>=1).
+
+## Round 6 - the zone's fate: sup R(y) to y = 10^7 (2026-08-18)
+
+Scripts: `research/inversion_zone.py` (S1, M2, P and R(t) = (S1^2/M2)/(t-P)
+exactly, every slot; full-window scans y <= 100003, prefix T = 8y above),
+`research/twinmass_deciles.py` (part 3). Data (append):
+`research/data/zone_summary.csv`, `zone_curves.csv` (S1/M2/P/R at dense
+checkpoints - the Constructor's requested curves), `zone_anatomy.csv`,
+`twinmass_deciles.csv`.
+
+Calibration: sup R = 6.545 (503), 2.899 (2003) match the Constructor's 6.5,
+2.9; zone extent at 10007 (3..17206) matches their [~5, 17204]. At tiny t
+the raw sup is boundary-convention-sensitive AND circular (an actual twin
+at slot 1-2 shrinks t-P and spikes R), so a convention-robust bulk sup
+(t >= 64) is tracked alongside. Int64 overflow in M2*(t-P) at W ~ 1.7e9
+caught and fixed (float cast) - one garbage row regenerated.
+
+### (1) The sup R(y) curve - IT CROSSES 1. The zone dies at y ~ 2-5 x 10^6
+
+    y        scan      supR   t*     supB64   zone(lo,hi)    #zone
+    503      full     6.545    27    2.652    (5, 2787)       2770
+    2003     full     2.899    24    1.752    (6, 6547)       6523
+    10007    full     1.929     6    1.305    (3, 17206)     17150
+    20011    full     1.923     5    1.176    (5, 24887)     24815
+    50021    full     3.000     7    1.103    (4, 40543)     40498
+    100003   full     1.032   417    1.032    (26, 39859)    39375
+    200003   T=8y     1.010  1637    1.010    (727, 6217)     2540
+    500009   T=8y     1.056    39    0.983    (29, 50)          21
+    1000003  T=8y     1.020   154    1.020    (104, 194)        79
+    2000003  T=8y     1.031    14    1.003    (14, 72)          16
+    5000011  T=8y     1.000     2    0.946    EMPTY              0
+    10000019 T=8y     1.000     2    0.944    EMPTY              0
+
+- The zone is nonempty through y = 2000003 (16 slots, sup 1.031) and EMPTY
+  at 5000011 and 10000019 (sup R = 1.000 attained only as equality at the
+  t=2 boundary). Near the threshold it flickers (500009's bulk sup dips to
+  0.983 while a 21-slot zone survives at t in [29,50]) - bottom-band prime
+  fluctuations, not a clean edge.
+- Zone extent collapses toward the bottom before dying: zone_hi/y = 5.5
+  (503) -> 1.7 (10007) -> 0.81 (50021) -> 0.40 (100003) -> 0.031 (200003)
+  -> 0.0002 (2000003). Full scans to W = 1.67e9 slots confirm nothing ever
+  reappears past the bottom zone; the T = 8y prefix has 20-40000x margin.
+- Bulk sup declines smoothly: supB64 - 1 ~ y^(-0.6) (fit over 503..100003)
+  until fluctuations dominate near 1. Density reading (labeled reading):
+  R_bottom ~ eff * n2/(t-P) with eff ~ 0.92-0.97 stable (see anatomy), so
+  the sup tracks bottom-band prime density 6/ln y fattening t-P; crossing
+  at ln y ~ 15 matches the measured death at 2-5 x 10^6.
+
+### (2) Anatomy at the argmax (zone_anatomy.csv)
+
+m-histograms of the argmax prefixes are m = 0 slots plus a CONCENTRATED
+block at m in {4, 6, 9, 12} = products of omega in {2,3,4}; m = 1, 2, 3
+slots are essentially absent at the bottom (both members of a bottom-band
+double generically carry 2-4 gear divisors; lone-gear members sit beside
+primes instead - the fragile census). Concentration is the zone's engine:
+CS efficiency (S1^2/M2)/n2 = 0.919-0.966 at every argmax. Worked (y=2003,
+t*=24): hist {0:15, 4:7, 6:2}, S1=40, M2=184, CS=8.70 > t-P=3, forcing
+n0 >= 6 - and indeed 6 twins sit in those 24 slots. Top M2 contributors
+are always the 2-3 slots with m = 12/16 (omega 3x4, 4x4 members like
+208943 = 7.11.13.209... etc.); S1 is carried by the m=4/6 bulk.
+
+### (3) Depth-resolved twin mass (round-5 proposal folded in)
+
+Real twin share per depth decile vs the depth-UNIFORM product baseline
+(both-sides-zero mass), y=50021: ratio 0.982 (decile 0) declining smoothly
+to 0.701 (decile 9); y=10007: 1.058 -> 0.706. Not band-structured: an
+HL-shaped allocation ~ mean(1/ln^2 member) per decile reproduces the real
+decile counts to 1.000 +- 0.003 (50021) - the global 0.77 is purely the
+1/ln^2 density falloff averaged against a flat baseline. At 0.3% precision
+there is NO depth structure beyond smooth density in the twin mass.
+
+### Caveats
+
+- supR at t < ~10 is convention-sensitive (boundary member y) and
+  partially circular; use supB64 for trend claims. Both are in the CSV.
+- T = 8y prefixes above 100003: justified by the collapsing zone_hi/y from
+  full scans and by R(t) monotone-declining past the zone in zone_curves;
+  not a proof of absence beyond 8y for y >= 2e5.
+- The y^(-0.6) fit is a fit. The death location 2-5e6 is exact within the
+  scan policy.

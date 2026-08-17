@@ -2,26 +2,26 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-Round 5 produced the first genuinely new WEAPON of the search: the inversion zone. Using nothing
-but counting arithmetic (no prime facts at all), there is a criterion - a ratio computed from the
-machine's fixed schedule - which, whenever it exceeds 1, FORCES a twin to exist in that stretch.
-We used it to prove the twin (521,523) exists from four slots of pure arithmetic, no searching.
-The catch, stated honestly: the zone where the criterion bites shrinks as numbers grow (its
-strength fell from 19.6 to 1.44 across our test range), and proving it stays above 1 forever runs
-into the same deep wall as everything else. But it is the first unconditional twin-forcing tool
-the machinery has produced, and next round we track exactly where its power goes.
+Round 6 was the round of honest funerals - and one lasting gift. The counting weapon from round 5
+(the "inversion zone") was tracked to its grave: it works by DETECTING twins near the bottom of
+each window, not by creating them, so asking it to fire forever is just the conjecture again in
+disguise. It genuinely dies around y = 3-5 million. Every remaining trick in the counting/moments
+family was also checked and buried: mirror symmetry adds literally nothing at the level of
+moments (a two-line proof), deeper statistics move the needle by 3% against a 48% chasm, and
+depth targeting is worthless. The counting program is now COMPLETE - in the sense that we possess
+the full map of why every route in it fails. That map is itself a major artifact, and round 7's
+first job is writing it up properly.
 
-Everything else sharpened the picture: the difference between reality and a twin-free world is
-now known to live in a single "zero" statistic - literally the twin count itself, nowhere else
-(the fancier statistics all match between the two worlds). The books identity is verified
-slot-by-slot out to 16.7 million slots. And the verified-proof ledger grew to eight files,
-including this round the "bridge" (the equation's skeleton, fully machine-checked) and a small
-gem: the UNIQUENESS theorem that only twin pairs stamp their own address - the mark of gap-2 that
-no other gap has, now at the highest standard of certainty.
+The gift: within its finite domain the zone is real mathematics - at one test point its
+arithmetic FORCES six twins to exist, no searching - and it will be preserved in the verified
+ledger. Meanwhile the structure side turned up something eerie: the record twin-free stretches
+are the SAME specific numbers at every scale we can reach - fixed landmarks in the integers, with
+reality performing exactly the forbidden pattern up to length 13, once, at one address. And the
+machine-verified ledger reached nine files, now including the theorem that the machine is
+formally blind to its own twin pair, and the exact census of coincidence slots.
 
-One warning from the terrain scan: the region where a proof must bite (the bottom of each window)
-is exactly where reality is strongest - so the eventual argument must use the machine's special
-structure (its mirror symmetry, its pinned slots), not generic tools. That is where round 6 digs.
+Round 7: write the impossibility map, census the landmark runs, dig into their letter-structure,
+and keep growing the verified supply formula - the slow road, walked properly.
 
 ## Round 1 (2026-08-18)
 
@@ -170,3 +170,31 @@ ledger repaired and green (986 jobs, verified independently by manager).
 **Manager synthesis** - first unconditional twin-forcing criterion in hand; its domain shrinks
 toward the parity wall; round 6 tracks sup R(y) exactly, opens the mirror-aware third-moment
 front, maps the load-length frontier, and extends the Lean ledger per-gear.
+
+## Round 6 (2026-08-18)
+
+**Constructor** - zone fate settled with adversarial rigor: R = eff x boost; the boost (twin
+surplus) collapses ~ 1/ln^2 y; zone = bottom-twin detector, never generator ("revives infinitely
+often" IS the conjecture); dies generically y ~ 3-5e6, revives on bottom-twins. Mirror theorem:
+moment-level mirror-awareness vacuous at any order. LP order-3 ceilings: <3% vs 48% chasm.
+Toolkit declared spent. Tool: zone_fate.py.
+
+**Mechanic** - independent confirmation: zone empty at 5,000,011 and 10,000,019; (sup-1) ~ y^-0.6;
+worked forcing instance n0 >= 6 at y=2003; anatomy (double mass at m in {4,6,9,12}); depth not a
+lever (0.3% precision). One int64 overflow self-caught. Tools: inversion_zone.py, twinmass_deciles.py.
+
+**Lateral** - load-length frontier is ABSOLUTE: same integer landmarks at all scales; perfect
+X-alternation realized to L=13 (slots 2452-2464); binding scale L ~ 14-32; long-run bounds fight
+a phantom; chain/fuel watches different objects below L ~ 160. Tool: load_frontier.py.
+
+**Formalist** - Gear.lean: per-gear ledger lines formal (R_q, cap, 6t/q+2 prefix bound, shadow
+law with a real edge case caught: minFac 0 = 2 needs the window guard).
+
+**Harvester** - SAME-side census kernel-checked (12 theorems: slot-map inversion, floor-count
+primitive, pair term exact, windowed once-law, own-value law) + twin_pin_self_block composed with
+Census. 28 Polignac theorems total; ledger green 988 jobs (manager-verified).
+
+**Manager synthesis** - the moment program is complete as an impossibility map; the zone survives
+as a finite kernel-checkable tool; the structure front (absolute landmarks, alternation words) and
+the Lean supply formalization are the roads forward. Round 7 = write the map, census the
+landmarks, formalize the supply.
