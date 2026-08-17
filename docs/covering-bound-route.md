@@ -1487,3 +1487,51 @@ at `y = 23`.
 That is the whole of the remaining gap, stated without reference to coverings, offsets, separations,
 `F_h`, or the per-`j` recipe. It is a single minimisation claim about the gap distribution of the
 admissible pattern.
+
+## 27. Two sufficient conditions for the remaining gap, both closed
+
+The gap is `min_L h(L) = h(1)` (section 26c). Two natural sufficient conditions, both tested.
+
+### 27a. Log-concavity of N - false
+
+Since `N(L+1)/N(L) = 1 - h(L)`, the claim says the decay ratio is maximised at `L = 1`, which follows
+if the ratio is decreasing - that is, if `N` is log-concave, `N(L)^2 >= N(L-1) N(L+1)`.
+
+**False.** It fails at `L = 3` for gears to 11, 13, 17, 19, and at `L = 6` for `{3,5,7}`. So `h` is not
+monotone - which was already known from section 17b - and log-concavity is a strictly stronger
+property than the claim needs.
+
+### 27b. A tail-fraction bound - too crude
+
+From `N(L) <= N(1) - (L-1) G(L)`, the claim follows if
+
+    G(L)/A >= 1 / (1 + (L-1) d/(1-d))
+
+a condition on tail fractions alone. It holds at `L = 1, 3` and fails from `L = 6`: for `{3,5,7,11,13}`
+the tail fraction is `0.533` against a required `0.646` at `L = 6`, and `0.373` against `0.532` at
+`L = 9`. The step `N(1) - N(L) >= (L-1) G(L)` discards too much, since the intermediate `G(j)` for
+`j < L` are much larger than `G(L)`.
+
+### 27c. The claim is not a general property of gap multisets
+
+Worth recording, since it shows the structure is essential: for the multiset `{3, 3, 15}` we have
+`A = 3`, `sum = 21`, `h(1) = 1/6`, but at `L = 3`, `G = 1` and `N = 12` give `h = 1/12 < 1/6`. All
+elements are multiples of 3 and at least 3, so those properties alone do not suffice. Any proof must
+use the admissible pattern's actual gap counts.
+
+### 27d. Approaches closed so far
+
+For the remaining gap specifically:
+
+| approach | outcome | section |
+| --- | --- | --- |
+| per-`j` recipe | proves `L = 1, 3, 6, 9`; cannot scale, `F_k ~ 0.055 y^2` conditions | 24b, 25b |
+| monotonicity in the gear set | false - ratios peak then fall | 24a |
+| universal bound `h >= 1/(F_h - L)` | circular - presupposes `F_h` | 22b |
+| log-concavity of `N` | false | 27a |
+| tail-fraction bound | too crude from `L = 6` | 27b |
+
+The claim itself stands: verified at **every** block start for six gear sets - 34 of them at `y = 23` -
+with three cases proved outright and the minimum exactly `1/(1-d)` at `L = 1` in every case. It is a
+sharply stated, well-tested, unproved assertion about the gap distribution of the twin-admissible
+pattern, and five distinct routes to it have now been eliminated.
