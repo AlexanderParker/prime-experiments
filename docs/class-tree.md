@@ -65,6 +65,31 @@ y <= 3163); proving that closeness would be stronger than Reduction A.
 Half-winding: the mirror fixes a subset's behaviour in half its primorial - true, but the mismatch
 under attack is e^y against y^2, so the factor 2 is conceptual rather than asymptotic.
 
+## The event horizon and the layer law (scripts: research/event_horizon.py, research/layer_ledger.py)
+
+**Event-horizon theorem** (two lines, verified y = 13..79): any composite member strictly inside
+(y, y^2) has a prime factor <= sqrt(M) < y, so the top gear is never the root cause of an interior
+kill - gears STRICTLY BELOW y decide the open interior exactly. The top gear's whole unique
+contribution is the boundary: its self-pair at the bottom edge and its square at the horizon,
+which false-positives precisely when y^2 - 2 is prime (167, 359, 839, 1367, 1847, 2207, 3719,
+5039 across the tested range). The exclusion works exactly once per window: the second gear's
+square lies strictly inside.
+
+Side fact: the primorial-scale unwind does NOT always yield twins - nudge home 595 of the
+{5,7,11,13} machine is (3569, 3571) with 3569 = 43*83. Openness beyond the horizon is not twinhood.
+
+**Layer law** (verified for the nine layers 13->17 .. 43->47): one layer = one prime retiring into
+the working set, horizon advancing y^2 -> y'^2. The newly activated gear's entire novel workload is
+
+    1. retro-closing the old horizon square y^2 (owed iff y^2-2 prime), and
+    2. the slots y*c for primes c in (y, y'^2/y) - one to three explicit numbers per layer
+       (Bertrand: y'^2/y < 4y) - each owed iff its partner member is prime.
+
+Everything else in the fresh band is closed by the old gears. Seven of nine tested layers owe
+nothing in-band at all; the exceptions are 221 = 13*17 (beside prime 223) and 437 = 19*23 (beside
+prime 439). A layer's new content is a short explicit list of semiprime slots, enumerable in
+advance - the tower's complexity lives in the number of layers, never inside one.
+
 ## The exact minimal subset (script: research/minimal_subset.py)
 
 Necessity law: gear q is needed iff one of its root kills pairs with a PRIME partner in the window -
