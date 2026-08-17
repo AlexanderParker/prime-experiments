@@ -202,27 +202,55 @@ Since `F(M + q) >= F2(M)` always, `F2(M) - F(M)` is a lower bound on **every** i
 fixed fraction of `F` the growth would be geometric in the number of gears, and `F` would blow past the
 requirement. It is not:
 
-    gears to     A         F     F2    F2-F   (F2-F)/F   gaps flanking a maximal gap
-    7            15       15     21       6      0.400   (3,6) (6,3)
-    11          135       21     33      12      0.571   (3,9) (9,3)
-    13         1485       33     48      15      0.455   (6,6) (6,15) (15,6)
-    17        22275       54     75      21      0.389   (6,6) (6,9) (6,15)
-    19       378675       75     93      18      0.240   (6,6) (6,9) (6,15)
-    23      7952175      102    117      15      0.147   (3,15) (9,9) (15,3)
+In `k`-units, which is where the quantities are smallest and clearest (multiply by 3 for the adjacent
+frame - the factor-3 scaling holds for `F2` as well, verified as `3 F2_k = F2_adjacent` for six gear sets):
 
-**The gaps immediately either side of a maximal gap are always tiny** - drawn from `{3, 6, 9, 15}` in every
-gear set measured, while `F` itself runs from 15 to 102. `F2 - F` stays inside `[6, 21]` across a sevenfold
-growth in `F`, so the ratio falls from `0.40` to `0.147`.
+    y            F_k    F2_k   F2-F   (F2-F)/F   flanking a maximal gap   best adjacent pair
+    7              5       7      2      0.400   -                        -
+    11             7      11      4      0.571   -                        -
+    13            11      16      5      0.455   -                        -
+    17            18      25      7      0.389   -                        -
+    19            25      31      6      0.240   (2,2) (2,3) (2,5)        (21, 10)
+    23            34      39      5      0.147   (1,5) (3,3) (5,1)        (34, 5)
+    29            43      55     12      0.279   (2,2)                    (30, 25)
 
-That is the mechanism keeping the growth polynomial rather than geometric: **a maximal gap is locally
-isolated.** A long blocked run consumes the gears in its neighbourhood, so what follows it is dense. It is
-the gear-exhaustion idea - and note that the version refuted in section 7 of
-`forbidden-configurations.md` was a claim about per-gear *conditional marginals*, which do rise. This is a
-different claim, about a single extremal configuration, and it is what the data supports.
+**Maximal gaps are strongly isolated.** The gaps immediately either side of a maximal gap are minimal - at
+`y = 29` the only flanking pair is `(2, 2)`, the smallest possible. A long blocked run consumes the gears in
+its neighbourhood, so what follows it is dense. That much the data supports, and it strengthens with `y`.
 
-It also gives a consistency check on the increments: `F2(23) - F(23) = 15`, and the measured gear-29
-increment is `27 >= 15`. Likewise `F(2,41) - F(2,37) = 9` forces `F2(M_37) - F(M_37) <= 9` - the neighbours
-of the `264` gap are at most 9 wide.
+**But isolation does not explain `F2`, and an earlier version of this section wrongly implied it did.** At
+`y = 29`, `F2 = 55` is attained by the adjacent pair `(30, 25)` - two large-but-not-maximal gaps - not by the
+maximal gap and a neighbour. Same at `y = 19`, where `F2 = 31` comes from `(21, 10)` while the maximal gap is
+25. Only at `y = 23` does `F2` sit at a maximal gap. So the flanking-gap table, which the previous version
+presented as the explanation of `F2 - F`, explains a different quantity.
+
+**And `F2 - F` is not bounded by the small constant that version claimed.** It reads `2, 4, 5, 7, 6, 5, 12`
+in `k`-units, doubling at `y = 29` after appearing to settle. The ratio `(F2-F)/F` reads
+`0.40, 0.571, 0.455, 0.389, 0.240, 0.147, 0.279` - no decay, no monotonicity. It is small relative to `F`
+throughout, but "bounded" is not established.
+
+What keeps this from forcing geometric growth is that the quantity fluctuates rather than holding at a
+fixed fraction. Since `F(M+q) >= F2(M)`, a persistent ratio of `0.28` would give `F -> 1.28 F` per gear and
+hence superpolynomial growth. Instead the measured increments are lumpy: `F_k` goes `43, 58, 88, 91` at
+`y = 29, 31, 37, 41`, so `F(41) - F(37) = 3` forces `F2(M_37) - F(M_37) <= 3`, an order of magnitude below
+the `12` at `y = 29`.
+
+Consistency check that does hold: `F2(23) - F(23) = 5` in `k`-units, or 15 adjacent, against a measured
+gear-29 increment of 27; and `F2(29) - F(29) = 12`, or 36 adjacent, against a measured gear-31 increment
+of 45.
+
+**The mechanical reason the hole buys little, in the adjacent frame.** Covering `[0, L)` leaves gear 3 free
+to choose its offset, and it blocks 2 of every 3 residues, so gears `>= 5` must cover one whole class mod 3 -
+about `L/3` positions, and one may pick the smallest class. In the hole problem gear 3 must *avoid* the hole
+`h`, which leaves it exactly one admissible offset out of 3, so the class left to gears `>= 5` is forced to be
+`h mod 3` - and the hole itself is one position of that class which no longer needs covering. So the hole buys
+exactly **one position** of slack in the sub-problem, at the cost of losing the choice of class and of every
+gear `>= 5` losing 2 of its `q` offsets. That is why `F2 - F` is small relative to `F` rather than a fixed
+fraction of it. It is not an argument for boundedness, and the `y = 29` value shows why one should not claim
+boundedness from it.
+
+(The observation that `F2 - F` is a multiple of 3 in the adjacent frame carries no information: `F` and `F2`
+are both sums of gaps, and every gap there is a multiple of 3.)
 
 **The sharpened target.** Both quantities are covering problems of the same kind:
 
@@ -307,9 +335,9 @@ Established here:
   a multiple of `q`, and by census `k <= 3` *everywhere* in the pattern, not merely at the maximum - for
   gears to 19 and `q = 23`, runs of one qualifying interior gap occur 11808 times, of two only 62 times, of
   three never;
-* **maximal gaps are isolated**: the flanking gaps are always in `{3, 6, 9, 15}`, and `F2 - F` stays in
-  `[6, 21]` while `F` grows from 15 to 102, so the ratio falls from `0.40` to `0.147`. This is what keeps
-  the growth polynomial rather than geometric, and it sharpens the target to bounding `F2 - F`;
+* **maximal gaps are strongly isolated**: the flanking gaps are minimal, `(2,2)` in `k`-units at `y = 29`,
+  and the isolation strengthens with `y`;
+* the factor-3 frame scaling extends to `F2`, verified as `3 F2_k = F2_adjacent` for six gear sets;
 * `F_adjacent = 3 F_k` exactly, for seven gear sets, so the two frames are one problem;
 * the real requirement `F_k(y) <= (y^2 - y)/6`, holding with a factor of 2.3 to 3, ratio falling;
 * the real-frame minimum of `h/d` sits at `L = 2`, not `L = 1`, so `min_L h(L) = h(1)` is stronger than
@@ -320,7 +348,11 @@ Established here:
 * three new values, `F(2,37) = 264`, `F(2,41) = 273` and `F(2,43) = 309`.
 
 Corrected here: `C` was recorded as at most `1.10` from data that skipped `y = 37`; it is `1.354` there, so
-the margin against the threshold is `1.37` rather than `1.6`, and `C` is not monotone.
+the margin against the threshold is `1.37` rather than `1.6`, and `C` is not monotone. And the isolation of
+maximal gaps was wrongly presented as the explanation of `F2 - F`, with `F2 - F` claimed bounded in
+`[6, 21]`; at `y = 29` it is `12` in `k`-units - `36` adjacent, above that range - and `F2` there is attained
+by two medium gaps `(30, 25)` rather than at a maximal gap at all. Isolation is real; what it explains is
+not `F2`.
 
 Open: step 1 of section 6, a proved bound on the increment. Note what has changed about the shape of the
 remaining work - it is no longer a knife-edge inequality needing exact minimisation, but a crude constant
