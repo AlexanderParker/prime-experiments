@@ -42,6 +42,38 @@ pair are: shared/own structure at the CRT lift of (+u_q, +u_r), the product-type
 signs, and one crossed kill - the four sign choices (+-u_q, +-u_r), which is the `2^n` law of the
 threat lattice (section 32b) at n = 2.
 
+## 5 x 11 (period 55) and 7 x 11 (period 77)
+
+5 x 11, teeth {1,4} and {2,9}: 27 openings = 3*9, max gap 4, mirror-symmetric.
+
+    OQROQOQOOXOQORQOQOOQRQOOXOQOOQOXOOQRQOOQOQROQOXOOQOQORQ
+
+X slots, mirror-paired (9,46), (24,31):
+* slot 9 = (53,55): 55 = 5*11 - product block, both kill right
+* slot 46 = (275,277): 275 = 5^2*11 - product block, both kill left
+* slot 24 = (143,145): 11 left (11*13), 5 right (5*29) - crossed
+* slot 31 = (185,187): 5 left (5*37), 11 right (11*17) - crossed
+
+7 x 11, teeth {1,6} and {2,9}: 45 openings = 5*9, max gap 4, mirror-symmetric.
+
+    OQROOOQOQROOOXOQOOOOQOQOROOQOQOROOQRQOOOOQRQOOROQOQOOROQOXOOOOQOXOOORQOQOOORQ
+
+X slots, mirror-paired (13,64), (20,57):
+* slot 13 = (77,79): 77 = 7*11 - product block, both left
+* slot 64 = (383,385): 385 = 5*7*11 - product block, both right
+* slot 20 = (119,121): 7 left (7*17), 11 right (11^2) - crossed
+* slot 57 = (341,343): 11 left (11*31), 7 right (7^3) - crossed
+
+## What varies across pairs and what does not
+
+Invariant for every pair: openings (q-2)(r-2); exactly 4 double-kills = the CRT lifts of the sign
+choices (+-u_q, +-u_r); exact mirror symmetry. Taxonomy of the four: same-sign lifts are product
+blocks (both gears hit the same member), mixed-sign lifts are crossed kills - and for twin gears the
+(+,+) lift collapses onto their own shared pair (the 5x7 slot-1 case). What the slip controls is the
+interleaving only: 5x7 has max gap 5 while 5x11 and 7x11 both max at 4 - same tooth inventory,
+different bunching. Counts are pair-independent theorems; placement is slip arithmetic - the
+pair-level preview of the programme's single open question.
+
 ## Certified twins from two gears
 
 The {5,7} window is slots <= 8 (6k+1 <= 49). Openings there: 2, 3, 5, 7 ->
