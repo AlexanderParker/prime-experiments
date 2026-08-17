@@ -80,9 +80,15 @@ twin, because a prime larger than `y` divides one of its members.
 
 So the frame gives: the configuration exists, recurs, and recurs at the fastest rate the machine
 allows. It does not give: it recurs within `y^2` of where the gear set was assembled. That last step is
-the whole content of `F_h(y) < y^2/6` - the maximum gap of the admissible pattern, in `k`-units, fitting
-inside the validity window. The covering route reduces exactly that to a single minimisation claim,
-`min_L h(L) = h(1)` (`covering-bound-route.md` section 26c), of which three cases are proved.
+the whole content of `F_k(y) <= (y^2 - y)/6` - the maximum gap of the admissible pattern, in `k`-units,
+fitting inside the validity window. It holds with a factor of 2.3 to 3 for every gear set measured, and
+the ratio is falling (`docs/gear-recursion.md` section 2).
+
+Two routes to proving it. The covering route reduces it to a hazard claim, `min_L h(L) = h(1)`
+(`covering-bound-route.md` section 26c), of which four cases are proved - though that formulation is in
+adjacent-frame units and is stronger than needed, since the real frame only requires `h(L) >= d`. The
+gear-recursion route reduces it to a bound on how far the maximum gap grows when one gear is added, where
+a crude constant suffices (`gear-recursion.md` section 6).
 
 A second point of care. Step 6 says denying infinitely many twins contradicts periodicity. That is
 true of the *admissible pattern* - the slots left open by gears up to `y` - and the pattern's
