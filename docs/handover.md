@@ -130,8 +130,9 @@ better re-run than trusted.
 gap, subscripted by frame; the frames are defined in section 0.5 and confusing two of them cost real time here.
 
 **Sections.** The basis for the hunt · Method · 0 the mechanical model · 1 the most recent reduction and its
-equivalent forms · 2 every line explored · 3 findings offered as established · 4 what was computed and at what
-scale · 5 where the argument stalls · 6 claims that appear to fail · 7 pathways not formalised · 8 files.
+equivalent forms · 2 every line explored · 3 findings offered as established · 3a what is formalised in Lean ·
+4 what was computed and at what scale · 5 where the argument stalls · 6 claims that appear to fail · 7 pathways not
+formalised · 8 files.
 
 ---
 
@@ -668,6 +669,74 @@ explicit closed form `J(m0) = sum_{J>=1} prod_{i=1..J} (1 - E(m0+i))` with
 
 ---
 
+## 3a. What is formalised in Lean, and what is not
+
+`proofs/BlockedSlots.lean` - 31 theorems, **no `sorry`** - formalises the reduction and the machinery around it
+against mathlib, on `leanprover/lean4:v4.34.0-rc1`.
+
+> **Critical caveat: it has never been built.** Mathlib has not been fetched into `proofs/.lake`, so nothing here
+> has been machine-checked. "No `sorry`" means no hole was left deliberately; it does **not** mean the proofs
+> compile. Building it is the single highest-value verification step available, and it is cheap relative to
+> re-deriving the mathematics by hand.
+
+**What is formalised.**
+
+* **The blocking relation** and its equivalence to the lazily-advanced cursor form the Python uses
+  (`blocked_iff_cursor`) - so the algorithm and the arithmetic definition are the same object.
+* **Soundness and completeness of a single opening**: an unblocked slot past `y` with `y` at least the square root
+  is prime (`prime_of_not_blocked`), and conversely a prime past `y` is unblocked (`not_blocked_of_prime`).
+* **The next-gap operation is well defined.** `exists_gapOK` proves the search terminates, `nextGap` is then
+  `Nat.find` of that, and `nextGap_spec` with `no_prime_between` says it lands on the next prime and skips nothing.
+  This is the formal counterpart of the constructor of section 2.9.
+* **The twin version**, with two cursors per divisor: `twin_of_not_blockedTwin`, `not_blockedTwin_of_twin`,
+  `twinGap_spec`, `no_twin_between`, plus the arithmetic lemma `sqrt_add_two_lt` that the induction needs.
+* **The reduction, in both directions.** `Survivor y m` says no prime `q <= y` divides `m` or `m + 2`;
+  `survivor_iff_twin` says that inside the certified window a survivor *is* a twin pair; and
+
+      twins_infinite_iff_survivor_in_window :
+        {p | p.Prime ∧ (p+2).Prime}.Infinite ↔
+          ∀ N, ∃ y, N ≤ y ∧ ∃ m, y < m ∧ m + 2 ≤ y * y ∧ Survivor y m
+
+  is an **iff**, so the target of this programme is equivalent to the conjecture rather than merely sufficient for
+  it. `survivor_in_window_of_gap_bound` then converts a gap bound into the window statement, which is the formal
+  version of Reduction A.
+* **The centred form.** Running the rule at the midpoint `c` removes the base entirely: `c` is blocked by `q`
+  exactly when `q | c^2 - 1`, so the twin pattern is one fixed nested family. `twin_of_centreSurvivor` and
+  `centreSurvivor_iff_twin`.
+* **The contradiction shape of argument 7, formalised.** `covering_of_not_infinite` states what would have to be
+  true for the twins to run out: beyond some `N`, *every* `c` has a prime `q <= sqrt(c+1)` dividing `c^2 - 1`. That
+  is the condition X of section 2.16, written down precisely. What is missing is its impossibility.
+* **Why constructed witnesses are never where they are needed.** `centreSurvivor_factorial` and
+  `exists_centreSurvivor`: survivors are easy to produce - `y!` is one - and uselessly large. This formalises why
+  the CRT-construction route cannot reach inside the window.
+* **Gear 3 forces the midpoint**: `six_dvd_succ_of_survivor`, the formal version of the law that makes every gap a
+  multiple of 3.
+* **What counting can do, exactly**: `card_blocked_by_le` gives `L/q + 2` as the number of slots one divisor blocks
+  in a run of `L`. The file's own comment is careful on the point, and it is worth repeating: only the inequality
+  is a theorem. *"No counting argument can succeed"* is a claim about proof strategies and is **not** formalised -
+  section 5.1 is evidence for it, not a proof of it.
+* **Lockstep**: `survivor_step` - advancing the divisor bound to the next prime `y'` can only destroy the survivor
+  whose own member is `y'`, so the removal side of the accounting leaks nothing.
+
+**What is not formalised.** Everything in section 3 from item 8 onward: the minimal size law, the factorisation
+law, the merge transform, the chain condition, the deletion-spacing lemma, the saturation theorem, the CRT collapse
+of item 17, `G(L) = N(L) - N(L+1)`, `h(1) = d/(1-d)`, and the `kappa` expansion. All of those are informal
+arguments in the markdown plus computational verification. Several are short and would formalise easily.
+
+**Suggested formalisation order**, by ratio of value to effort:
+
+1. **build the existing file** - it may already be a machine-checked reduction, and if it is not, the failures are
+   informative;
+2. **item 17, the CRT collapse** - a few lines, and section 1's simplest form rests entirely on it;
+3. **the deletion-spacing lemma and the saturation theorem** (items 15, 16) - both are short case analyses on
+   `delta = 0, +-1 mod q` with `delta >= 3`, and the saturation theorem is the only clean structural theorem about
+   the recursion;
+4. **`h(1) = d/(1-d)`** (item 19) - it turns on `prod (1 - 3/q) = 0` because gear 3 contributes a zero factor, which
+   is a one-line observation worth pinning down formally since a whole route was built on it;
+5. **the minimal size law** (item 8) - the counting bound is immediate; the attaining construction needs CRT.
+
+---
+
 ## 4. The computational anchor
 
 One paragraph, as requested. Every structural claim in section 3 was computed two ways wherever two ways were
@@ -855,6 +924,10 @@ delivers, and that margin *widens* with `y`.
 ---
 
 ## 8. Files
+
+    proofs/BlockedSlots.lean          the reduction and its machinery, 31 theorems, no sorry, NEVER BUILT
+    proofs/lakefile.toml              mathlib dependency; proofs/.lake is absent, so nothing is checked
+    proofs/README.md                  what the formalisation covers
 
     docs/status.md                    consolidated status, capacity barrier, the CRT collapse
     docs/gear-recursion.md            merge transform, chain condition, saturation, frames
