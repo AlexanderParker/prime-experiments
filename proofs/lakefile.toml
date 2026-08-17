@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots"]
+defaultTargets = ["BlockedSlots", "Horizon"]
 
 [[require]]
 name = "mathlib"
@@ -7,3 +7,6 @@ scope = "leanprover-community"
 
 [[lean_lib]]
 name = "BlockedSlots"
+
+[[lean_lib]]
+name = "Horizon"
