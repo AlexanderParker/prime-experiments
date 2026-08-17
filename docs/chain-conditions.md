@@ -80,6 +80,20 @@ Pushing the census up two machines (segmented sieve, gap word as uint8):
   **k = 4 chains exist** at (gears<=29, q=31) - the first occurrence of k > 3 observed anywhere in
   this programme (the corpus's census at smaller sizes found none, correctly).
 
+* **gears<=31** (period 3.34e10, streamed): the fuel spreads and is sharply non-monotone in q:
+
+      q                37      41    43    47    53
+      k=3 fuel pairs   70964   2     0     0     224
+      k=4 fuel triples 216     0     0     0     0
+
+  Fuel explodes one machine after first appearing (4 triples at y=29/q=31, then 216 at y=31/q=37);
+  and adjacency of the specific lift values is pure word-arithmetic - gap 16 next to 31 (the q=47
+  requirement) never occurs, while 18 next to 35 (q=53) occurs 224 times. A hypothesis this data
+  supports: the corpus's unexplained gear-37 anomaly (increment +90 = 2.432q, section 5.4) is the
+  fuel-rich case - 70,964 qualifying pairs available to chain on - while the tiny +9 increment at
+  gear 41 matches its near-empty fuel (2 pairs at the previous machine). The lumpy increments of the
+  gear recursion would then be readable in advance from the fuel table of the current gap word.
+
 Consequence: there is no universal bound k <= 3. Chain length grows with the machine, as the span law
 predicts it may once F_k(M) passes multiples of q/2. Any aggregate bound for pathway 7.1 must therefore
 handle growing k, weighted by the extreme rarity of the fuel words - at gears<=29 the k=4 fuel is 4
