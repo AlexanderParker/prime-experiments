@@ -2,25 +2,24 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-We assume a twin-free stretch (condition X) and hunt the contradiction. Round 1 showed X forces
-the machine into a zero-slack pattern and pointed at the window's bottom band. Round 2 delivered
-the verdict on that idea, honestly: the LOCAL attack is dead. Real windows actually behave, near
-their start, exactly the way X would force them to - so no local argument can ever refute X. And
-"double-composite" slots (the thing X needs plenty of) arrive almost immediately in every real
-window, so there is no forced starvation window to exploit. What survives is bigger-picture: the
-contradiction must come from bookkeeping over long stretches (the running margin between
-composites and primes), or from a beautiful reduction found this round - X at height y would
-force EVERY "layer band" above y to be twin-free, so it would suffice to prove that some single
-layer band always contains a twin. That statement is close in spirit to the famous bounded-gaps
-theorems (Zhang/Maynard), which prove twins-like pairs recur SOMEWHERE forever but not in every
-band - the gap between "somewhere" and "in every band" is now our precise frontier.
+We assume twins run out somewhere (condition X) and hunt the contradiction. Three rounds in, every
+easy door has been checked and priced honestly: the local door is closed (real numbers behave
+exactly as the forgery would, near the start); the "audit the whole book" door turns out to BE the
+original problem in disguise (proved equivalent, nothing gained); and the elegant "every band has
+a twin" shortcut turns out to need something as hard as a famous 100-year-old open problem
+(Legendre's: a prime between consecutive squares) before twin-ness even enters.
 
-Meanwhile the machinery got sharper: the "double" slots turn out to be completely determined by
-simple arithmetic (no freedom at all - they sit where 36k^2 = 1 modulo a product of two gears);
-the strange specialness of the machine's phases was fully explained and turned into a formula
-(and the hope that the machine is "extremal" was cleanly disproven by brute-force enumeration);
-the fake-twin census now has an exact per-gear law. Four bricks are now machine-verified in Lean:
-the reduction, the horizon theorem, the slot-cap lemma, and the layer-novelty theorem.
+What is genuinely alive is a loop the machine built itself: the "double-blocked" slots that X
+desperately needs are supplied, with zero freedom, by the primes and prime-GAPS at the smaller
+scale - and pairs with gap exactly 2 (twins!) are the only gap type whose supply is guaranteed at
+every scale. So a twin-free stretch at scale N would have its books balanced by twin structure at
+scale sqrt(N). Round 4's flagship: write that balance as one exact equation (demand pinned by X,
+supply pinned by arithmetic) and see whether the equation can be satisfied at all. If it is
+overdetermined - if no arrangement of primes can pay both sides - that is the contradiction.
+
+Also: the margin bookkeeping is now measured to forty billion numbers per window with a formula
+accurate to 0.1%, and five machinery bricks are computer-verified at the highest standard of
+certainty (the fifth, the supply ledger, landed this round).
 
 ## Round 1 (2026-08-18)
 
@@ -86,3 +85,30 @@ now (a) the cumulative margin statement and (b) the layer-band descent, precisel
 known bounded-gap theorems. Round 3: mechanic measures full-window margin trajectories; constructor
 formulates the cumulative statement + scopes layer-band vs Maynard-Tao exactly; formalist does the
 supply identity; lateral derives the gap-graded Bezout split law (sqrt-scale gaps -> ledger).
+
+## Round 3 (2026-08-18)
+
+**Lateral** - gap-graded split law in closed form, verified on all 2850 prime pairs to 400; the
+complete overcount formula exact at three scales; gap 2 = the unique unconditionally guaranteed
+doubles supplier at every scale (pins in the bottom band). Self-reference quantified. Tool:
+research/split_gap_law.py.
+
+**Constructor** - CUM proved exactly equivalent to Reduction A (lossless; diagnostic only).
+Layer-band failure tower priced: T1 prime-in-every-band (Legendre-class; localisation technology
+stops at exponent 0.525 vs needed 0.5) -> T2 bounded-gap localisation -> T3 parity. Thinnest bands
+occur at twin endpoints. Full-window excess E(y) flat at 3, realized by clusters just above y.
+Tool: research/cumulative_margin.py.
+
+**Formalist** - Supply.lean kernel-checked (974 jobs): the supply identity as a Finset partition,
+ledger form, and the distinct-roots slot corollary; first composing file (imports Horizon+Layer).
+Five bricks total, all standard axioms.
+
+**Mechanic** - full windows to y=200003 (6.67e9 slots, 186s): min margin is 0/-1 at t<=3 with no
+later dip anywhere; M(t) = t - li(6t+m0) + li(m0) to 0.1%; danger zone is member-anchored O(1)
+(crossover at e^6 ~ 403); layer bands invisible to the census at 1e-4 - attribution objects
+required. Tool: research/margin_trajectory.py + CSVs.
+
+**Manager synthesis** - all cheap routes now priced: local dead, cumulative = the conjecture,
+layer-band = Legendre-class. Live: the quantified self-reference. Round 4 flagship = the
+X-consistency equation (demand side pinned by zero-slack, supply side pinned by the freedom-free
+gap functional); mechanic builds per-gear R_q(t); formalist pins zero-slack census in Lean.

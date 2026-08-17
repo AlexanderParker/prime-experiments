@@ -314,3 +314,131 @@ strength and unproven. Measured slack (band slots vs measured max stride
 
 The forced twin-free run exceeds every measured stride by a growing factor - the input
 is measured-true with widening slack and proven nowhere. Stop.
+
+---
+
+# Constructor round 3: the cumulative statement settled, and the layer-band route scoped
+
+Scripts: `research/cumulative_margin.py` (full-window margin trajectories, this round);
+Mechanic's `research/data/prefix_census.csv` consumed (their round-3 full-window CSV was
+not yet posted; overlap at y = 101, 1009 reconciles exactly once their convention
+"member = y counts as prime" is adjusted - their minMargin -5 at y=101 is this margin's
+-4 plus the boundary member 101).
+
+## 11. The cumulative statement, exactly - and the equivalence verdict
+
+**Statement CUM.** *For every prime y >= 5, the window (y, y^2) contains a run I of
+consecutive slots with P(I) > N(I) (strictly more prime members than slots).*
+
+**Statement CUM_band** (sharpened by everything measured): *the run can be demanded
+inside the bottom band (y, y + Delta) - every violating run found in rounds 1-3 lies
+within 700 of y.*
+
+CUM's truth refutes X at every y. But the verdict, proved both ways in two lines each:
+
+* CUM(y) implies a slot of I holds 2 primes (pigeonhole; slot-cap lemma caps a slot at
+  2), hence a twin in the window, hence not-X(y).
+* A twin slot IS a run with excess +1. So E(y) := max over runs of [P(I) - N(I)] is
+  >= 1 iff the window holds a twin.
+
+> **Verdict: CUM is exactly equivalent to Reduction A. Not a strengthening, not a
+> weakening, not a new statement - a lossless reparametrisation in which the gears
+> drop out.** The "weakest known-unproven ingredient it needs" is itself: because the
+> pigeonhole equivalence is lossless in both directions, there is NO ingredient
+> strictly weaker than the conclusion. Anything implying CUM implies twin-in-every-
+> window directly.
+
+Placement against the corpus's other forms (docs/review-2026-08-17.md):
+
+    form (b), h(L) >= d pointwise   STRICTLY STRONGER than needed (oversufficient;
+                                    possibly false past y ~ 400 - review section 4)
+    review's tail bound             sufficient, far weaker than (b), unproven;
+    N(L) <= P exp(-cL/y), c > 6     lives on the sieve side (multiplicative route)
+    CUM                             EXACTLY equivalent; lives on the prime side
+    Reduction A                     the same point, sieve-side vocabulary
+
+The two attack surfaces are pigeonhole-duals of one ledger: sieve side = bound the
+blocked runs (dimension-2 Jacobsthal; parity floor beta_2 ~ 4.3-4.9 against the needed
+exponent 2 - review section 6); prime side = superdense clustering (density 1/6 per
+integer needed, 1/ln x available). The ledger transfers the problem between the two
+surfaces at zero cost and zero gain.
+
+**What the full-window margin data says** (new this round, y = 47..5003, full windows):
+
+    y      N        P        twins   E(y)  realising run (members)   window fraction
+    47     359      313      61      7     53..283                   0.003..0.109
+    101    1682     1225     201     4     107..283                  0.001..0.018
+    199    6566     4118     574     3     221..283                  0.0006..0.002
+    503    42083    22186    2585    3     1277..1303                0.003
+    1009   169511   79661    8278    3     1277..1303                0.0003
+    2003   668333   283641   26870   3     2657..2713                0.0002
+    5003   4170833  1567037  130543  3     5639..5659                0.00005
+
+    min M(t): -7 (47), -4 (101), -1 (199), 0/-1 from 503 up, always within the first
+    few slots (Mechanic: no negativity at t >= 5 for y >= 1e4, 125/125 windows).
+
+E(y) collapses to a flat 3 and the realising runs shrink to 3-5-slot dense clusters a
+bounded-looking distance above y (283, 1277-1303, 2657-2713, 5639-5659 - always within
+~700 of y in these samples; measured, no law claimed). Honest reading: **as y grows the
+pigeonhole surplus vanishes - CUM's measured margin over bare twin-existence is two
+slots of excess and shrinking.** The cumulative form's content at scale is carried
+entirely by small prime clusters just above y; it degenerates toward the twin statement
+itself. Its residual value is diagnostic (M(t), E(y) are computable violation meters)
+and bibliographic (it lands the problem in the prime-cluster literature, where the
+partial results are quantified) - not logical leverage. The genuinely open middle
+ground remains the review's multiplicative tail bound, which CUM neither implies nor
+needs.
+
+## 12. Layer bands vs known bounded-gap theorems, scoped exactly (one page)
+
+**The need.** The descent induction (section 10) wants the every-band form: there is
+Y0 such that for every prime y' >= Y0 the layer band (y'^2, y''^2),
+y'' = nextprime(y'), contains a twin. (The one-band-per-window form is equivalent to
+Reduction A by the tiling - no gain; every-band is what buys a single height-uniform
+theorem, and is a short-interval twin statement.)
+
+**Band lengths** at height x = y'^2: typical 2*sqrt(x)*ln(sqrt(x)) = x^(1/2 + o(1));
+thinnest - when (y', y'') is itself a twin pair, the recursion's self-reference -
+exactly 4*sqrt(x) + 4. Even the THICKEST band available inside a given window is only
+~ sqrt(x) * (largest prime gap below y), and every unconditional large-gap theorem
+(Ford-Green-Konyagin-Maynard-Tao) is polylog - all bands have exponent 1/2 + o(1).
+
+**What is proven, exactly.**
+
+* Maynard-Tao: infinitely many consecutive-prime pairs differing by <= 246, with
+  >> x/(log x)^K of them below x. Average spacing between bounded-gap pairs: polylog.
+  **Density is ample** - surplus factor x^(1/2)/polylog against a band. Density is
+  not what fails.
+* Localisation: Alweiss-Luo (arXiv:1707.05437; Res. Number Theory 4:24, 2018): for
+  every delta in [0.525, 1] there exist k, d such that for x sufficiently large,
+  [x - x^delta, x] contains >> x^delta/(log x)^k pairs of consecutive primes
+  differing by <= d. The floor delta = 0.525 is inherited from Baker-Harman-Pintz
+  (2001): even ONE prime in [x - x^theta, x] is known for no theta < 0.525. Any
+  improvement of the pair localisation below 0.525 would first improve single-prime
+  localisation - Legendre-strength progress.
+* Computed curiosity: x^0.525 < 4*sqrt(x) until x = 4^40 ~ 1.2e24, so below 1e24 the
+  Alweiss-Luo interval literally fits inside every band - but the theorem is
+  asymptotic with an ineffective onset, so this yields nothing at accessible heights.
+  The honest comparison is exponents: need 1/2 (+ o(1)), have 0.525.
+
+**The tower of what fails, in order:**
+
+    T1  a PRIME in every layer band          OPEN. Implied by Legendre's conjecture
+        (band contains the Legendre interval (y'^2, (y'+1)^2)); NOT implied by RH
+        (RH gap bound O(sqrt(x) log x) exceeds the thin band 4*sqrt(x)); implied by
+        Cramer. Fails before twins are even mentioned.
+    T2  a pair with gap <= d in every band   above T1; proven localisation stops at
+                                             exponent 0.525 (Alweiss-Luo); need 1/2.
+    T3  a pair with gap exactly 2            the parity step on top: no bounded-gap
+                                             theorem controls WHICH even difference
+                                             occurs; 246 -> 2 is Zhang -> twin.
+
+> **Scoping verdict: the layer-band route's unproven input is NOT "bounded-gap pairs
+> recur" alone. It decomposes as (density: already proven, with room to spare) +
+> (localisation: a Legendre-class open problem, exponent deficit 0.025 anchored at
+> the BHP floor) + (parity: the full 246 -> 2 step, no partial result).** The thin
+> bands - produced exactly when the sqrt-scale machine has a twin - are the binding
+> case: the descent input dies first at T1, "a prime between consecutive prime
+> squares", before its twin content is even engaged.
+
+Stop.

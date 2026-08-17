@@ -1,6 +1,7 @@
 import BlockedSlots
 import Horizon
 import Layer
+import Supply
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -16,3 +17,7 @@ open BlockedSlots
 #print axioms Layer.minFac_lt_or_eq
 #print axioms Layer.eq_mul_prime_of_minFac_eq
 #print axioms Layer.layer_novelty
+#print axioms Supply.minFac_mem_gears
+#print axioms Supply.card_composites_eq_sum_roots
+#print axioms Supply.card_eq_primes_add_sum_roots
+#print axioms Supply.roots_ne

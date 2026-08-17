@@ -201,3 +201,90 @@ gaps at scale sqrt(N) feeding the ledger at scale N through the machine's own
 laws. Alternatively, redirect to support the constructor's bottom-band target:
 the 8 triple-kill slots and 145 split slots all have exact addresses now - check
 where they sit relative to the bottom band.
+
+## Round 3 (2026-08-18): the gap-graded split law, and the complete overcount formula
+
+Steering taken: derive where a gap-g gear pair's split slots sit, in closed form;
+assemble and test the complete overcount formula; state the payoff for the
+Constructor. Tool: `research/split_gap_law.py`. All checks exact.
+
+### The law
+
+For gears q < q' = q + g (g even), the split class "q kills left, q' kills right"
+(q | 6k-1, q' | 6k+1) solves q'b - qa = 2, member 6k+1 = q'b. With q' = q + g and
+t = a - b this is gb - qt = 2, so b = 2 g^{-1} (mod q), and the least
+representative is pure arithmetic:
+
+    m0 = (-2 * q^{-1}) mod g          (depends only on q mod g)
+    b0 = (2 + m0 q) / g               (exactly integral)
+    i  = (q' - b0) * q^{-1} mod 6     (mod-6 alignment, i in 0..5)
+    x  = (q' (b0 + i q) - 1) / 6      (least k; the other class at P - x, P = qq')
+
+Verified against brute CRT for ALL 2850 prime pairs 5 <= q < q' <= 400, zero
+failures, mirror class = P - x always. In the SUMMARY's language: x is the
+nontrivial square root of 1 mod qq' (36x^2 = 1, 6x = +1 mod q, -1 mod q'),
+now in closed form.
+
+**Depth gradation.** x ~ P(m0/g + i)/6. Since m0 = 0 iff g | 2, **g = 2 is the
+unique gap with b0 = 1 identically**: its split rep is x = u' = round(q/6), depth
+~P/(6q) - the twin pin, inside every window at every scale, unconditionally.
+Every other gap has b0 >= (2+q)/g, so its lowest possible split depth is ~P/(6g),
+and even that is reached only when the alignment lands (i = 0). Examples:
+(101,103) x/P = 0.0016; (97,101) g=4: 0.7508; (101,107) g=6: 0.8894;
+(101,113) g=12: 0.0280 (aligned) vs (89,101) g=12: 0.6947 (not).
+
+### The complete overcount formula
+
+    overcount = SAME + PAIRSPLIT - CORR
+    SAME      = sum_{j>=2} (-1)^j sum_{squarefree products of j gears <= V}
+                mult(product)                       [pure floor counting]
+    PAIRSPLIT = sum over gear pairs of in-window hits of the two law classes
+                                                    [pure law + floor, no CRT]
+    CORR      = sum over both-members-gearful slots of (omega_l*omega_r - 1)
+                                                    [multi-gear-side overlap]
+
+Tested at three REAL scales (all gears 5..y, the machine's own window
+K = (y^2-1)/6), each piece independently against the divisor census and the
+total against the window array:
+
+    y =  53: overcount = 250 + 296 - 147 = 399   == array 399   (exact)
+    y = 101: overcount = 1157 + 1490 - 815 = 1832 == array 1832 (exact)
+    y = 211: overcount = 6367 + 8651 - 5185 = 9833 == array 9833 (exact)
+
+SAME formula == census and PAIRSPLIT law == census at every scale. Honest note:
+CORR is NOT small (it grows with scale because small gears stack omega on
+members); it is census-exact here, and mechanically expandable in the same
+inclusion-exclusion framework ((s_L, s_R) product pairs, |s_L|+|s_R| >= 3) if a
+100% floor-arithmetic formula is ever needed - deferred, not blocked.
+
+### The payoff: the doubles ledger is a functional of the prime gaps below y
+
+PAIRSPLIT = sum over pairs of F(g, q mod 6g; K) - the split-double supply of the
+window is an explicit functional of the prime-pair difference structure at gear
+scale. Gap dependence, measured (y=211): mean in-window splits per pair by gap:
+g=2: 43.8, g=4: 24.8, g=6: 26.7, g>12: 6.8; hit rates 100% / 92% / 85% / 93%.
+The clean claim is at the LARGEST pairs, where alignment bites (P > 3K):
+
+    y=101: twins 1/1 = 100%   non-twin 21/33 = 63.6%
+    y=211: twins 4/4 = 100%   non-twin 58/114 = 50.9%
+    y=503: twins 3/3 = 100%   non-twin 274/539 = 50.8%
+
+**Twin pairs at gear scale are the unique gap class whose contribution to the
+window's double population is unconditionally guaranteed at every scale** (the
+law forces x = u' <= K always); every other gap contributes at a residue-
+alignment rate that decays toward ~1/2 for the largest pairs. This is the
+round-1 self-reference back with numbers: T(y) guaranteed split doubles (plus
+mirrors when they fit) flow into the level-y^2 ledger from the twins below y,
+while the rest of the supply is conditional on alignment. For the Constructor:
+the doubles' supply term in the cumulative statement decomposes as
+(guaranteed, from twins below y) + (alignment-rated, from all other pairs),
+both sides now computable by floor arithmetic per pair.
+
+### Proposed next chunk
+
+Two candidates, Constructor-serving: (1) formula-ize CORR (the higher product-
+pair terms) so overcount is complete floor arithmetic at any scale; (2) aim the
+law at the bottom band: the g=2 pins sit at u' <= y/6, i.e. the guaranteed
+doubles live exactly in the bottom band the team has made the proof target -
+derive the bottom-band double-onset supply (which pairs can place a split below
+a given slot t) as an explicit finite list per window.

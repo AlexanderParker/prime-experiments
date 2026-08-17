@@ -211,3 +211,91 @@ Readings for the bottom-band attack:
   200 slots (~sd 5-7) make occasional future dips plausible near 1e3-1e4.
 - Per-gear bands use gear RANK (percentile of the gear list), matching
   round 1's decile convention.
+
+## Round 3 - full-window cumulative margin trajectories (2026-08-18)
+
+Script: `research/margin_trajectory.py` (primality-only segmented sieve -
+much lighter than the degree sieve: y=50021 full window in 10s, y=200003
+(W = 6.67e9 slots, members to 4e10) in 186s). Data for the Constructor:
+`research/data/margin_summary.csv`, `margin_checkpoints.csv`,
+`margin_bands.csv` (append mode; delete to regenerate).
+
+M(t) = t - P(t) over the whole window, P = prime members among first t
+slots (boundary member y counts prime, as rounds 1-2).
+
+### Structural fact stated first, then measured
+
+M, n0, n1, n2 are functions of member primality ONLY - the margin
+trajectory is gear-blind. Layer bands (fresh-gear activation at p^2) touch
+attribution (which gear kills), never the census. So a band-boundary dip is
+impossible unless prime density itself kinks at p^2 - and the measurement
+agrees: slope of M over matched windows before/after every band boundary
+(h adapted to boundary spacing, mid-band controls):
+
+    y=20011:  band dslope +0.0001 +- 0.0004, control +0.0000 +- 0.0004
+    y=50021:  band dslope -0.0005 +- 0.0003, control -0.0002 +- 0.0003
+    y=200003: band dslope -0.0001 +- 0.0001, control -0.0001 +- 0.0001
+
+Smooth through every boundary at 1e-4 slope precision. Consequence: the
+cumulative statement cannot see layer bands through the margin; band
+structure must enter through per-gear/attribution objects.
+
+### The full-window summary (ladder; windows complete, no sampling)
+
+    y        W(slots)    minM  t_min  frac_min   last<0  last<100  M(W)
+    101          1684     -5     31    1.8e-2      99       554        457
+    149          3676     -4     23    6.3e-3      86       545       1221
+    211          7386     -2     13    1.8e-3      44       531       2805
+    307         15658     -1      2    1.3e-4      28       515       6631
+    401         26734     -1     11    4.1e-4      12       499      12060
+    419         29191     -2      8    2.7e-4      18       497      13318
+    503         42085      0      1    2.4e-5       0       482      19898
+    1009       169513     -1      3    1.8e-5      11       441      89851
+    2003       668335      0      1    1.5e-6       0       386     384693
+    5003      4170835     -1      2    4.8e-7       4       320    2603797
+    10007    16688341     -1      1    6.0e-8       1       266   10920487
+    20011    66736686      0      1    1.5e-8       0       254   45380415
+    50021   417008404     -1      1    2.4e-9       1       215  295473246
+    100003 1666750002      0      1    6.0e-10      0       202 1211681063
+    200003 6666833335      0      1    1.5e-10      0       182 4954846523
+
+### Answers to the round-3 questions
+
+1. Min-margin scaling: for y >= 503, minM is 0 or -1, at t_min <= 3, and
+   the -1 events are the boundary twin at slot 1-2. There is no later dip
+   ANYWHERE - verified over complete windows to 6.67e9 slots. For y < 403
+   (member density > 1/slot at the bottom) the dip is real but shallow:
+   min -5 at y=101, monotone shallowing to -1/-2 by y ~ 300-420.
+2. Danger-zone end: NOT a fraction c of the window and NOT c*y - it is
+   member-anchored and O(1) in slots. last<0 <= 11 for all y >= 503; as a
+   window fraction it collapses 1.8e-2 -> 1.5e-10. The physics: drift
+   dM/dt = 1 - 6/ln(member) turns positive at member e^6 ~ 403 and every
+   y >= 503 window starts beyond it, so M is climbing from slot ~1 and
+   never returns. The clean law is "M(t) > 0 for all t > t0 with t0 <= 11
+   absolute slots" (measured on all 15 complete windows), not t > c*y.
+3. Growth shape: M(t) = t - [li(6t+m0) - li(m0)], m0 = 6*k_lo - 1, to 0.1%
+   for t > ~1e3 (checkpoints CSV has M vs model at 8 points/decade). It is
+   asymptotically linear with slope 1 - 6/ln(member) rising slowly toward
+   1; both pure-linear and t/ln t fits fail globally (M/t drifts 0.11 ->
+   0.58 across a window; M/(t/ln t) drifts 0.4 -> 7.7).
+4. Threshold escape: last t with M(t) < T matches the li-model inversion
+   Mhat^-1(T) within a few % (T=100: 182-482 measured vs 195-508
+   predicted; T=1e4: within 0.3%). Escape times DECREASE with y at fixed
+   T (bigger members = faster early growth).
+5. Prime-race envelope (empirical): max |M - Mhat| over all checkpoints is
+   0.06-0.18 * sqrt(member), coefficient shrinking with y (0.058 at
+   y=200003, deviation 10607 at member 4e10). A cumulative statement of
+   the form M(t) >= Mhat(t) - 0.2*sqrt(6t+y) held at every checkpoint of
+   every window tested.
+
+### Caveats
+
+- "No later dip" is exhaustive within each computed window (every slot
+  checked, not sampled), for the 15 ladder y's. Between-ladder y's not
+  computed this round; round-2's 150-window prefix sample supports the
+  same at the bottom.
+- The envelope 0.2*sqrt(m) is an observed bound at log-spaced checkpoints,
+  not a sup over all t; the argmax could fall between checkpoints. minM /
+  last_below columns ARE exact (every slot).
+- li computed by trapezoid on 4000-point geomspace; error << 1 at these
+  scales.

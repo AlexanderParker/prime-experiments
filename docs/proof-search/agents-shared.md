@@ -2,31 +2,32 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 2. THE ONSET ROUTE IS CLOSED, by two independent results: real windows realize
-X's forced local pattern (310/442 verify the perfect alternation on their onset prefix - no local
-theorem can refute X), and first doubles arrive at slot 2.4-3.7 mean regardless of y (max 9), so
-forced-prefix pigeonhole arguments end by slot ~4; the margin N-P is >= 0 in every tested window
-from t=5 on. Any contradiction must be CUMULATIVE (C2 over ranges spanning several onset events)
-or come through the LAYER-BAND descent (exact statement: X at y makes every layer band above y
-twin-free; the induction needs only ONE layer band to always hold a twin - bounded-gap strength,
-band/stride slack 2.2 -> 231; the unproven input in one sentence: "every window has a twin in its
-top c-fraction").
+State after round 3. The landscape is fully mapped, with honest prices on every route: (i) local
+attack dead (round 2); (ii) the cumulative statement is EXACTLY equivalent to Reduction A -
+lossless reparametrization, gears drop out, diagnostic value only; (iii) the layer-band descent
+dies at T1, "a prime in every band" - Legendre-class, technology (Alweiss-Luo) stops at exponent
+0.525 vs the needed 0.5, before bounded gaps (T2) or parity (T3) even engage. Thinnest bands occur
+exactly at twin endpoints - the self-reference sits at the binding case.
 
-Exact structure now in hand: doubles are a freedom-free subset of N (slot double iff 36k^2 = 1 mod
-an active semiprime qq'; trivial roots = the semiprime slots, nontrivial = Bezout split slots at
-q'b - qa = +-2); the whole overcount/lone anomaly is closed as a theorem (real side = divisor
-census exactly; random side in closed form; extremality REFUTED by full enumeration - the real
-phase vector is merely high, rank 1716/11550, no variational handle). The per-gear fragile law is
-exact with 1/ln(m) weights (2e-4 aggregate, Poisson-clean in every band incl. the rare tail);
-unconditional onset cap L0(y) <= 27129 for all y (Montgomery-Vaughan).
+The genuinely live structure is the QUANTIFIED SELF-REFERENCE: the window's double supply is a
+freedom-free functional of prime gaps below y (gap-graded split law, closed form, verified on all
+2850 pairs to 400; overcount formula exact at three scales), and GAP 2 IS THE UNIQUE GAP CLASS
+whose contribution is unconditionally guaranteed at every scale (pins at u' <= y/6, bottom band).
+Meanwhile the margin census is gear-blind and rigid: M(t) follows t - li(6t+m0) + li(m0) to 0.1%,
+min margin is 0/-1 at t <= 3 with NO later dip through 6.67e9-slot windows (y to 200003), and
+layer bands are invisible to it at 1e-4 - band structure can only enter via per-gear attribution.
 
-Kernel-checked: reduction (iff), horizon theorem (strict p < y), slot-cap lemma, layer-novelty
-theorem (strongest form: the layer's fresh composite is y*c with c prime, no Bertrand, composable
-hypotheses). Round-3 focus: cumulative C2 margin trajectory over full windows (mechanic);
-cumulative statement + layer-band scoping vs known bounded-gap theorems (constructor); supply
-identity sum R(q) = 2N - P in Lean (formalist); gap-graded Bezout split law linking sqrt-scale
-prime gaps to the window ledger (lateral).
+ROUND-4 FLAGSHIP (constructor + lateral converge): the X-CONSISTENCY EQUATION. Under X the doubles
+demand is pinned exactly (n2(t) = N(t) - P(t), zero slack); the doubles supply is freedom-free
+semiprime/split arithmetic - an explicit functional of primes and gaps below y. Equate them: X
+imposes an exact equation between the prime census of (y, y^2) and the gap structure below y.
+Write it, and determine whether ANY admissible configuration can satisfy it - overdetermination is
+the contradiction candidate. Mechanic feeds the attribution side (per-gear R_q(t) trajectories);
+formalist pins the zero-slack census (substrate of the demand side).
 
+Kernel-checked so far (5 files, all standard axioms): reduction (iff), horizon (strict p < y),
+slot-cap, layer novelty (strongest form), supply identity + distinct-roots corollary (Supply.lean,
+first composing file).
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
@@ -171,6 +172,35 @@ convention: member equal to y counts as prime - adjust slot 1 for open interval)
   prime each; the real windows violate "exactly one prime per slot" almost
   immediately (twin at slot <= 2 in most windows, else early 0-prime slots).
 
+## Mechanic round 3 (2026-08-18) - full-window margin trajectories
+Tool: research/margin_trajectory.py (primality-only sieve: y=200003, W=6.67e9
+slots, members to 4e10, 186s). Data: research/data/margin_summary.csv,
+margin_checkpoints.csv, margin_bands.csv. COMPLETE windows, every slot checked.
+- STRUCTURAL CLOSURE + measurement: M(t) = t - P(t) (and n0,n1,n2) depend only
+  on member primality - the margin is GEAR-BLIND. Layer bands touch attribution
+  only. Measured anyway: slope of M across every band boundary p^2 vs matched
+  mid-band controls: difference 0 at 1e-4 precision (y=200003: -0.0001+-0.0001,
+  controls identical). No dip, smooth through every boundary. The cumulative
+  statement cannot see layer bands through the census; band structure must enter
+  via per-gear objects.
+- Min-margin scaling: y >= 503 => minM in {0,-1} at t_min <= 3 (the -1 = the
+  boundary twin at slot 1-2); NO later dip anywhere in any complete window up to
+  6.67e9 slots. last<0 <= 11 absolute. Sub-e^6 regime (y <= 419): dips to -5
+  (y=101), shallowing monotonically - drift dM/dt = 1 - 6/ln(member) crosses 0
+  at member e^6 ~ 403, and every y >= 503 window starts past it.
+- Danger-zone shape: NOT "M > 0 for t > c*y" and not a window fraction (frac
+  collapses 1.8e-2 -> 1.5e-10). It is member-anchored and O(1)-absolute:
+  "M(t) > 0 for all t > 11" held in all 15 complete ladder windows y >= 503.
+- Growth law: M(t) = t - [li(6t+m0) - li(m0)] to 0.1% past t ~ 1e3; asymptot.
+  linear, slope 1 - 6/ln(member); t/ln t fails. Threshold escape times = li-model
+  inversion within a few % (0.3% at T=1e4); escape time DECREASES with y at
+  fixed T (~T/(1-6/ln y) slots).
+- Empirical prime-race envelope for the cumulative statement: max |M - Mhat|
+  over all checkpoints = 0.06-0.18*sqrt(member), coefficient shrinking with y
+  (0.058 at 2e5). "M(t) >= Mhat(t) - 0.2*sqrt(6t+y)" held at every checkpoint
+  of every window tested (checkpoints log-spaced, 8/decade; envelope is
+  checkpoint-level, min/last-below columns are exact every-slot).
+
 ## Formalist round 1 (2026-08-18)
 The HORIZON THEOREM is now kernel-checked: proofs/Horizon.lean (namespace `Horizon`,
 mathlib-only imports, builds in the lake project alongside BlockedSlots, zero sorry,
@@ -273,3 +303,93 @@ Tool: research/overcount_census.py. Full derivation: docs/proof-search/lateral.m
   scale, linking sqrt-scale prime gaps to the higher window's ledger; or hand the
   exact addresses of the 145 split + 8 triple slots to the constructor's
   bottom-band push.
+
+## Lateral round 3 (2026-08-18) - gap-graded split law; overcount is now a formula
+Tool: research/split_gap_law.py. Derivation + tables: docs/proof-search/lateral.md round 3.
+- THE LAW (verified vs brute CRT, all 2850 prime pairs q < q' <= 400, zero fails):
+  the split class of pair (q, q'=q+g) - q kills left, q' kills right - has least
+  representative x = (q'(b0 + i*q) - 1)/6 with m0 = (-2 q^{-1}) mod g,
+  b0 = (2 + m0*q)/g, i = (q'-b0)*q^{-1} mod 6; the other class is P - x, P = qq'.
+  This is the SUMMARY's "nontrivial root of 36k^2 = 1 mod qq'" in closed form.
+  Depth x ~ P(m0/g + i)/6; m0 = 0 iff g = 2, so g=2 is the UNIQUE gap with b0 = 1
+  identically: its split pins at x = u' <= K in every window at every scale.
+  Other gaps: floor depth ~P/(6g), reached only when the mod-6 alignment i=0 lands.
+- COMPLETE OVERCOUNT FORMULA, exact at three real scales (machine window,
+  each piece checked independently, total vs window array):
+  overcount = SAME + PAIRSPLIT - CORR;
+  y=53: 250+296-147 = 399; y=101: 1157+1490-815 = 1832; y=211: 6367+8651-5185 = 9833.
+  SAME = inclusion-exclusion over squarefree gear products (pure floor counting);
+  PAIRSPLIT = law classes only (no CRT, no sieve); CORR = multi-gear-side overlap
+  (census-exact; NOT small at scale; mechanically expandable to floor arithmetic
+  via higher (s_L,s_R) product-pair terms if needed - deferred).
+- PAYOFF FOR CONSTRUCTOR: the window's split-double supply is an explicit
+  functional of the prime-pair gaps below y: PAIRSPLIT = sum F(g, q mod 6g; K).
+  Gap dependence is real and sharp at the largest pairs (P > 3K, where alignment
+  bites): twin pairs hit 100% at every tested scale (y=101/211/503) vs non-twin
+  ~51%. TWINS BELOW y ARE THE UNIQUE GAP CLASS WITH UNCONDITIONALLY GUARANTEED
+  CONTRIBUTION TO THE LEVEL-y^2 DOUBLES LEDGER (the law forces x = u' <= K);
+  everything else is residue-alignment-conditional. The self-reference of 17d,
+  quantified: doubles supply = (guaranteed, from T(y) twins) + (alignment-rated,
+  from all other pairs), both computable per pair by floor arithmetic.
+- Note for the bottom-band push: the guaranteed g=2 pins sit at u' <= y/6 - the
+  guaranteed doubles live exactly in the bottom band. Offering next: bottom-band
+  double-onset supply (finite list of pairs able to place a split below slot t),
+  or CORR formula-ization; coordinator's pick.
+
+## Constructor round 3 (2026-08-18)
+Tools: research/cumulative_margin.py; full text constructor.md sections 11-12.
+Consumed Mechanic prefix CSV (reconciles: their minMargin includes member y itself).
+- CUM STATED AND SETTLED. CUM: every window (y,y^2) has a run I with P(I) > N(I);
+  CUM_band: the run within (y, y+Delta), all measured violators within 700 of y.
+  VERDICT (proved, two lines each way): CUM is EXACTLY EQUIVALENT to Reduction A -
+  lossless reparametrisation, gears drop out; there is NO ingredient weaker than the
+  conclusion. Placement: form (b) h(L)>=d strictly oversufficient (review 7.2/s4);
+  review's tail bound N(L) <= P exp(-cL/y) sufficient and weaker, sieve-side, still
+  the genuine open middle; CUM = the prime-side dual at exactly conjecture strength.
+  Sieve side and prime side are pigeonhole-duals of one ledger; transfer is zero-cost
+  and zero-gain (parity floor beta_2 ~ 4.3-4.9 vs 2 on one side, density 1/6 vs 1/ln
+  on the other).
+- Full-window margin data (y = 47..5003): E(y) = 7, 4, 3, 3, 3, 3, 3 - collapses to
+  a FLAT 3; realising runs shrink to 3-5-slot clusters just above y (283, 1277-1303,
+  2657-2713, 5639-5659); min M(t) >= -1 from y=199 up, negativity only in the first
+  slots. As y grows the pigeonhole surplus vanishes: CUM's measured margin over bare
+  twin-existence is ~2 slots and shrinking. Diagnostic + literature bridge, no
+  logical leverage. Recommend the team retire count-side attacks on X.
+- LAYER-BAND ROUTE SCOPED vs literature (one page, sec 12). Need: twin in every band
+  (y'^2, y''^2) - length x^(1/2+o(1)) at height x = y'^2, thinnest 4*sqrt(x)+4
+  exactly when (y',y'') is itself a twin (self-reference = binding case). Proven:
+  Maynard-Tao density is AMPLE (polylog average spacing between bounded-gap pairs -
+  surplus x^(1/2)/polylog); localisation stops at exponent 0.525 (Alweiss-Luo 2018,
+  arXiv:1707.05437, anchored at the Baker-Harman-Pintz single-prime floor - any
+  improvement below 0.525 for pairs improves single primes first). Curiosity:
+  x^0.525 < 4 sqrt(x) until x ~ 1.2e24, but AL is asymptotic/ineffective - no
+  theorem at accessible heights. FAILURE TOWER, in order: T1 a prime in every band
+  (OPEN - Legendre-class; not implied by RH; Cramer suffices) -> T2 bounded-gap pair
+  in every band (exponent deficit 0.025) -> T3 gap exactly 2 (parity, 246 -> 2, no
+  partial result). The descent input dies at T1 before its twin content engages.
+- Net strategic read for the manager: both round-3 avenues terminate at named
+  external walls (parity/superdensity; Legendre localisation). The constructor's
+  exact-ledger toolkit is exhausted on count-shaped statements; remaining in-corpus
+  hope is the review's multiplicative tail route (F(M+q)/F(M) aggregate) and the
+  Lateral/Mechanic structural lines (fuel words, Bezout split supply), which the
+  ledger constrains but does not decide.
+
+## Formalist round 3 (2026-08-18)
+The SUPPLY IDENTITY is now kernel-checked as a Finset partition: proofs/Supply.lean
+(namespace `Supply`; the first composing file - imports Horizon AND Layer; zero sorry,
+standard axioms only, registered in lakefile, AxiomCheck extended).
+- `Supply.minFac_mem_gears`: in the window (y, y*y), a composite's root lpf(m) is a
+  prime < y (Horizon discharges it; root = minFac).
+- `Supply.card_composites_eq_sum_roots` (THE IDENTITY, partition form): for ANY Finset
+  S with every member in (y, y*y): #composites(S) = sum over primes p < y of
+  R(p) = #{m in S : m composite, minFac m = p}. Root attribution is a function, so
+  the ledger is overlap-free by construction - sum_q R(q) = C exactly.
+- `Supply.card_eq_primes_add_sum_roots` (ledger form): #S = P + sum_p R(p).
+  C = 2N - P is call-site arithmetic once S comes in N pairs.
+- `Supply.roots_ne` (slot-level corollary via slot_cap): odd m => lpf(m) != lpf(m+2) -
+  a double slot's two kills always come from distinct gears.
+Composability note: the window hypothesis is per-member (∀ m ∈ S, y < m ∧ m < y*y), so
+S is any Finset - intervals, the ±1 mod 6 members, or prefixes all instantiate it; the
+constructor's prefix statements can be built on these fibers directly. Next target:
+zero-slack census pinning under Condition X (n1 = P, n2 = N - P as prefix Finset
+statements - the substrate C2 sits on); alternative: h(2) >= d product inequality.

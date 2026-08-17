@@ -146,3 +146,77 @@ supply identity sum_q R(q) = 2N - P over a window is a Finset.card
 partition argument — the natural next Lean chunk, and it is what C2
 (prefix pigeonhole) formalisation would sit on. Alternative: h(2) ≥ d's
 product inequality.
+
+## Round 3 — Supply identity as a Finset partition (2026-08-18)
+
+### What was done
+
+New file `proofs/Supply.lean` (namespace `Supply`), the first file that
+IMPORTS the earlier ones — `import Horizon` discharges the fiber-membership
+obligation, `import Layer` supplies slot_cap for the slot-level corollary.
+Registered as fourth `[[lean_lib]]` in lakefile.toml, added to
+defaultTargets, AxiomCheck.lean extended. Compiled first try, zero sorry,
+zero warnings.
+
+### Final theorem statements
+
+```lean
+theorem minFac_mem_gears {y m : ℕ} (hym : y < m) (hmyy : m < y * y)
+    (hnp : ¬ m.Prime) : m.minFac ∈ (Finset.range y).filter Nat.Prime
+
+theorem card_composites_eq_sum_roots {y : ℕ} (S : Finset ℕ)
+    (hS : ∀ m ∈ S, y < m ∧ m < y * y) :
+    (S.filter fun m => ¬ m.Prime).card =
+      ∑ p ∈ (Finset.range y).filter Nat.Prime,
+        (S.filter fun m => ¬ m.Prime ∧ m.minFac = p).card
+
+theorem card_eq_primes_add_sum_roots {y : ℕ} (S : Finset ℕ)
+    (hS : ∀ m ∈ S, y < m ∧ m < y * y) :
+    S.card = (S.filter Nat.Prime).card
+      + ∑ p ∈ (Finset.range y).filter Nat.Prime,
+          (S.filter fun m => ¬ m.Prime ∧ m.minFac = p).card
+
+theorem roots_ne {m : ℕ} (h1 : 1 < m) (hodd : ¬ 2 ∣ m) :
+    m.minFac ≠ (m + 2).minFac
+```
+
+### Proof route
+
+- The partition is `Finset.card_eq_sum_card_fiberwise` (current mathlib
+  signature takes `(↑s).MapsTo f t`) with `f = Nat.minFac`,
+  `t = (range y).filter Nat.Prime`; the MapsTo obligation is exactly
+  `minFac_mem_gears`, which is Horizon's `exists_prime_factor_lt` plus
+  `Nat.minFac_le_of_dvd` (least factor ≤ the found factor < y). `m ≠ 1`
+  falls out of `p ∣ m` for a prime p (`Nat.dvd_one`). The fibers are
+  reshaped from nested filters to the `∧` form by `Finset.filter_filter`.
+- Ledger form via `Finset.card_filter_add_card_filter_not`.
+- `roots_ne`: a shared root would be a gear ≥ 3 (odd m rules out 2)
+  dividing both m and m+2, killed by `Layer.slot_cap`. `3 ≤ minFac` comes
+  from `lt_of_le_of_ne hp.two_le` — definitionally `2 < x` is `3 ≤ x`.
+- The window hypothesis is per-member (`∀ m ∈ S, y < m ∧ m < y * y`), so S
+  need not be an interval: it composes with any window Finset the
+  constructor formalisation later chooses (e.g. the ±1 mod 6 members),
+  and the `2N − P` reading is call-site arithmetic once S comes in pairs.
+
+### Build status
+
+`lake build`: **Build completed successfully (974 jobs)**, zero sorry.
+BlockedSlots, Horizon, Layer unchanged, still building.
+
+### Axiom audit (extended AxiomCheck.lean)
+
+```
+'Supply.minFac_mem_gears'            depends on axioms: [propext, Classical.choice, Quot.sound]
+'Supply.card_composites_eq_sum_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Supply.card_eq_primes_add_sum_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Supply.roots_ne'                    depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+### Proposed next target
+
+The zero-slack direction: under Condition X (no twin in the window), every
+slot has ≥ 1 composite member, so pairing the ledger form over slots gives
+n1 + 2*n2 = C and n1 + n2 = N together with P = n1 — the census pinning
+n1(t) = P(t), n2(t) = N(t) − P(t) as Finset statements over prefixes.
+That is the formal substrate C2 (prefix pigeonhole) sits on. Alternative:
+h(2) ≥ d's product inequality.

@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply"]
 
 [[require]]
 name = "mathlib"
@@ -13,3 +13,6 @@ name = "Horizon"
 
 [[lean_lib]]
 name = "Layer"
+
+[[lean_lib]]
+name = "Supply"
