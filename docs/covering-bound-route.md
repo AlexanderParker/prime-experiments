@@ -1300,9 +1300,71 @@ So the proof reduces to two statements, the same two as section 21c but now with
 evidence:
 
 1. the condition is exactly tight at the smallest admissible gear set for each `L`;
-2. adding a gear increases the margin.
+2. adding a gear increases the margin. **REFUTED - see section 24a.**
 
 The first is verifiable case by case and has been verified at `L = 6, 9`. The second is the
 monotonicity conjecture, verified for `j = 1 .. 5` across nine gear sets, and it remains the single
 unproved ingredient - together with the base cases along the threshold diagonal, which section 21c
 identified and which the circularity of section 22 leaves untouched.
+
+## 24. Monotonicity refuted, and L = 9 proved
+
+### 24a. The ratios are not monotone
+
+Sections 21c and 23d proposed that adding a gear increases the margin. It does not. With
+`R_1 = (2r + alpha)/3`, adding gear `q` changes it by `(2/3q)[4r/(q-4) - alpha]`, which turns
+negative once `alpha (q - 4) > 4r`, and `alpha` decays only like `1/log^2 q`. Measured over gears to
+3 million:
+
+    y        7      11      19      37     101    1009   10007  100003  1000003
+    R_1  1.5714  1.6197  1.6826  1.7000  1.7055  1.6962  1.6895  1.6860   1.6841
+
+`R_1` peaks at `1.705697` near `q = 83` and then falls to its limit `2 r_inf/3 = 1.679767`.
+Similarly `R_2` peaks near `q = 1009` and settles at `5 r_inf/11 = 1.145296`. So the ratios rise,
+peak, and decline - monotonicity is false.
+
+What survives, and is what the proofs actually used, is that **`r` itself is monotone**: every factor
+`1 + 4/(q(q-4))` exceeds 1, so `r` strictly increases with each added gear, while `alpha` strictly
+decreases. Both limits are finite - `r_inf = 2.519651`, `alpha -> 0` - and both `R_1` and `R_2`
+limits exceed 1.
+
+### 24b. A systematic method
+
+The proofs at `L = 3, 6, 9` all follow one recipe:
+
+1. write the condition as an inequality in `r`, `alpha` and any higher products;
+2. drop the terms that only help - conservative, since it can only strengthen what must be shown;
+3. find a threshold `y_0` past which the conservative form holds uniformly, using `r` increasing and
+   `alpha` decreasing to bound both sides;
+4. check `y < y_0` directly, finitely many cases.
+
+### 24c. L = 9, proved
+
+The condition is `8 alpha^2 >= beta (17 + 25 alpha/3) - gamma (6 - 2 alpha)`. Dropping the `gamma`
+term is conservative, since `6 - 2 alpha > 0` means it only reduces the right side, leaving the
+sufficient condition
+
+    **8 r >= 17 + 25 alpha / 3**
+
+For `y >= 19`: `r >= r(19) = 2.406746` and `alpha <= alpha(19) = 0.234239`, so
+
+    8 r >= 19.253968    and    17 + 25 alpha/3 <= 18.951995
+
+and `19.253968 >= 18.951995`. For `y = 7, 11, 13, 17` the full condition including `gamma` was
+verified directly in section 23c, with ratios `1.0000, 1.0449, 1.0798, 1.1007`. So `L = 9` holds for
+every gear set. QED
+
+The threshold is needed: the `gamma`-free bound fails at `y = 7, 11, 13, 17` - `8r` is
+`17.14, 18.03, 18.65, 18.99` against `20.57, 19.92, 19.47, 19.18` - so those cases genuinely require
+the `gamma` term, and at `y = 7` the full condition is an exact equality.
+
+### 24d. Status
+
+Proved unconditionally: `L = 1, 3, 6, 9`. Thresholds `y_0` were `none, 11, 19` respectively, all
+small, with the sub-threshold cases checked directly.
+
+The open question is whether the recipe continues - whether for each `j` the conservative form has a
+finite threshold. That needs `f_j / c_j < r_inf = 2.519651`, where `c_j` is the coefficient of
+`alpha^2` and `f_j` the constant on the right. So far `f_j/c_j` is `3/2 = 1.5`, `11/5 = 2.2` and
+`17/8 = 2.125` - all below `r_inf`, but with no margin to spare at `j = 2`, and no argument yet that
+the ratio stays below it for all `j`.
