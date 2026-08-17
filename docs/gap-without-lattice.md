@@ -1,81 +1,85 @@
 # The gap without the lattice
 
-Answering a direct question about the original algorithm in `rust/src/main.rs`: can the gap be obtained without
-iterating over the lattice? The answer splits cleanly, and one half is yes.
+Answering a direct question about the original algorithm: can the gap be obtained without iterating over the
+lattice? The answer splits, and one half is yes. Script: `rust/src/bin/closedgap.rs`, which implements all three
+variants and checks them against each other.
 
-Script: `rust/src/bin/closedgap.rs`.
+## Three versions, in the order they were written
 
-## What the original does
+**1. `rust/src/main.rs`, `next_prime_any` - eager lattice.** With `R = ceil(sqrt(n))`: compute each gear's first
+tooth as `first(p) = (p - n mod p) mod p`, then mark the whole lattice `first(p), first(p)+p, first(p)+2p, ...`
+up to `R` for every gear, then scan for the first unmarked candidate offset. The first step is closed form and is
+the core insight. The marking costs `sum_{p<=R} R/p ~ R log log R` writes regardless of how near the next prime is.
 
-`next_prime_any(n)` with `R = ceil(sqrt(n))`:
+**2. `rust2/src/main.rs`, `get_next_prime_gap` - lazy cursors.** This version **had already removed the lattice.**
+It keeps one cursor per gear and advances each only as far as the candidate under test. Two details make it
+efficient, and both are sound:
 
-1. for each gear `p <= R`, compute its first tooth as a distance from `n`:
+* the inner loop skips `divisors[0] = 2`. For odd `n` gear 2's teeth are all at odd offsets while the candidates
+  are even, so gear 2 can never block one;
+* the loop stops advancing once `divisors[i] >= test_gap`, because a gear with `p >= test_gap` can only reach
+  `test_gap` on its first tooth, and the first teeth were already checked.
 
-       first(p) = (p - n mod p) mod p
+**3. `closedgap.rs`, `gap_by_candidates` - per-candidate test.** No array and no cursors. Offset `t` is open
+exactly when no `p <= R` divides `n + t`, so walk the candidates and test each directly, exiting at the first gear
+that divides. The early exit in versions 1 and 2 - return `n + 2` when the first candidate is not among the first
+teeth - is this same test applied to one offset; version 3 is just that generalised to every offset.
 
-2. if any first tooth landed on a candidate offset, mark the whole lattice of teeth
-   `first(p), first(p) + p, first(p) + 2p, ...` up to `R`, for every gear;
-3. scan the marked array for the first unmarked candidate offset.
+## Measured
 
-Step 1 is **already closed form** - two modular reductions per gear, nothing walked. That is the core insight of
-the algorithm and it is right. Steps 2 and 3 are the lattice: step 2 writes `sum_{p<=R} R/p ~ R log log R` marks
-and step 3 reads up to `R/2` entries, so the cost is `O(sqrt(n) log log sqrt(n))` **no matter how near the next
-prime actually is**.
+    n                          R      gap    lattice ops   cursor ops   cand ops   lat s    cur s   cand s
+    7,213,393,222         84,932        1        228,513       16,542      8,271  0.00026  0.00009  0.00002
+    100,000,000,000      316,228        3        885,532       81,879     27,298  0.00068  0.00022  0.00006
+    1,000,000,000,000  1,000,000       39      2,887,174    1,648,501     82,552  0.00224  0.00074  0.00020
+    10,000,000,000,000 3,162,278       37      9,383,340    4,552,981    227,911  0.01074  0.00199  0.00053
+    100,000,000,000,000    10^7       31     30,414,281   11,297,876    664,704  0.04011  0.00697  0.00166
+    1,000,000,000,000,000 3.16e7      37     98,360,900   39,039,200  2,925,888  0.30301  0.02006  0.00691
 
-## The half that is yes: the lattice was never needed
+All three return the same prime on every benchmark case, and on **28,000 consecutive odd `n`** across three ranges
+- from `10^6`, `10^10` and `999,999,000,000` - with zero disagreements.
 
-The test for a single offset is closed form too, and the original already uses it once. Offset `t` is open exactly
-when no gear has a tooth there, that is when
+`pi(R)` at the largest case is `1,951,958`.
 
-    no p <= R divides n + t.
+## What the numbers say
 
-The original's `even_slot_found` flag is precisely this test applied to the *first* candidate offset: if no gear's
-first tooth lands there, return `n + 2` immediately without touching the lattice. **Generalising that early exit
-from the first candidate to every candidate removes the lattice entirely.** Walk the candidate offsets and test
-each directly, exiting at the first gear that divides.
+**The lazy-cursor version is already 15 times faster than the eager lattice** at `n = 10^15`. Removing the lattice
+was the right move and it was already done.
 
-Measured, both methods returning the same prime:
+**A further 2.9 times is available**, and the reason is specific: `get_next_prime_gap` tests membership with
+`gap_buckets.contains(&test_gap)`, a linear scan over all `pi(R)` cursors, once per candidate. That is
+`pi(R) * gap/2` comparisons - about 35 million of the 39 million ops at `n = 10^15`, so it dominates everything
+else the function does. Replacing it with a direct per-candidate divisibility test, or with a bitset of first
+teeth, removes that term.
 
-    n                     R        gap   lattice ops   cand ops   lattice s    cand s
-    7,213,393,222         84,932     1       228,513      8,271    0.000495  0.000019
-    100,000,000,000      316,228     3       885,532     27,298    0.000706  0.000104
-    1,000,000,000,000  1,000,000    39     2,887,174     82,552    0.002468  0.000189
-    10,000,000,000,000 3,162,278    37     9,383,340    227,911    0.011479  0.000551
-    100,000,000,000,000   10^7      31    30,414,281    664,704    0.043902  0.001603
-    1,000,000,000,000,000 3.16*10^7 37    98,360,900  2,925,888    0.397626  0.006537
+**There is a floor, and it is `pi(R)`.** Certifying that a slot is open means consulting every gear once, which is
+exactly the window identity. The candidate version costs `2.9M` against a floor of `1.95M`, so it is within `1.5`
+times optimal; the eager lattice was paying `log R * log log R` times the floor.
 
-At `n = 10^15` that is **34 times fewer operations and 61 times faster**, and it never allocates the `sqrt(n)`
-window at all. Verified identical on **56,000 consecutive `n`** across three ranges - from `10^6`, from `10^10`,
-from `999,999,000,000` - with zero disagreements.
+## A latent off-by-one, not reachable as used
 
-**Why the ratio is what it is.** The lattice costs `R log log R`. The candidate walk costs about `pi(R) ~ R/log R`,
-because a composite candidate exits after a handful of divisions - small primes are dense - so essentially the
-only full pass over the gears is the one that certifies the prime itself. The ratio is therefore
-`log R * log log R`, which at `R = 3.2 * 10^7` is about 34, matching the measurement.
-
-**The floor this reveals.** `pi(R)` is irreducible within the algorithm's own terms: to certify that a slot is open
-you must consult every gear once, which is exactly the window identity. The lattice was paying `log R * log log R`
-times that floor. The candidate walk sits on the floor.
+Generalising version 2 to even `n` for the comparison exposed something worth recording, though **it cannot occur
+in the code as written**. The guard `divisors[i] < test_gap` should be `<=`: a gear with `p == test_gap` can block
+`test_gap` on its *second* tooth when `p | n`, since then its first tooth is at 0 and the `contains` check does not
+see it. For odd `n` this needs an even `p`, so only `p = 2`, and `2 | n` is false - the case is unreachable.
+`get_next_prime_gap` is only ever called on the last known prime, so odd `n` is its whole contract and it is
+correct. But the guard is one character from being wrong if the function is ever reused on an even argument, and
+the sweep over even `n` produces composites - `n = 1000008` returns `1000011 = 3 * 333337` - which is what put this
+in view.
 
 ## The half that is no: the gap itself has no closed form
 
-A formula that outputs the gap without iterating over *anything* is not available, and the reason is exact rather
-than a limitation of effort. Offset `t` is open iff `gcd(n + t, primorial(R)) = 1`, so the gap is
+A formula giving the gap with no iteration over anything is not available, and the reason is exact. Offset `t` is
+open iff `gcd(n + t, primorial(R)) = 1`, so the gap is
 
     least t >= 1 with n + t coprime to primorial(R),
 
-the joint condition across all gears at once. By CRT the open offsets form a union of residue classes modulo the
-primorial, which is exponential in `R`, and locating the least element of that union above a given point is
-precisely the localisation problem this whole programme is stuck on. Anything that produced the gap in time
-polynomial in `log n` would immediately bound it, and so would settle the open question of
-`docs/handover.md` section 1.
+the joint condition across all gears at once. By CRT the open offsets are a union of residue classes modulo the
+primorial, exponential in `R`, and locating the least element above a given point is precisely the localisation
+problem in `docs/handover.md` section 1. Anything producing the gap in time polynomial in `log n` would bound it
+and settle that question.
 
-So the honest position is:
+So the ledger:
 
-* **per-gear next tooth** - closed form, already in the original;
-* **per-offset openness** - closed form, in the original but applied only to the first candidate;
+* **per-gear next tooth** - closed form, in all three versions;
+* **per-offset openness** - closed form, used once in versions 1 and 2 and for every offset in version 3;
 * **the gap** - not closed form, and equivalent to the open problem.
-
-The practical consequence is that the lattice iteration was pure overhead, and removing it costs nothing in
-exactness: both methods are the same algorithm consulting the same gears, differing only in whether they
-precompute answers they will not use.

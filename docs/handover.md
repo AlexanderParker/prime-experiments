@@ -316,6 +316,15 @@ runs to `k = 10^16`, and no prior form of it was found. What it does **not** do 
 distance is computed, not bounded - and that gap between constructing and bounding is precisely the open problem.
 Section 5 sets out why every attempt to bound it has failed.
 
+The constructor's cost is now pinned down, and the boundary between what is and is not closed form is exact
+(`docs/gap-without-lattice.md`). Three things are closed form: **each gear's next tooth**, two modular reductions;
+and **whether one given offset is open**, which is `no p <= R divides n + t`. What is *not* closed form is **the gap
+itself**, because offset `t` is open iff `gcd(n + t, primorial(R)) = 1`, so the gap is the least `t` coprime to the
+primorial - the joint condition across all gears, whose period is exponential in `R`. Locating it is exactly the
+localisation problem of section 1, and any formula producing the gap in time polynomial in `log n` would bound it
+and settle that question. The measured floor for finding the gap is `pi(R)` operations - consulting every gear once,
+which is the window identity - and the best implementation measured sits within `1.5` times it.
+
 ---
 
 ## 1. The target, and the reductions arrived at most recently
@@ -466,6 +475,11 @@ alternating sums of correlations. **Closed** as a localisation shortcut. Artefac
 each gear's distance to its next tooth as `min((u_q - m) mod q, (-u_q - m) mod q)`, take the minimum, and jump.
 Produced a **closed-form next-twin method with no walking**, verified to `k = 10^16` (192 s down to 0.081 s), plus
 bulk gear generation, plus an explicit closed form `J(m0) = sum_J prod (1 - E(m0+i))` for the distance itself.
+The cost boundary is settled: per-gear next tooth and per-offset openness are both closed form, the gap is not, and
+the floor for producing it is `pi(R)` - one pass over the gears, which is the window identity. Measured across three
+implementations of the original Rust algorithm, the eager-lattice form pays `log R log log R` times that floor, the
+lazy-cursor form of `rust2` is 15 times faster than it, and a per-candidate form is a further 2.9 times faster and
+within `1.5` of the floor; all three agree on 28,000 consecutive odd `n`. See `docs/gap-without-lattice.md`.
 **Standing, and no prior form of it was found.** It is also the sharpest statement of the gap: the
 constructor computes its own output but does not bound it. Artefacts: `research/twin_constructor.py`,
 `research/jump_distance.py`, `research/closed_form.py`, `research/navigate.py`.
@@ -947,6 +961,7 @@ delivers, and that margin *widens* with `y`.
     proofs/lakefile.toml              mathlib dependency, pinned in lake-manifest.json
     proofs/README.md                  what the formalisation covers
 
+    docs/gap-without-lattice.md       what is and is not closed form in the constructor, three-way benchmark
     docs/status.md                    consolidated status, capacity barrier, the CRT collapse
     docs/gear-recursion.md            merge transform, chain condition, saturation, frames
     docs/forbidden-configurations.md  minimal size law, factorisation, step form, kappa
@@ -966,6 +981,9 @@ delivers, and that margin *widens* with `y`.
     rust2/src/bin/maxgap.rs           F(2,y) by pruned covering search
     rust2/src/bin/holegap.rs          F2(2,y) by the same search with a mandatory hole
     rust2/src/bin/coverbound.rs       exhaustive offset enumeration, N(L) dump
+    rust/src/main.rs                  the original algorithm, eager lattice form
+    rust2/src/main.rs                 the original algorithm, lazy-cursor form (get_next_prime_gap)
+    rust/src/bin/closedgap.rs         all three gap methods, cross-checked on 28,000 odd n
 
 Two cautions when reading the supporting files. Lengths quoted in `covering-bound-route.md` and
 `forbidden-configurations.md` are **adjacent-frame**; divide by 3 for `k`-space. The `y^2/6` in

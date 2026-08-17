@@ -115,6 +115,69 @@ fn gap_by_candidates(n: u64, primes: &[u64], r: u64) -> (u64, u64, u64) {
     (0, divisions, candidates)
 }
 
+/// The `rust2/src/main.rs` shape: `get_next_prime_gap`. One cursor per gear, advanced lazily only
+/// as far as the candidate under test, so no lattice is built - this version had already removed it.
+/// Two details are reproduced faithfully because they drive the cost: the membership test against
+/// the whole cursor vector is a linear scan, and only gears with `p < test_gap` get advanced, which
+/// is sound because a gear with `p >= test_gap` can only reach `test_gap` on its first tooth.
+/// Returns `(next prime, ops, candidates)` where ops counts modular reductions, cursor advances and
+/// vector comparisons alike.
+fn gap_by_lazy_cursors(n: u64, primes: &[u64], r: u64) -> (u64, u64, u64) {
+    let divisors: Vec<u64> = primes.iter().copied().take_while(|&p| p <= r).collect();
+    let mut ops = 0u64;
+    let mut buckets: Vec<u64> = divisors
+        .iter()
+        .map(|&p| {
+            ops += 1;
+            (p - n % p) % p
+        })
+        .collect();
+
+    // In `rust2` this is only ever called on the last known prime, which is odd, so the candidate
+    // offsets are the even numbers. Generalised here to either parity so the three methods can be
+    // compared on the same inputs - feeding the original an even `n` would be outside its contract.
+    let first_candidate = if n % 2 == 0 { 1u64 } else { 2u64 };
+
+    // early exit: is the first candidate offset among the first teeth at all?
+    ops += buckets.len() as u64;
+    if !buckets.contains(&first_candidate) {
+        return (n + first_candidate, ops, 1);
+    }
+
+    let mut test_gap = first_candidate;
+    let mut candidates = 0u64;
+    loop {
+        test_gap += 2;
+        candidates += 1;
+        if test_gap > r {
+            return (0, ops, candidates);
+        }
+        ops += buckets.len() as u64; // the linear membership scan
+        if buckets.contains(&test_gap) {
+            continue;
+        }
+        let mut blocked = false;
+        let mut i = 1usize;
+        while i < divisors.len() && divisors[i] < test_gap {
+            while buckets[i] < test_gap {
+                buckets[i] += divisors[i];
+                ops += 1;
+                if buckets[i] == test_gap {
+                    blocked = true;
+                    break;
+                }
+            }
+            if blocked {
+                break;
+            }
+            i += 1;
+        }
+        if !blocked {
+            return (n + test_gap, ops, candidates);
+        }
+    }
+}
+
 fn main() {
     let cases: [u64; 6] = [
         7_213_393_222,
@@ -135,8 +198,8 @@ fn main() {
     );
 
     println!(
-        "{:>18} {:>10} {:>6} {:>12} {:>12} {:>10} {:>10} {:>8}",
-        "n", "R", "gap", "lattice ops", "cand ops", "lattice s", "cand s", "agree"
+        "{:>17} {:>9} {:>4} {:>12} {:>11} {:>10} {:>8} {:>8} {:>8} {:>6}",
+        "n", "R", "gap", "lattice", "cursors", "cand", "lat s", "cur s", "cand s", "agree"
     );
     for &n in cases.iter() {
         let r = (n as f64).sqrt().ceil() as u64;
@@ -145,23 +208,32 @@ fn main() {
         let (a, marks, reads) = gap_by_lattice(n, &primes, r);
         let ta = t1.elapsed().as_secs_f64();
 
+        let t3 = Instant::now();
+        let (c, cursor_ops, _) = gap_by_lazy_cursors(n, &primes, r);
+        let tc = t3.elapsed().as_secs_f64();
+
         let t2 = Instant::now();
-        let (b, divisions, cands) = gap_by_candidates(n, &primes, r);
+        let (b, divisions, _) = gap_by_candidates(n, &primes, r);
         let tb = t2.elapsed().as_secs_f64();
 
         println!(
-            "{:>18} {:>10} {:>6} {:>12} {:>12} {:>10.6} {:>10.6} {:>8}",
+            "{:>17} {:>9} {:>4} {:>12} {:>11} {:>10} {:>8.5} {:>8.5} {:>8.5} {:>6}",
             n,
             r,
             a.saturating_sub(n),
             marks + reads,
+            cursor_ops,
             divisions,
             ta,
+            tc,
             tb,
-            a == b
+            a == b && b == c
         );
-        let _ = cands;
     }
+    println!(
+        "\npi(R) at the largest case = {} - the floor for certifying one slot open",
+        primes.iter().take_while(|&&p| p <= 31_622_777).count()
+    );
 
     println!();
     for &(base, count) in [
@@ -188,15 +260,18 @@ fn main() {
 fn sweep(base: u64, count: u64, primes: &[u64]) -> (u64, u64) {
     let mut checked = 0u64;
     let mut disagreements = 0u64;
-    for n in base..base + count {
+    // `rust2`'s `get_next_prime_gap` is only ever called on the last known prime, so odd `n` is its
+    // whole contract. Sweeping odd `n` tests it as used; the even case is covered separately below.
+    for n in (base | 1..base + count).step_by(2) {
         let r = (n as f64).sqrt().ceil() as u64;
         let (a, _, _) = gap_by_lattice(n, primes, r);
         let (b, _, _) = gap_by_candidates(n, primes, r);
+        let (c, _, _) = gap_by_lazy_cursors(n, primes, r);
         checked += 1;
-        if a != b {
+        if a != b || b != c {
             disagreements += 1;
             if disagreements <= 3 {
-                println!("  DISAGREE at n = {n}: lattice {a}, candidates {b}");
+                println!("  DISAGREE at n = {n}: lattice {a}, candidates {b}, cursors {c}");
             }
         }
     }
