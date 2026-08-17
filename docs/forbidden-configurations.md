@@ -288,11 +288,14 @@ within a block, so the minima of `h/d` sit at the block starts `L = 1, 3, 6, 9, 
     19    75     (1.0847, 1) (1.1602, 6) (1.1788, 3) (1.1885, 21) (1.1896, 24) (1.2420, 9)
     23    102    (1.0768, 1) (1.1455, 6) (1.1600, 3) (1.1833, 21) (1.1845, 24) (1.2186, 9)
     29    129    (1.0711, 1) (1.1344, 6) (1.1468, 3) (1.1742, 21) (1.1834, 24) (1.2007, 9)
+    31    174    (1.0662, 1) (1.1248, 6) (1.1356, 3) (1.1656, 21) (1.1797, 24) (1.1855, 9)
 
 `y = 23` was computed twice, once from the pattern in Python and once by enumerating all 111546435
-offset vectors in `rust2/src/bin/coverbound.rs`, with identical results to four decimals. `y = 29` is
-the Rust enumeration only - 3.2 billion vectors - and adds no new tight members, the full top ten being
-`1, 6, 3, 21, 24, 9, 15, 39, 54, 33`.
+offset vectors in `rust2/src/bin/coverbound.rs`, with identical results to four decimals. `y = 29` and
+`y = 31` are the Rust enumeration only - 3.2 billion and `10^11` vectors - and add no new tight members,
+the top tens being `1, 6, 3, 21, 24, 9, 15, 39, 54, 33` and `1, 6, 3, 21, 24, 9, 15, 39, 54, 45`.
+
+`F_h(29) = 129` and `F_h(31) = 174` in halved coordinates are new values from these runs.
 
 Two things stand out.
 
@@ -316,9 +319,15 @@ The tight block starts through `y = 29` are `3, 6, 9, 15, 21, 24, 33, 39, 54` wi
 nine are `3q` for `q` prime - `6, 9, 15, 21, 33, 39` at `q = 2, 3, 5, 7, 11, 13` - and the other two,
 `24` and `54`, are `6q^2` at `q = 2, 3`. That reading predicts `51` and `57` (from `q = 17, 19`) as tight.
 
-**Refuted.** At `y = 71`, where the closed forms cover every block start to `L = 60`, `51` ranks 19th of
-21 and `57` ranks 21st - the two loosest of all. Meanwhile `30` and `45`, in neither family, rank 8th and
-10th. The pattern fails from both directions and is not a law. It survived about ten minutes.
+**Refuted, by two independent routes.** At `y = 71`, where the closed forms cover every block start to
+`L = 60`, `51` ranks 19th of 21 and `57` ranks 21st - the two loosest of all - while `30` and `45`, in
+neither family, rank 8th and 10th. And the `6q^2` half was tested at its own named test: `y = 31` by full
+enumeration of `10^11` offset vectors gives `F_h = 174`, so `L = 150` is in range, and it ranks **33rd of
+58** with `h/d = 1.7596`. The pattern fails from both directions and is not a law. It survived about ten
+minutes.
+
+That `y = 31` run also confirms the tight list unchanged - `1, 6, 3, 21, 24, 9, 15, 39, 54, 45` - and
+`kappa(1) = 1.0662 = 1/(1-d)` exactly, with `kappa(6) = 2.0099`.
 
 What *is* stable is the tight core. Ordering all block starts to `L = 63` by `h/d`:
 
