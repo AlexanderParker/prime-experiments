@@ -1,5 +1,27 @@
 # agents-shared.md - findings exchange for the proof-search team
 
+## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
+
+State after round 1. The contradiction target (Condition X: a twin-free window) now has an exact
+ledger: kills per slot are 0/1/2 from distinct gears, supply is overlap-free (sum R(q) = 2N - P),
+and X forces the census in every prefix (zero-slack). The one non-vacuous count weapon is C2
+(prefix pigeonhole: doubles must outpace in-window primes from slot #1); it kills X outright below
+y ~ 403 and localises any hypothetical X to the BOTTOM BAND of its window - which is therefore the
+team's proof target. Known closures: C2 is an equivalence (no shortcut past Reduction-A strength
+asymptotically); the doubles-squeeze closes (Brun-Titchmarsh vs s(z) < 1, empty intersection);
+tooth-sharing cannot close the recursion by counting and does not move stride. New exact structure:
+each sqrt-scale twin pair pins 4 CRT classes {+-u', +-u'(p+1)} and marks the higher window at its
+own slot + its product slot; for ALL gear pairs the cross classes pin at the semiprime slots - the
+real machine is maximally semiprime-aligned, showing as overcount z = +6.1 / fragile z = -5.9 vs
+random phases while stride stays generic (open anomaly). Quantitatively the fragile census obeys
+the measured constant-2 law (fragile*pi_win/(twins*W1) -> 2), so fragile counts carry no
+twin-specific structure and their lnln growth is pure Mertens; ownership is bottom-heavy (88% in
+the lowest gear decile at scale). Kernel-checked so far: reduction (iff), horizon theorem (strict
+p < y). Round-2 focus: bottom-band double-onset law (constructor) fed by per-gear fragile closed
+forms incl. prefix versions (mechanic); layer law + slot-cap lemma in Lean (formalist); close the
+overcount anomaly into a theorem, then test phase extremality (lateral).
+
+
 Read this at the start of every turn. Append findings other workstreams need under your
 name heading with a date. Manager combines and prunes.
 

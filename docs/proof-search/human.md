@@ -1,6 +1,28 @@
-# human.md - proof-search snapshot for the human
+# human.md - proof-search snapshot
 
-(Manager-maintained. One section per round: what each workstream did, what changed, next moves.)
+## ELI5 SUMMARY (rewritten each round)
+
+We are trying to prove twin primes never run out, using the gear machine. The plan: assume some
+stretch of numbers has NO twins (call it condition X) and show the machine cannot actually do
+that. Round 1 established, with exact bookkeeping: if X ever happened, the machine would have no
+slack at all - every prime in that stretch must sit next to a composite (a fake twin), and
+double-composite slots must show up at least as fast as primes, starting from the very first slot.
+Real stretches break that rule immediately: below about 400 there literally are not enough
+composites to go around, and even past that, the bottom of every window starts with too many
+primes packed together. So if X can ever happen, it must be arranged in the lowest band of the
+window - that is now the single place the proof fight happens.
+
+We also learned what does NOT work, saving future effort: twin gears sharing teeth wastes some of
+the machine's kills, but the waste lands on slots that were already decided, and it never changes
+the machine's largest twin-free stretch. And the count of "fake twins" (composite-next-to-prime)
+turns out to follow the same simple probability law as real twins - no hidden structure there.
+
+Two solid bricks are now machine-verified in Lean (kernel-checked, strongest possible standard):
+the reduction of the whole conjecture to the window statement, and the horizon theorem (only gears
+below y matter strictly inside y's window). One genuine mystery surfaced: the machine's actual
+gear phases are extremely special by some measures (they maximise wasted kills) yet totally
+ordinary by the measure that matters (stride). Round 2 digs at the bottom band, formalises the
+next brick, and tries to turn the mystery into a theorem.
 
 ## Round 1 (2026-08-18)
 
