@@ -371,6 +371,111 @@ That changes what a proof needs. On the `h/d` scale the inequality looked asympt
 `y >= 13`**, since `1/(1-d) <= 1.1` there. The binding case is the single value `L = 6`, and `L = 6` is
 already proved.
 
+## 8c. What `kappa` is made of: a linear term minus a sum of pair weights
+
+Script: `research/kappa_expansion.py`. Expanding `n(L) = N(L)/P` over which positions are exposed,
+
+    n(L) = sum_{T subset of [0,L)} (-1)^{|T|} v(T),      v(T) = prod_q ( 1 - |W_q(T)|/q ),
+
+so `v(empty) = 1`, every singleton has `v = d`, and pairs are the first terms of order `d^2`. Keeping to
+second order and using `h(L) = (n(L) - n(L+1))/n(L)`,
+
+    n(L) = 1 - L d + A_L + ...,   A_L = sum_delta (L - delta) v(delta)
+    h(L) = ( d - B_L ) / n(L),    B_L = A_{L+1} - A_L = sum_{delta <= L} v(delta)
+         = d - B_L + L d^2 + ...
+
+and therefore, with `psi(delta) = v(delta)/d^2`,
+
+> **`kappa(L) = L - sum_{delta <= L} psi(delta) + (small)`.**
+
+**The pair weight, from collision counting.** For a pair at distance `delta` the four values `t-1, t,
+t+delta-1, t+delta` collide mod `q` exactly when `q | delta` (two collisions, `|W_q| = 2`), or
+`q | delta-1` or `q | delta+1` (one collision, `|W_q| = 3`); otherwise `|W_q| = 4`. Gear 3 divides one of
+the three, and if it divides `delta +- 1` the factor is `1 - 3/3 = 0`. So **only `delta = 0 mod 3`
+contributes** - the gear-3 law reappearing term by term rather than being imposed. Dividing by `d^2`,
+
+    psi(delta) = 3C * prod_{q | delta, q >= 5} (q-2)/(q-4) * prod_{q | delta^2-1, q >= 5} (q-3)/(q-4)
+    C = prod_{q >= 5} ( 1 - 4/(q-2)^2 ) = 0.396880415,    3C = 1.190641246
+
+and `psi(3) = 3C` exactly, since `3^2 - 1 = 8` has no prime factor `>= 5`.
+
+**Checked against the measured `kappa`** at `y = 100003`:
+
+    L        3      6      9     12     15     18     21     24     30     36     45     54     63
+    measured 1.844  1.675  2.325  3.894  2.085  3.766  2.161  2.660  3.125  4.217  3.713  5.307  6.879
+    predicted 1.809 1.634  2.253  3.741  1.979  3.611  2.075  2.568  2.952  4.032  3.540  5.086  6.456
+    diff     0.035  0.040  0.072  0.153  0.107  0.155  0.086  0.091  0.173  0.185  0.173  0.222  0.422
+
+The residual is the neglected triples-and-above, small and growing slowly with `L`. The expansion also
+reproduces the **tight ordering** independently: ranking `L - sum psi` gives
+`6, 3, 15, 21, 9, 24, 30, 45`, matching the measured list from section 8a without using the pattern at
+all.
+
+**The mean of `psi` is exactly 3.** Running means over multiples of 3:
+
+    up to L      63     300    3000   30000   300000
+    mean psi   2.6926  2.9320  2.9858  2.9980  2.99976
+
+So `sum_{delta <= L} psi(delta) -> L`, and `kappa(L) = L - sum psi` is a **bounded** difference of two
+quantities that both grow like `L`, not something growing linearly. It runs `6.46, 6.80, 14.16, 20.55,
+24.10` at those same `L`, rising and decelerating.
+
+So the remaining gap, at leading order, is an inequality about a divisor sum rather than about the
+pattern:
+
+> **`sum_{delta <= L, 3 | delta} psi(delta) <= L - 1` for every `L >= 3`.**
+
+Verified with a smallest-prime-factor sieve over every block start to `L = 5 * 10^6` - 1.67 million
+cases:
+
+    L <= 10^5     sum psi = 99977.603      L - sum = 22.397    min kappa = 1.6343 at L = 6
+    L <= 10^6     sum psi = 999969.911     L - sum = 30.089    min kappa = 1.6343 at L = 6
+    L <= 5*10^6   sum psi = 4999965.179    L - sum = 34.821    min kappa = 1.6343 at L = 6
+
+**The minimum is `1.6343` at `L = 6` throughout, and no block start comes below 1.** `L - sum psi` rises
+and decelerates - `22.4, 30.1, 34.8` - consistent with logarithmic growth.
+
+### 8d. The same target as a repulsion statement
+
+`v(delta) = P(0 and delta both exposed)`, so `B_L = sum_{delta=1}^{L} v(delta)` is
+`d * E[ #exposed in (0, L] | 0 exposed ]`. Unconditionally that expectation is `L d`. Since
+`kappa(L) = L - B_L/d^2`,
+
+> **`kappa(L) >= 1` says exactly: conditioning on an exposed position at 0 reduces the expected number of
+> exposed positions in `(0, L]` by at least `d` - one position's worth of density.**
+
+Exposed positions repel each other, and the requirement is that the repulsion is worth at least one
+position over any window. Where the repulsion comes from is explicit: `v(1) = v(2) = 0` outright, because
+`W_3({0,1})` and `W_3({0,2})` are both all of `Z_3`, so gear 3 blocks one of any two positions less than 3
+apart. Those two vanishing terms are a deficit of `2 d^2` against the unconditional `L d^2`. The whole
+question is then whether the surviving multiples of 3 over-compensate: they need mean `psi <= 3 - 3/L`, and
+they measure `3 - 3 kappa(L)/L`, which at `L = 5 * 10^6` is `3 - 104/L`. So the margin in this form is a
+factor of about 30 at large `L`, and at the tight point `L = 6` it is mean `psi = 2.183` against a
+requirement of `2.5`.
+
+Note honestly what kind of statement this now is: `psi` is derived by counting residue collisions and the
+identity is exact algebra, but closing the inequality needs control of the average of `psi`, which is an
+averaging argument rather than a mechanical one.
+
+`C` converges quickly, and the constant matters because it scales every `psi`:
+
+    truncated at   10^4        10^5        10^6        2*10^6
+    C              0.396895950 0.396881637 0.396880471 0.396880415
+
+**A near-miss worth recording.** The sieved and trial-division implementations first disagreed at
+`L = 3000` by `0.0042`, relative `1.4 * 10^-6`, which looked like a bug in the sieve. It was not: the two
+runs truncated `C` at different prime bounds, `2 * 10^6` against `2 * 10^5`, and the tail
+`prod (1 - 4/(q-2)^2)` over that range is `1 + 1.6 * 10^-6` - matching the discrepancy. With matched
+bounds the two agree to all 12 digits printed.
+
+**A bug caught by the comparison.** The first run of this expansion missed by 3.2 to 3.8 at
+`L = 6, 9, 12, 63` - far too much for a small correction. Cause: the factoriser skipped `q < 5` in its
+trial-division loop without dividing the 2s and 3s out first, so the cofactor stayed composite and the
+final "remainder is prime" step accepted it. `odd_prime_factors(6)` returned `[6]`, injecting a spurious
+`(6-2)/(6-4) = 2` into `psi(6)` and doubling it. Fixed and re-verified against hand computation for 18
+values. This is the second time this session that comparing a prediction against an independent
+measurement caught an error that reading the code had not.
+
 ## 9. The per-`j` recipe does scale, because almost every term vanishes
 
 Script: `research/closed_hazard.py`. Section 25b judged the per-`j` recipe unusable because `c_j(L)` is
@@ -437,6 +542,12 @@ case carries a factor of about `1.67`, so **a crude bound `kappa(L) >= 1.1` for 
 every `y >= 13`**, and the binding value is the single `L = 6`, already proved. What remains is a lower
 bound on `kappa(L)` uniform in `L` - not an exact minimisation, which is what every earlier attempt was
 trying to do.
+
+Section 8c reduces that to `sum_{delta <= L, 3 | delta} psi(delta) <= L - 1`, with `psi` an explicit
+divisor product derived from residue-collision counting. Verified over 1.67 million block starts to
+`L = 5 * 10^6`, minimum `1.6343` at `L = 6`. The two ingredients still needed are the error term of the
+second-order expansion, currently only measured, and a lower bound on `L - sum psi`, which is an
+averaging statement about `psi` and the point at which this route stops being purely mechanical.
 
 An earlier version of this section said the opposite - that margins drift downward and the slack cannot
 be assumed constant. That was read off `h/d`, which tends to 1 for every `L` including the proved `L = 1`,
