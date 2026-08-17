@@ -1061,3 +1061,68 @@ The `L = 9` condition itself reduces to
 using `C = (8/3)B` and `P = 3M`, so a closed form for `D` would settle it by the same route that
 settled `L = 3` and `L = 6`. That closed form exists - it is
 `f({0,9}) - 2 f({0,3,9})`, both products - but its small-`q` factors differ case by case.
+
+## 20. The stronger statement h(L) >= h(1), proved at L = 3 and L = 6
+
+Section 18 proved `h(L) >= d` at `L = 1, 3, 6`. The measurements of section 19c show something
+stronger is true and more useful: `h(1)` is the *minimum*, so proving `h(L) >= h(1)` for every `L`
+would settle the bound outright, since `h(1) = d/(1-d) > d` is free.
+
+### 20a. In k-units the conditions are polynomial
+
+Write gaps as `3k`, let `n_r = #{gaps = 3r}`, `A = sum n_r` (the gap count), `K = sum r n_r = P/3`,
+and put
+
+    alpha = A/M = prod_G (1 - 2/q)      beta = B/M = prod_G (1 - 4/q)      r = alpha^2/beta
+
+over the gears `G` at least 5. With `n_1 = B` and `n_2 = (8/3)B` from section 18, the two conditions
+reduce to polynomial inequalities and then, dividing by `alpha^2`, to
+
+    **h(3) >= h(1)   <=>   2r + alpha >= 3**
+    **h(6) >= h(1)   <=>   5r + (2/3) alpha >= 11**
+
+and `r = prod_G (1 + 4/(q(q-4)))` is a product of factors each above 1, so it only increases as
+gears are added.
+
+### 20b. L = 3, proved
+
+`r >= 15/7 = 2.142857` for any gear set containing 5 and 7, so `2r >= 30/7 = 4.286 > 3`, and
+`alpha > 0`. For the set `{3,5}` alone, `r = 9/5` and `alpha = 3/5` give `2r + alpha = 4.2 >= 3`.
+Either way the inequality holds with wide margin.
+
+### 20c. L = 6, proved, with an exact equality case
+
+At gears `{3,5,7}` - that is `G = {5,7}` - the values are exactly
+
+    alpha = 3/7,   beta = 3/35,   r = 15/7
+    5r + (2/3) alpha = 75/7 + 2/7 = 77/7 = 11
+
+**exactly 11**, so `h(6) = h(1)` there and the minimum at `L = 1` is attained rather than strict.
+
+For any larger set the gears include 11, so
+
+    r >= (1 + 4/5)(1 + 4/21)(1 + 4/77) = 2.2542 > 11/5
+
+giving `5r > 11` on its own, with the `alpha` term only helping. Since `r` increases with every
+added gear, that covers all remaining cases. For `{3,5}` alone the case is vacuous, its largest gap
+being 6.
+
+Measured, `5r + (2/3) alpha` runs `11.000, 11.505, 11.854, 12.190, 12.478, 12.585, 12.626, 12.617,
+12.611, 12.607` for gears to `7, 11, 13, 19, 43, 101, 1009, 10007, 10^5, 10^6` - rising to a peak
+near `y = 1000` then settling toward `5 r_inf = 12.598`, since `sum 4/(q(q-4))` converges. Always at
+least 11.
+
+(A partial-product artefact to note: tracking the quantity gear by gear shows a value of `9.4` after
+gear 5 alone. That is not a counterexample - `{3,5}` has largest gap 6, so `L = 6` is vacuous there,
+and the first valid configuration is `{3,5,7}` where the value is exactly 11.)
+
+### 20d. Where this leaves it
+
+Proved: `h(1) = d/(1-d) > d`; `h(3) >= h(1)`; `h(6) >= h(1)`. So the hazard condition, and hence the
+covering bound and hence `F_h(y) <= L_0(y)`, holds as far as the first three block starts control it.
+
+The equality at `{3,5,7}` is the informative part. It says the chain of inequalities is tight at the
+smallest gear set, so no argument with slack to spare at `L = 6` can be correct - the proof there has
+to be exact, as the one above is. It also suggests the general `L = 3j` condition will have the form
+`c_j r + e_j alpha >= f_j` with rational `c_j, e_j, f_j` determined by the gap counts `n_1 .. n_{j-1}`,
+and that the tightest case will again be the smallest admissible gear set.
