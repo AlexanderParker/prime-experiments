@@ -90,10 +90,16 @@ visits only survivors: 2548 contributing terms at `L = 39` instead of `5.5 * 10^
 is an explicit finite inequality between products over the gear set, and all of them check out from
 closed forms alone for `y = 23` through `199`.
 
-**What is left.** Prove the short list case by case, and cover every other `L` with a crude bound - the
-measurements leave `1.14` of slack at `y = 23`. **Falsifies quickly:** extend the tight-list measurement
-past `y = 23`. If new members keep appearing, the list is not finite and the case-by-case half fails.
-The margins at existing members also drift slowly down, so the slack is not constant.
+**What is left, on the right scale.** `h(L)/d` tends to 1 for every `L`, `L = 1` included, so no margin
+can be read off it. The scale-free quantity is `kappa(L) = (h(L)/d - 1)/d`, for which `kappa(1) = 1/(1-d)`
+exactly and the claim is `kappa(L) >= 1/(1-d)` for `L >= 2`. Measured to `y = 100003` at 80-digit
+precision, `kappa(1) -> 1` while every other `kappa(L)` settles above it, the smallest being
+`kappa(6) -> 1.67`, and `kappa` grows with `L` to `7.58` at `L = 63`.
+
+So the target is a **uniform lower bound, not an exact minimisation**: `kappa(L) >= 1.1` for `L >= 3`
+closes the whole thing for every `y >= 13`, and the binding value is `L = 6`, already proved.
+**Falsifies quickly:** if `kappa(6)` drifts towards 1 rather than settling near `1.67`, the room
+disappears; it has not through nine thousand gears.
 
 ## 4. Recursion in the gear set rather than in L
 

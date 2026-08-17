@@ -92,6 +92,49 @@ def N_from_coeffs(coeffs, primes, L):
     return sum(c * prod(q - j for q in tail) for j, c in coeffs.items())
 
 
+def density(coeffs, primes, L, prec=80):
+    """`N(L)/P` at high precision, avoiding both huge integers and float cancellation.
+
+    `N(L) = sum_j c_j prod_{q>L} (q - j)` and `P = prod_q q`, so
+
+        N(L)/P = ( sum_j c_j prod_{q>L} (1 - j/q) ) / prod_{q<=L} q.
+
+    The integer form needs a product over every gear, which for `y = 10^5` is a number with tens of
+    thousands of digits. The float form loses about eight digits to cancellation, because `c_0` runs to
+    `10^8` at `L = 24` while the answer is of order 1. Decimal at `prec` digits avoids both.
+    """
+    from decimal import Decimal, getcontext
+    getcontext().prec = prec
+    tail = [q for q in primes if q > L]
+    head = prod(q for q in primes if q <= L)
+    total = Decimal(0)
+    for j, c in coeffs.items():
+        term = Decimal(c)
+        if j:
+            for q in tail:
+                term *= (Decimal(q - j) / Decimal(q))
+        total += term
+    return total / Decimal(head)
+
+
+def kappa(L, primes, prec=80):
+    """`(h(L)/d - 1)/d`, the first-order hazard coefficient.
+
+    `h(L)/d` tends to 1 for every `L` as the gear set grows, so it is the wrong scale on which to read
+    a margin - the same normalisation trap as section 26b of `covering-bound-route.md`. Dividing the
+    excess by `d` again gives a quantity that stays bounded away from `kappa(1) = 1/(1-d)`.
+    """
+    from decimal import Decimal, getcontext
+    getcontext().prec = prec
+    nL = density(c_cached(L), primes, L, prec)
+    nL1 = density(c_cached(L + 1), primes, L + 1, prec)
+    h = Decimal(1) - nL1 / nL
+    dd = Decimal(1)
+    for q in primes:
+        dd *= (Decimal(q - 2) / Decimal(q))
+    return float((h / dd - 1) / dd), float(dd)
+
+
 def N_direct(primes, L):
     """`N(L)` from the gap multiset, by direct construction of the pattern."""
     import numpy as np
