@@ -148,3 +148,22 @@ Where the coprime instinct still lives: a coprime stopper is possible in princip
 209 = 11*19 beside prime 211), but 13's square gate (167,169) blocks the descent before 11 is
 reached in every window from 17 up. Coprime stoppers need a run of square-luck directly above
 them, and the q^2-2 primes are too dense for that in this range.
+
+## The coprime census (script: research/coprime_census.py)
+
+The second killer category after squares, catalogued for the 23-window:
+
+    gear   coprimes  pseudo-twins  in-set/out-set
+    23     0 (horizon)   -             -
+    19     1             1           1/0     <- first coprime = top-pair product 19*23 = 437
+    17     4             3           2/2
+    13     6             4           3/3
+    11     10            6           6/4
+    7      17            10          5/12
+    5      24            18          6/18
+
+Laws: coprimes appear exactly one step below the top (horizon theorem in coprime language); counts
+fan downward like pi(y^2/q) - pi(q); in-set coprimes are the crossed teeth of the pair machines
+(143, 221, 437); the pseudo-twin fraction rises as q falls - gear 5's first six coprimes
+(35,55,65,85,95,115) all sit beside primes (37,53,67,83,97,113). The low gears' coprimes are the
+machine's densest source of fragile slots.
