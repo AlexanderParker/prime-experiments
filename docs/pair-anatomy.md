@@ -64,6 +64,24 @@ X slots, mirror-paired (13,64), (20,57):
 * slot 20 = (119,121): 7 left (7*17), 11 right (11^2) - crossed
 * slot 57 = (341,343): 11 left (11*31), 7 right (7^3) - crossed
 
+## 11 x 13 (period 143): the twin-gear collapse confirmed
+
+Teeth {2,9} and {2,11} - shared tooth residue 2, the collapse itself. 99 openings = 9*11, max gap 3,
+mirror-symmetric. X slots (2,141), (24,119):
+
+* **slot 2 = (11,13): the own-pair share** - twin gears killing themselves at birth
+* slot 24 = (143,145): 143 = 11*13 - product block, both left
+* slot 119 = (713,715): 715 = 5*11*13 - product block, both right
+* slot 141 = (845,847): 13 left (5*13^2), 11 right (7*11^2) - crossed
+
+Taxonomy law over all four pairs mapped: one of the four sign-lifts lands on the pair (q,r) itself
+precisely when q and r are twin gears (their 6-inverses coincide - shared tooth residue); otherwise
+all four are product/crossed. Twin pairs: own-share + 2 products + 1 crossed. Non-twin: 2 products
++ 2 crossed.
+
+Max gap falls as the pair grows: 5 (5x7) -> 4 (5x11, 7x11) -> 3 (11x13). A lone pair of bigger
+gears covers less; gaps grow only through accumulation of gears, never through the size of one pair.
+
 ## What varies across pairs and what does not
 
 Invariant for every pair: openings (q-2)(r-2); exactly 4 double-kills = the CRT lifts of the sign
