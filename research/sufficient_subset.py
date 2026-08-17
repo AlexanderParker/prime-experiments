@@ -38,6 +38,17 @@ def required_depth(y):
     m = first_twin_above(y)
     return m, math.isqrt(m + 2)
 
+def subset_open(k, gears, us):
+    return all(k % q not in (us[q], (-us[q]) % q) for q in gears)
+
+def walk_first_open(gears, start_slot):
+    us = {q: pow(6, -1, q) for q in gears}
+    k = start_slot
+    while True:
+        k += 1
+        if subset_open(k, gears, us):
+            return k
+
 if __name__ == "__main__":
     print(" y    first twin    slot   depth  gears kept/total")
     for y in primerange(11, 400):
@@ -45,3 +56,26 @@ if __name__ == "__main__":
         gears = [q for q in primerange(5, y + 1)]
         kept = [q for q in gears if q <= d]
         print(f"{y:4d}  ({m},{m+2})  {(m+1)//6:6d}  {d:5d}   {len(kept)}/{len(gears)}")
+
+    # End-to-end verification (added after a fair challenge that the table was
+    # arithmetic, not execution). Two demonstrated facts:
+    print("\nTEST 1 - squares law: gears {5,7,11} on y=13's window give exactly one")
+    print("false positive, slot 28 = (167,169) = the dropped gear's square:")
+    g = [5, 7, 11]
+    us = {q: pow(6, -1, q) for q in g}
+    for k in range(3, 29):
+        if subset_open(k, g, us):
+            a, b = 6*k - 1, 6*k + 1
+            t = isprime(a) and isprime(b)
+            print(f"  slot {k:2d} ({a},{b}) true twin: {t}" + ("  <- FALSE POSITIVE" if not t else ""))
+
+    print("\nTEST 2 - reduced walks land on true twins, and RECOVER the pairs the")
+    print("full machine self-blocks (pairs containing a gear):")
+    for y in [41, 109, 197, 389]:
+        m, d = required_depth(y)
+        sub = list(primerange(5, d + 1))
+        k = walk_first_open(sub, y // 6)
+        a, b = 6*k - 1, 6*k + 1
+        print(f"  y={y}: subset<= {d} finds slot {k} = ({a},{b}), both prime: "
+              f"{isprime(a) and isprime(b)}"
+              + ("  <- full set hides this pair (self-block)" if a <= y or b <= y or isprime(a) and a in (y,) else ""))
