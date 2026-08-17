@@ -167,3 +167,25 @@ fan downward like pi(y^2/q) - pi(q); in-set coprimes are the crossed teeth of th
 (143, 221, 437); the pseudo-twin fraction rises as q falls - gear 5's first six coprimes
 (35,55,65,85,95,115) all sit beside primes (37,53,67,83,97,113). The low gears' coprimes are the
 machine's densest source of fragile slots.
+
+## Territory map of the 13-set (window < 169)
+
+Per gear: shadow zone (< q^2, always covered by smaller gears), then the root-kill territory
+[q^2, 169). PT = pseudo-twin (partner prime, the deciding kills).
+
+    gear 5:  shadow < 25,  territory 9 kills:
+      25(s4,23 PT) 35(s6,37 PT) 55(s9,53 PT) 65(s11,67 PT) 85(s14,83 PT)
+      95(s16,97 PT) 115(s19,113 PT) 145(s24,143 comp) 155(s26,157 PT)
+    gear 7:  shadow < 49,  territory 6 kills:
+      49(s8,47 PT) 77(s13,79 PT) 91(s15,89 PT) 119(s20,121 comp) 133(s22,131 PT) 161(s27,163 PT)
+    gear 11: shadow < 121, territory 2 kills:
+      121(s20,119 comp) 143(s24,145 comp)
+    gear 13: shadow < 169, territory 0 interior kills; square 169(s28,167 PT) at the horizon.
+
+Readings: territory sizes collapse upward (9, 6, 2, 0) - the low gears own the window and the top
+gear's territory is wholly beyond the horizon. Gear 11's droppability is visible as a map fact:
+both its kills land on slots whose partner is another gear's kill (slot 20 = 7's coprime + 11's
+square; slot 24 = 5's coprime + 11's coprime) - the only territory overlaps in the map, and
+exactly the crossed double-kills of the pair anatomy. Pseudo-twin density at the bottom is brutal:
+gear 5 has 8 of 9 kills beside primes, gear 7 has 5 of 6 - the three composite partners in the
+whole map (119, 121, 145) are precisely the mutual-coverage slots.
