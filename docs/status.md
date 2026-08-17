@@ -103,12 +103,49 @@ total capacity against `L` needs `sum 2/q < 1`. It is not:
     101                1.959            2.625      162.5%
 
 **Capacity arguments therefore work only up to `y = 11`, and never again.** By `y = 47` the gears carry 132%
-more covering capacity than a run needs. The binding constraint is not how much the gears can cover but
-whether their residue classes can be *fitted together* - a covering-design feasibility question, not a
-counting one. Every closed route below is a different attempt to get at that fitting, and each fails for its
-own reason:
+more covering capacity than a run needs.
+
+### The two-scale version fails too, and fails worse as `y` grows
+
+The obvious repair is to split the gears at a threshold `z`. The gears `<= z` can cover a run of length
+`F(z) - 1` outright, so in a window of length `L` they leave at least `L/F(z) - 1` positions uncovered, and
+the gears in `(z, y]` must cover those at a cost of at most `2(L/q + 1)` positions each. That yields a bound
+on `L` exactly when
+
+    F(z) * 2 * sum_{z < q <= y} 1/q  <  1.
+
+Minimising the left side over `z` (excluding the degenerate `z = y`, where the sum is empty):
+
+    y             13     17     19     23     29     37     47
+    best z         3      3      3      3      3      3      3
+    product    3.064  3.417  3.733  3.994  4.201  4.556  4.970
+
+The best threshold is always `z = 3`, where the condition reduces to
+`sum_{5 <= q <= y} 1/q < 1/6`, and that sum is already `0.51` at `y = 13`. So the two-scale family fails by a
+factor of 3 to 5, and since `sum 1/q` diverges **the shortfall grows without bound** - splitting at a
+threshold gets worse with `y`, not better.
+
+### What the shortfall measures
+
+The gap between capacity and feasibility is the clustering of the exposed set: its maximum gap against its
+mean gap, `F(z) * d_z`.
+
+    z            3     5     7    11    13    17    19    23    29    31    37    43    47
+    1/d_z     3.00  5.00  7.00  8.56 10.11 11.46 12.81 14.03 15.07 16.11 17.03 18.77 19.61
+    F(z)         3     6    15    21    33    54    75   102   129   174   264   309   354
+    F(z) d_z  1.00  1.20  2.14  2.45  3.26  4.71  5.86  7.27  8.56 10.80 15.51 16.46 18.06
+
+The maximum gap runs from equal to the mean gap at `z = 3` to 18 times it at `z = 47`, and keeps growing -
+`F ~ C y^2/log y` against `1/d ~ log^2 y` gives `F d ~ y^2/log^3 y`. **That growing clustering factor is the
+entire difficulty.** Capacity is abundant at every scale; what no counting argument can see is whether the
+residue classes fit together, and the clustering says the exposed set is far from uniform, so bounds that
+assume uniformity are exactly the ones that fail.
+
+Every closed route below is a different attempt to get at that fitting, and each fails for its own reason:
 
 * **capacity / usefulness counting** - `sum 2/q > 1` from `y = 13`;
+* **two-scale capacity counting**, splitting the gears at any threshold - short by a factor of 3 to 5, and
+  the shortfall grows without bound since `sum 1/q` diverges;
 * **monotonicity of the margin** in the gear set - false, the ratios peak then fall;
 * **the universal bound `h >= 1/(F_h - L)`** - circular, presupposes `F_h`;
 * **log-concavity of `N`** - false at `L = 3`;
@@ -142,6 +179,11 @@ sits to what is already built:
    prod_{q|delta^2-1} (q-3)/(q-4)`, since `kappa(L) = L - sum_{delta<=L} psi(delta)` to second order and
    `mean psi -> 3` exactly.
 
+What section 5 rules out, in one line: **anything that bounds `F` by comparing how much the gears can cover
+against how much needs covering.** That is true at one scale, at two scales, and with the shortfall growing
+in both. A proof has to see the clustering, and the clustering factor `F d` grows like `y^2/log^3 y`, so it
+cannot be treated as a constant either.
+
 The mechanical apparatus is complete and independently cross-checked; what remains is one constant in a
 covering problem, and the capacity barrier of section 5 is the reason it has resisted every elementary
-attempt.
+attempt - including every attempt made in this programme so far.
