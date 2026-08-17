@@ -36,3 +36,31 @@ the window is Reduction A itself. Section 1h's sharp form: the tree's infinite p
 integers; only the paths that stay small are twins.
 
 Every route in the programme is an attempt to bound the sideways step.
+
+## Sufficient sub-sets: which gears the window actually needs
+
+Script: `research/sufficient_subset.py`. Two one-line facts frame it:
+
+1. **No subset covers the whole window.** Every gear's square is an in-window root kill on a
+   candidate (q^2 = 1 mod 6 always - squares of gears are always right members), so dropping gear q
+   falsely opens slot (q^2-1)/6 whenever q^2-2 is prime. Drop 13 from the y=13 set and slot
+   28 = (167, 169) reports as a twin.
+2. **But the window is graded** - the square-root tower localised: gears <= z are exact on slots
+   whose members stay below nextprime(z)^2. The subset needed depends on where in the window you
+   look, not on the window top.
+
+Measured consequence for finding the FIRST twin above y (depth = isqrt(twin member + 2)):
+
+     y    first twin   depth needed   gears kept/total
+     41   (59,61)          7              2/11
+    109   (137,139)       11              3/27
+    197   (227,229)       15              4/43
+    389   (419,421)       20              6/75
+
+Needed depth averages 0.42*sqrt(6y); the kept fraction collapses toward zero. At the bottom edge
+(members < 25) the 6-cycle alone certifies - (17,19) needs zero gears >= 5. Caveat, honestly: "the
+first twin sits close above y" is an empirical input (corpus 12a: within 169 of y for all
+y <= 3163); proving that closeness would be stronger than Reduction A.
+
+Half-winding: the mirror fixes a subset's behaviour in half its primorial - true, but the mismatch
+under attack is e^y against y^2, so the factor 2 is conceptual rather than asymptotic.
