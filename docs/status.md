@@ -88,6 +88,43 @@ Only the bound of section 1. In its equivalent forms:
 Proved special cases: `h(1), h(3), h(6), h(9)` in the adjacent frame, and `kappa(L) >= 1` verified over all
 1.67 million block starts to `L = 5 * 10^6`.
 
+## 4a. There is no covering-design freedom: every configuration is one translate
+
+This corrects a framing used throughout the earlier sections and in the routes of section 5.
+
+The covering problem was posed as: choose an offset `o_q` for each gear `q <= y`, where gear `q` blocks
+`{o_q, o_q + 1} mod q`, and ask which runs can be covered. That looks like a design problem over
+`prod q = P` configurations. It is not. **By CRT the offset vector `(o_q)` is exactly a single residue
+`c mod P`** with `c = o_q mod q` for every `q`, and then gear `q` blocks `i = c` or `c+1 mod q`. So the
+uncovered set is
+
+    { i : q does not divide (i - c) and q does not divide (i - c - 1), for every q <= y }
+  = { i : i - c and i - c - 1 are both coprime to P },
+
+which is a **translate** of the single pattern `{ n : n and n+1 both coprime to P }`. The `P` offset vectors
+are precisely the `P` translations of one pattern, and nothing else.
+
+Hence
+
+> **`F(2,y) = 1 + ` the maximum gap of `{ n : n, n+1 both coprime to P(y) }`**, the Jacobsthal-type function
+> for the pair `{0,1}` modulo the primorial.
+
+Verified: the configuration with every offset equal to 1 - where `i` is uncovered exactly when `i-1` and
+`i-2` are both free of prime factors `<= y` - attains `F(2,y)` exactly at `y = 7, 11, 13, 17, 19, 23, 29`,
+ratio `1.000` in all seven cases, which is what the theorem requires. The `y = 29` check was done by a
+segmented sieve over all `3.2 * 10^9` positions of the period, since it does not fit in memory whole.
+
+Three consequences:
+
+* the exhaustive offset searches in `maxgap.rs`, `coverbound.rs` and `holegap.rs` are sound but are
+  searching a space isomorphic to `Z_P`; they explore translations, not designs;
+* "the extremal configurations are efficient" (section 37b of `twin-prime-program.md`) is automatic - they
+  are all the same configuration;
+* **the obstruction is not combinatorial fitting.** `F` is the maximum gap of one explicit pattern, and
+  bounding it is the Jacobsthal problem. In `k`-space the same statement is the obvious one:
+  `F_k(y)` is the maximum gap of `{ k : 6k-1, 6k+1 both y-rough }`, the twin pattern itself, with the two
+  frames related by the factor 3 of section 2.
+
 ## 5. Why every route fails, and the one reason behind it
 
 Gear `q` covers about `2L/q` positions of a run of length `L`, so any argument that bounds `F` by comparing
@@ -137,11 +174,13 @@ mean gap, `F(z) * d_z`.
 
 The maximum gap runs from equal to the mean gap at `z = 3` to 18 times it at `z = 47`, and keeps growing -
 `F ~ C y^2/log y` against `1/d ~ log^2 y` gives `F d ~ y^2/log^3 y`. **That growing clustering factor is the
-entire difficulty.** Capacity is abundant at every scale; what no counting argument can see is whether the
-residue classes fit together, and the clustering says the exposed set is far from uniform, so bounds that
-assume uniformity are exactly the ones that fail.
+entire difficulty.** Capacity is abundant at every scale; the exposed set is simply far from uniform, so
+every bound that treats it as uniform fails by the clustering factor. Section 4a rules out the other reading
+- that the difficulty is a design question about fitting residue classes together - since there is no design
+freedom to exploit.
 
-Every closed route below is a different attempt to get at that fitting, and each fails for its own reason:
+Every closed route below is a different attempt to see past the uniform estimate, and each fails for its own
+reason:
 
 * **capacity / usefulness counting** - `sum 2/q > 1` from `y = 13`;
 * **two-scale capacity counting**, splitting the gears at any threshold - short by a factor of 3 to 5, and
@@ -167,7 +206,7 @@ Every closed route below is a different attempt to get at that fitting, and each
 
 ## 6. What would count as progress
 
-Anything that bounds the *fitting* rather than the capacity. Concretely, in decreasing order of how close it
+Anything that sees the *clustering* rather than the average. Concretely, in decreasing order of how close it
 sits to what is already built:
 
 1. a bound on the **average** increment `F(M+q) - F(M)` over gears up to `y`, since the per-step version is
@@ -184,6 +223,8 @@ against how much needs covering.** That is true at one scale, at two scales, and
 in both. A proof has to see the clustering, and the clustering factor `F d` grows like `y^2/log^3 y`, so it
 cannot be treated as a constant either.
 
-The mechanical apparatus is complete and independently cross-checked; what remains is one constant in a
-covering problem, and the capacity barrier of section 5 is the reason it has resisted every elementary
-attempt - including every attempt made in this programme so far.
+The mechanical apparatus is complete and independently cross-checked. What remains, stated as plainly as
+section 4a allows, is a bound on the maximum gap of one explicit pattern - `{ n : n, n+1 both coprime to
+P(y) }`, or equivalently the twin pattern itself in `k`-space. That is the Jacobsthal problem for a pair, and
+the capacity barrier of section 5 is why it has resisted every elementary attempt here, including all of
+them made in this programme so far.
