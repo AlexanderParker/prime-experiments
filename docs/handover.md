@@ -3,7 +3,8 @@
 Written for a reader who will attempt the remaining abstract proof, and who should verify rather than trust what
 follows, and form their own view of which reduction to attack.
 
-**Read section 2 before section 1.** Section 1 states the reductions this programme arrived at *most recently*;
+**Read the Method section first, then section 2, then section 1.** Section 1 states the reductions this
+programme arrived at *most recently*;
 they are the latest line of enquiry, not a settled thesis, and presenting them first risks anchoring. Section 2
 is the full inventory of lines explored, in the order they were explored, with what each produced and where each
 stopped - several were abandoned while still live, and at least two were abandoned for reasons later shown to be
@@ -21,6 +22,59 @@ mathematics and would only add noise.
 
 Notation throughout: `q` ranges over odd primes, `y` is the gear bound, `P(y) = prod_{3<=q<=y} q`,
 `d = prod (1 - 2/q)`, `A = prod (q-2)`.
+
+---
+
+## Method: the working rule that produced these results
+
+Read this before working. It is not a preference; it outperformed the assistant's own instincts repeatedly in
+this programme, and every substantial result below came from following it.
+
+> **Focus on the mechanics.** Work out how the machine actually works and how its components interact. Build
+> and test, build and test. Use statistics only to *verify* a construction that is already built and tested -
+> **never to rule out an approach that has not been tried.**
+>
+> **Be especially wary of statistics that show a quantity approaching zero.** The prime machine is a precise
+> instrument. A hit that lands at a frequency approaching zero at infinity *still lands*. Discarding a
+> construct because it is a statistical outlier is exactly the trap that would prevent the solution being
+> found.
+
+That second paragraph is not abstract caution. It was decisive twice here.
+
+**Case 1 - the low-energy beats.** The factorised spectrum (section 2.8) has beats whose energy share is
+negligible, and standard signal-processing practice discards them. Tested instead of assumed: the `L1` norm
+grows about `2.06` per gear, so a single low-energy beat still closes a slot. Truncation is not lossy, it is
+**wrong** - it loses exactness rather than precision. A statistical instinct would have thrown away the terms
+that carry the answer.
+
+**Case 2 - the normalisation that looked like a vanishing margin.** The hazard ratio `h(L)/d` tends to 1 for
+every `L` as the gear set grows. Read as a margin, that says the slack vanishes everywhere and no lossy
+argument can ever work - and that reading was written down, and was wrong. `h(1)/d = 1/(1-d)` also tends to 1,
+so the whole scale is collapsing, not the margin. On the correct scale `kappa = (h/d - 1)/d`, the margin
+converges to about `1.67`, comfortably away from zero. **A quantity approaching zero was an artefact of how it
+was being measured, and taking it at face value nearly closed a live route.**
+
+The same rule explains the failures. Every one of the seventeen refuted claims in section 6 was recorded
+because something was generalised from a small sample before being tested at scale - a pattern in nine
+numbers, a boundedness claim from six data points, an ordering that held to `y = 37` and broke at 41.
+Build-and-test caught all of them; reasoning alone had endorsed several.
+
+**An audit note the reader should act on.** Two closures in this document do not fully meet the standard above,
+and should be re-examined rather than trusted:
+
+* the claim that the forbidden-word antidictionary is **infinite** (section 6, item 9) rests on extrapolating a
+  count that was still rising at the edge of a search box of length 16. That half is an extrapolation. The
+  closure of that route does not depend on it - the second reason given there is exact - but the extrapolated
+  half should not be reused;
+* "the per-`j` recipe does not scale" was asserted early on a term-count estimate and **later refuted** by
+  building it: `2548` contributing terms at `L = 39` against a predicted `5.5 * 10^11`. A scaling judgement made
+  without building the thing is exactly the failure mode this rule guards against, and it cost a working route
+  for most of the programme.
+
+Where sections 5 and 7 use measurement to exclude something, they exclude a *proof technique* on exact
+arithmetic grounds - `sum 2/q > 1` is an identity, not an estimate - never a construct or an untried approach.
+If any exclusion below reads as ruling out a mechanism because its effect looks small, treat it as unproven and
+test it.
 
 ---
 
@@ -356,11 +410,14 @@ the pair-index frame are the same machine scaled by 3, and then that the apparen
 not exist at all - every offset vector is one translation (item 17). **Standing**, and it simplified the target
 substantially while withdrawing an earlier framing. This is the line section 1 reports.
 
-A standing constraint on all of the above, which shaped what was and was not attempted: statistical and
-probabilistic reasoning was excluded as a *substitute* for mechanism, on the grounds that twin primes are placed
-by exact modular residues and their interplay, and a density estimate cannot see an exact placement. It was later
-admitted as a *validator* - legitimate to check a mechanical construction that is already built and tested, not
-to pre-empt one. Sections 5 and 7 respect that boundary and say where they cross it.
+A standing constraint on all of the above, which shaped what was and was not attempted, and which is stated in
+full in the Method section: statistical and probabilistic reasoning was excluded as a *substitute* for
+mechanism, on the grounds that twin primes are placed by exact modular residues and their interplay, and a
+density estimate cannot see an exact placement. It was later admitted as a *validator* - legitimate to check a
+mechanical construction already built and tested, not to pre-empt one. The lines that produced standing results
+(2.1, 2.2, 2.3, 2.5, 2.8, 2.9, 2.13, 2.14) are exactly the ones pursued mechanically first and measured
+afterwards; the lines that produced refutations are the ones where a pattern was generalised before it was
+built.
 
 ---
 
