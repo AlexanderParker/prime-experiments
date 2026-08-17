@@ -1,5 +1,6 @@
 import BlockedSlots
 import Horizon
+import Layer
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -11,3 +12,7 @@ open BlockedSlots
 #print axioms Horizon.exists_prime_factor_lt
 #print axioms Horizon.prime_of_no_prime_factor_lt
 #print axioms Horizon.twin_of_no_prime_factor_lt
+#print axioms Layer.slot_cap
+#print axioms Layer.minFac_lt_or_eq
+#print axioms Layer.eq_mul_prime_of_minFac_eq
+#print axioms Layer.layer_novelty

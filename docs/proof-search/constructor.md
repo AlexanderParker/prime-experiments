@@ -171,7 +171,7 @@ doubles onset is structurally delayed (no double before `k = 20`; deletion spaci
 `(q+-1)/3` spreads each gear's kills), and X's forced census (`n1(t) = P(t)` from the
 very first slot) is at its most brittle.
 
-## 6. Proposed round 2 (two concrete chunks)
+## 6. Proposed round 2 (two concrete chunks) - as steered by the manager, executed in sections 7-9
 
 1. **Bottom-band double-onset law.** Under X the prefix census is forced from slot #1.
    Compute, across a ladder of `y`, the exact onset lag of the first double slot above
@@ -189,3 +189,128 @@ very first slot) is at its most brittle.
    (each layer's novelty is a short explicit list) can turn the descent into an
    induction: X at `y` implies a stride violation at scale `sqrt(y)` unless X-like
    scarcity already holds there.
+
+---
+
+# Constructor round 2: the double-onset law, its exact cap, and its closure
+
+Script: `research/double_onset.py` (all assertions and tables below). The Mechanic's
+round-2 prefix censuses were not yet posted at computation time; the onset census here is
+self-contained and cheap (442 windows, y <= 3163).
+
+## 7. The roots-of-unity law (Lateral's pinning, generalised to an iff)
+
+**Law.** For any two distinct gears q, q', slot k is hit by both iff `36 k^2 = 1 (mod qq')`,
+i.e. iff `6k` is a square root of unity mod qq'. The trivial roots `+-1` are the
+same-member hits (`qq'` divides one member: the semiprime-multiple slots, the composite
+root law's sites). The nontrivial roots `+-r`, `r = CRT(+1 mod q, -1 mod q')`, are the
+cross-member hits. Hence:
+
+> **A slot is double (both members composite) iff `6k` lands on a nontrivial root of
+> unity mod qq' for some active pair `{q, q'}` (q | one member, q' | the other, both
+> `<= sqrt(member)`).**
+
+*Proof.* If q | 6k-1 and q' | 6k+1 then (6k)^2 = (6k-1)(6k+1)+1 = 1 mod qq', and
+6k = +1 mod q, -1 mod q' is neither +1 nor -1 mod qq'; q = q' is impossible (slot cap,
+L1). Conversely a nontrivial-root landing gives q, q' dividing opposite members, each
+`< member`, so both members composite. Verified both directions on the full window of
+y = 47 (359 slots). For twin-pair gears (p, p+2) the nontrivial root is r = p+1 and one
+recovers Lateral's classes {+-u', +-u'(p+1)} exactly.
+
+Consequences: the doubles' locations carry **no freedom at all** - they are one fixed
+subset `D = {k : both 6k+-1 composite}` of the integers, the union of the pinned
+`+-r_{qq'}` classes; a window merely slides along it. Prefix double censuses are
+therefore computable by semiprime arithmetic alone, with no primality testing (handed
+to the Mechanic).
+
+## 8. The double-onset law and its unconditional cap
+
+Define `k_start(y)` = first window slot, `k1(y)` = first double slot at or above
+`k_start`, and the **onset lag** `L0(y) = k1 - k_start`.
+
+**Onset law.** Unconditionally, `n2 = 0` on the first `L0(y)` slots of the window (no
+gear pair can place a double there - the nearest pinned landing is at `k1`). Hence
+**under X the onset prefix is perfectly fragile: every one of its `L0` slots holds
+exactly one prime and one composite** - `P(prefix) = N(prefix) = L0`, primes at average
+gap exactly 6 along `(y, y + 6 L0)`.
+
+**Unconditional cap (Brun-Titchmarsh).** A run of `L` slots each containing a prime
+holds `>= L` primes in an interval of length `6L + 2`; Montgomery-Vaughan's
+`pi(x+H) - pi(x) < 2H / ln H` (all `x`, `H >= 2`) forces `ln(6L+2) <= 12 + 4/L`.
+Computed exactly: **`L0(y) <= L* = 27129` for every `y`** (`6 L* + 2 = 162776`,
+`e^12 = 162755`). This needs no hypothesis - X or not, no window anywhere begins with
+more than 27129 prime-containing slots.
+
+**Measured onset census** (all 442 windows, 13 <= y <= 3163):
+
+    y      k_start  k1   L0   twins in onset prefix
+    13        3     20   17    7
+    23        5     20   15    6
+    47        9     20   11    4        (k1 = 20 = slot (119,121), the first
+    ...                                  double-composite slot in N)
+    max L0 = 17 (at y = 13); L0 = 0 in 153/442 windows (window opens on a double);
+    >= 1 twin strictly before the first double in 132/442 windows.
+
+## 9. Closure of the onset route, and the named missing fact
+
+**What would contradict the forced alternation.** To kill X at onset scale one must
+*prove* a twin inside the onset prefix, i.e. the unconditional fact
+
+> `pi(y + H) - pi(y) >= H/6 + 1` with `H = 6 L0(y) + 2`  (equivalently, by the C2
+> pigeonhole with `n2 = 0`: a twin in `(y, y + 6 L0(y) + 2)` for every `y`)
+
+- a **superdense short-interval prime lower bound at density 1/6**, Hensley-Richards
+strength. It is named here and *not assumed*. No unconditional theorem approaches it:
+short-interval lower bounds (Heath-Brown, Baker-Harman-Pintz `x^0.525`) give density
+`~ 1/ln y`, an order below `1/6` past `y ~ e^6`.
+
+**And it is not merely unproven - as a universal statement at onset scale it is
+FALSE.** In 310 of 442 real windows the onset prefix contains *no* twin: the perfect
+prime/composite alternation X demands there is actually realised. The onset prefix is
+therefore **consistent** with X, and no theorem can refute X inside it. Exact closure:
+
+> The double-onset route cannot produce the contradiction by itself. `L0(y)` is capped
+> unconditionally at 27129 and measured collapsing to 0 (max 17, at y = 13); the
+> forced all-fragile prefix is realised in 70% of real windows. The contradiction must
+> be **cumulative**: C2's margin over prefixes long enough to contain several onset
+> events - which is exactly where round 1 found the real violations (runs ending at
+> member ~283, well past the first double at k = 20).
+
+What survives for the team: the roots-of-unity law (doubles = pinned semiprime
+arithmetic, no primality tests needed - Mechanic), the absolute cap L* = 27129 (a
+clean unconditional theorem of the programme), and the redirection of the contradiction
+hunt from "first double" to "doubles deficit over cumulative prefixes".
+
+## 10. The descent, stated exactly and stopped (one page, per manager's caution)
+
+**Descent step (exact).** If W(y) is twin-free, then for every prime y' with
+`sqrt(y) < y' < y`: every twin of W(y') lies in `(y', y]` - the window W(y') ends in a
+terminal twin-free run of `(y'^2 - y)/6` slots, a fraction `1 - (y - y')/(y'^2 - y')`
+of that window. Taking y' near `sqrt(2y)` this is the manager's ~1/2-window stride
+event; taking y' = y^(2/3) it is all but a `y^(-1/3)` sliver. Iterating down the gear
+ladder: X at y forces every layer band `(y'^2, y''^2)` (y'' = nextprime(y')) lying
+above y to be twin-free.
+
+**The unproven input, in one sentence:** *"every window W(y') contains a twin in its
+top c-fraction for some fixed c < 1"* - which is Reduction A with a constant, i.e.
+precisely the stride bound the programme lacks; as first sketched the descent re-derives
+Reduction A at constant ~1/2 and proves nothing new. (Named, not assumed.)
+
+**Where the layer law genuinely weakens the input.** The layer bands tile `(y, y^2)`,
+so the induction does not need a twin in the top c-fraction of any *window* - it needs
+only: **some single layer band `(y'^2, y''^2)` above y contains a twin.** A layer band
+has length `y''^2 - y'^2 ~ 2 y' g(y')` (g = prime gap) - *layer scale, not window
+scale* - and inside it, by the layer law + horizon theorem, twinhood is decided by the
+gears `<= y'` except at an explicit list of at most a few semiprime slots. So the
+input weakens from "twin in the top half of a quadratic window" to "twin in one
+interval of length `~ 2 y' g(y')` sitting at its own machine's horizon" - bottom-band
+scale, exactly where the team's proof target already lives. It remains bounded-gap
+strength and unproven. Measured slack (band slots vs measured max stride
+`0.47 ln^3/6`):
+
+    y' = 97:    band 132 slots      stride ~60     ratio 2.2
+    y' = 997:   band 4012 slots     stride ~206    ratio 19.4
+    y' = 9973:  band 113220 slots   stride ~489    ratio 231.4
+
+The forced twin-free run exceeds every measured stride by a growing factor - the input
+is measured-true with widening slack and proven nowhere. Stop.

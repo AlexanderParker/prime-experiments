@@ -72,3 +72,77 @@ prime factor exactly `y` (when `y` is prime). This is again a `minFac`
 argument (`minFac m = y ↔ y ∣ m ∧ no smaller prime divides`), composes
 directly with `exists_prime_factor_lt`, and needs no new machinery.
 Second choice: the `h(2) ≥ d` product inequality.
+
+## Round 2 — Layer law arithmetic core + slot-cap lemma (2026-08-18)
+
+### What was done
+
+New file `proofs/Layer.lean` (namespace `Layer`, mathlib-only imports),
+registered as a third `[[lean_lib]]` in `proofs/lakefile.toml` and added to
+`defaultTargets`. AxiomCheck.lean extended with the four new theorems.
+Compiled first try, zero sorry, zero warnings.
+
+### Final theorem statements
+
+```lean
+theorem slot_cap {q m : ℕ} (hq : 3 ≤ q) : ¬ (q ∣ m ∧ q ∣ m + 2)
+
+theorem minFac_lt_or_eq {y y' m : ℕ}
+    (hnext : ∀ q, q.Prime → y < q → q < y' → False)
+    (h1 : 1 < m) (hnp : ¬ m.Prime) (hm : m < y' * y') :
+    m.minFac < y ∨ m.minFac = y
+
+theorem eq_mul_prime_of_minFac_eq {y m : ℕ} (h1 : 1 < m)
+    (hfac : m.minFac = y) (hlow : y * y < m) (hhigh : m < y * y * y) :
+    ∃ c, c.Prime ∧ y < c ∧ m = y * c
+
+theorem layer_novelty {y y' m : ℕ}
+    (hnext : ∀ q, q.Prime → y < q → q < y' → False)
+    (hthin : y' * y' ≤ y * y * y)
+    (hnp : ¬ m.Prime) (hlow : y * y < m) (hhigh : m < y' * y') :
+    (∃ p, p.Prime ∧ p < y ∧ p ∣ m) ∨ ∃ c, c.Prime ∧ y < c ∧ m = y * c
+```
+
+### Design decisions
+
+- Took the STRONGEST form: `c` is proved prime, not merely `minFac c ≥ y`.
+  Bertrand was avoided entirely by carrying the thin-layer bound
+  `y'^2 ≤ y^3` as an explicit hypothesis (`hthin`). For consecutive primes
+  it holds from y = 3 on; the caller discharges it, this file never needs
+  Bertrand. Inside the proof the range collapses to `c < y*y`, and a
+  composite `c` with all prime factors `≥ y` (via `Nat.minFac_le_of_dvd`
+  applied to `minFac c ∣ m` against `minFac m = y`) would need
+  `y*y ≤ minFac c ^ 2 ≤ c` — contradiction.
+- `hnext` phrased exactly like `BlockedSlots.survivor_step`'s gap
+  hypothesis (`∀ q, q.Prime → y < q → q < y' → False`), so the two compose
+  without adapters. `y` prime is NOT assumed — it falls out of
+  `minFac m = y` in the semiprime branch.
+- `layer_novelty`'s open bounds `y*y < m < y'*y'` deliberately exclude the
+  boundary novelty `{y^2}` itself, matching "novelty = {y^2} ∪ {y*c}".
+- slot_cap stated for `3 ≤ q` (no primality needed): `q ∣ m ∧ q ∣ m+2`
+  gives `q ∣ 2` by `Nat.dvd_sub`, five lines total.
+
+### Build status
+
+`lake build`: **Build completed successfully (970 jobs)**, zero sorry.
+BlockedSlots.lean and Horizon.lean unchanged and still building clean.
+
+### Axiom audit (extended AxiomCheck.lean)
+
+```
+'Layer.slot_cap'                 depends on axioms: [propext, Quot.sound]
+'Layer.minFac_lt_or_eq'          depends on axioms: [propext, Classical.choice, Quot.sound]
+'Layer.eq_mul_prime_of_minFac_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Layer.layer_novelty'            depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+Standard axioms only; slot_cap needs neither choice nor anything classical.
+
+### Proposed next target
+
+The zero-slack theorem's finite core from the Constructor ledger: with
+slot_cap and lpf attribution both now kernel-checked, the overlap-free
+supply identity sum_q R(q) = 2N - P over a window is a Finset.card
+partition argument — the natural next Lean chunk, and it is what C2
+(prefix pigeonhole) formalisation would sit on. Alternative: h(2) ≥ d's
+product inequality.

@@ -2,27 +2,25 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-We are trying to prove twin primes never run out, using the gear machine. The plan: assume some
-stretch of numbers has NO twins (call it condition X) and show the machine cannot actually do
-that. Round 1 established, with exact bookkeeping: if X ever happened, the machine would have no
-slack at all - every prime in that stretch must sit next to a composite (a fake twin), and
-double-composite slots must show up at least as fast as primes, starting from the very first slot.
-Real stretches break that rule immediately: below about 400 there literally are not enough
-composites to go around, and even past that, the bottom of every window starts with too many
-primes packed together. So if X can ever happen, it must be arranged in the lowest band of the
-window - that is now the single place the proof fight happens.
+We assume a twin-free stretch (condition X) and hunt the contradiction. Round 1 showed X forces
+the machine into a zero-slack pattern and pointed at the window's bottom band. Round 2 delivered
+the verdict on that idea, honestly: the LOCAL attack is dead. Real windows actually behave, near
+their start, exactly the way X would force them to - so no local argument can ever refute X. And
+"double-composite" slots (the thing X needs plenty of) arrive almost immediately in every real
+window, so there is no forced starvation window to exploit. What survives is bigger-picture: the
+contradiction must come from bookkeeping over long stretches (the running margin between
+composites and primes), or from a beautiful reduction found this round - X at height y would
+force EVERY "layer band" above y to be twin-free, so it would suffice to prove that some single
+layer band always contains a twin. That statement is close in spirit to the famous bounded-gaps
+theorems (Zhang/Maynard), which prove twins-like pairs recur SOMEWHERE forever but not in every
+band - the gap between "somewhere" and "in every band" is now our precise frontier.
 
-We also learned what does NOT work, saving future effort: twin gears sharing teeth wastes some of
-the machine's kills, but the waste lands on slots that were already decided, and it never changes
-the machine's largest twin-free stretch. And the count of "fake twins" (composite-next-to-prime)
-turns out to follow the same simple probability law as real twins - no hidden structure there.
-
-Two solid bricks are now machine-verified in Lean (kernel-checked, strongest possible standard):
-the reduction of the whole conjecture to the window statement, and the horizon theorem (only gears
-below y matter strictly inside y's window). One genuine mystery surfaced: the machine's actual
-gear phases are extremely special by some measures (they maximise wasted kills) yet totally
-ordinary by the measure that matters (stride). Round 2 digs at the bottom band, formalises the
-next brick, and tries to turn the mystery into a theorem.
+Meanwhile the machinery got sharper: the "double" slots turn out to be completely determined by
+simple arithmetic (no freedom at all - they sit where 36k^2 = 1 modulo a product of two gears);
+the strange specialness of the machine's phases was fully explained and turned into a formula
+(and the hope that the machine is "extremal" was cleanly disproven by brute-force enumeration);
+the fake-twin census now has an exact per-gear law. Four bricks are now machine-verified in Lean:
+the reduction, the horizon theorem, the slot-cap lemma, and the layer-novelty theorem.
 
 ## Round 1 (2026-08-18)
 
@@ -63,3 +61,28 @@ variational handle.
 tail. Constructor - make X-impossible-below-403 rigorous + the bottom-band double-onset law from
 deletion spacing. Formalist - the layer law's arithmetic core in Lean. Lateral - test whether the
 real phase vector is extremal for any window observable.
+
+## Round 2 (2026-08-18)
+
+**Constructor** - doubles proven freedom-free (36k^2 = 1 mod qq' iff); unconditional onset cap
+L0 <= 27129; DECISIVE: onset-prefix refutation closed (310/442 real windows realize X's forced
+alternation); descent bottomed out exactly - needs "one layer band always holds a twin"
+(bounded-gap strength), band/stride slack 2.2 -> 231. Tool: research/double_onset.py.
+
+**Mechanic** - per-gear fragile law exact after 1/ln(m) weighting (2e-4, Poisson-clean everywhere
+incl. top-1% tail); prefix censuses across 150 windows: first double at slot 2.4-3.7 (y-free),
+margin >= 0 from t=5 in 125/125; identity: prefix-pigeonhole refutations are nonconstructive twin
+proofs whose reach ends by slot ~4. Tools: research/fragile_pergear.py, prefix_census.py + CSV.
+
+**Formalist** - Layer.lean kernel-checked (970 jobs): slot_cap; layer novelty in strongest form
+(fresh composite = y*c, c prime, no Bertrand, composable with survivor_step). Standard axioms.
+
+**Lateral** - overcount anomaly closed as a theorem (real = exact divisor census: 190 semiprime +
+145 Bezout split; random side closed-form; lone deficit same accounting); extremality REFUTED by
+full enumeration (rank 1716/11550). Tool: research/overcount_census.py.
+
+**Manager synthesis** - onset route closed by convergence of constructor + mechanic; frontier is
+now (a) the cumulative margin statement and (b) the layer-band descent, precisely one notch above
+known bounded-gap theorems. Round 3: mechanic measures full-window margin trajectories; constructor
+formulates the cumulative statement + scopes layer-band vs Maynard-Tao exactly; formalist does the
+supply identity; lateral derives the gap-graded Bezout split law (sqrt-scale gaps -> ledger).

@@ -2,28 +2,30 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 1. The contradiction target (Condition X: a twin-free window) now has an exact
-ledger: kills per slot are 0/1/2 from distinct gears, supply is overlap-free (sum R(q) = 2N - P),
-and X forces the census in every prefix (zero-slack). The one non-vacuous count weapon is C2
-(prefix pigeonhole: doubles must outpace in-window primes from slot #1); it kills X outright below
-y ~ 403 and localises any hypothetical X to the BOTTOM BAND of its window - which is therefore the
-team's proof target. Known closures: C2 is an equivalence (no shortcut past Reduction-A strength
-asymptotically); the doubles-squeeze closes (Brun-Titchmarsh vs s(z) < 1, empty intersection);
-tooth-sharing cannot close the recursion by counting and does not move stride. New exact structure:
-each sqrt-scale twin pair pins 4 CRT classes {+-u', +-u'(p+1)} and marks the higher window at its
-own slot + its product slot; for ALL gear pairs the cross classes pin at the semiprime slots - the
-real machine is maximally semiprime-aligned, showing as overcount z = +6.1 / fragile z = -5.9 vs
-random phases while stride stays generic (open anomaly). Quantitatively the fragile census obeys
-the measured constant-2 law (fragile*pi_win/(twins*W1) -> 2), so fragile counts carry no
-twin-specific structure and their lnln growth is pure Mertens; ownership is bottom-heavy (88% in
-the lowest gear decile at scale). Kernel-checked so far: reduction (iff), horizon theorem (strict
-p < y). Round-2 focus: bottom-band double-onset law (constructor) fed by per-gear fragile closed
-forms incl. prefix versions (mechanic); layer law + slot-cap lemma in Lean (formalist); close the
-overcount anomaly into a theorem, then test phase extremality (lateral).
+State after round 2. THE ONSET ROUTE IS CLOSED, by two independent results: real windows realize
+X's forced local pattern (310/442 verify the perfect alternation on their onset prefix - no local
+theorem can refute X), and first doubles arrive at slot 2.4-3.7 mean regardless of y (max 9), so
+forced-prefix pigeonhole arguments end by slot ~4; the margin N-P is >= 0 in every tested window
+from t=5 on. Any contradiction must be CUMULATIVE (C2 over ranges spanning several onset events)
+or come through the LAYER-BAND descent (exact statement: X at y makes every layer band above y
+twin-free; the induction needs only ONE layer band to always hold a twin - bounded-gap strength,
+band/stride slack 2.2 -> 231; the unproven input in one sentence: "every window has a twin in its
+top c-fraction").
 
+Exact structure now in hand: doubles are a freedom-free subset of N (slot double iff 36k^2 = 1 mod
+an active semiprime qq'; trivial roots = the semiprime slots, nontrivial = Bezout split slots at
+q'b - qa = +-2); the whole overcount/lone anomaly is closed as a theorem (real side = divisor
+census exactly; random side in closed form; extremality REFUTED by full enumeration - the real
+phase vector is merely high, rank 1716/11550, no variational handle). The per-gear fragile law is
+exact with 1/ln(m) weights (2e-4 aggregate, Poisson-clean in every band incl. the rare tail);
+unconditional onset cap L0(y) <= 27129 for all y (Montgomery-Vaughan).
 
-Read this at the start of every turn. Append findings other workstreams need under your
-name heading with a date. Manager combines and prunes.
+Kernel-checked: reduction (iff), horizon theorem (strict p < y), slot-cap lemma, layer-novelty
+theorem (strongest form: the layer's fresh composite is y*c with c prime, no Bertrand, composable
+hypotheses). Round-3 focus: cumulative C2 margin trajectory over full windows (mechanic);
+cumulative statement + layer-band scoping vs known bounded-gap theorems (constructor); supply
+identity sum R(q) = 2N - P in Lean (formalist); gap-graded Bezout split law linking sqrt-scale
+prime gaps to the window ledger (lateral).
 
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
@@ -139,6 +141,36 @@ Tool: research/fragile_census.py (segmented numpy; y=50021, 4.17e8 slots, 52s).
 - Semiprime vs any-composite variants differ by <7% and converge (93.6% semi at
   y=50021); the loose extras are q^a and q^2*p shapes.
 
+## Mechanic round 2 (2026-08-18) - per-gear closed form + prefix censuses
+Tools: research/fragile_pergear.py, research/prefix_census.py.
+Data for Constructor: research/data/prefix_census.csv (y ladder 101..1e8+7,
+t=1..200, columns y,t,k,member_lo,P,n0,n1,n2,margin; margin = t-P = n2-n0;
+convention: member equal to y counts as prime - adjust slot 1 for open interval).
+- Per-gear law CONFIRMED incl. rare-event tail, one refinement required: the raw
+  form 2*tw*((q-1)/(q-2))*S1(q)/pi_win runs 4-5% low for mid/large gears (z~-30
+  at y=50021) - pure member-size geometry (gear q's lone composites live only in
+  (q*y, y^2)). Size-corrected form with 1/ln(m) weights,
+  frag(q) = 2*tw*((q-1)/(q-2))*S1w(q)/piw, S1w = sum 1/ln m over lone-q members,
+  piw = sum 1/ln m over window primes, is exact to 2e-4 aggregate and Poisson-
+  clean in EVERY gear band at y=10007 and 50021 (all |z| <= 1.4; top-1% band
+  1.0055, z=0.07). The necessity-scale tail (S1(q)=O(1), top gears) obeys the
+  same law - no twin- or necessity-specific structure anywhere in the fragile
+  census. Gear 50021 owns exactly its square pseudo-twin (50021^2-2 prime).
+- Prefix censuses (150 windows, 25 per decade 1e3..1e8, first 200 slots, exact):
+  first DOUBLE at slot 2.4-3.7 mean, max 9, y-independent; first twin above y at
+  ~ln^2 scale (mean 6.6 -> 37 over five decades). Margin N-P never below -1
+  anywhere; negative only at t <= 4 for y >= 1e4 (boundary twin at slot 1-2);
+  for t in [5,200] margin >= 0 in 125/125 windows y >= 1e4, min reached by
+  t <= 11, then climbs ~linearly to 70-133 at t=200.
+- Strategic identity for C2: margin < 0 forces n0 > 0, so every prefix-pigeonhole
+  refutation of X is a nonconstructive twin-existence proof; measured reach ends
+  by slot ~4 (y >= 1e4). Raw prime counting cannot bite the bottom band beyond
+  the first few slots. Sharper hook consistent with our data: under X, zero-slack
+  forces P(t) = t exactly for every t below the first double slot - so ANY
+  proved lower bound L on double onset pins the first L-1 slots to exactly one
+  prime each; the real windows violate "exactly one prime per slot" almost
+  immediately (twin at slot <= 2 in most windows, else early 0-prime slots).
+
 ## Formalist round 1 (2026-08-18)
 The HORIZON THEOREM is now kernel-checked: proofs/Horizon.lean (namespace `Horizon`,
 mathlib-only imports, builds in the lake project alongside BlockedSlots, zero sorry,
@@ -152,3 +184,92 @@ Note the STRICT bound p < y: this is sharper than BlockedSlots.survivor_iff_twin
 formalising "the top gear's unique acts are boundary only" for the open interior.
 Composable by anyone: import Horizon. Next target: layer law's arithmetic core
 (novelty = {y^2} ∪ {y*c}), a minFac-characterisation argument on the same machinery.
+
+## Formalist round 2 (2026-08-18)
+The LAYER LAW's arithmetic core and the SLOT-CAP LEMMA are now kernel-checked:
+proofs/Layer.lean (namespace `Layer`, mathlib-only, registered in lakefile, zero sorry,
+standard axioms only via AxiomCheck.lean; slot_cap needs only [propext, Quot.sound]).
+- `Layer.slot_cap`: for q ≥ 3, ¬(q ∣ m ∧ q ∣ m+2) — no gear blocks both members of a
+  slot (it would divide 2). The constructor ledger's overlap-free floor, now formal.
+- `Layer.minFac_lt_or_eq`: no prime strictly in (y, y'), m composite, m < y'² →
+  lpf(m) < y ∨ lpf(m) = y.
+- `Layer.eq_mul_prime_of_minFac_eq`: lpf(m) = y, y² < m < y³ → m = y·c with c PRIME,
+  y < c (strongest form — c prime, not just lpf(c) ≥ y; no Bertrand used).
+- `Layer.layer_novelty` (the composite law): no prime in (y, y'), thin layer y'² ≤ y³
+  (holds for consecutive primes from y = 3, caller discharges it), m composite,
+  y² < m < y'² → (∃ p prime < y, p ∣ m) ∨ (m = y·c, c prime, c > y). I.e. one layer's
+  composite novelty is exactly {y²} ∪ {y·c : c prime} — boundary point excluded by the
+  open bounds, so this + Horizon covers the whole ladder of windows.
+The gap hypothesis is phrased identically to BlockedSlots.survivor_step's (∀ q, q.Prime
+→ y < q → q < y' → False): the three files compose with no adapters. Next target:
+zero-slack/supply identity sum_q R(q) = 2N − P as a Finset partition (slot_cap + lpf
+attribution are its two legs, both now kernel-checked); alternative: h(2) ≥ d.
+
+## Constructor round 2 (2026-08-18)
+Tools: research/double_onset.py; full derivation in docs/proof-search/constructor.md
+sections 7-10. Executed the manager's steering: onset law priority, descent capped.
+- ROOTS-OF-UNITY LAW (Lateral's pinning made an iff, verified both directions on the
+  full y=47 window): slot k is hit by gear pair {q,q'} iff 36k^2 = 1 mod qq'; trivial
+  roots +-1 = same-member (semiprime-multiple) slots, nontrivial roots +-r
+  (r = CRT(+1 mod q, -1 mod q')) = cross-member. So a slot is DOUBLE iff 6k lands on a
+  nontrivial root of unity mod some active semiprime. Doubles are one fixed subset of N
+  (zero freedom); prefix double censuses need semiprime arithmetic only, no primality
+  tests (offered to Mechanic). Twin-pair gears recover r = p+1, Lateral's classes.
+- DOUBLE-ONSET LAW: L0(y) = first-double lag from window start. Unconditionally n2 = 0
+  on the first L0 slots; under X that prefix must be PERFECTLY fragile (exactly one
+  prime per slot, primes at average gap exactly 6). Unconditional cap via
+  Montgomery-Vaughan Brun-Titchmarsh (named, exact): L0(y) <= L* = 27129 for EVERY y
+  (ln(6L+2) <= 12 + 4/L; 6L*+2 = 162776 vs e^12 = 162755). No window anywhere opens
+  with more than 27129 prime-containing slots.
+- Measured (442 windows, y <= 3163): max L0 = 17 (y=13), collapsing; L0 = 0 in 153/442.
+- CLOSURE (decisive, recorded): the onset route alone cannot kill X. The fact that
+  would contradict the forced alternation is pi(y+H) - pi(y) >= H/6 + 1, H = 6L0+2
+  (superdense short-interval bound, Hensley-Richards strength - named, NOT assumed),
+  and as a universal statement at onset scale it is FALSE: 310/442 real windows have a
+  twin-free onset prefix, i.e. X's forced alternation is actually realised there. The
+  contradiction must be CUMULATIVE - C2 margins over prefixes spanning several onset
+  events (round 1's violations end at member ~283, past first double k=20). Redirect.
+- DESCENT (one page, per caution): exact step - X at y => every layer band
+  (y'^2, y''^2) above y is twin-free. Unproven input in one sentence: "every window
+  has a twin in its top c-fraction" = Reduction A with a constant (named, not assumed).
+  LAYER-LAW WEAKENING identified: the bands tile (y, y^2), so the induction needs only
+  "SOME single layer band above y contains a twin" - an interval of length ~2y'g(y')
+  at its own machine's horizon, layer scale not window scale, where the layer law
+  leaves twinhood to gears <= y' plus a <=3-element exception list. Still bounded-gap
+  strength. Measured slack: band/stride ratio 2.2 (y'=97) -> 231 (y'=9973). Stopped.
+- For Formalist: slot-cap lemma (q|6k-1 & q|6k+1 => q|2) and the roots-of-unity iff
+  are two-line kernel candidates on the BlockedSlots machinery.
+
+## Lateral round 2 (2026-08-18) - anomaly closed into identities; extremality refuted
+Tool: research/overcount_census.py. Full derivation: docs/proof-search/lateral.md round 2.
+- The z=+6.1/z=-5.9 anomaly is now a THEOREM (difference of two exact formulas):
+  (i) Real overcount/lone are a pure divisor census, verified EXACTLY equal to the
+      window array (marks 6127, overcount 335, survivors 54208, lone 5465):
+      overcount = SAME + B, SAME = sum over members of (omega_G - 1) = semiprime
+      census (= 190, one per gear pair: every qq' <= 6K+1 lands exactly once as a
+      member; higher multiples never == +-1 mod 6 in range; triples out of range),
+      B = 145 slots with both members gearful (10 = twin own-slot pins; 135 at the
+      Bezout representatives of q'b - qa = +-2). Multiplicity census {1:5465,
+      2:319, 3:8}.
+  (ii) Random-phase side needs NO simulation: P(q kills k) = 2/(q-1) exactly,
+      independent across gears, giving closed forms E[marks] = sum (K-floor(K/q))
+      *2/(q-1) = 6126.22, E[overcount] = 287.13, E[lone] = 5560.57; Monte Carlo
+      agrees at |z| < 1 on all metrics.
+  Anomaly = 335 - 287.13 = +47.87 and 5465 - 5560.57 = -95.57; the lone deficit
+  closes by the same accounting (Delta_lone = Delta_distinct - Delta_multi =
+  -47.09 - 48.48): the ~48 deterministic coincidences are counted once as lost
+  distinct slots, once as gained multi slots. One cause, two faces. Formalist
+  note: the census identity is "kills = divisibility" bookkeeping, mechanisable.
+- EXTREMALITY REFUTED (exact full enumeration, no sampling): the real phase
+  vector +-u' is merely HIGH on waste metrics (top 10-25%), never extremal:
+  argmax/argmin only in the degenerate {5,7} mirror space (6 configs); in the
+  full 2-teeth space of {5,7,11} (11550 configs) it ranks 1716th on overcount,
+  2536th on lone; {5,7,11,13} mirror space rank 18/180. Window sweep: argmax at
+  2 of 7 window lengths only. No variational handle exists; "special point of
+  phase space" = "the census is deterministic", nothing stronger.
+- Only non-formula piece left in overcount: B's positions (Bezout reps of
+  q'b - qa = +-2; gap-2 pairs pin at u', larger gaps scatter). Candidate next:
+  gap-graded closed form for split positions -> complete overcount formula at any
+  scale, linking sqrt-scale prime gaps to the higher window's ledger; or hand the
+  exact addresses of the 145 split + 8 triple slots to the constructor's
+  bottom-band push.

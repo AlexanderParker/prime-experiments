@@ -117,3 +117,87 @@ minimise some coverage functional, that is a variational handle the straight-ahe
 workstreams don't have. Secondary: the joint-necessity slots (p(p+2)+2 prime)
 connect twin gears to the necessity law - census whether twin pairs are jointly
 necessary more or less often than generic pairs.
+
+## Round 2 (2026-08-18): the anomaly closed into identities; extremality refuted
+
+Steering taken: close the z = +6.1 / z = -5.9 anomaly before any grand probe.
+Tool: `research/overcount_census.py` (imports round-1 tooth_sharing.py). Setting as
+round 1: 20 gears (10 twin pairs 269..601), window [1, K], K = 60000, V = 6K+1.
+
+### A. The anomaly is a theorem (two exact formulas)
+
+**Real side - overcount and lone are a pure divisor census.** With
+cnt(k) = omega_G(6k-1) + omega_G(6k+1) (omega_G = # gears dividing a member):
+
+    overcount = SAME + B
+    SAME = sum over members v <= V of (omega_G(v) - 1)   [semiprime census]
+    B    = # slots with BOTH members gearful             [split census]
+
+Checked against the window array: marks 6127, overcount 335, survivors 54208,
+lone 5465 - **all four EXACT matches** (identity, not estimate). Decomposition:
+
+- SAME = 190 = exactly the number of gear pairs {q,q'}: every product qq' <= 6K+1
+  = 360001 (max 599*601 = 359999 - the window is precisely big enough), each lands
+  exactly once as a member (multiples 2..4 of qq' are never == +-1 mod 6; 5qq' > V).
+  Triple products >> V, so no higher terms. Fully deterministic.
+- B = 145 split slots, of which 10 are the twin own-slots u'(p) (the round-1 pins);
+  the other 135 sit at the Bezout representatives of q'b - qa = +-2, position
+  governed by the pair gap (gap 2 -> pinned at u'; larger gaps -> scattered).
+- kill-multiplicity distribution over killed slots: {1: 5465, 2: 319, 3: 8}.
+
+**Random side - closed form, no simulation.** For phases v uniform on
+[1,(q-1)/2] independent: exactly one v hits any k with q not dividing k, so
+P(q kills k) = 2/(q-1), independent across gears. Hence exact expectations
+(k <= K < any qq', so k has at most one gear divisor - shield handling exact):
+
+    E[marks]     = sum_q (K - floor(K/q)) * 2/(q-1)              = 6126.22
+    E[distinct]  = sum_k 1 - prod_{q not|k} (1 - 2/(q-1))         (formula)
+    E[overcount] = E[marks] - E[distinct]                        = 287.13
+    E[lone]      = sum_k sum_q p_q prod_{q'!=q} (1-p_q')         = 5560.57
+
+Monte Carlo (200 draws): all four metrics agree with the formulas at |z| < 1.
+
+**The anomaly, closed:** real - E[random] = 335 - 287.13 = **+47.87** overcount
+and 5465 - 5560.57 = **-95.57** lone. Both are now differences of formulas. The
+lone deficit closes by the same accounting, as predicted: Delta_lone =
+Delta_distinct - Delta_multi = -47.09 - 48.48 = -95.57 - the ~48 deterministic
+coincidences (190 semiprimes + 145 Bezout splits vs ~287 expected) are counted
+once as lost distinct slots and once as gained multi slots. One cause, two faces,
+zero mystery. (E[marks] = real marks to 0.9: the 2/(q-1) formula collapses to
+2K/q, so the phase randomisation preserves supply exactly - the anomaly was
+always pure position.)
+
+### B. Extremality: refuted by exact enumeration
+
+Full phase-space enumeration (every configuration, no sampling), real vector
+ranked on overcount (want argmax), lone (argmin), survivors, max stride:
+
+| machine | space | configs | overcount | lone | survivors | maxstride |
+|---|---|---|---|---|---|---|
+| {5,7}, K=8 | mirror +-v | 6 | **ARGMAX** | **ARGMIN** | **ARGMAX** | rank 5/6 |
+| {5,7}, K=8 | full 2-teeth | 210 | rank 3 | rank 14 | rank 20 | rank 153 |
+| {5,7,11}, K=20 | mirror | 30 | rank 3 | rank 5 | rank 5 | rank 9 |
+| {5,7,11}, K=20 | full | 11550 | rank 1716 | rank 2536 | rank 3886 | rank 2748 |
+| {5,7,11,13}, K=28 | mirror | 180 | rank 18 | rank 20 | rank 12 | rank 119 |
+
+Window sweep ({5,7,11}, mirror, K = 10..40): real is argmax overcount at K = 10
+and K = 35 only; at the machine's own window K = 20 it is 5 vs max 6.
+
+**Verdict: the real phase vector is merely high (top 10-25% on waste metrics),
+never extremal beyond the degenerate 2-gear mirror space.** There is no
+variational characterisation of the machine's phases to exploit; the "special
+point of phase space" language from round 1 should be read as "the census is
+deterministic", nothing stronger. Grand extremality probe cancelled - it would
+have found nothing the census identities don't already say.
+
+### Proposed next chunk
+
+The only non-formula ingredient left in the overcount is B's positions: split
+slots sit at Bezout representatives of q'b - qa = +-2, and gap 2 pins them at u'
+(round 1). Candidate law: a gap-graded closed form for split-slot positions
+(gap 4, gap 6, ...), which would make in-window overcount a complete formula at
+any scale - and connects the GEAR GAP DISTRIBUTION to coverage, i.e. the prime
+gaps at scale sqrt(N) feeding the ledger at scale N through the machine's own
+laws. Alternatively, redirect to support the constructor's bottom-band target:
+the 8 triple-kill slots and 145 split slots all have exact addresses now - check
+where they sit relative to the bottom band.

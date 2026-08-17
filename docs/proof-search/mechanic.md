@@ -107,3 +107,107 @@ its growth law.
   consistency. Fragile classification itself does not clip the top slot's
   member y^2+2; effect is O(1) per window.
 - The lnln fit coefficients (3.01, -4.48) are fits; the constant 2 is not.
+
+## Round 2 - per-gear closed form + prefix censuses (2026-08-18)
+
+### Part 1: per-gear fragile counts vs the closed form
+
+Script: `research/fragile_pergear.py` (same sieve, per-gear accumulation via
+bincount; y=50021 in 84s). Two predictions tested per gear q:
+
+    pred1(q) = 2*tw * ((q-1)/(q-2)) * S1(q)/pi_win          (raw counts)
+    pred2(q) = 2*tw * ((q-1)/(q-2)) * S1w(q)/piw            (size-corrected)
+
+where S1w(q) = sum of 1/ln(m) over lone-q members and piw = sum of 1/ln(m)
+over degree-0 prime members - i.e. the partner-prime probability is taken
+~ c/ln(m) per member instead of one window-wide average. Semi variant used.
+
+Results (obs/pred by gear-rank band; z = (obs-pred)/sqrt(pred)):
+
+    y=10007 (1228 gears)          obs/pred1    z1     obs/pred2    z2
+      rank 0-50%                   0.9937    -8.64     1.0002     0.26
+      rank 50-90%                  0.9523    -9.91     1.0018     0.36
+      rank 90-99%                  0.9551    -1.56     1.0159     0.54
+      rank 99-100%                 1.4477     1.86     1.5427     2.18
+    y=50021 (5132 gears)
+      rank 0-50%                   0.9963   -22.13     1.0002     1.32
+      rank 50-90%                  0.9604   -31.72     1.0015     1.19
+      rank 90-99%                  0.9459    -7.26     0.9955    -0.59
+      rank 99-100%                 0.9539    -0.64     1.0055     0.07
+
+Findings:
+- The raw law has a real systematic: mid/large gears run 4-5% BELOW pred1
+  (z ~ -30 at 50021). Cause identified and confirmed: member-size geometry.
+  Gear q's lone composites live only in (q*y, y^2), where 1/ln(m) is below
+  the average the twins imply; small gears' members spread like the primes.
+  The 1/ln(m)-weighted pred2 removes the whole deficit: every band lands at
+  1.000-1.016 at 10007 and 0.996-1.006 at 50021, |z| <= 1.4.
+- Rare-event tail: the top-1% band excess seen at 10007 (1.54, z=2.2, 25
+  events) does NOT persist at 50021 (1.0055, z=0.07, 186 events) -
+  fluctuation. Individual top-10 gears: all |z2| <= 2.5 with counts 0-3
+  matching pred2 ~ 0.1-1.7. The constant-2 regime holds where necessity
+  events are rare; no twin-specific or necessity-specific structure appears
+  even at the top-gear scale. Gear 50021 itself: S1=1 (its square), obs=1 -
+  50021^2-2 is prime, the square-gate pseudo-twin, within its Bernoulli law.
+- Upgraded law statement (measured, zero free parameters):
+  frag(q) = 2*tw*((q-1)/(q-2))*S1w(q)/piw, exact to 2e-4 in aggregate and
+  to band-level Poisson noise everywhere, y=10007 and 50021.
+
+### Part 2: prefix censuses at the window bottom (for the Constructor)
+
+Script: `research/prefix_census.py`; data: `research/data/prefix_census.csv`
+(2400 rows: y ladder 101..100000007, t = 1..200, columns
+y,t,k,member_lo,P,n0,n1,n2,margin with margin = t - P(t) = n2 - n0).
+Primality by deterministic Miller-Rabin, so any 64-bit y is affordable
+(only the first 200 slots are touched). Convention: P counts the member
+equal to y itself as prime - open-interval users adjust slot 1 by -1.
+
+Ladder summary (T=200):
+
+    y          1st_dbl  1st_twin>y  minMargin  lastNeg  margin(200)
+    101           4         2          -5        99         14
+    503           3         4           0         0         29
+    1009          4         3          -1        11         40
+    10007         2         6          -1         1         73
+    100003        2        26           0         0        100
+    1000003       2         7           0         0        107
+    10000019      2        21           0         0        129
+    100000007     2         6           0         0        133
+
+Statistics over 25 windows per decade (150 windows, T=200):
+
+    decade   dbl_mean  dbl_max  tw>y_mean  tw>y_max  minM_min  lastNeg_max
+    1e3        3.68       9        6.60       14        -1         11
+    1e4        3.04       7       10.84       23        -1          4
+    1e5        2.48       4       19.92       36        -1          1
+    1e6        2.40       5       13.36       30        -1          2
+    1e7        2.36       4       29.72       53        -1          2
+    1e8        2.64       6       37.16       73        -1          2
+
+Deep prefix t in [5, 200]: margin never negative for y >= 1e4 (125/125
+windows; 9/25 negative at 1e3), touches 0 in ~11% of windows, and the
+minimum is always achieved by t <= 11 - after which the margin climbs
+roughly linearly (margin(200) ~ 14 at y=101 up to 133 at 1e8).
+
+Readings for the bottom-band attack:
+- Onset asymmetry is total: first double arrives at slot ~2-4 (max 9 in 150
+  windows, no growth with y), first twin above y at ~ln^2 scale (mean 6.6 ->
+  37 across five decades). Doubles outpace twins from the very bottom in
+  reality.
+- Identity worth stating: margin(t) < 0 forces n0(t) > 0 (margin = n2 - n0).
+  So a C2/prefix-pigeonhole refutation of X is ALWAYS a nonconstructive
+  twin-existence proof, and the data localises its reach: negativity only at
+  t <= 4 for y >= 1e4 (boundary twin at slot 1-2), never in t >= 5. Raw
+  prime counting cannot bite the bottom band beyond the first handful of
+  slots - the Constructor's onset law needs a sharper invariant, e.g. the
+  forced identity P(t) = t for all t below the first double under X
+  (zero-slack: any early slot with 0 or 2 primes breaks X immediately if a
+  double provably cannot appear before slot L > that t).
+
+### Caveats
+
+- 150 + 12 windows sampled for prefixes; "never negative for t >= 5" is a
+  measured regularity on those, not a law. Poisson fluctuations of P over
+  200 slots (~sd 5-7) make occasional future dips plausible near 1e3-1e4.
+- Per-gear bands use gear RANK (percentile of the gear list), matching
+  round 1's decile convention.
