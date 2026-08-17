@@ -1,18 +1,158 @@
-# Twin primes via the blocked-slot machine: handover
+# Twin primes: full research handover
 
-Written for a reader who will attempt the remaining abstract proof, and who should verify rather than trust
-what follows. Everything below is either proved, computationally verified at the stated scale, or explicitly
-flagged as refuted. The refutations in section 6 are mathematical dead ends with counterexamples attached, and
-they are load-bearing: seventeen plausible claims were recorded and then killed here, several by their own next
-data point. Implementation defects found and fixed along the way are deliberately omitted - they are not part
-of the mathematics and would only add noise.
+Written for a reader who will attempt the remaining abstract proof, and who should verify rather than trust what
+follows, and form their own view of which reduction to attack.
+
+**Read section 2 before section 1.** Section 1 states the reductions this programme arrived at *most recently*;
+they are the latest line of enquiry, not a settled thesis, and presenting them first risks anchoring. Section 2
+is the full inventory of lines explored, in the order they were explored, with what each produced and where each
+stopped - several were abandoned while still live, and at least two were abandoned for reasons later shown to be
+wrong. The intended use of this document is that you re-derive from section 0 and section 2 and decide for
+yourself what the target statement should be.
+
+The model here has no settled name; "gears" and "machine" are used throughout as the working vocabulary, defined
+in section 0.
+
+Everything below is either proved, computationally verified at the stated scale, or explicitly flagged as
+refuted. The refutations in section 6 are mathematical dead ends with counterexamples attached, and they are
+load-bearing: seventeen plausible claims were recorded and then killed here, several by their own next data
+point. Implementation defects found and fixed along the way are deliberately omitted - they are not part of the
+mathematics and would only add noise.
 
 Notation throughout: `q` ranges over odd primes, `y` is the gear bound, `P(y) = prod_{3<=q<=y} q`,
 `d = prod (1 - 2/q)`, `A = prod (q-2)`.
 
 ---
 
-## 1. The core thesis
+## 0. The mechanical model: gears, teeth, and the machines investigated
+
+The whole programme is built on one physical picture, and the formal statements later are all shadows of it.
+This section is the vocabulary; nothing here is optional for reading the rest.
+
+### 0.1 The machine
+
+Each odd prime `q` is a **gear** of circumference `q`, turning at the same rate as every other gear. All gears
+exist simultaneously - the machine is fully constructed, not assembled as you walk - and each one, **per
+rotation, blocks exactly one position; every other position of that rotation is open.** This framing matters:
+the object of study is the *openings*, not the blocks. Asking "what blocks slot `n`" recovers trial division
+and nothing more; asking "what configuration of gears leaves a slot open" is the productive question, and it is
+the one every result below answers.
+
+Gears 2 and 3 together make a **6-cycle**. In it, only the residues `1` and `5 mod 6` can host a prime above
+3, so the machine presents candidate slots in adjacent pairs `(6k-1, 6k+1)`. A twin pair is such a pair with
+both members open to every gear. The base 6-cycle is the fastest thing in the machine: **every gear and every
+combination of gears walks it at exactly `+-1` per rotation** (item 2 of section 3), so the `1, 5` slots keep
+being presented at the maximum rate and later gears can only sample them.
+
+### 0.2 Teeth, roles, arcs
+
+Move to the **pair index** `k`, where slot `k` denotes the pair `(6k-1, 6k+1)`. Gear `q >= 5` divides one
+member exactly when `6k = +-1 mod q`, that is
+
+    k = +- 6^{-1} mod q.
+
+So in pair-index space a gear presents **two teeth**, at `+u_q` and `-u_q` with `u_q = 6^{-1} mod q`. This is
+*derived*, not a second block: the gear still blocks once per rotation, but the two rotations `j = +-1 mod 6`
+are the ones whose block lands on a candidate slot. Tooth separation is `2u_q = 2 * 6^{-1} = 3^{-1} mod q`,
+concretely `(q+1)/3` or `(q-1)/3`. The `+-` symmetry is forced by `6 * 6^{-1} = 1`.
+
+Relative to gear `q`, every pair index has exactly one of three **roles**:
+
+    killer   k = +- u_q mod q      2 of q residues   one member divisible by q
+    shield   q | k                 1 of q residues   q divides the midpoint, so neither member
+    miss     everything else       q - 3 residues    q lands elsewhere in the rotation
+
+That is the **tooth budget**: one shield, two killers, `q-3` misses, universal in every gear. Between the two
+teeth the gear leaves two **arcs** of open slots, of lengths `q - 2u_q - 1` (about `2q/3`) and `2u_q - 1`
+(about `q/3`), and the short arc is centred exactly on the shield.
+
+### 0.3 Slip, sub-machines, and the turn law
+
+Two distinct things were both called **slip** and must be kept apart. *Cycle slip* is `|P - Q|` between two
+periods, the user's original sense - how far two cycles drift per revolution. *Machine slip* is `P mod q`, the
+phase a composite machine of period `P` presents to a new gear `q`. The second is what composes.
+
+A **sub-machine** is any subset `S` of gears, with period `P = prod_{q in S} q` and an exposed set that is a
+union of complete residue classes mod `P`. Sub-machines compose by CRT, and the composition is governed by the
+**turn law**: adding gear `q` to a machine of period `P`, an open class `k_0` spawns `q` daughter classes
+`k_0 + jP`, of which **exactly two are struck** - at
+
+    t = (+- u_q - k_0) * P^{-1} mod q
+
+- and `q - 2` survive. Iterating the turn law is exactly the `prod (q-2)` survivor count, and it is the
+mechanism behind the generating polynomial `prod (q - 2 + 2x)` of item 11.
+
+Every gear also blocks itself, in a precise sense: the **lower tooth of gear `q` is the index of the pair
+containing `q`**, and twin gears share their lower tooth (item 5). So the machine's own components sit at
+identifiable teeth, which is why the certified window has a square-root shape - a gear can only decide slots
+below its square.
+
+### 0.4 The window: why any of this terminates
+
+Slot `k` is *certified* by the gears up to `y` precisely when `6k + 1 <= y^2`, since a surviving composite
+would need a prime factor above `y`. Inside that window, exposure to all gears `<= y` and genuine twinhood are
+the same thing - the **window identity** `survivors(y,K) = T(6K+1) - T(y)`, exact and verified from `y = 11` to
+`1009` (item 6). Outside it they diverge. This is the entire reason the problem is finite-dimensional at each
+scale: **a bound on how far apart consecutive openings can be, compared against the window `(y, y^2]`, settles
+the conjecture.** That comparison is the core thesis of section 1.
+
+### 0.5 The machines investigated, and how they relate
+
+Six coordinate systems were built and cross-checked. Confusing two of them cost real time mid-session, so the
+relations are stated explicitly.
+
+1. **`n`-space.** Positions are integers; gear `q` blocks its multiples, one per rotation. Base gears 2 and 3
+   leave `n = +-1 mod 6`. Good for the closed-form next-twin method and for intuition; poor for counting,
+   because the twin condition is a pair condition.
+2. **Pair-index (`k`) space - the real frame.** Slot `k` is the pair `(6k-1, 6k+1)`; gear `q >= 5` blocks two
+   residues `+- 6^{-1} mod q`, separation `3^{-1} mod q`; **gear 3 is inert**, since `6k +- 1` is never
+   divisible by 3. This is where the conjecture actually lives, and `F_k(y)` is its maximum gap.
+3. **The adjacent (halved) frame.** Every odd prime, gear 3 included, blocks the adjacent pair
+   `{o, o+1} mod q`. This is the frame of `maxgap.rs`, `coverbound.rs`, `holegap.rs` and `hazard.py`, chosen
+   because "two adjacent residues" makes the covering search uniform across gears.
+   **Relation to frame 2, exactly:** gear 3 blocks one of any two adjacent positions, so it confines the
+   exposed set to a single class mod 3; rescaling that class by `3` leaves each gear `q >= 5` blocking two
+   residues separated by `3^{-1} mod q` - which *is* the pair-index separation, since `2 * 6^{-1} = 1/3`. So
+   the adjacent frame with gear 3 **is** the pair-index machine, scaled by 3. Hence `F(2,y) = 3 F_k(y)` and
+   `F2_adjacent = 3 F2_k`, verified for seven and six gear sets respectively. Lengths in the older documents
+   are adjacent-frame; divide by 3 for `k`-space.
+4. **The separation family.** Generalise: gear `q` blocks two residues at arbitrary separation `s_q`. Frame 3
+   is `s_q = 1`, frame 2 is `s_q = 3^{-1}`. `F` depends on the separation vector, which is why results proved
+   "for any separations" are stronger and why one refutation (item 3 of section 6) is stated with an explicit
+   separation vector `(1,3,3,3,3,3)`.
+5. **Cofactor reindexing.** Index by the cofactor `P/q` rather than by `q`. Blocks then correspond to gears,
+   the phase slope of a block is the gear's own step, and the same square-root threshold appears from both
+   sides. Useful as a duality check; it did not yield a bound.
+6. **The frequency domain.** The indicator of the exposed set has an exactly factorised spectrum
+   `Ehat(k) = prod_q ehat_q(k t_q mod q)` (item 12), agreeing with a direct FFT to `1.1e-16`. Every gear
+   contributes a beat. **Truncation is not available**: the `L1` norm grows about `2.06` per gear, so a single
+   low-energy beat still closes a slot, and discarding it loses exactness rather than precision.
+
+A seventh view, the **offset-vector or covering view** - choose an offset per gear and ask which runs can be
+covered - turned out not to be a separate machine at all. By CRT it is frame 3 with a single translation
+parameter (item 17); the apparent design freedom is illusory.
+
+### 0.6 Validator versus constructor
+
+Two kinds of result are available and should not be confused.
+
+A **validator** decides whether a given slot is a twin: the gcd form `gcd(36m^2 - 1, primorial(sqrt(6m+1))) = 1`
+(item 10), the order form (gear `q` threatens iff `ord_q(6m) <= 2`), and the unit-group form (two units of
+`U(P(y))` differing by 2 inside the first `y^2` residues). These are exact but say nothing about *where* the
+next twin is.
+
+A **constructor** produces the next twin without walking: each gear's distance to its next tooth is
+`min((u_q - m) mod q, (-u_q - m) mod q)`, and the minimum over gears is the distance to the next bite. This
+runs to `k = 10^16` and is, as far as this programme established, new. What it does **not** do is bound its own
+output - the bite distance is computed, not bounded - and that gap between constructing and bounding is
+precisely the open problem. Section 5 is the account of why every attempt to bound it has failed.
+
+---
+
+## 1. The target, and the reductions arrived at most recently
+
+The target is the twin prime conjecture. What follows is the *latest* reduction line, reached in the final
+stretch of work; section 2 lists the others. Treat it as one candidate framing among several, not as settled.
 
 **Two coordinate systems, one problem.**
 
@@ -28,7 +168,7 @@ confines the exposed set to one class mod 3.
 all of them and `6k+1 <= y^2`. Slot `k = 0` is exposed for every gear set, and gaps are at most `F_k(y)`, so an
 exposed slot exists in `(y/6, y/6 + F_k(y)]`. Therefore:
 
-> **CORE THESIS.** The twin prime conjecture follows from
+> **REDUCTION A.** The twin prime conjecture follows from
 >
 >     F_k(y) <= (y^2 - y)/6      for all sufficiently large y.
 
@@ -46,13 +186,11 @@ freedom to exploit - see item 17. Any proof must bound the maximum gap of this o
     ratio 0.714  0.382  0.423  0.397  0.439  0.403  0.318  0.374  0.396  0.333  0.342
 
 The requirement holds with a factor of roughly 2.5 and the ratio is flat, not climbing. So the truth of the
-thesis is not in doubt numerically; only the proof is missing.
+statement is not in doubt numerically; only the proof is missing.
 
----
+### 1.1 Four interchangeable forms of Reduction A
 
-## 2. Equivalent formulations of the open bound
-
-All four are interchangeable; different attacks prefer different ones.
+All four are equivalent; different attacks prefer different ones.
 
 **(a) Direct.** `F_k(y) <= (y^2-y)/6`.
 
@@ -83,6 +221,146 @@ false at `y = 3, 5, 7`), and the thesis then follows from any proved
 
 So **`C <= 1.8` suffices for all `y >= 29`**, with smaller `y` checked directly. Measured `C` peaks at
 **1.354** at `y = 37` and is not monotone.
+
+---
+
+## 2. Lines of research explored, and what each produced
+
+In roughly the order explored. Status is one of **live** (abandoned while still viable, or still viable now),
+**closed** (refuted or shown to have no reach), **absorbed** (superseded by something strictly stronger), or
+**standing** (a proved result now used everywhere). Several closures were themselves later corrected, and those
+are marked - a closed route with a corrected reason may deserve reopening.
+
+**2.1 Slip algebra: periods and relative slips.** The founding question. Rather than turning the gears, use only
+their periods and *relative slips* - gear 2 slips against gear 3 by 1 per 2-cycle, and so on - and ask
+deterministically, with set algebra or a tree, when the `1` and `5` slots are simultaneously free. Produced the
+distinction between *cycle slip* `|P - Q|` and *machine slip* `P mod q` (section 0.3), the **turn law** in
+closed form, and CRT composition of sub-machines. **Standing.** The turn law underlies every later counting
+result. Artefact: `research/slip_algebra.py`.
+
+**2.2 Blocking positions, then the inverse: open slots.** The first pass asked which gear positions *block* the
+`1, 5` slots. That was the wrong direction and was corrected repeatedly: **the object of study is the openings.**
+The reframe was made concrete by aligning every gear so its block falls at the end of its cycle - gear 2 open at
+1 blocked at 2, gear 3 open at 1-2 blocked at 3, gear 5 open at 1-4 blocked at 5 - so all slips start at offset
+0, and then asking what *opens* `1` and `5` rather than what shuts them. Produced the role trichotomy
+killer/shield/miss, the **tooth budget** (one shield, two killers, `q-3` misses), the **arc structure** with the
+short arc centred on the shield, and the one-kill lemma. **Standing**, and the framing of everything after.
+Artefacts: `research/open_runs.py`, `research/exposure.py`, `research/exposure_rotations.py`.
+
+**2.3 Self-blocking and the square-root tower.** Each gear sits at an identifiable tooth of its own machine: the
+lower tooth of gear `q` is the index of the pair containing `q`, and twin gears share it. Led to the **window
+identity** `survivors(y,K) = T(6K+1) - T(y)` and the banded square-root tower. **Standing** - this is what makes
+the problem finite-dimensional at each scale and defines the window `(y, y^2]`. Artefact:
+`research/self_blocking.py`.
+
+**2.4 Exposure-window relationship tables.** Built at the explicit request to do the hard tabular work rather
+than reach for shortcuts: for every gear, its exposure windows and their relation to every other gear and to the
+`1, 5` slots. Table A gave each window and the slot it attacks; Table B found **pairwise coincidence is always
+exactly 4**; Table C derived the run count. Also produced a localisation rule that was then refuted. **Closed as
+a route** - pairwise data is not enough - but the tables are correct and reusable. Artefact:
+`research/exposure_tables.py`.
+
+**2.5 n-wise windows beyond pairwise.** Pairwise being insufficient, the natural next step was the full `n`-wise
+lattice of window intersections against the 6-cycle. Produced the **generating polynomial** `prod (q - 2 + 2x)`,
+whose `x^j` coefficient counts slots threatened by exactly `j` gears and whose evaluations reproduce every
+alignment law as a single substitution. **Standing** as machinery. Artefacts: `research/nwise.py`,
+`research/alignment.py`.
+
+**2.6 Phase.** Pursued on the instinct that the answer is in the phase relationships. Produced an exact but weak
+floor from the small-gear phase, and identified the one structure that would have related phases across scales -
+which **dies exactly at the square root**, the same threshold as the window. **Closed**, and the reason it closes
+is informative: the phase relation and the certification window fail at the same place, which is not a
+coincidence. Artefact: `research/phase.py`.
+
+**2.7 Cofactor reindexing.** Reindex by the cofactor `P/q` instead of by `q`. Blocks then correspond to gears,
+the phase slope of a block is the gear's own step, and the same square-root threshold appears from both
+directions - a genuine duality. **Closed** as a source of bounds; useful as a consistency check. Artefact:
+`research/closed_form.py` and section 34 of `twin-prime-program.md`.
+
+**2.8 Frequency-space and phase analysis.** Pursued on the observation that a phase relationship in the
+signal-processing sense arises when signals share a frequency, that an FFT moves time to frequency, and that
+beats should appear as overtones. This turned out to be exactly right structurally: the indicator of the exposed
+set has an **exactly factorised spectrum** `Ehat(k) = prod_q ehat_q(k t_q mod q)`, matching a direct FFT to
+`1.1e-16`. Low-order truncation localises the pattern beautifully - and is **forbidden**: the `L1` norm grows
+about `2.06` per gear, so a single low-energy beat still closes a slot, and dropping it loses exactness rather
+than precision. That was tested directly at the insistence that low-energy beats not be discarded, and the
+insistence was correct. A full-fidelity spectral pipeline was then built with nothing discarded; it works, and
+its cost is the reason it is not a shortcut. **Live**, in the specific sense of pathway 7.2 below: correlations
+are spectral, `C(g) = P sum_k |Ehat(k)|^2 omega^{kg}` with `|Ehat|^2` factorising exactly, and the gap counts are
+alternating sums of correlations. **Closed** as a localisation shortcut. Artefacts: `research/spectrum.py`,
+`research/full_spectrum.py`.
+
+**2.9 The constructor, and the closed-form next twin.** An openings-driven generator: from a known twin, compute
+each gear's distance to its next tooth as `min((u_q - m) mod q, (-u_q - m) mod q)`, take the minimum, and jump.
+Produced a **closed-form next-twin method with no walking**, verified to `k = 10^16` (192 s down to 0.081 s), plus
+bulk gear generation, plus an explicit closed form `J(m0) = sum_J prod (1 - E(m0+i))` for the distance itself.
+**Standing, and novel as far as this programme established.** It is also the sharpest statement of the gap: the
+constructor computes its own output but does not bound it. Artefacts: `research/twin_constructor.py`,
+`research/jump_distance.py`, `research/closed_form.py`, `research/navigate.py`.
+
+**2.10 Validators: gcd, order, unit group.** Three exact characterisations of twinhood - `gcd(36m^2 - 1,
+primorial) = 1`, `ord_q(6m) <= 2`, and two units of `U(P(y))` differing by 2 within the first `y^2` residues.
+**Standing** as identities. **Closed** as routes, since none localises. Also the origin of the `36 = 6^2`
+question: it is the block period squared.
+
+**2.11 Overlap and exact-group bounds.** Bound the exposed count by tracking exact overlap groups rather than
+inclusion-exclusion. Produced a working scanner and exact counts. **Absorbed** into the generating polynomial and
+the later decomposition. Artefact: `research/overlap_bound.py`.
+
+**2.12 Bounding `F(2,y)`: the covering and hazard route.** The main sustained line. Reformulated the maximum gap
+as a covering count `N(L)`, then as a hazard `h(L) = G(L)/N(L)`, with the bound equivalent to `h(L) >= d`.
+Produced `G(L) = N(L) - N(L+1)`, the proof that `h(1) = d/(1-d)` is free because gear 3 annihilates the
+third-order term, four proved cases `h(1), h(3), h(6), h(9)`, closed forms for the gap counts, and the
+`kappa` normalisation. **Live** - this is Reduction A form (b)/(c). Four sub-routes inside it are closed;
+see section 6. Artefacts: `research/hazard.py`, `research/covering_bound.py`,
+`research/covering_decomposition.py`, `research/closed_hazard.py`, `rust2/src/bin/maxgap.rs`,
+`rust2/src/bin/coverbound.rs`.
+
+**2.13 Forbidden configurations and the constrained word.** Read the gap sequence as a word over an alphabet and
+ask what factors are forbidden. Produced the **minimal size law** - gear `q` can be forced only in a
+configuration of at least `(q+1)/2` positions, attained - with its exposure form, the minimal-span growth
+`~1.9q`, and the fact that gears from 29 to 47 add no new minimal forbidden configuration. **Closed** as an
+automaton route, for two independent reasons (item 9 of section 6). **Standing** as laws. Artefacts:
+`research/minimal_forbidden.py`, `research/gap_automaton.py`.
+
+**2.14 The gear-set recursion.** Recurse on the gear set rather than on the run length. Produced the exact
+**merge transform** (adding gear `q` is `q` copies of the old pattern, each thinned at a different phase, and
+every exposed point is deleted in exactly 2 of the `q` laps), the **chain condition** determining `F(M+q)` from
+the old gap word alone, the **deletion-spacing lemma**, and the **saturation theorem**. **Live** - this is
+Reduction A form (d), and pathway 7.1. Artefacts: `research/gear_recursion.py`, `rust2/src/bin/holegap.rs`.
+
+**2.15 Infinite gears: the gear at infinity.** A conceptual line, and the source of several results. The machine
+is fully constructed up to infinity; the gears are integers, so after the primorial every gear is simultaneously
+back where it began, and infinite rotation resets the machine to its state at 0. At 0 every gear divides 0, so
+every gear shields - the complete-shield position - and twins sit immediately beside it. No gear can outpace the
+base 6-cycle. Therefore the configuration that produces twins recurs, and to deny infinitely many twins is to
+claim the machine stops presenting a configuration it presents next to 0.
+Four of its six steps are **theorems**: the `+-1` walk, slot 0 always exposed, exact periodicity with symmetry
+about 0, and the gear model itself. The `+-1` walk law and both blocking laws were *found* by taking this frame
+literally. Where it does not close is **localisation, not existence**: the recurrence period is the primorial,
+about `e^y`, while the gears only certify on `(y, y^2]`. So the frame gives that the configuration recurs
+forever, at the fastest rate the machine allows, but not that it recurs inside the window where it can be
+certified - and that last step is exactly Reduction A. **Live as a frame**, and the honest statement of what a
+proof still owes. Artefact: `docs/gear-at-infinity.md`.
+
+**2.16 Proof by contradiction on the mechanism.** A shape stipulated as acceptable and worth keeping open: *this
+is the mechanism that generates twin primes; to stop it, condition X would have to hold; X cannot hold because
+of Y.* The mechanism half exists and is verified - the constructor of 2.9 plus the turn law of 2.1. The
+obstruction half is exactly what is missing: no condition X has been found whose impossibility is provable. The
+nearest approach is the **repulsion form** (item 23), which says the mechanism fails only if exposed positions
+cease to repel, and the repulsion is measurable but not yet bounded. **Live**, and probably the framing most
+worth carrying forward.
+
+**2.17 Two coordinate systems and the CRT collapse.** The final line. Established that the adjacent frame and
+the pair-index frame are the same machine scaled by 3, and then that the apparent covering-design freedom does
+not exist at all - every offset vector is one translation (item 17). **Standing**, and it simplified the target
+substantially while withdrawing an earlier framing. This is the line section 1 reports.
+
+A standing constraint on all of the above, which shaped what was and was not attempted: statistical and
+probabilistic reasoning was excluded as a *substitute* for mechanism, on the grounds that twin primes are placed
+by exact modular residues and their interplay, and a density estimate cannot see an exact placement. It was later
+admitted as a *validator* - legitimate to check a mechanical construction that is already built and tested, not
+to pre-empt one. Sections 5 and 7 respect that boundary and say where they cross it.
 
 ---
 
