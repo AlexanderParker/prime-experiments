@@ -18,8 +18,8 @@ reader should expect to recognise some results under other names.
 **What the project produced.** A large body of mechanical structure about the machine, most of it verified
 computationally at explicit scale, and one artefact believed to be new: a **closed-form method for finding the next
 twin prime without walking**, which computes the distance to the next open pair directly from the gear phases and
-was verified to `k = 10^16`. Also several new computed values of the maximum-gap function, and a dozen or so
-candidate proof routes explored to the point of either a result or a counterexample.
+was verified to `k = 10^16`. Also several new computed values of the maximum-gap function, and seventeen lines of
+enquiry each pushed to the point of a result or a counterexample - catalogued in section 2.
 
 **What it did not produce.** The conjecture. Every route reduces to a single bound - how far apart consecutive open
 pairs can be, compared against the window in which the gears can certify them - and that bound resisted every
@@ -63,8 +63,8 @@ machine is legitimate rather than a category error. *Status: slot 0 is always ex
 and symmetric about 0, both theorems (items 3 and 4). The gap is **localisation, not existence**: the recurrence
 period is the primorial, about `e^y`, while the gears only certify on `(y, y^2]`. See section 2.15.*
 
-**5. Gears block once per rotation; every other position is open.** A correction made repeatedly against this
-assistant's drift, and the single most productive instruction in the programme. The machine is not to be evaluated
+**5. Gears block once per rotation; every other position is open.** A correction that had to be made repeatedly
+against drift in this work, and the single most productive instruction in it. The machine is not to be evaluated
 for blockers but for **exposure**. Two teeth in pair-index space is a *derived* consequence - the two rotations
 whose block happens to land on a candidate slot - not a second block. *Status: adopted as the definition in
 section 0, and the source of the tooth budget, the arc structure and the minimal size law.*
@@ -104,9 +104,9 @@ it, so that the reader can:
    is the latest line of enquiry, not a settled thesis, and it may not be the right one to attack.
 
 **Suggested reading order: the basis for the hunt, then the Method section, then section 2, then section 1.**
-Section 1 first risks anchoring on one framing. Section 2 is the full inventory of lines explored, in the order explored, with what each produced and
-where each stopped - several were abandoned while still viable, and at least two were abandoned for reasons later
-shown to be wrong.
+Reading section 1 first risks anchoring on one framing. Section 2 is the full inventory of lines explored, in the
+order explored, with what each produced and where each stopped - several were abandoned while still viable, and at
+least two were abandoned for reasons later shown to be wrong.
 
 The model has no settled name; "gears" and "machine" are used throughout as the working vocabulary, defined in
 section 0.
@@ -137,8 +137,8 @@ scale · 5 where the argument stalls · 6 claims that appear to fail · 7 pathwa
 
 ## Method: the working rule that produced these results
 
-Read this before working. It is not a preference; it outperformed the assistant's own instincts repeatedly in
-this programme, and every substantial result below came from following it.
+Read this before working. It is not a stylistic preference: it repeatedly outperformed the instincts of the work
+it was correcting, and every substantial result below came from following it.
 
 > **Focus on the mechanics.** Work out how the machine actually works and how its components interact. Build
 > and test, build and test. Use statistics only to *verify* a construction that is already built and tested -
@@ -234,9 +234,10 @@ teeth the gear leaves two **arcs** of open slots, of lengths `q - 2u_q - 1` (abo
 
 ### 0.3 Slip, sub-machines, and the turn law
 
-Two distinct things were both called **slip** and must be kept apart. *Cycle slip* is `|P - Q|` between two
-periods, the user's original sense - how far two cycles drift per revolution. *Machine slip* is `P mod q`, the
-phase a composite machine of period `P` presents to a new gear `q`. The second is what composes.
+Two distinct things were both called **slip** in this work and must be kept apart. *Cycle slip* is `|P - Q|`
+between two periods - how far two cycles drift per revolution, and the original sense of the word here. *Machine
+slip* is `P mod q`, the phase a composite machine of period `P` presents to a new gear `q`. The second is what
+composes.
 
 A **sub-machine** is any subset `S` of gears, with period `P = prod_{q in S} q` and an exposed set that is a
 union of complete residue classes mod `P`. Sub-machines compose by CRT, and the composition is governed by the
@@ -260,12 +261,12 @@ would need a prime factor above `y`. Inside that window, exposure to all gears `
 the same thing - the **window identity** `survivors(y,K) = T(6K+1) - T(y)`, exact and verified from `y = 11` to
 `1009` (item 6). Outside it they diverge. This is the entire reason the problem is finite-dimensional at each
 scale: **a bound on how far apart consecutive openings can be, compared against the window `(y, y^2]`, settles
-the conjecture.** That comparison is the core thesis of section 1.
+the conjecture.** That comparison is Reduction A of section 1.
 
 ### 0.5 The machines investigated, and how they relate
 
-Six coordinate systems were built and cross-checked. Confusing two of them cost real time mid-session, so the
-relations are stated explicitly.
+Six coordinate systems were built and cross-checked. Two of them were confused with each other for a long stretch
+of the work, so the relations are stated explicitly.
 
 1. **`n`-space.** Positions are integers; gear `q` blocks its multiples, one per rotation. Base gears 2 and 3
    leave `n = +-1 mod 6`. Good for the closed-form next-twin method and for intuition; poor for counting,
@@ -342,8 +343,9 @@ exposed slot exists in `(y/6, y/6 + F_k(y)]`. Therefore:
 
 >     F(2,y) = 1 + max gap of { n : n and n+1 are both coprime to P(y) }.
 
-This is the Jacobsthal-type function for the pair `{0,1}` modulo the primorial. There is **no** covering-design
-freedom to exploit - see item 17. Any proof must bound the maximum gap of this one explicit pattern.
+This is the Jacobsthal-type function for the pair `{0,1}` modulo the primorial. If item 17 holds, there is **no**
+covering-design freedom to exploit, and bounding the maximum gap of this one explicit pattern is the whole task.
+Item 17 is a short CRT argument and should be among the first things checked, since a great deal rests on it.
 
 **Measured slack.** `F_k(y) / ((y^2-y)/6)`:
 
@@ -381,7 +383,7 @@ Measured `k`-frame minimum of `kappa` settles near **0.68** (values `0.3889, 0.6
 
 **(d) Gear-recursion form.** `F(2,y) <= C * sum_{3<=q<=y} q` for a constant `C`. Since the odd primes sit
 inside the odd numbers, `sum_{3<=q<=y} q <= (y^2+2y-3)/4` with **no prime counting** (note `pi(y) < y/2` is
-false at `y = 3, 5, 7`), and the thesis then follows from any proved
+false at `y = 3, 5, 7`), and Reduction A then follows from any proved
 
     C <= 2(y^2-y)/(y^2+2y-3),   which is 1.8125 at y=29, 1.85 at y=37, 1.88 at y=47, rising to 2.
 
@@ -421,8 +423,8 @@ identity** `survivors(y,K) = T(6K+1) - T(y)` and the banded square-root tower. *
 the problem finite-dimensional at each scale and defines the window `(y, y^2]`. Artefact:
 `research/self_blocking.py`.
 
-**2.4 Exposure-window relationship tables.** Built at the explicit request to do the hard tabular work rather
-than reach for shortcuts: for every gear, its exposure windows and their relation to every other gear and to the
+**2.4 Exposure-window relationship tables.** Built as a deliberate exercise in doing the tabular work rather than
+reaching for a shortcut: for every gear, its exposure windows and their relation to every other gear and to the
 `1, 5` slots. Table A gave each window and the slot it attacks; Table B found **pairwise coincidence is always
 exactly 4**; Table C derived the run count. Also produced a localisation rule that was then refuted. **Closed as
 a route** - pairwise data is not enough - but the tables are correct and reusable. Artefact:
@@ -827,7 +829,7 @@ chain excess is small and vice versa. Concretely, both pieces are governed by th
 gaps of `M` and their neighbourhoods - and the isolation of maximal gaps (item 14 above, the true half) says a
 large `F` forces small neighbours, which caps `F2 - F`; while a large `F2 - F` means two medium gaps are
 adjacent, which limits how much a chain can add on top. A bound on the *sum* of the two, uniform in `q`, gives
-`C` and hence the thesis. Tools in place: `chain_max` for the second piece, `holegap.rs` for the first, and the
+`C` and hence Reduction A. Tools in place: `chain_max` for the second piece, `holegap.rs` for the first, and the
 saturation theorem for the regime boundary.
 
 **7.2 A uniform lower bound on `kappa`, in the `k`-frame.** The `k`-frame needs only `kappa(L) >= 0` against a
@@ -839,9 +841,9 @@ direction. The repulsion form (item 23) is the mechanical statement of the same 
 handle: `v(1) = v(2) = 0` outright gives a deficit of `2d^2`, and the question is whether the surviving
 multiples of 3 over-compensate - they need `mean psi <= 3 - 3/L` and measure `3 - 104/L` at `L = 5e6`.
 
-**7.3 A clustering-aware bound.** Section 5.3 identifies exactly what every failed route could not see: the
-ratio `F d` of maximum gap to mean gap, growing like `y^2/log^3 y`. A bound that *uses* the clustering rather
-than assuming uniformity is the only kind that can work. Two concrete openings. First, the exact
+**7.3 A clustering-aware bound.** Section 5.3 identifies what the failed routes appear to have been unable to
+see: the ratio `F d` of maximum gap to mean gap, growing like `y^2/log^3 y`. On that reading, a bound that
+*uses* the clustering rather than assuming uniformity is the kind to look for. Two concrete openings. First, the exact
 `N(L) = sum_j c_j(L) prod_{q>L}(q-j)` decomposition (item 20) separates the gear set from the run length
 completely, with `c_j` computable to `L = 39` in 2548 terms (item 21) - so the `L`-dependence is available in
 closed form and only its large-`L` behaviour is missing. Second, the CRT collapse (item 17) means the target is
@@ -874,6 +876,20 @@ delivers, and that margin *widens* with `y`.
     rust2/src/bin/holegap.rs          F2(2,y) by the same search with a mandatory hole
     rust2/src/bin/coverbound.rs       exhaustive offset enumeration, N(L) dump
 
-One caution for the reader: lengths quoted in `covering-bound-route.md` and `forbidden-configurations.md` are
-**adjacent-frame**; divide by 3 for `k`-space. The `y^2/6` in `gear-at-infinity.md` is `k`-space; the `y^2/2` in
-`covering-bound-route.md` is the same requirement in adjacent units.
+Two cautions when reading the supporting files. Lengths quoted in `covering-bound-route.md` and
+`forbidden-configurations.md` are **adjacent-frame**; divide by 3 for `k`-space. The `y^2/6` in
+`gear-at-infinity.md` is `k`-space; the `y^2/2` in `covering-bound-route.md` is the same requirement in adjacent
+units. And those files were written as the work proceeded, so each contains claims later corrected elsewhere -
+where a supporting file and this document disagree, this document is the later view, but neither is authoritative
+over a fresh derivation.
+
+---
+
+## Closing note
+
+The most useful thing this programme produced may not be any single result but the map: a mechanical model written
+down precisely enough that its consequences can be computed, seventeen routes traced to where each one stops, and
+a single remaining bound identified in four equivalent forms with the measured slack in each. The conjecture is
+not proved here and no claim is made that it nearly was. What is offered is that the remaining gap is now one
+statement rather than a fog, that the statement is numerically true with a factor of roughly 2.5 to spare, and
+that the reasoning standing between it and a proof is the part of this work least likely to be right.
