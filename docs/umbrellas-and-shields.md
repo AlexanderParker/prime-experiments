@@ -46,6 +46,27 @@ shields (29,31) - then the same score forever, advanced by q slots per lap. Gear
 left-then-right. The kills are spaced 4-then-2 rotations (or 2-then-4), producing the long and short
 umbrellas.
 
+## Three observed tooth patterns, and the one identity behind them
+
+Observed from the table: (a) the left/right teeth switch between low and high on successive gears;
+(b) the absolute tooth difference runs 3, 5, 7, 9, 11, 13; (c) the min tooth runs 1, 1, 2, 2, 3, 3
+and the max tooth's distance from the last residue runs 0, 0, 1, 1, 2, 2.
+
+All three are one identity: **the low tooth is u' = round(q/6) = the slot of the gear's own pair**
+(the self-blocking law, twin-prime-program.md section 17c). Corollaries:
+
+* (a) is the mod-6 family: q = 5 mod 6 puts the *left*-kill tooth low, q = 1 mod 6 puts the
+  *right*-kill tooth low. The table alternated only because gears 5..19 alternate families - it
+  breaks at 23 -> 29, both = 5 mod 6.
+* (b) is the separation law: difference = (2q -+ 1)/3, i.e. two-thirds of the gear rounded - the
+  long-way tooth separation, = long umbrella length + 1. Consecutive odds was an artifact of small
+  prime gaps: at 23 it is 15, at 29 it jumps to 19, skipping 17.
+* (c) is u' and u' - 1 by the mirror (teeth at +-u' around the shield). Continues 4 (once - 25 is
+  not prime), then 5, 5 at the twin gears 29, 31.
+* Bonus: twin gears share their low tooth (29 and 31 both have min tooth 5 = their own pair
+  (29,31)) - the tooth-sharing law: twin gears spend their overlap on their own pair, early,
+  inside the window.
+
 ## The machine statement in this vocabulary
 
 A twin slot is a slot standing under every relevant gear's umbrella at once (shield-centre or plain
