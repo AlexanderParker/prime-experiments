@@ -23,14 +23,14 @@ enquiry each pushed to the point of a result or a counterexample - catalogued in
 
 **What it did not produce.** The conjecture. Every route reduces to a single bound - how far apart consecutive open
 pairs can be, compared against the window in which the gears can certify them - and that bound resisted every
-attempt made here. Section 5 is the honest account of where each attempt stalls.
+attempt made here. Section 5 sets out where each attempt stalls.
 
 ## The basis for the hunt
 
-The arguments below are the project's premises. They are not this assistant's conclusions - they were set out by
-the person directing the work, and they are what make the hunt worth running rather than a search for a lottery
-ticket. They are recorded here as arguments to be evaluated on their merits, with the current status of each
-noted. Several have already turned into theorems, which is the main reason for taking the rest seriously.
+These are the project's premises, set out by the person directing the work rather than derived from it. They are
+what make the hunt worth running rather than a search for a lottery ticket, and they are stated as arguments to be
+evaluated on their merits, with the current status of each. Several have already turned into theorems, which is the
+main reason for taking the rest seriously.
 
 **1. The lower bound is 2, and the task is to reach it.** Bounded-gap results establish that *some* finite gap
 recurs infinitely often. The floor of that ladder is 2. So the target is not an open question of existence in the
@@ -120,10 +120,9 @@ called *refuted*, that means a counterexample or a measured divergence was found
 should be reproducible, but the inference drawn from it may not be sound. Several claims in this document were
 written up as results and then overturned by the next data point, so the base rate of error here is not low.
 
-Section 6 lists claims that were tried and appear to fail. It is there so the evidence against each is available,
-not to rule anything out - some may fail for a fixable reason, or not fail at all. Implementation defects found
-and fixed along the way are omitted as noise, but their existence is part of why the computational claims are
-better re-run than trusted.
+Section 6 lists claims that were tried and appear to fail, with the evidence against each - not to rule anything
+out, since some may fail for a fixable reason or not fail at all. Implementation defects found and fixed during the
+work are omitted, but their existence is part of why the computational claims are better re-run than trusted.
 
 **Notation.** `q` ranges over odd primes, `y` is the gear bound, `P(y) = prod_{3<=q<=y} q`,
 `d = prod (1 - 2/q)` is the density of open slots, `A = prod (q-2)` their count per period. `F` denotes a maximum
@@ -193,8 +192,8 @@ test it.
 
 ## 0. The mechanical model: gears, teeth, and the machines investigated
 
-The whole programme is built on one physical picture, and the formal statements later are all shadows of it.
-This section is the vocabulary; nothing here is optional for reading the rest.
+The whole programme is built on one physical picture, and the formal statements later are all shadows of it. This
+section is the vocabulary the rest of the document uses.
 
 ### 0.1 The machine
 
@@ -311,9 +310,9 @@ next twin is.
 
 A **constructor** produces the next twin without walking: each gear's distance to its next tooth is
 `min((u_q - m) mod q, (-u_q - m) mod q)`, and the minimum over gears is the distance to the next bite. This
-runs to `k = 10^16` and is, as far as this programme established, new. What it does **not** do is bound its own
-output - the bite distance is computed, not bounded - and that gap between constructing and bounding is
-precisely the open problem. Section 5 is the account of why every attempt to bound it has failed.
+runs to `k = 10^16`, and no prior form of it was found. What it does **not** do is bound its own output - the bite
+distance is computed, not bounded - and that gap between constructing and bounding is precisely the open problem.
+Section 5 sets out why every attempt to bound it has failed.
 
 ---
 
@@ -465,7 +464,7 @@ alternating sums of correlations. **Closed** as a localisation shortcut. Artefac
 each gear's distance to its next tooth as `min((u_q - m) mod q, (-u_q - m) mod q)`, take the minimum, and jump.
 Produced a **closed-form next-twin method with no walking**, verified to `k = 10^16` (192 s down to 0.081 s), plus
 bulk gear generation, plus an explicit closed form `J(m0) = sum_J prod (1 - E(m0+i))` for the distance itself.
-**Standing, and novel as far as this programme established.** It is also the sharpest statement of the gap: the
+**Standing, and no prior form of it was found.** It is also the sharpest statement of the gap: the
 constructor computes its own output but does not bound it. Artefacts: `research/twin_constructor.py`,
 `research/jump_distance.py`, `research/closed_form.py`, `research/navigate.py`.
 
@@ -511,8 +510,8 @@ about 0, and the gear model itself. The `+-1` walk law and both blocking laws we
 literally. Where it does not close is **localisation, not existence**: the recurrence period is the primorial,
 about `e^y`, while the gears only certify on `(y, y^2]`. So the frame gives that the configuration recurs
 forever, at the fastest rate the machine allows, but not that it recurs inside the window where it can be
-certified - and that last step is exactly Reduction A. **Live as a frame**, and the honest statement of what a
-proof still owes. Artefact: `docs/gear-at-infinity.md`.
+certified - and that last step is exactly Reduction A. **Live as a frame**, and it states precisely what a proof
+still owes. Artefact: `docs/gear-at-infinity.md`.
 
 **2.16 Proof by contradiction on the mechanism.** A shape stipulated as acceptable and worth keeping open: *this
 is the mechanism that generates twin primes; to stop it, condition X would have to hold; X cannot hold because
@@ -540,10 +539,8 @@ built.
 
 ## 3. Findings offered as established - each needs checking
 
-Either argued to a proof here, or verified exhaustively at the stated scale. The scale is given in every case
-precisely so that the claim can be re-tested where it was tested and pushed past where it was not; several items
-below are exhaustive only inside a bounded search box, and those bounds are stated rather than glossed. Numbering
-is referenced elsewhere in this document.
+Either argued to a proof here, or verified exhaustively at the stated scale. Several items are exhaustive only
+inside a bounded search box, and the bound is given in each case. Item numbers are referenced from other sections.
 
 **Machine mechanics.**
 
@@ -712,9 +709,8 @@ against mathlib, on `leanprover/lean4:v4.34.0-rc1`.
 * **Gear 3 forces the midpoint**: `six_dvd_succ_of_survivor`, the formal version of the law that makes every gap a
   multiple of 3.
 * **What counting can do, exactly**: `card_blocked_by_le` gives `L/q + 2` as the number of slots one divisor blocks
-  in a run of `L`. The file's own comment is careful on the point, and it is worth repeating: only the inequality
-  is a theorem. *"No counting argument can succeed"* is a claim about proof strategies and is **not** formalised -
-  section 5.1 is evidence for it, not a proof of it.
+  in a run of `L`. Only the inequality is a theorem. *"No counting argument can succeed"* is a claim about proof
+  strategies and is **not** formalised - section 5.1 is evidence for it, not a proof of it.
 * **Lockstep**: `survivor_step` - advancing the divisor bound to the next prime `y'` can only destroy the survivor
   whose own member is `y'`, so the removal side of the accounting leaks nothing.
 
@@ -739,7 +735,7 @@ arguments in the markdown plus computational verification. Several are short and
 
 ## 4. The computational anchor
 
-One paragraph, as requested. Every structural claim in section 3 was computed two ways wherever two ways were
+Every structural claim in section 3 was computed two ways wherever two ways were
 reachable, in Python (`research/*.py`) and Rust (`rust2/src/bin/*.rs`), and the independent routes agree
 exactly: at `y = 23` the hazard table derived from the pattern matches the Rust enumeration of all 111,546,435
 offset vectors to four decimals; at `y = 29` the hole-covering search returns `F2 = 165` against `3 * 55 = 165`
