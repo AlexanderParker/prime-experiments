@@ -25,6 +25,72 @@ candidate proof routes explored to the point of either a result or a counterexam
 pairs can be, compared against the window in which the gears can certify them - and that bound resisted every
 attempt made here. Section 5 is the honest account of where each attempt stalls.
 
+## The basis for the hunt
+
+The arguments below are the project's premises. They are not this assistant's conclusions - they were set out by
+the person directing the work, and they are what make the hunt worth running rather than a search for a lottery
+ticket. They are recorded here as arguments to be evaluated on their merits, with the current status of each
+noted. Several have already turned into theorems, which is the main reason for taking the rest seriously.
+
+**1. The lower bound is 2, and the task is to reach it.** Bounded-gap results establish that *some* finite gap
+recurs infinitely often. The floor of that ladder is 2. So the target is not an open question of existence in the
+abstract - it is a matter of finding, among the mechanisms already in hand, the one that drives the bound down to
+its floor. *Status: framing, and the framing under which every reduction in section 1 was derived.*
+
+**2. There is a reason the open slots always admit a twin pair inside the current window.** Not a hope - a claim
+that a mechanism exists and is discoverable, and that it lies in how the cycles interact to expose the `1` and `5`
+slots of the 6-cycle. Everything in section 0 is an attempt to write that mechanism down. *Status: the mechanism is
+partly written down - the turn law, the tooth budget, the arcs, the merge transform - and the outstanding step is
+exactly the localisation claim of section 1. Unproved, but the object it refers to is now explicit rather than
+vague.*
+
+**3. The gears return to their starting point, and no gear can outpace the base cycle.** The primes are gears
+joined in sequence. As they turn they diverge, but they are integers, so after the least common multiple every
+gear is simultaneously back where it began. The only way the machine could stop presenting the twin configuration
+would be for a new gear to run *faster* than the lower cycle - and that is impossible by construction, since a
+larger circumference means a slower walk across the slots. *Status: **both halves are now theorems.** Every gear
+and every combination of gears walks the 6-cycle at exactly `+-1` per rotation, never faster (section 3, item 2),
+and the pattern is exactly periodic with the required symmetry (item 4). This argument predicted a result before
+the result was found.*
+
+**4. The machine is fully constructed up to infinity, and infinite rotation resets it to its state at 0.** Nothing
+is assembled as one walks; all gears exist at once. At 0 every gear divides 0, so every gear shields rather than
+threatens - the complete-shield position - and twins sit immediately beside it. To deny infinitely many twins is
+therefore to claim the machine stops presenting a configuration it presents next to 0, against its own
+periodicity. A corollary was argued explicitly: **if the infinite object is off the table then the conjecture is
+meaningless** - it asks for a proof about something that does not exist - so reasoning with the completed infinite
+machine is legitimate rather than a category error. *Status: slot 0 is always exposed and the pattern is periodic
+and symmetric about 0, both theorems (items 3 and 4). The gap is **localisation, not existence**: the recurrence
+period is the primorial, about `e^y`, while the gears only certify on `(y, y^2]`. See section 2.15.*
+
+**5. Gears block once per rotation; every other position is open.** A correction made repeatedly against this
+assistant's drift, and the single most productive instruction in the programme. The machine is not to be evaluated
+for blockers but for **exposure**. Two teeth in pair-index space is a *derived* consequence - the two rotations
+whose block happens to land on a candidate slot - not a second block. *Status: adopted as the definition in
+section 0, and the source of the tooth budget, the arc structure and the minimal size law.*
+
+**6. Efficiency is not the goal; a closed form is.** Walking forward to test whether a location is a twin is not a
+deterministic answer, however fast the walk. What is wanted is a formula that yields the position. *Status:
+achieved for the next twin (section 2.9), verified to `k = 10^16`. Not achieved for the bound on that formula's
+output, which is the open problem.*
+
+**7. A contradiction argument is acceptable, and does not need statistics.** The admissible shape was stated
+directly: *this is the mechanism that generates twin primes; for it to stop, condition X would have to hold; X
+cannot hold because of Y.* If the constructor works, then for it to fail some specific condition must occur, and
+ruling that condition out is a proof - no density estimate required. *Status: the mechanism half exists and is
+verified. No condition X with a provable impossibility has been found. The nearest approach is the repulsion form
+of section 3, item 23. See section 2.16 - this is probably the framing most worth carrying forward.*
+
+**8. Rare mechanisms still count.** A rule that fires seldom is not thereby disqualified, and a low hit rate is
+not a defect. The machine is exact; a construct that produces a twin once in a great while still produces one.
+*Status: a methodological premise, and the reason the low-energy beats were tested rather than discarded - see the
+Method section, where the same principle appears in its sharpest form.*
+
+**9. State-of-the-art difficulty is not evidence of impossibility.** The instruction was explicit: do not appeal
+to the absence of a known proof, and do not conclude that a breakthrough is required before one has been looked
+for. *Status: methodological. Worth noting that it was correct twice in this programme, where a route was
+abandoned on a difficulty judgement and later found to work - see the audit note in the Method section.*
+
 ## What the handover is for
 
 This document exists to transfer the entire context to a reader with stronger reasoning than the one who produced
@@ -37,8 +103,8 @@ it, so that the reader can:
 4. **form its own target statement.** Section 1 gives the reduction this programme reached most recently, but that
    is the latest line of enquiry, not a settled thesis, and it may not be the right one to attack.
 
-**Suggested reading order: the Method section, then section 2, then section 1.** Section 1 first risks anchoring on
-one framing. Section 2 is the full inventory of lines explored, in the order explored, with what each produced and
+**Suggested reading order: the basis for the hunt, then the Method section, then section 2, then section 1.**
+Section 1 first risks anchoring on one framing. Section 2 is the full inventory of lines explored, in the order explored, with what each produced and
 where each stopped - several were abandoned while still viable, and at least two were abandoned for reasons later
 shown to be wrong.
 
@@ -63,9 +129,9 @@ better re-run than trusted.
 `d = prod (1 - 2/q)` is the density of open slots, `A = prod (q-2)` their count per period. `F` denotes a maximum
 gap, subscripted by frame; the frames are defined in section 0.5 and confusing two of them cost real time here.
 
-**Sections.** 0 the mechanical model · 1 the most recent reduction and its equivalent forms · 2 every line explored
-· 3 findings offered as established · 4 what was computed and at what scale · 5 where the argument stalls · 6 claims
-that appear to fail · 7 pathways not formalised · 8 files.
+**Sections.** The basis for the hunt · Method · 0 the mechanical model · 1 the most recent reduction and its
+equivalent forms · 2 every line explored · 3 findings offered as established · 4 what was computed and at what
+scale · 5 where the argument stalls · 6 claims that appear to fail · 7 pathways not formalised · 8 files.
 
 ---
 
