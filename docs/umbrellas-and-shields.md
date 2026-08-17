@@ -67,6 +67,34 @@ All three are one identity: **the low tooth is u' = round(q/6) = the slot of the
   (29,31)) - the tooth-sharing law: twin gears spend their overlap on their own pair, early,
   inside the window.
 
+## The extended table, and where the patterns break
+
+| gear | family | left tooth | right tooth | low u' | diff | note |
+|------|--------|-----------|------------|--------|------|------|
+| 5    | 5 | *1*  | 4    | 1 | 3  | |
+| 7    | 1 | 6    | *1*  | 1 | 5  | |
+| 11   | 5 | *2*  | 9    | 2 | 7  | |
+| 13   | 1 | 11   | *2*  | 2 | 9  | |
+| 17   | 5 | *3*  | 14   | 3 | 11 | |
+| 19   | 1 | 16   | *3*  | 3 | 13 | |
+| 23   | 5 | *4*  | 19   | 4 | 15 | |
+| 29   | 5 | *5*  | 24   | 5 | 19 | breaks: same family twice; diff skips 17 |
+| 31   | 1 | 26   | *5*  | 5 | 21 | |
+| 37   | 1 | 31   | *6*  | 6 | 25 | breaks again: same family twice; diff skips 23 |
+| 41   | 5 | *7*  | 34   | 7 | 27 | |
+| 43   | 1 | 36   | *7*  | 7 | 29 | |
+| 47   | 5 | *8*  | 39   | 8 | 31 | |
+
+(italic = low tooth.) The breaks fall exactly at prime gaps of 6 (23->29, 31->37): the mod-6 family
+repeats, so the low/high alternation stalls, and the diff (2q -+ 1)/3 jumps by 4, skipping an odd.
+
+**The u' column is the twin sequence.** It runs 1,1,2,2,3,3,4,5,5,6,7,7,8 - and a value appears
+twice exactly when slot u' is a twin pair (both 6u' +- 1 prime): doubles at 1 (5,7), 2 (11,13),
+3 (17,19), 5 (29,31), 7 (41,43); singles at 4 (25 = 5^2), 6 (35 = 5*7), 8 (49 = 7^2). The doubled
+rows are twin gears sharing their tooth. The machine's own tooth-index list duplicates precisely at
+the twin slots - the self-reference of section 17d (each level's twins become components of the next
+level's machine) visible in one column.
+
 ## The machine statement in this vocabulary
 
 A twin slot is a slot standing under every relevant gear's umbrella at once (shield-centre or plain
