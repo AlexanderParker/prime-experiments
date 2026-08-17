@@ -19,7 +19,9 @@ reader should expect to recognise some results under other names.
 computationally at explicit scale, and one artefact believed to be new: a **closed-form method for finding the next
 twin prime without walking**, which computes the distance to the next open pair directly from the gear phases and
 was verified to `k = 10^16`. Also several new computed values of the maximum-gap function, and seventeen lines of
-enquiry each pushed to the point of a result or a counterexample - catalogued in section 2.
+enquiry each pushed to the point of a result or a counterexample - catalogued in section 2. And a
+**machine-checked Lean formalisation of the reduction** (section 3a): the statement that this programme's target is
+equivalent to the twin prime conjecture is verified by Lean's kernel, not merely argued.
 
 **What it did not produce.** The conjecture. Every route reduces to a single bound - how far apart consecutive open
 pairs can be, compared against the window in which the gears can certify them - and that bound resisted every
@@ -668,13 +670,21 @@ explicit closed form `J(m0) = sum_{J>=1} prod_{i=1..J} (1 - E(m0+i))` with
 
 ## 3a. What is formalised in Lean, and what is not
 
-`proofs/BlockedSlots.lean` - 31 theorems, **no `sorry`** - formalises the reduction and the machinery around it
-against mathlib, on `leanprover/lean4:v4.34.0-rc1`.
+`proofs/BlockedSlots.lean` - 31 theorems, no `sorry` - formalises the reduction and the machinery around it
+against mathlib.
 
-> **Critical caveat: it has never been built.** Mathlib has not been fetched into `proofs/.lake`, so nothing here
-> has been machine-checked. "No `sorry`" means no hole was left deliberately; it does **not** mean the proofs
-> compile. Building it is the single highest-value verification step available, and it is cheap relative to
-> re-deriving the mathematics by hand.
+> **Machine-checked.** `lake build` completes successfully, 966 jobs, warnings only - deprecated `push_neg` and
+> unused-variable lints, no errors. Toolchain `leanprover/lean4:v4.34.0-rc1`, mathlib at
+> `4819386ff6a6681a4321877b165ffe7a7d115fa6`.
+>
+> Checked further with `#print axioms`: the key results depend only on the three standard Lean axioms -
+> `propext`, `Classical.choice`, `Quot.sound`. No `sorryAx`, no custom `axiom`, no `native_decide`. The file
+> contains zero occurrences of `sorry`, `native_decide`, `axiom` and `@[implemented_by]`. `AxiomCheck.lean` in the
+> same directory reproduces the audit.
+>
+> So this section is **not** in the same evidentiary category as the rest of the document. Section 3's findings are
+> informal arguments plus computation; the statements below are verified by Lean's kernel, and what remains open
+> about them is only whether they say what is intended - the definitions, not the proofs.
 
 **What is formalised.**
 
@@ -695,8 +705,10 @@ against mathlib, on `leanprover/lean4:v4.34.0-rc1`.
           ∀ N, ∃ y, N ≤ y ∧ ∃ m, y < m ∧ m + 2 ≤ y * y ∧ Survivor y m
 
   is an **iff**, so the target of this programme is equivalent to the conjecture rather than merely sufficient for
-  it. `survivor_in_window_of_gap_bound` then converts a gap bound into the window statement, which is the formal
-  version of Reduction A.
+  it - and that equivalence is machine-checked. `survivor_in_window_of_gap_bound` then converts a gap bound into
+  the window statement, which is the formal version of Reduction A. **What this settles:** the reduction is not
+  where an error can be hiding. Whatever is wrong in this programme is downstream of it, in the informal work of
+  sections 3 and 5.
 * **The centred form.** Running the rule at the midpoint `c` removes the base entirely: `c` is blocked by `q`
   exactly when `q | c^2 - 1`, so the twin pattern is one fixed nested family. `twin_of_centreSurvivor` and
   `centreSurvivor_iff_twin`.
@@ -721,15 +733,18 @@ arguments in the markdown plus computational verification. Several are short and
 
 **Suggested formalisation order**, by ratio of value to effort:
 
-1. **build the existing file** - it may already be a machine-checked reduction, and if it is not, the failures are
-   informative;
-2. **item 17, the CRT collapse** - a few lines, and section 1's simplest form rests entirely on it;
-3. **the deletion-spacing lemma and the saturation theorem** (items 15, 16) - both are short case analyses on
+1. **item 17, the CRT collapse** - a few lines, and section 1's simplest form rests entirely on it;
+2. **the deletion-spacing lemma and the saturation theorem** (items 15, 16) - both are short case analyses on
    `delta = 0, +-1 mod q` with `delta >= 3`, and the saturation theorem is the only clean structural theorem about
    the recursion;
-4. **`h(1) = d/(1-d)`** (item 19) - it turns on `prod (1 - 3/q) = 0` because gear 3 contributes a zero factor, which
+3. **`h(1) = d/(1-d)`** (item 19) - it turns on `prod (1 - 3/q) = 0` because gear 3 contributes a zero factor, which
    is a one-line observation worth pinning down formally since a whole route was built on it;
-5. **the minimal size law** (item 8) - the counting bound is immediate; the attaining construction needs CRT.
+4. **the minimal size law** (item 8) - the counting bound is immediate; the attaining construction needs CRT.
+
+**To reproduce the build.** From `proofs/`: `lake update`, then `lake exe cache get` to pull mathlib's `.olean`
+cache rather than compiling it, then `lake build`. The cache download is roughly 8,700 files; the whole
+`proofs/.lake` tree lands at several GB. Then
+`lake env lean AxiomCheck.lean` prints the axiom dependencies.
 
 ---
 
@@ -921,8 +936,9 @@ delivers, and that margin *widens* with `y`.
 
 ## 8. Files
 
-    proofs/BlockedSlots.lean          the reduction and its machinery, 31 theorems, no sorry, NEVER BUILT
-    proofs/lakefile.toml              mathlib dependency; proofs/.lake is absent, so nothing is checked
+    proofs/BlockedSlots.lean          the reduction and its machinery, 31 theorems, builds clean
+    proofs/AxiomCheck.lean            #print axioms audit of the seven load-bearing theorems
+    proofs/lakefile.toml              mathlib dependency, pinned in lake-manifest.json
     proofs/README.md                  what the formalisation covers
 
     docs/status.md                    consolidated status, capacity barrier, the CRT collapse
