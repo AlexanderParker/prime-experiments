@@ -137,6 +137,43 @@ The recursion needs only the gap word, not the pattern. It does not yet iterate 
 computing `F` two gears ahead needs the new gap *word* rather than its maximum; `add_gear` supplies the
 new histogram exactly but the ordering costs `A q` to materialise.
 
+## 4b. The saturation theorem, and the anatomy of the maximising chain
+
+> **If `q - 1 > F(M)` then `F(M + q) = F2(M)`,** where `F2(M)` is the largest sum of two adjacent old gaps.
+
+*Proof.* A chain with `k >= 2` needs an interior gap that is `0` or `+-1 mod q` and at least 3, hence at
+least `q - 1` by section 4. No gap of `M` reaches `q - 1`, so only `k = 1` chains exist, and their maximum
+is `F2(M)`. **QED**
+
+Checked over 48 pairs with zero violations. The consequence is worth stating plainly: **above the
+threshold the increment does not depend on `q` at all.** For the gears up to 7, adding 11, 13, 17, 19, 23,
+29, 37, 41 or 53 all give `F = 21`, an increment of 6 every time. So "increment `~ q`" from section 5 is
+not a law about `q` - it is what happens when the added gear is small relative to `F(M)`, which is the
+regime the consecutive chain is always in for large `y`.
+
+Below the threshold the maximising chain is short, and its interior gaps are exactly what the condition
+demands:
+
+    gears to   q    F(M)   F2   F(M+q)   k   interior gaps   as multiples of q
+    11         17     21    33      48   2   [18]            17 + 1
+    11         19     21    33      48   2   [18]            19 - 1
+    13         17     33    48      54   2   [33]            2*17 - 1
+    13         23     33    48      54   2   [24]            23 + 1
+    17         19     54    75      75   2   [39]            2*19 + 1
+    17         29     54    75      78   2   [30]            29 + 1
+    19         23     75    93     102   3   [45, 24]        2*23 - 1, 23 + 1
+    19         31     75    93     111   3   [30, 63]        31 - 1, 2*31 + 1
+
+Every interior gap is within 1 of a multiple of `q`, as required, and **`k` never exceeds 3** in any
+maximum observed. The excess `F(M+q) - F2(M)` is small where it is nonzero: `15, 6, 6, 0, 3, 9, 18`.
+
+So the remaining work on the constant `C` is: bound `k`, and bound the interior gaps. The first is a
+statement about how many *consecutive* gaps can each land within 1 of a multiple of `q` - each such gap is
+already forced to be at least `q - 1`, about twice the mean gap `1/d`, so requiring several in a row is
+severely restrictive. Quantifying "severely" is a counting estimate, and that is a legitimate use of
+statistics here: it checks a mechanical construction that is already complete and verified, rather than
+standing in for one.
+
 ## 5. The increment law, measured
 
     gears to    q added   F(M)   F(M+q)   increment   incr/q   sum of q   F/sum
@@ -193,6 +230,10 @@ Established here:
 * the exact merge transform, verified against direct construction on full gap histograms;
 * the deletion-spacing lemma, proved and tight;
 * the chain condition, giving `F(M + q)` exactly from the old gap word and `q`, verified in 15 cases;
+* the saturation theorem `q - 1 > F(M) => F(M + q) = F2(M)`, proved, checked over 48 pairs, and the
+  correction it forces to the reading of section 5 - the increment is `q`-independent above the threshold;
+* the anatomy of the maximising chain: `k <= 3` in every observed maximum, interior gaps always within 1 of
+  a multiple of `q`;
 * `F_adjacent = 3 F_k` exactly, for seven gear sets, so the two frames are one problem;
 * the real requirement `F_k(y) <= (y^2 - y)/6`, holding with a factor of 2.3 to 3, ratio falling;
 * the real-frame minimum of `h/d` sits at `L = 2`, not `L = 1`, so `min_L h(L) = h(1)` is stronger than
@@ -203,7 +244,9 @@ Established here:
 
 Open: step 1 of section 6, a proved bound on the increment. Note what has changed about the shape of the
 remaining work - it is no longer a knife-edge inequality needing exact minimisation, but a crude constant
-with a factor of `1.6` of slack against the measurement.
+with a factor of `1.6` of slack against the measurement. Section 4b reduces it further, to bounding the
+chain length `k` and the interior gap sizes, both of which are constrained mechanically before any
+estimate is made.
 
 A caution for anything built on the earlier work: quantities named `F_h`, `L`, `n_j`, `kappa` in
 `forbidden-configurations.md` and `covering-bound-route.md` are **adjacent-frame**. Divide lengths by 3
