@@ -123,3 +123,28 @@ composites. The luck ends at the 17-window when (209,211) arrives.
 
 The floor: gear 7 is indispensable - (47,49) and (77,79) each pair a 7-root-kill with a prime. The
 fixed-13-window minimal chain bottoms out at {5,7}.
+
+## Downward exclusion across windows: the square gate
+
+Hypothesis tested: exclusion iterates down until the first gear with a coprime in the window.
+Refuted as stated - the stopper is virtually always the gear's own SQUARE: descending exclusion
+halts at the first q with q^2 - 2 prime, because a gear's square is its first root kill
+(q^2 < q*r), met before any coprime. Results (horizon slot conceded):
+
+    window y   dropped      stop gear   blocking pseudo-twin
+    13         13, 11          7        (47, 49)
+    17/19      17 (,19)       13        (167, 169)
+    23/29      23 (,29)       19        (359, 361)
+    31/37      31 (,37)       29        (839, 841)
+    41/43      41 (,43)       37        (1367, 1369)
+    47..59     top 1-2        43/47     (1847,1849)/(2207,2209)
+
+The governing sequence is the primality of q^2 - 2 down the gear list (prime at 5, 7, 13, 19, 29,
+37, 43, 47; composite at 11, 17, 23, 31, 41, 53, 59 in range). Exclusion depth = the run of
+consecutive composites from the top - one or two gears except the 13-window's run to {5,7}.
+Gears with q^2 - 2 prime are permanent floor-setters, each owning an eternal square pseudo-twin.
+
+Where the coprime instinct still lives: a coprime stopper is possible in principle (11's
+209 = 11*19 beside prime 211), but 13's square gate (167,169) blocks the descent before 11 is
+reached in every window from 17 up. Coprime stoppers need a run of square-luck directly above
+them, and the q^2-2 primes are too dense for that in this range.
