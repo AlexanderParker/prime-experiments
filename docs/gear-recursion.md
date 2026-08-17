@@ -336,12 +336,17 @@ the two pieces the recursion provides - `F(M+q) - F(M) = (F2(M) - F(M)) + (F(M+q
 
     add q         11     13     17     19     23     29     31     37     41     43
     F(M)          15     21     33     54     75    102    129    174    264    273
-    F2(M)         21     33     48     75     93    117    165    204      -      -
+    F2(M)         21     33     48     75     93    117    165    204    270      -
     increment      6     12     21     21     27     27     45     90      9     36
-    F2 - F         6     12     15     21     18     15     36     30      -      -
-    excess         0      0      6      0      9     12      9     60      -      -
+    F2 - F         6     12     15     21     18     15     36     30      6      -
+    excess         0      0      6      0      9     12      9     60      3      -
     incr/q     0.545  0.923  1.235  1.105  1.174  0.931  1.452  2.432  0.220  0.837
-    excess/q   0.000  0.000  0.353  0.000  0.391  0.414  0.290  1.622      -      -
+    (F2-F)/y   0.857  1.091  1.154  1.235  0.947  0.652  1.241  0.968  0.162      -
+    excess/q   0.000  0.000  0.353  0.000  0.391  0.414  0.290  1.622  0.073      -
+
+`F2(2,37) = 270` is a further consistency check rather than a free parameter: the increment
+`F(41) - F(37) = 9` forces `F2(M_37) <= 273`, and the search had already passed 268, so only `269 .. 273`
+was possible. The measured `270` splits the increment exactly, `9 = 6 + 3`.
 
 **The gear-37 step reaches `2.432 q`**, well above the `1.8` the chain needs, so no per-step bound of the
 form `increment <= 1.8 q` is true. The cumulative `C` is nevertheless `1.354`, because the neighbouring
