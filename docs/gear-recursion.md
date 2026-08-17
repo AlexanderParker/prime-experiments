@@ -196,6 +196,43 @@ What the counting has to deliver is modest: each interior gap is forced to be at
 twice the mean gap `1/d`, so a chain of length `k` needs `k - 1` consecutive gaps that are all both unusually
 large and pinned to within 1 of a multiple of `q`. Every maximum observed has `k <= 3`.
 
+## 4c. Maximal gaps are isolated, and that is what keeps the growth polynomial
+
+Since `F(M + q) >= F2(M)` always, `F2(M) - F(M)` is a lower bound on **every** increment. If it were a
+fixed fraction of `F` the growth would be geometric in the number of gears, and `F` would blow past the
+requirement. It is not:
+
+    gears to     A         F     F2    F2-F   (F2-F)/F   gaps flanking a maximal gap
+    7            15       15     21       6      0.400   (3,6) (6,3)
+    11          135       21     33      12      0.571   (3,9) (9,3)
+    13         1485       33     48      15      0.455   (6,6) (6,15) (15,6)
+    17        22275       54     75      21      0.389   (6,6) (6,9) (6,15)
+    19       378675       75     93      18      0.240   (6,6) (6,9) (6,15)
+    23      7952175      102    117      15      0.147   (3,15) (9,9) (15,3)
+
+**The gaps immediately either side of a maximal gap are always tiny** - drawn from `{3, 6, 9, 15}` in every
+gear set measured, while `F` itself runs from 15 to 102. `F2 - F` stays inside `[6, 21]` across a sevenfold
+growth in `F`, so the ratio falls from `0.40` to `0.147`.
+
+That is the mechanism keeping the growth polynomial rather than geometric: **a maximal gap is locally
+isolated.** A long blocked run consumes the gears in its neighbourhood, so what follows it is dense. It is
+the gear-exhaustion idea - and note that the version refuted in section 7 of
+`forbidden-configurations.md` was a claim about per-gear *conditional marginals*, which do rise. This is a
+different claim, about a single extremal configuration, and it is what the data supports.
+
+It also gives a consistency check on the increments: `F2(23) - F(23) = 15`, and the measured gear-29
+increment is `27 >= 15`. Likewise `F(2,41) - F(2,37) = 9` forces `F2(M_37) - F(M_37) <= 9` - the neighbours
+of the `264` gap are at most 9 wide.
+
+**The sharpened target.** Both quantities are covering problems of the same kind:
+
+    F(y)  = 1 + max length of a coverable run
+    F2(y) = 1 + max length of a window coverable except for one interior position
+
+`maxgap.rs` computes the first by exhaustive search at the leftmost uncovered position. A variant with a
+mandatory hole computes the second, so `F2 - F` is directly measurable at the sizes where `F` is known. The
+claim to test is that `F2(y) - F(y)` is bounded, or at worst `O(y)`.
+
 ## 5. The increment law, measured
 
     gears to    q added   F(M)   F(M+q)   increment   incr/q   sum of q   F/sum
@@ -267,7 +304,12 @@ Established here:
 * the saturation theorem `q - 1 > F(M) => F(M + q) = F2(M)`, proved, checked over 48 pairs, and the
   correction it forces to the reading of section 5 - the increment is `q`-independent above the threshold;
 * the anatomy of the maximising chain: `k <= 3` in every observed maximum, interior gaps always within 1 of
-  a multiple of `q`;
+  a multiple of `q`, and by census `k <= 3` *everywhere* in the pattern, not merely at the maximum - for
+  gears to 19 and `q = 23`, runs of one qualifying interior gap occur 11808 times, of two only 62 times, of
+  three never;
+* **maximal gaps are isolated**: the flanking gaps are always in `{3, 6, 9, 15}`, and `F2 - F` stays in
+  `[6, 21]` while `F` grows from 15 to 102, so the ratio falls from `0.40` to `0.147`. This is what keeps
+  the growth polynomial rather than geometric, and it sharpens the target to bounding `F2 - F`;
 * `F_adjacent = 3 F_k` exactly, for seven gear sets, so the two frames are one problem;
 * the real requirement `F_k(y) <= (y^2 - y)/6`, holding with a factor of 2.3 to 3, ratio falling;
 * the real-frame minimum of `h/d` sits at `L = 2`, not `L = 1`, so `min_L h(L) = h(1)` is stronger than
