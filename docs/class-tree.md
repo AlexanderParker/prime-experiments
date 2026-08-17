@@ -64,3 +64,22 @@ y <= 3163); proving that closeness would be stronger than Reduction A.
 
 Half-winding: the mirror fixes a subset's behaviour in half its primorial - true, but the mismatch
 under attack is e^y against y^2, so the factor 2 is conceptual rather than asymptotic.
+
+## The exact minimal subset (script: research/minimal_subset.py)
+
+Necessity law: gear q is needed iff one of its root kills pairs with a PRIME partner in the window -
+a pseudo-twin like (209,211) = (11*19, prime) that only q can unmask. Verified exact for y = 13..59:
+
+    y   minimal set               dropped
+    13  {5,7,13}                  11
+    17  {5,7,11,13}               17
+    23  {5,...,19}                23
+    31  {5,...,29}                31
+    41  {5,...,37}                41
+    47  {5,...,37,43,47}          41
+    59  {5,...,47}                53, 59
+
+The minimal set is all gears minus the newest one or two, and droppability is transient (11 returns
+at y=17 when the window reaches (209,211); 41 survives dropped through y=47). Unification: "q is
+necessary" = "q owns a lone-killer fragile slot in the window" - the one-away census of
+docs/band-attribution.md and the minimal-subset question are the same object.
