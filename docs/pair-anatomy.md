@@ -113,6 +113,30 @@ gear, mirror-summing to qr, positions governed by the slip inverse (X_crossed = 
 mod r), twin-prime-program.md section 28b) - and for twin gears one crossed slot is their own pair.
 Max gap falls as the pair grows: 5, 4, 4, 4, 4, 3.
 
+## Triples: the 8-lift prediction confirmed
+
+All four triples from {5,7,11,13} have exactly 2^3 = 8 coincidence slots: 2 all-same-side teeth
+(the composite gear qrs - all-left at 6^{-1} mod P, all-right at its mirror, low tooth =
+round(P/6) whose pair contains the product, family by sign multiplication) plus 6 mixed lifts
+(three minority-gear flavours x two orientations), mirror-paired with complementary L/R signatures:
+
+    (5,7,11)  P=385  fam 1: all-R low at 64 = (383,385);  mixed 134/251, 141/244, 174/211
+    (5,7,13)  P=455  fam 5: all-L low at 76 = (455,457);  mixed 41/414, 106/349, 141/314
+    (5,11,13) P=715  fam 1: all-R low at 119 = (713,715); mixed 24/691, 141/574, 284/431
+    (7,11,13) P=1001 fam 5: all-L low at 167 = (1001,1003); mixed 141/860, 288/713, 405/596
+
+Deep slots recur across machines: slot 141 = (845,847) = (5*13^2, 7*11^2) has teeth of 5, 7, 11
+and 13 all present, so every triple drawn from them coincides there; likewise slots 24 and 596.
+Many-factor slots are the coincidence hubs.
+
+Max gap resumes growing under accumulation: pairs 5,4,4,4,4,3 but triples 7,7,6,6 - adding gears
+grows gaps even as each gear individually weakens.
+
+**The accumulation model, verified to n = 3:** a machine of n gears = one composite gear (2 teeth,
+all classical laws lifted verbatim) + a crossed cloud of 2^n - 2 mixed lifts, mirror-paired with
+sign complement. The cloud doubles per gear; its placement is the programme's single open question.
+(The square-roots-of-unity lattice of twin-prime-program.md section 28c, read member-by-member.)
+
 ## Certified twins from two gears
 
 The {5,7} window is slots <= 8 (6k+1 <= 49). Openings there: 2, 3, 5, 7 ->
