@@ -108,3 +108,18 @@ The minimal set is all gears minus the newest one or two, and droppability is tr
 at y=17 when the window reaches (209,211); 41 survives dropped through y=47). Unification: "q is
 necessary" = "q owns a lone-killer fragile slot in the window" - the one-away census of
 docs/band-attribution.md and the minimal-subset question are the same object.
+
+## Downward exclusion in a fixed window (the 13-set worked example)
+
+Fixed window of the 13-set (members to 169), excluding downward: after the top gear (horizon
+theorem), gear 11 also drops - {5,7} alone reproduce every twin in the window, recovering (11,13)
+itself, with only the conceded horizon slot (167,169) false. 11's five window kills, accounted:
+11 = real twin; 55, 77 caught on the member side (by 5, by 7); 121, 143 caught on the partner side
+(119 = 7*17, 145 = 5*29).
+
+The mechanism is two-tier: STRUCTURAL below 11^2 = 121 (the horizon theorem at 11's own scale) and
+PARTNER-LUCK in the band (121, 169] - two root kills there, both happening to sit beside
+composites. The luck ends at the 17-window when (209,211) arrives.
+
+The floor: gear 7 is indispensable - (47,49) and (77,79) each pair a 7-root-kill with a prime. The
+fixed-13-window minimal chain bottoms out at {5,7}.
