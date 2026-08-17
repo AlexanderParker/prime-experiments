@@ -1,18 +1,51 @@
 # Twin primes: full research handover
 
-Written for a reader who will attempt the remaining abstract proof, and who should verify rather than trust what
-follows, and form their own view of which reduction to attack.
+## What this is
 
-**Read the Method section first, then section 2, then section 1.** Section 1 states the reductions this
-programme arrived at *most recently*;
-they are the latest line of enquiry, not a settled thesis, and presenting them first risks anchoring. Section 2
-is the full inventory of lines explored, in the order they were explored, with what each produced and where each
-stopped - several were abandoned while still live, and at least two were abandoned for reasons later shown to be
-wrong. The intended use of this document is that you re-derive from section 0 and section 2 and decide for
-yourself what the target statement should be.
+**The problem.** The twin prime conjecture: there are infinitely many primes `p` with `p + 2` also prime.
 
-The model here has no settled name; "gears" and "machine" are used throughout as the working vocabulary, defined
-in section 0.
+**The project.** An attempt on it from a single mechanical model, built from scratch rather than borrowed. Every
+prime is treated as a *gear* - a wheel of circumference `q` that turns alongside all the others and blocks exactly
+one position per rotation, leaving every other position of that rotation open. Composite gears, phases, and the
+interaction of their cycles then determine which slots stay open, and a twin prime is a slot that every gear leaves
+open. The whole programme asks one question in many forms: *by what mechanism do the turning cycles conspire to
+leave two adjacent candidate slots open, and can that mechanism be shown never to stop?*
+
+The model was developed deliberately without reaching for established sieve machinery. That was a constraint on
+method, not a claim that the machinery is irrelevant - and it means the vocabulary here is home-grown and the
+reader should expect to recognise some results under other names.
+
+**What the project produced.** A large body of mechanical structure about the machine, most of it verified
+computationally at explicit scale, and one artefact believed to be new: a **closed-form method for finding the next
+twin prime without walking**, which computes the distance to the next open pair directly from the gear phases and
+was verified to `k = 10^16`. Also several new computed values of the maximum-gap function, and a dozen or so
+candidate proof routes explored to the point of either a result or a counterexample.
+
+**What it did not produce.** The conjecture. Every route reduces to a single bound - how far apart consecutive open
+pairs can be, compared against the window in which the gears can certify them - and that bound resisted every
+attempt made here. Section 5 is the honest account of where each attempt stalls.
+
+## What the handover is for
+
+This document exists to transfer the entire context to a reader with stronger reasoning than the one who produced
+it, so that the reader can:
+
+1. **re-derive the mechanics from scratch** (sections 0 and 2) rather than inherit them;
+2. **check the findings**, using the stated scales to re-run what was tested and push past what was not;
+3. **judge the inferences separately from the data** - the measurements here are the reliable part, the reasoning
+   is not;
+4. **form its own target statement.** Section 1 gives the reduction this programme reached most recently, but that
+   is the latest line of enquiry, not a settled thesis, and it may not be the right one to attack.
+
+**Suggested reading order: the Method section, then section 2, then section 1.** Section 1 first risks anchoring on
+one framing. Section 2 is the full inventory of lines explored, in the order explored, with what each produced and
+where each stopped - several were abandoned while still viable, and at least two were abandoned for reasons later
+shown to be wrong.
+
+The model has no settled name; "gears" and "machine" are used throughout as the working vocabulary, defined in
+section 0.
+
+## Status of the claims below
 
 **Nothing here should be taken as settled.** These are one programme's findings with the evidence attached so it
 can be checked. Where something is called *proved*, that means a proof was written here and believed correct - not
@@ -26,8 +59,13 @@ not to rule anything out - some may fail for a fixable reason, or not fail at al
 and fixed along the way are omitted as noise, but their existence is part of why the computational claims are
 better re-run than trusted.
 
-Notation throughout: `q` ranges over odd primes, `y` is the gear bound, `P(y) = prod_{3<=q<=y} q`,
-`d = prod (1 - 2/q)`, `A = prod (q-2)`.
+**Notation.** `q` ranges over odd primes, `y` is the gear bound, `P(y) = prod_{3<=q<=y} q`,
+`d = prod (1 - 2/q)` is the density of open slots, `A = prod (q-2)` their count per period. `F` denotes a maximum
+gap, subscripted by frame; the frames are defined in section 0.5 and confusing two of them cost real time here.
+
+**Sections.** 0 the mechanical model · 1 the most recent reduction and its equivalent forms · 2 every line explored
+· 3 findings offered as established · 4 what was computed and at what scale · 5 where the argument stalls · 6 claims
+that appear to fail · 7 pathways not formalised · 8 files.
 
 ---
 
