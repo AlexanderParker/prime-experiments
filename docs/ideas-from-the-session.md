@@ -101,7 +101,33 @@ closes the whole thing for every `y >= 13`, and the binding value is `L = 6`, al
 **Falsifies quickly:** if `kappa(6)` drifts towards 1 rather than settling near `1.67`, the room
 disappears; it has not through nine thousand gears.
 
-## 4. Recursion in the gear set rather than in L
+## 4. Recursion in the gear set rather than in L - BUILT, and now the leading route
+
+Built exactly in `docs/gear-recursion.md` and `research/gear_recursion.py`. It closed better than
+expected, and it also turned up a frame confusion that was affecting everything else.
+
+**The frames.** The adjacent frame - gear 3 included, each gear blocking `{o, o+1}` - and the real
+`k`-space frame - gears `q >= 5` only, teeth at `+- 6^{-1}`, gear 3 inert - are the **same problem scaled
+by 3**, verified as `F_adjacent = 3 F_k` for seven gear sets. So results transfer with `L -> 3L`. Two
+things follow: the adjacent-frame `L = 1` has no real counterpart, so `h(1) = d/(1-d)` is a grid artefact
+and the real minimum sits at `L = 2`; and `min_L h(L) = h(1)` is **stronger than the conjecture needs**,
+which only wants `h(L) >= d`, that is `kappa >= 0`, with measured room `0.68`.
+
+**The transform and the recursion.** Adding gear `q` is `q` copies of the old pattern, each thinned at a
+different phase of `q`, laid end to end - and each exposed point is deleted in exactly 2 of the `q` laps.
+Deleting `k` consecutive points merges `k+1` gaps, and the deleted points must lie in `{phi, phi+1} mod q`,
+so the partial sums of the interior gaps stay in `{0, 1}` or `{0, -1} mod q`. That condition gives
+`F(M + q)` **exactly from the old gap word**, verified in 15 cases. Its `k = 2` case is the
+deletion-spacing lemma: consecutive deletions are at least `q - 1` apart, proved and tight.
+
+**The skeleton.** `F_adjacent(y) ~ C sum_{3<=q<=y} q` with `C` measured in `[0.81, 1.10]`; the odd primes
+sit inside the odd numbers so `sum q <= (y^2+2y-3)/4` with no prime counting; and the requirement
+`F_k <= (y^2-y)/6` then follows from any proved `C <= 1.8` for `y >= 29`, the smaller `y` being checked
+directly. **Falsifies quickly:** if the increment `F(M+q) - F(M)` can exceed `1.8 q` along the consecutive
+chain, the constant fails - measured ratios there are all at most `1.29`, though skipping a gear reaches
+`1.59`.
+
+## 4b. The old framing of idea 4
 
 **Known.** The per-`j` recipe (section 24b) recurses on `L` and stalls because the number of
 conditions grows like `F_k ~ 0.055 y^2`.
