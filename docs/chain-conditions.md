@@ -66,6 +66,26 @@ how often?** That is a question about consecutive gap values pinned to exact res
 i.e. the joint distribution of adjacent gaps modulo q - the same object pathway 7.1 needs, now reduced
 to specific forbidden/required words.
 
+## Addendum: the fuel census at gears<=23 and gears<=29, and the first k=4
+
+Pushing the census up two machines (segmented sieve, gap word as uint8):
+
+* **gears<=23** (7.95M openings, F_k = 34): for every candidate q in {29..43}, the complete inventory
+  of 3-gap words that would permit k=4 - all orientations, all 0-step variants, fifteen word shapes -
+  is **empty**. k <= 3 at this scale is not scarcity; the fuel does not exist at all.
+* **gears<=29** (214.7M openings, F_k = 43): the fuel appears. At q = 31 there are exactly **four**
+  qualifying triples - all the same word `(10, 21, 10)`, the minimal alternation `(-s, +s, -s)` with
+  span 41 = q + 10 - forming two mirror pairs about the period midpoint (the four starting positions
+  sum pairwise to exactly P). Each gives four consecutive openings in one window of gear 31, so
+  **k = 4 chains exist** at (gears<=29, q=31) - the first occurrence of k > 3 observed anywhere in
+  this programme (the corpus's census at smaller sizes found none, correctly).
+
+Consequence: there is no universal bound k <= 3. Chain length grows with the machine, as the span law
+predicts it may once F_k(M) passes multiples of q/2. Any aggregate bound for pathway 7.1 must therefore
+handle growing k, weighted by the extreme rarity of the fuel words - at gears<=29 the k=4 fuel is 4
+occurrences among 214.7M gaps, and the k=3 fuel counts collapse with q (13000 at q=31, 374 at q=37,
+zero from q=41 on).
+
 ## Status
 
 Established here: the level-1 and level-2 conditions as working code; the k-frame deletion-spacing
