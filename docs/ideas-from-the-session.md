@@ -6,6 +6,10 @@ already verified. Each states what is known, what the idea is, and what would fa
 The remaining gap throughout is section 26c of `covering-bound-route.md`: prove
 `min_L h(L) = h(1)`, where `h(L) = G(L)/N(L)` is the hazard of the gap distribution.
 
+The conceptual frame these all sit inside - the machine as gears turning together forever, and the
+gear at infinity - is recorded separately in `docs/gear-at-infinity.md`. It is not a proof, but four of
+its six steps are theorems, and it is where the `+/-1` walk law and both blocking laws came from.
+
 ## 1. The gap sequence is a constrained word (verified structure, strongest lead)
 
 **Known.** Gear 3 blocks one of any two adjacent positions; gear 5 blocks one of any three spaced 3
