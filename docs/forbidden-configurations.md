@@ -310,17 +310,57 @@ actually tight, the rest need nothing better than a crude bound with a factor of
 the recipe handles the short list. The falsification test is whether the tight list keeps growing with
 `y`; the measurement above says it has not through `y = 29`.
 
-### 8a. A pattern in the tight list, stated as a prediction and not a law
+### 8a. An arithmetic pattern in the tight list - proposed and refuted
 
-The tight block starts through `y = 29` are `3, 6, 9, 15, 21, 24, 33, 39, 54` together with `L = 1`. Six
-of the nine are `3q` for `q` prime - `6, 9, 15, 21, 33, 39` at `q = 2, 3, 5, 7, 11, 13` - and the two
-that are not, `24` and `54`, are `6 * 4` and `6 * 9`, that is `6q^2` at `q = 2, 3`.
+The tight block starts through `y = 29` are `3, 6, 9, 15, 21, 24, 33, 39, 54` with `L = 1`. Six of the
+nine are `3q` for `q` prime - `6, 9, 15, 21, 33, 39` at `q = 2, 3, 5, 7, 11, 13` - and the other two,
+`24` and `54`, are `6q^2` at `q = 2, 3`. That reading predicts `51` and `57` (from `q = 17, 19`) as tight.
 
-If that reading is right the next member is `6 * 25 = 150`, and the next `3q` members are `51` and `57`.
-`F_h(29) = 129`, so `150` cannot appear yet; `F_h(31)` should be around 160, which makes the prediction
-decidable at `y = 31`. This is recorded as a prediction with a named test, **not** as a law - five
-patterns in this programme have been recorded from small data and then refuted, and this one rests on
-nine numbers with two families fitted to them.
+**Refuted.** At `y = 71`, where the closed forms cover every block start to `L = 60`, `51` ranks 19th of
+21 and `57` ranks 21st - the two loosest of all. Meanwhile `30` and `45`, in neither family, rank 8th and
+10th. The pattern fails from both directions and is not a law. It survived about ten minutes.
+
+What *is* stable is the tight core. Ordering all block starts to `L = 63` by `h/d`:
+
+    y = 71    1  6  3 21  9 15 24 30 39 45 18 12 33 36 27 48 54 42 51 60 57
+    y = 101   1  6  3 21  9 15 24 30 45 39 18 12 27 36 33 48 54 42 51 60 57
+    y = 199   1  6  3 21 15  9 24 30 45 18 12 39 27 36 33 48 42 54 51 60 57
+    y = 401   1  6  3 21 15  9 24 30 45 18 12 39 27 36 33 48 42 54 51 60 57
+
+The order is frozen from `y = 199` on, and the first seven - `1, 6, 3, 21, 15, 9, 24` - are the same at
+every `y` measured from 13 upward. The core is real; the arithmetic story about it was not.
+
+### 8b. The right normalisation: `h/d` is not where the margin lives
+
+Every `h(L)/d` tends to 1 as the gear set grows, `L = 1` included, since `h(1)/d = 1/(1-d)` exactly. So
+reading a margin off `h/d` says the slack vanishes everywhere - which is what an earlier version of
+section 10 recorded, and it is the same normalisation trap as section 26b of `covering-bound-route.md`.
+Dividing the excess by `d` a second time,
+
+    kappa(L) = ( h(L)/d - 1 ) / d,      so   kappa(1) = 1/(1-d)   exactly,
+
+and `min_L h(L) = h(1)` becomes `kappa(L) >= 1/(1-d)` for `L >= 2`. Computed from the closed forms at
+80-digit precision (`density` and `kappa` in `research/closed_hazard.py` - the integer form needs
+products with tens of thousands of digits, and floats lose about eight digits to cancellation because
+`c_0` reaches `10^8` at `L = 24` while the answer is of order 1):
+
+    y        gears     d        1/(1-d)   k(1)     k(3)     k(6)     k(9)     k(15)    k(21)
+    401         78   0.0227714  1.023302  1.0233   1.9402   1.7876   2.5323   2.4101   2.4093
+    1601       251   0.0151735  1.015407  1.0154   1.8953   1.7354   2.4354   2.2544   2.2948
+    6401       833   0.0107939  1.010912  1.0109   1.8698   1.7052   2.3804   2.1689   2.2278
+    25601     2818   0.0080711  1.008137  1.0081   1.8542   1.6867   2.3470   2.1178   2.1870
+    100003    9592   0.0062763  1.006316  1.0063   1.8441   1.6747   2.3254   2.0852   2.1608
+
+**The margin does not vanish.** `kappa(1)` goes to 1 while every other `kappa(L)` settles on a constant
+comfortably above it - the smallest being `kappa(6)` at about `1.67`. And `kappa` grows with `L`, running
+`1.90, 1.74, 2.44, 4.13, 2.25, 4.01, 2.29, 2.80` at `L = 3, 6, 9, 12, 15, 18, 21, 24` and reaching `7.58`
+at `L = 63`, so large `L` are the safe ones.
+
+That changes what a proof needs. On the `h/d` scale the inequality looked asymptotically tight at every
+`L` at once, which rules out any lossy argument. On the `kappa` scale the worst case has a factor of
+`1.67` of room, so a crude bound suffices: **`kappa(L) >= 1.1` for `L >= 3` would close it for every
+`y >= 13`**, since `1/(1-d) <= 1.1` there. The binding case is the single value `L = 6`, and `L = 6` is
+already proved.
 
 ## 9. The per-`j` recipe does scale, because almost every term vanishes
 
@@ -379,10 +419,17 @@ Corrected here: the "`q >= 13`: none within span 27" claim; the single-word forb
 and 7; the `span` versus `span + 1` factorisation threshold; the gear-exhaustion reading of the step
 form; and the validity range of the closed forms, which needs `y >= L + 1`, not `y >= L`.
 
-Still open: `rho(L) <= rho(1)`, the whole of the remaining gap in one inequality. The route this
-section suggests is now concrete rather than open-ended - prove the short tight list case by case from
-the closed forms, which are in hand, and cover every other `L` with a crude bound, which needs only the
-`1.14` of slack the measurements show at `y = 23`. What is not yet established is that the tight list
-stays finite as `y` grows, and the margins at its members do drift slowly downward
-(`h(6)/h(1)` runs `1.0740, 1.0815, 1.0759, 1.0696, 1.0638` over `y = 11` to `23`), so the slack cannot
-be assumed constant.
+Also refuted here: the `3q` / `6q^2` reading of the tight list, killed by `L = 51, 57` ranking last at
+`y = 71`.
+
+Still open: `rho(L) <= rho(1)`, the whole of the remaining gap in one inequality - equivalently
+`kappa(L) >= 1/(1-d)` for `L >= 2`. The route is now concrete. On the correct normalisation the worst
+case carries a factor of about `1.67`, so **a crude bound `kappa(L) >= 1.1` for `L >= 3` closes it for
+every `y >= 13`**, and the binding value is the single `L = 6`, already proved. What remains is a lower
+bound on `kappa(L)` uniform in `L` - not an exact minimisation, which is what every earlier attempt was
+trying to do.
+
+An earlier version of this section said the opposite - that margins drift downward and the slack cannot
+be assumed constant. That was read off `h/d`, which tends to 1 for every `L` including the proved `L = 1`,
+and it was wrong for exactly the reason section 26b of `covering-bound-route.md` records. Section 8b has
+the corrected measurement.
