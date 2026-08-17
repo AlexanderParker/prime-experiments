@@ -207,3 +207,16 @@ coprime's multiples carry a smaller cofactor and fall into that gear's lattice -
 
 Near-balance observed: 9 twins vs 10 fragile slots - the window's thin margin between real twins
 and pseudo-twins, with the forced overlap slots as the remainder.
+
+## Pinpointing twins in the umbrella stack (research/umbrella_tools.py)
+
+Inside a window, a twin IS a slot whose joint umbrella exists over the certifying set (graded
+depth: gears <= sqrt(member)). Umbrella-jumping - next joint umbrella, read its interval in closed
+form, hop past - pinpointed all 55 twins of the 47-window, every one verified prime, with the six
+prime quadruplets of the range appearing automatically as width-2 umbrellas ((101..109),
+(191..199), (821..829), (1481..1489), (1871..1879), (2081..2089)) - the points-and-dominoes law
+operating live.
+
+Each twin carries a stack certificate: per-gear rooms, minima = the binding gears. Slot 23 =
+(137,139): gear 5 room right 0, gear 7 room left 0, gear 11 room right 0 - the twin pinched to
+width 1 from three directions. Twins sit in needle's eyes, and the certificate names the needles.
