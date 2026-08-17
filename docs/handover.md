@@ -741,10 +741,16 @@ arguments in the markdown plus computational verification. Several are short and
    is a one-line observation worth pinning down formally since a whole route was built on it;
 4. **the minimal size law** (item 8) - the counting bound is immediate; the attaining construction needs CRT.
 
-**To reproduce the build.** From `proofs/`: `lake update`, then `lake exe cache get` to pull mathlib's `.olean`
-cache rather than compiling it, then `lake build`. The cache download is roughly 8,700 files; the whole
-`proofs/.lake` tree lands at several GB. Then
+**Building it.** `proofs/.lake` is **already populated on this machine** - mathlib source, its dependencies, and
+the `.olean` cache - so `lake build` from `proofs/` should be near-instant and needs no network. The tree is
+several GB and is gitignored (`.gitignore:85`), so it exists locally but is not in the repository.
+
+From a clean checkout the sequence is: `lake update`, then `lake exe cache get` to pull mathlib's `.olean` cache
+rather than compiling it from source, then `lake build`. The cache download is roughly 8,700 files. Then
 `lake env lean AxiomCheck.lean` prints the axiom dependencies.
+
+Two practical notes. `lake` may not be on `PATH`; it is at `~/.elan/bin/lake.exe`. And the pinned toolchain
+`v4.34.0-rc1` is installed alongside `v4.33.0` - elan will select the pinned one inside `proofs/`.
 
 ---
 
