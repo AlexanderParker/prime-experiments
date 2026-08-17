@@ -14,11 +14,17 @@ yourself what the target statement should be.
 The model here has no settled name; "gears" and "machine" are used throughout as the working vocabulary, defined
 in section 0.
 
-Everything below is either proved, computationally verified at the stated scale, or explicitly flagged as
-refuted. The refutations in section 6 are mathematical dead ends with counterexamples attached, and they are
-load-bearing: seventeen plausible claims were recorded and then killed here, several by their own next data
-point. Implementation defects found and fixed along the way are deliberately omitted - they are not part of the
-mathematics and would only add noise.
+**Nothing here should be taken as settled.** These are one programme's findings with the evidence attached so it
+can be checked. Where something is called *proved*, that means a proof was written here and believed correct - not
+that it has been independently verified, and the reasoning is the weakest part of this work. Where something is
+called *refuted*, that means a counterexample or a measured divergence was found at a stated scale; the data
+should be reproducible, but the inference drawn from it may not be sound. Several claims in this document were
+written up as results and then overturned by the next data point, so the base rate of error here is not low.
+
+Section 6 lists claims that were tried and appear to fail. It is there so the evidence against each is available,
+not to rule anything out - some may fail for a fixable reason, or not fail at all. Implementation defects found
+and fixed along the way are omitted as noise, but their existence is part of why the computational claims are
+better re-run than trusted.
 
 Notation throughout: `q` ranges over odd primes, `y` is the gear bound, `P(y) = prod_{3<=q<=y} q`,
 `d = prod (1 - 2/q)`, `A = prod (q-2)`.
@@ -54,10 +60,12 @@ so the whole scale is collapsing, not the margin. On the correct scale `kappa = 
 converges to about `1.67`, comfortably away from zero. **A quantity approaching zero was an artefact of how it
 was being measured, and taking it at face value nearly closed a live route.**
 
-The same rule explains the failures. Every one of the seventeen refuted claims in section 6 was recorded
-because something was generalised from a small sample before being tested at scale - a pattern in nine
-numbers, a boundedness claim from six data points, an ordering that held to `y = 37` and broke at 41.
-Build-and-test caught all of them; reasoning alone had endorsed several.
+The same rule explains the failures. Every claim in section 6 was recorded because something was generalised from
+a small sample before being tested at scale - a pattern in nine numbers, a boundedness claim from six data points,
+an ordering that held to `y = 37` and broke at 41. Build-and-test caught all of those; reasoning alone had
+endorsed several of them. That is the direct reason for the framing of this document: the reasoning done here is
+its least reliable component, and the measurements are its most reliable, so a reader whose reasoning is stronger
+should re-derive rather than inherit.
 
 **An audit note the reader should act on.** Two closures in this document do not fully meet the standard above,
 and should be re-examined rather than trusted:
@@ -280,10 +288,12 @@ So **`C <= 1.8` suffices for all `y >= 29`**, with smaller `y` checked directly.
 
 ## 2. Lines of research explored, and what each produced
 
-In roughly the order explored. Status is one of **live** (abandoned while still viable, or still viable now),
-**closed** (refuted or shown to have no reach), **absorbed** (superseded by something strictly stronger), or
-**standing** (a proved result now used everywhere). Several closures were themselves later corrected, and those
-are marked - a closed route with a corrected reason may deserve reopening.
+In roughly the order explored. Status labels record **this programme's judgement, not a proof about the route**:
+**live** (abandoned while still viable, or still viable now), **closed** (appeared to fail or to have no reach on
+the evidence gathered - not shown impossible), **absorbed** (superseded by something taken to be stronger), or
+**standing** (a result argued here and then relied on everywhere, so an error in it propagates widely). Two
+closures were later found to have been wrong, one of them costing a working route for most of the programme, so a
+"closed" label is a place to look rather than a place to stop.
 
 **2.1 Slip algebra: periods and relative slips.** The founding question. Rather than turning the gears, use only
 their periods and *relative slips* - gear 2 slips against gear 3 by 1 per 2-cycle, and so on - and ask
@@ -421,10 +431,12 @@ built.
 
 ---
 
-## 3. Established ground truths
+## 3. Findings offered as established - each needs checking
 
-Proved outright, or verified exhaustively at the stated scale. Numbering is referenced elsewhere in this
-document.
+Either argued to a proof here, or verified exhaustively at the stated scale. The scale is given in every case
+precisely so that the claim can be re-tested where it was tested and pushed past where it was not; several items
+below are exhaustive only inside a bounded search box, and those bounds are stated rather than glossed. Numbering
+is referenced elsewhere in this document.
 
 **Machine mechanics.**
 
@@ -576,9 +588,10 @@ next data point after the claim looked settled.
 
 ## 5. The near-proof bottleneck
 
-**Where it stalls, precisely.** Every route reduces to a constant, and the constant resists because *every
-elementary bound compares how much the gears can cover against how much needs covering* - and capacity is
-abundant, not scarce.
+**Where it stalls, on this programme's reading.** Every route tried here reduces to a constant, and the constant
+resisted, apparently because *every elementary bound attempted compares how much the gears can cover against how
+much needs covering* - and capacity is abundant, not scarce. The arithmetic in 5.1 to 5.3 is exact and should
+survive checking; the claim that it explains *all* the failures is an interpretation and may be too broad.
 
 **5.1 The one-scale capacity barrier.** Gear `q` covers about `2L/q` positions of a run of length `L`, so a
 capacity contradiction needs `sum 2/q < 1`:
@@ -652,11 +665,13 @@ inequality is a statement about the *second-order* term of that average.
 
 ---
 
-## 6. Refuted claims - do not re-derive
+## 6. Claims that appear to fail, with the evidence against each
 
-Mathematical dead ends, each with the counterexample or measured divergence that killed it. Each looked right
-on a small sample first; several died to their own next data point. These are worth checking but not worth
-re-deriving.
+Each of these was believed, then contradicted by a counterexample or a measured divergence, and each looked right
+on a small sample first. The evidence is given so it can be reproduced and so the *inference* can be judged
+separately from the data - a claim may fail as stated while a repaired version survives, and in at least one case
+below the stated reason for failure was itself later found to be wrong. Treat the numbers as reproducible and the
+verdicts as provisional.
 
 1. **mex law** (first exposed slot = mex of `{u_q} union {q-u_q}`) - held to `y = 37`, failed at 41, stalled at
    20 against the truth 87.
