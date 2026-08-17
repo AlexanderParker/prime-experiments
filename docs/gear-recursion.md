@@ -257,9 +257,29 @@ are both sums of gaps, and every gap there is a multiple of 3.)
     F(y)  = 1 + max length of a coverable run
     F2(y) = 1 + max length of a window coverable except for one interior position
 
-`maxgap.rs` computes the first by exhaustive search at the leftmost uncovered position. A variant with a
-mandatory hole computes the second, so `F2 - F` is directly measurable at the sizes where `F` is known. The
-claim to test is that `F2(y) - F(y)` is bounded, or at worst `O(y)`.
+`maxgap.rs` computes the first by exhaustive search at the leftmost uncovered position;
+`rust2/src/bin/holegap.rs` computes the second the same way, with one position forced to stay uncovered and
+each divisor losing the 2 offsets that would cover it. Validated against the values read off the pattern -
+`F2 = 21, 33, 48, 75, 93, 117, 165` at `y = 7, 11, 13, 17, 19, 23, 29` - exact in all seven cases, the last
+being the strongest check since the two computations are wholly independent at that size: `165 = 3 * 55`
+from the `k`-frame pattern against `165` from the search. Past `y = 29` the pattern no longer fits in memory
+and only the search is available.
+
+**`F2 - F` tracks `y`, which is the order the skeleton needs.** In adjacent units against `y`:
+
+    y                7     11     13     17     19     23     29
+    F2 - F           6     12     15     21     18     15     36
+    (F2-F)/y     0.857  1.091  1.154  1.235  0.947  0.652  1.241
+
+So the working claim is `F2(y) - F(y) = O(y)`, not `O(1)`. That is enough: chained with the measured chain
+excess `F(M+q) - F2(M)`, which reads `0, 0, 15, 6, 6, 0, 3, 9, 18` and whose interior gaps never exceed
+`2q+1`, an increment bound of the form
+
+    F(M+q) - F(M)  <=  (F2(M) - F(M))  +  2 * (max interior gap)  =  O(q)
+
+would give `C` bounded, hence `F = O(sum q) = O(y^2 / log y)`, hence the requirement with a margin of
+`log y`. Both ingredients are now measurable rather than conjectural: `holegap.rs` for the first,
+`chain_max` for the second.
 
 ## 5. The increment law, measured
 
