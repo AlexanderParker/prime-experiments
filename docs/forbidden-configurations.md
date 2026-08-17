@@ -287,6 +287,12 @@ within a block, so the minima of `h/d` sit at the block starts `L = 1, 3, 6, 9, 
     17    54     (1.0956, 1) (1.1787, 6) (1.2052, 3) (1.2207, 24) (1.2481, 21) (1.2711, 9)
     19    75     (1.0847, 1) (1.1602, 6) (1.1788, 3) (1.1885, 21) (1.1896, 24) (1.2420, 9)
     23    102    (1.0768, 1) (1.1455, 6) (1.1600, 3) (1.1833, 21) (1.1845, 24) (1.2186, 9)
+    29    129    (1.0711, 1) (1.1344, 6) (1.1468, 3) (1.1742, 21) (1.1834, 24) (1.2007, 9)
+
+`y = 23` was computed twice, once from the pattern in Python and once by enumerating all 111546435
+offset vectors in `rust2/src/bin/coverbound.rs`, with identical results to four decimals. `y = 29` is
+the Rust enumeration only - 3.2 billion vectors - and adds no new tight members, the full top ten being
+`1, 6, 3, 21, 24, 9, 15, 39, 54, 33`.
 
 Two things stand out.
 
@@ -300,9 +306,21 @@ stable around `1.16` to `1.25` rather than drifting towards 1.
 
 That reopens the per-`j` recipe of section 24b, which was abandoned because it needs a condition per
 value of `j` and the number of those grows like `0.055 y^2`. If only a fixed finite list of `j` is
-actually tight, the rest need nothing better than a crude bound with a factor of `1.16` of slack, and
+actually tight, the rest need nothing better than a crude bound with a factor of `1.13` of slack, and
 the recipe handles the short list. The falsification test is whether the tight list keeps growing with
-`y`; the measurement above says it has not through `y = 19`.
+`y`; the measurement above says it has not through `y = 29`.
+
+### 8a. A pattern in the tight list, stated as a prediction and not a law
+
+The tight block starts through `y = 29` are `3, 6, 9, 15, 21, 24, 33, 39, 54` together with `L = 1`. Six
+of the nine are `3q` for `q` prime - `6, 9, 15, 21, 33, 39` at `q = 2, 3, 5, 7, 11, 13` - and the two
+that are not, `24` and `54`, are `6 * 4` and `6 * 9`, that is `6q^2` at `q = 2, 3`.
+
+If that reading is right the next member is `6 * 25 = 150`, and the next `3q` members are `51` and `57`.
+`F_h(29) = 129`, so `150` cannot appear yet; `F_h(31)` should be around 160, which makes the prediction
+decidable at `y = 31`. This is recorded as a prediction with a named test, **not** as a law - five
+patterns in this programme have been recorded from small data and then refuted, and this one rests on
+nine numbers with two families fitted to them.
 
 ## 9. The per-`j` recipe does scale, because almost every term vanishes
 

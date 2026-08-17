@@ -199,6 +199,17 @@ fn main() {
             );
         }
     }
+    // Machine-readable dump of every N(L), for ranking the tight block starts downstream.
+    // See docs/forbidden-configurations.md section 8: h(L) = 1 - N(L+1)/N(L), and the minima of
+    // h/d sit at the block starts L = 1, 3, 6, 9, ...
+    println!("\n  NDUMP d={d:.12}");
+    for l in 1..=lmax {
+        println!("  NDUMP {l} {}", suffix[l]);
+        if suffix[l] == 0 {
+            break;
+        }
+    }
+
     println!("\n  violations: {violations}, worst ratio: {worst:.6}");
     match first_zero {
         Some(l) => println!("  first L with N(L) = 0: {l}  (so F_h = {l} for this frame)"),
