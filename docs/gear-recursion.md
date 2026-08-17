@@ -271,15 +271,14 @@ and only the search is available.
     F2 - F           6     12     15     21     18     15     36
     (F2-F)/y     0.857  1.091  1.154  1.235  0.947  0.652  1.241
 
-So the working claim is `F2(y) - F(y) = O(y)`, not `O(1)`. That is enough: chained with the measured chain
-excess `F(M+q) - F2(M)`, which reads `0, 0, 15, 6, 6, 0, 3, 9, 18` and whose interior gaps never exceed
-`2q+1`, an increment bound of the form
+The values at `y = 29` and `31` were the first predictive tests rather than fits - `F2(31) = 204` against
+`F(31) = 174` gives `30`, close to `y` - and both passed. But section 6a shows the ratio is not stable
+enough for a per-step bound: at `y = 37` it drops to about `0.19`, and the chain excess there rises to
+`1.622 q`, so the two pieces trade off rather than each staying small.
 
-    F(M+q) - F(M)  <=  (F2(M) - F(M))  +  2 * (max interior gap)  =  O(q)
-
-would give `C` bounded, hence `F = O(sum q) = O(y^2 / log y)`, hence the requirement with a margin of
-`log y`. Both ingredients are now measurable rather than conjectural: `holegap.rs` for the first,
-`chain_max` for the second.
+So `F2` is the right object and it is now computable, but the increment must be controlled in aggregate.
+`holegap.rs` measures the first piece and `chain_max` the second; what neither supplies is a reason the
+*sum* stays near `q` on average.
 
 ## 5. The increment law, measured
 
@@ -329,6 +328,31 @@ Chain the pieces:
    `C <= 1.8` suffices for every `y >= 29`**, with the finitely many smaller `y` already checked directly in
    section 2.
 
+### 6a. Per-step increment bounds cannot deliver the constant
+
+The natural way to bound `C` is to bound each increment by `alpha q` and sum, giving `C <= alpha`. **That
+route is closed by measurement.** With `F2` now available at each step, every increment splits exactly into
+the two pieces the recursion provides - `F(M+q) - F(M) = (F2(M) - F(M)) + (F(M+q) - F2(M))`:
+
+    add q         11     13     17     19     23     29     31     37     41     43
+    F(M)          15     21     33     54     75    102    129    174    264    273
+    F2(M)         21     33     48     75     93    117    165    204      -      -
+    increment      6     12     21     21     27     27     45     90      9     36
+    F2 - F         6     12     15     21     18     15     36     30      -      -
+    excess         0      0      6      0      9     12      9     60      -      -
+    incr/q     0.545  0.923  1.235  1.105  1.174  0.931  1.452  2.432  0.220  0.837
+    excess/q   0.000  0.000  0.353  0.000  0.391  0.414  0.290  1.622      -      -
+
+**The gear-37 step reaches `2.432 q`**, well above the `1.8` the chain needs, so no per-step bound of the
+form `increment <= 1.8 q` is true. The cumulative `C` is nevertheless `1.354`, because the neighbouring
+steps are `1.452` and `0.220`. The constant is an aggregate property, and the skeleton has to be argued in
+aggregate - either as a bound on the running total, or as a bound on the *average* increment.
+
+The two pieces also fluctuate more than a smaller sample suggested. Over `y = 13 .. 19` the excess never
+exceeded `0.581 q` across 24 `(M, q)` pairs, but at `(M_31, 37)` it is `1.622 q`. And `(F2-F)/y`, which read
+`0.65` to `1.24` through `y = 31`, drops to about `0.19` at `y = 37`, since `F(41) - F(37) = 9` forces
+`F2(M_37) <= 273` against `F(M_37) = 264`.
+
 So the open link needs a crude constant, not a sharp one: the largest `C` measured is `1.354` at `y = 37`
 against a threshold of `1.85`, a margin of `1.37`. That is narrower than the `1.6` claimed before `y = 37`
 was filled in, and since `C` is not monotone its supremum is not established - **this is the weak point of
@@ -374,11 +398,11 @@ maximal gaps was wrongly presented as the explanation of `F2 - F`, with `F2 - F`
 by two medium gaps `(30, 25)` rather than at a maximal gap at all. Isolation is real; what it explains is
 not `F2`.
 
-Open: step 1 of section 6, a proved bound on the increment. Note what has changed about the shape of the
-remaining work - it is no longer a knife-edge inequality needing exact minimisation, but a crude constant
-with a factor of `1.6` of slack against the measurement. Section 4b reduces it further, to bounding the
-chain length `k` and the interior gap sizes, both of which are constrained mechanically before any
-estimate is made.
+Open: step 1 of section 6, a proved bound on `C`. What section 6a establishes is that this cannot be done
+step by step - the gear-37 increment is `2.432 q`, above the `1.8` the chain needs - so the constant has to
+be argued as a property of the running total or of the average increment. The two pieces of each increment
+are individually measurable now (`holegap.rs` and `chain_max`), and they trade off against each other rather
+than each staying small, which is why the aggregate is better behaved than either.
 
 A caution for anything built on the earlier work: quantities named `F_h`, `L`, `n_j`, `kappa` in
 `forbidden-configurations.md` and `covering-bound-route.md` are **adjacent-frame**. Divide lengths by 3
