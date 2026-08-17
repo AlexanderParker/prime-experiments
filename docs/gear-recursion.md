@@ -51,14 +51,18 @@ to lie inside the certified window,
 
 > **`F_k(y) <= (y^2 - y)/6`.**
 
-Measured, this holds with a factor of 2.3 to 3 in hand:
+Measured, this holds with a factor of about 2.5 in hand, and the ratio is flat rather than climbing:
 
-    y                7      11     13     17     19     23     29
-    F_k              5       7     11     18     25     34     43
-    (y^2 - y)/6    7.0    18.3   26.0   45.3   57.0   84.3  135.3
-    ratio        0.714   0.382  0.423  0.397  0.439  0.403  0.318
+    y                7     11     13     17     19     23     29     31     37     41
+    F_adjacent      15     21     33     54     75    102    129    174    264    273
+    F_k              5      7     11     18     25     34     43     58     88     91
+    (y^2 - y)/6    7.0   18.3   26.0   45.3   57.0   84.3  135.3  155.0  222.0  273.3
+    ratio        0.714  0.382  0.423  0.397  0.439  0.403  0.318  0.374  0.396  0.333
 
-The ratio is falling, not approaching 1.
+`F(2,37) = 264` and `F(2,41) = 273` are new, computed with `rust2/src/bin/maxgap.rs` started from the
+previous value, which is a valid lower bound since `F` is non-decreasing in `y`. Note the increments are
+lumpy - `+90` at gear 37, then `+9` at gear 41 - so single increments say little; the running ratio is the
+stable quantity.
 
 ## 3. The merge transform, exactly
 
@@ -167,12 +171,30 @@ demands:
 Every interior gap is within 1 of a multiple of `q`, as required, and **`k` never exceeds 3** in any
 maximum observed. The excess `F(M+q) - F2(M)` is small where it is nonzero: `15, 6, 6, 0, 3, 9, 18`.
 
-So the remaining work on the constant `C` is: bound `k`, and bound the interior gaps. The first is a
-statement about how many *consecutive* gaps can each land within 1 of a multiple of `q` - each such gap is
-already forced to be at least `q - 1`, about twice the mean gap `1/d`, so requiring several in a row is
-severely restrictive. Quantifying "severely" is a counting estimate, and that is a legitimate use of
-statistics here: it checks a mechanical construction that is already complete and verified, rather than
-standing in for one.
+### Why `k` cannot be bounded mechanically, and where that leaves things
+
+The natural attempt fails, and it is worth recording why so it is not retried. The deleted points
+`p_1 < ... < p_k` are *consecutive* exposed points, so the span `p_k - p_1` contains exactly `k` exposed
+points and its interior gaps are genuine gaps of `M`. That gives two constraints:
+
+    p_k - p_1 = sum h_j  >=  (k-1)(q-1)     each interior gap is at least q-1
+    p_k - p_1 = sum h_j  <=  (k-1) F(M)     each interior gap is at most the maximum gap
+
+Together, `(k-1)(q-1) <= (k-1) F(M)`, which is vacuous whenever `F(M) >= q - 1` - and that is precisely the
+regime the consecutive chain lives in, since `F` outgrows `y`. The two inequalities are compatible for
+**every** `k`. Above the threshold they are incompatible for `k >= 2`, which is the saturation theorem
+again, so the argument has exactly the reach already obtained and no more.
+
+So no bound on `k` follows from the gap structure alone - from "gaps are multiples of 3, at least 3, at most
+`F`, interiors at least `q - 1`". Bounding `k` needs the *arithmetic* of which gaps fall within 1 of a
+multiple of `q`, that is the joint behaviour of consecutive gaps modulo `q`. That is a counting question,
+and it is the legitimate kind here: the mechanical construction - transform, chain condition, deletion
+lemma, saturation theorem - is complete and verified first, and the estimate checks it rather than standing
+in for it.
+
+What the counting has to deliver is modest: each interior gap is forced to be at least `q - 1`, roughly
+twice the mean gap `1/d`, so a chain of length `k` needs `k - 1` consecutive gaps that are all both unusually
+large and pinned to within 1 of a multiple of `q`. Every maximum observed has `k <= 3`.
 
 ## 5. The increment law, measured
 
@@ -185,14 +207,20 @@ standing in for one.
     19           23         75     102          27    1.174         98   1.041
     23           29        102     129          27    0.931        127   1.016
 
-Individual increments straddle `q` - between `0.55 q` and `1.29 q` - but the running total tracks
-`sum_{q <= y} q` closely, with `F_adjacent / sum q` between `0.81` and `1.04` here, and `1.10` at
-`y = 31` and `1.086` at `y = 47` from the Rust enumerations. So
+Individual increments straddle `q`, and the running total tracks `sum_{q <= y} q`:
 
-    F_adjacent(y)  ~  C * sum_{3 <= q <= y} q      with C measured between 0.81 and 1.10
-    F_k(y)         ~  (C/3) * sum_{3 <= q <= y} q
+    y             7     11     13     17     19     23     29     31     37     41
+    F_adjacent   15     21     33     54     75    102    129    174    264    273
+    sum of q     15     26     39     56     75     98    127    158    195    236
+    C = F/sum  1.000  0.808  0.846  0.964  1.000  1.041  1.016  1.101  1.354  1.157
 
-and at `y = 29`, `sum q / 3 = 42.3` against the true `F_k = 43`.
+So `F_adjacent(y) ~ C sum_{3<=q<=y} q` and `F_k(y) ~ (C/3) sum q`, with `C` measured between `0.81` and
+`1.354`. At `y = 29`, `sum q / 3 = 42.3` against the true `F_k = 43`.
+
+**Correction to an earlier version of this section**, which recorded `C` in `[0.81, 1.10]` on the strength
+of data up to `y = 31` plus `y = 47`. Filling in `y = 37` gives `C = 1.354`, above that range - the gear-37
+increment is `+90` where gear 41's is `+9`. `C` is not monotone and its supremum is not established. Since
+`sum q ~ y^2/(2 log y)`, this says `F_adjacent ~ 0.68 y^2 / log y` at these sizes.
 
 ## 6. The proof skeleton this gives
 
@@ -211,13 +239,18 @@ Chain the pieces:
 
        C  <=  2 (y^2 - y) / (y^2 + 2y - 3),
 
-   which is `1.8125` at `y = 29`, `1.9423` at `y = 101`, and rises to `2`. **A bound `C <= 1.8` suffices
-   for every `y >= 29`**, with the finitely many smaller `y` already checked directly in section 2.
+   which is `1.8125` at `y = 29`, `1.85` at `y = 37`, `1.88` at `y = 47`, and rises to `2`. **A bound
+   `C <= 1.8` suffices for every `y >= 29`**, with the finitely many smaller `y` already checked directly in
+   section 2.
 
-So the open link needs only a crude constant, not a sharp one: measured `C` is `1.10`, and anything below
-`1.8` finishes. Using the sharp `sum_{q <= y} q ~ y^2/(2 log y)` instead gives much more - ratio
-`C/log y`, which improves with `y` - and predicts `1.10/log 29 = 0.327` against the measured `0.318`. But
-the elementary route is enough.
+So the open link needs a crude constant, not a sharp one: the largest `C` measured is `1.354` at `y = 37`
+against a threshold of `1.85`, a margin of `1.37`. That is narrower than the `1.6` claimed before `y = 37`
+was filled in, and since `C` is not monotone its supremum is not established - **this is the weak point of
+the skeleton, not the elementary step.**
+
+Using the sharp `sum_{q <= y} q ~ y^2/(2 log y)` instead gives more room, since the ratio to the requirement
+becomes `C/log y` and improves with `y`: it predicts `1.354/log 37 = 0.375` against the measured `0.396`.
+Either way the constant has to be bounded, and that is what section 4b is about.
 
 So the whole question reduces to step 1: **how far can the maximum gap grow when one gear is added.**
 That is a statement about merges of consecutive gaps under deletion of two residue classes - entirely
@@ -238,9 +271,13 @@ Established here:
 * the real requirement `F_k(y) <= (y^2 - y)/6`, holding with a factor of 2.3 to 3, ratio falling;
 * the real-frame minimum of `h/d` sits at `L = 2`, not `L = 1`, so `min_L h(L) = h(1)` is stronger than
   needed - what is needed is `kappa >= 0`, with measured room `0.68`;
-* the increment law `F ~ C sum_{q <= y} q` with `C` measured in `[0.81, 1.10]`, and a skeleton in which
+* the increment law `F ~ C sum_{q <= y} q` with `C` measured in `[0.81, 1.354]`, and a skeleton in which
   **any proved `C <= 1.8` finishes the bound for `y >= 29`**, by an elementary step that needs no prime
-  counting.
+  counting;
+* two new values, `F(2,37) = 264` and `F(2,41) = 273`.
+
+Corrected here: `C` was recorded as at most `1.10` from data that skipped `y = 37`; it is `1.354` there, so
+the margin against the threshold is `1.37` rather than `1.6`, and `C` is not monotone.
 
 Open: step 1 of section 6, a proved bound on the increment. Note what has changed about the shape of the
 remaining work - it is no longer a knife-edge inequality needing exact minimisation, but a crude constant
