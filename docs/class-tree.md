@@ -189,3 +189,21 @@ square; slot 24 = 5's coprime + 11's coprime) - the only territory overlaps in t
 exactly the crossed double-kills of the pair anatomy. Pseudo-twin density at the bottom is brutal:
 gear 5 has 8 of 9 kills beside primes, gear 7 has 5 of 6 - the three composite partners in the
 whole map (119, 121, 145) are precisely the mutual-coverage slots.
+
+## The overlap map and the composite root law (13-window)
+
+Full degree census of slots 2..28: 9 twins (degree 0), 10 fragile (degree 1 - the deciding
+pseudo-twin slots), 7 double (5 pair products + 2 crossed: slot 2 = the twin gears' own pair
+11:L+13:R, slot 20 = the 7x11 cross 119|121), 1 hub (slot 24 = (143,145): the 11x13 product plus
+gear 5 on the partner - a pair-lattice act landing inside a lower gear's lattice).
+
+**Composite root law (verified):** every squarefree product of set gears acts unshadowed exactly
+once per window - at its own value - if it fits at all. Same-member joint hits of a pair are
+qr*j with j = +-1 mod 6; j = 5 already overflows the window (5*35 = 175 > 169), so each pair
+scores exactly one product coincidence (35, 55, 65, 77, 91, 143 - six pairs, six products, no
+more), and no triple product fits (385 > 169), so zero same-member triples. Beyond its product, a
+coprime's multiples carry a smaller cofactor and fall into that gear's lattice - the recursion
+"lower lattice is just primes and coprimes" made exact.
+
+Near-balance observed: 9 twins vs 10 fragile slots - the window's thin margin between real twins
+and pseudo-twins, with the forced overlap slots as the remainder.
