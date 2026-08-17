@@ -2,36 +2,32 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 4. THE FLAGSHIP CONVERGED TO ONE OBJECT: under X, the two-sided prefix identity
-N(t) - P(t) = B(t) - U(t) at every t - demand pinned by the zero-slack census (now kernel-checked:
-Census.lean, n0_eq_zero_iff IS Condition X), supply pinned by the master formula (one signed sum
-over coprime squarefree product pairs, pure floor arithmetic, verified at EVERY prefix at two
-scales; n2 = B - U exactly, U = the finite u'-pin list confined to the bottom y/6 slots).
+State after round 5. THE ROUND'S NOVELTY: the INVERSION ZONE (constructor) - an unconditional,
+moment-only twin-forcing criterion: where R(t) = (S1^2/M2)/(t-P) > 1, Cauchy-Schwarz arithmetic
+alone forces n0 >= 1 (a twin in the prefix), no primality input. Zone nonempty at every y tested
+(sup R: 19.6 at y=101 declining to 1.44 at y=10007); worked instance: (521,523) proved from four
+slots of floor arithmetic. Closing the zone for all y = the superdense/parity wall; the identified
+edge is MIRROR-AWARE THIRD MOMENTS on the starved bottom band (freedom-free placement + U-pin
+exclusions are what create the zone; generic large sieve cannot see them).
 
-VERDICTS, honest: the equation is SATISFIABLE count-wise (constructor: X <=> P(t) sits at its
-unconditional floor t - D(t) everywhere; the floor sits at exactly HALF the Montgomery-Vaughan
-ceiling - the parity factor photographed live). Capacity can NEVER be the contradiction (mechanic:
-slack 3.2-4.5x and loosening). The entire reality-to-X distance is a COMPRESSION number: reality
-piles cross-root hits into doubles at multiplicity 4.38 where X demands 4.50 - 2.6%. The
-contradiction, if reachable, is a multiplicity/second-moment statement about cross-root pile-up -
-the same second-moment frontier the corpus's kappa forms hit, reached independently with exact
-arithmetic instead of expansions. The g=2 pins (twins below y) remain the unique unconditionally
-guaranteed supply line (5-9% at every scale).
+Honest refutation alongside: the hoped 2x compression-ceiling story is dead - the Cauchy-Schwarz
+ceiling DIVERGES from the need (1.26->1.58 vs 1.22->1.05). And the compression gap is a ZEROTH
+MOMENT statement only (mechanic): variance/tails carry real product-structure (exact slot-cap
+covariance ~ primezeta(2) - 1/4 - 1/9) but none of the X-gap; the joint zero-mass IS the twin mass
+(real at 0.77-0.85 of its product baseline). The reality identity is now per-slot exact to 16.7M
+slots (lateral): P(t) = t + T_win(t) - B(t) + U(t) - THE X-EQUATION'S DEFECT IS EXACTLY THE TWIN
+COUNT. Geometry warning: the bottom band is stride-hostile and top strides carry 87-90% of prime
+load - bounds binding only in the bottom band fight reality at its strongest.
 
-Harvester joined: band statements honestly unreachable (0.525 wall), constant-2 law HL-class;
-first bite delivered - Polignac.lean kernel-checked (per-gap transfer condition slot_cap_gap:
-q blocks both members of a gap-2d slot iff q | d; per-d equivalence Polignac_d <=> windowed
-survivor; Goldbach window reduction) - sharpens Ziller-Morack to machine-checked per-difference
-equivalences. Kernel ledger: 7 files (BlockedSlots, Horizon, Layer, Supply, Census, Polignac,
-AxiomCheck), all standard axioms.
+Kernel ledger GREEN, verified by manager: 986 jobs, 8 files. New this round: Bridge.lean
+(sum R_p = n1 + 2*n2 - the equation's formal skeleton complete) and the g=2 PINNING THEOREM
+(7 theorems in Polignac.lean incl. UNIQUENESS: only twin pairs split-kill their own slot; the
+guaranteed double lives in the bottom band of every window unconditionally).
 
-ROUND-5 FOCUS: the compression frontier. Mechanic: cross-root multiplicity distribution vs
-independent-classes model (the moment structure). Constructor: state the compression bound X needs
-exactly and inventory unconditional tools for multiplicity moments (union bounds, MV, second
-moments) - where exactly does parity block them. Formalist: the bridge identity
-sum R_q(t) = n1 + 2n2 (formal skeleton of the equation). Lateral: overdetermination scan +
-enumeration pruning toward y ~ 10^4. Harvester: the g=2 pinning theorem (first exact fact
-distinguishing twins from other gaps inside the general frame).
+ROUND-6 FOCUS: (a) the zone's fate - track sup R(y) to larger y with exact moments: does it cross
+1, and where/why (mechanic+constructor share this); (b) mirror-aware third moments on the bottom
+band - the unexhausted edge (constructor); (c) load-length frontier (lateral); (d) per-gear fiber
++ cap in Lean (formalist); (e) overcount identity in Lean (harvester).
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
@@ -236,6 +232,33 @@ supply_pergear.csv (R_q(t): every gear at y<=2003, 24 reps above).
   Multiplicity profile measured: 5.4 near window bottom -> 4.4 at end (y=50021),
   rising with y; no closed form fitted yet (candidate: second moment of active-
   pair density - offered to Constructor/Lateral for the flagship equation).
+
+## Mechanic round 5 (2026-08-18) - multiplicity distribution vs independence
+Tool: research/multiplicity_census.py (y=50021 in 63s). Data:
+research/data/multiplicity_hist.csv (full distributions + both null models),
+multiplicity_summary.csv. Identity: slot-cap => mu(k) = omega_G(mL)*omega_G(mR)
+exactly; sum mu = S_pair and #{mu>=1} = n2 reproduce round-4 values exactly.
+- INDEPENDENT-PAIRS NULL (CRT classes, independent across pairs; exact
+  Poisson-binomial via DFT over all 13.2M pairs) FAILS on P(mu=0) by 6.6x
+  (0.041 vs 0.273 at y=50021). Real compression 4.38 vs null 3.32: the machine
+  compresses 32-46% harder than independence; ratio declines with y (1.46 ->
+  1.32), absolute gap grows (0.89 -> 1.06).
+- THE CARRIER IS THE PRODUCT STRUCTURE: real var = 4.1x null, tail mu>=9 = 16x
+  null. A second null keeping the product (mu' = omega'L*omega'R, independent
+  Poisson-binomial sides) reproduces the real var and tail to a few % AND P0 to
+  1.4 points. Exact bonus identity: null2 mean - real mean = sum_q p^L_q p^R_q
+  -> 0.0911 = primezeta(2) - 1/4 - 1/9 (slot-cap covariance, 4 decimals).
+- MOMENT ANSWER FOR THE FLAGSHIP: the 4.38-vs-4.50 gap is ZEROTH-moment only.
+  cond = mean/(1-P0), mean pinned by arithmetic => cond_X - cond_real is
+  equivalent to P0_X = P0_real - n0/W. Variance/tail carry the real-vs-
+  independence excess but NONE of the X-gap. In product-model language: X
+  demands the zero-mass sit ~n0/W (6.5% rel.) below the model baseline; the
+  real window already sits 1.3-1.4 points below it, split as (a) the model's
+  twin-mass overestimate (both-zero mass 0.0242 vs real 0.0187; ratio 0.85 ->
+  0.77 down the ladder - the HL correction independence misses) and (b) a ~3%
+  singles-mass deficit. The compression frontier is exactly: how low can
+  P(omega_L=0 & omega_R=0) (the twin mass) go below the product baseline -
+  everything else in the distribution is product-structure bookkeeping.
 
 ## Formalist round 1 (2026-08-18)
 The HORIZON THEOREM is now kernel-checked: proofs/Horizon.lean (namespace `Horizon`,
@@ -560,3 +583,133 @@ Tool: research/supply_formula.py. Derivation: docs/proof-search/lateral.md round
 - Offering next: overdetermination scan (where do the two sides' derivatives
   bind in real windows) or enumeration pruning to make the equation testable at
   y ~ 1e4; coordinator's pick.
+
+## Lateral round 5 (2026-08-18) - machinery at y=10^4; the binding defect IS the twin count
+Tool: research/derivative_scan.py. Full log: docs/proof-search/lateral.md round 5.
+- SCALE REACHED via pruning-by-role: PAIRSPLIT evaluated by the gap law alone
+  (no product enumeration) and verified EXACTLY against sieve incidence
+  sum omega_l*omega_r: 13,861 pairs / 301,026 incidences (y=1009) and 753,378
+  pairs / 43,908,326 incidences (y=10007). U by pure arithmetic == sieve (133 /
+  1023 slots). Sieve spot-verified vs trial division (2000 slots, 0 miss, both).
+- REALITY FORM OF THE FLAGSHIP IDENTITY, verified per-slot (max residual 0 over
+  all 16.69M slots at y=10007): P(t) = t + T_win(t) - B(t) + U(t). Under X,
+  T_win = 0: THE BINDING DEFECT OF THE X-EQUATION IS EXACTLY THE TWIN COUNT,
+  one unit per twin slot. Kernel-checkable bookkeeping (all terms census
+  objects) - natural Lean target coupling Census.lean to the supply side.
+- DERIVATIVE SCAN (reality is exactly X-like on twin-free runs, dP = 1 - dn2
+  there). Findings at y=1009 / 10007 (440,870 twins, max stride 478 ~ the
+  0.47 log^3/6 law):
+  (a) prime load in top-1% strides (length-weighted, depth-binned baseline):
+      87% / 90% of ambient - reality's most X-like stretches carry ~90% of
+      full prime load while pairing none. X needs 100% over the whole window.
+      Frontier in one line: X-like at length ~478 costs 10% prime load;
+      X needs length 1.7e7 at zero discount. Caveat: deficit is partly
+      conditioning; its content is its SMALLNESS and its upward trend with
+      scale (0.869 -> 0.901).
+  (b) hub ground generic (hub-rate/ambient 0.999 / 1.006): near-binding loci
+      are NOT hub-enriched - the mechanic's capacity verdict, seen locally.
+  (c) bottom band is stride-hostile: max stride in first 1% of window is half
+      the global max (242 vs 478); top strides live at median depth ~0.6. Any
+      bound that binds only in the bottom band fights reality at its strongest.
+- Numbers at y=10007 (K=16,690,008): B 11,362,820  U 1,023  n2 11,361,797
+  T 440,870  P 5,769,081  overcount 38,821,888 (bridge exact); g=2 share of
+  PAIRSPLIT 3.1% (4.7% at y=1009).
+- Offering next: (1) the load-length frontier (max prime load vs twin-free run
+  length at fixed depth - the exact curve a compression bound must dominate);
+  (2) hand the per-slot identity to Formalist/Harvester for kernel-checking.
+
+## Constructor round 5 (2026-08-18) - compression bound + tool inventory + INVERSION ZONE
+Tools: research/compression_bound.py, compression_zone.py (no primality tests -
+prime <=> unmarked by horizon; identities asserted). Full text: constructor.md
+sections 14-16. Mechanic's moment CSV not yet posted; moments computed directly,
+match their round-4 S_pair/tau at overlaps.
+- COMPRESSION STATEMENT EXACT: with m_k = omega_L*omega_R, S1 = sum m_k,
+  M2 = sum m_k^2 (both freedom-free floor arithmetic; M2 = 4-tuple CRT co-hits):
+  X <=> the fixed schedule compresses at M_X(t) = S1/(t-P) exactly, every prefix.
+  M_X/M_real = 1 + n0/(t-P): X needs 5-22% harder pile-up than reality in range.
+  Contradiction needs an unconditional ceiling C(t) < M_X(t) somewhere.
+- INVENTORY, computed on our exact system: union bound = floor only. Bonferroni-2
+  VACUOUS everywhere (mean m > 3). Cauchy-Schwarz/Turan ceiling C_CS = M2/S1:
+  MANAGER'S 2x EXPECTATION REFUTED - worse: C_CS/M_X = 1.26 -> 1.58 (y=211->5003)
+  and GROWING (tracks lnln-divergent dispersion) while the needed window narrows
+  (1.22 -> 1.05). Diverges, does not land at 2x. Large sieve/MV = same 2nd-moment
+  content (rho -> 1/2 photograph); Selberg Lambda^2 bounds n0 from ABOVE (factor
+  ~4 over HL) - wrong direction vs n0 = 0.
+- INVERSION ZONE (new, sharpest): R(t) = (S1^2/M2)/(t-P) > 1 forces n0 > 0 by
+  moment arithmetic alone. Zone NONEMPTY at every y tested: sup R 19.6 (y=101),
+  6.5 (503), 2.9 (2003), 1.44 (10007); extent [~5, 17204] at 10007. Worked: y=503
+  t=4: S1=3, M2=5, CS=1.8 > t-P=1 - twin (521,523) forced, not searched. Turning
+  the zone into a theorem needs P(t) > t - S1^2/M2: density 0.42-0.80/slot =
+  0.07-0.13/integer, superdense class - parity re-entry point (i). Ceilings can't
+  dip below parity-twisted configurations on same moments - re-entry point (ii),
+  measured 26-58% overshoot vs 5-22% need. Asymptotically the zone degenerates to
+  the early-twin detector (CS efficiency -> 1 at the immediate bottom).
+- THE EDGE (one paragraph, sec 16): three non-generic features unused by sieve
+  axioms - (a) freedom-free placement (bottom-band n2 starvation: no double before
+  absolute slot 20, U-pins subtract guaranteed supply from n2 exactly at demand
+  onset - this CREATES the inversion zone; a generic system with our moments would
+  not have it); (b) mirror symmetry (palindromic prefix identities, invisible to
+  translation-averaged large sieve); (c) all-order exactness via the master formula
+  (beyond sieve axioms, but full use = tautology). The unexhausted direction:
+  positional (mirror-aware) third-moment bounds on the starved bottom band, seeking
+  R > 1 with sub-superdense prime input. Everything else terminates at the parity
+  wall by measurement.
+
+## Formalist round 5 (2026-08-18)
+The BRIDGE IDENTITY is kernel-checked: proofs/Bridge.lean (namespace `Bridge`, imports
+Supply + Census, zero sorry, standard axioms via AxiomCheck). The supply and demand
+sides of the X-consistency equation now meet in one formal statement.
+- `Bridge.members T` = T.image lo ∪ T.image hi (the slot set's members); lo/hi
+  injective, images disjoint (5 vs 1 mod 6) => `card_members`: #members = 2N.
+- `Bridge.card_comps_members` / `card_primes_members`: member-side composite/prime
+  counts = Census.compsIn / Census.primesIn (the two groupings count the same Finset).
+- `Bridge.sum_roots_eq_census` (THE BRIDGE): for any slot Finset T with slot-level
+  window bounds (∀ k ∈ T, y < lo k ∧ hi k < y*y): sum over primes p < y of
+  R_p(T) = #{m ∈ members T : composite, minFac m = p} equals n1(T) + 2*n2(T).
+- `Bridge.sum_roots_pinned`: under X (n0 = 0), Σ_p R_p = P + 2*(N − P) — the pinned
+  demand, supply-side expressed. `Bridge.slot_roots_ne`: (6k−1).minFac ≠ (6k+1).minFac
+  for k ≥ 1 (per-gear ledgers overlap-free even at double slots).
+Constructor: the X-consistency equation's LHS skeleton is now citable end to end
+(Horizon → Supply → Census → Bridge, all composable hypotheses, prefixes = range t).
+NOTE for manager: Polignac.lean (added to the lakefile this round by another
+workstream) currently fails to compile (5 errors, its own file); the six formalist
+libs build green independently — `lake build BlockedSlots Horizon Layer Supply Census
+Bridge` succeeds; plain `lake build` will fail until Polignac is fixed by its owner.
+Next target (proposed): per-gear fiber of the bridge - R_q alone + the per-gear cap
+(multiples-of-q bound), first step toward the freedom-free semiprime supply arithmetic.
+
+## Harvester round 2 (2026-08-18) - the g=2 pinning theorem, kernel-checked
+Coordinator-approved bite executed. Full detail: docs/proof-search/harvester.md sec 6.
+proofs/Polignac.lean extended with section "The g = 2 pinning" (7 new theorems);
+computational verification FIRST (research/twin_pin_check.py: 81 twin pairs to 3000 -
+pin, class-iff exhaustive over two periods to p=150, mirror, product slot; uniqueness
+scan over all prime pairs q < q' <= 400: 20 own-slot pins found, ALL g=2; zero fails).
+- `twin_mod_six`: p, p+2 prime, p > 3 => p = 5 mod 6 (slot coordinate exact).
+- `twin_pin`: the pair IS slot u = (p+1)/6 (6u-1 = p, 6u+1 = p+2, p | left,
+  p+2 | right) - the split representative in closed form; existence trivialised by
+  self-blocking (the pin is the pair).
+- `twin_pin_le`: u <= (y+1)/6 for EVERY y >= p - the guaranteed double sits in the
+  bottom band of every window at every scale, unconditionally. Formal location half of
+  "twins below y are the unique guaranteed line item of the level-y^2 doubles ledger".
+- `twin_split_class_iff`: slot k split-killed by {p,p+2} (p left, p+2 right) IFF
+  k = u mod p(p+2) - the full CRT class as an iff (g=2 case of the roots-of-unity law).
+- `twin_mirror_slot` (second class at P-u), `twin_product_slot` (same-member double at
+  u(p+1), member = p(p+2) exactly - machine re-ingesting its own output, formal).
+- `own_slot_pin_gap_two` (UNIQUENESS): an odd prime pair (q, q+g) split-killing the
+  slot holding q itself forces g = 2. Only twins pin at their own slot. The
+  quantitative other half (depth ~P/(6g) for g > 2, mod-6 alignment rate) stays
+  paper-side (research/split_gap_law.py) - priced, not formalised.
+STATUS: whole ledger GREEN - `lake build` (all 7 targets incl. Bridge + Polignac)
+"Build completed successfully" (986 jobs); the mid-round failure the Formalist flagged
+was my round-2 edit in flight, now fixed. Axiom audit, all 16 Polignac theorems:
+standard axioms; the twin-pin seven need only [propext, Quot.sound] except
+twin_split_class_iff (+Classical.choice).
+Lean notes for the team: omega does NOT combine congruences across moduli - decompose
+to one modulus with explicit witnesses; [MOD n] notation needs
+`import Mathlib.Data.Nat.ModEq` (not transitively available via BlockedSlots);
+`Nat.dvd_sub` here is the old `Nat.dvd_sub'`; `le_or_lt` absent - use `Nat.lt_or_ge`.
+For Constructor/Lateral: the U-list kernel of the master formula (n2 = B - U) is now
+formally characterised (existence + location + class-exactness + twin-uniqueness);
+U-membership ("partner gearful") and the B-side remain the open formal gap.
+Next bites offered: overcount census identity in Lean (= Formalist's bridge line from
+the supply side), or F(2,53) completion for the data note; coordinator's pick.

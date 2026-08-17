@@ -288,3 +288,73 @@ count over the corresponding member Finset (S = image of slots' members),
 giving Σ_q R_q(t) = n1(t) + 2·n2(t) kernel-checked end to end — the formal
 skeleton of the X-consistency equation's left-hand side. Alternative:
 h(2) ≥ d's product inequality.
+
+## Round 5 — The bridge identity (2026-08-18)
+
+### What was done
+
+New file `proofs/Bridge.lean` (namespace `Bridge`), importing Supply and
+Census — the file that connects the supply side (root partition over
+members) to the demand side (slot census). Registered in lakefile,
+AxiomCheck extended. Compiled first try, zero sorry, zero warnings.
+
+### Final theorem statements
+
+```lean
+def members (T : Finset ℕ) : Finset ℕ := T.image lo ∪ T.image hi
+
+theorem card_members        : (members T).card = 2 * T.card
+theorem card_comps_members  : ((members T).filter fun m => ¬ m.Prime).card = Census.compsIn T
+theorem card_primes_members : ((members T).filter fun m => m.Prime).card = Census.primesIn T
+
+theorem sum_roots_eq_census {y} (T) (hwin : ∀ k ∈ T, y < lo k ∧ hi k < y * y) :
+    (∑ p ∈ (Finset.range y).filter Nat.Prime,
+      ((members T).filter fun m => ¬ m.Prime ∧ m.minFac = p).card)
+      = Census.n1 T + 2 * Census.n2 T
+
+theorem sum_roots_pinned {y} (T) (hwin) (h0 : Census.n0 T = 0) :
+    Σ_p R_p = Census.primesIn T + 2 * (T.card - Census.primesIn T)
+
+theorem slot_roots_ne {k} (hk : 1 ≤ k) : (lo k).minFac ≠ (hi k).minFac
+```
+
+### Proof route
+
+- `members T = T.image lo ∪ T.image hi`; `lo`/`hi` injective (omega through
+  the truncated subtraction), images disjoint (`5 ≢ 1 mod 6`, omega). So
+  each slot contributes its two members distinctly — the flagged subtlety
+  is discharged at the count level by disjointness.
+- Count bridge: `filter_union` + `card_union_of_disjoint` +
+  `disjoint_filter_filter`, then `Finset.filter_image` swaps the member
+  filter into a slot filter through each injection, `Finset.card_filter`
+  turns the two filter cards into indicator sums, and a four-way `by_cases`
+  matches their sum to `slotComps k` (resp. `slotPrimes k`) pointwise.
+- `sum_roots_eq_census` is then three rewrites: Supply's identity backwards
+  (window hypothesis transferred slot→member by `members_window`), Census's
+  `comps_eq` backwards, and the count bridge. Nothing else.
+- `sum_roots_pinned`: bridge + `census_pinned`, closed by omega (handles
+  the ℕ subtraction).
+- `slot_roots_ne` = `Supply.roots_ne` at `m = 6k−1` (odd, and
+  `hi k = lo k + 2` for `k ≥ 1`) — root distinctness inside a slot.
+
+### Build status
+
+`lake build BlockedSlots Horizon Layer Supply Census Bridge`: **Build
+completed successfully (981 jobs)**, zero sorry, all six formalist libs
+green. Note: a seventh lib `Polignac` (added to the lakefile by another
+workstream this round) currently has five compile errors in its own file —
+pre-existing, untouched by me, and isolated: it does not affect the six
+libs above. Flagged to the manager via agents-shared.
+
+### Axiom audit
+
+All six checked Bridge theorems: `[propext, Classical.choice, Quot.sound]`.
+
+### Proposed next target
+
+The X-consistency equation now has its LHS skeleton formal end to end.
+Natural next chunk: per-gear decomposition of the bridge — split Σ_p R_p by
+the fiber at a single gear q (R_q alone) and prove the ledger's per-gear
+cap R_q(T) ≤ (number of multiples of q among members), connecting to the
+deletion-spacing law; that is the first step toward the supply side's
+freedom-free semiprime arithmetic. Alternative: h(2) ≥ d.

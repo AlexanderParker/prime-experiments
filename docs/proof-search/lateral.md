@@ -367,3 +367,80 @@ arithmetic over primes/gaps below y. Offer: (1) overdetermination scan - measure
 in real windows where the two sides' DERIVATIVES disagree (real windows have
 slack; X has none; locate the slots where the rigidity binds); (2) close the
 enumeration cost so the equation is testable at y ~ 10^4.
+
+## Round 5 (2026-08-18): the machinery at y = 10^4, and the derivative scan
+
+Steering taken: pruning to reach scale, then the per-slot binding map.
+Tool: `research/derivative_scan.py` (numpy sieve + gap law + arithmetic U).
+
+### Pruning that survived contact
+
+The O(#products^2) term enumeration was only ever needed for the CORR-class
+terms; the labour splits along what each piece is good at:
+- PAIRSPLIT by the gap law directly: O(pi(y)^2) closed-form reps, no product
+  enumeration. At-scale verification: law total == sieve incidence
+  sum_k omega_l*omega_r EXACTLY - 13,861 pairs (301,026 incidences) at y=1009,
+  753,378 pairs (43,908,326 incidences) at y=10007. The gap law is now
+  verified at three orders of magnitude beyond its round-3 exhaustive range.
+- U by pure arithmetic (u'(q), partner-gearful): == sieve at both scales
+  (133 slots at y=1009, 1023 at y=10007).
+- The telescoped remainder (SAME, B, hubs) by vectorized sieve, spot-verified
+  against independent trial division (2000 random slots each scale, 0 miss).
+
+### The reality form of the flagship identity, verified per-slot at 1.67e7 slots
+
+With n_j = # slots with j composite members: P = 2n0 + n1, n2 = B - U,
+n0 = T_win, hence the X-consistency equation's reality form is
+
+    P(t) = t + T_win(t) - B(t) + U(t)    at every t
+    (per-slot: dP = 1 + dT - dB + dU, max residual 0 at both scales)
+
+**The binding defect of the flagship identity IS the twin count.** X <=> the
+identity binds (T = 0); reality's deviation is exactly one unit per twin slot.
+Totals (y=10007, K=16,690,008): B 11,362,820, U 1,023, n2 11,361,797,
+T 440,870, P 5,769,081, overcount 38,821,888 (bridge OK); g=2 share of
+PAIRSPLIT 3.1% (4.7% at y=1009).
+
+### The derivative scan: geometry of the near-binding loci
+
+Reality is exactly X-like on twin-free runs (dP = 1 - dn2 slot by slot there).
+Scanning all runs (440,870 twins at y=10007; max stride 478, consistent with
+the measured 0.47 log^3/6 law):
+
+- **Prime load in the most X-like stretches: 87-90% of ambient.** Top-1% of
+  strides, length-weighted, depth-binned baseline: P-rate/ambient = 0.869
+  (y=1009), 0.901 (y=10007). Selection pushes this below 1 (fewer primes =
+  fewer pairing chances = longer runs) - the lateral point is how SMALL the
+  deficit is: reality's longest X-like stretches still carry ~90% of full
+  prime load while pairing none of it. X must carry 100% (PNT-pinned) over the
+  entire window. The compression frontier in one line: reality can do X-like
+  behaviour at length ~478 while shedding 10% of its prime load; X needs it at
+  length 1.7e7 while shedding none.
+- **Hub ground is generic: hub-rate/ambient = 0.999 / 1.006.** The near-binding
+  loci are NOT hub-enriched - X-likeness is not achieved by extra pile-up,
+  consistent with the mechanic's capacity-never-binds verdict, now seen locally.
+- **Geometry: the bottom band is stride-hostile.** Top-1% strides live at
+  depths 0.06-0.99 (median ~0.6); max stride inside the first 1% of the window
+  is half the global max (242 vs 478 at y=10007; 35 vs 242 at y=1009). The
+  bottom band - where U lives and supply arrives late (round 4) - is exactly
+  where reality never comes close to X-behaviour. A compression bound that
+  binds only in the bottom band fights reality where reality is strongest.
+
+### Honest caveats
+
+- The P-rate deficit in long runs is partly conditioning (runs are found where
+  primes are thin), not a mechanism; its informative content is its smallness
+  and its trend UP with scale (0.869 -> 0.901): the X-likeness discount is
+  shrinking, i.e. long runs look more like ambient ground as y grows.
+- Depth-binned ambient (100 bins) is a crude baseline; a log-local baseline
+  moved numbers by < 0.01 in spot checks.
+
+### Proposed next chunk
+
+The scan says the binding defect is T itself, so the compression bound must be
+a statement about how much prime load a twin-free stretch can carry. Offer:
+(1) the load-length frontier: empirical + exact-arithmetic curve of max prime
+load vs run length at fixed depth (the quantitative object the bound must
+dominate); (2) feed the Harvester: the per-slot identity P = t + T - B + U is
+kernel-checkable bookkeeping (all four terms are census objects; no analysis),
+a natural next Lean target coupling Census.lean to the supply side.

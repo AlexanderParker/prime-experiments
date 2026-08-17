@@ -171,6 +171,58 @@ One rename during build: this mathlib has `Nat.dvd_sub` where older versions had
 
 1. C7: state and prove the g=2 pinning theorem (paper-form proof from the split law's
    closed form; optional Lean of the m0 = 0 iff g = 2 step, which is one mod-g inverse).
+   [EXECUTED round 2 - see section 6.]
 2. C6: CORR formula-ization (also requested by Constructor round 4) - harvest and
    flagship coincide there.
 3. C10: restart the F(2,53) search if compute budget allows; package table for OEIS.
+
+## 6. Round 2 (coordinator-approved bite): the g=2 pinning theorem, kernel-checked
+
+Target (the g=2 slice of Lateral's split-gap law): only twin pairs have their split
+double-kill class pinned unconditionally at the bottom of every window; every other gap's
+class sits at alignment-conditional depth. Formalised in proofs/Polignac.lean (same file,
+new section "The g = 2 pinning"), concrete twin-pair case per the coordinator's steer:
+
+- `twin_mod_six`: p, p+2 prime, p > 3 => p = 5 mod 6 (slot coordinate exact).
+- `twin_pin`: the pair IS slot u = (p+1)/6: 6u-1 = p, 6u+1 = p+2, p | left member,
+  p+2 | right member - the split representative in closed form, existence trivialised
+  by the self-block identity (the pin is the pair).
+- `twin_pin_le`: u <= (y+1)/6 for EVERY y >= p - bottom band of every window, every
+  scale, unconditionally. This is the formal statement of "twins below y are the
+  guaranteed line item of the level-y^2 doubles ledger" (location half).
+- `twin_split_class_iff`: slot k is split-killed by {p, p+2} (p left, p+2 right)
+  IFF k = u mod p(p+2) - the full CRT class as an iff (g=2 case of the roots-of-unity
+  law). Proof: coprimality to 6 cancels the slot map; distinct primes lift by CRT;
+  below-the-pin slots are impossible because p+2 would divide a positive number
+  smaller than itself.
+- `twin_mirror_slot`: the second split class at P - u, both divisibilities explicit.
+- `twin_product_slot`: the same-member double at kp = u(p+1), where 6kp - 1 = p(p+2)
+  exactly - the machine re-ingesting its own output, formal.
+- `own_slot_pin_gap_two` (uniqueness): a prime pair (q, q+g), both odd, that
+  split-kills the slot holding q itself forces g = 2. Only twins pin at their own
+  slot; every other gap's split representative is strictly deeper (in the full law:
+  ~P/(6g), mod-6-alignment-conditional - that quantitative half stays paper-side,
+  research/split_gap_law.py).
+
+Verification discipline: research/twin_pin_check.py ran first - all 81 twin pairs to
+3000 (pin, class iff exhaustive over two periods to p = 150, mirror, product slot) and
+the uniqueness scan over all prime pairs q < q' <= 400 (20 own-slot pins found, all
+g = 2): zero fails.
+
+BUILD STATUS ROUND 2: BUILDS CLEAN ("Build completed successfully", zero sorry; only
+pre-existing push_neg deprecation warnings + one unused-binder lint). Axiom audit on all
+16 Polignac theorems: standard axioms only; the seven twin-pin theorems need just
+[propext, Quot.sound] except twin_split_class_iff ([propext, Classical.choice,
+Quot.sound]).
+
+Lean notes for the team: omega does NOT combine congruences across moduli (2, 3, 6) -
+decompose to a single modulus with explicit witnesses; this mathlib needs
+`import Mathlib.Data.Nat.ModEq` for the [MOD n] notation (BlockedSlots does not pull
+it in); `Nat.dvd_sub` here is the old `Nat.dvd_sub'`.
+
+What this buys: the finite u'-pin list U in the round-4 master formula (n2 = B - U,
+U confined to the bottom y/6 slots) now has its kernel formally characterised: existence
+(twin_pin), location bound (twin_pin_le), exactness of the class (twin_split_class_iff),
+and twin-uniqueness (own_slot_pin_gap_two). The remaining unformalised half of the
+distinguishing fact is quantitative (depth ~P/(6g) for g > 2 and the alignment rate) -
+priced as paper-side, not kernel-side, for now.

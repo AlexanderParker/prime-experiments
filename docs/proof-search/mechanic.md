@@ -390,3 +390,75 @@ schedule at the counting level - and none can appear at larger y:
 - Multiplicity growth S_pair/n2 ~ 4.4-5.5 measured, rising with y at
   fixed member scale but declining through each window; no closed form
   fitted this round (candidate: second moment of active-pair density).
+
+## Round 5 - cross-root multiplicity distribution vs independence nulls (2026-08-18)
+
+Script: `research/multiplicity_census.py`. Data (append):
+`research/data/multiplicity_hist.csv` (full distributions: y, mu, real
+count, expected counts under both nulls), `multiplicity_summary.csv`
+(moments). y=50021 in 63s.
+
+Key identity making this cheap: slot-cap => a slot's cross-pair
+multiplicity is mu(k) = omega_G(mL) * omega_G(mR) exactly (omega_G =
+distinct gear divisors; every unordered pair counted once). Cross-checks:
+sum mu = S_pair and #{mu>=1} = n2 reproduce round 4's class-count values
+exactly at all four y.
+
+Models:
+- NULL 1 (coordinator's): pairs' CRT classes independent across pairs;
+  exact Poisson-binomial pmf via 128-point DFT of the PGF over all pairs
+  (13.2M pairs at 50021), exact per-pair window class counts. Mean == real
+  by construction.
+- NULL 2 (decomposition): keep the product structure, break the
+  arithmetic: mu' = omega'L * omega'R, sides independent, each omega' a
+  Poisson-binomial over per-gear class counts.
+
+Results (real / null1 / null2):
+
+    y      mean    P0                cond=mean/(1-P0)      var           tail mu>=9
+    503    1.508   .466/.220/.465    2.82/1.93/2.99        4.5/1.5/5.1   .025/.000/.020
+    2003   2.039   .384/.129/.393    3.31/2.34/3.51        6.9/2.0/7.7   .044/.000/.038
+    10007  2.631   .319/.072/.332    3.86/2.83/4.07       10.0/2.6/10.9  .065/.002/.064
+    50021  3.185   .273/.041/.287    4.38/3.32/4.59       13.1/3.2/14.2  .088/.005/.091
+
+Findings:
+1. INDEPENDENT-PAIRS NULL FAILS BY A FACTOR ~6.6 ON P0 (0.041 vs 0.273 at
+   50021). Its compression 3.32 vs real 4.38: the real machine compresses
+   32-46% harder than independent pairs; excess ratio declines with y
+   (1.46 -> 1.32) but the absolute gap grows (0.89 -> 1.06).
+2. THE CARRIER IS THE PRODUCT STRUCTURE, i.e. variance + tail: real var is
+   4.1x null1, tail mu>=9 is 16x null1 - and null2 (product kept,
+   arithmetic broken) reproduces BOTH to a few % (var 14.2 vs 13.1, tail
+   .091 vs .088) AND P0 to 1.4 points. Nothing beyond the omega-product
+   structure is needed to explain the real multiplicity shape at this
+   precision.
+3. EXACT SLOT-CAP COVARIANCE: null2's mean exceeds real by
+   sum_q p^L_q p^R_q -> 0.0911 = P_primezeta(2) - 1/4 - 1/9 (matched to 4
+   decimals at y >= 2003; a gear cannot hit both members, independence
+   pretends it can).
+4. THE MOMENT STATEMENT THE CONSTRUCTOR ASKED FOR: the 4.38-vs-4.50 gap is
+   a ZEROTH-moment statement and nothing else. cond = mean/(1-P0) with
+   mean pinned by arithmetic, so
+       cond_X - cond_real  <=>  P0_X = P0_real - n0/W.
+   Variance and tail carry the real-vs-null1 excess but carry NONE of the
+   X-gap: X leaves mu>=1 masses free apart from their sum. In null2
+   language: X demands the zero-multiplicity mass sit BELOW the
+   product-model prediction by ~n0/W (6.5% relative at 50021), while the
+   real window sits 1.4 points BELOW null2 already - split as (a) null2's
+   twin-mass overestimate: both-sides-zero mass 0.0242 predicted vs
+   0.0187 real (ratio 0.85 -> 0.77 down the ladder, the HL-type
+   correction the independent sieve misses), (b) a ~3% singles-mass
+   deficit (0.254 real vs 0.263 predicted).
+5. So the compression frontier reduces to: HOW LOW CAN P(mu=0) GO below
+   the product-model baseline? The real machine undershoots null2 by
+   1.3-1.4 points at scale; X needs ~n0/W more. The quantity to bound is
+   the joint zero-mass P(omega_L=0 & omega_R=0) (the twin mass itself) -
+   the singles mass tracks the model to 3%.
+
+### Caveats
+- Null1 pmf is exact Poisson-binomial (DFT), not Poisson approximation;
+  per-pair p_i use exact window class counts (boundary slot included -
+  O(1/W) convention mismatch vs the real hist's prime-y fix).
+- Null2 sides treat the two members as independent; the slot-cap
+  covariance shows up as the exact mean gap (item 3), not corrected away.
+- "Tail >= 9" etc. are shares of ALL slots (not conditional on mu>=1).

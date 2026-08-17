@@ -2,24 +2,26 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-Four rounds in, the hunt has boiled the whole problem down to ONE number. Here is the story: if
-twins ever ran out (condition X), the machine's account books would have to balance exactly - we
-now have both sides of that balance as explicit formulas (a demand side, machine-verified in Lean,
-and a supply side that is one big exact sum, checked at every step at two scales). The books CAN
-balance in terms of raw amounts - we proved there is always enough supply, so no contradiction
-there. The entire difference between the real world (twins forever) and the fake world (X) comes
-down to how tightly the supply gets PACKED: reality packs its double-blocks at 4.38 per slot, the
-fake world needs 4.50 - a 2.6% packing difference. That packing number is now the whole game.
+Round 5 produced the first genuinely new WEAPON of the search: the inversion zone. Using nothing
+but counting arithmetic (no prime facts at all), there is a criterion - a ratio computed from the
+machine's fixed schedule - which, whenever it exceeds 1, FORCES a twin to exist in that stretch.
+We used it to prove the twin (521,523) exists from four slots of pure arithmetic, no searching.
+The catch, stated honestly: the zone where the criterion bites shrinks as numbers grow (its
+strength fell from 19.6 to 1.44 across our test range), and proving it stays above 1 forever runs
+into the same deep wall as everything else. But it is the first unconditional twin-forcing tool
+the machinery has produced, and next round we track exactly where its power goes.
 
-Two more things worth knowing. First, when we measured the forced "prime floor" that X requires,
-it sits at exactly HALF of what the best unconditional theorems allow - that factor of two is the
-famous parity barrier, the deep reason twin primes are hard, showing up in our own ledger as a
-literal 1/2. We did not break it; we photographed it. Second, the new fifth teammate (harvester)
-checked the neighbouring famous problems honestly - none is secretly easy - but formalised our
-framework for ALL even gaps (not just 2) and for Goldbach into the machine-verified ledger, which
-now holds seven files. The unique thing twins have that no other gap has: their supply
-contribution to the higher scale is guaranteed unconditionally. Round 5 attacks the packing
-number: what unconditional mathematics can say about pile-up, and exactly where parity blocks it.
+Everything else sharpened the picture: the difference between reality and a twin-free world is
+now known to live in a single "zero" statistic - literally the twin count itself, nowhere else
+(the fancier statistics all match between the two worlds). The books identity is verified
+slot-by-slot out to 16.7 million slots. And the verified-proof ledger grew to eight files,
+including this round the "bridge" (the equation's skeleton, fully machine-checked) and a small
+gem: the UNIQUENESS theorem that only twin pairs stamp their own address - the mark of gap-2 that
+no other gap has, now at the highest standard of certainty.
+
+One warning from the terrain scan: the region where a proof must bite (the bottom of each window)
+is exactly where reality is strongest - so the eventual argument must use the machine's special
+structure (its mirror symmetry, its pinned slots), not generic tools. That is where round 6 digs.
 
 ## Round 1 (2026-08-18)
 
@@ -141,3 +143,30 @@ Ziller-Morack to machine-checked per-difference equivalences.
 second-moment/compression statement (4.38 vs 4.50) - the corpus's kappa frontier reached
 independently with exact arithmetic. Parity visible as the exact 1/2. Round 5 = the compression
 frontier from all five sides.
+
+## Round 5 (2026-08-18)
+
+**Constructor** - compression bound stated exactly; tool inventory computed on the real system:
+union/Bonferroni vacuous, Cauchy-Schwarz ceiling DIVERGES from the need (2x hope refuted), Selberg
+wrong direction. NEW: the inversion zone - R(t) = (S1^2/M2)/(t-P) > 1 forces a twin by moments
+alone; nonempty at every y tested; proves (521,523) from floor arithmetic. Edge identified:
+mirror-aware third moments on the starved bottom band. Tools: compression_bound.py, compression_zone.py.
+
+**Mechanic** - multiplicity distribution vs two exact nulls: the X-gap is zeroth-moment ONLY; the
+joint zero-mass IS the twin mass (0.77-0.85 of product baseline); exact slot-cap covariance
+constant; variance/tail = product structure, not X. Tool: multiplicity_census.py.
+
+**Lateral** - master formula to y=10007 (three orders further); reality identity per-slot exact at
+16.7M slots: P = t + T_win - B + U (the X-defect is exactly the twin count); derivative scan:
+bottom band stride-hostile, top-1% strides carry 87-90% of prime load. Tool: derivative_scan.py.
+
+**Formalist** - Bridge.lean: sum R_p = n1 + 2*n2 kernel-checked (the equation's formal skeleton
+complete); caught the mid-round Polignac breakage and isolated it correctly.
+
+**Harvester** - the g=2 pinning theorem kernel-checked (7 theorems): twins sit at 5 mod 6, ARE
+their own pin slot, class-iff, mirror, product slot, and UNIQUENESS (only g=2 pins its own slot);
+ledger repaired and green (986 jobs, verified independently by manager).
+
+**Manager synthesis** - first unconditional twin-forcing criterion in hand; its domain shrinks
+toward the parity wall; round 6 tracks sup R(y) exactly, opens the mirror-aware third-moment
+front, maps the load-length frontier, and extends the Lean ledger per-gear.

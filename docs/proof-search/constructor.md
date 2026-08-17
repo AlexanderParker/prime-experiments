@@ -537,3 +537,105 @@ the measured rho -> 1/2 against the ceiling; that constant's rigidity is itself
 parity-class (improving Brun-Titchmarsh uniformly is known to force Siegel-zero
 consequences - Motohashi's classical observation for the progression form). The
 ledger and the analytic wall are the same wall, seen from opposite sides.
+
+---
+
+# Constructor round 5: the compression bound, the tool inventory, and the inversion zone
+
+Scripts: `research/compression_bound.py`, `research/compression_zone.py` (no primality
+tests anywhere - prime <=> unmarked, by the horizon theorem; every census identity
+asserted). Mechanic's round-5 moment CSV was not yet posted; the moments here are
+computed directly and match their round-4 S_pair/tau checkpoints where they overlap.
+
+## 14. The compression statement, exactly
+
+Per interior slot k let m_k = omega_L(k) * omega_R(k) (distinct-gear divisor counts of
+the two members; m_k >= 1 iff the slot is double). Freedom-free totals (pure
+arithmetic below y; M2 is the 4-tuple CRT co-hit count, floor arithmetic like S1):
+
+    S1(t) = sum m_k   (the cross-root hit schedule; Mechanic's S_pair)
+    M2(t) = sum m_k^2 (second moment)        n2(t) = #{m_k >= 1}
+
+**The compression form of X.** X(y) <=> n2(t) = t - P(t) at every t <=> the fixed
+hit schedule compresses into distinct slots at mean multiplicity
+
+    M(t) = M_X(t) := S1(t) / (t - P(t))     exactly, at every prefix.
+
+Reality delivers M_real(t) = S1(t)/n2(t); the identity n2 = (t-P) + n0 gives
+M_X / M_real = 1 + n0/(t-P): X demands compression harder than reality by exactly
+the twin share. **A contradiction requires an unconditional ceiling C(t) on
+achievable mean multiplicity with C(t) < M_X(t) somewhere.**
+
+## 15. The inventory: what each unconditional tool actually delivers (computed)
+
+Measured at window ends (interior windows, all prefixes computed):
+
+    y      M_real   M_X     need M_X/M_real   C_CS = M2/S1   C_CS/M_X
+    211    2.505    3.063   1.223             3.859          1.260
+    503    2.822    3.189   1.130             4.503          1.412
+    2003   3.311    3.543   1.070             5.431          1.533
+    5003   3.631    3.813   1.050             6.007          1.576
+
+* **Union bound (Bonferroni-1):** n2 <= S1 - a floor M >= 1, never a ceiling. Useless.
+* **Bonferroni-2:** n2 >= S1 - sum C(m_k,2) would give a ceiling - VACUOUS at every
+  scale and every checkpoint tested (sum C(m_k,2) > S1 as soon as mean m > 3).
+* **Cauchy-Schwarz / Turan second moment:** n2 >= S1^2/M2, ceiling C_CS = M2/S1,
+  legitimately unconditional (M2 is freedom-free arithmetic). **The manager's
+  expectation "the ceiling lands at exactly 2x the need" is REFUTED - the truth is
+  worse.** C_CS/M_X is 1.26 -> 1.58 and GROWING (it tracks the m-distribution's
+  dispersion <m^2>/<m>^2 ~ lnln-divergent), while the window a winning ceiling must
+  hit, (M_real, M_X), NARROWS as 1 + n0/(t-P) -> 1 (1.22 -> 1.05 in range). The
+  two move apart on both ends; the second moment does not land at 2x - it diverges.
+* **Large sieve / Montgomery-Vaughan:** on this class system the large sieve is the
+  translation-averaged second moment - same content as C_CS; its scalar photograph
+  is round 4's rho -> 1/2. Selberg's Lambda^2 gives upper bounds on n0 (factor ~4
+  above HL truth) - the WRONG direction against X, which asserts n0 = 0; no upper
+  bound on n0 contradicts 0.
+
+**The inversion zone (new, and the round's sharpest finding).** In the bottom band
+the CS bound EXCEEDS X's demand: define R(t) = (S1^2/M2)/(t - P). Wherever
+R(t) > 1, moment arithmetic alone forces n2 > t - P, i.e. n0 > 0 - X refuted with
+no twin exhibited. Measured: the zone {t : R(t) > 1} is NONEMPTY at every y tested:
+
+    y       sup R    at t   zone extent      closing P-bound needed at argmax
+    101     19.64      99   [75, 1319]       0.802/slot  (0.134/integer)
+    211     15.08      75   [22, 1862]       0.799/slot  (0.133/integer)
+    503      6.55      26   [4, 2786]        0.748/slot  (0.125/integer)
+    1009     5.83      21   [12, 4367]       0.722/slot  (0.120/integer)
+    2003     2.90      23   [5, 6546]        0.622/slot  (0.104/integer)
+    5003     2.91       5   [5, 11291]       0.418/slot  (0.070/integer)
+    10007    1.44      22   [5, 17204]       0.476/slot  (0.079/integer)
+
+Worked instance (y=503, t=4): prefix moments S1=3, M2=5 give n2 >= 9/5 > t-P = 1 -
+the twin (521,523) forced by arithmetic plus the prime count, not found by search.
+**Where parity re-enters, precisely:** (i) turning the zone into a theorem needs
+P(t) > t - S1^2/M2 - a short-prefix prime LOWER bound at density 0.42-0.80/slot
+(0.07-0.13/integer), superdense class; nothing unconditional exists below the 0.525
+exponent wall, and no short-interval lower bound approaches 0.07/integer. (ii) the
+ceilings themselves: any bound using only sieve-axiom moments cannot dip below what
+parity-twisted configurations achieve on the same moments; measured overshoot
+26-58% and widening against a needed margin of 5-22% and narrowing. sup R declines
+toward 1 as the bottom band's prime density thins - the zone is real, persistent
+through y = 10007, and asymptotically it degenerates into the early-twin detector
+(at the immediate bottom m is concentrated near 1, CS efficiency -> 1, and R > 1
+becomes equivalent to n0 >= 1).
+
+## 16. The possible edge (one paragraph)
+
+Three features of this class system are invisible to generic large-sieve/moment
+axioms. (a) **Freedom-free placement**: the class representatives are Bezout-pinned
+(gap law), and the bottom band is structurally n2-starved - no double before
+absolute slot 20, and the guaranteed g=2 supply lands prime-membered (U-pins),
+subtracted from n2 exactly where X's demand starts. This starvation is what CREATES
+the inversion zone; a generic system with the same moments would not have it.
+(b) **Mirror symmetry**: classes come in +- pairs, so prefix counts satisfy
+palindromic complement identities within each period - a positional constraint the
+translation-averaged large sieve cannot see. (c) **All-order exactness**: the master
+formula computes every moment, odd orders and signs included, beyond sieve axioms -
+but used in full it reproduces n2 exactly and returns to the tautology. The honest
+edge is therefore the strip between order-2 moments and full exactness, applied
+inside the zone where the system is provably non-generic: positional (mirror-aware)
+third-moment bounds on the starved bottom band, seeking R > 1 forced by arithmetic
+with a sub-superdense prime input. That is the one unexhausted direction this
+inventory leaves standing; everything else terminates at the parity wall by
+measurement, not metaphor.
