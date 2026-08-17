@@ -55,6 +55,34 @@ def next_joint_opening(gears, n):
         if blocker is None:
             return k
 
+def stride_anatomy(gears, k_from, k_to):
+    """Level-1 condition: name every interior slot's blocker in a stride."""
+    us = {q: pow(6, -1, q) for q in gears}
+    kills = {q: (us[q], (-us[q]) % q) for q in gears}
+    return {k: [q for q in gears if k % q in kills[q]] for k in range(k_from + 1, k_to)}
+
+def chain_prediction(opens, gaps, q, max_k=6):
+    """Level-2 condition: max new stride after adding gear q, from the old gap
+    word alone. In the k-frame the new gear's teeth are separated by
+    s = 3^{-1} mod q (NOT adjacent - see the frame-trap note in
+    chain_census.py), so a merge of gaps i..i+m qualifies iff the interior
+    opening positions all lie in {phi, phi+s} mod q for some phi."""
+    s = (2 * pow(6, -1, q)) % q
+    best = max(a + b for a, b in zip(gaps, gaps[1:]))   # k=1 always allowed
+    n = len(gaps)
+    for i in range(n - 1):
+        total = gaps[i]
+        for m in range(1, max_k):
+            if i + m >= n: break
+            pos = [opens[i + j] % q for j in range(1, m + 1)]
+            total += gaps[i + m]
+            st = set(pos)
+            ok = len(st) == 1 or (len(st) == 2 and
+                 (max(st) - min(st)) % q in (s, (q - s) % q))
+            if ok:
+                best = max(best, total)
+    return best
+
 if __name__ == "__main__":
     # 1. discovery-moment law
     ps = [p for p in range(2, 200) if all(p % d for d in range(2, int(p**0.5) + 1))]
