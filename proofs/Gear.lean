@@ -96,4 +96,98 @@ theorem R_eq_zero_of_below_sq {q : ℕ} {S : Finset ℕ}
   obtain ⟨h1, hlt⟩ := hS m hm
   exact absurd (sq_le_of_minFac_eq h1 hnp hfac) (not_le.mpr hlt)
 
+/-! ## The semiprime refinement: one gear's line, exactly
+
+In the large-gear regime - every member below `q^3` - a gear's ledger line
+is freedom-free: each member rooted at `q` is `q * c` with `c` prime and
+`q ≤ c` (equality only at the square `q * q`). The strict case is Layer's
+semiprime shape; the square is the shadow-law onset. So the line is in
+bijection with its PARTNER PRIMES via `m ↦ m / q`, and `R q S` is exactly a
+count of primes: the first exact formula of the supply side.
+-/
+
+/-- Fiber members decompose: a composite rooted at `q` below `q^3` is
+`q * c` with `c` prime and `q ≤ c` - equality exactly at the square. -/
+theorem semiprime_of_fiber {q m : ℕ} (hq : q.Prime) (h1 : 1 < m)
+    (hnp : ¬ m.Prime) (hfac : m.minFac = q) (hcube : m < q * q * q) :
+    ∃ c, c.Prime ∧ q ≤ c ∧ m = q * c := by
+  have hsq : q * q ≤ m := sq_le_of_minFac_eq h1 hnp hfac
+  rcases eq_or_lt_of_le hsq with heq | hlt
+  · exact ⟨q, hq, le_rfl, heq.symm⟩
+  · obtain ⟨c, hc, hqc, hm⟩ := Layer.eq_mul_prime_of_minFac_eq h1 hfac hlt hcube
+    exact ⟨c, hc, le_of_lt hqc, hm⟩
+
+/-- A product of two primes is composite. -/
+theorem not_prime_mul {q c : ℕ} (hq : q.Prime) (hc : c.Prime) :
+    ¬ (q * c).Prime := by
+  intro hp
+  rcases hp.eq_one_or_self_of_dvd q ⟨c, rfl⟩ with h | h
+  · exact hq.ne_one h
+  · have h' : q * 1 = q * c := by simpa using h
+    exact hc.ne_one (Nat.eq_of_mul_eq_mul_left hq.pos h').symm
+
+/-- The least factor of a product of two primes is the smaller one. -/
+theorem minFac_mul {q c : ℕ} (hq : q.Prime) (hc : c.Prime) (hqc : q ≤ c) :
+    (q * c).minFac = q := by
+  have hne : q * c ≠ 1 := fun h => hq.ne_one (Nat.dvd_one.mp ⟨c, h.symm⟩)
+  have hp' : (q * c).minFac.Prime := Nat.minFac_prime hne
+  have hple : (q * c).minFac ≤ q := Nat.minFac_le_of_dvd hq.two_le ⟨c, rfl⟩
+  rcases (Nat.Prime.dvd_mul hp').mp (Nat.minFac_dvd _) with h | h
+  · exact (Nat.prime_dvd_prime_iff_eq hp' hq).mp h
+  · have heqc : (q * c).minFac = c := (Nat.prime_dvd_prime_iff_eq hp' hc).mp h
+    omega
+
+/-- **The partner primes** of gear `q` in `S`: the cofactors of its ledger
+line under `m ↦ m / q`. -/
+def partners (q : ℕ) (S : Finset ℕ) : Finset ℕ :=
+  (S.filter fun m => ¬ m.Prime ∧ m.minFac = q).image (· / q)
+
+/-- The line and its partner set are in bijection - `m ↦ m / q` is
+injective on the fiber, since every fiber member is a multiple of `q`.
+No range hypotheses needed. -/
+theorem R_eq_card_partners (q : ℕ) (S : Finset ℕ) :
+    R q S = (partners q S).card := by
+  have hinj : Set.InjOn (· / q)
+      (S.filter fun m => ¬ m.Prime ∧ m.minFac = q) := by
+    intro a ha b hb hab
+    simp only [Finset.coe_filter, Set.mem_ofPred_eq] at ha hb
+    have hda : q ∣ a := ha.2.2 ▸ Nat.minFac_dvd a
+    have hdb : q ∣ b := hb.2.2 ▸ Nat.minFac_dvd b
+    simp only at hab
+    calc a = q * (a / q) := (Nat.mul_div_cancel' hda).symm
+      _ = q * (b / q) := by rw [hab]
+      _ = b := Nat.mul_div_cancel' hdb
+  simp only [R, partners, Finset.card_image_of_injOn hinj]
+
+/-- **Exact membership of the partner set** (large-gear regime): the
+partners of `q` are precisely the primes `c ≥ q` whose product `q * c`
+is a member. This is the freedom-free description of one supply line. -/
+theorem mem_partners {q c : ℕ} (hq : q.Prime) {S : Finset ℕ}
+    (hS : ∀ m ∈ S, 1 < m ∧ m < q * q * q) :
+    c ∈ partners q S ↔ c.Prime ∧ q ≤ c ∧ q * c ∈ S := by
+  constructor
+  · intro hc
+    obtain ⟨m, hm, rfl⟩ := Finset.mem_image.mp hc
+    rw [Finset.mem_filter] at hm
+    obtain ⟨hmS, hnp, hfac⟩ := hm
+    obtain ⟨h1, hcube⟩ := hS m hmS
+    obtain ⟨c', hc', hqc', heq⟩ := semiprime_of_fiber hq h1 hnp hfac hcube
+    have hdiv : m / q = c' := by
+      rw [heq]; exact Nat.mul_div_cancel_left c' hq.pos
+    rw [hdiv]
+    exact ⟨hc', hqc', heq ▸ hmS⟩
+  · rintro ⟨hcp, hqc, hmem⟩
+    simp only [partners, Finset.mem_image]
+    refine ⟨q * c, ?_, Nat.mul_div_cancel_left c hq.pos⟩
+    rw [Finset.mem_filter]
+    exact ⟨hmem, not_prime_mul hq hcp, minFac_mul hq hcp hqc⟩
+
+/-- Adapter: window bounds plus the large-gear condition `y^2 ≤ q^3` give
+the member bounds that `mem_partners` wants. -/
+theorem window_bounds {q y : ℕ} {S : Finset ℕ}
+    (hwin : ∀ m ∈ S, y < m ∧ m < y * y) (hy : 1 ≤ y)
+    (hthin : y * y ≤ q * q * q) : ∀ m ∈ S, 1 < m ∧ m < q * q * q :=
+  fun m hm => ⟨by have := (hwin m hm).1; omega,
+    lt_of_lt_of_le (hwin m hm).2 hthin⟩
+
 end Gear

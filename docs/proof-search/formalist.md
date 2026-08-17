@@ -423,3 +423,76 @@ every member of gear q's class is `q * c` with `c` prime (this is exactly
 `Layer.eq_mul_prime_of_minFac_eq` applied member-wise), giving
 `R q S = #(primes c with q*c ∈ S)` — the freedom-free supply arithmetic's
 first exact formula. Alternative: h(2) ≥ d.
+
+## Round 7 — Semiprime refinement: one gear's line, exactly (2026-08-18)
+
+### What was done
+
+Extended `proofs/Gear.lean` (no new lakefile target — the refinement
+belongs to the gear namespace and composes with `R` directly). One
+iteration for two warnings (deprecated `Set.mem_setOf_eq` →
+`Set.mem_ofPred_eq`; an unused hypothesis that revealed
+`R_eq_card_partners` needs no positivity at all). Zero sorry, zero
+warnings.
+
+### Final theorem statements
+
+```lean
+theorem semiprime_of_fiber (hq : q.Prime) (h1 : 1 < m) (hnp : ¬ m.Prime)
+    (hfac : m.minFac = q) (hcube : m < q * q * q) :
+    ∃ c, c.Prime ∧ q ≤ c ∧ m = q * c
+
+theorem not_prime_mul (hq : q.Prime) (hc : c.Prime) : ¬ (q * c).Prime
+theorem minFac_mul (hq : q.Prime) (hc : c.Prime) (hqc : q ≤ c) :
+    (q * c).minFac = q
+
+def partners (q : ℕ) (S : Finset ℕ) : Finset ℕ :=
+  (S.filter fun m => ¬ m.Prime ∧ m.minFac = q).image (· / q)
+
+theorem R_eq_card_partners (q S) : R q S = (partners q S).card   -- unconditional
+theorem mem_partners (hq : q.Prime) (hS : ∀ m ∈ S, 1 < m ∧ m < q * q * q) :
+    c ∈ partners q S ↔ c.Prime ∧ q ≤ c ∧ q * c ∈ S
+theorem window_bounds (hwin) (hy : 1 ≤ y) (hthin : y * y ≤ q * q * q) :
+    ∀ m ∈ S, 1 < m ∧ m < q * q * q
+```
+
+### Design notes
+
+- The coordinator's suggested regime `q < y ≤ q²` is not sufficient for
+  the c-prime conclusion (counterexample: q = 5, y = 25, m = 175 = 5·35 is
+  rooted at 5 with composite cofactor 35). The honest regime is every
+  member `< q³` (window form: `y² ≤ q³`, i.e. gears `q ≥ y^(2/3)`), which
+  is what `Layer.eq_mul_prime_of_minFac_eq` needs. Stated per-member
+  (`hS`), with `window_bounds` as the window adapter.
+- Second boundary case found: the square. `m = q²` is rooted at q but is
+  not `q·c` with `c > q` — so the decomposition is stated with `q ≤ c`,
+  equality exactly at the square (the shadow-law onset). The partner-set
+  membership then comes out clean with no special-casing: the square's
+  partner is `q` itself.
+- `R_eq_card_partners` (the bijection `m ↦ m / q`) is UNCONDITIONAL — no
+  primality, no positivity, no range: injectivity only needs that fiber
+  members are multiples of their root (`Nat.mul_div_cancel'` twice).
+  All the regime hypotheses live in `mem_partners` where they belong.
+- Reverse inclusion needs `q * c ≠ 1` for `minFac_prime`; got it from
+  `Nat.dvd_one` (q divides 1) rather than product arithmetic — omega
+  cannot see variable products, a recurring theme.
+
+### Build status
+
+`lake build` (all 8 targets): **Build completed successfully (988 jobs)**,
+zero sorry.
+
+### Axiom audit
+
+`semiprime_of_fiber`, `R_eq_card_partners`, `mem_partners` (and the round-6
+theorems, re-audited): `[propext, Classical.choice, Quot.sound]`.
+
+### Proposed next target
+
+With `mem_partners`, R_q in the large-gear regime IS a prime count:
+`R q S = #{c prime : q ≤ c, q*c ∈ S}`. Next natural chunk: specialise S to
+the member set of a slot interval and identify WHICH slot `q*c` lands in
+(slot arithmetic: `q*c = 6k ± 1` determines k = the semiprime slot of the
+lateral workstream's pinned classes) — connecting the supply formula to
+slot positions, the first step toward the placement (not just count) side
+of the X-equation. Alternative: h(2) ≥ d.

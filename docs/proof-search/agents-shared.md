@@ -2,37 +2,38 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 6: THE MOMENT PROGRAM IS CLOSED, by convergent independent verdicts. The
-inversion zone is a bottom-twin DETECTOR, never a generator (it revives exactly when a twin sits
-in a window's first slots - "zone revives infinitely often" IS the conjecture); it dies
-generically at y ~ 3-5e6 (empty at 5,000,011 and 10,000,019; (sup-1) ~ y^-0.6; killed by the
-twin-surplus/prime-density side, not M2). Mirror-awareness is VACUOUS at moment level, any order
-(two-line theorem: k -> -k swaps omega_L/omega_R, fixes m_k). Depth is not a lever (twin-mass
-decline is pure density falloff to 0.3%). LP/order-3 ceilings move the needle <3% against a 48%
-chasm. The Constructor's count/moment toolkit is spent - by their own account.
+State after round 7. THE IMPOSSIBILITY MAP IS WRITTEN (docs/proof-search/impossibility-map.md):
+every closed route under three walls (Abundance, Superdensity/Localisation, Parity/Second-Moment)
+plus the tautology ring (statements proven equivalent to the conjecture - an instant classifier
+for new proposals), seven null levers, the surviving toolbox, and the honest residue. Read it
+before proposing anything.
 
-WHAT THE ZONE LEAVES BEHIND (real, finite, kernel-checkable): where R(t) = (S1^2/M2)/(t-P) > 1,
-moments force n0 >= 1 unconditionally - at y=2003, t*=24 the histogram forces n0 >= 6 (six real
-twins from floor arithmetic). Valid for every y < ~3e6 and sporadically beyond.
+FORMAL LEDGER (green, 988 jobs, manager-verified): the master formula's core is DONE - SAME +
+PAIRSPLIT kernel-checked, with the loop-closer split_rep_twin_eq_pin making "twins below y are
+the unique unconditionally guaranteed doubles line item" a formal theorem. R_q is formally an
+exact prime count (regime member < q^3 - NOTE: the manager's briefed regime q < y <= q^2 was
+WRONG, counterexample 175 = 5*35; use the flagged regime only). 31 Polignac theorems; Gear.lean
+extended.
 
-STRUCTURAL RESIDUE (the live fronts): the load-length frontier is ABSOLUTE - record twin-free
-runs are the same integer landmarks at every scale (perfect X-alternation realized to length 13
-at slots 2452-2464); binding scale for any bound is L ~ 14-32; long-run bounds fight a phantom;
-chain/fuel objects differ from binding-region objects below L ~ 160. Saturated-run persistence is
-itself HL-constellation-class (flagged caveat).
+WORD LAWS (proved + measured): odd-length saturated runs are never self-mirror (parity theorem);
+the runs' symmetry is reverse-complement exactly; duplicate words are CRT alignment; STRICT L/R
+alternation is capped at 6 slots by gear 5 alone - X's local patterns must repeat past 6.
+CORRECTION (mechanic -> lateral): the landmark run words are NOT strictly alternating (the 13-run
+reads RLLRRLLLLRLRL) - "perfect alternation" is load-only, letters are free.
 
-LEAN LEDGER (green, 988 jobs, manager-verified): 9 files. New this round: Gear.lean (per-gear
-ledger lines R_q, caps, prefix bound 6t/q+2, shadow law R_q = 0 below q^2) and Polignac.lean's
-SAME-side census (slot-map inversion, floor-count primitive, the pair term of the master formula
-exact, the windowed composite root law "once if it fits", own-value law) + twin_pin_self_block
-(the machine is formally blind to its own pair) - first composition with Census.
+LANDMARKS refined: L* = 13 is a record, NOT a wall - no L = 14 through member 7.2e10 (exhaustive),
+but L = 13 recurs six times; heuristic first L = 14 within members 1e11-1e12. Bounds must not
+lean on 13 as a constant. Renewal of L >= 8 runs GROWS ~ 10^d/ln^8 per decade, unbounded: X's
+must-kill population becomes ever more abundant while its max length crawls. Persistence ladder
+scoped: persistence(1) = Brun theorem; persistence(2) = disjunctive Polignac (the provability
+frontier); descriptive only, never a premise.
 
-ROUND-7 (the strategic turn): Constructor -> THE IMPOSSIBILITY MAP (definitive write-up of every
-closed route with its exact reason - the programme's key prose artifact). Mechanic -> saturated-
-run census by (length, depth) vs R(t). Lateral -> alternation-word structure vs the mirror laws +
-scope the HL-constellation caveat honestly. Formalist -> semiprime refinement (R_q = #partner
-primes in the thin layer - first exact supply formula formal). Harvester -> PAIRSPLIT closed-form
-rep in Lean (completes the master formula's formal core).
+ROUND-8: Constructor -> open the ONE UNTRIED ROUTE from the residue: multiplicative accounting of
+stride growth (F(M+q)/F(M) instead of differences - corpus 7.1 flagged additive-only attempts).
+Mechanic -> the L=14 hunt (sparse filter to ~1e12) to settle the record-growth law. Lateral ->
+the complete word grammar (infinitely-extendable patterns under small-gear CRT). Formalist ->
+slot placement of the supply line (q*c = 6k+-1 -> the semiprime slot, connecting R_q to the
+pinned classes). Harvester -> the signed CORR combination (completes the master formula formal).
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
@@ -291,6 +292,29 @@ across full scans, R declines past the zone).
   allocation reproduces every decile to 1.000 +- 0.003: NO band structure in
   the twin mass at 0.3% precision - the 0.77 global is pure density falloff.
   Depth cannot be a lever in the compression frontier.
+
+## Mechanic round 7 (2026-08-18) - saturated-run census to member 7.2e10
+Tool: research/saturated_runs.py (one absolute primality scan, k to 1.2e10,
+231s - runs are gear-free objects, window census = truncation). Data:
+research/data/satruns_ge10.csv (all 757 runs L>=10), satruns_records.csv,
+satruns_renewal.csv, satruns_windows.csv (decile censuses, 4-y ladder).
+- (1) L* = 13 STANDS to member 7.2e10 - no L=14 anywhere (every slot scanned).
+  But it RECURS: six L=13 instances (members 14711, 3.69e8, 5.24e9, 1.15e10,
+  5.08e10, 5.76e10); L=12: 21; L>=10: 757. Measured L->L+1 rate ratio ~0.3 at
+  depth => first L=14 heuristically due within members ~1e11-1e12: 13 is a
+  RECORD ON A SLOWLY GROWING CURVE, not a wall. Do not build bounds on "13".
+- (2) Absolute-landmark law refined: every window sees the same integers;
+  y=2003/10007 max at k=2452, and windows whose bottom EXCLUDES a landmark
+  inherit the next instance (y=50021 and 200003 both max L=13 at k=61501443).
+  CORRECTION for Lateral: none of the six L=13 side words is strictly
+  L/R-alternating (the landmark reads RLLRRLLLLRLRL, with an LLLL block).
+  "Perfect alternation" is load-only (one prime/slot); side words are blocky.
+- (3) Renewal GROWS: L>=8 runs per member-decade 19, 66, 244, 972, 4297,
+  ~22600 (decades 5..10), factor 3.5->5/decade; per-slot rate matches
+  (6/ln m)^8 to a few % (decade ratios (d/(d+1))^8). Count/decade ~
+  10^d/ln^8 -> unbounded: X's must-kill object grows increasingly abundant
+  while its max length crawls. In-window depth structure is smooth density
+  falloff only (y=50021 deciles 424 -> 113 for L=8), no band anomalies.
 
 ## Formalist round 1 (2026-08-18)
 The HORIZON THEOREM is now kernel-checked: proofs/Horizon.lean (namespace `Horizon`,
@@ -864,3 +888,123 @@ Remaining formula gap after this layer: multi-gear products (squarefree s_L, s_R
 >= 3 gears - the signed CORR terms) and PAIRSPLIT's closed-form rep (Lateral's
 m0/b0/i law) - the latter is the natural next Lean bite if wanted; both reduce to
 six_mul_class + card_class_Ico instances.
+
+## Constructor round 7 (2026-08-18) - THE IMPOSSIBILITY MAP delivered
+Artifact: docs/proof-search/impossibility-map.md (the programme's key prose record;
+written to handover standard: exact statement / exact failure / surviving tool per
+route, provenance-tagged to corpus, review, and workstream rounds).
+- ORGANISATION: three walls + a tautology ring. Wall I ABUNDANCE (capacity 5.1,
+  two-scale 5.2, doubles squeeze, tooth-sharing counting, tau-slack at scale - all
+  first moments, all fail by measured surplus). Wall II SUPERDENSITY/LOCALISATION
+  (global C1 dies at ~e^6; onset route double-killed - superdense need AND the
+  forced pattern realised in 310/442 windows; zone-as-theorem needs 0.07-0.13
+  primes/integer, nothing exists below the 0.525 BHP floor; layer-band descent dies
+  at T1 = Legendre-class before its twin content engages). Wall III PARITY/SECOND-
+  MOMENT (X-equation satisfiable - floor at half the MV ceiling, rho -> 1/2;
+  moment ceilings diverge from the narrowing need, 2x expectation refuted; Selberg
+  bounds n0 the wrong way; kappa form (b) oversufficient + regime gap; the X-gap is
+  ZEROTH-moment only). Wall IV EQUIVALENCE-TO-TARGET (CUM, run family, zone revival,
+  floor separation, one-band descent - each proved at full conjecture strength; the
+  ring doubles as an instant classifier for future proposals).
+- NULL-LEVER LEDGER (sec 5): mirror (theorem), depth (0.3% precision), extremality
+  (full enumeration), tooth-sharing cardinality, census gear-blindness, hub
+  enrichment, chain/fuel-vs-binding-region - each with its closing evidence.
+- SURVIVING TOOLBOX (sec 6): finite-reach refuters (C1 + inversion zone with its
+  kernel-checkable n0-forcing certificates), absolute caps (L* = 27129, slot 20,
+  (q+-1)/3), the exact laws (census theorem, roots-of-unity, gap law, master
+  formula, g=2 pinning + uniqueness), the four photographs, the 9-file Lean ledger.
+- HONEST RESIDUE (sec 7, the open list): structural fronts (L ~ 14-32 binding
+  region; saturated-run census; alternation words - with the HL-constellation
+  caveat carried); the review's MULTIPLICATIVE TAIL route (untried, the one
+  sufficient-but-not-oversufficient statement never attacked); the Lean supply
+  program's remaining gaps (PAIRSPLIT rep, CORR terms, U/B side); the zone's
+  finite certificate format (publishable with the Polignac frame); F(2,53);
+  and the explicit non-claim: the map closes moment/capacity/localisation/
+  reformulation arguments, not ideas outside the three walls.
+
+## Harvester round 4 (2026-08-18) - PAIRSPLIT kernel-checked; master formula's formal core complete
+Coordinator-approved bite executed. Full detail: docs/proof-search/harvester.md sec 8.
+Computational verification FIRST (research/pairsplit_check.py: 210 ordered prime pairs
+5 <= q, r < 60, split-class iff exhaustive over two periods both orientations, floor
+counts, mirror role-swap, g=2 rep == pin on all twin pairs in range: zero fails;
+cross-consistent with Lateral's split_gap_law closed form, g=2: m0=0, b0=1, x=u').
+New theorems in proofs/Polignac.lean (built clean on first compile):
+- `split_class`: distinct primes q, r >= 5 - the slots where q strikes the LEFT member
+  and r the RIGHT (q | 6k-1, r | 6k+1) are ONE CRT class mod qr, floor count
+  (t + qr - a)/qr over the first t slots. Mirror class = role swap. Machinery:
+  Nat.chineseRemainder target c = CRT(1 mod q, r-1 mod r), funneled through
+  six_mul_class at modulus qr; and-to-product via Nat.modEq_and_modEq_iff_modEq_mul.
+- `split_rep_twin_eq_pin` (g=2 LOOP-CLOSER): for a twin pair, any below-modulus
+  representative of the split class IS the pin u = (p+1)/6 - the pinning section and
+  the PAIRSPLIT section now meet in one theorem; with twin_pin_le this is the formal
+  "twins below y are the unique unconditionally guaranteed doubles line item".
+- `twin_split_count`: twin split count = (t + p(p+2) - u)/(p(p+2)), = 1 exactly on
+  u <= t < u + p(p+2) - the guaranteed bottom-band double, counted in closed form.
+STATUS: ledger GREEN - `lake build` all 8 targets, 988 jobs, zero sorry; axiom audit
+standard ([propext, Classical.choice, Quot.sound]; the loop-closer needs only
+[propext, Quot.sound]). Polignac.lean = 31 theorems, four sections.
+MILESTONE for the team: both structural layers of the master supply formula
+(overcount = SAME + PAIRSPLIT - CORR) now have their class-and-count core
+kernel-checked; the remaining formal gap is the signed multi-gear combination (CORR,
+>= 3-gear products) - pure bookkeeping over the same two primitives (six_mul_class +
+card_class_Ico), available as a future bite. Also still on the shelf: F(2,53)
+completion for the data note (rank-5 candidate).
+
+## Formalist round 7 (2026-08-18)
+The SEMIPRIME REFINEMENT is kernel-checked (extends Gear.lean, still 8 targets, zero
+sorry, standard axioms): one gear's supply line is now an EXACT PRIME COUNT.
+- `Gear.semiprime_of_fiber`: composite m rooted at q with m < q^3 => m = q*c, c prime,
+  q <= c (equality exactly at the square q^2 - the shadow-law onset, no special case).
+- `Gear.partners q S` := fiber.image (m -> m/q); `Gear.R_eq_card_partners`:
+  R q S = #(partners q S) UNCONDITIONALLY (bijection needs nothing - fiber members are
+  multiples of their root).
+- `Gear.mem_partners` (THE FORMULA): for q prime and members in (1, q^3):
+  c in partners q S <-> c prime, q <= c, q*c in S. So R_q = #{partner primes}, exact.
+- Helpers now available to all: `Gear.not_prime_mul` (product of two primes is
+  composite), `Gear.minFac_mul` ((q*c).minFac = q for primes q <= c),
+  `Gear.window_bounds` (window + y^2 <= q^3 adapter).
+CORRECTION to the round brief (verified by counterexample before proving): the regime
+q < y <= q^2 is NOT enough - m = 175 = 5*35 is rooted at 5 in window (25, 625) with
+composite cofactor. The honest large-gear regime is member < q^3 (window form
+y^2 <= q^3, gears q >= y^(2/3)); below that, cofactors can themselves be q-rooted
+composites and the line needs the general root recursion, not the semiprime formula.
+Next target (proposed): slot placement of the line - q*c = 6k+-1 determines the
+semiprime slot k, connecting R_q's members to the lateral workstream's pinned classes
+(placement side of the X-equation). Alternative: h(2) >= d.
+
+## Lateral round 7 (2026-08-18) - word laws (one proved cap); HL caveat scoped
+Tool: research/alternation_words.py. Full log: docs/proof-search/lateral.md round 7.
+- FRAME: saturated-run words are MACHINE words (letter = the unhit side), so the
+  positional mirror law k -> -k (reverse + swap L/R) applies exactly. Tested on
+  90/333 maximal runs len >= 8 at y = 3163/10007:
+  (a) parity theorem (proved): odd-length runs are never self-mirror (middle
+      letter would equal its own complement). Data: 0 odd palindromes; even
+      self-mirror runs common (16/250 at L=8).
+  (b) mirror statistics: TV(dist(w) vs dist(revcomp w)) = 0.33 << TV(reverse)
+      0.56 and TV(complement) 0.60 at L=8 - the symmetry is specifically
+      reverse-complement, as the mirror law predicts. Letter marginal 0.4996.
+  (c) duplicate words = CRT alignment: identical-word position differences
+      divisible by 35 in 55% of pairs (baseline ~3%); forced-letter fraction
+      0.729 by gears <= 13. Landmark 13-word unique in 1.67e7 slots.
+- STRICT-ALTERNATION CAP, PROVED: strict LRLR... saturated runs are primes at
+  gaps 8,4,8,4...; offsets cover Z/5 at length 7 (L-first) / 6 (R-first), so
+  GEAR 5 ALONE caps strict alternation at 6 (L-first) / 5 (R-first). Data: max
+  = 6 exactly, at absolute landmark slot 19125, letters LRLRLR (L-first) -
+  phase matches the theorem. FOR CONSTRUCTOR: X's forced local patterns can
+  never be strictly alternating beyond 6 slots; repeats (LLLL etc.) are
+  mandatory - the local constraint is CRT, not alternation.
+- HL CAVEAT SCOPED (full page in lateral.md): persistence(L) ("every interior
+  has an L-saturated run") is equivalent to a Bertrand-type postulate for the
+  L-run sequence (next run before the square of the last, tower bands tile).
+  Ladder: persistence(1) = THEOREM (Brun); persistence(2) = disjunctive
+  Polignac {4,6,8} - the exact provability frontier, weaker than twins, beyond
+  bounded-gap 246; persistence(L>=3) = disjunctive HL at tuple size L (L=13 is
+  13-tuple class). Per-y it is a FINITE computation (load_frontier.py is the
+  decision procedure); only the "for all y" is conjectural. The caveat cannot
+  hurt the programme: the frontier is descriptive, never a premise - if
+  persistence fails anywhere, reality drifts AWAY from X and bounds get easier.
+  Illegitimate use only: citing renewability to declare bounds at L <= 13
+  impossible.
+- Offering next: the complete word grammar - the exact set of infinitely-
+  extendable letter patterns compatible with the small-gear teeth (generalizes
+  the cap theorem; positive-description complement to the impossibility map).

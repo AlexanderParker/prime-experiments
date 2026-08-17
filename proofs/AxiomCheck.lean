@@ -43,3 +43,6 @@ open BlockedSlots
 #print axioms Gear.R_prefix_le
 #print axioms Gear.sq_le_of_minFac_eq
 #print axioms Gear.R_eq_zero_of_below_sq
+#print axioms Gear.semiprime_of_fiber
+#print axioms Gear.R_eq_card_partners
+#print axioms Gear.mem_partners

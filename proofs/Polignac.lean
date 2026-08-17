@@ -587,6 +587,99 @@ theorem same_left_own_value {q r : ℕ} (h25 : 25 ≤ q * r) (h56 : q * r % 6 = 
   · rw [show 6 * ((q * r + 1) / 6) - 1 = q * r by omega]
     exact dvd_mul_left r q
 
+/-! ## The PAIRSPLIT census: the split (cross-member) class
+
+The other layer of the master supply formula: for distinct gears q, r the
+slots where q strikes the LEFT member and r the RIGHT (q | 6k-1, r | 6k+1)
+form one CRT class mod qr - a nontrivial root of 36k^2 ≡ 1, in the summary's
+language. The mirror class (r left, q right) is the same theorem with the
+roles swapped. The count is card_class_Ico again. The g = 2 specialisation
+closes the loop with the pinning section: for a twin pair the split
+representative IS the pin u = (p+1)/6 (`split_rep_twin_eq_pin`). -/
+
+/-- **The split class.** For distinct primes q, r ≥ 5, the slots whose left
+member q divides and whose right member r divides are exactly one CRT class
+mod q*r, with the floor count over the first t slots. Swapping q and r gives
+the mirror class. -/
+theorem split_class {q r : ℕ} (hq : q.Prime) (hr : r.Prime)
+    (hq5 : 5 ≤ q) (hr5 : 5 ≤ r) (hne : q ≠ r) :
+    ∃ a, 1 ≤ a ∧ a < q * r ∧
+      (∀ k, 1 ≤ k → ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1) ↔ k ≡ a [MOD q * r])) ∧
+      (∀ t, ((Finset.Ico 1 (t + 1)).filter
+          (fun k => k % (q * r) = a % (q * r))).card
+        = (t + q * r - a) / (q * r)) := by
+  have h25 : 25 ≤ q * r := by
+    calc 25 = 5 * 5 := by norm_num
+    _ ≤ q * r := Nat.mul_le_mul hq5 hr5
+  have hco6 : Nat.Coprime 6 (q * r) :=
+    Nat.Coprime.mul_right
+      (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hq).mpr (not_dvd_six hq hq5)))
+      (Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hr).mpr (not_dvd_six hr hr5)))
+  have hcoqr : Nat.Coprime q r := (Nat.coprime_primes hq hr).mpr hne
+  -- the joint target residue: c ≡ 1 (mod q), c ≡ r - 1 (mod r)
+  obtain ⟨c, hc1, hc2⟩ := Nat.chineseRemainder hcoqr 1 (r - 1)
+  obtain ⟨a, ham, ha6, hiff6⟩ := six_mul_class c hco6 (by omega)
+  have ha1 : 1 ≤ a := by
+    rcases Nat.eq_zero_or_pos a with h0 | h1
+    · exfalso
+      subst h0
+      have h6 : (0 : ℕ) ≡ c [MOD q * r] := by simpa using ha6
+      have hq0 : (0 : ℕ) ≡ 1 [MOD q] :=
+        (Nat.ModEq.of_dvd (dvd_mul_right q r) h6).trans hc1
+      have hd : q ∣ 1 := by
+        have h7 := (Nat.modEq_iff_dvd' (by omega)).mp hq0
+        simpa using h7
+      have := Nat.le_of_dvd (by norm_num) hd
+      omega
+    · exact h1
+  refine ⟨a, ha1, ham, ?_, ?_⟩
+  · intro k hk
+    rw [left_dvd_iff hk, right_dvd_iff (by omega : 1 ≤ r)]
+    constructor
+    · rintro ⟨hL, hR⟩
+      have hqr : 6 * k ≡ c [MOD q * r] :=
+        (Nat.modEq_and_modEq_iff_modEq_mul hcoqr).mp
+          ⟨hL.trans hc1.symm, hR.trans hc2.symm⟩
+      exact (hiff6 k).mp hqr
+    · intro hka
+      have hqr : 6 * k ≡ c [MOD q * r] := (hiff6 k).mpr hka
+      exact ⟨(Nat.ModEq.of_dvd (dvd_mul_right q r) hqr).trans hc1,
+        (Nat.ModEq.of_dvd (dvd_mul_left r q) hqr).trans hc2⟩
+  · intro t
+    exact card_class_Ico (by omega) ha1 (by omega) t
+
+/-- **g = 2 closes the loop.** For a twin pair (p, p+2), any representative
+below the modulus of the split class is the pin u = (p+1)/6: the PAIRSPLIT
+representative of a twin pair IS its own slot. With `twin_pin_le` this is the
+formal "twins below y are the unique unconditionally guaranteed line item of
+the doubles ledger": every other pair's representative is not anchored. -/
+theorem split_rep_twin_eq_pin {p u a : ℕ} (hp : p.Prime) (hp2 : (p + 2).Prime)
+    (h3 : 3 < p) (hu : 6 * u = p + 1) (ha : a < p * (p + 2))
+    (hiff : ∀ k, 1 ≤ k →
+      ((p ∣ 6 * k - 1 ∧ (p + 2) ∣ 6 * k + 1) ↔ k ≡ a [MOD p * (p + 2)])) :
+    a = u := by
+  have h6 := twin_mod_six hp hp2 h3
+  have hu1 : 1 ≤ u := by omega
+  have hsplit : p ∣ 6 * u - 1 ∧ (p + 2) ∣ 6 * u + 1 :=
+    ⟨⟨1, by omega⟩, ⟨1, by omega⟩⟩
+  have hmod := (hiff u hu1).mp hsplit
+  have huP : u < p * (p + 2) := by
+    have h := Nat.mul_le_mul (le_refl p) (show 6 ≤ p + 2 by omega)
+    omega
+  exact class_rep_unique ha huP hmod.symm
+
+/-- The twin pair's split count over the first t slots, anchored at the pin:
+(t + p(p+2) - u) / (p(p+2)) - equal to 1 as soon as u ≤ t < u + p(p+2), the
+guaranteed bottom-band double, counted. -/
+theorem twin_split_count {p u : ℕ} (hp : p.Prime) (hp2 : (p + 2).Prime)
+    (h3 : 3 < p) (hu : 6 * u = p + 1) (t : ℕ) :
+    ((Finset.Ico 1 (t + 1)).filter
+        (fun k => k % (p * (p + 2)) = u % (p * (p + 2)))).card
+      = (t + p * (p + 2) - u) / (p * (p + 2)) := by
+  have hu1 : 1 ≤ u := by omega
+  have h := Nat.mul_le_mul (le_refl p) (show 6 ≤ p + 2 by omega)
+  exact card_class_Ico (by omega) hu1 (by omega) t
+
 /-! ## The self-block, composed with the census -/
 
 /-- **The self-block, formal.** The twin pair's pin slot u is an actual twin

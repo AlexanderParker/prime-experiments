@@ -266,6 +266,48 @@ modulus occurrence too; rewrite in the goal with the equation oriented the other
 Count primitive proof pattern: induction + Nat.succ_div_of_dvd/not_dvd avoids all
 division-by-variable omega limitations.
 
+## 8. Round 4 (coordinator-approved): the PAIRSPLIT class - the master formula's
+formal core complete
+
+The split (cross-member) layer, closing the SAME + PAIRSPLIT pair. New theorems in
+proofs/Polignac.lean (built clean on first compile):
+
+- `split_class`: for distinct primes q, r >= 5, the slots where q strikes the LEFT
+  member and r the RIGHT (q | 6k-1, r | 6k+1) are exactly ONE CRT class mod qr, with
+  the floor count (t + qr - a)/qr over the first t slots. Construction: the joint
+  target residue c = CRT(1 mod q, r-1 mod r) via Nat.chineseRemainder, funneled
+  through six_mul_class at modulus qr; the and-to-product step is
+  Nat.modEq_and_modEq_iff_modEq_mul; modulus descent via Nat.ModEq.of_dvd. The
+  mirror class (r left, q right) is the same theorem with roles swapped.
+- `split_rep_twin_eq_pin` (g=2 LOOP-CLOSER): for a twin pair (p, p+2), any
+  representative below the modulus of the split class equals the pin u = (p+1)/6 -
+  the PAIRSPLIT representative of a twin pair IS its own slot. Together with
+  twin_pin_le this is the formal "twins below y are the unique unconditionally
+  guaranteed line item of the doubles ledger"; the two Polignac sections
+  (pinning, PAIRSPLIT) now meet in one statement.
+- `twin_split_count`: the twin pair's split count over the first t slots in closed
+  form anchored at the pin - equal to 1 exactly on u <= t < u + p(p+2).
+
+With round 3's SAME census, both structural layers of Lateral's master supply
+formula (overcount = SAME + PAIRSPLIT - CORR) now have their class-and-count core
+kernel-checked; what remains formal-side is the signed multi-gear combination
+itself (CORR, >= 3-gear products) - bookkeeping over the same two primitives
+(six_mul_class + card_class_Ico), scoped as future work.
+
+Verification discipline: research/pairsplit_check.py ran first - 210 ordered prime
+pairs (5 <= q, r < 60, both orientations): split-class membership iff exhaustive
+over two periods, floor count on split reps, mirror role-swap, and the g=2
+loop-closer (split rep == pin on all 5 twin pairs in range): zero fails. Also
+cross-consistent with Lateral's closed form (split_gap_law.py: g=2 has m0 = 0,
+b0 = 1, x = u').
+
+BUILD STATUS ROUND 4: BUILDS CLEAN on first compile; whole ledger green - `lake build`
+all 8 targets, "Build completed successfully" (988 jobs), zero sorry. Axiom audit:
+split_class and twin_split_count on [propext, Classical.choice, Quot.sound];
+split_rep_twin_eq_pin needs only [propext, Quot.sound]. Polignac.lean now holds 31
+theorems across four sections: ZM-frame reductions, g=2 pinning, SAME census +
+self-block, PAIRSPLIT + loop-closer.
+
 What this buys: the finite u'-pin list U in the round-4 master formula (n2 = B - U,
 U confined to the bottom y/6 slots) now has its kernel formally characterised: existence
 (twin_pin), location bound (twin_pin_le), exactness of the class (twin_split_class_iff),

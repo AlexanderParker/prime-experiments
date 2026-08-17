@@ -534,3 +534,96 @@ zone's R(t) may localize the fight); (2) the alternation structure: saturated
 runs force strict L/R alternation patterns (visible in the exhibit) - check
 whether the mirror/parity structure of alternation words is constrained by
 the machine's laws (connects to constructor's mirror-aware third moments).
+
+## Round 7 (2026-08-18): alternation words obey the mirror; the caveat scoped
+
+Tools: `research/alternation_words.py`. Frame first: a saturated slot's letter
+is DETERMINED by the machine - in the open interior, prime = unhit, so
+letter(k) = the side no gear hits. Saturated runs are the one-sided stretches
+of the machine's hit pattern; their words are machine words, and the
+positional mirror law (k -> -k reverses order and swaps L/R) makes exact,
+testable predictions. All tests at y = 3163 and 10007 (90 and 333 maximal
+runs of length >= 8).
+
+### Word laws found (and proved where marked)
+
+1. **Parity theorem (proved, 2 lines).** An odd-length word cannot equal its
+   own reverse-complement (its middle letter would equal its own complement),
+   so odd-length saturated runs are NEVER self-mirror. Data: 0 odd palindromes
+   (forced); even-length self-mirror runs exist and are common (16 of 250 at
+   L=8, y=10007).
+2. **Mirror statistics confirmed, and specifically.** Word distributions are
+   far closer to symmetric under reverse-complement than under reverse alone
+   or complement alone - TV distances at L=8 (N=250): 0.328 vs 0.564 vs
+   0.600; same ordering at L=9 and both scales. Exactly what the k -> -k law
+   predicts (revcomp is the machine symmetry; nothing produces the other two).
+   Letter marginal 0.4996 (mirror predicts 0.5).
+3. **Duplicate words are CRT-alignment, not chance.** Identical L=8 words
+   recur at position differences divisible by 5 in 86% of duplicate pairs
+   (baseline 20%), by 7 in 63% (baseline 17%), by 35 in 55% (baseline ~3%).
+   Word recurrence = small-gear skeleton recurrence: the forced-letter
+   fraction is 0.729 measured (gears <= 13; crude CRT prediction 0.703).
+4. **The landmark word is unique in range.** RLLRRLLLLRLRL occurs exactly
+   once (slot 2452) in 1.67e7 slots - no recurrence of the full 13-word yet.
+5. **Strict-alternation cap = 6, PROVED.** Strict LRLR... saturated runs
+   correspond to primes at alternating gaps 8,4,8,4,...; the offset residues
+   mod 5 cover all of Z/5 at length 7 (L-first phase) and length 6 (R-first),
+   so gear 5 alone caps strict alternation at 6 slots (L-first) / 5 (R-first).
+   Data: max strict alternation = 6, at slot 19125 at BOTH scales (another
+   absolute landmark), letters LRLRLR - the L-first phase, exactly as the
+   theorem requires. Corollary for the Constructor: "perfect alternation" in
+   the strict L/R sense is impossible beyond 6 slots anywhere, at any scale -
+   X's forced local patterns must be non-strict (repeats like the landmark's
+   LLLL are the norm; the constraint is CRT, not alternation).
+
+### Scoping the HL-constellation caveat (the honest one-pager)
+
+**The statement.** persistence(L): every level-y open interior (y, y^2)
+contains a saturated run of length L. Because tower bands tile - interior(y)
+is slots (y/6, y^2/6), interior(y^2) starts where it ends - persistence(L) is
+EQUIVALENT to: the increasing sequence r_1 < r_2 < ... of L-saturated-run
+positions satisfies 6 r_{n+1} - 1 < (6 r_n + 1)^2, a Bertrand-type postulate
+("the next run arrives before the square of the last").
+
+**The strength ladder.**
+- persistence(1): THEOREM, unconditional. If all large primes had prime
+  partners, twin density would equal prime density, contradicting Brun. So
+  gap(1) = 0 forever, provably.
+- persistence(2): equivalent (up to Brun-generic side conditions) to
+  infinitely many prime pairs at distance in {4,6,8} with the mod-6 side
+  structure - disjunctive Polignac. OPEN; strictly weaker than the twin
+  conjecture (a disjunction over three gaps), far beyond current technology
+  (best unconditional bounded gap: 246). This is the exact provability
+  frontier: it sits between L=1 (theorem) and L=2 (bounded-gap-8 class).
+- persistence(L), L >= 3: L primes, one per slot, in 6L+O(1) consecutive
+  integers with prescribed sides - disjunctive Hardy-Littlewood at tuple size
+  L. Each observed word is its own admissibility witness (it happened), so HL
+  predicts recurrence with density x/log^L x. L = 13 is 13-tuple class -
+  far beyond twin strength in tuple size, softened only by the disjunction
+  over all valid words. The exactly-one-prime side conditions are NOT the
+  obstruction (composites are generic, 73% CRT-forced); the L-primes-in-a-
+  short-interval part is.
+- Decidable-in-principle structure: for each FIXED y the statement is a
+  finite computation (the window is finite; load_frontier.py is the decision
+  procedure), and the tower bands are disjoint, so verified bands stay
+  verified - the conjectural content is ONLY the "for every y" quantifier.
+  Empirical status: renewable to depth 0.5 for L <= 10 (members to 5e7);
+  L = 13 witnessed only at the absolute landmark; its next Bertrand band is
+  unexplored.
+
+**Why the caveat cannot hurt the programme.** The frontier is a DESCRIPTIVE
+upper envelope of reality's X-likeness, never a premise. If persistence(L)
+fails at some depth, reality's most X-like stretches shorten there, the gap
+to X widens, and any bound gets easier. The only illegitimate use of the
+frontier would be citing renewability as proof that bounds at L <= 13 are
+impossible - that direction, and only that direction, is conjecture-strength.
+
+### Proposed next chunk
+
+The strict-alternation cap generalizes: every periodic word pattern has a
+CRT covering obstruction at some length (gear 5 caps strict alternation at
+6; which patterns does {5,7} cap, at what lengths?). Candidate: the complete
+"word grammar" - the exact set of infinitely-extendable letter patterns
+(eventually-periodic words compatible with all small-gear teeth), which
+would characterize what X's local behaviour CAN look like, unconditionally -
+a positive-description complement to the impossibility map.

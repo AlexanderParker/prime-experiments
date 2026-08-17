@@ -542,3 +542,77 @@ there is NO depth structure beyond smooth density in the twin mass.
   not a proof of absence beyond 8y for y >= 2e5.
 - The y^(-0.6) fit is a fit. The death location 2-5e6 is exact within the
   scan policy.
+
+## Round 7 - saturated-run census to members 7.2e10 (2026-08-18)
+
+Script: `research/saturated_runs.py`. One absolute segmented primality scan
+of k = 1..1.2e10 (members to 7.2e10, 231s) - saturated (load-1) runs are
+pure primality objects (no gears), so every window census is a truncation
+of the absolute run list. Data (append): `research/data/satruns_ge10.csv`
+(every run L >= 10 individually), `satruns_records.csv` (record
+progression with side words), `satruns_renewal.csv` (per-decade counts,
+L = 8..13+), `satruns_windows.csv` (per-window decile censuses, ladder
+2003/10007/50021/200003). 21382 runs with L >= 8 held in memory; window
+truncation at k_lo handled and flagged (0 truncation events occurred).
+
+### (1) Max length: L = 13 STANDS across seven more decades - but as a
+### record, not a wall
+
+Record progression over 1.2e10 slots: L=10 at k=59 (member 353), then
+L=13 at k=2452 (member 14711) - and NOTHING LONGER through member 7.2e10.
+L=13 recurs: six instances total,
+
+    k=2452        member 14711        word RLLRRLLLLRLRL
+    k=61501443    member 369008657    word LLLRRLLLRRRLL
+    k=874166593   member 5244999557   word RLLRRLLRRLRLL
+    k=1909351447  member 11456108681  word LLLRRLLLRRRRL
+    k=8472005085  member 50832030509  word RRRLLLRRRLLRL
+    k=9599932213  member 57599593277  word LLRRLRLLRRRLL
+
+L=12: 21 instances; L >= 10: 757. Bounded-forever claim NOT supported:
+the measured L -> L+1 rate ratio at depth is ~0.3 (L=12: 10, L=13: 3 in
+decade 10), so the first L=14 is heuristically expected within members
+~1e11-1e12 - the scan stopped just short of its expected first arrival.
+Label: measured record + heuristic extrapolation, not a law.
+
+### (2) Absolute landmarks - with a correction and a refinement
+
+Structurally exact: runs are primality-only objects, so every window sees
+the same integers (censuses below confirm; y=2003 and 10007 both max at
+k=2452). REFINEMENT: a window whose bottom excludes a landmark inherits
+the next instance - y=50021 (bottom member 50021 > 14711) and y=200003
+both have window-max L=13 at k=61501443. "Next record beyond 2452-2464"
+= no L=14 anywhere scanned; the next L=13 is at member 3.69e8.
+
+CORRECTION for Lateral: NONE of the six L=13 words is strictly
+L/R-alternating (the original landmark reads RLLRRLLLLRLRL, containing an
+LLLL block). "Perfect alternation" holds only in the load sense (exactly
+one prime per slot = X's forced n1 pattern), not side-wise. Side words are
+balanced but blocky - relevant input for the alternation-word study.
+
+### (3) Renewal rate: GROWING per decade, rate ~ (6/ln m)^8 per slot
+
+    decade(member)  slots        L8     L9    L10  L11  L12  L13+
+    5               1.5e5        13      6      0    0    0    0
+    6               1.5e6        48     15      1    1    1    0
+    7               1.5e7       186     43     13    2    0    0
+    8               1.5e8       769    146     45    9    2    1
+    9               1.5e9      3435    703    122   28    8    1
+    10 (1.03 dec)   1.03e10   12655   2445    433   73   10    3
+
+L>=8 counts per decade: 19, 66, 244, 972, 4297, ~22600 (normalized) -
+growth factor 3.5 -> 5 per decade, tending to 10 * (d/(d+1))^8. Per-slot
+rate declines as (6/ln m)^8 (decade ratios match (d/(d+1))^8 to a few %),
+so the per-decade count ~ 10^d * (ln)^-8 grows without bound: the object
+X must kill is increasingly abundant with depth while its max length
+crawls. Depth-decile structure inside a window (y=50021): smooth decline
+(L8: 424 -> 113 from decile 0 to 9), consistent with pure density
+falloff, no band anomalies.
+
+### Caveats
+- "L=13 unbeaten" is exhaustive to member 7.2e10 (every slot scanned),
+  but the extrapolated L=14 arrival sits just beyond - do not lean on 13
+  as an absolute constant.
+- Renewal-rate model (6/ln)^8 is a fit to decade ratios; counts are exact.
+- Side words recomputed independently by Miller-Rabin (assert pl != pr
+  passed on all record runs - scan/MR cross-validation).

@@ -2,26 +2,25 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-Round 6 was the round of honest funerals - and one lasting gift. The counting weapon from round 5
-(the "inversion zone") was tracked to its grave: it works by DETECTING twins near the bottom of
-each window, not by creating them, so asking it to fire forever is just the conjecture again in
-disguise. It genuinely dies around y = 3-5 million. Every remaining trick in the counting/moments
-family was also checked and buried: mirror symmetry adds literally nothing at the level of
-moments (a two-line proof), deeper statistics move the needle by 3% against a 48% chasm, and
-depth targeting is worthless. The counting program is now COMPLETE - in the sense that we possess
-the full map of why every route in it fails. That map is itself a major artifact, and round 7's
-first job is writing it up properly.
+Round 7 delivered the programme's reference book and its sharpest small theorems. The
+IMPOSSIBILITY MAP is now written: every failed route filed under the three walls that killed it,
+plus a "tautology ring" - disguises of the original problem - so any future idea can be checked
+against the map in minutes instead of weeks. The machine-verified ledger meanwhile crossed a
+milestone: the supply side's two main terms are now fully formal, including the theorem that
+twins at the small scale are the ONLY guaranteed suppliers of what a twin-free world would need -
+the self-reference, at the highest standard of certainty. (The formal team also caught an error
+in the manager's own brief this round - the checking works in every direction.)
 
-The gift: within its finite domain the zone is real mathematics - at one test point its
-arithmetic FORCES six twins to exist, no searching - and it will be preserved in the verified
-ledger. Meanwhile the structure side turned up something eerie: the record twin-free stretches
-are the SAME specific numbers at every scale we can reach - fixed landmarks in the integers, with
-reality performing exactly the forbidden pattern up to length 13, once, at one address. And the
-machine-verified ledger reached nine files, now including the theorem that the machine is
-formally blind to its own twin pair, and the exact census of coincidence slots.
+The strange landmarks got both confirmed and demoted: the record twin-free-adjacent stretch
+(length 13) recurs six times up to 72 billion and no 14 exists yet - but the numbers say a 14
+should arrive around a trillion, so 13 is a record, not a law of nature. New little theorems: a
+stretch can never strictly alternate left-kill/right-kill beyond 6 slots (one small gear forbids
+it), and odd-length stretches can never be their own mirror image. And the population of
+stretches a twin-free world must destroy GROWS without bound - the forger's workload explodes
+while his best tool barely improves.
 
-Round 7: write the impossibility map, census the landmark runs, dig into their letter-structure,
-and keep growing the verified supply formula - the slow road, walked properly.
+Round 8 opens the one route the map lists as genuinely untried: measuring the machine's growth
+multiplicatively instead of by differences - plus the hunt for the first length-14 stretch.
 
 ## Round 1 (2026-08-18)
 
@@ -198,3 +197,29 @@ Census. 28 Polignac theorems total; ledger green 988 jobs (manager-verified).
 as a finite kernel-checkable tool; the structure front (absolute landmarks, alternation words) and
 the Lean supply formalization are the roads forward. Round 7 = write the map, census the
 landmarks, formalize the supply.
+
+## Round 7 (2026-08-18)
+
+**Constructor** - THE IMPOSSIBILITY MAP delivered (impossibility-map.md): three walls + tautology
+ring + seven null levers + surviving toolbox + honest residue (incl. the untried multiplicative
+route). The programme's key prose artifact.
+
+**Harvester** - PAIRSPLIT kernel-checked; loop-closer split_rep_twin_eq_pin = the formal "twins
+are the unique guaranteed doubles supplier"; master formula core (SAME + PAIRSPLIT) complete;
+31 Polignac theorems.
+
+**Formalist** - R_q = exact prime count formal (R_eq_card_partners, mem_partners); corrected the
+manager's briefed regime (member < q^3, counterexample 175); ledger green.
+
+**Lateral** - word laws: parity theorem (proved), reverse-complement symmetry, CRT duplicates,
+strict-alternation cap 6 (proved, gear 5); persistence ladder scoped (frontier = disjunctive
+Polignac). Tool: alternation_words.py.
+
+**Mechanic** - exhaustive absolute scan to member 7.2e10: L*=13 a record not a wall (six
+instances, no 14; heuristic arrival 1e11-1e12); landmark inheritance confirmed; corrected
+Lateral's alternation reading (load-only); renewal grows ~10^d/ln^8, unbounded. Tool:
+saturated_runs.py + CSVs.
+
+**Manager synthesis** - reference artifacts complete (map + formal supply core); records
+demystified; round 8 = the untried multiplicative route, the L=14 hunt, the word grammar, slot
+placement, and CORR.
