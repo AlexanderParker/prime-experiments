@@ -74,10 +74,9 @@ mirror-symmetric. X slots (2,141), (24,119):
 * slot 119 = (713,715): 715 = 5*11*13 - product block, both right
 * slot 141 = (845,847): 13 left (5*13^2), 11 right (7*11^2) - crossed
 
-Taxonomy law over all four pairs mapped: one of the four sign-lifts lands on the pair (q,r) itself
-precisely when q and r are twin gears (their 6-inverses coincide - shared tooth residue); otherwise
-all four are product/crossed. Twin pairs: own-share + 2 products + 1 crossed. Non-twin: 2 products
-+ 2 crossed.
+Taxonomy law (corrected below in "The pair table"): every pair has exactly 1 both-left + 1
+both-right + 2 crossed coincidences, and one *crossed* slot lands on the pair (q,r) itself precisely
+when q and r are twin gears (at their shared tooth residue, each gear killing its own member).
 
 Max gap falls as the pair grows: 5 (5x7) -> 4 (5x11, 7x11) -> 3 (11x13). A lone pair of bigger
 gears covers less; gaps grow only through accumulation of gears, never through the size of one pair.
@@ -91,6 +90,28 @@ blocks (both gears hit the same member), mixed-sign lifts are crossed kills - an
 interleaving only: 5x7 has max gap 5 while 5x11 and 7x11 both max at 4 - same tooth inventory,
 different bunching. Counts are pair-independent theorems; placement is slip arithmetic - the
 pair-level preview of the programme's single open question.
+
+## The pair table: single-gear laws lifted to composites
+
+| pair  | qr  | family | both-left | both-right | low tooth | low pair holds | crossed  | shield | maxgap |
+|-------|-----|--------|-----------|------------|-----------|----------------|----------|--------|--------|
+| 5x7   | 35  | 5      | *6*       | 29         | 6         | 35             | 1!, 34   | 0      | 5 |
+| 5x11  | 55  | 1      | 46        | *9*        | 9         | 55             | 24, 31   | 0      | 4 |
+| 5x13  | 65  | 5      | *11*      | 54         | 11        | 65             | 24, 41   | 0      | 4 |
+| 7x11  | 77  | 5      | *13*      | 64         | 13        | 77             | 20, 57   | 0      | 4 |
+| 7x13  | 91  | 1      | 76        | *15*       | 15        | 91             | 41, 50   | 0      | 4 |
+| 11x13 | 143 | 5      | *24*      | 119        | 24        | 143            | 2!, 141  | 0      | 3 |
+
+(italic = low tooth; ! = crossed slot on the gears' own pair, twin gears only.)
+
+The pair's same-side kills ARE the composite gear qr, so every single-gear law lifts verbatim:
+both-left tooth = 6^{-1} mod qr and both-right = its mirror, summing to qr; the family law extends
+by sign multiplication (qr mod 6 = product of the factors' +-1; family 5 -> both-left low, family
+1 -> both-right low); self-blocking extends (low tooth = round(qr/6) = the slot whose pair contains
+qr); joint shield at 0. The genuinely new object is the crossed pair - one member killed by each
+gear, mirror-summing to qr, positions governed by the slip inverse (X_crossed = 1 + q((-2q^{-1})
+mod r), twin-prime-program.md section 28b) - and for twin gears one crossed slot is their own pair.
+Max gap falls as the pair grows: 5, 4, 4, 4, 4, 3.
 
 ## Certified twins from two gears
 
