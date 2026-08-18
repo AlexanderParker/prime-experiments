@@ -673,3 +673,63 @@ criterion:
   bands sit exactly at twin endpoints (the self-reference at the binding
   case) - flagged as candidate reopening; nobody has interrogated it as
   a mechanism rather than an obstacle.
+
+## Round 9 - THE FIRST L=14: address found, model validated (2026-08-18)
+
+Scope note: this round touches only this file, my agents-shared round
+append, and research/ files, per the standing scope rule.
+
+### Data provenance (the round-8 kill, resolved)
+
+The round-8 full-range scan was killed during its FINAL PRINTS - after its
+CSV writes. research/data/satruns_deep_ge10.csv turned out to hold the
+complete range k in [1.2e10, 1.67e11] (3055 runs L >= 10, max k 1.669e11,
+zero duplicates). The detached chunk-flushed rescan (launched per the
+coordinator's Start-Process pattern) was therefore redundant and was
+stopped after precise identification of its PID tree (satruns processes
+only; the manager's detached jobs untouched); CSVs verified clean of its
+partial appends (0 mismatched rows).
+
+### (1) The verdict: L = 14 EXISTS. New landmark.
+
+    k_start = 46,133,660,494   members 276,801,962,963 .. 276,801,963,043
+    L = 14   word LRRLRLRRRRLLRL (blocky, not alternating - consistent
+    with the strict-alternation cap of 6)
+
+Independently verified by Miller-Rabin: all 14 slots exactly one prime
+member, both boundary slots both-composite (maximality). Appended to
+satruns_records.csv. The record progression is now 10 (k=59), 13 (k=2452),
+14 (k=4.6e10) - L*=13 stood from member 1.5e4 to 2.8e11, and fell exactly
+where the constellation model said it should (below).
+
+### (2) Record-growth law vs the CRT cap [13, 32]
+
+Full-data refit (research/satruns_model.py; deep range folded in):
+A_L stable per decade, global A_8..A_13 = 0.252, 0.220, 0.174, 0.135,
+0.084, 0.119; log-linear A_L = exp(-0.197L + 0.197) [fit]. Validation:
+predicted first L=14 near member 1.6e11 (expected count at the actual
+address: 1.2) - found at 2.8e11. Poisson-consistent; NO deficit vs HL
+statistics; L*=13 was a record on the curve, never a wall.
+
+Predicted first-arrival ladder to the cap [fit, not law]:
+    L=15: ~5e12    L=16: ~2e14    L=17: ~7e15    L=18: ~3e17
+    L=20: ~6e20    L=24: ~5e27    L=28: ~9e34    L=32: ~3e42 (CRT cap)
+Reading: the cap [13,32] splits into reachable records (15-16, hours-to-
+days of compute), astronomical ones (17-31), and the absolute CRT ceiling
+at 32 - record growth is ~ +1 length per factor ~40 in member. The L=15
+hunt (members to ~1e13, ~6x the last scan) is priced and optional.
+
+### (3) Renewal-rate law refit
+
+Per-slot rate of L >= 8 runs ~ C/(ln m)^beta with beta = 6.81, C = e^8.33
+(8 decades, max ln-residual 0.24) [fit]. Naive per-slot independence gives
+~8 for the L >= 8 mixture; the flattening to 6.8 is the mixture + HL
+corrections. Counts per member-decade keep growing (~19 -> 91k across
+decades 5..11); the L >= 13 population now stands at 19 instances
+(6 round-7 + 12 new L=13 + the L=14), all MR-verified.
+
+### Caveats
+- The ladder beyond L=16 rests on the log-linear A_L extrapolation over
+  [8,13] - honest error bars are a factor of several in M(L); the
+  qualitative split (reachable / astronomical / capped) is robust.
+- beta fit excludes decades with < 10 runs.

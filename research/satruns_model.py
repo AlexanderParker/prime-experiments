@@ -120,6 +120,43 @@ def main():
     print(f"first L=14 expected near member ~{(lo*hi)**0.5:.2e} "
           f"[A-extrapolation; fit, not law]")
 
+    # ---- record ladder vs the CRT cap [13, 32] (Lateral round 8) ----
+    print("\nrecord ladder: predicted first-arrival member M(L) with "
+          "A_L = exp(%.3f*L%+.3f) [extrapolated fit]:" % (sl, ic))
+    print(f"{'L':>3} {'A_L':>9} {'M(L) first arrival':>19}")
+    for L in range(14, 33):
+        AL = float(np.exp(sl * L + ic))
+        lo, hi = 1e6, 1e120
+        while hi / lo > 1.1:
+            mid = (lo * hi) ** 0.5
+            if AL * integral_sL(2, mid / 6, L, pts=4000) < 1:
+                lo = mid
+            else:
+                hi = mid
+        M = (lo * hi) ** 0.5
+        note = "  <- CRT cap (absolute ceiling)" if L == 32 else ""
+        print(f"{L:>3} {AL:>9.4f} {M:>19.2e}{note}")
+
+    # ---- renewal-rate exponent refit: rate(L>=8) ~ C/(ln m)^beta ----
+    print("\nrenewal refit: per-slot rate of L>=8 runs vs 1/(ln m)^beta:")
+    xs, ys_ = [], []
+    for d in sorted(dec):
+        if d < 5:
+            continue  # small-count decades
+        n8 = sum(dec[d]["n"].get(L, 0) for L in range(8, 14))
+        if n8 < 10 or dec[d]["slots"] <= 0:
+            continue
+        m_mid = 10 ** (d + 0.5)
+        xs.append(log(log(m_mid)))
+        ys_.append(log(n8 / dec[d]["slots"]))
+    if len(xs) >= 3:
+        b_, c_ = np.polyfit(xs, ys_, 1)
+        pred = np.polyval([b_, c_], xs)
+        resid = float(np.abs(np.array(ys_) - pred).max())
+        print(f"  beta = {-b_:.2f} (naive independence predicts ~8 for "
+              f"L>=8 mix), C = e^{c_:.2f}, max ln-resid {resid:.3f} over "
+              f"{len(xs)} decades [fit]")
+
 
 if __name__ == "__main__":
     main()

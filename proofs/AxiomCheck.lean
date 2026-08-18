@@ -6,6 +6,7 @@ import Census
 import Bridge
 import Gear
 import Placement
+import Corridor
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -53,3 +54,10 @@ open BlockedSlots
 #print axioms Placement.slot_injOn_partners
 #print axioms Placement.card_slots_of_line
 #print axioms Placement.R_slots_eq
+#print axioms Corridor.exists_class_in_run
+#print axioms Corridor.both_composite_of_class
+#print axioms Corridor.both_composite_in_run
+#print axioms Corridor.double_slot_in_run
+#print axioms Corridor.prime_adjacent_run_le
+#print axioms Corridor.product_slotOf
+#print axioms Corridor.twin_product_pin

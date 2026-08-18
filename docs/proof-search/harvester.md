@@ -368,6 +368,52 @@ theorems on [propext, Classical.choice, Quot.sound]. Polignac.lean = 35 theorems
 five sections: ZM-frame reductions, g=2 pinning, SAME census + self-block,
 PAIRSPLIT + loop-closer, CORR two-sided/triple/signed.
 
+## 10. Round 6 (coordinator-approved): the assembly - inclusion-exclusion over
+incidence classes
+
+The step from per-term core to assembled formula. Scope taken: the full n = 3
+assembly proven GENERALLY (not just for {5,7,11} on a finite range - the concrete
+window milestone is subsumed as an instance), plus the two bridges that convert the
+assembled terms into CRT-class counts. New theorems in proofs/Polignac.lean (built
+clean on first compile):
+
+- `three_sets_ie` (n = 3 INCLUSION-EXCLUSION, subtraction-free, ANY finsets):
+  |A u B u C| + |A^B| + |A^C| + |B^C| = |A| + |B| + |C| + |A^B^C|. Proof: three
+  instances of card_union_add_card_inter + distributivity + omega.
+- `three_preds_ie`: the filter/predicate form over one slot range.
+- `three_gear_assembly` ("ASSEMBLED SUM = SIEVE OVERCOUNT"): three_preds_ie at the
+  mark sets M_q = {k : q | 6k-1 or q | 6k+1} - distinct marked slots + the three
+  pairwise terms = per-gear marks + the triple. Set-level, NO primality hypotheses;
+  overcount := marks - distinct is a rearrangement. Extends corr_triple_signed
+  (n = 2) to the full 3-gear window.
+- `card_marks_eq` (PER-GEAR BRIDGE): |M_q| = |left class| + |right class| -
+  disjoint by slot cap (mark_side_unique, 3 lines from slot_cap_twin).
+- `card_pair_inter_eq` (PAIR BRIDGE): |M_q ^ M_r| = |LL| + |LR| + |RL| + |RR| -
+  the four disjoint side classes (SAME-left, split, mirror split, SAME-right),
+  each ONE CRT class with a floor count via six_mul_class / twoSided_class. This
+  is where the set-level assembly meets the class-and-count layer.
+- `card_filter_or_of_excl`: reusable primitive (filter of exclusive disjunction
+  splits the count).
+
+Remaining for FULL closed-form CORR (paper-side, priced): (i) the triple
+intersection's 8-way side decomposition - mechanically identical to the pair
+bridge (2^3 cases instead of 2^2, same mark_side_unique discharges); (ii) n > 3
+gears - either iterated three_sets_ie or mathlib's inclusion-exclusion machinery.
+Verified numerically THIS round including the full pipeline: overcount =
+sum(12 pair classes) - sum(8 triple classes) with EVERY term equal to its floor
+formula (research/assembly_check.py: 4 gear triples x 6 window lengths, zero
+fails). No new number theory anywhere in the remaining gap.
+
+F(2,53) watch (coordinator's ask): research/data/maxgap53.log exists with header
+only ("y = 53, divisors [3..53]") at round end - the manager's detached run has
+produced no increments yet; nothing to fold in. Needs <= 486 for the tolerance
+constant; last known bound F(2,53) >= 420.
+
+BUILD STATUS ROUND 6: BUILDS CLEAN on first compile; whole ledger green - `lake build`
+"Build completed successfully" (992 jobs), zero sorry. Axiom audit: all seven new
+theorems on [propext, Classical.choice, Quot.sound]. Polignac.lean = 42 theorems,
+six sections (+ assembly).
+
 What this buys: the finite u'-pin list U in the round-4 master formula (n2 = B - U,
 U confined to the bottom y/6 slots) now has its kernel formally characterised: existence
 (twin_pin), location bound (twin_pin_le), exactness of the class (twin_split_class_iff),

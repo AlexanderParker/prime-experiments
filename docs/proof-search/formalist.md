@@ -566,3 +566,73 @@ candidates: (a) the twin-product pin — the lateral workstream's closed form
 `slotOf (p*(p+2))` is `6u'²`-structured and its membership claims are pure
 arithmetic, a small file connecting Placement to Polignac's pinning
 theorems; (b) h(2) ≥ d's product inequality (long-standing alternative).
+
+## Round 9 — The (5,7) corridor: 32-cap + the pin unified (2026-08-18)
+
+### What was done
+
+New file `proofs/Corridor.lean` (namespace `Corridor`), tenth lakefile
+target, importing Placement and Polignac (first formalist file to import
+another workstream's lib — read-only composition, Polignac untouched).
+Typechecked clean first try, zero sorry, zero warnings.
+
+### Final theorem statements
+
+```lean
+-- The 32-cap
+theorem exists_class_in_run (a) :
+    ∃ k, a ≤ k ∧ k < a + 33 ∧ (k % 35 = 1 ∨ k % 35 = 34)
+theorem both_composite_of_class (hk : 2 ≤ k) (h : k % 35 = 1 ∨ k % 35 = 34) :
+    ¬ (Census.lo k).Prime ∧ ¬ (Census.hi k).Prime
+theorem both_composite_in_run (ha : 2 ≤ a) :
+    ∃ k, a ≤ k ∧ k < a + 33 ∧ ¬ (lo k).Prime ∧ ¬ (hi k).Prime
+theorem double_slot_in_run (ha : 2 ≤ a) :
+    ∃ k, a ≤ k ∧ k < a + 33 ∧ Census.slotComps k = 2
+theorem prime_adjacent_run_le (ha : 2 ≤ a)
+    (hrun : ∀ k, a ≤ k → k < a + L → (lo k).Prime ∨ (hi k).Prime) : L ≤ 32
+
+-- The pin unified
+theorem product_slotOf (hu : 6 * u = p + 1) :
+    Placement.slotOf (p * (p + 2)) = u * (p + 1)
+theorem product_slotOf_sq (hu) : slotOf (p * (p + 2)) = 6 * (u * u)
+theorem twin_product_pin (hu) :
+    slotOf (p*(p+2)) = u*(p+1) ∧ Census.lo (u*(p+1)) = p*(p+2)
+      ∧ p ∣ lo (u*(p+1)) ∧ (p+2) ∣ lo (u*(p+1))
+```
+
+### Proof route
+
+- The cap is exactly three moves, as Lateral predicted: (1) the class-gap
+  lemma is a witness construction (`a + (1 − a%35)` or `a + (34 − a%35)`)
+  with all checks omega (literal moduli); (2) both-composite at the classes
+  is four applications of "proper divisor ≥ 2 kills primality", each an
+  omega pair (5 ∣ 6k−1 from k ≡ 1 mod 35, and size); (3) assembly. The
+  contrapositive `prime_adjacent_run_le` is the headline form.
+- `k ≥ 2` guard: slot 1 IS the twin (5,7) — the unique class slot where
+  both members are prime. The classes force k ≥ 34 or ≥ 36 anyway.
+- Pin: `slotOf (p(p+2)) = ((p+1)² )/6 = u(p+1)` by `mul_div_cancel_left`
+  after the ring identity; `twin_product_pin` then re-exports
+  `Polignac.twin_product_slot` through `Census.lo` — the equation
+  `6·(u(p+1)) − 1 = p(p+2)` IS `lo (u(p+1)) = p(p+2)` definitionally.
+
+### Build status
+
+`lake build` (all 10 targets): **Build completed successfully (992
+jobs)**, zero sorry.
+
+### Axiom audit
+
+Every Corridor theorem except `double_slot_in_run` needs only
+`[propext, Quot.sound]` — no Classical.choice anywhere in the cap or the
+pin. (`double_slot_in_run` picks up choice through Census's decidable
+counters; still standard.)
+
+### Proposed next target
+
+The cap gives every 33-window a double slot unconditionally; Census gives
+n2 = N − P under X. A natural next chunk: window-count corollary — over
+any range of W slots, n2 ≥ ⌊W/33⌋-ish lower bound by packing disjoint
+33-windows (Finset counting, no new number theory), giving the formal
+floor on doubles that the X-consistency demand side must meet. Alternative:
+the tolerance lemmas' arithmetic skeletons (top-gap anti-clustering
+inequality shell) if the Constructor lands the statement shape.

@@ -800,6 +800,211 @@ theorem corr_triple_signed {q r s : ℕ} (hco : Nat.Coprime q r) (t : ℕ) :
   rw [Finset.filter_or, ← hinter]
   exact Finset.card_union_add_card_inter _ _
 
+/-! ## The assembly: inclusion-exclusion over the incidence classes
+
+From the per-term core to the assembled formula. `three_sets_ie` is n = 3
+inclusion-exclusion, subtraction-free, for arbitrary finsets; instantiated at
+the mark sets M_q = {k : q | 6k-1 or q | 6k+1} it is `three_gear_assembly` -
+"assembled sum = sieve overcount", since overcount = marks - distinct is a
+rearrangement of the identity. The bridges `card_marks_eq` and
+`card_pair_inter_eq` decompose the per-gear and pairwise terms disjointly into
+side classes - each ONE CRT class with a floor count via `six_mul_class` /
+`twoSided_class`. The triple decomposition (8 side classes) is the same
+mechanics; verified numerically in research/assembly_check.py, left paper-side. -/
+
+/-- Filter of a disjunction splits the count when the disjuncts exclude each
+other on the set. -/
+theorem card_filter_or_of_excl {α : Type*} [DecidableEq α] {s : Finset α}
+    {p q : α → Prop} [DecidablePred p] [DecidablePred q]
+    (h : ∀ a ∈ s, ¬(p a ∧ q a)) :
+    (s.filter (fun a => p a ∨ q a)).card
+      = (s.filter p).card + (s.filter q).card := by
+  rw [Finset.filter_or]
+  apply Finset.card_union_of_disjoint
+  rw [Finset.disjoint_left]
+  intro a haP haQ
+  have h1 := Finset.mem_filter.mp haP
+  have h2 := Finset.mem_filter.mp haQ
+  exact h a h1.1 ⟨h1.2, h2.2⟩
+
+/-- **n = 3 inclusion-exclusion, subtraction-free.** For any three finsets:
+distinct elements of the union plus the three pairwise intersections equal
+the three cardinalities plus the triple intersection. -/
+theorem three_sets_ie {α : Type*} [DecidableEq α] (A B C : Finset α) :
+    (A ∪ B ∪ C).card + (A ∩ B).card + (A ∩ C).card + (B ∩ C).card
+      = A.card + B.card + C.card + (A ∩ B ∩ C).card := by
+  have h1 := Finset.card_union_add_card_inter A B
+  have h2 := Finset.card_union_add_card_inter (A ∪ B) C
+  have h3 := Finset.card_union_add_card_inter (A ∩ C) (B ∩ C)
+  rw [Finset.union_inter_distrib_right] at h2
+  have he : (A ∩ C) ∩ (B ∩ C) = A ∩ B ∩ C := by
+    ext x
+    simp only [Finset.mem_inter]
+    constructor
+    · rintro ⟨⟨hA, hC⟩, ⟨hB, -⟩⟩
+      exact ⟨⟨hA, hB⟩, hC⟩
+    · rintro ⟨⟨hA, hB⟩, hC⟩
+      exact ⟨⟨hA, hC⟩, ⟨hB, hC⟩⟩
+  rw [he] at h3
+  omega
+
+/-- The predicate form of `three_sets_ie` over one filtered set. -/
+theorem three_preds_ie {α : Type*} [DecidableEq α] (S : Finset α)
+    (P Q R : α → Prop) [DecidablePred P] [DecidablePred Q] [DecidablePred R] :
+    (S.filter fun a => P a ∨ Q a ∨ R a).card
+      + (S.filter fun a => P a ∧ Q a).card
+      + (S.filter fun a => P a ∧ R a).card
+      + (S.filter fun a => Q a ∧ R a).card
+    = (S.filter P).card + (S.filter Q).card + (S.filter R).card
+      + (S.filter fun a => P a ∧ Q a ∧ R a).card := by
+  have h1 : (S.filter fun a => P a ∨ Q a ∨ R a)
+      = S.filter P ∪ S.filter Q ∪ S.filter R := by
+    rw [Finset.filter_or, Finset.filter_or]
+    exact (Finset.union_assoc _ _ _).symm
+  have h2 : (S.filter fun a => P a ∧ Q a) = S.filter P ∩ S.filter Q := by
+    ext a
+    simp only [Finset.mem_filter, Finset.mem_inter]
+    constructor
+    · rintro ⟨ha, hP, hQ⟩
+      exact ⟨⟨ha, hP⟩, ⟨ha, hQ⟩⟩
+    · rintro ⟨⟨ha, hP⟩, ⟨-, hQ⟩⟩
+      exact ⟨ha, hP, hQ⟩
+  have h3 : (S.filter fun a => P a ∧ R a) = S.filter P ∩ S.filter R := by
+    ext a
+    simp only [Finset.mem_filter, Finset.mem_inter]
+    constructor
+    · rintro ⟨ha, hP, hR⟩
+      exact ⟨⟨ha, hP⟩, ⟨ha, hR⟩⟩
+    · rintro ⟨⟨ha, hP⟩, ⟨-, hR⟩⟩
+      exact ⟨ha, hP, hR⟩
+  have h4 : (S.filter fun a => Q a ∧ R a) = S.filter Q ∩ S.filter R := by
+    ext a
+    simp only [Finset.mem_filter, Finset.mem_inter]
+    constructor
+    · rintro ⟨ha, hQ, hR⟩
+      exact ⟨⟨ha, hQ⟩, ⟨ha, hR⟩⟩
+    · rintro ⟨⟨ha, hQ⟩, ⟨-, hR⟩⟩
+      exact ⟨ha, hQ, hR⟩
+  have h5 : (S.filter fun a => P a ∧ Q a ∧ R a)
+      = S.filter P ∩ S.filter Q ∩ S.filter R := by
+    ext a
+    simp only [Finset.mem_filter, Finset.mem_inter]
+    constructor
+    · rintro ⟨ha, hP, hQ, hR⟩
+      exact ⟨⟨⟨ha, hP⟩, ⟨ha, hQ⟩⟩, ⟨ha, hR⟩⟩
+    · rintro ⟨⟨⟨ha, hP⟩, ⟨-, hQ⟩⟩, ⟨-, hR⟩⟩
+      exact ⟨ha, hP, hQ, hR⟩
+  rw [h1, h2, h3, h4, h5]
+  exact three_sets_ie _ _ _
+
+/-- **The 3-gear assembly** ("assembled sum = sieve overcount",
+subtraction-free): distinct marked slots plus the three pairwise-intersection
+counts equal the per-gear mark counts plus the triple. Purely set-level - no
+primality hypotheses; overcount = marks - distinct rearranges this. -/
+theorem three_gear_assembly (q r s t : ℕ) :
+    ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∨ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1) ∨
+        (s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1)).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∧ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1)).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∧ (s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1)).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1) ∧ (s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1)).card
+    = ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∧ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1) ∧
+        (s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1)).card :=
+  three_preds_ie (Finset.Ico 1 (t + 1)) _ _ _
+
+/-- A gear marks a slot on at most one side (slot cap in mark form). -/
+theorem mark_side_unique {q k : ℕ} (hq : q.Prime) (hq2 : q ≠ 2) (hk : 1 ≤ k)
+    (hL : q ∣ 6 * k - 1) (hR : q ∣ 6 * k + 1) : False := by
+  refine slot_cap_twin hq hq2 hL ?_
+  rwa [show 6 * k - 1 + 2 = 6 * k + 1 by omega]
+
+/-- **Per-gear bridge.** A gear's mark count splits disjointly by side; each
+side is one CRT class (`six_mul_class` + `left_dvd_iff`/`right_dvd_iff`). -/
+theorem card_marks_eq {q t : ℕ} (hq : q.Prime) (hq2 : q ≠ 2) :
+    ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1).card
+      = ((Finset.Ico 1 (t + 1)).filter fun k => q ∣ 6 * k - 1).card
+        + ((Finset.Ico 1 (t + 1)).filter fun k => q ∣ 6 * k + 1).card := by
+  apply card_filter_or_of_excl
+  intro k hk
+  rintro ⟨hL, hR⟩
+  exact mark_side_unique hq hq2 (Finset.mem_Ico.mp hk).1 hL hR
+
+/-- **Pair bridge.** A pairwise mark intersection decomposes disjointly into
+the four side classes - each ONE CRT class with a floor count (SAME-left,
+split, mirror split, SAME-right). The set-level assembly meets the
+class-and-count layer here. -/
+theorem card_pair_inter_eq {q r t : ℕ} (hq : q.Prime) (hr : r.Prime)
+    (hq2 : q ≠ 2) (hr2 : r ≠ 2) :
+    ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∧ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1)).card
+    = ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1).card := by
+  have hpred : ((Finset.Ico 1 (t + 1)).filter fun k =>
+      (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∧ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1))
+    = (Finset.Ico 1 (t + 1)).filter fun k =>
+      (q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1) ∨ ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1) ∨
+      ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1) ∨ (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1))) := by
+    ext k
+    simp only [Finset.mem_filter]
+    constructor
+    · rintro ⟨hk, ⟨hL | hR, hL' | hR'⟩⟩
+      · exact ⟨hk, Or.inl ⟨hL, hL'⟩⟩
+      · exact ⟨hk, Or.inr (Or.inl ⟨hL, hR'⟩)⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inl ⟨hR, hL'⟩))⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inr ⟨hR, hR'⟩))⟩
+    · rintro ⟨hk, h⟩
+      rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩
+      · exact ⟨hk, Or.inl h1, Or.inl h2⟩
+      · exact ⟨hk, Or.inl h1, Or.inr h2⟩
+      · exact ⟨hk, Or.inr h1, Or.inl h2⟩
+      · exact ⟨hk, Or.inr h1, Or.inr h2⟩
+  rw [hpred]
+  have excl1 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1) ∧
+        ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1) ∨ ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1) ∨
+         (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1)))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨hqL, hrL⟩, h⟩
+    rcases h with ⟨-, hrR⟩ | ⟨hqR, -⟩ | ⟨hqR, -⟩
+    · exact mark_side_unique hr hr2 hk1 hrL hrR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+  have excl2 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1) ∧
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1) ∨ (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨hqL, -⟩, h⟩
+    rcases h with ⟨hqR, -⟩ | ⟨hqR, -⟩ <;>
+      exact mark_side_unique hq hq2 hk1 hqL hqR
+  have excl3 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1) ∧ (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1)) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨-, hrL⟩, ⟨-, hrR⟩⟩
+    exact mark_side_unique hr hr2 hk1 hrL hrR
+  rw [card_filter_or_of_excl excl1, card_filter_or_of_excl excl2,
+    card_filter_or_of_excl excl3]
+  omega
+
 /-! ## The self-block, composed with the census -/
 
 /-- **The self-block, formal.** The twin pair's pin slot u is an actual twin

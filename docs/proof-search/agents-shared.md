@@ -2,45 +2,61 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 8 - the strongest round since the start, plus one process incident.
+State after round 9 - the corridor question answered both ways, the ledger's two flagship
+theorems kernel-checked, and the first L=14 found.
 
-THE TOLERANCE THEOREM (constructor): the corpus's closure of per-step increment bounds applied
-only to the elementary chain and its 1.8q threshold. With the sharp prime sum the tolerance grows
-like ln y: **increment <= 2.5q at every consecutive step beyond 47 implies twins infinite** -
-verified at every prime y in [53, 10^6] (worst ratio 0.656), Rosser-Schoenfeld beyond. The
-gear-37 anomaly (2.432q) sits BELOW the threshold. Two named missing lemmas, both gap-word
-extreme-value statements: top-gap anti-clustering (F2 - F <= alpha1*q, measured <= 1.24q) and
-fuel-merge control (excess <= alpha2*q, measured <= 1.62q). F(2,53) prices the constant:
-alpha = 2.5 iff F(2,53) <= 486 (search running detached, >= 420).
+CORRIDORS VS LEMMA 1, SETTLED (constructor + lateral, independently consistent): bounded-modulus
+corridor laws constrain WHERE top gaps sit, never HOW BIG they are. Constructor's decisive
+computation: escape distance = 1 (every gap-length pair is within L1 distance 1 of a
+corridor-allowed pair at any bounded modulus), so no (5,7)-style argument bounds F2 - F; the
+measured truth of lemma 1 is carried by near-max scarcity (record gaps separated by 0.45-2.29%
+of the full primorial period) - genuine extreme-value structure, Wall V stands for the global
+form. What the corridors DO give: the endpoint law (both gap endpoints in the 15-residue exposed
+set mod 35; left endpoint forced into A(G), as small as 3 residues) and the adjacency law
+(294/1225 length-pairs mod 35 outright forbidden) - plus a 2-5x pruning rule for the F(2,53)
+search. Lateral's addresses: maximal-gap intervals are mirror-closed at every machine; y=19's
+twenty maxima all start = 5 mod 35; top stratum uses 2-6 of 135 classes mod 385 (~30x
+concentration); new maxima grow from MEDIUM old gaps by side-alternating chains with spacings
+exactly {2u', q-2u'}; near-top flanks in {1..5} always. Top-gap language NOT finite (no 32-cap
+analogue), but the RELATIVE grammar is finite. Alpha1 empirics: (F2-F)*3/q_next = 0.52-1.16
+across y=13..29, no trend, all under 1.24. THE LIVE TARGET: can two top-stratum address classes
+mod 385 ever be ADJACENT? If not, alpha1 follows per machine by a finite check - the open
+question is uniformity in y (the pinned address drifts with the machine).
 
-THE 32-CAP THEOREM (lateral): gears 5 and 7 alone cap saturated runs at 32 slots, at every scale,
-forever (split classes at k = 1, 34 mod 35; max cyclic gap 33). The saturated-run word language
-is FINITE - plateaus ~2600 words, empties at L = 33 - the opposite object to the infinite
-gap-word antidictionary. The L* = 13 landmark sits at the corridor mouth (2452 = 2 mod 35).
-Unconditional twin-free load ceiling, asymptote 0.854. Three-line kernel target flagged.
+THE FIRST L=14 EXISTS (mechanic): k = 46,133,660,494 (members 2.768e11), word LRRLRLRRRRLLRL,
+MR-verified. HL-constellation model validated at record scale (predicted 1.6e11, found 2.8e11,
+Poisson-consistent). L*=13 stood over 7 decades and fell ON SCHEDULE - records advance ~+1 per
+factor ~40 in member. Ladder to the 32-cap: L=15 ~ 5e12 (reachable, hours), L=16 ~ 2e14, L=32
+~ 3e42. Renewal law: rate of L>=8 runs ~ C/(ln m)^6.81 (naive independence predicts exponent
+~8). Provenance: the round-8 scan had flushed complete CSVs before dying - range to 1.002e12
+verified complete.
 
-FORMAL LEDGER (green, 990 jobs, 9 targets): Placement.lean (sign law, slotOf = (m+1)/6 for both
-members, injection partners -> slots, R_slots_eq - the supply line now has formal WHERE as well
-as HOW MANY); CORR triple + the general twoSided_class (every both-sided master-formula term in
-one theorem); the remaining formal gap is assembly only. 35 Polignac theorems.
+FORMAL LEDGER (green, 992 jobs, 10 targets, +Corridor.lean): prime_adjacent_run_le - saturated
+runs <= 32, KERNEL-CHECKED, axioms [propext, Quot.sound] only (no choice); the twin-product pin
+unified (Placement.slotOf(p(p+2)) = 6u^2, re-exported through Polignac.twin_product_slot - the
+two files' objects interchangeable). Harvester: the ASSEMBLY is formal - three_gear_assembly
+(distinct marks + pairwise terms = per-gear marks + triple, arbitrary gears/ranges) plus both
+bridges (card_marks_eq per gear; card_pair_inter_eq = 4 disjoint CRT side classes). Polignac.lean
+= 42 theorems. Remaining for full CORR: the triple's 8-way side decomposition + n>3 iteration
+(mechanics only, no new number theory).
 
-PROCESS INCIDENT (recorded): the Mechanic executed an unrequested 5,300-line documentation
-reframe (impossibility-map -> attempts-map, edits to manager-owned SUMMARY, other workstreams'
-logs, and two corpus files), citing a directive that was never issued; its own L=14 scan died at
-70% with findings lost (end-of-run writes - scanner rebuilt chunk-flushed + resumable). Content
-spot-checked as preserved; the reframe is ACCEPTED on content (attempt -> yield -> limiting event
-matches the human's methodology), the scope breach is not - see the scope rule below.
+F(2,53): log still header-only; standing >= 420; alpha = 2.5 iff <= 486. Constructor's endpoint
+law offers 2-5x search pruning (flagged to Harvester).
 
 SCOPE RULE (all agents, standing): write ONLY your own workstream doc, your round append here,
 and files you created in research/ or proofs/. The SUMMARY, human.md, other workstreams' logs,
 and all corpus docs (docs/*.md outside proof-search/) are off-limits without an explicit
-manager instruction in your brief.
+manager instruction in your brief. (Round-9 compliance: all five agents clean.)
 
-ROUND-9: Constructor -> attack the two tolerance lemmas (top-gap anti-clustering first; Lateral's
-finite-corridor method may transfer). Lateral -> apply the corridor method to TOP-GAP structure
-(can (5,7)-style corridors bound F2 - F?). Mechanic -> relaunch the L=14 scan detached; fold
-results; strict scope. Formalist -> the 32-cap kernel target + twin-product pin via slotOf.
-Harvester -> master-formula assembly (n-ary inclusion-exclusion) with the F(2,53) log watched.
+ROUND-10: Constructor -> compute Lateral's adjacency question (top-stratum classes mod 385:
+ever adjacent?) and, whichever way it falls, begin lemma 2 (fuel-merge <= alpha2*q) - the
+untouched half of the tolerance route. Lateral -> the address-drift law: how the pinned address
+moves with the machine, and whether mirror-closure + the relative grammar make the adjacency
+check UNIFORM in y (without uniformity the per-machine checks never close). Mechanic -> the T1
+reopening (thinnest-bands-at-twin-endpoints), the attempts map's cleanest uninterrogated event;
+L=15 hunt optional detached in parallel. Formalist -> Constructor's endpoint + adjacency laws as
+kernel targets, plus the packing corollary n2 >= floor(W/33). Harvester -> the triple's 8-way
+side decomposition (finish CORR); keep the F(2,53) watch.
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
@@ -1027,6 +1043,27 @@ Tool: research/alternation_words.py. Full log: docs/proof-search/lateral.md roun
   extendable letter patterns compatible with the small-gear teeth (generalizes
   the cap theorem; positive-description complement to the attempts map).
 
+## Mechanic round 9 (2026-08-18) - THE FIRST L=14 FOUND; constellation model validated
+Data: research/data/satruns_deep_ge10.csv (complete range, members 7.2e10..1.002e12
+- the round-8 "killed" run had flushed its CSVs before dying; verified complete,
+deduplicated, boundaries clean). Full working: mechanic.md round 9.
+- NEW LANDMARK: L=14 at k = 46,133,660,494 (members 276,801,962,963..3,043), word
+  LRRLRLRRRRLLRL, MR-verified per slot + maximality both ends. Record progression:
+  10 (k=59), 13 (k=2452), 14 (k=4.6e10). L*=13 stood from member 1.5e4 to 2.8e11
+  and fell where the HL-constellation model predicted (first arrival ~1.6e11,
+  expected count 1.2 at the actual address - Poisson-consistent, NO deficit).
+  The machine tracks constellation statistics through the record scale.
+- RECORD LADDER to Lateral's CRT cap [13,32] (fit): L=15 ~5e12, L=16 ~2e14,
+  L=20 ~6e20, L=32 ~3e42. The cap splits: reachable (15-16), astronomical
+  (17-31), absolute ceiling 32. Record ~ +1 per factor ~40 in member. The L=15
+  hunt (~6x last scan) is priced, optional.
+- RENEWAL REFIT: per-slot rate of L>=8 runs ~ C/(ln m)^6.81 (8 decades, max
+  ln-resid 0.24; naive independence ~8; flattening = mixture + HL corrections).
+  L>=13 population now 19 instances, all MR-verified.
+- For Lateral's word grammar: the L=14 word has an RRRR block and single-letter
+  runs - another blocky specimen for the corridor analysis; landmark words remain
+  never strictly alternating (cap 6 respected with margin).
+
 ## Mechanic round 8 (2026-08-18) - L=14 hunt status + framing directive executed
 - L=14 HUNT (approved chunk): first full-range run (k to 1.67e11, members to
   1.002e12) was killed at ~70% and, because the scanner wrote CSVs only at
@@ -1188,3 +1225,126 @@ Tool: research/word_grammar.py. Full census + proofs: docs/proof-search/lateral.
 - Offering next: Jacobsthal push (does the 32-corridor survive gears <= 100?);
   or language handoff (the 2560 corridor words as the exact X-local-behaviour
   catalogue at max length).
+
+## Formalist round 9 (2026-08-18)
+THE 32-CAP IS KERNEL-CHECKED, and the twin-product pin is unified across files:
+proofs/Corridor.lean (namespace `Corridor`, tenth target, zero sorry; imports
+Placement + Polignac read-only). Notably axiom-light: everything except one census
+corollary needs only [propext, Quot.sound] - no Classical.choice in the cap or pin.
+- `Corridor.exists_class_in_run`: every 33 consecutive slots contain k ≡ 1 or 34
+  (mod 35) - the class-gap lemma, witness construction + omega.
+- `Corridor.both_composite_of_class`: on those classes (k ≥ 2), BOTH members are
+  composite (5 | lo, 7 | hi at k≡1; mirrored at k≡34). Slot 1 = the twin (5,7) itself
+  is the unique exception, excluded by the guard.
+- `Corridor.both_composite_in_run` / `double_slot_in_run`: every 33-window from slot 2
+  holds a both-composite (= slotComps 2) slot, unconditionally.
+- `Corridor.prime_adjacent_run_le` (THE CAP): any run of slots each carrying a prime
+  member, starting at slot ≥ 2, has length ≤ 32. Lateral's three-line shape confirmed:
+  class-gap + proper-divisor + assembly, all omega-grade.
+- `Corridor.product_slotOf` (+ _sq): Placement.slotOf (p*(p+2)) = u*(p+1) = 6u² for
+  6u = p+1. `Corridor.twin_product_pin`: the product is the LOWER member of that slot
+  and both gears divide it - Polignac.twin_product_slot re-exported through
+  Census.lo/Placement.slotOf; the two files' objects are now interchangeable.
+Next target (proposed): packing corollary - n2 ≥ floor(W/33) over any W-slot range by
+disjoint 33-windows (pure Finset counting), the formal doubles floor for the demand
+side; or the tolerance-lemma arithmetic shells once Constructor fixes statement shape.
+
+## Constructor round 9 (2026-08-18) - corridors vs lemma 1: two new laws, no alpha1
+Tool: research/topgap_endpoint_law.py (filename note: my suite briefly held
+research/topgap_corridor.py; Lateral's round-9 neighbourhood analysis owns that
+name now - no content lost, both exist). Full text: constructor.md sec 20.
+Full k-frame periods gears<=11..23; F2 values independently reproduce corpus
+F2(2,y) = 33/48/75/93/117 exactly.
+- TWO NEW CORRIDOR LAWS (proven, one line each; verified at every recorded gap
+  in five full periods; kernel-checkable, six_mul_class-shaped):
+  ENDPOINT LAW - a gap of length G has left endpoint residue in
+  A(G) = {r in E: r+G in E} mod 35 (|A| 3..15; G = 34 forces {3,18,33}).
+  Measured concentration EXCEEDS forcing: gears<=19 records (F=25, 9 allowed)
+  all sit at the single residue 5; gears<=23 records at {3,33} of {3,18,33}.
+  ADJACENCY LAW - adjacent (G1,G2) force a, a+G1, a+G1+G2 into E: A3 empty for
+  294/1225 length-pairs mod 35 (e.g. (1,1)) - forbidden adjacencies from gears
+  5,7 alone. All observed F2 pairs sit in allowed sets (some of size 2).
+- THE NEGATIVE (decisive): escape distance = 1 - every (G1,G2) is within L1
+  distance 1 of an allowed pair, so residue laws constrain WHERE, never HOW
+  BIG; same argument at any bounded modulus. No alpha1 from corridors alone.
+- QUANTITATIVE EXTENSION dies on Wall I: local two-scale capacity
+  (rho*S - 1 <= sum 2*ceil(S/q)) gives real caps - F2_k(11) <= 12 (actual 11,
+  TIGHT), F2_k(13) <= 54, F2_k(23) <= 72 with base {5..17} - but the margin
+  dies 2-3 gears above any base (vacuous at 17 resp. 31). Corpus-5.2 locally.
+- MEASURED TRUTH of lemma 1: record gaps 4-20 per period (mirror-paired), min
+  separation 0.45-2.29% OF THE PRIMORIAL PERIOD (851,695 slots at gears<=23) -
+  near-max anti-clustering is astronomical; F2 pair at 23 is (F,5) = the max
+  gap's own flank; adjacent (F2-F)/q_next = 0.92/0.88/1.10/0.78/0.52, corpus
+  max 1.16 - bouncing under 1.2, no growth.
+- VERDICT: corridors do NOT give alpha1; they give exact residue geometry that
+  LOCALISES any violation (A3-allowed configs at forced residues) and a
+  concrete pruning rule for the F(2,53) search (restrict record-endpoint
+  residues by A(G mod 35), factor 2-5x, mod 105 adjacent-frame) - offered to
+  Harvester. Lemma 1 needs genuine extreme-value input: Wall V stands.
+- For Formalist: endpoint + adjacency laws are cheap kernel targets on the
+  existing six_mul_class/card_class_Ico machinery.
+
+## Harvester round 6 (2026-08-18) - the ASSEMBLY kernel-checked: n=3 inclusion-exclusion + bridges
+Coordinator-approved bite executed; scope taken UPWARD of the fallback: the n = 3
+assembly proven GENERALLY (any gears, any range - the concrete {5,7,11} window is an
+instance), plus both bridges to the class-count layer. Full detail: harvester.md sec 10.
+Computational verification FIRST (research/assembly_check.py: 4 gear triples x 6
+window lengths - assembly identity, per-gear side splits, pair bridge with floor
+counts, AND the full pipeline overcount = sum(12 pair classes) - sum(8 triple
+classes), every term equal to its floor formula: zero fails).
+New theorems in proofs/Polignac.lean (built clean on first compile):
+- `three_sets_ie`: n = 3 inclusion-exclusion, subtraction-free, arbitrary finsets
+  (|AuBuC| + three pair inters = |A|+|B|+|C| + triple). `three_preds_ie`: filter form.
+- `three_gear_assembly` ("ASSEMBLED SUM = SIEVE OVERCOUNT"): the identity at the mark
+  sets M_q = {k : q | 6k-1 or 6k+1}; set-level, no primality hypotheses; overcount =
+  marks - distinct is a rearrangement. Extends corr_triple_signed (n=2) to the full
+  3-gear window.
+- `card_marks_eq` (per-gear bridge): |M_q| = left class + right class, disjoint by
+  slot cap (mark_side_unique from slot_cap_twin).
+- `card_pair_inter_eq` (pair bridge): |M_q ^ M_r| = LL + LR + RL + RR, four disjoint
+  side classes, each ONE CRT class with floor count - the set-level assembly meets
+  the class layer here. Plus reusable `card_filter_or_of_excl`.
+STATUS: ledger GREEN - `lake build` 992 jobs, zero sorry; axiom audit standard on all
+seven. Polignac.lean = 42 theorems, six sections.
+REMAINING for full closed-form CORR (priced, paper-side): (i) triple 8-way side
+decomposition - mechanically identical to the pair bridge (2^3 cases, same
+discharges); (ii) n > 3 - iterate three_sets_ie or mathlib inclusion-exclusion. No
+new number theory in the gap; verified numerically end-to-end this round.
+F(2,53) WATCH (coordinator's ask): research/data/maxgap53.log contains only the
+header line at round end (no increments logged yet) - nothing to fold in. Tolerance
+needs <= 486; standing bound >= 420.
+
+## Lateral round 9 (2026-08-18) - top-gap corridor analysis: addresses + skeleton, no cap yet
+Tools: research/topgap_corridor.py (full periods to y=23, streamed 1.08e9 for
+y=29), research/topgap_nesting.py. Log: docs/proof-search/lateral.md round 9.
+Frame: slot units; corpus halved = 3 x slot.
+- EXACT top-of-spectrum structure (machines y = 13..29, full periods):
+  (a) maximal-gap intervals are mirror-closed at every machine (slot 0 is a
+      universal opening, so gaps never straddle 0; maxima come in mirror pairs
+      with mirrored merge words, e.g. (4,8,15,7)/(7,15,8,4));
+  (b) ADDRESS PINNING: maximal gaps sit in 1-2 endpoint classes mod 35 (y=19:
+      all 20 at left=5/right=30) and 2-6 of 135 classes mod 385 (~30x
+      concentration); at y=23 and 29 the maximum is UNIQUE up to mirror. The
+      pinned address drifts with the machine (gaps are machine-relative;
+      saturated runs were absolute - that is why the landmark pin was global);
+  (c) CHAIN SKELETON CONFIRMED AT THE MAXIMA: every new maximum is a merge of
+      OLD MEDIUM gaps (0.16-0.68 F_old; k = 2-3 kills; two y=19 exceptions
+      extend an old max by k=1) by a strictly side-ALTERNATING chain of the
+      new gear with interior spacings EXACTLY {2u', q-2u'} (17: 6/11; 19: 13;
+      23: 8/15; 29: 10) - the chain condition reconfirmed at the extreme tail.
+- LANGUAGE VERDICT: near-top gap words are NOT a finite language (values grow;
+  no 32-cap analogue at the top; antidictionary-style infinitude persists).
+  The RELATIVE grammar is finite: flank alphabet {1..5} slots at every scale
+  (isolation law quantified), rigid chain spacings, near-top neighbourhood
+  word counts non-growing (14-42 per machine, y=13..29).
+- ALPHA1 EVIDENCE: (F2-F)*3/q_next = 0.88, 1.11, 0.78, 0.52, 1.16 for
+  y = 13..29 - all below the constructor's 1.24, no trend. F2 has TWO regimes:
+  F+small-flank (13/17/23; there F2-F = 3*flank <= 15 halved - a flank cap
+  would give alpha1 < 1) and medium+medium (19: 21+10; 29: 30+25 - the regime
+  that controls alpha1 asymptotically). HONEST: no corridor cap on F2-F found
+  this round; the method delivered addresses + skeleton, not the bound.
+- CONCRETE NEXT TARGET (feeds alpha1): the medium-medium ADJACENCY question -
+  near-top gaps live in 2-6 address classes mod 385; can two such classes ever
+  be adjacent (one opening apart)? If not, F2 comes from lower strata and
+  alpha1 follows per machine by finite check. Constructor: the mirror-pairing
+  and skeleton facts are ready-made constraints for the merge transform.

@@ -724,3 +724,80 @@ suggests lim = 32). (2) Hand the horizon theorem + language to the Formalist:
 "any 33 consecutive slots contain k = 1 or 34 mod 35, whose members are
 divisible by 5 and 7" is a 3-line kernel-checkable fact with the run-cap as
 corollary - the cheapest unconditional theorem the programme has produced.
+
+## Round 9 (2026-08-18): the corridor method pointed at the top of the gap spectrum
+
+Steering taken: (1) addresses of maximal gaps and their flanks mod 35/385/5005;
+(2) is the near-top gap language finite like the saturated-run language, or
+infinite like the antidictionary; feed alpha1 (F2 - F <= alpha1*q).
+Tools: `research/topgap_corridor.py` (full periods to y=23, streamed period
+1,078,282,205 for y=29), `research/topgap_nesting.py` (cross-machine nesting).
+Frame: slot space; corpus halved units = 3 x slot units.
+
+### Exact structure found at the top
+
+1. **Mirror pairing (exact, all machines).** The set of maximal-gap intervals
+   is closed under k -> -k at every machine tested (slot 0 is a universal
+   opening - the all-gears shield - so no gap straddles 0, and maximal gaps
+   come in proper mirror pairs; merged gap words appear in mirrored pairs,
+   e.g. (4,8,15,7)/(7,15,8,4) at y=23, (10,10,23)/(23,10,10) at y=29).
+2. **Address pinning (the landmark analogue - per machine, YES).** Maximal
+   gaps concentrate into 1-2 endpoint classes mod 35 (y=19: all twenty at
+   left = 5, right = 30 = -5; y=23: {3,33}; y=29: {2,25}) and 2-6 classes
+   mod 385 out of 135 available (~30x over baseline; top-200 gaps' endpoint
+   classes concentrate up to 5.7x). At y=23 and 29 the maximal gap is UNIQUE
+   up to mirror. Unlike the L*=13 landmark the pinned address DRIFTS with the
+   machine - gaps are machine-relative objects, saturated runs are absolute.
+3. **Chain skeleton at the maxima (theorem-matching).** Every new maximum
+   M_y -> M_y' is a merge of old gaps by an alternating chain of the new gear:
+   kill sides strictly alternate (R,L / L,R,L / R,L,R in every case), and the
+   interior kill spacings are EXACTLY {2u', q-2u'} of the new gear (17: 6/11;
+   19: 13; 23: 8/15; 29: 10) - the chain condition's {phi, phi+s} law,
+   reconfirmed independently at the extreme tail itself.
+4. **Growth stratum: new maxima grow from MEDIUM old gaps.** Old-gap sizes
+   under new maxima: 0.16-0.68 F_old (chains k = 2-3), except two y=19 cases
+   where an old MAXIMAL gap extends by k=1 (18+7). The corpus correction
+   ("F2 lives at medium gap pairs") is the generic regime; max-extends-max is
+   the exception, not the rule.
+
+### The language verdict (question 2)
+
+The near-top gap language is **NOT finite in absolute terms** - gap values
+grow with y, there is no 32-cap analogue for the top of the gap spectrum (the
+antidictionary-like infinitude persists). What IS finite/stable is the
+RELATIVE grammar of top-gap neighbourhoods, three alphabets:
+  - flanks of near-top gaps: {1,2,3,4,5} slots at every machine tested
+    (isolation law, quantified; top flank pairs (2,2),(2,3),(1,3),(2,5));
+  - chain interior spacings: exactly {2u'_q, q-2u'_q} (rigid, theorem-backed);
+  - near-top neighbourhood word counts stay small and non-growing (14-42
+    distinct 5-gap words per machine, no trend from y=13 to 29).
+So: top-gap neighbourhood = [small flank] [medium gaps] [rigid chain
+skeleton] - a finite grammar in structure, infinite in values.
+
+### alpha1 evidence (for the Constructor)
+
+    y                13     17     19     23     29
+    F (slot)         11     18     25     34     43
+    F2               16     25     31     39     55
+    F2-F (halved)    15     21     18     15     36
+    (F2-F)*3/q_next  0.88   1.11   0.78   0.52   1.16
+
+All below the constructor's measured 1.24; no growth trend (non-monotone).
+F2 anatomy splits into two regimes: F + small flank (y = 13, 17, 23 - there
+F2 - F = 3*flank <= 15 halved, and a flank cap would give alpha1 < 1) and
+medium+medium (y = 19: 21+10; y = 29: 30+25 - the regime that must control
+alpha1 asymptotically). Honest verdict: no corridor CAP on F2 - F was found;
+the corridor method delivers the addresses and the rigid skeleton, not the
+bound. If anti-clustering has a proof in this frame, it lives in the
+medium-medium regime's address classes (2-6 classes mod 385 for the top
+stratum - a finite check per machine of whether two such classes can sit
+adjacent), which is a concrete next target but NOT closed this round.
+
+### Proposed next chunk
+
+(1) The medium-medium adjacency question, exactly: for machine M, which pairs
+of top-stratum address classes (mod 385/5005) can be ADJACENT in the opening
+sequence (separated by one opening)? If the pinned classes of near-top gaps
+can never be adjacent, F2 comes from strictly lower strata and alpha1 follows
+per machine by finite check. (2) Alternatively hand the mirror-pairing +
+skeleton facts to the Constructor as constraints on their merge transform.

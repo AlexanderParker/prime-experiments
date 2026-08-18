@@ -870,3 +870,84 @@ condition, fuel census, isolation, forbidden configurations) already exist, and
 partial theorems already cover the saturation regime. It does not evade every
 wall - it names a new one - but it is the only route on the books whose missing
 lemma is a statement about the machine's own gap word rather than about primes.
+
+---
+
+# Constructor round 9: corridors vs lemma 1 (top-gap anti-clustering)
+
+Script: `research/topgap_endpoint_law.py` (full k-frame periods, gears <= 11..23;
+every law asserted at every recorded gap; F2 values independently reproduce the
+corpus's F2(2,y) = 33, 48, 75, 93, 117 exactly). Filename note: my suite was
+briefly at research/topgap_corridor.py; Lateral's complementary round-9
+neighbourhood/streaming analysis now owns that name - mine moved. Frames:
+k-frame below; adjacent/halved = 3 x k-frame.
+
+## 20. What corridors do and do not give for F2 - F <= alpha1*q
+
+**20.1 Two new corridor laws (proven, one line each; verified at every gap in
+five full periods).** Openings are exposed slots, and exposed slots lie in the
+15-residue set E mod 35 (gears 5, 7). Hence:
+
+* **Endpoint law.** A machine gap of length G runs between openings a and a+G,
+  so its left endpoint satisfies a mod 35 in A(G) = {r in E : r+G mod 35 in E}.
+  |A| ranges 3..15 with shift; G = 34 mod 35 forces a in {3, 18, 33}. Measured
+  concentration goes BEYOND the forcing: at gears<=23 (F = 34) the four record
+  gaps sit at {3, 33} - two of the three allowed; at gears<=19 (F = 25, nine
+  residues allowed) all twenty records sit at the SINGLE residue 5.
+* **Adjacency law.** Adjacent gaps (G1, G2) force the opening chain a, a+G1,
+  a+G1+G2 into E: allowed set A3(G1, G2). **294 of the 1225 length-pairs mod 35
+  have A3 empty** - forbidden adjacencies from gears 5 and 7 alone (first
+  examples (1,1), (1,3), (1,6), ...). Every observed F2-realising pair sits in
+  its allowed set, at machines where the allowed set has as few as 2 residues.
+
+Both laws are six_mul_class/card_class_Ico-shaped and kernel-checkable -
+offered to Formalist/Harvester. Practical payoff: the F(2,53) covering search
+can prune candidate record-gap endpoints by the endpoint law (factor 15/|A| =
+2-5x depending on G mod 35; transfers to the adjacent frame mod 105).
+
+**20.2 The decisive negative: residue laws cannot cap sizes.** Computed over
+all 1225 pairs: **every (G1, G2) is within L1 distance 1 of a corridor-ALLOWED
+pair** (escape distance = 1). A near-maximal gap has ~35 candidate lengths in
+its range, so any residue exclusion is evaded by a +-1 slide in one component.
+Corridor arithmetic constrains WHERE top-gap configurations sit, never HOW BIG
+they are - at modulus 35 and, by the same argument, at any bounded modulus
+(the exposed set's own max gap stays O(1), so escape distance stays O(1)).
+No alpha1 follows from bounded-modulus arithmetic, however many corridor
+levels are stacked.
+
+**20.3 The corridor's only quantitative extension is local capacity - and it
+dies on Wall I.** Refining the corridor to a density statement (base gears B
+with exposed density rho; killers q in (B, y] supply 2*ceil(S/q) deletions per
+span S) gives an exact cap: a fully covered span obeys
+rho*S - 1 <= sum 2*ceil(S/q), so F2_k(y) <= (2#K + 1)/(rho - 2 sum 1/q) when
+the margin is positive. Computed:
+
+    base {5,7}   -> F2_k(11) <= 12   (actual 11 - TIGHT); F2_k(13) <= 54
+                    (actual 16); y = 17: VACUOUS (2 sum 1/q = 0.453 > 3/7)
+    base {5..17} -> F2_k(23) <= 72   (actual 39); F2_k(29) <= 11441 (near-
+                    vacuous); y = 31: VACUOUS
+
+A real little theorem family (the y = 11 cap is one off the truth), but the
+margin rho - 2 sum 1/q dies two to three gears above ANY base - the two-scale
+squeeze of corpus 5.2 in local form. Wall I, as the map predicts.
+
+**20.4 The measured truth lemma 1 rests on (the extreme-value picture).**
+Full-period record censuses: 4-20 maximal gaps per period (mirror-paired), and
+the minimum separation between record gaps is **0.45-2.29% of the entire
+primorial period** (851,695 slots at gears<=23) - near-maximal gaps are
+astronomically anti-clustered in reality, five-plus orders beyond what the
+lemma needs. F2 itself: at gears<=23 the realising pair is (F, 5) - the max
+gap's own flank; alpha1-evidence along the chain (adjacent (F2-F)/q_next):
+0.92, 0.88, 1.10, 0.78, 0.52 (gears<=11..23), corpus continuation 1.16 max at
+add-31, 0.15 min at add-41 - bouncing, never above 1.2, no growth.
+
+**20.5 Verdict (honest, per the mandate).** The corridor method does NOT give
+alpha1. What it gives is exact residue geometry: any hypothetical lemma-1
+violation must place two adjacent near-max gaps in an A3-allowed configuration
+at endpoint-law-forced residues - a shrinking of the certificate and search
+space (and a concrete pruning rule for F(2,53)), not a prohibition. The truth
+of lemma 1 in the data is carried by near-max SCARCITY - record separations at
+percent-of-primorial scale - which is exactly the extreme-value structure of
+Wall V, beyond bounded-modulus arithmetic by the escape-distance argument and
+beyond local capacity by 20.3. Lemma 1 needs genuine extreme-value input; the
+corridor's role is to localise where that input must bite.

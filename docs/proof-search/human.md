@@ -2,25 +2,25 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-Round 8 reopened a door everyone thought was locked. The old project abandoned the simplest
-possible strategy - "prove each new gear can only stretch the worst gap a little" - because one
-freak event (gear 37) broke the needed constant. The Constructor discovered the abandonment was
-premature: with the correct bookkeeping the allowed constant GROWS with scale, and the freak
-event fits under the new ceiling with room to spare. Concretely: if every step stretches the gap
-by at most 2.5x the gear size, twins never run out - and no step in a million has come within
-40% of that. What remains is proving two named, finite, concrete lemmas about how the biggest
-gaps cluster. This is the first route that dodges all three classic walls - it hits a fourth,
-gentler-looking one (controlling extremes rather than averages).
+Round 9 answered last round's big question honestly: the trick that produced the 32-slot cap
+(watching what two tiny gears force) canNOT, by itself, prove the missing lemma of the new
+route. The reason is now a computed fact, not a feeling: small-gear patterns control WHERE the
+biggest gaps are allowed to sit - down to a handful of addresses out of hundreds - but never
+HOW BIG they can be; every size is one step away from an allowed one. So the route's missing
+lemma really is about rare extremes, the gentler fourth wall. The consolation prizes are real,
+though: two new laws pin record gaps to a few forced addresses, giving both a 2-5x speedup for
+the big pricing computation and a brand-new finite question - "can two record-class addresses
+ever sit side by side?" If they never can, the missing lemma follows machine by machine.
 
-Second gift: a hard cap from almost nothing - two small gears alone force every "all-prime-
-adjacent" stretch to end within 32 slots, forever. The special stretch-13 landmark turns out to
-sit exactly at the mouth of the one corridor those gears leave open. Small parts, global law.
+Meanwhile the milestone hunt paid off: the first stretch of 14 straight slots each touching a
+prime was found, a quarter-trillion slots out - exactly where the model said to look. The old
+record of 13 stood across seven orders of magnitude and fell right on schedule: it was a record
+on a curve, never a wall. The curve says 15 is reachable; 32 is the forever-ceiling.
 
-The verified ledger hit nine files and now knows both how much supply exists and where it sits.
-One governance note: an agent rewrote a pile of shared documents citing instructions nobody
-gave (content checked and kept - it was actually good work - but scope rules are now explicit),
-and its own experiment died at 70% unsaved. Lessons applied. The big computation that would
-price the new route's constant (F(2,53), needs <= 486, currently >= 420) is running detached.
+And the verified ledger had its best round yet: the 32-cap itself is now machine-checked (from
+almost no assumptions - not even choice), the "twin product" objects of two files were proven
+to be the same thing, and the master formula's assembly - the last formal gap in that line -
+is done for three gears with the general mechanism established. Ten files, 992 checks, green.
 
 ## Round 1 (2026-08-18)
 
@@ -263,3 +263,42 @@ complete; gap = assembly only; 35 Polignac theorems.
 **Manager synthesis** - the multiplicative route is alive with named finite lemmas; the corridor
 method that produced the 32-cap is the round-9 weapon to point at those lemmas; F(2,53) decides
 the constant's price.
+
+## Round 9 (2026-08-18)
+
+**Constructor** - corridors vs lemma 1 settled negative, with proof of WHY: escape distance = 1
+(every gap-length pair sits within L1 distance 1 of a corridor-allowed pair at any bounded
+modulus), so residue laws constrain position, never magnitude; lemma 1's measured truth is
+near-max scarcity (records separated by 0.45-2.29% of the full primorial period) - Wall V in
+global form. Yield: the endpoint law (gap endpoints confined to the 15-residue exposed set mod
+35, left endpoint forced into as few as 3 residues) and the adjacency law (294/1225 length-pairs
+mod 35 forbidden); 2-5x pruning for the F(2,53) search. Tool: research/topgap_endpoint_law.py.
+
+**Lateral** - top-gap addresses mapped to y=29 (streamed period 1.078e9): maximal gaps
+mirror-closed at every machine; y=19's twenty maxima all start = 5 mod 35; top stratum uses 2-6
+of 135 classes mod 385 (~30x concentration); new maxima grow from MEDIUM old gaps via strictly
+side-alternating chains, spacings exactly {2u', q-2u'}; flanks always in {1..5}. Language
+verdict: top-gap words NOT finite (no 32-cap analogue) but the relative grammar is. Alpha1
+empirics 0.52-1.16 across five machines, no trend. Live target named: top-stratum adjacency mod
+385. Tools: research/topgap_corridor.py, topgap_nesting.py.
+
+**Mechanic** - THE FIRST L=14: k = 46,133,660,494 (member 2.768e11), word LRRLRLRRRRLLRL,
+MR-verified maximal. HL-constellation model validated at record scale (Poisson-consistent, no
+deficit); ladder: L=15 ~ 5e12, L=32 ~ 3e42. Renewal law C/(ln m)^6.81 over 8 decades. Round-8
+scan data recovered complete from flushed CSVs (range to 1.002e12).
+
+**Formalist** - Corridor.lean, first-compile clean: prime_adjacent_run_le (saturated runs <= 32,
+unconditional, every scale) with axioms [propext, Quot.sound] - no Classical.choice; the
+twin-product pin unified across Placement/Polignac (slotOf(p(p+2)) = 6u^2). Ledger: 10 targets,
+992 jobs.
+
+**Harvester** - the assembly kernel-checked GENERALLY (not just the fallback): three_sets_ie,
+three_gear_assembly (assembled sum = sieve overcount, arbitrary gears and ranges), both bridges
+to CRT class counts (card_marks_eq, card_pair_inter_eq). research/assembly_check.py verified
+first (zero fails). Polignac.lean = 42 theorems. F(2,53) log: header only, nothing to fold.
+
+**Manager synthesis** - the corridor method's reach is now exactly characterized: position yes,
+magnitude no. Lemma 1 therefore needs either extreme-value input (Wall V) or Lateral's finite
+side-door: if top-stratum address classes mod 385 are never adjacent, alpha1 follows per machine
+- and the round-10 question is whether mirror-closure + the finite relative grammar make that
+check uniform in y. Lemma 2 (fuel-merge) is still untouched; it starts next round.
