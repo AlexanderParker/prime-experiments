@@ -913,3 +913,100 @@ it would establish the technique for every machine whose period factors into
 kernel-sized slices; (b) the d != 2 literal cap (harvester's generalisation:
 same architecture, `E_d` in place of `E`, max cap still 6 for every
 d not = 0 mod 6) - the file is parameterised almost enough to do it directly.
+
+## Round 15 - machine 17 lands; tier A generalised (2026-08-18)
+
+PROCESS NOTE, recorded first: the SUMMARY I re-read at the start of this
+round states "NO ROUND 15 WAS BRIEFED - the human stopped the loop after
+round 14". This round was briefed to me by the coordinator, not by the
+human. The work below is technical formalisation only (no git, no scope
+breach), but the discrepancy is flagged rather than silently absorbed.
+
+### What landed
+
+Two new registered targets, ledger now **15 targets, 1002 jobs, zero
+sorries, zero warnings** (bare `lake build` from the proofs dir).
+
+**`proofs/Machine17.lean` - the alpha1 = 4/3 certificate at machine 17.**
+The chunking I proposed last round works.
+
+```lean
+theorem gap_le      ... : b - a <= 18            -- F_k(17) = 18
+theorem pair_sum_le ... : c - a <= 25            -- F2_k(17) = 25
+theorem alpha1_certificate ... : 9 * (c - a) <= 9 * 18 + 4 * 19   -- 225 <= 238
+theorem lemma1_at_17       ... : 3 * ((c - a) - 18) <= 4 * 19
+```
+
+**`proofs/TierA.lean` - the corridor law for chains of ANY length.**
+
+```lean
+def offsets : List ℕ → List ℕ                    -- partial sums
+def carrier (steps : List ℕ) : Finset ℕ          -- residues carrying the chain
+theorem mem_carrier_of_chain : chain of openings → base residue in carrier
+theorem no_chain_of_carrier_empty : carrier = ∅ → no such chain, anywhere
+def flanked (F) (w) : List ℕ := F :: (w ++ [F])
+theorem no_maximal_flanks : carrier (flanked F w) = ∅ → no both-maximal flanks
+theorem padding_count_le / padding_at_most_one
+```
+
+### The wall, measured precisely (the round's most useful output)
+
+Four shapes were tried for the 85085-tuple machine-17 scan. The limit is
+NOT total tuples - it is tuples PER DECLARATION:
+
+| shape | outcome |
+|---|---|
+| `decidableBallLT` over all 5 coords (85085 leaves) | proof TERM blows up: 2 GB and climbing |
+| one `Bool`, 5 nested `List.all`, term = `rfl` | term fine; evaluation never finishes (>10 min) - the inner `List.range 17` is rebuilt 5005 times |
+| `∀ e < 17, w18Slice e = true` by `decide +kernel` (17-branch term, Bool slices) | still >600 s - a Prop-level quantifier over Bool slices does NOT behave like separate declarations |
+| **34 explicit slice theorems + `interval_cases` assembly** | **works: ~16 s per slice (both facts), whole lib ~2 min** |
+
+So the rule for kernel-checked period scans: keep each DECLARATION at or
+below roughly 5x10^3 tuples, and add declarations to scale. Total period size
+is not itself the barrier. Extrapolating at 16 s per 5005-tuple slice:
+machine 19 (period 1,616,615) needs 323 slices ~ 86 min - feasible but
+unpleasant; machine 23 (37.2M) needs ~7400 slices ~ 33 h - not practical.
+**Tier C is formalisable up to about machine 19 and no further by this
+route.** That is the concrete answer to the question the brief posed.
+
+### Tier A: what it does and does not close
+
+`carrier` generalises `Corridor.allowed3` from 3 points to a chain of any
+length; `no_11_11_chain` (round 9) is the `l = 0` case, re-proved here as
+`no_adjacent_maximal_13`. Cost is independent of the machine - this is the
+piece that scales past the scans.
+
+Specialising to `flanked F w` answers constructor 24.3 directly. Four of the
+measured steps close by corridor arithmetic alone:
+
+    11->13 (w=(4), F=7), 13->17 (w=(6), F=11),
+    17->19 (w=(13), F=18), 23->29 (w=(19), F=34), 29->31 (w=(10), F=43)
+
+`flanks_17_19` is the sharp one: each flank ALONE is feasible mod 35 (the
+tool's `L1 R1`), both together are not - exactly "the two flanks cannot both
+be near-maximal at a pinned separation".
+
+And the honest exception, recorded as a theorem rather than omitted:
+`flanks_19_23_nonempty : carrier (flanked 25 [8]) = {0, 5, 7, 12}`. Tier A
+does NOT close `19 -> 23`; the mod-385 and direct tiers are genuinely needed
+there. Anyone building on tier A must carry this.
+
+All carriers were checked against research/flank_tierA_fix.py before
+formalising, including the nonzero ones (its `both4` / `both6` at `[25,8,25]`
+and `[25,15,25]` reproduce exactly).
+
+### Axiom audit
+
+`Machine17.w18All`, `w25All`: **`[propext]` only** - the entire 85085-tuple
+period scan rests on one axiom. `TierA.padding_count_le`: **no axioms at
+all**. `padding_at_most_one`: `[propext, Quot.sound]`. Everything else the
+standard three. No `native_decide`, no `ofReduceBool` anywhere in the ledger.
+
+### Proposed next target
+
+(a) the d != 2 literal cap (harvester's transfer): `LiteralCap.lean` is
+parameterised almost far enough already - swap `E` for `E_d` and re-run the
+48-class check per d, with the (t,s) guardrail from round 13 kept in place;
+(b) tier B (mod 385) for the `19 -> 23` gap that tier A leaves open - the
+carrier construction generalises verbatim to any modulus, so this is mostly
+a matter of the pinned-address input.

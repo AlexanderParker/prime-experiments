@@ -1140,3 +1140,102 @@ it would mean padded links repel, which nothing currently predicts.
 - satruns_L15.log: 60.9%, members to ~7.3e12, max L = 12 recent;
   L = 14 record unbeaten.
 - spectra.csv now holds machines 13..37 (37 at 16.2%, lower bounds).
+
+## Round 15 - the frame question settled; onset rule refined to necessary-not-sufficient
+
+Tools: research/padded_link_anatomy.py (new, the units artifact),
+research/padding_census.py (multi-probe). Data: padding_census.csv.
+
+### (2) THE FRAME QUESTION - one worked example, units settled
+
+There is NO contradiction between "twin gaps are divisible by 3" and my
+26,366 padded links of cost q'. Three frames are in use and they differ
+by fixed factors:
+
+  SLOT frame (k)      slot k IS the pair (6k-1, 6k+1). My censuses count
+                      gaps as differences of consecutive OPENINGS in k.
+  ADJACENT frame      the corpus chain F(2,y) = 6,15,21,33,54,... lives
+                      here; unit = 2 integers. Slot distance d -> 3d.
+  INTEGER frame       the members themselves. Slot distance d -> 6d.
+
+So one padded link = q' slots = 3q' adjacent = 6q' integers. The
+harvester's "cost 3q'" and my "cost q'" are THE SAME LINK in different
+units, and their "all gaps divisible by 3" is automatic in the adjacent
+frame because every adjacent-frame gap is 3 x (a slot gap).
+Independent cross-check at every machine: F_adjacent = 3 x F_slot -
+33 = 3x11 (y=13), 174 = 3x58 (y=31), 264 = 3x88 (y=37), and at y=5,
+F(2,5) = 6 = 3x2 with F_slot(5) = 2 verified directly.
+
+WORKED EXAMPLE (real, from machine 31 with q' = 37):
+
+    flank opening before : k = 634153
+    killed opening 0     : k = 634158   members (3804947, 3804949)
+    killed opening 1     : k = 634195   members (3805169, 3805171)
+    flank opening after  : k = 634197
+    interior slot-gap    : 37 slots = 111 adjacent = 222 integers
+    residues mod 37      : [15, 15]  -> SAME residue: one tooth, one lap
+    member check         : 3805169 - 3804947 = 222 = 6 x 37 exactly
+
+Note on "same tooth": the shared residue is 15, NOT +-u' (u' = 31 here).
+That is correct and worth stating, because it is easy to misread. A link
+is padded iff its two openings share ANY residue mod q'; which residue is
+irrelevant, because over the new period q'*P_M every phase offset occurs,
+so each site fires exactly once (lateral's firing law). The census counts
+CO-DELETABLE sites; the phase decides where they fire, not whether.
+
+### (3) The onset rule, re-tested and REFINED - necessary, NOT sufficient
+
+Round 14 offered F(M) >= q' as the onset rule. Re-testing it against 15
+new (M, q') pairs splits it into two halves of different status:
+
+  NECESSITY - a THEOREM, not a measurement: a gap of exactly q' cannot
+  exist when F(M) < q'. Confirmed at every pair with F(M) < q' (machine
+  19 vs 29/31/37/41; machine 23 vs 37/41/43; machine 29 vs 47): supply 0
+  in all, by impossibility.
+
+  SUFFICIENCY - FALSE, and here is the counterexample: machine 29 has
+  F = 43 >= 41, yet supply(29, 41) = 0 EXACTLY. The value 41 is simply
+  not realized as a gap of machine 29, while 43 is (twice).
+
+Supply table (full periods; supply = #gaps of M equal to exactly q'):
+
+    machine  F     q'=29  q'=31  q'=37  q'=41  q'=43  q'=47
+    19       25    0      0      0      0      0      0
+    23       34    6      20     0      0      0      0
+    29       43    -      2090   84     0      2      0
+    31       58    -      -      26366  ?      ?      ?
+
+BOUNDARY CASE, sharp: at q' = F(M) exactly (machine 29, q' = 43) the
+supply is 2 - precisely the number of maximal gaps in the period. The
+necessity bound is attained, and attained minimally.
+
+MECHANISM (documented directly): the gap spectrum has HOLES near its top.
+    machine 29 (F=43): ... 36:38  37:84  38:22  39:12  40:8  41:0  42:0  43:2
+      missing values below F: 41, 42
+    machine 31 (F=58): ... 51:36 52:10 53:34 54:0 55:34 56:0 57:0 58:4
+      missing values below F: 54, 56, 57
+Padding availability is therefore governed by the gap-value SPECTRUM
+(which values are realized at all), not by F alone - the same arithmetic
+selection found for fuel in r11 and for supply scaling in r14, now
+localised to a single lookup.
+
+SIMPLIFICATION worth having: supply(M, q') = hist_M[q'] exactly - one gap
+histogram per machine answers the onset question for every probe at once,
+with no run classification. Only the z >= 2 hunt needs run structure.
+
+### (1) The 37->41 verdict - still running
+
+padding37.log (full period 1.237e12) had not landed at filing time; it is
+the decisive test of the r14 pre-registered prediction (supply^2/gaps ~ 5
+=> first double-padded run expected at 37->41). Reported next round with
+anatomy either way. Note the refined onset rule adds a prior caveat to my
+own prediction: it assumed supply(37,41) ~ 1e6 from the share band, but
+supply is a histogram lookup, and machine 29 just showed a prime value
+can be missing outright. If hist_37[41] = 0 the double-padded prediction
+is void for this step rather than refuted - the two failure modes must
+not be conflated when the log lands.
+
+### Jobs
+- padding37.log: full-period machine-37 padding census (the verdict).
+- fuel37_k5hunt.log: extended k=5 slice.
+- satruns_L15.log: 62.9%, members to ~7.6e12, L=14 record unbeaten.

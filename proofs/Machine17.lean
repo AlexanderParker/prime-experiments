@@ -55,55 +55,168 @@ def expWin (a b c d e : Nat) : List Nat :=
 def pair25T (a b c d e : Nat) : Bool :=
   !(atT a b c d e 0) || decide (2 ≤ (expWin a b c d e).length)
 
-/-- The whole machine-17 period as ONE Bool: both window facts, all 85085
-CRT tuples. Keeping the quantifiers inside a `Bool` computation rather than
-in the `Prop` means the proof term is a single `rfl` - at 85085 cases a
-nested `decidableBallLT` term exhausts memory, which is exactly what
-happened on the first attempt. -/
-def w18Bool : Bool :=
+/-- One SLICE of the machine-17 period: all 5005 tuples sharing a fixed
+residue `e` mod 17. Each slice is exactly the size of machine 13's whole
+period, which is the point - see the note below. -/
+def w18Slice (e : Nat) : Bool :=
   (List.range 5).all fun a => (List.range 7).all fun b =>
-    (List.range 11).all fun c => (List.range 13).all fun d =>
-      (List.range 17).all fun e => win18T a b c d e
+    (List.range 11).all fun c => (List.range 13).all fun d => win18T a b c d e
 
-def w25Bool : Bool :=
+def w25Slice (e : Nat) : Bool :=
   (List.range 5).all fun a => (List.range 7).all fun b =>
-    (List.range 11).all fun c => (List.range 13).all fun d =>
-      (List.range 17).all fun e => pair25T a b c d e
+    (List.range 11).all fun c => (List.range 13).all fun d => pair25T a b c d e
+
+/-! The scan is CHUNKED by the mod-17 coordinate. Two earlier shapes failed
+at 85085 cases: a full `decidableBallLT` nest blows the proof TERM (85085
+branches, 2 GB and climbing), while folding all five quantifiers into one
+`Bool` keeps the term at `rfl` but rebuilds the inner `List.range 17` 5005
+times and does not finish. Slicing fixes both: the `Prop`-level quantifier
+ranges over 17 values only (tiny term) and each slice is a 5005-tuple
+`Bool` - the exact shape already known to evaluate in ~12s at machine 13.
+Measured: 16s per slice, both facts. -/
+
+/-! Each slice is checked on its own: 17 independent kernel evaluations of
+5005 tuples each, rather than one evaluation of 85085. -/
+
+set_option maxRecDepth 40000 in
+theorem s18_0 : w18Slice 0 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_1 : w18Slice 1 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_2 : w18Slice 2 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_3 : w18Slice 3 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_4 : w18Slice 4 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_5 : w18Slice 5 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_6 : w18Slice 6 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_7 : w18Slice 7 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_8 : w18Slice 8 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_9 : w18Slice 9 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_10 : w18Slice 10 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_11 : w18Slice 11 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_12 : w18Slice 12 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_13 : w18Slice 13 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_14 : w18Slice 14 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_15 : w18Slice 15 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s18_16 : w18Slice 16 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_0 : w25Slice 0 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_1 : w25Slice 1 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_2 : w25Slice 2 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_3 : w25Slice 3 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_4 : w25Slice 4 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_5 : w25Slice 5 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_6 : w25Slice 6 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_7 : w25Slice 7 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_8 : w25Slice 8 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_9 : w25Slice 9 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_10 : w25Slice 10 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_11 : w25Slice 11 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_12 : w25Slice 12 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_13 : w25Slice 13 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_14 : w25Slice 14 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_15 : w25Slice 15 = true := by decide +kernel
+
+set_option maxRecDepth 40000 in
+theorem s25_16 : w25Slice 16 = true := by decide +kernel
+
 
 /-- **One period, `F_k(17) <= 18`.** Every 18-slot window holds an opening. -/
-theorem w18Bool_eq : w18Bool = true := by decide +kernel
+theorem w18All : ∀ e < 17, w18Slice e = true := by
+  intro e he
+  interval_cases e
+  exacts [s18_0, s18_1, s18_2, s18_3, s18_4, s18_5, s18_6, s18_7, s18_8, s18_9, s18_10, s18_11, s18_12, s18_13, s18_14, s18_15, s18_16]
 
 /-- **One period, `F2_k(17) <= 25`.** From any opening, two more openings
 arrive within 25 slots. -/
-theorem w25Bool_eq : w25Bool = true := by decide +kernel
+theorem w25All : ∀ e < 17, w25Slice e = true := by
+  intro e he
+  interval_cases e
+  exacts [s25_0, s25_1, s25_2, s25_3, s25_4, s25_5, s25_6, s25_7, s25_8, s25_9, s25_10, s25_11, s25_12, s25_13, s25_14, s25_15, s25_16]
 
 theorem w18 {a b c d e : ℕ} (ha : a < 5) (hb : b < 7) (hc : c < 11)
     (hd : d < 13) (he : e < 17) : win18T a b c d e = true := by
-  have h := w18Bool_eq
-  rw [w18Bool, List.all_eq_true] at h
+  have h := w18All e he
+  rw [w18Slice, List.all_eq_true] at h
   have h1 := h a (List.mem_range.mpr ha)
   rw [List.all_eq_true] at h1
   have h2 := h1 b (List.mem_range.mpr hb)
   rw [List.all_eq_true] at h2
   have h3 := h2 c (List.mem_range.mpr hc)
   rw [List.all_eq_true] at h3
-  have h4 := h3 d (List.mem_range.mpr hd)
-  rw [List.all_eq_true] at h4
-  exact h4 e (List.mem_range.mpr he)
+  exact h3 d (List.mem_range.mpr hd)
 
 theorem w25 {a b c d e : ℕ} (ha : a < 5) (hb : b < 7) (hc : c < 11)
     (hd : d < 13) (he : e < 17) : pair25T a b c d e = true := by
-  have h := w25Bool_eq
-  rw [w25Bool, List.all_eq_true] at h
+  have h := w25All e he
+  rw [w25Slice, List.all_eq_true] at h
   have h1 := h a (List.mem_range.mpr ha)
   rw [List.all_eq_true] at h1
   have h2 := h1 b (List.mem_range.mpr hb)
   rw [List.all_eq_true] at h2
   have h3 := h2 c (List.mem_range.mpr hc)
   rw [List.all_eq_true] at h3
-  have h4 := h3 d (List.mem_range.mpr hd)
-  rw [List.all_eq_true] at h4
-  exact h4 e (List.mem_range.mpr he)
+  exact h3 d (List.mem_range.mpr hd)
 
 /-! ## Openings -/
 
@@ -166,7 +279,7 @@ theorem gap_le {a b : ℕ} (ha : 1 ≤ a) (hab : a < b)
   exact hg (a + (i+1)) (by omega) (by omega) ((atT_iff ha _).mp hv)
 
 /-- **`F2_k(17) <= 25`.** Two adjacent machine gaps span at most 25 slots. -/
-theorem pair_sum_le {a b c : ℕ} (ha : 1 ≤ a) (hab : a < b) (_hbc : b < c)
+theorem pair_sum_le {a b c : ℕ} (ha : 1 ≤ a) (_hab : a < b) (_hbc : b < c)
     (hEa : Exposed17 a) (_hEb : Exposed17 b) (_hEc : Exposed17 c)
     (hg1 : ∀ j, a < j → j < b → ¬ Exposed17 j)
     (hg2 : ∀ j, b < j → j < c → ¬ Exposed17 j) : c - a ≤ 25 := by
@@ -178,13 +291,13 @@ theorem pair_sum_le {a b c : ℕ} (ha : 1 ≤ a) (hab : a < b) (_hbc : b < c)
   simp only [Bool.not_true, Bool.false_or, decide_eq_true_iff] at h
   -- two distinct openings in the window, from the filtered list
   have hnd : (expWin (a % 5) (a % 7) (a % 11) (a % 13) (a % 17)).Nodup :=
-    List.Nodup.filter _ (List.nodup_range _)
+    List.Nodup.filter _ List.nodup_range
   obtain ⟨x, y, rest, hl⟩ :
       ∃ x y rest, expWin (a % 5) (a % 7) (a % 11) (a % 13) (a % 17) = x :: y :: rest := by
     rcases hlist : expWin (a % 5) (a % 7) (a % 11) (a % 13) (a % 17) with _ | ⟨x, _ | ⟨y, rest⟩⟩
     · rw [hlist] at h; simp at h
     · rw [hlist] at h; simp at h
-    · exact ⟨x, y, rest, hlist⟩
+    · exact ⟨x, y, rest, rfl⟩
   have hxne : x ≠ y := by
     rw [hl] at hnd
     intro hxy

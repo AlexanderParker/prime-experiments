@@ -21,57 +21,41 @@ a zeroth moment invisible to every power moment). The live route is
 different in kind: it prices the growth of the machine's biggest blocked
 stretch (F) step by step, and needs just two finite-flavoured statements -
 "the gap spectrum is flat" and "merge chains stay short" (the fuel bound).
-Round 14 explained the one event this whole programme was originally
-abandoned over. Years ago the route was dropped because a single gear
-(37) produced a freak jump - three times its neighbours, breaking the
-constant everything relied on. It is not a freak: it is the moment a
-second, structurally different mechanism switches on. Ordinary chains
-kill openings on alternating teeth; a "padded" link kills two on the SAME
-tooth, which costs a gap the size of the whole gear but buys a stretch
-just as big. Padded material simply does not exist at the small machines
-(counts 0, 0, 0, then 86, 6, 2090), sits harmlessly above the record when
-it first appears, and at gear 37 wins for the first time. The unexplained
-spike was a new tier turning on, exactly on schedule.
+Round 15 put a number on how much of the route is finished: four of its
+five parts are proven, and one is open. The open one is a statement about
+the gaps flanking a handful of specific patterns - everything else (which
+patterns can occur, how long the ordinary kind can run, how much the new
+"padded" kind can contribute, and a machine-free exclusion rule) is now
+established, most of it machine-checked.
 
-A third workstream then measured the same step from scratch and found
-the anomaly is literally one link: runs with no padding top out at 71,
-runs with a single padded link reach 88, and only 336 configurations in
-a 33-billion-slot period achieve it. Without that one link the step's
-jump is unremarkable (58% under budget); with it, we get the 2.7% squeak.
-It also found the onset is structural, not luck - padded material cannot
-exist at all until the machine's record gap reaches the gear's size,
-which is exactly why the first three steps have none. Supply beyond that
-is erratic and arithmetic, not smooth: one gap value occurs 322 times
-where its neighbour occurs 6.
+The 2.7 percent squeak reported last round turns out to be an artifact of
+which constant we state the route with. There are two sufficient choices;
+at the larger one - verified sufficient long ago - the tight step has 19
+percent of room instead of 2.7, and every other step gains as well. So the
+honest headline is not "it barely fits" but "state it the other way and it
+fits comfortably". Against that, one hope died: I had wondered whether the
+freak step might bound itself, since a padded link forces its own flank
+down. It does not - that inequality is a requirement, not a consequence,
+and the measured ratio doubles at exactly the step in question.
 
-Better still, padding turns out to be self-limiting - for now. Two padded
-links can never sit in the same killed run at any machine we can reach
-(proved, and measured: zero exceptions everywhere), which restores the
-ceiling withdrawn last round, at a larger constant. The honest catch: the
-two quantities that make that proof work are climbing, and they cross
-exactly at the next step (37->41). So we have a dated prediction rather
-than a theorem - at the next machine, either a double-padded run appears
-(the ceiling dies as forecast) or something further is suppressing them,
-which would be a bigger discovery than the ceiling.
+The unit confusion flagged last round was settled properly, by three
+workstreams independently writing out the same physical object: one padded
+link is 37 in slot units, 111 in the corpus's frame, 222 in plain
+integers. Same link, three rulers. Two smaller corrections came with it -
+a count we had been quoting is the supply of candidate gaps rather than
+the usable links (about 1,400, not 26,000), and a link needs its two ends
+to share any residue, not a special one.
 
-The machine-checked side had its best result too: the six-link cap on
-ordinary chains is now a real theorem, for every gear, with no bound on
-size - plus a proof that six is exactly attained, so it cannot be
-improved. And a useful negative: the cap is NOT a property of the exposed
-positions alone (a sloppier version is false, with runs up to 140), so
-the arithmetic restriction is doing real work.
-
-One conflict is left open on purpose rather than papered over: two
-workstreams measure a padded link costing one gear-size, a third proves
-it should cost three, for twins specifically. That is almost certainly a
-units difference between two coordinate frames, but it is load-bearing
-now, so it is flagged for whoever picks this up rather than assumed away.
-Separately, the saturated-run programme found the first length-14 run
-exactly where constellation statistics predicted, validating the model
-that everything else is measured against, and the thin-band reopening
-closed with a one-slot self-reference gem: every twin pre-blocks the exact
-center of the thinnest band above it, and beyond that one slot the thin
-bands are statistically ordinary.
+The decisive experiment is running right now, and two workstreams have
+publicly bet against each other on it. At the next machine step, does a
+run containing TWO padded links appear? One says yes, from supply
+statistics; the other says no, and has proved the closest case impossible
+by pure residue arithmetic - and further showed the answer is a coin-flip
+in the gear's residue class rather than a trend, which is exactly why the
+statistical estimate could not see it. The remaining open shape hangs on a
+single unit (a quantity must reach 96; the current partial value is 95).
+Either outcome teaches us something, and the one predicting yes has
+already flagged the way its own forecast could be void rather than wrong.
 
 ## The map (attempts-map.md - read before proposing anything)
 
@@ -143,10 +127,16 @@ same 5005 cases at single-digit moduli, 12.4s.
   runs reach 71, single-padded runs reach 88 = the true F; the winning
   class has 336 members in 3.34e10 slots. Without padding the increment
   is 13 (58% under budget); with it, 30 (the 2.7% margin).
-- Padding onset rule (structural): supply > 0 requires F(M) >= q' - the
-  first three steps have none by impossibility, not rarity. Supply is
-  then arithmetically selected, not smooth (gap 28 -> 322 occurrences vs
-  gap 29 -> 6 at machine 23); the e^-(q'/lambda) model is off 20-1000x.
+- Padding onset rule: F(M) >= q' is NECESSARY (a theorem) but NOT
+  sufficient - machine 29 has F = 43 >= 41 yet supply(29,41) = 0, since
+  the value 41 is never realized as a gap. The gap spectrum has HOLES
+  near its top (29 missing 41,42; 31 missing 54,56,57). Team rule:
+  supply(M,q') = hist_M[q'] exactly - one histogram answers every probe.
+- Frames (settled by three independent worked examples): one padded link
+  = q' slots = 3q' adjacent (corpus frame) = 6q' members. F_adjacent =
+  3 x F_slot everywhere. A link is padded iff its ends share ANY residue
+  mod q', not +-u'. Quoted supply counts are candidate gaps, not links
+  (links need an endpoint on a tooth: ~2/q' of supply).
 - Tier and padding are independent axes: F_{k+1} >= F(M+q') is
   padding-blind; padding changes feasibility. The 31->37 record needs
   both k=3 and a padded link.
@@ -210,11 +200,14 @@ same 5005 cases at single-digit moduli, 12.4s.
 
 ## Live fronts (the funnel, narrowest first)
 
-1. THE 37->41 TEST (dated, falsifiable, and now RUNNING - padding37.log,
-   ~10h full period): the padding lemma's enabling ratios (F/2q',
-   F2/2q') cross 1 exactly there, and the independent supply^2/gaps
-   estimate jumps 0.11 -> ~5, so both workstreams pre-register the first
-   two-padded-link run and/or the first padded link of size 82. Finding
+1. THE 37->41 TEST (RUNNING, padding37.log): TWO OPPOSITE PREDICTIONS.
+   Lateral: NO double-padded run - the adjacent case is PROVED impossible
+   (needs r, r+6, r+12 all in E mod 35; zero solutions), and feasibility
+   is a residue coin-flip in q' mod 35 (impossible for 12 of 24 classes),
+   not a trend. Residual open shape needs F_3(37) >= 96, prefix is 95.
+   Mechanic: YES from supply^2/gaps - but pre-flagged that if hist_37[41]
+   = 0 the prediction is VOID for this step, not refuted. If found: the
+   ceiling does not collapse (p <= 2, span ceiling 5.68q' -> 6.68q'). Finding
    neither means a further suppression mechanism - worth more than the
    lemma. A gap-filtered scan suffices (padded links need gaps >= 41).
    UNRESOLVED: padded-link cost for twins is measured at q' by two
@@ -225,10 +218,15 @@ same 5005 cases at single-digit moduli, 12.4s.
    0.16q' against ~0.5q' allowed. Tier A cannot supply it (size-blind,
    escape slide 1); the only candidate supplier is "near-maximal gaps do
    not cluster at pinned addresses" - Wall V with bounded complexity.
-3. TOLERANCE ROUTE margin, stated honestly: incr/q' by step = 1.24, 1.10,
-   1.17, 0.93, 1.45, 2.43 against alpha = 2.5. The binding step 31->37
-   clears by 2.7%; the rest by 42-91%. Asymptotic safety is NOT currently
-   claimed (the cap-6 ceiling covers literal chains only).
+3. TOLERANCE ROUTE, five parts: (A) finite word list from q' mod 210 -
+   PROVEN; (B) literal span <= 5 letters - PROVEN (kernel-checked);
+   (C) padded span, p <= F/q' + alpha/3, onset gated by F >= q' - PROVEN;
+   (D) flank bound FS_max <= F + (alpha/3)q' - span(w) - THE ONLY OPEN
+   PART, needs a constant beating +0.161; (E) both-flanks-maximal
+   forbidden at 14/16 pairs - PROVEN. Note "FS <= F" is FALSE (measured
+   1.09F, 1.12F), so (D) must carry the q' allowance. STATE THE ROUTE AT
+   alpha = 3 (verified sufficient in round 8): the tight step's margin is
+   then 19% of q', not 2.7%. The anomaly does NOT bound itself.
 3. F(2,53) pricing run (detached, now pruned 2-5x): decides the constant
    alpha (2.5 <=> F(2,53) <= 486; 420 proven coverable, search past 420).
 4. L=15 hunt (mechanic, detached): members to 1.2e13, ~36% done, chunk-
@@ -243,11 +241,18 @@ same 5005 cases at single-digit moduli, 12.4s.
   once the pruned log reproduces "420 coverable".
 - Machine-37 fuel partial (fuel37.log, k=5 watch) + machine-31 spectrum
   (spectrum31.log): running.
-- Machine17.lean: written, constants verified (F=18, F2=25, the 25
-  tight), DELIBERATELY UNREGISTERED - 85085 tuples exhausts the kernel
-  (memory as a proof term; >10 min as nested Bool closures). The period
-  scan stops being kernel-viable near 10^5 cases for evaluation reasons,
-  not because the certificate changes. Fix: 17 chunks of 5005.
+- Machine17.lean: CERTIFIED via chunking (34 explicit slice theorems,
+  16 s each). The kernel wall measured precisely: the limit is tuples PER
+  DECLARATION (~5e3), not total - a Prop quantifier over Bool slices does
+  NOT behave like separate declarations (>600 s). Consequence: tier C is
+  formalisable to about machine 19 (~86 min) and no further (machine 23
+  would need ~7400 slices, ~33 h).
+- TierA.lean: carrier generalises the 3-point law to chains of any
+  length; no_chain_of_carrier_empty forbids configurations at every
+  machine refining {5,7} with NO scan - the piece whose cost does not
+  grow. HONEST EXCEPTION as a theorem: tier A does NOT close 19->23
+  (carrier (flanked 25 [8]) = {0,5,7,12}).
+- padding_count_le (NO axioms at all), padding_at_most_one.
 - Data inventory: research/data/*.csv - fragile/prefix/margin/supply/
   multiplicity/zone/satruns/band/fuel censuses, all append-mode with
   schemas in headers; every count exact at stated scale.

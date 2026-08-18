@@ -1428,3 +1428,120 @@ uncapped:
   the anomaly does not persist, so padding presumably switched off again;
   confirming that its winners are literal would show the padded tier is
   intermittent rather than growing).
+
+---
+
+# Constructor round 15: the route's current form, priced part by part
+
+Consolidation round; no new machinery. Sources: the word identity (r12), the
+literal cap (r11), tier A (r13), the padding arithmetic (r14), plus Mechanic's
+onset rule (padded supply > 0 requires F(M) >= q', so the first three steps
+have none by impossibility) and their literal-only check at 31->37 (71 vs 88 -
+the record is unreachable without the padded link).
+
+## 27. The tolerance hypothesis, stated as its parts
+
+**27.1 The form.** For every consecutive step M -> q' with q' > 47:
+
+    incr_k(M, q') = F_k(M + q') - F_k(M)  <=  (alpha/3) q',
+
+sufficient for the twin conjecture at alpha = 2.5 AND at alpha = 3 (round 8:
+zero failures at every prime y in [53, 10^6], worst ratio 0.656 at alpha = 3;
+Rosser-Schoenfeld beyond). By the round-12 identity the left side decomposes
+exactly:
+
+    F_k(M+q') = max( F2(M),  max over compatible qualifying words w
+                             of [ span(w) + FS_max(w) ] ),
+
+and the hypothesis becomes four parts, three of them now settled:
+
+    (A) WORD LIST - finite, computable from q' mod 210 alone.      PROVEN (r11-12)
+    (B) LITERAL SPAN - literal chains have <= 6 members
+        (litcap in {2,3,4,6}), so <= 5 letters, span < (10/3)q'.   PROVEN (r11)
+    (C) PADDED SPAN - each padded letter >= q'; count
+        p <= (F + (alpha/3)q')/q' ~ F/q'; onset needs F >= q'.     PROVEN (r14 + mechanic)
+    (D) FLANK BOUND - FS_max(w) <= F + (alpha/3)q' - span(w)
+        for every compatible qualifying w.                          OPEN - the sole gap
+    (E) partial toward (D): "both flanks maximal" is machine-free
+        forbidden at 14 of 16 word-step pairs.                      PROVEN (r13)
+
+**27.2 The constants, per measured step** (k-frame; incr/q' x 3 = the corpus's
+adjacent-frame incr/q):
+
+    step      q'  F   F2  winner word    span  FS   incr/q'  span/q'  (FS-F)/q'
+    11->13    13   7  11  (4)   literal     4   4   0.308    0.308    -0.231
+    13->17    17  11  16  (6)   literal     6  12   0.412    0.353    +0.059
+    17->19    19  18  25  (13)  literal    13  12   0.368    0.684    -0.316
+    19->23    23  25  31  (8,15) literal   23  11   0.391    1.000    -0.609
+    23->29    29  34  39  (10)  literal    10  33   0.310    0.345    -0.034
+    29->31    31  43  55  (10)  literal    10  48   0.484    0.323    +0.161
+    31->37    37  58  68  (37,12) PADDED   49  39   0.811    1.324    -0.514
+
+    budget incr/q':  0.833 (alpha = 2.5)   1.000 (alpha = 3)
+
+Two readings worth recording. First, **the span and the flank trade off**: the
+two steps with span >= q' (19->23, 31->37) are exactly the two with the most
+negative (FS - F)/q'; the steps with tiny span carry the big flanks. Second,
+**FS can exceed F** - at 13->17 and 29->31 the flank sum is 1.09 F and 1.12 F.
+So the tempting clean bound "FS <= F" is FALSE; part (D) must be stated with
+the q' allowance, and the measured constant to beat is (FS - F)/q' <= +0.161.
+
+## 28. The binding step, and whether the anomaly bounds itself
+
+**28.1 What gives margin at 31->37 (the honest answer: the alpha choice).**
+At alpha = 2.5 the requirement is FS <= 39.83 against an actual 39 - margin
+0.83, or 2.7%. At alpha = 3, which round 8 already verified is sufficient for
+the whole route, the requirement becomes FS <= 46 against 39 - **margin 7,
+i.e. 19% of q'**, and every other measured step gains proportionally (margins
+10 to 20 in k-frame units). Nothing else in the route depends on the choice.
+**The route should therefore be stated at alpha = 3**; the 2.7% figure is an
+artifact of quoting the tighter admissible constant.
+
+**28.2 Does the padded winner cap its own flank? NO - and the framing needs
+correcting.** My round-14 inequality FS < F - q'/6 was a *requirement* - what
+tolerance needs *given* a padded link - not a derived structural fact. A
+padded occurrence does not limit its own flanks, and the data says so:
+
+* measured FS at padded occurrences is 8, 11, 18 at steps 19->23, 23->29,
+  29->31 (0.32, 0.32, 0.42 of F) but **39 at 31->37 (0.67 of F)** - the ratio
+  roughly doubles between consecutive steps, so there is no structural
+  fraction to lean on;
+* the general form "FS <= F" is refuted outright by the literal steps
+  (FS/F = 1.12 at 29->31).
+
+So the anomaly does not bound itself. What padding *does* limit is its own
+SPAN contribution: the count bound p <= F/q' + alpha/3 (p <= 2.40, hence
+p <= 2, at 31->37) and the onset gate F(M) >= q'. Those are real and proven -
+they cap how much of the budget padding can consume - but they say nothing
+about the flanks, which is where the binding constraint lives.
+
+## 29. Verdict: weaker in structure, equal in kind, lower in confidence
+
+**Weaker in structure.** At round 8 the requirement was the bare, unfactored
+hypothesis "incr <= 2.5q' at every consecutive step" - a statement about an
+extremal quantity with no internal decomposition. It is now factored by an
+exact identity, and everything except one factor is proven: the word list is
+finite and machine-free, the literal span is capped by a theorem, the padded
+span is count-capped and onset-gated, and the both-maximal flank case is
+machine-free excluded at 14/16 pairs. The residue is a statement about flank
+sums at <= 6 pinned word occurrences per step - strictly a sub-part of what
+round 8 asked for.
+
+**Equal in kind.** The residue is still a max-of-gap-sums statement: Wall V.
+Round 13 proved tier A is size-blind and tier B contributes nothing, and tier
+C (period scan) is unscalable past 3.3e10. So the *species* of input the route
+needs has not changed since round 8 - only its size and location have.
+
+**Lower in confidence.** Round 8 read the hypothesis as comfortable (2.432
+against 2.5, with every other step far below). Round 14 showed the binding
+step is precisely the one where the structurally uncapped tier switches on,
+and Lateral withdrew the asymptotic-safety claim for padding. Against that:
+alpha = 3 restores a 19% margin at that step, padding is count-capped and
+onset-gated, and the corpus's neighbouring steps (0.220q, 0.837q adjacent)
+suggest the padded tier is intermittent rather than growing - which the
+37->41 and 41->43 winners would confirm or refute directly.
+
+**Net.** The route is better understood, better factored, and honestly thinner
+than it looked at round 8; its remaining requirement is the same species of
+statement it always was, now reduced to the smallest object the programme has
+managed to isolate: the flank sums of at most six pinned words per step.

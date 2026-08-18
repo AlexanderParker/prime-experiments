@@ -1336,3 +1336,103 @@ full merge scan) and see whether p <= 1 survives past its proof. (2) Attack the
 flank half instead: with span now bounded at 6.35q' for the computed range, the
 whole excess question reduces to FS_max, and my pinning/address machinery from
 rounds 9-10 applies directly to the two flank gaps of a winning run.
+
+## Round 15 (2026-08-18): frame stated; and the 37->41 census predicted from the corridor
+
+Tools: `research/padding_37_41.py`, `padding_corridor_law.py`. Also folded: my
+own full-period 31->37 padding census (26,367 gaps of exactly 37, max 1 padded
+link per run, 0 adjacent padded pairs) - agreeing with the mechanic's 26,366 to
+within one, presumably a period-wrap convention difference worth one line from
+whoever cares.
+
+### 1. Frame check (my side, stated unambiguously)
+
+**All lateral gap numbers are in SLOT units.** Slot k is the pair (6k-1, 6k+1);
+openings are surviving slots; a gap is a difference of slot indices.
+Conversions: member-space gap = 6 x slot gap; corpus halved-coordinate gap
+= 3 x slot gap. Therefore
+
+    lateral "a padded link costs exactly q'"  ==  harvester "3q'" (halved).
+
+Same fact, one frame factor. Independent check of the factor against the
+corpus: F(2,43) = 309 halved, and 309 = 3 x 103 with 103 sitting in the
+mechanic's machine-37 F_j spectrum. My measured padded values, all steps,
+are exactly q' in slots (23, 29, 31, 37) = 69, 87, 93, 111 halved = 3q'.
+No disagreement to settle on my side; harvester owns the write-up.
+
+### 2. The 37->41 question, decided in advance where it can be
+
+**BRANCH A - if a double-padded run IS found.** The ceiling does not collapse.
+Constructor's count cap gives p <= (F + 5q'/6)/q' = 2.98, so p <= 2 (p = 3 is
+arithmetically impossible). With F_2(37) < 123 both links must be exactly q',
+so the run is forced to be `[literal chain] --q'-- [kill] --q'-- [literal
+chain]` and the span ceiling moves
+
+    p = 1:  span <= 5q' + 2s = 233 = 5.68 q'
+    p = 2:  span <= 6q' + 2s = 274 = 6.68 q'
+
+i.e. **exactly one q' worse, not a collapse.** The general form is
+span <= (4+p)q' + 2s.
+
+**BRANCH B - if none is found, the mechanism is the corridor, and I can prove
+the adjacent case outright.** Every opening lies in the 15-residue exposed set
+E mod 35 (avoiding the teeth of gears 5 and 7). Two adjacent padded links of
+sizes a q', b q' put three consecutive openings at r, r+a g, r+(a+b) g mod 35
+with g = q' mod 35. For q' = 41, g = 6, and
+
+    r, r+6, r+12 all in E  has ZERO solutions over all 15 r in E.
+
+So **two adjacent equal padded links are impossible at 37->41 by the (5,7)
+corridor alone** - no spectrum input, hence unaffected by the fact that the
+machine-37 F_j values are only prefix lower bounds. That is the repulsion
+mechanism the coordinator asked for, and it is exact.
+
+### 3. The general law behind it (and why this is not a trend)
+
+Feasibility depends only on q' mod 35, and the classes split cleanly:
+
+    adjacent EQUAL padded links (1,1) possible:  q' = 23, 37, 43, 47, 53, 67,
+                                                 73, 83, 97 ...
+    impossible:                                  q' = 29, 31, 41, 59, 61, 71,
+                                                 79, 89 ...
+
+Exactly 12 of the 24 invertible classes mod 35 forbid it - a 50/50 property of
+q' mod 35, **not a trend in scale**. And there is a perfect dichotomy in the
+table: whenever the (1,1) shape is feasible the unequal shapes (1,2) and (2,1)
+are infeasible, and whenever (1,1) is infeasible the unequal shapes have
+exactly 2 phases each. So padding structure switches on and off with the
+residue of q', which is why the smooth supply^2/gaps model cannot predict it -
+the same lesson as round 11's fuel: arithmetic selection beats the smooth law.
+
+### 4. What is actually still open at 37->41, and how sharp it is
+
+Two shapes survive the corridor at q' = 41 and must be settled by the spectrum:
+
+* **adjacent UNEQUAL** (one link q', one 2q' = 82; corridor-feasible at r =
+  0, 5, 12, 17): needs F_2(37) >= 123. Measured prefix gives >= 90; the ratio
+  F_2/F across machines 13..31 runs 1.45, 1.39, 1.24, 1.15, 1.28, 1.17, so
+  the plausible true F_2(37) is ~105-115. 123 is above that band - unlikely
+  but not excluded.
+* **NON-adjacent** (two padded links with j >= 1 literal links between): needs
+  F_{j+2}(37) >= 2q' + jL = 82 + 14j. For j = 1 that is **F_3(37) >= 96, and
+  the measured prefix stands at 95**.
+
+**The whole census outcome turns on one unit of F_3(37).** If the full period
+lifts F_3(37) from 95 to 96 or beyond, non-adjacent double padding becomes
+feasible; if F_3(37) stops at 95, then combined with the corridor result every
+shape is excluded and the answer is a clean no.
+
+**My pre-registered prediction: NO double-padded run at 37->41** - the adjacent
+case by proof, the rest by the spectrum margins above. This contradicts the
+supply^2/gaps ~ 5 estimate, and it should: that model counts pairs without
+asking whether the corridor admits the shape.
+
+### Proposed next chunk
+
+If the census agrees, the corridor law generalises the padding lemma from a
+spectrum threshold (which expires) to a residue criterion (which does not):
+"adjacent equal padded links are impossible for half of all q'". Worth doing
+next: extend the corridor feasibility test to the full padded-run shape
+(p links, arbitrary sizes, with literal chains attached) so the ceiling
+(4+p)q' + 2s can be evaluated per q' mod 35 rather than per machine - that
+would be a scale-free version of round 14's dated lemma.

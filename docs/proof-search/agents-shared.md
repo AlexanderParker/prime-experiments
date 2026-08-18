@@ -2,127 +2,108 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 14 - the corpus's unexplained gear-37 anomaly is EXPLAINED, the literal cap
-is kernel-checked, and padding is capped at one link per run (for now).
+State after round 15 - the route is now four parts proven and ONE open, the frame conflict is
+settled by explicit example, and the decisive 37->41 census is running with two workstreams
+holding OPPOSITE pre-registered predictions.
 
-NO ROUND 15 WAS BRIEFED - the human stopped the loop after round 14. All five round-14 reports
-are folded (mechanic's landed last).
+PROCESS: the human stopped the loop after round 14, then said "continue", so round 15 was
+briefed and run. An earlier SUMMARY line saying "no round 15 was briefed" was stale; BOTH
+Lateral and Formalist flagged the contradiction rather than absorbing it - correct behaviour,
+and the line is fixed.
 
-THE BINDING STEP IS ONE PADDED LINK (mechanic, full-period census at 31->37, independent of
-lateral and constructor): splitting runs by z = number of padded links, literal-only runs
-(z=0, 114.75M of them) reach max flanked span 71; padded runs (z=1, just 26,366) reach 88 -
-THE TRUE F(M+37). The record is UNREACHABLE without a padded link. The k=3, z=1 class that
-achieves 88 has only 336 members in a 3.34e10-slot period, and the census independently
-confirms lateral's winner anatomy [kill]-37-[kill]-12-[kill] without having looked for it.
-CONSEQUENCE: without padding the step's increment is 71-58 = 13 (adjacent-frame 1.054, 58%
-margin - unremarkable); with it, 30 (2.432, the 2.7% margin). The whole anomaly is one link.
-ONSET RULE (structural, not statistical): supply > 0 requires F(M) >= q' - zero at 13->17
-(F=11 < 17) and 17->19 (F=18 < 19) by IMPOSSIBILITY, not rarity. Supply of gaps = q' per step:
-0, 0, 86, 6, 2090, 26366. SCALING NEGATIVE: shares 2.27e-4, 7.5e-7, 9.7e-6, 4.2e-6 are erratic
-and non-monotone - the e^-(q'/lambda) model is off by 20-1000x. Cause found in the gap
-histograms: the tail is ARITHMETICALLY SELECTED (machine 23: gap 28 -> 322 occurrences, gap
-29 -> 6, gap 30 -> 112; gap 24 absent entirely from machines 19 and 23). Padding supply is the
-same kind of object as round-11 fuel - no smooth law, only the histogram.
-DOUBLE-PADDED: zero everywhere so far, AND THAT IS EXPECTED - ordered padded pairs per run
-scale like supply^2/gaps = 0.02, 0.00, 0.02, 0.11 through 31->37. PRE-REGISTERED PREDICTION:
-the first double-padded run appears at 37->41 (supply^2/gaps ~ 5). Full-period hunt launched
-(padding37.log, ~10h). Absence would itself be an event - it would mean padded links repel,
-which nothing predicts.
-TIER x PADDING ARE INDEPENDENT AXES: padding does NOT change the tier bound (k killed openings
-merge k+1 gaps whatever the letters, so F_{k+1} >= F(M+q') is padding-blind); padding changes
-FEASIBILITY. The 31->37 record needs both k=3 AND a padded link. F_j spectra extended to
-machine 37 (16.2% prefix): 88, 90, 95, 103, 112, 115 - giving min k = 2 for 37->41.
+THE ROUTE IN FIVE PARTS, FOUR PROVEN (constructor): the hypothesis is incr_k <= (alpha/3)q' at
+every consecutive step, sufficient at alpha = 2.5 AND alpha = 3. The round-12 identity factors
+it: (A) word list finite, computable from q' mod 210 alone - PROVEN; (B) literal span <= 5
+letters, < (10/3)q' - PROVEN (cap-6, kernel-checked); (C) padded span: each padded letter >= q',
+count p <= F/q' + alpha/3, onset gated by F >= q' - PROVEN; (D) flank bound FS_max(w) <= F +
+(alpha/3)q' - span(w) - THE SOLE OPEN GAP; (E) both-flanks-maximal machine-free forbidden at
+14/16 pairs - PROVEN. Per-step incr/q' = .308 .412 .368 .391 .310 .484 .811 vs budget
+.833 (alpha=2.5) / 1.000 (alpha=3). Two readings: span and flank TRADE OFF (the two steps with
+span >= q' have the most negative flank excess), and FS CAN EXCEED F (1.09F, 1.12F) - so the
+tempting bound "FS <= F" is FALSE; (D) must carry the q' allowance, constant to beat +0.161.
 
-THE ANOMALY IS EXPLAINED (constructor): the gear-37 spike (2.432q, sitting between neighbours
-at 0.220q and 0.837q - the event the original programme abandoned the multiplicative route
-over) IS THE ONSET OF PADDING. Padded gaps per step (11->13 .. 29->31): 0, 0, 0, 86, 6, 2090,
-only ever the exact value q'. The padded tier sits a flat +6 above F and never binds through
-29->31 (all winners literal). At 31->37 the winner IS padded ([pad 37][literal 12], span 49,
-FS 39, merged 88 = F(37)) - the first padded winner. A structurally different tier switching
-on, not a fluctuation.
+THE MARGIN IS AN ALPHA ARTIFACT (constructor): the 2.7% squeak at 31->37 is a consequence of
+stating the route at alpha = 2.5. At alpha = 3 - already verified sufficient in round 8 - the
+requirement at 31->37 becomes FS <= 46 against 39: MARGIN 7, 19% of q', with every other step
+gaining 10-20 units. Nothing else depends on the choice, so THE ROUTE SHOULD BE STATED AT
+alpha = 3.
+AND THE ANOMALY DOES NOT BOUND ITSELF (constructor, refuting the manager's round-15 hypothesis):
+the round-14 inequality was a REQUIREMENT given a padded link, not a derived fact.
+Padded-occurrence FS runs 0.32, 0.32, 0.42 of F at small steps but 0.67 at 31->37 - the ratio
+doubles, no structural fraction. Padding limits its own SPAN (count cap, onset gate), never its
+flanks.
 
-PADDING IS COUNT-CAPPED AFTER ALL (constructor): a padded link's interior gap is = 0 mod q',
-hence >= q', so each padded link costs a full q' while the budget grants only (5/6)q'. Hence
-FS_max <= F - (p - 5/6)q' - (l-p)q'/3: ONE padded link already forces FS < F - q'/6 (a padded
-occurrence cannot carry a near-maximal flank at all), and p <= (F + 5q'/6)/q' ~ F/q' caps the
-count outright - at 31->37, p <= 2.40, so p=3 is arithmetically impossible, matching the
-measured absence. Equivalent form: Q^qual_{k+1} - F <= (5/6)q'.
+FRAME CONFLICT SETTLED THREE WAYS (harvester by explicit example, mechanic and lateral
+independently): three frames differ by fixed factors - SLOT (k; slot k is the pair 6k-1, 6k+1),
+ADJACENT (the corpus chain F(2,y) = 6,15,21,33,...; slot d -> 3d), INTEGER/MEMBER (slot d ->
+6d). One padded link = q' slots = 3q' adjacent = 6q' members. Harvester's worked example
+(machine 31, q' = 37): openings k = 8,288,068 / 8,288,105, both = 31 mod 37, kills verified by
+hand (37 | 49,728,407 and 37 | 49,728,629). Mechanic's independent example: k = 634158 /
+634195, members differing by exactly 222 = 6 x 37. Cross-checks: F_adjacent = 3 x F_slot at
+every machine (33 = 3x11, 264 = 3x88); corpus F(2,43) = 309 = 3 x 103; harvester's supply rate
+extrapolates to 26,184 gaps of exactly 37 per period vs mechanic's 26,366 (0.7%).
+Harvester's "gaps divisible by 3" is automatic in the adjacent frame. Their "no padded gap for
+d = 2 at my sizes" stands - those machines are BELOW onset.
+TWO PRECISION CORRECTIONS: (i) 26,366 is the SUPPLY of q'-gaps, NOT the count of padded LINKS -
+a link also needs its endpoint on a tooth, ~2/37 of supply, so ~1,400. (ii) A link is padded iff
+its openings share ANY residue mod q', not specifically +-u' (mechanic's example shares residue
+15, u' = 31) - phase decides WHERE a site fires, not WHETHER.
+CONTRAST RE-PRICED: member units, twins 6q' = 222 vs mean gap 32.21 (6.89); d = 0 mod 6,
+2q' = 74 vs mean gap 16.11 (4.59). Absolute factor 3, SCALE-RELATIVE FACTOR 1.50 (the 3 | e
+machine is twice as dense); availability ~10x, not an exponential chasm. The onset shift (sixth
+step vs first) stands; the regime-change claim does not. Count bound transfers: p <= F/c_d,
+c_d = 6q' or 2q' in members - the team's p <= F/q' in each frame's unit; 8/8, zero violations.
 
-THE PADDING LEMMA, EXACT (lateral): a legal killed run of k kills occupies k+1 CONSECUTIVE gaps,
-so G <= F_{k+1}(M); two padded links separated by j literal links occupy j+2 consecutive gaps
-summing to >= 2q' + j*L. Hence IF F_{j+2}(M) < 2q' + j*L for all j >= 0, EVERY RUN CARRIES AT
-MOST ONE PADDED LINK. The j=0 case (F_2(M) < 2q') is the padding analogue of "two maximal gaps
-are never adjacent". Companion: 2q' > F(M) implies every padded link has size exactly q'.
-Measured: zero adjacent padded pairs at every machine, max padded links per run = 1 everywhere.
-With p <= 1 the run is [literal chain]-q'-[literal chain], so the cap applies segment-wise:
-k <= 12 and SPAN <= 5q'+2s <= 6.35q' - THE CEILING WITHDRAWN IN ROUND 13, RESTORED at a larger
-constant. Honest scope: bounds span, not increment (flanks still need constructor's FS_max
-bound), and BOTH ENABLING RATIOS CLIMB MONOTONICALLY (F/2q': 0.32 -> 0.78 -> 1.07; F2/2q':
-0.47 -> 0.92 -> 1.10), so the ceiling is a SMALL-MACHINE PHENOMENON ENDING EXACTLY AT 37->41.
-Falsifiable prediction: at 37->41 expect the first two-padded-link run and/or the first padded
-link of size 82; finding neither means a further suppression mechanism - worth more than the
-lemma. A gap-filtered scan suffices (padded links need only gaps >= 41).
+THE 37->41 TEST: TWO OPPOSITE PRE-REGISTERED PREDICTIONS, CENSUS RUNNING (padding37.log,
+started 18:39, buffered - unreported at this rewrite).
+LATERAL PREDICTS NO DOUBLE-PADDED RUN, with the adjacent case PROVED: openings lie in the
+15-residue exposed set E mod 35; adjacent padded links need r, r+6, r+12 all in E (41 = 6
+mod 35). ZERO solutions over all 15 residues - so adjacent equal padded links are IMPOSSIBLE at
+37->41 by the (5,7) corridor alone, no spectrum input, immune to the prefix-lower-bound problem.
+General law: feasibility depends only on q' mod 35 - impossible for exactly 12 of 24 invertible
+classes (29, 31, 41, 59, 61, 71, 79, 89...), possible for the rest. A RESIDUE COIN-FLIP, NOT A
+TREND - which is why supply^2/gaps cannot predict it. The residual open shape (non-adjacent,
+j=1) needs F_3(37) >= 96 and the prefix stands at 95: THE OUTCOME TURNS ON ONE UNIT.
+If a double-padded run IS found: the ceiling does NOT collapse - p <= 2 (count cap 2.98),
+F_2(37) < 123 forces both links to be exactly q', span ceiling moves 5.68q' -> 6.68q', general
+form (4+p)q' + 2s.
+MECHANIC PRE-EMPTS ITS OWN PREDICTION: the supply-based forecast assumed supply(37,41) ~ 1e6
+from the share band, but supply is a HISTOGRAM LOOKUP and a prime value can be missing outright.
+If hist_37[41] = 0 the double-padded prediction is VOID FOR THIS STEP, NOT REFUTED - the two
+failure modes must not be conflated when the log lands.
 
-PREMISE REFUTED (constructor, against the manager's round-14 brief): q'-gaps are NOT common -
-measured 0.001-0.023% of gaps, and structurally mean gap ~ log^2 y / C against q' ~ y, so
-q'/meangap -> infinity at every scale: a MID-TAIL object. The required statement is therefore a
-mid-tail x extreme-tail correlation - still Wall V (padding opens no different attack), but
-genuinely weaker than lemma 1's extreme x extreme form and with many more instances. Rarity
-cannot bound a max; tier A is size-blind, B dead, C unscalable.
+ONSET RULE REFINED - NECESSARY, NOT SUFFICIENT (mechanic, correcting its own round-14 wording):
+necessity is a THEOREM (no gap of exactly q' can exist when F(M) < q'), but sufficiency is
+FALSE - machine 29 has F = 43 >= 41 yet supply(29,41) = 0 exactly, because the value 41 is never
+realized as a gap while 43 is (twice). At the boundary q' = F(M), supply = 2 = the maximal-gap
+count. The gap spectrum has HOLES near its top (machine 29 missing 41, 42; machine 31 missing
+54, 56, 57). TEAM SIMPLIFICATION: supply(M,q') = hist_M[q'] EXACTLY - one histogram per machine
+answers every probe; only the z >= 2 hunt needs run structure.
 
-THE LITERAL CAP IS KERNEL-CHECKED (formalist, proofs/LiteralCap.lean): literal_chain_le_six -
-for any gear q with gcd(q,210) = 1 and tooth offset u (6u = q -+ 1), a literal chain of openings
-has AT MOST 6 MEMBERS, every gear, no bound on q, forever. Supporting: no_run_seven (the finite
-check - 48 classes x 35 starts x 2 parities), cap_six_classes_sharp (6 attained at EXACTLY
-{37, 53, 83, 127, 157, 173} mod 210, an exact set equality, so the bound cannot be lowered -
-note 37 heads the list, the first padded-winner gear), s_eq (the tooth step descends to the
-class, legitimising the mod-210 reduction). Standard axioms; no native_decide, no ofReduceBool.
-NEGATIVE WORTH HAVING: the cleaner "cap <= 6 for all (t,s) pairs mod 35" is FALSE - over all
-1225 pairs the spectrum runs {2,3,4,5,6,8,10,140}. The cap is NOT a property of the exposed set
-alone; the class restriction does real work, and any d != 2 transfer must keep it.
-MACHINE 17 NOT LANDED, and the reason is mechanical not mathematical: constants verified
-(F=18, F2=25, budget 26.44, integer form 225 <= 238, the 25 tight), file written but
-DELIBERATELY UNREGISTERED so the ledger stays green. 85085 tuples exhausts memory as a proof
-term; restructuring inside a Bool keeps memory flat (260 MB) but kernel evaluation of nested
-List.all closures runs past 10 minutes. So the period scan stops being viable for
-KERNEL-EVALUATION reasons around 10^5 cases, not because the certificate structure changes.
-Recommended fix: chunk into 17 slices of 5005, each exactly machine-13-sized, combined by
-interval_cases on the mod-17 coordinate.
+FORMAL LEDGER (15 targets, 1002 jobs, zero sorries, zero warnings):
+MACHINE 17 CERTIFIED - chunking worked: gap_le (F=18), pair_sum_le (F2=25), alpha1_certificate
+(225 <= 238), lemma1_at_17. THE KERNEL WALL, MEASURED PRECISELY, and it is not where expected:
+the limit is tuples PER DECLARATION, not total. At 85085 - decidableBallLT blows the proof TERM
+(2 GB); one Bool with 5 nested List.all keeps the term fine but never finishes evaluating;
+"forall e < 17, slice e = true" STILL > 600 s (a Prop quantifier over Bool slices does NOT
+behave like separate declarations); 34 EXPLICIT SLICE THEOREMS WORK (16 s/slice, lib ~2 min).
+RULE: keep each declaration <= ~5e3 tuples, add declarations to scale. CONSEQUENCE: tier C is
+formalisable up to about MACHINE 19 (323 slices, ~86 min) AND NO FURTHER - machine 23 needs
+~7400 slices (~33 h).
+TIER A GENERALISED (TierA.lean) - the piece whose cost does NOT grow with the machine:
+carrier steps extends allowed3 from 3 points to chains of any length; no_chain_of_carrier_empty
+forbids a configuration at every machine refining {5,7} with NO SCAN; round 9's no_11_11_chain
+is the l=0 case. Four steps close by corridor arithmetic alone; flanks_17_19 is the sharp one
+(each flank alone feasible mod 35, both together not - exactly constructor sec 24.3).
+HONEST EXCEPTION, AS A THEOREM: flanks_19_23_nonempty : carrier (flanked 25 [8]) = {0,5,7,12} -
+TIER A DOES NOT CLOSE 19->23. The analogue of round 13's (t,s) guardrail; anyone building on
+tier A must carry it.
+PADDING BOUNDS: padding_count_le (NO AXIOMS AT ALL) and padding_at_most_one.
+w18All/w25All need only [propext]; no native_decide anywhere.
 
-THE FIRING LAW IS FULLY GENERAL (harvester): restated for general d - teeth A: n = 0,
-B: n = -e mod q'; between adjacent members of a killed run sits one M-gap g with g = 0 (padded,
-same tooth), g = +-e (literal, opposite teeth), else illegal; non-zero letters alternate
-(FORCED, not assumed); zeros free; F(M+q') = max over legal runs of span, from the old machine
-alone. This is lateral's law with 2u -> e, THE ONLY d-DEPENDENCE. Verified on 14 configurations
-(d = 2,4,6,10,12,30; machines {3,5,7,11}..{3..17}; all CRT phases): soundness 0 violations,
-firing 0 misses, converse 0, old-machine prediction = exact F in 14/14. A first pass showed
-1-2 violations in four rows - all wrap-around artifacts (np.roll corrupts the wrap element since
-gcd(P,q') = 1); recomputed at absolute positions, counts went to zero. Recorded, not hidden.
-Self-correction: round 13's "tooth alternation fails for 3 | e" MISLABELLED the finding - under
-the corrected merge law a same-tooth adjacency is a legal PADDED LINK, not a violation.
-PADDING IS WHERE TWINS DIFFER: for 3 does-not-divide e every survivor sits in one class mod 3,
-so every gap is divisible by 3 and the cheapest padded link costs 3q'; for 3 | e survivors
-occupy two classes, gaps take all residues mod 3, and the cheapest padded link costs exactly q'.
-Measured: no padded gap at all for d = 2, 4, 10 at these sizes, while d = 6, 12, 30 have min
-padded gap = q' - and for d = 12 the WINNER IS PADDED AT BOTH STEPS TESTED. Onset contrast:
-twins' first padded winner is the sixth step (31->37); d = 12's is the FIRST (11->13). The
-literal cap is an exposure constraint and stays universal; cap-ESCAPE is not, and is ~e^(2q'/L)
-cheaper for d = 0 mod 6. Any argument leaning on "padding is expensive" is specific to
-d != 0 mod 6.
-
-OPEN CONFLICT FOR WHOEVER RESUMES (manager, unresolved): lateral and constructor measure twin
-padded links costing EXACTLY q' (values 23, 29, 31 at their steps); harvester's proposition says
-twins (3 does-not-divide e) cost 3q' and that no padded gap exists for d = 2 at those sizes.
-This looks like a frame difference - slot units vs halved/member coordinates, where a factor of
-3 is exactly what separates them - but it is NOT settled, and the padding cost is now
-load-bearing for both the span ceiling and the twins-vs-other-d comparison. Settle it before
-building further on either statement.
-
-SEARCHES AT STOP: pruned F(2,53) (PID 94812) inside the L = 423 search. L=15 hunt 60.9%, L=14
-record unbeaten. Machine-37 k=5 extended slice still running. Full-period double-padded hunt at
-37->41 launched (padding37.log, ~10h) - it decides mechanic's and lateral's shared
-pre-registered prediction. Ledger green: 13 targets, 998 jobs, zero sorries (+LiteralCap.lean; Machine17.lean
-written but unregistered by design).
+SEARCHES: 37->41 double-padded census running (padding37.log, buffered). Pruned F(2,53) (PID
+94812) inside the L = 423 search. L=15 hunt 64.9%, L=14 record unbeaten. Machine-37 k=5 slice
+running.
 
 State after round 10 (carry-over) - the tolerance route reduced to two named statements, the
 adjacency question answered NO, and the T1 reopening closed with an exact self-reference law.
@@ -1203,6 +1184,52 @@ Tool: research/alternation_words.py. Full log: docs/proof-search/lateral.md roun
 - Offering next: the complete word grammar - the exact set of infinitely-
   extendable letter patterns compatible with the small-gear teeth (generalizes
   the cap theorem; positive-description complement to the attempts map).
+
+## Mechanic round 15 (2026-08-18) - FRAME SETTLED; onset rule refined (not sufficient)
+Tools: research/padded_link_anatomy.py (new), padding_census.py (multi-probe).
+Full working: mechanic.md r15.
+- THE FRAME QUESTION, settled with a worked example - NO contradiction. Three
+  frames differ by fixed factors: SLOT (k, my censuses; slot k IS the pair
+  (6k-1,6k+1)), ADJACENT (the corpus chain F(2,y)=6,15,21,33,...; unit = 2
+  integers; slot d -> 3d), INTEGER (members; slot d -> 6d). One padded link =
+  q' slots = 3q' adjacent = 6q' integers. Harvester's "cost 3q'" and my "cost
+  q'" are THE SAME LINK; their "gaps divisible by 3" is automatic in the
+  adjacent frame since every adjacent gap is 3 x (slot gap).
+  Cross-check at every machine: F_adjacent = 3 x F_slot (33=3x11 y=13,
+  174=3x58 y=31, 264=3x88 y=37, 6=3x2 y=5).
+  REAL EXAMPLE (machine 31, q'=37): openings k=634158 and k=634195, members
+  (3804947,3804949) and (3805169,3805171); member difference 3805169-3804947
+  = 222 = 6 x 37 exactly; slot gap 37 = 111 adjacent = 222 integers.
+  CAUTION worth flagging: the two openings share residue 15 mod 37, NOT +-u'
+  (u'=31). A link is padded iff its openings share ANY residue mod q'; which
+  residue is irrelevant - over the new period q'*P_M every offset occurs, so
+  the site fires exactly once (lateral's firing law). My census counts
+  CO-DELETABLE sites; phase decides where they fire, not whether.
+- ONSET RULE REFINED - necessary, NOT sufficient (corrects my own r14 wording):
+  * NECESSITY is a THEOREM: no gap of exactly q' can exist when F(M) < q'.
+    Confirmed at every such pair (19 vs 29/31/37/41; 23 vs 37/41/43; 29 vs 47).
+  * SUFFICIENCY IS FALSE. Counterexample: machine 29 has F = 43 >= 41 yet
+    supply(29,41) = 0 exactly - the value 41 is not realized as a gap at all,
+    while 43 is (twice).
+  * BOUNDARY, sharp: at q' = F(M) exactly (machine 29, q'=43) supply = 2 = the
+    number of maximal gaps. Necessity bound attained, minimally.
+  * MECHANISM: the gap spectrum has HOLES near its top. Machine 29 missing
+    values below F: 41, 42 (with 43 present). Machine 31 missing: 54, 56, 57
+    (58 present, count 4). Padding availability is governed by WHICH GAP VALUES
+    ARE REALIZED, not by F - same arithmetic selection as r11 fuel / r14 supply.
+  * SIMPLIFICATION for everyone: supply(M,q') = hist_M[q'] EXACTLY. One gap
+    histogram per machine answers the onset question for all probes at once;
+    only the z>=2 hunt needs run structure.
+  Supply table (full periods): machine 19 (F=25): all probes 29..41 -> 0.
+  machine 23 (F=34): q'=29 -> 6, 31 -> 20, 37/41/43 -> 0. machine 29 (F=43):
+  31 -> 2090, 37 -> 84, 41 -> 0, 43 -> 2, 47 -> 0. machine 31 (F=58): 37 -> 26366.
+- 37->41 VERDICT PENDING: padding37.log (full period 1.237e12) had not landed at
+  filing; reported next round with anatomy either way. PRIOR CAVEAT from the
+  refined rule: my r14 prediction assumed supply(37,41) ~ 1e6 from the share
+  band, but supply is a histogram lookup and a prime value can be missing
+  outright. If hist_37[41] = 0 the double-padded prediction is VOID for this
+  step, not refuted - the two failure modes must not be conflated.
+- L=15 hunt: 62.9% (members to ~7.6e12), L=14 record unbeaten.
 
 ## Mechanic round 14 (2026-08-18) - PADDING IS THE GEAR-37 ANOMALY
 Tool: research/padding_census.py (new; breaks N_k out by z = #padded links).
@@ -2456,3 +2483,196 @@ against padded runs from the first step.
 
 (3) F(2,53): PID 94812 alive, log unchanged (420 coverable; 421/422 skipped) - still
 inside the L = 423 search.
+
+## Constructor round 15 (2026-08-18) - route stated part by part; state it at alpha = 3
+Consolidation round, no new machinery. Full text: constructor.md secs 27-29.
+Absorbed: Mechanic's onset rule (padded supply > 0 needs F(M) >= q' - first
+three steps have none by impossibility) and their literal-only check at
+31->37 (71 vs 88: the record is unreachable without the padded link).
+- THE HYPOTHESIS IN FOUR PARTS. incr_k <= (alpha/3)q' at every consecutive
+  step, sufficient at alpha = 2.5 AND alpha = 3 (r8). By the r12 identity:
+  (A) word list finite, computable from q' mod 210 alone - PROVEN;
+  (B) literal span: <= 6 members so <= 5 letters, span < (10/3)q' - PROVEN;
+  (C) padded span: each padded letter >= q', count p <= F/q' + alpha/3, onset
+      needs F >= q' - PROVEN (mine + mechanic);
+  (D) FLANK BOUND FS_max(w) <= F + (alpha/3)q' - span(w) - OPEN, sole gap;
+  (E) partial: both-flanks-maximal machine-free forbidden 14/16 pairs - PROVEN.
+- PER-STEP CONSTANTS (k-frame; x3 = corpus adjacent incr/q):
+  incr/q' = .308 .412 .368 .391 .310 .484 .811 (11->13 .. 31->37)
+  span/q' = .308 .353 .684 1.000 .345 .323 1.324
+  (FS-F)/q' = -.231 +.059 -.316 -.609 -.034 +.161 -.514
+  Budget .833 (a=2.5) / 1.000 (a=3). TWO READINGS: span and flank TRADE OFF
+  (the two steps with span >= q' have the most negative (FS-F)/q'); and FS
+  CAN EXCEED F (1.09F, 1.12F at 13->17, 29->31) - so the clean bound "FS <= F"
+  is FALSE; (D) must carry the q' allowance, constant to beat +0.161.
+- STATE THE ROUTE AT ALPHA = 3 (the fix for the 2.7%): at a=2.5 the binding
+  requirement is FS <= 39.83 vs 39 (margin 0.83); at a=3, already verified
+  sufficient in r8 (zero failures to 1e6, worst ratio .656, RS beyond), it is
+  FS <= 46 vs 39 - MARGIN 7 = 19% of q', with every other step gaining 10-20
+  k-frame units. Nothing else in the route depends on the choice. The 2.7%
+  figure is an artifact of quoting the tighter admissible constant.
+- SELF-LIMITING? NO - framing correction. My r14 inequality FS < F - q'/6 was
+  a REQUIREMENT (what tolerance needs GIVEN a padded link), not a derived
+  structural fact; a padded occurrence does not cap its own flanks. Data:
+  padded-occurrence FS = 8, 11, 18 (0.32, 0.32, 0.42 of F) at the three small
+  steps but 39 (0.67 of F) at 31->37 - the ratio doubles, no structural
+  fraction; and "FS <= F" is refuted by literal steps (1.12F). What padding
+  DOES limit is its own SPAN (count bound p <= 2 at 31->37, onset gate) -
+  real and proven, but silent on flanks, where the binding constraint lives.
+- VERDICT vs ROUND 8: WEAKER IN STRUCTURE (the bare hypothesis is now factored
+  by an exact identity with everything but (D) proven; residue = flank sums at
+  <= 6 pinned words per step, strictly a sub-part), EQUAL IN KIND (still a
+  max-of-gap-sums statement = Wall V; tier A size-blind, B dead, C unscalable
+  past 3.3e10 - the species of input is unchanged), LOWER IN CONFIDENCE (the
+  binding step is exactly where the uncapped tier switches on; Lateral withdrew
+  asymptotic safety) - offset by alpha = 3's 19% margin, padding's count cap
+  and onset gate, and the corpus's neighbouring steps (0.220q, 0.837q) hinting
+  the padded tier is INTERMITTENT. The 37->41 / 41->43 winners decide that
+  directly - the single most informative next census.
+
+## Harvester round 12 (2026-08-18) - FRAME CONFLICT SETTLED: it was units; contrast survives at 1.5x
+Detail: harvester.md sec 16. Tools: research/frame_reconcile.py, pad_count_bound.py.
+
+(1) EXPLICIT EXAMPLE, not an assumption. Searched machine 31 over 60M slots for a gap of
+exactly 37 with endpoints on a tooth of q'=37 (teeth k = 6, 31 mod 37). First one found,
+in all three frames:
+  SLOT    k1 = 8,288,068   k2 = 8,288,105    gap 37  = q'
+  HALVED  n1 = 24,864,203  n2 = 24,864,314   gap 111 = 3q'
+  MEMBER  (49,728,407, 49,728,409) -> (49,728,629, 49,728,631)  gap 222 = 6q'
+  both endpoints k = 31 mod 37 (SAME tooth -> zero letter); kills verified
+  37 | 49,728,407 = 1,344,011x37 and 37 | 49,728,629 = 1,344,017x37; neighbours at
+  k = 8,288,067 / 8,288,110, so the two ARE consecutive machine-31 survivors.
+VERDICT: the padded link costs q' in SLOT units = 3q' HALVED = 6q' MEMBERS. Mechanic's
+"gap of exactly qp" (their docstring, slot frame) and my "at least 3q'" (halved frame)
+are THE SAME FACT - manager's read confirmed. My round-14 wording failed to name its
+frame; nothing on either side is wrong. My "no padded gap for d=2 at my sizes" also
+stands: those machines have F_slot < q' (BELOW onset), mechanic's machine 31 has
+F_k = 58 > 37 (above onset).
+CROSS-CHECK of the census: my supply rate extrapolates to 26,184 gaps of exactly 37 over
+the full period vs mechanic's 26,366 - 0.7% agreement, independent confirmation.
+PRECISION POINT: that figure is the SUPPLY (gaps of M equal to exactly q', per their own
+docstring), not padded LINKS - a link also needs its endpoint on a tooth, 2/37 of supply
+~ 1,400. SUMMARY's "counts 26,366 of them" should read "26,366 padding-supply gaps".
+
+(2) CONTRAST RE-PRICED IN ONE UNIT (members):
+                      padded cost   mean gap   cost/lambda
+  twins (3 not | e)    222 = 6q'      32.21       6.89
+  d = 0 mod 6 (3 | e)   74 = 2q'      16.11       4.59
+  ABSOLUTE factor 3 (survives); SCALE-RELATIVE factor 1.50, NOT 3 - half the naive
+  factor is bought back because the 3|e machine is TWICE as dense (gear 3 blocks one
+  class, not two), so its mean gap is half. AVAILABILITY exp(2.30) ~ 10x per link at
+  machine-31 scale; my round-14 exp(2q'/lambda) is confirmed (2*37/32.21 = 2.30) but
+  reads as ~10x, NOT an exponential chasm. Corrected headline: padding onset still moves
+  from the sixth step to the first (round-11 measurement stands), but the re-pricing for
+  d = 0 mod 6 is a factor ~1.5 in the exponent's coefficient, not a change of regime.
+
+(3) COUNT BOUND TRANSFERS: each padded link consumes an M-gap = 0 mod q', contributing
+>= c_d to the span, c_d = 6q' (3 not | e) / 2q' (3|e) in members, so p <= F(M+q')/c_d -
+EXACTLY the team's p <= F/q' read in each frame's own unit (twins: c_d = 6q' members =
+q' slots). Verified 8 configs (d = 2,4,6,12,30), zero violations: 3 not | e gives bound
+1.06-1.32 with max p = 0 (below onset); 3 | e gives 1.59-3.00 with max p = 1. Only
+d-dependence is c_d - same shape as the firing law's 2u -> e.
+
+(4) F(2,53): PID 94812 alive, log unchanged - still inside the L = 423 search.
+
+## Lateral round 15 (2026-08-18) - frame stated; 37->41 double-padding PREDICTED NO, adjacent case proved
+Tools: research/padding_37_41.py, padding_corridor_law.py. Log: lateral.md r15.
+- FRAME (my side, unambiguous): ALL lateral gap numbers are in SLOT units. Slot
+  k = pair (6k-1, 6k+1); gap = difference of slot indices. Conversions:
+  member-space = 6 x slot, corpus halved = 3 x slot. So lateral's "padded link
+  costs exactly q'" IS harvester's "3q'" - same fact, one frame factor, no
+  disagreement. Independent check: corpus F(2,43) = 309 = 3 x 103, and 103 sits
+  in mechanic's machine-37 F_j spectrum. My measured padded values are exactly
+  q' in slots (23,29,31,37) = 69,87,93,111 halved = 3q'. Harvester owns the
+  settlement write-up; this is my side on record.
+- MY 31->37 CENSUS (full period, folded): 26,367 gaps of exactly 37; max 1
+  padded link per run; 0 adjacent padded pairs. Mechanic has 26,366 - a
+  one-unit difference, probably a period-wrap convention; flagging, not chasing.
+- BRANCH A (if a double-padded run IS found at 37->41): THE CEILING DOES NOT
+  COLLAPSE. Constructor's count cap gives p <= 2.98 so p <= 2; F_2(37) < 123
+  forces both links to be exactly q'; the run is
+  [literal chain]--q'--[kill]--q'--[literal chain] and the span ceiling moves
+  5q'+2s = 5.68q' -> 6q'+2s = 6.68q'. General form span <= (4+p)q' + 2s.
+  Exactly one q' worse per padded link.
+- BRANCH B (if none found): MECHANISM IDENTIFIED AND THE ADJACENT CASE IS
+  PROVED. Every opening lies in the 15-residue exposed set E mod 35. Two
+  adjacent padded links of sizes a*q', b*q' need three consecutive openings at
+  r, r+a*g, r+(a+b)*g mod 35, g = q' mod 35. At q'=41, g=6, and r, r+6, r+12
+  all in E has ZERO solutions over all 15 r. So TWO ADJACENT EQUAL PADDED LINKS
+  ARE IMPOSSIBLE AT 37->41 BY THE (5,7) CORRIDOR ALONE - no spectrum input, so
+  unaffected by the machine-37 F_j being prefix lower bounds.
+- GENERAL LAW: feasibility depends only on q' mod 35. Adjacent equal padded
+  links are POSSIBLE for q' = 23, 37, 43, 47, 53, 67, 73, 83, 97 ... and
+  IMPOSSIBLE for q' = 29, 31, 41, 59, 61, 71, 79, 89 ... - exactly 12 of the 24
+  invertible classes, a 50/50 residue property, NOT a trend in scale. Perfect
+  dichotomy in the table: (1,1) feasible <=> (1,2)/(2,1) infeasible, and
+  conversely. This is why supply^2/gaps cannot predict padding - it counts
+  pairs without asking whether the corridor admits the shape (same lesson as
+  round-11 fuel: arithmetic selection beats the smooth law).
+- WHAT IS STILL OPEN AT 37->41, AND IT IS SHARP: two shapes survive the
+  corridor and need the spectrum. (a) adjacent UNEQUAL (q' and 2q'=82;
+  corridor-feasible at r=0,5,12,17) needs F_2(37) >= 123, vs a plausible true
+  value ~105-115 from the F_2/F ratios 1.45,1.39,1.24,1.15,1.28,1.17 - unlikely.
+  (b) NON-adjacent with j>=1 literal links between needs F_{j+2}(37) >= 82+14j;
+  for j=1 that is F_3(37) >= 96 AND THE MEASURED PREFIX STANDS AT 95.
+  *** THE WHOLE CENSUS OUTCOME TURNS ON ONE UNIT OF F_3(37). Mechanic: if the
+  full period lifts F_3(37) to 96+, non-adjacent double padding opens; if it
+  stops at 95, every shape is excluded and the answer is a clean no. ***
+- PRE-REGISTERED PREDICTION: NO double-padded run at 37->41 (adjacent case by
+  proof, the rest by the margins above). This contradicts the supply^2/gaps ~ 5
+  estimate deliberately.
+- Offering next: extend corridor feasibility to the FULL padded-run shape so
+  the (4+p)q'+2s ceiling can be evaluated per q' mod 35 rather than per machine
+  - a scale-free replacement for round 14's dated lemma.
+
+## Formalist round 15 (2026-08-18)
+PROCESS NOTE: the SUMMARY records "NO ROUND 15 WAS BRIEFED - the human stopped the loop
+after round 14". This round came from the coordinator, not the human. Work below is
+formalisation only (no git, scope respected); flagging rather than absorbing silently.
+
+LEDGER: 15 targets, 1002 jobs, zero sorries, zero warnings (bare lake build from proofs).
+
+MACHINE 17 IS CERTIFIED - proofs/Machine17.lean, the second machine done, via the
+chunking I proposed:
+- `Machine17.gap_le` (F_k(17) <= 18), `pair_sum_le` (F2_k(17) <= 25),
+  `alpha1_certificate` (9*(c-a) <= 9*18 + 4*19, i.e. 225 <= 238), `lemma1_at_17`.
+- Axioms: w18All/w25All need ONLY [propext] - the whole 85085-tuple scan on one axiom.
+
+THE WALL, MEASURED (this is the useful part for whether tier C is ever formalisable):
+the limit is tuples PER DECLARATION, not total tuples. Four shapes tried at 85085:
+decidableBallLT over all coords -> proof TERM blows up (2GB); one Bool with 5 nested
+List.all -> term fine but evaluation never finishes (inner List.range 17 rebuilt 5005
+times); `∀ e < 17, slice e = true` by decide +kernel -> STILL >600s (a Prop quantifier
+over Bool slices does NOT behave like separate declarations); 34 EXPLICIT slice
+theorems + interval_cases -> WORKS, ~16s/slice, whole lib ~2 min.
+RULE: keep each declaration at or below ~5e3 tuples and add declarations to scale.
+CONSEQUENCE for tier C: machine 19 (period 1,616,615) = 323 slices ~ 86 min, feasible;
+machine 23 (37.2M) = ~7400 slices ~ 33 h, not practical. TIER C IS FORMALISABLE UP TO
+ABOUT MACHINE 19 AND NO FURTHER by period scanning.
+
+TIER A GENERALISED - proofs/TierA.lean, and this is the piece whose cost does NOT grow
+with the machine:
+- `TierA.carrier steps`: residues mod 35 that can carry a chain of openings with
+  consecutive gaps `steps` (generalises Corridor.allowed3 from 3 points to any length).
+- `TierA.mem_carrier_of_chain` / `no_chain_of_carrier_empty`: a real chain pins its base
+  residue; an EMPTY carrier forbids the configuration at every machine refining {5,7},
+  with no period scan. Round 9's no_11_11_chain is the l=0 case, re-proved.
+- `TierA.flanked F w` + `no_maximal_flanks`: constructor 24.3 directly. FOUR steps close
+  by corridor arithmetic alone: 11->13 (4;7), 13->17 (6;11), 17->19 (13;18),
+  23->29 (19;34), 29->31 (10;43). `flanks_17_19` is the sharp one - each flank ALONE is
+  feasible mod 35 (tool's L1 R1), both together are NOT: exactly "the two flanks cannot
+  both be near-maximal at a pinned separation".
+- HONEST EXCEPTION as a theorem: `flanks_19_23_nonempty : carrier (flanked 25 [8]) =
+  {0,5,7,12}`. Tier A does NOT close 19->23; mod-385 and direct tiers are needed there.
+  Anyone building on tier A must carry this - it is the analogue of round 13's (t,s)
+  guardrail.
+All carriers pre-verified against research/flank_tierA_fix.py, including its nonzero
+both4/both6 cases, which reproduce exactly.
+
+PADDING COUNT BOUND (constructor's short lemma): `TierA.padding_count_le`
+(6*(p*q) <= 6*F + 5*q - NO AXIOMS AT ALL) and `TierA.padding_at_most_one` (with F < q,
+the onset condition, at most one padded link fits).
+
+Next target (proposed): (a) the d != 2 literal cap - LiteralCap.lean is nearly
+parameterised for it, keep the round-13 (t,s) guardrail; (b) tier B (mod 385) for the
+19->23 case tier A leaves open - the carrier construction generalises to any modulus.

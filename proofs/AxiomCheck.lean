@@ -10,6 +10,8 @@ import Corridor
 import Machine13
 import MaxGap
 import LiteralCap
+import Machine17
+import TierA
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -91,3 +93,17 @@ open BlockedSlots
 #print axioms LiteralCap.s_eq
 #print axioms LiteralCap.literal_chain_le_six
 #print axioms LiteralCap.cap_six_classes_sharp
+#print axioms Machine17.w18All
+#print axioms Machine17.w25All
+#print axioms Machine17.exposed17_iff
+#print axioms Machine17.gap_le
+#print axioms Machine17.pair_sum_le
+#print axioms Machine17.alpha1_certificate
+#print axioms Machine17.lemma1_at_17
+#print axioms TierA.mem_carrier_of_chain
+#print axioms TierA.no_chain_of_carrier_empty
+#print axioms TierA.no_maximal_flanks
+#print axioms TierA.flanks_17_19
+#print axioms TierA.flanks_19_23_nonempty
+#print axioms TierA.padding_count_le
+#print axioms TierA.padding_at_most_one

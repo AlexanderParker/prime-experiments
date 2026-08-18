@@ -820,3 +820,87 @@ STATEMENT FOR THE PROGRAMME (the real structural difference asked for):
 ### (3) F(2,53) WATCH
 PID 94812 alive; log unchanged (420 coverable, 421/422 skipped by law) - still
 inside the L = 423 search.
+
+## 16. Round 12: the frame conflict SETTLED (it was units), and the contrast re-priced
+
+Tools: research/frame_reconcile.py, research/pad_count_bound.py.
+
+### (1) THE EXPLICIT EXAMPLE - both statements were true, in different units
+
+Searched machine 31 (gears 5..31, slot frame) over 60,000,000 slots for a gap of
+exactly 37 whose endpoints sit on a tooth of q' = 37 (6^-1 = 31 mod 37, teeth at
+k = 6, 31). FIRST ONE FOUND, written out in all three frames:
+
+    SLOT frame    k1 = 8,288,068   k2 = 8,288,105     gap = 37    = q'
+    HALVED frame  n1 = 24,864,203  n2 = 24,864,314    gap = 111   = 3q'
+    MEMBER frame  (49,728,407 , 49,728,409)
+                  (49,728,629 , 49,728,631)           gap = 222   = 6q'
+
+    both endpoints: k = 31 mod 37 - the SAME tooth, so the letter is ZERO
+    kills verified: 37 | 49,728,407 = 1,344,011 x 37
+                    37 | 49,728,629 = 1,344,017 x 37
+    consecutive:    neighbouring survivors are k = 8,288,067 and k = 8,288,110,
+                    so nothing of machine 31 lies strictly between - a true link
+
+SO, EXPLICITLY: the padded link's cost is q' in SLOT units, 3q' in HALVED units,
+6q' in MEMBER units. The team's "gap of exactly q'" (slot frame - mechanic's own
+docstring says "a gap of exactly qp ... in the old machine M") and my "at least
+3q'" (halved frame) are THE SAME FACT. Nothing is wrong on either side; my
+round-14 wording simply failed to name its frame. The conflict DISSOLVES as a
+conflict, and the contrast survives as a contrast - see below.
+
+My second measurement was also correct as stated: "no padded gap at all for
+d = 2 at my sizes" was measured on machines {3,5,7,11}..{3,5,7,11,13,17}, where
+F is BELOW the padding onset (F_slot < q'); mechanic's census is machine 31,
+where F_k(31) = 58 > 37 - above onset. Below onset zero, above onset thousands:
+consistent, not contradictory.
+
+INDEPENDENT CROSS-CHECK of the census: my supply rate extrapolates to 26,184
+gaps of exactly 37 over the full period 33,426,748,355, against mechanic's
+26,366 - agreement to 0.7%. PRECISION POINT worth recording: that number is the
+SUPPLY (gaps of M equal to exactly q', as their docstring defines it), not the
+number of padded LINKS; a link additionally needs its endpoint on a tooth, which
+is 2/37 of the supply, i.e. about 1,400. The SUMMARY's "counts 26,366 of them"
+should read "26,366 padding-supply gaps".
+
+### (2) THE CONTRAST, IN ONE CONSISTENT UNIT (members)
+
+                            padded link cost   mean gap    cost / lambda
+    twins (3 not | e)        222 = 6q'          32.21        6.89
+    d = 0 mod 6 (3 | e)       74 = 2q'          16.11        4.59
+
+  - ABSOLUTE (member units): factor 3 - the contrast is real and survives.
+  - SCALE-RELATIVE (per machine's own mean gap): factor 1.50, NOT 3. Half of the
+    naive factor 3 is bought back because the 3 | e machine is TWICE as dense
+    (gear 3 blocks one class instead of two), so its mean gap is half as long.
+  - AVAILABILITY: exp(6.89 - 4.59) = exp(2.30) ~ 10x more available per link at
+    machine-31 scale. My round-14 formula exp(2q'/lambda) is CONFIRMED
+    (2 x 37 / 32.21 = 2.30) but must be read with lambda = the TWIN machine's
+    mean gap, and it is ~10x here, not astronomical.
+
+CORRECTED HEADLINE for the programme: padding is cheaper for d = 0 mod 6 by a
+factor 3 in absolute terms, 1.5 in scale-relative terms, ~10x in availability at
+machine 31 - enough to move the padding onset from the sixth step to the first
+(round 11's measurement stands), but not the exponential chasm my round-14
+phrasing suggested. Any tolerance argument leaning on "padding is expensive"
+must still be re-priced for d = 0 mod 6; the re-pricing is a factor ~1.5 in the
+exponent's coefficient, not a change of regime.
+
+### (3) THE COUNT BOUND TRANSFERS
+
+Each padded link consumes one M-gap = 0 mod q', hence contributes >= c_d to the
+run's span, with c_d = 6q' (3 not dividing e) or 2q' (3 | e) in member units. A
+run of span <= F(M+q') therefore carries
+
+    p <= F(M+q') / c_d          (member units)
+
+which is EXACTLY the team's p <= F/q' when read in each frame's own unit (for
+twins c_d = 6q' members = q' slots, so the bound is F_slot/q'). Measured over 8
+configurations (d = 2, 4, 6, 12, 30): no violations. For 3 not dividing e the
+bound sits at 1.06-1.32 with max p = 0 observed (below onset); for 3 | e it sits
+at 1.59-3.00 with max p = 1 observed. So the bound transfers verbatim with c_d
+as the only d-dependence - the same shape as the firing law's 2u -> e.
+
+### (4) F(2,53) WATCH
+PID 94812 alive; log unchanged (420 coverable, 421/422 skipped by law) - still
+inside the L = 423 search.
