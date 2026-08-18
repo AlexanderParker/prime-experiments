@@ -496,3 +496,73 @@ the member set of a slot interval and identify WHICH slot `q*c` lands in
 lateral workstream's pinned classes) — connecting the supply formula to
 slot positions, the first step toward the placement (not just count) side
 of the X-equation. Alternative: h(2) ≥ d.
+
+## Round 8 — Placement: where the supply line sits (2026-08-18)
+
+### What was done
+
+New file `proofs/Placement.lean` (namespace `Placement`), ninth lakefile
+target, importing Gear (whole stack transitively). Written before the
+session cut, registered and verified after: typechecked clean on the first
+`lake env lean` run, zero sorry, zero warnings. AxiomCheck extended.
+
+### Final theorem statements
+
+```lean
+theorem prime_mod_six (hp : p.Prime) (h5 : 5 ≤ p) : p % 6 = 1 ∨ p % 6 = 5
+theorem sign_law (ha : a % 6 = 1 ∨ a % 6 = 5) (hb : b % 6 = 1 ∨ b % 6 = 5) :
+    ((a * b) % 6 = 1 ↔ a % 6 = b % 6)
+theorem unit_mul (ha) (hb) : (a * b) % 6 = 1 ∨ (a * b) % 6 = 5
+
+def slotOf (m : ℕ) : ℕ := (m + 1) / 6
+theorem lo_slotOf (hm : m % 6 = 5) : Census.lo (slotOf m) = m
+theorem hi_slotOf (hm : m % 6 = 1) : Census.hi (slotOf m) = m
+theorem mem_members_iff_slot (hm : m % 6 = 1 ∨ m % 6 = 5) :
+    m ∈ Bridge.members T ↔ slotOf m ∈ T
+
+theorem slot_injOn_partners (hq : q.Prime) (h5 : 5 ≤ q)
+    (hS : ∀ m ∈ S, 1 < m ∧ m < q * q * q) :
+    Set.InjOn (fun c => slotOf (q * c)) (Gear.partners q S)
+theorem card_slots_of_line (hq) (h5) (hS) :
+    ((Gear.partners q S).image fun c => slotOf (q * c)).card = Gear.R q S
+theorem R_slots_eq (hq : q.Prime) (h5 : 5 ≤ q) (hcube : 6 * t ≤ q * q * q) :
+    Gear.R q (Bridge.members (Finset.Ico 1 t))
+      = ((Finset.range (6 * t)).filter fun c =>
+          c.Prime ∧ q ≤ c ∧ slotOf (q * c) ∈ Finset.Ico 1 t).card
+```
+
+### Design notes
+
+- One simplification over the brief: `slotOf m = (m + 1) / 6` works for
+  BOTH sign classes — `(6k−1+1)/6 = (6k+1+1)/6 = k` — so no case-split
+  function, and every slot-arithmetic goal stays omega-friendly (no `if`).
+- The sign law is a four-case `decide` after `Nat.mul_mod`; `prime_mod_six`
+  is two divisor-exclusions plus omega (which handles `∣` and `%` by
+  literals natively).
+- Injectivity of placement is the slot cap in action: two partners in one
+  slot means q divides both members at distance 2 — the mixed-sign cases
+  land exactly on `Layer.slot_cap`, the same-sign cases are cancellation.
+- The count corollary uses slot interval `Ico 1 t`, not `range t`: slot 0
+  is degenerate (members 0 and 1, and 1 < m fails). Census identities are
+  unaffected (any Finset), but placement statements should prefer `Ico 1 t`.
+- Axiom notes: `sign_law` depends only on `propext`; `prime_mod_six` on
+  `[propext, Quot.sound]` — the arithmetic core is nearly axiom-free.
+
+### Build status
+
+`lake build` (all 9 targets): **Build completed successfully (990 jobs)**,
+zero sorry.
+
+### Axiom audit
+
+All six checked Placement theorems standard; see notes above for the
+two that need less.
+
+### Proposed next target
+
+The ledger now knows count AND position of every large-gear line. Two
+candidates: (a) the twin-product pin — the lateral workstream's closed form
+`(p+1)² − 1 = p(p+2)`: for a twin pair (p, p+2), the product slot
+`slotOf (p*(p+2))` is `6u'²`-structured and its membership claims are pure
+arithmetic, a small file connecting Placement to Polignac's pinning
+theorems; (b) h(2) ≥ d's product inequality (long-standing alternative).

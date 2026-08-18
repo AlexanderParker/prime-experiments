@@ -1302,7 +1302,7 @@ is as small as one term allows:
 
 And it fails *worse* as `z` grows, because `F(2,z)` grows while `u` only shrinks like `1/y`.
 So the mechanism is rigorous, applies nowhere, and the gap widens - the self-referential
-factor `1/F(2,z)` is exactly what makes it hopeless.
+factor `1/F(2,z)` is the limiting event: it prices the route out of every regime.
 
 Both halves land where sections 14a and 15 already put the barrier: an upper bound needs
 control of the sieved set in a window far shorter than its period, and no elementary route

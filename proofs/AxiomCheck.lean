@@ -5,6 +5,7 @@ import Supply
 import Census
 import Bridge
 import Gear
+import Placement
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -46,3 +47,9 @@ open BlockedSlots
 #print axioms Gear.semiprime_of_fiber
 #print axioms Gear.R_eq_card_partners
 #print axioms Gear.mem_partners
+#print axioms Placement.prime_mod_six
+#print axioms Placement.sign_law
+#print axioms Placement.mem_members_iff_slot
+#print axioms Placement.slot_injOn_partners
+#print axioms Placement.card_slots_of_line
+#print axioms Placement.R_slots_eq

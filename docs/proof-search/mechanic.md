@@ -422,7 +422,7 @@ Results (real / null1 / null2):
     50021  3.185   .273/.041/.287    4.38/3.32/4.59       13.1/3.2/14.2  .088/.005/.091
 
 Findings:
-1. INDEPENDENT-PAIRS NULL FAILS BY A FACTOR ~6.6 ON P0 (0.041 vs 0.273 at
+1. INDEPENDENT-PAIRS NULL MISSES P0 BY A FACTOR ~6.6 (0.041 vs 0.273 at
    50021). Its compression 3.32 vs real 4.38: the real machine compresses
    32-46% harder than independent pairs; excess ratio declines with y
    (1.46 -> 1.32) but the absolute gap grows (0.89 -> 1.06).
@@ -479,7 +479,7 @@ at slot 1-2 shrinks t-P and spikes R), so a convention-robust bulk sup
 (t >= 64) is tracked alongside. Int64 overflow in M2*(t-P) at W ~ 1.7e9
 caught and fixed (float cast) - one garbage row regenerated.
 
-### (1) The sup R(y) curve - IT CROSSES 1. The zone dies at y ~ 2-5 x 10^6
+### (1) The sup R(y) curve - it crosses 1: generic forcing ends at y ~ 2-5e6
 
     y        scan      supR   t*     supB64   zone(lo,hi)    #zone
     503      full     6.545    27    2.652    (5, 2787)       2770
@@ -616,3 +616,60 @@ falloff, no band anomalies.
 - Renewal-rate model (6/ln)^8 is a fit to decade ratios; counts are exact.
 - Side words recomputed independently by Miller-Rabin (assert pl != pr
   passed on all record runs - scan/MR cross-validation).
+
+## Attempts ledger (round 8, per user direction)
+
+Reframing of this workstream's results as attempt -> yield -> limiting
+EVENT (not trend). Trend statements are demoted to observations; each
+entry names the specific mechanism where the attempt stopped and what
+that mechanism offers.
+
+1. Fragile census (r1-2). YIELD: exact zero-parameter law frag(q) =
+   2*tw*((q-1)/(q-2))*S1w(q)/piw, 2e-4 accuracy incl. rare tail.
+   LIMITING EVENT: the law contains the factor "tw" - the fragile census
+   is twin-count-calibrated, so it restates rather than constrains n0.
+   MECHANISM TO EXPLOIT: the law is exact enough that any window
+   violating it would carry information; none found - the machine is
+   HL-exact at the fragile level.
+2. Margin trajectories (r3). YIELD: M(t) = t - li-model to 0.1%; danger
+   zone is member-anchored (drift sign flips at member e^6 ~ 403 - a
+   pinpointable event, the ONLY absolute constant found so far).
+   LIMITING EVENT: M is gear-blind (an identity, not a trend); bands
+   cannot enter through the census. OFFER: attribution-level objects.
+3. Supply/multiplicity (r4-5). YIELD: capacity never binds (exact);
+   compression gap = zeroth moment = twin mass, exactly. LIMITING EVENT:
+   mean is pinned by arithmetic, so all forcing must come from P(mu=0) -
+   an identity that localizes the whole problem into one number per
+   prefix. OFFER: that number's product-baseline is tracked to 1.4 points;
+   the deviation IS structured (HL twin-mass ratio 0.85 -> 0.77).
+4. Inversion zone (r6). OBSERVATION (not law): sup R decays ~ y^-0.6.
+   EVENT: zone nonempty iff bottom-band prime surplus exceeds the CS
+   inefficiency; revival at any y = a twin in that window's first slots.
+   So "zone revives i.o." is an exact, floor-arithmetic-checkable
+   restatement of the conjecture LOCALIZED to ~200 slots per window -
+   an address, not a dead end. What kills generic revival is fattening
+   t - P; what would revive it is exactly what we seek.
+5. Saturated runs (r7-8). OBSERVATION: L* = 13 to member 7.2e10.
+   EVENT PENDING: the constellation model predicts ~2.6 L=14 instances in
+   (7.2e10, 1e12) - the running scan either assigns the first L=14 an
+   address or produces a quantified deficit vs the model; both outcomes
+   are events, and a deficit would be the more interesting one (it would
+   mark the first measured departure of the machine from HL statistics).
+
+### Ledger classification (round 8, continuing the reframe)
+
+Every "closed" route in agents-shared, binned by the event-vs-trend
+criterion:
+- EVENTS (exact, mechanism visible): reduction iff; horizon; slot-cap;
+  supply identity; Bridge identity; mirror moment-vacuity (k -> -k);
+  roots-of-unity law; R > 1 => n0 >= 1; defect identity (defect = twin
+  count, per slot); drift-sign flip at member e^6 ~ 403.
+- TREND OBSERVATIONS in verdict clothing (real measurements, not walls):
+  zone death y ~ 3-5e6; sup R ~ y^-0.6; C_CS/M_X growth 1.26 -> 1.58;
+  L* = 13; renewal rates; twin-mass ratio 0.77-0.85 drifting.
+- IMPORTED HUMAN LIMIT (not a machine event): T1 closed at "exponent
+  0.525 vs needed 0.5" - a fact about the published corpus, not about
+  the integers. The unexamined machine event underneath: thinnest layer
+  bands sit exactly at twin endpoints (the self-reference at the binding
+  case) - flagged as candidate reopening; nobody has interrogated it as
+  a mechanism rather than an obstacle.

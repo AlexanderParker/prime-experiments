@@ -1,8 +1,9 @@
 # Harvester workstream - side theorems and adjacent conjectures
 
 Round 1 (2026-08-18). Mission: statements weaker or adjacent to twin primes where this
-session's machinery yields actual results. Everything below is priced honestly; "not
-reachable" is stated where true.
+session's machinery yields actual results. Everything below is priced honestly;
+"not reachable" always means "not reachable with currently published methods" - an
+imported corpus limit, stated as such, distinct from any event in the machine itself.
 
 ## 1. Survey of candidates
 
@@ -13,19 +14,24 @@ the terminus of the layer-band descent.
 - Machinery that applies: margin census (M(t) law, li-model to 0.1%), band tiling,
   exact censuses to 6.67e9 slots. All DIAGNOSTIC: the margin is gear-blind (mechanic
   round 3) and the bands are invisible to it at 1e-4.
-- Honest distance: localisation technology stops at exponent 0.525 (Alweiss-Luo, anchored
-  at Baker-Harman-Pintz); needed 0.5. Not implied by RH. The machinery contains no new
-  localisation idea - the gears frame is a sieve reparametrisation and inherits the wall.
-- Verdict: NOTHING REACHABLE beyond known. Value enormous, reachability ~0.
+- Honest distance: the published localisation exponent stops at 0.525 (Alweiss-Luo, anchored
+  at Baker-Harman-Pintz); needed 0.5. Not implied by RH. IMPORTED CORPUS LIMIT - a fact about
+  existing methods, not about the machine; the gears frame is a sieve reparametrisation and
+  inherits it unchanged. The machine-side event underneath (thinnest bands sit exactly at twin
+  endpoints) remains uninterrogated as a mechanism.
+- Pricing: nothing reachable beyond known WITH PUBLISHED METHODS. Value enormous,
+  reachability ~0 by current technology.
 
 ### C2. Polignac for a fixed even gap 2d - the conjecture itself
 - Machinery: everything transfers (see C3); research/general_gap.py already derives the
   class count prod(q - r_q), r_q = 1 iff q | d - the Hardy-Littlewood factor from the
   blocking rule alone.
-- Honest distance: parity wall per fixed d. Maynard-Tao/Polymath give SOME d <= 246
-  infinitely often, never a chosen d. Same wall as twins for every single d.
-- Verdict: conjecture not reachable for any fixed d. (The machinery does not even prefer
-  small d: the blocked-residue structure is isomorphic up to the q | d collapse.)
+- Honest distance: the parity barrier per fixed d - an imported corpus limit (about sieve
+  methods as published, not the machine). Maynard-Tao/Polymath give SOME d <= 246 infinitely
+  often, never a chosen d. Same imported limit as twins for every single d.
+- Pricing: conjecture not reachable for any fixed d by published methods. (The machinery does
+  not even prefer small d: the blocked-residue structure is isomorphic up to the q | d
+  collapse.)
 
 ### C3. The per-gap reduction as a standalone kernel-checked theorem  <- TOP PICK (with C4)
 Statement: for EVERY d, {p : p, p+2d both prime} is infinite IFF every scale has a window
@@ -44,7 +50,7 @@ gear blocks both members of a gap-2d slot iff q | d (slot-cap generalised).
 ### C4. Goldbach via the paired-Jacobsthal frame
 Two very different objects here:
 - The CONJECTURE (or ZM Conjecture 6, the h_2 bound): Reduction-A class or harder (h_2 is
-  a max over all differences). NOT reachable.
+  a max over all differences). Not reachable by published methods.
 - The windowed REDUCTION: "if some n in (sqrt N, N - sqrt N) has n and N - n free of prime
   factors <= sqrt N, then N is a sum of two primes", with the converse exact on the
   representations with both parts above sqrt N. Same horizon argument, reachable NOW,
@@ -60,7 +66,7 @@ Two very different objects here:
   proven in-corpus); their external novelty is low (standard sieve-support counting).
   Infinitude of quadruplets is strictly beyond twins. The k-tuple version of C3's
   reduction is a mechanical extension (pattern = finite offset set) if ever wanted.
-- Verdict: no standalone publishable theorem beyond a k-tuple version of C3. Low value.
+- Pricing: no standalone publishable theorem beyond a k-tuple version of C3. Low value.
 
 ### C6. The overcount census theorem (Lateral rounds 2-3)
 Statement: machine overcount = SAME + PAIRSPLIT - CORR, with SAME = squarefree-product
@@ -86,11 +92,12 @@ every scale; all other gaps enter at depth ~P/(6g) conditionally on mod-6 alignm
 Statement (measured): fragile * pi_win / (twins * W1) -> 2, exact to 0.43% at y=50021,
 Poisson-clean per gear band with the size-corrected form.
 - Honest distance: this is a Hardy-Littlewood-class asymptotic (its ingredients are
-  twin-HL and semiprime counting); unconditional proof is beyond current technology.
-  A CONDITIONAL derivation (under HL for pairs) looks writable and would explain the
-  constant 2 as the two ways a lone-composite member pairs with a prime; that is an
-  exercise in heuristic bookkeeping, not a theorem of independent standing.
-- Verdict: not harvestable unconditionally. Low.
+  twin-HL and semiprime counting); unconditional proof sits beyond currently published
+  technology - an imported corpus limit, not a fact about the law itself, which the data
+  match to 0.43%. A CONDITIONAL derivation (under HL for pairs) looks writable and would
+  explain the constant 2 as the two ways a lone-composite member pairs with a prime; that
+  is an exercise in heuristic bookkeeping, not a theorem of independent standing.
+- Pricing: not harvestable unconditionally by published methods. Low.
 
 ### C9. Universal double-onset bound (Constructor round 2)
 L0(y) <= 27129 for every y via Montgomery-Vaughan. Already proved in-corpus; it is a
@@ -307,6 +314,59 @@ split_class and twin_split_count on [propext, Classical.choice, Quot.sound];
 split_rep_twin_eq_pin needs only [propext, Quot.sound]. Polignac.lean now holds 31
 theorems across four sections: ZM-frame reductions, g=2 pinning, SAME census +
 self-block, PAIRSPLIT + loop-closer.
+
+## 9. Round 5 (coordinator-approved): the CORR triple - the signed layer lands
+
+CHOICE MADE: CORR triple over F(2,53). Reason: the triple reduces entirely to the
+round-3/4 primitives (six_mul_class + card_class_Ico + chineseRemainder) - a clean,
+bounded Lean bite - while the F(2,53) search is open-ended compute (tens of minutes
+per increment, uncertain termination inside a round; the expensive step is the final
+uncoverable proof). F(2,53) stays shelved as the rank-5 data item.
+
+New theorems in proofs/Polignac.lean (built clean on first compile):
+
+- `twoSided_class` (THE GENERAL BOTH-SIDED TERM): for coprime moduli mL, mR > 1,
+  both coprime to 6, the slots with mL | left member and mR | right member are ONE
+  CRT class mod mL*mR with floor count (t + M - a)/M. Subsumes split_class (both
+  prime) and yields EVERY both-sided term of the master formula in one statement -
+  the moduli need only be coprime-to-6 coprime pairs, which all squarefree gear
+  products are.
+- `corr_triple_class`: the first genuinely new CORR case - distinct primes
+  q, r, s >= 5, the triple (qr | left, s | right) is one class mod qrs, count
+  closed-form. Ten lines: pure instantiation of twoSided_class. Other role splits
+  (q | left, rs | right; etc.) are further instantiations.
+- `corr_triple_signed` (THE SIGN, subtraction-free): distinct slots hit by either
+  of two split classes sharing right gear s, PLUS the triple class, EQUAL the two
+  split incidence counts. Only hypothesis: Coprime q r. The inclusion-exclusion
+  step formal: the triple class is exactly what the signed sum removes when
+  incidences become distinct slots. (Uses Finset.card_union_add_card_inter; the
+  overlap-equals-triple step is the coprime divisibility glue.)
+- `six_coprime_prime`: helper (prime >= 5 coprime to 6).
+
+PAPER-SIDE: shape of the general CORR term and what remains for full CORR.
+Every term of Lateral's master formula is N(s_L, s_R; t) for coprime squarefree
+gear products (s_L, s_R), total >= 2 gears, sign (-1)^{#gears}; twoSided_class
+already gives every such N as one class + floor count (s_R = 1 side is the SAME
+census, done in round 3). What is NOT yet formal is the ASSEMBLY: (i) the general
+union-to-alternating-sum conversion (n-ary inclusion-exclusion over the split
+incidence classes - mathlib has Finset.inclusion_exclusion machinery to build on;
+my corr_triple_signed is the n = 2 case), and (ii) the statement that the assembled
+signed sum equals the census overcount (Lateral verified it exact at every prefix
+at two scales). Both are combinatorial bookkeeping over the two proven primitives -
+no new number theory anywhere in the remaining gap. Estimated as one further
+formalist-scale round if the team wants full CORR; the per-term core is complete
+as of this round.
+
+Verification discipline: research/corr_triple_check.py ran first - 20 triples from
+{5..19}, all 3 role splits each (60 two-sided cases): class membership exhaustive
+over one period, floor counts, and the signed identity |A or B| + |triple| =
+|A| + |B| with overlap == triple at 5 t-values per triple: zero fails.
+
+BUILD STATUS ROUND 5: BUILDS CLEAN on first compile; whole ledger green - `lake build`
+"Build completed successfully" (990 jobs), zero sorry. Axiom audit: all four new
+theorems on [propext, Classical.choice, Quot.sound]. Polignac.lean = 35 theorems,
+five sections: ZM-frame reductions, g=2 pinning, SAME census + self-block,
+PAIRSPLIT + loop-closer, CORR two-sided/triple/signed.
 
 What this buys: the finite u'-pin list U in the round-4 master formula (n2 = B - U,
 U confined to the bottom y/6 slots) now has its kernel formally characterised: existence

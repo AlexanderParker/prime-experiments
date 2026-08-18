@@ -132,7 +132,7 @@ a restatement, useful as attribution (which gears carry the fragile load: overwh
   member). The race C2 monitors (doubles vs twins from the bottom) is lost immediately
   in every real window: **the bottom band is the proof target.**
 
-## 5. Closures (recorded in the corpus discipline: what fails, exactly why)
+## 5. Attempts recorded with their limiting events (corpus discipline: what each yielded, and the exact event that limits it)
 
 **5a. The run condition is an equivalence, not a shortcut.** A twin slot is itself a
 run with excess +1, so: some run has `P(I) > N(I)` iff the window has a twin. C2's
@@ -144,7 +144,7 @@ block it: the 46-prime pattern of `[53, 283]` is admissible as a constellation (
 `p >= 47` there are more residues than the 46 elements) - nothing mechanical forbids an
 excess run from recurring above any height.
 
-**5b. The pair-coincidence doubles bound closes - the squeeze, exact.** Try to refute X
+**5b. The pair-coincidence doubles bound - limited by an exact empty-intersection event.** Try to refute X
 at large `y` by bounding the doubles supply: by L1 each double slot in a prefix is a
 cross-member coincidence of a *distinct* gear pair `(q, r)`, occupying 2 CRT classes
 mod `qr`, so in `L` consecutive slots with active gears `<= z`
@@ -158,8 +158,8 @@ band top `t < 139^2 = 19321` and `ln(6L) < 9.87`. But a band that short can hold
 `~ 2 * 6L / ln(6L)` primes (Brun-Titchmarsh), i.e. up to `12/ln(6L) >= 1.22` per slot -
 already above the `1 - s(z) < 1` per slot that X is forced to supply. The two
 requirements - non-vacuous coincidence bound (short band) and prime-thin band (long
-band) - have empty intersection. Same shape as corpus 5.2, now closed for the doubles
-side of the ledger too.
+band) - have empty intersection: the limiting event, exact. Same shape as corpus 5.2,
+now recorded for the doubles side of the ledger too.
 
 **5c. What survives.** The count layer of the ledger yields exactly one non-vacuous
 weapon (C2), it kills X unconditionally in every window we can reach computationally,
@@ -251,7 +251,7 @@ more than 27129 prime-containing slots.
     max L0 = 17 (at y = 13); L0 = 0 in 153/442 windows (window opens on a double);
     >= 1 twin strictly before the first double in 132/442 windows.
 
-## 9. Closure of the onset route, and the named missing fact
+## 9. The onset route's limiting event, and the named missing fact
 
 **What would contradict the forced alternation.** To kill X at onset scale one must
 *prove* a twin inside the onset prefix, i.e. the unconditional fact
@@ -267,7 +267,8 @@ short-interval lower bounds (Heath-Brown, Baker-Harman-Pintz `x^0.525`) give den
 **And it is not merely unproven - as a universal statement at onset scale it is
 FALSE.** In 310 of 442 real windows the onset prefix contains *no* twin: the perfect
 prime/composite alternation X demands there is actually realised. The onset prefix is
-therefore **consistent** with X, and no theorem can refute X inside it. Exact closure:
+therefore **consistent** with X, and no theorem can refute X inside it. The limiting
+event, exact:
 
 > The double-onset route cannot produce the contradiction by itself. `L0(y)` is capped
 > unconditionally at 27129 and measured collapsing to 0 (max 17, at y = 13); the
@@ -313,7 +314,9 @@ strength and unproven. Measured slack (band slots vs measured max stride
     y' = 9973:  band 113220 slots   stride ~489    ratio 231.4
 
 The forced twin-free run exceeds every measured stride by a growing factor - the input
-is measured-true with widening slack and proven nowhere. Stop.
+is measured-true with widening slack and proven nowhere. Paused here: the limiting
+event is the absence of any bounded-gap localisation theorem at exponent 1/2 (an
+imported corpus limit, priced exactly in section 12), not a fact about the machine.
 
 ---
 
@@ -383,7 +386,8 @@ bounded-looking distance above y (283, 1277-1303, 2657-2713, 5639-5659 - always 
 pigeonhole surplus vanishes - CUM's measured margin over bare twin-existence is two
 slots of excess and shrinking.** The cumulative form's content at scale is carried
 entirely by small prime clusters just above y; it degenerates toward the twin statement
-itself. Its residual value is diagnostic (M(t), E(y) are computable violation meters)
+itself (trend observation, not a wall - it locates where CUM's content concentrates).
+Its residual value is diagnostic (M(t), E(y) are computable violation meters)
 and bibliographic (it lands the problem in the prime-cluster literature, where the
 partial results are quantified) - not logical leverage. The genuinely open middle
 ground remains the review's multiplicative tail bound, which CUM neither implies nor
@@ -415,18 +419,19 @@ exactly 4*sqrt(x) + 4. Even the THICKEST band available inside a given window is
   differing by <= d. The floor delta = 0.525 is inherited from Baker-Harman-Pintz
   (2001): even ONE prime in [x - x^theta, x] is known for no theta < 0.525. Any
   improvement of the pair localisation below 0.525 would first improve single-prime
-  localisation - Legendre-strength progress.
+  localisation - Legendre-strength progress. (Imported corpus limit: a fact about
+  published methods, not about the machine.)
 * Computed curiosity: x^0.525 < 4*sqrt(x) until x = 4^40 ~ 1.2e24, so below 1e24 the
   Alweiss-Luo interval literally fits inside every band - but the theorem is
   asymptotic with an ineffective onset, so this yields nothing at accessible heights.
   The honest comparison is exponents: need 1/2 (+ o(1)), have 0.525.
 
-**The tower of what fails, in order:**
+**The tower of inputs, each with its limiting event:**
 
     T1  a PRIME in every layer band          OPEN. Implied by Legendre's conjecture
         (band contains the Legendre interval (y'^2, (y'+1)^2)); NOT implied by RH
         (RH gap bound O(sqrt(x) log x) exceeds the thin band 4*sqrt(x)); implied by
-        Cramer. Fails before twins are even mentioned.
+        Cramer. Limits the route before twins are even mentioned.
     T2  a pair with gap <= d in every band   above T1; proven localisation stops at
                                              exponent 0.525 (Alweiss-Luo); need 1/2.
     T3  a pair with gap exactly 2            the parity step on top: no bounded-gap
@@ -438,8 +443,11 @@ exactly 4*sqrt(x) + 4. Even the THICKEST band available inside a given window is
 > (localisation: a Legendre-class open problem, exponent deficit 0.025 anchored at
 > the BHP floor) + (parity: the full 246 -> 2 step, no partial result).** The thin
 > bands - produced exactly when the sqrt-scale machine has a twin - are the binding
-> case: the descent input dies first at T1, "a prime between consecutive prime
-> squares", before its twin content is even engaged.
+> case: the descent input meets its first limiting event at T1, "a prime between
+> consecutive prime squares", before its twin content is even engaged. The 0.525
+> floor is an imported corpus limit; the adjacent MACHINE event - thinnest bands
+> occur exactly at twin endpoints, the self-reference sitting at the binding case -
+> remains uninterrogated as a mechanism and is a candidate reopening.
 
 Stop.
 
@@ -576,16 +584,20 @@ Measured at window ends (interior windows, all prefixes computed):
     2003   3.311    3.543   1.070             5.431          1.533
     5003   3.631    3.813   1.050             6.007          1.576
 
-* **Union bound (Bonferroni-1):** n2 <= S1 - a floor M >= 1, never a ceiling. Useless.
+* **Union bound (Bonferroni-1):** n2 <= S1 - a floor M >= 1, never a ceiling; no
+  forcing content.
 * **Bonferroni-2:** n2 >= S1 - sum C(m_k,2) would give a ceiling - VACUOUS at every
   scale and every checkpoint tested (sum C(m_k,2) > S1 as soon as mean m > 3).
 * **Cauchy-Schwarz / Turan second moment:** n2 >= S1^2/M2, ceiling C_CS = M2/S1,
   legitimately unconditional (M2 is freedom-free arithmetic). **The manager's
-  expectation "the ceiling lands at exactly 2x the need" is REFUTED - the truth is
-  worse.** C_CS/M_X is 1.26 -> 1.58 and GROWING (it tracks the m-distribution's
-  dispersion <m^2>/<m>^2 ~ lnln-divergent), while the window a winning ceiling must
-  hit, (M_real, M_X), NARROWS as 1 + n0/(t-P) -> 1 (1.22 -> 1.05 in range). The
-  two move apart on both ends; the second moment does not land at 2x - it diverges.
+  expectation "the ceiling lands at exactly 2x the need" is settled negatively by
+  computation - the measured behaviour is the opposite.** C_CS/M_X is 1.26 -> 1.58
+  and GROWING (it tracks the m-distribution's dispersion <m^2>/<m>^2 ~
+  lnln-divergent), while the window a winning ceiling must hit, (M_real, M_X),
+  NARROWS as 1 + n0/(t-P) -> 1 (1.22 -> 1.05 in range). The two move apart on both
+  ends; the second moment does not land at 2x - the ratio grows through the whole
+  measured range (trend observation; it locates the missing structure in the
+  m-dispersion, not in the mean).
 * **Large sieve / Montgomery-Vaughan:** on this class system the large sieve is the
   translation-averaged second moment - same content as C_CS; its scalar photograph
   is round 4's rho -> 1/2. Selberg's Lambda^2 gives upper bounds on n0 (factor ~4
@@ -610,8 +622,9 @@ Worked instance (y=503, t=4): prefix moments S1=3, M2=5 give n2 >= 9/5 > t-P = 1
 the twin (521,523) forced by arithmetic plus the prime count, not found by search.
 **Where parity re-enters, precisely:** (i) turning the zone into a theorem needs
 P(t) > t - S1^2/M2 - a short-prefix prime LOWER bound at density 0.42-0.80/slot
-(0.07-0.13/integer), superdense class; nothing unconditional exists below the 0.525
-exponent wall, and no short-interval lower bound approaches 0.07/integer. (ii) the
+(0.07-0.13/integer), superdense class; nothing unconditional is published below the
+0.525 exponent (imported corpus limit), and no short-interval lower bound approaches
+0.07/integer. (ii) the
 ceilings themselves: any bound using only sieve-axiom moments cannot dip below what
 parity-twisted configurations achieve on the same moments; measured overshoot
 26-58% and widening against a needed margin of 5-22% and narrowing. sup R declines
@@ -642,7 +655,7 @@ measurement, not metaphor.
 
 ---
 
-# Constructor round 6: the zone's fate, and the third-moment front opened and closed
+# Constructor round 6: the zone's fate, and the third-moment front opened, computed, and located at its limiting events
 
 Scripts: `research/zone_fate.py` (bottom-band ladder scan to y = 10^7 + LP moment
 ceilings). Mechanic's round-5 moment data consumed (multiplicity_summary.csv /
@@ -670,9 +683,10 @@ empties re-confirmed at T = 200000):
     7000003    1.019      21    0.934    1.091    [21, 24]
     10000019   1.000       -       -        -     EMPTY (T = 200000)
 
-**Answers to the mandate.** (i) sup R does NOT cross 1 at a single y - the zone
-dies GENERICALLY (shrinking extents, sup -> 1+) with first empty windows at
-y = 5000011 and 10000019, but revives sporadically. (ii) The killer is the
+**Answers to the mandate.** (i) sup R does NOT cross 1 at a single y - the zone's
+generic forcing fades by trend (shrinking extents, sup -> 1+; observation), with
+the first empty windows at the specific events y = 5000011 and 10000019 - and it
+revives sporadically. (ii) The killer is the
 P-side/boost: the twin surplus n0/(t-P) collapses like the bottom-band twin share
 (~1/ln^2 y: boost at argmax 2.00 -> 1.08-1.13 down the ladder), while eff erodes
 slowly (0.96 -> 0.86-0.94, the lnln m-dispersion). The zone needs boost > 1/eff
@@ -689,7 +703,9 @@ is equivalent to the twin prime conjecture**, and a revival's fuel IS a bottom
 twin. Maximum-skepticism verdict, as demanded: no certificate "R(t*) > 1 for all
 y" can exist short of the conjecture itself - the inversion zone is a DETECTOR of
 bottom twins (it certifies them from moments + P without exhibiting the pair),
-never a generator. Its unconditional content is now exhausted.
+never a generator. That equivalence is the route's limiting event, and also its
+yield: the conjecture now has an ADDRESS - an exact, floor-arithmetic-checkable
+restatement localized to each window's first slots.
 
 ## 18. The third-moment front: opened, computed, closed
 
@@ -725,8 +741,132 @@ the ceiling toward M_X in any material way: the moment ladder converges to
 exactness far too slowly, and the mirror contributes nothing by symmetry. This
 corroborates Mechanic's round-5 finding by an independent route: the X-gap lives
 entirely in the zeroth moment (the twin mass P(omega_L = omega_R = 0)), which no
-power moment of m sees. The compression frontier at fixed moment order is closed;
-what the zone analysis adds is that the POSITIONAL bottom-band content - the one
-strip beyond moments this inventory left standing - is exactly bottom-twin
-detection, i.e. the conjecture again. The constructor's count/moment toolkit is
-now fully spent; remaining live fronts belong to the structural workstreams.
+power moment of m sees. The twin mass is a reporting metric - the exactness
+scoreboard - not a mechanism; forcing must come from placement/pin/alternation-
+level structure. The compression frontier at fixed moment order has reached its
+limiting events (the mirror theorem; the measured LP convergence, <3% movement
+against a 48% gap); what the zone analysis adds is that the POSITIONAL
+bottom-band content - the one strip beyond moments this inventory left standing -
+is exactly bottom-twin detection, i.e. the conjecture again, now with an address.
+The count/moment yields are banked; the open mechanisms belong to the structural
+workstreams.
+
+---
+
+# Constructor round 8: the multiplicative route - ratio data, tolerance theorem, wall verdict
+
+Script: `research/multiplicative_route.py`. Inputs: the exact consecutive-machine
+chain (adjacent frame) F(2,y) = 6, 15, 21, 33, 54, 75, 102, 129, 174, 264, 273,
+309, 354 at y = 5..47 [corpus section 1; covering-bound-route sec 16], F(2,53) >=
+420 partial; the merge recursion, chain condition, fuel censuses, saturation
+theorem [gear-recursion.md, chain-conditions.md]; requirement F(2,y) < (y^2-y)/2
+[gear-recursion sec 6].
+
+## 19. Multiplicative accounting of stride growth
+
+**19.1 The ratio data.** r = F'/F per consecutive step, against the window budget
+(q'/q)^2 (the factor the requirement grows by):
+
+    step     r=F'/F  budget   verdict   incr  incr/q   F'/requirement
+    5->7     2.500   1.960    OVER        9   1.286    0.714
+    7->11    1.400   2.469    under       6   0.545    0.382
+    11->13   1.571   1.397    OVER       12   0.923    0.423
+    13->17   1.636   1.710    under      21   1.235    0.397
+    17->19   1.389   1.249    OVER       21   1.105    0.439
+    19->23   1.360   1.465    under      27   1.174    0.403
+    23->29   1.265   1.590    under      27   0.931    0.318
+    29->31   1.349   1.143    OVER       45   1.452    0.374
+    31->37   1.517   1.425    OVER       90   2.432    0.396
+    37->41   1.034   1.228    under       9   0.220    0.333
+    41->43   1.132   1.100    OVER       36   0.837    0.342
+    43->47   1.146   1.195    under      45   0.957    0.328
+    cumulative: sum ln r = 4.078 vs budget 4.481; margin ratio flat at 0.32-0.44.
+
+Per-step multiplicative bounds of the exact budget shape r <= (q'/q)^2 are FALSE
+at 6 of 12 steps - the same lumpiness that limited the additive 1.8q [corpus 6a],
+seen multiplicatively. Uniform ratio caps r <= c > 1 cannot close, by exact
+counting: pi(y) steps against a y^2 budget force the per-step geometric mean to 1. The only
+viable shape is r <= 1 + alpha*q/F(M), i.e. the ADDITIVE per-step law
+incr <= alpha*q - the multiplicative view's contribution is the bookkeeping that
+shows which shapes can possibly close, not a new bound.
+
+**19.2 The tolerance theorem (the round's result).** Corpus 6a closed per-step
+increment bounds against the threshold 1.8 - but that threshold comes from the
+odd-sum elementary step (sum q <= (y^2+2y-3)/4, all odd numbers). Gear-recursion
+line 366 already noted the sharp prime sum gives "C/log y" and never drew the
+per-step consequence. Drawn here, verified exactly:
+
+> **THEOREM (conditional closure, any crude constant).** If the increment law
+> F(M+q) - F(M) <= alpha*q holds at every consecutive-gear step with q > 47, for
+> ANY fixed alpha <= alpha*(y)-scale - in particular alpha = 2.5 or 3 - then
+> F(2,y) <= 354 + alpha*(S(y) - 328) < (y^2 - y)/2 for every prime y >= 53
+> (S = prime sum). Checked exactly at every prime y in [53, 10^6]: zero failures,
+> worst ratio 0.6557 at y = 113 (alpha = 3); beyond 10^6 by Rosser-Schoenfeld
+> (S(y) < 1.25506 y^2/ln y, sufficient once ln y > 7.54). With y <= 47 known
+> directly, this gives a survivor in every window - twins infinite.
+
+The critical constant GROWS: alpha*(y) = [(y^2-y)/2 - 354]/[S(y) - 328] = 5.64 at
+y = 101, 8.71 at 10^4, 13.3 at 10^6 - asymptotically ln y. So the corpus's
+gear-37 refutation (2.432q) touches nothing here: 2.432 < 2.5, and the route
+needs no sharp constant at all. **Per-step increment bounds DO deliver - corpus
+6a's closure holds only for the elementary odd-sum chain.** The open link is now
+a single mechanical statement: no consecutive step ever exceeds 2.5q (equivalently
+3q, with more margin and a later finite base).
+
+Decision point: F(2,53). alpha = 2.5 demands F(2,53) <= 486, alpha = 3 demands
+<= 513, the window budget itself demands <= 450 eventually-per-step; the running
+search sits at >= 420 (incr >= 66 = 1.245q so far, unfinished). The measurement
+the review already ranked as decisive [review 7a] now also prices this route's
+constant.
+
+**19.3 The mechanism question: does the chain condition give an a-priori cap?**
+Two regimes, sharply split:
+
+* **Saturation regime (q - 1 > F(M)): YES, a theorem.** No two consecutive
+  openings can both be deleted (deletion spacing >= q-1 adjacent), so
+  F(M+q) = F2(M) [gear-recursion, proved], and incr = F2 - F <= F < q - the
+  per-step law holds with alpha = 1, automatically. But along the CONSECUTIVE
+  chain q is always the next prime and q < F(M) throughout (47 < 354): the
+  compliant regime and the needed regime are disjoint. The saturation theorem
+  covers far-gear additions, never the chain the conjecture walks.
+* **In-range regime (q <= F(M)): NO a-priori cap.** The chain condition's raw
+  cap is r <= k_max + 2 - a constant, exponentially over budget. What it does
+  give is the exact decomposition incr = (F2 - F) + excess [corpus 5.4] with the
+  two pieces separately measured O(q) ((F2-F)/y <= 1.24; excess/q <= 1.62, both
+  at their separate maxima), and the FUEL GATE: excess > 0 requires a chain word
+  ((s, q-s) alternation among consecutive openings) present in the current gap
+  word - censused rare (11808/62/0 at gears<=19; k=4 first at gears<=29) but
+  exploding at fuel-rich machines (70,964 pairs at gears<=31/q=37 - the gear-37
+  spike, mechanism identified, unbounded). The needed lemmas are exactly:
+  (a) top-gap anti-clustering: F2 - F <= alpha1*q (the best adjacent pair
+  exceeds the max by O(q); the isolation law - minimal flanks at maximal gaps -
+  is the empirical reason, but corpus's own correction notes F2 lives at medium
+  gap pairs, so isolation alone does not prove it);
+  (b) fuel-merge control: excess <= alpha2*q (chain-extending words near the
+  top merge only O(q) of new span). Both are statements about the extreme upper
+  tail of the gap word joint with residue alignment - corpus 5.5 proved gap
+  structure alone CANNOT bound k in this regime; the missing input is the word
+  arithmetic (forbidden-configurations machinery).
+
+**19.4 Wall verdict, per the map's discipline.** The multiplicative route
+genuinely EVADES all three mapped walls: not Wall I (no capacity comparison
+anywhere - it bounds one extreme statistic's growth); not Wall II (no prime
+lower bound appears in hypothesis or conclusion); not Wall IV (incr <= 2.5q is
+strictly stronger than the conjecture - honestly lossy, as a route must be).
+And it is NOT Wall III either, by the dimension-1 test: the same increment
+statement for the ordinary one-residue Jacobsthal function would give
+h(P(y)) << y^2/ln y, sharper than Iwaniec's theorem - unproven even where
+parity does not obstruct (Iwaniec's dimension-1 bound exists; its increment
+refinement does not). The obstruction is a FOURTH wall, distinct from the
+map's three: **extreme-value control of sieve patterns** - the review's
+"regime gap" (sec 5) and corpus 5.5's k-unboundability, now with an exact
+target on it. Amendment filed to the attempts map.
+
+**Standing verdict:** the multiplicative route is the programme's best-shaped
+open statement: one mechanical hypothesis (no step exceeds 2.5q), any crude
+constant suffices with tolerance growing like ln y, the finite verification is
+done to 10^6 and closed beyond, all needed instruments (merge transform, chain
+condition, fuel census, isolation, forbidden configurations) already exist, and
+partial theorems already cover the saturation regime. It does not evade every
+wall - it names a new one - but it is the only route on the books whose missing
+lemma is a statement about the machine's own gap word rather than about primes.

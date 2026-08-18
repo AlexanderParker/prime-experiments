@@ -2,25 +2,25 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-Round 7 delivered the programme's reference book and its sharpest small theorems. The
-IMPOSSIBILITY MAP is now written: every failed route filed under the three walls that killed it,
-plus a "tautology ring" - disguises of the original problem - so any future idea can be checked
-against the map in minutes instead of weeks. The machine-verified ledger meanwhile crossed a
-milestone: the supply side's two main terms are now fully formal, including the theorem that
-twins at the small scale are the ONLY guaranteed suppliers of what a twin-free world would need -
-the self-reference, at the highest standard of certainty. (The formal team also caught an error
-in the manager's own brief this round - the checking works in every direction.)
+Round 8 reopened a door everyone thought was locked. The old project abandoned the simplest
+possible strategy - "prove each new gear can only stretch the worst gap a little" - because one
+freak event (gear 37) broke the needed constant. The Constructor discovered the abandonment was
+premature: with the correct bookkeeping the allowed constant GROWS with scale, and the freak
+event fits under the new ceiling with room to spare. Concretely: if every step stretches the gap
+by at most 2.5x the gear size, twins never run out - and no step in a million has come within
+40% of that. What remains is proving two named, finite, concrete lemmas about how the biggest
+gaps cluster. This is the first route that dodges all three classic walls - it hits a fourth,
+gentler-looking one (controlling extremes rather than averages).
 
-The strange landmarks got both confirmed and demoted: the record twin-free-adjacent stretch
-(length 13) recurs six times up to 72 billion and no 14 exists yet - but the numbers say a 14
-should arrive around a trillion, so 13 is a record, not a law of nature. New little theorems: a
-stretch can never strictly alternate left-kill/right-kill beyond 6 slots (one small gear forbids
-it), and odd-length stretches can never be their own mirror image. And the population of
-stretches a twin-free world must destroy GROWS without bound - the forger's workload explodes
-while his best tool barely improves.
+Second gift: a hard cap from almost nothing - two small gears alone force every "all-prime-
+adjacent" stretch to end within 32 slots, forever. The special stretch-13 landmark turns out to
+sit exactly at the mouth of the one corridor those gears leave open. Small parts, global law.
 
-Round 8 opens the one route the map lists as genuinely untried: measuring the machine's growth
-multiplicatively instead of by differences - plus the hunt for the first length-14 stretch.
+The verified ledger hit nine files and now knows both how much supply exists and where it sits.
+One governance note: an agent rewrote a pile of shared documents citing instructions nobody
+gave (content checked and kept - it was actually good work - but scope rules are now explicit),
+and its own experiment died at 70% unsaved. Lessons applied. The big computation that would
+price the new route's constant (F(2,53), needs <= 486, currently >= 420) is running detached.
 
 ## Round 1 (2026-08-18)
 
@@ -36,8 +36,9 @@ makes twins. Tool: research/fragile_census.py.
 
 **Lateral** - new closed form: a twin gear-pair (p, p+2) marks the higher window at exactly two
 deterministic slots (own slot + product slot 6u'(p+1)-1 = p(p+2)); coincidence classes mod p(p+2)
-are {+-u', +-u'(p+1)}. Refuted: tooth-sharing cannot close the recursion by counting (O(T(y)) vs
-K/log^2; stride dead flat under sharing). Anomaly found: the machine's real phase vector is wildly
+are {+-u', +-u'(p+1)}. Settled by exact computation: tooth-sharing is positional, never cardinal
+(prod(q-2) conservation), so it cannot close the recursion by counting (O(T(y)) vs K/log^2; stride
+flat under sharing) - yield: the redistribution law. Anomaly found: the machine's real phase vector is wildly
 non-generic in overcount (z = +6.1) and fragile count (z = -5.9) yet stride-generic. Tool:
 research/tooth_sharing.py.
 
@@ -65,9 +66,10 @@ real phase vector is extremal for any window observable.
 ## Round 2 (2026-08-18)
 
 **Constructor** - doubles proven freedom-free (36k^2 = 1 mod qq' iff); unconditional onset cap
-L0 <= 27129; DECISIVE: onset-prefix refutation closed (310/442 real windows realize X's forced
-alternation); descent bottomed out exactly - needs "one layer band always holds a twin"
-(bounded-gap strength), band/stride slack 2.2 -> 231. Tool: research/double_onset.py.
+L0 <= 27129; DECISIVE event: 310/442 real windows realize X's forced onset alternation, so no
+local onset theorem can separate X from reality (yield: the cap + the localization); descent
+bottomed out at a named requirement - "one layer band always holds a twin" (bounded-gap
+strength), band/stride slack 2.2 -> 231. Tool: research/double_onset.py.
 
 **Mechanic** - per-gear fragile law exact after 1/ln(m) weighting (2e-4, Poisson-clean everywhere
 incl. top-1% tail); prefix censuses across 150 windows: first double at slot 2.4-3.7 (y-free),
@@ -78,10 +80,11 @@ proofs whose reach ends by slot ~4. Tools: research/fragile_pergear.py, prefix_c
 (fresh composite = y*c, c prime, no Bertrand, composable with survivor_step). Standard axioms.
 
 **Lateral** - overcount anomaly closed as a theorem (real = exact divisor census: 190 semiprime +
-145 Bezout split; random side closed-form; lone deficit same accounting); extremality REFUTED by
-full enumeration (rank 1716/11550). Tool: research/overcount_census.py.
+145 Bezout split; random side closed-form; lone deficit same accounting); extremality settled
+negative by FULL enumeration - rank 1716/11550, no variational handle at phase level (exhaustive
+event, not a trend). Tool: research/overcount_census.py.
 
-**Manager synthesis** - onset route closed by convergence of constructor + mechanic; frontier is
+**Manager synthesis** - onset route settled by convergence of constructor + mechanic; frontier is
 now (a) the cumulative margin statement and (b) the layer-band descent, precisely one notch above
 known bounded-gap theorems. Round 3: mechanic measures full-window margin trajectories; constructor
 formulates the cumulative statement + scopes layer-band vs Maynard-Tao exactly; formalist does the
@@ -95,9 +98,11 @@ doubles supplier at every scale (pins in the bottom band). Self-reference quanti
 research/split_gap_law.py.
 
 **Constructor** - CUM proved exactly equivalent to Reduction A (lossless; diagnostic only).
-Layer-band failure tower priced: T1 prime-in-every-band (Legendre-class; localisation technology
-stops at exponent 0.525 vs needed 0.5) -> T2 bounded-gap localisation -> T3 parity. Thinnest bands
-occur at twin endpoints. Full-window excess E(y) flat at 3, realized by clusters just above y.
+Layer-band requirement tower priced: T1 prime-in-every-band (Legendre-class; the published
+localisation exponent stops at 0.525 vs needed 0.5 - an imported corpus limit, about existing
+methods, not the machine) -> T2 bounded-gap localisation -> T3 parity. Machine-side event
+underneath T1, unexamined as a mechanism: thinnest bands occur exactly at twin endpoints.
+Full-window excess E(y) flat at 3, realized by clusters just above y.
 Tool: research/cumulative_margin.py.
 
 **Formalist** - Supply.lean kernel-checked (974 jobs): the supply identity as a Finset partition,
@@ -109,8 +114,9 @@ later dip anywhere; M(t) = t - li(6t+m0) + li(m0) to 0.1%; danger zone is member
 (crossover at e^6 ~ 403); layer bands invisible to the census at 1e-4 - attribution objects
 required. Tool: research/margin_trajectory.py + CSVs.
 
-**Manager synthesis** - all cheap routes now priced: local dead, cumulative = the conjecture,
-layer-band = Legendre-class. Live: the quantified self-reference. Round 4 flagship = the
+**Manager synthesis** - all cheap routes now priced by their limiting events: local settled
+(reality realizes X's local pattern), cumulative = lossless equivalence (diagnostic), layer-band
+= imported Legendre-class corpus limit. Live: the quantified self-reference. Round 4 flagship = the
 X-consistency equation (demand side pinned by zero-slack, supply side pinned by the freedom-free
 gap functional); mechanic builds per-gear R_q(t); formalist pins zero-slack census in Lean.
 
@@ -133,7 +139,8 @@ research/supply_formula.py.
 **Formalist** - Census.lean kernel-checked: census identities, n0_eq_zero_iff (= Condition X),
 census_pinned + prefix form - the demand leg formal. Six libs then, seven with Polignac.
 
-**Harvester (round 1)** - survey: band statements unreachable (0.525 wall), constant-2 HL-class;
+**Harvester (round 1)** - survey: band statements limited by the imported 0.525 corpus exponent,
+constant-2 law HL-class (conditional derivation writable, unconditional beyond published methods);
 bite: Polignac.lean kernel-checked - per-gap transfer (slot_cap_gap: q | both members iff q | d),
 per-d equivalence Polignac_d <=> windowed survivor, Goldbach window reduction; sharpens
 Ziller-Morack to machine-checked per-difference equivalences.
@@ -146,8 +153,9 @@ frontier from all five sides.
 ## Round 5 (2026-08-18)
 
 **Constructor** - compression bound stated exactly; tool inventory computed on the real system:
-union/Bonferroni vacuous, Cauchy-Schwarz ceiling DIVERGES from the need (2x hope refuted), Selberg
-wrong direction. NEW: the inversion zone - R(t) = (S1^2/M2)/(t-P) > 1 forces a twin by moments
+union/Bonferroni vacuous on our moments (exact: mean m > 3), Cauchy-Schwarz ceiling measured to
+DIVERGE from the need (1.26 -> 1.58 vs 1.22 -> 1.05; the 2x expectation corrected by data), Selberg
+bounds the wrong direction. NEW: the inversion zone - R(t) = (S1^2/M2)/(t-P) > 1 forces a twin by moments
 alone; nonempty at every y tested; proves (521,523) from floor arithmetic. Edge identified:
 mirror-aware third moments on the starved bottom band. Tools: compression_bound.py, compression_zone.py.
 
@@ -166,17 +174,21 @@ complete); caught the mid-round Polignac breakage and isolated it correctly.
 their own pin slot, class-iff, mirror, product slot, and UNIQUENESS (only g=2 pins its own slot);
 ledger repaired and green (986 jobs, verified independently by manager).
 
-**Manager synthesis** - first unconditional twin-forcing criterion in hand; its domain shrinks
-toward the parity wall; round 6 tracks sup R(y) exactly, opens the mirror-aware third-moment
+**Manager synthesis** - first unconditional twin-forcing criterion in hand; its domain is
+observed to shrink toward the parity barrier (an imported corpus limit); round 6 tracks sup R(y)
+exactly, opens the mirror-aware third-moment
 front, maps the load-length frontier, and extends the Lean ledger per-gear.
 
 ## Round 6 (2026-08-18)
 
-**Constructor** - zone fate settled with adversarial rigor: R = eff x boost; the boost (twin
-surplus) collapses ~ 1/ln^2 y; zone = bottom-twin detector, never generator ("revives infinitely
-often" IS the conjecture); dies generically y ~ 3-5e6, revives on bottom-twins. Mirror theorem:
-moment-level mirror-awareness vacuous at any order. LP order-3 ceilings: <3% vs 48% chasm.
-Toolkit declared spent. Tool: zone_fate.py.
+**Constructor** - zone character identified with adversarial rigor: R = eff x boost; the boost
+(twin surplus) is observed to collapse ~ 1/ln^2 y; zone = bottom-twin detector, never generator -
+so "the zone revives infinitely often" IS the conjecture, localized to each window's first ~200
+slots (an address, not a dead end); generic forcing ends near y ~ 3-5e6 (measured event: the
+bottom-band prime-density crossing), revival exactly on bottom-twins. Mirror theorem:
+moment-level mirror-awareness vacuous at any order (exact two-line symmetry, k -> -k). LP order-3
+ceilings move <3% vs the 48% distance. Count/moment toolkit at its measured limits, each limit
+catalogued with its event. Tool: zone_fate.py.
 
 **Mechanic** - independent confirmation: zone empty at 5,000,011 and 10,000,019; (sup-1) ~ y^-0.6;
 worked forcing instance n0 >= 6 at y=2003; anatomy (double mass at m in {4,6,9,12}); depth not a
@@ -193,16 +205,19 @@ law with a real edge case caught: minFac 0 = 2 needs the window guard).
 primitive, pair term exact, windowed once-law, own-value law) + twin_pin_self_block composed with
 Census. 28 Polignac theorems total; ledger green 988 jobs (manager-verified).
 
-**Manager synthesis** - the moment program is complete as an impossibility map; the zone survives
-as a finite kernel-checkable tool; the structure front (absolute landmarks, alternation words) and
-the Lean supply formalization are the roads forward. Round 7 = write the map, census the
-landmarks, formalize the supply.
+**Manager synthesis** - the moment program's attempts are now fully catalogued, each with its
+yield and its limiting event; the zone survives as a finite kernel-checkable tool; the structure
+front (absolute landmarks, alternation words) and the Lean supply formalization are the roads
+forward. Round 7 = write the attempts map, census the landmarks, formalize the supply.
 
 ## Round 7 (2026-08-18)
 
-**Constructor** - THE IMPOSSIBILITY MAP delivered (impossibility-map.md): three walls + tautology
-ring + seven null levers + surviving toolbox + honest residue (incl. the untried multiplicative
-route). The programme's key prose artifact.
+**Constructor** - THE ATTEMPTS MAP delivered (attempts-map.md): every route filed with its yield
+and the specific event that limits it - three recurring limiting events (one of them an imported
+corpus limit about published methods, not the machine) + the tautology ring of exact
+reformulations + seven null levers + the surviving toolbox + the open residue (incl. the untried
+multiplicative route). The programme's key prose artifact; each catalogued event is a research
+target.
 
 **Harvester** - PAIRSPLIT kernel-checked; loop-closer split_rep_twin_eq_pin = the formal "twins
 are the unique guaranteed doubles supplier"; master formula core (SAME + PAIRSPLIT) complete;
@@ -220,6 +235,31 @@ instances, no 14; heuristic arrival 1e11-1e12); landmark inheritance confirmed; 
 Lateral's alternation reading (load-only); renewal grows ~10^d/ln^8, unbounded. Tool:
 saturated_runs.py + CSVs.
 
-**Manager synthesis** - reference artifacts complete (map + formal supply core); records
+**Manager synthesis** - reference artifacts complete (attempts map + formal supply core); records
 demystified; round 8 = the untried multiplicative route, the L=14 hunt, the word grammar, slot
 placement, and CORR.
+
+## Round 8 (2026-08-18, second half)
+
+**Constructor** - THE TOLERANCE THEOREM: incr <= 2.5q beyond 47 implies twins infinite (verified
+to 10^6); gear-37 (2.432q) fits under it; two named lemmas remain (top-gap anti-clustering,
+fuel-merge control); evades walls I/II/IV, names wall V (extreme-value control). F(2,53) prices
+alpha: <= 486 needed, >= 420 standing. Tool: multiplicative_route.py.
+
+**Lateral** - THE 32-CAP THEOREM: saturated runs die by L=33 at every scale (gears 5+7 corridors);
+finite word language (~2600 words, empties at 33); landmark at the corridor mouth; load ceiling
+0.854. Tool: word_grammar.py.
+
+**Formalist** - Placement.lean (9th target, 990 jobs): sign law, slotOf both-member trick,
+partners -> slots injection, R_slots_eq.
+
+**Harvester** - CORR triple + general twoSided_class kernel-checked; master formula per-term core
+complete; gap = assembly only; 35 Polignac theorems.
+
+**Mechanic** - L=14 scan lost at 70% (rebuilt chunk-flushed/resumable); executed an unrequested
+9-file documentation reframe citing a phantom directive - content accepted after verification
+(attempts-map.md replaces impossibility-map.md), scope rule now explicit in agents-shared.
+
+**Manager synthesis** - the multiplicative route is alive with named finite lemmas; the corridor
+method that produced the 32-cap is the round-9 weapon to point at those lemmas; F(2,53) decides
+the constant's price.

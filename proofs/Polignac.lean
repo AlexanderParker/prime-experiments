@@ -680,6 +680,126 @@ theorem twin_split_count {p u : ℕ} (hp : p.Prime) (hp2 : (p + 2).Prime)
   have h := Nat.mul_le_mul (le_refl p) (show 6 ≤ p + 2 by omega)
   exact card_class_Ico (by omega) hu1 (by omega) t
 
+/-! ## The CORR layer: two-sided product classes and the signed triple
+
+The last structural layer of the master supply formula. A both-sided term
+(s_L | 6k-1, s_R | 6k+1) with s_L, s_R coprime squarefree gear products is
+again ONE CRT class mod s_L * s_R - `twoSided_class` proves it for arbitrary
+coprime moduli, subsuming `split_class` (both prime) and giving every
+CORR term. The first genuinely new case is the triple (3 gears, both-sided):
+`corr_triple_class` instantiates s_L = q*r, s_R = s, and `corr_triple_signed`
+is the inclusion-exclusion identity with the sign realised subtraction-free:
+distinct doubles |A ∪ B| plus the triple overlap equal the two PAIRSPLIT
+incidence counts - the triple class is exactly what the signed sum removes. -/
+
+/-- A prime at or above 5 is coprime to 6. -/
+theorem six_coprime_prime {q : ℕ} (hq : q.Prime) (hq5 : 5 ≤ q) :
+    Nat.Coprime 6 q :=
+  Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd hq).mpr (not_dvd_six hq hq5))
+
+/-- **The two-sided class, general moduli.** For coprime mL, mR > 1, both
+coprime to 6, the slots with mL dividing the left member and mR the right are
+exactly one CRT class mod mL * mR, with the floor count. Every both-sided
+term of the master formula (SAME excluded: mR = 1) is an instance. -/
+theorem twoSided_class {mL mR : ℕ} (h6L : Nat.Coprime 6 mL)
+    (h6R : Nat.Coprime 6 mR) (hLR : Nat.Coprime mL mR)
+    (hL1 : 1 < mL) (hR1 : 1 < mR) :
+    ∃ a, 1 ≤ a ∧ a < mL * mR ∧
+      (∀ k, 1 ≤ k → ((mL ∣ 6 * k - 1 ∧ mR ∣ 6 * k + 1) ↔ k ≡ a [MOD mL * mR])) ∧
+      (∀ t, ((Finset.Ico 1 (t + 1)).filter
+          (fun k => k % (mL * mR) = a % (mL * mR))).card
+        = (t + mL * mR - a) / (mL * mR)) := by
+  have hM1 : 1 < mL * mR := by
+    have h := Nat.mul_le_mul (show 2 ≤ mL by omega) (show 2 ≤ mR by omega)
+    omega
+  have hco6 : Nat.Coprime 6 (mL * mR) := Nat.Coprime.mul_right h6L h6R
+  obtain ⟨c, hc1, hc2⟩ := Nat.chineseRemainder hLR 1 (mR - 1)
+  obtain ⟨a, ham, ha6, hiff6⟩ := six_mul_class c hco6 hM1
+  have ha1 : 1 ≤ a := by
+    rcases Nat.eq_zero_or_pos a with h0 | h1
+    · exfalso
+      subst h0
+      have h6 : (0 : ℕ) ≡ c [MOD mL * mR] := by simpa using ha6
+      have hq0 : (0 : ℕ) ≡ 1 [MOD mL] :=
+        (Nat.ModEq.of_dvd (dvd_mul_right mL mR) h6).trans hc1
+      have hd : mL ∣ 1 := by
+        have h7 := (Nat.modEq_iff_dvd' (by omega)).mp hq0
+        simpa using h7
+      have := Nat.le_of_dvd (by norm_num) hd
+      omega
+    · exact h1
+  refine ⟨a, ha1, ham, ?_, ?_⟩
+  · intro k hk
+    rw [left_dvd_iff hk, right_dvd_iff (by omega : 1 ≤ mR)]
+    constructor
+    · rintro ⟨hL, hR⟩
+      have hqr : 6 * k ≡ c [MOD mL * mR] :=
+        (Nat.modEq_and_modEq_iff_modEq_mul hLR).mp
+          ⟨hL.trans hc1.symm, hR.trans hc2.symm⟩
+      exact (hiff6 k).mp hqr
+    · intro hka
+      have hqr : 6 * k ≡ c [MOD mL * mR] := (hiff6 k).mpr hka
+      exact ⟨(Nat.ModEq.of_dvd (dvd_mul_right mL mR) hqr).trans hc1,
+        (Nat.ModEq.of_dvd (dvd_mul_left mR mL) hqr).trans hc2⟩
+  · intro t
+    exact card_class_Ico (by omega) ha1 (by omega) t
+
+/-- **The CORR triple class.** For distinct primes q, r, s ≥ 5 the both-sided
+triple (qr on the left, s on the right) is one CRT class mod qrs with the
+floor count - the first genuinely new term of the signed correction. The
+other role splits (q left, rs right; etc.) are further instantiations of
+`twoSided_class`. -/
+theorem corr_triple_class {q r s : ℕ} (hq : q.Prime) (hr : r.Prime)
+    (hs : s.Prime) (hq5 : 5 ≤ q) (hr5 : 5 ≤ r) (hs5 : 5 ≤ s)
+    (hqr : q ≠ r) (hqs : q ≠ s) (hrs : r ≠ s) :
+    ∃ a, 1 ≤ a ∧ a < q * r * s ∧
+      (∀ k, 1 ≤ k → ((q * r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ↔ k ≡ a [MOD q * r * s])) ∧
+      (∀ t, ((Finset.Ico 1 (t + 1)).filter
+          (fun k => k % (q * r * s) = a % (q * r * s))).card
+        = (t + q * r * s - a) / (q * r * s)) := by
+  have h6L : Nat.Coprime 6 (q * r) :=
+    Nat.Coprime.mul_right (six_coprime_prime hq hq5) (six_coprime_prime hr hr5)
+  have h6R : Nat.Coprime 6 s := six_coprime_prime hs hs5
+  have hLR : Nat.Coprime (q * r) s :=
+    (Nat.Coprime.mul_right ((Nat.coprime_primes hs hq).mpr (Ne.symm hqs))
+      ((Nat.coprime_primes hs hr).mpr (Ne.symm hrs))).symm
+  have hL1 : 1 < q * r := by
+    have h := Nat.mul_le_mul hq5 hr5
+    omega
+  exact twoSided_class h6L h6R hLR hL1 (by omega)
+
+/-- **The signed triple, subtraction-free.** Over the first t slots, the
+DISTINCT slots hit by either of the two split classes sharing right gear s,
+PLUS the triple class, equal the two split incidence counts. This is the
+inclusion-exclusion step of the master formula for one triple: the triple
+class (the overlap, computed by `corr_triple_class`) is exactly what the
+signed sum removes when incidences are converted to distinct slots. -/
+theorem corr_triple_signed {q r s : ℕ} (hco : Nat.Coprime q r) (t : ℕ) :
+    ((Finset.Ico 1 (t + 1)).filter
+        (fun k => (q ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+          (r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1))).card
+      + ((Finset.Ico 1 (t + 1)).filter
+        (fun k => q * r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1)).card
+    = ((Finset.Ico 1 (t + 1)).filter
+        (fun k => q ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1)).card
+      + ((Finset.Ico 1 (t + 1)).filter
+        (fun k => r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1)).card := by
+  have hinter :
+      ((Finset.Ico 1 (t + 1)).filter (fun k => q ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1))
+        ∩ ((Finset.Ico 1 (t + 1)).filter (fun k => r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1))
+      = (Finset.Ico 1 (t + 1)).filter
+          (fun k => q * r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) := by
+    ext k
+    simp only [Finset.mem_inter, Finset.mem_filter]
+    constructor
+    · rintro ⟨⟨hk1, hq1, hs1⟩, ⟨-, hr1, -⟩⟩
+      exact ⟨hk1, hco.mul_dvd_of_dvd_of_dvd hq1 hr1, hs1⟩
+    · rintro ⟨hk1, hqr1, hs1⟩
+      exact ⟨⟨hk1, dvd_trans (dvd_mul_right q r) hqr1, hs1⟩,
+        ⟨hk1, dvd_trans (dvd_mul_left r q) hqr1, hs1⟩⟩
+  rw [Finset.filter_or, ← hinter]
+  exact Finset.card_union_add_card_inter _ _
+
 /-! ## The self-block, composed with the census -/
 
 /-- **The self-block, formal.** The twin pair's pin slot u is an actual twin

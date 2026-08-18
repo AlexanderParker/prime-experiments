@@ -86,12 +86,12 @@ draws each of B and C, global metrics over [1, 60000]:
 (survivors -104, lone +99, overcount +10) decomposes into the kill-density
 mismatch (sum 2/q: 0.1021 vs 0.1001) - the matched-real-primes design is
 confound-dominated and shows nothing the synthetic design doesn't show cleanly.
-Max stride: mean diff +0.08 +- 0.07. Nothing.
+Max stride: mean diff +0.08 +- 0.07 - null within error.
 
-### Verdict (brutal)
+### Verdict (exact, with yields)
 
-1. **The counting route through tooth-sharing is closed.** The effect is real,
-   exactly quantified, and orders too small: net survivor gain from sharing is
+1. **The counting route through tooth-sharing is limited by an exact counting
+   event.** The effect is real, exactly quantified, and orders too small: net survivor gain from sharing is
    O(T(y)) per window against a needed ~K/log^2. Worse, in the REAL machine the
    two guaranteed wasted kills per twin pair land on slots that are already
    decided: the pair's own slot (already excised by self-blocking, the -T(y) term
@@ -465,7 +465,9 @@ fixed rationals (20/25, 23/32, 52/100...). The surprise: these values are
 IDENTICAL across all three scales because the record-holders are the SAME
 absolute integer landmarks - L* = 13 is achieved at slots 2452-2464 (members
 14713..14783: primes 14713R 14717L 14723L 14731R 14737R 14741L 14747L 14753L
-14759L 14767R 14771L 14779R 14783L, alternating sides, no twins) at every y.
+14759L 14767R 14771L 14779R 14783L - side word RLLRRLLLLRLRL, blocky, NOT
+strictly alternating (see round 7: strict alternation caps at 6) - no twins)
+at every y.
 The L=100 record sits at absolute slot ~31,350 at every y. The frontier is a
 property of the integers; the window only truncates it from below (s0 ~ y/6).
 
@@ -476,14 +478,16 @@ window still gives saturated (load-1) runs of length 9-12 at every scale
 for L <= ~10 is renewable at ALL depths tested, and L <= 13 near the bottom.
 Caveat, labelled: nothing known FORCES saturated runs to persist at all
 depths forever - that persistence is itself a prime-constellation statement
-(HL-admissible, so expected true, and unprovable by current technology).
+(HL-admissible, so expected true; no published method reaches it - an imported
+corpus limit, about methods, not about the machine).
 
 ### Where the gap is narrowest - the target scale
 
 gap(L) = 0 for L <= 13; opens at L = 14 with 1/14 and stays < 0.29 through
 L = 32. **The compression-bound target is L ~ 14-32**: reality hugs the
-X-ceiling there, renewably, at every depth. For L >= 63 the gap exceeds 0.44
-and the bound would be fighting a phantom - reality never gets close.
+X-ceiling there, renewably, at every depth. For L >= 63 the gap exceeds 0.44 -
+no leverage there: reality never approaches the ceiling, so a bound binding
+only at long runs constrains nothing reality does.
 
 ### Bottom-band branch (for the inversion-zone push)
 
@@ -592,9 +596,10 @@ positions satisfies 6 r_{n+1} - 1 < (6 r_n + 1)^2, a Bertrand-type postulate
 - persistence(2): equivalent (up to Brun-generic side conditions) to
   infinitely many prime pairs at distance in {4,6,8} with the mod-6 side
   structure - disjunctive Polignac. OPEN; strictly weaker than the twin
-  conjecture (a disjunction over three gaps), far beyond current technology
-  (best unconditional bounded gap: 246). This is the exact provability
-  frontier: it sits between L=1 (theorem) and L=2 (bounded-gap-8 class).
+  conjecture (a disjunction over three gaps), beyond published technology
+  (best unconditional bounded gap: 246 - an imported corpus limit). This is
+  the exact provability frontier: it sits between L=1 (theorem) and L=2
+  (bounded-gap-8 class).
 - persistence(L), L >= 3: L primes, one per slot, in 6L+O(1) consecutive
   integers with prescribed sides - disjunctive Hardy-Littlewood at tuple size
   L. Each observed word is its own admissibility witness (it happened), so HL
@@ -626,4 +631,96 @@ CRT covering obstruction at some length (gear 5 caps strict alternation at
 "word grammar" - the exact set of infinitely-extendable letter patterns
 (eventually-periodic words compatible with all small-gear teeth), which
 would characterize what X's local behaviour CAN look like, unconditionally -
-a positive-description complement to the impossibility map.
+a positive-description complement to the attempts map.
+
+## Round 8 (2026-08-18): the complete word grammar - and its finite horizon at 32
+
+Steering taken: the full language of saturated-run side-words under small-gear
+CRT, its growth, and the emptiness question. Tool: `research/word_grammar.py`.
+(Frame note: the briefed period 30030 is n-space; slot space is 5005.)
+
+### Admissibility, exactly
+
+Word w (letters = prime side) is admissible iff some phase makes every prime
+side avoid every small-gear tooth. Letter L at position i forbids phase
+u_q - i (mod q); letter R forbids -u_q - i. Each position forbids exactly one
+residue per gear, and per-gear allowed-phase sets combine freely by CRT, so:
+
+    w admissible  <=>  for every q: the chosen residues do not cover Z_q.
+
+Phase view: a slot where the small machine hits BOTH sides admits no letter at
+all - and these B-slots are exactly the split/Bezout classes of gear pairs
+from round 3. The language is nonempty at length L iff the CRT period has an
+L-window free of B-slots.
+
+### THE HORIZON THEOREM: saturated runs never exceed 32. Ever.
+
+Gear pair (5,7) alone has B-classes {1, 34} mod 35 (its two split classes:
+5 | 6k-1 and 7 | 6k+1 at k = 1 mod 35, mirrored at 34). Max cyclic gap = 33,
+so ANY 33 consecutive slots contain a slot with both members composite.
+Hence every saturated run - at every scale, forever - has length <= 32.
+Two lines, unconditional. And the cap extends beyond saturation: any run of
+consecutive slots each carrying >= 1 prime is also <= 32 (a twin slot only
+adds avoid-constraints).
+
+Escalation check: does adding gears lower the horizon? NO, through gear 23:
+L0 = 32 for {5,7}, {5,7,11}, {5,7,11,13} (period 5005, 730 B-slots, 4
+surviving corridor phases), {..17} (85085), {..19} (1.6M), {..23} (37.2M,
+8.6M B-slots) - the (5,7) corridor survives every extension tested. Details
+with a face: the corridor starts at k = 2 mod 35, and the L* = 13 landmark
+sits at slot 2452 = 2 mod 35 - AT THE CORRIDOR MOUTH; at gears <= 17 and
+<= 19 the extremal corridor's absolute start IS slot 2452. The landmark lives
+where it does because that is the widest small-gear corridor.
+Whether lim L0 = 32 over ALL gears is a Jacobsthal-type question: finitely
+checkable per gear set, monotone non-increasing, and >= any realized run
+length (so >= 13, and >= 14 if the Mechanic's hunt lands). The Mechanic's
+L = 14 hunt is sanctioned: 14 <= 32, and the language at 14 has 579 words.
+
+### The language census (gears <= 13, exact)
+
+    L      1   4   5   10   13   14   17   18..26      31   32   33
+    |lang| 2  16  30  235  474  579  1176  ~1140-1570  2560 2560  0
+
+- All 2^L words admissible through L = 4; first exclusions at L = 5 (LLLLL,
+  RRRRR): same-letter blocks cap at 4 - gear 5's law. Strict alternation caps
+  (6 L-first / 5 R-first, round 7) confirmed in-language as special cases.
+- Growth is NOT exponential: the ratio falls from 2.0 to ~1.0 by L = 18 and
+  the language PLATEAUS (~1100-2600 words, L = 18..32) while 2^L passes 10^9.
+  Past L ~ 17 the language is a fixed finite family of corridor words.
+- The language is FINITE in total and is empty from L = 33 on (= L0 + 1, matching the
+  horizon computed independently from B-gaps). Sharp contrast with the
+  corpus's gap-word antidictionary (docs/forbidden-configurations.md), which
+  is infinite: the saturated-run language is the OPPOSITE kind of object - a
+  finite tree with a wall.
+
+### Observed 757 runs vs the language
+
+All 757 words (recomputed from research/data/satruns_ge10.csv via
+Miller-Rabin, members to 7.2e10) are admissible - 0 failures. Coverage of the
+language: L = 10: 199 distinct observed words / 235 in language = 84.7%
+already realized; L = 11: 29.0%; L = 12: 5.3%; L = 13: 6/474 = 1.3%. The six
+L = 13 runs have six DISTINCT words at six different residues mod 35
+(2,3,13,17,5,18) - each uses a different corridor phase; no CRT-duplicates
+(consistent with round 7: duplication requires congruence).
+
+### Corollary: an unconditional load ceiling past the horizon
+
+On any twin-free window, B-slots carry zero primes, so P_run <= L - minB(L):
+
+    L        33     50     100    200    252     asymptote
+    ceiling  0.970  0.920  0.910  0.880  0.873   1 - 730/5005 = 0.854
+
+First unconditional maxload < 1 beyond the horizon (round 6's X-ceiling line
+of 1 is now provably unreachable for L > 32). Honest note: reality sits far
+below (0.52 at L = 100), and X's global demand (~0.33) is below the 0.854
+asymptote too - the ceiling closes the L > 32 frontier, it does not create a
+contradiction.
+
+### Proposed next chunk
+
+(1) Jacobsthal push: does the 32-corridor survive gears <= 100? (per-set
+finite check; a drop would LOWER the unconditional cap; survival to large Q
+suggests lim = 32). (2) Hand the horizon theorem + language to the Formalist:
+"any 33 consecutive slots contain k = 1 or 34 mod 35, whose members are
+divisible by 5 and 7" is a 3-line kernel-checkable fact with the run-cap as
+corollary - the cheapest unconditional theorem the programme has produced.

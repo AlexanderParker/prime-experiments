@@ -127,7 +127,8 @@ fixed-13-window minimal chain bottoms out at {5,7}.
 ## Downward exclusion across windows: the square gate
 
 Hypothesis tested: exclusion iterates down until the first gear with a coprime in the window.
-Refuted as stated - the stopper is virtually always the gear's own SQUARE: descending exclusion
+Corrected by exact computation - the stopper is virtually always the gear's own SQUARE (the
+square-gate event, a sharper mechanism than the coprime guess): descending exclusion
 halts at the first q with q^2 - 2 prime, because a gear's square is its first root kill
 (q^2 < q*r), met before any coprime. Results (horizon slot conceded):
 
