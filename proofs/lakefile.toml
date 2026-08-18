@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "Machine17", "TierA", "PolignacCap"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "Machine17", "TierA", "PolignacCap", "Spectrum"]
 
 [[require]]
 name = "mathlib"
@@ -79,3 +79,6 @@ name = "PolignacCap35"
 
 [[lean_lib]]
 name = "PolignacCap105"
+
+[[lean_lib]]
+name = "Spectrum"

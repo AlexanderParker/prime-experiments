@@ -1618,3 +1618,111 @@ p <= F_{p+literals}(M)/q'. The AP lemma kills the cheap (all-adjacent and
 so the interesting quantity is the CHEAPEST surviving p-shape as a function of
 p, which is a finite computation per q' mod 210. If that cost grows faster than
 F_j(M), p is capped structurally after all.
+
+## Round 18 (2026-08-18): the exposed-set autocorrelation - a construct for the erraticity
+
+Back in the lateral lane, and folding in the human's directive: build a NEW
+object out of RELATIONSHIPS between the machine's parts, and treat
+"arithmetically selected, no smooth law" as a target rather than a verdict.
+Tools: `research/exposed_autocorr.py`, `residual_demand.py`, `autocorr_fit.py`,
+`openings_ap.py`, `openings_ap2.py`. (Tooling note: switched to
+`.venv/Scripts/python.exe` per the user.)
+
+### The new object: GEAR x LAG
+
+Everything the search has measured lives on an object we already had a name
+for. The unmeasured relationship here is **gear against lag**. For gear q let
+A_q = Z_q minus its two teeth be the exposed set (|A_q| = q-2), and define its
+**autocorrelation at lag g**:
+
+    c_q(g) = |{ r in A_q : r + g in A_q }|
+           = the number of phases keeping BOTH ends of a lag-g pair exposed.
+
+**Closed form** (derived from the tooth geometry, then brute-force verified
+over gears 5..31 at all lags, 0 mismatches):
+
+    c_q(g) = q - 2   if q | g                (both ends on the same tooth pattern)
+           = q - 3   if g = +-2u_q  (mod q)  (opposite teeth - the LITERAL-LINK lag)
+           = q - 4   otherwise               (generic)
+
+The content is that **the three cases of the autocorrelation are exactly the
+three tooth-relationships** - and the middle case is precisely the literal-link
+condition that the padding work spent rounds 12-17 on, arrived at here from a
+completely different direction. Gear 5 (u=1, 2u=2) gives c = 3 / 2 / 1: lags
+= +-1 mod 5 are suppressed by a factor of THREE by gear 5 alone.
+
+### What it explains
+
+For a lag-g pair the number of admissible endpoint phases mod 35 is **exactly
+c_5(g) * c_7(g)**, ranging over {3, ..., 15} - a five-fold swing driven entirely
+by the two smallest gears. Measured against full-period gap histograms:
+
+    machine 23:  g      24    25    26    27    28    29    30    31
+                 count   0  1404   310   170   322     6   112    20
+                 c5*c7   3     9     4     6    10     3    12     3
+
+The notorious cases fall out. Gap 24 is absent at machines 19 AND 23 and has
+the **minimum possible** c_5*c_7 = 3. Gap 29, sitting at count 6 between
+neighbours at 322 and 112, also has c_5*c_7 = 3. Of the four gap values absent
+below F across the three machines, three carry the minimum value 3.
+
+Quantified honestly, by regressing log(count) on g (the smooth decay) with and
+without log(c_5 c_7):
+
+    machine 19:  R^2 0.449 -> 0.463   ( 3% of residual variance,  9 points)
+    machine 23:  R^2 0.856 -> 0.896   (28% of residual variance, 19 points)
+    machine 29:  R^2 0.913 -> 0.934   (24% of residual variance, 27 points)
+
+> **"No smooth law, only the histogram" is not right.** There is a law; it is
+> multiplicative and arithmetic rather than smooth, it has a three-line closed
+> form, and it accounts for about a quarter of what was being called noise.
+
+### The second construct, and what it rules out
+
+The autocorrelation is only the ENDPOINT half. The other half is the interior:
+a gap of exactly g needs all g-1 interior slots killed. Residual demand
+
+    D(g) = min over admissible phases of #{interior slots exposed to 5 and 7}
+
+is what must be bought from gears >= 11. Measured against the supply
+sum 2*ceil((g-1)/q): **slack is positive at every g at both machines (8 to 16
+spare kills)**. So the absences are NOT capacity-structural - gap 24's absence
+is arithmetic selection plus rarity, not impossibility. That is a clean
+negative and it tells the next investigator not to look for a covering
+obstruction.
+
+### Side result from the same round: the openings AP theorem
+
+Round 16's AP lemma was stated for difference q'. It generalises to arbitrary
+difference: gear q leaves q-2 residues, and an L-term AP with gcd(d,q)=1
+occupies min(L,q) distinct residues, so L > q-2 forces a tooth. Hence
+
+> **an AP of L openings has common difference divisible by every gear
+> q < L + 2** - so 3 consecutive equal gaps require 5 | g, 5 equal gaps require
+> 35 | g, 9 require 385 | g, and an AP of L >= y+2 openings needs difference at
+> least the full primorial P(y).
+
+Verified on full periods of machines 13, 17, 19, 23, 29: zero violations, and
+the longest run of equal consecutive gaps is 3-4 at every machine **with
+g = 5 exactly in every case** - the theorem's minimal witness, realised.
+
+### Honest limits, and the construct that would be needed next
+
+The autocorrelation explains ~1/4 of the residual erraticity. The rest lives in
+the interior condition, and the reason I did not build that construct this
+round is specific, not fatigue: **the interior condition does not factorise over
+gears.** Endpoint exposure is a conjunction ("open at 0 AND at g"), so it splits
+into a product over q by CRT - which is exactly why c_q(g) exists in closed
+form. The interior condition is a DISJUNCTION per slot ("killed by SOME gear"),
+and disjunctions do not factorise. The object that would be needed is the
+**gap correlation function of the machine** - the full (g+1)-point correlation
+with 2 exposed ends and g-1 covered interiors - and it requires
+inclusion-exclusion over which gear kills which interior slot rather than a
+per-gear product. That is a genuinely bigger construct and it is where the
+complexity actually lives; it is the right next build, not a wall.
+
+Two further relationships in the same family, unbuilt and cheap to start:
+higher-order autocorrelations c_q(g_1, g_2) (gear x lag-pair - which would give
+the same treatment to the flank sums that part (D) needs, since FS is a
+two-lag object), and the autocorrelation of the exposed set against the
+PADDED lag q' itself, which is where the two threads would meet.

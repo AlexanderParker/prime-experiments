@@ -1,0 +1,17 @@
+[package]
+name = "gearsuite"
+version = "0.1.0"
+edition = "2021"
+description = "Prime and twin-prime gap algorithms in the slot frame, built only from proven laws"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[[bin]]
+name = "gapsuite"
+path = "src/bin/gapsuite.rs"

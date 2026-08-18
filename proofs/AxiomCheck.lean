@@ -13,6 +13,7 @@ import LiteralCap
 import Machine17
 import TierA
 import PolignacCap
+import Spectrum
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -107,7 +108,9 @@ open BlockedSlots
 #print axioms TierA.flanks_17_19
 #print axioms TierA.flanks_19_23_nonempty
 #print axioms TierA.padding_count_le
-#print axioms TierA.padding_at_most_one
+#print axioms TierA.padding_at_most_one_below_onset
+#print axioms TierA.onset_gate
+#print axioms TierA.padding_three_not_excluded
 #print axioms TierA.no_adjacent_padded_41
 #print axioms TierA.equal_padding_forbidden_classes
 #print axioms TierA.equal_padding_forbidden_card
@@ -119,3 +122,12 @@ open BlockedSlots
 #print axioms PolignacCap.cap_gcd_15
 #print axioms PolignacCap.cap_gcd_105
 #print axioms PolignacCap.capOf_le_twelve
+#print axioms PolignacCap.cap_gcd_5
+#print axioms PolignacCap.cap_gcd_7
+#print axioms PolignacCap.cap_gcd_21
+#print axioms PolignacCap.cap_gcd_35
+#print axioms Spectrum.merged_eq
+#print axioms Spectrum.merged_le_spectrum
+#print axioms Spectrum.merged_le_spectrum_succ
+#print axioms Spectrum.merged_le_of_shallow
+#print axioms Spectrum.windowSum_mono

@@ -170,24 +170,51 @@ theorem padding_shape_dichotomy : ∀ g < 35, Nat.gcd g 35 = 1 →
     (carrier [g, g] = ∅ ↔
       carrier [g, (2*g) % 35] ≠ ∅ ∧ carrier [(2*g) % 35, g] ≠ ∅) := by decide
 
-/-! ## Padding is count-capped
+/-! ## Padding: the onset gate, and a budget bound that is NOT constant
 
-A padded link's interior gap is `0 mod q'`, hence at least `q'`, while the
-tolerance budget grants only `(5/6) q'` beyond `F`. So the number of padded
-links in a run is bounded - the arithmetic core, with denominators cleared.
+Two separate facts, and it matters which is which.
+
+The ONSET GATE is structural and permanent: a padded link's interior gap is
+a positive multiple of the new gear `q'`, hence at least `q'`; it is also a
+gap of `M`, hence at most `F(M)`. So padding cannot exist at all unless
+`F(M) >= q'`.
+
+The COUNT bound is budget arithmetic and is NOT a constant: `p` padded
+links consume at least `p q'`, so `6 p q' <= 6 F + 5 q'`, i.e. roughly
+`p <= F/q' + 5/6`. This GROWS with `F/q'`. Lateral withdrew the claim that
+the padding count is structurally bounded - `p = 3` becomes feasible from
+`41 -> 43` - and `padding_three_not_excluded` below records exactly that:
+the budget stops excluding three links once `F >= (13/6) q'`. What is
+permanent is the SHAPE law (separations `j` in `{0,1}`), not the count.
 -/
+
+/-- **The onset gate.** A padded link's interior gap is a positive multiple
+of `q`, and it is one of `M`'s gaps, so `q <= F`. Padding cannot exist below
+onset. -/
+theorem onset_gate {q g F : ℕ} (hg : 0 < g) (hdvd : q ∣ g) (hF : g ≤ F) :
+    q ≤ F :=
+  le_trans (Nat.le_of_dvd hg hdvd) hF
 
 /-- If each of `p` padded links consumes at least `q` of a span `S`, and the
 span is within the budget `F + (5/6) q`, then `6 p q <= 6 F + 5 q`. In
-particular `p` is bounded by roughly `F/q + 5/6`. -/
+particular `p` is bounded by roughly `F/q + 5/6` - a bound that grows with
+`F/q`, not a constant. -/
 theorem padding_count_le {p q F S : ℕ} (hspan : p * q ≤ S)
     (hbud : 6 * S ≤ 6 * F + 5 * q) : 6 * (p * q) ≤ 6 * F + 5 * q :=
   le_trans (Nat.mul_le_mul_left 6 hspan) hbud
 
-/-- One padded link already costs more than the budget allows twice over:
-with `F < q` (the onset condition of the mechanic's census) at most one
-padded link fits. -/
-theorem padding_at_most_one {p q F S : ℕ} (_hq : 0 < q) (hF : F < q)
+/-- **The count bound is machine-limited, not universal.** Once
+`F >= (13/6) q` the budget no longer excludes three padded links. This is
+the arithmetic behind lateral's withdrawal: `p = 3` is feasible from
+`41 -> 43` onwards, so no constant caps the padding count. -/
+theorem padding_three_not_excluded {q F : ℕ} (hF : 13 * q ≤ 6 * F) :
+    6 * (3 * q) ≤ 6 * F + 5 * q := by omega
+
+/-- **Below onset only:** if `F < q` - which by `onset_gate` is precisely the
+regime where NO padded link exists - the budget admits at most one. Stated
+with its hypothesis explicit; it says nothing about machines at or above
+onset, where the bound is `padding_count_le` and grows with `F/q`. -/
+theorem padding_at_most_one_below_onset {p q F S : ℕ} (hF : F < q)
     (hspan : p * q ≤ S) (hbud : 6 * S ≤ 6 * F + 5 * q) : p ≤ 1 := by
   have h := padding_count_le hspan hbud
   by_contra hp

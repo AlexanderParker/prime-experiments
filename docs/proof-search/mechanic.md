@@ -1604,3 +1604,313 @@ LANDED this round: hist41.log (see (6)); envelope29/29b/29c (machine 29
 at q' = 31, 37, 43, all full period).
 Note: flank_envelope prints per-segment progress with flush, so unlike
 hist_probe/padding_census its logs show live coverage.
+
+### (8) MID-ROUND: the Constructor's question answered by exhibition
+
+Routed via the coordinator: Constructor derived the same identity
+independently (span + FS <= F_{k+1} is free) and found the resulting
+SPECTRUM-FLATNESS statement FALSE - at 29->31 the unrestricted 5-window
+maximum sits 42 above F while only 31 is allowed, and the true increment
+is 15. Their question: HOW does the qualifying restriction suppress the
+unrestricted maximum? My census answers it by exhibition, not by argument.
+
+Tool: research/unrestricted_max.py (new). It finds every window of j
+consecutive gaps attaining F_j, prints its address, and classifies the j-2
+interior gaps that would have to be the word.
+
+    machine 23, F_3 = 50: flanks (23,23) interior (4,)      k = 2,082,580
+    machine 23, F_4 = 58: flanks (28,23) interior (4,3)     k = 29,098,935
+    machine 23, F_5 = 65: flanks (28,10) interior (5,2,20)  k = 36,845,450
+    machine 29, F_3 = 65: flanks (39,23) interior (3,)      k = 407,599,253
+    machine 29, F_4 = 70: flanks (31,12) interior (4,23)    k = 717,564,717
+    machine 29, F_5 = 85: flanks (30,18) interior (4,3,30)  k = 772,741,833
+                          flanks (27,18) interior (3,7,30)  k = 725,859,998
+
+OF THE 132 MAXIMISERS CENSUSED AT MACHINES 19, 23 AND 29, ZERO ARE LITERAL
+AND ZERO ARE QUALIFYING. The shape is always the same and it is the exact
+opposite of a word: the unrestricted maximiser puts TWO NEAR-MAXIMAL GAPS
+ON THE FLANKS AND THE MACHINE'S SMALLEST GAPS IN THE INTERIOR (2, 3, 4, 5,
+7). A qualifying interior gap is 0 or +-2c mod q' and positive, hence
+>= 2u' = a (Constructor's own fuel_bound Theorem 1 - a THEOREM, not a
+measurement). The maximisers violate that floor at every step.
+
+So the suppression mechanism is not subtle and it is not luck: THE
+UNRESTRICTED MAXIMUM IS ATTAINED BY A SHAPE THE INTERIOR-GAP FLOOR
+FORBIDS OUTRIGHT.
+
+### (9) THE QUALIFYING SPECTRUM Q_j - a word-free criterion that closes
+### every measured step, and delivers the fuel cap in the same object
+
+Tool: research/qualifying_spectrum.py (new). Define, exactly as the floor
+suggests,
+
+    Q_j(M; a) = max sum of j consecutive gaps whose j-2 MIDDLE gaps are
+                all >= a,      a = 2u' = 2*round(q'/6).
+
+Every qualifying word's merged window is such a sum, so span + FS <=
+Q_{ell+2} for every qualifying word, and (D) is implied by the purely
+spectral, word-free inequality  Q_{ell+2}(M; a) <= F(M) + q'.
+
+Measured at FULL PERIOD:
+
+    step     a    F   F+q'  F_3 F_4 F_5 F_6 F_7   Q_3 Q_4 Q_5 Q_6 Q_7   crit
+    11->13   4    7   20     16  18  23  26  28    16  17   0   0   0   +4
+    13->17   6   11   28     23  26  28  31  34    18  18   0   0   0   +10
+    17->19   6   18   37     28  33  35  40  43    28  28  25   0   0   +9
+    19->23   8   25   48     35  38  47  50  58    35  37  38   0   0   +10
+    23->29  10   34   63     50  58  65  77  83    50  50  49   0   0   +13
+    29->31  10   43   74     65  70  85  90  92    65  68  71  71  71   +3
+    29->37  12   43   80     65  70  85  90  92    65  68  68  71   0   +9
+
+(crit = F + q' - max_j<=ell_max+2 Q_j; Q_j = 0 means NO qualifying window
+of that depth exists, so (D) is vacuous there - see the correction below.)
+
+THE CRUX, at the step where Constructor showed flatness fails:
+
+    29->31:  F_5 = 85 = F + 42   unrestricted    - FAILS (42 > 31)
+             Q_5 = 71 = F + 28   qualifying only - PASSES (28 <= 31)
+
+The interior-gap floor alone - one inequality, no compatibility, no
+residues, no corridor - brings 42 down to 28 and clears the alpha = 3
+budget with margin 3. DIRECT ANSWER TO THE "ARITHMETIC LUCK" CAVEAT: at
+the depth that actually binds, the suppression is carried by the SIZE
+THRESHOLD, which is a theorem, and it is already sufficient. Residue
+coincidence is not needed at this step. (Margin 3 = 0.10 q' is thin, and
+that is the honest caveat in the other direction - see (11).)
+
+BONUS, free: Q_j = 0 exactly when no qualifying word of length j-2 exists,
+so the SAME object delivers the fuel cap. Measured: Q_j = 0 for j > 5 at
+machine 19 (k_max <= 4 openings), j > 6 at machines 17, 23, 29+q'=37,
+j > 7 at machine 29 + q' = 31. The route's part (D) and its fuel bound are
+one measurement, not two.
+
+### (10) THE SPAN-RESOLVED ENVELOPE - and my own r17 residual, superseded
+
+The unconditional envelope of section (3c) yields a second, sharper
+word-free criterion at no extra cost. With H_ell(s) = max flank sum over
+ALL runs of ell gaps with interior span exactly s (any letters),
+
+    span(w) + H_ell(span(w)) <= F + q'   implies (D) for w,
+
+using only the word's LENGTH and SPAN. Evaluated on all 44 measured
+(step, compatible word) pairs: IMPLIED AT EVERY ONE, including the r17
+residual -
+
+    29->31, w = (10,21,10), span 41:  41 + H_3(41) = 41 + 24 = 65 <= 74.
+
+CORRECTION TO MY OWN SECTION (1), inside the same round: the claim "the
+open part of (D) over all measured steps is four addresses" is SUPERSEDED.
+It was correct for the criterion I used there (the unrestricted F_{ell+2}),
+but that criterion is the wrong one: both the qualifying spectrum (9) and
+the span-resolved envelope (10) close that word too, without looking at
+its occurrences at all. There is now NO residual at any measured step
+under either refined criterion. The four addresses stand as data; the
+"residual" label on them does not.
+
+CORRECTION TO MY OWN TOOL, recorded: qualifying_spectrum.py first reported
+"not implied" whenever Q_j = 0, treating vacuity as failure. Caught on the
+29->37 run (Q_7 = 0 with litcap 6) and fixed; the criterion is now the max
+over depths, with Q_j = 0 read as "no such word exists". No published
+number was affected.
+
+### (11) k_win vs k_max, AND THE PAR-TRADING TEST (coordinator's ask)
+
+Tool: research/kwin_census.py (new). Per depth k it reports the maximum
+FLANKED MERGED SPAN ops[i+k] - ops[i-1] over all window-valid k-tuples
+(fuel_census's letter frame: prefix-sum range <= 1), with address and
+interior word. Validation: reproduces the known records exactly -
+F(19->23) = 34, F(23->29) = 43, F(29->31) = 58 - and r11's tuple counts
+(11,784 / 62 at 19->23; 13,000 / 4 at 29->31).
+
+    step      k=1   k=2   k=3   k=4    k_max  k_win  spread
+    19->23     31    33    34    -        3      3    8.8%
+    23->29     39    43     -    -        2      2    9.3%
+    29->31     55    58    55    55       4      2    5.2%
+
+PAR TRADING CONFIRMED at these three steps, with the spreads Constructor
+predicted (5-9%): the merged maximum is nearly depth-independent, and at
+29->31 the deepest chains (k = 3 and k = 4) tie at 55 while the WINNER is
+k = 2 at 58. So k_win = 2, 2, 3 - all <= 3, and a deep chain has never
+won. The k = 4 chain's four occurrences merge to 55, three short of the
+record: fuel exists and loses.
+Addresses of the winners: k = 137,307 (19->23, word (15,8)); k =
+14,995,460 (23->29, word (10,)); k = 278,620,515 (29->31, word (10,)).
+The 29->31 winner is exactly the envelope census's word (10,) with
+span 10 + FS_max 48 = 58 - the two independent censuses agree on the
+record and on its address.
+
+Machines 31, 37 and 41 are running (see jobs); the falsifying event to
+hunt is a single k_win >= 4.
+
+### (12) SHALLOW FLATNESS F_4 - F vs q' (coordinator's ask 2)
+
+Measured at full period, from my own F_j pass (independent of the
+Constructor's):
+
+    machine    11   13   17   19   23   29   31    37(prefix)
+    F          7    11   18   25   34   43   58    88
+    F_4        18   26   33   38   58   70   90    103
+    F_4 - F    11   15   15   13   24   27   32    >= 15
+    q'         13   17   19   23   29   31   37    41
+    ratio    0.85 0.88 0.79 0.57 0.83 0.87 0.86    -
+
+Shallow flatness holds at all seven machines with F_4 known, ratios
+0.57-0.88 - confirming Constructor's six and adding machine 31 (32 <= 37,
+ratio 0.86). NOTE THE DIRECTION OF THE CAVEAT: machine 37's F_4 = 103 is a
+PREFIX LOWER bound, so its row is not a test; it would have to reach 129
+to break, i.e. 26 above the measured value. Machine 41's row is running.
+Also worth stating plainly: the ratio is FLAT at 0.79-0.88 for six of
+seven machines with no downward trend, so shallow flatness is not gaining
+room as the machines grow - it is holding station at ~0.85 q'.
+
+### (13) THE WORD-FREE CRITERION AT THE TWO LARGEST REACHABLE STEPS
+
+qspec31 landed (full period 3.343e10, 725s) and qspec41 (prefix 4e10):
+
+    machine 31 (F = 58, F+q' = 95, a = 12):
+      j    3    4    5    6    7    8
+      F_j  85   90   92   97  104  110
+      Q_j  85   90   91   90   88    0     drops 0, 0, 1, 7, 16
+    machine 41 (F = 90 on range, F+q' = 133, a = 14, coverage 0.08%):
+      j    3    4    5    6    7    8
+      F_j 110  112  118  123  130  138
+      Q_j 110  112  110  117  122  121
+
+TWO THINGS WORTH STATING. First, Q_7(31) = 88 = F(31->37) EXACTLY - the
+qualifying spectrum at the winning depth equals the true record, so the
+bound is ATTAINED at the binding step, not slack. Second, the criterion
+margin over all steps:
+
+    step     max_j Q_j   F+q'   margin   /q'
+    11->13      16        20      +4     0.31
+    13->17      18        28     +10     0.59
+    17->19      28        37      +9     0.47
+    19->23      38        48     +10     0.43
+    23->29      50        63     +13     0.45
+    29->31      71        74      +3     0.10
+    31->37      91        95      +4     0.11
+    41->43     110       133     +23     0.17  (prefix, lower bounds)
+
+HONEST WARNING, and it is the opposite of the story so far: the word-free
+margin COLLAPSES at the two largest full-period machines, from ~0.45 q' to
+0.10-0.11 q'. The word-restricted margin does not (it sits at 0.52 q' at
+29->31). So the qualifying spectrum is a clean sufficient criterion that is
+running out of room exactly where the machines get big; whether it survives
+37->41 is the live test (qspec37 running on a 2e11 prefix - and a prefix can
+only FALSIFY this criterion, since Q_j from a prefix is a lower bound).
+Note also the criterion is stated with the max over depths: Q_j = 0 means no
+qualifying word of that depth exists, i.e. vacuous, not violated. My tool
+first read 0 as failure; caught on the 29->37 run and fixed, no published
+number affected. The qspec31 log's own CRITERION line predates the fix
+(it prints Q_7 = 88; the correct max over j <= 7 is 91).
+
+Machine 41 also supplies the coordinator's shallow-flatness row:
+F_4 - F = 112 - 90 = 22 against q' = 43, ratio 0.51 - holds, though as
+prefix lower bounds it is "not falsified" rather than verified.
+
+### (14) NEW MEASUREMENT (human directive): THE HOLE STRUCTURE OF THE GAP
+### SPECTRUM
+
+The directive lands on a region I found in r14/r15 and closed with "no
+smooth law, look it up". That conclusion stands; this is what is on the
+other side of it. Tool: research/hole_structure.py (new), off the
+full-period gap histograms my envelope census now writes.
+
+(a) THE HOLE LIST - exact, full period, first time enumerated:
+
+    machine 11  F =  7   holes: none
+    machine 13  F = 11   holes: {9}
+    machine 17  F = 18   holes: {17}
+    machine 19  F = 25   holes: {19, 24}
+    machine 23  F = 34   holes: {24}
+    machine 29  F = 43   holes: {41, 42}
+
+Holes are RARE (0-2 per machine, against 7-41 realised values) and sit at
+the TOP of the spectrum: 0.82F, 0.94F, 0.76F, 0.96F, 0.95F, 0.98F - with
+ONE exception, v = 24 at machine 23, which sits at 0.71F.
+
+(b) ABSENCE IS TRANSIENT - the inheritance question, answered:
+
+    13 -> 17:  9 HEALED          17 -> 19: 17 HEALED
+    19 -> 23: 19 HEALED, 24 INHERITED     23 -> 29: 24 HEALED
+
+Five of six holes are filled by the very next gear; exactly one (v = 24)
+survives a step, and it survives the step where the two machines' F differ
+most. NO hole is ever CREATED below the previous machine's F. So the
+spectrum fills in monotonically from below as gears are added, and the
+holes are a boundary effect that the next gear repairs.
+
+(c) THE RESIDUE LAW - a real new object. hist_M[v] is strongly non-flat in
+v mod p, and the SHAPE IS STABLE ACROSS MACHINES AND CONVERGING (entries
+are class share x p, so 1.00 = flat):
+
+    machine   mod 2        mod 3              mod 5
+    11      0.97 1.03   0.58 0.67 1.75   0.83 0.90 2.22 0.83 0.21
+    17      0.91 1.09   0.61 0.83 1.56   1.04 0.85 1.87 0.88 0.36
+    23      0.88 1.12   0.64 0.91 1.45   1.13 0.81 1.74 0.92 0.40
+    29      0.88 1.12   0.65 0.93 1.42   1.16 0.80 1.70 0.93 0.41
+    machine 29, mod 7: 0.78 0.90 1.64 1.15 0.67 1.40 0.45
+
+Every entry moves monotonically with the machine and is settling. The two
+richest classes mod 7 are v = 2 and v = 5, which are exactly +-s for gear 7
+(s = 2*6^{-1} = 5 mod 7); mod 5 the richest is v = 2 = s. So the letter
+values of the SMALL gears are visible in the gap histogram of the WHOLE
+machine - a relationship between the corridor gears and the gap census that
+nobody had looked at. It is not the naive endpoint-survival count, which
+predicts v = 0 mod p richest and +s / -s equal; measured, v = 2 mod 5
+(1.70) beats v = 0 (1.16) and v = 3 (0.93). Unexplained.
+
+(d) BUT THE RESIDUE LAW DOES NOT PREDICT THE HOLES. Scoring every value in
+the top half of each spectrum by R(v) = prod_p share_p(v mod p),
+p = 2,3,5,7:
+
+    machine 13: hole 9 ranks 2 of 7 lowest       - hit
+    machine 19: hole 24 ranks 1 of 14            - hit
+    machine 23: hole 24 ranks 2 of 18            - hit
+    machine 29: holes 41, 42 rank 7 and 10 of 23 - miss
+    machine 17: hole 17 ranks 10 of 10 (HIGHEST score) - flat miss
+
+The single INHERITED hole (v = 24) is the one the residue score predicts at
+both machines that carry it; the rest are not a residue-marginal
+phenomenon at p <= 7.
+
+(e) THE CONSTRUCT THAT WOULD HAVE TO BE BUILT, named as the directive
+requires. A gap of exactly v at machine M means v-1 CONSECUTIVE SLOTS ALL
+KILLED with both endpoints unkilled. That is not a residue-marginal
+question about v, it is a COVERING-FEASIBILITY question about the gear set:
+can the gears' 2-tooth classes cover an interval of length v-1 while
+sparing its two ends? So the hole set is the complement of the COVERABILITY
+SPECTRUM of M, and the object to build is
+
+    COV(M) = { L : an interval of L consecutive slots is coverable by the
+               gears 5..M, with both flanking slots spared }
+
+Three reasons this is the right construct and not just another census:
+ 1. it is computable WITHOUT SCANNING THE PERIOD - it is CRT arithmetic on
+    the gear set, so it reaches machines 37, 41, 43, 53 whose periods
+    (1.2e12, 5.1e13, 2.2e15) are beyond any scan;
+ 2. it therefore yields UPPER bounds on F(M) and on the F_j, which is the
+    single missing input for my own qualifying-spectrum criterion at those
+    steps - every prefix row in this round's tables is "not falsified"
+    rather than verified precisely because a scan gives lower bounds only;
+ 3. the machinery already half-exists in another workstream: harvester's
+    pruned F(2,53) search answers "is a run of length L coverable" for one
+    L at a time (its log reads "run of 423 is coverable"). What has never
+    been built is the SPECTRUM version - all L at once, per machine - which
+    is exactly the hole structure, and which would join my gap census to
+    their record search and to lateral's corridor in one object.
+
+That is my proposal for the next round, and it is the answer to "what would
+have to be built": not a bigger scan, a coverability spectrum.
+
+### (15) JOBS - a sweep killed the detached set; all relaunched
+
+A process sweep during the round killed every long-running job (mine and
+the inherited ones). Findings were not lost - the tools are chunk-flushed
+or single-shot into CSVs - but coverage was. Relaunched and running:
+satruns_L15 (resumed from its state file at k = 1.391e12, 69.5%),
+padding37, hist37, fuel37_k5hunt, and my envelope31 / envelope37 /
+envelope41. Still running from this round: kwin_census at machines 31, 37,
+41 (the k_win >= 4 hunt) and qspec37.
+LANDED: qspec29, qspec31, qspec41, unrestricted_max at 19/23/29,
+kwin_census at 19/23/29, hist41, envelope29 x3.

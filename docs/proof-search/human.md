@@ -10,8 +10,14 @@ We study twin primes through a gear machine: every prime q >= 5 is a gear
 that blocks certain slots k (the pairs 6k-1, 6k+1), and a twin prime pair
 is a slot no gear blocks. The conjecture says unblocked slots never run
 out. The programme has built an exact, machine-checked ledger of how the
-gears spend their blocking budget, measured everything measurable, and
-recorded every attempted proof route with the exact event that limits it.
+gears spend their blocking budget, and recorded every attempted proof
+route with the exact event that limits it. It has NOT measured everything
+measurable - if it had, the conjecture would be settled. Every quantity
+measured so far was derived from parts we already knew to look at; the
+unmeasured space is the relationships BETWEEN the machine's parts, and new
+constructs built from them. Where the analysis reports "this is complex",
+that is not a wall - it is the unexplored region, and it is where the
+answer has to be.
 
 Current state in one paragraph: all counting-style attacks (capacity,
 moments, densities) are recorded with their limiting events - the deep one

@@ -1064,3 +1064,183 @@ one known near-budget value (2.432) lives.
 
 ### F(2,53) WATCH
 Coordinator reports the search is past 423, bound now >= 426. PID 94812 alive.
+
+## 19. Round 15: BACK ON MANDATE - the round-1 ranking re-priced, and a new bite
+
+Coordinator's standing change recorded: rounds 3-14 were twin-route support by
+their steering, not my initiative; from here the mandate is side theorems and
+adjacent conjectures only. Below, each round-1 candidate is re-priced against
+the tools built since, naming the tool - and saying plainly where NOTHING moved.
+
+### (1) RE-RANKED LIST, with the tool that moved each
+
+| # | candidate | what moved it | new status |
+|---|-----------|---------------|------------|
+| C10+N3 | the paired-Jacobsthal family F_d (data + structure) | pruned search (mine, >=426); mod-3 endpoint law; slot_cap_gap collapse | **TOP** - a NAMED function (Ziller-Morack) where the corpus holds both new data and now new structure. Bite taken below. |
+| N1 | universal Polignac cap | capOf_le_twelve (kernel-checked) + my round-10 gcd table | DONE - standalone finite theorem: literal chains <= 12 members for EVERY even gap and every gear, cap by gcd(e,105) |
+| N2 | gear-3 non-adjacency for d = 0 mod 6 | corridor laws + my round-13 computation | DONE - two padded links never adjacent, unconditional, one-line proof |
+| C2 | Polignac for fixed d (the conjecture) | capOf_le_twelve, corridor laws, my rounds 13-14 transfer + budget audit | CONJECTURE UNMOVED, REDUCTION TRANSFORMED: now the SAME open lemma (D) as twins, uniform in d, budget verified for 7 gaps x 5 steps |
+| C4 | Goldbach via the paired sieve | slot_cap_gap (collapse q \| d) has the analogue q \| N; exposed-set = HL-factor identification | window reduction DONE (round 1); NEW small bite available: the singular-series arithmetic factor over q \| N IS an exposed-set size - kernel-reachable |
+| C8 | constant-2 fragile law | horizon theorem + master formula: window primality IS non-divisibility below y, so the fragile census is EXACT gear arithmetic | form improved (explicit inclusion-exclusion, not an empirical fit); ASYMPTOTIC still HL-class, still unreachable |
+| C5 | quadruplets / k-tuples | completeness theorem (n openings blocked only by gears q <= 2n) | MOVED INTO "KNOWN": that theorem is the classical admissibility criterion (a k-tuple is admissible iff it misses a residue mod p for every p <= k). Machinery re-derives a classical fact. |
+| C1 | Legendre / Oppermann / Brocard | NOTHING | unmoved, and now demonstrably so - see below |
+| C3, C6, C7, C9 | per-gap reduction, overcount census, g=2 pinning, onset bound | - | DELIVERED in rounds 1-7 |
+
+### (2) THE BITE: a complete mod-3 law for the whole F_d family
+
+Round 9 proved `F(2,y) = 0 mod 3` for twins (kernel-checked, and the basis of the
+pruned search's 3x cut). The right question for my mandate is what the whole
+family does. ANSWER, a sharp dichotomy:
+
+    3 | F_d(y) for every gear set    <=>    3 does not divide e   <=>   d != 0 mod 6
+
+MECHANISM (and why no other gear can do this): gear q blocks n = 0 and n = -e,
+two residues COLLAPSING to one exactly when q | e - my kernel-checked
+`slot_cap_gap`. At q = 3 that is decisive because 3 - 2 = 1: when 3 does not
+divide e gear 3 leaves a SINGLE class, so every survivor is congruent mod 3 and
+every gap - the maximal one included - is a multiple of 3. When 3 | e it leaves
+two classes and survivors one apart exist. For q >= 5 at least q - 2 >= 3 classes
+survive, so no gear above 3 can pin survivors to one residue. The dichotomy is
+therefore complete AND sharp at gear 3.
+
+VERIFIED FIRST (research/jacobsthal_mod3.py, exact full periods, machines
+y = 11..23, d = 2,4,6,8,10,12,14,16,18,20,24,30,36,42,210): 15 of 15 gap classes
+obey it, with no exceptions - e.g. F_2 = 21, 33, 54, 75, 102 (all divisible by 3)
+against F_6 = 16, 28, 39, 57, 65 (none forced).
+
+KERNEL-CHECKED (proofs/Polignac.lean, built clean, ledger green at 1252 jobs;
+axioms [propext, Quot.sound] for the three main results):
+  `GearSurvivor q e n`         - survivor of gear q in the separation-2e pattern
+  `three_survivors_congr`      - 3 does not divide e => any two survivors are
+                                 congruent mod 3 (the single free class)
+  `three_dvd_gap`              - hence 3 | (m - n) for survivors: every gap, and
+                                 so F_d(y), is a multiple of 3
+  `three_survivors_adjacent`   - CONVERSE: 3 | e => 1 and 2 are both survivors,
+                                 one apart, so no mod-3 law can hold
+  `no_mod_law_above_three`     - q >= 5 leaves >= 3 classes: gear 3 is the only
+                                 gear that can force such a law
+
+VALUE, stated honestly: this is a small theorem, but it is about a function with
+a name and a literature (Ziller-Morack's paired Jacobsthal h_2), it is complete
+(an iff with the sharpness clause), it covers infinitely many Polignac settings
+at once, and it has already paid for itself operationally - the twin case is what
+lets the pruned F(2,53) search skip two of every three lengths.
+
+### (3) EXPLICITLY DEAD OR OUT OF REACH - the list SHRINKS
+
+  - C1 Legendre / Oppermann / Brocard band statements: STRUCK. Twelve rounds of
+    new machinery moved nothing, and the horizon theorem explains why in one
+    line: gears < y decide the window EXACTLY, so the machinery is a statement
+    about divisibility inside a window and contains no prime-side localisation.
+    Band statements need exactly that localisation (exponent 0.5 vs 0.525). No
+    tool in the toolkit is of that type; none is likely to be.
+  - C5 quadruplets / k-tuples: STRUCK as a publishable item. The completeness
+    theorem re-derives the classical admissibility criterion; the k-tuple
+    analogue of my round-1 reduction is mechanical. Nothing new to the world.
+  - C8 constant-2 fragile law, unconditional form: STRUCK. Only the exact
+    inclusion-exclusion restatement survives, as a remark.
+  - C2 as a conjecture: STRUCK as a bite (it is Polignac). It survives only as
+    the schema STATUS line, which is already recorded.
+  Remaining live list, in order: C10+N3 (Jacobsthal family - data and structure),
+  C4 (Goldbach singular-series factor as exposed-set size, small), and the two
+  delivered new theorems N1, N2 as packaging candidates.
+
+## 20. Round 16: F_d MEASURED AS A FAMILY - first values of the paired Jacobsthal
+## function, and twins located inside it
+
+Directive taken literally: F_d is a relationship-between-parts object (difference
+d x gear set x blocking structure in one function), it has a name and a
+literature, and the literature has measured it far less than we now can.
+Tools: research/jacobsthal_family.py, jacobsthal_h2_17.py.
+
+FRAME (stated once, since units have bitten this team): halved coordinates n,
+member m = 2n+1, gear q blocks n = 0, -e mod q, gear 2 automatic. An integer-scale
+gap is TWICE the halved gap, so h_2 (integer scale) = 2 x max_e F_e - the same
+convention as the corpus's maxgap printout "2F vs y^2-y-2". Gears {3..y} plus the
+automatic 2 = the primorial of all primes <= y.
+
+### (1) FIRST EXACT VALUES OF h_2 - a named function the literature has not computed
+
+Ziller-Morack (arXiv:1706.00317) define h_2(n) = j_2(p_n#) as the max over ALL
+even differences, and conjecture (Conjecture 6) h_2(n) < p_n^2 - p_n for n >= 3.
+Per the corpus review they compute no values. Exact, exhaustive over every even
+difference (e and P-e are reflections, so e = 1..P/2 is complete):
+
+    p_n#       y   P=odd part   #differences   h_2    p_n^2-p_n   Conj.6   margin
+    2.3        3        3             1          0        6       holds     -
+    2.3.5      5       15             7         18       20       HOLDS    10.0%
+    2..7       7      105            52         30       42       HOLDS    28.6%
+    2..11     11     1155           577         66      110       HOLDS    40.0%
+    2..13     13    15015          7507        150      156       HOLDS     3.8%
+    2..17     17   255255        127627        192      272       HOLDS    29.4%
+
+Maximising differences at y = 13: e = 344, 734, 839, 916, 2164 (d = 688, 1468,
+1678, 1832, 4328) - all coprime to P, none small, none structured.
+
+FINDING 1 - THE MARGIN IS NON-MONOTONE, WITH A ONE-OFF DIP AT 13. The slack runs
+10.0%, 28.6%, 40.0%, 3.8%, 29.4%: Conjecture 6 is nearly SHARP at p_n = 13 and
+comfortable again at 17. h_2 grows 18, 30, 66, 150, 192 (x1.67, x2.20, x2.27,
+x1.28) against a bound growing 20, 42, 110, 156, 272 (x2.10, x2.60, x1.42,
+x1.74), so it is the y = 13 VALUE THAT IS ANOMALOUSLY HIGH against trend, not the
+y = 17 value that is low.
+A FAILED PREDICTION OF MINE, RECORDED: from the first four points I predicted
+that extrapolating the h_2 ratio (~330) would BREACH the bound 272 at y = 17,
+i.e. that Conjecture 6 would fail there. I ran the computation in the same round
+and it REFUTED me - h_2(17) = 192 exactly (max F = 96, attained at e = 2791,
+3176, 5584, 5794, 6361, 6571), holding with 29.4% margin. The prediction stays on
+the record rather than being dropped.
+The corrected reading is the more interesting one: Conjecture 6 is not approached
+steadily from below but in a single outlying case, so "why is 13 extremal?" is a
+sharp question this machinery can attack - and the corpus has form on such
+anomalies turning out structural (the gear-37 anomaly).
+
+### (2) FINDING 2 - TWINS SIT NEAR THE EASY END OF THEIR OWN FAMILY
+
+At gears <= 13, restricted to differences coprime to P (the sparsest, hardest
+class - 2880 of them):
+
+    F_e range 30 .. 75,  mean 38.83,  median 39
+    TWIN difference (e = 1): F = 33  ->  13.3rd PERCENTILE (rank 385 of 2880)
+    77.2% of coprime differences have a LARGER maximal gap
+    extremal difference is 2.27x the twin value
+  and at gears <= 17 the same picture: twin F = 54 against family max 96, so the
+  extremal difference is 1.78x the twin value
+
+So the twin pattern is atypically TAME: in the one quantity Reduction A depends
+on - how large the maximal gap can be relative to the certified window - twins are
+near the bottom of their own family, not a representative member. Stated
+carefully: the twin case of Ziller-Morack Conjecture 6 (= Reduction A) has more
+than twice the slack of the extremal case at this primorial, so "prove it for
+twins" is strictly the easy end of "prove it for every even difference", and the
+gap between them is a factor >2, not a constant.
+
+### (3) FINDING 3 - THE MAXIMAL GAP IS NOT PROPORTIONAL TO THE MEAN GAP
+
+Density is a pure function of which gears divide e (my exposed-set = HL-factor
+identification), so the mean gap lambda_d is exactly computable per class. If the
+Jacobsthal heuristic "max gap ~ lambda x log-factor" captured the d-dependence,
+F_max/lambda would be near-constant across classes. It is not: over the 31
+gcd(e,P) classes at gears <= 13 it ranges
+
+    2.88  (gcd = 5005)   ...   7.52  (gcd = 3)      - a factor 2.6 spread
+
+with the high end at gcd = 1, 3, 15 (7.4-7.5) and the low end at gcd = 715, 1001,
+455, 385 (3.4-3.7). So DENSITY DOES NOT DETERMINE THE EXTREME: two difference
+classes with the same mean gap can differ by a factor >2 in their maximal gap.
+The d-dependence of F is a genuine second-order structure that the density
+heuristic misses - and it is exactly the structure my mod-3 law (round 15) and
+the cap table (round 10) begin to describe.
+
+### (4) WHAT THIS BUYS, AND WHAT WOULD BRING THE STRUCK CANDIDATES BACK
+
+New to the world, as far as the corpus's literature review reaches: the first
+computed values of h_2, the near-sharpness of Conjecture 6 at n = 6, the location
+of the twin difference inside its family (13th percentile), and the failure of
+density to predict the extreme.
+Per the directive, naming constructs rather than only limits: (a) C8's asymptotic
+would come into reach given a CONDITIONAL-DENSITY construct - the fragile census
+is now exact gear arithmetic, so what is missing is an unconditional handle on
+the pair-correlation of the exposed set, not more measurement; (b) C5 would need
+a construct that distinguishes admissible tuples by SIZE of their maximal gap
+rather than by admissibility - which is exactly the F_d family generalised from
+2-tuples to k-tuples, a computation this machinery can now do and nobody has.

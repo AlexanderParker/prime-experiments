@@ -165,6 +165,28 @@ constrain position, never magnitude (Wall V for global flatness). First L=14 at 
 46,133,660,494 (member 2.768e11), HL model validated; ladder L=15 ~ 5e12, L=32 ~ 3e42.
 prime_adjacent_run_le (32-cap) on [propext, Quot.sound]. Alpha1 empirics 0.52-1.16, no trend.
 
+MEASUREMENT DIRECTIVE (all agents, standing - from the human, 2026-08-18, and it overrides the
+default habit of this search):
+
+"'Measured everything measurable' is obviously not true - if we had, we'd have solved the
+conjecture. Focus on finding NEW measurements, by exploring new machine constructs derived from
+RELATIONSHIPS BETWEEN ITS PARTS. When the analysis points at complexity - that's not a wall,
+that's the solution space we need to push into."
+
+What this changes, concretely:
+- Every measurement so far was taken on an object we already knew to name: gears, teeth, slots,
+  gaps, words, chains, flanks, spectra. The unmeasured space is the RELATIONSHIPS between those
+  objects, and constructs built out of those relationships. Build the new object first, then
+  measure it - do not re-measure known objects at larger scale and call it progress.
+- "Still Wall V", "extreme-value control", "arithmetic luck not structure", "no smooth law, only
+  the histogram" - these have been the terminal verdicts of many rounds. They are NOT stopping
+  points. Each one names a region we have declined to enter because it looked complex. Enter it.
+  If a quantity is erratic and arithmetically selected, that erraticity is itself an object with
+  structure - measure THAT (its own histogram, its correlations, its generating relation), rather
+  than reporting that no smooth law exists.
+- A report that ends "this is the limiting event, still open" is incomplete unless it also names
+  the construct that would have to be built to go further, and why it was not built this round.
+
 MANDATE RULE (all agents, standing - added after a manager error, 2026-08-18):
 Each workstream works ITS OWN MANDATE. The manager does not re-task a workstream to whatever the
 live route needs that round; that is what happened over rounds 3-17 and it left two mandates
@@ -3137,3 +3159,519 @@ r13 spectra (machines 13..31, every F_j).
   F_j upper bounds for machine 37 (the only missing input for the 37->41 row) - ~4h;
   (iii) the padded-tier envelope (same census, qualifying values), the one tier this
   round did not cover.
+
+## Constructor round 18 (2026-08-18) - PAR TRADING explains the suppression; (D) reduces to SHALLOW flatness
+Full text: constructor.md secs 37-39. No new tooling; decisive tests on
+existing spectra + the r16 word table. Lateral's correction absorbed: my
+padding count bound was always step-dependent (p <= F/q' + alpha/3, stated in
+r14/r15 as "no structural cap, grows like y/log y"); at 41->43 it gives
+p <= 3.1, so p=3 is consistent - nothing of mine relied on p <= 2.
+- WHY COMPATIBILITY SUPPRESSES, decomposed into two measurable effects:
+  (i) SIZE THRESHOLD (interiors >= 2u' ~ q'/3, vs mean gap 5.02 at machine 29)
+      - worth up to 14 points at depth 5, but ZERO at depth 3 in 4 of 6
+      machines (Q^size_3 = F_3 exactly);
+  (ii) RESIDUE COINCIDENCE (interiors on 3 of q' residues, ~10%) - carries the
+      WHOLE suppression at the binding depth.
+  Honest consequence: at the configuration that actually binds, suppression is
+  arithmetic LUCK (a 3-in-q' residue test failing for the max 3-window's middle
+  gap), not structure. Luck can fail; then the merge reaches F_3 exactly.
+- THE MECHANISM, named: PAR TRADING. merged = span + FS_max is nearly constant
+  across all compatible words at a step: 13->17: 18,18 (0%); 17->19: 23,25
+  (8%); 19->23: 33,32,34,34 (6%); 23->29: 43,37 (14%); 29->31: 58,51,55,55,55
+  (12%). Each extra link buys ~q'/2 of span and costs about the same in flank
+  sum, so the merged max is nearly DEPTH-INDEPENDENT and deep chains cannot
+  beat shallow ones. This explains the monotone envelope (maxflank falls as
+  span rises because the SUM is pinned) AND the team's decoupling observation
+  (k_max=4 exists but records are carried by short words) - with a reason.
+  Measured: k_win <= 3 at all seven steps (winners have <= 2 letters).
+- THE PAYOFF - r17's refutation was of the WRONG DEPTH. A k<=3 winner spans
+  <= 4 gaps, so (D) at alpha=3 <== [k_win <= 3] AND [F_4(M) - F(M) <= q'].
+  SHALLOW FLATNESS HOLDS AT ALL SIX MACHINES (F_4-F = 11,15,15,13,24,27 vs
+  q' = 13,17,19,23,29,31; ratios 0.57-0.88) where the depth-5 version FAILS at
+  three. The depth that matters is the WINNING depth, not the maximal fuel
+  depth.
+- REVISED TARGET replacing (D):
+  (D-a) k_win <= 3 (no 4+-kill merge ever attains the max; mechanism = par
+        trading; measured 7/7);
+  (D-b) F_4(M) - F(M) <= q' (shallow spectrum flatness; measured 6/6).
+  (D-b) is the first form of the requirement that mentions NO machinery - no
+  fuel, k_max, words, residues or padding; just a fixed-depth window statement.
+  Both strictly weaker than anything the route required before; both open.
+- REQUESTS. MECHANIC: census k_win vs k_max at machines 31, 37, 41 (does
+  k_win <= 3 persist? does the 31->37 padded winner stay at 2 letters?) and
+  F_4 - F vs q' at those machines - the direct test of (D-b) beyond the six.
+  FORMALIST: par trading is not kernel-ready, but its bridge is - merged =
+  span + FS = a sum of exactly k+1 consecutive gaps, hence <= F_{k+1}(M);
+  that one-line identity is what makes (D-a)+(D-b) imply (D).
+
+## Harvester round 15 (2026-08-18) - BACK ON MANDATE: ranking re-priced, list SHRUNK, new bite taken
+Coordinator's standing change recorded (rounds 3-14 were twin-route support by steering,
+not initiative; mandate is adjacent conjectures from here). Detail: harvester.md sec 19.
+
+(1) RE-RANKED, naming the tool that moved each candidate:
+- C10+N3 paired-Jacobsthal family F_d - NOW TOP. A NAMED function (Ziller-Morack h_2)
+  where the corpus holds new DATA (F(2,53) >= 426, pruned search) and now new STRUCTURE
+  (mod-3 law). Bite taken, below.
+- N1 universal Polignac cap (capOf_le_twelve + my gcd(e,105) table): DONE - literal
+  chains <= 12 members for EVERY even gap, every gear.
+- N2 gear-3 non-adjacency for d = 0 mod 6 (corridor laws + my round 13): DONE.
+- C2 Polignac for fixed d: CONJECTURE UNMOVED; REDUCTION transformed - same open lemma
+  (D) as twins, uniform in d, budget verified 7 gaps x 5 steps (my rounds 13-14).
+- C4 Goldbach: window reduction done (round 1); NEW small bite available - slot_cap_gap's
+  collapse (q | d) has the analogue q | N, so the singular-series arithmetic factor over
+  q | N IS an exposed-set size, kernel-reachable.
+- C8 constant-2 fragile law: horizon + master formula make the fragile census EXACT gear
+  arithmetic (window primality IS non-divisibility below y) - form improved, asymptotic
+  still HL-class, still unreachable.
+- C5 quadruplets/k-tuples: the completeness theorem IS the classical admissibility
+  criterion - machinery re-derives a known fact.
+- C1 band statements: NOTHING moved, in twelve rounds.
+
+(2) BITE TAKEN - A COMPLETE MOD-3 LAW FOR THE WHOLE FAMILY:
+      3 | F_d(y) for every gear set  <=>  3 does not divide e  <=>  d != 0 mod 6.
+Mechanism: gear q blocks {0, -e}, collapsing iff q | e (my kernel-checked slot_cap_gap);
+at q = 3 that is decisive since 3-2 = 1 - one free class, so all survivors congruent mod
+3 and every gap (F included) divisible by 3. When 3 | e two classes survive and adjacent
+survivors exist. For q >= 5, q-2 >= 3 classes survive, so NO gear above 3 can force such
+a law: the dichotomy is complete and sharp at gear 3.
+Verified first (research/jacobsthal_mod3.py, exact full periods, y = 11..23, 15 gap
+classes d = 2..210): 15/15, no exceptions (F_2 = 21,33,54,75,102 all divisible by 3;
+F_6 = 16,28,39,57,65 none forced).
+Kernel-checked (proofs/Polignac.lean, clean build, LEDGER GREEN 1252 jobs): GearSurvivor,
+three_survivors_congr, three_dvd_gap, three_survivors_adjacent (converse),
+no_mod_law_above_three (sharpness). Axioms [propext, Quot.sound] for the three main ones.
+Honest value: small, but about a function with a name and a literature, complete as an
+iff, covering infinitely many Polignac settings - and it has already paid operationally,
+since the twin case is what lets the pruned F(2,53) search skip two lengths in three.
+
+(3) LIST SHRUNK - explicitly struck: C1 band statements (twelve rounds moved nothing; the
+horizon theorem explains why - the machinery is divisibility INSIDE a window and contains
+no prime-side localisation, which is exactly what bands need); C5 k-tuples (classical);
+C8 unconditional form; C2 as a bite (it is Polignac itself). REMAINING LIVE: C10+N3
+(Jacobsthal data + structure), C4 (Goldbach singular-series factor as exposed-set size,
+small), and N1/N2 as packaging candidates.
+
+F(2,53): pruned log at 424/425 skipped by the mod-3 law - bound >= 426, searching 426.
+
+### Mechanic round 17 ADDENDUM (same round, after Constructor's par-trading note reached me)
+Tools added: research/unrestricted_max.py, qualifying_spectrum.py, kwin_census.py.
+Full text: mechanic.md r17 sections (8)-(12).
+
+- CONSTRUCTOR'S QUESTION ANSWERED BY EXHIBITION, not argument. You asked HOW the
+  qualifying restriction suppresses the unrestricted maximum. I censused every window
+  attaining F_j and classified its interior:
+    machine 29, F_5 = 85: flanks (30,18) interior (4,3,30)   k = 772,741,833
+                          flanks (27,18) interior (3,7,30)   k = 725,859,998
+    machine 29, F_3 = 65: flanks (39,23) interior (3,)       k = 407,599,253
+    machine 23, F_3 = 50: flanks (23,23) interior (4,)       k = 2,082,580
+    machine 23, F_5 = 65: flanks (28,10) interior (5,2,20)   k = 36,845,450
+  OF 132 MAXIMISERS AT MACHINES 19, 23, 29: ZERO LITERAL, ZERO QUALIFYING. The shape is
+  always the same and is the exact opposite of a word - TWO NEAR-MAXIMAL FLANKS AND THE
+  MACHINE'S SMALLEST GAPS IN THE INTERIOR (2,3,4,5,7). Your own fuel_bound Theorem 1
+  forbids exactly that: a qualifying interior gap is 0 or +-2c mod q' and positive, hence
+  >= 2u'. The suppression is not subtle and it is not luck.
+- THE QUALIFYING SPECTRUM, MEASURED - a word-free criterion that closes every step.
+  Q_j(M;a) = max sum of j consecutive gaps whose j-2 MIDDLE gaps are all >= a = 2u'.
+  Then span + FS <= Q_{ell+2} for every qualifying word, so (D) follows from
+  Q_{ell+2}(M;a) <= F + q'. Full period:
+    step     F   F+q'   F_5   Q_5    criterion margin
+    11->13   7    20     23    0        +4
+    13->17  11    28     28    0        +10
+    17->19  18    37     35   25        +9
+    19->23  25    48     47   38        +10
+    23->29  34    63     65   49        +13
+    29->31  43    74     85   71        +3
+  THE CRUX: at 29->31 the unrestricted F_5 = 85 = F + 42 FAILS (42 > 31); the qualifying
+  Q_5 = 71 = F + 28 PASSES. THE SIZE THRESHOLD ALONE - one inequality, no compatibility,
+  no residues, no corridor - TAKES 42 TO 28 AND CLEARS ALPHA = 3. That is a direct
+  empirical answer to your "arithmetic luck rather than structure" caveat: at the depth
+  that binds, the work is done by the threshold, which is a theorem. Honest counterweight:
+  margin 3 = 0.10 q' is the thinnest of the seven, so this criterion is TIGHT at 29->31.
+  FREE BONUS: Q_j = 0 exactly when no qualifying word of length j-2 exists, so the SAME
+  object delivers the fuel cap (Q_j = 0 for j > 5 at machine 19, j > 6 at 17/23, j > 7 at
+  29). Part (D) and the fuel bound are one measurement, not two.
+- ALSO: the span-resolved envelope span(w) + H_ell(span(w)) <= F + q' (H from the same
+  census, uses only LENGTH and SPAN, no letters) holds at ALL 44 measured word-steps.
+- CORRECTION TO MY OWN ROUND-17 ENTRY ABOVE, inside the round: "the open part of (D) is
+  four addresses" is SUPERSEDED. It was right for the criterion I used there (unrestricted
+  F_{ell+2}), but that is the wrong criterion - the qualifying spectrum and the
+  span-resolved envelope both close that word without looking at its occurrences. THERE IS
+  NO RESIDUAL AT ANY MEASURED STEP under either refined criterion. The four addresses
+  stand as data; the "residual" label does not. (Also fixed a bug in my own new tool: it
+  read Q_j = 0 as failure rather than vacuity. Caught on the 29->37 run, no published
+  number affected.)
+- k_win VS k_max, AND PAR TRADING CONFIRMED (coordinator's ask 1 and 3). New tool
+  kwin_census.py; validation: reproduces F(19->23) = 34, F(23->29) = 43, F(29->31) = 58
+  and r11's tuple counts exactly.
+    step      k=1  k=2  k=3  k=4   k_max  k_win  spread
+    19->23     31   33   34   -      3      3     8.8%
+    23->29     39   43    -   -      2      2     9.3%
+    29->31     55   58   55   55     4      2     5.2%
+  Spreads land in the 5-9% band you predicted. At 29->31 the k=3 and k=4 chains TIE at 55
+  while the winner is k=2 at 58 - fuel exists and LOSES by 3. Winner addresses:
+  k = 137,307 (19->23), 14,995,460 (23->29), 278,620,515 (29->31). The last is exactly the
+  envelope census's word (10,), span 10 + FS_max 48 = 58 - two independent censuses
+  agreeing on the record AND its address, which also answers your ask 3: span + FS is not
+  merely pinned in aggregate, the winner is the same object in both frames.
+  Machines 31, 37, 41 running; a single k_win >= 4 is the falsifying event.
+- SHALLOW FLATNESS F_4 - F vs q' (ask 2), my own full-period F_j:
+    machine   11   13   17   19   23   29   31     37(prefix)
+    F_4 - F   11   15   15   13   24   27   32     >= 15
+    q'        13   17   19   23   29   31   37     41
+    ratio   0.85 0.88 0.79 0.57 0.83 0.87 0.86      -
+  Holds at all seven machines with F_4 known - your six plus MACHINE 31 (32 <= 37, 0.86).
+  Machine 37's row is a PREFIX LOWER bound so it is not a test (it would have to reach 129
+  to break, 26 above the measured 103); machine 41 is running. Flag: the ratio is FLAT at
+  0.79-0.88 with no downward trend, so shallow flatness is holding station at ~0.85 q',
+  not gaining room as machines grow.
+
+## Formalist round 17 (2026-08-18)
+(1) THE COPRIME LEMMA - `PolignacCap.exists_mul_mod_eq`: for 0 < n and gcd(t,n)=1 and
+r < n, there is j < n with (j*t) % n = r. Every residue is hit by a multiple of t.
+Proved via ZMod n units (ZMod.unitOfCoprime + natCast_eq_natCast_iff).
+CACHE WARNING for everyone: the Fin-based route (Finite.injective_iff_surjective +
+Nat.ModEq.cancel_right_of_coprime) elaborates fine but CANNOT BE USED - the module
+Mathlib.Data.Finite.Basic is not in this project's mathlib cache, so `Finite (Fin n)`
+fails to synthesise. Mathlib.Data.ZMod.Basic IS built. "Mathlib has it" is not the same
+as "we can use it here" - test any new mathlib dependency in a scratch file first.
+
+(2) THE ALL-d LITERAL CAP - proofs/PolignacCap*.lean, harvester's halved-coordinate
+frame (position n = pair (2n+1, 2n+1+2e); gear q blocks n = 0, -e mod q; gear 3 FILTERS
+candidates rather than breaking runs). Since 105 = 3*5*7 has exactly eight divisors and
+the cap depends only on gcd(e,105), eight theorems cover EVERY even gap d:
+    gcd(e,105)    1    5    7    3   21   35   15  105
+    cap           6    6    6    6    6    6   10   12
+- `cap_gcd_3` is the d = 0 mod 6 case - the densest Polignac gaps, excluded from the
+  original mod-35 treatment - and it still caps at 6.
+- The ceiling breaks only at gcd = 15 (10) and gcd = 105 (12), exactly where e absorbs
+  the small gears and enlarges the exposed set.
+- `PolignacCap.capOf_le_twelve`: 12 IS THE ABSOLUTE CEILING OVER ALL POLIGNAC GAPS -
+  the universal form of the fuel bound, and the ledger's first all-d statement.
+Each cap was verified numerically to be SHARP (the scan fails at cap - 1) and all eight
+spectra were reproduced independently before any Lean was written.
+
+THE 38x SPEEDUP (round 16 projected 88 min for eight classes; a class now takes ~17s):
+(a) allocation-free fuel-recursive Bool scan instead of building/filtering a List per
+start - list allocation dominated kernel time; (b) restrict scan starts to the exposed
+set, since a run begins at an exposed position (2-7x, and the bridge is one line rather
+than the single-walk cycle argument); (c) tight fuel measured per class (12-24, not 44).
+Note (b) means the cap did NOT need the coprime lemma after all - that lemma enables the
+single-walk reduction, which is now an alternative rather than a prerequisite.
+
+NEW WALL, GENERAL: eight `decide +kernel` calls in ONE FILE do not finish - memory past
+2.3 GB, still running after 20+ min - even though each class alone takes 17-60s.
+Splitting them into separate MODULES under one root fixes it (lake elaborates each
+module in its own process). Combined with round 15: bound the work per DECLARATION
+(~5e3 tuples) AND the number of heavy declarations per MODULE (a handful). Both limits
+are about per-process state, not total work. Lake note: sibling modules must each be
+declared as a lean_lib (or globbed) or imports fail with "unknown module prefix".
+
+(3) MONOTONE ENVELOPE - assessed, deliberately not built. Constructor 34.1
+(span + FS = sum of k+1 consecutive gaps <= F_{k+1}) is definitional, and 34.2 shows
+spectrum flatness FAILS at 29->31 (5-window max 42 above F where 31 is allowed). So
+formalising F_j would formalise a route already known not to close (D). The reusable
+piece if ever wanted: Machine17.pair25T encodes "at least 2 openings within 25 slots" as
+`2 <= (expWin ...).length`; replacing 2 by j gives F_j(M) <= B directly, and
+pair_sum_le's two-witness extraction generalises to j witnesses by the same
+Nodup-filtered-list argument.
+CONFIRMED ON RESUME (round 17 ended in a process restart): ledger green, 1252 jobs, ten
+PolignacCap*.lean files, zero sorries. AXIOM AUDIT: all eight `cap_gcd_*` AND
+`capOf_le_twelve` DEPEND ON NO AXIOMS AT ALL (pure kernel computation, no native_decide,
+no ofReduceBool); `exists_mul_mod_eq` on the standard three. Also confirmed |E_e| =
+prod over q in {3,5,7} of (q - r_q) for all eight classes (15/20/18/30/36/24/40/48) -
+harvester's HL column reproduced exactly. Lake note: each sibling module must be its own
+lean_lib or imports fail with "unknown module prefix" (25 libs now).
+
+## Formalist round 18 (2026-08-18)
+LEDGER: 1254 jobs, zero sorries, zero warnings (bare lake build from proofs).
+
+(1) THE BRIDGE IDENTITY IS KERNEL-CHECKED - proofs/Spectrum.lean (new), the piece
+Constructor flagged as load-bearing:
+- `Spectrum.merged_eq`: g a + windowSum g (a+1) l + g (a+l+1) = windowSum g a (l+2).
+  A word occupying l consecutive gaps PLUS its two flanks spans exactly l+2 = k+1
+  CONSECUTIVE gaps - so merged length IS a window sum.
+- `Spectrum.merged_le_spectrum` / `_succ`: hence merged <= F_{l+2} = F_{k+1}(M).
+- `Spectrum.merged_le_of_shallow` (THE PAYOFF): from [l+2 <= 4, i.e. k_win <= 3] and
+  [F_4 <= F + q'], merged <= F + q'. Its statement mentions NO machinery - no fuel, no
+  k_max, no word list, no residues, no padding - only a gap sequence g : ℕ → ℕ and the
+  two hypotheses. Both empirical halves stay HYPOTHESES inside the file, so mechanic's
+  tests at 31/37/41 decide the conclusion without the formal step being at risk.
+
+(2) AUDIT of the five-part factorisation, kernel-checked vs merely computed:
+  (A) word list from q' mod 210 - PARTIAL: the class-reduction core is checked
+      (LiteralCap.s_eq) and the length bound is literal_chain_le_six, but the
+      ENUMERATION of the list is computed, not checked. <- the remaining gap.
+  (B) literal span - FULLY checked, and now UNIVERSALLY (PolignacCap.capOf_le_twelve).
+  (C) padded span - count bound was checked; THE ONSET GATE WAS NOT. Closed this round:
+      `TierA.onset_gate (hg : 0 < g) (hdvd : q ∣ g) (hF : g ≤ F) : q ≤ F` - a padded
+      link's interior gap is a positive multiple of q' and is one of M's gaps, so
+      q' <= F(M): padding cannot exist below onset. One line, [propext] only.
+  (E) both-flanks-maximal - checked (TierA.carrier/flanks_*), recorded off-target.
+
+(3) PADDING RESTATED per lateral's withdrawal. My statement was hypothesis-explicit and
+never false, but the heading and docstring overclaimed and mis-described F < q as "the
+onset condition" when by onset_gate it is precisely the regime with NO padded link.
+Now: heading says the count bound is budget arithmetic and NOT constant;
+`padding_count_le` documented as p <= F/q + 5/6, a bound that GROWS; new
+`padding_three_not_excluded : 13*q ≤ 6*F → 6*(3*q) ≤ 6*F + 5*q` records that once
+F >= (13/6)q the budget stops excluding three links (lateral's p=3 from 41->43);
+`padding_at_most_one` renamed `padding_at_most_one_below_onset` with an explicit note
+that it says nothing at or above onset. Matches constructor's confirmation that their
+bound was always step-dependent.
+
+PER THE STANDING DIRECTIVE - re-attacking my own earlier kernel walls rather than
+restating them. Round 15's "tier C caps at about machine 19" was measured with the
+OLD encoding and is wrong under the current one. Three reductions, none problem-specific:
+(a) allocation-free scan (no per-start List) - most of a 38x gain on the d-general cap;
+(b) restrict starts to OPENINGS, since a run begins at one - machine 19 opening density
+prod(1-2/q) = 0.234, a 4.3x cut (machine 23: 0.214); (c) tight measured fuel.
+(b) ALONE takes machine 19 from 86 min to ~20 min and machine 23 from 33 h to ~7 h;
+compounded, machine 19 should be single-digit minutes and machine 23 an overnight job,
+not an impossibility. And if a machine is ever truly out of reach, the named construct is
+the round-16 SINGLE-CYCLE reduction (one orbit-length walk replaces the whole start set,
+a further 37x); its prerequisite `exists_mul_mod_eq` is now proved in PolignacCapCore, so
+it is available off the shelf rather than blocked.
+
+Next target (proposed): the remaining (A) gap - the word-list enumeration as a function
+of q' mod 210, same shape as the LiteralCap class check and affordable under the current
+encoding. Alternatively, if mechanic's two halves survive, wire merged_le_of_shallow to a
+concrete machine by proving a SpectrumBound g 4 F4 instance from a period scan: the
+Machine13/17 certificates already produce F_1 and F_2, and F_4 is the same encoding with
+the count threshold raised from 2 to 4.
+
+## Harvester round 16 (2026-08-18) - F_d AS A FAMILY: first values of h_2, and twins located inside it
+Directive taken literally: F_d is a relationship-between-parts object (difference x gear
+set x blocking structure in one function), it has a name and a literature, and the
+literature has measured it far less than we now can. Detail: harvester.md sec 20.
+Tools: research/jacobsthal_family.py, jacobsthal_h2_17.py. Frame stated once: halved
+coords, h_2 (integer scale) = 2 x max_e F_e, matching maxgap's "2F vs y^2-y-2".
+
+(1) FIRST EXACT VALUES OF THE PAIRED JACOBSTHAL FUNCTION h_2 (Ziller-Morack compute
+NONE; exhaustive over every even difference, e and P-e being reflections):
+  p_n#     y     P      #diffs    h_2    p_n^2-p_n   Conj.6   margin
+  2..5     5      15         7     18        20      HOLDS    10.0%
+  2..7     7     105        52     30        42      HOLDS    28.6%
+  2..11   11    1155       577     66       110      HOLDS    40.0%
+  2..13   13   15015      7507    150       156      HOLDS     3.8%
+  2..17   17  255255    127627    192       272      HOLDS    29.4%
+Maximisers at y=13: e = 344, 734, 839, 916, 2164; at y=17: e = 2791, 3176, 5584, ...
+- all coprime to P, none small, none structured.
+FINDING 1: the margin is NON-MONOTONE with a sharp ONE-OFF DIP at p_n = 13 (3.8%),
+recovering to 29.4% at 17. It is the y=13 value that is anomalously HIGH against trend
+(h_2 x-ratios 1.67, 2.20, 2.27, 1.28), not y=17 that is low. So Conjecture 6 is not
+approached steadily from below but in a single outlying case - "why is 13 extremal?" is
+now a sharp, attackable question, and this corpus has form on such anomalies being
+structural (gear-37).
+FAILED PREDICTION OF MINE, RECORDED: from the first four points I predicted extrapolation
+(~330) would BREACH the bound 272 at y=17, i.e. Conjecture 6 failing. I ran it in the same
+round and it REFUTED me (192, holds with 29.4%). Left on the record.
+
+(2) FINDING 2 - TWINS SIT NEAR THE EASY END OF THEIR OWN FAMILY. At gears <= 13,
+restricted to differences COPRIME to P (2880 of them, the sparsest/hardest class):
+F ranges 30..75, mean 38.83; the TWIN difference gives 33 = the 13.3rd PERCENTILE, with
+77.2% of coprime differences having a LARGER maximal gap and the extremal difference
+2.27x the twin value. Same picture at gears <= 17 (twin 54 vs family max 96, 1.78x).
+CONSEQUENCE, stated carefully: the twin case of Conjecture 6 IS Reduction A, and it has
+more than twice the slack of the extremal difference at this primorial. "Prove it for
+twins" is strictly the EASY end of "prove it for every even difference" - by a factor
+>2 in the quantity that matters, not a constant.
+
+(3) FINDING 3 - DENSITY DOES NOT DETERMINE THE EXTREME. Mean gap lambda_d is exactly
+computable per class (exposed-set = HL-factor identification). If the Jacobsthal
+heuristic "max ~ lambda x log-factor" captured the d-dependence, F_max/lambda would be
+near constant. Over the 31 gcd(e,P) classes at gears <= 13 it ranges 2.88 to 7.52 - a
+factor 2.6 spread, high at gcd = 1, 3, 15 and low at gcd = 715, 1001, 455, 385. Two
+difference classes with the SAME mean gap differ by >2x in maximal gap: the d-dependence
+is genuine second-order structure the density heuristic misses, and it is what my mod-3
+law (round 15) and cap table (round 10) have begun to describe.
+
+(4) Per the directive, naming constructs rather than only limits for the struck
+candidates: C8's asymptotic needs an unconditional handle on the PAIR CORRELATION of the
+exposed set (the census itself is already exact gear arithmetic - more measurement will
+not help); C5 needs a construct grading admissible k-tuples by SIZE of maximal gap rather
+than by admissibility - i.e. the F_d family generalised from 2-tuples to k-tuples, a
+computation this machinery can do and nobody has.
+
+## Constructor round 19 (2026-08-18) - SUPPRESSION LAW: "luck" built into a construct, deep depths now the EASY ones
+Directive-driven: I had called the binding-depth suppression "arithmetic luck"
+and stopped. Built the object. Tools: research/window_profile.py,
+research/suppression_law.py. Full text: constructor.md secs 40-42.
+- NEW CONSTRUCT - THE WINDOW COMPOSITION PROFILE: a j-window as ONE object
+  carrying composition (which gap values, which positions), sum, and qualifying
+  status of its j-2 interiors. New measurement out of it - COMPOSITION
+  MIGRATION: max element/sum at the argmax window falls 0.64 -> 0.35 as j grows
+  (machine 29: [35,20,10] at j=3, [18,30,3,4,30] at j=5). Deep extremal windows
+  NEVER contain the record gap - which is why the isolation law cannot control
+  them.
+- LUCK VS STRUCTURE, both measured, and they split:
+  (1) THE MAXIMUM IS LUCKY. Exclusion zone Z = #{windows with sum > qualifying
+      max} is tiny (8-60 at j=3) and luck prob (1-p)^Z = 10^-0.1..10^-1.3 -
+      given p, the qualifying max sits exactly where a random p-sample's max
+      would. My r18 reading confirmed, now measured.
+  (2) p ITSELF IS NOT. p_j vs independence p_1^(j-2): deficits x1.0, x1.6,
+      x26 (m23 j=4), x6.7 (m29 j=4), x1400 (m29 j=5). QUALIFYING INTERIORS ARE
+      STRONGLY NEGATIVELY CORRELATED - large (>=2u') gaps anti-cluster. This is
+      Wall V's non-clustering statement as a MEASURED correlation deficit in a
+      built object rather than an assumed need. THE STRUCTURE IS IN p, NOT IN
+      THE ORDER STATISTIC.
+- THE SUPPRESSION LAW: suppression(j) = F_j - qualmax_j ~ lambda (j-2) L,
+  lambda = window-sum tail scale, L = ln(1/p_1), both from M alone. Machine 29:
+  observed 7, 15, 30 at j=3,4,5 vs predicted 9.0, 21.7, 42.5 - right scale and
+  CONSERVATIVE at depth (the anti-correlation pushes p below independent).
+- PAR TRADING DERIVED (was an observation in r18): gain per link = spectrum
+  increment F_{j+1}-F_j (5-15); loss per link = lambda*L (4.2, 5.5, 9.0 at
+  machines 19, 23, 29). Approximately equal -> merged_max nearly
+  depth-independent. Two separately computed quantities, not a fit.
+- THE PAYOFF - SUPPRESSION-CORRECTED FLATNESS:
+      (D)  <==  F_j(M) - F(M) <= q' + lambda (j-2) L   for every j >= 2.
+  ALL 15 machine-depth pairs hold (corrected 4.7-15.1, BOUNDED and non-growing
+  in j) where RAW flatness FAILS at 5 of 15 - exactly r17's refutation.
+  Consequences: (a) r17 repaired, not patched - the depths that broke raw
+  flatness are where the suppression term is largest; (b) r18's (D-a) k_win<=3
+  + (D-b) F_4-F<=q' is SUBSUMED, no winning-depth assumption needed; (c) the
+  j=2 case IS lemma 1 (suppression zero), so lemma 1 and the deep-window
+  problem are ONE statement at different depths - and THE DEEP CASES ARE THE
+  EASIER ONES, reversing what the route assumed from r8 to r17.
+- HONEST STATUS: lambda fitted from the tail, p_1 measured, order-statistics
+  step heuristic. The construct reproduces every measured suppression and
+  reduces the requirement to one depth-indexed inequality over quantities
+  computable from M's gap word alone - no words, residues, fuel, padding or
+  extremes.
+- NEXT CONSTRUCT (and why not this round): THE ANTI-CORRELATION LAW - a formula
+  for p_j, i.e. the joint distribution of qualifying-size gaps at separations
+  1..j in M's gap word. It is precisely the x26/x1400 deficit that would make
+  the suppression law rigorous (guaranteeing suppression >= predicted). Not
+  built this round because it needs a joint gap-pair census at separations 1..5
+  over whole periods (MECHANIC-scale), and because the profile object had to
+  exist first to establish that p_j - not the order statistic - is where the
+  structure sits.
+- REQUEST TO MECHANIC: joint census of qualifying-size gap pairs at separations
+  1..5 (machines 23, 29, 31): P(gap_i >= 2u' AND gap_{i+s} >= 2u') vs
+  P(>=2u')^2, per separation s. That is the anti-correlation law's data.
+
+### Mechanic round 17 ADDENDUM 2 (after the human's new-measurement directive reached me)
+Tool added: research/hole_structure.py. Full text: mechanic.md r17 sections (13)-(15).
+
+- THE WORD-FREE CRITERION AT THE BIG STEPS, and an honest warning that cuts against my
+  own addendum-1 optimism. qspec31 (FULL period 3.343e10) and qspec41 (prefix) landed:
+    machine 31: F_j = 85 90 92 97 104 110 (j=3..8); Q_j = 85 90 91 90 88 0
+    machine 41: F_j = 110 112 118 123 130 138;      Q_j = 110 112 110 117 122 121
+  Q_7(31) = 88 = F(31->37) EXACTLY - the qualifying spectrum at the winning depth EQUALS
+  the true record, so the bound is ATTAINED at the binding step, not slack. But the
+  criterion margin across steps is
+    11->13 +4 (0.31q') | 13->17 +10 (0.59) | 17->19 +9 (0.47) | 19->23 +10 (0.43) |
+    23->29 +13 (0.45)  | 29->31 +3 (0.10)  | 31->37 +4 (0.11) | 41->43 +23 (0.17, prefix)
+  THE MARGIN COLLAPSES FROM ~0.45 q' TO 0.10-0.11 q' AT THE TWO LARGEST FULL-PERIOD
+  MACHINES. The word-RESTRICTED margin does not (0.52 q' at 29->31). So the qualifying
+  spectrum is a clean word-free sufficient criterion that is running out of room exactly
+  where the machines get big. 37->41 is the live test (qspec37 running); a prefix can only
+  FALSIFY it, since prefix Q_j are lower bounds.
+  Also for Constructor's ask 2: machine 41 gives F_4 - F = 112 - 90 = 22 vs q' = 43,
+  ratio 0.51 - shallow flatness not falsified there either.
+- NEW MEASUREMENT PER THE DIRECTIVE - THE HOLE STRUCTURE OF THE GAP SPECTRUM. My r14/r15
+  "no smooth law, look hist_M[v] up" was the stopping point; this is the other side of it.
+  (a) THE HOLE LIST, exact, full period, first time enumerated:
+      machine 11 F= 7 none | 13 F=11 {9} | 17 F=18 {17} | 19 F=25 {19,24} |
+      23 F=34 {24} | 29 F=43 {41,42}
+      Holes are rare (0-2 per machine) and sit at 0.94-0.98F, with ONE exception:
+      v = 24 at machine 23 sits at 0.71F.
+  (b) ABSENCE IS TRANSIENT: 9 heals at 17, 17 heals at 19, 19 heals at 23, 24 heals at 29;
+      only v = 24 survives a step (hole at BOTH 19 and 23). NO hole is ever created below
+      the previous machine's F. The spectrum fills in monotonically from below as gears
+      are added; holes are a boundary effect the next gear repairs.
+  (c) THE RESIDUE LAW - a genuinely new object, and it points at the corridor gears.
+      hist_M[v] is strongly non-flat in v mod p, with a shape that is STABLE ACROSS
+      MACHINES AND CONVERGING (class share x p, 1.00 = flat):
+        machine 29: mod 2 -> 0.88 1.12 | mod 3 -> 0.65 0.93 1.42
+                    mod 5 -> 1.16 0.80 1.70 0.93 0.41
+                    mod 7 -> 0.78 0.90 1.64 1.15 0.67 1.40 0.45
+      (machine 11 starts at 2.22 / 2.92 in the mod-5 / mod-7 rich classes and every entry
+      moves monotonically toward these.) THE RICH CLASSES ARE THE LETTER VALUES OF THE
+      SMALL GEARS: mod 7 the two richest are v = 2 and v = 5 = +-s for gear 7
+      (s = 2*6^{-1} = 5); mod 5 the richest is v = 2 = s. So gear 5 and gear 7's teeth are
+      legible in the gap histogram of the WHOLE machine. It is NOT the naive
+      endpoint-survival count, which predicts v = 0 mod p richest and +s/-s equal;
+      measured, v = 2 mod 5 (1.70) beats v = 0 (1.16) and v = 3 (0.93). Unexplained -
+      offered to Lateral, whose corridor owns those teeth.
+  (d) THE RESIDUE LAW DOES NOT PREDICT THE HOLES. Ranking each spectrum's top half by
+      R(v) = prod_p share_p(v mod p): hole 24 ranks 1/14 at machine 19 and 2/18 at 23
+      (hits - and 24 is the one INHERITED hole), hole 9 ranks 2/7 at 13; but holes 41,42
+      rank 7 and 10 of 23 at machine 29, and hole 17 ranks 10 of 10 - the HIGHEST score -
+      at machine 17. So holes are not a residue-marginal phenomenon at p <= 7.
+- THE CONSTRUCT THAT WOULD HAVE TO BE BUILT (per the directive, naming it rather than
+  stopping at "no law"): a gap of exactly v means v-1 CONSECUTIVE SLOTS ALL KILLED with
+  both endpoints spared - a COVERING-FEASIBILITY question about the gear set, not a
+  residue question about v. The object is the COVERABILITY SPECTRUM
+      COV(M) = { L : L consecutive slots coverable by gears 5..M, both flanks spared },
+  whose complement is the hole set. Three reasons it is the right construct: (1) it is CRT
+  arithmetic, computable WITHOUT scanning a period, so it reaches machines 37, 41, 43, 53
+  whose periods (1.2e12, 5.1e13, 2.2e15) are beyond any scan; (2) it yields UPPER bounds
+  on F(M) and F_j - the single missing input for my qualifying-spectrum criterion, which
+  is why every prefix row in my tables reads "not falsified" instead of "verified";
+  (3) HARVESTER ALREADY HAS HALF OF IT - their pruned F(2,53) search answers "is a run of
+  length L coverable" one L at a time ("run of 423 is coverable"). Nobody has built the
+  SPECTRUM version, all L at once per machine. That single object joins my gap census,
+  their record search and lateral's corridor. It is my proposal for the next round.
+- JOBS: a process sweep during the round killed the whole detached set (mine and the
+  inherited ones). No findings lost - every tool is chunk-flushed or single-shot into
+  CSVs - but coverage was. ALL RELAUNCHED: satruns_L15 (resumed from its state file at
+  k = 1.391e12, 69.5%), padding37, hist37, fuel37_k5hunt, envelope31/37/41. Still running
+  from this round: kwin_census at 31/37/41 (the k_win >= 4 hunt) and qspec37.
+
+## Lateral round 18 (2026-08-18) - NEW OBJECT: the exposed-set autocorrelation (gear x lag)
+Tools: research/exposed_autocorr.py, residual_demand.py, autocorr_fit.py,
+openings_ap.py/ap2.py. Log: docs/proof-search/lateral.md round 18.
+Back in the lateral lane per the standing directive; this is a new construct
+built from a RELATIONSHIP between parts, not a re-measurement.
+- THE OBJECT: for gear q let A_q = Z_q minus its two teeth (|A_q| = q-2). Its
+  AUTOCORRELATION AT LAG g is c_q(g) = |{r in A_q : r+g in A_q}| - the number of
+  phases keeping BOTH ends of a lag-g pair exposed to q. CLOSED FORM (verified
+  brute force, gears 5..31, all lags, 0 mismatches):
+      c_q(g) = q-2  if q | g            (same tooth)
+             = q-3  if g = +-2u_q       (opposite teeth = THE LITERAL-LINK LAG)
+             = q-4  otherwise           (generic)
+  THE THREE CASES OF THE AUTOCORRELATION ARE THE THREE TOOTH-RELATIONSHIPS -
+  and the middle case is exactly the literal-link condition rounds 12-17 spent
+  on padding, reached here from an unrelated direction. Gear 5 gives 3/2/1, so
+  lags = +-1 mod 5 are suppressed threefold by gear 5 ALONE.
+- IT PARTLY DISSOLVES "NO SMOOTH LAW, ONLY THE HISTOGRAM". The admissible
+  endpoint phases mod 35 for a lag-g pair number EXACTLY c_5(g)*c_7(g), range
+  {3..15}. Machine 23 histogram vs the construct:
+      g       24    25    26   27   28   29   30   31
+      count    0  1404   310  170  322    6  112   20
+      c5*c7    3     9     4    6   10    3   12    3
+  Gap 24 (absent at machines 19 AND 23) and gap 29 (count 6 between neighbours
+  322 and 112) both carry the MINIMUM possible value 3. Three of the four
+  gap values absent below F across three machines carry the minimum.
+  QUANTIFIED: adding log(c5*c7) to a smooth-decay fit of log(count) removes
+  28% (machine 23) and 24% (machine 29) of the residual variance; 3% at
+  machine 19 (only 9 data points). So: a real law, multiplicative and
+  arithmetic rather than smooth, explaining about a quarter of the "noise".
+- CLEAN NEGATIVE for whoever looks next: the absences are NOT capacity-
+  structural. Residual demand D(g) (interior slots the small gears cannot kill,
+  minimised over admissible phases) versus purchasable supply from gears >= 11
+  leaves slack of 8-16 at EVERY g at machines 19 and 23. Gap 24's absence is
+  arithmetic selection plus rarity, not impossibility - do not hunt a covering
+  obstruction.
+- SIDE THEOREM (generalises round 16 from difference q' to any difference):
+  gear q leaves q-2 residues, and an L-term AP with gcd(d,q)=1 occupies
+  min(L,q) residues, so L > q-2 forces a tooth. Hence AN AP OF L OPENINGS HAS
+  COMMON DIFFERENCE DIVISIBLE BY EVERY GEAR q < L+2: 3 equal consecutive gaps
+  require 5|g, 5 equal require 35|g, 9 require 385|g, and L >= y+2 needs
+  difference >= P(y). Verified on full periods of machines 13..29: zero
+  violations, longest equal-gap run 3-4 everywhere with g = 5 EXACTLY in every
+  case - the theorem's minimal witness realised.
+- WHAT WOULD BE NEEDED NEXT, and why it was not built this round: the
+  autocorrelation is the ENDPOINT half only. Endpoint exposure is a
+  CONJUNCTION so it factorises over gears by CRT - that is why c_q(g) has a
+  closed form. The interior condition ("each interior slot killed by SOME
+  gear") is a DISJUNCTION and does not factorise, so the remaining ~3/4 of the
+  erraticity needs the GAP CORRELATION FUNCTION - the full (g+1)-point object
+  with 2 exposed ends and g-1 covered interiors, via inclusion-exclusion over
+  which gear kills which slot rather than a per-gear product. Bigger build, and
+  where the complexity actually lives.
+- TWO CHEAP UNBUILT RELATIVES, flagged for anyone: higher-order
+  autocorrelations c_q(g1,g2) (gear x LAG PAIR) - which is the natural object
+  for part (D), since a flank sum FS is precisely a two-lag quantity; and the
+  autocorrelation evaluated at the padded lag q' itself, where this thread and
+  the padding thread would meet.

@@ -1308,4 +1308,74 @@ theorem endpoint_run_mod_three {o s M : ℕ} (hs : 1 ≤ s)
   refine ⟨by omega, ?_⟩
   exact Nat.dvd_of_mod_eq_zero (by omega)
 
+/-! ## The paired-Jacobsthal family: a complete mod-3 law
+
+`F_d(y)` denotes the maximal gap of the separation-`2e` pattern in halved
+coordinates - the corpus's adjacent frame, where `F_2(y)` is the tabulated
+`F(2,y) = 21, 33, 54, 75, 102, ...` and Ziller-Morack's paired Jacobsthal
+function is the maximum over all even differences.
+
+Gear `q` blocks `n` when `q ∣ n` or `q ∣ n + e`: two residues, which COLLAPSE to
+one exactly when `q ∣ e` (`Polignac.slot_cap_gap`). At `q = 3` that collapse is
+decisive, because `3 - 2 = 1`: when `3 ∤ e` gear 3 leaves a SINGLE class, so
+every survivor is congruent mod 3 and every gap - the maximal one included - is a
+multiple of 3; when `3 ∣ e` it leaves two classes and survivors one apart exist.
+No other gear can do this, since `q - 2 ≥ 3` for `q ≥ 5`.
+
+    3 ∣ F_d(y) for every y   ⟺   3 ∤ e   ⟺   d ≢ 0 (mod 6)
+
+Measured on the full family (research/jacobsthal_mod3.py, d = 2..210, machines
+y = 11..23, exact full periods): 15 of 15 gap classes obey the dichotomy, and
+`F_2 = 21, 33, 54, 75, 102` (all divisible by 3) against e.g. `F_6 = 16, 28, 39,
+57, 65` (not). This generalises `endpoint_run_mod_three` from twins to every
+Polignac gap. -/
+
+/-- Survivor of gear `q` in the separation-`2e` pattern (halved coordinates). -/
+def GearSurvivor (q e n : ℕ) : Prop := ¬ q ∣ n ∧ ¬ q ∣ (n + e)
+
+/-- **One free class at gear 3.** For `3 ∤ e` the blocked residues `0` and `-e`
+are distinct, so gear 3 leaves exactly one class: any two survivors of gear 3
+are congruent mod 3. -/
+theorem three_survivors_congr {e n m : ℕ} (he : ¬ (3 ∣ e))
+    (hn : GearSurvivor 3 e n) (hm : GearSurvivor 3 e m) : n % 3 = m % 3 := by
+  obtain ⟨hn1, hn2⟩ := hn
+  obtain ⟨hm1, hm2⟩ := hm
+  have e1 : n % 3 ≠ 0 := fun h => hn1 (Nat.dvd_of_mod_eq_zero h)
+  have e2 : (n + e) % 3 ≠ 0 := fun h => hn2 (Nat.dvd_of_mod_eq_zero h)
+  have e3 : m % 3 ≠ 0 := fun h => hm1 (Nat.dvd_of_mod_eq_zero h)
+  have e4 : (m + e) % 3 ≠ 0 := fun h => hm2 (Nat.dvd_of_mod_eq_zero h)
+  have e5 : e % 3 ≠ 0 := fun h => he (Nat.dvd_of_mod_eq_zero h)
+  omega
+
+/-- **Every gap is a multiple of 3** when `3 ∤ e`. Applied to the two ends of a
+maximal gap this is `3 ∣ F_d(y)`, for every gear set and every `y` - the
+separation-`2e` generalisation of the twin endpoint law. -/
+theorem three_dvd_gap {e n m : ℕ} (he : ¬ (3 ∣ e)) (hnm : n ≤ m)
+    (hn : GearSurvivor 3 e n) (hm : GearSurvivor 3 e m) : 3 ∣ (m - n) := by
+  have h := three_survivors_congr he hn hm
+  omega
+
+/-- **The converse at gear 3.** When `3 ∣ e` gear 3 blocks only the class `0`,
+two classes survive, and `1` and `2` are both survivors - one apart. So no
+mod-3 law can hold for `d ≡ 0 (mod 6)`; the dichotomy is sharp at gear 3. -/
+theorem three_survivors_adjacent {e : ℕ} (he : 3 ∣ e) :
+    GearSurvivor 3 e 1 ∧ GearSurvivor 3 e 2 := by
+  obtain ⟨k, rfl⟩ := he
+  refine ⟨⟨fun h => ?_, fun h => ?_⟩, ⟨fun h => ?_, fun h => ?_⟩⟩ <;> omega
+
+/-- No gear above 3 can force such a law: `q ≥ 5` leaves at least `q - 2 ≥ 3`
+classes, so it never pins survivors to a single residue. Stated as the two
+explicit survivors `q - 1` and `q + 1` when `q ∤ e` and `q ∤ e ± 1`. -/
+theorem no_mod_law_above_three {q e : ℕ} (hq : 5 ≤ q)
+    (h1 : ¬ q ∣ (q - 1 + e)) (h2 : ¬ q ∣ (q + 1 + e)) :
+    GearSurvivor q e (q - 1) ∧ GearSurvivor q e (q + 1) := by
+  refine ⟨⟨fun h => ?_, h1⟩, ⟨fun h => ?_, h2⟩⟩
+  · have := Nat.le_of_dvd (by omega) h
+    omega
+  · have hone : q ∣ 1 := by
+      have hs := Nat.dvd_sub h (dvd_refl q)
+      rwa [show q + 1 - q = 1 by omega] at hs
+    have := Nat.le_of_dvd (by norm_num) hone
+    omega
+
 end Polignac

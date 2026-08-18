@@ -1111,3 +1111,258 @@ The modular-surjectivity lemma above, then the eight-class d-general cap in
 one go (it becomes a ~2.5 min lib). That would put "12 is the absolute
 ceiling over ALL Polignac gaps" in the kernel - the universal form of part
 (B), covering `d = 0 mod 6` (the densest gaps) as well.
+
+## Round 17 - the coprime lemma, and the all-d cap (2026-08-18)
+
+### (1) The gcd lemma
+
+```lean
+theorem exists_mul_mod_eq {n t : ℕ} (hn : 0 < n) (h : Nat.Coprime t n)
+    {r : ℕ} (hr : r < n) : ∃ j, j < n ∧ (j * t) % n = r
+```
+
+Every residue is hit by a multiple of `t` when `t` is coprime to the
+modulus. Two routes were tried:
+
+* `Fin n` injective-implies-surjective (`Finite.injective_iff_surjective`
+  plus `Nat.ModEq.cancel_right_of_coprime`) - elaborates, but
+  `Mathlib.Data.Finite.Basic` is NOT in this project's mathlib cache, so
+  the `Finite (Fin n)` instance cannot be synthesised. Dead end here, and
+  worth recording: the cache is partial, so "mathlib has it" is not the
+  same as "we can use it".
+* `ZMod n` units (`ZMod.unitOfCoprime`, `ZMod.coe_unitOfCoprime`,
+  `ZMod.natCast_val`, `ZMod.natCast_eq_natCast_iff`) - works, and
+  `Mathlib.Data.ZMod.Basic` IS built. This is the version in the file.
+
+Testing the lemma in a scratch file BEFORE putting it in front of eight
+multi-minute `decide`s is what caught the missing instance; otherwise the
+failure would have surfaced only after a full build.
+
+### (2) The all-d literal cap
+
+`proofs/PolignacCap*.lean`. Harvester's halved-coordinate frame: position
+`n` denotes the pair `(2n+1, 2n+1+2e)` for `d = 2e`; gear `q` blocks
+`n = 0, -e (mod q)`; a literal chain is a maximal run of consecutive
+frame-admissible `q'`-kills all exposed to gears 5 and 7, with gear 3
+FILTERING the candidate list rather than breaking runs.
+
+Since `105 = 3*5*7` has exactly eight divisors and the cap depends only on
+`gcd(e,105)`, eight theorems cover EVERY even gap `d`:
+
+    gcd(e,105)    1    5    7    3   21   35   15  105
+    cap           6    6    6    6    6    6   10   12
+
+`gcd = 3` is the `d = 0 (mod 6)` case - the densest Polignac gaps, excluded
+from the original mod-35 treatment - and it still caps at 6. The ceiling
+breaks only at `gcd = 15` (10) and `gcd = 105` (12), exactly where `e`
+absorbs the small gears and enlarges the exposed set.
+
+**12 is the absolute ceiling over all Polignac gaps** (`capOf_le_twelve`) -
+the universal form of the fuel bound, and the ledger's first all-`d`
+statement.
+
+Each cap was also checked numerically to be SHARP (the scan fails at
+`cap - 1`), and all eight spectra were reproduced independently before any
+Lean was written.
+
+### The encoding that made it feasible - a 38x speedup
+
+Round 16 measured 10 min 48 s for ONE gcd class and projected ~88 min for
+eight. Three changes brought a class to ~17 s:
+
+1. **allocation-free scan** - a fuel-recursive `Bool` over `Nat` state
+   instead of building and filtering a `List` per start (list allocation
+   dominated the kernel time);
+2. **restrict starts to the exposed set** - a run begins at an exposed
+   position, so starts outside `E_e` need not be scanned (a 2-7x cut,
+   depending on `|E_e|`), and the bridge is one line rather than the
+   single-walk cycle argument;
+3. **tight fuel** - measured per class (12-24 steps, not 44).
+
+Note this did NOT need the gcd lemma: the single-walk reduction it enables
+would also have worked, but the exposed-set restriction is cheaper to
+justify. The lemma is kept as a reusable piece.
+
+### The file-splitting wall (new, and general)
+
+Eight `decide +kernel` calls in ONE file do not finish: memory climbs past
+2.3 GB and the run was still going after 20+ minutes, even though each
+class alone takes 17-60 s. Splitting the eight into separate MODULES under
+one root (`PolignacCap` imports `PolignacCap1`, `PolignacCap3`, ...) fixes
+it, because lake elaborates each module in its own process.
+
+Combined with round 15's finding, the rule for kernel-heavy work is now:
+**bound the work per DECLARATION (~5e3 tuples) and bound the number of
+heavy declarations per MODULE (a handful).** Both limits are about
+per-process state, not about total work.
+
+### (3) Monotone envelope - assessment, nothing built
+
+Constructor 34.1 is `span(w) + FS(w) = sum of exactly k+1 consecutive gaps
+<= F_{k+1}(M)`, which is definitional, and 34.2 shows spectrum flatness
+FAILS at `29 -> 31` (the 5-window max sits 42 above F where 31 is allowed).
+So formalising `F_j` would formalise a route already known not to close (D).
+
+The reusable piece, if it is ever wanted: `Machine17.pair25T` encodes
+"at least 2 openings within 25 slots" as `2 <= (expWin ...).length`.
+Replacing the literal `2` by `j` gives exactly `F_j(M) <= B`, and
+`pair_sum_le`'s two-witness extraction generalises to `j` witnesses via the
+same `Nodup`-filtered-list argument. So the spectrum is a one-parameter
+generalisation of the certificates already in the ledger - cheap to state,
+but pointed at a dead route, so it was not built.
+
+### Round 17 outcome (confirmed on resume after a process restart)
+
+Ledger **green at 1252 jobs**, ten `PolignacCap*.lean` files, zero sorries.
+Axiom audit: `exists_mul_mod_eq` on the standard three;
+**all eight `cap_gcd_*` and `capOf_le_twelve` depend on NO AXIOMS AT ALL**
+(pure kernel computation, no `native_decide`, no `ofReduceBool`).
+
+Inventory: `PolignacCapCore` (defs + coprime lemma), `PolignacCap1`, `3`,
+`5`, `7`, `15`, `21`, `35`, `105` (one class each), `PolignacCap` (root,
+imports all eight, plus `capOf` and `capOf_le_twelve`). Lake requires each
+sibling module to be declared as a `lean_lib` or imports fail with
+"unknown module prefix" - 25 libs now.
+
+Also confirmed: `|E_e|` matches the Hardy-Littlewood prediction
+`prod over q in {3,5,7} of (q - r_q)`, `r_q = 1` if `q | e` else `2`, for
+all eight classes (15/20/18/30/36/24/40/48) - harvester's column reproduced.
+
+## Round 18 - the bridge identity; padding restated; (A)/(C)/(E) audit (2026-08-18)
+
+Ledger **1254 jobs, 17 targets + 9 module libs, zero sorries, zero
+warnings** (bare `lake build` from the proofs dir).
+
+### (1) THE BRIDGE IDENTITY - `proofs/Spectrum.lean` (new)
+
+The load-bearing formal step of constructor's decomposition of (D).
+
+```lean
+def windowSum (g : ℕ → ℕ) (a j : ℕ) : ℕ := ∑ i ∈ Finset.range j, g (a + i)
+def SpectrumBound (g : ℕ → ℕ) (j Fj : ℕ) : Prop := ∀ a, windowSum g a j ≤ Fj
+
+theorem merged_eq (g a l) :
+    g a + windowSum g (a+1) l + g (a+l+1) = windowSum g a (l+2)
+theorem merged_le_spectrum (h : SpectrumBound g (l+2) Fj) :
+    g a + windowSum g (a+1) l + g (a+l+1) ≤ Fj
+theorem merged_le_spectrum_succ (h : SpectrumBound g ((l+1)+1) Fk) : ...
+theorem merged_le_of_shallow (hl : l + 2 ≤ 4)
+    (h4 : SpectrumBound g 4 F4) (hflat : F4 ≤ F + q) :
+    g a + windowSum g (a+1) l + g (a+l+1) ≤ F + q
+```
+
+`merged_eq` is the identity: a word occupying `l` consecutive gaps, together
+with its two flanks, spans exactly `l + 2 = k + 1` CONSECUTIVE gaps. Hence
+merged length is a window sum and is bounded by the spectrum value.
+
+`merged_le_of_shallow` is the payoff: it derives (D) at `alpha = 3` from the
+two empirical halves - `k_win <= 3` (so `l <= 2`, window `<= 4`) and shallow
+flatness `F_4 <= F + q'` - and its statement mentions NO machinery: no fuel,
+no `k_max`, no word list, no residues, no padding, only a gap sequence
+`g : ℕ → ℕ` and the two hypotheses. Nothing empirical is assumed inside the
+file; both halves stay hypotheses, which is exactly right while mechanic
+tests them at machines 31/37/41.
+
+Proof notes: `merged_eq` is `Finset.sum_range_succ` (peel last) plus
+`sum_range_succ'` (peel first) plus an index shift; the shift and the
+`a + 0` / `a + (l+1)` normalisations must be done as explicit `rw`s -
+`congr 1; omega` and `norm_num` both failed (the latter is not even imported
+here), and `omega` cannot close the goal until the `g`-atoms are
+syntactically identical. `windowSum_mono` needs
+`Mathlib.Algebra.Order.BigOperators.Group.Finset`, and this mathlib's
+`Finset.range_subset` has a different shape, so the subset is supplied
+pointwise.
+
+### (2) Formalisation audit of the five-part factorisation
+
+| part | status |
+|---|---|
+| (A) finite word list from `q' mod 210` | PARTIAL. The class-reduction core IS kernel-checked (`LiteralCap.s_eq`: the tooth step descends to `q' mod 210`), and the length bound is `literal_chain_le_six`. The enumeration of the word list itself is computed, not checked. |
+| (B) literal span `<= 5` letters | **FULLY kernel-checked, and now universally**: `LiteralCap.literal_chain_le_six` (twins) and `PolignacCap.capOf_le_twelve` (every even `d`). |
+| (C) padded span: count bound + onset gate | count bound was checked (`padding_count_le`); the ONSET GATE was NOT. **Closed this round** - `TierA.onset_gate`, one line, `[propext]` only. |
+| (E) both-flanks-maximal exclusion | kernel-checked (`TierA.flanks_*`, `carrier`), but recorded off-target for (D) since the attaining flanks are mid-size. |
+
+Cheapest gap was (C)'s onset gate; it is now closed:
+
+```lean
+theorem onset_gate (hg : 0 < g) (hdvd : q ∣ g) (hF : g ≤ F) : q ≤ F
+```
+
+A padded link's interior gap is a positive multiple of `q'`, and it is one of
+`M`'s gaps, so `q' <= F(M)`: padding cannot exist below onset.
+
+### (3) Padding restated - lateral's withdrawal absorbed
+
+My round-15 `padding_at_most_one` was hypothesis-explicit and therefore never
+false, but the section heading ("Padding is count-capped") and its docstring
+overclaimed, and the docstring mis-described `F < q` as "the onset
+condition" when by `onset_gate` it is precisely the regime where NO padded
+link exists. Restated:
+
+* section now says the count bound is budget arithmetic and is NOT constant;
+* `padding_count_le` documented as `p <= F/q + 5/6`, a bound that GROWS;
+* new `padding_three_not_excluded : 13 * q ≤ 6 * F → 6 * (3*q) ≤ 6*F + 5*q` -
+  once `F >= (13/6) q` the budget stops excluding three padded links, which
+  is the arithmetic behind lateral's `p = 3` from `41 -> 43`;
+* `padding_at_most_one` renamed `padding_at_most_one_below_onset`, with the
+  docstring stating it says nothing at or above onset.
+
+This also matches constructor's confirmation that their own bound was always
+step-dependent (`p <= F/q' + alpha/3`, giving `3.1` at `41 -> 43`).
+
+### Axiom audit
+
+`Spectrum.*` on the standard three. `TierA.onset_gate`: `[propext]` only.
+`TierA.padding_count_le`: **no axioms**. All eight `PolignacCap.cap_gcd_*`
+and `capOf_le_twelve`: **no axioms**. No `native_decide` anywhere.
+
+### Proposed next target
+
+The remaining (A) gap: the word LIST enumeration as a function of
+`q' mod 210` (currently computed, not checked). It is the same shape as the
+`LiteralCap` class check and should be affordable given the round-17
+encoding lessons. Alternatively, if mechanic's two halves survive at 31/37/41,
+wire `merged_le_of_shallow` to a concrete machine by proving a `SpectrumBound
+g 4 F4` instance from a period scan - the certificates already produce `F_1`
+and `F_2`; `F_4` is the same encoding with the count threshold raised.
+
+### Revisiting the earlier kernel walls with the techniques found since
+
+Per the standing directive, a cost wall is an engineering problem, so the
+two walls I reported earlier deserve a concrete attack rather than a
+restatement. Both were measured BEFORE the round-16/17 encoding work, and
+that work invalidates the projections.
+
+**Round 15's tier-C wall** ("machine 19 = 323 slices ~ 86 min, feasible but
+unpleasant; machine 23 ~ 33 h, not practical") used the Machine13/17
+encoding: `decidableBallLT`-style scans over ALL starting residues, with
+lists, at loose fuel. The `PolignacCap` work then produced a stack of three
+independent reductions, none of which is specific to that problem:
+
+1. **allocation-free scan** - fuel-recursive `Bool` over `Nat` state instead
+   of building/filtering a `List` per start. List allocation dominated
+   kernel time; removing it was most of a 38x improvement on the d-general
+   cap (10 min 48 s per class -> 17 s).
+2. **restrict starts to openings** - a run begins at an opening, so
+   non-opening starts need not be scanned. At machine 19 the opening density
+   is `prod (1 - 2/q)` over `{5,...,19}` = 0.234, a **4.3x** cut (machine 23:
+   0.214, 4.7x).
+3. **tight fuel** - measured rather than guessed (12-24 instead of 44 on the
+   cap; the machine certificates were similarly loose).
+
+Reduction 2 alone takes machine 19 from 86 min to about **20 min**, and
+machine 23 from 33 h to about **7 h**; with 1 and 3 compounding, machine 19
+should land in single-digit minutes. So tier C is NOT capped at machine 19 -
+that number was an artefact of the encoding of the day, and the correct
+statement is that the scan cost per machine falls by roughly an order of
+magnitude under the current encoding, with machine 23 becoming an overnight
+job rather than an impossibility.
+
+**The technique that removes the scan entirely**, if a machine is ever truly
+out of reach: the single-cycle reduction found in round 16. The walk's state
+space is one cycle whenever the step is invertible mod the modulus, so ONE
+orbit-length walk sees every state and replaces the whole start-set - a
+further 37x there. Its prerequisite is exactly `exists_mul_mod_eq`, which is
+now proved in `PolignacCapCore`, so the reduction is available off the shelf
+rather than blocked. That is the named construct for anyone pushing past
+machine 23.
