@@ -1054,3 +1054,90 @@ bounds it from gap structure NO, word arithmetic OPEN); flatness = Wall V
 proper, unified with lemma 1. Net gain of the round: two lemmas have become
 one spectrum-flatness statement plus one fuel bound, both censusable at scale
 - the F_j spectrum is offered to the Mechanic as the object to track.
+
+---
+
+# Constructor round 11: the fuel bound - a literal cap theorem, a tail-run theorem, and the honest residue
+
+Script: `research/fuel_bound.py` (+ the mod-210 verification run, logged in the
+shared append). Consumed mid-round: Mechanic's k=4 event (step 29->31, unique
+word class (10,21,10), 4 per period, mirror-paired; k_max by step = 2,2,3,2,4).
+
+## 23. What limits chain length
+
+**23.1 Theorem (tail-run cap, residue-free, one line).** Every qualifying
+interior gap of a chain is = 0 or +-2c mod q' and positive, hence >= 2u' (the
+smallest positive representative of +-3^{-1} mod q'). A k-chain's k-1 interior
+gaps are therefore CONSECUTIVE gaps all >= 2u', so
+
+    k_max(M, q') <= T(M, 2u') + 1,
+
+T = the longest run of consecutive gaps >= 2u'. Measured T = 3, 2, 4, 3, 4, 5
+across steps 11->13 .. 29->31; the cap is loose (realized k_max 2,2,3,2,4)
+because chains also need residue alignment - which is exactly what 23.2 counts.
+
+**23.2 THE LITERAL CAP THEOREM (exposure counting at modulus 35).** A literal
+chain (interior spacings exactly the alternating {2u', q'-2u'}) has member
+positions r, r+2u', r+q', r+q'+2u', ... - an interleaved walk of period 70
+mod 35 that must stay inside the 15-residue exposed set E. The maximal run is
+a function of q' mod 210 ONLY (q' mod 35 and u' = (q'+-1)/6 mod 35). Computed
+exactly over all 48 invertible residue classes (verified as a class function
+against every prime to 5000, zero mismatches):
+
+    cap 2: 24 classes    cap 3: 4 classes    cap 4: 14 classes
+    cap 6: 6 classes (q' = 37, 53, 83, 127, 157, 173 mod 210)
+
+> **Literal chains have at most 6 members, for every gear, forever** - a
+> 48-class finite check, kernel-checkable on the corridor machinery.
+
+The cap EXPLAINS the realized selection: k_max by step = 2, 2, 3, 2, 4 at
+gears with caps 2, 2, 4, 3, 4 - saturated at q' = 17, 19, 31; the k=4 event
+sits exactly at a cap-4 gear, and the mandate's test case is answered:
+**k=5 at q' = 31 is FORBIDDEN mod 35** (the word (10,21,10,21) needs 5 walk
+members; cap(31) = 4). Prediction, falsifiable this round: the first literal
+k = 5 or 6 can only occur at a cap-6 gear - and the running 31->37 census IS
+at one (37 is a cap-6 class). Any extension beyond the cap requires a PADDED
+link: a qualifying spacing outside the literal pair, hence >= q' - each
+padded link consumes a gap >= q' ~ y, a doubly-tail object.
+
+**23.3 The honest negative: fuel does not fold into flatness for free.** The
+residue-free ceiling Q_{k+1} (max sum of k+1 consecutive gaps with middles
+>= 2u'; increment <= max_k Q_{k+1} - F rigorously) EXCEEDS the 2.5q' budget
+at 4 of 6 steps - always at the deepest windows (j ~ T+1):
+
+    step      T  Q-F by depth (k-frame)          budget  realized incr
+    11->13    3  +4 +9 +11 +13                   10.8    4   EXCEEDS
+    13->17    2  +5 +7 +12                       14.2    7   within
+    17->19    4  +7 +10 +13 +14 +16              15.8    7   EXCEEDS
+    19->23    3  +6 +10 +12 +13                  19.2    9   within
+    23->29    4  +5 +9 +16 +21 +26               24.2    9   EXCEEDS
+    29->31    5  +12 +22 +25 +28 +28 +28         25.8    15  EXCEEDS
+
+The deep windows exist in the gap word but are not realized (e.g. 29->31:
+Q_5 = 71 = F+28 vs realized 58 = F+15) - the residue selection carries real
+weight, factor ~2 at the top. So the certified ceiling must be WORD-INDEXED:
+by 23.2 literal words are <= 6 long (at most a handful per step), so per step
+
+    increment <= max over the <= 6 literal words of (word span + flank sum
+                 at the word's occurrences) + the padded tier (gaps >= q').
+
+**23.4 The exact obstruction, named.** What remains unproven is the control
+of FLANK SUMS AT LITERAL-WORD OCCURRENCES: each word's occurrences are one
+CRT class pair (pinned addresses, Lateral's law), and the question "how large
+can the two gaps flanking an occurrence be" is gap-size adjacency at pinned
+positions - Wall V, but now of BOUNDED COMPLEXITY (<= 6 words, 2 flanks,
+pinned addresses) instead of an unbounded extreme-value statement. Growth
+statement: k_max <= min(T+1, litcap + #padded), T drifts (renewal estimate
+~ln^2 y, harmless: deep windows carry near-minimal sums - Q plateaus at
+Q_5 = Q_6 = Q_7 at 29->31), padded links are priced at one >= q' gap each,
+and the increment danger stays at depth <= litcap <= 6.
+
+**23.5 Falsification criteria for the Mechanic's k_max census.**
+(a) Any literal chain with more members than litcap(q' mod 210) - falsifies
+23.2's table. (b) Any chain of any kind with k > T(M, 2u') + 1 - falsifies
+23.1 (use as a census assert). (c) A literal k = 5 or 6 at a NON-cap-6 gear -
+falsifies the class function. (d) Any realized chain containing a padded link
+(interior spacing >= q') - would open the padded tier for the first time;
+flag interior gaps >= q' explicitly. (e) The 31->37 census: literal k = 5 or
+6 there is CONSISTENT (cap-6 gear); k = 7+ anywhere falsifies the absolute
+cap.

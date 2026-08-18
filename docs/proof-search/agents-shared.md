@@ -2,22 +2,54 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State: round 11 in progress (restarted after a session-limit kill; mechanic ran through).
+State after round 11 (Formalist's Machine13 certificate still in flight) - the fuel bound went
+from an open census question to a structural theorem plus a graded ledger.
 
-ROUND-11 NEWS (read before your continuation): (1) THE K=4 EVENT EXISTS - mechanic found exactly
-4 instances per period at step 29->31, all one word class (10,21,10), two mirror pairs,
-addresses listed in mechanic's data. "k_max <= 3 everywhere" below is CORRECTED to: k_max by
-step = 2,2,3,2,4 at 13->17 .. 29->31; fuel is arithmetic-selected (N3>0 iff s and q-s both hit
-abundant gap values), not smoothly y-driven. Machine-31 full census + machine-37 partial still
-running (will fold when they land). F_j spectra for machines 23/29 delivered:
-(34,39,50,58,65,77) / (43,55,65,70,85,90). Chain condition verified at 1e9 scale (pred 58 =
-actual F_k(31) = 58). (2) F(2,53): the log advanced - "run of 420 is coverable", the search is
-past 420. (3) human.md is now a CURRENT-STATE snapshot revised in place (user direction) - no
-round logs there; history lives here and in workstream docs. (4) L=15 hunt at 31.5%, max L=13
-so far (one new deep L=13 at member 3,685,669,022,369).
+THE LITERAL CAP (constructor): literal chains (interior spacings exactly the alternating
+{2u', q'-2u'}) are period-70 walks that must stay inside the 15-residue exposed set mod 35;
+the max run depends on q' mod 210 only. Computed over all 48 invertible classes, verified
+against every prime to 5000, zero mismatches: caps {2: 24 classes, 3: 4, 4: 14, 6: 6}.
+**Literal chains have at most 6 members, for every gear, forever** - a 48-class finite check,
+kernel-checkable. Realized k_max (2,2,3,2,4,4) saturates the cap at 17, 19, 31 and sits at
+cap-4/cap-6 gears exactly where permitted; k=5 at q'=31 forbidden mod 35. Beyond-cap extension
+needs a padded link costing a gap >= q' each. Honest residue: the residue-free Q-ceiling
+exceeds the 2.5q' budget at 4 of 6 steps - the certified ceiling must be WORD-INDEXED (<= 6
+literal words per step); the named obstruction is flank sums at literal-word occurrences -
+still Wall V but now bounded complexity (<= 6 words, 2 flanks, pinned addresses).
 
-State after round 10 - the tolerance route reduced to two named statements, the adjacency
-question answered NO, and the T1 reopening closed with an exact self-reference law.
+THE FUEL CENSUS AT SCALE (mechanic): N4 = 4 at 29->31 (one word (10,21,10), mirror pairs) and
+N4 = 216 at 31->37 (words (12,25,12)/(25,12,25); gear 37 is a cap-6 class - consistent).
+N5 = 0 everywhere scanned; the next event is k=5 presence/absence at 37->41 (word
+(14,27,14,27)) - hunted now in fuel37.log. Fuel is arithmetic-selected: N3 > 0 iff s = 3^-1
+mod q' AND q'-s are both abundant gap values ((23,29): zero; (23,31): 276). Chain condition
+verified at two more scales (pred = actual: 58, 88). THE DECOUPLING: k=4 chains do not carry
+the record (spans <= 87 < 88) - fuel length and record growth are separate channels.
+
+THE GRAMMAR REDUCTION (lateral): interior grammar finite <=> k_max bounded - clean, proven
+via the 2-candidate-word structure (|shapes(k)| <= 2c^(k+1)). Boundary grammar finite a priori
+but trivially (3798 CRT-admissible half-shapes); the sharp negative: observed shapes NEVER
+recur across machines (0/198) and max flank part grows 7 -> 13 ({1..5} was first-flank only) -
+selection roams a fixed finite family without repeating. K=4 DISSECTED: 4 sites, only word
+(10,21,10) (the other permitted word has zero sites); only 1 of 4 sites phase-aligned (mirror
+does not commute with gear 31's teeth); realized merge G=52 < F=58. PINNING HOLDS AT K=4
+(3 phases mod 385, <= 4). Graded tolerance: (F_{k+1}-F)/q_next <= 1.52 at k <= 5 - under the
+2.5 budget even at k_max = 5; the grading prices Wall V per fuel level. Next lever: the FIRING
+RATIO (fuel sites x phase alignment) - realized high-k chains may be doubly rare.
+
+PRUNED F(2,53) LIVE (harvester): rust2/src/bin/maxgap_pruned.rs - mod-3 endpoint skip (NEW
+THEOREM: F(2,y) = 0 mod 3 unconditionally, all 13 known values comply; cuts 2/3 of increments)
++ left-taut offset exclusion (per-L equivalence, sound); the original's mirror-canonical o5
+halving found UNSOUND combined with left-tautness and removed. Verified exact on y =
+11..37 (21/33/54/75/102/129/264). Running detached PID 94812, log maxgap53_pruned.log;
+unpruned pair (32784, 89404) stays until the pruned log reproduces "420 coverable" (unpruned
+log HAS advanced: 420 coverable, search past 420).
+
+SEARCHES: L=15 hunt 36.4%, max L=13. Machine-37 fuel partial (fuel37.log) + machine-31
+spectrum (spectrum31.log) running. human.md is a CURRENT-STATE snapshot revised in place
+(user direction) - no round logs there.
+
+State after round 10 (carry-over) - the tolerance route reduced to two named statements, the
+adjacency question answered NO, and the T1 reopening closed with an exact self-reference law.
 
 THE UNIFICATION (constructor): both tolerance lemmas are now ONE structure. With F_j = max sum
 of j consecutive gaps (the gap spectrum), rigorously excess <= F_{k_max+1} - F2, and lemma 1 is
@@ -72,19 +104,18 @@ and files you created in research/ or proofs/. The SUMMARY, human.md, other work
 and all corpus docs (docs/*.md outside proof-search/) are off-limits without an explicit
 manager instruction in your brief. (Rounds 9-10 compliance: all five agents clean.)
 
-ROUND-11: Constructor -> the FUEL BOUND (the corridor-approachable half): what mechanically caps
-chain length k_max (measured <= 3)? Chain condition + side-alternation + spacings {2u', q-2u'} +
-exposure counting - derive an absolute or o(ln y) cap, or name the exact obstruction. Lateral ->
-the extreme-value grammar: is the near-top word-shape family finite A PRIORI (flank alphabet
-{1..5} + chain skeleton + pinning)? That is the single open piece of machine-independent alpha1.
-Mechanic -> chain-length census at scale (k_max across many machines and heights - the empirical
-side of the fuel bound); keep L=15 hunt running. Formalist -> the y=13 alpha1 certificate: tier
-A (A3/no_chain_of_forbidden - exists), tier B (mod-385 strata disjointness at y=13), tier C (4
-direct checks) as one kernel-checked theorem "alpha1 = 1 holds at machine 13" - the first
-machine-checked instance of lemma 1. Harvester -> IMPLEMENT the pruned F(2,53) restart
-(authorized: new binary rust2/src/bin/ or flag on maxgap, endpoint-law filter, verify identity
-against known F2 values y <= 23 first, resume from state, launch detached, report PID + log
-path; do NOT kill the running processes - manager handles that after verification).
+ROUND-12: Constructor -> the WORD-INDEXED TOLERANCE THEOREM: assemble the certified per-step
+ceiling from the literal cap (<= 6 words/step) + flanks + pinned addresses, and test it against
+every measured step - state exactly which flank-sum bound closes the route and what it costs.
+Lateral -> the FIRING RATIO: fuel sites x phase alignment across all censused steps (mechanic's
+216-site N4 at 31->37 is the sample); quantify double rarity and what it does to the graded
+constant. Mechanic -> fold machine-37/spectrum-31 results when they land; verdicts on
+Constructor's five falsification criteria; k=5 watch at 37->41. Formalist -> finish Machine13
+certificate (in flight); then the literal cap's 48-class check and F(2,y) = 0 mod 3 as kernel
+targets. Harvester -> monitor the pruned run; formalize its two pruning theorems' number-theory
+cores (mod-3 endpoint, left-taut equivalence) or hand them to Formalist with exact statements;
+resume related-conjecture harvesting with the new fuel machinery (Polignac per-d: does the
+literal cap transfer to d != 2?).
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
@@ -1071,6 +1102,34 @@ Tool: research/alternation_words.py. Full log: docs/proof-search/lateral.md roun
   extendable letter patterns compatible with the small-gear teeth (generalizes
   the cap theorem; positive-description complement to the attempts map).
 
+## Mechanic round 11 (2026-08-18) - fuel census: k_max = 4, arithmetic-selected
+Tool: research/fuel_census.py (streamed tuple census, corpus-validated: N3 = 62 at
+19->23 exact). Data: research/data/fuel_census.csv. Full working: mechanic.md r11.
+- CORRECTION to r10 state: "k_max <= 3 everywhere" held only through step 23->29.
+  Full periods: 29->31 (P=1.1e9) has N4 = 4 - exactly the corpus word (10,21,10),
+  two mirror pairs, addresses listed; 31->37 (P=3.3e10) has N4 = 216, both
+  orientations (12,25,12)/(25,12,25). k_max on consecutive steps: 2,2,3,2,4,4.
+  N5 = 0 everywhere scanned. Not a falsification of k_max = o(ln y) (k_max=4 at
+  ln y=3.4); the next EVENT is k=5 presence/absence at 37->41 (word (14,27,14,27)
+  or mirror; partial scan of 1.2e11 slots running, fuel37.log).
+- MECHANISM (exact, from off-step probes): fuel is ARITHMETIC-SELECTED - N3 > 0
+  iff both s = 3^-1 mod q' and q'-s are abundant gap values of the machine
+  spectrum ((23,29): 0 k=3; (23,31): 276). No smooth y-trend exists to fit;
+  k=4/k=3 thickened 3.1e-4 -> 3.0e-3 across the one comparable step pair.
+- CHAIN CONDITION AT SCALE: census pred = actual F_k at both new steps:
+  58 = 174/3 (29->31), 88 = 264/3 (31->37) - extends anchors 11/18/25/34/43.
+  The k=4 chains do NOT carry the record (spans <= 87 < 88): fuel length and
+  record growth are separate channels.
+- SPECTRA for Constructor (F_j, j=1..6): machine 23: 34,39,50,58,65,77;
+  machine 29: 43,55,65,70,85,90; machine 31 running (spectrum31.log).
+  Increments q/3-scale throughout - flatness-consistent.
+- Convention note: my N_k = co-deletable k-tuples (= maximal-run counts when
+  k_max <= k); Constructor's k-hist = maximal runs; N2 differs by pairs inside
+  longer runs (38 at 19->23).
+- L=15 hunt checkpoint: 30.3%, max L=13; new deep L=13 at member 3.686e12.
+- User-direct instruction executed mid-round (flagged per protocol): human.md
+  rewritten in place as a maintained status snapshot, no longer an append log.
+
 ## Mechanic round 10 (2026-08-18) - T1 reopening interrogated: verdict split, event ledger clean
 Tool: research/band_census.py; data: research/data/band_census_100003.csv (9,591
 bands = ALL bands (p^2, p'^2) to height 1e10, every slot exact). Full working:
@@ -1527,3 +1586,103 @@ census exactly.
   Net: two lemmas -> one flatness statement + one fuel bound.
 - FOR MECHANIC: the F_j consecutive-sum spectrum is the object to census at
   scale (j <= 6 rolling max - cheap on existing gap streams).
+
+## Constructor round 11 (2026-08-18) - THE LITERAL CAP THEOREM: fuel <= 6, forever
+Tool: research/fuel_bound.py (restored + extended after the session kill).
+Full text: constructor.md sec 23. Mechanic's k=4 event consumed mid-round.
+- TAIL-RUN THEOREM (one line, residue-free): every qualifying interior gap is
+  >= 2u', so k_max(M,q') <= T(M, 2u') + 1, T = longest run of consecutive
+  gaps >= 2u'. Measured T = 3,2,4,3,4,5 across 11->13 .. 29->31.
+- LITERAL CAP THEOREM (exposure counting, the mandate's part 1): a literal
+  chain is an interleaved walk of period 70 mod 35 inside the 15-residue
+  exposed set; its max run is a function of q' mod 210 ONLY. Computed exactly
+  over all 48 classes (verified against every prime to 5000, 0 mismatches):
+  caps {2: 24 classes, 3: 4, 4: 14, 6: 6}. LITERAL CHAINS HAVE AT MOST 6
+  MEMBERS FOR EVERY GEAR - 48-class finite check, kernel-checkable.
+  The cap explains the realized k_max sequence 2,2,3,2,4 (gears with caps
+  2,2,4,3,4 - saturated at 17, 19, 31; the k=4 event sits at a cap-4 gear).
+  K=5 AT 31: FORBIDDEN MOD 35 (cap 4). Cap-6 residues mod 210: 37, 53, 83,
+  127, 157, 173 - the first literal k=5/6 can ONLY occur at those gears, and
+  the running 31->37 census IS at one (prediction, falsifiable now).
+  Beyond-cap extension requires a PADDED link = a qualifying spacing >= q'
+  (a >= q' ~ y gap consumed per link - doubly-tail).
+- HONEST NEGATIVE (mandate part 2): the residue-free Q-ceiling EXCEEDS the
+  2.5q' budget at 4 of 6 steps, always at the deepest windows (j ~ T+1);
+  realized increments sit at ~half the Q-ceiling (29->31: Q_5 = F+28 vs
+  realized F+15). Fuel does NOT fold into flatness for free - residue
+  selection carries a factor ~2. Certified ceiling is WORD-INDEXED: <= 6
+  literal words per step, increment <= max over words of (span + flank sum
+  at occurrences) + padded tier.
+- OBSTRUCTION NAMED (mandate part 3): control of FLANK SUMS AT LITERAL-WORD
+  OCCURRENCES - gap-size adjacency at pinned CRT addresses. Wall V still,
+  but bounded complexity now (<= 6 words, 2 flanks, pinned addresses)
+  instead of an unbounded extreme-value statement. T itself drifts (renewal
+  ~ln^2 y) but harmlessly: deep windows carry near-minimal sums (Q plateaus).
+- FALSIFICATION for Mechanic's census: (a) literal chain > litcap(q' mod
+  210); (b) any chain with k > T+1 (assert); (c) literal k=5/6 at a
+  non-cap-6 gear; (d) any PADDED link realized (interior spacing >= q' -
+  flag explicitly); (e) 31->37: literal k=5/6 consistent, k=7+ anywhere
+  falsifies the absolute cap.
+- FOR FORMALIST: the literal cap = the corridor walk lemma + a 48-class
+  finite table (Corridor.lean machinery fits); the tail-run theorem is
+  3 lines on the chain condition.
+
+## Lateral round 11 (2026-08-18) - two grammars; reduction proved at interior level; k=4 dissected
+Tools: research/word_shapes.py, research/k4_pinning.py. Log: lateral.md round 11.
+- TWO GRAMMARS, different answers. INTERIOR (one gear step, u'-free): spacing
+  word of a k-chain alternates {sigma, q-sigma} -> exactly 2 candidate words
+  per k; with parts abstracted to c classes, |shapes(k)| <= 2c^(k+1). THE
+  CLEAN REDUCTION HOLDS HERE: interior grammar finite iff k_max bounded.
+  BOUNDARY (pinning window W=20): finite a priori but trivially (2^20-1
+  compositions/half); CRT-admissibility cuts to a machine-independent superset
+  of 3798 half-shapes (enumerated exactly). NEGATIVE: the observed near-top
+  family does NOT stabilize - cross-machine full-shape recurrence ZERO at all
+  five machines; max flank part grows 7->13 with y ({1..5} was a first-flank
+  fact only); observed = 123 halves = 3.2% of admissible, ~disjoint per
+  machine. No a-priori list of occurring shapes; extreme-value selection roams
+  a fixed finite admissible family without repeating.
+- K=4 EVENT DISSECTED (phase-free site census, full 1.078e9 period): exactly 4
+  sites, word (10,21,10) only - the grammar's OTHER permitted word (21,10,21)
+  has ZERO sites (arithmetic selection inside the grammar). Sites mirror-pair
+  under M29 (confirms mechanic's N4=4), but the M29 mirror does not commute
+  with gear 31's teeth: ONLY 1 OF 4 SITES IS PHASE-ALIGNED (672200337, p = 26
+  = u_31, sides LRLR; site 858111062 sits on 31's shield - sterile forever).
+  The realized k=4 merge gives G = 52 (word (7,10,21,10,4)) - BELOW the record
+  F(31) = 58, which comes from a k=3 site: FUEL AND RECORD ARE DECOUPLED
+  (parts matter as much as links). PINNING HOLDS at k=4: 3 phases mod 385
+  (<= 4), observed address in set.
+- K-GRADED TOLERANCE (with mechanic's spectra): (F_{k+1}-F)/q_next =
+  0.55/0.83/1.07/1.48 (machine 23) and 0.71/0.87/1.35/1.52 (machine 29) for
+  k = 2..5 - the graded lemma holds under the 2.5 budget even at k_max = 5.
+  The grading prices Wall V per fuel level; it does not evade it. Machine-
+  independent alpha1 remains open exactly at spectrum flatness.
+- Offering next: the FIRING RATIO - fraction of fuel sites phase-aligned
+  across steps and k (1/4 at the k=4 event). If ~2/q per site, realized
+  high-k chains are doubly rare (fuel x alignment), and the effective k_max
+  of REALIZED chains grows slower than the census k_max - tightening the
+  graded constant. One pass per step with existing machinery.
+
+## Harvester round 8 (2026-08-18) - pruned F(2,53) restart IMPLEMENTED and launched
+Coordinator-authorized implementation done. Detail: harvester.md sec 12.
+- NEW BINARY rust2/src/bin/maxgap_pruned.rs. The endpoint law re-derived SOUNDLY for
+  the free-offset covering search (the machine-frame A(G) law does not transfer as
+  stated): (1) MOD-3 ENDPOINT SKIP - F(2,y) = 0 mod 3 unconditionally (gear 3 must
+  miss both endpoints of the max run; all 13 known values comply), so 2/3 of all
+  coverable increments need no search and the first uncoverable multiple of 3 IS F;
+  (2) LEFT-TAUT OFFSET EXCLUSION - per-L equivalence (coverable <=> coverable with
+  position -1 exposed), so every gear bars its two -1-covering offsets; branch factor
+  collapses at every leftmost-uncovered position = -1, -2 mod q, INCLUDING inside the
+  final uncoverable certificate. (3) The original's mirror-canonical o5 halving is
+  UNSOUND combined with left-tautness (reflection maps left-taut to right-taut) -
+  removed; left-tautness restores the same 3-branch root for free. The max-only A(G)
+  mod-35 refinement deliberately NOT used (per-L unsound).
+- VERIFIED IDENTITY before launch: y = 11/13/17/19/23/29/37 original vs pruned:
+  21/33/54/75/102/129/264 EXACT MATCH on all seven. y=37 timing 1.12s vs 1.74s; the
+  full 3x lands on y=53's long climb.
+- LAUNCHED DETACHED: maxgap_pruned.exe 53 420, PID 94812,
+  log research/data/maxgap53_pruned.log. First increment re-verifies the fresh
+  "420 coverable" fact (ROUND-11 NEWS), then 423, 426, ... The two unpruned
+  processes (PIDs 32784, 89404) left running per brief - manager retires them.
+- Side theorem harvested en route (cheap kernel candidate on existing machinery):
+  F(2,y) = 0 mod 3 for every y >= 3 - a one-line corollary of slot-cap-style
+  reasoning in the adjacent frame; could join Polignac.lean if wanted.

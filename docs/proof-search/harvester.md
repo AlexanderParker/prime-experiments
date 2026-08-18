@@ -478,3 +478,49 @@ U confined to the bottom y/6 slots) now has its kernel formally characterised: e
 and twin-uniqueness (own_slot_pin_gap_two). The remaining unformalised half of the
 distinguishing fact is quantitative (depth ~P/(6g) for g > 2 and the alignment rate) -
 priced as paper-side, not kernel-side, for now.
+
+## 12. Round 8 (coordinator-authorized implementation): the pruned F(2,53) restart
+
+DELIVERED: rust2/src/bin/maxgap_pruned.rs - the endpoint law in covering-search form,
+verified identical to the original on six exact values, launched detached from the
+current resume point.
+
+DERIVATION (the law had to be re-derived soundly for the FREE-OFFSET covering search;
+the machine-frame law of research/topgap_endpoint_law.py is about fixed offsets):
+- MOD-3 ENDPOINT SKIP: at the maximal coverable run M, both bounding positions -1 and
+  M are uncovered (else the run extends) and gear 3 is always used at the max (an
+  unused gear 3 could cover position M); gear 3's single uncovered residue class must
+  contain both -1 and M, so M = 2 (mod 3) and F = 0 (mod 3) UNCONDITIONALLY. All
+  thirteen known exact values comply (33..309, all = 0 mod 3). Coverability is
+  monotone in L, so every L != 0 (mod 3) below F is coverable WITHOUT SEARCH; the
+  first uncoverable multiple of 3 is exactly F. Cuts 2/3 of all coverable increments.
+- LEFT-TAUT OFFSET EXCLUSION (per-L EQUIVALENCE, not just max-valid): for every L,
+  coverable(L) <=> coverable(L) with position -1 uncovered. Proof: the maximal run's
+  witness cannot cover -1 (else an (M+1)-run is covered) and restricts to a left-taut
+  witness of every prefix length. So every gear bars its two offsets covering -1
+  (o = q-2, q-1): gear q never covers positions = -1 (mod q), collapsing the branch
+  factor at every leftmost-uncovered position = -1 or -2 (mod q).
+- INTERACTION FIXED: the original's mirror-canonical o5 halving maps left-taut to
+  RIGHT-taut coverings under reflection - the two prunings are UNSOUND together.
+  Removed the canonicalisation; left-tautness itself restricts o5 to {0,1,2} - the
+  same root branch count, so nothing is lost.
+- NOT USED (deliberately): the A(G) mod-35 right-endpoint refinement - it conditions
+  on the gap length G and is only valid at the maximum, not per-L; using it in the
+  incremental loop would be unsound.
+
+VERIFICATION (identity before any long run, per discipline):
+  y        11   13   17   19   23   29   37
+  original 21   33   54   75  102  129  264
+  pruned   21   33   54   75  102  129  264     <- EXACT MATCH, all = 0 mod 3
+  Timing at y=37 (from L=250): pruned 1.12s vs original 1.74s; the mod-3 skip's full
+  3x applies to the long coverable climb at y=53 (only 2 increments were skippable in
+  the y=37 tail); left-taut cuts apply inside every search including the final
+  uncoverable certificate.
+
+LAUNCH: maxgap_pruned.exe 53 420, detached via Start-Process,
+  PID 94812, log research/data/maxgap53_pruned.log (stdout; .err.log alongside).
+  Resume point per ROUND-11 NEWS: unpruned log shows "run of 420 is coverable", so
+  the pruned run STARTS at L=420 - its first increment re-verifies the fresh fact
+  (the required consistency check), then proceeds 423, 426, ... (421, 422 skipped by
+  law). The two unpruned processes (PIDs 32784, 89404) were NOT touched - manager
+  retires them after this report.

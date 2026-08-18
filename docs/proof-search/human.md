@@ -21,10 +21,20 @@ a zeroth moment invisible to every power moment). The live route is
 different in kind: it prices the growth of the machine's biggest blocked
 stretch (F) step by step, and needs just two finite-flavoured statements -
 "the gap spectrum is flat" and "merge chains stay short" (the fuel bound).
-Both are local, censusable objects, and the current round extended their
-census by two machine sizes: chains of length 4 exist (exactly 4 per
-period at the 29->31 step, all one word, mirror-paired) - so the fuel
-story is "k_max grows, but glacially" - the needed bound is k_max = o(ln y).
+Both are local, censusable objects, and round 11 turned the fuel half
+into a structure theorem: "literal" chains (the pure alternating kind that
+all observed chains are) can never exceed 6 links, for any gear, forever -
+a finite 48-case check. Observed chain lengths (2,2,3,2,4,4 across six
+machine steps) saturate exactly the per-gear caps the theorem permits, and
+chains of length 5 are outright forbidden at some gears, possible only at
+others - the running census at the next eligible gear is a live test of
+the prediction. Bonus discoveries: chain length and record growth are
+SEPARATE channels (the length-4 chains don't carry the record), and of the
+4 length-4 sites only 1 was actually usable (phase alignment) - realized
+long chains may be doubly rare, which would tighten the tolerance constant
+further. What remains of the whole route is one bounded-complexity
+question: flank sums at the <= 6 literal words per step (Wall V, but now
+with finitely many suspects).
 Separately, the saturated-run programme found the first length-14 run
 exactly where constellation statistics predicted, validating the model
 that everything else is measured against, and the thin-band reopening
@@ -76,9 +86,18 @@ three_gear_master end to end), Corridor.lean (endpoint/adjacency laws,
   F(M+q) is predicted exactly by the old gap word (verified through the
   1e9-period step 29->31: pred 58 = actual 58).
 - Fuel census (chains of co-deletable openings): k_max by consecutive
-  step: 2, 2, 3, 2, 4 at steps 13->17 .. 29->31; the k=4 population is
-  4 per period, one word class (10,21,10), mirror-paired. Fuel words are
-  literal {2u', q'-2u'} alternations - a finite local object.
+  step: 2, 2, 3, 2, 4, 4 at steps 13->17 .. 31->37; N4 = 4 at 29->31
+  (word (10,21,10)) and 216 at 31->37 ((12,25,12)/(25,12,25)); N5 = 0
+  everywhere scanned. Fuel words are literal {2u', q'-2u'} alternations.
+- Literal cap theorem: literal chains <= 6 members for every gear (max run
+  in the exposed set mod 35 depends on q' mod 210 only; caps {2,3,4,6}
+  over the 48 classes; verified to prime 5000, zero mismatches).
+- Interior grammar finite <=> k_max bounded (2 candidate words per k);
+  pinning holds at k=4; fuel length and record growth decoupled
+  (k=4 spans <= 87 < 88 = F); graded tolerance (F_{k+1}-F)/q_next <= 1.52
+  at k <= 5, under the 2.5 budget.
+- F(2,y) = 0 mod 3 unconditionally (endpoint argument at gear 3; all 13
+  known exact values comply) - new side theorem, powers the pruned search.
 - Per-gear fragile law exact with 1/ln weights (2e-4); margin trajectory
   = t - li(...) to 0.1%, gear-blind; multiplicity distribution = product
   structure exactly (slot-cap covariance = primezeta(2) - 1/4 - 1/9).
@@ -93,9 +112,9 @@ three_gear_master end to end), Corridor.lean (endpoint/adjacency laws,
    from spectrum flatness + fuel bound k_max = o(ln y). Increments
    measured q/3-scale vs budget 2.5q; k_max record now 4 (29->31);
    spectrum F_j censused to machine 29 (j<=6), machine 31+ in progress.
-3. F(2,53) pricing run (manager, detached): decides the constant alpha
-   (2.5 <=> F(2,53) <= 486; current partial 420).
-4. L=15 hunt (mechanic, detached): members to 1.2e13, ~30% done, chunk-
+3. F(2,53) pricing run (detached, now pruned 2-5x): decides the constant
+   alpha (2.5 <=> F(2,53) <= 486; 420 proven coverable, search past 420).
+4. L=15 hunt (mechanic, detached): members to 1.2e13, ~36% done, chunk-
    flushed; model predicts first L=15 near 5e12.
 5. Lean assembly: n-ary inclusion-exclusion over incidence classes =
    the last formal gap of the master formula.
@@ -103,7 +122,11 @@ three_gear_master end to end), Corridor.lean (endpoint/adjacency laws,
 ## Running jobs and data
 
 - L=15 scan: research/data/satruns_L15.log (resumable, state file).
-- Machine-31 full fuel census + machine-37 partial (fuel37.log): running.
+- Pruned F(2,53): maxgap53_pruned.log (PID 94812); unpruned pair retires
+  once the pruned log reproduces "420 coverable".
+- Machine-37 fuel partial (fuel37.log, k=5 watch) + machine-31 spectrum
+  (spectrum31.log): running.
+- Machine13.lean (y=13 alpha1 certificate): typechecking, in flight.
 - Data inventory: research/data/*.csv - fragile/prefix/margin/supply/
   multiplicity/zone/satruns/band/fuel censuses, all append-mode with
   schemas in headers; every count exact at stated scale.

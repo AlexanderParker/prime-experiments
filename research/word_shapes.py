@@ -121,7 +121,8 @@ def main():
     total, adm, admset = enumerate_admissible()
     obs = set(allL)
     inadm = [w for w in obs if w and not admissible_half(w)]
-    print(f"  a-priori half-shapes (compositions, sum <= {W}): {total}")
+    print(f"  admissible-prefix tree size (pruned enumeration): {total}; "
+          f"true a-priori composition count = 2^{W} - 1 = {2**W - 1}")
     print(f"  CRT-admissible under gears {GEARS}: {adm} "
           f"({adm/total:.4f} of a priori)")
     print(f"  observed distinct half-shapes (all machines, all near-top): "

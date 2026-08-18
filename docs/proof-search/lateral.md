@@ -870,3 +870,82 @@ grammar) - specifically whether the flank alphabet {1..5} + chain skeleton
 whose pinned classes can be enumerated a priori (then alpha1's adjacency
 check becomes machine-independent arithmetic). Alternatively, support the
 Constructor's adjacency computation directly with the word-pair CRT check.
+
+## Round 11 (2026-08-18): two grammars, one clean reduction, and the k=4 event dissected
+
+Steering taken: is the near-top word-shape family finite a priori; does grammar
+finiteness reduce to the fuel bound; does the pinning law hold for the k=4
+event? Tools: `research/word_shapes.py`, `research/k4_pinning.py`.
+
+### The formalization: there are TWO grammars, and they answer differently
+
+**INTERIOR grammar (one gear step, u'-free).** A merge word with k interior
+kills is side-alternating with spacing word alternating sigma = 2u'_q and
+sigma-bar = q - sigma, so the spacing pattern is determined by its initial
+type: EXACTLY 2 candidates per k ((s,q-s,s,...) or its swap). Abstracting
+parts to c classes: |shapes(k)| <= 2 c^(k+1) - finite for each k, machine-
+independently. **The clean reduction holds at this level: the interior
+grammar is finite iff k_max is bounded** - and with k_max growing (2,2,3,2,4
+by step), the graded form below is the honest statement.
+
+**BOUNDARY grammar (the pinning window, W = 20).** Finite a priori but
+trivially so (compositions, 2^20 - 1 per half); CRT-admissibility cuts it to
+a machine-independent superset of 3798 half-shapes (enumerated exactly;
+pruning valid by monotonicity - extensions of inadmissible words stay
+inadmissible). The NEGATIVE that matters: the observed family does NOT
+stabilize inside it. Cross-machine full-shape recurrence is ZERO at every
+machine (0/24, 0/20, 0/102, 0/30, 0/22); max flank part grows 7 -> 13 with y
+(the {1..5} alphabet was a first-flank fact only - deeper parts track typical
+gap sizes); observed halves = 123 = 3.2% of admissible, essentially disjoint
+per machine. Mirror closure exact everywhere. So: finite a-priori SUPERSET
+yes, a-priori list of OCCURRING shapes no - extreme-value selection roams
+inside the fixed admissible family without repeating.
+
+### The k=4 event under the grammar (and the fuel-site anatomy)
+
+Phase-free site census over machine 29's full period (1.078e9): exactly 4
+sites with spacing word (10,21,10) - positions 220171102, 406081827,
+672200337, 858111062, two mirror pairs under the M29 mirror (confirming the
+Mechanic's N4 = 4) - and ZERO sites for the grammar's other permitted k=4
+word (21,10,21). The grammar allowed two words; arithmetic selection realizes
+one. Two sharpenings the census could not see:
+
+- **Only ONE site is phase-aligned with the real gear 31** (672200337, where
+  p = u_31 = 26 mod 31; sides LRLR). The M29 mirror does NOT commute with
+  gear 31's teeth (P29 is a unit mod 31), so fuel sites mirror-pair but
+  REALIZED chains need not: 1 of 4 fires. (Curiosity: site 858111062 sits on
+  gear 31's shield, p = 0 mod 31 - permanently sterile.)
+- **The realized k=4 merge does NOT set the record**: its machine-31 gap is
+  [672200330, 672200382], G = 52, word (7,10,21,10,4), while F(31) = 58 comes
+  from a k=3 site with better parts. Fuel k_max and the record are decoupled:
+  more fuel does not mean a bigger gap - parts matter as much as links.
+- **PINNING HOLDS for the k=4 object**: neighbourhood word pins the address
+  to 3 phases mod 385 (<= 4), observed address in the set. The pinning law
+  survives its first k=4 test.
+
+### The k-graded statement (what "finite grammar per k, k growing" buys)
+
+With the Mechanic's spectra F_j(23) = (34,39,50,58,65,77) and F_j(29) =
+(43,55,65,70,85,90), the graded increments (F_{k+1} - F)/q_next are:
+
+    k          2      3      4      5
+    at 23:   0.55   0.83   1.07   1.48
+    at 29:   0.71   0.87   1.35   1.52
+
+So a k-graded tolerance lemma - increment <= F_{k_max+1} - F <= alpha(k) q -
+holds with alpha(4) ~ 1.4 and alpha(5) ~ 1.5 at these machines, comfortably
+under the 2.5 budget even at k_max = 5. What the grading buys: the constant
+is priced PER FUEL LEVEL, shapes(k) is finite per level, and k_max grows
+glacially and arithmetic-selected (not smoothly y-driven). What it does NOT
+buy: a bound on F_{k+1} - F is spectrum flatness - the grading prices Wall V,
+it does not evade it. Machine-independent alpha1 remains open exactly there.
+
+### Proposed next chunk
+
+The fuel-site phase-alignment ratio (1 of 4 at the k=4 event) suggests a
+selection law worth quantifying: what fraction of fuel sites fire across
+steps and k (N_k sites vs realized chains)? If alignment is ~2/q per site,
+realized high-k events are doubly rare - fuel abundance x phase alignment -
+which would make the effective k_max of REALIZED chains grow slower than the
+census k_max, tightening the graded constant. One pass over existing census
+machinery per step.

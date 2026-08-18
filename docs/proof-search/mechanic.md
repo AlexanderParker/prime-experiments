@@ -809,3 +809,92 @@ handles both schemas.
   usual constellation expectation, not data.
 - The 0.2-2% density-ratio precision is set by per-decade twin counts;
   no correction for the (tiny) fragile-center correlation was attempted.
+
+## Round 11 - fuel census at scale: k_max = 4 exists, arithmetic-selected (2026-08-18)
+
+Scope: this file, my agents-shared append, research/ files; plus one
+user-direct instruction executed and flagged (human.md rewritten in place
+as a maintained status snapshot - Alex's direction mid-round).
+
+Tool: research/fuel_census.py (streamed numpy fuel census; counts
+co-deletable k-TUPLES N_k - convention-free, equal to maximal-run counts
+when k_max <= k; window condition via offset letters {+s, -s, 0 mod q}
+with prefix-sum range <= 1; segment-boundary words counted by last-element
+newness). Data: research/data/fuel_census.csv. VALIDATION: N3 = 62 at
+19->23 with anatomy (8,15)/(15,8) - the corpus fuel census exactly.
+
+### (1) Census across machine steps (full periods through 3.34e10)
+
+    step      period    N2          N3      N4    k_max  N3/N2    N4/N3
+    13->17    5.0e3     72          0       0     2      -        -
+    17->19    8.5e4     1088        0       0     2      -        -
+    19->23    1.6e6     11784       62      0     3      5.3e-3   -
+    23->29    3.7e7     243816      0       0     2      0        -
+    29->31    1.1e9     8022924     13000   4     4      1.6e-3   3.1e-4
+    31->37    3.3e10    114848070   70964   216   4      6.2e-4   3.0e-3
+
+    off-step probes: (19,29) 0 k=3; (19,31) 4; (19,37) 0; (23,31) 276;
+    (23,37/41) 0; (29,37) 374; (29,41/43) 0; (31,41) 2; (31,43/47) 0.
+
+k=4 instances: 29->31 has exactly 4 per period, one word class (10,21,10)
+= (q-s, s, q-s), two mirror pairs, flanks {4,7}; 31->37 has 216, BOTH
+orientations (12,25,12) and (25,12,25), flanks in {1,2,3,5,6,10,11,13}.
+All addresses in the census output (research/data + task logs). N5 = 0
+everywhere scanned.
+
+### (2) Scaling law - the events, not a trend
+
+- k_max on consecutive steps: 2, 2, 3, 2, 4, 4. It GROWS, glacially, and
+  non-monotonically. Mechanism (exact, visible in the off-step table):
+  N3 > 0 iff BOTH s = 3^-1 mod q and q-s land on abundant gap values of
+  the machine's spectrum; k=4 needs the alternating word (s,q-s,s) or its
+  mirror realized by consecutive gaps. Fuel is ARITHMETIC-SELECTED, not
+  smooth in y: (23,29) has zero k=3 while (23,31) has 276.
+- The k=3/k=2 ratio does NOT trend monotonically (5.3e-3, 0, 1.6e-3,
+  6.2e-4 on consecutive steps); the k=4/k=3 ratio THICKENED 3.1e-4 ->
+  3.0e-3 across the one step-pair where both exist. Per-opening k=4 rate:
+  1.9e-8 (29->31) -> 3.5e-8 (31->37).
+- Relative to the k_max = o(ln y) requirement: k_max = 4 at ln y = 3.4;
+  two +1 events in six steps; no cap evidence either way yet. The first
+  k=5 needs word (s,q-s,s,q-s) (span 2q', interior gaps all <= F_k -
+  admissible in principle from 31->37 on); the 37->41 partial scan
+  (running) is the live k=5 hunt (s=14, q-s=27).
+
+### (3) Chain condition verified at two new scales + spectra
+
+pred(F_k(M+q')) from the census's flanked merged spans = ACTUAL:
+    29->31: pred 58 = F(2,31)/3 = 174/3  (period 1.1e9)
+    31->37: pred 88 = F(2,37)/3 = 264/3  (period 3.3e10)
+extending the corpus anchors 11/18/25/34/43. Note the k=4 chains do NOT
+carry the record (spans 55 and <= 87): the new maximum comes from k=2/3
+merges with fatter flanks - fuel length and record growth are separate
+channels at these scales.
+
+F_j spectra (max sum of j consecutive gaps, j=1..6; Constructor's ask):
+    machine 23: 34 39 50 58 65 77
+    machine 29: 43 55 65 70 85 90
+    machine 31: (spectrum-only pass running detached, spectrum31.log)
+Increments stay q/3-scale (4-15), consistent with flatness.
+
+### Corrections to shared state
+- "k_max <= 3 everywhere" (SUMMARY/Constructor r10) covered steps through
+  23->29 only; k_max = 4 at 29->31 and 31->37 (corpus round-1 note "k=4
+  first at y=29" was right). Not a falsification of k_max = o(ln y).
+- Constructor's k-hist convention (maximal runs) vs my N_k (tuples):
+  identical where k_max <= 3; N2 differs from their 2-run count by the
+  pairs inside longer runs (38 at 19->23). Flagged to avoid bookkeeping
+  confusion.
+
+### Running jobs
+- fuel37.log: machine 37 partial (1.2e11 of 1.24e12, 4 probes incl. the
+  k=5 hunt) - detached, PID noted in log dir.
+- spectrum31.log: machine-31 F_j pass.
+- satruns_L15.log: 30.3% at report time, max L = 13 so far; new deep
+  L=13 instance at member 3,685,669,022,369 (word LRLRLRRLLLLRR) for the
+  records list.
+
+### Caveats
+- N_k for partial periods are exact on the scanned prefix only (labeled).
+- The o(ln y) comparison uses two data points of k_max growth; no fit
+  offered, per methodology - the next event (k=5 or its absence at
+  37->41) is the informative object.
