@@ -1523,3 +1523,98 @@ four openings in q'-AP". Its corollary - j = 2 impossible, p = 3 all-adjacent
 impossible - is the first padding bound that is scale-free. Alternatively:
 extend the AP lemma to gear 7 (which exposes 5 of 7) to see whether SIX
 openings in q'-AP are forbidden, which would cap padded structure further.
+
+## Round 17 (2026-08-18): the corridor is complete at mod 35 - and p <= 2 is NOT provable
+
+Tools: `research/corridor_complete.py`, `padding_onset.py`.
+
+### (1) COMPLETENESS LEMMA - and the j=1 shape is genuinely feasible
+
+> **Lemma.** A shape with n openings can be blocked by gear q only if q <= 2n.
+> Gear q has two teeth, so it forbids at most 2n phases out of q; if 2n < q,
+> some phase always survives. Constraints from distinct gears are independent
+> by CRT, so the joint feasible set is the product of the per-gear sets - a
+> shape is corridor-feasible iff it is feasible gear by gear.
+
+Consequences: n = 4 or 5 -> only gears 5 and 7 can block, so **the mod-35 test
+IS the entire corridor** and no larger modulus can ever help. Gear 11 first
+enters at n = 6, gear 13 at n = 7.
+
+The 37->41 j=1 shape has n = 4 openings (0, 41, 55, 96), and every gear leaves
+phases: 5 -> 1/5, 7 -> 2/7, 11 -> 7/11, 13 -> 5/13, 17 -> 10/17, ... So
+
+> **The j=1 shape is GENUINELY FEASIBLE. No corridor at any modulus kills it.**
+
+Retroactive bonus: every shape analysed in rounds 15-16 had n <= 5, so those
+mod-35 verdicts were already complete - the coordinator's mod-385/1155 question
+has a clean structural answer rather than needing computation.
+
+### (2) The first unobstructed step is 41->43, and it is FORCED
+
+A shape is unobstructed iff corridor-feasible AND spectrum-affordable (its cost
+<= F_j(M), necessary because the run's gaps are consecutive gaps of M):
+
+    step      shape  cost  need   have   corridor  verdict
+    19->23    j=0      46  F_2      31   OK        short by 15
+    19->23    j=1      54  F_3      35   OK        short by 19
+    23->29    j=0/1  58/68  -        -   NO        corridor EXCLUDES
+    29->31    j=0/1  62/72  -        -   NO        corridor EXCLUDES
+    31->37    j=0      74  F_2      68   OK        short by 6
+    31->37    j=1      86  F_3      85   OK        short by ONE
+    37->41    j=0      82  F_2       -   NO        corridor EXCLUDES
+    37->41    j=1      96  F_3    >=95   OK        short by ONE
+    41->43    j=0      86  F_2       ?   OK        see below
+    43->47    j=0      94  F_2       ?   OK        -
+
+F is **monotone in the machine** - adding a gear only deletes openings, so gaps
+only grow - hence F(41) >= F(37) = 88; and F_2 >= F always. Therefore
+F_2(41) >= 88 > 86 = 2 x 43. Combined with corridor feasibility at q' = 43:
+
+> **41->43 is the first step with no obstruction of any kind, and the spectrum
+> side is GUARANTEED rather than merely likely.** (Feasible is not the same as
+> occurring: this removes every obstruction, it does not construct the run.)
+
+**Near-miss worth recording:** the j=1 shape misses by EXACTLY ONE at two
+consecutive steps - 31->37 needs 86 against F_3(31) = 85, and 37->41 needs 96
+against F_3(37) >= 95. Two one-unit misses in a row. I have no mechanism for
+that and flag it as an observation, not a law.
+
+### (3) p <= 2 is NOT provable - honest negative
+
+First, the AP lemma generalises usefully:
+
+> **GENERALISED AP LEMMA.** Four openings at pure q'-multiples i*q' whose four
+> values of i are DISTINCT mod 5 are impossible. (Round 16's lemma is the case
+> i = 0,1,2,3.)
+
+Applied to three padded links with j-patterns (j1, j2), j1, j2 in {0,1}:
+
+    (0,0): pure multiples i = {0,1,2,3}  - 4 distinct mod 5  -> IMPOSSIBLE
+    (1,1): pure multiples i = {0,1,3,4}  - 4 distinct mod 5  -> IMPOSSIBLE
+    (0,1): pure multiples i = {0,1,2} only - lemma silent
+    (1,0): pure multiples i = {0,1} only   - lemma silent
+
+and the two survivors are corridor-feasible for 4 of 27 primes tested, **first
+at q' = 43** (also 47, 103). So p = 3 is structurally permitted from 41->43 on,
+and **p <= 2 does not follow from the AP lemma.**
+
+Consequence for the ceiling, stated honestly: the shape family is genuinely
+constrained (j in {0,1} between consecutive padded links; the (0,0) and (1,1)
+triples dead at every scale), but p itself is capped only by the arithmetic
+count bound p <= F/q' + alpha/3, which grows with F/q'. So
+
+    span <= (4+p)q' + 2s   with p <= F/q' + alpha/3   =>   span <= F + O(q'),
+
+not O(q'). My round-16 phrasing "the ceiling stands on structure" was too
+strong: the SHAPE law is permanent, the COUNT is not - and the count is what
+the ceiling constant depends on. Corrected here rather than left standing.
+
+### Proposed next chunk
+
+The count is now the whole question, and it is a spectrum question again:
+p padded links cost >= p*q' and occupy p + (literals) consecutive gaps, so
+p <= F_{p+literals}(M)/q'. The AP lemma kills the cheap (all-adjacent and
+(1,1)) arrangements, which forces the surviving p=3 shapes to spend literals -
+so the interesting quantity is the CHEAPEST surviving p-shape as a function of
+p, which is a finite computation per q' mod 210. If that cost grows faster than
+F_j(M), p is capped structurally after all.

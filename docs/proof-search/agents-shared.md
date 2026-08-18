@@ -165,6 +165,24 @@ constrain position, never magnitude (Wall V for global flatness). First L=14 at 
 46,133,660,494 (member 2.768e11), HL model validated; ladder L=15 ~ 5e12, L=32 ~ 3e42.
 prime_adjacent_run_le (32-cap) on [propext, Quot.sound]. Alpha1 empirics 0.52-1.16, no trend.
 
+MANDATE RULE (all agents, standing - added after a manager error, 2026-08-18):
+Each workstream works ITS OWN MANDATE. The manager does not re-task a workstream to whatever the
+live route needs that round; that is what happened over rounds 3-17 and it left two mandates
+unserved while five agents crowded one inequality.
+
+  MECHANIC   - empirical censuses at scale on the machine's real structure; EVENTS with exact
+               counts, never fitted trends. Standing rule earned the hard way, three times:
+               never extrapolate a per-step share - look it up.
+  CONSTRUCTOR- build the proof; attack the target directly. Owns the live route.
+  FORMALIST  - kernel-checked Lean, zero sorries, honest reporting of what will not close.
+  LATERAL    - unorthodox angles, reframings, self-reference; the directions the other four
+               cannot reach. NOT a second analyst on the live route.
+  HARVESTER  - side theorems and ADJACENT CONJECTURES, per its own round-1 ranking. NOT
+               twin-route support (formal work goes to Formalist, censuses to Mechanic).
+
+If a brief from the manager reads as another workstream's lane, the agent should push back and
+cite this rule. Drift is a coordination failure, not an agent failure.
+
 SCOPE RULE (all agents, standing): write ONLY your own workstream doc, your round append here,
 and files you created in research/ or proofs/. The SUMMARY, human.md, other workstreams' logs,
 and all corpus docs (docs/*.md outside proof-search/) are off-limits without an explicit
@@ -2898,3 +2916,224 @@ classes x all 48 invertible t). To use it rigorously the file needs one lemma:
 the d-general cap from 88 minutes to 2.5 minutes, and would put "12 is the ABSOLUTE
 CEILING OVER ALL POLIGNAC GAPS" in the kernel - the universal form of part (B),
 covering d = 0 mod 6 (the densest gaps) too. That is my proposed next target.
+
+## Constructor round 17 (2026-08-18) - envelope-from-spectrum FAILS at the deepest step
+Full text: constructor.md secs 34-36. Uses r11/r16 data + Mechanic's spectra
+and fuel-census k_max. No new machinery, one decisive test.
+- THE IDENTITY (free): a word of ell letters plus its two flanks IS exactly
+  ell+2 = k+1 consecutive gaps of M, so span(w) + FS(w) <= F_{k+1}(M) by
+  definition of the spectrum. Hence (D) at alpha=3 <== SPECTRUM FLATNESS:
+  F_{k_max+1}(M) - F(M) <= q'.
+- THE TEST - closes 5 of 6, FAILS at 29->31:
+    mach q'  F  k_max depth F_depth F_d-F  q'   verdict  actual incr
+    11   13   7   2     3      16      9   13   CLOSES        4
+    13   17  11   2     3      23     12   17   CLOSES        7
+    17   19  18   2     3      28     10   19   CLOSES        7
+    19   23  25   3     4      38     13   23   CLOSES        9
+    23   29  34   2     3      50     16   29   CLOSES        9
+    29   31  43   4     5      85     42   31   **FAILS**    15
+  Lossiness x1.4-x2.8. So the envelope does NOT follow from the spectrum: at
+  the deepest-fuel step the unrestricted 5-window max sits 42 above F where
+  only 31 is allowed, while the truth is 15. THE QUALIFYING/COMPATIBILITY
+  RESTRICTION IS LOAD-BEARING - it is exactly the difference between 42 and
+  15. Any proof of (D) that discards position loses the step it most needs.
+- STRICT ORDERING ESTABLISHED (answers "which lemma, which weaker"):
+    Wall V clustering (extreme x anything, r8 lemma 1)
+      ==> SPECTRUM FLATNESS (all k+1-windows)   [a DIFFERENT open lemma - and
+                                                 FALSE, so not a viable target]
+      ==> (D) (only qualifying interiors at compatible residues; subfamily of
+               relative density ~ (3/q')^{k-1})
+  (D) is the weakest of the three and the only live one. Corollary settling
+  r16's other direction: (D) cannot be weakened further by dropping position
+  information - the FIRST such weakening is already false.
+- EMPIRICAL ENVELOPE, fitted: span(w)/F + maxflank(w)/F in [1.00, 1.45] across
+  all 15 word-steps - "a word plus its biggest flank never much exceeds F".
+  Sharpest measured form; not implied by anything proven.
+- RATIO PICTURE (honest warning): (D) at a=3 is merged/F <= 1 + q'/F. Gaps:
+  +1.286, +0.909, +0.667, +0.560, +0.588, +0.372, +0.121 - SHRINKING, because
+  q'/F -> 0 (q' ~ y, F ~ y^2/log y). So asymptotically the route needs
+  incr/F -> 0. In the units the hypothesis bounds this is benign: incr/q' =
+  .308 .412 .368 .391 .310 .484 .811 vs budget 1.000, corpus's next two steps
+  0.07 and 0.28, mean ~0.44, no upward trend (the one high value is the padded
+  step). The two readings agree only if incr stays O(q') exactly - which is
+  the hypothesis itself.
+- STATUS: (D) is the weakest surviving form, the first weakening past it is
+  FALSE, its envelope is a clean measured band, margin >= 0.19q' at every
+  measured step. Missing input unchanged in KIND since r8, smaller in SIZE
+  than at any earlier round.
+
+## Lateral round 17 (2026-08-18) - corridor COMPLETE at mod 35; j=1 genuinely feasible; p<=2 NOT provable
+Tools: research/corridor_complete.py, padding_onset.py. Log: lateral.md r17.
+- COMPLETENESS LEMMA: a shape with n openings can be blocked by gear q only if
+  q <= 2n (gear q has 2 teeth, so it forbids at most 2n phases out of q; if
+  2n < q some phase always survives). Constraints from distinct gears are
+  independent by CRT, so joint feasibility = per-gear feasibility. Hence for
+  n = 4 or 5 ONLY GEARS 5 AND 7 CAN BLOCK - the mod-35 test IS the whole
+  corridor, and no larger modulus can ever help. Gear 11 first enters at n=6,
+  gear 13 at n=7. RETROACTIVE: every shape in rounds 15-16 had n <= 5, so those
+  mod-35 verdicts were already complete.
+- (1) ANSWER: THE j=1 SHAPE IS GENUINELY FEASIBLE. Its 4 openings
+  (0,41,55,96) leave phases at every gear (5: 1/5, 7: 2/7, 11: 7/11, 13: 5/13,
+  ...), so no corridor kills it. The census question at 37->41 therefore stays
+  exactly where round 16 left it: F_3(37) >= 96 against a prefix of 95.
+- (2) FIRST UNOBSTRUCTED STEP IS 41->43, AND THE SPECTRUM SIDE IS FORCED:
+  F is MONOTONE in the machine (adding a gear only deletes openings, so gaps
+  only grow), hence F(41) >= F(37) = 88; and F_2 >= F always; so
+  F_2(41) >= 88 > 86 = 2x43. With q'=43 corridor-feasible at j=0, no
+  obstruction of any kind remains at 41->43. (Unobstructed is not the same as
+  occurring - this removes barriers, it does not construct the run.)
+  Full table: 19->23 short by 15/19; 23->29 and 29->31 corridor-EXCLUDED;
+  31->37 short by 6 (j=0) and by 1 (j=1); 37->41 corridor-excluded (j=0) and
+  short by 1 (j=1); 41->43 unobstructed.
+  NEAR-MISS worth recording: the j=1 shape misses by EXACTLY ONE at two
+  consecutive steps (31->37: needs 86, F_3(31)=85; 37->41: needs 96,
+  F_3(37)>=95). Flagged as an observation, no mechanism claimed.
+- (3) HONEST NEGATIVE - p <= 2 IS NOT PROVABLE. Generalised AP lemma: four
+  openings at pure q'-multiples i*q' with the four i DISTINCT mod 5 are
+  impossible (round 16 is the case i=0,1,2,3). For three padded links with
+  j-patterns: (0,0) has i={0,1,2,3} and (1,1) has i={0,1,3,4} - both 4-distinct
+  mod 5, so BOTH IMPOSSIBLE at every scale. But (0,1) and (1,0) have only 3
+  pure multiples, the lemma is silent, and they ARE corridor-feasible for 4 of
+  27 primes - FIRST AT q' = 43. So p=3 is structurally permitted from 41->43 on.
+- CORRECTION TO MY ROUND 16: I said "the ceiling stands on structure". Too
+  strong. The SHAPE law is permanent (j in {0,1}; (0,0) and (1,1) triples dead
+  forever), but the COUNT p is capped only by the arithmetic bound
+  p <= F/q' + alpha/3, which grows. So span <= (4+p)q' + 2s gives
+  span <= F + O(q'), NOT O(q'). Constructor: do not treat the padded span as
+  O(q') bounded.
+- Offering next: the count is now the whole question. The AP lemma kills the
+  cheap p=3 arrangements, forcing survivors to spend literal links, so the
+  quantity to compute is the CHEAPEST SURVIVING p-SHAPE as a function of p (a
+  finite computation per q' mod 210). If that cost grows faster than F_j(M),
+  p is capped structurally after all.
+
+## Harvester round 14 (2026-08-18) - PER-d BUDGET ARITHMETIC VERIFIED; my flagged limit closed
+Detail: harvester.md sec 18. Tool: research/budget_per_d.py - exact full-period max-gap
+scans in halved/adjacent units (the unit alpha lives in: twins' slot 0.811 at 31->37 =
+2.432 adjacent). Normalisation anchored by reproducing the twin ladder exactly
+(F(2,y) = 21,33,54,75,102,129 for y = 11..29; incr/q' = 0.923 at 11->13 = 3 x 0.308).
+
+(1) THE BUDGET HOLDS AT BOTH alpha FOR EVERY d TESTED.
+   d      gcd(e,105)  cap   worst step   max incr/q'   a=2.5  a=3
+   2          1        6      13->17        1.235        OK     OK
+   4          1        6      11->13        1.846        OK     OK
+   6          3        6      17->19        0.947        OK     OK
+  10          5        6      17->19        1.421        OK     OK
+  12          3        6      11->13        1.538        OK     OK
+  30         15       10      17->19        0.632        OK     OK
+ 210        105       12      23->29        0.483        OK     OK
+All 35 (d, step) pairs pass at 2.5 AND 3; worst anywhere is 1.846 (d=4), 26% under the
+tighter budget. OTHER d DO HAVE ONSET SPIKES, but early rather than late: d=4 and d=12
+at 11->13, d=10 at 17->19 (exactly where its padding first becomes available,
+F = 66 >= 3q' = 57); d=12's spike is the same step where my round 11 found its first
+PADDED winner. Every spike clears both budgets with room.
+
+(2) MY SECOND FLAG IS REFUTED - THE WORST-CONSTANT CLASSES ARE THE SAFEST. I flagged
+gcd = 15 (cap 10) and 105 | e (cap 12) as "exactly where a budget could fail". They have
+the SMALLEST increments of all d tested: 0.632 and 0.483 vs 1.235 for twins. Structural
+reason: a larger cap comes from a DENSER exposed set (|E| = 40, 48 of 105 vs 15), and a
+denser machine has much smaller gaps (F(29) = 63, 49 vs 129) - the cap bounds chain
+length in a frame whose period is smaller, so density wins over the constant.
+
+(3) VERIFIED / NOT VERIFIED, plainly. VERIFIED: incr/q' <= 1.846 at all FIVE consecutive
+steps 11->13, 13->17, 17->19, 19->23, 23->29 for all SEVEN gaps d = 2,4,6,10,12,30,210 -
+every gcd(e,105) class except 7, 21, 35, both worst-constant classes included, exact
+full-period, no sampling. NOT VERIFIED: any step beyond 23->29, for any d. Twins' own
+worst step is 31->37 at 2.432 (period ~1e11, past this tool's reach), so the analogous
+late steps for other d are unchecked and could be higher; 2.432 remains the only measured
+number near the 2.5 budget and it is the corpus's, not mine. Also unchecked: gcd classes
+7, 21, 35 (d = 14, 42, 70).
+
+(4) SCHEMA CLAIM UPGRADED, STILL CONSERVATIVE: for every even d tested, the tolerance
+route reduces Polignac-for-d to the SAME single open lemma (D) as twins, with all
+d-dependence in explicit finite constants THAT HAVE BEEN CHECKED to satisfy the route's
+budget on every step within computational reach. Remainder unchanged: (D) is open for
+twins hence for all d, and late steps are unchecked for every d including twins.
+
+F(2,53): pruned log now reads "423 coverable", 424/425 skipped by the mod-3 law - bound
+>= 426, currently searching 426. PID 94812 alive.
+
+## Mechanic round 17 (2026-08-18) - THE FLANK-ENVELOPE CENSUS: (D)'s residual is four addresses
+Tools: research/flank_envelope.py, envelope_analysis.py (both new). Data:
+flank_envelope_{words,joint,uncond,spectra,gaphist}.csv. Full text: mechanic.md r17.
+VALIDATION FIRST: reproduces Constructor r16 at 29->31 exactly (FS_max = 48 at (18,30),
+F = 43, max single flank 35 = 0.81F at span 10 -> 7 = 0.16F at span 41), my own r11 fuel
+census (the length-3 word (10,21,10): exactly 4 occurrences, flanks in {4,7}) and the
+r13 spectra (machines 13..31, every F_j).
+
+- THE IDENTITY THE CONSTRUCTOR ASKED FOR, and it is one line: an occurrence of a
+  length-ell word is ell+2 CONSECUTIVE GAPS, so span(w) + FS(occurrence) <= F_{ell+2}(M)
+  IDENTICALLY. Hence (D) at a step is IMPLIED, for all words of length ell, by the pure
+  spectrum inequality F_{ell+2}(M) <= F(M) + q'. This is your r10
+  "excess <= F_{k_max+1} - F2" read as a SUFFICIENT condition and resolved per length.
+  It turns (D) into SPECTRUM FLATNESS AT BOUNDED DEPTH: depth <= litcap(q') + 1 <= 7,
+  and litcap is machine-free (2,3,4,6 by q' mod 35).
+- THE PER-STEP LEDGER (exact, full period). A priori (ell_max = litcap - 1):
+  11->13 F_3=16<=20 OK | 13->17 23<=28 OK | 17->19 28<=37 OK | 19->23 F_5=47<=48 OK (by 1)
+  | 23->29 F_4=58<=63 OK | 29->31 F_5=85 vs 74 SHORT 11 | 31->37 F_7=97+ vs 95 SHORT.
+  With the MEASURED fuel cap (r11, full period, k_max = 4 and N_5 = 0 at both 29->31 and
+  31->37) no word of length >= 4 occurs, and 31->37 becomes F_5(31) = 92 <= 95 OK by 3.
+- THE RESIDUAL, EXHIBITED: over every consecutive step ever measured, the ONLY
+  (step, length) the spectrum ceiling does not close is (29->31, ell = 3). Two compatible
+  words there; (21,10,21) never occurs; (10,21,10) occurs FOUR times, all listed:
+  k = 220,171,102 (7,7); 406,081,827 (4,7); 672,200,337 (7,4); 858,111,062 (7,7).
+  Requirement FS <= 43+31-41 = 33; measured max 14; margin +19 = 0.61q'.
+  SO THE OPEN PART OF (D) OVER ALL MEASURED STEPS IS FOUR ADDRESSES. This does NOT prove
+  (D) (new steps make new residuals, and the criterion needs an UPPER bound on F_j, which
+  is Wall V), but it corrects the residue's SHAPE: not "every step" - a computable,
+  currently four-element set. CONSTRUCTOR: this is complementary to your tier-A finding,
+  not contradictory - tier A (corridor) closes no step, the SPECTRUM tier closes 6 of 7.
+- THE CEILING IS TIGHT, so no better length-only bound exists: at machine 19, word (10,),
+  9,452 occurrences, address k = 137,328, flanks (21,4): span + FS = 21+10+4 = 35 =
+  F_3(19) EXACTLY. Sharpening past F_{ell+2} must use the letters, not the length.
+- THE MONOTONE ENVELOPE - VERDICT SPLIT, and the hunted violation FOUND:
+  (a) within a step's compatible word list: monotone in 19 of 19 measured word-steps,
+      zero violations (machines 11..29, q' = 13..43). Your shape is confirmed there.
+  (b) as a MACHINE law: FALSE. Six violations; the clean one is machine 29,
+      span 21 -> max flank 27 (w = (21,), q' = 31, 205,068 occ) BUT
+      span 25 -> max flank 30 (w = (25,), q' = 37, 88,548 occ, k = 133,490,560).
+      A +3 RISE at larger span with six-figure counts on both sides. And machine 29
+      span 29 -> 15 (2,054 occ) vs span 31 -> 22 (6,500 occ): the LARGER span has MORE
+      occurrences, which is exactly why its max is bigger. THE ENVELOPE FOLLOWS THE
+      OCCURRENCE COUNT, NOT THE SPAN. (Also machines 17, 19, 23.)
+  (c) unconditionally (any letters, all spans): massively false - 17 to 257 violating
+      span pairs per (machine, ell); worst rise E(11) = 19 -> E(21) = 34 (machine 23).
+  READING: within-step monotonicity is an ORDERING OF RARITY, not a law of position -
+  occurrence counts fall 2-5 orders of magnitude across a step's spans (29->31:
+  7,815,766 / 205,068 / 6,500 / 4 at spans 10/21/31/41).
+- IS IT PURE RARITY? Rarity null = max of 2*occ independent draws from the machine's OWN
+  gap histogram, capped by the spectrum ceiling. Every well-sampled word sits BELOW that
+  effective null at p = 0.0000, deficit growing with the machine (-1..-5 at machines
+  11-19, -7..-15 at 23 and 29). BUT THE RESIDUAL WORD IS THE EXCEPTION: (10,21,10) at
+  29->31 has obs = 14 against null 15, p = 0.4732 - its four occurrences behave exactly
+  like four independent draws. CONSEQUENCE: a derivation of (D) for the long words cannot
+  come from the monotone envelope (false as a machine law) nor from the ceiling (44 vs
+  the needed 33 there). It has to come from RARITY - an occurrence-count bound for long
+  compatible words times a gap-tail bound. That is a COUNTING statement about word
+  occurrences, not a statement about flank sizes.
+- MARGIN TRAJECTORY (min over each step's compatible words of F + q' - span - FS_max):
+  +12 / +10 / +12 / +14 / +20 / +16 at 11->13 .. 29->31, i.e. 0.923 / 0.588 / 0.632 /
+  0.609 / 0.690 / 0.516 q'. Absolute margin GROWS, relative sits in a flat [0.52, 0.92]q'
+  band with no downward trend over six steps. Closest approach is 29->31 (0.516q'), the
+  same step carrying the whole spectrum residual. (Your +7 = 0.19q' is the PADDED tier at
+  31->37, a different object; both recorded, neither shrinking.)
+- LANDED JOB, FOR LATERAL: hist41 finished. Machine 41, prefix 2.000e11 of 5.0708e13
+  (0.394%): hist_41[43] = 66,235, [47] = 25,032, [53] = 5,748, [59] = 33 (all definitive).
+  Machine 41 has 8.499e12 openings, so the MEASURED prefix count scales along the period
+  to supply(41,43) ~ 1.68e7 and supply^2/gaps ~ 33, against the calibrated zeroes
+  elsewhere (0.020 at 29->31, 0.112 at 31->37, 0.017 at 37->41, all observed 0).
+  YOUR ROUND-16 PREDICTION - FIRST DOUBLE-PADDED RUN AT 41->43, NOT 37->41 - IS
+  QUANTITATIVELY SUPPORTED at the first step where the statistic clears 1 by a wide
+  margin. DISCIPLINE NOTE: this scales a count ALONG one machine's period
+  (CRT-homogeneous, measured at this step), NOT a share band ACROSS steps - a different
+  operation from the one I retracted in r16. Still an extrapolation: the direct check
+  needs the full 5.07e13 slots, out of reach.
+- PRE-REGISTERED (jobs running, did not land in-round): 31->37 full period - the
+  length >= 4 compatible words (spans 74/86/99) should have ZERO occurrences, since
+  k_max = 4; if any occurs my r11 census is wrong. 37->41 and 41->43 prefixes: both
+  margins expected comfortably positive; a prefix can only falsify, never confirm.
+- OFFERING NEXT: (i) the occurrence-count law for compatible words - N(w) vs span and
+  length across machines, which is now the object (D) actually needs; (ii) full-period
+  F_j upper bounds for machine 37 (the only missing input for the 37->41 row) - ~4h;
+  (iii) the padded-tier envelope (same census, qualifying values), the one tier this
+  round did not cover.

@@ -12,6 +12,7 @@ import MaxGap
 import LiteralCap
 import Machine17
 import TierA
+import PolignacCap
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -112,3 +113,9 @@ open BlockedSlots
 #print axioms TierA.equal_padding_forbidden_card
 #print axioms TierA.padding_shape_dichotomy
 #print axioms TierA.no_adjacent_equal_padded
+#print axioms PolignacCap.exists_mul_mod_eq
+#print axioms PolignacCap.cap_gcd_1
+#print axioms PolignacCap.cap_gcd_3
+#print axioms PolignacCap.cap_gcd_15
+#print axioms PolignacCap.cap_gcd_105
+#print axioms PolignacCap.capOf_le_twelve

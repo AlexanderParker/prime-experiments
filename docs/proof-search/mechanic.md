@@ -1319,3 +1319,288 @@ where only a structural argument (lateral's corridor law) can decide.
 All are detached, chunk-flushed or single-shot, and safe to leave; note
 that hist_probe/padding_census print only at exit (Windows buffering),
 so an empty log means running, not failed.
+
+## Round 17 - THE FLANK-ENVELOPE CENSUS: the residual of (D) localised to four addresses
+
+Tools: research/flank_envelope.py (new - per-word joint flank census +
+unconditional envelope + F_1..F_8 in one stream, full period where
+reachable), research/envelope_analysis.py (new - the verdicts below off
+the CSVs). Data: research/data/flank_envelope_words.csv, _joint.csv,
+_uncond.csv, _spectra.csv, _gaphist.csv.
+VALIDATION before anything else: the tool reproduces Constructor r16
+exactly at 29->31 - FS_max = 48 at (gL,gR) = (18,30), F = 43, largest
+single flank 35 = 0.81F at span 10 falling to 7 = 0.16F at span 41 - and
+reproduces my own r11 fuel census (the length-3 word (10,21,10) has
+EXACTLY 4 occurrences, flanks in {4,7}) and the r13 spectra (machines
+13..31, F_1..F_6, every value).
+
+### (0) THE IDENTITY THAT DOES THE WORK - flanks are not a free variable
+
+An occurrence of a length-ell word is ell+2 CONSECUTIVE GAPS: the left
+flank, the ell letters, the right flank. Therefore
+
+    span(w) + FS(occurrence) <= F_{ell+2}(M)        IDENTICALLY
+
+for every word, compatible or not, at every occurrence. Hence part (D)
+- FS_max(w) <= F + q' - span(w) - IS IMPLIED, for all words of length
+ell, by the pure spectrum inequality
+
+    F_{ell+2}(M) <= F(M) + q'.
+
+This is the Constructor's r10 "excess <= F_{k_max+1} - F2" read as a
+SUFFICIENT condition and resolved per word length. It converts (D) from a
+statement about flanks into SPECTRUM FLATNESS AT BOUNDED DEPTH: the depth
+needed is ell_max + 2 <= litcap(q') + 1 <= 7, and litcap is machine-free
+(a function of q' mod 35: 2, 3, 4 or 6).
+
+### (1) THE PER-STEP LEDGER (exact, full period, F_j recomputed here)
+
+A priori (ell_max = litcap(q') - 1, no fuel input):
+
+    step      litcap  ell_max  F_{ell_max+2}   F+q'    verdict
+    11->13      2       1        F_3 = 16       20     IMPLIES (D)
+    13->17      2       1        F_3 = 23       28     IMPLIES (D)
+    17->19      2       1        F_3 = 28       37     IMPLIES (D)
+    19->23      4       3        F_5 = 47       48     IMPLIES (D)  (by 1)
+    23->29      3       2        F_4 = 58       63     IMPLIES (D)
+    29->31      4       3        F_5 = 85       74     short by 11
+    31->37      6       5        F_7 = 97+      95     short
+    37->41      2       1        F_3 >= 95     129     see caveat
+
+Resolved PER LENGTH the failures shrink further: at 29->31 the criterion
+holds for ell = 1 (F_3 = 65 <= 74) and ell = 2 (F_4 = 70 <= 74) and fails
+only for ell = 3; at 31->37 it holds for ell = 1,2,3 (F_3 = 85, F_4 = 90,
+F_5 = 92, all <= 95) and fails only for ell = 4,5.
+
+With the MEASURED fuel cap folded in (r11 census, full period: k_max = 4
+at both 29->31 and 31->37, N_5 = 0), no word of length >= 4 occurs at
+all, so 31->37's residual is EMPTY and the ledger becomes
+
+    step      k_max  F_{k_max+1}   F+q'    verdict
+    13->17      2      F_3 = 23      28    IMPLIES (D)
+    17->19      2      F_3 = 28      37    IMPLIES (D)
+    19->23      3      F_4 = 38      48    IMPLIES (D)
+    23->29      2      F_3 = 50      63    IMPLIES (D)
+    29->31      4      F_5 = 85      74    OPEN (short by 11)
+    31->37      4      F_5 = 92      95    IMPLIES (D)  (by 3)
+    37->41      3      F_4 >= 103   129    caveat below
+
+THE RESIDUAL, EXHIBITED. Over every consecutive step this search has
+measured, the only (step, length) pair where the spectrum ceiling does not
+close (D) is (29->31, ell = 3). There are exactly two compatible words of
+that length, and one of them never occurs:
+
+    w = (21,10,21)  span 52   0 occurrences in the full 1.078e9 period
+    w = (10,21,10)  span 41   4 occurrences, ALL of them:
+        k =   220,171,102   flanks (7,7)   FS = 14
+        k =   406,081,827   flanks (4,7)   FS = 11
+        k =   672,200,337   flanks (7,4)   FS = 11
+        k =   858,111,062   flanks (7,7)   FS = 14
+    requirement at alpha = 3: FS <= F + q' - span = 43 + 31 - 41 = 33.
+    measured maximum 14. Margin +19 = 0.61 q'.
+
+So the open part of (D), across all measured steps, is FOUR ADDRESSES,
+each with 19 to spare. This does NOT prove (D) - future steps can produce
+new residuals, and the criterion needs an UPPER bound on F_j at each
+machine, which is exactly Wall V. What it does is correct the SHAPE of the
+residue: it is not "every step" but a computable, currently four-element
+set, and everything else is closed by an identity plus full-period
+spectra.
+
+CAVEATS, stated with the claim:
+ * F_j(37) and F_j(41) come from PREFIXES, so they are LOWER bounds. The
+   criterion needs an upper bound, so the 37->41 and 41->43 rows are NOT
+   decided by this data - they are only "not falsified" (F_4(37) would
+   have to exceed 129, i.e. 26 above the measured 103, to break).
+ * the k_max rows import the fuel bound (lemma 2) as an input; it is a
+   full-period MEASUREMENT at 29->31 and 31->37, not a theorem.
+ * this covers LITERAL compatible words. The padded tier is bounded by the
+   same identity with its own length, and at 31->37 the padded record 88
+   sits 7 below F + q' = 95 (the 0.19q' the Constructor reports).
+
+### (2) THE CEILING IS ATTAINED - no better length-only bound exists
+
+The identity bound is not slack. At machine 19, word (10,) (compatible at
+q' = 29 and q' = 31), over 9,452 occurrences:
+
+    address k = 137,328   flanks (21, 4)   span + FS = 21 + 10 + 4 = 35
+                          = F_3(19) EXACTLY.
+
+So span + FS_max reaches F_{ell+2} on the nose. Any attempt to sharpen
+"span + FS <= F_{ell+2}" into something smaller must use the word's
+letters, not just its length - the length-only ceiling is tight.
+
+### (3) THE MONOTONE ENVELOPE: TRUE PER STEP, FALSE AS A MACHINE LAW
+
+The Constructor's most promising unproven shape is "the largest single
+flank falls monotonically with span". Three verdicts, all exact:
+
+ (a) WITHIN A STEP'S COMPATIBLE WORD LIST: monotone in 19 of 19 measured
+     word-steps, ZERO violations (machines 11..29, q' = 13..43).
+     Confirmed, and the fall is steep: 0.81F at span 10 -> 0.16F at span
+     41 (29->31), 0.80F -> 0.28F (19->23), 0.74F -> 0.21F (23->31).
+
+ (b) AS A PROPERTY OF THE MACHINE (pool a machine's compatible words over
+     all probed q'): FALSE. Six violations found; the four that matter,
+     with addresses:
+
+     machine 29:  span 21 -> max flank 27   (w = (21,),  q' = 31, 205,068 occ)
+                  span 25 -> max flank 30   (w = (25,),  q' = 37,  88,548 occ,
+                                             address k = 133,490,560)
+        - THE CLEAN COUNTEREXAMPLE: a +3 RISE at a larger span with six-
+        figure occurrence counts on both sides. Nothing rare about it.
+     machine 29:  span 29 -> max flank 15   (w = (29,),   q' = 43,  2,054 occ)
+                  span 31 -> max flank 22   (w = (10,21), q' = 31,  6,500 occ,
+                                             address k = 661,321,007)
+        - and here the LARGER span has MORE occurrences (6,500 vs 2,054),
+        which is exactly why its maximum is bigger. The envelope follows
+        the occurrence count, not the span.
+     machine 19:  span  8 -> max flank 20   (w = (8,),  q' = 23, 10,462 occ)
+                  span 10 -> max flank 21   (w = (10,), q' = 29, 9,452 occ,
+                                             address k = 137,328)
+     machine 23:  span 27 -> max flank  7   (w = (27,), q' = 41, 170 occ)
+                  span 29 -> max flank  8   (w = (29,), q' = 43, 6 occ,
+                                             address k = 15,554,598)
+     (machine 17 supplies a sixth: span 6 -> 12 vs span 8 -> 14.)
+
+ (c) UNCONDITIONALLY (any letters, every span, from the same stream):
+     MASSIVELY false. Violating span pairs per (machine, ell = 1..6):
+     machine 13: 7/18/21/40/28/20; machine 17: 10/17/25/45/17/49;
+     machine 19: 19/21/23/65/69/119; machine 23: 17/44/109/152/179/257.
+     Worst single rises: E(11) = 19 -> E(21) = 34 (machine 23, ell = 4);
+     E(6) = 15 -> E(7) = 25 (machine 19, ell = 2).
+
+READING (the honest one): the within-step monotonicity is real but it is
+an ORDERING OF RARITY, not a law of position. Consecutive compatible spans
+differ by q'-scale amounts and their occurrence counts fall by two to five
+orders of magnitude (29->31: 7,815,766 / 205,068 / 6,500 / 4 across spans
+10/21/31/41). Monotonicity holds on that sparse set and fails as soon as
+the span axis is filled in. Deriving (D) from "monotone envelope" would
+therefore have to use the rarity, not the monotonicity.
+
+### (4) IS IT PURE RARITY? NO - a measured suppression sits on top
+
+Rarity null (exact, zero free parameters): draw 2*occ flanks
+independently from the machine's OWN gap histogram and take the maximum;
+report the median of that maximum and the one-sided p-value P(max < obs).
+Effective null = min(rarity null, spectrum ceiling F_{ell+2} - span),
+since the null is inadmissible where it exceeds the ceiling.
+
+    step      word       occ      span  FS_max  null  ceil  eff  obs-eff   p
+    19->23     (8)      10,462      8     25     33    27    27    -2   0.0000
+    19->29    (10)       9,452     10     25     33    25    25    +0   0.0000
+    19->23  (8,15)          31     23     11     19    15    15    -4   0.0007
+    23->29    (10)     243,370     10     33     45    40    40    -7   0.0000
+    23->29    (19)         440     19     18     29    31    29   -11   0.0000
+    23->31 (10,21)         138     31     11     26    27    26   -15   0.0000
+    23->41    (27)         170     27     12     27    23    23   -11   0.0000
+    29->31    (10)   7,815,766     10     48     57    55    55    -7   0.0000
+    29->31    (21)     205,068     21     30     49    44    44   -14   0.0000
+    29->31 (10,21)       6,500     31     24     40    39    39   -15   0.0000
+    29->31 (10,21,10)        4     41     14     15    44    15    -1   0.4732
+    29->37    (12)   3,197,558     12     46     55    53    53    -7   0.0000
+    29->37 (12,25)         187     37     23     29    33    29    -6   0.0287
+    29->43    (29)       2,054     29     24     37    36    36   -12   0.0000
+
+Every well-sampled compatible word sits BELOW the independent null at
+p = 0.0000, and below the effective null too, by a deficit that GROWS with
+the machine: -1..-5 at machines 11-19, -7..-15 at machines 23 and 29.
+
+THE EXCEPTION IS THE ONE THAT MATTERS. The residual word (10,21,10) at
+29->31 - the entire open part of (D) - sits at obs = 14 against a rarity
+null of 15, p = 0.4732. Its four occurrences behave EXACTLY like four
+independent draws from machine 29's gap distribution. There is no
+structural suppression there at all; the margin of +19 is a pure
+sample-size effect.
+
+So the observed envelope decomposes into three measured effects: (i) the
+spectrum ceiling F_{ell+2} - span, an identity, binding for the common
+short words (attained at machine 19); (ii) the rarity order statistic,
+which sits below the ceiling and is EXACTLY what the residual word
+realises; (iii) a structural suppression of 7-15 gap units on the
+well-sampled words, growing with the machine. Only (i) is a theorem.
+CONSEQUENCE FOR THE CONSTRUCTOR: a derivation of (D) for the long words
+cannot come from the monotone envelope (false as a machine law, (3b)) and
+cannot come from the ceiling (too weak there: 44 vs the needed 33). It has
+to come from RARITY - an upper bound on the number of occurrences of a
+long compatible word, times a tail bound on the gap distribution. That is
+the shape the data supports, and it is a counting statement about word
+occurrences, not a statement about flank sizes.
+
+### (5) THE MARGIN TRAJECTORY - stable, not closing
+
+Minimum over each step's compatible words of F + q' - span - FS_max:
+
+    step      F    q'   min margin   /q'    binding word (span, FS_max)
+    11->13     7   13      +12      0.923      (4)      (4, 4)
+    13->17    11   17      +10      0.588      (6)      (6, 12)
+    17->19    18   19      +12      0.632      (13)     (13, 12)
+    19->23    25   23      +14      0.609      (8,15)   (23, 11)
+    23->29    34   29      +20      0.690      (10)     (10, 33)
+    29->31    43   31      +16      0.516      (10)     (10, 48)
+
+The absolute margin grows (+10 -> +20); the relative margin sits in a flat
+band [0.52, 0.92] q' with no downward trend over six steps. The closest
+approach is 29->31 at 0.516 q' - the same step that carries the whole
+spectrum residual. (The Constructor's +7 = 0.19 q' minimum is the PADDED
+tier at 31->37, a different object from these literal words; both are
+recorded, neither is shrinking.)
+
+### (6) BONUS EVENT FROM A LANDED JOB: machine 41's padding supply
+
+hist41.log finished: machine 41, prefix 2.000e11 of period 5.0708e13
+(0.394%), F >= 90 on the range,
+
+    hist_41[43] = 66,235     hist_41[47] = 25,032
+    hist_41[53] =  5,748     hist_41[59] =     33
+
+all definitive (a prefix bounds hist from below). Machine 41 has
+8.499e12 openings in its period, so scaling the MEASURED prefix count
+along the period gives supply(41,43) ~ 1.68e7 and
+
+    supply^2 / gaps ~ 33     (r14's double-padding statistic)
+
+against the calibrated zeroes elsewhere: 0.020 at 29->31 (observed 0),
+0.112 at 31->37 (observed 0), 0.017 at 37->41. LATERAL'S ROUND-16
+PREDICTION - first double-padded run at 41->43, not 37->41 - IS
+QUANTITATIVELY SUPPORTED by a measured supply, at the first step where the
+statistic exceeds 1 by a wide margin.
+DISCIPLINE NOTE ON THE EXTRAPOLATION: this scales a count ALONG one
+machine's period (CRT-homogeneous, and the prefix is a genuine measurement
+at this step), which is a different and far safer operation than the
+share-band extrapolation ACROSS steps that I retracted in r16. It is still
+an extrapolation: the direct check needs the full 5.07e13-slot period, out
+of reach. Reported as a priced prediction, not an observation.
+
+### (7) PRE-REGISTERED, jobs still running at filing
+
+The three big envelope passes did not land inside the round. Predictions
+recorded BEFORE they do, so the outcome is a test and not a fit:
+
+ * 31->37 (full period 3.343e10, ~3h): the compatible words of length
+   >= 4 - (12,25,12,25) and (25,12,25,12), span 74, and the two length-5
+   words at spans 86/99 - should have ZERO occurrences, because the r11
+   full-period fuel census gives k_max = 4 there (N_5 = 0). If any of
+   them occurs, k_max = 4 is WRONG and my r11 census has a bug; if none
+   does, the 31->37 row of the k_max ledger stands and the spectrum
+   closes (D) at that step with margin 3.
+ * 37->41 (prefix 3e10, 2.4%): litcap(41) = 2, so only the two
+   single-letter words (14,) and (27,) exist. Expect FS_max well under
+   F + q' = 129 (the machine-37 gap spectrum has F_3 >= 95, so the
+   ceiling alone leaves >= 34); a prefix can only FALSIFY, never confirm.
+ * 41->43 (prefix 1.5e10, 0.03%): first envelope data for machine 41;
+   words (14,) and (29,). Expect F(41) = 90 confirmed on the range and
+   both margins comfortably positive.
+
+### Jobs running at filing
+- envelope31.log: 31->37 flank envelope, FULL period 3.343e10 (9% at
+  961s, ~3h total).
+- envelope37.log: 37->41 flank envelope, prefix 3e10 (7.7%, ~2.8h).
+- envelope41.log: 41->43 flank envelope, prefix 1.5e10 (17.5%, ~1.2h).
+- padding37.log, hist37.log: machine-37 full-period padding/histogram.
+- fuel37_k5hunt.log: extended k=5 slice at 37->41.
+- satruns_L15.log: 68.2%, k <= 1.367e12, L=14 record unbeaten.
+LANDED this round: hist41.log (see (6)); envelope29/29b/29c (machine 29
+at q' = 31, 37, 43, all full period).
+Note: flank_envelope prints per-segment progress with flush, so unlike
+hist_probe/padding_census its logs show live coverage.

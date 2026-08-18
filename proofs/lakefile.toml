@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "Machine17", "TierA"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "Machine17", "TierA", "PolignacCap"]
 
 [[require]]
 name = "mathlib"
@@ -49,3 +49,33 @@ name = "Machine17"
 
 [[lean_lib]]
 name = "TierA"
+
+[[lean_lib]]
+name = "PolignacCap"
+
+[[lean_lib]]
+name = "PolignacCapCore"
+
+[[lean_lib]]
+name = "PolignacCap1"
+
+[[lean_lib]]
+name = "PolignacCap3"
+
+[[lean_lib]]
+name = "PolignacCap5"
+
+[[lean_lib]]
+name = "PolignacCap7"
+
+[[lean_lib]]
+name = "PolignacCap15"
+
+[[lean_lib]]
+name = "PolignacCap21"
+
+[[lean_lib]]
+name = "PolignacCap35"
+
+[[lean_lib]]
+name = "PolignacCap105"

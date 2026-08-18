@@ -1645,3 +1645,102 @@ widest (>= 0.52q' at every literal step).
 (verified) + padded count cap and onset gate (proven) + **(D): mid-size flank
 pair-sums at <= 6 pinned words per step, open at every step, margin >= 0.19q'
 measured**.
+
+---
+
+# Constructor round 17: the monotone envelope - spectrum reduction tried, and it fails where it matters
+
+Consolidation + one decisive test; data from r11/r16 plus Mechanic's spectra.
+
+## 34. Envelope from spectrum (question 1)
+
+**34.1 The identity.** A word w of ell letters occupies ell consecutive gaps of
+M, and its two flanks are the gaps immediately outside, so
+
+    span(w) + FS(w)  =  sum of exactly ell + 2 = k + 1 consecutive gaps of M
+                     <=  F_{k+1}(M).
+
+No proof needed - it is the definition of the spectrum. Hence
+
+    (D) at alpha = 3   <==   SPECTRUM FLATNESS:  F_{k_max+1}(M) - F(M) <= q'.
+
+**34.2 The test - and it fails at the deepest step.** Using the measured
+spectra and the fuel census's k_max:
+
+    machine  q'   F   k_max  depth  F_depth  F_d - F   q'   verdict   actual incr
+    11       13   7     2      3       16        9     13   CLOSES         4
+    13       17  11     2      3       23       12     17   CLOSES         7
+    17       19  18     2      3       28       10     19   CLOSES         7
+    19       23  25     3      4       38       13     23   CLOSES         9
+    23       29  34     2      3       50       16     29   CLOSES         9
+    29       31  43     4      5       85       42     31   **FAILS**     15
+
+Spectrum flatness closes five of six steps outright - but it is **false at
+29->31**, the deepest-fuel step: the unrestricted 5-window maximum sits 42
+above F where only 31 is allowed, while the true increment is 15. The
+lossiness of the reduction runs x1.4 to x2.8.
+
+**Conclusion: the envelope does not follow from the spectrum.** The
+qualifying/compatibility restriction is load-bearing, not cosmetic - it is
+precisely the difference between 42 and 15 at the one step where fuel is
+deepest. Any attempt to prove (D) by discarding the restriction loses the
+step it most needs.
+
+## 35. Which lemma is which, and which is weaker (question 2)
+
+Three statements, now strictly ordered:
+
+    Wall V clustering  (extreme x anything: F2 - F = O(q'), r8 lemma 1)
+        ==>  SPECTRUM FLATNESS  (all windows of k+1 consecutive gaps)
+        ==>  (D)                (only windows whose interiors are qualifying
+                                 values at compatible residues - a subfamily of
+                                 relative density ~ (3/q')^{k-1})
+
+So spectrum flatness IS a different open lemma from Wall V's clustering
+statement - strictly weaker than it, strictly stronger than (D) - and the test
+above shows it is **false**, hence not a viable target. (D) survives as the
+weakest of the three and remains the only live one. This also settles the
+round-16 question in the other direction: (D) cannot be weakened further by
+dropping position information, because the first such weakening is already
+false.
+
+## 36. The honest empirical envelope (question 3)
+
+**The monotone envelope, fitted.** Across all 15 word-steps, span and the
+largest single flank trade off inside a band:
+
+    span(w)/F + maxflank(w)/F  in  [1.00, 1.45]
+
+(1.04, 1.12, 1.23, 1.11 at 29->31; 1.12, 1.12, 1.20 at 19->23; 1.00-1.19
+elsewhere) - i.e. **a word plus its biggest flank never much exceeds F**. That
+is the envelope in its sharpest measured form, and it is not implied by
+anything proven.
+
+**What the route needs, in ratio form.** (D) at alpha = 3 says
+merged/F <= 1 + q'/F:
+
+    step      merged/F   required   gap
+    11->13      1.571      2.857    +1.286
+    13->17      1.636      2.545    +0.909
+    17->19      1.389      2.056    +0.667
+    19->23      1.360      1.920    +0.560
+    23->29      1.265      1.853    +0.588
+    29->31      1.349      1.721    +0.372
+    31->37      1.517      1.638    +0.121
+
+The gap shrinks monotonically (bar one blip) because q'/F -> 0: q' ~ y while
+F ~ y^2/log y, so the requirement merged/F <= 1 + q'/F tends to 1 and the
+route ultimately needs **incr/F -> 0**, i.e. the relative increment must
+vanish. In the units the hypothesis actually bounds this is benign - incr/q'
+measures 0.308, 0.412, 0.368, 0.391, 0.310, 0.484, 0.811 against a budget of
+1.000, with the corpus's next two steps at 0.07 and 0.28 (adjacent/3) - mean
+~0.44, no upward trend, the single high value being the padded step. But the
+ratio table is the honest picture of where the margin lives: it is thinning in
+F-relative terms even while it is stable in q'-relative terms, and those two
+readings only agree if incr stays O(q') exactly, which is the hypothesis
+itself.
+
+**Status.** (D) is the weakest surviving form, the first weakening past it is
+false, its measured envelope is a clean band, and its margin is >= 0.19q' at
+every measured step. What is missing is unchanged in kind since round 8 and
+smaller in size than at any earlier round.

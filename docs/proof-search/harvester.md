@@ -988,3 +988,79 @@ TWO HONEST LIMITS, both flagged rather than assumed away:
 
 ### F(2,53) WATCH
 PID 94812 alive; log unchanged (420 coverable, 421/422 skipped) - inside L = 423.
+
+## 18. Round 14: THE PER-d BUDGET ARITHMETIC - my flagged limit, closed
+
+Tool: research/budget_per_d.py. Exact full-period max-gap scans in halved
+(= adjacent) coordinates, the unit in which the corpus's alpha lives (twins'
+slot ratio 0.811 at 31->37 is 2.432 adjacent, against budgets 2.5 and 3).
+Normalisation anchored by reproducing the twin ladder exactly: F(2,y) = 21, 33,
+54, 75, 102, 129 for y = 11..29, and incr/q' = 0.923 at 11->13 = 3 x 0.308, the
+corpus's own first entry.
+
+### (1) THE BUDGET HOLDS, AT BOTH alpha, FOR EVERY d TESTED
+
+    d      e   gcd(e,105)  cap   worst step        max incr/q'   a=2.5  a=3
+    2      1       1        6    13->17               1.235       OK     OK
+    4      2       1        6    11->13               1.846       OK     OK
+    6      3       3        6    17->19               0.947       OK     OK
+   10      5       5        6    17->19               1.421       OK     OK
+   12      6       3        6    11->13               1.538       OK     OK
+   30     15      15       10    17->19               0.632       OK     OK
+  210    105     105       12    23->29               0.483       OK     OK
+
+All 35 (d, step) pairs pass at alpha = 2.5 AND alpha = 3; not one is even close
+to 2.5. Worst observed anywhere: 1.846 (d = 4 at 11->13), 26% under the tighter
+budget and 38% under alpha = 3.
+
+DO OTHER d HAVE THEIR OWN ONSET SPIKES? Yes, and they are early rather than late:
+d = 4 spikes at 11->13 (1.846), d = 12 at 11->13 (1.538 - the same step where
+round 11 found its first PADDED winner), d = 10 at 17->19 (1.421, the step where
+its padding first becomes available, F = 66 >= 3q' = 57). The spikes exist, they
+are structural, and every one of them clears both budgets with room.
+
+### (2) THE WORST-CONSTANT CLASSES ARE THE SAFEST - my second flag REFUTED
+
+I flagged gcd(e,105) = 15 (cap 10) and 105 | e (cap 12) as "exactly where a
+budget could fail", since (B)'s literal-span constant doubles there. The
+computation says the opposite: those two classes have the SMALLEST increments of
+all d tested - max 0.632 (d = 30) and 0.483 (d = 210), against 1.235 for twins.
+REASON (structural, not luck): a larger cap comes from a DENSER exposed set
+(|E| = 40 and 48 of 105, against 15 for twins), and a denser machine has much
+smaller gaps - F(29) = 63 and 49 there against 129 for twins. The cap bounds
+chain LENGTH in a frame whose period is smaller, so the two effects pull opposite
+ways and DENSITY WINS. The flagged risk was real to check and is now closed in
+the favourable direction.
+
+### (3) WHAT IS AND IS NOT VERIFIED
+
+VERIFIED: incr/q' <= 1.846 < 2.5 <= 3 at every one of the five consecutive steps
+11->13, 13->17, 17->19, 19->23, 23->29, for all seven gaps d = 2, 4, 6, 10, 12,
+30, 210 - i.e. every gcd(e,105) class except 7, 21, 35, and both of the
+worst-constant classes included. Exact full-period computations, no sampling.
+NOT VERIFIED (stated plainly): steps beyond 23->29 for any d. Twins' own worst
+step is 31->37 at 2.432 (period ~1e11, past this tool's reach), so for d != 2 the
+analogous late steps are unchecked and could in principle be higher. The twin
+value 2.432 is the only measured number anywhere near the alpha = 2.5 budget, and
+it is the corpus's, not mine. Also unchecked: gcd classes 7, 21, 35 (d = 14, 42,
+70), though (A)-(E) transfer there and their exposed sets sit between the tested
+extremes.
+
+### (4) THE SCHEMA CLAIM, UPGRADED AND STILL CONSERVATIVE
+
+Round 13 said: four of five parts transfer, (D) is the same open lemma for every
+d. This round adds: the budget arithmetic those parts feed is verified for seven
+even gaps across five consecutive steps each, including both worst-constant
+classes, at both alpha = 2.5 and alpha = 3. So the schema now reads
+
+    for every even d tested, the tolerance route reduces Polignac-for-d to the
+    SAME single open lemma (D) as twins, with all d-dependence in explicit finite
+    constants that have been checked to satisfy the route's budget on every step
+    within computational reach
+
+with the honest remainder unchanged: (D) is open for twins, hence for all d; and
+late steps (beyond 23->29) are unchecked for every d, twins included, where the
+one known near-budget value (2.432) lives.
+
+### F(2,53) WATCH
+Coordinator reports the search is past 423, bound now >= 426. PID 94812 alive.
