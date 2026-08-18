@@ -1239,3 +1239,100 @@ k <= 3G/q' + 1, which rearranges to G(1 - 3F(M)/q') <= 2F(M) - vacuous whenever
 F(M) > q'/3, i.e. always in this regime. No easy ceiling; the padded-run bound
 has to come from the arithmetic of how often gaps of exactly q' can chain, not
 from counting.
+
+## Round 14 (2026-08-18): the padding lemma - a ceiling, and exactly where it dies
+
+Chunk: bound the padded runs. Tools: `research/padding_bound.py`,
+`padding_horizon.py`, `padding31.py`.
+
+### The lemma (exact, from the F_j spectrum)
+
+A legal killed run of k kills occupies k+1 CONSECUTIVE gaps of M (its k-1
+links plus two flanks), so its merged gap obeys G <= F_{k+1}(M). Suppose a run
+carried TWO padded links with j literal links between them. Those j+2 links are
+j+2 consecutive gaps of M summing to at least 2q' + j*L, where L = min(s,q'-s)
+is the cheapest literal link. Hence
+
+    two padded links require   F_{j+2}(M) >= 2q' + j*L   for some j >= 0,
+
+and contrapositively:
+
+> **PADDING LEMMA.** If F_{j+2}(M) < 2q' + j*L for every j >= 0, then every
+> legal killed run carries AT MOST ONE padded link. The j=0 case,
+> F_2(M) < 2q', is the headline: two padded links can never be adjacent.
+
+A companion threshold: if 2q' > F(M) then no gap of M is 2q', so every padded
+link has size EXACTLY q'.
+
+### Verified at every step computed, and confirmed empirically
+
+    step      F(M)  F2(M)   q'   2q'   pad size = q'?   p <= 1?   span ceiling
+    13->17      11     16   17    34   yes (vacuous)    yes       5.71 q'
+    17->19      18     25   19    38   yes (vacuous)    yes       6.37 q'
+    19->23      25     31   23    46   yes              yes       5.70 q'
+    23->29      34     39   29    58   yes              yes       5.69 q'
+    29->31      43     55   31    62   yes              yes       6.35 q'
+    31->37      58     68   37    74   yes              yes       6.35 q'
+    37->41    >=88   >=90   41    82   NO               NO        NONE
+
+(13->17 and 17->19 are vacuous: F(M) < q', so padding is impossible at all.)
+
+Empirical census over full periods - gaps = 0 mod q', and padded links per
+maximal legal run:
+
+    19->23: gaps of 23: 86    adjacent padded pairs 0   max padded/run = 1
+    23->29: gaps of 29:  6    adjacent padded pairs 0   max padded/run = 1
+    29->31: gaps of 31: 2090  adjacent padded pairs 0   max padded/run = 1
+    13->17, 17->19: no gaps = 0 mod q' at all           max padded/run = 0
+
+Every padded gap found has size exactly q' - never 2q' - as the second
+threshold predicts. Zero adjacent padded pairs anywhere, as the lemma
+requires. (31->37 census running; the lemma already proves p <= 1 there, and
+round 13's winner is a single padded link of exactly 37.)
+
+### What it buys: the ceiling is restored, at a bigger constant
+
+With p <= 1 and padded size exactly q', a run is
+`[literal chain] --q'-- [literal chain]`, and the cap-6 theorem applies to each
+literal segment separately (it is a property of that segment's own opening
+sequence), so
+
+    k <= 12    and    span <= 2*(2q' + s) + q' = 5q' + 2s <= 6.35 q'.
+
+That restores the span ceiling I withdrew in round 13 - at 6.35q' rather than
+the 2.67q' literal-only reasoning had given. Honest scope: this bounds the
+SPAN, not the increment; the flanks are still two gaps of M, each up to F(M),
+so a ceiling on excess/q' still needs the Constructor's FS_max bound. What is
+new is that the span half is no longer open.
+
+### And exactly where it dies - at the very next step
+
+Both enabling conditions are ratios against 2q', and both climb monotonically:
+
+    step     13->17 17->19 19->23 23->29 29->31 31->37 | 37->41
+    F(M)/2q'   0.32   0.47   0.54   0.59   0.69   0.78 |  1.07
+    F2(M)/2q'  0.47   0.66   0.67   0.67   0.89   0.92 |  1.10
+
+F and F2 grow superlinearly against the next prime, so once past 1 they stay
+past. **The padding ceiling is a small-machine phenomenon that ends exactly at
+37->41**, where simultaneously (i) gaps of 2q' = 82 become possible
+(F(37) >= 88), so a single padded link can be worth 2q'; and (ii) two adjacent
+padded links stop being excluded (F_2(37) >= 90 > 82). The answer to "does a
+bound fall out" is therefore: **yes for machines up to 31, and no
+asymptotically** - stated plainly because the honest version is the useful one.
+
+Falsifiable consequence for the census: at 37->41 I expect the first run with
+two padded links, and/or the first padded link of size 82. If the Mechanic's
+machine-37 scan finds neither, the lemma's threshold is not tight and there is
+a further mechanism suppressing padding - which would be worth much more than
+the lemma itself.
+
+### Proposed next chunk
+
+Two options, coordinator's pick. (1) Chase the suppression: run the padded-link
+census at 37->41 directly (machine 37's period is 1.24e12 - expensive but the
+padded links only need gaps >= 41, so a gap-filtered scan is far cheaper than a
+full merge scan) and see whether p <= 1 survives past its proof. (2) Attack the
+flank half instead: with span now bounded at 6.35q' for the computed range, the
+whole excess question reduces to FS_max, and my pinning/address machinery from
+rounds 9-10 applies directly to the two flank gaps of a winning run.

@@ -1330,3 +1330,101 @@ Both are one statement: near-maximal gaps do not cluster, at pinned
 addresses. That is the whole remaining content of the tolerance route, and it
 is Wall V with bounded complexity (<= 6 words, one carrier class each, two
 flanks) - the sharpest form the programme has reached.
+
+---
+
+# Constructor round 14: the padding question - arithmetic, the anomaly explained, and an honest re-price
+
+Script: `research/padded_bound.py`. Two corrections absorbed: Lateral's
+withdrawal (the cap-6 theorem covers LITERAL chains only; padded links have no
+analogue) and the manager's normalisation fix - my round-13 "~3x margin" was
+read off the six steps I had computed, which exclude the true binding step
+31->37, where the margin is **2.432 vs 2.5 = 2.7%**. The re-price below uses
+the binding step.
+
+## 26. Padding from the tolerance side
+
+**26.1 The shape a padded-run bound must have (question a).** A padded link is
+two kills at the same tooth, so its interior gap is = 0 mod q', i.e. >= q'.
+A k-chain merges k+1 consecutive gaps, and tolerance needs
+merged <= F + (5/6)q' (k-frame; 2.5/3 = 5/6). With p padded interiors and
+ell-p literal ones (each ~ q'/3):
+
+    FS_max  <=  F + (5/6)q' - span  <=  F - (p - 5/6)q' - (ell-p)q'/3.
+
+So **each padded link costs a full q' while the entire budget grants only
+(5/6)q'** - padding is self-limiting through the budget rather than through any
+cap: p = 1 already forces FS < F - q'/6 (a padded occurrence cannot carry a
+near-maximal flank at all), p = 2 forces FS < F - (7/6)q', and
+p <= (F + (5/6)q')/q' ~ F/q' bounds the count outright (at 31->37: p <= 2.40,
+so p = 3 is arithmetically impossible - confirming the measured absence of
+k >= 3 padded windows). Equivalently the whole tier is the qualifying spectrum:
+**Q^qual_{k+1} - F <= (5/6)q'**, where Q^qual restricts the round-11 spectrum to
+windows whose interiors are all in V(q') = {v = 0, +-2c mod q'} with at least
+one padded.
+
+**26.2 The measured padded tier, and the gear-37 anomaly explained.**
+
+    step      padded gaps (= 0 mod q')    Q^qual(k=2) - F   budget   binds?
+    11->13    0 of 135                    -                 10.8     no tier
+    13->17    0 of 1,485                  -                 14.2     no tier
+    17->19    0 of 22,275                 -                 15.8     no tier
+    19->23    86 of 378,675 (0.023%)      +6                19.2     no
+    23->29    6 of 7,952,175              +6                24.2     no
+    29->31    2,090 of 214,708,725        +6                25.8     no
+    31->37    (Lateral) winner IS padded  +30 = the record  30.8     YES
+
+Only the exact value q' ever occurs as a padded gap; no k >= 3 padded window
+exists anywhere, as 26.1 predicts. Through 29->31 the padded tier sits a flat
++6 above F, far under budget, and the winner is literal. At 31->37 it becomes
+the winner: word [pad 37][literal 12], span 49, flanks summing 39, merged
+88 = F_k(37), against the requirement FS <= 58 + 30.83 - 49 = 39.83.
+
+> **The corpus's gear-37 anomaly is the onset of padding.** The unexplained
+> spike of section 5.4 (increment 2.432q where neighbours run 0.22q and 0.84q)
+> is exactly the first step whose winning word contains a padded link - a
+> structurally different tier switching on, not a fluctuation.
+
+**26.3 Is near-max non-clustering the only supplier (question b)? Settled -
+the premise is wrong but the conclusion survives, weakened.** The mandate's
+hypothesis was that a padded link needs a gap of *exactly* q', "a different and
+much more common object". Measured: padded gaps are **rare**, 0.001-0.023% of
+all gaps, and structurally they must be: the mean gap is ~ log^2(y)/C while
+q' ~ y, so q'/(mean gap) ~ Cy/log^2 y -> infinity. A q'-gap is never a common
+object at any scale; it is a MID-tail object (far above the mean, far below
+F ~ y^2/log y).
+
+Consequently the required statement is a **mid-tail x extreme-tail
+correlation**: "a gap >= q' is never within k openings of a gap exceeding
+F - c q'" (c = 1/6, 1/2, 7/6 by padding count). This is still the
+non-clustering family - Wall V - so padding does not open a different attack;
+but it is genuinely weaker than lemma 1's extreme x extreme form (F2 - F =
+O(q')), and it has far more instances, hence is checkable and falsifiable at
+scale. The alternatives were checked and fail: rarity alone cannot bound a
+max; tier A is size-blind (round 13); tier B is dead (round 13); tier C is the
+unscalable period scan. Measured non-clustering margins are enormous where the
+tier exists - minimum opening-distance from a maximal gap to a padded gap =
+710 (19->23), 558,331 (23->29), 47,729 (29->31).
+
+**26.4 Honest re-price of the tolerance hypothesis (question c).** With padding
+uncapped:
+
+* The literal cap (<= 6 members, round 11) bounds only literal chains. Padded
+  words are limited by budget arithmetic alone (p <~ F/q', growing like
+  y/log y) - there is no structural cap, as Lateral now states.
+* The hypothesis incr <= 2.5q' HOLDS at all seven measured steps, but the
+  distribution of slack is not what my earlier rounds implied: comfortable
+  (37-58% of budget) at the six literal steps, and **2.7% at 31->37, the one
+  step where the uncapped tier binds**. The single binding constraint in the
+  entire route is FS <= 39.83 against an actual 39.
+* Therefore the route's status is: literal cap (proven) + word identity
+  (verified 6/6, and consistent with the padded winner at the 7th) + tier-A
+  both-maximal exclusion (machine-free, 14/16) + **phi, now required to cover
+  padded words where it is strictest** (FS <= F - q'/2 at the binding step).
+  The honest headline is that the hypothesis is true at every measured step but
+  thin exactly where the structure is weakest, and that thinness is not noise -
+  it is the padded tier's arithmetic signature.
+* Next tests, priced: 37->41 and 41->43 (corpus increments 0.220q and 0.837q -
+  the anomaly does not persist, so padding presumably switched off again;
+  confirming that its winners are literal would show the padded tier is
+  intermittent rather than growing).

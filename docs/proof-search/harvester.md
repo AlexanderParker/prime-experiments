@@ -731,3 +731,92 @@ Unchanged this round: PID 94812 alive (27 MB), log still at
 "420 coverable / 421 skipped / 422 skipped", i.e. still inside the L = 423
 search - the first genuinely new increment past the retired unpruned pair's
 reach. Ledger green independently: `lake build` 998 jobs, zero sorries.
+
+## 15. Round 11: the firing law restated for all d, and PADDING is 3x cheaper when 3 | e
+
+Tool: research/firing_padding_gap_d.py (halved coordinates throughout).
+
+### (0) SELF-CORRECTION of round 13's chunk 2
+
+Round 13 reported "tooth alternation FAILS for 3 | e". Under Lateral's corrected
+merge law (round 13 SUMMARY) that label was wrong: a same-tooth adjacency is a
+legal PADDED link (letter = 0 mod q'), not a violation. The OBSERVATION was real
+and reproducible; the LAW I tested it against was the pre-padding one. Corrected
+here, and the observation turns out to carry the round's actual finding.
+
+### (1) THE FIRING LAW FOR GENERAL d - restated and verified both directions
+
+Gear q' has two teeth A: n = 0 and B: n = -e (mod q'), separated by e. Between
+adjacent members of a killed run sits a single M-gap g, and
+
+    g = 0      (mod q')  ->  PADDED link  (same tooth)
+    g = +-e    (mod q')  ->  LITERAL link (opposite teeth)
+    otherwise            ->  ILLEGAL (the two cannot both be kills)
+
+with non-zero letters ALTERNATING in sign (+e is B->A, -e is A->B - alternation
+is forced, not assumed) and zeros insertable freely. Then
+
+    F(M+q') = max over LEGAL runs of  span = o[i+k] - o[i-1]      (k >= 0)
+
+from the OLD machine alone; k = 0 gives F(M), k = 1 gives F2(M).
+This is Lateral's law with 2u replaced by e - the ONLY d-dependence in the law.
+
+VERIFIED (14 configurations: d = 2, 4, 6, 10, 12, 30, machines {3,5,7,11} up to
+{3,5,7,11,13,17}, q' = 13, 17, 19; all q' CRT phases):
+  - SOUNDNESS (every realized run is legal): 0 violations / 14 rows
+  - FIRING (every legal run is realized in some phase): 0 misses / 14 rows
+  - CONVERSE (no realized run outside the legal set): 0 / 14 rows
+  - IDENTITY (old-machine prediction = exact F(M+q')): 14 of 14 EXACT
+So the merge law, the firing mechanism and the identity all transfer verbatim to
+every Polignac gap tested, including d = 0 mod 6 and gcd(e,105) = 15.
+Discipline note: a first pass showed 1-2 violations in four rows; all four were
+WRAP-AROUND artifacts (np.roll corrupts the wrap element because gcd(P,q') = 1
+makes o[0] and o[0]+P differ in kill status). Fixed by computing kills at
+absolute positions over two periods; counts went to zero. Recorded, not hidden -
+same artifact family as round 13's letter extractor, now audited for.
+
+### (2) PADDING: EXISTS FOR ALL d, BUT COSTS 3x LESS WHEN 3 | e
+
+PROPOSITION (proved, one line each way). A padded link needs an M-gap g = 0 mod q'.
+  - If 3 does not divide e: gear 3 blocks the two distinct classes 0 and -e mod 3,
+    so ALL survivors lie in ONE class mod 3 and EVERY M-gap is divisible by 3.
+    Hence g = 0 mod q' forces g = 0 mod 3q': the cheapest padded link costs 3q'.
+  - If 3 | e: gear 3 blocks only the class 0, survivors occupy TWO classes mod 3,
+    gaps take all residues mod 3, and the cheapest padded link costs exactly q'.
+So padding is available at ONE THIRD the gap cost for d = 0 mod 6.
+
+MEASURED (min padded gap present in M, from the table):
+  d = 2, 4, 10 (3 does not divide e):  NONE at these machine sizes
+                                       (would need 39/51/57; F(M) = 21..54)
+  d = 6  (e=3):   min padded gap 17 at q'=17, 19 at q'=19
+  d = 12 (e=6):   min padded gap 13 at q'=13, 19 at q'=19 - and the WINNER IS
+                  PADDED at BOTH steps (11->13 and 17->19)
+  d = 30 (e=15):  min padded gap 17 at q'=17
+PADDING ONSET, the sharp contrast: for twins the first padded winner is at
+31->37 (Lateral, sixth step); for d = 12 a padded run WINS at 11->13, the FIRST
+step tested. Necessary condition for padding: the value q' (3 | e) resp. 3q'
+(3 does not divide e) must occur in M's gap spectrum, so F(M) >= q' resp. 3q'.
+
+DOES IT BREAK THE UNIVERSAL CAP THE SAME WAY? No - it breaks it EARLIER and
+harder for 3 | e, and the reason is quantitative, not structural. The cap of
+round 10 (<= 6 for six of eight gcd classes, <= 12 always) bounds LITERAL chains:
+it is an EXPOSURE constraint (staying inside E mod 105), and it holds per d as
+computed. Padded runs are not exposure-limited at all - each padded link buys
+span >= q' and is limited only by the SUPPLY of gaps = 0 mod q'. With gap-value
+share ~ e^(-g/lambda), that supply is ~ e^(-q'/lambda) for 3 | e against
+~ e^(-3q'/lambda) otherwise: an availability ratio of ~ e^(2q'/lambda) in favour
+of d = 0 mod 6. The literal cap is universal; cap-ESCAPE is not, and it is
+exponentially cheaper for d = 0 mod 6.
+
+STATEMENT FOR THE PROGRAMME (the real structural difference asked for):
+  twins and d = 0 mod 6 obey the SAME merge law, the SAME firing mechanism, the
+  SAME identity and the SAME literal cap; they differ in ONE parameter - the cost
+  of a padded link, 3q' versus q' - and that single factor of 3 moves the padding
+  onset from the sixth step to the first. Any tolerance argument that leans on
+  "padding is expensive" is twin-specific (more precisely: specific to
+  d not = 0 mod 6) and must be re-priced for the densest Polignac gaps, where
+  padded winners are the norm rather than the crossover.
+
+### (3) F(2,53) WATCH
+PID 94812 alive; log unchanged (420 coverable, 421/422 skipped by law) - still
+inside the L = 423 search.

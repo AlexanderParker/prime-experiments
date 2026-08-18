@@ -810,3 +810,106 @@ walk offsets). Recommended as next round's first item.
 the CRT-tuple recipe should still fit, and it is the first machine where
 tier B/C genuinely separate from the scan, so it would test whether the
 certificate structure generalises as the constructor's table predicts.
+
+## Round 13 - the literal cap (2026-08-18)
+
+### What was done
+
+`proofs/LiteralCap.lean` - Constructor sec 23.2's cap theorem, kernel-checked
+and registered. Ledger 13 targets, 998 jobs, zero sorries. Machine 17 was
+attempted as the second target; see the honest status at the end.
+
+Verified against research/literal_cap_gap_d.py and the constructor's table
+BEFORE formalising: 48 invertible classes mod 210, cap spectrum
+{2:24, 3:4, 4:14, 6:6}, max cap 6, cap-6 classes exactly
+{37, 53, 83, 127, 157, 173}; `6u' = q' -+ 1` and the closed form for
+`2u' mod 35` checked against every prime to 5000, zero mismatches.
+
+### Final statements
+
+```lean
+def sOf (c : ℕ) : ℕ := (if c % 6 = 1 then (c - 1) / 3 else (c + 1) / 3) % 35
+def wpos (t s r ph i : ℕ) : ℕ :=
+  (r + ((i + ph) / 2) * t + (if (i + ph) % 2 = 1 then s else 0)) % 35
+
+theorem no_run_seven :          -- THE FINITE CHECK
+    ∀ c < 210, Nat.gcd c 210 = 1 →
+      ∀ r < 35, ∀ ph < 2, run7 (c % 35) (sOf c) r ph = false
+
+theorem s_eq (hu : 6 * u + 1 = q ∨ 6 * u = q + 1) :
+    (2 * u) % 35 = sOf (q % 210)
+
+theorem literal_chain_le_six    -- THE CAP
+    (hu : 6 * u + 1 = q ∨ 6 * u = q + 1) (hq : Nat.gcd q 210 = 1)
+    (hph : ph < 2) (hr : 1 ≤ r)
+    (hE : ∀ i < L, Corridor.Exposed (member r q u ph i)) : L ≤ 6
+
+theorem cap_six_classes_sharp : -- SHARPNESS
+    ((Finset.range 210).filter fun c => Nat.gcd c 210 = 1 ∧ hasRun6 c = true)
+      = {37, 53, 83, 127, 157, 173}
+```
+
+So: literal chains have at most 6 members, at every gear, with NO bound on
+q' - and 6 is attained at exactly six classes, so it cannot be lowered.
+
+### Design notes
+
+- The theorem is stated as "no class admits SEVEN consecutive exposed walk
+  members" rather than "max run = cap(c)". That is the sharpest form that is
+  still linear: 48 x 35 x 2 x 7 tests instead of a max-run computation over
+  a 140-step walk. The cap follows immediately, and sharpness is a separate
+  (also linear) check.
+- I first tried the cleaner-looking "cap <= 6 for ALL (t,s) pairs mod 35",
+  hoping to drop the class structure entirely. It is FALSE - over all 1225
+  pairs the spectrum runs {2,3,4,5,6,8,10,140}, the 140 being degenerate
+  walks (t = 0). The restriction to invertible classes mod 210 is doing real
+  work, which is worth knowing: the cap is not a property of the exposed set
+  alone, it needs the arithmetic of q'.
+- `sOf` is the closed form that makes the class reduction legitimate:
+  `6u' = q' -+ 1` gives `2u' = (q' -+ 1)/3`, and the discarded multiple of
+  210 contributes a multiple of 70, hence nothing mod 35. `s_eq` proves this
+  in Lean with `split <;> rcases <;> omega`.
+- The bridge from walk residues to real chain members case-splits on
+  `ph < 2` and `i < 7` first (`interval_cases`), which turns the nonlinear
+  `((i+ph)/2) * q` into `literal * q` - linear, so omega closes each of the
+  14 cases. This is the standard trick when a product of two variables is
+  bounded on one side.
+
+### Machine 17: attempted, diagnosed, NOT landed
+
+Constants verified numerically (F = 18, F2 = 25, budget 26.44, integer form
+9*F2 <= 9*F + 4*q' i.e. 225 <= 238; the 25 is tight, 24 fails), and the file
+is written (`proofs/Machine17.lean`, NOT registered, so the ledger stays
+green at 13 targets). What blocks it is purely the scan cost:
+
+- 85085 CRT tuples with a `decidableBallLT` nest, as at machine 13, exhausts
+  memory: the PROOF TERM has 85085 branches (observed 2 GB and climbing).
+- Restructuring so the quantifiers live inside a `Bool` (`List.all` chains,
+  proof term a single `rfl`) fixes the term-size problem, but kernel
+  evaluation of nested `List.all` closures at this scale is itself slow -
+  still running past 10 minutes.
+
+So the honest finding for the round's question is NOT the one the brief
+expected: at machine 17 the period scan does not stop being viable for
+mathematical reasons - the certificate structure is unchanged - it stops
+being viable for KERNEL EVALUATION reasons, at around 10^5 cases. The
+constructor's tiers B/C are needed to keep the argument human-scale, but a
+kernel-side fix (chunking the scan into 17 separately-checked slices, one
+per residue mod 17, each the size of machine 13's) would very likely carry
+the scan further. That is the concrete next step, and it is mechanical.
+
+### Build status and axiom audit
+
+`lake build` (13 targets): 998 jobs, zero sorries, zero warnings.
+LiteralCap's four theorems: `no_run_seven`, `s_eq`, `literal_chain_le_six`,
+`cap_six_classes_sharp` - all on the standard three axioms, no
+`native_decide`, no `ofReduceBool`.
+
+### Proposed next target
+
+(a) machine 17 by CHUNKED scan (17 slices of 5005, each proven separately
+and combined by `interval_cases` on the mod-17 coordinate) - mechanical, and
+it would establish the technique for every machine whose period factors into
+kernel-sized slices; (b) the d != 2 literal cap (harvester's generalisation:
+same architecture, `E_d` in place of `E`, max cap still 6 for every
+d not = 0 mod 6) - the file is parameterised almost enough to do it directly.

@@ -21,35 +21,40 @@ a zeroth moment invisible to every power moment). The live route is
 different in kind: it prices the growth of the machine's biggest blocked
 stretch (F) step by step, and needs just two finite-flavoured statements -
 "the gap spectrum is flat" and "merge chains stay short" (the fuel bound).
-Round 13 made the growth law fully computable and, in the same breath,
-took back two comforting claims - including one of mine. The good news:
-the biggest blocked stretch after adding a gear can now be computed from
-the OLD machine alone, no scan of the new one, and it reproduces all six
-known values exactly (the sixth, 88, was independently found by a partial
-scan, so it is the true value and not a floor). The mechanism at that
-sixth step turned out to be new: the winner is not a longer pattern of the
-usual kind but a "padded" one - two kills landing on the same tooth,
-buying a stretch equal to the gear itself. Every earlier step was won by
-the ordinary kind, so step six is a genuine onset, and padding gets
-cheaper as the machine's gaps grow.
+Round 14 explained the one event this whole programme was originally
+abandoned over. Years ago the route was dropped because a single gear
+(37) produced a freak jump - three times its neighbours, breaking the
+constant everything relied on. It is not a freak: it is the moment a
+second, structurally different mechanism switches on. Ordinary chains
+kill openings on alternating teeth; a "padded" link kills two on the SAME
+tooth, which costs a gap the size of the whole gear but buys a stretch
+just as big. Padded material simply does not exist at the small machines
+(counts 0, 0, 0, then 86, 6, 2090), sits harmlessly above the record when
+it first appears, and at gear 37 wins for the first time. The unexplained
+spike was a new tier turning on, exactly on schedule.
 
-The corrections. Our six-link cap covers only the ordinary chains, so it
-does NOT cap padded ones - which means the claim that the route is safe
-in the long run is withdrawn until someone bounds padding. And the margin
-I reported as "three times the room to spare" was a units error on my
-part: two workstreams normalised by different constants. The true margin
-at the one binding step is 2.7 percent, against a budget the other six
-steps clear by 42 to 91 percent. That binding step is the same freak gear
-the original programme abandoned the route over - it still fits, but only
-just, and honesty about that is the point.
+Better still, padding turns out to be self-limiting - for now. Two padded
+links can never sit in the same killed run at any machine we can reach
+(proved, and measured: zero exceptions everywhere), which restores the
+ceiling withdrawn last round, at a larger constant. The honest catch: the
+two quantities that make that proof work are climbing, and they cross
+exactly at the next step (37->41). So we have a dated prediction rather
+than a theorem - at the next machine, either a double-padded run appears
+(the ceiling dies as forecast) or something further is suppressing them,
+which would be a bigger discovery than the ceiling.
 
-What survives and is strong: the fuel ceiling is now UNIVERSAL - the same
-48-class check, the same maximum of six, for every prime-gap size, with a
-complete table over all even gaps (absolute ceiling 12 in the rarest
-class). The route's remaining requirement is one bound on padded runs -
-how often gaps of exactly one gear-size can chain - which is the same
-"near-maximal gaps do not cluster" statement that the last three rounds
-kept converging on, now aimed at a concrete new object.
+The machine-checked side had its best result too: the six-link cap on
+ordinary chains is now a real theorem, for every gear, with no bound on
+size - plus a proof that six is exactly attained, so it cannot be
+improved. And a useful negative: the cap is NOT a property of the exposed
+positions alone (a sloppier version is false, with runs up to 140), so
+the arithmetic restriction is doing real work.
+
+One conflict is left open on purpose rather than papered over: two
+workstreams measure a padded link costing one gear-size, a third proves
+it should cost three, for twins specifically. That is almost certainly a
+units difference between two coordinate frames, but it is load-bearing
+now, so it is flagged for whoever picks this up rather than assumed away.
 Separately, the saturated-run programme found the first length-14 run
 exactly where constellation statistics predicted, validating the model
 that everything else is measured against, and the thin-band reopening
@@ -111,11 +116,25 @@ same 5005 cases at single-digit moduli, 12.4s.
   alone. Legal link: spacings = 0 or +-2u mod q', non-zero letters
   alternating, zeros free. Two earlier versions failed and are recorded
   (literal-only undershot 71 vs 88; all-{0,+-2u} overshot 45 vs 43).
-- Padding onset: the 31->37 winner is [kill]-37-[kill]-12-[kill] - one
-  padded link (two kills, same tooth, span q') plus one literal link;
-  span 49 beats the longest literal span 37. Steps 1-5 all literal-won.
-  The cap-6 theorem does NOT bound padded runs - bounding them is the
-  route's live requirement.
+- Padding onset = the gear-37 anomaly, EXPLAINED: padded gaps per step
+  0,0,0,86,6,2090 (only ever the exact value q'); the padded tier sits a
+  flat +6 above F and never binds through 29->31; at 31->37 the winner is
+  [pad 37][literal 12], span 49, merged 88 = F(37) - the first padded
+  winner, and exactly the corpus's unexplained 2.432q spike between
+  neighbours at 0.220q and 0.837q. A new tier switching on.
+- Padding lemma: a run of k kills occupies k+1 CONSECUTIVE gaps, so two
+  padded links separated by j literal links need F_{j+2}(M) >= 2q' + jL.
+  Where that fails, at most ONE padded link per run - measured: zero
+  adjacent padded pairs at every machine. Then span <= 6.35q' (ceiling
+  restored at a larger constant). Enabling ratios climb (F/2q' 0.32 ->
+  1.07; F2/2q' 0.47 -> 1.10): the ceiling ends exactly at 37->41.
+- Padding count bound: each padded link's interior gap is >= q' while the
+  budget grants (5/6)q', so one padded link forces FS < F - q'/6 and
+  p <= ~F/q' (at 31->37, p <= 2.40, so p=3 impossible - as measured).
+- q'-gaps are a MID-TAIL object, not a common one: 0.001-0.023% of gaps,
+  and q'/meangap -> infinity at every scale. The needed statement is a
+  mid-tail x extreme-tail correlation - weaker than lemma 1's extreme x
+  extreme form, but still Wall V.
 - Tier table: a record needs F_{k+1} >= F(M+q'); minimum k per step
   2,1,2,2,2,3. At 31->37 the record 88 exceeds F_3(31) = 85, so it is
   carried by a k=3 chain exactly - lemma 2 load-bearing at one step.
@@ -129,6 +148,20 @@ same 5005 cases at single-digit moduli, 12.4s.
   first entry fixes orientation, so exactly one firing residue (density
   1/q'). Every fuel site fires once per new-machine period, address
   j = (fire - p)*P_old^-1 mod q'; realized k-chains per period = N_k.
+- Literal cap, KERNEL-CHECKED (LiteralCap.lean): literal_chain_le_six -
+  at most 6 members for any gear with gcd(q,210) = 1, no bound on q,
+  forever; cap_six_classes_sharp - 6 attained at exactly {37,53,83,127,
+  157,173} mod 210 (set equality, so unimprovable). NEGATIVE: "cap <= 6
+  for all (t,s) pairs mod 35" is FALSE (spectrum {2,3,4,5,6,8,10,140}) -
+  the class restriction does real work; any d != 2 transfer must keep it.
+- Firing law, FULLY GENERAL (all d): teeth A: n = 0, B: n = -e mod q';
+  between adjacent kills sits one gap g with g = 0 (padded) or g = +-e
+  (literal), else illegal; non-zero letters alternate, FORCED. Lateral's
+  law with 2u -> e as the only d-dependence; 14/14 configurations exact.
+- Padding is where twins differ: for 3 not dividing e all gaps are
+  divisible by 3 so the cheapest padded link costs 3q'; for 3 | e it
+  costs q'. d = 12's first padded winner is its FIRST step; twins' is the
+  sixth. Any "padding is expensive" argument is specific to d != 0 mod 6.
 - Cap transfer, UNIVERSAL: in halved coordinates the mod-105 invariance
   (phi(105) = 48) IS the mod-210 law - one check, 48 classes, all even d.
   Spectrum depends only on gcd(e,105); all 8 divisor classes computed:
@@ -155,10 +188,15 @@ same 5005 cases at single-digit moduli, 12.4s.
 
 ## Live fronts (the funnel, narrowest first)
 
-1. BOUND THE PADDED RUNS (the route's live requirement): how often can
-   gaps of exactly q' chain? Each padded link needs a top-gap of M, so
-   this is the rounds 9-10 adjacency machinery on a new object. Until it
-   is bounded, no constant ceiling on the excess follows.
+1. THE 37->41 TEST (dated, falsifiable): the padding lemma's enabling
+   ratios (F/2q', F2/2q') cross 1 exactly there, so expect the first
+   two-padded-link run and/or the first padded link of size 82. Finding
+   neither means a further suppression mechanism - worth more than the
+   lemma. A gap-filtered scan suffices (padded links need gaps >= 41).
+   UNRESOLVED: padded-link cost for twins is measured at q' by two
+   workstreams and proved 3q' by a third - a frame difference (slot vs
+   halved coordinates) is the likely cause but it is NOT settled, and it
+   is load-bearing for both the ceiling and the twins-vs-other-d story.
 2. THE FLANK BOUND: FS_max(w) <= F + 2.5q'/3 - span(w); measured phi ~
    0.16q' against ~0.5q' allowed. Tier A cannot supply it (size-blind,
    escape slide 1); the only candidate supplier is "near-maximal gaps do
@@ -181,7 +219,11 @@ same 5005 cases at single-digit moduli, 12.4s.
   once the pruned log reproduces "420 coverable".
 - Machine-37 fuel partial (fuel37.log, k=5 watch) + machine-31 spectrum
   (spectrum31.log): running.
-- Machine13.lean (y=13 alpha1 certificate): typechecking, in flight.
+- Machine17.lean: written, constants verified (F=18, F2=25, the 25
+  tight), DELIBERATELY UNREGISTERED - 85085 tuples exhausts the kernel
+  (memory as a proof term; >10 min as nested Bool closures). The period
+  scan stops being kernel-viable near 10^5 cases for evaluation reasons,
+  not because the certificate changes. Fix: 17 chunks of 5005.
 - Data inventory: research/data/*.csv - fragile/prefix/margin/supply/
   multiplicity/zone/satruns/band/fuel censuses, all append-mode with
   schemas in headers; every count exact at stated scale.
