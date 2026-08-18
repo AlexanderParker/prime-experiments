@@ -904,3 +904,87 @@ as the only d-dependence - the same shape as the firing law's 2u -> e.
 ### (4) F(2,53) WATCH
 PID 94812 alive; log unchanged (420 coverable, 421/422 skipped by law) - still
 inside the L = 423 search.
+
+## 17. Round 13: the ROUTE-TRANSFER AUDIT - four of five parts carry to every even d
+
+Tool: research/route_transfer_audit.py. Halved coordinates (1 slot = 3 halved =
+6 member); "frame unit" below = the unit in which a padded link costs exactly q'
+(slots for 3 not dividing e, halved units for 3 | e).
+
+### (A) FINITE WORD LIST FROM A FIXED MODULUS - TRANSFERS VERBATIM
+The compatible-word set, expressed as tuples of letter RESIDUES, is a FUNCTION OF
+q' mod 105 alone: 48 classes, 73 repeat tests per d, ZERO mismatches, for
+d = 2, 4, 6, 12, 30. (Constructor's mod-210 statement and this are the same check
+for odd q' - round 10.) List SIZE is d-specific and grows with the exposed set:
+sizes {1,2,3,5,8} for 3 not dividing e, {11,12,20,21,23} for gcd(e,105) = 3,
+{43..56} for gcd = 15. Finite and machine-free in every case.
+DISCIPLINE NOTE: my first pass compared letter VALUES and reported 73/73
+mismatches ("not a function"). That was my bug - letters are q'-sized values, and
+the corpus's claim is about their RESIDUES. Corrected, the answer is zero
+mismatches. Recorded rather than quietly fixed.
+
+### (B) LITERAL SPAN - TRANSFERS WITH A d-SPECIFIC CONSTANT
+Verified: the two primitive literal letters sum to the frame period (twins,
+q'=41: 42 + 81 = 123 = 3q'; d=6, q'=41: 3 + 38 = 41 = q'), so k letters span
+ceil(k/2) periods. With round 10's universal cap table the bound is
+    literal span <= ceil((cap_d - 1)/2) x q'   (frame units)
+    cap_d = 6 for six of the eight gcd(e,105) classes  -> <= 5 letters, <= 3q'
+    cap_d = 10 for gcd = 15                            -> <= 9 letters, <= 5q'
+    cap_d = 12 for 105 | e                             -> <= 11 letters, <= 6q'
+So the corpus's "<= 5 letters" is the generic case and the constant degrades by
+at most a factor 2 across ALL Polignac gaps.
+
+### (C) PADDED COUNT - TRANSFERS (round 12, restated)
+p <= F/c_d with c_d the padded cost (= q' in frame units), onset gated by
+F >= c_d; 8/8 configurations, zero violations.
+
+### (E) BOTH-FLANKS-MAXIMAL EXCLUSION - TRANSFERS WITH A d-SPECIFIC RATE
+Machine-free check, decidable from (q' mod 105, w, F mod 105). Forbidden in
+    d = 2: 662/980 (68%)    d = 4: 696/980 (71%)
+    d = 6: 2412/2940 (82%)  d = 12: 2308/2940 (79%)
+of (word, F) pairs - comparable for twins, STRONGER for 3 | e. (The corpus's
+14/16 = 87% is over their specific word-step pairs; this sweep is broader, hence
+the lower twin figure - same mechanism, same order.)
+
+### THE CORRIDOR LAW HAS A d-ANALOGUE, AND FOR 3 | e IT IS A THEOREM
+Lateral's law: two ADJACENT padded links need openings r, r+c, r+2c all exposed,
+c = the padded cost. Computed over all probes q' < 400:
+    d = 2  : impossible for 34/74 probes - INCLUDING q' = 41, reproducing
+             lateral's proved 37->41 case exactly (independent validation)
+    d = 4  : impossible for 40/74
+    d = 6, 12 : impossible for 74/74     d = 30 : impossible for 72/72
+NEW THEOREM (one line, from the computation): for 3 | e the padded cost is c = q'
+with q' not divisible by 3, so r, r+q', r+2q' occupy ALL THREE classes mod 3 - and
+gear 3 blocks one of them. Hence FOR EVERY q' AND EVERY d = 0 mod 6, TWO PADDED
+LINKS CAN NEVER BE ADJACENT: zeros are non-adjacent in every legal word,
+unconditionally, by gear 3 alone. For 3 not dividing e the step is 3q' = 0 mod 3,
+all three openings share the class, gear 3 says nothing, and the exclusion must
+come from gears 5,7 - which is why it holds for only 34 of 74 twin probes.
+STRUCTURAL COMPENSATION worth stating: padding is 3x cheaper in absolute terms
+for d = 0 mod 6 (round 12) but can never repeat consecutively there - the two
+effects pull opposite ways, and the grammar restriction is unconditional while
+the cost advantage is only ~1.5x scale-relative.
+
+### THE CLAIM, STATED CONSERVATIVELY
+Four of the five parts transfer: (A) verbatim in form, (B) with cap_d in
+{6,10,12}, (C) with c_d, (E) with a d-specific rate. (D), the flank bound
+FS_max(w) <= F + (alpha/3)q' - span(w), contains no d-specific structure at all -
+it is a statement about F, q' and flanks, so it is THE SAME OPEN LEMMA for every
+even d, not a family of them.
+CONSEQUENTLY (conservative form): for every even d, the tolerance route reduces
+Polignac-for-d to the SAME single open lemma as twins, with d entering only
+through explicit finite constants - a THEOREM SCHEMA over Polignac gaps with one
+open lemma, whose twin instance is the corpus's own target. Combined with round
+1's kernel-checked per-gap reduction
+(gapPairs_infinite_iff_survivor_in_window), the chain is uniform in d.
+TWO HONEST LIMITS, both flagged rather than assumed away:
+ (i) NOT VERIFIED: that the transferred constants keep the increment under
+     budget, incr <= (alpha/3)q', for general d. The parts transfer; the
+     ARITHMETIC of the budget per d is unchecked, and for gcd(e,105) = 15 or 105
+     the literal bound doubles (5q', 6q'), which is exactly where a budget could
+     fail. This is the natural next computation.
+ (ii) The twin route is itself not closed - (D) is open. The schema says
+     "closing D closes every d", not "every d is closed".
+
+### F(2,53) WATCH
+PID 94812 alive; log unchanged (420 coverable, 421/422 skipped) - inside L = 423.

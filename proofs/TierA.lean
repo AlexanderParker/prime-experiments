@@ -121,6 +121,55 @@ theorem flanks_19_23_nonempty : carrier (flanked 25 [8]) = {0, 5, 7, 12} := by d
 adjacent at machine 13. -/
 theorem no_adjacent_maximal_13 : carrier [11, 11] = ∅ := by decide
 
+/-! ## Adjacent padded links (lateral's corridor law)
+
+A padded link's interior gap is a multiple of `q'`, so two ADJACENT padded
+links of sizes `a q'`, `b q'` put three consecutive openings at
+`r`, `r + a q'`, `r + (a+b) q'` - a three-point chain whose carrier is
+computed by the machinery above. Lateral's result: at `q' = 41` the equal
+shape `(1,1)` has NO carrier at all, so two adjacent equal padded links are
+impossible there by the (5,7) corridor alone - no spectrum input, hence
+independent of the fact that machine-37 `F_j` values are only prefix lower
+bounds.
+
+The general law: feasibility depends only on `q' mod 35`, and exactly 12 of
+the 24 invertible classes forbid the equal shape. There is also a perfect
+dichotomy - the equal shape is impossible exactly when both unequal shapes
+`(1,2)` and `(2,1)` are possible.
+
+Verified against lateral.md before formalising: the forbidden class list, the
+12/24 split, the dichotomy, and the "exactly 2 phases each" count.
+-/
+
+/-- Two adjacent padded links, of sizes `a` and `b` in units of the gear. -/
+theorem no_adjacent_equal_padded {x q : ℕ} (hc : carrier [q, q] = ∅) (hx : 1 ≤ x)
+    (h : ∀ t ∈ offsets [q, q], Corridor.Exposed (x + t)) : False :=
+  no_chain_of_carrier_empty hc hx h
+
+/-- **The 37 -> 41 case.** Two adjacent equal padded links are impossible at
+`q' = 41`, by corridor arithmetic alone. -/
+theorem no_adjacent_padded_41 : carrier [41, 41] = ∅ := by decide
+
+/-- **The general law.** Exactly these 12 of the 24 invertible classes mod 35
+forbid two adjacent equal padded links. A 50/50 property of `q' mod 35` - not
+a trend in scale. -/
+theorem equal_padding_forbidden_classes :
+    ((Finset.range 35).filter fun g => Nat.gcd g 35 = 1 ∧ carrier [g, g] = ∅)
+      = {1, 4, 6, 9, 11, 16, 19, 24, 26, 29, 31, 34} := by decide
+
+/-- Twelve of twenty-four. -/
+theorem equal_padding_forbidden_card :
+    ((Finset.range 35).filter fun g => Nat.gcd g 35 = 1 ∧ carrier [g, g] = ∅).card = 12 := by
+  rw [equal_padding_forbidden_classes]; decide
+
+/-- **The dichotomy.** The equal shape `(1,1)` is impossible exactly when both
+unequal shapes `(1,2)` and `(2,1)` are possible. Padding structure switches on
+and off with the residue of `q'` - which is why a smooth `supply^2/gaps` model
+cannot predict it. -/
+theorem padding_shape_dichotomy : ∀ g < 35, Nat.gcd g 35 = 1 →
+    (carrier [g, g] = ∅ ↔
+      carrier [g, (2*g) % 35] ≠ ∅ ∧ carrier [(2*g) % 35, g] ≠ ∅) := by decide
+
 /-! ## Padding is count-capped
 
 A padded link's interior gap is `0 mod q'`, hence at least `q'`, while the

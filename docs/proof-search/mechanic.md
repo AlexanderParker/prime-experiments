@@ -1239,3 +1239,83 @@ not be conflated when the log lands.
 - padding37.log: full-period machine-37 padding census (the verdict).
 - fuel37_k5hunt.log: extended k=5 slice.
 - satruns_L15.log: 62.9%, members to ~7.6e12, L=14 record unbeaten.
+
+## Round 16 - the histogram sweep; my r14 double-padding prediction RETRACTED
+
+Tool: research/hist_probe.py (new - implements the r15 simplification
+supply(M,q') = hist_M[q'], so one gap histogram answers every probe with
+no run classification; 4x faster than padding_census - machine 31 in 233s
+vs 993s). Data: research/data/gap_histograms.csv.
+Validation: reproduces the r14/r15 full-period padding censuses exactly
+(machine 29: 2090, 84, 0, 2 at q' = 31, 37, 41, 43; machine 31: 26366 at
+q' = 37).
+
+### (2) THE HISTOGRAM PROBE SWEEP
+
+    machine  coverage  F      q'=..  hist[q'] = padding supply
+    29       100%      43     31     2090      CAN pad
+                              37     84        CAN pad
+                              41     0         CANNOT (value absent)
+                              43     2         CAN pad (= #maximal gaps)
+    31       100%      58     37     26366     CAN pad
+                              41     134       CAN pad
+                              43     860       CAN pad
+                              47     226       CAN pad
+    37       4.85%     70+    41     2948      CAN pad (definitive)
+                              43     7074      CAN pad (definitive)
+                              47     2295      CAN pad (definitive)
+                              53     515       CAN pad (definitive)
+
+HOLES (values below F absent from the FULL spectrum): machine 29 misses
+41 and 42; machine 31 misses 54, 56, 57. Machine 37's prefix has not yet
+seen 69, but at 4.85% coverage that is INCONCLUSIVE, not a hole - a
+prefix bounds hist from below, so a positive entry is definitive and a
+zero is not. All four machine-37 entries above are positive, hence
+definitive: PADDING IS AVAILABLE at 37->41, 41->43(via 37), 43, 53.
+
+### (1) The 37->41 verdict, and a retraction
+
+The three-way branch is RESOLVED on the supply side without waiting for
+padding37.log: hist_37[41] = 2948 already at 4.85% coverage, so the
+"prediction VOID (hist = 0)" case flagged in r15 is ELIMINATED. Padding
+exists at this step.
+
+But the same measurement RETRACTS my r14 prediction, before the hunt
+landed. Scaling to the full period: supply(37,41) ~ 6.08e4, against
+gaps ~ 2.18e11, i.e. share 2.8e-7 - roughly 14x BELOW the 4e-6..1e-5
+share band I extrapolated from in r14. The r14 estimate assumed supply
+~1e6; the truth is ~6e4. Corrected expectation:
+
+    expected double-padded runs at 37->41 = supply^2/gaps = 0.017
+    (r14 predicted ~5)
+
+CONSEQUENCE, stated plainly: the 37->41 hunt is NOT an informative test
+of double-padding. Absence there confirms nothing (0.017 expected) and
+would not support a corridor law either; my r14 "first double-padded run
+expected at 37->41" is withdrawn as an artifact of extrapolating a share
+band across a step, exactly the arithmetic-selection error this
+workstream has now hit three times (r11 fuel, r14 supply, here). The
+lesson is consistent: NEVER extrapolate a per-step share; look it up.
+
+WHERE THE EVENT ACTUALLY LIVES (with its reachability priced): the
+threshold is supply >= sqrt(gaps).
+    machine 41: gaps 8.9e12, needs share >= 3.4e-7
+    machine 43: gaps 3.8e14, needs share >= 5.1e-8
+    machine 47: gaps 1.8e16, needs share >= 7.5e-9
+Measured shares run ~1e-7..1e-6, so machines 41-43 straddle the
+threshold. Their periods (5.1e13, 2.2e15) are far beyond full-scan
+reach, so the first double-padded run is plausibly COMPUTATIONALLY OUT
+OF RANGE rather than merely unobserved - an honest limit, and a case
+where only a structural argument (lateral's corridor law) can decide.
+
+### Jobs left running at the pause
+- padding37.log: full-period machine-37 padding census (z>=2 hunt +
+  exact supply). Now known to be low-value for the z>=2 question; still
+  the exact supply and run classification for the step.
+- hist37.log: full-period machine-37 histogram (definitive holes list).
+- hist41.log: machine-41 prefix histogram (2e11).
+- fuel37_k5hunt.log: extended k=5 slice at 37->41.
+- satruns_L15.log: 64.9%, members to ~7.8e12, L=14 record unbeaten.
+All are detached, chunk-flushed or single-shot, and safe to leave; note
+that hist_probe/padding_census print only at exit (Windows buffering),
+so an empty log means running, not failed.

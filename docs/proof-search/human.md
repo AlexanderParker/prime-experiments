@@ -21,41 +21,48 @@ a zeroth moment invisible to every power moment). The live route is
 different in kind: it prices the growth of the machine's biggest blocked
 stretch (F) step by step, and needs just two finite-flavoured statements -
 "the gap spectrum is flat" and "merge chains stay short" (the fuel bound).
-Round 15 put a number on how much of the route is finished: four of its
-five parts are proven, and one is open. The open one is a statement about
-the gaps flanking a handful of specific patterns - everything else (which
-patterns can occur, how long the ordinary kind can run, how much the new
-"padded" kind can contribute, and a machine-free exclusion rule) is now
-established, most of it machine-checked.
+Round 16 traded a comfortable framing for an accurate one, and got two
+permanent theorems in exchange.
 
-The 2.7 percent squeak reported last round turns out to be an artifact of
-which constant we state the route with. There are two sufficient choices;
-at the larger one - verified sufficient long ago - the tight step has 19
-percent of room instead of 2.7, and every other step gains as well. So the
-honest headline is not "it barely fits" but "state it the other way and it
-fits comfortably". Against that, one hope died: I had wondered whether the
-freak step might bound itself, since a padded link forces its own flank
-down. It does not - that inequality is a requirement, not a consequence,
-and the measured ratio doubles at exactly the step in question.
+The framing first. I had been saying "four parts proven, one open". That
+is misleading: the open part is not a fifth ingredient, it IS the whole
+requirement, now pinned down to at most six specific patterns per step
+instead of ranging over everything. That is real progress - the target
+went from a statement about all configurations to a statement about a
+handful - but it is localisation, not partial completion. Two related
+corrections came with it. The exclusion rule we had been proud of (record
+gaps cannot flank these patterns from both sides) turns out to rule out a
+situation that never arises: the flanks that actually matter are
+middle-sized, never record-sized. So that result, while true and
+machine-checked, is off-target, and I redirected the formal workstream
+mid-round. On the other hand the requirement itself is now the mildest
+version we have ever needed - about typical-large gaps rather than record
+gaps, which is where the slack is greatest.
 
-The unit confusion flagged last round was settled properly, by three
-workstreams independently writing out the same physical object: one padded
-link is 37 in slot units, 111 in the corpus's frame, 222 in plain
-integers. Same link, three rulers. Two smaller corrections came with it -
-a count we had been quoting is the supply of candidate gaps rather than
-the usable links (about 1,400, not 26,000), and a link needs its two ends
-to share any residue, not a special one.
+The two permanent results. First, a small gem: because one small gear
+exposes only three of its five positions, no run of kills can ever contain
+four openings evenly spaced by the new gear's size. That single fact
+forces padded links to sit either adjacent or one apart - never further -
+so the ceiling on how much padding can contribute now rests on
+arithmetic that holds at every scale, replacing a threshold that was
+about to expire. Second, that whole corridor argument is now
+machine-checked, including an exact list of which residue classes forbid
+adjacent padding: twelve of twenty-four.
 
-The decisive experiment is running right now, and two workstreams have
-publicly bet against each other on it. At the next machine step, does a
-run containing TWO padded links appear? One says yes, from supply
-statistics; the other says no, and has proved the closest case impossible
-by pure residue arithmetic - and further showed the answer is a coin-flip
-in the gear's residue class rather than a trend, which is exactly why the
-statistical estimate could not see it. The remaining open shape hangs on a
-single unit (a quantity must reach 96; the current partial value is 95).
-Either outcome teaches us something, and the one predicting yes has
-already flagged the way its own forecast could be void rather than wrong.
+Meanwhile the experiment two workstreams were betting on dissolved
+honestly. The one predicting a positive result recomputed its own estimate
+properly - by looking the number up rather than extrapolating a trend -
+and found it was fourteen times too high; the expected count at that step
+is 0.017, not 5. So absence there would prove nothing, the bet is void
+rather than won, and the event may simply live beyond any reachable
+computation. Only the structural argument can decide it.
+
+Finally the scope widened: the same five-part decomposition holds for
+every even prime gap, not just twins, with four parts transferring
+(carrying explicit constants) and the open part containing nothing
+gap-specific at all. So it is one open lemma for all of them - closing it
+would settle the whole family, though the family is not settled until it
+is closed.
 
 ## The map (attempts-map.md - read before proposing anything)
 
@@ -132,6 +139,19 @@ same 5005 cases at single-digit moduli, 12.4s.
   the value 41 is never realized as a gap. The gap spectrum has HOLES
   near its top (29 missing 41,42; 31 missing 54,56,57). Team rule:
   supply(M,q') = hist_M[q'] exactly - one histogram answers every probe.
+- AP lemma: no run contains four openings in arithmetic progression with
+  difference q', any prime q' > 5 (gear 5 exposes only 3 of 5 residues,
+  and 4 AP terms occupy 4 distinct residues mod 5). Consequence: padded
+  separations j >= 2 are impossible everywhere; span <= (4+p)q' + 2s
+  stands on structure, not on a spectrum threshold.
+- Route transfers to every even gap d: (A) verbatim (word set is a
+  function of q' mod 105), (B) with a d-constant (cap 6 for six of eight
+  classes, 10 and 12 for the rare two), (C) and (E) transfer; (D) has NO
+  d-specific structure - the same open lemma for every d. For d = 0 mod 6
+  two padded links can NEVER be adjacent (gear 3 alone, unconditional).
+- Supply is a histogram lookup, never a trend: three separate
+  extrapolation errors (fuel r11, supply r14, double-padding r16) all
+  came from extrapolating a per-step share. Look it up.
 - Frames (settled by three independent worked examples): one padded link
   = q' slots = 3q' adjacent (corpus frame) = 6q' members. F_adjacent =
   3 x F_slot everywhere. A link is padded iff its ends share ANY residue
@@ -200,14 +220,16 @@ same 5005 cases at single-digit moduli, 12.4s.
 
 ## Live fronts (the funnel, narrowest first)
 
-1. THE 37->41 TEST (RUNNING, padding37.log): TWO OPPOSITE PREDICTIONS.
-   Lateral: NO double-padded run - the adjacent case is PROVED impossible
-   (needs r, r+6, r+12 all in E mod 35; zero solutions), and feasibility
-   is a residue coin-flip in q' mod 35 (impossible for 12 of 24 classes),
-   not a trend. Residual open shape needs F_3(37) >= 96, prefix is 95.
-   Mechanic: YES from supply^2/gaps - but pre-flagged that if hist_37[41]
-   = 0 the prediction is VOID for this step, not refuted. If found: the
-   ceiling does not collapse (p <= 2, span ceiling 5.68q' -> 6.68q'). Finding
+1. THE PADDING SHAPE LAW (permanent, replacing the expiring threshold):
+   no run ever contains four openings in AP with difference q' (gear 5
+   exposes 3 of 5 residues), so two padded links can only be separated by
+   j in {0,1} - j >= 2 impossible for EVERY q'. Feasibility of the
+   adjacent shape is a function of q' mod 210, forbidden for exactly 12
+   of 24 classes (KERNEL-CHECKED). The 37->41 census is NOT informative
+   (expected count 0.017 after correcting a 14x extrapolation error), and
+   the first double-padded run may be beyond full-scan reach (machines 41
+   and 43 straddle the threshold at periods 5e13, 2e15) - so only the
+   structural argument can decide it. Lateral predicts 41->43. Finding
    neither means a further suppression mechanism - worth more than the
    lemma. A gap-filtered scan suffices (padded links need gaps >= 41).
    UNRESOLVED: padded-link cost for twins is measured at q' by two
@@ -218,15 +240,18 @@ same 5005 cases at single-digit moduli, 12.4s.
    0.16q' against ~0.5q' allowed. Tier A cannot supply it (size-blind,
    escape slide 1); the only candidate supplier is "near-maximal gaps do
    not cluster at pinned addresses" - Wall V with bounded complexity.
-3. TOLERANCE ROUTE, five parts: (A) finite word list from q' mod 210 -
-   PROVEN; (B) literal span <= 5 letters - PROVEN (kernel-checked);
-   (C) padded span, p <= F/q' + alpha/3, onset gated by F >= q' - PROVEN;
-   (D) flank bound FS_max <= F + (alpha/3)q' - span(w) - THE ONLY OPEN
-   PART, needs a constant beating +0.161; (E) both-flanks-maximal
-   forbidden at 14/16 pairs - PROVEN. Note "FS <= F" is FALSE (measured
-   1.09F, 1.12F), so (D) must carry the q' allowance. STATE THE ROUTE AT
-   alpha = 3 (verified sufficient in round 8): the tight step's margin is
-   then 19% of q', not 2.7%. The anomaly does NOT bound itself.
+3. TOLERANCE ROUTE, five parts - but (D) IS THE HYPOTHESIS LOCALISED,
+   not a weaker fifth ingredient: (A) finite word list from q' mod 210 -
+   PROVEN; (B) literal span - PROVEN (kernel-checked); (C) padded span,
+   p <= F/q' + alpha/3, onset gated by F >= q' - PROVEN; (D) FS_max(w) <=
+   F + q' - span(w) at alpha = 3, for the <= 6 pinned words per step -
+   OPEN, and it is the whole requirement; (E) both-flanks-maximal
+   exclusion - PROVEN but OFF-TARGET (the binding flanks are mid-size,
+   never maximal: max FS = 48 at (18,30) with F = 43; largest single
+   flank 0.16F-0.81F across 15 word-steps, never F). (D) is now a
+   MID-TAIL x MID-TAIL pair-sum bound - the mildest form yet. Most
+   promising unproven shape: the largest single flank falls monotonically
+   with span (0.81F at span 10 -> 0.16F at span 41).
 3. F(2,53) pricing run (detached, now pruned 2-5x): decides the constant
    alpha (2.5 <=> F(2,53) <= 486; 420 proven coverable, search past 420).
 4. L=15 hunt (mechanic, detached): members to 1.2e13, ~36% done, chunk-
@@ -249,9 +274,17 @@ same 5005 cases at single-digit moduli, 12.4s.
   would need ~7400 slices, ~33 h).
 - TierA.lean: carrier generalises the 3-point law to chains of any
   length; no_chain_of_carrier_empty forbids configurations at every
-  machine refining {5,7} with NO scan - the piece whose cost does not
-  grow. HONEST EXCEPTION as a theorem: tier A does NOT close 19->23
-  (carrier (flanked 25 [8]) = {0,5,7,12}).
+  machine refining {5,7} with NO scan. HONEST EXCEPTION as a theorem:
+  tier A does NOT close 19->23 (carrier (flanked 25 [8]) = {0,5,7,12}).
+  NOTE: these are correct corridor facts but OFF-TARGET for part (D).
+- Corridor law KERNEL-CHECKED: no_adjacent_padded_41 (carrier [41,41] =
+  empty, independent of prefix-only spectra), equal_padding_forbidden_
+  classes = {1,4,6,9,11,16,19,24,26,29,31,34}, card = 12 of 24, and
+  padding_shape_dichotomy as an IFF.
+- Pending kernel target: gcd(t,105) = 1 -> every residue mod 105 is hit
+  by a multiple of t. One lemma; it cuts the d-general cap scan 37x
+  (88 min -> 2.5 min) and puts "12 is the absolute ceiling over all
+  Polignac gaps" in the kernel - the universal form of part (B).
 - padding_count_le (NO axioms at all), padding_at_most_one.
 - Data inventory: research/data/*.csv - fragile/prefix/margin/supply/
   multiplicity/zone/satruns/band/fuel censuses, all append-mode with

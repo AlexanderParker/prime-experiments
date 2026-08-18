@@ -1545,3 +1545,103 @@ suggest the padded tier is intermittent rather than growing - which the
 than it looked at round 8; its remaining requirement is the same species of
 statement it always was, now reduced to the smallest object the programme has
 managed to isolate: the flank sums of at most six pinned words per step.
+
+---
+
+# Constructor round 16: part (D) at alpha = 3, and the both-maximal exclusion is off-target
+
+Script: `research/flank_pairs.py`. Noted: Lateral's padded-adjacency corridor
+law (feasibility depends only on q' mod 35, fails for 12 of 24 invertible
+classes) and Formalist's tier-A generalisation with its 19->23 exception.
+
+## 30. (D) restated at alpha = 3
+
+    (D)  FS_max(w)  <=  F(M) + q' - span(w)   for every compatible qualifying w.
+
+(alpha = 3 replaces the (5/6)q' allowance by a full q'.) By the round-12
+identity this is equivalent to incr_k <= q' - i.e. (D) is not logically weaker
+than the hypothesis, it IS the hypothesis localised to <= 6 pinned words per
+step. What alpha = 3 buys is room: the allowance rises by q'/6 per word (17%),
+and the minimum margin over all measured word-steps rises from +0.83 to +7.
+
+**Per-word margins at alpha = 3** (k-frame), with the flank pair that attains
+FS_max:
+
+    step     w            span  FS_max  argmax (gL,gR)  max flank   need   margin
+    11->13   (4)             4      4      (1, 3)        3 = 0.43F   16.0   +12.0
+    13->17   (6)             6     12      (5, 7)        7 = 0.64F   22.0   +10.0
+    13->17   (11)           11      7      (5, 2)        5 = 0.45F   17.0   +10.0
+    17->19   (6)             6     17      (5, 12)      12 = 0.67F   31.0   +14.0
+    17->19   (13)           13     12      (5, 7)        7 = 0.39F   24.0   +12.0
+    19->23   (8)             8     25      (5, 20)      20 = 0.80F   40.0   +15.0
+    19->23   (15)           15     17      (4, 13)      13 = 0.52F   33.0   +16.0
+    19->23   (8,15)         23     11      (4, 7)        7 = 0.28F   25.0   +14.0
+    23->29   (10)           10     33      (10, 23)     25 = 0.74F   53.0   +20.0
+    23->29   (19)           19     18      (3, 15)      15 = 0.44F   44.0   +26.0
+    29->31   (10)           10     48      (18, 30)     35 = 0.81F   64.0   +16.0
+    29->31   (21)           21     30      (5, 25)      27 = 0.63F   53.0   +23.0
+    29->31   (10,21)        31     24      (22, 2)      22 = 0.51F   43.0   +19.0
+    29->31   (10,21,10)     41     14      (7, 7)        7 = 0.16F   33.0   +19.0
+    31->37   (37,12) PAD    49     39      -            -            46.0    +7.0
+
+Relative room at alpha = 3: 0.19q' at the padded step, **>= 0.52q' at every
+literal step**.
+
+## 31. Is the span/flank trade-off a theorem? (question 1)
+
+Three answers, only the third of which is a theorem, and it is the wrong kind.
+
+1. **Additive form: an identity, and useless.** span(w) + FS(w) is exactly the
+   sum of the k+1 consecutive gaps the merge spans. So the "trade-off" in that
+   form is a tautology - and bounding that sum is precisely (D). No gain.
+2. **Structural form: measured, strong, unproven.** The largest single flank
+   falls monotonically with span: at 29->31, 0.81F at span 10, 0.63F at 21,
+   0.51F at 31, 0.16F at 41; at 19->23, 0.80F at span 8 down to 0.28F at 23.
+   Long words really do sit among small gaps. Nothing proves it.
+3. **Corridor form: a theorem, but size-blind.** Tier A's carrier shrinks with
+   word length (|S(w)| = 9/15, 5/15, 3/15, 1/15, 0/15 down the 29->31 word
+   list, round 13), so longer words occupy rarer addresses. That IS the
+   corridor expression of the trade-off and it is proven - but round 13
+   established that carriers constrain residues, not sizes (every flank size
+   1..60 stays feasible for the binding word). It cannot deliver (D).
+
+## 32. The both-maximal exclusion does not close any step (question 2)
+
+The mandate's premise was that tier A closes several steps by corridor
+arithmetic. It does not, and the reason is now explicit in the table above:
+
+> **The flank pairs that attain FS_max are MID-SIZE, never maximal.** At
+> 29->31 the maximum FS = 48 is attained at (gL, gR) = (18, 30) with F = 43 -
+> neither flank is maximal, and the largest single flank occurring anywhere in
+> that word's occurrences is 35 = 0.81F. Across all 15 word-steps the largest
+> single flank runs 0.16F to 0.81F and never reaches F.
+
+So the round-13 result ("both flanks maximal is machine-free forbidden at
+14/16 pairs") and Formalist's generalisation of it exclude a configuration
+that **never binds**. They remain correct and worth having as kernel-checked
+corridor facts, but they are off-target for part (D), and further investment
+in extending them will not advance the route. Recorded plainly so the team can
+redeploy.
+
+## 33. The residue is not finite (question 3), but it is sharper
+
+Since tier A closes no step for (D), the residue is **every step**, not the
+19->23 exception alone - I cannot report a finite named gap. What has changed
+is the character of what is needed:
+
+    NEEDED:  the sum of two gaps at pinned separation span(w), each observed
+             at most 0.81F, is at most F + q' - span(w).
+
+This is a **mid-tail x mid-tail pair-sum bound** - weaker in kind than the
+extreme-value statements the route needed at rounds 8-13 (lemma 1 was
+extreme x anything; round 14's padded form was mid x extreme). It is the
+weakest form the requirement has taken. It is still Wall V - a bound on sums
+of gaps with no prime input - and it is still unproven at every step; but it
+concerns typical-large gaps rather than record gaps, which is the regime where
+scarcity arguments are least hopeless and where the measured margins are
+widest (>= 0.52q' at every literal step).
+
+**Standing statement of the route.** literal cap (proven) + word identity
+(verified) + padded count cap and onset gate (proven) + **(D): mid-size flank
+pair-sums at <= 6 pinned words per step, open at every step, margin >= 0.19q'
+measured**.

@@ -1010,3 +1010,104 @@ parameterised almost far enough already - swap `E` for `E_d` and re-run the
 (b) tier B (mod 385) for the `19 -> 23` gap that tier A leaves open - the
 carrier construction generalises verbatim to any modulus, so this is mostly
 a matter of the pinned-address input.
+
+## Round 16 - lateral's padding corridor law; the d != 2 cap measured but blocked (2026-08-18)
+
+Ledger: **15 targets, 1002 jobs, zero sorries, zero warnings** (bare
+`lake build` from the proofs dir).
+
+### (1) Lateral's corridor law - LANDED
+
+Added to `proofs/TierA.lean`, on top of the `carrier` machinery from round 15.
+
+```lean
+theorem no_adjacent_equal_padded (hc : carrier [q, q] = ∅) ... : False
+theorem no_adjacent_padded_41 : carrier [41, 41] = ∅
+theorem equal_padding_forbidden_classes :
+    ((Finset.range 35).filter fun g => Nat.gcd g 35 = 1 ∧ carrier [g, g] = ∅)
+      = {1, 4, 6, 9, 11, 16, 19, 24, 26, 29, 31, 34}
+theorem equal_padding_forbidden_card : ... .card = 12
+theorem padding_shape_dichotomy : ∀ g < 35, Nat.gcd g 35 = 1 →
+    (carrier [g, g] = ∅ ↔
+      carrier [g, (2*g) % 35] ≠ ∅ ∧ carrier [(2*g) % 35, g] ≠ ∅)
+```
+
+So two adjacent equal padded links are impossible at `q' = 41` by the (5,7)
+corridor alone - no spectrum input, hence unaffected by machine-37 `F_j`
+values being prefix lower bounds only. The general law is the 12-of-24 split,
+and the dichotomy is proved as an iff, not just observed. All four facts were
+checked against lateral.md before formalising (forbidden class list, 12/24,
+the dichotomy, and the "exactly 2 phases each" count).
+
+The `carrier` generalisation paid off exactly as hoped: this was a
+three-point emptiness statement, so it is a wrapper plus four `decide`s.
+
+### Mid-round redirect, recorded
+
+Item (3) (tier B mod 385 for `19 -> 23`) was dropped mid-round by the
+coordinator: constructor measured that FS_max is attained at MID-SIZE flanks,
+never maximal ones (at `29 -> 31` the max FS = 48 sits at `(18, 30)` with
+F = 43; largest single flank runs 0.16F to 0.81F across all 15 word-steps).
+So the both-flanks-maximal exclusion - round 13's result, my `carrier`
+generalisation, and the `flanks_19_23_nonempty` exception - rules out a
+configuration that never binds. Those theorems stay as corridor facts but are
+OFF-TARGET for part (D). I had not started tier B, so nothing was discarded.
+
+### (2) The d != 2 literal cap - verified numerically, blocked in the kernel
+
+**The frame.** Harvester's halved coordinates: position `n`, pair
+`(2n+1, 2n+1+2e)`; gear `q` blocks `n = 0` and `n = -e (mod q)`; a literal
+chain is a maximal run of consecutive frame-admissible `q'`-kills (kills that
+survive gear 3) all exposed to gears 5 and 7.
+
+**Reproduced Harvester's complete table, all 8 gcd classes**, before writing
+any Lean:
+
+    gcd(e,105)    1    5    7    3   21   35   15  105
+    max cap       6    6    6    6    6    6   10   12
+
+with the full spectra matching row for row, including the twin row
+`{2:24, 3:4, 4:14, 6:6}`. That last is a real cross-validation: the mod-105
+halved frame independently reproduces constructor's mod-35 twin table, so the
+frame change is sound.
+
+**One false start, worth recording.** My first model treated gear 3 like
+gears 5 and 7 - a position failing gear 3 breaks the run. That is WRONG: gear
+3 filters the CANDIDATE list, so a 3-inadmissible kill is skipped and the run
+continues across it. The wrong model gives max caps 2/4 instead of 6/10/12.
+Anyone formalising this must get the skip semantics right.
+
+**The wall, measured.** The faithful check, scanned over all starts
+(48 invertible `t` mod 105 x 105 starts x 2 parities x 44 steps = 443k leaf
+evaluations) takes **10 min 48 s for ONE gcd class** and succeeds. Eight
+classes is ~88 minutes - too slow to put in the ledger. An allocation-free
+rewrite (no lists, pure `Nat` tail recursion) did not beat it.
+
+**The reduction that would fix it, and the one missing lemma.** The walk's
+state space `(position mod 105, parity)` is a SINGLE cycle of length 210,
+because two steps advance the position by `t` and `gcd(t,105) = 1`. So one
+walk of 260 steps from a single start sees every state, replacing
+`105 x 2` starts by one - a **37x** cut, bringing a class to ~18s and all
+eight to ~2.5 min. I verified the reduction is exact (single-walk max run
+equals all-starts max run, zero mismatches over all 8 classes x 48 classes of
+`t`). What blocks using it is that the reduction is currently a numerical
+fact: to be rigorous the file needs
+
+    gcd(t,105) = 1  →  ∀ r < 105, ∃ j < 105, (j * t) % 105 = r
+
+i.e. surjectivity of `j ↦ j*t` mod 105 (Bezout / `ZMod 105` units). That
+single lemma converts the whole d-general cap from 88 minutes to 2.5 minutes.
+It is the concrete next step and it is not deep - it is just not free.
+
+### Axiom audit
+
+New theorems all on the standard three; `TierA.padding_count_le` still needs
+none, `padding_at_most_one` only `[propext, Quot.sound]`. No `native_decide`,
+no `ofReduceBool` anywhere in the ledger.
+
+### Proposed next target
+
+The modular-surjectivity lemma above, then the eight-class d-general cap in
+one go (it becomes a ~2.5 min lib). That would put "12 is the absolute
+ceiling over ALL Polignac gaps" in the kernel - the universal form of part
+(B), covering `d = 0 mod 6` (the densest gaps) as well.

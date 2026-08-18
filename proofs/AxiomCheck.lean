@@ -107,3 +107,8 @@ open BlockedSlots
 #print axioms TierA.flanks_19_23_nonempty
 #print axioms TierA.padding_count_le
 #print axioms TierA.padding_at_most_one
+#print axioms TierA.no_adjacent_padded_41
+#print axioms TierA.equal_padding_forbidden_classes
+#print axioms TierA.equal_padding_forbidden_card
+#print axioms TierA.padding_shape_dichotomy
+#print axioms TierA.no_adjacent_equal_padded

@@ -1436,3 +1436,90 @@ next: extend the corridor feasibility test to the full padded-run shape
 (p links, arbitrary sizes, with literal chains attached) so the ceiling
 (4+p)q' + 2s can be evaluated per q' mod 35 rather than per machine - that
 would be a scale-free version of round 14's dated lemma.
+
+## Round 16 (2026-08-18): the mod-5 AP lemma - a padding shape law that never expires
+
+Tools: `research/corridor_shapes.py`, `corridor_ap_lemma.py`.
+
+### The lemma (gear 5 alone, scale-free)
+
+Gear 5 exposes only 3 of its 5 residues: every opening has k mod 5 in {0,2,3}
+(teeth at 1 and 4). Four terms of an arithmetic progression with common
+difference coprime to 5 occupy four DISTINCT residues mod 5. Three residues
+cannot hold four. Hence
+
+> **AP LEMMA.** No run of openings ever contains FOUR openings in arithmetic
+> progression with common difference q' - for every prime q' > 5.
+
+Verified exhaustively over all (r, g) mod 5 with g invertible: zero exceptions.
+
+### What it forbids
+
+Alternating literal links come in pairs summing to q' (minimally s and q'-s),
+so a p=2 run with j=2 literal links between its padded links has offsets
+
+    0, q', q'+v, 2q', 3q'   -  which CONTAINS the 4-term AP {0, q', 2q', 3q'}.
+
+So **j = 2 is impossible for every q'**, unconditionally. The same AP appears
+in three mutually adjacent padded links, so **p = 3 all-adjacent is impossible**
+too. Exhaustive residue check over all 840 invertible (g, v) pairs mod 35:
+
+    j = 0 : feasible for 50% of pairs      (round 15's coin-flip, confirmed)
+    j = 1 : feasible for 32%
+    j = 2 : feasible for 0%   - ALWAYS IMPOSSIBLE
+    j = 3 : feasible for  4% of abstract pairs, but 0 of 546 actual primes
+            11..4000 (v = s or q'-s is tied to q', not free)
+    j = 4 : feasible for 0%   - ALWAYS IMPOSSIBLE
+
+and feasibility is a function of q' mod 210 (42 distinct residues, zero
+clashes), matching the Constructor's word-list modulus.
+
+> **SHAPE LAW.** Two padded links in one run can only be separated by j = 0 or
+> j = 1 literal links. Verified for every prime to 4000; j = 2 and j = 4 proven
+> outright by the AP lemma.
+
+This is the answer to "does the ceiling hold past 37->41 by structure": **yes**.
+Round 14's threshold F_2(M) < 2q' expired at 37->41 because it was a spectrum
+condition; the shape law is a gear-5/7 residue fact and never expires. With the
+count cap p <= F/q' + alpha/3 and j in {0,1}, the padded-run shape family is
+finite and scale-free, and span <= (4+p)q' + 2s stands on structure.
+
+### (2) The knife-edge: NO, the corridor cannot settle it
+
+Honest negative. The j=1 shape at 37->41 has two variants:
+
+    literal 14: offsets 0, 41, 55, 96  -> mod 35 [0,6,20,26]  phases 12, 32 OK
+    literal 27: offsets 0, 41, 68, 109 -> mod 35 [0,6,33,4]   IMPOSSIBLE
+
+so the cheap variant survives the corridor, and the census question still turns
+on F_3(37) >= 96 against a prefix of 95. What the corridor DID do is kill the
+expensive variant, which is why the surviving threshold is exactly 96 and not
+109 - the knife-edge is sharp *because* the corridor removed the alternative.
+
+### (3) Predictions banked
+
+    step     j=0 (adjacent)          j=1                       j>=2
+    37->41   corridor IMPOSSIBLE     needs F_3(37) >= 96       impossible
+    41->43   corridor OK, needs      needs F_3(41) >= 100      impossible
+             F_2(41) >= 86
+    43->47   corridor OK, needs      needs F_3(43) >= 110      impossible
+             F_2(43) >= 94
+
+F(37) = 88 already, so F(41) > 88 and F_2(41) >= F(41) > 86: the adjacent
+shape at 41->43 is comfortably above threshold. F(43) = 103 (corpus
+F(2,43) = 309 = 3 x 103), so F_2(43) >= 103 > 94, likewise clear.
+
+> **BANKED PREDICTION: the first double-padded run appears at 41->43, not at
+> 37->41.** At 37->41 the adjacent shape is corridor-forbidden and the only
+> survivor is a one-unit spectrum question; at 41->43 the adjacent shape is
+> corridor-allowed and the spectrum is not close.
+
+### Proposed next chunk
+
+The AP lemma is a two-line kernel target of exactly the shape the Formalist has
+been taking (gear-5 residue arithmetic, no analysis): "openings have k mod 5 in
+{0,2,3}; four terms of a q'-AP are four distinct residues mod 5; therefore no
+four openings in q'-AP". Its corollary - j = 2 impossible, p = 3 all-adjacent
+impossible - is the first padding bound that is scale-free. Alternatively:
+extend the AP lemma to gear 7 (which exposes 5 of 7) to see whether SIX
+openings in q'-AP are forbidden, which would cap padded structure further.
