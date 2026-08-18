@@ -40,10 +40,10 @@ KWORD = 8   # count tuples up to k = KWORD (words of length KWORD-1)
 CAP_LIST = 200
 
 
-def fuel(y, probes, limit=None, seg=64_000_000):
+def fuel(y, probes, limit=None, seg=64_000_000, start=0):
     gears = [p for p in primes_upto(y) if p >= 5]
     P = prod(gears)
-    K = P if limit is None else min(P, limit)
+    K = P if limit is None else min(P, start + limit)
     uvals = [pow(6, -1, g) for g in gears]
     pr = {}
     for q in probes:
@@ -57,7 +57,7 @@ def fuel(y, probes, limit=None, seg=64_000_000):
     total_open = 0
     Fj = np.zeros(8, dtype=np.int64)  # spectrum: F_j = max sum of j gaps
     t0 = time.time()
-    for a in range(0, K, seg):
+    for a in range(start, K, seg):
         b = min(K, a + seg)
         ex = np.zeros(b - a, bool)
         for g, u in zip(gears, uvals):
@@ -188,9 +188,14 @@ def report(r, csvf):
 def main():
     args = sys.argv[1:]
     limit = None
+    start = 0
     if "--limit" in args:
         i = args.index("--limit")
         limit = int(args[i + 1])
+        del args[i:i + 2]
+    if "--start" in args:
+        i = args.index("--start")
+        start = int(args[i + 1])
         del args[i:i + 2]
     y = int(args[0])
     probes = [int(a) for a in args[1:]]
@@ -209,7 +214,7 @@ def main():
         f.write("y,q,K_scanned,period,openings,Fk,F2,N1,"
                 + ",".join(f"N{k}" for k in range(2, KWORD + 1))
                 + ",k_max\n")
-    r = fuel(y, probes, limit=limit)
+    r = fuel(y, probes, limit=limit, start=start)
     report(r, f)
     f.close()
 

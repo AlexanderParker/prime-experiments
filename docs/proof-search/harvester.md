@@ -629,3 +629,105 @@ maxgap_pruned.exe PID 94812 (13.5 MB). Unpruned log's last line before
 retirement was "run of 421 is coverable"; the pruned run is ahead of it in
 effective progress (421, 422 disposed of by theorem rather than by search).
 Log: research/data/maxgap53_pruned.log. Next expected line: 423.
+
+## 14. Round 10: the excluded case closed, and the word identity's transfer priced
+
+Tools: research/literal_cap_mod105.py (chunk 1), research/word_identity_gap_d.py
+(chunk 2). Both work in HALVED COORDINATES - position n, pair (2n+1, 2n+1+2e),
+gear q blocks n = 0, -e mod q, e = d/2 - the universal frame in which gear 3 is
+EXPLICIT. (The twin slot frame quotients gear 3 away only because 3 blocks two of
+three classes when 3 does not divide e. That is precisely why d = 0 mod 6 needed
+its own treatment.) The frame change is validated by reproducing Constructor's
+twin cap table exactly.
+
+### (1) THE EXCLUDED CASE d = 0 mod 6: cap finite, 48-class check survives,
+### ceiling 6 breaks only when 15 | e
+
+Definition used (frame-free): a literal chain is a maximal run of CONSECUTIVE
+frame-admissible q'-kills (n = 0 or -e mod q', n admissible for gear 3) that are
+all exposed to gears 5, 7. Computed exactly over a full period 105*q', doubled
+for wrap, for every prime q' <= 1200 coprime to 105.
+
+    gcd(e,105)   |E_d| mod 105   cap spectrum by class        max cap
+        1             15         {2:24, 3:4, 4:14, 6:6}          6
+        5             20         {4:24, 6:24}                    6
+        7             18         {2:24, 4:12, 6:12}              6
+        3             30         {4:36, 5:4, 6:8}                6      <- d = 0 mod 6
+       21             36         {4:36, 6:12}                    6
+       35             24         {6:48}                          6
+       15             40         {6:8, 7:8, 8:24, 10:8}         10      <- ceiling breaks
+      105             48         {12:48}                        12      <- ceiling breaks
+
+ANSWERS to the three questions asked:
+- IS THERE STILL A FINITE CAP for d = 0 mod 6? YES. For gcd(e,105) = 3 (i.e.
+  d = 6, 12, 18, 24 - the densest Polignac gaps) the cap spectrum is
+  {4:36, 5:4, 6:8} with MAX 6 - the same ceiling as twins, though the FLOOR
+  rises from 2 to 4 and a cap of 5 appears (never present in the twin table).
+- DOES 48-CLASS INVARIANCE SURVIVE? YES, as a mod-105 invariance: cap is a
+  function of q' mod 105 only, zero mismatches for every d tested, and
+  phi(105) = 48 - the same 48 classes. Unification worth recording: for ODD q',
+  q' mod 210 is determined by q' mod 105, so Constructor's mod-210 statement and
+  this mod-105 one are THE SAME CHECK. One law, one class count, all d.
+- DOES |E_d| STILL TRACK THE HL FACTOR? YES, exactly, now including gear 3:
+  |E_d| = prod over q in {3,5,7} of (q - r_q), r_q = 1 if q | e else 2. Every row
+  of the table matches the prediction (column 2 vs the formula). The collapse
+  condition r_q = 1 iff q | e is my kernel-checked `Polignac.slot_cap_gap`.
+- BONUS (exhaustive, not sampled): the cap SPECTRUM depends only on gcd(e, 105) -
+  verified by e = 45 reproducing e = 15 and e = 7 reproducing d = 14. Since 105
+  has exactly 8 divisors and all 8 are computed above, THE TABLE IS COMPLETE OVER
+  ALL EVEN d. So: for every even gap d, literal chains are capped by a 48-class
+  check on q' mod 105; the cap is <= 6 for six of the eight gcd classes, 10 when
+  gcd = 15, 12 when 105 | e; and 12 IS THE ABSOLUTE CEILING OVER ALL POLIGNAC
+  GAPS. The fuel bound is universal over Polignac, and honest about where the
+  constant grows: exactly where e absorbs the small gears (denser exposed set).
+
+### (2) THE WORD IDENTITY: shape and firing transfer verbatim; ALTERNATION does not
+
+Tested against EXACT F values (full-period computation, all q' CRT phases - the
+phase loop IS Constructor's "the q' copies realize every residue shift"), 13
+configurations: d = 2, 4, 6, 10, 12, 30 and the degenerate q' | e, machines
+{3,5,7,11} up to {3,5,7,11,13,17}.
+
+- W1 (merge/tier decomposition reproduces F(M+q') exactly): Y in 13/13.
+- W2 (THE IDENTITY'S SHAPE, F(M+q') = max(F2(M), max over k>=2 tiers)):
+  Y in 13/13, INCLUDING every d = 0 mod 6 case and both degenerate cases.
+  Moreover tier_1 = F2(M) exactly in every row (33/48/75/30/48/22/30/45/27/18/35)
+  - Constructor's "the 1-letter word always fires" verified for every d. The
+  lower-bound mechanism rests on gcd(P_M, q') = 1, which contains NO d at all:
+  it transfers verbatim, and so does the identity's shape.
+- W3 (TOOTH ALTERNATION inside chains): Y in all 3 does-not-divide cases
+  (d = 2, 4, 10, 30 rows); N in 3 of 5 tested 3 | e cases (d = 6 at q' = 17, 19;
+  d = 12 at q' = 17). MECHANISM (diagnosed, not guessed): the frame letter
+  SEQUENCE is strictly two-letter alternating when 3 does not divide e
+  (e.g. twins q'=17: 18, 33, 18, 33, ...) but has FOUR letters per cycle with a
+  SHORT letter when 3 | e (e.g. e=6, q'=17: 6, 11, 6, 28, ...). A short letter
+  makes single-kill skips cheap, and an odd skip flips the tooth parity - so
+  same-tooth adjacency occurs. Alternation is a twin-FRAME fact, not a
+  separation-independent one.
+- W4 (realized chain letters are sums of consecutive frame letters): holds; the
+  two apparent failures in the table were WRAP-AROUND ARTIFACTS of my letter
+  extractor (differences taken mod P across the period end), confirmed by direct
+  diagnostic: twins q'=17 realized letters {18,33} = the frame letters exactly;
+  e=6 q'=17 realized {6,11,23} with 23 = 11+6+6 a padded link. Recorded rather
+  than hidden, per discipline.
+- W5 (degenerate q' | e, gear q' has ONE tooth): the frame letter set collapses to
+  the single value 3q' (39 at q'=13, 51 at q'=17), chains become plain arithmetic
+  progressions, no k >= 2 tier is needed, and F(M+q') = F2(M) exactly in both
+  cases. The identity survives trivially; the word grammar degenerates.
+
+VERDICT for the programme. The tolerance route's growth law is parameterized by d
+with TWO ingredients of different status: the identity's shape and its firing
+mechanism are d-agnostic (gcd(P_M,q') = 1 only), so every Polignac gap gets the
+same exact growth law; but the alternation ingredient - and therefore the
+2-candidate-word grammar that makes the word list SHORT - is specific to
+3 does not divide e. For d = 0 mod 6 the grammar has a richer letter alphabet
+(3 letters, one of them short) and needs its own word list before the tolerance
+route can be quoted there. That is the honest boundary: identity universal,
+grammar not.
+
+### (3) F(2,53) WATCH
+
+Unchanged this round: PID 94812 alive (27 MB), log still at
+"420 coverable / 421 skipped / 422 skipped", i.e. still inside the L = 423
+search - the first genuinely new increment past the retired unpruned pair's
+reach. Ledger green independently: `lake build` 998 jobs, zero sorries.

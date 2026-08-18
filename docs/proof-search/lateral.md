@@ -1038,3 +1038,204 @@ spectrum data (machines 37, 41) would settle whether the excess share
 saturates or keeps climbing; that is the quantity the tolerance route's
 constant actually depends on, and my round-11 graded framing priced the wrong
 half of it.
+
+## Round 13 (2026-08-18): the excess law - a mechanism, a crossover, and predictions
+
+Steering taken: excess/lemma-1 split vs fuel population; one-off or trend;
+advance predictions for 37->41 and 41->43; restate the graded tolerance under
+the corrected firing model. Tools: `research/merge_decompose.py`,
+`excess_law.py`, `excess_predict.py`, `merge3137.py`.
+
+### The corrected firing law buys an exact, cheap algorithm
+
+Because every site fires exactly once per new period (round 12), residues drop
+out of the record question entirely:
+
+    F(M+q') = max over k >= 1, over all k-sites, of ( o[i+k] - o[i-1] )
+
+where a k-site is k consecutive OLD openings whose spacing word is one of q''s
+two alternating literal words (k=1: any opening), and o[i-1], o[i+k] bracket
+it. This is the Constructor's word identity made computational - no new-period
+scan, no residue bookkeeping. **Verified exactly at five steps**: F_new =
+18, 25, 34, 43, 58 for 13->17, 17->19, 19->23, 23->29, 29->31, every value
+matching the known F. (k=1 reproduces F2 identically, as it must.)
+
+### The excess law
+
+    excess = F_new - F2 = max over nonempty words w of [ span(w) - deficit(w) ]
+    deficit(w) := F2 - FS_max(w;M)        (extreme-value deficit: a word with
+                                           fewer occurrences samples worse flanks)
+
+Spans are fixed by q' alone: k=2 -> {s, q'-s}, k=3 -> q', k=4 -> {q'+s, 2q'-s},
+k=5 -> 2q', k=6 -> 2q'+s. Occurrences and flanks come from M.
+
+### The crossover is a TREND with a mechanism, not a one-off
+
+    step      q   F2  F_new  excess  short-span  long-span  winner
+    13->17   17   16     18       2           6         11  short-compatible
+    17->19   19   25     25       0           6         13  short-compatible
+    19->23   23   31     34       3           8         15  short-compatible
+    23->29   29   39     43       4          10         19  short-compatible
+    29->31   31   55     58       3          10         21  short-compatible
+    31->37   37   68     88      20          12         25  span >= 20 > 12 -
+                                                            NOT the short word
+
+Five steps in a row the winner is (consistent with) the SHORT k=2 word; at
+31->37 the excess exceeds the short span outright, so the winner has migrated
+to a longer word. Mechanism, measured: fitting all 13 (word, occurrence)
+observations,
+
+    deficit ~ 2.52 * ln(openings / occurrences) - 1.17     (residual sd 3.4)
+
+and ln(openings/occurrences) ~ span / lambda with lambda = mean gap. So
+
+    span - deficit ~ span * (1 - 2.52/lambda)
+
+and lambda grows (3.37, 3.82, 4.27, 4.68, 5.02, ~5.37 for machines 13..31 -
+Mertens-slow but monotone). The bracket goes 0.25 -> 0.34 -> 0.41 -> 0.46 ->
+0.50 -> 0.53: **longer words become profitable as the machine's mean gap
+grows.** That is the crossover, and it predicts continued climbing. Note the
+fit UNDER-predicts the 31->37 excess (it gives ~8, actual 20), i.e. deficits
+at scale are shrinking faster than the log fit - climbing, if anything,
+harder than modelled.
+
+### Predictions, stated in advance (falsifiable by the machine-37/41 census)
+
+    step 37->41 (s=14, k=2 spans {14,27}, k=3 span 41; F(37)=88, F2(37)=90)
+      H-SAT  : excess ~ 14 - (6..8) = 6..8    -> F(41) ~ 96..98
+      H-CLIMB: excess ~ 27 - (8..12) = 15..19 -> F(41) ~ 105..109
+      DISCRIMINATOR: F(41) <= 100 favours SAT; F(41) >= 103 favours CLIMB.
+    step 41->43 (s=29, k=2 spans {14,29}, k=3 span 43)
+      H-SAT  : excess ~ 6..8;  H-CLIMB: excess ~ 17..21 (needs F2(41)).
+      Note the reversal: at q'=43 the LONG k=2 span is 29 = s, so a climbing
+      winner shows up as a much larger jump than at 41.
+
+My own expectation, on the mechanism above: CLIMB at both steps.
+
+### The graded tolerance, restated under the corrected model
+
+    increment = F(M+q') - F(M) = [F2(M) - F(M)] + excess
+              = lemma1 * q'  +  max_w [span(w) - deficit(w)]
+
+and, PROVIDED deficits are non-negative (measured: all 13 observations
+positive, but NOT proved - FS is a sum of two NON-adjacent gaps while F2 is
+the max sum of two ADJACENT gaps, so FS_max <= F2 is an empirical fact here,
+not an identity), the cap-6 theorem gives an unconditional ceiling
+
+    excess <= span_max = 2q' + s <= 2.67 q'      =>   increment/q' <= lemma1 + 2.67.
+
+Two honest consequences:
+* the ceiling 2.67 EXCEEDS the 2.5 budget, so the cap alone does not deliver
+  the tolerance hypothesis - the deficit term is load-bearing, exactly as the
+  Constructor's missing FS_max bound says;
+* but the tolerance constant alpha*(y) grows like ln y (5.64 at y=101, 8.71 at
+  1e4, 13.3 at 1e6), while this ceiling is a CONSTANT multiple of q'. So even
+  unlimited climbing is asymptotically safe: **lemma 2 cannot break the route
+  asymptotically; only the finite range and lemma 1 can.** That is the useful
+  half of this round.
+
+Measured increments (unchanged, now with the corrected model behind them):
+0.412, 0.368, 0.391, 0.310, 0.484, 0.811 - max 3.1x under budget.
+
+### Proposed next chunk
+
+Prove or refute deficit >= 0, i.e. FS_max(w) <= F2 for every literal word w.
+It is the one gap between the cap-6 theorem and an unconditional lemma 2, it
+is a pure statement about the old machine's gap sequence (no primes), and it
+is the kind of statement the corridor machinery has closed before: two
+non-adjacent gaps bracketing a word occurrence cannot jointly exceed the best
+adjacent pair. If it holds, lemma 2 is DONE unconditionally and the tolerance
+route reduces to lemma 1 alone.
+
+### CORRECTION to round 13, same day - the algorithm was incomplete twice over
+
+The 31->37 run came back at F_new = 71 against a known lower bound of 88
+(mechanic's 9.7% scan of machine 37 already exhibits a gap of 88). Diagnosis
+and fix, with both failure modes recorded:
+
+* `merge_decompose.py` matched only the LITERAL spacing VALUES {s, q'-s} and
+  their alternating words. It therefore missed **padded links**: two killed
+  openings may also sit at the SAME tooth (spacing = 0 mod q', costing a gap
+  >= q'), or at opposite teeth a full period further apart (spacing = +-2u mod
+  q' but larger). Undershoots: 71 vs >= 88.
+* `merge_general.py` then allowed every spacing = {0, +-2u} mod q'. Too
+  permissive: the +-2u letters must ALTERNATE (a +2u step goes -u -> +u, so it
+  is only legal FROM tooth -u; two +2u steps in a row would land on +3u, not a
+  tooth). Overshoots: 45 vs 43 at 23->29, on the illegal word (10,10).
+* `merge_correct.py` is the right condition - spacings = 0 or +-2u mod q', with
+  the non-zero letters alternating and 0's insertable freely. **Re-verified
+  exactly at all five steps: 18, 25, 34, 43, 58.**
+
+What this does to the round-13 claims:
+
+* SURVIVES - the exact-algorithm form (F(M+q') = max over maximal legal killed
+  runs of o[i+k] - o[i-1], from the OLD machine alone) and the excess law's
+  shape (excess = max over runs of [span - deficit]).
+* SURVIVES - the crossover direction at 31->37: F(37) >= 88 and F2(31) = 68
+  (exact), so excess >= 20 > the short k=2 span 12. The winner is definitely
+  not the short word.
+* CHANGES - the winner at 31->37 is NOT a longer LITERAL word: the best literal
+  configuration reaches only 71. It must involve a padded link. So the round-13
+  mechanism story ("longer literal words become profitable as lambda grows")
+  is at best half the story; padding is the other half, and the deficit fit was
+  calibrated on literal words only.
+* **WITHDRAWN - the asymptotic safety argument for lemma 2.** It rested on
+  excess <= span_max = 2q' + s <= 2.67 q', which used the cap-6 theorem - and
+  that theorem is stated for LITERAL chains. Padded runs are not capped by it
+  (each padded link buys span >= q' at the cost of needing a gap >= q' in M,
+  which exists whenever F(M) >= q', true at every step from 23->29 on). Until
+  padded runs are bounded, there is NO constant ceiling on excess/q' from this
+  argument, and my claim that "lemma 2 cannot break the route asymptotically"
+  is unsupported. Constructor should not build on it.
+
+The predictions for 37->41 and 41->43 stated above were also derived from
+literal spans only, so they are lower-biased; treat the H-CLIMB branch as a
+floor rather than an estimate. The discriminator (F(41) <= 100 vs >= 103)
+still separates the hypotheses, but a padded winner could exceed both ranges.
+
+Corrected next chunk: bound the padded runs. The concrete question is now
+"how many padded links can a killed run carry?", i.e. how often can consecutive
+openings of M at spacing = 0 mod q' (gap >= q', so a top-stratum gap of M)
+chain together - which is exactly the top-gap adjacency machinery from rounds
+9-10 pointed at a new target, and the same object as the Constructor's
+"beyond-cap extension needs a padded link" remark.
+
+### Round 13, final: the 31->37 winner is a PADDED run - crossover = padding onset
+
+`merge_correct.py` on the full machine-31 period (3.34e10):
+
+    STEP 31->37 (u=31, letters A=25 B=12 mod 37): F_old 58, F2 68, F_new 88
+      winner: 3 kills at 9,463,664,103, spacings (37, 12), span 49,
+              flanks 28+11, padded links: [37]
+      excess = 20 (+0.541 q')
+
+**F_new = 88 exactly** - matching the mechanic's independently exhibited gap of
+88 from a 9.7% scan of machine 37. The corrected algorithm is now verified at
+SIX steps: 18, 25, 34, 43, 58, 88.
+
+The anatomy settles the mechanism question. The winning run is
+[kill] --37--> [kill] --12--> [kill], i.e. one PADDED link of exactly q' = 37
+(two kills at the SAME tooth, a gap of exactly 37 in machine 31) followed by
+one literal B-link of 12. Span 49 = q' + B, beating the longest available
+literal span (k=3, 37) - which is precisely why the literal-only algorithm
+stalled at 71.
+
+So the corrected story:
+
+* the first five steps have LITERAL winners (spans 11, 13, 23, 10, 10);
+* 31->37 is the **first padded winner** - the crossover is a PADDING ONSET,
+  not the "migration to longer literal words" I proposed earlier today;
+* the shape of the earlier reasoning survives in a modified form: a padded link
+  buys span q' at the price of needing a gap of exactly q' in M (share
+  ~ e^{-q'/lambda}), so as lambda grows padding becomes affordable - the same
+  span-versus-scarcity race, with padding as the vehicle rather than long
+  literal words;
+* and the ceiling really is gone: padding has no cap-6 analogue, so nothing in
+  hand bounds excess/q'. The withdrawal stands.
+
+Self-consistency check on whether a cheap bound exists: with k-1 links each
+>= min(s,q'-s) ~ q'/3 and flanks <= 2F(M), one gets G <= 2F(M) + (k-1)F(M) and
+k <= 3G/q' + 1, which rearranges to G(1 - 3F(M)/q') <= 2F(M) - vacuous whenever
+F(M) > q'/3, i.e. always in this regime. No easy ceiling; the padded-run bound
+has to come from the arithmetic of how often gaps of exactly q' can chain, not
+from counting.

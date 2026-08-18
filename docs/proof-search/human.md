@@ -21,28 +21,35 @@ a zeroth moment invisible to every power moment). The live route is
 different in kind: it prices the growth of the machine's biggest blocked
 stretch (F) step by step, and needs just two finite-flavoured statements -
 "the gap spectrum is flat" and "merge chains stay short" (the fuel bound).
-Round 12 turned the route's growth law from an estimate into an exact
-formula. The biggest blocked stretch after adding a new gear is not merely
-bounded by the old data - it is COMPUTED from it: take every "word" the
-new gear permits (a short list fixed by the gear's residue class alone,
-never more than six), and the answer is the best of those words' spans
-plus their two flanking gaps. Checked against all six known values: exact
-every time. Every increment lands inside the budget with roughly three
-times the room to spare - and round 11's overshoot at four of six steps
-was an artifact of the cruder bound, now gone. What remains of the ENTIRE
-route is one inequality about the flanks around those few words, and its
-structural reason is already computed (a record-sized gap has never once
-been found flanking one of these words, 0 for 17). That inequality has the
-same shape as a question already answered "no" per machine last round,
-just with a word in the middle - so the machinery that closed that one
-transfers directly.
+Round 13 made the growth law fully computable and, in the same breath,
+took back two comforting claims - including one of mine. The good news:
+the biggest blocked stretch after adding a gear can now be computed from
+the OLD machine alone, no scan of the new one, and it reproduces all six
+known values exactly (the sixth, 88, was independently found by a partial
+scan, so it is the true value and not a floor). The mechanism at that
+sixth step turned out to be new: the winner is not a longer pattern of the
+usual kind but a "padded" one - two kills landing on the same tooth,
+buying a stretch equal to the gear itself. Every earlier step was won by
+the ordinary kind, so step six is a genuine onset, and padding gets
+cheaper as the machine's gaps grow.
 
-Two supporting results: the six-link chain cap generalises to every
-Polignac gap not divisible by 6 - same ceiling, same 48-class check - and
-the exposed set it lives on turns out to BE the Hardy-Littlewood factor,
-the same object seen from two sides. And the first fully machine-checked
-instance of the route's missing lemma is closed: at the smallest machine,
-every tier verified, nothing assumed, with the budget shown to be tight.
+The corrections. Our six-link cap covers only the ordinary chains, so it
+does NOT cap padded ones - which means the claim that the route is safe
+in the long run is withdrawn until someone bounds padding. And the margin
+I reported as "three times the room to spare" was a units error on my
+part: two workstreams normalised by different constants. The true margin
+at the one binding step is 2.7 percent, against a budget the other six
+steps clear by 42 to 91 percent. That binding step is the same freak gear
+the original programme abandoned the route over - it still fits, but only
+just, and honesty about that is the point.
+
+What survives and is strong: the fuel ceiling is now UNIVERSAL - the same
+48-class check, the same maximum of six, for every prime-gap size, with a
+complete table over all even gaps (absolute ceiling 12 in the rarest
+class). The route's remaining requirement is one bound on padded runs -
+how often gaps of exactly one gear-size can chain - which is the same
+"near-maximal gaps do not cluster" statement that the last three rounds
+kept converging on, now aimed at a concrete new object.
 Separately, the saturated-run programme found the first length-14 run
 exactly where constellation statistics predicted, validating the model
 that everything else is measured against, and the thin-band reopening
@@ -99,18 +106,36 @@ same 5005 cases at single-digit moduli, 12.4s.
 - Deletion-spacing law (q+-1)/3; chain condition: the new record gap
   F(M+q) is predicted exactly by the old gap word (verified through the
   1e9-period step 29->31: pred 58 = actual 58).
-- Word identity: F(M+q') = max(F2(M), max over compatible words w of
-  span(w) + FS_max(w;M)) - an identity, not a bound (lower bound from
-  gcd(P_M, q') = 1: every compatible word fires, incompatible never).
-  Word list from q' mod 210 alone; reproduces all six known F values.
+- Merge algorithm (verified 18, 25, 34, 43, 58, 88): F(M+q') = max over
+  maximal legal killed runs of (o[i+k] - o[i-1]), from the OLD machine
+  alone. Legal link: spacings = 0 or +-2u mod q', non-zero letters
+  alternating, zeros free. Two earlier versions failed and are recorded
+  (literal-only undershot 71 vs 88; all-{0,+-2u} overshot 45 vs 43).
+- Padding onset: the 31->37 winner is [kill]-37-[kill]-12-[kill] - one
+  padded link (two kills, same tooth, span q') plus one literal link;
+  span 49 beats the longest literal span 37. Steps 1-5 all literal-won.
+  The cap-6 theorem does NOT bound padded runs - bounding them is the
+  route's live requirement.
+- Tier table: a record needs F_{k+1} >= F(M+q'); minimum k per step
+  2,1,2,2,2,3. At 31->37 the record 88 exceeds F_3(31) = 85, so it is
+  carried by a k=3 chain exactly - lemma 2 load-bearing at one step.
+  Excess share vs fuel population correlates at -0.03: excess magnitude
+  is set by flank quality, chain length enters only as a threshold.
+- Tier A (machine-free, scalable): both flanks maximal forbidden at 14 of
+  16 word-step pairs, decidable from (q' mod 210, w, F mod 35). Tier B
+  buys nothing - lifting the modulus to 1616615 adds zero exclusions.
+  Tier A is size-blind, so it cannot supply the missing bound alone.
 - Firing law: chain kills alternate between teeth {u, -u}; the word's
   first entry fixes orientation, so exactly one firing residue (density
   1/q'). Every fuel site fires once per new-machine period, address
   j = (fire - p)*P_old^-1 mod q'; realized k-chains per period = N_k.
-- Cap transfer: max literal-chain cap = 6 for every Polignac d not = 0
-  mod 6 (48 classes, primes to 2000, zero mismatches); |E_d| =
-  15/20/18/24 governed by slot_cap_gap - exposed set = HL factor.
-  Excluded: d = 0 mod 6 (gear 3 keeps two free classes, walk mod 105).
+- Cap transfer, UNIVERSAL: in halved coordinates the mod-105 invariance
+  (phi(105) = 48) IS the mod-210 law - one check, 48 classes, all even d.
+  Spectrum depends only on gcd(e,105); all 8 divisor classes computed:
+  ceiling 12 iff 105 | e, 10 when 15 | e, 6 otherwise (incl. twins and
+  the densest gaps d = 6,12,18,24). |E_d| = HL factor via slot_cap_gap.
+  Word-identity shape transfers 13/13; tooth alternation fails for 3 | e
+  (four-letter cycle with a short letter) - needs d-specific restatement.
 - Fuel census (chains of co-deletable openings): k_max by consecutive
   step: 2, 2, 3, 2, 4, 4 at steps 13->17 .. 31->37; N4 = 4 at 29->31
   (word (10,21,10)) and 216 at 31->37 ((12,25,12)/(25,12,25)); N5 = 0
@@ -130,17 +155,18 @@ same 5005 cases at single-digit moduli, 12.4s.
 
 ## Live fronts (the funnel, narrowest first)
 
-1. THE FLANK BOUND (the single missing piece of the tolerance route):
-   FS_max(w) <= F + 2.5q'/3 - span(w) for the <= 6 compatible words per
-   step. Measured margins +7.2 to +21.2; structural reason computed (no
-   top-stratum gap has ever flanked a compatible-word occurrence, 0/17).
-   Shape = round 10's adjacency question with a word in between, an
-   (l+2)-point correlation; the A/B/C tier machinery transfers verbatim.
-2. TOLERANCE ROUTE (event class V): now = word identity (PROVEN) + the
-   flank bound (item 1). Increments/q' measured 0.31-0.81 vs budget 2.5;
-   excess overtakes lemma 1 at the largest fuel population, so lemma 2 is
-   not vacuous. Word-grammar uniformity remains the machine-independent
-   form's open door (address pinned to <= 4 offsets, 206/206 words).
+1. BOUND THE PADDED RUNS (the route's live requirement): how often can
+   gaps of exactly q' chain? Each padded link needs a top-gap of M, so
+   this is the rounds 9-10 adjacency machinery on a new object. Until it
+   is bounded, no constant ceiling on the excess follows.
+2. THE FLANK BOUND: FS_max(w) <= F + 2.5q'/3 - span(w); measured phi ~
+   0.16q' against ~0.5q' allowed. Tier A cannot supply it (size-blind,
+   escape slide 1); the only candidate supplier is "near-maximal gaps do
+   not cluster at pinned addresses" - Wall V with bounded complexity.
+3. TOLERANCE ROUTE margin, stated honestly: incr/q' by step = 1.24, 1.10,
+   1.17, 0.93, 1.45, 2.43 against alpha = 2.5. The binding step 31->37
+   clears by 2.7%; the rest by 42-91%. Asymptotic safety is NOT currently
+   claimed (the cap-6 ceiling covers literal chains only).
 3. F(2,53) pricing run (detached, now pruned 2-5x): decides the constant
    alpha (2.5 <=> F(2,53) <= 486; 420 proven coverable, search past 420).
 4. L=15 hunt (mechanic, detached): members to 1.2e13, ~36% done, chunk-

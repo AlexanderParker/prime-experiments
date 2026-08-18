@@ -9,6 +9,7 @@ import Placement
 import Corridor
 import Machine13
 import MaxGap
+import LiteralCap
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -86,3 +87,7 @@ open BlockedSlots
 #print axioms MaxGap.F_zero_mod_three
 #print axioms MaxGap.M_two_mod_three
 #print axioms MaxGap.not_max_of_mod_three
+#print axioms LiteralCap.no_run_seven
+#print axioms LiteralCap.s_eq
+#print axioms LiteralCap.literal_chain_le_six
+#print axioms LiteralCap.cap_six_classes_sharp

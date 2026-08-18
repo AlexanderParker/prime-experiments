@@ -1233,3 +1233,100 @@ censuses: any step where max over compatible words of span + FS_max fails to
 equal F(M+q') would break 24.1; any FS_max exceeding F + 2.5q'/3 - span would
 break the budget at that step (31->37 is the next test: words (12,25,12) and
 mirrors at a cap-6 gear, F = 58, budget incr 30.8).
+
+---
+
+# Constructor round 13: tier A for the flank bound - a machine-free theorem, and why it stops short
+
+Scripts: `research/flank_tierA.py`, `research/flank_tierA_fix.py`. Two
+corrections recorded up front, both caught by adversarial re-testing:
+(i) my first tier-A "F-flank infeasible" test conflated the left flank with an
+arbitrary right flank (gR = 1), which manufactures false exclusions - the
+marginal and joint tests below are the correct ones; (ii) round 12 said "0 of
+17 word-step pairs"; the correct count is **16** (11->13 contributes one word
+with occurrences, not two).
+
+## 25. The (l+3)-point tier-A system
+
+**25.1 The configuration.** A word occurrence with both flanks is a chain of
+openings p0, p1 = p0+gL, p1+w1, ..., p1+span, p1+span+gR - ALL exposed, hence
+all in E mod 35 (gears 5,7). Interior non-openings give no tier-A constraint
+(higher gears block them), so tier A is exactly the endpoint residue system -
+the (l+3)-point generalisation of A3 (l = 0 recovers A3, the 3-point
+no_11_11_chain shape Formalist kernel-checked). With
+
+    S_m(w) = {r in E_m : every partial sum r + w_1..w_j in E_m}   (carrier)
+
+the flank pair (gL, gR) is tier-A-feasible iff some r in S_m(w) has
+r - gL in E_m and r + span + gR in E_m. Note gcd(35, q') = 1: the tooth
+condition defining COMPATIBILITY is CRT-independent of S(w), so firing and
+tier A never interact.
+
+**25.2 The machine-free theorem (the derivation asked for).** Testing the
+maximal flank (gL = F and/or gR = F) at every compatible word of the six
+steps:
+
+    joint  ("both flanks maximal"):  FORBIDDEN machine-free at 14 of 16
+                                     word-step pairs
+    marginal ("one flank maximal"):  FORBIDDEN machine-free at 9 of 16
+
+The two joint exceptions are w = (8) and w = (15) at step 19->23, where tier A
+permits both flanks maximal (carrier counts L4 R4 both4 and L6 R6 both6).
+Everywhere else the measured 0-of-16 IS the shadow of tier A: e.g. at 29->31
+every compatible word except (10) has L0 R0 at modulus 35 already - a maximal
+gap simply cannot touch those words, for any machine.
+
+So the empirical observation is now half-derived: **no compatible-word
+occurrence can carry two maximal flanks, machine-free, except at one step** -
+a finite mod-35 check decidable from (q' mod 210, w, F mod 35) alone, and
+kernel-reachable on the Corridor machinery.
+
+**25.3 Why tier A stops short (the honest limit).** The flank bound needs a
+SUM bound, and tier A cannot see sizes:
+
+* Escape re-test, for flanks: of the 1225 (gL, gR) residue pairs at w = (10),
+  408 are tier-A-forbidden, but the **maximum L1 slide to a feasible pair is
+  1** - the round-9 obstruction verbatim.
+* Worse for the binding case: for the word that actually binds at the two
+  largest steps, w = (2u') = (10), **every left-flank size 1..60 is
+  tier-A-feasible**. Tier A forbids the exact value F only in combination,
+  never a size range; F-1 remains available.
+
+Hence tier A delivers the "both-maximal" exclusion and nothing about
+FS_max <= F + 0.16q' (measured) or the required F + 2.5q'/3 - span.
+
+**25.4 What tiers B and C cost (and the surprise).** Lifting the modulus
+along 35 -> 385 -> 5005 -> 85085 -> 1616615 (gears 5,7 / +11 / +13 / +17 /
++19): carrier and feasibility counts scale up proportionally and **never
+reach zero where tier A did not already give zero** - at all 16 pairs tier B
+adds EXACTLY ZERO new exclusions. (This is structural: S_m and E_m are unions
+of lifts, so a mod-35 feasible configuration stays feasible at every multiple
+modulus; only genuinely new gear structure could kill it, and through gear 19
+none does.) Therefore the residual - the two 19->23 words - is a pure tier-C
+fact, provable only by the full period scan (5,005 to 1.08e9 slots across our
+steps; 3.3e10 at 31->37, already past kernel reach). Formalist's note is
+confirmed empirically and sharpened: **B is not a tier at all here; the
+hierarchy is A (machine-free, scalable) versus C (period, unscalable)** - so
+tier A is the only tier worth formalising, exactly as the mandate anticipated.
+
+**25.5 What the machine-independent version needs, precisely.** The route now
+needs one function phi with
+
+    FS_max(w; M)  <=  F(M) + phi(q'),      phi(q') <= 2.5q'/3 - span(w)
+
+for every compatible w (measured: phi ~ 0.16q' against ~0.5q' allowed, ~3x
+margin). Tier A provably cannot supply phi: it is a size statement and tier A
+is size-blind (25.3). The two candidate suppliers, both Wall V:
+
+1. **Adjacent-size scarcity**: "a gap adjacent to a qualifying-word
+   occurrence cannot be near-maximal" - the size version of 25.2, needing the
+   near-max scarcity that round 9 measured (record separations at
+   percent-of-primorial scale) turned into a theorem.
+2. **Spectrum flatness at pinned positions**: F_2 - F = O(q') restricted to
+   word-carrier addresses - lemma 1 again, now localised to a set of density
+   |S(w)|/|E| ~ 0.1-0.6.
+
+Both are one statement: near-maximal gaps do not cluster, at pinned
+addresses. That is the whole remaining content of the tolerance route, and it
+is Wall V with bounded complexity (<= 6 words, one carrier class each, two
+flanks) - the sharpest form the programme has reached.

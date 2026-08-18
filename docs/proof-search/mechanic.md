@@ -939,3 +939,100 @@ L=15 hunt survived the outage (PID 77120): 54.5%, members to ~6.6e12,
 max L = 12 in the latest chunks (record L=14 unbeaten; predicted first
 L=15 near 5e12, now inside the scanned range - absence so far is a
 sub-1-sigma observation, not yet an event).
+
+## Round 13 - the tier table: fuel is load-bearing at exactly one step
+
+Tools: research/spectrum_pass.py (new, F_j only - no probe loops),
+research/fuel_census.py (+ --start offset for period slicing).
+Data: research/data/spectra.csv, fuel_census.csv, spectrum31.log,
+fuel37_k5hunt.log (running).
+
+### (2) F_j spectra - all machines through 31 at FULL period
+
+    machine   F1  F2  F3  F4  F5  F6      increments
+    13        11  16  23  26  28  31      5 7 3 2 3
+    17        18  25  28  33  35  40      7 3 5 2 5
+    19        25  31  35  38  47  50      6 4 3 9 3
+    23        34  39  50  58  65  77      5 11 8 7 12
+    29        43  55  65  70  85  90      12 10 5 15 5
+    31        58  68  85  90  92  97      10 17 5 2 5
+    37        (2e11 prefix pass running, spectrum37.log)
+
+Increments stay q/3-scale (2-17) at every depth - flatness-consistent,
+no F-scale jump anywhere.
+
+### (3) THE TIER TABLE (new; the excess question answered mechanically)
+
+Deleting k consecutive openings merges k+1 gaps, so a step's record
+F(M+q') is realizable only from chains with F_{k+1} >= F(M+q').
+Minimum chain length required, per step:
+
+    step      F(M+q')   F2   F3   F4   min k   fuel present (N2,N3,N4)
+    13->17    18        16   23   26   2       (72, 0, 0)
+    17->19    25        25   28   33   1       (1088, 0, 0)
+    19->23    34        31   35   38   2       (11784, 62, 0)
+    23->29    43        39   50   58   2       (243816, 0, 0)
+    29->31    58        55   65   70   2       (8022924, 13000, 4)
+    31->37    88        68   85   90   3       (1.15e8, 70964, 216)
+
+RESULT: at every step but one the record needs only k <= 2 (single or
+double deletion). At 31->37 the record 88 EXCEEDS F3(31) = 85, so no
+k <= 2 chain can reach it: it requires k >= 3, and since the k=4 chains
+there were measured to reach only <= 87, it is carried by a k=3 chain
+exactly. LEMMA 2 IS LOAD-BEARING, at exactly one measured step - and
+that step is also the tightest against the tolerance budget (below).
+Confirms Lateral's "lemma 2 is not vacuous" by an independent route
+(spectrum tiers, not excess shares) and localises it to a single step.
+
+### (3b) Excess-share census (Lateral ask) - with a negative
+
+    step      incr  lem1  exc   exc/incr  adj incr/q'  margin vs 2.5
+    13->17    7     5     2     0.29      1.235        50.6%
+    17->19    7     7     0     0.00      1.105        55.8%
+    19->23    9     6     3     0.33      1.174        53.0%
+    23->29    9     5     4     0.44      0.931        62.8%
+    29->31    15    12    3     0.20      1.452        41.9%
+    31->37    30    10    20    0.67      2.432         2.7%  <-- binding
+    37->41    3     2     1     0.33      0.220        91.2%
+
+(F(M+q') from the known chain F(2,y)/3; lem1 = F2 - F; exc = F+ - F2.)
+Cross-check: adj incr/q' reproduces the graded constants
+1.235/1.105/1.174/0.931/1.452/2.432 -> /3 = 0.412, 0.368, 0.391, 0.310,
+0.484, 0.811 EXACTLY, from an independent census; the 0.541 vs 0.270
+crossover is my 31->37 row.
+
+NEGATIVE RESULT: excess share is NOT a function of fuel population.
+Correlation(exc share, N3 per opening) = -0.03 over seven steps. Zero
+long-chain fuel still yields substantial excess (23->29: N3 = 0, share
+0.44 - pure k=2 merges), and huge fuel yields small excess (29->31:
+N3 = 13000, N4 = 4, share 0.20). Mechanism: N2 is ubiquitous (2-5% of
+openings at every step), so k=2 merges are always available and excess
+MAGNITUDE is set by flank quality; chain length enters as a THRESHOLD
+(the tier table), never as a density.
+
+### BUDGET CAUTION (for Constructor/manager)
+
+The binding step 31->37 sits at adjacent-frame incr/q' = 2.432 against
+alpha = 2.5: margin 2.7%. Six of seven steps sit at 42-91% margin; the
+one that does not is the same step requiring k >= 3 fuel. If the
+SUMMARY 3.1x headroom line refers to the FS_max margins that is
+consistent; as a statement about the alpha constant itself the measured
+worst case is 2.7%. Any step exceeding 2.5 forces the constant up
+(alpha = 3 needs F(2,53) <= 513).
+
+### (1) k=5 test at 37->41 - extended hunt running
+
+Prefix scan (9.7% of period, r12): no k=4, no k=5, shown to be weak
+evidence (conditioned on the 830x N3 suppression, expected N4 = 0.91).
+Extended slice launched detached (slots 1.2e11..6.0e11, single probe
+q=41, fuel37_k5hunt.log) - 4x more coverage on the eligible word
+(14,27,14,27). Even absence at that coverage is not decisive; the r12
+recommendation stands - cap tests must run at ARITHMETIC-FAVOURED steps
+at full period, and I can run any step the Constructor nominates.
+
+### Jobs
+- fuel37_k5hunt.log (PID 98168): extended 37->41 k=5 hunt.
+- spectrum37.log: machine-37 F_j prefix pass.
+- satruns_L15.log (PID 77120): 57.7%, members to ~7e12, max L = 12 in
+  recent chunks; L=14 record unbeaten; first L=15 predicted near 5e12
+  (inside the scanned range now, absence still sub-1-sigma).
