@@ -1005,6 +1005,236 @@ theorem card_pair_inter_eq {q r t : ℕ} (hq : q.Prime) (hr : r.Prime)
     card_filter_or_of_excl excl3]
   omega
 
+/-- **Triple bridge.** The triple mark intersection decomposes disjointly into
+the eight side classes LLL..RRR - each ONE CRT class with a floor count
+(`six_mul_class` / `twoSided_class` instances). Identical mechanics to
+`card_pair_inter_eq`, 2^3 cases. -/
+theorem card_triple_inter_eq {q r s t : ℕ} (hq : q.Prime) (hr : r.Prime)
+    (hs : s.Prime) (hq2 : q ≠ 2) (hr2 : r ≠ 2) (hs2 : s ≠ 2) :
+    ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∧ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1) ∧
+        (s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1)).card
+    = ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1).card := by
+  have hpred : ((Finset.Ico 1 (t + 1)).filter fun k =>
+      (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∧ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1) ∧
+      (s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1))
+    = (Finset.Ico 1 (t + 1)).filter fun k =>
+      (q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∨
+      ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+      ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+      ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1) ∨
+      ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∨
+      ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+      ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+       (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1))))))) := by
+    ext k
+    simp only [Finset.mem_filter]
+    constructor
+    · rintro ⟨hk, hq' | hq', hr' | hr', hs' | hs'⟩
+      · exact ⟨hk, Or.inl ⟨hq', hr', hs'⟩⟩
+      · exact ⟨hk, Or.inr (Or.inl ⟨hq', hr', hs'⟩)⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inl ⟨hq', hr', hs'⟩))⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inr (Or.inl ⟨hq', hr', hs'⟩)))⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ⟨hq', hr', hs'⟩))))⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inr (Or.inr (Or.inr
+          (Or.inl ⟨hq', hr', hs'⟩)))))⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr
+          (Or.inl ⟨hq', hr', hs'⟩))))))⟩
+      · exact ⟨hk, Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr
+          (Or.inr ⟨hq', hr', hs'⟩))))))⟩
+    · rintro ⟨hk, ⟨ha, hb, hc⟩ | ⟨ha, hb, hc⟩ | ⟨ha, hb, hc⟩ | ⟨ha, hb, hc⟩ |
+        ⟨ha, hb, hc⟩ | ⟨ha, hb, hc⟩ | ⟨ha, hb, hc⟩ | ⟨ha, hb, hc⟩⟩
+      · exact ⟨hk, Or.inl ha, Or.inl hb, Or.inl hc⟩
+      · exact ⟨hk, Or.inl ha, Or.inl hb, Or.inr hc⟩
+      · exact ⟨hk, Or.inl ha, Or.inr hb, Or.inl hc⟩
+      · exact ⟨hk, Or.inl ha, Or.inr hb, Or.inr hc⟩
+      · exact ⟨hk, Or.inr ha, Or.inl hb, Or.inl hc⟩
+      · exact ⟨hk, Or.inr ha, Or.inl hb, Or.inr hc⟩
+      · exact ⟨hk, Or.inr ha, Or.inr hb, Or.inl hc⟩
+      · exact ⟨hk, Or.inr ha, Or.inr hb, Or.inr hc⟩
+  have excl1 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∧
+        ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+        ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+         (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1)))))))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨hqL, hrL, hsL⟩, h⟩
+    rcases h with ⟨-, -, hsR⟩ | ⟨-, hrR, -⟩ | ⟨-, hrR, -⟩ | ⟨hqR, -, -⟩ |
+      ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩
+    · exact mark_side_unique hs hs2 hk1 hsL hsR
+    · exact mark_side_unique hr hr2 hk1 hrL hrR
+    · exact mark_side_unique hr hr2 hk1 hrL hrR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+  have excl2 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∧
+        ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+        ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+         (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1))))))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨hqL, hrL, -⟩, h⟩
+    rcases h with ⟨-, hrR, -⟩ | ⟨-, hrR, -⟩ | ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩ |
+      ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩
+    · exact mark_side_unique hr hr2 hk1 hrL hrR
+    · exact mark_side_unique hr hr2 hk1 hrL hrR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+  have excl3 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∧
+        ((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+         (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1)))))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨hqL, -, hsL⟩, h⟩
+    rcases h with ⟨-, -, hsR⟩ | ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩ |
+      ⟨hqR, -, -⟩
+    · exact mark_side_unique hs hs2 hk1 hsL hsR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+    · exact mark_side_unique hq hq2 hk1 hqL hqR
+  have excl4 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1) ∧
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+         (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1))))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨hqL, -, -⟩, h⟩
+    rcases h with ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩ | ⟨hqR, -, -⟩ <;>
+      exact mark_side_unique hq hq2 hk1 hqL hqR
+  have excl5 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1) ∧
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∨
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+         (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1)))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨-, hrL, hsL⟩, h⟩
+    rcases h with ⟨-, -, hsR⟩ | ⟨-, hrR, -⟩ | ⟨-, hrR, -⟩
+    · exact mark_side_unique hs hs2 hk1 hsL hsR
+    · exact mark_side_unique hr hr2 hk1 hrL hrR
+    · exact mark_side_unique hr hr2 hk1 hrL hrR
+  have excl6 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1) ∧
+        ((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∨
+         (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1))) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨-, hrL, -⟩, h⟩
+    rcases h with ⟨-, hrR, -⟩ | ⟨-, hrR, -⟩ <;>
+      exact mark_side_unique hr hr2 hk1 hrL hrR
+  have excl7 : ∀ k ∈ Finset.Ico 1 (t + 1),
+      ¬((q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1) ∧
+        (q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1)) := by
+    intro k hk
+    have hk1 : 1 ≤ k := (Finset.mem_Ico.mp hk).1
+    rintro ⟨⟨-, -, hsL⟩, ⟨-, -, hsR⟩⟩
+    exact mark_side_unique hs hs2 hk1 hsL hsR
+  rw [hpred, card_filter_or_of_excl excl1, card_filter_or_of_excl excl2,
+    card_filter_or_of_excl excl3, card_filter_or_of_excl excl4,
+    card_filter_or_of_excl excl5, card_filter_or_of_excl excl6,
+    card_filter_or_of_excl excl7]
+  omega
+
+/-- **The master formula for three gears, end-to-end.** Every mark-set term of
+the assembly identity decomposed into its side classes: distinct marked slots
+plus the twelve pair side classes equal the six single side classes plus the
+eight triple side classes. Subtraction-free; overcount = marks - distinct
+rearranges it to overcount = pairs - triples. EVERY term on both sides beyond
+the first is one CRT class whose count is closed-form floor arithmetic
+(`six_mul_class` / `twoSided_class` + `card_class_Ico`) - the formal statement
+of what research/assembly_check.py verified with zero fails. -/
+theorem three_gear_master {q r s t : ℕ} (hq : q.Prime) (hr : r.Prime)
+    (hs : s.Prime) (hq2 : q ≠ 2) (hr2 : r ≠ 2) (hs2 : s ≠ 2) :
+    ((Finset.Ico 1 (t + 1)).filter fun k =>
+        (q ∣ 6 * k - 1 ∨ q ∣ 6 * k + 1) ∨ (r ∣ 6 * k - 1 ∨ r ∣ 6 * k + 1) ∨
+        (s ∣ 6 * k - 1 ∨ s ∣ 6 * k + 1)).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1).card
+    = ((Finset.Ico 1 (t + 1)).filter fun k => q ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k => q ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k => r ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k => r ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k => s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k => s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k - 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k - 1 ∧ s ∣ 6 * k + 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k - 1).card
+      + ((Finset.Ico 1 (t + 1)).filter fun k =>
+        q ∣ 6 * k + 1 ∧ r ∣ 6 * k + 1 ∧ s ∣ 6 * k + 1).card := by
+  have h0 := three_gear_assembly q r s t
+  rw [card_marks_eq hq hq2, card_marks_eq hr hr2, card_marks_eq hs hs2,
+    card_pair_inter_eq hq hr hq2 hr2, card_pair_inter_eq hq hs hq2 hs2,
+    card_pair_inter_eq hr hs hr2 hs2,
+    card_triple_inter_eq hq hr hs hq2 hr2 hs2] at h0
+  omega
+
 /-! ## The self-block, composed with the census -/
 
 /-- **The self-block, formal.** The twin pair's pin slot u is an actual twin

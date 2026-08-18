@@ -2,25 +2,25 @@
 
 ## ELI5 SUMMARY (rewritten each round)
 
-Round 9 answered last round's big question honestly: the trick that produced the 32-slot cap
-(watching what two tiny gears force) canNOT, by itself, prove the missing lemma of the new
-route. The reason is now a computed fact, not a feeling: small-gear patterns control WHERE the
-biggest gaps are allowed to sit - down to a handful of addresses out of hundreds - but never
-HOW BIG they can be; every size is one step away from an allowed one. So the route's missing
-lemma really is about rare extremes, the gentler fourth wall. The consolation prizes are real,
-though: two new laws pin record gaps to a few forced addresses, giving both a 2-5x speedup for
-the big pricing computation and a brand-new finite question - "can two record-class addresses
-ever sit side by side?" If they never can, the missing lemma follows machine by machine.
+Round 10 was the convergence round: three separate hunts turned out to be digging toward the
+same spot. First, the new route's two missing lemmas were proven to be one thing - a single
+"flatness" statement about the ladder of biggest gaps, plus a small "fuel" bound that measured
+data caps at 3 everywhere. Second, last round's brand-new question - can two record-class
+addresses ever sit side by side? - came back NO at every machine tested, so the missing lemma
+now closes machine-by-machine with a finite three-part check, written out in full for the
+smallest machine. Third, the address-forecasting idea died an honest death but was replaced by
+something stronger: a record gap's address is completely determined by its own local
+neighbourhood pattern (up to 4 candidates, always, at every scale). That means exactly ONE
+question now stands between us and a machine-independent lemma: is the list of possible
+neighbourhood patterns finite for a reason we can prove? Everything funnels through that door.
 
-Meanwhile the milestone hunt paid off: the first stretch of 14 straight slots each touching a
-prime was found, a quarter-trillion slots out - exactly where the model said to look. The old
-record of 13 stood across seven orders of magnitude and fell right on schedule: it was a record
-on a curve, never a wall. The curve says 15 is reachable; 32 is the forever-ceiling.
-
-And the verified ledger had its best round yet: the 32-cap itself is now machine-checked (from
-almost no assumptions - not even choice), the "twin product" objects of two files were proven
-to be the same thing, and the master formula's assembly - the last formal gap in that line -
-is done for three gears with the general mechanism established. Ten files, 992 checks, green.
+The side quests wrapped up too. The "do twins avoid the thin bands?" reopening was closed with
+a gem: every twin pair reaches up and kills the exact CENTER of the thin band above it - a
+perfect little self-reference law, one slot deep, and nothing more (the rest was ordinary
+density). The machine-checked ledger gained the address laws themselves (including a
+294-entry forbidden table the proof kernel verified by brute force) and the completed master
+formula for three gears - that whole formal line is now closed. And the big pricing computation
+gets a rebuild: the new address laws prune its search 2-5x, so it restarts smarter.
 
 ## Round 1 (2026-08-18)
 
@@ -302,3 +302,47 @@ magnitude no. Lemma 1 therefore needs either extreme-value input (Wall V) or Lat
 side-door: if top-stratum address classes mod 385 are never adjacent, alpha1 follows per machine
 - and the round-10 question is whether mirror-closure + the finite relative grammar make that
 check uniform in y. Lemma 2 (fuel-merge) is still untouched; it starts next round.
+
+## Round 10 (2026-08-18)
+
+**Constructor** - two results. ADJACENCY: NO at y = 13/17/19/23 - two maximal gaps can never be
+adjacent (class arithmetic + one period scan); per-machine alpha1 closes via a three-tier check
+(A3 machine-free / mod-385 strata disjointness / direct), proof-of-concept written at y=13
+(alpha1 = 1; 14 dangerous pairs: 5+5+4, none realized); honest limit - tier-C residual grows
+4 -> 96 by y=23, needs mod-5005 at scale. UNIFICATION: excess <= F_{k_max+1} - F2 rigorously
+(F_j = max sum of j consecutive gaps), lemma 1 = first spectrum increment; whole tolerance route
+= spectrum flatness + fuel bound (k_max = o(ln y) suffices; measured <= 3, 62 k=3 chains match
+corpus fuel census exactly). Fuel local and corridor-approachable; flatness is Wall V. Tools:
+research/strata_adjacency.py, merge_census.py.
+
+**Lateral** - drift recursion REFUTED (reachability from old top stratum 18/20 -> 0/4): the
+address is local, not inherited. Replaced by the PINNING LAW: the neighbourhood word pins the
+mod-385 address to <= 4 offsets uniformly in y (206/206 words, five machines; gear 5 always
+unique); #top-stratum classes <= 4 x #words, observed 6-14 and flat. Machine-independent alpha1
+reduced to ONE open piece: a-priori finiteness of the near-top word grammar. Tool:
+research/address_drift.py.
+
+**Mechanic** - T1 reopening closed with an exact ledger: thickness T = g(2p+g)/6 monotone in gap
+(thinnest = twin, trivially); the real law - every twin (6m-1, 6m+1) dead-centers the thinnest
+band above it, product slot 6m^2 at offset exactly T/2, 1223/1223; everything else density
+artifact (9,591 bands to 10^10, g=2/all ratios 0.984-1.018, zero twin-empty bands, min 6
+primes/band). Descent's binding case binds by length alone - imported Legendre-class, no machine
+hostility. L=15 hunt detached (satruns_L15.log, ~15h). Tool: research/band_census.py.
+
+**Formalist** - Corridor.lean extended, all pre-verified against Constructor's tool: endpoint
+law (exposed_iff_mem, endpoint_law, endpoint_law_34), adjacency law (adjacency_law,
+no_chain_of_forbidden, forbidden_pairs_count = 294 by decide +kernel - no native_decide),
+n2_packing (W/33 <= n2). Proof note recorded: one-shot omega dies at 5 dvd atoms; per-gear iffs
++ interval_cases is the working shape for higher moduli. 992 jobs green.
+
+**Harvester** - the assembly line CLOSED: card_triple_inter_eq (8 disjoint CRT side classes) +
+three_gear_master (26 filter-card terms, subtraction-free, any distinct odd primes, any prefix)
+- the formal 3-gear master formula end to end; verified first by research/master3_check.py (zero
+fails). Polignac.lean = 44 theorems. F(2,53) assessment: pruned restart (endpoint law, 2-5x,
+resume support) beats continuing unpruned; implementation authorized for round 11.
+
+**Manager synthesis** - convergence: the tolerance route is now flatness + fuel; fuel is local
+(Constructor round 11), flatness's machine-independent form needs exactly the word-grammar
+finiteness (Lateral round 11), and its per-machine form is ready for the kernel (Formalist
+round 11: the y=13 certificate). The F(2,53) search restarts pruned (Harvester, authorized).
+Mechanic supplies the fuel bound's empirical side at scale.

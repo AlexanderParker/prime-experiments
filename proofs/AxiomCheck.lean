@@ -61,3 +61,11 @@ open BlockedSlots
 #print axioms Corridor.prime_adjacent_run_le
 #print axioms Corridor.product_slotOf
 #print axioms Corridor.twin_product_pin
+#print axioms Corridor.exposed_iff_mem
+#print axioms Corridor.endpoint_law
+#print axioms Corridor.endpoint_law_34
+#print axioms Corridor.adjacency_law
+#print axioms Corridor.no_chain_of_forbidden
+#print axioms Corridor.forbidden_first_examples
+#print axioms Corridor.forbidden_pairs_count
+#print axioms Corridor.n2_packing

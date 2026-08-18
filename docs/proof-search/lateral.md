@@ -801,3 +801,72 @@ sequence (separated by one opening)? If the pinned classes of near-top gaps
 can never be adjacent, F2 comes from strictly lower strata and alpha1 follows
 per machine by finite check. (2) Alternatively hand the mirror-pairing +
 skeleton facts to the Constructor as constraints on their merge transform.
+
+## Round 10 (2026-08-18): uniformity - the word pins the address; the drift recursion dies
+
+Steering taken: (1) is the pinned address a computable function of the machine
+(drift recursion)? (2) is the top-stratum class count uniformly bounded, with
+a proof-shaped reason? Tool: `research/address_drift.py` (near-top strata at
+0.9F for y = 13..29, full periods, y=29 streamed).
+
+### LAW A - word-pinning: ESTABLISHED (the uniformity engine)
+
+The neighbourhood word of a near-top gap (openings in a window of 20 slots
+each side) determines its address mod 385 almost uniquely: each opening must
+avoid both teeth of each small gear, forbidding 2 offsets per gear, and the
+~10 openings around a top gap leave almost nothing:
+
+  - gear 5: pinned to EXACTLY ONE offset by every near-top word - 206/206
+    across all five machines;
+  - gear 7: unique for 94% of words, never more than 2 offsets;
+  - gear 11: unique for 90%, never more than 4;
+  - gear 13: 1-5 offsets (looser - fewer teeth per window, as expected);
+  - full mod-385 address: UNIQUE for 87% of words ((1,1,1) in 180/206 cases),
+    <= 4 always, at every machine (max 4,4,4,4,3 for y = 13..29).
+
+Containment is exact (0 fails in 206 words: every observed address is
+word-compatible) and tightness is high (71-85% of predicted phases are
+realized). Consequence: #top-stratum classes <= sum over near-top words of
+#phases(word) <= 4 x #words - and the observed class counts sit far below
+even that (6-14 classes, FLAT from y=13 to 29, while near-top gap counts
+swing 20-106), because distinct words share pinned addresses. The uniformity
+the coordinator asked about lives here: per-word pinning <= 4 is the
+proof-shaped half (exposure-criterion counting, computable per word); the
+flat class count is measured, mechanism = word-overlap on shared skeletons.
+
+### LAW B - drift recursion: REFUTED as stated
+
+Candidate law "new max address = old top-stratum address - left flank"
+(suggested by the striking mod-385 near-matches 47-2=45, 122-5=117, 115-5=110,
+252-2=250, 322-2=320 at the first two steps) fails systematically at later
+steps: reachability of new maximal addresses from the old 0.9F stratum
+(self-or-plus-first-flank) runs 18/20, 14/20, then 0/4 (step 19->23) and 1/2
+(23->29). Reason: new maxima grow from DEEP-medium old gaps (0.16-0.68 F_old,
+round 9) that no near-top stratum tracks. A recursion through stratum
+addresses would have to carry the whole medium spectrum - not an induction
+anyone can close. The early-step matches were real but coincidental to the
+flank regime; the honest law is LOCAL, not inherited:
+
+    address = pin(word),  not  address = f(previous address).
+
+### What a machine-independent alpha1 statement now needs
+
+Two halves, one established: [per-word pinning <= 4 mod 385, uniform in y -
+ESTABLISHED, mechanism exposure-counting] + [uniformity of the near-top word
+grammar itself - OPEN: word counts are non-growing (20-106, no trend) but
+words are machine-relative objects]. For the Constructor's adjacency chunk:
+the adjacency question can now be run at the WORD level - two near-top words
+can sit adjacent only if their pinned phase sets are CRT-consistent with the
+separation, a finite check per word pair, no period scan. That converts
+"can two top-stratum classes be adjacent" from a per-machine scan into a
+grammar-level computation on the observed word lists (available in
+address_drift.py's groups).
+
+### Proposed next chunk
+
+The open half: characterize which words CAN be near-top (the extreme-value
+grammar) - specifically whether the flank alphabet {1..5} + chain skeleton
+{2u', q-2u'} + pinning constraints already delimit a finite word-shape family
+whose pinned classes can be enumerated a priori (then alpha1's adjacency
+check becomes machine-independent arithmetic). Alternatively, support the
+Constructor's adjacency computation directly with the word-pair CRT check.

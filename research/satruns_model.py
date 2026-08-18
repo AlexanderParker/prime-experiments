@@ -35,18 +35,26 @@ def integral_sL(k_lo, k_hi, L, pts=2000):
 
 
 def load_renewal():
-    """combined decade -> (slots, counts dict L->n). Round 7 decades <= 10
-    (to member 7.2e10) + round 8 (member 7.2e10 .. 1.002e12)."""
+    """combined decade -> (slots, counts dict L->n). Round 7 (satruns_renewal,
+    to member 7.2e10) + round 8 (…_r8, member 7.2e10..1.002e12) + the running
+    chunked scan (…_renewal, new schema k_from,k_to - slots computed as the
+    chunk's overlap with the decade's k-range)."""
     dec = {}
-    for fn, tag in (("satruns_renewal.csv", 7),
-                    ("satruns_deep_renewal.csv", 8)):
+    for fn in ("satruns_renewal.csv", "satruns_deep_renewal_r8.csv",
+               "satruns_deep_renewal.csv"):
         path = os.path.join(DDIR, fn)
         if not os.path.exists(path):
             continue
         for r in csv.DictReader(open(path)):
             d = int(r["decade"])
-            slots = int(r.get("slots_in_decade")
-                        or r.get("slots_scanned_in_decade"))
+            if "k_from" in r:  # new chunked schema
+                ka, kb = int(r["k_from"]), int(r["k_to"])
+                lo = max(ka, (10 ** d + 1) // 6)
+                hi = min(kb, (10 ** (d + 1) + 1) // 6)
+                slots = max(0, hi - lo + 1)
+            else:
+                slots = int(r.get("slots_in_decade")
+                            or r.get("slots_scanned_in_decade"))
             row = dec.setdefault(d, {"slots": 0, "n": {}})
             row["slots"] += slots
             for Lname, L in (("L8", 8), ("L9", 9), ("L10", 10),

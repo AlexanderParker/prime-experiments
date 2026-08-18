@@ -733,3 +733,79 @@ decades 5..11); the L >= 13 population now stands at 19 instances
   [8,13] - honest error bars are a factor of several in M(L); the
   qualitative split (reachable / astronomical / capped) is robust.
 - beta fit excludes decades with < 10 runs.
+
+## Round 10 - the T1 reopening: thinnest-bands-at-twin-endpoints (2026-08-18)
+
+Scope: this file, my agents-shared append, research/ files only.
+Tool: research/band_census.py; data: research/data/band_census_100003.csv
+(9,591 bands, heights to 1e10, every slot counted exactly, 124s) and
+band_census_2003.csv (calibration).
+
+### (1) Precise event definition
+
+Bands B_i = (p_i^2, p_{i+1}^2), consecutive primes >= 5; in slot space
+kb_i < k <= kb_{i+1} with kb = (p^2-1)/6 (exact integer). Thickness
+T = (p'^2 - p^2)/6 = g(2p+g)/6, g = the gap. The event as flagged
+("thinnest bands sit at twin endpoints") is EXACT BUT TRIVIAL: T is
+monotone in g at a height, and g = 2 <=> twin endpoints. The non-trivial
+machine event underneath, derived this round (algebra, then verified per
+band): for a twin (p, p+2) = (6m-1, 6m+1), T = 4m exactly and the twin's
+own PRODUCT SLOT k = 6m^2 sits at offset 2m = T/2 - the exact center of
+the band - with L member 36m^2-1 = p(p+2) composite BY the defining twin.
+Verified 1223/1223 g=2 bands (plus 60/60 at calibration scale). Every
+twin pre-blocks the center of the thinnest band above it: the descent's
+self-reference, as one deterministic dead slot per thin band.
+
+### (2) Census at scale (exact counts)
+
+- Per gap class (all heights pooled): twin density per slot is FLAT in g:
+  0.0166 (g=2) vs 0.0160-0.0185 (all other g; spread = height mix).
+- Decade-matched, the decisive table: g=2 twin density / all-band density
+  = 0.984, 1.018, 1.006, 1.002 at height decades 6-9 (center-slot-
+  excluded: 0.985, 1.019, 1.006, 1.002). No gap-2 deficit at 0.2-2%
+  precision; the exact center-slot deficit is 1/T = 1/(4m), invisible at
+  scale.
+- Twin-EMPTY bands: ZERO, any gap class, through height 1e10 (min twins
+  per band = 2, attained only by the first band (25,49) with 4 slots).
+  At heights [1e9, 1e10): worst band = 342 twins in 21,352 slots
+  (p=32027, g=2) - exactly its Poisson expectation lambda ~ 342, and the
+  worst band is g=2 only because g=2 bands are SHORTEST.
+- T1 side: min prime members per band = 6 (the (25,49) band); no band
+  approaches prime-emptiness anywhere in range.
+- Fragile centers (36m^2+1 prime beside the dead product): 93/1223 = 7.6%
+  at P=1e5 (15.0% at P=2003) - declining ~1/ln, density-consistent.
+
+### (3) Verdict
+
+Split verdict, each part exact:
+- EXACT LAW (trivial): thinnest <=> twin endpoints, via T = g(2p+g)/6.
+- EXACT LAW (new, mechanical): the center-slot pre-block - product slot
+  k = 6m^2 at offset T/2, dead by construction, in every twin band. This
+  is the entire deterministic content of the self-reference.
+- DENSITY ARTIFACT (the rest): thin bands are NOT twin-poor. Per-slot
+  twin density in twin-endpoint bands equals the generic density to
+  measurement precision at every matched height, and the one dead slot
+  is the only deterministic obstruction. What kills the "hostile thin
+  bands" reading: the deterministic pre-block does not propagate - the
+  remaining 4m-1 slots are statistically generic (Poisson-consistent
+  minima).
+- Consequence for the descent: the binding case is binding by LENGTH
+  ALONE (T ~ (2/3)sqrt(x) at twin endpoints vs g/2-times longer
+  elsewhere), i.e. exactly the imported Legendre-class localisation
+  problem; the machine adds no obstruction of its own beyond one
+  quantified dead slot per thin band. The reopening closes with a
+  clean event ledger: self-reference = 1 slot, everything else generic.
+
+### L=15 hunt status (parallel, detached)
+Launched via Start-Process (wrapper PID 18504), log
+research/data/satruns_L15.log, chunk-flushed + resumable (state file).
+Target members ~1.2e13 (K = 2e12 slots), predicted first L=15 at ~5e12.
+Chunk 1 flushed at report time (8.2%, ~232s/chunk, ~15h total). Round-8
+renewal CSV preserved as satruns_deep_renewal_r8.csv; model loader
+handles both schemas.
+
+### Caveats
+- "No empty bands" is exhaustive to height 1e10; beyond that it is the
+  usual constellation expectation, not data.
+- The 0.2-2% density-ratio precision is set by per-decade twin counts;
+  no correction for the (tiny) fragile-center correlation was attempted.

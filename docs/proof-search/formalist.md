@@ -636,3 +636,76 @@ any range of W slots, n2 ≥ ⌊W/33⌋-ish lower bound by packing disjoint
 floor on doubles that the X-consistency demand side must meet. Alternative:
 the tolerance lemmas' arithmetic skeletons (top-gap anti-clustering
 inequality shell) if the Constructor lands the statement shape.
+
+## Round 10 — Endpoint law, adjacency law, packing floor (2026-08-18)
+
+### What was done
+
+Extended `proofs/Corridor.lean` (still 10 targets). Before formalizing,
+cross-verified every claim against research/topgap_endpoint_law.py:
+E-set match, A(34) = {3,18,33}, forbidden count = 294, first examples
+(1,1),(1,3),(1,6) all forbidden. Two build iterations (below). Zero sorry,
+zero warnings.
+
+### Final theorem statements
+
+```lean
+def Exposed (k) : Prop := ¬5∣lo k ∧ ¬5∣hi k ∧ ¬7∣lo k ∧ ¬7∣hi k
+def exposedSet : Finset ℕ := {0,2,3,5,7,10,12,17,18,23,25,28,30,32,33}
+
+theorem exposed_iff_mem (hk : 1 ≤ k) : Exposed k ↔ k % 35 ∈ exposedSet
+theorem endpoint_law (ha : 1 ≤ a) (h1 : Exposed a) (h2 : Exposed (a+G)) :
+    a % 35 ∈ exposedSet.filter fun r => (r + G) % 35 ∈ exposedSet
+theorem endpoint_law_34 (hG : G % 35 = 34) ... :
+    a % 35 = 3 ∨ a % 35 = 18 ∨ a % 35 = 33
+
+def allowed3 (g1 g2) : Finset ℕ :=
+  exposedSet.filter fun r => (r+g1)%35 ∈ exposedSet ∧ (r+g1+g2)%35 ∈ exposedSet
+theorem adjacency_law ... : a % 35 ∈ allowed3 (g1 % 35) (g2 % 35)
+theorem no_chain_of_forbidden (hf : allowed3 ... = ∅) ... : False
+theorem forbidden_first_examples : allowed3 1 1 = ∅ ∧ ... (by decide)
+theorem forbidden_pairs_count :
+    ((range 35 ×ˢ range 35).filter fun p => allowed3 p.1 p.2 = ∅).card = 294
+
+theorem n2_packing (ha : 2 ≤ a) : W / 33 ≤ Census.n2 (Finset.Ico a (a + W))
+```
+
+### Proof route / iterations
+
+- `exposed_iff_mem`: the naive single-omega form FAILED — five simultaneous
+  divisibility atoms (5,7 on both members plus mod 35) exceed omega's
+  elimination. Fix: four small per-gear iffs (each one dvd ↔ one residue,
+  omega-easy), then bridge k%5 = k%35%5, k%7 = k%35%7, generalize r = k%35,
+  `interval_cases r <;> decide` — 35 concrete cases.
+- `forbidden_pairs_count`: plain `decide` hit elaborator maxRecDepth on the
+  1225-pair table. Fix: `set_option maxRecDepth 8192` + `decide +kernel` —
+  the KERNEL evaluates the table (22s build), so the count carries no
+  ofReduceBool/native trust, just the standard axioms.
+- `n2_packing`: `choose` on the per-window existence (`double_slot_in_run`
+  at a + 33i), then `Finset.card_le_card_of_injOn` from `range (W/33)`;
+  membership and injectivity are omega (windows disjoint). Uses
+  Classical.choice via `choose` — flagged per instructions; a Nat.find
+  variant could remove it if anyone ever needs the packing choice-free.
+- Endpoint/adjacency laws proper are two/three applications of
+  `exposed_iff_mem` plus mod-arithmetic rewrites (omega equalities).
+
+### Build status
+
+`lake build` (all 10 targets): **Build completed successfully (992
+jobs)**, zero sorry.
+
+### Axiom audit
+
+All round-10 theorems: `[propext, Classical.choice, Quot.sound]` — and
+notably forbidden_pairs_count does NOT need Lean.ofReduceBool (kernel
+decide, not native_decide). Nothing beyond the standard three anywhere.
+
+### Proposed next target
+
+The corridor now has: cap (32), endpoint residues, forbidden adjacencies
+(counted), and the doubles floor W/33. Natural next: transfer to modulus
+105 (gears 5,7 + 3 is degenerate; 5,7,11 gives mod 385) — but per
+constructor 20.2 residue laws cannot cap sizes, so the higher-value target
+is probably the demand-side assembly: X + packing + census pinning
+combined into the formal statement "under X, P(t) ≥ t − t/33-ish" (the
+prime-density floor X forces), one lemma from existing pieces.

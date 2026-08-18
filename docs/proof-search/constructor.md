@@ -951,3 +951,106 @@ percent-of-primorial scale - which is exactly the extreme-value structure of
 Wall V, beyond bounded-modulus arithmetic by the escape-distance argument and
 beyond local capacity by 20.3. Lemma 1 needs genuine extreme-value input; the
 corridor's role is to localise where that input must bite.
+
+---
+
+# Constructor round 10: top-stratum adjacency answered; lemma 2 stated, censused, and unified with lemma 1
+
+Scripts: `research/strata_adjacency.py` (chunk 1), `research/merge_census.py`
+(chunk 2; step 23->29 chunk-streamed over P = 1.078e9). All census anchors
+verified: F_k(M+q') = 11/18/25/34/43 reproduced exactly; the 62 k=3 chains at
+step 19->23 match the corpus fuel census number exactly.
+
+## 21. Chunk 1: can two top-stratum classes mod 385 be adjacent? NO - and the
+per-machine alpha1 certificate closes
+
+**Lateral's live target, answered.** At every machine y = 13, 17, 19, 23 the
+top stratum (maximal gaps) occupies 4-6 classes mod 385, and the class-level
+adjacency test - is any r and r+F both a top-stratum left endpoint mod 385 -
+returns EMPTY at all four machines. Two maximal gaps can never be adjacent,
+certified by class arithmetic alone (given the address census, one period
+scan each).
+
+**The alpha1 finite check, three-tier structure** (dangerous pair (s1,s2) =
+adjacent gap sizes with s1+s2 > F_k + alpha1*q'/3):
+
+    machine  alpha1  dangerous  tier A      tier B         tier C   realized
+                     pairs      (A3 empty)  (385-disjoint) residual
+    13       1       14         5           5              4        NONE - closes
+    17       4/3     38         10          26             2        NONE - closes
+    19       4/3     78         11          63             4        NONE - closes
+    23       4/3     230        56          78             96       NONE - closes
+
+Proof-of-concept written out at y = 13, alpha1 = 1 (budget F2_k <= 16.67,
+actual 16): the 14 dangerous pairs die as 5 by the machine-free A3 law, 5 by
+mod-385 strata-class disjointness, 4 by direct verification ((7,11), (8,10)
+and mirrors - class-compatible but unrealized). Honest trend: tier C grows
+with the machine (4 -> 96 at y=23) because medium strata spread over more
+classes mod 385 - the class tier needs the next corridor level (mod 5005) to
+stay sharp at scale, and the uniformity-in-y question (the drift of pinned
+addresses) remains exactly as Lateral posed it.
+
+## 22. Chunk 2: lemma 2 - precise statement, census, and the spectrum reduction
+
+**Precise statement (as the tolerance ledger uses it).** At consecutive step
+M -> M+q': excess(M, q') := F(M+q') - F2(M); lemma 2 demands
+excess <= alpha2*q'. Excess is positive iff a k >= 2 chain (k consecutive
+M-openings all deleted by q') beats every k = 1 merge.
+
+**Full merge census** (every chain in the full joint period, five steps):
+
+    step      chains        k-hist                    excess_k  3*excess/q'
+    11->13    264           {1: 258, 2: 6}            0         0.000
+    13->17    2,897         {1: 2825, 2: 72}          2         0.353
+    17->19    43,462        {1: 42374, 2: 1088}       0         0.000
+    19->23    745,480       {1: 733672, 2: 11746,     3         0.391
+                             3: 62}
+    23->29    15,660,527    {1: 15416705, 2: 243822}  4         0.414
+
+Argmax anatomies: interior gaps are LITERAL {2u', q'-2u'} at every step with
+excess > 0 (13->17: 11 = 17-6; 19->23: (8,15) = (2u', q'-2u'); 23->29:
+10 = 2u'); interior residues sit exactly on the teeth; and g_L + g_R <= F2 at
+every argmax. The identity excess = interior_sum - (F2 - g_L - g_R) verified
+at all five steps.
+
+**The spectrum reduction (the round's structural result).** A k-chain's
+merged gap is a sum of k+1 CONSECUTIVE old gaps. Define the consecutive-sum
+spectrum F_j(M) = max sum of j consecutive gaps (F_1 = F, F_2 = F2). Then,
+rigorously:
+
+    F(M+q') <= F_{k_max+1}(M)     and     excess <= F_{k_max+1}(M) - F2(M),
+
+k_max = the longest realized chain. Measured spectrum (j = 1..6):
+
+    machine <=11:  7 11 16 18 23 26     increments 4 5 2 5 3
+    machine <=13: 11 16 23 26 28 31     increments 5 7 3 2 3
+    machine <=17: 18 25 28 33 35 40     increments 7 3 5 2 5
+    machine <=19: 25 31 35 38 47 50     increments 6 4 3 9 3
+    machine <=23: 34 39 50 58 65 77     increments 5 11 8 7 12
+
+The bound is tight-ish (F_{k+1} - F2 = 5/7/3/7/11 vs actual excess
+0/2/0/3/4) and the increments are q/3-SCALE, not F-scale: the best j-window
+cannot extend by a large gap - the isolation law generalised to all depths,
+measured.
+
+**The unification.** Lemma 1 IS the first spectrum increment
+(F2 - F = F_2 - F_1). The whole tolerance hypothesis now reads as ONE
+statement about ONE object:
+
+> increment(M -> q') <= F_{k_max+1}(M) - F(M) = sum of the first k_max
+> spectrum increments. The multiplicative route closes if (i) the
+> consecutive-sum spectrum is O(q')-flat to depth k_max+1, and (ii) k_max
+> grows slower than ln y (fuel). Measured: k_max <= 3 at all five steps,
+> increment sums 9-19 against budgets 2.5q' = 32-72.
+
+**Verdict on corridor-reachability (the mandate's question).** Merges are
+indeed local (span ~ k*q'), and the fuel half (k_max) is a bounded-window,
+censusable object where forbidden-configuration machinery is native - genuinely
+more approachable than record sizes. But the size half (spectrum flatness) is
+the same extreme-value family as lemma 1 - the escape-distance obstruction
+applies verbatim to spectrum increments (they are size statements). So lemma 2
+splits: fuel = local, Wall-V-adjacent but with real partial tools (corpus 5.5
+bounds it from gap structure NO, word arithmetic OPEN); flatness = Wall V
+proper, unified with lemma 1. Net gain of the round: two lemmas have become
+one spectrum-flatness statement plus one fuel bound, both censusable at scale
+- the F_j spectrum is offered to the Mechanic as the object to track.

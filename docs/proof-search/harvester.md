@@ -414,6 +414,64 @@ BUILD STATUS ROUND 6: BUILDS CLEAN on first compile; whole ledger green - `lake 
 theorems on [propext, Classical.choice, Quot.sound]. Polignac.lean = 42 theorems,
 six sections (+ assembly).
 
+## 11. Round 7 (coordinator-approved): the assembly line CLOSED - triple bridge +
+the 26-term master theorem
+
+(1) `card_triple_inter_eq` (TRIPLE BRIDGE): |M_q ^ M_r ^ M_s| = the eight disjoint
+side classes LLL..RRR, each ONE CRT class with its floor count. Identical mechanics
+to the pair bridge: 8-way predicate flatten (16 rintro cases) + 7 exclusivity peels,
+every clash discharged by mark_side_unique. Built clean on first compile.
+
+(2) `three_gear_master` (END-TO-END, 26 filter-card terms, subtraction-free):
+
+    distinct + 12 pair side classes = 6 single side classes + 8 triple side classes
+
+over the first t slots, for any distinct odd primes q, r, s. Every term beyond
+"distinct" is one CRT class whose count is closed-form floor arithmetic
+(six_mul_class / twoSided_class + card_class_Ico). Overcount = marks - distinct
+rearranges it to overcount = pairs - triples: this is the formal statement of what
+assembly_check.py verified numerically with zero fails. Proof: three_gear_assembly
++ the three bridges, rewritten term-by-term, omega. With this, THE ASSEMBLY LINE
+FOR 3 GEARS IS CLOSED formally end to end; n > 3 was assessed and not forced
+(needs either iterated three_sets_ie with 2^n-way flattens - mechanical but
+voluminous - or mathlib's signed inclusion-exclusion over ℤ; nothing conceptually
+new, deferred until the team needs it).
+
+Verification discipline: research/master3_check.py ran first (5 gear triples x 5
+window lengths to t = 5005: triple 8-way bridge + the 26-term identity: zero fails);
+assembly_check.py had already verified the floor forms of every class term.
+
+(3) F(2,53) WATCH + PRUNING ASSESSMENT (analysis only, per brief):
+- State: TWO maxgap.exe processes are running (tasklist confirms, ~14 MB and
+  ~16 MB working sets); research/data/maxgap53.log still contains ONLY the header
+  line at round end. Since the header flushed, line buffering works - the likely
+  reading is that no L-increment has completed since launch: at L >= 420 each
+  increment cost was already "tens of minutes" at L = 416 (review 7a) and grows
+  with L; hours per increment is plausible now. Manager should double-check the
+  resume/state file mtime and why there are two processes (parallel L-split or
+  accidental duplicate?).
+- Pruned restart economics: the endpoint law (both endpoints in the 15-residue
+  exposed set mod 35; left endpoint in A(G), as small as 3 residues) gives a 2-5x
+  per-increment cut, INCLUDING the final expensive uncoverable certificate. The
+  corpus search supports resume (review 7a resumed from L = 356), so a pruned
+  rebuild restarts at the current verified L with zero lost work. Break-even is
+  roughly ONE increment at current L; remaining distance is plausibly 20+
+  increments (quadratic-law prediction ~441 vs standing >= 420; geometric law
+  predicts more).
+- ASSESSMENT: a pruned restart beats continuing unpruned unless the run is within
+  ~1 increment of termination, for which there is no evidence. Recommend: verify
+  the two processes' state, implement the endpoint-law filter in rust/maxgap,
+  restart from the current resume state. (Not implemented this round, per brief.)
+
+BUILD STATUS ROUND 7: Polignac BUILDS CLEAN on first compile (973 jobs), zero sorry;
+axiom audit on both new theorems: [propext, Classical.choice, Quot.sound]. Ledger
+note: plain `lake build` currently fails in Corridor.lean - ANOTHER workstream's
+new file, mid-edit this round (3 errors, its own file); all nine other targets
+(BlockedSlots Horizon Layer Supply Census Bridge Polignac Gear Placement) build
+green together: "Build completed successfully" (988 jobs). Mirror of the round-2
+situation in reverse; flagged for the manager, owner to fix. Polignac.lean = 44
+theorems, six sections.
+
 What this buys: the finite u'-pin list U in the round-4 master formula (n2 = B - U,
 U confined to the bottom y/6 slots) now has its kernel formally characterised: existence
 (twin_pin), location bound (twin_pin_le), exactness of the class (twin_split_class_iff),
