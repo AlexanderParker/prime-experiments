@@ -1141,3 +1141,95 @@ falsifies the class function. (d) Any realized chain containing a padded link
 flag interior gaps >= q' explicitly. (e) The 31->37 census: literal k = 5 or
 6 there is CONSISTENT (cap-6 gear); k = 7+ anywhere falsifies the absolute
 cap.
+
+---
+
+# Constructor round 12: the word-indexed tolerance theorem - an identity, and it closes the budget
+
+Scripts: `research/word_ceiling.py`, `research/flank_bound.py`. Data consumed:
+Mechanic's `research/data/fuel_census.csv` (F2(29) = 55, F2(31) = 68, N_k by
+step), spectra for machines 23/29; Lateral's pinning law and k=4 dissection.
+Correction recorded: my first pass this round mis-indexed word flanks and
+mis-modelled firing, inflating every tier; the numbers below are the corrected
+run, and they are anchored - the formula reproduces all six known F(M+q').
+
+## 24. The word-indexed formula
+
+**24.1 Statement (an identity, not a ceiling).** At a consecutive step
+M -> M+q' with u' = round(q'/6), a = 2u', b = q'-a, L = litcap(q' mod 210)
+(round 11, <= 6), let W(q') be the alternating words in {a,b} of length
+<= L-1 together with the padded words (some letter a multiple of q' or
+= +-2c mod q' and >= q'). Call w COMPATIBLE if some tooth residue r in
+{c, q'-c} has all partial sums r + (prefix of w) again in {c, q'-c}
+(1-2 valid starts, computable from q' alone). Then
+
+    F(M+q') = max( F2(M),  max over COMPATIBLE w in W(q') of
+                            [ span(w) + FS_max(w; M) ] )
+
+with FS_max(w; M) = max over occurrences of w in M's gap word of
+(gap before + gap after).
+
+*Why an identity.* Upper bound: any merge is a run of consecutive gaps whose
+interiors are qualifying values - i.e. an occurrence of some w in W - plus its
+two flanks. Lower bound: gcd(P_M, q') = 1, so the q' CRT copies of M's period
+realize every residue shift; hence EVERY occurrence of a compatible word fires
+in exactly |valid starts| of the copies, and its merge is realized somewhere.
+Incompatible words never fire at all. Word list and compatibility come from
+q' mod 210 alone; only occurrences and flanks come from M.
+
+**24.2 Verification and the budget (the round's result).** All six measured
+steps, k-frame:
+
+    step      F    F2   C_lit (binding w)   C_pad   max = F(M+q')  incr  budget
+    11->13    7    11   8   (4)             -       11  = 11       4     10.8
+    13->17    11   16   18  (6)             -       18  = 18       7     14.2
+    17->19    18   25   25  (13)            -       25  = 25       7     15.8
+    19->23    25   31   34  (8,15)          31      34  = 34       9     19.2
+    23->29    34   39   43  (10)            40      43  = 43       9     24.2
+    29->31    43   55   58  (10)            49      58  = 58       15    25.8
+
+The identity holds exactly at every step, and **every step is WITHIN the
+2.5q' budget**. Round 11's residue-free Q-ceiling exceeded budget at 4 of 6
+steps; word-indexing closes all four. The mechanism of the closure is visible:
+the deep Q-windows (e.g. Q_5 = F+28 at 29->31) are sums over gaps whose
+interiors merely EXCEED 2u'; the qualifying words require the interiors to
+equal a or b exactly, and those occurrences sit among small flanks.
+
+**24.3 The one missing bound, named and localised.** Tolerance needs, for
+each compatible w,
+
+    FS_max(w; M)  <=  F(M) + 2.5q'/3 - span(w).
+
+Measured margins (allowance minus actual) are +7.2 to +21.2 at every word of
+every step - a factor ~3 of room. The structural reason, computed: **no
+top-stratum gap ever flanks a compatible-word occurrence** (counts L 0, R 0
+at all 17 word-step pairs), and the largest single flank runs 0.43-0.81 of F.
+So FS_max - F measures -6 to +5, i.e. FS_max <= F + 0.16q' in range against
+the ~0.5q' allowance.
+
+This is exactly round 10's adjacency question with a word in between: an
+(ell+2)-point correlation where A3 was a 3-point one. The tier machinery
+transfers verbatim (A-tier from gears 5,7; B-tier from mod-385 pinned
+addresses; C-tier direct), and the trivial bound FS <= 2F is useless (gives
+incr = O(F), not O(q')) - the content is precisely that the two flanks
+cannot both be near-maximal at a pinned separation.
+
+**24.4 The firing ratio does not strengthen the ceiling (honest answer).**
+Firing is binary, not fractional: a word either has a valid tooth start (then
+every one of its occurrences fires in |valid starts| of the q' copies) or it
+has none (then it never fires anywhere). There is no surviving "fraction" to
+multiply the ceiling by - which is precisely why 24.1 is an identity rather
+than an inequality. What firing DOES explain is the decoupling Lateral
+measured: at 29->31 the k=4 word (10,21,10) is compatible and does fire, but
+its tier is 55 < 58 - the record is carried by the single-letter word (10)
+with a big flank, not by the long chain. Fuel length and record growth are
+separate channels, now with the reason: long words have small flanks.
+
+**24.5 Route status.** Tolerance route = literal cap (proven, round 11) +
+word-indexed identity (this round, verified at six steps) + flank-sum bound
+(the sole open input, bounded complexity: <= 6 words per step, pinned
+addresses, two flanks, ~3x measured margin). Falsification for the running
+censuses: any step where max over compatible words of span + FS_max fails to
+equal F(M+q') would break 24.1; any FS_max exceeding F + 2.5q'/3 - span would
+break the budget at that step (31->37 is the next test: words (12,25,12) and
+mirrors at a cap-6 gear, F = 58, budget incr 30.8).

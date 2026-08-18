@@ -1259,4 +1259,53 @@ theorem twin_pin_self_block {p y u : ℕ} (hp : p.Prime) (hp2 : (p + 2).Prime)
     rw [hlo] at h1
     exact h1 (dvd_refl p)
 
+/-! ## The covering-search endpoint law: F(2,y) ≡ 0 mod 3
+
+The number-theoretic core of the mod-3 pruning used by
+`rust2/src/bin/maxgap_pruned.rs`. In the adjacent (covering-search) frame each
+odd prime `q` blocks one pair of ADJACENT residues `{o, o+1}` mod `q`. At
+`q = 3` that pair leaves exactly ONE free class, so gear 3 cannot leave two
+incongruent positions uncovered: both flanks of a maximal covered run are
+congruent mod 3, and the run's gap length is a multiple of 3.
+
+In the search's terms `F(2,y) = M + 1` where `M` is the largest coverable run,
+so `endpoint_run_mod_three` says `F(2,y) ≡ 0 (mod 3)` - matching all thirteen
+known exact values (33, 48, 54, 75, 102, 117, 129, 174, 264, 273, 309, ...).
+Verified exhaustively over ALL offset tuples in research/lefttaut_check.py
+(y = 11, 13, 17) and numerically in research/literal_cap_gap_d.py (T3). -/
+
+/-- `AdjBlocked q o i`: gear `q`, sitting at offset `o`, blocks position `i`
+in the adjacent frame - the covering search's blocking relation, one pair of
+adjacent residues per gear. -/
+def AdjBlocked (q o i : ℕ) : Prop := i % q = o % q ∨ i % q = (o + 1) % q
+
+instance (q o i : ℕ) : Decidable (AdjBlocked q o i) := by
+  unfold AdjBlocked; infer_instance
+
+/-- **One free class at gear 3.** The adjacent pair `{o, o+1}` covers two of
+the three classes mod 3, so an unblocked position sits in the single
+remaining class `o + 2`. -/
+theorem free_class_three {o x : ℕ} (h : ¬ AdjBlocked 3 o x) :
+    x % 3 = (o + 2) % 3 := by
+  unfold AdjBlocked at h
+  push_neg at h
+  omega
+
+/-- **Uniqueness.** Gear 3 cannot leave two incongruent positions uncovered. -/
+theorem free_class_unique_three {o x y : ℕ} (hx : ¬ AdjBlocked 3 o x)
+    (hy : ¬ AdjBlocked 3 o y) : x % 3 = y % 3 := by
+  rw [free_class_three hx, free_class_three hy]
+
+/-- **The endpoint law.** If a run of `M` positions starting at `s` has both
+flanks `s - 1` and `s + M` unblocked by gear 3, the gap length `M + 1` is a
+multiple of 3. With `M` maximal this is `F(2,y) ≡ 0 (mod 3)`: the mod-3 skip
+of the pruned covering search, and the reason every known exact value of
+`F(2,y)` is divisible by 3. -/
+theorem endpoint_run_mod_three {o s M : ℕ} (hs : 1 ≤ s)
+    (hL : ¬ AdjBlocked 3 o (s - 1)) (hR : ¬ AdjBlocked 3 o (s + M)) :
+    (M + 1) % 3 = 0 ∧ 3 ∣ (M + 1) := by
+  have h := free_class_unique_three hL hR
+  refine ⟨by omega, ?_⟩
+  exact Nat.dvd_of_mod_eq_zero (by omega)
+
 end Polignac

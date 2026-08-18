@@ -7,6 +7,8 @@ import Bridge
 import Gear
 import Placement
 import Corridor
+import Machine13
+import MaxGap
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -69,3 +71,18 @@ open BlockedSlots
 #print axioms Corridor.forbidden_first_examples
 #print axioms Corridor.forbidden_pairs_count
 #print axioms Corridor.n2_packing
+#print axioms Machine13.w11
+#print axioms Machine13.w16
+#print axioms Machine13.exposed13_iff
+#print axioms Machine13.gap_le
+#print axioms Machine13.pair_sum_le
+#print axioms Machine13.gap11_realized
+#print axioms Machine13.pair16_realized
+#print axioms Machine13.alpha1_certificate
+#print axioms Machine13.lemma1_at_13
+#print axioms Machine13.tierA_forbidden
+#print axioms Machine13.no_11_11_chain
+#print axioms MaxGap.uncovered_span_mod_three
+#print axioms MaxGap.F_zero_mod_three
+#print axioms MaxGap.M_two_mod_three
+#print axioms MaxGap.not_max_of_mod_three

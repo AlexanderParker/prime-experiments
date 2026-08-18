@@ -524,3 +524,108 @@ LAUNCH: maxgap_pruned.exe 53 420, detached via Start-Process,
   (the required consistency check), then proceeds 423, 426, ... (421, 422 skipped by
   law). The two unpruned processes (PIDs 32784, 89404) were NOT touched - manager
   retires them after this report.
+
+## 13. Round 9: pruning theorems formalized; the literal cap transfers to Polignac d
+
+### (1) The two pruning theorems' number-theory cores
+
+VERIFIED FIRST, exhaustively over ALL offset tuples (research/lefttaut_check.py -
+not the pruned search, so the check is independent of the code being justified):
+y = 11/13/17, F = 21/33/54 (corpus match), all = 0 mod 3, and the left-taut
+equivalence holds at EVERY L from 1 to F+2, zero mismatches. Plus the mod-3
+core over all offsets and positions (literal_cap_gap_d.py T3, zero fails).
+
+KERNEL-CHECKED (mine, proofs/Polignac.lean - no collision with Formalist's
+Machine13; built clean on first compile, axioms [propext, Quot.sound] only):
+- `AdjBlocked q o i`: the covering search's blocking relation (gear q at offset
+  o blocks the ADJACENT pair {o, o+1} mod q) - the adjacent-frame counterpart of
+  BlockedSlots.Blocked, now a definition the search's proofs can cite.
+- `free_class_three`: gear 3's pair covers two of three classes, so an unblocked
+  position sits in the single free class o+2 mod 3.
+- `free_class_unique_three`: gear 3 cannot leave two incongruent positions
+  uncovered.
+- `endpoint_run_mod_three` (THE ENDPOINT LAW): if a run of M positions has both
+  flanks unblocked by gear 3, then 3 | (M+1). Since F(2,y) = M+1 at the maximal
+  run, this IS "F(2,y) = 0 mod 3" - the mod-3 skip's justification, and the
+  reason all thirteen known values are divisible by 3.
+
+HANDED TO FORMALIST (exact statement, in agents-shared; NOT taken myself because
+it quantifies over coverings and wants the search formalized, which is their
+Machine-file machinery, not a one-lemma job):
+  LEFT-TAUT EQUIVALENCE. Fix gears Q and L >= 1. Write Cov(L) for "there is an
+  offset assignment o : Q -> N with every position of [0, L) AdjBlocked by some
+  gear". Then Cov(L) <=> there is such an assignment additionally leaving
+  position -1 unblocked by every gear.
+  (=>) Let M >= L be maximal with Cov(M) (finite: M < F). Its witness cannot
+  block position -1, else the run [-1, M) of length M+1 is covered, contra
+  maximality. Restricting that witness to [0, L) proves the taut form.
+  (<=) Trivial. Verified exhaustively y <= 17, every L.
+  Consequence used by the search: every gear may drop its two offsets q-2, q-1
+  (those blocking -1), so gear q never blocks positions = -1 mod q.
+
+### (2) HARVEST: the literal cap transfers to Polignac gap d (tool:
+research/literal_cap_gap_d.py)
+
+Question posed: does the SUMMARY's literal cap ("literal chains have at most 6
+members, for every gear, forever" - a 48-class finite check) survive for
+separation d != 2? ANSWER: YES for every d tested, with one honest exclusion.
+
+Computed the analog of Constructor's table for d = 2, 4, 8, 10, 14, 16, 20, 28
+(all d != 0 mod 6), over every prime q' in (d, 2000]:
+
+    d    e=d/2   |E_d| mod 35   cap spectrum by class      max cap  invariance
+    2      1        15        {2:24, 3:4, 4:14, 6:6}          6      OK 48 cls
+    4      2        15        {2:24, 3:4, 4:14, 6:6}          6      OK 48 cls
+    8      4        15        {2:24, 3:4, 4:14, 6:6}          6      OK 48 cls
+   16      8        15        {2:24, 3:4, 4:14, 6:6}          6      OK 48 cls
+   10      5        20        {4:24, 6:24}                    6      OK 48 cls
+   20     10        20        {4:24, 6:24}                    6      OK 48 cls
+   14      7        18        {2:24, 4:12, 6:12}              6      OK 48 cls
+   28     14        18        {2:24, 4:12, 6:12}              6      OK 48 cls
+
+d = 2 reproduces Constructor's published table exactly ({2:24, 3:4, 4:14, 6:6}),
+which validates the re-implementation.
+
+WHAT TRANSFERS VERBATIM (no d-specific input at all):
+- the architecture: a literal chain is an interleaved two-phase walk with
+  PERIOD 70 mod 35, so the cap is a function of q' mod 210 ONLY - the same
+  48-invertible-class finite check, per d;
+- class invariance itself: verified per d over ~300 primes each, zero
+  mismatches, exactly as in the twin case;
+- THE CEILING: max cap = 6 for every d tested. "Literal chains have at most 6
+  members, for every gear, forever" appears to be separation-INDEPENDENT.
+
+WHAT NEEDS THE d-SPECIFIC INPUT (two scalars, both closed-form):
+- the exposed set E_d mod 35: gears 5, 7 block +-e*6^{-1}, and gear q's two
+  blocked residues COLLAPSE TO ONE exactly when q | e. That collapse condition
+  is my kernel-checked `Polignac.slot_cap_gap`, so the sizes are forced:
+  |E_d| = prod over {5,7} of (q - r_q), r_q = 1 if q | e else 2 - giving
+  15 (generic), 20 (5 | e), 18 (7 | e), 24 (35 | e). The measured column above
+  matches this formula exactly. The Hardy-Littlewood factor and the exposed-set
+  size are the same object.
+- the walk step u'_d(q') = least positive representative of +-e*6^{-1} mod q'
+  (twin case: round(q'/6)).
+So the per-d fuel bound is a two-line specialisation, not a new theory.
+
+WHAT DOES NOT TRANSFER AS STATED (the honest exclusion): d = 0 mod 6, i.e.
+3 | e. There gear 3 keeps TWO free classes instead of one (the same free-class
+count that drives my endpoint law above), the single-slot-frame collapse fails,
+and the walk lives mod 105 with two subframes. Not computed here; flagged as
+the one genuine d-specific gap. Note this is exactly the class containing the
+densest Polignac gaps (d = 6, 12, 18...), so it is worth someone's round.
+
+CONSEQUENCE FOR THE PROGRAMME: every separation d != 0 mod 6 gets its own fuel
+bound with the same ceiling 6, so the per-d tolerance route generalizes - the
+Wall-V pricing is not twin-specific. Combined with round 1's per-gap reduction
+(gapPairs_infinite_iff_survivor_in_window) the whole tolerance apparatus is now
+stated for every even gap.
+
+### (3) F(2,53) WATCH - PRUNED RUN REPRODUCES 420, UNPRUNED PAIR RETIRED
+
+*** The pruned run REPRODUCED "run of 420 is coverable" *** (log line 2), then
+skipped 421 and 422 by the mod-3 law and is now searching L = 423. The manager
+retired the unpruned pair during this round: tasklist now shows ONLY
+maxgap_pruned.exe PID 94812 (13.5 MB). Unpruned log's last line before
+retirement was "run of 421 is coverable"; the pruned run is ahead of it in
+effective progress (421, 422 disposed of by theorem rather than by search).
+Log: research/data/maxgap53_pruned.log. Next expected line: 423.

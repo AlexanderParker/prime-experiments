@@ -898,3 +898,44 @@ Increments stay q/3-scale (4-15), consistent with flatness.
 - The o(ln y) comparison uses two data points of k_max growth; no fit
   offered, per methodology - the next event (k=5 or its absence at
   37->41) is the informative object.
+
+## Round 12 - the 37->41 falsification test: k=5 absent, and why that is weak evidence
+
+Jobs survived the credit outage except the spectrum pass (relaunched).
+Machine 37 partial census landed: 1.200e11 of the 1.237e12 period (9.7%),
+2.11e10 openings, 6197s, 4 probes.
+
+    step      openings   N2          N3     N4   k_max
+    37->41    2.11e10    163848288   300    0    3
+    37->43    "          158745169   230    0    3
+    37->47    "          138732684   41     0    3
+    37->53    "          183250785   4091   0    3
+
+VERDICT on the live test: NO k=5 anywhere, and no k=4 either - the
+eligible k=5 word (14,27,14,27) at 37->41 does not occur on the scanned
+prefix. Constructor's cap SURVIVES this test.
+
+HONEST WEIGHT OF THE EVIDENCE (the part that matters): this is much
+weaker than it looks. Per-opening rates at 31->37 were N3 1.14e-5,
+N4 3.47e-8. If those rates persisted, 37->41 would have shown ~734 k=4
+instances - so naively the absence is decisive. But N3 itself is
+SUPPRESSED by a factor 830 at this step (1.42e-8 per opening), and
+conditioning on that suppression the expected N4 is 0.91. Observing 0 is
+therefore consistent with no cap at all. The test did not probe the cap;
+it re-measured arithmetic selection.
+    => The k=4/k=5 question is decided by WHICH GAP VALUES are abundant
+    at a step, not by a length law. A real cap test needs a step whose
+    (s, q'-s) pair is abundance-favoured (like 29->31 and 31->37 were),
+    scanned to full period - i.e. the informative steps are chosen by
+    arithmetic, not by size.
+
+Chain condition again exact at this scale: pred = 90 = F_k for 41/43/47
+probes (F(2,41) = 273/3 = 91 adjacent-frame; k-frame max gap 88, F2 90),
+q=53 pred 92. Consistent with the corpus chain.
+
+Spectrum-31 F_j pass relaunched detached (spectrum31.log) after the
+outage killed it; machine-23/29 spectra already delivered (r11).
+L=15 hunt survived the outage (PID 77120): 54.5%, members to ~6.6e12,
+max L = 12 in the latest chunks (record L=14 unbeaten; predicted first
+L=15 near 5e12, now inside the scanned range - absence so far is a
+sub-1-sigma observation, not yet an event).

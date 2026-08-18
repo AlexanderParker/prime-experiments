@@ -709,3 +709,104 @@ constructor 20.2 residue laws cannot cap sizes, so the higher-value target
 is probably the demand-side assembly: X + packing + census pinning
 combined into the formal statement "under X, P(t) ≥ t − t/33-ish" (the
 prime-density floor X forces), one lemma from existing pieces.
+
+## Round 11 - the y=13 alpha1 certificate + F = 0 mod 3 (2026-08-18)
+
+### What was done
+
+Two new files, both registered and green: `proofs/Machine13.lean` (the
+certificate) and `proofs/MaxGap.lean` (the mod-3 endpoint law). Ledger now
+996 jobs, 12 targets. Zero sorries anywhere.
+
+Everything verified against research/strata_adjacency.py BEFORE formalising:
+the residue predicate matches the tool's exposed array on all 5005 residues,
+F_k = 11, F2_k = 16, dangerous/tier split 14 = 5 + 5 + 4 with none realized,
+witnesses 122 (gap 11) and 117 (pair 5+11) from its period scan.
+
+### The certificate, final statements
+
+```lean
+theorem gap_le      ... : b - a <= 11          -- F_k(13) <= 11
+theorem pair_sum_le ... : c - a <= 16          -- F2_k(13) <= 16
+theorem gap11_realized   : openings 122,133 with nothing between  -- F  = 11
+theorem pair16_realized  : openings 117,122,133 (gaps 5,11)       -- F2 = 16
+theorem alpha1_certificate ... : 3 * (c - a) <= 3 * 11 + 1 * 17
+theorem lemma1_at_13       ... : (c - a) - 11 <= 1 * 17
+theorem tierA_forbidden : allowed3 of (6,11),(8,11),(11,6),(11,8),(11,11) = empty
+theorem tierA_kills / no_11_11_chain : those chains cannot exist at all
+```
+
+Tier status: A + B + C ALL CLOSED, nothing sorried, nothing hypothesised.
+The period scan subsumes tiers B and C - at fixed y the strata census is
+itself a one-period fact, so scanning the period is strictly stronger than
+the class-disjointness argument plus the 4 direct checks. Tier A is kept
+separate because it is machine-free and is the piece that scales to machines
+whose period is beyond kernel reach.
+
+### The decisive technique: scan the CRT tuple, not the period
+
+A direct `decide` over residues mod 5005 DOES NOT TERMINATE in practice -
+two shapes were tried (Nat.decidableBallLT over 5005, and List.all over
+List.range 5005), both killed after 5+ minutes with no progress. The fix
+that made the whole round possible: quantify over the CRT TUPLE
+
+    forall a < 5, forall b < 7, forall c < 11, forall d < 13
+
+with the opening test `expT a b c d` and shifts taken modulo each gear
+separately. Same 5005 cases, but every modulus is a single digit and the
+decision tree has depth <= 13 instead of 5005. Cost: 12.4s for both window
+facts. This is the general recipe for any machine whose period is a product
+of small primes.
+
+Second technique note (new, and it cost an hour): the bridge lemma
+`Exposed13 k <-> expT (k%5) (k%7) (k%11) (k%13) = true` times out at 1M
+heartbeats if closed with `tauto` OR `omega`, even though each half is fast
+in isolation (verified by staged bisection). The working close is
+associativity normalisation:
+
+    simp only [expT, Bool.and_eq_true, bne_iff_ne, ne_eq, and_assoc]
+
+i.e. do not ask a search tactic to reassociate an 8-conjunct iff - normalise
+both sides instead. Combined with the round-10 note (never one-shot omega at
+5 dvd atoms; use per-gear iffs), this is the standing shape for gear-set
+bridge lemmas.
+
+A genuine error was caught by the kernel en route: my first pairT
+formulation quantified over ALL window starts rather than openings, and
+`decide` reported the proposition FALSE. Python confirmed 1296
+counterexamples. The corrected statement requires the window to start at an
+opening; that is the real F2 statement.
+
+### F = 0 mod 3 (harvester sec 12)
+
+`MaxGap.lean`: `uncovered_span_mod_three` (two distinct blocked classes mod 3
+leave one, so any two survivors are congruent), `F_zero_mod_three`
+(3 | M+1 = F), `M_two_mod_three`, `not_max_of_mod_three` (the pruning rule:
+a length not = 2 mod 3 can never be maximal). The search bookkeeping -
+maximality forcing both bounding positions uncovered, gear 3 active - is
+taken as hypotheses; the arithmetic core is the theorem. All four need only
+[propext, Quot.sound].
+
+### Build status and axiom audit
+
+`lake build`: **Build completed successfully (996 jobs)**, 12 targets, zero
+sorry, zero warnings.
+
+Notable: `Machine13.w11` and `Machine13.w16` - the two period scans -
+**depend on NO axioms at all** (pure kernel computation, no native_decide,
+no ofReduceBool). Everything else standard three; MaxGap needs only two.
+
+### Not done this round
+
+The 48-class literal cap (constructor 23.2) was not attempted - the y=13
+certificate plus its two failed scan shapes consumed the round. It remains a
+clean target: 48 invertible classes mod 210, cap values 2/3/4/6, and the
+CRT-tuple recipe above applies directly (quantify over q' mod 210 and the
+walk offsets). Recommended as next round's first item.
+
+### Proposed next target
+
+(a) the 48-class literal cap, as above; or (b) machine 17 (period 85085) -
+the CRT-tuple recipe should still fit, and it is the first machine where
+tier B/C genuinely separate from the scan, so it would test whether the
+certificate structure generalises as the constructor's table predicts.

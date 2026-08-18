@@ -949,3 +949,92 @@ realized high-k events are doubly rare - fuel abundance x phase alignment -
 which would make the effective k_max of REALIZED chains grow slower than the
 census k_max, tightening the graded constant. One pass over existing census
 machinery per step.
+
+## Round 12 (2026-08-18): the firing law is exact - and it refutes my own round-11 claim
+
+Steering taken: alignment fraction at the N4 populations, the law behind it,
+and what double rarity does to the graded constant. Tools:
+`research/firing_ratio.py`, `research/firing_law_check.py`,
+`research/firing3137.py`, `research/graded_constant.py`.
+
+### The firing law (derived, then verified with zero violations)
+
+Inside a chain of gear q', consecutive kills sit at the two teeth {u, -u}
+alternately, so a kill at u is followed by a step of -2u = q'-s and a kill at
+-u by a step of +2u = s (s = 2u mod q'). **The spacing word's FIRST entry
+therefore fixes the orientation and hence a SINGLE firing residue:**
+
+    word starts with s      ->  site fires iff p = -u (mod q')
+    word starts with q'-s   ->  site fires iff p = +u (mod q')
+
+One residue, not two: per-window firing density 1/q', HALF the naive 2/q'
+(k=1 kills are the exception - they fire at both teeth, 2/q').
+
+Verified by recomputing every site's actual kill-set from gear q' directly
+(the checker asserts both directions - predicted-fired must fire, predicted-
+not must not): **zero violations** over 13,062 sites at 19->23 and 29->31.
+Measured per-window fractions: 428/13000 = 0.0329 vs 1/31 = 0.0323 (k=3);
+2/62 at 19->23 (small sample, 1/23 = 0.043).
+
+### SELF-CORRECTION: round 11's "1 of 4 fired" was a one-window artifact
+
+I reported last round that only 1 of the 4 k=4 fuel sites is phase-aligned,
+and that site 858111062 (on gear 31's shield) is "sterile forever". **Both
+claims are wrong.** The new machine's period is q'*P_old, and P_old is
+invertible mod q', so each site recurs at q' distinct residues across the
+q' phase windows: **every fuel site fires exactly once per new-machine
+period**, at the computable address
+
+    j = (fire - p) * P_old^{-1}  (mod q'),   firing position p + j*P_old.
+
+Verified for all four k=4 sites: j = 12, 30, 0, 18, giving positions
+13,159,557,562 / 32,754,547,977 / 672,200,337 / 20,267,190,752, each with
+chain residues [26,5,26,5] - all teeth, all four fire. The "1/4" was measured
+inside one machine-29 period only.
+
+Same artifact corrupted my round-11 record claim: "realized k=4 gives G=52
+while F(31)=58 comes from a k=3 site". The 52 was the best merge in ONE
+window; F(31)=58 lives in a different phase window. Anything I said last
+round about fuel and records being decoupled is withdrawn.
+
+### Consequence for the graded constant: NO multiplier (honest negative)
+
+    realized k-chains per NEW period = N_k     (exactly - no suppression)
+    realized density                 = N_k / P_new = (1/q') x site density
+
+Alignment is a DENSITY factor, never a count factor. The Constructor's
+word-indexed ceiling gets no free multiplier from it. The hoped double
+rarity (fuel x alignment) does not exist: it is one rarity, counted twice.
+
+### The graded table (what actually binds)
+
+    step      q   F_old F_new  incr/q  lemma1  excess  exc/q      N3   N4
+    13->17   17     11    18   0.412   0.294       2  0.118       0    0
+    17->19   19     18    25   0.368   0.368       0  0.000       0    0
+    19->23   23     25    34   0.391   0.261       3  0.130      62    0
+    23->29   29     34    43   0.310   0.172       4  0.138       0    0
+    29->31   31     43    58   0.484   0.387       3  0.097   13000    4
+    31->37   37     58    88   0.811   0.270      20  0.541   70964  216
+
+Max increment/q' = 0.811 (31->37) against the 2.5 budget - headroom 3.1x, no
+step binds. But the shape is the warning: **excess overtakes lemma 1 exactly
+at the largest fuel population** (0.541 vs 0.270 at 31->37, where N3 = 70,964
+and N4 = 216), which is precisely what "realized = N_k per period" predicts.
+Fuel abundance drives excess and alignment does not damp it, so the excess
+share should keep growing with the fuel census - the 2.5 budget is safe at
+these sizes on measured numbers only, and lemma 2 is not vacuous.
+
+(Still running at write-up time: the 31->37 site-residue histogram over the
+full 3.34e10 period - a uniformity check on how the 216 sites spread across
+the 37 phase windows. Not load-bearing now that firing is once-per-period by
+the law; it can only refine the density statement.)
+
+### Proposed next chunk
+
+The excess/lemma-1 crossover at 31->37 is the real signal. Offer: price the
+excess share as a function of the fuel census - is excess/q' ~ c * log(N3)/q'
+or ~ (F_{k+1}-F2)/q' with the spectrum doing the work? Two more steps of
+spectrum data (machines 37, 41) would settle whether the excess share
+saturates or keeps climbing; that is the quantity the tolerance route's
+constant actually depends on, and my round-11 graded framing priced the wrong
+half of it.
