@@ -34,7 +34,10 @@ from fragile_census import primes_upto
 from prefix_census import is_prime
 
 
-def scan(K, seg=16_000_000):
+def scan(K, seg=16_000_000, k_start=1, progress_every=0):
+    """maximal load-1 runs with L >= 8 in k in [k_start, K].
+    NOTE with k_start > 1: runs straddling k_start are truncated at
+    k_start - start a little early and dedupe if that matters."""
     import math
     Q = math.isqrt(6 * K + 1)
     sieve_ps = [q for q in primes_upto(Q) if q >= 5]
@@ -44,8 +47,14 @@ def scan(K, seg=16_000_000):
     carry_len = 0
     carry_start = 0
     t0 = time.time()
-    for a in range(1, K + 1, seg):
+    nseg = 0
+    for a in range(k_start, K + 1, seg):
         b = min(K + 1, a + seg)
+        nseg += 1
+        if progress_every and nseg % progress_every == 0:
+            done = (b - k_start) / (K + 1 - k_start)
+            print(f"  ... {100*done:.1f}% (k={b}, {time.time()-t0:.0f}s)",
+                  flush=True)
         n = b - a
         exL = np.zeros(n, bool)
         exR = np.zeros(n, bool)
