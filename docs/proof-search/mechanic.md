@@ -1036,3 +1036,107 @@ at full period, and I can run any step the Constructor nominates.
 - satruns_L15.log (PID 77120): 57.7%, members to ~7e12, max L = 12 in
   recent chunks; L=14 record unbeaten; first L=15 predicted near 5e12
   (inside the scanned range now, absence still sub-1-sigma).
+
+## Round 14 - the padding census: padding IS the gear-37 anomaly
+
+Tool: research/padding_census.py (new). Data: research/data/
+padding_census.csv, padding31.log, padding37.log (running).
+Definition used (Lateral's, verified equivalent to my window condition):
+link letters +1 = spacing s = 2u mod q', -1 = spacing q'-s, 0 = spacing
+0 mod q' (both kills at the SAME tooth, one lap apart - a PADDED link,
+which requires a gap of M of exactly q'). Legality = non-zero letters
+alternate, zeros free == prefix-sum range <= 1, so padded links were
+always inside my N_k; this tool breaks them out by z = #zeros.
+
+### (1) Padding SUPPLY per step, full period
+
+    step      F(M)  gaps of M      gaps == q'   share      gaps == 2q'
+    13->17    11    1484           0            0          0
+    17->19    18    22274          0            0          0
+    19->23    25    378674         86           2.27e-4    0
+    23->29    34    7952174        6            7.54e-7    0
+    29->31    43    214708724      2090         9.73e-6    0
+    31->37    58    6226553024     26366        4.23e-6    0
+
+ONSET RULE (exact, structural): supply > 0 requires F(M) >= q' - a gap
+of exactly q' must fit at all. This is ZERO by structure at 13->17
+(F=11 < 17) and 17->19 (F=18 < 19), not merely rare; padding becomes
+possible from 19->23 on. 2q' never fits in range (needs F >= 2q').
+
+SCALING: the share is NOT the smooth e^-(q'/lambda) of the SUMMARY's
+model - measured 2.27e-4, 7.54e-7, 9.73e-6, 4.23e-6 is erratic and
+non-monotone, off the exponential by 20-1000x. Cause identified in the
+gap histograms: the tail of the gap distribution is ARITHMETICALLY
+SELECTED, not smooth. Machine 23 has gap 28: 322, gap 29: 6, gap 30:
+112 - the value 29 is suppressed ~50x against both neighbours; gap 24
+is entirely ABSENT from machines 19 and 23 alike. Padding supply is
+therefore the same kind of object as round 11's fuel: selected by which
+gap values the machine happens to realize, with no smooth law. (Order
+of magnitude, 1e-6..1e-4, is in the exponential's ballpark; the
+step-to-step pattern is not.)
+
+### (3) Padding vs the tier table - INDEPENDENT AXES, and the answer
+
+    step      F(M+q')  F2   F3   F4   min k   pad supply   winner
+    13->17    18       16   23   26   2       0            literal
+    17->19    25       25   28   33   1       0            literal
+    19->23    34       31   35   38   2       86           literal
+    23->29    43       39   50   58   2       6            literal
+    29->31    58       55   65   70   2       2090         literal
+    31->37    88       68   85   90   3       26366        PADDED
+    37->41    91       90   95   103  2*      running      ?
+    (* machine-37 F_j from a 16.2% prefix: 88 90 95 103 112 115, so
+     these are LOWER bounds; if the full period lifts F2 to >= 91 the
+     min k there drops to 1.)
+
+Padding does NOT change the tier bound. A run of k killed openings
+merges k+1 gaps whatever its letters are, so the ceiling F_{k+1} >=
+F(M+q') is padding-blind. What padding changes is FEASIBILITY: it makes
+runs legal that literal letters would break. The two are independent
+axes - tier = how many gaps merge; padding = whether the links connect -
+and the 31->37 record needs BOTH: k = 3 (tier) AND one padded link.
+
+### THE RESULT: padding is not decorative, it is the whole anomaly
+
+At 31->37 the census splits the runs by z:
+
+    class            count          max flanked span
+    z = 0 (literal)  114,750,740    71
+    z = 1 (padded)   26,366         88     <- the true F(M+37)
+      of which k=2   26,030         85
+      of which k=3   336            88     <- the record run
+    z >= 2           0              -
+
+LITERAL-ONLY WOULD GIVE 71, NOT 88. The record is unreachable without a
+padded link, and the k=3 z=1 class that achieves 88 has just 336 members
+in a 3.34e10-slot period. Consequences:
+ * independent confirmation of Lateral's winner anatomy
+   [kill]-37-[kill]-12-[kill]: k=3 openings, one padded link, from a
+   census that never looked for it;
+ * the GEAR-37 ANOMALY (on record since round 8) IS the padding onset.
+   Without padding the step's increment would be 71-58 = 13, i.e.
+   adjacent-frame 1.054 vs budget 2.5 - a 58% margin, unremarkable.
+   With padding it is 30, i.e. 2.432 - the 2.7% margin. The entire
+   binding-step problem is one padded link;
+ * so the route's tightest constraint is not a length effect but an
+   AVAILABILITY effect: whether M carries a gap of exactly q'.
+
+### (2) Double-padded runs: ZERO so far, first appearance predicted
+
+z >= 2 count is 0 at every step censused, including 31->37. This is
+expected, not surprising: the number of ordered padded pairs sharing a
+run scales like supply^2 / gaps, which is 0.02 (19->23), 0.00 (23->29),
+0.02 (29->31), 0.11 (31->37). Nothing should have been seen yet.
+PREDICTION (stated before the run lands): at 37->41 the gap count is
+~2.2e11 and, at a share in the measured 4e-6..1e-5 band, supply is
+~1e6, giving supply^2/gaps ~ 5. THE FIRST DOUBLE-PADDED RUN IS EXPECTED
+AT 37->41. Hunt launched: full-period machine-37 padding census
+(padding37.log, ~10h). Absence there would be an event in its own right -
+it would mean padded links repel, which nothing currently predicts.
+
+### Jobs
+- padding37.log: the double-padded hunt at 37->41 (full period).
+- fuel37_k5hunt.log: extended k=5 slice, still running.
+- satruns_L15.log: 60.9%, members to ~7.3e12, max L = 12 recent;
+  L = 14 record unbeaten.
+- spectra.csv now holds machines 13..37 (37 at 16.2%, lower bounds).

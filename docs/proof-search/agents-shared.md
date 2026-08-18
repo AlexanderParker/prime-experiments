@@ -5,8 +5,33 @@
 State after round 14 - the corpus's unexplained gear-37 anomaly is EXPLAINED, the literal cap
 is kernel-checked, and padding is capped at one link per run (for now).
 
-NO ROUND 15 WAS BRIEFED - the human stopped the loop after round 14. Mechanic's round-14
-padding census was still running at the time of this rewrite and is unfolded.
+NO ROUND 15 WAS BRIEFED - the human stopped the loop after round 14. All five round-14 reports
+are folded (mechanic's landed last).
+
+THE BINDING STEP IS ONE PADDED LINK (mechanic, full-period census at 31->37, independent of
+lateral and constructor): splitting runs by z = number of padded links, literal-only runs
+(z=0, 114.75M of them) reach max flanked span 71; padded runs (z=1, just 26,366) reach 88 -
+THE TRUE F(M+37). The record is UNREACHABLE without a padded link. The k=3, z=1 class that
+achieves 88 has only 336 members in a 3.34e10-slot period, and the census independently
+confirms lateral's winner anatomy [kill]-37-[kill]-12-[kill] without having looked for it.
+CONSEQUENCE: without padding the step's increment is 71-58 = 13 (adjacent-frame 1.054, 58%
+margin - unremarkable); with it, 30 (2.432, the 2.7% margin). The whole anomaly is one link.
+ONSET RULE (structural, not statistical): supply > 0 requires F(M) >= q' - zero at 13->17
+(F=11 < 17) and 17->19 (F=18 < 19) by IMPOSSIBILITY, not rarity. Supply of gaps = q' per step:
+0, 0, 86, 6, 2090, 26366. SCALING NEGATIVE: shares 2.27e-4, 7.5e-7, 9.7e-6, 4.2e-6 are erratic
+and non-monotone - the e^-(q'/lambda) model is off by 20-1000x. Cause found in the gap
+histograms: the tail is ARITHMETICALLY SELECTED (machine 23: gap 28 -> 322 occurrences, gap
+29 -> 6, gap 30 -> 112; gap 24 absent entirely from machines 19 and 23). Padding supply is the
+same kind of object as round-11 fuel - no smooth law, only the histogram.
+DOUBLE-PADDED: zero everywhere so far, AND THAT IS EXPECTED - ordered padded pairs per run
+scale like supply^2/gaps = 0.02, 0.00, 0.02, 0.11 through 31->37. PRE-REGISTERED PREDICTION:
+the first double-padded run appears at 37->41 (supply^2/gaps ~ 5). Full-period hunt launched
+(padding37.log, ~10h). Absence would itself be an event - it would mean padded links repel,
+which nothing predicts.
+TIER x PADDING ARE INDEPENDENT AXES: padding does NOT change the tier bound (k killed openings
+merge k+1 gaps whatever the letters, so F_{k+1} >= F(M+q') is padding-blind); padding changes
+FEASIBILITY. The 31->37 record needs both k=3 AND a padded link. F_j spectra extended to
+machine 37 (16.2% prefix): 88, 90, 95, 103, 112, 115 - giving min k = 2 for 37->41.
 
 THE ANOMALY IS EXPLAINED (constructor): the gear-37 spike (2.432q, sitting between neighbours
 at 0.220q and 0.837q - the event the original programme abandoned the multiplicative route
@@ -93,9 +118,10 @@ This looks like a frame difference - slot units vs halved/member coordinates, wh
 load-bearing for both the span ceiling and the twins-vs-other-d comparison. Settle it before
 building further on either statement.
 
-SEARCHES AT STOP: pruned F(2,53) (PID 94812) inside the L = 423 search. L=15 hunt ~59%, L=14
-record unbeaten. Machine-37 k=5 extended slice and mechanic's round-14 padding census still
-running. Ledger green: 13 targets, 998 jobs, zero sorries (+LiteralCap.lean; Machine17.lean
+SEARCHES AT STOP: pruned F(2,53) (PID 94812) inside the L = 423 search. L=15 hunt 60.9%, L=14
+record unbeaten. Machine-37 k=5 extended slice still running. Full-period double-padded hunt at
+37->41 launched (padding37.log, ~10h) - it decides mechanic's and lateral's shared
+pre-registered prediction. Ledger green: 13 targets, 998 jobs, zero sorries (+LiteralCap.lean; Machine17.lean
 written but unregistered by design).
 
 State after round 10 (carry-over) - the tolerance route reduced to two named statements, the
@@ -1177,6 +1203,45 @@ Tool: research/alternation_words.py. Full log: docs/proof-search/lateral.md roun
 - Offering next: the complete word grammar - the exact set of infinitely-
   extendable letter patterns compatible with the small-gear teeth (generalizes
   the cap theorem; positive-description complement to the attempts map).
+
+## Mechanic round 14 (2026-08-18) - PADDING IS THE GEAR-37 ANOMALY
+Tool: research/padding_census.py (new; breaks N_k out by z = #padded links).
+Data: research/data/padding_census.csv, padding31.log. Full working: mechanic.md r14.
+Note for lateral: my window condition (prefix-sum range <= 1) is EQUIVALENT to the
+alternation rule, so padded links were always inside my N_k counts - now split out.
+- THE RESULT, at 31->37 full period (3.34e10 slots): runs split by padding give
+  max flanked span z=0 (literal) = 71, z=1 (padded) = 88 = the true F(M+37).
+  LITERAL-ONLY WOULD GIVE 71. The record is UNREACHABLE without a padded link.
+  Breakdown: z=0: 114,750,740 runs; z=1: 26,366 (k=2: 26,030 max 85; k=3: 336
+  max 88 <- the record); z>=2: 0. Independent confirmation of the winner anatomy
+  [kill]-37-[kill]-12-[kill] from a census that never looked for it.
+  => THE GEAR-37 ANOMALY IS THE PADDING ONSET. Without padding the step's
+  increment is 71-58 = 13 (adjacent 1.054, 58% margin - unremarkable); with it,
+  30 (2.432, the 2.7% margin). The binding step is ONE PADDED LINK.
+- SUPPLY per step (gaps of M equal to exactly q', full period): 0, 0, 86, 6,
+  2090, 26366 for 13->17 .. 31->37; 2q' never fits in range.
+  ONSET RULE (structural): supply > 0 requires F(M) >= q'. Zero by structure at
+  13->17 (F=11<17) and 17->19 (F=18<19) - not rare, impossible.
+  SCALING NEGATIVE: shares 2.27e-4, 7.54e-7, 9.73e-6, 4.23e-6 are erratic and
+  non-monotone - the e^-(q'/lambda) model is off by 20-1000x. Cause found in the
+  gap histograms: the tail is ARITHMETICALLY SELECTED (machine 23 has gap 28:322,
+  gap 29:6, gap 30:112 - value 29 suppressed 50x vs both neighbours; gap 24 is
+  absent from machines 19 and 23 entirely). Padding supply is the same kind of
+  object as round 11's fuel - no smooth law, only the histogram.
+- TIER x PADDING ARE INDEPENDENT AXES (coordinator question 3): padding does NOT
+  change the tier bound - k killed openings merge k+1 gaps whatever the letters,
+  so F_{k+1} >= F(M+q') is padding-blind. Padding changes FEASIBILITY (which runs
+  are legal). The 31->37 record needs BOTH: k=3 (tier) AND one padded link.
+- DOUBLE-PADDED: zero at every step so far, as expected - ordered padded pairs
+  per run scale like supply^2/gaps = 0.02, 0.00, 0.02, 0.11 through 31->37.
+  PREDICTION (pre-registered): at 37->41, gaps ~2.2e11 and supply ~1e6 give
+  supply^2/gaps ~ 5, so THE FIRST DOUBLE-PADDED RUN IS EXPECTED AT 37->41.
+  Full-period hunt launched (padding37.log, ~10h). Absence would itself be an
+  event: it would mean padded links repel, which nothing predicts.
+- F_j SPECTRA extended: machine 37 (16.2% prefix, lower bounds) 88,90,95,103,
+  112,115 -> tier for 37->41 is min k = 2 (drops to 1 if full period lifts F2
+  to >= 91). spectra.csv now covers machines 13..37.
+- L=15 hunt: 60.9% (members to ~7.3e12), L=14 record unbeaten.
 
 ## Mechanic round 13 (2026-08-18) - TIER TABLE: fuel load-bearing at exactly one step
 Tools: research/spectrum_pass.py (new), fuel_census.py (+--start). Data:

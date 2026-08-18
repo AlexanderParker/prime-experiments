@@ -33,6 +33,17 @@ just as big. Padded material simply does not exist at the small machines
 it first appears, and at gear 37 wins for the first time. The unexplained
 spike was a new tier turning on, exactly on schedule.
 
+A third workstream then measured the same step from scratch and found
+the anomaly is literally one link: runs with no padding top out at 71,
+runs with a single padded link reach 88, and only 336 configurations in
+a 33-billion-slot period achieve it. Without that one link the step's
+jump is unremarkable (58% under budget); with it, we get the 2.7% squeak.
+It also found the onset is structural, not luck - padded material cannot
+exist at all until the machine's record gap reaches the gear's size,
+which is exactly why the first three steps have none. Supply beyond that
+is erratic and arithmetic, not smooth: one gap value occurs 322 times
+where its neighbour occurs 6.
+
 Better still, padding turns out to be self-limiting - for now. Two padded
 links can never sit in the same killed run at any machine we can reach
 (proved, and measured: zero exceptions everywhere), which restores the
@@ -128,6 +139,17 @@ same 5005 cases at single-digit moduli, 12.4s.
   adjacent padded pairs at every machine. Then span <= 6.35q' (ceiling
   restored at a larger constant). Enabling ratios climb (F/2q' 0.32 ->
   1.07; F2/2q' 0.47 -> 1.10): the ceiling ends exactly at 37->41.
+- The anomaly is ONE LINK (full-period census at 31->37): literal-only
+  runs reach 71, single-padded runs reach 88 = the true F; the winning
+  class has 336 members in 3.34e10 slots. Without padding the increment
+  is 13 (58% under budget); with it, 30 (the 2.7% margin).
+- Padding onset rule (structural): supply > 0 requires F(M) >= q' - the
+  first three steps have none by impossibility, not rarity. Supply is
+  then arithmetically selected, not smooth (gap 28 -> 322 occurrences vs
+  gap 29 -> 6 at machine 23); the e^-(q'/lambda) model is off 20-1000x.
+- Tier and padding are independent axes: F_{k+1} >= F(M+q') is
+  padding-blind; padding changes feasibility. The 31->37 record needs
+  both k=3 and a padded link.
 - Padding count bound: each padded link's interior gap is >= q' while the
   budget grants (5/6)q', so one padded link forces FS < F - q'/6 and
   p <= ~F/q' (at 31->37, p <= 2.40, so p=3 impossible - as measured).
@@ -188,8 +210,10 @@ same 5005 cases at single-digit moduli, 12.4s.
 
 ## Live fronts (the funnel, narrowest first)
 
-1. THE 37->41 TEST (dated, falsifiable): the padding lemma's enabling
-   ratios (F/2q', F2/2q') cross 1 exactly there, so expect the first
+1. THE 37->41 TEST (dated, falsifiable, and now RUNNING - padding37.log,
+   ~10h full period): the padding lemma's enabling ratios (F/2q',
+   F2/2q') cross 1 exactly there, and the independent supply^2/gaps
+   estimate jumps 0.11 -> ~5, so both workstreams pre-register the first
    two-padded-link run and/or the first padded link of size 82. Finding
    neither means a further suppression mechanism - worth more than the
    lemma. A gap-filtered scan suffices (padded links need gaps >= 41).
