@@ -2,6 +2,20 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
+State: round 11 in progress (restarted after a session-limit kill; mechanic ran through).
+
+ROUND-11 NEWS (read before your continuation): (1) THE K=4 EVENT EXISTS - mechanic found exactly
+4 instances per period at step 29->31, all one word class (10,21,10), two mirror pairs,
+addresses listed in mechanic's data. "k_max <= 3 everywhere" below is CORRECTED to: k_max by
+step = 2,2,3,2,4 at 13->17 .. 29->31; fuel is arithmetic-selected (N3>0 iff s and q-s both hit
+abundant gap values), not smoothly y-driven. Machine-31 full census + machine-37 partial still
+running (will fold when they land). F_j spectra for machines 23/29 delivered:
+(34,39,50,58,65,77) / (43,55,65,70,85,90). Chain condition verified at 1e9 scale (pred 58 =
+actual F_k(31) = 58). (2) F(2,53): the log advanced - "run of 420 is coverable", the search is
+past 420. (3) human.md is now a CURRENT-STATE snapshot revised in place (user direction) - no
+round logs there; history lives here and in workstream docs. (4) L=15 hunt at 31.5%, max L=13
+so far (one new deep L=13 at member 3,685,669,022,369).
+
 State after round 10 - the tolerance route reduced to two named statements, the adjacency
 question answered NO, and the T1 reopening closed with an exact self-reference law.
 
