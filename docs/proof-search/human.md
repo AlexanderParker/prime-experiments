@@ -27,48 +27,58 @@ a zeroth moment invisible to every power moment). The live route is
 different in kind: it prices the growth of the machine's biggest blocked
 stretch (F) step by step, and needs just two finite-flavoured statements -
 "the gap spectrum is flat" and "merge chains stay short" (the fuel bound).
-Round 16 traded a comfortable framing for an accurate one, and got two
-permanent theorems in exchange.
+Round 19 is the first round where the answer to "why does this work?"
+stopped being "luck" — and the reversal came from taking the instruction
+to build new objects rather than re-measure old ones.
 
-The framing first. I had been saying "four parts proven, one open". That
-is misleading: the open part is not a fifth ingredient, it IS the whole
-requirement, now pinned down to at most six specific patterns per step
-instead of ranging over everything. That is real progress - the target
-went from a statement about all configurations to a statement about a
-handful - but it is localisation, not partial completion. Two related
-corrections came with it. The exclusion rule we had been proud of (record
-gaps cannot flank these patterns from both sides) turns out to rule out a
-situation that never arises: the flanks that actually matter are
-middle-sized, never record-sized. So that result, while true and
-machine-checked, is off-target, and I redirected the formal workstream
-mid-round. On the other hand the requirement itself is now the mildest
-version we have ever needed - about typical-large gaps rather than record
-gaps, which is where the slack is greatest.
+The question was this. The live route needs a bound on how big a gap can
+get when a new gear merges several old ones. The bound holds in every
+case we can measure, but the reason it holds looked like coincidence:
+the dangerous configurations happen not to occur. Two workstreams
+attacked that from opposite ends and met in the middle.
 
-The two permanent results. First, a small gem: because one small gear
-exposes only three of its five positions, no run of kills can ever contain
-four openings evenly spaced by the new gear's size. That single fact
-forces padded links to sit either adjacent or one apart - never further -
-so the ceiling on how much padding can contribute now rests on
-arithmetic that holds at every scale, replacing a threshold that was
-about to expire. Second, that whole corridor argument is now
-machine-checked, including an exact list of which residue classes forbid
-adjacent padding: twelve of twenty-four.
+One built a new object — a "window" treated as a single thing carrying
+its own composition — and split the luck into two questions. Is the
+maximum lucky? Yes, and measurably so. But is the underlying rate lucky?
+No: the configurations that would break the bound are suppressed by
+factors of 26, 7, and 1400 against what independence would predict. That
+is not luck, it is a strong negative correlation, and it is exactly the
+"these things do not cluster" statement the route has needed since round
+eight — now measured in a built object instead of assumed.
 
-Meanwhile the experiment two workstreams were betting on dissolved
-honestly. The one predicting a positive result recomputed its own estimate
-properly - by looking the number up rather than extrapolating a trend -
-and found it was fourteen times too high; the expected count at that step
-is 0.017, not 5. So absence there would prove nothing, the bet is void
-rather than won, and the event may simply live beyond any reachable
-computation. Only the structural argument can decide it.
+The other workstream exhibited the same fact from the other side, and
+this is the part I like most: of 132 record-holding windows across three
+machines, ZERO have the shape that would threaten the bound. They are
+always two big flanks with the machine's *smallest* gaps inside — and a
+theorem we already proved forbids exactly that shape from qualifying. So
+the extremal windows are structurally the wrong shape, which is why the
+rate is suppressed, which is why the maximum never reaches the ceiling.
 
-Finally the scope widened: the same five-part decomposition holds for
-every even prime gap, not just twins, with four parts transferring
-(carrying explicit constants) and the open part containing nothing
-gap-specific at all. So it is one open lemma for all of them - closing it
-would settle the whole family, though the family is not settled until it
-is closed.
+Two consequences worth stating plainly. First, the requirement was
+repaired rather than patched: a corrected version now holds at all 15
+machine-depth pairs where the raw version failed at 5 of them. Second,
+and this reverses an assumption the project held from round 8 to round
+17: the DEEP cases are the easy ones. The old hard case turns out to be
+just the shallowest instance.
+
+Honest counterweights, both found by the workstreams themselves. The
+margin on the new criterion is shrinking as machines grow — from 45% down
+to 10% — so it is running out of room exactly where we need it. And one
+"law" we had been leaning on (bigger patterns have smaller flanks) was
+hunted deliberately and FOUND FALSE across machines: the pattern follows
+how often a shape occurs, not how big it is.
+
+Elsewhere: the erratic gap counts that three rounds ago we called
+"no smooth law, only look it up" now have a partial law — a closed-form
+count that explains roughly a quarter of the mess, and whose three cases
+turn out to be the three ways two gear-teeth can relate. And the
+side-conjecture workstream, back on its own mandate, computed the first
+exact values of a named function from the literature, found the published
+conjecture holds but dips sharply at one outlying case, recorded its own
+failed prediction when its extrapolation was refuted by its own next
+computation, and established something reframing: among all even gap
+sizes, twins sit at the 13th percentile of difficulty. We have been
+working the easy end of the family by a factor of two.
 
 ## The map (attempts-map.md - read before proposing anything)
 
