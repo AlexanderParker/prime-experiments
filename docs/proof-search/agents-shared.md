@@ -256,6 +256,14 @@ Consequences, all intended:
 (The manager gave the opposite latitude in round 20 - "report without them rather than blocking"
 - and that was wrong. This rule supersedes it.)
 
+BENCHMARK PROTOCOL (all agents, standing - from the human, 2026-08-23):
+Performance comparisons COUNT OPERATIONS, not wall time - instrument both code paths with
+explicit counters (letters scanned, deletions applied, strikes sieved, or a closed-form op
+count when a run is infeasible) so results are decoupled from the machine. Report ops per step
+and the ratio. At most one wall-time column as a secondary sanity check, and it must come from
+runs executed ALONE - never run compared computations side by side (CPU/cache contention
+invalidates the timings; this ruined a benchmark once already).
+
 MEASUREMENT DIRECTIVE (all agents, standing - from the human, 2026-08-18, and it overrides the
 default habit of this search):
 
