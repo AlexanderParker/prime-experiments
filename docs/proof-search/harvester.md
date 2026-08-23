@@ -346,3 +346,16 @@ Finset.card_insert_of_notMem rename; Nat.Ico_succ_right_eq_insert_Ico lives in
 namespace Nat; beware rwa rewriting the ModEq modulus occurrence; count
 primitive pattern: induction + Nat.succ_div_of_dvd/not_dvd avoids
 division-by-variable omega limits.
+
+## CORRECTION (manager, 2026-08-23, from the prior-art sweep)
+
+The premise "Ziller-Morack compute no h_2 values" is FALSE. Their companion note
+arXiv:1706.03668 (11 days after the theory paper 1706.00317, which we read) computes h_2
+exactly for all p_n <= 73; Table 1 contains our 18, 30, 66, 150, 192 verbatim. Consequences:
+our five values are an exact independent REPLICATION (cross-validation, not first computation);
+their h_2(19) = 258 < 342 SETTLES our open y=19 question (Conjecture 6 holds, margin 24.6%,
+round-17 "~250" prediction right); the 3.8% dip at 13 remains the UNIQUE extreme through
+p_n = 73 in their full table - the "why is 13 extremal?" question stands, now with 12 more
+data points. What remains ours: the per-difference family F_d(y), the fixed-twin ladder
+F(2,37)=264 / F(2,41)=273 / F(2,43)=309 / F(2,53)>=426, maximiser/delta-profile structure.
+Full analysis: docs/novel/paired-jacobsthal-values.md.

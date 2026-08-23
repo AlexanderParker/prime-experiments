@@ -35,9 +35,33 @@ One file per finding, kebab-case slug. Index at the bottom of this file.
 
 ## Index
 
-(empty - backlog below is the seeding queue)
+Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
 
-## Seeding backlog (candidates from rounds 1-19, to be written up and checked)
+- merge-law - F(M+q') from the old machine's gap word alone - PROVED(paper)+SCRIPT-VERIFIED -
+  PARTIAL OVERLAP (Holt-Rudd cycle recursion is the one-class analogue; the no-reconstruction
+  maximal-gap formula itself NOVEL*)
+- deletion-spacing - merge deletions >= q-1 apart, tight - PROVED - PARTIAL OVERLAP
+  (Holt-Rudd Lemma 3.1 one-class; two-teeth q-1 bound NOVEL*)
+- saturation-theorem - q-1 > F(M) implies F(M+q) = F2(M) - PROVED - NOVEL*
+- literal-cap - literal chains <= 6 members forever, function of q' mod 210 - KERNEL-CHECKED core
+  + SCRIPT-VERIFIED spectrum - NOVEL*
+- corridor-law - 12 of 24 gcd classes forbidden, dichotomy - KERNEL-CHECKED - NOVEL*
+  (classification; method standard CRT)
+- polignac-cap - capOf_le_twelve, all 8 gcd classes, empty axiom footprint - KERNEL-CHECKED -
+  NOVEL* (cap; |E_e| product is the known HL local factor)
+- suppression-law - joint qualifying-gap deficits x26/x6.7/x1400 + rate law - MEASURED -
+  PARTIAL OVERLAP on phenomenon (Maier, Ford-Maynard-Tao chains); law + shape NOVEL*
+- tooth-sharing-pinning - twin gear pair pins 4 CRT kill classes closed-form - PROVED -
+  PARTIAL OVERLAP (CRT core classical, Clement 1949 modulus); slot-frame identity NOVEL*
+  but elementary
+- paired-jacobsthal-values - exact h_2 values - COMPUTED - PARTIAL OVERLAP: Ziller-Morack
+  arXiv:1706.03668 Table 1 already has 18,30,66,150,192 (project premise "ZM compute none"
+  FALSE - exact independent replication). Per-difference family F_d, fixed-twin ladder
+  F(2,37..53), dip analysis NOVEL*. ZM h_2(19)=258 settles the project's open y=19 question.
+- twin-percentile - twins at 13.3rd percentile of own family - COMPUTED - NOVEL*
+
+
+## Seeding backlog - COMPLETE 2026-08-23 (all 10 written up and checked; kept for provenance)
 
 - merge-law - F(M+q') computable from the old machine alone (proved, script-verified at 4 steps)
 - literal-cap - literal chains have at most 6 members, every gear, forever (exact over 48 classes)
