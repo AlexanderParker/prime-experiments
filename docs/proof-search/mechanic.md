@@ -711,3 +711,199 @@ corridor in one object.
 10. Long jobs: detached, chunk-flushed, resumable (state files).
     hist_probe/padding_census print only at exit on Windows - an empty
     log means running, not failed.
+
+## Round 20 (2026-08-23/24)
+
+### R20.A Landed round-19 tail jobs (finished after r19 filed; all folded here)
+
+1. F(2,53) = 435 EXACT (maxgap53_pruned.log). alpha=3 needed <= 513:
+   PASSES with 15% room. Slot frame: F(53) <= 145 = 435/3 (frame identity
+   F_adjacent = 3 F_slot, checked at every machine).
+2. MACHINE 37 FULL PERIOD, two independent scans (hist37 11,829 s;
+   padding37 19,694 s; period 1.2368e12):
+   - F(37) = 88 EXACT. Definitive hole list: 13 holes below F =
+     {73,74,75,76,78,79,80,81,82,83,84,86,87}; 69 is NOT a hole.
+   - supply(37,41) = 61,460 gaps == 41 (2.820e-7); gaps == 82: 0;
+     z >= 2 runs: 0. Runs: z=0: 1,688,650,276 (max flanked span 90);
+     z=1: 61,460 - k=2: 58,416 (max 83), k=3: 3,044 (max 91).
+   - STEP RECORD 37->41 = 91 at k=3 z=1: PADDING CARRIES THE RECORD
+     AGAIN (as at 31->37); k_win(37->41) = 3 on the full period (the
+     8.09% kwin37 prefix said k_win=1, record 90 - the prefix missed
+     the record class; prefix k_win is a lower-quality object).
+3. kwin31 FULL PERIOD (31->37, 3,264 s): k_win = 3, record 88 = F(37) -
+   merge law exact end-to-end against hist37's direct scan. k=4 tuples:
+   216 (max merged 68: fuel exists, loses by 20). KW=8 search: ZERO
+   k >= 5 tuples -> r17 PRE-REGISTERED TEST CONFIRMED (no length >= 4
+   compatible word occurs at 31->37; r11's k_max = 4 stands). Par spread
+   22.7% (largest yet). kwin41 (0.08%): record 97 at k=1 (prefix).
+4. fuel37_k5hunt (48.5% of period): N1..N4 = 83,267,937,292 /
+   655,392,949 / 1,173 / 0. Superseded by R20.C (SAT decides the caps).
+5. qspec37 (16.2%): Q_3 = 95 vs F+q' = 129; litcap(41) = 2 so only Q_3
+   binds. NOT falsified; margin 0.83q' vs the 0.10-0.11q' collapse at
+   29/31. THE COLLAPSE IS A litcap-6 PHENOMENON: qtab31 shows margin
+   0.108 at q'=37 (litcap 6) vs 0.341..0.738 at litcap-2 primes; 41 and
+   43 are litcap-2. Watch narrowed, not closed: next litcap-6 prime
+   after 37 is 53. qspec41 (0.08%): Q_j <= 122 vs 133 everywhere.
+6. L=15 HUNT COMPLETE to k = 2e12 (member 1.2e13): NO L=15. Deep-range
+   census: L=13: 48, L=14: 5, L=15: 0. All five L=14 addresses:
+   k = 46,133,660,494 / 410,898,686,641 / 706,483,435,891 /
+   1,663,183,851,213 / 1,984,490,922,377 (word LRLLRRRLRRLLLL).
+   Ratio-based expectation for L=15 in range: 5 x (5/48) = 0.52 ->
+   P(absence) = 0.59: sub-1-sigma, record on curve.
+7. envelope31/37 DIED mid-scan (10-13% coverage, no error - the same
+   external process sweep as r19); envelope41 "PROVED" line is INVALID
+   (its tiny prefix saw F = 73 vs true F(41) = 91) - word/flank rows
+   stand as prefix data only. The one pre-registered claim they carried
+   (31->37 length >= 4 words) was settled by kwin31 (item 3).
+
+### R20.B Gap-pair census / p_j (deliverable a; Constructor's object)
+
+Full period at 13/17/19/23 (this round) + 29/31 (r19 tail, full) +
+machine 37 at 12.9% (1.6e11 slots, 28.19e9 gaps). Lags 1-5, run-min
+m = 2..6, all floors; CSVs gap_pair_{hist,joint}.csv (deduped - r19 had
+already written 13..23; tonight's identical duplicates removed),
+summary research/data/pj_deficits.csv.
+
+p_m/p_1^m at each machine's own floor a = 2u'(next prime):
+
+    machine  a    p1       m=2     m=3     m=4     m=5     m=6
+      13     4  0.3733   0.890   0.752   0.556   0.373   0
+      17     6  0.1852   1.123   0.721   0.305   0       0
+      19     6  0.2410   1.090   0.806   0.297   0.020   0
+      23     8  0.1371   0.939   0.319   0.029   0.016   0
+      29    10  0.1188   0.801   0.162   0.049   0.014   0
+      31    12  0.0766   0.581   0.149   0.053   0.005   0
+      37    14  0.0530   0.469   0.155   0.056   0.014   0.0009
+
+Deficit x6.5-x6.7 at m=3, x18-x20 at m=4, x70-x190 at m=5 - stable
+across 23..37. Lag-resolved: deficit at lags 1-3, EXCESS at lags 4-7
+(see R20.D - one phenomenon, the corridor).
+
+### R20.C COV(M) BY CRT+SAT (deliverable b) - exact spectra, no scan
+
+research/cov_sat.py (+ cov_slot.py, cov_spectrum.py, cov_gap.py earlier
+forms). Gear q blocks {a_q, a_q + s_q} mod q, s_q = -2u_q, phase free;
+CRT realises every phase vector; questions become ~300-var CNF. Every
+SAT witness is CRT'd to an explicit k and machine-verified by assert.
+Engineering: pysat's C CardEnc and Minisat22 segfault over many
+instantiations - pure-Python sequential counter + Cadical153 is stable.
+
+VALIDATION (all EXACT matches):
+- gap spectra: all 8 full-period machines 11..37 - F and complete hole
+  lists (m37's 13 holes: 11,829 s scan -> 123 s SAT).
+- F_j: m23 j=2..6 = 39/50/58/65/77; m29 j=2..6 = 55/65/70/85/90;
+  m31 j=2..5 = 68/85/90/92. Witnesses reproduce r17 census addresses
+  (k = 2,082,580; 29,098,935; 407,599,253; 725,859,998; 4,665,550,942).
+- fuel: 31->37 k=4 SAT on exactly the two r11 words (12,25,12) /
+  (25,12,25); k=5 all-UNSAT (= kwin31).
+- pair: (34,34) refuted at m23, (34,5) realized at the known F_2
+  address - Constructor's adjacency NO reproduced.
+
+NEW EXACT RESULTS (beyond any scan):
+- MACHINE 41 (period 5.07e13) COMPLETE: F(41) = 91; holes below F =
+  {84, 87, 89}; tail 92..100 all refuted. Two independent methods agree
+  (COV vs merge-law record from padding37). Hole ladder 11..41:
+  0,1,1,2,1,2,3,13,3. Healing law holds (89 >= F(37); 84, 87 survive
+  one step).
+- F_2(37) = 90 EXACT (witness gaps [2,88]): lemma-1 margin at 37 is
+  F_2 - F = 2 <= 41, i.e. 0.95q' of room - the largest measured.
+- ADJACENCY of two maximal gaps refuted at m31 (58,58), m37 (88,88),
+  m41 (91,91) - previous reach was y <= 23.
+- FUEL CAPS AT FULL PERIOD BY SAT (fuel_sat.py): N_4(37->41) = 0
+  (53 legal words all refuted) -> k_max(37->41) = 3 EXACT.
+  N_4(41->43) = 0 (120 words) -> k_max(41->43) = 3.
+- THE FIRST DOUBLE-PADDED RUN EXISTS: word (43,43) at 41->43, witness
+  k = 116,431,845,582 (openings k, k+43, k+86 sharing one residue mod
+  43, z = 2). The r16 prediction (statistic ~33, "plausibly decidable
+  only structurally") is CONFIRMED, structurally, with an address.
+  Also gap 86 = 2q' occurs at m41 ((86,) realized): first 2q' padding
+  anywhere. Realizable 41->43 padded words: (14,43),(29,43),(43,14),
+  (43,29),(43,43).
+- STANDING BOUNDS (honest, resumable): F_3(37) in [97, 163] (S=164..178
+  all refuted, ~10-20 min per refutation; the (D)-decision at 37->41
+  needs <= 129 - 34 refutations away, next-round job, tool ready).
+  Q_3(37) refutations same order (605 s probe) - no shortcut found.
+  F(43) >= 103 (witnessed), 104 REFUTED, tail [105,118] undecided
+  (refutations 1.5-2 h each at 12 gears); holes below 103 possible but
+  none observed. F(47) >= 118 (witnessed). F(53): witness hunt toward
+  145 stopped deliberately at close: F(53) >= 136 (witnessed; no
+  refuted v observed anywhere below), <= 145 (pinned by F(2,53) = 435);
+  v in [137,145] undecided - v=137's refutation ran 80+ min before the
+  stop (suggestive of a hole; NOT claimed).
+
+### R20.D THE CORRIDOR RESONANCE (new law, measured; docs/novel/)
+
+bool_lag_census.py (8/16-lag boolean pattern census, full period
+17..31), corridor_resonance.py, transfer_spectrum.py, dft_events.py.
+
+1. THE WAVE: the qualifying-gap indicator's autocorrelation is a barely
+   damped oscillation. m29 floor 10, lags 1..15:
+   0.801 0.684 0.510 0.800 1.112 1.257 1.204 0.995 0.781 0.717 0.848
+   1.082 1.254 1.250 1.094 (trough 3, peak 6, trough 10, peak 13-14;
+   second cycle undamped). m31 floor 12: trough 2, peak 5-6, trough
+   9-10, peak 12-13. Period ~ 35/mean_gap (8.2/7.5/7.0/6.5 predicted at
+   19/23/29/31; measured peaks 8/7-8/6-7/~7).
+2. THE MECHANISM: slot-separation autocorrelation of big-gap left
+   endpoints peaks EXACTLY at 35/70/105: m23: 3.22/3.45/2.63;
+   m29: 3.64/4.37/2.94; m31: 3.41/4.20/2.97 (neighbours 0.17-1.3;
+   sep 70 > sep 35 everywhere). Endpoints are PINNED mod 35: invariant
+   core {10,12,18} enriched >= 1.2x at all five machines (17..31);
+   companions drift (17 small machines, 7 at 23/29, 5 at 31); exact
+   four-way tie 10/12/17/18 at m17 (2.42) and m19 (2.13), tie-pairs
+   (10,18),(12,17) at m23. Poorest {28,30,32,33} at 0.12-0.46.
+3. NOT MARKOV: the process is not k-step Markov for k <= 4 (TV of exact
+   factorisations, m29 floor 10 W16: 0.151/0.134/0.092/0.080; m31
+   floor 12: 0.088/0.060/0.043/0.041). The value-level one-step chain
+   predicts NO deficit at lags 2-5 (0.99-1.06) where the census says
+   0.51-0.68: THE ANTI-CORRELATION LIVES AT RANGE 2-3 AND IS INVISIBLE
+   TO LAST-GAP STATE. Constructor's transfer matrix needs corridor
+   phase (mod 35 at least) in its state. Pattern counts are exactly
+   mirror-symmetric (machine reversal) - checked at every machine.
+4. lam2 -> phi/3 (matrix frame meets complex frame): subleading
+   eigenvalue of the measured lag-1 transfer matrix, real negative:
+   |lam2| = 0.6273/0.5959/0.5722/0.5583/0.5515/0.5462/0.5425 at
+   m13..m37. Distance to phi/3 = 0.53934 (Lateral's golden gap):
+   +0.0880/+0.0566/+0.0329/+0.0190/+0.0122/+0.0069/+0.0032 -
+   geometric, factor ~0.6/machine. kappa(2) = 0.5448 is PASSED and
+   DEAD as a limit. Convergence to phi/3 CONJECTURED (7 exact points,
+   no fit claimed).
+5. DFT identity events: c_q(g) = inverse transform of the exposed-set
+   power spectrum |hat1_A(t)|^2 = 4cos^2(2 pi u t/q) - ZERO mismatches,
+   all gears 5..53, all lags (376 checks); corridor mod 35: census =
+   c5*c7 = product-spectrum inverse DFT, 35/35. Gap-histogram ripple:
+   |H_5(1)|/H0 falls 0.31 -> 0.18 (m13..m37) while arg H_5(1) = +126
+   deg +- 2 at ALL SEVEN machines (m7: +121 -> +133 slow drift) - the
+   C14 residue law has a machine-independent PHASE that is NOT the
+   naive +-s ripple (which would give 0/180). UNEXPLAINED; handed to
+   Lateral.
+
+### R20.E Watch updates
+
+- k_win >= 4 WATCH: intact. k_win = 3 (31->37 full), 3 (37->41 full,
+  padded record), prefix-only at 41->43. No k_win >= 4 anywhere.
+- Q_j MARGIN: collapse does NOT continue at 37->41/41->43 (litcap-2);
+  the binding regime is litcap-6 primes - next test q' = 53.
+- FIRST DOUBLE-PADDED RUN: FOUND (R20.C) - watch closed.
+- MACHINE-37 FULL PERIOD: landed - hole list definitive, 69 settled
+  (not a hole) - watch closed.
+- L=15: absence sub-1-sigma at 1.2e13; hunt idle (no scan running).
+- NEW WATCH: F_3(37) <= 129 decision (34 refutations, resumable at
+  S=163); machine-43 tail [105,118]; lam2 at m41+ (needs joint census
+  beyond 37 - only COV-type pair tools can reach).
+
+### R20.F Tooling and incidents
+
+- New tools: cov_sat.py (gap/window/qualifying/pair/fuel SAT, witness
+  round-trip), fuel_sat.py, gap_pair_census.py (--start slices),
+  bool_lag_census.py (+analyze_bool_lag.py, W-parametric),
+  corridor_resonance.py, transfer_spectrum.py, dft_events.py,
+  pj_deficits.csv builder (inline).
+- PROCESS SWEEP (r19's phenomenon, recurring): 15+ background jobs
+  killed in waves every ~30-120 min through the night. Defense that
+  worked: per-instance logging + vmin/smax resume args; after adding
+  them nothing was lost. Two "killed" numpy jobs (gappair37 160e9,
+  bool16 m31 full period) had actually completed their final writes -
+  check the CSV before rerunning a "killed" job.
+- CSV hygiene: gap_pair CSVs deduped (r19+r20 identical blocks);
+  machine-37 slice block removed as overlapping the complete 12.9%
+  block; bool_lag16_31.csv kept full-period block only.

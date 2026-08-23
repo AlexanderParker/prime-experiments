@@ -26,7 +26,8 @@ difference. Exhaustively over that class:
 - the extremal differences reach 75 = 2.27x the twin value.
 
 At gears <= 17 the picture persists: twin 54 vs family max 96 (1.78x), the 21st
-percentile. Structural reading: the twin difference has delta_q(e) =
+percentile (coprime class, same convention as the y = 13 number; exact tie-aware
+counts in the round-20 addendum below). Structural reading: the twin difference has delta_q(e) =
 min(e mod q, q - e mod q) = 1 for EVERY gear q - it is the maximally clustered
 member of the family, while every extremal profile spreads its deltas
 ((1,1,1,3,6) at <= 13, (1,1,2,4,6,8) / (1,1,2,3,4,3) at <= 17).
@@ -101,6 +102,41 @@ one finite family where difficulty is exactly measurable, the twin case is at
 the 13th-21st percentile, and the ratio to the extreme grows the quantity that
 any uniform method must control.
 
+## 4a. Round-20 addendum: external validation through y = 43, and exact percentiles
+
+The "two data points of y" caveat is now materially weaker. Using Ziller-Morack's
+published h_2 table (arXiv:1706.03668) as an EXTERNAL denominator (family max =
+h_2/2) against the project's own fixed-twin ladder F(2,y), the twin-to-extreme
+ratio is now known at TWELVE machines (research/zm_margin_mechanism.py section F):
+
+    y        5    7    11    13    17    19    23    29    31    37    41    43
+    twin F   6   15    21    33    54    75   102   129   174   264   273   309
+    max F    9   15    33    75    96   129   183   225   285   354   447   522
+    extreme/twin  1.50 1.00 1.57 2.27 1.78 1.72 1.79 1.74 1.64 1.34 1.64 1.69
+
+The twin difference attains the family maximum only at y = 7; at every other
+machine it does NOT, and from y = 11 on the extreme runs 1.34x-2.27x the twin
+value (median 1.70x over y >= 11). The one high twin share (0.746 at y = 37) is
+the twins' own near-budget jump 2.432 q' at 31->37 - the corpus's known outlier -
+and it relaxes back to ~0.6 immediately after. The y = 13 point (2.27x) is the
+family's extremal-jump step (see paired-jacobsthal-values.md section 4a), not the
+trend.
+
+Exact tie-aware percentile bookkeeping (research/family17_percentile.py; per-class
+arrays saved to research/data/f13_family.npy, f17_family.npy):
+
+    y=13 coprime class (n=2,880):  below 384 (13.3%)  ties 272 (9.4%)   above 2,224 (77.2%)
+    y=13 full family  (n=7,507):   below 4,519 (60.2%) ties 396 (5.3%)  above 2,592 (34.5%)
+    y=17 coprime class (n=46,080): below 9,824 (21.3%) ties 4,640 (10.1%) above 31,616 (68.6%)
+    y=17 full family  (n=127,627): below 84,859 (66.5%) ties 6,920 (5.4%) above 35,848 (28.1%)
+
+So the headline "13.3rd/21st percentile" numbers are the coprime-class
+strictly-below shares; within the twin difference's own (hardest) gcd class,
+68.6-77.2% of differences are strictly harder at both machines. Note the full
+family is easier on average than the coprime class (most non-coprime classes are
+denser machines with smaller F), which is why the full-family percentile is
+higher; the like-for-like comparison is the coprime class.
+
 ## 5. Unsolved questions or conjectures it touches
 
 - Polignac's conjecture (per fixed even gap) and the twin prime conjecture: gives
@@ -112,7 +148,9 @@ any uniform method must control.
 - The project's route: whether the lemma-(D) constants degrade monotonically with
   percentile rank is open; the extremal delta-profiles are the stress test.
 - Stability question: does the twin percentile converge as y grows (13.3% at 13,
-  21% at 17 - two points only)?
+  21% at 17 - two exhaustive points; the RATIO to the extreme now has twelve
+  points through y = 43 via ZM's table, median 1.70x, sec. 4a - the percentile
+  itself still needs per-difference scans beyond 17)?
 
 ## 6. Prior-art check (2026-08-23)
 

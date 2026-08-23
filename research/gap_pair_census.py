@@ -33,10 +33,10 @@ LAGS = 5
 RUNS = 6
 
 
-def run(y, limit=None, seg=64_000_000, verbose=True):
+def run(y, limit=None, seg=64_000_000, verbose=True, start=0):
     gears = [p for p in primes_upto(y) if p >= 5]
     P = prod(gears)
-    K = P if limit is None else min(P, limit)
+    K = P if limit is None else min(P, start + limit)
     uvals = [pow(6, -1, g) for g in gears]
     ghist = np.zeros(V, np.int64)
     pair = np.zeros((LAGS + 1, V, V), np.int64)
@@ -45,7 +45,7 @@ def run(y, limit=None, seg=64_000_000, verbose=True):
     t0 = time.time()
     ngap = 0
     ctx = LAGS + RUNS + 4
-    for lo in range(0, K, seg):
+    for lo in range(start, K, seg):
         hi = min(K, lo + seg)
         ex = np.zeros(hi - lo, bool)
         for g, u in zip(gears, uvals):
@@ -80,7 +80,7 @@ def run(y, limit=None, seg=64_000_000, verbose=True):
         if verbose:
             print(f"  seg to {hi:.4g} ({100*hi/K:.1f}%) "
                   f"{time.time()-t0:.0f}s", flush=True)
-    return dict(y=y, P=P, K=K, gears=gears, ghist=ghist, pair=pair,
+    return dict(y=y, P=P, K=K, start=start, gears=gears, ghist=ghist, pair=pair,
                 minh=minh, ngap=ngap, secs=time.time() - t0)
 
 
@@ -122,7 +122,7 @@ def report(r, floors=None):
 def write_csv(r):
     os.makedirs(DDIR, exist_ok=True)
     y = r["y"]
-    cov = r["K"] / r["P"]
+    cov = (r["K"] - r.get("start", 0)) / r["P"]
     p = os.path.join(DDIR, "gap_pair_hist.csv")
     new = not os.path.exists(p) or os.path.getsize(p) == 0
     with open(p, "a") as f:
@@ -162,8 +162,13 @@ def main():
     quiet = "--quiet" in args
     if quiet:
         args.remove("--quiet")
+    start = 0
+    if "--start" in args:
+        i = args.index("--start")
+        start = int(float(args[i + 1]))
+        del args[i:i + 2]
     y = int(args[0])
-    r = run(y, limit=limit, seg=seg, verbose=not quiet)
+    r = run(y, limit=limit, seg=seg, verbose=not quiet, start=start)
     report(r)
     write_csv(r)
     sys.stdout.flush()

@@ -264,3 +264,42 @@ F_j - qualmax_j ~ lambda*(j-2)*ln(1/p_1) with machine-computable constants;
 two-big-flanks/smallest-interiors shape). No published joint law of consecutive
 gap sizes mod primorials, and no published description of record-window
 composition, was found in any of the eight searches.
+
+## 7. ROUND-20 ADDENDUM (constructor, 2026-08-23) - the law is SUPER-MARKOV, and the heuristic step is now bypassed at measured steps
+
+New exact censuses (research/tm_resid_runs.py, full period, cyclic-seam exact;
+machine 31 = 3.34e10 slots, first joint data there):
+
+* Machine 31 (q' = 37): p_1V = 0.018445; runs of 2/3/4 consecutive qualifying gaps =
+  502,708 / 508 / 0 against independence 2,118,360 / 39,073 / 721 - deficits x4.2,
+  x77, and an exact zero. DEPTH CAPS (exact, all machines): the longest run of
+  consecutive residue-qualifying gaps is 1 at machines 11-17, 2 at 19-23, 3 at 29,
+  3 at 31 - equivalently the qualifying-gap partial map A_V is NILPOTENT of index
+  2/2/2/3/3/4/4 (verified as operator identities, research/tm_nilpotency.py), and
+  k_max <= index(A_V) at every step.
+* THE DEFICIT IS NOT MARKOV (research/tm_transfer.py): the exact one-step transfer
+  matrix on gap values (from the full-period pair census) OVER-predicts deep runs by
+  growing factors - x49 at machine 29 depth 3 (predicted 391, exact 8), x4.4 at
+  machine 31 depth 3 (predicted 2,242, exact 508); at size floors the over-prediction
+  grows x4.4 -> x12.6 -> x40 with depth at machine 29. Equivalently the per-link
+  conditional probabilities fall geometrically: at machine 29,
+  P(next qualifying | 1 previous) = 5.5e-3, P(| 2 previous) = 1.8e-4 - each added
+  link is ~30x more suppressed than the last. NO fixed-order Markov chain (hence no
+  finite transfer matrix on gap values) reproduces the law; the memory is longer.
+* The lag-2 REBOUND is partly a renewal artifact: the Markov chain built from the
+  lag-1 matrix predicts a rebound (1.27-1.41) but understates the measured one
+  (1.53 at 29, 1.90 at 23); and at machine 31 the measured rebound is GONE
+  (R(2) = 0.71 < 1 vs predicted 1.36) - a regime change coinciding with padding
+  onset. The full chain's spectral gap is stable: |lambda_2| = 0.55-0.66 across
+  machines 11-31.
+* THE HEURISTIC STEP IS NOW BYPASSED at measured steps: (D) at a step follows from
+  the exact criterion max(F_2, max_j qualmax_j) <= F + q' (no lambda, no order
+  statistics; research/tm_qualmax_check.py) - it holds at all seven steps 11->13 ..
+  31->37 with margins 0.52-0.69 q' at literal steps and 0.19 q' at the padded step
+  31->37, and the criterion value EQUALS F(M+q') at six of the seven steps
+  (slack 2 at 23->29). Statement B's constants remain the asymptotic reading; the
+  criterion is the exact form.
+* The rate side is now rigorous where constrained: see docs/novel/renewal-ladder.md
+  (closed-form CRT upper bounds on p_j clearing the requirement at every measured
+  constrained case, including the two R32 failures).
+

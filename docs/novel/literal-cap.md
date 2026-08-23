@@ -60,9 +60,14 @@ finite cap for the two-tooth alternating walk, which is the content here.
 
 ## 3. PROOF
 
-Status: KERNEL-CHECKED (the cap <= 6, the class reduction, and the sharpness set);
-SCRIPT-VERIFIED (the full 48-class cap spectrum {2:24, 3:4, 4:14, 6:6} and the confirmation
-against every prime q' <= 5000, 0 mismatches).
+Status: KERNEL-CHECKED (the cap <= 6, the class reduction, the sharpness set, and - since
+round 20 - the FULL per-class cap table both ways: `LiteralCapTable.cap_table_maximal` /
+`cap_table_realized` in proofs/LiteralCapTable.lean check for every invertible class c that
+a run of capC(c) exists and a run of capC(c)+1 does not, `literal_chain_le_capC` turns the
+table into the per-class chain bound, and `cap_two/three/four/six_classes`, `no_cap_five`,
+`cap_spectrum_counts` pin the census {2:24, 3:4, 4:14, 6:6} as kernel theorems - standard
+three axioms);
+SCRIPT-VERIFIED (the confirmation against every prime q' <= 5000, 0 mismatches).
 
 - Lean: `proofs/LiteralCap.lean` (round 13, 998 jobs, zero sorries):
   - `no_run_seven` - the finite check: for all c < 210 with gcd(c,210)=1, all r < 35, both

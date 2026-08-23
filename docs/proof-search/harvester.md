@@ -359,3 +359,138 @@ p_n = 73 in their full table - the "why is 13 extremal?" question stands, now wi
 data points. What remains ours: the per-difference family F_d(y), the fixed-twin ladder
 F(2,37)=264 / F(2,41)=273 / F(2,43)=309 / F(2,53)>=426, maximiser/delta-profile structure.
 Full analysis: docs/novel/paired-jacobsthal-values.md.
+
+## ROUND 20 - why 13, sharpened percentile, and the literature adjacency of the two frames
+
+All computations single-run, assertions green; scripts research/zm_margin_mechanism.py,
+family17_percentile.py, paired_holt_recursion.py; outputs in research/data/ (same stems,
+.out) plus per-class arrays f13_family.npy / f17_family.npy (stop recomputing these).
+
+### (a) WHY IS 13 EXTREMAL - answered as four exact events (details: docs/novel/
+### paired-jacobsthal-values.md sec. 4a)
+
+1. QUANTISATION: slack B - h_2 is quantised mod 6 (min admissible 6 for p = 1 mod 6,
+   2 for p = 5 mod 6). The minimum is attained at p = 5 and p = 13 ONLY, through 73.
+   The 13 dip is "one quantum above equality": omega_2(6) = 24 = cap 25 - 1.
+2. STEP LAW over ZM's 18 steps: margin falls at ALL 6 twin steps (>= 13), rises at
+   ALL 5 gap-6 steps, gap-4 mixed (3 up 2 down); absolute slack falls ONLY at twin
+   steps (->13, ->31, ->61). Crossover mechanism: d(B)/B ~ 2g/p vs d(h_2)/h_2 ~ 2r/p,
+   so the sign flips at gap ~ r (mean ~2). A dip needs r >> g.
+3. UNIQUE JUMP: r = Delta(maxF)/q' = 3.231 at 11->13 is the unique value > 2.6 in
+   all 18 steps (runner-up 2.553 at ->47). The dip = that outlier on a twin step.
+4. WHY THE JUMP - THE LAST CLEAN-EXTENSION STEP: winners extend winners at 7->11 and
+   11->13 (16/16 winners at 13 have F_11 = 33 -> F_13 = 75, same fixed e), and NEVER
+   again: best 17-extension of a 13-winner is 87 vs true max 96; the 19-argmax
+   restricts to the twin's own value (54) at 17 with 35,848 classes above it
+   (merge-law round's rank claim verified from my full 17-scan). So 13 is where the
+   family maximum last grows by full profile extension - landing on a twin bound-step.
+
+ROUTE-RELEVANT BUDGET EVENTS (for Constructor's pricing, measured not argued): fixed
+differences exist with single-step increments 3.231 q' (e = 344, 11->13), 3.947 q'
+(e = 1,532,627, 17->19, verified 54 -> 129 by direct construction), 4.435 q'
+(e = 107,207,699, 19->23, verified 81 -> 183). Round-14 audit's structured-d worst was
+1.846, twins' own 2.432. NO uniform alpha <= 3 increment budget holds over the full
+family; "closing (D) closes every d" needs per-d constants (or a family-max exclusion),
+and the known family-argmax jumps are non-decreasing (3.23, 3.95, 4.43).
+
+### (b) TWIN PERCENTILE - externally validated (docs/novel/twin-percentile.md sec. 4a)
+
+Using ZM's h_2 as external family-max denominator: twin/extreme known at 12 machines
+y = 5..43; twin attains the max only at y = 7; extreme runs 1.34x-2.27x twin, median
+1.70x (y >= 11). The 0.746 share at 37 is twins' own 2.432 q' outlier jump, relaxing
+immediately. Exact tie-aware percentiles: coprime class below-share 13.3% (y=13) /
+21.3% (y=17); strictly-above 77.2% / 68.6%. Publication statement now: "in the one
+family where difficulty is exactly measurable, the twin case sits at the 13th-21st
+percentile of its own hardest class, the extreme is 1.3x-2.3x harder at every one of
+twelve machines (externally cross-checked against Ziller-Morack's independent table),
+and density does not determine the extreme."
+
+### (c) LITERATURE ADJACENCY OF THE TWO FRAMES (my mandate under the directive)
+
+HOLT-RUDD, READ PROPERLY (arXiv:1510.00743 in detail via ar5iv; 1408.6002; earlier
+1402.1970). What they have: the cycle-of-gaps recursion (concatenate p' copies, close
+at elementwise-product positions - our merge transform, one residue class); an EXACT
+population dynamics n_{s,j}(p'#) = (p'-j-1) n_{s,j}(p#) + driving terms; transfer
+matrix with diagonal (p-j-1)/(p-2), superdiagonal j/(p-2), and p-INDEPENDENT
+eigenvectors (binomial/Pascal) - hence closed-form asymptotic gap-population ratios,
+Polignac-in-the-sieve (their Thm 5.5) and HL Conjecture B ratios in cycles. What they
+lack: any maximal-gap tracking (explicitly out of scope for them - our merge law owns
+that readout), any two-residue/paired object, any per-difference family.
+THE IMPORT, DELIVERED THIS ROUND: the PAIRED HOLT RECURSION - exact linear population
+dynamics for two-residue sieves, n_g(M+q') = sum_w coef(w) n_w(M) with the position-
+free coefficient coef(w) = #{r in Z_q' : flanks alive, interiors in T}; verified
+EXACT for every gap value at 4 rungs (slot 5005->85085->1616615; family e=344 +17;
+gcd collapse e=102 +17 = Holt's own case). Diagonal = Lateral's c_q(g) law exactly
+(two lanes' constructs are one object); word-survival eigenvalue scale
+(q'-2j-2)/(q'-2) vs Holt's (q'-j-1)/(q'-2) - the paired system contracts twice as
+fast per word length. docs/novel/paired-holt-recursion.md. Remaining import not yet
+used: Holt's eigenvector p-independence -> closed-form asymptotic paired-gap ratios
+(would turn Mechanic's histograms into theorems); flagged for next round.
+
+EXPONENTIAL SUMS OVER SIEVE RESIDUES: the flagship prior art is Iwaniec's bound on
+the ordinary Jacobsthal function, j(n) << (omega log omega)^2 (via the linear sieve;
+the only known route to quadratic-log control of exactly our F-type quantity; ladder
+below it: Kanold 2^k, Stevens polynomial). THE PAIRED LADDER IS EMPTY: Ziller-Morack
+(both papers re-read in full this round) prove NO upper bound on j_2 of any strength
+- their Remark 2.2 lists only elementary monotonicity (product, gcd, prime-power
+collapse) - cite no Iwaniec, and give NO heuristic for the p^2 - p bound; no
+follow-up literature supplies one. So "any nontrivial upper bound on j_2(p#)" is an
+open problem with zero published attempts, sitting directly against our exact table.
+Honest pricing: an Iwaniec-method transfer is parity-adjacent and hard; but the
+gap between nothing and anything is where a harvest can live. Related toolkit for
+covering questions of our type: Filaseta-Ford-Konyagin-Pomerance-Yu (JAMS 2007,
+sieving by one class per large modulus), Hough (minimum modulus), Balister-Bollobas-
+Morris-Sahasrabudhe-Tiba distortion method - all one-class-per-modulus; none paired.
+
+TRANSFER-MATRIX SIEVES: searched with Holt excluded - there is NO other
+transfer-matrix sieve literature; the frame is Holt's alone (plus unrelated physics
+usage). One unreviewed Zenodo preprint (Ojaroudi 2026, claimed unconditional twin
+prime theorem, "replication-deletion primorial sieve") located and assessed: no
+population recursion, no explicit coefficients, claim class far beyond method.
+
+ALSO SETTLED THIS ROUND: ZM's computation note has NO growth-rate commentary and no
+remark on the 13 case, so the h_2 ~ (p^2-p)/2 empirical share and the step law above
+have no counterpart in print.
+
+### Ranking changes (honest pricing)
+
+- C10+N3 stays TOP and the round-17 "why 13" question is now CLOSED as four exact
+  events (quantisation, step law, unique jump, last-clean-extension). What remains
+  open there: WHY clean extension dies at 17 (a profile-collision mechanism - the
+  best extension loses by exactly 9; unexplained), and the per-difference Conjecture
+  6 refinement as a publishable statement.
+- NEW CANDIDATE (N4): the paired upper-bound problem - any proved bound
+  j_2(p#) < f(p) at all. Literature ladder empty (established above). Bites in
+  reach: (i) an elementary Kanold-type bound via the paired machinery; (ii) the
+  paired Holt recursion as a route to population lower bounds that force gaps to
+  close. Priced honestly: full Iwaniec transfer is beyond current published methods.
+- NEW CANDIDATE (N5): the paired Holt eigen-analysis - closed-form asymptotic
+  paired-gap population ratios (HL Conjecture B in paired cycles). The recursion is
+  verified; the eigenvector analysis is a bounded computation, next-round sized.
+- The h_2 ~ (p^2-p)/2 share: recorded as observation + candidate conjecture
+  (paired-jacobsthal-values.md 4a); prior-art clean.
+
+### Needs from other lanes
+
+- CONSTRUCTOR: the paired Holt matrix is the transfer-matrix formulation the
+  directive assigned you for p_j - the coefficient formula is in
+  paired_holt_recursion.py (20 lines); your anti-correlation deficit should be a
+  spectral statement over it. Also: the budget events above mean (D)'s constant
+  cannot be family-uniform - price per-d or exclude family argmaxes explicitly.
+- MECHANIC: your joint gap-pair census n_(g1,g2) is the length-2 input row of the
+  recursion; the recursion PREDICTS your next-machine histograms exactly - a
+  falsification target at 29/31 scale if you want one.
+- LATERAL: your c_q(g1,g2) is coef of two-letter words in the same matrix; the
+  interior-disjunction obstruction you named is exactly the coef formula's interior
+  clause - it does factorise per-copy (r-wise), which may be the way around it.
+- FORMALIST: coef position-freeness + one fixed rung of the paired recursion is
+  finite and kernel-checkable (words and residues only); also endpoint c-law cases.
+
+### Deliverables ledger (round 20)
+
+Scripts: research/zm_margin_mechanism.py, research/family17_percentile.py,
+research/paired_holt_recursion.py (all assert-gated, all green, single-threaded).
+Data: research/data/{zm_margin_mechanism,family17_percentile,paired_holt_recursion}.out,
+f13_family.npy, f17_family.npy. Docs: docs/novel/paired-holt-recursion.md (new),
+paired-jacobsthal-values.md sec. 4a + pointers, twin-percentile.md sec. 4a + caveat
+update, README index entry. No detached jobs launched; nothing pending.

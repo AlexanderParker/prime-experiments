@@ -563,3 +563,121 @@ topgap_endpoint_law.py).
 
 Anchors used throughout: requirement F(2,y) < (y^2 - y)/2; F_k(M+q') chain
 11/18/25/34/43; F2_k(2,y) = 33, 48, 75, 93, 117.
+
+---
+
+## Round 20 append (transfer-matrix directive): R35-R39, the exact criterion, and the renewal ladder
+
+**R35 (operator frame + nilpotency identities).** On C^{Z_P}: S = slot shift,
+D = exposure projector = tensor product over gears of D_q (CRT), B = I - D.
+Gap operator G_v = D(SB)^{v-1}SD; every census quantity is a matrix element
+(N(v) = 1'G_v 1; joint N_j(u,v) = 1'G_u R^{j-1} G_v 1 with R = sum_v G_v = the
+successor permutation on openings, one |E|-cycle). Exact identities, verified
+by direct operator iteration at machines 11-19 (tm_nilpotency.py):
+F(M) = nilpotency index of BS (largest gap = longest blocked run + 1); the
+qualifying-gap partial map A_V (V = residue-qualifying values for q') is
+NILPOTENT with index = deepest qualifying run + 1 - indices 2,2,2,3,3,4,4 at
+machines 11..31, so the fuel cap is a nilpotency statement (k_max <=
+index(A_V); machine 29's k=4 event sits exactly at index 4). HONEST BOUNDARY
+on the directive's spectral hope: the exact frame has NO spectral gap - R is a
+permutation, eigenvalues roots of unity; decorrelation is an AGGREGATION
+phenomenon, not mixing of the exact dynamics.
+
+**R36 (aggregated transfer matrix: Markov closure FAILS, with structure).**
+T[u,v] = P(next gap = v | gap = u) built from Mechanic's exact full-period
+pair census (machines 11-31; marginals match ghist to the 1-gap seam). The
+one-step chain OVER-predicts deep qualifying runs by growing factors:
+residue set V - predicted/exact = 391/8 = x49 at machine 29 depth 3,
+2242/508 = x4.4 at machine 31 depth 3; size floors at machine 29 -
+x4.4 / x12.6 / x40 at depths 3/4/5 (machine 31: x2.5 / x4.3 / x27).
+Equivalently per-link conditionals fall geometrically (machine 29:
+P(next qual | 1 prev) = 5.5e-3, P(| 2 prev) = 1.8e-4 - each link ~30x more
+suppressed than the last). NO fixed-order transfer matrix on gap values can
+be the proof object - the memory is longer than any fixed lag. Spectral
+constants measured anyway: rho(T_VV)/p_1V = 0.65 / 0.039 / 0.20 / 0.24 at
+machines 19/23/29/31 (the Markov FLOOR of the deficit; reality is deeper);
+full-chain |lambda_2| = 0.55-0.66, stable across machines 11-31. The R33
+lag-2 rebound is PARTLY Markov (chain predicts 1.27-1.41 vs measured
+1.53-1.90 at 23/29) and is GONE at machine 31 (obs R(2) = 0.71 < 1 vs
+predicted 1.36) - a regime change at padding onset. Lag decay: measured
+qualifying autocorrelation dips at lag 3 (0.31-0.51) and recovers by lag 5;
+the chain predicts recovery by lag 2 - more memory evidence.
+
+**R37 (tropical/max-plus side).** F_j <= longest j-node path in the
+pair-support graph (edges = value pairs occurring adjacently): exact at j=2
+by construction, lossy from j=3 (x1.17-1.54, worsening with j) - the pair
+table does not pin the deep spectra. The V-interior subgraph is ACYCLIC at
+machines 11-17 (there the pair table alone PROVES the qualifying depth cap)
+but has cycles from machine 19 on while the realized depth still caps at
+2-3 - THE DEPTH CAP IS A >= 3-POINT PHENOMENON from machine 19 onward: no
+2-point census (pair table, corridor law, c_q(g)) can certify it. Max cycle
+means (full / V-graph): 5.5/- , 8/-, 12.5/-, 15.5/11.5, 19.5/10, 27.5/15.5,
+34/31 at machines 11..31.
+
+**R38 (THE RENEWAL LADDER - rigorous rate bounds; docs/novel/renewal-ladder.md).**
+For a qualifying tuple (v_1..v_m) with opening offsets X and ANY chosen set Y
+of interior offsets: run event subset of {X exposed, Y blocked}, and
+#W'(X,Y) = sum_{T subset Y} (-1)^|T| prod_q c_q(X u T) - exact CRT closed
+form, no period scan. run_m <= sum over tuples of #W'; nested Y (bisection
+order, s points per gap) gives a monotone ladder from R32's exposure bound
+(s=0) toward exact. Asserted >= exact censuses everywhere; every #W' >= 0.
+RESULT: the ladder CLEARS the (D) requirement at every constrained case,
+including both R32 failures - machine 23 j=6: requirement 1.5e-4, exposure
+bound was short x28.8, ladder s=5 gives 5.0e-7 (clears x300); machine 29
+j=5: requirement 1.8e-2, was short x2.0, ladder 2.0e-4 (clears x91); machine
+29 j=6: 1.4e-6 vs 2.8e-3 (x2000). First joint-gap bounds beyond scan reach:
+machine 37 (period 1.24e12): p_5 <= 3.4e-2, p_6 <= 9.8e-3. HONEST LIMITS:
+tightness above exact degrades with machine size (x40 at 29 m=2 up to
+x1.8e5 at 31 m=3 - fixed points per gap cover a shrinking fraction of
+growing gaps); no zero certificate reached (smallest surviving total 4, at
+machine 23 m=4 where truth is 0) - the 2^|Y| IE cost bars Y = all interiors.
+
+**R39 (the EXACT QUALMAX CRITERION; new machine-31 data).** New full-period
+censuses with cyclic seam exact (tm_resid_runs.py; machine 31 = 3.34e10
+slots): machine 31 F_j = 58, 68, 85, 90, 92, 97 (j=1..6 - the spectra the
+envelope job never delivered), p_1V = 0.018445, qualifying runs
+502,708 / 508 / 0 at depths 2/3/4 (deficits x4.2 / x77 / exact zero). The 8
+depth-3 runs at machine 29 enumerated: all permutations of {10,10,21}, span
+41, window sums 47-55 - the machine's complete k=4 fuel inventory
+(tm_deepruns.py). THE CRITERION: by the merge law every new gap is a window
+sum with residue-qualifying interiors, so EXACTLY
+
+    F(M+q') <= max( F2(M), max_{j>=3} qualmax_j(M; q') ),   and
+    (D) at alpha = 3  follows from  max(F2, max_j qualmax_j) <= F + q'.
+
+Measured at all seven steps 11->13 .. 31->37 (tm_qualmax_check.py): the
+criterion HOLDS 7/7 with margins 0.52-0.69 q' at the six literal steps and
+0.19 q' at the padded step 31->37; and the criterion value EQUALS F(M+q')
+at 6 of 7 steps (slack 2 at 23->29 only). This is R31's suppression-
+corrected flatness with the heuristic stripped: no lambda, no L, no order
+statistics - three exact census quantities. It subsumes forms 1-3 of the
+live target at measured steps; the suppression law remains the asymptotic
+reading. (Mechanic's Q_j is the same object at the weaker size threshold;
+its margin collapse to 0.10-0.11 q' vs 0.19 q' here says the residue
+condition retains real margin the size floor loses.)
+
+**Round-20 negatives, recorded:** (i) Markov/spectral closure of p_j fails
+at every order tested - the directive's "deficit as spectral gap" is FALSE
+in the aggregated chain and VACUOUS in the exact frame (R35/R36); what
+survives is the nilpotency reading and the ladder. (ii) The pair-support
+tropical bound cannot see depth caps from machine 19 on (R37). (iii) The
+ladder cannot zero-certify at depth (R38) - rate bounds only.
+
+**Named next constructs (and why not built this round):**
+* THE EXACT PATTERN COUNTER - #(X exposed, ALL interiors blocked) cheaper
+  than 2^|Y| IE: per-gear transfer DP or Mechanic's COV(M) CRT machinery.
+  Needed for zero certificates (qualmax_j = 0 / Q_j = 0 without scan). Not
+  built: the 2^|Y| barrier was only quantified late in the round.
+* THE FLANKED LADDER - extend the tuple by (g_L, g_R) and certify
+  span + g_L + g_R > F + q' combinations to zero: the DIRECT rigorous route
+  to (D) per step. Blocked behind the exact counter (same certification
+  hardness); the enumeration is small since only large flank pairs matter.
+* lambda-free requirement at scale: R39's criterion needs qualmax bounds at
+  unscannable machines; the flanked ladder is exactly that.
+
+**Reproduction (round 20):** tm_resid_runs.py (exact residue-qualifying run
+censuses + qualmax + spectra; data/tm_resid_runs.csv), tm_deepruns.py (deep
+fuel inventories), tm_transfer.py (R36: Markov closure, Perron, lag tables),
+tm_tropical.py (R37), tm_renewal_bound.py (R38 ladder + assertions),
+tm_nilpotency.py (R35), tm_qualmax_check.py (R39). All checks asserted; all
+censuses full-period with the cyclic seam stitched.

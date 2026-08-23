@@ -1,10 +1,17 @@
 /-
 Machine 19 (gears {5,7,11,13,17,19}, period 1,616,615) - shared definitions.
 
-The certificate is `F_k(19) = 25`, `F2_k(19) = 31`. The period is 323 times
-machine 13's, so the scan is chunked by the pair `(k%17, k%19)` into 323
-slices of 5005 tuples each - exactly machine 13's size, the shape known to
-evaluate quickly.
+The certificate is `F_k(19) = 25`, `F2_k(19) = 31`, and - new this round -
+the depth-4 spectrum value `F4_k(19) = 38`, which feeds the
+suppression-corrected flatness instance `F_4 <= F + q'` (38 <= 48) that
+`Spectrum.merged_le_of_shallow` consumes. All three verified over the full
+period numerically before formalising (F_j ladder 25, 31, 35, 38, 47).
+
+The period is 323 times machine 13's, so the scan is chunked by the pair
+`(k%17, k%19)` into 323 slices of 5005 tuples each - exactly machine 13's
+size, the shape known to evaluate quickly. The slices live in
+`Machine19S0.lean` .. `Machine19S16.lean` (one file per `k%17` residue, so
+lake checks them in parallel processes); `Machine19.lean` assembles them.
 
 Two encoding improvements over `Machine17` make this affordable (round 18's
 re-attack on the round-15 wall):
@@ -12,8 +19,8 @@ re-attack on the round-15 wall):
 * only OPENINGS are scanned - a gap runs between openings, so a tuple that
   is not itself an opening starts no gap. Opening density here is
   `prod (1 - 2/q) = 0.234`, a 4.3x cut;
-* both facts are checked in ONE walk of 31 steps rather than two separate
-  walks of 25 and 31.
+* all three facts are checked by counting openings along ONE window walk
+  (`countP`, allocation-light) rather than separate nested scans.
 -/
 
 import Corridor
@@ -29,12 +36,14 @@ def expT (a b c d e f : Nat) : Bool :=
 def atT (a b c d e f n : Nat) : Bool :=
   expT ((a+n)%5) ((b+n)%7) ((c+n)%11) ((d+n)%13) ((e+n)%17) ((f+n)%19)
 
-/-- From an opening: the next opening arrives within 25 slots (`F <= 25`) and
-a second one within 31 (`F2 <= 31`). Non-openings are skipped. -/
+/-- From an opening: the next opening arrives within 25 slots (`F <= 25`),
+a second within 31 (`F2 <= 31`), and a fourth within 38 (`F4 <= 38`).
+Non-openings are skipped. -/
 def okT (a b c d e f : Nat) : Bool :=
   !(atT a b c d e f 0) ||
     (((List.range 25).any fun i => atT a b c d e f (i+1)) &&
-      Nat.ble 2 ((List.range 31).countP fun i => atT a b c d e f (i+1)))
+      (Nat.ble 2 ((List.range 31).countP fun i => atT a b c d e f (i+1)) &&
+        Nat.ble 4 ((List.range 38).countP fun i => atT a b c d e f (i+1))))
 
 /-- One slice: all 5005 tuples sharing a fixed `(k%17, k%19)`. -/
 def slice (e f : Nat) : Bool :=

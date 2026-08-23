@@ -14,6 +14,8 @@ import Machine17
 import TierA
 import PolignacCap
 import Spectrum
+import LiteralCapTable
+import Machine19
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -131,3 +133,37 @@ open BlockedSlots
 #print axioms Spectrum.merged_le_spectrum_succ
 #print axioms Spectrum.merged_le_of_shallow
 #print axioms Spectrum.windowSum_mono
+#print axioms Spectrum.qual_le_of_suppressed
+#print axioms Spectrum.merged_le_of_suppressed
+#print axioms Spectrum.qualifying_of_word
+#print axioms Spectrum.merged_le_qual
+#print axioms Spectrum.merged_le_of_qual_flat
+#print axioms Spectrum.merged_le_of_qual_flat_all
+#print axioms Spectrum.merged_le_of_corrected
+#print axioms Spectrum.alphabet_ge_floor
+#print axioms Spectrum.padded_ge_floor
+#print axioms Spectrum.jointCount_antitone
+#print axioms LiteralCapTable.cap_table_maximal
+#print axioms LiteralCapTable.cap_table_realized
+#print axioms LiteralCapTable.literal_chain_le_capC
+#print axioms LiteralCapTable.word_length_lt_capC
+#print axioms LiteralCapTable.hasRunL_mono
+#print axioms LiteralCapTable.capC_le_six
+#print axioms LiteralCapTable.cap_two_classes
+#print axioms LiteralCapTable.cap_three_classes
+#print axioms LiteralCapTable.cap_four_classes
+#print axioms LiteralCapTable.cap_six_classes
+#print axioms LiteralCapTable.no_cap_five
+#print axioms LiteralCapTable.cap_spectrum_counts
+#print axioms LiteralCapTable.tripled_teeth_antipode
+#print axioms Machine19.sliceAll
+#print axioms Machine19.gap_le
+#print axioms Machine19.pair_sum_le
+#print axioms Machine19.quad_sum_le
+#print axioms Machine19.alpha1_certificate
+#print axioms Machine19.lemma1_at_19
+#print axioms Machine19.shallow_flatness
+#print axioms Machine19.exists_exposed_above
+#print axioms Machine19.spectrum_four
+#print axioms Machine19.spectrum_four_flat
+#print axioms Machine19.D_of_shallow_word

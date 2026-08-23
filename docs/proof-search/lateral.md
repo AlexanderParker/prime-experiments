@@ -484,3 +484,141 @@ a target, not a verdict; untested is not dead (abandoned angles stay listed).
 - Cross-lane data cited: research/data/satruns_ge10.csv,
   research/data/gap_pair_joint.csv, research/data/gap_histograms.csv,
   docs/forbidden-configurations.md (antidictionary contrast).
+
+## Round 20 (numbering note: the FIRST section actually headed "Round 20";
+## the earlier r20 tags above are round 19's work, see header note)
+
+Brief: c_q(g1,g2) applied to (D)/flank sums + the padded lag; the human's
+COMPLEX-NUMBER frame (DFT of corridor, gap spectra, joint gap-pair
+distribution) re-entered with the round-19 objects. All jobs finished before
+this write-up (machine-29 background run included); machine cap <= 4 threads
+respected (all scripts single-threaded numpy).
+
+27. DEPTH-SUM IDENTITY (proved, one line; verified integer-exact machines
+    11-29, g = 1..64, zero mismatches; 214.7M openings at machine 29).
+    sum_{j>=1} W_j(g) = prod_q c_q(g) = N2(g), where W_j(g) = # cyclic
+    j-windows of consecutive gaps summing to g. Every ordered opening pair at
+    lag g is the endpoint pair of exactly one window (j <= g); CRT counts the
+    pairs. Corollary: W_j(g) <= prod_q c_q(g) for EVERY depth j - a
+    depth-uniform closed-form upper bound on every window-sum count, no
+    period scan, arbitrarily large machines. The whole spectrum family F_j
+    lives inside one closed-form sum rule. docs/novel/depth-sum-identity.md;
+    research/depth_identity.py (persists exact W_j tables to
+    research/data/depth_identity_<y>.csv).
+
+28. RENEWAL DECOMPOSITION OF THE GAP HISTOGRAM (the interior disjunction
+    measured in isolation). W1(g) = N2(g) * prod_{t=1..g-1}(1 - N3(0,t,g)/
+    N2(g)) * kappa(g): closed-form endpoint arithmetic x closed-form
+    interior-independent product x measured remainder kappa. Facts:
+    (a) kappa(1) = kappa(2) = 1 trivially; kappa(4) = 1 EXACTLY at machines
+    13-29 (integer-exact vs full inclusion-exclusion) while kappa(3) < 1 -
+    and the per-gear multiplicativity behind it is FALSE for q >= 7, so the
+    exactness is a cross-gear cancellation (mirror symmetry suspected; open
+    micro-question, kernel-checkable per machine).
+    (b) kappa decays smoothly and log-CONVEXLY (accelerating tail); fitted
+    slope stabilises ~ -0.16/slot at machines 23/29/31 (-0.164, -0.169,
+    -0.156). With the 2-parameter kappa law the model explains 94.9-98.7% of
+    the log-variance of the full histogram at machines 19-31.
+    (c) WIGGLE TEST (r18 upgraded): dividing out N2 alone removes only
+    11-30% of the post-trend residual at machines 19-31 - barely more than
+    r18's c5*c7 (24-28%): the ENDPOINT-arithmetic dividend saturates; the
+    remaining wiggle is INTERIOR arithmetic, and the full closed form (with
+    3-point interior products) captures it: see 29(d).
+    (d) Density rescaling g*rho collapses kappa curves only to first order -
+    jagged residual arithmetic persists; NOT a clean universal curve
+    (tested, refuted as stated). research/renewal_law.py.
+
+29. THE MACHINE IN FREQUENCY SPACE (human directive frame 2; all exact).
+    (a) The DFT factorises over gears and is REAL and closed-form:
+    hat_q(0) = q-2, hat_q(j) = -2cos(2 pi j u/q); global spectrum verified
+    against FFT at machine 17 over all 85085 frequencies (dev 4e-11).
+    (b) T3 LAW: 3u = (q+1)/2 mod q for every prime q >= 5 (one line from
+    6u = 1; asserted to q = 100000): the tripled teeth are ADJACENT residues
+    at the antipode, hat_q(3) = -2cos(pi/q) -> -2 - at local frequency 3
+    every gear is nearly a single point in phase. Fourier avatar of the
+    tooth law (teeth at +-60 deg) and of 2u = 3^{-1}.
+    (c) GOLDEN SPECTRAL GAP: hat_5(2) = phi exactly; for every machine
+    containing gear 5, max non-DC |hat|/DC = phi/3 = 0.539345, attained by
+    gear 5's +-2 mode alone (full character enumeration, machines 13/17).
+    The spectral-gap form of gear-5 corridor dominance (AP lemma, exclusion
+    law, pinning). The gap histogram's dominant oscillatory line at machines
+    29/31 is this golden line (freq 2/5, power 0.169/0.112, largest by 2-4x)
+    - and subtracting the FULL closed form removes 99.6%+ of its power
+    (0.1687 -> 0.0006; 0.1116 -> 0.0004); other gear lines drop 36-94% at
+    machine 31. Machine 23 is noisier (33 points) and only partially
+    collapses. "No smooth law, only the histogram" is now: histogram =
+    closed-form arithmetic x smooth renewal, with named spectral lines.
+    docs/novel/golden-spectral-gap.md; research/machine_dft.py.
+
+30. PAIR RENEWAL AND WHAT (D)'s ANTI-CORRELATION IS MADE OF
+    (research/pair_renewal.py, on the Mechanic's full-period joint census
+    including machine 31 = 6.2e9 adjacent pairs).
+    (a) Exclusion law extended to machine 31: ZERO counts in the 6 forbidden
+    mod-5 classes (was verified to 29).
+    (b) Bulk pairs: kappa2/(kappa1*kappa1) has count-weighted mean 0.99 at
+    machines 29 and 31 - ON AVERAGE the irreducible correction factorises
+    (pair interaction = closed-form arithmetic x independent singles) - but
+    per-cell log-sd ~ 1.0-1.4 and machine-drifting median (2.1 -> 0.57):
+    the naive factorisation is NOT a per-cell law.
+    (c) QUALIFYING pairs (size >= 2u', residue 0/+-2u' mod q'): measured
+    R(1) sits x2.4-x6 BELOW the closed-form + factorising-renewal
+    prediction (meas/pred 0.167, 0.302-0.309, 0.377-0.418 at machines 23,
+    29, 31) - and upgrading to the FULL 4-point interior predictor does not
+    close it. THE ANTI-CORRELATION (D) NEEDS IS GENUINELY BEYOND 3- AND
+    4-POINT CRT ARITHMETIC. The residual factor shrinks monotonically toward
+    1 with machine size (3 points - watch, don't extrapolate). Definition
+    flag: my measured machine-19 R(1) = 1.28 (positive!) vs Constructor's
+    reported deficit range - their exact qualifying set needs stating
+    (size-only gives 2.03 at 19; size+residue gives 1.28; neither matches).
+    (d) PADDED LAG: the full closed-form predictor brings the padding-supply
+    erraticity down to kappa(q') in [0.007, 0.107] across steps 19->23,
+    23->29, 29->31, 31->37 - a 15x residual spread where round 19's
+    endpoint-only sigma explained ~1/10 of 330x. The 23->29 supply (6) sits
+    BELOW its own machine's kappa trend; padding is renewal-suppressed
+    beyond even the interior closed form.
+
+31. FLANK-SUM CORRIDOR LAW - (D) IS NEVER CORRIDOR-FORCED (research/
+    fs_corridor.py). A word occurrence with flanks is a 4-point shape
+    {0, gL, gL+s, s+T} (s = span, T = FS); by the completeness lemma only
+    gears 5, 7 can block it, so feasibility is decided mod 35 with TWO free
+    phases (machine phase r, flank split gL). Result: 0 of the 1225
+    (s, T) mod-35 classes are blocked - EVERY flank-sum value above the (D)
+    requirement is corridor-feasible for every span; checked against all 47
+    census word-steps: no (D)-critical interval contains a blocked T.
+    BUT 51.6% of individual (gL, s, gR) mod-35 triples ARE blocked - more
+    than half the splits are forbidden and the SUM survives through the
+    split disjunction. Consequence for Constructor: do not hunt a corridor
+    proof of (D); the only route is counting/occurrence (R33 form). This is
+    the r18 "selection plus rarity, not obstruction" lesson, now at the
+    exact object (D) bounds.
+
+Round-20 refuted angles (added to the standing list):
+- "Pair interaction reduces per-cell to endpoint arithmetic x singles":
+  killed by log-sd ~1.2 and machine-drifting bias (30b); only the
+  count-weighted average factorises.
+- "The full closed-form predictor explains the padding supply": 15x spread
+  remains (30d).
+- "kappa(g*density) is a universal curve": first-order only (28d).
+- "(D) might be corridor-forced at n = 4": decisively no - 0/1225 (31).
+
+Round-20 untested angles left open:
+- Mechanism of exact kappa(4) = 1 (cross-gear cancellation; mirror symmetry
+  suspected). Finite per machine; kernel-checkable.
+- kappa's log-convex TAIL as the residence of extreme-value structure: fit
+  kappa on the top decile of g only, relate curvature to F - the Wall V
+  content of this decomposition, not measured this round.
+- Lag >= 2 R prediction needs middle-gap-summed arithmetic - exactly a
+  transfer-matrix product over the closed-form 3-point kernels
+  (Constructor's frame-1 target; the kernels are ready here).
+- The extra qualifying suppression (x2.4-x6, shrinking): constant, or -> 1?
+  Needs machines 37/41 joint census (Mechanic).
+- A genuine large-sieve inequality on W_j from the exact spectrum (29a) -
+  named, not built: the power spectrum is closed-form, so a Beurling-
+  Selberg-style bound on window counts is a finite construction.
+
+Reproduction pointers (round 20): depth_identity.py (identity + exact W_j
+tables -> data/depth_identity_<y>.csv), renewal_law.py (decomposition,
+wiggle test, kappa, padded lag), machine_dft.py (spectrum, T3, golden gap,
+line collapse), pair_renewal.py (exclusion at 31, factorisation, qualifying
+R), fs_corridor.py (0/1225 law, 51.6% split blocking). All with assertions;
+.venv via uv run.

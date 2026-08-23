@@ -15,3 +15,7 @@ panic = "abort"
 [[bin]]
 name = "gapsuite"
 path = "src/bin/gapsuite.rs"
+
+[[bin]]
+name = "h2ladder"
+path = "src/bin/h2ladder.rs"

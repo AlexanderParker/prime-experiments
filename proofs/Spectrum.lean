@@ -134,6 +134,93 @@ theorem merged_le_of_suppressed {g : ℕ → ℕ} {a l Fj Qj F q lam L : ℕ}
     g a + windowSum g (a + 1) l + g (a + l + 1) ≤ F + q :=
   le_trans hQ (qual_le_of_suppressed hflat hsupp)
 
+/-! ## The qualifying spectrum
+
+Mechanic's word-free criterion is built on `Q_j(M; a)`: the largest sum of
+`j` consecutive gaps whose `j - 2` MIDDLE gaps are all at least the
+qualifying floor `a = 2u'` (research/qspec_table.py). The definitions below
+fix that object over an abstract gap sequence, and the theorems compose it:
+a word all of whose letters meet the floor makes its merged window a
+QUALIFYING window, so (D) follows from `Q_j <= F + q'` alone - at every
+depth at once, with no `k_win`, no fuel and no word list in the statement.
+This is round 19's suppression-corrected flatness in the form the censuses
+can discharge machine by machine.
+-/
+
+/-- The `j - 2` interior gaps of the `j`-window at `a` all meet the
+qualifying floor `2u`. (Windows of depth `j <= 2` have no interior and
+qualify vacuously.) -/
+def Qualifying (g : ℕ → ℕ) (u a j : ℕ) : Prop :=
+  ∀ i, 1 ≤ i → i + 1 < j → 2 * u ≤ g (a + i)
+
+/-- `Qj` bounds every QUALIFYING window of depth `j`: the qualifying
+spectrum value `Q_j` of research/qspec_table.py, over an abstract gap
+sequence. -/
+def QualBound (g : ℕ → ℕ) (u j Qj : ℕ) : Prop :=
+  ∀ a, Qualifying g u a j → windowSum g a j ≤ Qj
+
+/-- A word all of whose `l` letters are at least `2u` makes its merged
+window qualifying: the interiors of the `(l+2)`-window at `a` are exactly
+the word's letters. -/
+theorem qualifying_of_word {g : ℕ → ℕ} {u a l : ℕ}
+    (hw : ∀ i < l, 2 * u ≤ g (a + 1 + i)) :
+    Qualifying g u a (l + 2) := by
+  intro i h1 hi
+  have he : a + i = a + 1 + (i - 1) := by omega
+  rw [he]
+  exact hw (i - 1) (by omega)
+
+/-- The merged window of a qualifying word is bounded by `Q_{l+2}`. -/
+theorem merged_le_qual {g : ℕ → ℕ} {u a l Qj : ℕ}
+    (hQ : QualBound g u (l + 2) Qj)
+    (hw : ∀ i < l, 2 * u ≤ g (a + 1 + i)) :
+    g a + windowSum g (a + 1) l + g (a + l + 1) ≤ Qj := by
+  rw [merged_eq]
+  exact hQ a (qualifying_of_word hw)
+
+/-- **Suppression-corrected flatness implies (D), depth by depth.** If the
+qualifying spectrum at depth `l + 2` is `(F + q)`-flat, every merged window
+of a floor-respecting word of `l` letters is within tolerance. -/
+theorem merged_le_of_qual_flat {g : ℕ → ℕ} {u a l Qj F q : ℕ}
+    (hQ : QualBound g u (l + 2) Qj) (hflat : Qj ≤ F + q)
+    (hw : ∀ i < l, 2 * u ≤ g (a + 1 + i)) :
+    g a + windowSum g (a + 1) l + g (a + l + 1) ≤ F + q :=
+  le_trans (merged_le_qual hQ hw) hflat
+
+/-- **The word-free criterion, all depths at once.** If `Q_j <= F + q` for
+EVERY depth `j`, then (D) holds for every floor-respecting word of every
+length - no `k_win` bound, no fuel cap, no word list. (`Q_j = 0` for depths
+carrying no qualifying window discharges deep `j` for free.) -/
+theorem merged_le_of_qual_flat_all {g : ℕ → ℕ} {u F q : ℕ} (Q : ℕ → ℕ)
+    (hQ : ∀ j, QualBound g u j (Q j)) (hflat : ∀ j, Q j ≤ F + q) :
+    ∀ a l, (∀ i < l, 2 * u ≤ g (a + 1 + i)) →
+      g a + windowSum g (a + 1) l + g (a + l + 1) ≤ F + q :=
+  fun _a l hw => merged_le_of_qual_flat (hQ (l + 2)) (hflat (l + 2)) hw
+
+/-- **R31's two-part form, hypothesis-explicit.** Raw flatness corrected by
+`lam * l * L` (corrected flatness) plus the suppression law at depth
+`l + 2` (every qualifying window sits `lam * l * L` below `F_j`) give (D)
+for every floor-respecting word - the composition of round 19's two
+census-checked statements, with the qualifying hypothesis now explicit. -/
+theorem merged_le_of_corrected {g : ℕ → ℕ} {u a l Fj F q lam L : ℕ}
+    (hflat : Fj ≤ F + q + lam * l * L)
+    (hsupp : ∀ b, Qualifying g u b (l + 2) → windowSum g b (l + 2) + lam * l * L ≤ Fj)
+    (hw : ∀ i < l, 2 * u ≤ g (a + 1 + i)) :
+    g a + windowSum g (a + 1) l + g (a + l + 1) ≤ F + q := by
+  rw [merged_eq]
+  have h := hsupp a (qualifying_of_word hw)
+  omega
+
+/-- Both literal letters meet the qualifying floor: `2u' <= q' - 2u'`
+whenever `6u' = q' -+ 1` and `u' >= 1`, so literal words are
+floor-respecting and `merged_le_qual` applies to them. -/
+theorem alphabet_ge_floor {q u : ℕ} (hu : 6 * u + 1 = q ∨ 6 * u = q + 1) :
+    2 * u ≤ q - 2 * u := by omega
+
+/-- Padded letters meet the floor too: `2u' <= q'`. -/
+theorem padded_ge_floor {q u : ℕ} (hu : 6 * u + 1 = q ∨ 6 * u = q + 1) :
+    2 * u ≤ q := by omega
+
 /-! ## The correlation object
 
 The search's open requirement is now a single object: the joint rate of

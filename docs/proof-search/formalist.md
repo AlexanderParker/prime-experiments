@@ -610,3 +610,198 @@ Modelling-level (the kernel caught real errors):
    replaces the whole start set (37x) whenever the step is invertible mod
    the modulus; the prerequisite `exists_mul_mod_eq` is already proved in
    PolignacCapCore. The named construct for pushing past machine 23.
+
+## Round 20
+
+Ledger: 29 targets + 26 module libs, **1276 jobs** (1254 at round 19), zero
+sorries, zero warnings in owned files. All three briefed targets landed plus
+one pickup from lateral's round-20 list. New libs: `LiteralCapTable`,
+`Machine19` + `Machine19Core` + `Machine19S0..S16` (all registered, root in
+defaultTargets). Axiom audit run: every new theorem on the standard three or
+fewer; **`Machine19.sliceAll` depends on `[propext]` ONLY** - the whole
+1,616,615-slot period scan on one axiom, like `Machine17.w18All`.
+
+### 16. proofs/LiteralCapTable.lean - the (A) word-list enumeration, closed
+
+Verified before formalising: per-class caps recomputed in the corridor frame
+and cross-checked against research/literal_cap_gap_d.py's 140-step max-run
+computation (48/48 classes, zero mismatches; equivalence of start-anchored
+and anywhere-in-walk runs holds because a shifted start is another (r, ph)
+pair); every realized chain length in research/data/fuel_census.csv respects
+its class cap, saturating it at q' = 19 and 31.
+
+```lean
+def runL (t s r ph L : N) : Bool        -- run6/run7 at any length
+def hasRunL (c L : N) : Bool
+def capC (c : N) : N                    -- the explicit 48-class table
+
+theorem cap_table_maximal :             -- upper: NO run of capC c + 1
+    forall c < 210, Nat.gcd c 210 = 1 ->
+      forall r < 35, forall ph < 2,
+        runL (c % 35) (LiteralCap.sOf c) r ph (capC c + 1) = false
+theorem cap_table_realized :            -- exact: a run of capC c EXISTS
+    forall c < 210, Nat.gcd c 210 = 1 -> hasRunL c (capC c) = true
+
+theorem literal_chain_le_capC {q u r ph L : N}
+    (hu : 6 * u + 1 = q or 6 * u = q + 1) (hq : Nat.gcd q 210 = 1)
+    (hph : ph < 2) (hr : 1 <= r)
+    (hE : forall i < L, Corridor.Exposed (LiteralCap.member r q u ph i)) :
+    L <= capC (q % 210)
+theorem word_length_lt_capC ... : ell < capC (q % 210)  -- (A) in word form
+
+theorem cap_two_classes   : ... = {11, 13, ..., 199}    -- 24 classes
+theorem cap_three_classes : ... = {29, 59, 151, 181}
+theorem cap_four_classes  : ... = {1, 23, 31, 61, 67, 89, 97, 113, 121,
+                                   143, 149, 179, 187, 209}
+theorem cap_six_classes   : ... = {37, 53, 83, 127, 157, 173}
+theorem no_cap_five       : ... = empty  -- the spectrum {2,3,4,6} has a hole
+theorem cap_spectrum_counts : cards 24 / 4 / 14 / 6
+theorem hasRunL_mono, capC_le_six
+```
+
+(A) status change: the word list of R21/R26 - alternating words over
+`{2u', q'-2u'}`, two per length, lengths `1 .. capC-1` - is now COMPLETE as
+a kernel-checked function of `q' mod 210` alone, exact in both directions.
+The five-part audit line becomes: (A) FULLY kernel-checked.
+docs/novel/literal-cap.md status upgraded accordingly.
+
+Also here (pickup from lateral round 20): **`tripled_teeth_antipode`** - the
+T3 law. For `6u = q -+ 1`: `{3u, q - 3u} = {(q-1)/2, (q+1)/2}` in exact
+integer form, every gear forever (lateral had asserted it numerically to
+100,000). Two-line omega proof; status upgraded in
+docs/novel/golden-spectral-gap.md.
+
+### Spectrum.lean round-20 block - the qualifying spectrum
+
+Mechanic's Q_j (research/qspec_table.py: max sum of j consecutive gaps whose
+j-2 MIDDLE gaps are all >= the floor a = 2u') is now a formal object, and
+suppression-corrected flatness is hypothesis-explicit in the form the
+censuses discharge:
+
+```lean
+def Qualifying (g : N -> N) (u a j : N) : Prop :=
+  forall i, 1 <= i -> i + 1 < j -> 2 * u <= g (a + i)
+def QualBound (g : N -> N) (u j Qj : N) : Prop :=
+  forall a, Qualifying g u a j -> windowSum g a j <= Qj
+
+theorem qualifying_of_word (hw : forall i < l, 2 * u <= g (a + 1 + i)) :
+    Qualifying g u a (l + 2)
+theorem merged_le_qual (hQ : QualBound g u (l + 2) Qj) (hw) :
+    g a + windowSum g (a + 1) l + g (a + l + 1) <= Qj
+theorem merged_le_of_qual_flat (hQ) (hflat : Qj <= F + q) (hw) :
+    merged <= F + q
+theorem merged_le_of_qual_flat_all (Q : N -> N)
+    (hQ : forall j, QualBound g u j (Q j)) (hflat : forall j, Q j <= F + q) :
+    forall a l, (forall i < l, 2 * u <= g (a + 1 + i)) -> merged <= F + q
+theorem merged_le_of_corrected            -- R31's two-part lambda form,
+    (hflat : Fj <= F + q + lam * l * L)   -- Qualifying hypothesis explicit
+    (hsupp : forall b, Qualifying g u b (l+2) ->
+               windowSum g b (l+2) + lam*l*L <= Fj)
+    (hw) : merged <= F + q
+theorem alphabet_ge_floor : 2 * u <= q - 2 * u  -- both literal letters
+theorem padded_ge_floor   : 2 * u <= q          -- and padded letters qualify
+```
+
+`merged_le_of_qual_flat_all` is the word-free criterion: `Q_j <= F + q'` at
+every depth gives (D) for every floor-respecting word of every length - NO
+k_win, NO fuel, NO word list in the statement; `Q_j = 0` (no qualifying
+window that deep) discharges deep depths for free, which is exactly how
+mechanic's tables behave.
+
+### 17. Machine19 - third machine certified, and the FIRST WIRED INSTANCE
+
+proofs/Machine19Core.lean (defs), Machine19S0..S16.lean (323 slices of 5005
+CRT tuples, 19 per file), Machine19.lean (assembly + consequences). Round
+15's "tier C caps at machine 19" wall is formally dead. Verified over the
+full period numerically first: F_1..F_5 = 25, 31, 35, 38, 47; openings
+378,675; fuel row (19,23) N3 = 62, k_max = 3.
+
+```lean
+theorem sliceAll : forall e < 17, forall f < 19, slice e f = true
+                                          -- [propext] ONLY
+theorem gap_le      ... : b - a <= 25     -- F_k(19)  = 25
+theorem pair_sum_le ... : c - a <= 31     -- F2_k(19) = 31
+theorem quad_sum_le ... : e - a <= 38     -- F4_k(19) = 38 (NEW: depth 4)
+theorem alpha1_certificate ... : 9 * (c - a) <= 9 * 25 + 4 * 23  -- 279<=317
+theorem lemma1_at_19       ... : 3 * ((c - a) - 25) <= 4 * 23
+theorem shallow_flatness   ... : e - a <= 25 + 23  -- F_4 <= F+q' (38 <= 48)
+
+-- the machine's REAL gap sequence, formal:
+theorem exists_exposed_above (k) : exists m, k < m and Exposed19 m
+def nextOp (k) := Nat.find (exists_exposed_above k)
+def opSeq : N -> N                       -- the openings in increasing order
+def g19 (n) := opSeq (n + 1) - opSeq n   -- the gap word
+theorem windowSum_g19 :
+    Spectrum.windowSum g19 a j = opSeq (a + j) - opSeq a
+theorem spectrum_four      : Spectrum.SpectrumBound g19 4 38
+theorem spectrum_four_flat : Spectrum.SpectrumBound g19 4 (25 + 23)
+theorem D_of_shallow_word {a l : N} (hl : l + 2 <= 4) :
+    g19 a + Spectrum.windowSum g19 (a + 1) l + g19 (a + l + 1) <= 25 + 23
+```
+
+`D_of_shallow_word` is (D) at alpha = 3 at machine 19 as a theorem about the
+machine's own gap word: `merged_le_of_shallow`'s flatness half is discharged
+by the kernel scan, and the ONLY remaining hypothesis is the word's
+shallowness. Census facts for context: k_max = 3 at 19->23 and the winning
+word (8,15) has l = 2 (depth 4) - covered. A deep word (l >= 3) is not
+covered; measured this round for the record (full-period Python, floor 8):
+Q_4(19) = 37, Q_5(19) = 38, Q_6(19) = 0 - the qualifying criterion holds at
+EVERY depth with margin >= 10 and the fuel cap arrives free at depth 6.
+
+Scan engineering (measured): ~13 s per 5005-tuple slice with the round-18
+encoding plus the third window fact (the F4 walk costs ~40% over F+F2 alone
+- 246 s per 19-slice file); whole machine ~70 min of kernel time.
+
+### New failed-approach / infrastructure lessons
+
+- **Parallel slice-family builds die on MEMORY, not CPU.** A 16-target
+  `lake build` invocation ran ~5 concurrent module processes on a 16 GB
+  machine (~2-3 GB each, 1.7 GB free system-wide) and 10 of 16 targets
+  failed; every failed target succeeds standalone. Lake (5.0.0 here) has no
+  jobs flag: bound concurrency by invoking `lake build` with at most 2-3
+  targets at a time, sequentially. The failure mode in the log is just
+  "error: build failed" with the failed targets listed - read the WHOLE
+  list, not the tail (this round initially rebuilt 3 of 10 because the list
+  was truncated by `tail -5`).
+- **The sorry'd-assembly dry-check pattern works.** Copy the root file, swap
+  the slice imports for the core import, replace the assembly theorem's
+  proof by `sorry`, and `lake env lean` it: the entire 300-line root
+  (witness extraction with 4 witnesses, the opSeq/Nat.find development, the
+  wired instance) elaborated before ANY slice had finished, so the root
+  compiled first try when the slices landed. Cost: zero kernel time.
+- `lake env lean` can fail transiently with "failed to read ...
+  .olean.private" while a parallel `lake build` is running - retry, don't
+  debug.
+- 4-witness extraction from a `countP` fact: convert with
+  `List.countP_eq_length_filter`, rcases the filtered list to
+  `w::x::y::z::rest` (length contradictions close the short cases), get
+  pairwise distinctness by three `List.nodup_cons.mp` unpackings, derive
+  per-witness 4-way disjunctions (= b, = c, = d, or >= e) by the by_contra
+  cascade, and let one final `omega` do the 4-distinct-values-in-3-slots
+  pigeonhole (256 implicit cases - fine).
+- `Nat.find` is fully usable here: the opening predicate is decidable, so
+  the gap sequence `opSeq`/`g19` is computable and its API (`find_spec`,
+  `find_min`) gives consecutiveness for free. No choice needed beyond the
+  standard footprint.
+
+### Open formalisation targets (re-prioritised after round 20)
+
+1. **R39's inequality** (constructor's request):
+   `F(M+q') <= max(F2, max_j qualmax_j)` - needs the merge law as a
+   two-machine statement (every new gap is a window sum of old gaps whose
+   interiors are q'-killed, hence residue-qualifying). The
+   Qualifying/QualBound vocabulary landed this round is its target language;
+   this is the route's live criterion and the top target.
+2. **Q_5(19) <= 48 kernel scan** - would remove even the shallowness
+   hypothesis from `D_of_shallow_word` at machine 19 (a 49-step-walk variant
+   of the current encoding, ~2x cost, same slice recipe).
+3. **Machine 23** (period 37.2M): overnight at ~10 h kernel time with the
+   F4 walk included; extends the certificate ladder and the wired instance
+   to the next step (needs F4(23) <= 34 + 29 = 63).
+4. **Lateral's depth-sum identity at a fixed machine**:
+   `sum_j W_j(g) = prod_q c_q(g)` at machine 13 - finite, medium design
+   work (the window <-> endpoint-pair bijection plus a CRT count).
+5. **Harvester's paired-Holt coef rung** (5005 -> 85085): coef
+   position-freeness is near-definitional; the rung verification is a
+   machine-17-scale scan with word extraction.
+6. **Constructor's renewal-ladder validity** (finite IE + CRT, per step).

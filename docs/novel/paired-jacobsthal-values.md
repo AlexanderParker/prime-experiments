@@ -99,6 +99,11 @@ table itself; each value is an exhaustive finite computation.
   exhaustive over every even difference, and the percentile data.
 - research/why13.py, research/maximiser_shape.py, research/h2_19_lift.py - the
   dip analysis, maximiser shapes, and the y = 19 lift.
+- research/zm_margin_mechanism.py (round 20) - slack quantisation, step law,
+  jump-ratio uniqueness, persistence events, argmax-trajectory verifications
+  against ZM's full table (section 4a); research/family17_percentile.py - exact
+  tie-aware percentile bookkeeping, per-class arrays saved to
+  research/data/f13_family.npy and f17_family.npy.
 - rust2/src/bin/maxgap_pruned.rs (+ log research/data/maxgap53_pruned.log) - the
   pruned fixed-twin search; verified identical to the unpruned original on
   F(2,y) for y = 11..37 before being trusted further.
@@ -137,6 +142,61 @@ Morack's reduction (their Propositions 3.2/3.5) uses one uniform bound for every
 even difference, while the family shows the quantity being bounded varies by more
 than 2x across differences at fixed y (see twin-percentile.md). A per-difference
 Conjecture 6 would be a strictly sharper, previously unformulated statement.
+
+## 4a. Round-20 mechanism: why 13 is extremal, resolved against the full ZM table
+
+(research/zm_margin_mechanism.py, all assertions pass; output at
+research/data/zm_margin_mechanism.out. Every item below is an exact event, no fits.)
+
+SLACK QUANTISATION. h_2 = 0 mod 6 always, and the bound B = p^2 - p has fixed
+residue mod 6 (0 for p = 1 mod 6, 2 for p = 5 mod 6), so the conjecture's slack
+B - h_2 is quantised with minimum admissible value 6 resp. 2. EVENT: the minimum is
+attained exactly TWICE through p = 73 - at p = 5 (slack 2) and p = 13 (slack 6) -
+and never again. "3.8% margin at 13" is really "one quantum": in ZM's condensed
+units omega_2(6) = 24 = cap 25 minus one. Both exact points are twin-step landings.
+
+THE STEP LAW (18 steps of ZM's table). Relative margin FALLS at all 6 twin steps
+landing at p >= 13 (11->13, 17->19, 29->31, 41->43, 59->61, 71->73), RISES at all
+5 gap-6 steps, and is genuinely mixed at gap-4 steps (3 up, 2 down). Absolute slack
+falls ONLY at twin steps: ->13 (-38), ->31 (-2), ->61 (-8). Mechanism of the sign:
+margin is stable when h_2 grows like the bound; d(B)/B ~ 2g/p while d(h_2)/h_2 ~
+2r/p (h_2 ~ p^2/2, r = per-step jump in halved units per q'), so the crossover sits
+at gap g ~ mean r ~ 1.9-2.5 - twin steps always lose margin, gap-6 always gains,
+gap-4 is the knife edge. A DIP therefore needs r >> g: a huge jump landing on a
+twin step.
+
+THE UNIQUE JUMP. r = Delta(maxF)/q' at 11->13 is 42/13 = 3.231, the unique value
+above 2.6 in all 18 steps (runner-up 2.553 at ->47, then 2.348 at ->23). The dip at
+13 is exactly this outlier landing on a twin step.
+
+WHY THE JUMP: THE LAST CLEAN-EXTENSION STEP. Exhaustive family scans at y = 5..17:
+winners at 13 restrict mod 1155 to winners at 11, every one (16/16 have F_11 = 33,
+F_13 = 75 - the SAME fixed difference gains 3.231 q' in one step); winners at 11
+likewise extend winners at 7; but winners at 17 restrict to F_13 in 42..51 (family
+max 75) - NOT winners - and the best 17-extension of any 13-winner reaches only
+F = 87 vs the true max 96. So maximiser persistence holds up to 11->13 and DIES at
+13->17; the merge-law round showed it stays dead (the 19-argmax restricts to the
+twin's own value 54 at 17, with 35,848 classes strictly above it - verified here
+from the full 17-scan). 11->13 is the LAST step where the family maximum can grow
+by full profile extension, and it happens to land on a twin step of the bound. Both
+coincidences - and the mod-6 quantum - meet only at 13.
+
+THE BUDGET EVENTS (route-relevant). Per-difference single-step increments measured:
+e = 344 gains 3.231 q' at 11->13; the 19-argmax e = 1,532,627 gains 75 = 3.947 q'
+at 17->19 (54 -> 129, verified by direct construction); the 23-argmax
+e = 107,207,699 gains 102 = 4.435 q' at 19->23 (81 -> 183, verified). The round-14
+budget audit's structured-d worst was 1.846 q' and twins' own worst 2.432 q'
+(31->37). CONSEQUENCE: no uniform increment budget alpha <= 3 (in q' units) holds
+over the full even-difference family - the tolerance-route constant is
+structured-d-specific, and the known family-argmax jumps 3.23, 3.95, 4.43 are
+non-decreasing.
+
+EMPIRICAL SHARE. The margin drift toward ~50% (section 4) says h_2 ~ (p^2 - p)/2.
+Neither ZM paper states any growth observation (both re-read in full this round;
+the computation note has no asymptotic commentary and no remark on the 13 case), so
+the refined statement "h_2(n) = (1/2 + o(1)) p_n^2, with the p = 13 point the
+unique quantum-exact approach to the bound" has no counterpart in print. Recorded
+here as an OBSERVATION with a candidate conjecture attached, not a claim.
 
 ## 5. Unsolved questions or conjectures it touches
 
