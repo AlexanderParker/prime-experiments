@@ -82,3 +82,9 @@ name = "PolignacCap105"
 
 [[lean_lib]]
 name = "Spectrum"
+
+[[lean_lib]]
+name = "Machine19Core"
+
+[[lean_lib]]
+name = "Machine19Probe"

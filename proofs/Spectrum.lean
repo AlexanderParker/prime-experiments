@@ -100,4 +100,84 @@ theorem merged_le_of_shallow {g : ℕ → ℕ} {a l F4 F q : ℕ}
   rw [merged_eq]
   exact le_trans (le_trans (windowSum_mono g a hl) (h4 a)) hflat
 
+/-! ## Suppression-corrected flatness
+
+Round 17 refuted RAW flatness (`F_j - F <= q'` fails at 5 of 15
+machine-depth pairs). Constructor's repaired requirement adds the measured
+suppression term:
+
+    F_j - F  <=  q' + lambda * (j-2) * L        (corrected flatness)
+
+and pairs it with the suppression law itself,
+
+    qualmax_j + lambda * (j-2) * L  <=  F_j     (suppression)
+
+whose composition is exactly (D). Both are census-checkable and both are
+HYPOTHESES here, so nothing in this file is at risk from a census revision -
+only the composition is proved. Writing `d` for the depth excess `j - 2`
+keeps the statement free of truncated subtraction.
+-/
+
+/-- **The composition.** Corrected flatness plus suppression give (D):
+the qualifying maximum at depth `j = d + 2` is at most `F + q'`. -/
+theorem qual_le_of_suppressed {Fj Qj F q lam d L : ℕ}
+    (hflat : Fj ≤ F + q + lam * d * L)
+    (hsupp : Qj + lam * d * L ≤ Fj) : Qj ≤ F + q := by
+  omega
+
+/-- The same in window form: a merged window of a word occupying `l` gaps
+sits at depth `j = l + 2`, so `d = l`. -/
+theorem merged_le_of_suppressed {g : ℕ → ℕ} {a l Fj Qj F q lam L : ℕ}
+    (hQ : g a + windowSum g (a + 1) l + g (a + l + 1) ≤ Qj)
+    (hflat : Fj ≤ F + q + lam * l * L)
+    (hsupp : Qj + lam * l * L ≤ Fj) :
+    g a + windowSum g (a + 1) l + g (a + l + 1) ≤ F + q :=
+  le_trans hQ (qual_le_of_suppressed hflat hsupp)
+
+/-! ## The correlation object
+
+The search's open requirement is now a single object: the joint rate of
+QUALIFYING gaps at consecutive separations, and its deficit against
+independence. Constructor, mechanic and lateral are each computing it, so
+the definitions below fix what is being computed - division-free, so the
+deficit factor `D` is an integer comparison rather than a ratio.
+
+`qualCount` counts qualifying gaps among the first `N`; `jointCount ... j`
+counts positions where `j` CONSECUTIVE gaps all qualify. Independence would
+predict `jointCount * N^(j-1) = qualCount^j`; `NegCorrelated ... D` asserts
+the measured joint count falls short by a factor `D` - the measured
+deficits being x26, x6.7 and x1400.
+-/
+
+/-- Qualifying gaps among the first `N`. -/
+def qualCount (Q : ℕ → Bool) (g : ℕ → ℕ) (N : ℕ) : ℕ :=
+  ((Finset.range N).filter fun i => Q (g i) = true).card
+
+/-- Positions where `j` consecutive gaps all qualify. -/
+def jointCount (Q : ℕ → Bool) (g : ℕ → ℕ) (N j : ℕ) : ℕ :=
+  ((Finset.range N).filter fun i => ((List.range j).all fun s => Q (g (i + s))) = true).card
+
+/-- **Negative correlation at depth `j`, by a factor `D`.** Independence
+would give `jointCount * N^(j-1) = qualCount^j`; this says the joint count
+is short by at least `D`. -/
+def NegCorrelated (Q : ℕ → Bool) (g : ℕ → ℕ) (N j D : ℕ) : Prop :=
+  D * jointCount Q g N j * N ^ (j - 1) ≤ (qualCount Q g N) ^ j
+
+@[simp] theorem jointCount_one (Q : ℕ → Bool) (g : ℕ → ℕ) (N : ℕ) :
+    jointCount Q g N 1 = qualCount Q g N := by
+  simp [jointCount, qualCount]
+
+/-- Deeper joint events are rarer: `j+1` consecutive qualifying gaps in
+particular give `j` consecutive ones. This is what lets deficits compound. -/
+theorem jointCount_antitone (Q : ℕ → Bool) (g : ℕ → ℕ) (N j : ℕ) :
+    jointCount Q g N (j + 1) ≤ jointCount Q g N j := by
+  apply Finset.card_le_card
+  intro i hi
+  rw [Finset.mem_filter] at hi ⊢
+  refine ⟨hi.1, ?_⟩
+  have h := hi.2
+  rw [List.all_eq_true] at h ⊢
+  intro s hs
+  exact h s (List.mem_range.mpr (by have := List.mem_range.mp hs; omega))
+
 end Spectrum
