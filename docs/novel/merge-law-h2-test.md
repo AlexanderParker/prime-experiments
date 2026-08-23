@@ -8,8 +8,8 @@ h_2 for all p_n <= 73, transcribed in `docs/novel/paired-jacobsthal-values.md` s
 and the project's own fixed-twin ladder F(2,y) (`docs/gear-recursion.md` section 2).
 
 **Answer in one line: the merge law is exact everywhere it was run - it replicates
-Ziller-Morack's h_2 at 19 and 23 (the first in-project exact values there) and the entire
-twin ladder through F(2,43) = 309 without ever constructing a new period, at 18x to 960x
+Ziller-Morack's h_2 at 19 and 23 (the first in-project exact values there) and the twin
+ladder through F(2,41) = 273 without ever constructing a new period, at 18x to 960x
 fewer elementary operations than construction - but the h_2 ladder cannot be ridden to
 p_n = 73, because h_2's maximiser wanders through the middle of the difference family, so
 exactness needs every class, and the family count grows by a factor q' per rung.**
@@ -62,9 +62,9 @@ old gaps and merged-run spans, read off the old word alone.
 - The h_2(19) and h_2(23) argmax classes were rebuilt by full direct construction
   (periods 4,849,845 and 111,546,435): F = 129 and 183 exactly as the merge predicted.
 - Every streamed twin rung re-derives the previous level's F as the scanned stream's own
-  max gap (a construction-equivalent check): 58, 88, 91 all reconfirmed in-stream, and the
-  stream opening counts matched the exact products A(31) = 6,226,553,025,
-  A(37) = 217,929,355,875, A(41) = 8,499,244,879,125.
+  max gap (a construction-equivalent check): 58 and 88 reconfirmed in-stream, and the
+  stream opening counts matched the exact products A(31) = 6,226,553,025 and
+  A(37) = 217,929,355,875.
 
 ## 2a. Metrics protocol
 
@@ -91,7 +91,7 @@ protocol); earlier concurrent-run timings were discarded as contaminated.
 |---|---|---|---|---|---|---|---|---|---|
 | base 17 | exhaustive, 127,628 classes x P = 255,255 | 192 | 192 | MATCH | - (direct scan) | 8.52e10 (sieve, all classes) | same - this is the base scan | 1 | 4.4 s |
 | 17 -> 19 | merge: 127,628 17-words x 10 scanners (s ~ 19-s) = all 2,424,932 classes; 19-period never built | **258** | 258 | **MATCH** | exact, held everywhere; no fallback (audited: 200 random classes + argmax vs construction) | 1.277e11 | 3.198e13 (2,424,922 classes x P19 sieve) | **250x** | 34.5 s |
-| 19 -> 23 | merge: 2,424,932 19-words generated lap-wise from their 17-parents (never sieved at P19) x 12 scanners, every word fully scanned, no pruning | **366** | 366 | **MATCH** | exact, held everywhere; no fallback (argmax rebuilt by construction over P = 111,546,435: 183) | 1.813e13 | 1.745e16 (55,773,217 classes x P23 sieve) | **962x** | PENDING_H23 s |
+| 19 -> 23 | merge: 2,424,932 19-words generated lap-wise from their 17-parents (never sieved at P19) x 12 scanners, every word fully scanned, no pruning | **366** | 366 | **MATCH** | exact, held everywhere; no fallback (argmax rebuilt by construction over P = 111,546,435: 183) | 1.813e13 | 1.745e16 (55,773,217 classes x P23 sieve) | **962x** | 7032 s (effectively solo; all 2,424,932 words, 0 pruned) |
 | 23 -> 29 | NOT RUN | - | 450 | - | - | ~1.7e16 (estimate) - a dedicated multi-day run; not executed | ~1e19 | ~10^3x | - |
 | 29 -> 31 .. 71 -> 73 | NOT RUN - infeasible | - | 570 .. 2622 | - | - | work multiplies by ~q'(q'-2) ~ 500-4000 per rung (class count x q', word length x (q'-2)); the 31 rung alone is ~10^18 ops | worse still | - | - |
 
@@ -132,15 +132,18 @@ Merge ops = generation visits + scanner pushes; construction ops = strikes + P c
 | 23 -> 29 | 43 (129) | 129 | MATCH | exact | 1.67e7 | 2.59e9 | 155x | 0.023 s | 0.50 s |
 | 29 -> 31 | 58 (174) | 174 | MATCH | exact | 4.45e8 | 8.24e10 | 185x | 0.56 s | 8.4 s |
 | 31 -> 37 | 88 (264) | 264 | MATCH | exact | 1.29e10 | 3.12e12 | 242x | 5.4 s | 377.8 s |
-| 37 -> 41 | 91 (273) | 273 | MATCH | exact | 4.64e11 | 1.30e14 | 281x | 230.3 s | not run (formula value; ~4 h at measured sieve rate); F = 91 reconfirmed as the 43-run's stream max |
-| 41 -> 43 | PENDING_T43V | 309 | PENDING_T43M | exact | 1.86e13 | 5.70e15 | 306x | PENDING_T43T | **infeasible** (P = 2.18e15 slots); the independent cross-check is the project's covering-search value 309 itself |
+| 37 -> 41 | 91 (273) | 273 | MATCH | exact | 4.64e11 | 1.30e14 | 281x | 230.3 s | not run (formula value; ~4 h at measured sieve rate) |
+| 41 -> 43 | not obtained - run terminated for the round-21 machine handover (needs ~2-4 h exclusive) | 309 | - | exact (run not completed) | 1.86e13 | 5.70e15 | 306x | not measured - machine never idle | **infeasible** (P = 2.18e15 slots); the independent cross-check is the project's covering-search value 309 itself |
 | 43 -> 47 | NOT RUN | (unknown - would be a first computation) | - | - | ~8e14 | ~2.6e17 | ~330x | est. ~3 h at measured rate - out of scope here; the pruned covering search (rust2) is the better tool past 43 | infeasible |
 
-Every merge value through 41 (43 PENDING_T43NOTE) agrees with the project's independently
-computed ladder - including F(2,37) = 264 and F(2,41) = 273, computed from streamed words
-whose periods (1.2e12, 5.1e13 slots) were never materialised. The 41 -> 43 rung is the
-strongest cross-check available: the merge law against the covering search
-(rust2/maxgap), two wholly independent methods.
+Every merge value through 41 agrees with the project's independently computed ladder -
+including F(2,37) = 264 and F(2,41) = 273, computed from streamed words whose periods
+(1.2e12, 5.1e13 slots) were never materialised. The 41 -> 43 rung would have been the
+strongest cross-check available (merge law vs the rust2/maxgap covering search, two
+wholly independent methods); its run was terminated for the round-21 machine handover
+before completing, so F(2,43) = 309 stands on the covering search alone and the merge
+cross-check at 43 remains open (the run is one `h2ladder twin43` invocation, ~2-4 h on
+an idle machine).
 
 Frame reconciliation for the table: the corpus F(2,y) column is the adjacent frame; the
 slot values are F/3 exactly (F_adjacent = 3 F_slot, verified for every rung here and in
@@ -187,10 +190,11 @@ values it is exact and genuinely cheaper: it replicated Ziller-Morack's h_2(19) 
 h_2(23) = 366 to the digit - the project's first exact values at those levels, previously
 priced out (the round-20 elite lift could not close the gap, >= 222 vs 258) - at 250x and
 962x fewer elementary operations than from-scratch construction of the new periods; on the
-fixed-twin ladder it reproduced every corpus value F(2,19) = 75 through F(2,43) = 309
-PENDING_T43V2, the deep rungs computed over streamed words whose periods (up to 2.18e15
-slots) were never built, at operation ratios growing from 18x to 306x, where construction
-is simply impossible on this machine. But it does not extend h_2 past 23-29: exactness
+fixed-twin ladder it reproduced every corpus value F(2,19) = 75 through F(2,41) = 273,
+the deep rungs computed over streamed words whose periods (up to 5.1e13 slots) were never
+built, at operation ratios growing from 18x to 281x, where construction is out of reach
+on this machine (the 41 -> 43 rung, ratio 306x, was terminated unfinished for the
+round-21 machine handover). But it does not extend h_2 past 23-29: exactness
 requires carrying the entire difference family (the 19-maximiser ranks 35,849th at level
 17 and the 23-maximiser starts below the twin class - maximiser persistence is false at
 these rungs, so no elite shortcut is exact), and the family's total word volume grows by

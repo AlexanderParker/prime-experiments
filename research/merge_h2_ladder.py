@@ -275,11 +275,12 @@ RUST_RESULTS = {
     # value: (computed by rust3 h2ladder subcommand, ZM / corpus reference)
     "h_2(17) exhaustive": (192, ZM[17]),
     "h_2(19) by merge": (258, ZM[19]),
-    "h_2(23) by merge": (366, ZM[23]),
+    "h_2(23) by merge, unpruned, all 2,424,932 words": (366, ZM[23]),
     "F(2,31) merge=construction": (174, F2Y[31]),
     "F(2,37) merge, period never built": (264, F2Y[37]),
     "F(2,41) merge, period never built": (273, F2Y[41]),
-    "F(2,43) merge, period never built": (309, F2Y[43]),
+    # F(2,43): the merge run (h2ladder twin43, ~2-4 h idle) was terminated for
+    # the round-21 machine handover; 309 stands on the covering search alone.
 }
 
 
