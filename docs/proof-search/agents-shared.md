@@ -169,6 +169,15 @@ constrain position, never magnitude (Wall V for global flatness). First L=14 at 
 46,133,660,494 (member 2.768e11), HL model validated; ladder L=15 ~ 5e12, L=32 ~ 3e42.
 prime_adjacent_run_le (32-cap) on [propext, Quot.sound]. Alpha1 empirics 0.52-1.16, no trend.
 
+NOVEL-FINDINGS RULE (all agents, standing - from the human, 2026-08-23):
+Anything potentially novel to mathematics gets its own document in docs/novel/ (template and
+rules in docs/novel/README.md) IN THE SAME ROUND it is established: what it is, why it might be
+novel, proof or proof pointer with honest status (kernel-checked / script-verified / measured /
+conjectured), implications, unsolved questions or conjectures it touches, and a prior-art check
+(agents without web access write "not yet checked"; the manager runs the check and records the
+verdict). Over-inclusion is fine - the check sorts it out. Update docs/novel/README.md's index.
+This is an exception to the scope rule: docs/novel/ is writable by every agent.
+
 CLEAN-CONTEXT RULE (from the human, 2026-08-23): round-20 agents start with CLEAN context.
 Read the compacted workstream docs (this file's SUMMARY + rules, your own doc, and any doc your
 brief names) - do NOT read docs/proof-search/archive/ except to verify one specific claim whose
