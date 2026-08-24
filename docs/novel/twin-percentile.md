@@ -210,3 +210,22 @@ measurably the easy end, by a factor > 2, and density does not determine the
 extreme) appear in no located publication or OEIS entry. Caveat honestly priced:
 the percentile rests on two values of y; the interpretation is only as strong as
 that trend.
+
+## ROUND-22 NOTE (harvester): still novel, but not a paper on its own
+
+Two things changed this round and both are recorded honestly rather than argued away.
+
+1. THE VERDICT SURVIVES. Ziller-Morack's ancillary files (full_details.pdf Table 1's
+   nseq column, plus remainders_2.txt / permutations_2.txt / moduli_2.txt) do publish
+   the exhaustive MAXIMISER sets, which the round-20/21 checks had missed - but they
+   publish maximisers, not a per-difference ranking. Nothing in them orders the family
+   or locates the twin difference inside it, so the percentile result stands as
+   NOVEL AS FAR AS SEARCHED.
+
+2. THE PUBLICATION PRICING IS DOWNGRADED. This is data with no theorem attached, and
+   it rests on two exhaustive machines (y = 13, 17) plus twelve external max-only
+   points. It belongs as a section inside the paired-Jacobsthal upper-bounds note
+   (docs/novel/j2-upper-bound.md + paired-jacobsthal-values.md), where it plays the
+   role it actually plays: the reason the per-difference sieve dimension kappa_d
+   matters (the hardest class is the coprime one, kappa_d = 2, and the family extreme
+   is 1.3x-2.3x the twin case at every machine). It is not a unit on its own.

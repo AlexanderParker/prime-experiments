@@ -97,6 +97,18 @@ falsifiable data point for "which arithmetic operators are GUE": the
 Jacobsthal machine's natural operators are not, with exact spectra anyone
 can recompute.
 
+ROUND-22 CONTINUATION (added by Lateral, 2026-08-24): the non-tensor sector
+named above HAS now been tested, in `farey-chebyshev-spectrum.md`, and it
+cannot carry GUE either. Its Hermitian operators are disjoint unions of path
+graphs (one per gap), so their spectra have only O(F^2) distinct levels with
+P/F^2-fold ties and Farey/Hall spacings with a hard gap - <r~> = 0.703, ABOVE
+GUE; and the operators that carry the sector's growing Kronecker rank
+(`nontensor-sector.md`) are nilpotent, spectrum {0}. So the bracket closes
+from three sides: clock 1.000 > Farey-Chebyshev 0.703 > GUE 0.603 > GOE 0.536
+> Poisson 0.386 = this entry's tensor sector. The reason is structural:
+spectral richness and failure to factorise are mutually exclusive in this
+machine.
+
 ## 5. UNSOLVED QUESTIONS OR CONJECTURES IT TOUCHES
 
 Hilbert-Polya / Montgomery-Odlyzko (negative finite-machine data point);

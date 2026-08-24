@@ -828,3 +828,239 @@ data/kill_spacing_23.log, kill_spacing_23_29.log), nilpotency_additivity.py
 tm_corrphase_29_mod385.log), qualrun_zerocert.py (+ test_memo2.py for the
 memo negative; logs data/qualrun_zerocert.log, test_memo2.log). All
 censuses full-period seam-exact; model predictions labeled float.
+
+---
+
+## Round 22 append (the arity verdict + the arity-free generator): R45-R48
+
+**R45 (THE ARITY LADDER - three arities separated, and R41's "growing arity"
+CORRECTED; research/arity_ladder.py, research/arity_probe41.py, log
+data/arity_probe41.log).** Round 21 reported "the truncation arity GROWS -
+3-point at 19/23, 4-point at 29". That number was the RESIDUE arity, and a
+residue-qualifying run is NOT a kill chain: the kernel-checked T3 alternation
+(two-teeth-kill-spacing.md) forbids two consecutive letters of the same
+nonzero class. Separating the three arities (all exact, full period):
+
+    A_res  (nilpotency index of the residue-qualifying successor map)
+    A_kill (residue + T3 alternation) = k_max, the fuel chain length
+    A_relax(smallest m at which the m-point relaxation refutes the INFINITE
+            alternating word ...a b a b... - R41's own boundary object)
+
+    machine        11  13  17  19  23  29  31  37  41
+    A_res           2   2   2   3   3   4   4   4   -
+    A_kill = k_max  2   2   2   3   2   4   4   3  >=3
+    A_relax         1   2   2   3   2   3   4   3   2
+    litcap(q'%210)  2   2   2   4   3   4   6   2   4
+
+A_res is monotone through m37; A_KILL AND A_RELAX ARE NOT. Both fall at m23
+and again at m37, and A_relax falls to 2 at m41 - the earliest refutation
+since m17. THE VERDICT: THE OPERATOR-RELEVANT ARITY NEITHER GROWS WITHOUT
+BOUND NOR STABILISES - it is gear-arithmetic-valued, moving up and down with
+the added prime rather than with the machine's size. Its literal part is
+permanently capped: A_kill <= litcap(q' mod 210) at 7 of the 8 measured steps
+and litcap <= 6 for every gear forever (R20 theorem). The one exception,
+m37 (litcap 2, A_kill 3), is forced to use a PADDED link - and indeed all
+1,579 killable 2-words at 37->41 are padded, since a 3-member literal chain
+would break litcap 2. Only the padded component has no structural cap (only
+R23's budget count ~F/q'). Litcap is an upper envelope, not a predictor:
+at m41 litcap = 4 while the literal 2-word count is exactly 0. So R41's
+"no fixed-arity rule exists" survives, but for a different and better reason:
+not because the arity diverges, but because it is an arithmetic function of
+q' with an uncapped padded component - which is precisely why the vehicle has
+to be arity-free rather than a rule for each layer.
+
+Supporting exact results:
+* T3 CROSS-CHECK (new, five machines): applying the alternation filter to the
+  residue census reproduces the FUEL census exactly - killable run_j == N_{j+1}
+  at m19 (62 = 31+31, the (8,15)/(15,8) pairs; the 172 (8,8) pairs are
+  T3-dead), m23 (0 of 288 - all (10,10)), m29 (4 = the (10,21,10) windows of
+  8 residue runs), m31 (216 = 188 (12,25,12) + 28 (25,12,25) of 508), m37
+  (0 of 8 - the only realized depth-3 residue word is (14,41,14), two class-a
+  letters with a transparent padded link between them, so T3-dead). Two
+  independently-produced censuses agree through one residue law.
+* OVERLAP LEMMA (factor closure), proved and applied: if every realized
+  depth-m word is known, run_{m+1} = 0 unless some pair w, w' of realized
+  m-words has w[1:] == w'[:-1]. At m37 the realized depth-3 set is the single
+  word (14,41,14), which does not overlap itself, so run_4^res(37) = 0 with NO
+  further computation - A_res(37) = 4 established from Mechanic's exhaustive
+  word census alone. (Inconclusive at m31, where the six realized words do
+  overlap; there run_4 = 0 is the direct full-period census.)
+* SPAN CEILING (proved, asserted at all eight machines): every qualifying gap
+  is >= 2u' (T4) and j consecutive gaps sum to <= F_j, so
+  A_res <= min{ j : F_j(M) < 2u' j }. True but loose by ~2x - the arity is
+  NOT span-limited at any measured machine; it is limited by joint
+  realizability, which is (D)'s content.
+* MACHINE 41 (q' = 43), first arity data beyond any census, by exact CRT
+  pattern counts (period 5.07e13, no scan; log data/arity_probe41.log):
+  the two LITERAL 2-words (14,29) and (29,14) are BOTH ZERO, so
+  A_relax(41) = 2 - the 2-point relaxation already refutes the infinite
+  alternating word, the earliest refutation at any machine past m17. The
+  nonzero killable 2-words are all PADDED: (14,43) = (43,14) = 170,203,
+  (29,43) = (43,29) = 228 (total 340,862 over 11 words of span <= 90, one
+  word (43,43) undecided at the 3e8-node budget), so A_kill(41) >= 3. All
+  eight killable 3-words of span <= 90 are ZERO, including (14,29,14) and
+  (29,14,29). HONEST LIMIT: the 3-word enumeration is cut at span 90, not at
+  F_3(41) (which nobody has), so A_kill(41) is recorded as ">= 3 and no
+  depth-3 chain of span <= 90", not as an exact value. Note litcap(43) = 4
+  while the literal 2-word count is 0: LITCAP IS A PROVED CAP ON THE LITERAL
+  PART, NOT A PREDICTOR of the realized arity.
+* Conditional decay of the residue ladder (exact): per-link conditionals
+  m19 0.0311/0.0199; m23 0.0307/0.0012; m29 0.0374/0.0055/0.00018;
+  m31 0.0184/0.0044/0.0010 - falling, and at m31 stably by x4.3 per link.
+
+**R46 (THE ARITY-FREE GENERATOR: F(M+q') IS A KLEENE STAR;
+research/kleene_generator.py, research/kleene_stream.py,
+docs/novel/kleene-generator.md).** The answer to the round's decisive
+question - IS NILPOTENCY ADDITIVITY ARITY-FREE? - is YES, and here is the
+form. On states (opening i, tooth s in {+,-}) define the max-plus matrix and
+flank vectors
+
+    K[(i,s),(i+1,s')] = d_i  if d_i mod q' in {0, a, b} and s -> s' is the T3
+                             transition of d_i's class; else -inf
+    L(i) = d_{i-1},   R(i,s) = d_i
+
+THEOREM (identity, not a bound): F(M + q') = L^T (x) K* (x) R, where
+K* = (+)_{m>=0} K^m is the Kleene star. Proof both ways from the merge law +
+T2/T3 (<=) and CRT choice of the killing copy (>=); written out in the novel
+doc. In R41's recursion the second summand (E_M S_M) (x) (B' S') is nilpotent
+of INDEX 2 and the first is nilpotent of index F(M); the index of the sum is
+not a function of those two (round 21's counting boundary) but IS exactly this
+star. K is nilpotent with index = A_kill, so the star is a finite sum - but
+the statement never names a depth. Its m-th layer is exactly qualmax_{m+2}:
+one algebra generates every layer of R39's ladder.
+
+COROLLARY (tropical dual certificate - (D) with the depth quantifier removed):
+(D) at alpha = 3 holds iff there exists h on states with
+    (C1) h(i,s) >= d_i
+    (C2) h(i,s) >= d_i + h(i+1,s') for every legal qualifying transition
+    (C3) d_{i-1} + h(i,s) <= F(M) + q'
+Necessity h = K* (x) R; sufficiency because any super-solution dominates the
+star. Every clause is a ONE-STEP, ONE-OPENING inequality - the first form of
+(D) that is not an infinite family. This is max-plus LP duality for the
+longest-path problem F(M+q') actually is (and it is the tropical face of the
+covering-LP-duality thread the manager flagged as untested).
+
+VERIFIED EXACT, full period, at every scannable consecutive step (dense and
+streamed implementations agree digit for digit at m19 and m23):
+
+    step        index(K)  L(x)K*(x)R = F(M+q')  F+q'   margin      layers
+    11 -> 13        2            11              20   +9  0.69q'  [11, 8]
+    13 -> 17        2            18              28  +10  0.59q'  [16, 18]
+    17 -> 19        2            25              37  +12  0.63q'  [25, 25]
+    19 -> 23        3            34              48  +14  0.61q'  [31, 33, 34]
+    23 -> 29        2            43              63  +20  0.69q'  [39, 43]
+    29 -> 31        4            58              74  +16  0.52q'  [55, 58, 55, 55]
+
+index(K) == A_kill at every step, and h is always the LEAST super-solution
+(every state tight) - the certificate is exactly saturated, so nothing is
+being given away by using it.  The 29 -> 31 layer vector is the informative
+one: the winner sits at ONE link (58) and the deeper layers fall back to 55,
+so the deepest chain is NOT the maximiser - par trading, in Kleene form.
+
+**R47 (THE FINITE-STATE CERTIFICATE - how big must the state be? Same
+scripts).** The certificate becomes machine-free only if h can be replaced by
+a function of a BOUNDED local state. Replacing the opening by a class and
+taking edge weights = max realised gap gives a SOUND class-level max-plus
+system, so its closure is a genuine upper bound on F(M+q'). Measured:
+
+    step        value only        (ph 35, val)  (ph 385, val)  (ph 5005, val)  budget
+    11 -> 13    11 certifies      11            11             11               20
+    13 -> 17    21 certifies      21            20             18               28
+    17 -> 19    30 certifies      28            28             25               37
+    19 -> 23    CYCLIC (vacuous)  45 certifies  42             34               48
+    23 -> 29    60 certifies      60            45             43               63
+    29 -> 31    CYCLIC (vacuous)  99 FAILS +25  99 FAILS +25   91 FAILS +17     74
+
+TWO FINDINGS, one positive and one negative, and the negative is the bigger.
+POSITIVE: THE VALUE-ONLY ABSTRACTION IS CYCLIC EXACTLY WHERE A_relax >= 3
+(machines 19 and 29 here, and by the same criterion 31 and 37) - R41's
+counting boundary is precisely "the abstract operator loses nilpotency", and
+a non-nilpotent tropical operator bounds nothing at all; adding the corridor
+phase mod 35 restores nilpotency at both machines, and at 19 -> 23 it also
+CERTIFIES (D) (45 <= 48).  R42's carrier does proof work there, not
+statistics.
+NEGATIVE (and it is decisive for the tactic): AT 29 -> 31 NO BOUNDED STATE
+TESTED CERTIFIES - mod 35, 385 and 5005 all restore nilpotency but overshoot
+the budget by +25, +25, +17 (bounds 99, 99, 91 against 74; exact 58).  So the
+corridor-phase abstraction does NOT scale as it stands: the certificate is
+arity-free but not yet MACHINE-free.  The named next construct is a tighter
+abstraction - candidates, in the order I would try them: (a) edge weights
+conditioned on the destination class rather than max-over-source (the current
+weight max{d_i} is the crudest sound choice), (b) two gaps of history rather
+than one, (c) the flank vector L abstracted separately from the chain state,
+since the overshoot at m29 is 99 = a long chain paired with a large flank
+that never co-occur.  Also honest: the bound is loose even where it
+certifies (45 vs exact 34 at m19), and the state needed is not monotone in
+the machine (value-only suffices at m23, where A_kill = 2, but is vacuous at
+m19 and m29).
+
+**R48 (CLOSED-FORM lambda_2 OF THE CORRIDOR-PHASE CHAIN, and Lateral's
+formula adjudicated; research/lambda2_closed.py).** The phase chain adds the
+next gap mod M, so under phase-value independence its transition matrix is the
+CIRCULANT of the gap distribution and its eigenvalues are exactly that
+distribution's Fourier coefficients:
+
+    lambda_2 = phat(1) = sum_g P(gap = g) e(g / M)
+
+- the gap distribution's characteristic function at the corridor frequency.
+Exact full-period histograms give (machines 11/13/17/19/23):
+|phat(1)| = 0.9612/0.9380/0.9128/0.8847/0.8576, arg = 29.1/34.2/38.3/42.1/45.4
+deg. The true chain (empirical transition matrix restricted to its 15-state
+support) gives 0.9849/0.9634/0.9396/0.9125/0.8859 at 29.3/34.4/38.7/42.8/46.3
+deg - which REPRODUCES R42's measured 0.963/0.912/0.886 at 34/43/46 deg
+exactly (asserted). So: the closed form nails the ARGUMENT (error 0.13-0.89
+deg at every machine), hence the resonance period 360/arg, and understates the
+MODULUS by a strikingly stable 0.0237/0.0253/0.0268/0.0278/0.0282 - a deficit
+that is itself converging (~0.029), and that IS the phase-value correlation,
+i.e. the corridor pinning. Cumulant form exp(i.theta.gbar - theta^2 var/2),
+theta = 2 pi/35, reproduces phat(1) to 0.1-1.5%: LAMBDA_2 IS DETERMINED BY THE
+MEAN GAP AND THE GAP VARIANCE ALONE, both closed-form CRT quantities (mean =
+1/rho; variance via the blocked-run counts B(t) that Lateral's pruned IE
+computes exactly - a clean cross-lane closure).
+CROSS-LANE ADJUDICATION: Lateral's round-22 form lambda_j = rho w_j /
+(1 - (1-rho) w_j), w_j = e(j/e), IS THE SAME OBJECT - it is exactly phat for a
+GEOMETRIC gap distribution of density rho, evaluated at an e-th root of unity.
+Against my exact chain values it errs by 0.0146/0.0225/0.0245 in modulus and
+0.52/1.29/1.71 deg in argument at m13/19/23; my exact-histogram form errs by
+0.025-0.028 in modulus and 0.22-0.89 deg in argument. Neither dominates: the
+renewal instance is better in modulus, the exact-histogram instance better in
+argument, and both are the same formula with a different gap law substituted.
+LATERAL'S PRE-REGISTERED PREDICTION SETTLED IN-ROUND: they pre-registered
+machine 29 mod 35 -> |lambda_2| = 0.862 +- 0.004, arg +49.2 +- 0.4 deg. My
+exact full-period chain at m29 (2.147e8 gaps, streamed 35x35 transition
+counts, cyclic seam stitched) gives |lambda_2| = 0.8617, arg +49.15 deg -
+BOTH INSIDE THE PRE-REGISTERED BAND (log data/lambda2_29.log). Their own
+closed formula evaluated at m29 gives 0.8366 / +47.09 deg (errors 0.025 /
+2.06 deg) and my exact-histogram phat(1) gives 0.8335 / +48.09 deg (errors
+0.028 / 1.06 deg), so the prediction they registered is sharper than either
+raw closed form - the refinement behind it is worth extracting.
+
+**Round-22 negatives and corrections, recorded:**
+(i) SELF-CORRECTION of R41: "the truncation arity grows (3, 3, 4)" was
+measured on the residue arity; on the operator-relevant (killable) arity the
+sequence is 2,2,2,3,2,4,4,3 and it goes DOWN as well as up. The conclusion
+R41 drew (no fixed-arity rule) survives; the reason changes.
+(ii) The class-level (bounded-state) certificate is sound but LOSSY, and at
+29 -> 31 EVERY tested bounded state (value; phase mod 35, 385, 5005 with
+value) FAILS to certify - overshoot +25/+25/+17 against a budget of 74.  The
+generator is arity-free; it is not yet machine-free, and corridor phase alone
+does not make it so.
+(iii) The span ceiling A_res <= min{j : F_j < 2u' j} is proved but loose by
+~2x everywhere - span arithmetic alone does not explain the arity.
+(iv) The dense machine-29 Kleene run was killed by memory starvation (2.5 GB
+free of 15.6 GB, the rest held by Mechanic's jobs) and re-run as a segmented
+streaming pass (kleene_stream.py, ~300 MB), which reproduces m19 and m23
+digit for digit. Nothing filed rests on a partial pass.
+(v) Machine 41's heavy padded 2-words and the depth-3 words of span > 86 were
+not decided within the round's budget - A_kill(41) is therefore recorded as
+">= 3", not as an exact value; the exact value needs F_3(41), which nobody
+has. A_relax(41) = 2 IS exact (it only needs the two literal 2-words).
+
+**Reproduction (round 22):** arity_ladder.py (three arities, T3 cross-check,
+overlap lemma, span ceiling, litcap comparison - all asserted);
+arity_probe41.py (log data/arity_probe41.log); kleene_generator.py (dense
+identity + certificate + abstraction ladder, machines 11-23; log
+data/kleene23.log); kleene_stream.py (segmented, machines 23 and 29; log
+data/kleene_stream_23_29.log); lambda2_closed.py (closed form + Lateral's
+form + R42 assertions; log data/lambda2_29.log). Novel doc:
+docs/novel/kleene-generator.md.

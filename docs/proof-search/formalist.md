@@ -988,3 +988,360 @@ scan; census cross-check F(23) = 34, so 47 is a true, untight bound and
 3. **Machine 23 exact certificate** (F, F2, F4) if the route wants
    exactness rather than bounds.
 4. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged.
+
+## Round 22
+
+Ledger: +13 libs (Machine11, Machine13QCore, Machine13QS, Machine13Q,
+Machine17QCore, Machine17QS0/1/2, Machine17Q, Ladder, DepthSum, Potential,
+Potential19; 7 new defaultTargets), all registered with `[[lean_lib]]`. Build
+green at **1322 jobs** (1302 at round 21), zero sorries, zero warnings in owned files, no
+`native_decide` / `ofReduceBool` anywhere. Axiom audit run over every new
+theorem: the standard three or fewer; **`Machine11.qasm`, `Machine13.qasm`,
+`Ladder.criterion_arith`, and every `DepthSum` kernel fact depend on NO AXIOMS AT
+ALL**, and `Machine17.qsliceAll` (85,085 tuples) on `[propext, Quot.sound]`.
+All census inputs verified over full periods in Python BEFORE formalising
+(scratchpad ladder_verify.py, predsim2.py, m23_verify.py, depthsum13.py - the
+kernel predicates themselves were simulated exhaustively, zero failures). Every
+job the round launched finished before this write-up.
+
+### 26. THE (D) LADDER - four consecutive steps, hypothesis-free
+
+`proofs/Ladder.lean`, on three new machine developments. Round 21 established
+that the per-step recipe is mechanical; this round ran it on the three steps
+BELOW 19->23, so the ladder is contiguous from the bottom of the machine
+sequence. Every conjunct is a theorem about that machine's OWN gap sequence with
+no hypotheses at all.
+
+```lean
+theorem D_at_11_13 (n : N) : Machine13.g13 n <= 7 + 13
+theorem D_at_13_17 (n : N) : Machine17.g17 n <= 11 + 17
+theorem D_at_17_19 (n : N) : Machine19.g19 n <= 18 + 19
+theorem D_ladder :
+    (forall n, Machine13.g13 n <= 7 + 13) and (forall n, Machine17.g17 n <= 11 + 17) and
+      (forall n, Machine19.g19 n <= 18 + 19) and (forall n, Machine23.g23 n <= 25 + 23)
+-- R39's own form, per rung (the value the criterion actually produces):
+theorem g13_le       (n : N) : Machine13.g13 n <= 20   -- max(F2=11, maxQ=20)
+theorem g17_le       (n : N) : Machine17.g17 n <= 26   -- max(F2=16, maxQ=26)
+theorem g19_le_of_17 (n : N) : Machine19.g19 n <= 35   -- max(F2=25, maxQ=35)
+```
+
+    step     criterion max(F2, max_j Q_j)   budget F+q'   margin   floor 2u'
+    11->13   max(11, 20) = 20               20             0 TIGHT   4
+    13->17   max(16, 26) = 26               28             2         6
+    17->19   max(25, 35) = 35               37             2         6
+    19->23   max(31, 47) = 47               48             1         8
+
+The 11->13 rung is EXACTLY tight: `Q_5(11; 4) = 20 = F(11) + 13`. Note
+`g19_le_of_17` derives a machine-19 gap bound from machine 17's period scan
+ALONE (35, vs the sharp 25 that machine 19's own scan gives) - the point of a
+rung is that the merge law reaches the next machine without seeing it.
+
+**`MergeLaw.newgap_le_step`** is the new load-bearing lemma - the per-step
+bookkeeping factored out once, so a rung is now a 15-line instantiation:
+
+```lean
+theorem pos_le_add (hmono : forall m, pos m <= pos (m+1)) (a j) : pos a <= pos (a + j)
+theorem windowSum_telescope (hg) (hmono) (a j) :
+    Spectrum.windowSum g a j = pos (a + j) - pos a
+theorem newgap_le_step {ExO ExN Kap : N -> Prop} {posO posN g : N -> N}
+    (hg) (hOmono) (hOpos) (hOex) (hOsurj)          -- old machine's enumeration
+    (hNpos) (hNmono) (hNex) (hNempty)              -- new machine's enumeration
+    (hnk) (hkn) (hsub)                             -- the step relation
+    (hteeth : forall x, Kap x -> x % q = u or x % q = q - u)
+    (hu : 0 < u) (h4u : 4 * u <= q)
+    (hF2 : Spectrum.SpectrumBound g 2 F2) (hF2B : F2 <= B)
+    (hQ : forall j, 3 <= j -> Spectrum.QualBound g u j (Q j)) (hQB : forall j, Q j <= B)
+    (n : N) : posN (n + 1) - posN n <= B
+```
+
+Above the scannable range, hypothesis-explicit instantiations with the census
+values named in the statement (so exactly what is assumed is visible):
+
+```lean
+theorem D_at_23_29 ... (hteeth : forall x, Kap x -> x % 29 = 5 or x % 29 = 24)
+    (hF2 : Spectrum.SpectrumBound g 2 39)                   -- F_2(23) = 39
+    (hQ : forall j, 3 <= j -> Spectrum.QualBound g 5 j (Q j)) (hQm : forall j, Q j <= 60)
+    (n : N) : posN (n + 1) - posN n <= 34 + 29
+theorem D_at_37_41 ... (hteeth : forall x, Kap x -> x % 41 = 7 or x % 41 = 34)
+    (hF2 : Spectrum.SpectrumBound g 2 90)                   -- F_2(37) = 90
+    (hQ : forall j, 3 <= j -> Spectrum.QualBound g 7 j (Q j)) (hQm : forall j, Q j <= 91)
+    (n : N) : posN (n + 1) - posN n <= 88 + 41
+theorem criterion_arith : max 39 60 <= 34 + 29 and max 90 91 <= 88 + 41  -- no axioms
+```
+
+INDEPENDENT CONFIRMATION OF THE CORRECTED C13 ROW (the brief's critical input).
+I re-derived machine 23's spectra myself over the full 37,182,145-slot period
+before writing `D_at_23_29`: **F(23) = 34, F_2(23) = 39, Q_j(23; 10) = 43, 50,
+55, 60, 0 for j = 3..7, longest run of gaps >= 10 is 4**. Mechanic's corrected
+row 43/50/55/60/0 reproduces EXACTLY; the pre-2026-08-24 row 50/50/49/0/0 is
+confirmed wrong. Criterion 60 <= 63, margin 3.
+
+### 27. Machine11 / Machine13Q / Machine17Q - three new machines certified
+
+Each is the round-21 `seekT`-walk recipe at a new machine: one walk per opening
+reads the whole ladder plus the depth refutation, `seek_next` proves the walk
+computes `nextOp` exactly, `opSeq_surj` makes the enumeration complete. Each
+scan's FIRST check is `o1 <= F`, which re-derives `F_1` from the same walk and
+is what makes the fuel provably sufficient (round 21 imported that fact from a
+separate scan; folding it in removes the dependency).
+
+```lean
+-- Machine11 (gears {5,7,11}, period 385; one 385-tuple kernel check, NO AXIOMS)
+theorem qasm : qslice = true
+theorem chain_facts (n) : opSeq (n+1) - opSeq n <= 7 and opSeq (n+2) - opSeq n <= 11
+  and opSeq (n+3) - opSeq n <= 16 and opSeq (n+4) - opSeq n <= 18
+  and ((4 <= g11 (n+1) and 4 <= g11 (n+2) and 4 <= g11 (n+3)) -> opSeq (n+5) - opSeq n <= 20)
+  and not (4 <= g11 n and 4 <= g11 (n+1) and 4 <= g11 (n+2) and 4 <= g11 (n+3))
+theorem spectrum_ladder : F_1..F_4 <= 7, 11, 16, 18   -- over g11
+theorem qual_bound_all : forall j, 3 <= j -> Spectrum.QualBound g11 2 j 20
+theorem opSeq_surj (hm : 1 <= m) (hE : Exposed11 m) : exists n, opSeq n = m
+
+-- Machine13Q (period 5005; one 5005-tuple kernel check, NO AXIOMS)
+theorem chain_facts (n) : opSeq (n+1) - opSeq n <= 11 and opSeq (n+3) - opSeq n <= 23
+  and opSeq (n+4) - opSeq n <= 26 and not (6 <= g13 n and 6 <= g13 (n+1) and 6 <= g13 (n+2))
+theorem spectrum_ladder : F_1..F_4 <= 11, 16, 23, 26  -- F_2 = round-11 certificate
+theorem qual_bound_all : forall j, 3 <= j -> Spectrum.QualBound g13 3 j 26
+theorem opSeq_surj ...
+
+-- Machine17Q (period 85085; 17 slices of 5005, [propext, Quot.sound] only)
+theorem qsliceAll : forall e < 17, qslice e = true
+theorem chain_facts (n) : ... F_1 <= 18, F_3 <= 28, F_4 <= 33, F_5 <= 35,
+  the qualifying depth-6 bound Q_6 <= 34, and no five consecutive gaps all >= 6
+theorem spectrum_ladder : F_1..F_5 <= 18, 25, 28, 33, 35
+theorem qual_bound_all : forall j, 3 <= j -> Spectrum.QualBound g17 3 j 35
+theorem opSeq_surj ...
+```
+
+WHERE THE QUALIFYING RESTRICTION EARNS ITS KEEP, measured per machine: at
+machine 13 the unconditional ladder already clears the budget at both live
+depths (F_3 = 23, F_4 = 26 <= 28) and the qualifying structure only kills
+j >= 5; at machine 11 it first bites at depth 5 (F_5 = 23 > 20, Q_5 = 20); at
+machine 17 at depth 6 (F_6 = 40 > 37, Q_6 = 34). So the criterion is NOT a
+uniform improvement - it is a one-or-two-depth patch on the unconditional
+spectrum, and the depth it patches moves UP with the machine (5, -, 5, 6, then
+19->23's depth 5-6 pattern). Full-period ladders behind these (all newly
+measured this round):
+
+    machine   F_1..F_8                             Q_j(floor)              max run
+    11        7, 11, 16, 18, 23, 26, 28, 30        16, 18, 20, 0 (fl 4)    3
+    13        11, 16, 23, 26, 28, 31, 34, 38       18, 23, 0     (fl 6)    2
+    17        18, 25, 28, 33, 35, 40, 43, 48       28, 31, 32, 34, 0 (6)   4
+    23        34, 39, 50, 58, 65, 77, 83, 88       43, 50, 55, 60, 0 (10)  4
+
+Scan cost, measured this round (with ~7 python jobs of another lane running):
+machine 11, 385 tuples, seconds; machine 13, 5005 tuples with a 4-step walk at
+fuel 11, **37 s**; machine 17, 17 slices of 5005 with a 6-step walk at fuel 18,
+**213 s for 6 slices** (~35 s/slice), 17 slices in three parallel files, ~10 min
+wall. Assemblies 19-26 s each.
+
+### 28. proofs/DepthSum.lean - Lateral's depth-sum identity at machine 13
+
+Both halves of `sum_j W_j(g) = prod_q c_q(g)`, kernel-checked; the glue is not
+(honest gap, below).
+
+```lean
+theorem window_depth_unique (hg) (hmono : forall m, pos m < pos (m+1))
+    (h1 : Spectrum.windowSum g a j1 = gap) (h2 : Spectrum.windowSum g a j2 = gap) :
+    j1 = j2
+def reachSet (g) (gap N J) : Finset N
+theorem mem_reachSet : a in reachSet g gap N J <->
+    a < N and exists j, 1 <= j and j < J and Spectrum.windowSum g a j = gap
+theorem depth_partition (hg) (hmono) (gap N J) :
+    sum over j in Finset.Ico 1 J of
+        ((Finset.range N).filter fun a => Spectrum.windowSum g a j = gap).card
+      = (reachSet g gap N J).card
+-- the RHS at machine 13, over the whole period (all of these: NO AXIOMS)
+theorem local_factor_5  : forall gap < 40, cq 5 1 4 gap   = 5 - nuq 5 gap
+theorem local_factor_7  : forall gap < 40, cq 7 6 1 gap   = 7 - nuq 7 gap
+theorem local_factor_11 : forall gap < 40, cq 11 2 9 gap  = 11 - nuq 11 gap
+theorem local_factor_13 : forall gap < 40, cq 13 11 2 gap = 13 - nuq 13 gap
+theorem depth_sum_at_13 : forall gap < 40,
+    pairCount13 gap = cq 5 1 4 gap * cq 7 6 1 gap * cq 11 2 9 gap * cq 13 11 2 gap
+theorem depth_sum_hl_form : forall gap < 40, pairCount13 gap
+    = (5 - nuq 5 gap) * (7 - nuq 7 gap) * (11 - nuq 11 gap) * (13 - nuq 13 gap)
+```
+
+`window_depth_unique` IS Lateral's one-line bijection ("every opening pair at
+lag g is the endpoint pair of exactly one window") in its load-bearing form, and
+it is abstract - no machine, no arithmetic, just strict monotonicity.
+`local_factor_*` is Harvester's identity `c_q(g) = q - nu_q({0, 2, 6g, 6g+2})`,
+the one they listed as a kernel candidate: the machine's transfer diagonal IS
+the Hardy-Littlewood prime-quadruplet local factor, now checked at four gears.
+`depth_sum_hl_form` states the machine-13 pair population directly in HL form.
+Verified first over the full period for g = 0..59 (depthsum13.py, zero
+mismatches on both halves).
+
+### 29. proofs/Potential.lean + Potential19.lean - (D) WITH NO DEPTH QUANTIFIER
+
+Picked up mid-round from the coordinator's cross-lane routing of Constructor's
+R46 (docs/novel/kleene-generator.md): their Kleene generator
+`F(M+q') = L^T (x) K* (x) R` has as its corollary that (D) holds IFF a POTENTIAL
+`h` exists satisfying three ONE-STEP, ONE-OPENING inequalities. That is the
+first form of (D) that is not an infinite family indexed by depth, so it is the
+better formal target, and I took it without deferring anything else.
+
+KERNEL-CHECKED: the direction that does proof work - a potential CERTIFIES the
+bound, at every chain length, by one induction.
+
+```lean
+def IsPotential {St : Type*} (Step : St -> St -> Prop) (d e h : St -> N) (B : N) : Prop :=
+  (forall x, d x <= h x) and (forall x y, Step x y -> d x + h y <= h x)
+    and (forall x, e x + h x <= B)
+theorem chain_le_potential (hC1) (hC2) :
+    forall (l : N) (p : N -> St), (forall k, k < l -> Step (p k) (p (k+1))) ->
+      sum over k in Finset.range (l+1) of d (p k) <= h (p 0)
+theorem D_of_potential (hP : IsPotential Step d e h B) (l) (p) (hstep) :
+    e (p 0) + sum over k in Finset.range (l+1) of d (p k) <= B
+theorem windowSum_succ_left (g b l) :
+    Spectrum.windowSum g b (l+1) = g b + Spectrum.windowSum g (b+1) l
+theorem tail_le_potential (hC1) (hC2) : forall l b, (forall i < l, 2*u <= g (b+i)) ->
+    Spectrum.windowSum g b l + g (b+l) <= h b
+theorem merged_le_of_potential {g h u F q}
+    (hC1 : forall i, g i <= h i)
+    (hC2 : forall i, 2*u <= g i -> g i + h (i+1) <= h i)
+    (hC3 : forall i, g i + h (i+1) <= F + q)
+    {a l} (hw : forall i < l, 2*u <= g (a+1+i)) :
+    g a + Spectrum.windowSum g (a+1) l + g (a+l+1) <= F + q
+```
+
+`merged_le_of_potential`'s hypotheses contain NO quantifier over `l`; its
+conclusion holds for every `l`. The abstract form keeps the state type general
+because Constructor's states are `(opening, tooth)` pairs, not indices.
+
+AND THE FIRST EXHIBITED CERTIFICATE (`Potential19.lean`) - so the potential form
+is not just a definition:
+
+```lean
+def h19 (i : N) : N :=            -- the qualifying tail from i
+  if 8 <= g19 i then
+    (if 8 <= g19 (i+1) then
+      (if 8 <= g19 (i+2) then g19 i + g19 (i+1) + g19 (i+2) + g19 (i+3)
+        else g19 i + g19 (i+1) + g19 (i+2))
+      else g19 i + g19 (i+1))
+    else g19 i
+theorem h19_C1 (i) : g19 i <= h19 i
+theorem h19_C2 (i) (hq : 8 <= g19 i) : g19 i + h19 (i+1) <= h19 i
+theorem h19_C3 (i) : g19 i + h19 (i+1) <= 25 + 23
+theorem D_of_word_potential {a l} (hw : forall i < l, 8 <= g19 (a+1+i)) :
+    g19 a + Spectrum.windowSum g19 (a+1) l + g19 (a+l+1) <= 25 + 23
+```
+
+The three clauses are discharged by machine 19's kernel ladder ALONE: (C1) is
+syntactic; (C2) holds with EQUALITY in every branch, and its deepest branch is
+exactly `Machine19.no_big_run` (`Q_6 = 0` - three floor gaps in a row force the
+fourth not to qualify, so the tail terminates); (C3)'s four cases are precisely
+the four rungs `F_2, F_3, F_4, F_5 <= 31, 35, 38, 47`, all under the budget 48.
+So `D_of_word_potential` re-proves `Machine19.D_of_word` through a finite object
+one can write down, with no depth analysis in the hypotheses.
+
+THE RECIPE GENERALISES, and I state it because it is what a future rung reuses:
+at any machine whose qualifying runs are bounded - which is exactly what
+`Q_J = 0` says, and every machine scanned so far has such a `J` (11: J=6,
+13: J=5, 17: J=7, 19: J=6, 23: J=7) - the TAIL FUNCTION unfolded to depth `J-2`
+IS a potential, (C2)'s deepest branch is the `Q_J = 0` refutation, and (C3)'s
+cases are the machine's own spectrum ladder. What is NOT known, and what
+Constructor's negative at 29->31 is about, is a potential valid at every machine
+at once.
+
+### Honest "will not close" verdicts (round 22)
+
+9. **23->29 CANNOT BE MADE HYPOTHESIS-FREE BY THIS ROUTE, and the reason is
+   structural, not budgetary: THE MERGE LAW IS ONE-STEP.** R39 consumes an
+   `F_2` and a qualifying spectrum of the OLD machine and produces a bound on
+   the NEW machine's single gaps - which is not of the form the next rung
+   needs. Quantified at the live step: R39 gives `g23 <= 47`, so the best
+   merge-law-only bound on `F_2(23)` is `2 * 47 = 94`, against the `<= 63` the
+   23->29 rung requires (true value 39). Chaining the depth-j bounds is worse,
+   not better: a depth-j window of machine 23 relaxes to a machine-19 window
+   with `j - 1` unconstrained interior points, and the loss compounds linearly
+   in j (three qualifying blocks of machine 19 admit `47 + 10 + 47 = 104`
+   against the true `Q_3(23; 10) = 43`). This is Constructor's counting
+   boundary (R41) in its formal-lane form: **no function of the old machine's
+   marginal data supplies the next rung's input; each rung needs its own scan.**
+   So 23->29 needs machine 23's own period scan: 37,182,145 CRT tuples = 7,434
+   slices of 5005, and at this round's measured 35 s/slice for a 5-gear 6-step
+   walk (machine 23 needs 7 gears and a 7-step walk at fuel 34, ~2.6x the
+   per-slice work) that is **~150-200 hours of kernel time** - a multi-day job,
+   not a round-scale one. Deliberately not started (job-completion rule).
+   THE CONSTRUCT THAT WOULD REMOVE IT, named: a MARKED QUALIFYING SPECTRUM of
+   the old machine - `Q^[j]` = max window sum over old-machine windows carrying
+   `j - 1` MARKED interior openings at mutual distance `>= 2u''`, all unmarked
+   interiors killed. `Q_j(new) <= Q^[j](old)` by construction, and `Q^[j]` is
+   scannable at the OLD machine, so it would make the ladder chainable from one
+   scan. Measured obstruction: the relaxation forgets WHICH openings the new
+   gear kills, and the estimates above say the loss already exceeds the budget
+   at `j = 2`. Worth one census (Mechanic or Constructor) before anyone
+   formalises it.
+10. **A rung's bound is not the machine's F.** Every rung produces a true but
+    untight bound (20 vs F(13) = 11; 26 vs 18; 35 vs 25; 47 vs 34). (D) at
+    alpha = 3 is all that is claimed, and all that the route needs; anyone
+    wanting exact F still needs the machine's own certificate.
+11. **The depth-sum identity's glue was not built.** `depth_partition` counts
+    window STARTS in an index range; `depth_sum_at_13` counts openings in a
+    SLOT range. Relating them needs "one period of `Machine13.opSeq` = one
+    period of residues", i.e. a periodicity / re-indexing bridge (`opSeq (n +
+    1485) = opSeq n + 5005` for the 1485 openings per period). Routine but real;
+    it was not affordable alongside the ladder and is named rather than
+    half-done.
+
+12. **The Kleene identity itself was NOT formalised, nor the converse of the
+    potential form.** `F(M+q') = L^T (x) K* (x) R` is an EQUALITY and needs
+    max-plus matrix machinery plus the machine's own `K`; the converse ("a
+    potential always exists") is where nilpotency of `K` is used, `h` being the
+    least super-solution (a max over tails), which needs the finite path bound
+    as a Finset construction. Only the certificate direction is claimed - it is
+    the one a proof consumes, and `Potential19` shows it is not vacuous. Also
+    recorded verbatim from Constructor so nobody reads more into these files
+    than is there: the generator is arity-free but NOT YET machine-free -
+    bounded-state certificates certify 19->23 (45 <= 48) and FAIL at 29->31
+    (99 / 99 / 91 against a budget of 74). The files make the target statement
+    precise; they do not prove (D).
+
+### Infrastructure lessons (round 22)
+
+- **State gap facts as `opSeq` differences, never as walk offsets.** `have g3 :
+  g11 (n+3) = o4 - o3 := by simp only [g11]; omega` FAILS: `simp only` unfolds
+  `g11 (n+3)` to `opSeq (n+3+1) - opSeq (n+3)` and omega sees `opSeq (n+3+1)`
+  as an atom distinct from the `opSeq (n+4)` of the chain equations. The
+  round-21 shape `have g3 : g11 (n+3) = opSeq (n+4) - opSeq (n+3) := by simp
+  only [g11]` works because simp's index normalisation closes it by rfl and
+  leaves omega only atoms it already has. This will bite any future rung.
+- **`rcases h with a | b; . tac1; . tac2` inside a term-mode `by` is wrong** -
+  `;` sequences over ALL goals, so the focusing bullets misfire ("No goals to
+  be solved" plus "unsolved goals" on the same line). Use `<;>` with a tactic
+  that closes both branches (`rcases hk with h | h <;> omega`).
+- **Component projections into a 12-conjunct `Exposed` are position-sensitive,
+  and the kernel catches swaps immediately** - gear q's `lo` tooth and `hi`
+  tooth are DIFFERENT residues (19: `lo` at `k % 19 = 16`, `hi` at 3), so
+  `Or.inl`/`Or.inr` must match the order in `killed_iff`. Two swapped pairs were
+  caught by application-type-mismatch, not by a false theorem.
+- **`seek_next` needs `hnE : Exposed (nextOp (x+s))` in scope** - the trailing
+  `rwa` closes with `assumption`. Dropping that one line from the round-21
+  template cost two rebuild cycles.
+- **The mega-dry-check was NOT used this round and should have been**: three of
+  the four failures above would have been caught at zero kernel cost. The scans
+  at these machines are cheap enough (37-213 s) that the discipline slipped; at
+  machine-19 scale it would not have.
+- **Scan-first-check trick, general**: make the FIRST clause of a chain scan
+  `Nat.ble o1 F`. It re-derives `F_1 <= F` from the same walk, which is exactly
+  the fuel-sufficiency fact `seek_next` needs - so a new machine's chain scan is
+  self-contained and imports no bound from an earlier scan.
+- Slice families: 6 heavy `decide +kernel` per file, three files built in one
+  `lake build` invocation, stayed inside the memory rule with no failures.
+
+### Open formalisation targets (re-prioritised after round 22)
+
+1. **A potential at 17->19 and at 13->17 by the recipe of section 29**: each is
+   ~60 lines now that `Potential.merged_le_of_potential` exists and each machine
+   has both its `Q_J = 0` refutation and its ladder. Cheapest way to make the
+   depth-quantifier-free form of (D) the PRIMARY statement of every rung.
+2. **The depth-sum glue at m13** (verdict 11): `opSeq (n + 1485) = opSeq n +
+   5005` and the re-indexing it enables. Finishes the identity at one machine.
+3. **The marked qualifying spectrum** (verdict 9): census FIRST (does
+   `Q^[2](19) <= 63`?), formalise only if the numbers survive. The only named
+   route that makes the ladder chainable without a scan per rung.
+4. **Machine 23's period scan** (37.2M tuples, ~150-200 h): the brute-force
+   route to the 23->29 rung. Only worth starting as a deliberately-scoped
+   multi-round job, and only if 3 fails.
+5. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged from
+   round 21.

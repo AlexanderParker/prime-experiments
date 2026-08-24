@@ -166,6 +166,102 @@ theorem newgap_le_max {g pos : ℕ → ℕ} {kap : ℕ → Prop} {q u F2 Qmax : 
   newgap_le hg hmono hteeth hu h4u hF2 (le_max_left _ _) hQ
     (fun j => le_trans (hQm j) (le_max_right _ _)) hmw
 
+/-! ## The step law: R39 applied to two concrete machines
+
+`newgap_le` speaks about merged windows over the OLD machine's opening
+indices. The lemma below does the bookkeeping that turns it into a statement
+about the NEW machine's own gap sequence, once and for all: locate both
+endpoints of a new gap in the old enumeration, check that everything strictly
+between is killed, and telescope. Each further rung of the (D) ladder is then
+an instantiation - `Ladder.lean` climbs 11->13, 13->17, 17->19 with it, and
+`Machine23.lean` is the same argument written out by hand at 19->23. -/
+
+/-- Monotone position sequences do not decrease over jumps. -/
+theorem pos_le_add {pos : ℕ → ℕ} (hmono : ∀ m, pos m ≤ pos (m + 1)) (a j : ℕ) :
+    pos a ≤ pos (a + j) := by
+  induction j with
+  | zero => rfl
+  | succ j ih =>
+    have := hmono (a + j)
+    rw [show a + (j + 1) = (a + j) + 1 by omega]
+    omega
+
+/-- Window sums of a gap word telescope to position differences. -/
+theorem windowSum_telescope {g pos : ℕ → ℕ}
+    (hg : ∀ m, g m = pos (m + 1) - pos m) (hmono : ∀ m, pos m ≤ pos (m + 1))
+    (a j : ℕ) : Spectrum.windowSum g a j = pos (a + j) - pos a := by
+  induction j with
+  | zero => simp [Spectrum.windowSum]
+  | succ j ih =>
+    have hs : Spectrum.windowSum g a (j + 1)
+        = Spectrum.windowSum g a j + g (a + j) := Finset.sum_range_succ _ _
+    have h1 := pos_le_add hmono a j
+    have h2 := hmono (a + j)
+    rw [hs, ih, hg, show a + (j + 1) = (a + j) + 1 by omega]
+    omega
+
+/-- **The step law.** `ExO`/`posO` are the old machine's openings and their
+enumeration, `ExN`/`posN` the new machine's; `Kap` is the new gear's kill
+predicate on slots, with teeth `{u, q - u}`. Given the old machine's
+`F_2 <= B` and qualifying spectrum `Q_j <= B` (`j >= 3`), EVERY gap of the
+new machine is at most `B`. This is R39, `F(M + q') <= max(F2, max_j
+qualmax_j)`, as a statement about two concrete machines. -/
+theorem newgap_le_step {ExO ExN Kap : ℕ → Prop} {posO posN g : ℕ → ℕ}
+    {q u B F2 : ℕ} {Q : ℕ → ℕ}
+    (hg : ∀ m, g m = posO (m + 1) - posO m)
+    (hOmono : ∀ m, posO m < posO (m + 1)) (hOpos : ∀ m, 1 ≤ posO m)
+    (hOex : ∀ m, ExO (posO m))
+    (hOsurj : ∀ x, 1 ≤ x → ExO x → ∃ m, posO m = x)
+    (hNpos : ∀ m, 1 ≤ posN m) (hNmono : ∀ m, posN m < posN (m + 1))
+    (hNex : ∀ m, ExN (posN m))
+    (hNempty : ∀ m x, posN m < x → x < posN (m + 1) → ¬ ExN x)
+    (hnk : ∀ x, 1 ≤ x → ExN x → ¬ Kap x)
+    (hkn : ∀ x, 1 ≤ x → ExO x → ¬ Kap x → ExN x)
+    (hsub : ∀ x, ExN x → ExO x)
+    (hteeth : ∀ x, Kap x → x % q = u ∨ x % q = q - u)
+    (hu : 0 < u) (h4u : 4 * u ≤ q)
+    (hF2 : Spectrum.SpectrumBound g 2 F2) (hF2B : F2 ≤ B)
+    (hQ : ∀ j, 3 ≤ j → Spectrum.QualBound g u j (Q j)) (hQB : ∀ j, Q j ≤ B)
+    (n : ℕ) : posN (n + 1) - posN n ≤ B := by
+  have hOmono' : ∀ m, posO m ≤ posO (m + 1) := fun m => le_of_lt (hOmono m)
+  have hOlt : ∀ a b, a < b → posO a < posO b := by
+    intro a b hab
+    have h1 := hOmono a
+    have h2 := pos_le_add hOmono' (a + 1) (b - (a + 1))
+    rw [show a + 1 + (b - (a + 1)) = b by omega] at h2
+    omega
+  obtain ⟨a, ha⟩ := hOsurj (posN n) (hNpos n) (hsub _ (hNex n))
+  obtain ⟨b, hb⟩ := hOsurj (posN (n + 1)) (hNpos (n + 1)) (hsub _ (hNex (n + 1)))
+  have hNlt := hNmono n
+  have hab : a < b := by
+    by_contra hc
+    have hle : posO b ≤ posO a := by
+      rcases Nat.lt_or_ge b a with h | h
+      · exact le_of_lt (hOlt b a h)
+      · have he : b = a := by omega
+        rw [he]
+    omega
+  have hmw : MergedWindow (fun i => Kap (posO i)) a (b - a) := by
+    refine ⟨by omega, ?_, ?_, ?_⟩
+    · show ¬ Kap (posO a)
+      rw [ha]; exact hnk _ (hNpos n) (hNex n)
+    · show ¬ Kap (posO (a + (b - a)))
+      rw [show a + (b - a) = b by omega, hb]
+      exact hnk _ (hNpos (n + 1)) (hNex (n + 1))
+    · intro i hi0 hij
+      show Kap (posO (a + i))
+      have hv1 : posN n < posO (a + i) := by rw [← ha]; exact hOlt _ _ (by omega)
+      have hv2 : posO (a + i) < posN (n + 1) := by
+        rw [← hb]; exact hOlt _ _ (by omega)
+      by_contra hK
+      exact hNempty n _ hv1 hv2
+        (hkn _ (hOpos (a + i)) (hOex _) hK)
+  have hgap : posN (n + 1) - posN n = Spectrum.windowSum g a (b - a) := by
+    rw [windowSum_telescope hg hOmono', show a + (b - a) = b by omega, ha, hb]
+  rw [hgap]
+  exact newgap_le hg hOmono (fun i hk => hteeth (posO i) hk) hu h4u hF2 hF2B
+    hQ hQB hmw
+
 /-- **(D) at `alpha = 3` from R39**: if `max(F2, max_j Q_j) <= F + q'`,
 every merged window - every gap of the new machine - is within tolerance. -/
 theorem D_of_qualmax {g pos : ℕ → ℕ} {kap : ℕ → Prop} {q u F2 F qp : ℕ}

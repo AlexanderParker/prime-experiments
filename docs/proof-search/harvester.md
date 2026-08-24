@@ -625,3 +625,355 @@ paired_hlb}.out. Docs: docs/novel/j2-upper-bound.md (new), paired-hlb-cycles.md
 (new), paired-jacobsthal-values.md sec. 4b, paired-holt-recursion.md status
 upgrade, README index (2 entries). Prior-art checks dated 2026-08-24 in both new
 docs. No detached jobs pending at write-up.
+
+## ROUND 22 - the j_2 ladder gets its middle rung, its ceiling and a per-difference
+## refinement; the deficit doubling dies by arithmetic; the pinch is generalised and
+## then PARTLY GIVEN BACK to Holt; publication shape re-priced
+
+Scripts (all assertion-gated, all green): research/delta_frame.py, family_scan.py,
+family_scan_fast.py, family_scan23.py, ext_deficit19.py, ext_deficit23.py,
+zm_seq_reconcile.py, j2_brun.py, j2_perdiff.py, hlb_effective.py,
+pinch_bonferroni.py, holt_correspondence.py, ext23_witness.py. Data:
+research/data/{ext_deficit19,ext_deficit23,ext23_witness,family_scan23,
+zm_seq_reconcile,j2_brun,j2_perdiff,hlb_effective,pinch_bonferroni,
+holt_correspondence}.out plus
+family_w19_delta.npy, family_w23_delta.npy, ext19_to23.npy, ext23_all.npy. Prior-art
+checks run by me and dated 2026-08-24. All jobs launched early and finished before
+write-up.
+
+THE ROUND'S MOST IMPORTANT ITEM IS A CORRECTION, so it goes first.
+
+### (0) PRIOR-ART CORRECTION - Holt arXiv:2502.20470 (Feb 2025) contains two of the
+### project's claimed-novel identities and explains a third
+
+Round 20/21 searched Holt arXiv:1510.00743 and Holt-Rudd arXiv:1408.6002 and found no
+paired counterparts. Round 22's re-search surfaced a paper that DID NOT EXIST at that
+time: Fred B. Holt, "Eratosthenes sieve supports the k-tuple conjecture",
+arXiv:2502.20470 (v1 Feb 2025, v3 Jul 2025). Text extracted and read. His Corollary 1:
+
+    for an admissible constellation s of length J,
+        sum_{j >= J} n_{s,j}(p#)  =  prod_{q <= p} (q - nu_q(s)),
+    nu_q(s) = number of distinct residues mod q among the J+1 boundary points,
+
+i.e. the aggregate population of s AND ITS DRIVING TERMS. Since a twin-slot survivor
+is EXACTLY a gap of 2 in Holt's cycle of gaps, a pair of twin-slot survivors at lag g
+is an instance of his constellation (2, 6g-2, 2) with boundary points
+{0, 2, 6g, 6g+2} = H_g. Therefore:
+
+- MY LOCAL-FACTOR IDENTITY c_q(g) = q - nu_q(H_g) (round 21, "the machine's transfer
+  diagonal IS the HL prime-quadruplet local factor") is Holt's q - nu_q(s),
+  specialised. The affine-bijection proof is still the right proof of the closed form;
+  the identification is his framework.
+- LATERAL'S DEPTH-SUM IDENTITY sum_j W_j(g) = N2(g) (round 20) IS Holt's Corollary 1
+  at that constellation. The identity and the proof are correct; the novelty claim is
+  not. FLAGGED TO LATERAL - I have not edited their doc, only recorded the verdict in
+  docs/novel/README.md's index entry (which honestly said "not yet checked").
+- "THE PAIRED SYSTEM IS HOLT'S WITH DOUBLED LEVEL SPACING" (round 21) is now DERIVED,
+  not observed: a paired gap word of length j is a constellation with 2j+2 boundary
+  points, and his population dynamics carries diagonal q - (number of points), so
+  q - 2j - 2 against his q - (j+1). Better understanding, weaker novelty.
+- FORMALIST: your kernel check of the local-factor identity is unaffected as
+  verification; only its novelty label changes.
+
+CHECKED, NOT ASSERTED (research/holt_correspondence.py, green): (A) twin-slot
+survivors ARE exactly the left endpoints of the gaps of 2 in the rough cycle (sets
+equal, 1,485 at P = 30,030 and 22,275 at P = 510,510); (B) N2(g) = prod_q c_q(g)
+equals to the unit the count of positions with all four boundary points of
+s = (2, 6g-2, 2) rough - Holt's right-hand side - at every g <= 6 and both machines;
+(C) the objects separate at once, e.g. machine 17, g = 5: n_g = 4,230 vs Holt's
+n_{s,J} = 0.
+
+WHAT SURVIVES, and why it is a different object: Holt's n_{s,J} counts constellation
+instances with NO ROUGH NUMBER between the boundary points. The paired sieve's gap
+population n_g counts CONSECUTIVE TWIN-SLOT SURVIVORS - no twin candidate between,
+ordinary rough numbers allowed. The twin-slot subsequence of Holt's cycle is not
+studied in his papers and n_g is none of his n_{s,J}. Everything proved about n_g -
+the pinch, its Bonferroni series, the moment identity, the effective threshold - has
+no counterpart found. Also checked and clear: Holt arXiv:2603.25915 (Mar 2026,
+"Surviving Eratosthenes sieve I") is one-residue, Legendre-conjecture-directed, with
+no HL-B-in-cycles and nothing paired. Full correction: docs/novel/paired-hlb-cycles.md
+section 0 + section 6; docs/novel/paired-holt-recursion.md CORRECTION.
+
+### (a) THE NEXT j_2 RUNG - delivered, plus a relabelled wall and a per-difference
+### refinement (docs/novel/j2-upper-bound.md: THEOREM 3, THE CEILING, COROLLARY, sec 7)
+
+1. THEOREM 3 (Brun pure sieve; elementary, exact constants, no implied constant):
+   for every ODD K with R_K < V_n,
+       j_2(p_n#) <= E_K/(V_n - R_K) + 1,
+   E_K = sum_{j<=K} e_j(omega(p)), R_K = sum_{j>K} e_j(omega(p)/p), e_j the elementary
+   symmetric polynomials. It CONTAINS round 21's Theorem 1 as the case K >= n (there
+   R_K = 0 and E_K = prod(1+omega(p)) = 2*3^(n-1), asserted at every n), and at the
+   optimal K (measured K* = 3,5,7,9,11,13 over p_n = 5..27449, i.e. K* ~ lambda T_n
+   with T_n = sum omega(p)/p ~ 2 log log p_n) it is QUASI-POLYNOMIAL:
+   exp(C log p_n log log p_n) = p_n^{C log log p_n}, with the measured
+   C = log(bound)/(log p log log p) in [3.47, 4.16] for p_n = 173..27449 while
+   Theorem 1's own ratio diverges 5.6 -> 139. Crossover: Theorem 3 is strictly better
+   from p_n = 13 (not merely asymptotically), by >300x at p_n = 73 (1.082e9 vs 3.316e11).
+   The inequality itself is checked directly against brute-force survivor counts on
+   1800 real paired windows (n = 3..6, odd K = 1..n+1), tightest ratio 0.54.
+   Ladder alignment: Theorem 1 = Kanold slot (2^k), Theorem 3 = Stevens slot
+   (2 k^{2+2e log k}), Theorem 2 = Iwaniec slot.
+
+2. BETA_2 MOVED, FOR FREE: the best proved dimension-2 sifting limit is 4.266
+   (Diamond-Halberstam-Richert; Franze arXiv:1012.3809 Table 1 via ar5iv, which also
+   gives 4.516 for Lambda^2 Lambda^- at kappa = 2 and shows Lambda^2 Lambda^- winning
+   only from kappa >= 3). Round 21 cited 4.85 / 4.45. Rung 2 is now
+   j_2(p_n#) <<_eps p_n^{4.266+eps} with no new work - the "watch beta_2" the brief
+   asked for, and it paid.
+
+3. THE PARITY ASSESSMENT STANDS BUT WAS MISLABELLED - self-caught. Round 21 filed
+   "a paired Iwaniec bound is PARITY-CRITICAL, the Iwaniec-analogue is open". Wrong
+   slot: Iwaniec's ordinary j(n) << (k log k)^2 is, at primorials, exactly p^{beta_1}
+   with beta_1 = 2 the dimension-ONE sifting limit, and round 21's own Theorem 2
+   already delivers the dimension-TWO counterpart p^{beta_2}. The corrected, sharper
+   wall:
+     * our sieve loses nothing on the LEVEL of distribution (|r_d| <= 3^{nu(d)}, so
+       sum_{d<D}|r_d| << D log^2 D and D = m^{1-o(1)}), so the exponent is EXACTLY the
+       sifting limit and no bilinear / well-factorable refinement of the level helps;
+     * Selberg's conjectural optimum is beta_kappa = 2 kappa, i.e. 4 at kappa = 2, and
+       no sieve attains 2 kappa for any kappa > 1 (Selberg: beta_kappa <~
+       2 kappa + 19/36 for large kappa);
+     * ZM Conjecture 6 asks for exponent 2 = beta_1 on a kappa = 2 problem - BELOW
+       EVEN THE CONJECTURAL FLOOR by a factor of two in the exponent;
+     * and in the project's own horizon frame exponent 2 is precisely the level at
+       which a sieve survivor in (y, y^2] IS a prime pair (Reduction A), which is why
+       ZM Thm 4.1 extracts Goldbach and Polignac from it.
+   So: parity-blocked, not unproved-but-approachable. Remaining moves: any beta_2
+   improvement (free) and an explicit constant in rung 2. Lowering the exponent toward
+   2 is not a move.
+
+4. PER-DIFFERENCE REFINEMENT - the first upper bound attached to the project's own
+   F_d family (research/j2_perdiff.py). The sieve removes omega_p(d) = 2 classes for
+   p not dividing d and 1 for p | d, so the sifting DIMENSION is d-dependent:
+       kappa_d = 2 - (1/log y) sum_{p | d, p <= y} log p / p     (Mertens),
+   running over all of [1,2], and F_d(y) <<_eps y^{beta(kappa_d)+eps}. Both endpoints
+   are attained inside the family: kappa = 2 exactly for d coprime to the primorial
+   (the class the percentile work identifies as hardest), and kappa = 1 + O(1/log y)
+   for d = 0 mod the primorial - exactly the round-21 verified collapse j_2 = j, so
+   the interpolation is anchored at both ends. d divisible by exactly the primes in
+   (y^theta, y] gives kappa = 1 + theta, verified at three thetas and three scales.
+   Honest caveat in the doc: for FIXED d and y -> infinity, kappa_d -> 2, so this is a
+   statement about differences that grow with the machine - i.e. the family setting.
+
+### (b) THE DEFICIT-DOUBLING MICRO-QUESTION - ANSWERED, NEGATIVE
+### (docs/novel/paired-jacobsthal-values.md section 4c)
+
+THE ENABLING REDUCTION (proved, verified). For 3 not dividing e, F_e(y) depends on e
+ONLY through delta = e*3^{-1} mod Q, Q = prod_{5<=q<=y} q, and equals 3*G(delta) with
+G the maximal cyclic gap of {k : k != 0, -delta mod q}. (Gear 3 pins survivors to one
+class mod 3; n = 3k + c turns each tooth pair into a translate of {0, -delta} by the
+single integer -c*3^{-1} mod Q.) Combined with a HELD-OUT-TOP-GEAR PREFILTER that is
+exact rather than heuristic - a run of L killed positions forces every survivor of the
+smaller gears in the window into {0, -delta} mod qt, hence at most TWO residues among
+the offsets, which pins delta mod qt - the y=19 scan that round 17 called "out of
+reach" (2,424,922 differences) costs minutes and keeps 64 of 1,616,615 deltas
+(0.0040%). Validated against brute force in delta space at y = 13 and y = 17.
+
+1. h_2(19) = 258 REPLICATED by exhaustive family scan (max G = 43 over the whole
+   family, nothing above), by a method entirely different from ZM's.
+2. The COMPLETE 19-winner set: exactly 64 deltas; ladder 8, 16, 64, 64 at
+   y = 11, 13, 17, 19. The 19-winners are not lifts of the 17-winners.
+3. The 3 | e branch settled EXHAUSTIVELY (not by observation): for 3 | e a gap of 3G
+   needs killed runs in BOTH sub-lattices, each a translate of the same S_delta, so
+   its delta must already be a G >= 43 winner; checking those 64 gives best F = 44
+   against 129.
+4. The deficit ladder recomputed over COMPLETE winner sets by independent code:
+   9 (13->17, 16 winners), 18 (17->19, 64 winners), 36 (19->23, 64 winners) -
+   round 21's three numbers confirmed and the 36 is no longer lineage-only.
+5. THE DOUBLING IS REFUTED - by arithmetic, before any computation. A deficit can
+   never exceed the increment F(new) - F(old) because the best extension is at least
+   F(old). OEIS A288815 (pulled in full 2026-08-24) gives F = h_2/2 = 75, 96, 129,
+   183, 225, 285, 354 at y = 13..37, so the increments are 21, 33, 54, 42, 60, 69: the
+   23->29 increment COLLAPSES to 42 < 72. The 9, 18, 36 doubling was a coincidence of
+   three consecutive increments. What survives is the accounting identity
+   deficit = increment - (best adjacent 2-gap sum of a record), with 2-gap sums
+   12, 15, 18 (+3 per rung), which PREDICTED deficit 21 at 23->29.
+6. RECONCILED WITH ZM'S OWN EXHAUSTIVE DATA - the round's best cross-check, and a
+   novelty downgrade I found myself. ZM's full_details.pdf Table 1 carries a column
+   nseq = "number of sequences of maximum length" (1, 6, 1, 1, 4, 2, 2, 14, ... at
+   p_n = 5, 7, 11, 13, 17, 19, 23, 29) with exhaustive ancillary lists
+   (remainders_2.txt / permutations_2.txt / moduli_2.txt) - a representation the
+   project had never looked at. Converting each winning delta's record windows into
+   ZM's covering pattern (which gear kills each position):
+       y = 11: 8 deltas, 8 windows -> 1 pattern = nseq 1 (self-symmetric)
+       y = 13: 16 deltas, 16 windows -> 1 pattern = nseq 1 (self-symmetric)
+       y = 17: 64 deltas, 128 windows -> 4 patterns = nseq 4
+       y = 19: 64 deltas, 128 windows -> 2 patterns = nseq 2
+   EXACT at all four, reverses counted separately exactly as ZM state, and ZM's own
+   remark that the single sequences at n = 5, 6 are self-symmetric is reproduced.
+   CONSEQUENCE, and it goes further than I first wrote: the winner sets are recoverable
+   from ZM's published files, AND the delta reduction is essentially their Proposition
+   1.5(2) ("for every prime there exist two non-zero residue classes covering
+   {1,...,m}", which already drops the pair (a,b)), AND their algorithm suite reaches
+   p_n = 73 where this scan reaches 23. So neither the data nor the reduction nor the
+   search method is a contribution. What IS new: the independent replication, the
+   exhaustive settlement of the 3 | e branch, and the CROSS-GEAR EXTENSION LADDER -
+   a question ZM never ask.
+7. THE y=23 RUNG (exhaustive, 1,616,615 prefilter classes, 4 shards): 7. THE y=23 RUNG (exhaustive, 1,616,615 prefilter classes, four shards, ~3 h wall).
+   The prefilter keeps 128 of 37,182,145 deltas (0.00034%); all reach G = 61 and none
+   exceeds it, so h_2(23) = 366 is REPLICATED EXHAUSTIVELY - the second independent
+   replication this round. Complete 23-winner set = 128 deltas; ladder 8, 16, 64, 64,
+   128 at y = 11, 13, 17, 19, 23. Pre-registered check 1 PASSED: exactly 2 distinct
+   covering patterns = ZM's nseq(23) = 2 (five machines now agree in both
+   representations).
+
+8. THE 23 -> 29 DEFICIT IS ZERO, AND ROUND 21'S SECOND CONCLUSION IS ALSO REFUTED.
+   My own pre-registered prediction was 21 (increment 42 minus a 2-gap sum continuing
+   12, 15, 18 to 21). MEASURED: ZERO. 23-winners lift to the FULL y = 29 family
+   maximum G = 75, F = 225, h_2 = 450. CERTIFIED, not merely computed
+   (research/ext23_witness.py, independent code path, no sieve array): delta_29 =
+   743,911,918 (from delta_23 = 269,018, lift r = 3 mod 29) has k = 134,406,257 ..
+   134,406,330 - 74 consecutive positions - each killed by an explicitly listed gear,
+   with both flanking positions open on every gear, so G = 75 exactly. Three further
+   witnesses, all at r = 3 mod 29. AND IT IS NOT ONE LUCKY WINNER: over the complete
+   128 winners x 29 lifts, EVERY one of the 128 reaches G = 75, each at exactly the
+   same four lift residues r in {3, 12, 17, 26} mod 29 = {+-3, +-12} - 512
+   (winner, lift) pairs, and no other r works for any winner. Those two residue pairs
+   are precisely the two interior separations available in the fused word: the openings
+   around a record sit at 0, 2, 14, 75, 77, 79, so the 75-gap is either 0 -> 75
+   (killing the openings at 2 and 14, separation 12, forcing delta = -+12 mod 29) or
+   its mirror 2 -> 77 (killing 4 and 65, separation 61 = 3 mod 29, forcing
+   delta = -+3). At this rung the cap law does not merely BOUND the extension - it
+   PREDICTS the admissible lifts exactly. Side effect: h_2(29) = 450 now has an independent
+   explicit lower-bound witness, so three consecutive ZM values are confirmed here by
+   three different routes.
+   WHY, AND THE CAP LAW IS CONFIRMED RATHER THAN BROKEN: the 23-machine's gap word
+   around a record is [2, 12, 61, 2, 2] in slot units; the lift fuses 61 + 12 + 2 = 75,
+   i.e. TWO interior openings killed - exactly the shallow-extension cap law's maximum
+   (paired-jacobsthal-values.md 4b), attained. In F units 183 + (36+6) = 225. The
+   accounting identity deficit = increment - (record's best adjacent 2-gap sum)
+   survives intact; what was wrong was the guess that the 2-sums continue 12, 15, 18,
+   21 - they run 12, 15, 18, 42, and at 23->29 the 2-sum EQUALS the increment.
+   CORRECTIONS TO ROUND 21, both mine: (i) "the deficit doubles" - the ladder is
+   9, 18, 36, 0; (ii) "from 17 on the argmax trajectory is forced to abandon its
+   ancestors, a record window is self-limiting, each new gear's winner is a fresh deep
+   resonance" - REFUTED at 23->29 by explicit certificate; maximiser persistence is not
+   monotone in y, it fails at 17, 19, 23 and returns at 29. The mechanism (cap law) was
+   right; the extrapolation from three points was not.
+   HONEST LIMIT: one more rung, not a law. The 2-gap sum beside a record is an
+   arithmetic accident of that neighbourhood, and the 29-winner set would be a
+   1.08e9-delta scan - out of reach for this prefilter (y=23 already cost ~3 CPU-hours
+   x 4 shards).
+
+### (c) HL-B CONSEQUENCES - the pinch generalised, made effective, and bounded
+### (docs/novel/paired-hlb-cycles.md sections 3a, 3b)
+
+THE PINCH IS BONFERRONI ORDER 1 - my own round-21 theorem generalised
+(research/pinch_bonferroni.py). With S_k = sum over 0 < t_1 < ... < t_k < g of
+N_{k+2}(0,t_1,...,t_k,g) (closed-form CRT products), inclusion-exclusion over which
+interior offsets are open gives EXACTLY
+    n_g = sum_{k>=0} (-1)^k S_k,
+with Bonferroni truncations alternating (even K upper, odd K lower). K = 0 and K = 1
+ARE the two sides of the round-21 pinch. Moment form: since a depth-j window has j-1
+interior openings, S_k = sum_j C(j-1, k) W_j(g), so S_0 = N2 is the depth-sum identity
+and S_1 overcounts sum_{j>=2} W_j by exactly sum_{j>=3} (j-2) W_j - THE PINCH'S SLACK
+IS AN EXPLICIT QUANTITY. Identities and alternation verified by full sieve at machines
+13 and 17, g = 4,5,6,8,10, k <= 3.
+
+POSITIVE: EFFECTIVE POLIGNAC IN THE PAIRED SIEVE. Let y_0(g) be the least y at which
+the lower bound is positive; then gap g occurs in M_y for EVERY y >= y_0(g),
+unconditionally, no scan. Holt proves constellations "arise and persist" but gives no
+stage index; this is a number. Splitting at q = 6g+2 (beyond which every local ratio
+is generic) gives one monotone table:
+    g            2   3   4   5   6   8  10   12   15   20    25    30   40     50
+    y_0 order 1 14  20  26  32  38  50  62  103  199  467  1009  2609  12157  42257
+    y_0 order 3  -   -   -   -  41  53  67   79   97  127   167   367
+with log y_0(g)/sqrt(g) confined to [1.305, 1.531] at order 1 and about 1.08 at
+order 3: THE THRESHOLD IS y_0(g) = exp(Theta(sqrt g)), NOT polynomial in g, and the
+higher Bonferroni orders improve the CONSTANT but not the SHAPE - so the square root
+is not a union-bound artifact and a polynomial threshold would need a different
+argument. That closes, negatively, the open item I was about to name.
+
+NEGATIVE, PRICED SO NOBODY RE-DERIVES IT: every gap <= G(y) occurring gives
+F(2,y) >= 3 G(y) ~ c (log y)^2 - 60, 90, 180, 240 at y = 10^3..10^6 against a truth of
+order y^2. The pinch contributes NOTHING to the j_2 lower ladder; that stays with the
+FGKMT transfer.
+
+THE BOUNDARY, QUANTIFIED. The pinch is a FULL-PERIOD statement; primality of survivors
+lives in the window (y, y^2] (horizon theorem), a share y^2/P_y = exp(-(1+o(1)) y) of
+the period: 2.2e-4 at y = 19, 1.1e-9 at y = 37, 2.6e-34 at y = 101. No full-period
+population statement, however exact, localises into a share that thin. That is the
+entire distance between "paired HL-B in cycles, proved with rate" and "paired HL-B for
+primes, open". This document proves NOTHING about prime quadruplets and no
+unconditional prime-side consequence was found. Outside the sieve the eigen-analysis
+buys exactly one structural fact, and after item (0) it is a consequence of Holt's
+point count rather than a discovery: the paired system relaxes at rate (log y)^{-2}
+because its constellations carry twice as many points.
+
+### (d) PUBLICATION SHAPE - honest pricing of my own holdings, AFTER item (0)
+
+Item (0) re-orders this. Two units are real; one is a separate-venue unit; the rest are
+sections. Nothing was written - this is pricing.
+
+UNIT 1 (now the strongest): "The paired Jacobsthal function: first upper bounds, and
+the structure of its maximisers" = j2-upper-bound.md (Theorems 1-3, the per-difference
+corollary, THE CEILING) + twin-percentile.md + paired-jacobsthal-values.md 4a/4b/4c.
+First bounds of any strength on a function named and conjectured about since 2017,
+aligned rung-for-rung with the ordinary ladder, plus the structural remark that ZM
+Conjecture 6 asks for a dimension-1-quality exponent on a dimension-2 problem - which
+is the paper's most interesting paragraph and is not in ZM. The computational half
+supplies the percentile result and the shallow-extension cap law. TO ADD: an EXPLICIT
+constant in rung 2 (turn <<_eps into a stated inequality with a stated n_0 - the one
+piece of real work and the obvious referee ask); a careful statement of the sieve
+dimension and remainder bound; and honest positioning of the computational half as
+replication-plus-structure given ZM's ancillary files (item b6).
+
+UNIT 2 (DOWNGRADED THIS ROUND from "strongest" to "a short note"): the twin-slot gap
+population, = paired-hlb-cycles.md after the section-0 correction. Its two headline
+identities are Holt's; what is left is one object (n_g), one theorem about it (the
+exact Bonferroni series with the moment identity, of which the pinch is orders 0-1),
+and one effective corollary (y_0(g) = exp(Theta(sqrt g))). That is a legitimate short
+note extending Holt's program to the twin-candidate subsequence, and it would cite him
+on nearly every page. TO ADD: uniform error terms; a decision on whether the effective
+threshold can be improved beyond the constant. Note also that Holt's own programme
+appears to live on arXiv and primegaps.info rather than in journals (1510.00743 was a
+conference presentation), which affects where such a note would go.
+
+UNIT 3 (separate venue, self-contained): the Lean development - machine-checked
+per-difference equivalences for Polignac, the Goldbach window reduction with its exact
+converse, the mod-3 dichotomy, the universal cap <= 12. Formalization venues take work
+containing no new mathematics; needs packaging, not research.
+
+NOT PUBLISHABLE ALONE, and now priced that way: (i) twin-percentile - data, no
+theorem, belongs inside unit 1; (ii) the h_2 replication AND the delta-reduction /
+prefilter method - struck entirely: the reduction is ZM Proposition 1.5(2), their
+algorithms reach p_n = 73 against this scan's 23, and the winner data is in their
+ancillary files (a three-part downgrade of round 21's framing, all of it self-found
+this round); (iii) the cap law and the deficit ladder - a good section of unit 1. The
+cap law came out of this round STRENGTHENED (at 23->29 it predicts the admissible
+lifts exactly, not just an upper bound), but it still holds only under observed
+non-collision conditions and the deficit ladder is four points, one of which (0)
+falsified the extrapolation drawn from the other three.
+
+WHAT IS NOT MINE TO PUBLISH: everything on the twin route (other lanes), and the
+kernel work on my identities.
+
+### Ranking changes (honest pricing)
+
+- N4 (the j_2 ladder) UPGRADED from "two rungs" to "three rungs + a ceiling + a
+  per-difference refinement", and its named wall RE-LABELLED (a3). Remaining moves are
+  cheap and bounded: beta_2 watching (free) and an explicit rung-2 constant. This is
+  now the lane's strongest holding.
+- N5 (paired HL-B) DOWNGRADED by my own prior-art find (item 0), then partly restored
+  by the Bonferroni generalisation and the effective threshold. Net: a short note, not
+  a paper.
+- C10+N3 (the paired-Jacobsthal family) DOWNGRADED on the data side (b6) and held on
+  the structure side (cap law, extension ladder, percentile). The round-21 open
+  micro-question is CLOSED, negative.
+- STANDING LESSON, recorded because it cost novelty twice in two rounds: prior-art
+  checks EXPIRE. Both this round's downgrades came from documents that existed but had
+  not been looked at (ZM's ancillary files, 2017) or did not exist at the last sweep
+  (Holt, Feb 2025). Any claim of novelty older than a round should be re-searched
+  before it is repeated in a summary.
+
+### Needs from other lanes
+
+- LATERAL: docs/novel/depth-sum-identity.md - your identity is Holt arXiv:2502.20470
+  Corollary 1 at the constellation (2, 6g-2, 2). Proof and value unaffected; the
+  novelty label is. I recorded the verdict in the README index and did not edit your
+  doc.
+- FORMALIST: thanks for the kernel check of the local-factor identity - unaffected as
+  verification. Two further finite candidates if ever wanted: the delta reduction at a
+  fixed machine, and the Bonferroni step of Theorem 3 at fixed n and K.
+- MECHANIC / CONSTRUCTOR: nothing blocking. The pinch's closed-form population windows
+  remain a free cross-check row at any machine, now at any Bonferroni order.

@@ -168,3 +168,20 @@ Nearest prior art: Holt's Theorem 3.2 - the |T| = 1 degenerate case of this
 recursion. VERDICT: PARTIAL OVERLAP (one-residue case known and due to Holt; the
 two-residue recursion, coefficient formula, autocorrelation-as-diagonal
 identification, and factor-2 spectral contraction NOVEL AS FAR AS SEARCHED).
+
+## CORRECTION (round 22, harvester, self-caught)
+
+Holt arXiv:2502.20470 "Eratosthenes sieve supports the k-tuple conjecture" (Feb 2025,
+v3 Jul 2025) postdates the round-20 prior-art sweep behind this document and narrows
+its claim. A twin-slot survivor is exactly a gap of 2 in Holt's cycle of gaps, so a
+paired gap word of length j is one of his constellations with 2j+2 boundary points;
+his Corollary 1 gives sum_{j>=J} n_{s,j}(p#) = prod_q (q - nu_q(s)) for every
+constellation, and his population recursion carries the diagonal p - (number of
+points). Consequently the coefficient structure reported here - diagonal
+q' - 2j - 2, i.e. "Holt's system with doubled level spacing" - is a consequence of the
+point count in his general dynamics, not a separate phenomenon. What remains specific
+to this document is the explicit position-free coefficient formula
+coef(w) = #{r in Z_q' : flanks alive, interiors in T} and its exact verification at
+the full word-census level (6714 + 10489 words at two rungs), which is a computational
+statement about the two-residue readout rather than a new dynamical law.
+See docs/novel/paired-hlb-cycles.md section 0 for the full correction.

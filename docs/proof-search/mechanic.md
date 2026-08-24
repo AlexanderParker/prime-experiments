@@ -923,3 +923,167 @@ bool_lag_census.py (8/16-lag boolean pattern census, full period
 - CSV hygiene: gap_pair CSVs deduped (r19+r20 identical blocks);
   machine-37 slice block removed as overlapping the complete 12.9%
   block; bool_lag16_31.csv kept full-period block only.
+
+## Round 21 (2026-08-24)
+
+Filed at close after a mid-round handover (the lane's first agent was lost to
+server errors; its detached jobs were harvested, verified and completed). Full
+narrative in the round-21 append of agents-shared.md; this is the lane's own
+cumulative record.
+
+### R21.A Machine 37 at FULL PERIOD - and a two-method agreement
+
+fuel37_k5hunt_part2.log, 34,143 s, 1.2368e12 slots (100.0%), 112,205,953,878
+openings:
+
+    F_j(37), j = 1..6:   88   90   97   105   113   120     EXACT
+    (r13 prefix row was  88   90   95   103   112   115  - lower bounds)
+
+F_3 = 97 and F_2 = 90 EQUAL the independent CRT+SAT values (segment scan vs
+refutation - two methods, same spectrum). Fuel at full period:
+N_1..N_4 = 110,467,008,914 / 869,473,543 / 1,579 / 0, so k_max(37->41) = 3 by
+direct exhaustive scan, confirming r20's SAT refutation of all 53 legal k=4
+words. spectra.csv m37 row upgraded to full period.
+
+F_3(37) = 97 EXACT: S = 98..152 UNSAT (55 refutations, one log per S in
+research/data/f3s/), S = 148..178 UNSAT (r20), cap F_2 + F_1 = 178 (theorem);
+SAT at S = 97, witness k = 990,209,189,833, gaps [37, 23, 37] - verified three
+ways, most recently by asserting all 94 interior slots blocked
+(research/m21_wit_verify.py). Margin at 37->41: 129 - 97 = 32 = 0.78 q'.
+CHECKPOINT-HYGIENE FAILURE, recorded: the r20 standing bound "[97,163], 34
+refutations away" was stale at both ends - r20 had already reached S = 148, and
+the FLOOR 97 had NO witness line in any log. It happened to be right. A floor
+without a witness must never again enter a standing bound.
+
+### R21.B Constructor's three asks
+
+- run_3(31; V(37)) = 508 CERTIFIED COMPLETE. Six nonzero words (12,12,25):139,
+  (12,25,12):188, (25,12,12):139, (12,25,25):7, (25,12,25):28, (25,25,12):7;
+  all 58 others zero (44 by spectrum prune, 14 by UNSAT).
+- run_3(37; V(41)) = 8 EXACT. Sole word the padded palindrome (14,41,14),
+  witness k = 1,120,456,097,388, re-verified independently. Shape echo:
+  29->31's only k=4 word was (10,21,10).
+- MACHINE-31 CORRIDOR-PHASE CENSUS, FULL PERIOD, both moduli (the r21 "sweep
+  casualty" gap). 6,226,553,025 gaps; cross-check vs tm_resid_runs.csv EXACT.
+  Depth-3 V-runs, exact 508: independent 39,072.91 (x76.9), VALUE 2,241.51
+  (x4.41), PHASE mod 35 2,337.51 (x4.60), HYBRID mod 35 803.50 (x1.58),
+  PHASE mod 385 1,561.20 (x3.07), HYBRID mod 385 683.07 (x1.35). Phase chain's
+  subleading eigenvalue is COMPLEX: |lam_2| = 0.836951 (0.517060+0.658131i) at
+  mod 35, 0.998581 at mod 385 - i.e. the mod-385 chain has almost NO spectral
+  decay, so its good fit is carried by the state space, not by a gap.
+
+### R21.C The C13 qualifying-spectrum table was WRONG in four of seven rows
+
+Found only because Formalist asked for machine 23. Audited every row against
+qualifying_spectrum.py, then every disagreement against DIRECT ENUMERATION at
+the tool's own printed address (research/qspec_audit.py, 9 entries asserted).
+The corrected table is in C13 above. Cause: built before the r17 vacuity fix in
+the tool-bug ledger, never regenerated.
+SCOPE OF THE DAMAGE, precisely: the CRITERION column was always right (it maxes
+over j <= litcap(q')+1, and every bad entry sat deeper), so NO PRIOR CONCLUSION
+CHANGES - but the bad entries were exactly the ALL-DEPTHS MAXIMA, the quantity a
+hypothesis-free (D) theorem consumes. 19->23 is NOT among the corrupted rows, so
+Formalist's D_at_19_23 was never at risk; 23->29 IS, and it is the rung they
+queued next.
+MACHINE-23 LADDER delivered (research/m23_ladder.py, full 37,182,145-slot cyclic
+period): F_j(23) j=1..8 = 34 39 50 58 65 77 83 88; Q_j(23;10) j=3..8 =
+43 50 55 60 0 0; longest run of gaps >= 10 is 4. All-depths max 60 <= F+q' = 63,
+margin +3 (the capped criterion's +13 answers a different question).
+Independently reproduced by Formalist in round 22, exactly.
+
+### R21.D Record multiplicity, the mirror law, and a closed micro-question
+
+research/record_multiplicity.py (direct full-period scan) and mirror_law.py:
+
+    machine    13   17   19   23   29   31   [37]  [41]
+    mult       12   20   20    4    2    4    [2]   [4]
+
+m23/m29/m31 reproduce the single-source SAT ladder exactly by an independent
+method; 13/17/19 are new. m37/m41 remain measured-once. EVERY ENTRY IS EVEN, and
+necessarily: each gear blocks the symmetric pair {u_q, -u_q}, so the opening set
+is closed under k -> -k mod P and maximal gaps come in MIRROR PAIRS summing to
+P - F (verified at 13-29 with zero self-mirror gaps; m31's four and m37's two
+are exact mirror pairs). This is an application of the machine-reversal symmetry
+Lateral established in r20, not a new law.
+MICRO-QUESTION CLOSED: m37's second maximal-gap address sits two slots off the
+F_2(37) witness because F_2(37) = 90 IS the minimum gap 2 abutting the maximal
+gap 88. Both m37 maximal gaps carry gaps of 2 on both sides, so the lemma-1
+margin F_2 - F = 2 is structural, not luck.
+
+### R21.E q'=53 (the litcap-6 test): UNDECIDED, and the motivating row retracted
+
+The step is 47->53. qspec47.log's criterion table - including its headline
+"q'=53 margin +8 = 0.151 q'" - is computed from F = 95, a machine-47 PREFIX at
+coverage 1e-6, against the exact F(47) >= 118. RETRACTED; same error class as
+r20's envelope41 line. Its within-row ORDERING survives (all rows share one F,
+so the error is common-mode): margin tracks LITCAP, not q' - 0.151 (litcap 6),
+0.279 (4), 0.525 (3), 0.76-0.79 (2).
+New exact machine-47 data: Q_j(47;18) SAT at j=4 S=141; j=5 S=141-143; j=6
+S=141-153 and S=156, so max_j Q_j(47;18) >= 156 (witnesses CRT'd and asserted).
+Against the EXACT budget F(47) + 53 >= 171 that sits >= 15 below, so the alarm
+implied by the prefix table (149 > 148) was an artifact of the prefix F.
+Undecided on both sides: F(47) and max_j Q_j(47;18) are both only lower-bounded.
+IF THE CRITERION EVER DOES FAIL AT A LITCAP-6 STEP it would NOT refute (D) - it
+would mean the word-free criterion stops being sufficient there and the
+word-restricted one (never collapsed, 0.52-0.92 q') carries that step.
+ROUTE CLOSED WITH A PROOF: the depth-sum identity cannot supply the missing
+upper bound. c_q(g) >= q - 4 >= 1 for every gear q >= 5 (minimum attained
+exactly, verified), so prod_q c_q(g) NEVER vanishes: it bounds window COUNTS,
+never EXISTENCE. SAT refutation remains the only upper-bound method, and at 13
+gears that is hours per instance - which is why q'=53 is expensive rather than
+merely unfinished.
+
+### R21.F THE TAIL HUNTS WERE RE-DERIVING KNOWN VALUES (standing rule 1, broken)
+
+The corpus twin ladder F(2,y) plus the frame identity F_adjacent = 3 F_slot
+determines F(y) outright:
+
+    y        19   23   29    31    37    41    43    53
+    F(2,y)   75  102  129   174   264   273   309   435
+    /3       25   34   43    58    88    91   103   145
+    our F    25   34   43    58    88    91    -     -    6/6 MATCH
+
+So F(43) = 103 EXACTLY and F(53) = 145 EXACTLY - not "F(43) >= 103, tail open"
+nor "F(53) <= 145, [137,145] undecided", which is how r20 and this round carried
+them. Machine-hours went into re-deriving a corpus lookup.
+WHAT THE WORK IS STILL WORTH: merge-law-h2-test.md records that F(2,43) = 309
+"stands on the covering search alone" and that the 43 cross-check "remains
+open". These refutations attack it by a wholly independent method and AGREE -
+v = 102, 104-109, 111-116, 118, 120-126 all REFUTED (21 values), none realized,
+exactly the pattern F(43) = 103 demands. NEW FACT, not a re-derivation: v = 102
+is a HOLE BELOW F(43) (r20: "holes below 103 possible but none observed").
+MACHINE 47 IS GENUINELY OPEN because the corpus has no F(2,47) (the 43->47 rung
+is listed NOT RUN, "would be a first computation"). F(47) >= 118, no holes below
+119, [119,145] undecided after hours across two sessions with zero decisions.
+CORRECTED NEXT-ROUND JOBS: DROP the m43 tail and the m53 [137,145] hunt. For
+F(47) the cheap route is NOT more SAT but the corpus ladder - computing
+F(2,47) by the merge law gives F(47) = F(2,47)/3 in one rung, priced at ~8e14
+ops / ~3 h idle, against refuting 27 gap values at 13 gears.
+
+### R21.G Standing-rule additions (earned this round)
+
+11. BEFORE ANY TAIL HUNT, look up the corpus ladder F(2,y) and the frame
+    identity that converts it. F(y) = F(2,y)/3. (R21.F - rule 1 in a new
+    disguise, which is exactly how it got past me.)
+12. A "TIMEBOX"/"TIMEOUT" LABEL IS ONLY MEANINGFUL IF THE ELAPSED TIME MATCHES
+    THE BOX. My pool scripts wrapped solvers as `timeout $TB ... || echo
+    TIMEBOX`, which labels ANY non-zero exit a timeout, and used `>` so stderr
+    was destroyed. The q6 S=154 probe was logged "TIMEBOX 36000s" after 33
+    minutes - it DIED (memory pressure), it did not time out. Every TIMEBOX
+    written by m43_pool.sh / asc_chain.sh / r21_finish.sh / r21_chains.sh means
+    only "did not decide". FIX: research/probe_one.sh (SAT/UNSAT, TIMEOUT only
+    on exit 124, DIED rc=N otherwise, stderr preserved in a .err sibling).
+13. RUN 13-GEAR SAT FOUR-WIDE AT MOST. Thirteen concurrent m47 instances
+    decided nothing in 8 h; single instances up to v=118 cost 223-803 s.
+
+### R21.H Tooling
+
+New: f3_one.py (single (y,j,S) solver - the parallelisation that made the
+F_3(37) decision land in one round), run_count.py, cov_count.py,
+ghist_prefix.py, m23_ladder.py, record_multiplicity.py, mirror_law.py,
+qspec_audit.py, marked_qspec.py, probe_one.sh, and the verifiers m23_verify.py,
+m21_wit_verify.py. cov_count NOTE: it fails on ABUNDANT patterns (m29 gap-10 hit
+its 2000 cap in 1.6 s against a true 7,815,766) - cost scales with the COUNT, so
+it is an exact counter only in the rare regime. covpred41.log ends in a
+ValueError (cov_sat.predict takes max() of an empty realized list when every
+probed v refutes) - tool bug, logged.

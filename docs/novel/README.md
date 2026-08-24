@@ -54,14 +54,24 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
 - tooth-sharing-pinning - twin gear pair pins 4 CRT kill classes closed-form - PROVED -
   PARTIAL OVERLAP (CRT core classical, Clement 1949 modulus); slot-frame identity NOVEL*
   but elementary
-- paired-jacobsthal-values - exact h_2 values - COMPUTED - PARTIAL OVERLAP: Ziller-Morack
+- paired-jacobsthal-values - exact h_2 values + (round 22) the delta reduction, the
+  complete 19-winner set, h_2(19) = 258 replicated by exhaustive family scan, and the
+  extension-deficit ladder over complete winner sets: 9, 18, 36, and then ZERO at
+  23->29 (all 128 complete 23-winners lift to the full y=29 maximum h_2(29)=450, at
+  exactly the four residues r = +-3, +-12 mod 29 the cap law predicts; certified by an
+  independent 74-position witness). Both round-21 conclusions - the deficit doubling
+  AND the permanence of clean-extension death - REFUTED; h_2(23)=366 also replicated
+  exhaustively - COMPUTED - PARTIAL OVERLAP: Ziller-Morack
   arXiv:1706.03668 Table 1 already has 18,30,66,150,192 (project premise "ZM compute none"
   FALSE - exact independent replication). Per-difference family F_d, fixed-twin ladder
   F(2,37..53), dip analysis NOVEL*. ZM h_2(19)=258 settles the project's open y=19 question.
 - twin-percentile - twins at 13.3rd percentile of own family - COMPUTED - NOVEL*
 - depth-sum-identity - sum_j W_j(g) = prod_q c_q(g), closed-form sum rule over
   all window depths + depth-uniform bound - PROVED+SCRIPT-VERIFIED (machines
-  11-29 exact) - not yet checked
+  11-29 exact) - PRIOR ART FOUND (harvester, 2026-08-24): this is Holt
+  arXiv:2502.20470 Corollary 1 (Feb 2025) at the constellation s = (2, 6g-2, 2),
+  sum_{j>=J} n_{s,j}(p#) = prod_q (q - nu_q(s)) - the identity and proof are correct,
+  the novelty is not; see docs/novel/paired-hlb-cycles.md section 0
 - golden-spectral-gap - machine DFT closed-form and real; spectral gap phi/3
   machine-independent (gear 5's golden mode); T3 law 3u = (q+1)/2 -
   PROVED+SCRIPT-VERIFIED - not yet checked
@@ -85,19 +95,63 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   technique, Jacobsthal application NOVEL*; Kronecker-difference form NOVEL* (elementary);
   golden charpoly + phi/3 NOVEL* (value classical; nearest arXiv:2512.03288 has no phi);
   word-level H delta NOVEL* over Holt's one-residue constellation dynamics
-- j2-upper-bound - first upper bounds on the paired Jacobsthal function j_2
-  (elementary: j_2(p_n#) < 3^(n+1) log^2 p_n; polynomial: << p_n^(4.85+eps) by
-  fundamental lemma; lower-bound transfer j_2 >= j) - PROVED(paper)+SCRIPT-VERIFIED
-  (constants) - NOVEL* (the published ladder is empty; ZM prove no bound, no
-  2018-2026 follow-up), checked 2026-08-24
+- j2-upper-bound - first upper bounds on the paired Jacobsthal function j_2, now
+  THREE rungs, one per slot of the ordinary Kanold/Stevens/Iwaniec ladder
+  (elementary: j_2(p_n#) < 3^(n+1) log^2 p_n; ROUND 22 - Brun pure sieve with a free
+  odd truncation depth K, containing the first as K >= n and quasi-polynomial
+  p_n^(O(log log p_n)) at the optimal K, better from p_n = 13 on; polynomial
+  << p_n^(4.266+eps) by the fundamental lemma, beta_2 improved from 4.45 to the DHR
+  value; lower-bound transfer j_2 >= j) plus THE CEILING: exponent beta_2 IS the
+  dimension-2 sifting limit and ZM Conjecture 6's exponent 2 sits below even
+  Selberg's conjectural floor 2*kappa = 4, so the gap is parity, not technology -
+  PROVED(paper)+SCRIPT-VERIFIED (exact rationals) - NOVEL* (the published ladder is
+  empty; ZM prove no bound, no 2018-2026 follow-up), checked 2026-08-24
 - paired-hlb-cycles - c_q(g) = q - nu_q({0,2,6g,6g+2}) (machine diagonal = HL
   quadruplet local factor); pinch theorem N2 - sum N3 <= n_g <= N2 (paired HL-B in
   cycles with explicit 1/log^2 rate, both bounds closed-form CRT); paired transfer
   matrix diagonalised by the SAME q-independent Pascal eigenvectors as Holt's with
   doubled spacing; word-level census transfer verified exact (6714 + 10489 words,
-  two rungs) - PROVED(paper)+SCRIPT-VERIFIED - PARTIAL OVERLAP (Holt Thm 5.5 +
-  eigenvectors are the one-residue case; all paired statements NOVEL*), checked
-  2026-08-24
+  two rungs); ROUND 22 - the pinch identified as BONFERRONI ORDER 1 of an exact
+  alternating series n_g = sum_k (-1)^k S_k with moment form S_k = sum_j C(j-1,k) W_j
+  (so its slack is the explicit quantity sum over j>=3 of (j-2) W_j; orders 2-3
+  verified, they improve the constant not the shape), plus EFFECTIVE Polignac in the
+  paired sieve, y_0(g) =
+  exp(Theta(sqrt g)) explicit (gap g provably occurs in M_y for every y >= y_0(g),
+  no scan), plus the honest boundary (the pinch is full-period; primality lives in a
+  share exp(-(1+o(1))y) of it, so nothing transfers to primes) - PROVED(paper)
+  +SCRIPT-VERIFIED, local-factor identity KERNEL-CHECKED - PARTIAL OVERLAP (Holt
+  Thm 5.5 + eigenvectors are the one-residue case) and NARROWED IN ROUND 22: Holt
+  arXiv:2502.20470 (Feb 2025, postdating the earlier sweeps) Cor. 1 CONTAINS the
+  local-factor identity and the depth-sum identity, and explains the doubled spacing
+  by point count; still NOVEL* are the twin-slot gap population n_g as an object, the
+  pinch + its Bonferroni series, and the effective y_0(g) - checked 2026-08-24
+
+- nontensor-sector - how big is the part of the machine that does NOT factor over
+  gears, measured as Schmidt rank across gear cuts: EXACTLY 2 at depth 1 (theorem,
+  every cut every machine); <= 2n+1 across the merge cut (theorem, and the structural
+  reason the merge law is old-machine-only); but at window depth it SATURATES the cut
+  (peak rank = d1 at five cuts at machine 23; TR_low = 6, 17, 54, 161, 326 at machines
+  11-23), so the tensor rank grows ~ sqrt(P). The growth lives entirely in the
+  NILPOTENT direction, which has no spectrum - so no fixed-arity rule can exist and
+  nilpotency is where the content is - PROVED(depth 1, merge cut, 2^n bound) +
+  SCRIPT-VERIFIED (research/nontensor.py, exact mod-p ranks at two primes) - not yet
+  checked (round 22)
+- farey-chebyshev-spectrum - the non-tensor sector's Hermitian operators are disjoint
+  unions of PATH graphs, one per gap: spec(BS + (BS)^T) = union over gaps g of
+  {2cos(pi j/(g+1))}, so there are only |Farey(F+1)| - 2 = sum_{b<=F+1} phi(b) = O(F^2)
+  distinct levels with P/F^2-fold ties, and their spacings obey Hall's law with a HARD
+  GAP at 3/pi^2 of the mean - <r~> = 0.703, ABOVE GUE. With round 21 (tensor sector ->
+  Poisson) this closes the Riemann/GUE bridge at finite machines from both sides:
+  spectral richness and non-factorisation are mutually exclusive here - PROVED +
+  SCRIPT-VERIFIED (research/nontensor_spec.py) - not yet checked (round 22)
+- corridor-eigenvalue-closed-form - Constructor's measured corridor resonance derived:
+  the corridor-phase chain's whole spectrum is the image of the e-th roots of unity
+  (e = |E| = prod (q-2) over the small gears, 15 for mod 35) under the Moebius map
+  mu(w) = rho w/(1 - (1-rho)w), rho = prod_{q not | m}(1 - 2/q); all eigenvalues lie on
+  the circle |z - (1-rho)/(2-rho)| = 1/(2-rho) through 1. Matches every measured
+  lambda_2 (m11-23, mod 35 and 385) to 1-2% in modulus and < 1.8 deg in argument;
+  the residual IS the anti-correlation and is pre-registered for m29 -
+  PROVED(model) + SCRIPT-VERIFIED(machine) - not yet checked (round 22)
 
 ## Seeding backlog - COMPLETE 2026-08-23 (all 10 written up and checked; kept for provenance)
 
@@ -140,7 +194,32 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   proofs/TwoTeeth.lean + MergeLaw.lean, r21 formalist)+MEASURED(M1) - not yet
   checked (round 21)
 - covering-lp-certificates - scan-free F(M) upper bounds by LP duality over the exact
-  phase-covering IP (level-2 Kounias/pair-moment certificates F(13)<=21 .. F(23)<=90,
-  exact rational Farkas verification; closed-form counting corollary; level-1 = density
-  bound with infinite integrality gap from 13; level-2 provably dies at 29, chain/level-3
-  revives through 43) - SCRIPT-VERIFIED (research/matrix_shapes.py) - not yet checked
+  phase-covering IP.  Round 22: thresholds now EXACT ON BOTH ENDPOINTS (W* = 8/21/31/37
+  at machines 11/13/17/19, gaps 1.14/1.91/1.72/1.48), the PAIR-VISIBILITY reduction
+  q_a q_b > 4W kills a pair outright, and F(19) <= 37 = F(17) + 19 PROVES THE (D) STEP
+  17->19 exactly from 37 rationals with no period scan (1,092x fewer operations than the
+  1.6M-slot scan); (D) also proved at 7->11, missed by 1 at 11->13 - SCRIPT-VERIFIED
+  (research/lp_dual_certs.py, research/exact_lp.py; origin research/matrix_shapes.py) -
+  PARTIAL OVERLAP (closed-form counting corollary is a weaker case of Costello-Watts
+  arXiv:1208.5342; the dual-certificate form, the visibility reduction and the (D)
+  application NOVEL*)
+- moment-degree-ceiling - every fixed-degree covering certificate for F(M) goes VACUOUS at
+  a computable machine, family-free: the uniform product measure's degree-<=l moments
+  extend to a distribution with no empty atom, so every degree-l cut is satisfied at every
+  width.  Sharp ceilings degree 1 -> machine 13, degree 2 -> 29 (so Kounias was already
+  degree-2-optimal), degree 3 -> >= 151; required degree ~ 2*S1(y) ~ 4 log log y,
+  UNBOUNDED, so no fixed-arity covering certificate exists - the LP-side answer to the
+  round-22 arity question.  Chain-cut slope has the telescoping closed form
+  S1*prod(1-2/q) + beta and the chain family is exponentially weaker than the sharp
+  bound - SCRIPT-VERIFIED exact (research/lp_dual_certs.py C,D) - PARTIAL OVERLAP
+  (Boole-Bonferroni LP of Prekopa/Boros is the machinery, Brun truncation growth is the
+  classical shadow; the per-degree exact ceiling machine and the degree law NOVEL*)
+- kleene-generator - F(M+q') = L^T (x) K* (x) R exactly, where K is the max-plus matrix of
+  qualifying-and-T3-alternating successor steps and K* its Kleene star: the merge law's
+  increment IS a longest path, so (D) becomes ONE arity-free dual certificate
+  (h >= R, h >= K (x) h, L + h <= F + q') with no depth quantifier; the m-th layer of
+  the star is qualmax_{m+2}.  Measured: the value-only abstraction is CYCLIC (bound
+  vacuous) exactly where the infinite alternating word survives the 2-point relaxation,
+  and adding the corridor phase mod 35 restores nilpotency and certifies (D) -
+  SCRIPT-VERIFIED (exact, full period, steps 11->13 .. 23->29;
+  research/kleene_generator.py, kleene_stream.py) - not yet checked (round 22)

@@ -242,6 +242,197 @@ while each new gear's winner is a fresh deep resonance. This is the mechanism
 behind maximiser non-persistence (4a item 4), now with the cap law and the exact
 deficit accounting.
 
+## 4c. Round-22: the DELTA REDUCTION, the complete 19-winner set, and the end of
+## the deficit doubling
+
+(research/delta_frame.py, family_scan.py, family_scan_fast.py, ext_deficit19.py,
+family_scan23.py, ext_deficit23.py; all assertion-gated, outputs in research/data/.)
+
+THE DELTA REDUCTION (proved; verified against the round-19 definition at y = 11, 13,
+17 and by full reproduction of the y=13 winner set). For every even difference with
+3 not dividing e, the halved-coordinate max-gap depends on e ONLY through
+
+    delta = e * 3^{-1} mod Q,        Q = prod_{5<=q<=y} q,
+
+and equals 3 * G(delta), where G(delta) is the maximal cyclic gap of
+S_delta = {k in Z_Q : k != 0, -delta mod q for every gear q}.  Reason: with 3 not
+dividing e, gear 3 kills n = 0 and n = -e mod 3, so every survivor lies in the one
+remaining class c mod 3; writing n = 3k + c turns the gear-q condition into
+k != -c/3, (-e-c)/3 mod q, which is the tooth pair {0, -delta} translated by the
+single integer -c*3^{-1} mod Q.  Translation does not move the gap multiset, and
+gaps in n are 3x gaps in k.  This collapses the y=19 family from 2,424,922
+differences (round 17: "exhaustive scan out of reach") to 1,616,615 deltas, and the
+y=23 family from 55,773,217 to 37,182,145.
+
+THE HELD-OUT-GEAR PREFILTER (exact, not heuristic).  A gap G >= Gmin needs a run of
+L = Gmin - 1 consecutive killed positions.  Hold out the top gear qt: every survivor
+of the smaller gears inside such a window must be killed by qt, i.e. must lie in
+{0, -delta} mod qt.  The window's absolute position mod qt is free by CRT, so the
+condition on the window is exactly
+
+    |{ j mod qt : j an offset of a surviving position in the window }|  <=  2,
+
+and two distinct residues r1 != r2 force delta = +-(r1-r2) mod qt.  Nothing that
+could carry a run of length L is discarded, so the output is COMPLETE.  Validated
+against brute force in delta space at y = 13 (16 winners) and y = 17 (64 winners),
+and the three-level fast version against the two-level one at both scales.
+
+RESULTS.
+
+1. h_2(19) = 258 INDEPENDENTLY REPLICATED by exhaustive family scan.  The prefilter
+   keeps 64 of 1,616,615 deltas (0.0040%); all 64 reach G = 43 and none exceeds it,
+   so max_e F_e(19) = 129 and h_2(19) = 258 - matching Ziller-Morack's computation
+   note by an entirely different method (they compute the maximum; this enumerates
+   the whole argmax set).  Round 17 had this scan as out of reach.
+
+2. THE COMPLETE 19-WINNER SET: exactly 64 deltas.  The winner-count ladder is
+   8 (y=11), 16 (y=13), 64 (y=17), 64 (y=19) - it does NOT keep quadrupling, and the
+   19-winners are not lifts of the 17-winners (the best 19-extension of any
+   17-winner is 111 < 129).
+
+3. THE 3 | e BRANCH, settled exhaustively.  For 3 | e the survivors occupy two
+   classes mod 3, so a gap of 3G needs killed runs of length >= G-1 in BOTH
+   sub-lattices, and both sub-lattices are translates of the same S_delta - hence
+   such a delta must already be in the G >= 43 list.  Checking those 64 directly:
+   the best 3|e difference at y = 19 reaches F = 44 against 129.  The family
+   maximiser is never divisible by 3, at y = 19, by exhaustion rather than by
+   observation.
+
+4. THE DEFICIT LADDER OVER COMPLETE WINNER SETS.  Recomputed with independent code:
+
+       step       #winners   best extension F   true max F   deficit
+       13 -> 17         16                 87           96         9
+       17 -> 19         64                111          129        18
+       19 -> 23         64                147          183        36
+
+   The 19->23 value 36 was lineage-only in round 21 and is now over the complete
+   64-winner set: round 21's three numbers are confirmed exactly.  A best-extension
+   anatomy at 19->23 (delta_19 = 27996, lift r = 1): the fused old-machine gap word
+   is [129, 3, 15] in F units, sum 147 - a one-sided two-gap chain exactly at the
+   cap law's ceiling, and a second realisation of the round-21 anatomy [129, 6, 12].
+
+5. RECONCILED WITH ZILLER-MORACK'S OWN EXHAUSTIVE DATA - and it matches exactly.
+   ZM's computation note DOES publish exhaustive maximiser data, in a different
+   representation the project had not looked at: full_details.pdf Table 1 carries a
+   column nseq, "number of sequences of maximum length", and the ancillary files
+   remainders_2.txt / permutations_2.txt / moduli_2.txt list them.  Their nseq runs
+   1, 6, 1, 1, 4, 2, 2, 14, 8, 4, 1, 8, 2, 16, ... for p_n = 5, 7, 11, 13, 17, 19,
+   23, 29, ... - which is NOT the winning-difference count.  Converting: for each
+   winning delta take every record window and record which gear (smallest) kills each
+   position; that covering pattern is ZM's sequence.  Then
+
+       y        winning deltas   record windows   distinct patterns   ZM nseq
+       11             8                 8                 1              1
+       13            16                16                 1              1
+       17            64               128                 4              4
+       19            64               128                 2              2
+
+   EXACT MATCH at all four (research/zm_seq_reconcile.py, assertion-gated), with
+   reverses counted separately exactly as ZM state, and the y=11, y=13 singletons
+   self-symmetric - which is ZM's own remark that the single sequences at n = 5, 6
+   are self-symmetric by default.  So: many differences, very few patterns (8, 16, 64,
+   64 differences carry 1, 1, 4, 2 patterns), the two data sets are the same object in
+   two representations, and each is now an independent check on the other.  HONEST
+   CONSEQUENCE FOR NOVELTY: the winner sets are recoverable from ZM's published
+   ancillary lists, so what is new here is NOT the maximiser data.  Nor, on a closer
+   read, is the reduction: ZM's Proposition 1.5(2) already states the equivalent
+   covering form "for every prime there exist TWO NON-ZERO residue classes covering
+   {1,...,m}", which drops the pair (a,b) entirely - the delta frame used here is the
+   same normalisation with the two classes written as {0, -delta} mod q after a global
+   translation.  And their algorithm suite (BSA2/DSA2/GPA2/ILP2/CRPDSA2/RPA2/BPA2)
+   reaches p_n = 73 where the scan here reaches 23, so the held-out-gear prefilter is
+   not a competitive method either.  WHAT IS ACTUALLY NEW HERE: the independent
+   replication, the exhaustive settlement of the 3 | e branch, and the CROSS-GEAR
+   EXTENSION LADDER below - a question ZM never ask.
+
+6. THE DOUBLING IS REFUTED - by arithmetic, before any computation.  A deficit can
+   never exceed the increment F(new) - F(old), because the best extension is at
+   least F(old).  From OEIS A288815 (Ziller-Morack; pulled in full 2026-08-24)
+   F = h_2/2 runs 75, 96, 129, 183, 225, 285, 354, ... at y = 13, 17, 19, 23, 29,
+   31, 37, so the increments are 21, 33, 54, 42, 60, 69 - the 23->29 increment
+   COLLAPSES to 42, and 42 < 72.  So 9, 18, 36 cannot continue to 72: the doubling
+   was a coincidence of three consecutive increments, not a law.  What survives is
+   the ACCOUNTING IDENTITY behind it,
+
+       deficit  =  increment  -  (best adjacent 2-gap sum of a record window),
+
+   with the measured 2-gap sums 12, 15, 18 (+3 per rung).  If that arithmetic
+   progression continues at 23->29, the predicted deficit is 42 - 21 = 21 (best
+   extension 204).  PRE-REGISTERED PREDICTION, tested by the exhaustive y=23 scan
+   plus the 29-lift computation (research/family_scan23.py, ext_deficit23.py);
+   result in section 4d.  ZM's nseq(23) = 2 gives a second pre-registered check on
+   that scan: it must produce exactly 2 distinct covering patterns.
+
+## 4d. Round-22: the y=23 rung - THE DEFICIT COLLAPSES TO ZERO AND CLEAN EXTENSION
+## RESUMES (both round-21 conclusions falsified, and the cap law confirmed)
+
+(research/family_scan23.py, ext_deficit23.py, ext23_witness.py, zm_seq_reconcile.py;
+outputs research/data/{family_scan23,ext_deficit23,ext23_witness,zm_seq_reconcile}.out.)
+
+THE EXHAUSTIVE y=23 SCAN (1,616,615 prefilter classes, four shards, ~3 h). The
+prefilter keeps 128 of 37,182,145 deltas (0.00034%); all 128 reach G = 61 and none
+exceeds it, so max_e F_e(23) = 183 and h_2(23) = 366 - Ziller-Morack's value
+REPLICATED EXHAUSTIVELY by an independent method, the second such replication this
+round. The complete 23-winner set is 128 deltas, extending the winner-count ladder to
+
+    y             11   13   17   19   23
+    winning delta  8   16   64   64  128
+    ZM nseq        1    1    4    2    2          (patterns; matched exactly, 4c item 6)
+
+PRE-REGISTERED CHECK 1 PASSED: the 23 scan produces exactly 2 distinct covering
+patterns, = ZM's nseq(23) = 2. Five machines now agree in both representations.
+
+PRE-REGISTERED PREDICTION 2 REFUTED, AND SO IS ROUND 21'S NARRATIVE. Section 4c
+predicted deficit 21 at 23->29 (increment 42 minus a 2-gap sum continuing the sequence
+12, 15, 18 to 21). THE MEASURED DEFICIT IS ZERO: 23-winners lift to the FULL y = 29
+family maximum G = 75, F = 225, h_2 = 450. This is certified, not merely computed -
+ext23_witness.py locates the run and checks it from the definitions with no shared
+code: e.g. delta_29 = 743,911,918 (from delta_23 = 269,018, lift r = 3 mod 29) has
+k = 134,406,257 .. 134,406,330 all killed (74 consecutive positions, the killing gear
+listed for each) with both flanking positions open, hence G = 75 exactly. Three more
+witnesses at delta_23 = 1,110,243 / 1,185,318 / 1,334,082, all at r = 3 mod 29.
+
+AND IT IS NOT ONE LUCKY WINNER. Over the complete 128 winners x 29 lifts, EVERY one of
+the 128 reaches G = 75, and each does so at exactly the same four lift residues
+r in {3, 12, 17, 26} mod 29 = {+-3, +-12} - 512 (winner, lift) pairs, and no other r
+works for any winner. Those two residue pairs are precisely the two interior
+separations available in the fused word: the openings around a record sit at
+0, 2, 14, 75, 77, 79, so the 75-gap is either 0 -> 75 (killing the openings at 2 and
+14, separation 12, forcing delta = -+12 mod 29) or its mirror 2 -> 77 (killing 4 and
+65, separation 61 = 3 mod 29, forcing delta = -+3). The cap law therefore does not
+merely BOUND the extension at this rung - it PREDICTS the admissible lifts exactly.
+(Side effect: h_2(29) = 450 now has an independent explicit lower-bound WITNESS as
+well, so three consecutive ZM values are confirmed here by three different routes.)
+
+WHY - AND THE CAP LAW IS CONFIRMED, NOT BROKEN. The 23-machine's gap word around a
+record window is [2, 12, 61, 2, 2] in slot units (61 = the record G_23). The lift
+fuses the record with its two neighbours on one side, 12 and 2: 61 + 12 + 2 = 75,
+i.e. TWO interior openings killed - exactly the shallow-extension cap law's maximum
+(4b), attained. In F units, best extension = 183 + (36 + 6) = 225. So the accounting
+identity of 4c survives intact,
+
+    deficit  =  increment  -  (record's best adjacent 2-gap sum),
+
+and what was wrong was the guess that the 2-gap sums continue 12, 15, 18, 21: they
+run 12, 15, 18, 42, and at 23->29 the 2-sum EQUALS the increment, so the deficit
+vanishes.
+
+CONSEQUENCES, stated as corrections to round 21:
+- "The deficit doubles (9, 18, 36)" - REFUTED. The ladder is 9, 18, 36, 0.
+- "From 17 on, the argmax trajectory is forced to abandon its ancestors; a record
+  window is self-limiting; each new gear's winner is a fresh deep resonance"
+  (4b's closing paragraph) - REFUTED at 23->29: a 23-winner IS a 29-winner's ancestor,
+  by explicit certificate. Maximiser persistence is not monotone in y; it fails at
+  17, 19, 23 and returns at 29.
+- What survives from 4b: the shallow-extension CAP LAW itself (at most two interiors
+  fuse), which is exactly what the zero-deficit case attains, and the accounting
+  identity. The mechanism was right; the extrapolation from three points was not.
+
+HONEST LIMIT: this is one more rung, not a law. The 2-gap sum next to a record window
+is an arithmetic accident of that record's neighbourhood; predicting the deficit at
+29->31 needs the 29-winner set, which is a 1.08e9-delta scan - out of reach for the
+prefilter as implemented (the y=23 scan already cost ~3 CPU-hours x 4).
+
 ## 5. Unsolved questions or conjectures it touches
 
 - Ziller-Morack Conjecture 6 (open; now known verified to p_n = 73 by their
@@ -250,8 +441,11 @@ deficit accounting.
 - Goldbach's conjecture and the prime pairs (fixed-difference Polignac)
   conjecture, via that reduction.
 - The project's route: lemma (D) and the tolerance constant (needs F(2,53) <= 486).
-- OEIS: A288815 exists (h_2 at primorials); the per-difference family and the
-  fixed-twin ladder F(2,y) are candidate new sequences.
+- OEIS: A288815 exists (h_2 at primorials; full data pulled 2026-08-24: 2, 6, 18,
+  30, 66, 150, 192, 258, 366, 450, 570, 708, 894, 1044, 1284, 1422, 1656, 1902,
+  2190, 2460, 2622 for p_n = 2..73). The per-difference family, the fixed-twin
+  ladder F(2,y), and the FAMILY WINNER COUNTS (8, 16, 64, 64 at y = 11, 13, 17, 19)
+  are candidate new sequences.
 
 ## 6. Prior-art check (2026-08-23)
 

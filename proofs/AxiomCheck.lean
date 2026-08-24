@@ -20,6 +20,13 @@ import MergeLaw
 import TwoTeeth
 import Machine19Q
 import Machine23
+import Machine11
+import Machine13Q
+import Machine17Q
+import Ladder
+import DepthSum
+import Potential
+import Potential19
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -206,3 +213,49 @@ open BlockedSlots
 #print axioms Machine23.merge_alphabet
 #print axioms Machine23.g23_le
 #print axioms Machine23.D_at_19_23
+
+-- round 22: the (D) ladder
+#print axioms Machine11.qasm
+#print axioms Machine11.chain_facts
+#print axioms Machine11.spectrum_ladder
+#print axioms Machine11.qual_bound_all
+#print axioms Machine11.opSeq_surj
+#print axioms Machine13.qasm
+#print axioms Machine13.chain_facts
+#print axioms Machine13.spectrum_ladder
+#print axioms Machine13.qual_bound_all
+#print axioms Machine13.opSeq_surj
+#print axioms Machine17.qsliceAll
+#print axioms Machine17.chain_facts
+#print axioms Machine17.spectrum_ladder
+#print axioms Machine17.qual_bound_all
+#print axioms Machine17.opSeq_surj
+#print axioms MergeLaw.pos_le_add
+#print axioms MergeLaw.windowSum_telescope
+#print axioms MergeLaw.newgap_le_step
+#print axioms Ladder.g13_le
+#print axioms Ladder.g17_le
+#print axioms Ladder.g19_le_of_17
+#print axioms Ladder.D_at_11_13
+#print axioms Ladder.D_at_13_17
+#print axioms Ladder.D_at_17_19
+#print axioms Ladder.D_ladder
+#print axioms Ladder.D_at_23_29
+#print axioms Ladder.D_at_37_41
+#print axioms Ladder.criterion_arith
+#print axioms DepthSum.window_depth_unique
+#print axioms DepthSum.depth_partition
+#print axioms DepthSum.mem_reachSet
+#print axioms DepthSum.local_factor_5
+#print axioms DepthSum.local_factor_13
+#print axioms DepthSum.depth_sum_at_13
+#print axioms DepthSum.depth_sum_hl_form
+#print axioms Potential.chain_le_potential
+#print axioms Potential.D_of_potential
+#print axioms Potential.windowSum_succ_left
+#print axioms Potential.tail_le_potential
+#print axioms Potential.merged_le_of_potential
+#print axioms Potential19.h19_C1
+#print axioms Potential19.h19_C2
+#print axioms Potential19.h19_C3
+#print axioms Potential19.D_of_word_potential

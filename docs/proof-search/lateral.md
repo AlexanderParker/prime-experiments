@@ -748,6 +748,174 @@ Round-21 untested angles left open:
   only place a GUE-bearing operator could live.
 - The machine-29 depth spiral (ladder run only to 23).
 
+## Round 22
+
+Brief: (a) characterise the NON-TENSOR SECTOR as linear algebra - its rank /
+codimension against (x)E_q, and does it GROW with the machine (the round's
+spine, Constructor attacking the same question from the counting side);
+(b) the spectral statistics of that sector alone (the honest continuation of
+the round-21 Riemann-bridge refutation); (c) owed to Constructor, the closed
+form of their corridor-phase chain's complex lambda_2; (d) my own open item,
+why gear 5's pole bracket is real while gear 7's drifts. All four served; the
+one detached job (machine-23 rank profile, 527 s) finished before write-up.
+Three novel-register docs; four scripts, all assertion-gated.
+
+35. THE NON-TENSOR SECTOR, MEASURED - AND IT GROWS
+    (docs/novel/nontensor-sector.md; research/nontensor.py; machine-23 log
+    research/data/nontensor_big.log). The right dimension is the SCHMIDT RANK
+    across a gear bipartition G1|G2: CRT makes any function on Z_P a d1 x d2
+    matrix, rank 1 = a product, rank r = a sum of r products and no fewer.
+    Max over cuts is a certified LOWER bound on tensor rank, and rank over
+    GF(p) is a certified lower bound on rank over Q, so measured growth
+    cannot be an artifact. Three results:
+    (a) DEPTH 1 IS BOUNDED - A THEOREM. b = 1 - (x)e_q reshapes to J - x y^T
+    with x, y non-constant, so SCHMIDT RANK OF B IS EXACTLY 2 AT EVERY CUT,
+    EVERY MACHINE (exposure is rank 1); same for BS = (x)S_q - (x)(E_qS_q).
+    Asserted over ALL bipartitions at machines 11/13/17. The non-tensor
+    sector at depth 1 is ONE rank-one correction - the difficulty of F is NOT
+    dimensional there.
+    (b) THE MERGE CUT IS LINEAR - A SECOND THEOREM. Cutting off the top gear,
+    V[r,k] = prod over i with (k+i) OPEN in the old machine of [r+i in T_q'],
+    so the column depends ONLY on the old machine's opening pattern O, and
+    since |T_q'| = 2 it VANISHES unless |O| <= 2 (for n <= q'). Hence
+    rank_n = [n < F_old] + #singleton classes + #literal pairs <= 2n+1;
+    measured == predicted at EVERY row, machines 11-23, n <= min(14,q').
+    This is the merge law's old-machine-only character derived as a rank
+    computation, and it prices it.
+    (c) WINDOW DEPTH IS UNBOUNDED - THE SPINE ANSWER. v_n(k) = prod_{i<n}
+    b(k+i), F = min{n : v_n = 0}, (BS)^n = diag(v_n) S^n; IE gives
+    rank_n <= min(2^n, d1, d2). Measured exactly (mod-p ranks at two primes,
+    agreeing): at the FIXED corridor cut {5,7} (d1 = 35 always) the peak is
+    15, 26, 33, 35 at m13/17/19/23 - it SATURATES. At EVERY fixed cut the
+    peak rises m19 -> m23, and five cuts go FULL (peak = d1): {5,7} 33->35,
+    {5,11} 48->55, {7,11} 69->77, {11,13} 126->143, {11,17} 140->187; others
+    {13,17} 138->220, {13,19} 119->244, {17,19} 109->286, {5,7,11} 119->201;
+    every SINGLE-GEAR cut is already FULL from m17 on (5/5,7/7,11/11,13/13,17/17).
+    Certified tensor-rank lower bound TR_low = 6, 17, 54, 161, 326 at
+    m11/13/17/19/23. THE SECTOR FILLS WHATEVER DIMENSION THE CUT PROVIDES,
+    so the tensor rank grows like the largest available cut ~ sqrt(P).
+    VERDICT: NO FIXED-ARITY RULE EXISTS for the window/realizability content;
+    only an arity-free generator survives. AND THE GROWTH IS IN THE NILPOTENT
+    DIRECTION: (BS)^n has spectrum {0} at every depth, so the direction that
+    grows is exactly the one with no eigenvalues and no bounded-order
+    correlation signature - the same wall as R37's tropical boundary, R41's
+    counting boundary, and my own r21 moment-LP non-bite, now with a
+    dimension attached.
+
+36. THE NON-TENSOR SECTOR CANNOT CARRY GUE EITHER - AND THE REASON IS A
+    THEOREM (docs/novel/farey-chebyshev-spectrum.md; research/
+    nontensor_spec.py). PATH-DECOMPOSITION THEOREM: A = BS + (BS)^T is the
+    adjacency matrix of the graph on Z_P with edge {k,k+1} iff k+1 is
+    blocked, so A is the disjoint union over the machine's GAPS of PATH
+    graphs - a gap of g slots contributes P_g. Hence exactly
+    spec(A) = union over g, with multiplicity W_1(g), of {2cos(pi j/(g+1))}.
+    Verified: dense eigvalsh at m11 agrees to 1.3e-15; path bookkeeping
+    (#paths = #openings, sum of lengths = P, longest = F) asserted at
+    m13/17/19/23. COROLLARIES: (i) #distinct eigenvalues = |Farey(F+1)| - 2 =
+    sum_{b<=F+1} phi(b) = O(F^2) - 21/45/119/211/383/603/1085/2455 at
+    m11..37, against periods up to 1.2e12, i.e. P/F^2-fold ties on every
+    level; (ii) the distinct levels are a smooth image of a FAREY set, whose
+    spacings obey HALL's law with a HARD GAP: measured s_min/s_mean =
+    0.476, 0.386, 0.340, 0.333, 0.328, 0.321 descending to 3/pi^2 = 0.30396,
+    P(s < 0.1 mean) = 0 exactly, and <r~> = 0.703 - ABOVE GUE's 0.6027;
+    (iii) any diag(w) S^t + h.c. has max degree 2, so every such operator is
+    a union of paths and cycles; (iv) the growing-rank operators are
+    nilpotent; (v) the word-level H is triangular with an INTEGER diagonal.
+    THE DICHOTOMY: where the spectrum is rich the operator factorises
+    (Poisson); where the operator does not factorise the spectrum is
+    degenerate or empty. GUE is now bracketed THREE times and hit zero:
+    clock 1.000 > Farey-Chebyshev 0.703 > GUE 0.603 > GOE 0.536 >
+    Poisson 0.386 (r21's tensor sector). The Riemann bridge is closed at
+    finite machines, with a reason rather than a statistic.
+
+37. THE CORRIDOR RESONANCE IN CLOSED FORM - OWED TO CONSTRUCTOR, DELIVERED
+    (docs/novel/corridor-eigenvalue-closed-form.md; research/
+    corridor_lambda.py). Exact input (CRT, no fit): openings are exactly
+    equidistributed over the exposed phase set E mod m, so the per-slot
+    hazard is EXACTLY h(r) = rho [r in E], rho = prod_{q not | m}(1 - 2/q).
+    One modelling step (slot independence) makes the phase chain
+    M = (I - B)^{-1}O with B = S D_{1-h}, O = S D_h, and then
+    M x = lambda x <=> S D_{lambda(1-h)+h} x = lambda x, whose characteristic
+    polynomial is that of a weighted single m-cycle:
+        lambda^m = prod_s [lambda(1-h(s)) + h(s)] = lambda^{m-e} [(1-rho)
+        lambda + rho]^e,   e = |E| = prod_{q|m}(q-2),
+    so lambda = 0 with multiplicity m-e and otherwise
+        LAMBDA_j = rho w_j / (1 - (1-rho) w_j),  w_j = e(j/e).
+    THE SPECTRUM IS A MOEBIUS IMAGE OF THE e-TH ROOTS OF UNITY, hence lies on
+    ONE CIRCLE |z - (1-rho)/(2-rho)| = 1/(2-rho) through 1. The resonance is
+    mod 15, not mod 35: e = |A_5||A_7| = 15, because the walk never visits a
+    blocked phase - which is why the measured period is near 8 and not near
+    17. MEASURED vs CLOSED FORM (exact full-period chains, m11-23):
+    |l2| 0.9849/0.9634/0.9396/0.9125/0.8859 vs 0.9773/0.9487/0.9205/0.8900/
+    0.8614, arg +29.27/+34.39/+38.67/+42.77/+46.31 vs +29.07/+33.88/+37.80/
+    +41.48/+44.59 - within 0.008-0.025 in modulus and 0.20-1.71 deg. (The
+    m13/19/23 rows reproduce Constructor's 0.96/0.91/0.89 and their 34-46 deg
+    range.) mod 385 (e = 135) matches arg to 0.001 deg. Circle residual over
+    ALL eigenvalues <= 0.15 R (mod 35), <= 0.10 R (mod 385). THE RESIDUAL IS
+    THE ANTI-CORRELATION, and it is positive at every machine (the real chain
+    keeps MORE memory than independence) with decelerating increments
+    70,46,33,20 e-4 -> PRE-REGISTERED: machine 29 mod 35 measures
+    |lambda_2| = 0.862 +- 0.004, arg = +49.2 +- 0.4 deg (closed form 0.8366 /
+    +47.09). Closed-form predictions with no scan: m29/31/37/41 mod 35 give
+    |l2| 0.8366/0.8118/0.7900/0.7696, arg +47.09/+49.44/+51.40/+53.17,
+    periods 7.65/7.28/7.00/6.77 lags - the resonance period SHORTENS with the
+    machine, it is not a fixed "period 8".
+
+38. WHY GEAR 5's BRACKET IS REAL - HYPOTHESIS PRE-REGISTERED AND REFUTED
+    (research/bracket_why.py). The pole-phase law makes "+126 deg" equivalent
+    to "B(5,1) is real"; measured arg B(5,1) = +4.70, +3.78, +1.81, +0.33,
+    +0.35 at m11-23 while arg B(7,1) climbs -2.41 -> +14.31. I pre-registered
+    (in the script docstring, before running) that item 37's corridor-renewal
+    model would make arg B(5,1) IDENTICALLY ZERO in its single parameter
+    a = 1 - rho, which would have derived the round-21 open question as an
+    identity. FALSE: in the model arg B(5,1) spans 90 deg over a, and at the
+    machines' own a values it sits at +11.0 -> +14.2 (moving AWAY from 0
+    while the machine moves TOWARD 0), and arg B(7,1) sits at a nearly flat
+    -19.5 -> -15.0 while the machine climbs through it. THE MODEL IS WRONG IN
+    THE SIGN OF DRIFT FOR BOTH GEARS. So the gear-5 reality is NOT an
+    endpoint/independence effect - it is produced by the slot-to-slot
+    CORRELATION the model discards (the interior/kappa term). Useful negative:
+    the same one-parameter model settles the mean-hazard quantity
+    (lambda_2, to 1-2%) and is refuted by the fine phase quantity (arg B) -
+    the two observables separate cleanly, and the round-21 question narrows
+    from "why gear 5" to "why does the interior correlation cancel the
+    endpoint phase at p = 5 and not at p = 7".
+
+Round-22 refuted angles (added to the standing list):
+- "the non-tensor sector is small": at depth 1 yes (rank exactly 2) but at
+  window depth it saturates whole gear cuts - the bounded reading is wrong.
+- "a GUE-bearing operator lives in the non-tensor sector" (my own r21
+  localisation): refuted - the sector's Hermitian operators are path unions
+  (Farey/Chebyshev, MORE rigid than GUE) and its high-rank operators are
+  nilpotent (no spectrum).
+- "the corridor-renewal model explains the pole-bracket phase": refuted,
+  wrong in the sign of drift at both gears 5 and 7 (item 38).
+- "arg B(5,1) is identically zero in the renewal model": pre-registered and
+  falsified in the same script.
+
+Round-22 untested angles left open:
+- Is rank_n = min(2^n, d1, d2) EXACTLY in a range of n (is the sector
+  generically full)? Peaks reach 35/35 at {5,7} but 326/391 at {17,23}; the
+  deficit's law is unknown and is a finite computation per machine.
+- The rank profile's PEAK DEPTH (6, 8, 10, 11 at {5,7} for m13/17/19/23)
+  against F (11, 18, 25, 34) - the peak sits near 0.4F and drifting; is
+  peak depth a function of the mean gap?
+- Machine 29 rank profile (P = 1.08e9; needs a streaming/bitset build, not
+  the dense reshape used here) - deliberately scoped out this round.
+- Whether the corridor lambda_2 residual saturates (+0.027) or grows: needs
+  the m29 corridor chain, which is a full-period pass.
+- The interior/kappa mechanism behind gear 5's bracket reality (item 38's
+  narrowed question).
+- Carried from r21 and still open: the 1/mean_gap amplitude near-law; the
+  613 m31 near-collisions; the Lipschitz-strengthened moment LP; the m29
+  depth spiral.
+
+Reproduction pointers (round 22): nontensor.py (parts 1-3 + verdict;
+--big adds machine 23, log research/data/nontensor_big.log),
+nontensor_spec.py (--big adds the m29/31/37 distinct-level and Farey rows),
+corridor_lambda.py (--big adds machine 23), bracket_why.py. All
+assertion-gated; .venv/Scripts/python.exe.
+
 Reproduction pointers (round 21): c14_phase.py (parts 1-6: phases, golden
 constraint, depth spiral + closure, models M0/M1/M2, asymptotic sweep,
 pole-phase decomposition; data/c14_asym2.log, c14_ladder.log),

@@ -80,6 +80,28 @@ necessity, abstract in the machine.  Instantiated end to end at 19->23:
 (proofs/Machine19Q.lean).  The exact-computation form of the law (the full
 histogram transform) remains paper+script only.
 
+ROUND 22 (formalist): the bound form is now a LADDER of FOUR CONSECUTIVE
+STEPS, all hypothesis-free (proofs/Ladder.lean, on new period scans in
+proofs/Machine11.lean, Machine13Q.lean, Machine17Q.lean):
+
+    11->13  g13 <= 20 = F(11)+13   `Ladder.D_at_11_13`   (criterion 20, TIGHT)
+    13->17  g17 <= 28 = F(13)+17   `Ladder.D_at_13_17`   (criterion 26)
+    17->19  g19 <= 37 = F(17)+19   `Ladder.D_at_17_19`   (criterion 35)
+    19->23  g23 <= 48 = F(19)+23   `Machine23.D_at_19_23` (criterion 47)
+
+collected as `Ladder.D_ladder`.  The per-step bookkeeping is factored out
+once as `MergeLaw.newgap_le_step` (locate both endpoints of a new gap in the
+old enumeration, check the interior is killed, telescope), so a rung costs
+only the old machine's `F_2` and qualifying-spectrum scan.  Steps above the
+scannable range are recorded hypothesis-explicitly: `Ladder.D_at_23_29`
+(Mechanic's corrected F_2(23)=39, max_j Q_j(23;10)=60, budget 63) and
+`Ladder.D_at_37_41` (F_2(37)=90, max_j Q_j(37;41)=91, budget 129).
+
+HONEST LIMIT recorded with the ladder: the law is ONE-STEP.  It consumes an
+F_2 and a qualifying spectrum and produces neither, so rungs cannot be
+chained without a fresh scan of each machine in turn - the merge law alone
+gives only F_2(23) <= 2*47 = 94 against the 63 the next rung needs.
+
 - Proof of (a), (b): `docs/gear-recursion.md` sections 3-4a (the transform, the deletion-merge
   mechanism, the chain condition and its exactness via "each opening deleted in exactly 2 laps").
   Same argument in the module docstring of `research/gear_recursion.py`.
