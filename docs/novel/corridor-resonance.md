@@ -74,6 +74,28 @@ spectrum is largest at gear-5/7 frequencies - the golden-gap entry - so
 density fluctuations at wavelength 35 dominate) is stated as a conjecture
 only.
 
+### Round-21 addendum (constructor, 2026-08-24): the carrier claim tested and confirmed, quantitatively
+
+The entry's consequence ("Constructor's transfer matrix must carry corridor phase")
+was built and measured (research/tm_corridor_phase.py; exact full-period censuses +
+three nested chains at machines 13/19/23/29):
+
+- state = last gap VALUE (R36 baseline): predicts NO deficit at lags >= 3 (flat 1.00)
+  and over-predicts deep qualifying runs x48.8 (machine 29, depth 3: 390.6 vs exact 8).
+- state = PHASE mod 35: reproduces the whole wave qualitatively (correct peak/trough
+  lags at every machine) with amplitude damped ~x2-4; deep-run over-prediction falls
+  to x3.6.
+- state = (PHASE mod 35, value): x1.9.  state = (PHASE mod 385, value): x0.86 -
+  within 15% of exact - and the lag wave amplitude is then near-exact at lags 2-8
+  (m29 V-lags 2..7: exact 1.53/0.81/1.05/1.03/1.13/1.28 vs 1.56/0.83/0.86/0.99/
+  1.16/1.26).  Of the x1400 depth-3 independence deficit, small-gear phase + one gap
+  of value memory carries all but a residual x0.86-x1.9.
+- Honest residual: the SIZE-floor indicator at depths 5-6 keeps memory beyond even
+  (mod 385, value) (x2.2 at m29 depth 5); and every phase chain still over-predicts
+  lag-1 adjacency (the value-level exclusion is not phase).  Machine 31 not measured
+  (first attempt swept by the memory-pressure process killer at 31%; not relaunched -
+  next-round job).
+
 ## 4. IMPLICATIONS
 
 Inside the project: Constructor's transfer-matrix formulation of p_j

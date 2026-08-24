@@ -50,6 +50,47 @@ New exact values produced (2026-08-23), all previously unreachable:
     adjacency of two maximal gaps refuted at machines 31, 37, 41
         (previous best: y <= 23 by class arithmetic + period scan)
 
+## 1b. ROUND-21 EXTENSION: EXACT COUNTS, NOT JUST DECISIONS (2026-08-24)
+
+The phase encoding counts as well as decides: a phase vector (a_q)
+corresponds by CRT to exactly ONE slot k per period and vice versa, so
+
+    #{ k in [0,P) : X exposed, Y blocked at k }  =  # models of the CNF
+                                                    projected to phase vars.
+
+Projected model enumeration (block each found phase vector, re-solve;
+research/cov_count.py) therefore gives EXACT per-period occurrence counts
+whenever the count is small - and the extreme patterns near the (D)
+boundary are precisely the rare ones. Every model is CRT'd to its k and
+machine-verified by assert. Count 0 = a single UNSAT = the zero
+certificate Constructor's renewal ladder needs, with no counting at all.
+
+Validation (all EXACT vs full-period scans): word occurrences (8,15)@19:
+31; (10,21)@23: 138; (10,21,10)@29: 4 with all four r17 addresses
+reproduced; (21,10,21)@29: 0; gap counts hist_23[29] = 6, holes 24@19,
+24@23: 0; supply(29,31) = 2090 reproduced in 3 s (2091 solver calls);
+loose mode (chosen Y blocked, rest free - the ladder's own object)
+4/4 vs direct scan at machine 13.
+
+Op-count event (benchmark protocol): (10,21,10)@29 exact count = 4 at
+9,204 solver propagations vs inclusion-exclusion 2^38 terms x ~9 gears
+= 2.5e12 ops - x2.7e8 cheaper, exact, with witnesses.
+
+New exact numbers beyond any scan (period 5.07e13):
+  - machine 41 has EXACTLY 4 double-padded (43,43) adjacent pairs per
+    period (the r20 discovery now has a census: witnesses 116431845582,
+    21381235210387, 29327142044062, 50591945408867);
+  - RECORD MULTIPLICITY LADDER: the maximal gap F(M) occurs exactly
+    4, 2, 4, 2, 4 times per period at machines 23, 29, 31, 37, 41
+    (m29 = 2 agrees with the C12 boundary census; m37 witness
+    1,145,973,108,145 sits two slots after the F_2(37) witness). The
+    extreme population is O(1) per period while the period grows 6
+    orders of magnitude - the exact-count form of Wall V's
+    non-clustering.
+Honest limit: abundant patterns (counts >~ 1e5) stay out of enumeration
+reach; there the ladder's truncated-IE bounds remain the instrument.
+Exact counting cost scales with the COUNT, not with 2^|Y|.
+
 ## 2. WHY IT MIGHT BE NOVEL
 
 Computing Jacobsthal-type quantities by exhaustive covering search is

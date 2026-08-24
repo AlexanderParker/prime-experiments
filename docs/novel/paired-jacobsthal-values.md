@@ -198,6 +198,50 @@ the refined statement "h_2(n) = (1/2 + o(1)) p_n^2, with the p = 13 point the
 unique quantum-exact approach to the bound" has no counterpart in print. Recorded
 here as an OBSERVATION with a candidate conjecture attached, not a claim.
 
+## 4b. Round-21 mechanism: why clean extension dies at 17 - the exact 9 explained
+
+(research/ext_death.py + ext_death2.py, all assertions green; outputs
+research/data/ext_death{,2}.out. Round-20 open item closed.)
+
+THE SHALLOW-EXTENSION CAP (proved for the observed configurations, exact). A
+family maximiser's record window is a maximal GAP of its machine - it has no
+interior openings. Lifting e to the next gear q', the window can only grow by
+fusing ADJACENT gaps, whose shared endpoints become interiors; interiors must lie
+in the two tooth classes {0, -e} mod q', and THREE interiors would need three
+distinct residues inside a 2-element set - impossible (the endpoint triples have
+3 distinct residues mod q' in every observed case; asserted). At most two
+interiors ever fuse, and any 2-interior configuration needs ONE separation
+congruence mod q', which the lift choice (e mod q' is free) can always grant. So
+
+    best extension of a record  =  F_old + max(g_L + g_R, g_R1 + g_R2, g_L2 + g_L1)
+
+- the record plus the best adjacent TWO-GAP sum. The deep-fusion winners, by
+contrast, sit on mediocre bases whose openings align mod q' (4-5 old gaps fused,
+3-4 interiors filling both tooth classes - anatomies in ext_death.out).
+
+THE EXACT NUMBERS. All 16 13-winners have identical local context
+(..6, 3, 6, [75], 6, 3, 6..): adjacent 2-sums {6+6, 6+3} -> cap 75 + 12 = 87,
+attained (e = +-7 mod 17 kills both 75-endpoints since 75 = 7 mod 17); the
+exhaustive extension value set over all 16 x 17 lifts is exactly
+{81, 84, 87} = {75+6, 75+6+3, 6+75+6}. The true max 96 is a 4-5 gap deep fusion
+on bases with F_13 in {42, 51}. THE 9 = 96 - (6+75+6): the difference between
+the best deep fusion and the record's shallow cap.
+
+THE LADDER (death is permanent and the deficit doubles). Best 19-extension of
+all 64 17-winners (1216 lifts, direct sieves): 111 = 96 + (6+9) vs true max 129 -
+deficit 18. Best 23-extension of the 19-argmax: 147 = 129 + (6+12) vs 183 -
+deficit 36 (lineage-only caveat: all 19-winners are not known; the 18 is over all
+17-winners). Deficits 9, 18, 36; the records' best adjacent 2-sums grow by 3
+(12, 15, 18). Anatomies: the 111-window is [96, 6, 9] and the 147-window is
+[129, 6, 12] - one-sided two-gap chains, exactly at the cap.
+
+CONSEQUENCE for the family's structure: from 17 on, the argmax trajectory is
+forced to abandon its ancestors - a record window is self-limiting (no interior
+structure to exploit, small flanks by the anti-correlation of record windows),
+while each new gear's winner is a fresh deep resonance. This is the mechanism
+behind maximiser non-persistence (4a item 4), now with the cap law and the exact
+deficit accounting.
+
 ## 5. Unsolved questions or conjectures it touches
 
 - Ziller-Morack Conjecture 6 (open; now known verified to p_n = 73 by their

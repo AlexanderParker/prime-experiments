@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23"]
 
 [[require]]
 name = "mathlib"
@@ -142,3 +142,72 @@ name = "Machine19S15"
 
 [[lean_lib]]
 name = "Machine19S16"
+
+[[lean_lib]]
+name = "MergeLaw"
+
+[[lean_lib]]
+name = "TwoTeeth"
+
+[[lean_lib]]
+name = "Machine19QCore"
+
+[[lean_lib]]
+name = "Machine19QProbe"
+
+[[lean_lib]]
+name = "Machine19Q"
+
+[[lean_lib]]
+name = "Machine23"
+
+[[lean_lib]]
+name = "Machine19QS0"
+
+[[lean_lib]]
+name = "Machine19QS1"
+
+[[lean_lib]]
+name = "Machine19QS2"
+
+[[lean_lib]]
+name = "Machine19QS3"
+
+[[lean_lib]]
+name = "Machine19QS4"
+
+[[lean_lib]]
+name = "Machine19QS5"
+
+[[lean_lib]]
+name = "Machine19QS6"
+
+[[lean_lib]]
+name = "Machine19QS7"
+
+[[lean_lib]]
+name = "Machine19QS8"
+
+[[lean_lib]]
+name = "Machine19QS9"
+
+[[lean_lib]]
+name = "Machine19QS10"
+
+[[lean_lib]]
+name = "Machine19QS11"
+
+[[lean_lib]]
+name = "Machine19QS12"
+
+[[lean_lib]]
+name = "Machine19QS13"
+
+[[lean_lib]]
+name = "Machine19QS14"
+
+[[lean_lib]]
+name = "Machine19QS15"
+
+[[lean_lib]]
+name = "Machine19QS16"

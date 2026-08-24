@@ -85,7 +85,19 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   technique, Jacobsthal application NOVEL*; Kronecker-difference form NOVEL* (elementary);
   golden charpoly + phi/3 NOVEL* (value classical; nearest arXiv:2512.03288 has no phi);
   word-level H delta NOVEL* over Holt's one-residue constellation dynamics
-
+- j2-upper-bound - first upper bounds on the paired Jacobsthal function j_2
+  (elementary: j_2(p_n#) < 3^(n+1) log^2 p_n; polynomial: << p_n^(4.85+eps) by
+  fundamental lemma; lower-bound transfer j_2 >= j) - PROVED(paper)+SCRIPT-VERIFIED
+  (constants) - NOVEL* (the published ladder is empty; ZM prove no bound, no
+  2018-2026 follow-up), checked 2026-08-24
+- paired-hlb-cycles - c_q(g) = q - nu_q({0,2,6g,6g+2}) (machine diagonal = HL
+  quadruplet local factor); pinch theorem N2 - sum N3 <= n_g <= N2 (paired HL-B in
+  cycles with explicit 1/log^2 rate, both bounds closed-form CRT); paired transfer
+  matrix diagonalised by the SAME q-independent Pascal eigenvectors as Holt's with
+  doubled spacing; word-level census transfer verified exact (6714 + 10489 words,
+  two rungs) - PROVED(paper)+SCRIPT-VERIFIED - PARTIAL OVERLAP (Holt Thm 5.5 +
+  eigenvectors are the one-residue case; all paired statements NOVEL*), checked
+  2026-08-24
 
 ## Seeding backlog - COMPLETE 2026-08-23 (all 10 written up and checked; kept for provenance)
 
@@ -108,6 +120,25 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   not yet checked
 - corridor-resonance - extreme gaps phase-locked mod 35: barely damped wave, peaks at
   slot separations 35/70/105, stable pinned classes {7,12,17,18} - MEASURED - not yet checked
+- pole-phase-law - the C14 gap-histogram residue phase resolved: 126 deg = the pole
+  phase 90 + 180k/p of the one-sided lattice (arg(omega/(1-omega))); measured law =
+  the DIFFERENCED histogram's transform is real (+-0.4 deg, m19-37); freq-2 line
+  converges to -18 deg confirming; gear 7 not pinned; golden constraint
+  phi^2(N0+N1) = N2+N4+2 phi N3; pin-vs-drift open, decidable at m41/43 -
+  MEASURED+PROVED(identities) - not yet checked (round 21)
+- eigenvalue-statistics - Jacobsthal-machine operator spectra vs GUE: unitaries are
+  exact clocks, the circulant's desymmetrized spectrum is Poisson (<r~> = 0.3862 at
+  1.3e8 exact levels, KS->Poisson 0.002; trend TOWARD Poisson, away from GUE);
+  mirror-degeneracy count P - prod(q+1)/2 EXACT; Riemann/GUE bridge fails at tensor
+  operators, only the non-tensor sector could carry it - SCRIPT-VERIFIED on
+  closed-form spectra - not yet checked (round 21)
+- two-teeth-kill-spacing - an added gear's kill spacings lie in the two letter values
+  {2u', q'-2u'} (+ exact q' padding), strictly alternating, min 2u' -> fuel <= 1 +
+  3*span/(q'-1) closed form; operator form: the spacing law IS the support of the right
+  factor of B_new S_new = (B S) (x) S' + (E S) (x) (B'S'); index growth of the sum is a
+  >= 3-point statement (2-point relaxation unbounded) - KERNEL-CHECKED(T1-T5,
+  proofs/TwoTeeth.lean + MergeLaw.lean, r21 formalist)+MEASURED(M1) - not yet
+  checked (round 21)
 - covering-lp-certificates - scan-free F(M) upper bounds by LP duality over the exact
   phase-covering IP (level-2 Kounias/pair-moment certificates F(13)<=21 .. F(23)<=90,
   exact rational Farkas verification; closed-form counting corollary; level-1 = density

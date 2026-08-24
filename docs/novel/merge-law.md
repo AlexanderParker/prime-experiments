@@ -67,7 +67,18 @@ the extraction of F without construction is the content.
 ## 3. PROOF
 
 Status: **PROVED (elementary paper proof) + SCRIPT-VERIFIED (finite, exact); the law itself is
-not kernel-checked** (a kernel-checked fragment exists, see below).
+not kernel-checked** (kernel-checked fragments exist, see below).
+
+KERNEL-CHECKED since round 21 (formalist): the law's BOUND form - R39's two-machine
+inequality - is `MergeLaw.newgap_le` / `newgap_le_max` / `D_of_qualmax`
+(proofs/MergeLaw.lean): every gap of M+q' is a window sum of old gaps whose interiors
+are killed (merged window), hence residue-qualifying (`interior_gap_mod`,
+`floor_of_mod`), hence `F(M+q') <= max(F2, max_j Q_j)` - merge law + residue
+necessity, abstract in the machine.  Instantiated end to end at 19->23:
+`Machine23.g23_le` (every machine-23 gap <= 47) and `Machine23.D_at_19_23`
+((D) at alpha=3, no hypotheses), on machine 19's kernel-fed ladder
+(proofs/Machine19Q.lean).  The exact-computation form of the law (the full
+histogram transform) remains paper+script only.
 
 - Proof of (a), (b): `docs/gear-recursion.md` sections 3-4a (the transform, the deletion-merge
   mechanism, the chain condition and its exactness via "each opening deleted in exactly 2 laps").

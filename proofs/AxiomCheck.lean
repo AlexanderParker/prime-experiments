@@ -16,6 +16,10 @@ import PolignacCap
 import Spectrum
 import LiteralCapTable
 import Machine19
+import MergeLaw
+import TwoTeeth
+import Machine19Q
+import Machine23
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -167,3 +171,38 @@ open BlockedSlots
 #print axioms Machine19.spectrum_four
 #print axioms Machine19.spectrum_four_flat
 #print axioms Machine19.D_of_shallow_word
+#print axioms MergeLaw.sub_mod_eq
+#print axioms MergeLaw.interior_gap_mod
+#print axioms MergeLaw.floor_of_mod
+#print axioms MergeLaw.newgap_le
+#print axioms MergeLaw.newgap_le_max
+#print axioms MergeLaw.D_of_qualmax
+#print axioms TwoTeeth.next_kill_of_lo
+#print axioms TwoTeeth.next_kill_of_hi
+#print axioms TwoTeeth.kill_spacing
+#print axioms TwoTeeth.kill_spacing_min
+#print axioms TwoTeeth.kill_period
+#print axioms TwoTeeth.kill_spacing_gear
+#print axioms TwoTeeth.kill_spacing_min_gear
+#print axioms TwoTeeth.teeth_letters
+#print axioms TwoTeeth.spacing_from_lo
+#print axioms TwoTeeth.spacing_from_hi
+#print axioms TwoTeeth.kills_gap_ge
+#print axioms TwoTeeth.fuel_span_cap
+#print axioms TwoTeeth.fuel_le
+#print axioms Machine19.qsliceAll
+#print axioms Machine19.chain_facts
+#print axioms Machine19.no_big_run
+#print axioms Machine19.spectrum_one
+#print axioms Machine19.spectrum_two
+#print axioms Machine19.spectrum_three
+#print axioms Machine19.spectrum_five
+#print axioms Machine19.spectrum_ladder
+#print axioms Machine19.qual_bound_all
+#print axioms Machine19.qual_five_flat
+#print axioms Machine19.D_of_word
+#print axioms Machine19.opSeq_surj
+#print axioms Machine23.killed23_iff
+#print axioms Machine23.merge_alphabet
+#print axioms Machine23.g23_le
+#print axioms Machine23.D_at_19_23

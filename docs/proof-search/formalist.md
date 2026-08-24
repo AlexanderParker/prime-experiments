@@ -805,3 +805,186 @@ encoding plus the third window fact (the F4 walk costs ~40% over F+F2 alone
    position-freeness is near-definitional; the rung verification is a
    machine-17-scale scan with word extraction.
 6. **Constructor's renewal-ladder validity** (finite IE + CRT, per step).
+
+## Round 21
+
+Ledger: +22 modules (MergeLaw, TwoTeeth, Machine19QCore, Machine19QProbe,
+Machine19QS0..16, Machine19Q, Machine23), all registered with `[[lean_lib]]`,
+4 new defaultTargets (MergeLaw, TwoTeeth, Machine19Q, Machine23). Build green
+at **1302 jobs** (1276 at round 20), zero sorries, zero warnings in owned
+files. Axiom audit: every new theorem on the standard three or fewer;
+**`Machine19.qsliceAll` depends on `[propext]` ONLY** - the whole
+1,616,615-slot qualifying scan on one axiom, like round 20's `sliceAll`.
+All census inputs verified against full-period Python BEFORE formalising
+(scratchpad verify_m19_r21.py: F ladder 25/31/35/38/47, ZERO 4-runs of gaps
+>= 8, Q_3..Q_6(floor 8) = 35/37/38/0, 19->23 letters exactly {8,15,23},
+merge-depth histogram j=1..4 = 7206695/733672/11746/62, F(23) = 34;
+check_two_teeth.py: spacing law for every prime gear 5..199). Every job the
+round launched finished before this write-up.
+
+### 22. proofs/MergeLaw.lean - R39 as a two-machine kernel statement
+
+Constructor's exact qualmax criterion, abstract in the machine: `pos` = the
+old machine's opening enumeration, `kap` = the kill predicate on opening
+indices, teeth `{u, q-u}`.
+
+```lean
+theorem sub_mod_eq (hxy : x <= y) (hal : al < q) (hbe : be < q)
+    (hx : x % q = al) (hy : y % q = be) : (y - x) % q = (q + be - al) % q
+def MergedWindow (kap : N -> Prop) (a j : N) : Prop :=
+  0 < j and not kap a and not kap (a + j) and forall i, 0 < i -> i < j -> kap (a + i)
+theorem interior_gap_mod ... :        -- RESIDUE NECESSITY
+    g (a+i) % q = 0 or g (a+i) % q = 2*u or g (a+i) % q = q - 2*u
+theorem floor_of_mod (hG : 0 < G) (h4u : 4*u <= q) (h : ...) : 2*u <= G
+theorem newgap_le            -- THE CORE: merged window sum <= B whenever
+    (hF2 : SpectrumBound g 2 F2) (hF2B : F2 <= B)      -- F2 <= B and
+    (hQ : forall j, 3 <= j -> QualBound g u j (Q j)) (hQB : forall j, Q j <= B)
+    (hmw : MergedWindow kap a j) : Spectrum.windowSum g a j <= B
+theorem newgap_le_max ... : windowSum g a j <= max F2 Qmax   -- R39 verbatim
+theorem D_of_qualmax  ... : windowSum g a j <= F + qp        -- (D) form
+```
+
+The consumers are `Spectrum.SpectrumBound` / `Spectrum.QualBound` instances
+(the round-20 vocabulary), which the per-machine scans provide. Nothing
+empirical inside. NOTE for the route: with Mechanic's F_3(37) = 97 and
+Constructor's R44, R39 is now DECIDED at 37->41 - this file is the abstract
+statement any such decision instantiates.
+
+### 23. proofs/TwoTeeth.lean - the kill-spacing law, T1-T5 kernel-checked
+
+Constructor's docs/novel/two-teeth-kill-spacing.md T1-T5, all kernel-checked
+(their doc updated with pointers; my duplicate draft doc folded into it):
+
+```lean
+def Kill (q u x : N) : Prop := x % q = u or x % q = q - u
+theorem next_kill_of_lo ... : y - x = q - 2*u and y % q = q - u  -- exact form
+theorem next_kill_of_hi ... : y - x = 2*u and y % q = u
+theorem kill_spacing    ... : y - x = 2*u or y - x = q - 2*u   -- {2u', q'-2u'}
+theorem kill_spacing_min .. : 2*u <= y - x                     -- min ~ q'/3
+theorem kill_period     ... : z - x = q       -- alternation: pairs sum to q'
+theorem gear_side (hu6 : 6*u+1 = q or 6*u = q+1) (hq : 5 <= q) : 0 < u and 4*u < q
+theorem teeth_letters   ... : 2*u + (q - 2*u) = q and ((6*u)%q = q-1 or = 1) -- T1
+theorem spacing_from_lo ... : ((y-x)%q = 0 and y%q = u) or
+    ((y-x)%q = q-2*u and y%q = q-u)           -- T2+T3, padding-transparent
+theorem spacing_from_hi ... : (stay) or ((y-x)%q = 2*u and y%q = u)
+theorem kills_gap_ge    ... : 2*u <= y - x    -- T4 general: ANY two kills
+theorem fuel_span_cap   ... : 2*u*(k-1) <= x (k-1) - x 0       -- T5
+theorem fuel_le         ... : k <= 1 + (x (k-1) - x 0) / (2*u) -- ~3L/q'
+```
+
+Verified numerically first for every prime gear 5..199 (spacings,
+alternation, minimum; scratchpad check_two_teeth.py, zero mismatches).
+
+### 24. Machine19Q - the qualifying spectrum closed at EVERY depth
+
+The scan (`Machine19QCore.lean` + `Machine19QS0..16`, 323 slices): ONE
+five-step `seekT` walk per opening reads off `F_3 <= 35` (third next
+opening within 35), `F_5 <= 47` (fifth within 47) and the `Q_6 = 0` carrier
+(the next four gaps never all >= 8). 12x faster than a first countP-based
+encoding (97 s vs 1150 s per slice under identical load), and cheaper than
+round 20's `okT` (the walk stops at o5 <= 47 vs 25+31+38 slots in three
+passes). Extraction needs NO witness pigeonhole: `seek_next` proves the
+walk computes `nextOp` exactly (fuel 25 suffices by round 20's `gap_le`),
+so the chain IS the consecutive openings.
+
+```lean
+theorem seek_next (hx : 1 <= x) (hE : Exposed19 (x + s)) :
+    x + seekT (x%5) (x%7) (x%11) (x%13) (x%17) (x%19) 25 s = nextOp (x + s)
+theorem chain_facts (n : N) :
+    opSeq (n+3) - opSeq n <= 35 and opSeq (n+5) - opSeq n <= 47 and
+      not (8 <= g19 n and 8 <= g19 (n+1) and 8 <= g19 (n+2) and 8 <= g19 (n+3))
+theorem no_big_run (n) : not (four consecutive g19 gaps all >= 8)  -- Q_6 = 0
+theorem spectrum_ladder : F_1..F_5 <= 25, 31, 35, 38, 47 over g19  -- kernel-fed
+theorem qual_bound_all : forall j, 3 <= j -> Spectrum.QualBound g19 4 j 47
+theorem qual_five_flat : Spectrum.QualBound g19 4 5 (25 + 23)   -- the brief's
+                                                 -- Q_5(19) <= 48, subsumed
+theorem D_of_word {a l : N} (hw : forall i < l, 8 <= g19 (a + 1 + i)) :
+    g19 a + Spectrum.windowSum g19 (a+1) l + g19 (a+l+1) <= 25 + 23
+theorem opSeq_surj (hm : 1 <= m) (hE : Exposed19 m) : exists n, opSeq n = m
+```
+
+`D_of_word` is (D) at alpha = 3 at machine 19 for EVERY word length - round
+20's shallowness hypothesis is GONE (depths 2-5 flat under 48 by the kernel
+ladder, F_5 = 47 needing no qualifying constraint at all; depths >= 6 empty
+by `no_big_run`). Only the letter floor remains - and `Machine23.lean`
+discharges even that. `opSeq_surj` (strong induction on the distance via
+`nextOp` minimality) makes the enumeration complete - the missing piece for
+instantiating MergeLaw on a real machine.
+
+### 25. proofs/Machine23.lean - (D) at 19->23, END TO END, NO HYPOTHESES
+
+```lean
+def Killed23 (k : N) : Prop := k % 23 = 4 or k % 23 = 19   -- teeth {u', 23-u'}
+def Exposed23 (k : N) : Prop := Exposed19 k and not(23 | lo k) and not(23 | hi k)
+def g23 (n : N) : N := opSeq23 (n+1) - opSeq23 n    -- machine 23's own gaps
+theorem merge_alphabet (hk1 : Killed23 x) (hk2 : Killed23 y) (hxy : x < y)
+    (hle : y - x <= 25) : y - x = 8 or y - x = 15 or y - x = 23
+theorem g23_le (n : N) : g23 n <= 47
+theorem D_at_19_23 (n : N) : g23 n <= 25 + 23
+```
+
+`g23_le` = `MergeLaw.newgap_le` instantiated with machine 19's kernel
+bounds through `opSeq_surj`: every machine-23 gap is a merged window of
+machine 19, its interiors killed by gear 23's teeth, hence residue- and
+size-qualifying, hence <= max(F2, max_j Q_j) = 47. `D_at_19_23` is the
+first machine step where (D) at alpha = 3 is FULLY kernel-checked with no
+hypotheses at all: flatness, the qualifying spectrum, the fuel cap
+(Q_6 = 0) and the floor are all discharged by the period scans + the merge
+law. (No machine-23 period scan was needed - the merge law replaced a 37.2M
+scan; census cross-check F(23) = 34, so 47 is a true, untight bound and
+(D)'s 48 clears it.)
+
+### Infrastructure lessons (round 21)
+
+- SHARED-MACHINE CONTENTION: other lanes' live sessions (SAT refutations,
+  full-period censuses) ran throughout - lake/lean slowed 5-40x, and lean
+  processes started in background get starved; raising them to AboveNormal
+  restored ~full speed (a persistent booster loop handled new leans). A
+  killed lake leaves `.lake/config/N/lakefile.olean.lock` stale - remove it
+  or later invocations hang. Lake runs `git rev-parse` + `git diff
+  --exit-code HEAD` per invocation (slow on a busy repo). lakefile.toml
+  edits trigger a big trace/replay pass. The round-20 process sweep struck
+  TWICE (killed both slice loops mid-run); skip-if-built resume loops meant
+  zero loss both times.
+- ENCODING: read MULTIPLE window facts off ONE walk. countP-per-fact
+  (rounds 18-20) re-walks the window per fact; a seekT chain visits each
+  slot once, stops at the last needed opening, and turns extraction into
+  equations (no Nodup/pigeonhole). 12x measured. General recipe for future
+  scans: walk to the k-th next opening, assert positions.
+- The sorry'd-assembly dry-check generalises to a MEGA-DRY file: concatenate
+  all new modules (imports stripped) over already-built imports, one
+  `lake env lean` - four files' full elaboration at zero kernel cost, no
+  lake-lock conflict with a running build. Caught 3 real bugs (a Nat.find
+  vs nextOp atom mismatch for omega; two goals closed early by defeq).
+- `if_pos`/`if_neg` are deprecated in this mathlib: prove the two unfolding
+  equations once with `split` (`seekT_succ_pos`/`_neg`) and `rw` with them.
+- `ring` is not available under minimal imports - use `Nat.mul_succ` for the
+  product step; `Nat.modEq_iff_dvd'` needs `Mathlib.Data.Nat.ModEq`
+  (cached); omega cannot mix `Nat.find` with a def wrapping it (state the
+  find-fact in the def's terms explicitly), and cannot relate
+  variable*variable products (link them with an explicit
+  `Nat.mul_succ`/`mul_comm` equation).
+
+### Not taken (with reasons)
+
+- Depth-sum identity at machine 13 (priority 4): the window half needs a
+  machine-13 `opSeq` development + the window<->pair bijection; the CRT
+  half alone (N2(g) = prod c_q(g)) is cheap but carries none of the
+  content. The opSeq/opSeq_surj recipe built this round makes it affordable
+  - named next-round target.
+- Machine-23 period scan: deliberately NOT run - the merge law made it
+  unnecessary for (D) (see 25). A direct F(23) = 34 certificate remains an
+  overnight option if exactness is ever wanted.
+- `Machine19QProbe` (one-slice canary) kept in the ledger: it is the cheap
+  timing probe for future encoding changes.
+
+### Open formalisation targets (re-prioritised after round 21)
+
+1. **Extend the two-machine instance up the ladder**: 23->29 needs a
+   machine-23 qualifying ladder (Q_j(23) <= F(23) + 29 at all depths) -
+   same chain-scan recipe; overnight-scale. MergeLaw + opSeq_surj machinery
+   now make each new step mechanical: scan ladder -> instantiate.
+2. **Depth-sum identity at m13** (recipe above).
+3. **Machine 23 exact certificate** (F, F2, F4) if the route wants
+   exactness rather than bounds.
+4. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged.

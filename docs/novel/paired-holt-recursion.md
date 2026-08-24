@@ -2,7 +2,11 @@
 
 Status: SCRIPT-VERIFIED (exact identity, every gap value, four rungs including the
 degenerate one-residue case); the proof is a short counting argument (below), not yet
-kernel-checked. Prior-art verdict: PARTIAL OVERLAP - the one-residue case is Holt's
+kernel-checked. ROUND-21 UPGRADE: the recursion is now verified at the FULL WORD-CENSUS
+level (n_w(M+q') for every word w, not just gap totals): 6714 words exact at
+5005 -> 85085 and 10489 at 85085 -> 1616615 (research/paired_hlb.py 4a), and its
+eigen-analysis is complete - q-independent Pascal eigenvectors shared with Holt's
+matrix, doubled spacing, and the HL-B payoff: see docs/novel/paired-hlb-cycles.md. Prior-art verdict: PARTIAL OVERLAP - the one-residue case is Holt's
 Theorem 3.2 (arXiv:1510.00743); the two-residue (paired) recursion, its coefficient
 formula, and the identification of its diagonal with the project's autocorrelation law
 are NOVEL AS FAR AS SEARCHED. Checked 2026-08-23.

@@ -512,13 +512,29 @@ Qualifying spectrum Q_j (word-free: (D) implied by Q_{ell+2} <= F + q'),
 full period:
 
     step     a    F   F+q'  F_3 F_4 F_5 F_6 F_7   Q_3 Q_4 Q_5 Q_6 Q_7   crit
-    11->13   4    7   20     16  18  23  26  28    16  17   0   0   0   +4
-    13->17   6   11   28     23  26  28  31  34    18  18   0   0   0   +10
-    17->19   6   18   37     28  33  35  40  43    28  28  25   0   0   +9
+    11->13   4    7   20     16  18  23  26  28    16  18  20   0   0   +4
+    13->17   6   11   28     23  26  28  31  34    18  23   0   0   0   +10
+    17->19   6   18   37     28  33  35  40  43    28  31  32  34   0   +9
     19->23   8   25   48     35  38  47  50  58    35  37  38   0   0   +10
-    23->29  10   34   63     50  58  65  77  83    50  50  49   0   0   +13
+    23->29  10   34   63     50  58  65  77  83    43  50  55  60   0   +13
     29->31  10   43   74     65  70  85  90  92    65  68  71  71  71   +3
     29->37  12   43   80     65  70  85  90  92    65  68  68  71   0   +9
+
+CORRECTED IN r21 - the Q_j columns as originally printed were WRONG in four of
+these seven rows (11->13, 13->17, 17->19, 23->29; the old entries were
+16/17/0/0/0, 18/18/0/0/0, 28/28/25/0/0 and 50/50/49/0/0). Cause: the table was
+built partly BEFORE the r17 vacuity fix in the tool-bug ledger below, and was
+never regenerated after it. The values above are re-derived with
+qualifying_spectrum.py AND verified by direct enumeration of the openings at
+each disputed address (research/qspec_audit.py, 9 entries asserted; e.g. 17->19
+j=6 at k = 9,173 has gaps [2,7,6,7,8,4] = 34 with all middles >= 6). The "crit"
+column was ALWAYS right and no conclusion drawn from it changes: the criterion
+maxes over j <= litcap(q')+1 and every wrong entry sat at a deeper j (plus
+23->29's Q_3, where the max over j = 3,4 is 50 either way). But the ALL-DEPTHS
+maxima - the quantity a hypothesis-free (D) theorem needs - were exactly the
+corrupted entries, so any earlier use of an individual Q_j from this table
+should be re-checked. At 23->29 the all-depths max is 60, margin 63 - 60 = +3
+(not the +13 the capped criterion gives).
 
 Crux at 29->31: F_5 = F + 42 fails (42 > 31) but Q_5 = F + 28 passes -
 the size threshold (a theorem) alone converts "arithmetic luck" into

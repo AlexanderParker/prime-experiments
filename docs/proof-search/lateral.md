@@ -622,3 +622,135 @@ wiggle test, kappa, padded lag), machine_dft.py (spectrum, T3, golden gap,
 line collapse), pair_renewal.py (exclusion at 31, factorisation, qualifying
 R), fs_corridor.py (0/1225 law, 51.6% split blocking). All with assertions;
 .venv via uv run.
+
+## Round 21
+
+Brief: (a) the C14 +126 deg machine-independent phase (Mechanic's handoff);
+(b) the eigenphase statistics test vs GUE/Poisson (the human's Riemann-bridge
+hunch); (c) the PSD / large-sieve constraint - does positive-definiteness
+bite on (D)-violating windows. All three served; every launched job finished
+before this write-up (asym sweep, depth ladder 13-23, machine-31 eigenvalue
+sort, machine-23 deep DFS - all DONE, logs in research/data/).
+
+32. THE POLE-PHASE LAW - C14's +126 RESOLVED (docs/novel/pole-phase-law.md;
+    research/c14_phase.py). 126 deg = 90 + 36 = arg(omega/(1-omega)) =
+    arg(omega - 1), omega = e(1/5): the POLE PHASE of the one-sided integer
+    lattice at frequency 1/5. Abel summation (exact identity): H_p(k) =
+    [omega/(1-omega)] * B, B = the differenced histogram's transform; pole
+    phase = 90 + 180k/p deg for every gear p, frequency k. The measured
+    constancy IS "B is real": arg B(5,1) = +3.63, +3.65, +1.82, +0.33,
+    +0.35, +0.06, -0.23, -0.34 at machines 11..37 - crossing 0 near m29-31;
+    from m19 on, 100.00% of the freq-1 deviation energy lies in the
+    126-direction. TWO CONFIRMATIONS: (i) freq 2's pole phase is -18 deg
+    (mod 180) and the measured arg H_5(2) converges to it monotonically
+    (-31.7 -> -5.7 over 8 machines) - a new measured regularity predicted
+    by the frame; (ii) gear 7's bracket is NOT real (drifts -3 -> +17 deg):
+    no pin, exactly Mechanic's observed mod-7 drift. Equivalent exact
+    forms: golden constraint phi^2(N0+N1) = (N2+N4) + 2 phi N3 on the
+    residue-class counts; antisymmetry of the freq-1 deviation under
+    v -> 1-v (mod 5) (swaps 0<->1, 2<->4, fixes 3). Anchor (proved +
+    integer-asserted 13-23): sum over ALL depths of What_j(omega) =
+    (2-phi) prod_{q!=5}(q-2)^2 - N, REAL - openings are exactly uniform on
+    A_5, so the depth family's phases close a polygon; the j<=25 spiral is
+    measured (irregular; W_2's arm climbs toward the pole phase with
+    machine size: 66.5 -> 87.7 -> 113.2 at 17/19/23).
+    MECHANISM + HONEST LIMIT: the closed-form predictor N2 * prod(1-N3/N2)
+    reproduces the measured phase to +-1.5 deg at 11-31 (gear 7 to
+    +-2.5 incl. its drift) - the phase is CRT arithmetic. Pushed beyond all
+    data (machines 37..499, pure closed form), the model phase does NOT pin:
+    it crosses 126 at ~m31-47 and drifts (124.6 at y=97, 117.6 at y=499).
+    So "+126 machine-independent" = pole phase + a plateau; pin-vs-drift is
+    DECIDABLE AT m41/43: model predicts 125.5-125.9 there; a return to
+    126.0 +- 0.1 falsifies the drift. Amplitude near-law recorded:
+    |H_5(1)|/H0 * mean_gap = 1.010..1.037 (+-1%, no trend) - unexplained.
+
+33. JACOBSTHAL OPERATOR SPECTRA ARE POISSON, NOT GUE (docs/novel/
+    eigenvalue-statistics.md; research/eig_stats.py). The Riemann-bridge
+    test, run exactly. (i) The machine's unitaries (slot shift, renewal
+    operator) are exact CLOCKS: single-cycle permutations, eigenphases =
+    all roots of unity, spacing = delta(s-1), r = 1 - the rigid extreme,
+    proved. (ii) The Hermitian circulant's spectrum (closed form, product
+    multiset): desymmetrized consecutive-spacing-ratio <r~> = 0.3964,
+    0.3867, 0.3963, 0.3945, 0.3871, 0.3865, 0.3862 at machines 11..31
+    (130,636,800 exact levels at 31) vs Poisson 0.38629 / GOE 0.5359 /
+    GUE 0.6027: POISSON TO FOUR FIGURES, trend toward Poisson, away from
+    GUE. KS to Poisson 0.43 -> 0.0022 (m29); repulsion probe P(s<0.1) =
+    0.094 ~ Poisson's 0.0952 vs GOE's 0.0078 - no repulsion. EXACT
+    degeneracy law: full-spectrum tie count = P - prod (q+1)/2 at machines
+    11/13/17 EXACTLY (313/4501/80549) - the mirror symmetry accounts for
+    every degeneracy, zero accidental collisions (desym near-collisions at
+    1e-12: 6 at m29, 613 at m31, fraction <= 5e-6, unresolved). Bonus
+    exact: det C_M = prod(q-2) = open count. VERDICT: clock and Poisson
+    bracket GUE from both sides; neither approaches it. Structural reason:
+    any CRT-product spectrum is Berry-Tabor/integrable -> Poisson by
+    construction; a GUE-bearing operator would need gear coupling - which
+    is exactly the non-tensor obstruction B = I - (x)E_q (Wall V in
+    operator form). The bridge fails at tensor operators; only the
+    non-tensor sector (nilpotent BS, H's non-triangular part) could carry
+    it. Pre-registered expectation (Poisson) confirmed - recorded as a
+    test result, not a surprise.
+
+34. PSD DOES NOT BITE - AND WHERE THE SIZE LAW ACTUALLY LIVES
+    (research/psd_bite.py). Two exact formalisations of "(do position laws
+    force size bounds?":
+    (a) MOMENT LP: f(x) = # openings in [x, x+W); moments m1..m4 exact
+    closed forms (Stirling coefficients x N1..N4 tables; no scan; machines
+    13..41 including beyond-scan 37/41). LP: max # empty windows consistent
+    with moments of order <= K. Verdict: NEVER BITES - max p0 at K=4 is
+    67.6 (m13, W=F) growing to 4.3e10 (m41); at the (D) thresholds
+    W = F_old + q' + 1: 112 (13->17) growing to 1.6e10 (37->41). Pair
+    level (K=2, the true PSD content of Wiener-Khinchin) is 5-30x weaker
+    still. Correlations of bounded order leave ASTRONOMIC slack: (D) is
+    invisible to K <= 4 occupancy moments, margin GROWING with machine -
+    consistent with Constructor's r20 "anti-correlation beyond any fixed
+    order" and the corridor-resonance non-Markov findings, now with the
+    slack quantified.
+    (b) EXACT RUN CERTIFICATE (the positive result): E(L) = # runs of L
+    consecutive blocked slots = IE over window subsets with hereditary-zero
+    pruning (masks only shrink -> zero subtrees skipped exactly). E(F) = 0
+    and E(F-1) > 0 recovered EXACTLY (integers) at machines 13/17/19/23:
+    F = 11/18/25/34 derived from position laws alone, NO period scan, with
+    only 397 / 5,345 / 46,349 / 578,890 nonzero subsets (vs 2^F up to
+    1.7e10) - the feasible-pattern set is tiny. Bonferroni truncations
+    certify NOTHING short of full depth: first certifying depth k* = 8, 10,
+    12, 14 = max nonzero depth + 1 at all four machines (partial sums still
+    4 / 16 / 48 / 1154 at the deepest even truncation). So: bounded-order
+    correlation data never bites; bounded-level covering LP bites weakly
+    and dies at 29 (the parallel round-21 covering-lp-certificates entry,
+    matrix_shapes.py - complementary, theirs uses generative phase
+    structure); FULL-depth pruned IE is exact and cheap. CROSS-LANE: the
+    pruned DFS is a working zero-certificate pattern counter - Constructor's
+    named blocker (qualmax_j = 0 without scan) is servable by seeding the
+    DFS masks with required-open points; node counts above say the cost is
+    1e3-1e6, not 2^|Y|.
+
+Round-21 refuted angles (added to the standing list):
+- M2 corridor-hardness beta-model as the sole phase mechanism: phases
+  -163..-169 deg at every beta for gear 5 - dead (c14_phase.py part 4).
+- "126 deg is an asymptotic arithmetic invariant": unsupported - within the
+  model that reproduces all measured phases, the phase drifts through 126
+  (plateau, not pin); decidable at m41/43.
+- GUE drift of machine operator spectra: refuted with exact spectra
+  (toward Poisson at every step, both KS and <r~>).
+- PSD / bounded-moment bite on (D)-violating windows: refuted with margins
+  (67.6 .. 4.3e10, growing).
+
+Round-21 untested angles left open:
+- WHY the gear-5 bracket is real (+-0.4 deg) while gear 7's drifts:
+  reproduced by closed form, not conceptually derived. Finite per machine.
+- The 1/mean_gap amplitude near-law (constant 1.015 +- 1%).
+- The 613 near-collisions in the m31 desymmetrized spectrum (algebraic
+  cosine-product coincidences - finite, checkable).
+- Lipschitz/transfer strengthening of the moment LP (joint (f(x), f(x+g))
+  distributions, all closed-form): would sharpen (a) but was not built.
+- Spectral statistics of the NON-tensor operators (nilpotent BS has no
+  spectrum; the word-level H's non-triangular sector does) - named as the
+  only place a GUE-bearing operator could live.
+- The machine-29 depth spiral (ladder run only to 23).
+
+Reproduction pointers (round 21): c14_phase.py (parts 1-6: phases, golden
+constraint, depth spiral + closure, models M0/M1/M2, asymptotic sweep,
+pole-phase decomposition; data/c14_asym2.log, c14_ladder.log),
+eig_stats.py (--big for m31; data/eig_big.log), psd_bite.py (--deep-only
+for m23 DFS; data/psd_deep.log). All assertion-gated; inputs
+data/gap_pair_hist.csv (Mechanic), data/depth_identity_*.csv (r20).

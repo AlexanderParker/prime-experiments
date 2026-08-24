@@ -681,3 +681,150 @@ fuel inventories), tm_transfer.py (R36: Markov closure, Perron, lag tables),
 tm_tropical.py (R37), tm_renewal_bound.py (R38 ladder + assertions),
 tm_nilpotency.py (R35), tm_qualmax_check.py (R39). All checks asserted; all
 censuses full-period with the cyclic seam stitched.
+
+---
+
+## Round 21 append (one algebra, not infinite rules): R40-R44
+
+**R40 (THE TWO-TEETH KILL SPACING LAW, reproduced and proved;
+docs/novel/two-teeth-kill-spacing.md).** The live 2026-08-24 finding, now
+theorems T1-T5 asserted on EVERY window of every full joint period P*q',
+steps 11->13 .. 29->31 (research/kill_spacing.py; joint period = q' copies
+of the old opening sequence, boundary and cyclic seam handled exactly):
+T1 {2c, -2c} mod q' = {2u', q'-2u'} - the tooth-difference residues ARE the
+literal letters; T2 interior spacings = 0 or +-2c mod q'; T3 nonzero-class
+signs STRICTLY ALTERNATE (padded spacings transparent; |#a - #b| <= 1 per
+window); T4 minimum 2u'; T5 FUEL-SPAN LAW k <= 1 + span/(2u')
+<= 1 + 3 span/(q'-1) - the fuel cap as closed-form span arithmetic, no
+census. MEASURED M1: every realized spacing VALUE is exactly 2u', q'-2u',
+or q' - never 2u'+q', 2q', ... which the residue classes admit - at all six
+steps; at 29->31 (joint period 3.34e10, 237 s vectorised): spacings
+10: 7,815,766 / 21: 205,068 / 31: 4,180 and nothing else; windows
+421,392,436 with k = 1/2/3/4 : 413,380,422 / 7,999,018 / 12,992 / 4, and
+T3 + max_span 41 FORCE all four k=4 windows to be word (10,21,10) -
+mechanic's four addresses, re-derived. Window counts reproduce R19's chain
+censuses exactly PLUS one seam window at 13->17 (2,898 vs 2,897) and
+23->29 (15,660,528 vs 15,660,527): R19's linear scans did not stitch the
+cyclic seam chain.
+
+**R41 (NILPOTENCY ADDITIVITY = THE SUM SPLITTING; the counting boundary;
+research/nilpotency_additivity.py, log data/nilpotency_additivity.log).**
+New operator form (one line of algebra, dense-exact at {5}+7 and {5,7}+11,
+operational by vector iteration at all four steps 11->13 .. 19->23):
+
+    B_new S_new = (B_M S_M) (x) S'  +  (E_M S_M) (x) (B' S')
+
+- adding gear q' is an exact Kronecker RECURSION: new blocked walk = old
+blocked walk (x) shift + old renewal step (x) q'-kill; F(M+q') = nilpotency
+index of the SUM (old factor index F(M), kill factor index 2). The operator
+is a masked permutation (entries 0/1), so the m-th power expands over
+binary kill-words with NO cancellation, and CRT separates the tensor
+factors: (BS_new)^m != 0 iff SOME kill pattern is (left) an old-machine
+pattern event AND (right) mod-q' realizable - and right-realizability is
+EXACTLY the spacing law T2/T3 (verified: right-factor 0/1 matrices nonzero
+on all spacing-law kill patterns, zero on all violating ones, q' = 13, 23).
+The merge law, the word grammar (A), the padding count (C), and the
+fuel-span cap are corollaries of this one identity plus T1-T5.
+THE COUNTING BOUNDARY (honest negative, sharp): NO function of the marginal
+data (F, kill index 2, spacing law, litcap) bounds the index of the sum.
+The 2-point relaxation - every adjacent kill pair individually realizable -
+is satisfied by the INFINITE alternating word from 19->23 on (adjacent
+pairs (8,15) x31 and (15,8) x31 at machine 19) while the true chain stops
+(consecutive triples (8,15,8), (15,8,15): ZERO). And the truncation arity
+GROWS: 3-point at machines 19/23 (run3 = 0), 4-point at 29 (run3 = 8,
+run4 = 0) - no fixed-arity joint law suffices (R36's growing memory,
+operator side; matches R37's tropical boundary). delta <= q' is decided by
+which spacing-compatible kill patterns the old machine realizes - the
+anti-correlation clause (D), nothing else. FUEL-AS-BRIDGES, measured: the
+per-k record's largest bridged old gap FALLS with k (19->23: 0.84F at k=1,
+0.80F at k=2, 0.60F at k=3; the k=3 record window is the live session's
+[4,8,15,7] = 34) - par trading in bridge form.
+
+**R42 (THE CORRIDOR-PHASE TRANSFER CHAIN - the state-space answer;
+research/tm_corridor_phase.py, logs data/tm_corrphase_*.log).** Rebuilt the
+transfer chain with state = left-endpoint corridor phase and tested three
+nested models against full-period exact censuses taken in the same pass
+(machines 13, 19, 23, 29; --mod 35 and 385; every model built from exact
+counts; V-run counts cross-checked EXACT vs tm_resid_runs.csv). The answer
+at m29 depth-3 V-runs (the x1400 independence deficit; R36's baseline
+rebuilt in-pass gives x48.8):
+
+    state:        indep   value   ph35   (ph35,val)   ph385   (ph385,val)
+    pred/exact:   x1400   x48.8   x3.6     x1.9        x2.3     x0.86
+
+THE ANTI-CORRELATION'S CARRIER IS SMALL-GEAR PHASE: (phase mod 385, last
+value) predicts the (D)-relevant deep runs within 15%. Size-floor runs
+likewise collapse (m29 depths 3/4/5: value x4.4/x12.6/x40 -> hybrid-385
+x1.12/x0.97/x2.2). THE LAG WAVE: the phase chain reproduces the
+deficit-at-1-3/excess-at-4-7 oscillation with correct peak/trough lags at
+every machine (amplitude damped x2-4 at mod 35, near-exact at mod 385:
+m29 V-lags 2..7 exact 1.53/0.81/1.05/1.03/1.13/1.28 vs
+1.56/0.83/0.86/0.99/1.16/1.26); the value chain is flat 1.00 from lag 3.
+NEW SPECTRAL OBJECT: the phase chain's lambda_2 is COMPLEX -
+|l2| = 0.963/0.912/0.886 at m13/19/23 with arg 34/43/46 deg, so period
+360/arg = 7.8-8.4 lags and damping |l2| per lag: THE CORRIDOR RESONANCE IS
+THIS EIGENVALUE (arg ~ 2 pi mean_gap/35); distinct from the value chain's
+real lambda_2 = -0.55 (Mechanic's phi/3 object). HONEST RESIDUALS: every
+phase chain over-predicts lag-1 adjacency (the exclusion there is
+teeth-value, not phase); size-floor depths 5-6 keep memory beyond
+(mod 385, value) (x2.2-3.0); machine 31 unmeasured (memory-sweep casualty
+at 31%, deliberately not relaunched). corridor-resonance.md carries the
+round-21 addendum.
+
+**R43 (THE EXACT PATTERN COUNTER, from Lateral's cross-lane offer;
+research/qualrun_zerocert.py, log data/qualrun_zerocert.log).** Lateral's
+hereditary-zero pruned IE (psd_bite.bonferroni_runs) adapted to pattern
+events with required-open seeding: #(X exposed, Y blocked) with Y = ALL
+interiors - R38's named blocker (the 2^|Y| cost) DELIVERED for spans up to
+~75. Key structural fact: nonzero subsets are downward-closed (N monotone),
+so the DFS cost = |{T : N(T) > 0}| independent of order. VALIDATED exact
+against every census row: m19 run2 = 234, run3 = run4 = 0 (zero
+certificates); m23, m29 all rows - run3(29) = 8 reproduced by pure CRT
+arithmetic in 14 s (3.0e6 nodes) - the 8 needles of a 1.08e9-slot period,
+no scan; m31 (period 3.34e10) run2 = 502,708 EXACT MATCH (3.4e8 nodes,
+1611 s). Partial run3(31): the six nonzero tuples found -
+(12,12,25) 139, (12,25,12) 188, (12,25,25) 7 + mirrors 139/28/7 - sum 508
+= the full census value; the heavy padded tuples ((25,25,49) etc.) exceed
+the 3e8-node budget - cost grows ~exponentially in span (98M nodes at span
+74, budget dead at span 99). HONEST NEGATIVE: the memoized alternating
+recursion f(i, masks) = f(i+1, masks) - f(i+1, masks & rot_i) does NOT
+beat the DFS - MORE states than DFS nodes on the same pattern (1.58M vs
+1.37M at m19 (15,23,23)) and the span-74 m31 pattern unfinished at 10 min
+where the DFS took 445 s (research/test_memo2.py + log) - mask states
+barely coincide, so the sharing the memo bets on is absent. Machine 37
+values not reached this round; the per-span cost curve is measured, and
+Mechanic's COV-SAT (605 s/instance probes) is the named supplier there.
+
+**R44 (R39 AT 37->41 - the criterion's first beyond-scan step, DECIDED
+in-round).** Mechanic posted early per the brief: F_3(37) = 97 EXACT
+(SAT witness k = 990,209,189,833, gaps [37, 23, 37] - a palindrome flanked
+by the top gear's own value; UNSAT at every S in [98, 178];
+178 = F2 + F is the a-priori cap). Budget F(37) + 41 = 129: the j=3 clause
+qualmax_3 <= F_3 = 97 holds with margin 32 = 0.78 q' - the criterion's
+margin is RESTORED at the litcap-2 gear (the Q_j collapse stays a litcap-6
+phenomenon; next real test q' = 53). My j >= 4 concern (qualmax_4 had no
+upper bound on the F_3-only route) is discharged by Mechanic's independent
+confirmation from the r20 padding37 full-period census: max_j qualmax_j
+(37;41) = 91 = F(41) EXACTLY, so the criterion value is max(90, 91) = 91
+<= 129 - the EIGHTH measured step, EQUALITY criterion = F(M+q') at 7 of 8,
+margin 38 = 0.93 q'. (D) at alpha = 3 at 37->41: DECIDED, both routes.
+
+**Round-21 negatives, recorded:** (i) the counting boundary - additivity
+has no marginal-arithmetic bound, and the truncation arity grows (R41);
+(ii) phase chains cannot carry the lag-1 teeth exclusion, and size-floor
+deep runs keep super-phase memory (R42); (iii) the memoized counter is not
+faster (R43); (iv) the memory-pressure process sweep killed three of the
+round's jobs (m31 phase census at 31%, the first kill_spacing 23/29 run,
+the qualrun campaign mid-m31-run3) - the first was not relaunched, the
+second was re-run vectorised (299 s -> 4 s at 23->29) and completed, the
+third was closed deliberately with per-tuple data intact; nothing reported
+rests on a partial scan.
+
+**Reproduction (round 21):** kill_spacing.py (T1-T5 + M1; logs
+data/kill_spacing_23.log, kill_spacing_23_29.log), nilpotency_additivity.py
+(P1-P4; log data/nilpotency_additivity.log), tm_corridor_phase.py
+(--mod 35/385; logs data/tm_corrphase_19_23.log, tm_corrphase_29_31.log
+(m29 + dead m31 tail), tm_corrphase_23_mod385.log,
+tm_corrphase_29_mod385.log), qualrun_zerocert.py (+ test_memo2.py for the
+memo negative; logs data/qualrun_zerocert.log, test_memo2.log). All
+censuses full-period seam-exact; model predictions labeled float.

@@ -494,3 +494,134 @@ Data: research/data/{zm_margin_mechanism,family17_percentile,paired_holt_recursi
 f13_family.npy, f17_family.npy. Docs: docs/novel/paired-holt-recursion.md (new),
 paired-jacobsthal-values.md sec. 4a + pointers, twin-percentile.md sec. 4a + caveat
 update, README index entry. No detached jobs launched; nothing pending.
+
+## ROUND 21 - N4 executed (first j_2 bounds), the exact 9 explained, N5 executed
+## (paired HL-B in cycles + full diagonalisation)
+
+All three briefed items landed. Scripts assert-gated and green: research/j2_bound.py,
+ext_death.py, ext_death2.py, paired_hlb.py; outputs research/data/{j2_bound,
+ext_death,ext_death2,paired_hlb}.out. All jobs launched early and finished before
+write-up; nothing pending. Prior-art checks run by me, dated 2026-08-24.
+
+### (a) N4 - THE FIRST UPPER BOUNDS ON j_2 (docs/novel/j2-upper-bound.md, new)
+
+The empty ladder now has two rungs, both proved:
+
+1. ELEMENTARY (Legendre IE, complete paper proof in the doc, constants
+   script-verified): j_2(p_n#) <= 2*3^(n-1)/V_n + 1 with
+   V_n = (1/2) prod_{3<=p<=p_n}(1-2/p) exact; explicitly
+   j_2(p_n#) < 3^(n+1) (log p_n)^2 for all n >= 3 (n = 2: exact bound 37).
+   Worst case over differences is omega = 2 at every odd prime (per-prime
+   E/V factor 3p/(p-2) > 2p/(p-1) always) - the bound is uniform in d, and
+   p | d differences get strictly better constants (the F_d refinement).
+   Explicit-constant chain: (1-2/p) = (1-1/p)^2 (1-1/(p-1)^2), partial twin
+   products decrease to C_2 = 0.66016..., Rosser-Schoenfeld (3.27); verified
+   with exact V_n through n = 4203 (worst ratio 0.858 at n = 3). Sub-primorial:
+   exp(O(p/log p)) vs the trivial exp((1+o(1))p).
+2. POLYNOMIAL (fundamental lemma, dimension kappa = 2, by citation):
+   j_2(p_n#) <<_eps p_n^(beta_2+eps), beta_2 <= 4.85 (beta sieve, Friedlander-
+   Iwaniec) and < 4.45 (DHR-type, Blight). Proved exponent < 4.5 vs conjectured 2.
+3. LOWER TRANSFER: b - a = p_n# collapses paired to ordinary (survivor sets
+   equal - verified exactly n = 3,4,5), so j_2(p#) >= j(p#) and FGKMT lower
+   bounds transfer verbatim.
+4. WHY THE LADDER WAS EMPTY (recorded honestly): Iwaniec's one-residue
+   (k log k)^2 is order p^2 at primorials - the SAME order as ZM Conjecture 6;
+   a paired Iwaniec-strength bound would land within a constant of a statement
+   implying Goldbach + Polignac (ZM Thm 4.1), i.e. it is parity-critical. The
+   sub-conjecture rungs are parity-safe and were simply never written down.
+   Named wall: the Iwaniec-analogue; named next rung: Brun pure sieve
+   (quasi-polynomial, elementary) and any beta_2 improvement (transfers free).
+   The bound's price vs the exact table: x6 at p=3 up to x1.3e8 at p=73 -
+   Legendre is exponentially lossy, rung 2 is where the honesty lives.
+
+### (b) THE CLEAN-EXTENSION DEATH AT 17 - the exact 9 is now an accounting
+### identity (paired-jacobsthal-values.md sec. 4b, new)
+
+THE SHALLOW-EXTENSION CAP: a family maximiser's record window is a maximal gap -
+NO interior openings - so lifting to gear q' it can only grow by fusing adjacent
+gaps; interiors must sit in the 2-element tooth set mod q', and 3 interiors would
+need 3 distinct residues in a 2-set (asserted distinct in every observed case),
+so AT MOST TWO adjacent gaps ever fuse and the lift choice grants any single
+separation congruence: best extension = F_old + best adjacent 2-gap sum.
+EVENTS: all 16 13-winners have the SAME local context (..6,3,6,[75],6,3,6..);
+75 = 7 mod 17 so e = +-7 mod 17 fuses both flanks: cap = 6+75+6 = 87, and the
+exhaustive extension value set over 272 lifts is exactly {81, 84, 87} =
+{75+6, 75+6+3, 6+75+6}. The winner 96 is a 4-5-gap DEEP fusion (interiors
+filling both tooth classes) on mediocre bases (F_13 in {42, 51}).
+THE 9 = 96 - (6+75+6). THE LADDER: best 19-extension of all 64 17-winners
+(1216 lifts, direct sieves) = 111 = 96+(6+9), deficit 18; best 23-extension of
+the 19-argmax = 147 = 129+(6+12), deficit 36 (lineage-only caveat: the full set
+of 19-winners is unknown). Deficits 9, 18, 36 - DOUBLING; the records' adjacent
+2-sums grow by 3 (12, 15, 18). Anatomies: 111-window = [96,6,9], 147-window =
+[129,6,12] - one-sided chains exactly at the cap. My round-20 cap guess
+(g_L + F + g_R only) was WRONG and the failed assertion found the truth: one-sided
+two-gap chains beat both-flank fusion from 19 on. Caveat for any general theorem:
+the 3-interior impossibility needs the non-collision conditions (q' not dividing
+F_old or the adjacent separations) - the collision case is exactly PADDING.
+
+### (c) N5 - PAIRED HL-B IN CYCLES + THE FULL EIGEN-ANALYSIS
+### (docs/novel/paired-hlb-cycles.md, new; the Holt import now fully spent)
+
+1. LOCAL FACTOR IDENTITY (proved, 2 lines; asserted q < 2000): c_q(g) =
+   q - nu_q({0, 2, 6g, 6g+2}) - the round-19 autocorrelation law IS the
+   Hardy-Littlewood PRIME-QUADRUPLET local factor of (p, p+2, p+6g, p+6g+2).
+2. PINCH THEOREM (proved: depth-sum identity + union bound; verified by full
+   sieve at machines 13/17/19, every g <= 26): N2(g) - sum_t N3(0,t,g) <=
+   n_g(M) <= N2(g), all closed-form CRT products, any scale, no scan. Hence
+   fixed-gap population ratios converge AT RATE 1/log^2 y to HL quadruplet
+   singular-series ratios (finite products - factors cancel beyond q = 6g+2):
+   paired Hardy-Littlewood Conjecture B holds PROVABLY inside the sieve.
+   Numerics: n_5/n_4 -> 3.150, pinched to [3.06, 3.22] at y = 10^6.
+3. EIGEN-ANALYSIS: aggregated by (sum, length), the paired transfer is
+   generically diag(q-2j-2) + superdiag(2j) (sporadic share 6.9% at +17,
+   carried exactly by the word-level transfer) and is diagonalised by
+   v^(k)_j = (-1)^(k-j) C(k-1,j-1) - q-INDEPENDENT Pascal eigenvectors,
+   IDENTICAL to Holt's one-residue system (the q-dependence cancels in the
+   eigenvector recursion): the paired system is Holt's with DOUBLED level
+   spacing. Verified in exact rationals, q in {17,19,101,997}, k <= 12.
+4. WORD-LEVEL TRANSFER: the round-20 recursion upgraded from gap totals to the
+   FULL word census - n_w(M+q') exact for all 6714 words (sum <= 24) at
+   5005 -> 85085 and 10489 at 85085 -> 1616615 via deterministic per-copy
+   image enumeration (no composition explosion). The census-to-census linear
+   map is now a verified exact object; paired-holt-recursion.md status upgraded.
+
+### Ranking changes (honest pricing)
+
+- N4: EXECUTED - moves from "candidate" to "delivered, ladder started". Remaining
+  life in the lane: Brun rung (elementary, one round if wanted), beta_2 watching
+  (free), Iwaniec-analogue priced as parity-critical wall (not reachable with
+  published methods - imported corpus limit, stated in the doc).
+- N5: EXECUTED AND CLOSED as sized - the Holt import is fully spent (recursion
+  r20, diagonalisation + HL-B payoff r21). Follow-on if ever needed: driving-term
+  asymptotics with doubled spacing (Holt's own open end, inherited).
+- C10+N3 stays TOP; the round-20 open item (the exact 9) is CLOSED; what remains
+  there: the per-difference Conjecture 6 refinement as a publishable statement,
+  and the new micro-question - does the deficit keep doubling (needs the full
+  19-winner set; the 23 row is lineage-only)?
+- New publication-worthy additions to section 6's list: the j_2 bounds note
+  (first rungs of an empty ladder + why it was empty), and the paired-HL-B note
+  (machine local factor = HL quadruplet factor; Pascal diagonalisation).
+
+### Needs from other lanes
+
+- CONSTRUCTOR: the paired transfer matrix is now DIAGONALISED (exact q-independent
+  eigenbasis, doubled spacing) - if the anti-correlation deficit is to become a
+  spectral statement, this is the basis to write it in; the pinch theorem also
+  gives closed-form N2/N3 baselines for every lag with no scan.
+- MECHANIC: the pinch bounds predict every fixed-gap population within
+  [N2 - sum N3, N2] at 37/41/53 with zero scanning - a free cross-check row for
+  COV-SAT outputs.
+- FORMALIST: three finite kernel candidates if ever wanted: the local-factor
+  identity at fixed q (two-line affine bijection), one rung of the word-level
+  transfer, the Pascal eigenvector identity at fixed size. None urgent.
+- LATERAL: your c_q(g) is now identified as the HL quadruplet local factor -
+  the golden-gap/corridor objects all sit inside a 4-point HL frame.
+
+### Deliverables ledger (round 21)
+
+Scripts: research/j2_bound.py, ext_death.py, ext_death2.py, paired_hlb.py (all
+assert-gated, green). Data: research/data/{j2_bound,ext_death,ext_death2,
+paired_hlb}.out. Docs: docs/novel/j2-upper-bound.md (new), paired-hlb-cycles.md
+(new), paired-jacobsthal-values.md sec. 4b, paired-holt-recursion.md status
+upgrade, README index (2 entries). Prior-art checks dated 2026-08-24 in both new
+docs. No detached jobs pending at write-up.
