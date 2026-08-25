@@ -977,3 +977,361 @@ kernel work on my identities.
   fixed machine, and the Bonferroni step of Theorem 3 at fixed n and K.
 - MECHANIC / CONSTRUCTOR: nothing blocking. The pinch's closed-form population windows
   remain a free cross-check row at any machine, now at any Bonferroni order.
+
+## ROUND 23 - UNIT 1 TAKEN TO PUBLICATION READINESS: RUNG 2 MADE FULLY EXPLICIT
+## (exponent 19, no ineffective threshold), rung 1.5 given its proved constant, the
+## nested-truncation validity obstruction SOLVED, a referee pass that found five
+## defects (all mine), and the ceiling reframed after my own citations failed audit
+
+Scripts (all assertion-gated, all green, all run from the repo root):
+research/j2_explicit.py (THEOREM 3E + the rung-2 level/error costing),
+research/j2_fi77.py (THEOREM 2E via Friedlander-Iwaniec Opera de Cribro Thm 7.7,
+plus an audit of my own arithmetic), research/j2_nested.py (the correct nested
+truncation, tested), research/j2_referee.py (the referee pass; caches
+research/data/ref_fam_<y>.npy), research/j2_lower.py (the lower ladder). Re-ran
+round 21/22's j2_bound.py, j2_brun.py, j2_perdiff.py - all still green. Data:
+research/data/{j2_explicit,j2_fi77,j2_nested,j2_referee,j2_lower}.out plus
+ref_fam_{3,5,7,11,13,17}.npy. Prior-art and citation checks run BY ME and dated
+2026-08-25. All jobs finished before write-up; nothing pending.
+
+TWO OF MY OWN CONCLUSIONS WERE OVERTURNED INSIDE THIS ROUND - "rung 2 cannot be
+made explicit" and "a valid nested truncation is the missing construct" - both
+after leads were verified against actual text. Both corrections are in item (a).
+
+### (a) THE BRIEF'S NAMED TARGET - the explicit constant in rung 2
+
+SPLIT VERDICT, and the honest half is the more useful one.
+
+WHAT WAS DELIVERED (THEOREM 3E, docs/novel/j2-upper-bound.md). The bound that CAN
+be made fully explicit is rung 1.5, and it now is:
+
+    j_2(p_n#)  <  p_n^{9.30 log log p_n}   for every n >= 3,
+
+with the ASYMPTOTIC constant of Theorem 3 identified exactly as
+
+    C_infinity = 2 lambda_* = 7.182242...,  lambda_* = 3.591121... the root of
+                                            lambda (log lambda - 1) = 1.
+
+The proof is four explicit ingredients - Rosser-Schoenfeld (3.20) for T_n, RS
+(3.27) plus the twin-constant factorisation for V_n, e_j(x) <= (sum x)^j/j! for the
+Bonferroni tail, and RS (3.6) with C(n-1,K) <= (e(n-1)/K)^K for the remainder cost -
+plus exact rational verification for 5 <= p_n <= 139 and an analytic tail for
+p_n >= 142. TWO THINGS FELL OUT THAT MATTER MORE THAN THE THEOREM:
+  * ROUND 22'S "MEASURED CONSTANT IN [3.47, 4.16]" DOES NOT CONTAIN THE LIMIT. The
+    ratio log(bound)/(log p_n log log p_n) rises to 7.1822; the shortfall at
+    accessible sizes is the factor (1 - (log log p_n + log K)/log p_n), still only
+    0.70 at p_n = 27449. Quoting a measured band where a constant belongs would
+    have been the referee's first question and the answer would have been wrong.
+  * MAKING K EXPLICIT IS FREE. The explicit rule (least odd K with R_K <= V_n/2)
+    picks the SAME K as round 22's numerical optimisation at every n tested, ratio
+    1.000x. So nothing was given away to get a stated constant.
+
+RUNG 2 MADE EXPLICIT - THEOREM 2E. The first pass of this round concluded rung 2
+could not be made explicit; that conclusion was WRONG and is corrected here, in
+the same round, after a collaborator's lead was verified against actual text.
+
+    j_2(p_n#)  <=  1.0963 x 10^10 * p_n^19 * (log p_n)^10  +  1   (p_n >= 285)
+
+with every constant stated and NO ineffective threshold; more generally
+j_2(p_n#) << p_n^s for every real s > 18.308. Verification: research/j2_fi77.py.
+
+THE INGREDIENT is not a fundamental lemma at all - that was the first pass's
+mistake. It is the EXPLICIT, CONSTANT-FREE Selberg Lambda^- Lambda^2 sieve,
+FRIEDLANDER-IWANIEC OPERA DE CRIBRO THEOREM 7.7:
+    S(A,z) >= X V(z){1 - ((s+3)/(2 e^k))(2 e k/(s-3))^{(s-3)/2}} - 2 R_4(A,D),
+    s = log D/log z,  k = kappa + log K,  s >= 2k+3,
+    R_4(A,D) = sum_{d | P(z), d < D} tau_4(d)|r_d|,
+under prod_{w<=p<z}(1-g(p))^{-1} <= K (log z/log w)^kappa.
+WHY IT APPLIES TO US WITH NO WORK: Dudek & Dunn (arXiv:2602.22720, Feb 2026,
+"An Explicit Result for the Sum of Two Almost Primes") prove as their Lemma 2.1
+that this hypothesis holds with kappa = 2, K = 3 for the multiplicative g with
+g(2) = 1/2 and g(p) = 2/p - WHICH IS LITERALLY OUR omega(p)/p. Not a coincidence:
+they sift n and N - n simultaneously, i.e. the Goldbach side of ZM Theorem 4.1,
+the same two-classes-per-prime problem. METHOD NOTE WORTH KEEPING FOR THE LANE:
+the explicit-Goldbach literature is the natural source of explicit tools for the
+paired Jacobsthal ladder.
+INDEPENDENTLY RE-DERIVED HERE rather than taken on trust: K = 3 is exact and BEST
+POSSIBLE (grid search over all (w,z) with w,z < 2e5 returns exactly 3.000000; the
+supremum sits at w = 3, z -> 3+, where the product is (1-2/3)^{-1} = 3 and
+(log z/log w)^2 -> 1). Also re-derived: k = 3.098612; FI's s >= 2k+3 = 9.1972 is
+NECESSARY BUT NOT SUFFICIENT - the bracket only turns positive at s* = 18.30802,
+and equals 0.2507/0.5199/0.8202 at s = 19/20/22. And the pre-sieved K values,
+which reproduce the collaborator's numbers to three decimals from my own code:
+K = 5/3 for p >= 5 (s* = 16.136), 1.4 for p >= 7 (15.474), 1.2624 for p >= 11
+(15.077), 1.0479 for p >= 101 (14.353).
+THE ARITHMETIC: |r_d| <= omega(d) <= 2^nu(d) and tau_4(d) = 4^nu(d) on squarefree
+d, so R_4 <= sum_{d<D} 8^nu(d) <= D prod_{p<D}(1+8/p) <= C_8 D (log D)^8 with
+C_8 = e^{8 gamma} prod_{p<10^6}(1+8/p)(1-1/p)^8 = 0.0316 (that product is
+DECREASING, so evaluating at 10^6 is a valid UPPER bound for every D >= 10^6 -
+using the limit would have been unsafe, and I nearly did). Positivity then needs
+m > (2/bracket) C_8 z^s (s log z)^8 / V(z) with V(z) >= 0.3905/(log z)^2.
+
+SOURCE STATUS, stated because round 22 was burned by exactly this: Opera de Cribro
+itself was NOT consulted directly. Theorem 7.7 is taken from two independent
+verbatim transcriptions that agree exactly - Dudek-Dunn Theorem 1.3 and Campbell
+Theorem 2.1 (arXiv:2608.09488, Aug 2026) - both read in full text 2026-08-25. The
+book must be checked before publication. Also recorded: DO NOT use Yamada
+arXiv:1511.03409 Theorem 3.1 as an alternative explicit sieve (unproved as stated).
+
+WHAT REMAINS AT 4.266, AND WHY IT IS NOT BOOKKEEPING: beta_2 = 4.266 is the
+numerically-solved output of the DHR differential-delay system, and the sieve
+inequality at that dimension carries an uncomputed O((loglog y)^2 (log y)^{-1/6})
+error; even computed, the 1/6 means s = beta_2 + 0.01 would need log y ~ 10^12.
+There is no explicit-constant sieve AT its sifting limit for any kappa > 1. So the
+note now carries TWO polynomial rungs and says which is which: exponent 19 fully
+explicit, exponent 4.266 not explicit and not makeable so.
+
+AND THE VALIDITY OBSTRUCTION I NAMED IS ALSO SOLVED (research/j2_nested.py). The
+first pass showed the PER-BAND product truncation {d : nu(d_j) <= K_j for all j}
+is not a valid lower-bound sieve (36 explicit counterexamples). The correct object
+counts the WHOLE UPPER TAIL - nu(d restricted to primes above z^{alpha_j}) <= H_j,
+nested constraints, H_j = 2h_j+1 for the lower sieve and 2h_j+2 for the upper -
+which is the refinement Tenenbaum describes in the paragraph before his
+fundamental lemma (GSM 163 p.70, set as Exercise 86, proved nowhere there).
+TESTED, NOT ASSUMED: 168,400 (depth pattern, bad-count) configurations over 1, 2
+and 3 partition points, ZERO violations of Lambda^- <= [survives] <= Lambda^+,
+against 36 failures for the per-band form. A PRE-REGISTERED GUESS OF MINE WAS
+REFUTED IN THE SAME SCRIPT: I expected monotone depths h_j to be needed for
+validity and wrote it into the script before running the control - 0 violations
+over all 271 non-monotone patterns. Monotonicity is a LEVEL-COST convenience, not
+a validity requirement.
+SO THE REMAINING GAP IS EXACTLY ONE THING: an explicit MAIN-TERM estimate for the
+nested truncation (an explicit lower bound on sum_{d in D^-} mu(d) g(d) against
+V(z)). My own level/error accounting for that design says exponent ~9 is
+reachable - theta = 1/2, geometric depths ceil(4 x 1.05^{j-1}), s = 9.07 at
+truncation cost 0.36 - and a lead (Halberstam-Richert's own Memoire, Mem. S.M.F.
+25 (1971) 97-106, level exponent -> 7.972) is recorded as UNVERIFIED because I
+could not obtain the text. That is the named construct for the next round.
+
+A CITATION-NUMBERING CHIMERA CAUGHT AND KILLED, and it had reached two of my
+documents. "IWANIEC-KOWALSKI THEOREM 6.9" DOES NOT EXIST. IK Chapter 6
+("Elementary Sieve Methods") stops at Theorem 6.7; in IK, 6.9 and 6.10 are
+EQUATION labels, and the 6.9/6.10 numbering belongs to OPERA DE CRIBRO - the two
+were conflated. IK's "s >= 9 kappa + 1 with K^10" result is IK THEOREM 6.1 /
+COROLLARY 6.2 (p.158), and IK's FUNDAMENTAL LEMMA 6.3 has no lower bound on s but
+hides its K-dependence inside an O to the tenth power, so it is not explicit
+either. Fixed in j2-upper-bound.md sections 6a(8) and 8, and in my agents-shared
+block. TWO MORE NUMBERING TRAPS RECORDED so nobody walks into them: Tenenbaum's
+fundamental lemma is THEOREM 4.4 (Theorem 3 in the 1995 CUP edition), not 4.3,
+and "Theorem I.4.2" does not exist (I.4.2 is a COROLLARY, the Bonferroni
+inequality); and Nathanson Chapter 6 is a dead end (no general-dimension sieve at
+all). CLEAN AS WE HAD IT: "Friedlander-Iwaniec Opera de Cribro Thm 6.9" is a real
+fundamental lemma and our two uses of that phrase stand. THIS IS THE SECOND
+NUMBERING ERROR IN TWO EXCHANGES, both in results about to be leaned on, so the
+referee pass now carries a CITATION-NUMBERING SWEEP as a standing step.
+
+AND A SECOND EXPLICIT THEOREM I HAD MISSED, priced rather than adopted. Opera de
+Cribro carries THREE constant-free results, and the choice costs ten in the
+exponent. All three thresholds re-derived by me from the stated inequalities
+(research/j2_fi77.py section F5) and asserted:
+    ODC Thm 6.9 (D >= z^{9kappa+1}):  positive iff s > 9 kappa + 10 log K
+    ODC Cor 6.10 (only D >= z >= 2, NO hypothesis on s):
+                                      s > 9 kappa + log(4(9kappa+1)^kappa K^11)
+    ODC Thm 7.7:                      the bracket used for Theorem 2E
+                        K = 3        K = 1.097 (pre-sieved at 3)
+    ODC Thm 6.9      s > 28.986      s > 18.926
+    ODC Cor 6.10     s > 37.360      s > 26.294
+    ODC Thm 7.7      s > 18.308      s > 14.532
+THEOREM 7.7 STANDS - K^10 is brutal at K = 3 (10 log 3 = 10.99 on its own).
+Thm 6.9 is a cleaner-looking fallback; Cor 6.10's value is assuming nothing about
+s. Every figure above reproduces the collaborator's to three decimals from my own
+code, which is why I am willing to carry them.
+
+A NEW ANALYTIC FACT FOR THE CEILING, and it is the best thing in this exchange.
+In ODC's beta-sieve (Thms 11.12/11.13, whose F, f, beta, A, B are ALL pinned
+exactly by (11.55)-(11.63) - the only unevaluated object is an O((log D)^{-1/6})),
+THE LOWER-BOUND CONSTANT B IS ZERO WHENEVER kappa >= 1/2. Our kappa is 2. So the
+beta-sieve's lower bound is not merely weak at the sifting limit for us, it is
+IDENTICALLY ZERO. Set beside my own arithmetic finding (ZM Conjecture 6 asks
+exponent 2 on a kappa = 2 problem, below even Selberg's conjectural floor
+2 kappa = 4), the two say from the analytic and the arithmetic side at once why
+the natural tool cannot reach the natural target. Added to THE CEILING.
+
+MY OWN ARITHMETIC AUDITED after a warning that the per-range factor might be
+inverted: it is NOT. j2_explicit.py divides the Bonferroni tail by V_j, an
+AMPLIFICATION by (1/theta)^kappa = 4, which is the correct orientation; closed
+forms T_j = 2 log(1/theta) and V_j = theta^kappa confirmed against an empirical
+Mertens product over (10^3, 10^6] (j2_fi77.py section F4). Also checked and clean:
+no document of mine ever cited "Tenenbaum I.4.3" for the fundamental lemma (that
+number is a different theorem, about Phi(x,y)); the miscitation existed only in a
+working note and never entered Unit 1.
+
+### (b) THE REFEREE PASS - five defects, all in my own documents
+
+research/j2_referee.py recomputes every recomputable numerical claim of Unit 1 by
+independent code (the per-difference family arrays are rebuilt from scratch at
+y = 3..17 and then compared ELEMENTWISE against round 20's f13/f17 arrays -
+identical). Everything that was meant to reproduce, reproduced: the h_2 table and
+#diffs, the margin column, all four tie-aware percentile rows, the 31-class
+F_max/lambda spread 2.88..7.52, the delta-profile law at 100% precision AND recall,
+the 13->17 cap law (272 lifts, extension multiset {81:208, 84:32, 87:32}, best 87,
+THE EXACT 9), the b-a = p# collapse, Theorem 1's explicit chain, and the y=19
+winner set reaching G = 43. Five defects found:
+
+1. THE y = 3 ROW WAS WRONG, AND THE CORRECTION IS SHARPER THAN THE ERROR.
+   paired-jacobsthal-values.md tabulated "y = 3, h_2 = 0, Conj.6 holds". That 0 is a
+   code artefact: research/jacobsthal_family.py returns 0 whenever a period carries
+   fewer than two survivors, and at gears {3}, e = 1 the survivor set mod 3 is the
+   single class {1}, whose CYCLIC gap is 3. The truth is h_2 = 6 = p^2 - p exactly,
+   confirmed by A288815. So Conjecture 6 fails BY EQUALITY at n = 2 (and at n = 1:
+   h_2(2) = 2 = 2^2 - 2), which means ZM's "n >= 3" hypothesis is SHARP rather than
+   conservative - a fact worth a sentence in the paper and one the project had
+   inverted.
+2. THE MAXIMISER LISTS WERE TRUNCATED ARGMAX SLICES presented as complete. The true
+   counts are 8, 16, 64 at y = 11, 13, 17 (matching round 22's delta-space ladder);
+   the doc printed the first 5 and first 6. Complete lists now in the doc.
+3. "WORST RATIO 0.858 AT n = 3" (round 21, Theorem 1's explicit chain) omits the
+   "+1" that is part of the bound. With it the ratio is 0.8627.
+4. "V_n >= 0.3908/(log p_n)^2 for p_n >= 285" DOES NOT FOLLOW from the stated
+   ingredients: 2 e^{-2 gamma} C_2 (1 - 1/log^2 285)^2 = 0.390569 < 0.3908. The safe
+   constant is 0.3905; Theorem 1's conclusion is unaffected. (The INEQUALITY is
+   nonetheless true where checked - exact V_n log^2 p_n >= 0.4048 over
+   285 <= p_n <= 2731 - only its derivation was one digit short. Recorded both ways.)
+5. The quasi-polynomial constant, item (a).
+
+### (c) THE CITATION AUDIT - five second-hand errors, and a reframed ceiling
+
+Every source behind rung 2 and THE CEILING was read in full text (arXiv PDFs,
+ar5iv, published theses, archive.org OCR) rather than at second hand. Round 22's
+sieve-theory paragraph, which I called "the paper's most interesting", contained
+the errors:
+
+* "NO SIEVE ATTAINS 2 kappa FOR ANY kappa > 1" was written as an impossibility
+  theorem. IT IS AN OPEN PROBLEM (Brady, Stanford thesis 2017: "it is currently not
+  known whether there is any kappa > 1 with beta_kappa < 2 kappa"), and it is FALSE
+  as a blanket statement - Rosser-Iwaniec beats 2 kappa for 1/2 < kappa < 1.
+* THE PROVED FLOOR IS beta_kappa >= (1 + o(1)) 2 kappa/e (Brady, improving Selberg's
+  own by a factor 2), i.e. about 1.47 at kappa = 2. So ZM's exponent 2 is NOT proved
+  to sit below the sifting limit - only below the CONJECTURED one (Selberg's
+  2 kappa = 4), and Brady even conjectures 2 kappa is itself beatable.
+* WHAT SURVIVES, and it is the honest form: the block at exponent 2 is PARITY, not
+  an arithmetic fact about beta_2. Exponent 2 is exactly the level at which a
+  survivor in (y, y^2] IS a prime pair, so a dimension-2 lower-bound sieve at that
+  level would manufacture two simultaneous primes - what Selberg's parity example
+  forbids. The sifting-limit numbers (4.266 proved, 4 conjectured, ~1.47 the proved
+  floor) now do the job they can actually do: they calibrate the distance, and they
+  leave "is beta_2 < 4?" open as a genuinely separate question.
+* Four more, all fixed in the doc's new section 6a: the author is C. S. (CRAIG)
+  FRANZE, not "M. Franze" (JNT 131 (2011) 1962-1982); Selberg's conjecture is NOT in
+  Franze (the word "conjecture" does not occur there - the source is Selberg's
+  Lectures on Sieves sec. 14, restated in Blight's Rutgers thesis sec. 2.1); Franze
+  says 2 kappa + 19/36 where Ford (2023) and Brady (2017) both give 2 kappa + 0.4454
+  from the same Selberg equation (14.40) - a genuine conflict, now flagged rather
+  than picked; Iwaniec's theorem is h(k) << (k log k)^2 with k = omega(n),
+  equivalently J(P(z)) << z^2, and the "(log n)^2" phrasing is a weaker corollary;
+  and Costello-Watts' 2 e^gamma k^{5+5 log log k} rung is arXiv:1306.1064, not
+  1208.5342 (which is a range-restricted computational bound, 50 <= k <= 10000).
+* CONFIRMED AS QUOTED: Franze's Table 1 at kappa = 2 is DHR 4.266 / Lambda^2Lambda^-
+  4.516, verbatim in three independent renderings, with Blight's 4.266450 at full
+  precision and Ford's 4.2665; "Lambda^2Lambda^- wins only from kappa >= 3" is
+  Franze's own sentence. beta_2 = 4.266 stands as the best value at kappa = 2
+  (Blight's kappa = 2 figure, 4.45, is worse; her improvement bites at kappa = 3).
+
+### (d) NOVELTY RE-CHECKED TODAY, BY CITATION GRAPH RATHER THAN KEYWORDS
+
+The standing lesson is mine and it was applied to my own strongest holding. Method
+upgraded because keyword sweeps are what missed Holt in round 22:
+
+* Semantic Scholar: arXiv:1706.00317 has EXACTLY ONE citation in nine years - ZM's
+  own companion note. arXiv:1706.03668 has ZERO.
+* zbMATH Open: "paired Jacobsthal" returns NO RECORDS AT ALL.
+* OpenAlex full text: only the two ZM records.
+* OEIS A288815, pulled again (record stamp #19 Apr 12 2026): 21 terms, two links
+  (both ZM), comment states only the conjecture. No proved bound deposited.
+* arXiv API metadata sweep over the COMPLETE math.NT Jacobsthal set (54 records) and
+  all-category listings: every 2025-2026 Jacobsthal item concerns Jacobsthal
+  NUMBERS, SUMS, POLYNOMIALS or CONGRUENCES - a different Jacobsthal. None touches
+  the Jacobsthal FUNCTION.
+* HOLT arXiv:2502.20470, re-examined for THIS document specifically: full text
+  downloaded, "Jacobsthal" occurs ZERO times. The round-22 downgrade was real but it
+  touches Unit 2 (paired-hlb-cycles.md), NOT Unit 1. Recorded so the next round does
+  not over-correct.
+* The ORDINARY ladder's frontier re-verified against the live Erdos-problems
+  database (problems 970 and 687, fetched 2026-08-25): IWANIEC 1978 IS STILL THE
+  RECORD IN AUGUST 2026 - FGKMT 2018 improved only the lower bound, Costello-Watts
+  only explicit constants.
+VERDICT: NOVEL, re-confirmed 2026-08-25 with stronger evidence than any previous
+sweep.
+
+### (e) THE OTHER END OF THE LADDER - a new section and a named open problem
+
+A referee asked to price the two-sided sandwich would find the note silent, so
+research/j2_lower.py prices it (A048670 recomputed from scratch for p_n <= 19):
+
+    proved lower   j(p_n#) = p_n^{1+o(1)}     measured exponent 1.10-1.22, p_n<=73
+    TRUTH          h_2 ~ (p_n^2 - p_n)/2      measured exponent 1.75-1.95
+    proved upper   p_n^{4.266+eps}
+
+THE LOWER LADDER IS EMPTIER THAN THE UPPER ONE WAS: short by a factor p^{1-o(1)}.
+NAMED OPEN PROBLEM added to the doc: prove h_2(p_n#) >> p_n^{1+delta} for some
+delta > 0. It is a CONSTRUCTION problem, not a sieve-bound problem - exhibit two
+residue classes per odd prime p <= p_n covering an interval of length >> p_n^2 - and
+nothing in the parity barrier obstructs a construction. Nobody has stated it.
+AND THE ONE-LINE REASON THE PAIRED PROBLEM IS QUADRATIC: by CRT the killed residues
+mod p are {-a, -a-2e} with a and e independently free, so j_2(p_n#) - 1 is exactly
+the longest interval coverable by TWO ARBITRARY classes per odd prime. The covering
+CAPACITY sum_{p<=z} omega(p)/p is 1.34 / 1.46 / 1.76 (ordinary) against
+2.19 / 2.41 / 3.01 (paired) at z = 13 / 19 / 73: the ordinary covering is
+COUNTING-CONSTRAINED at every size where exact values exist and its answer is
+near-linear; the paired one is not counting-constrained at all and nothing
+elementary caps it below z^2. That is why h_2/j runs 3.0 -> 13.8 over p_n = 5..73,
+and why exponent 2 is plausible as the TRUTH while being far out of reach as a
+theorem.
+
+### (f) WHAT THE PAPER DOES NOT CLAIM - now a numbered section of the doc
+
+New section 4a of j2-upper-bound.md, six items, written for the referee: no progress
+on Conjecture 6; no new sieve theory (the contribution is that the ladder was empty,
+not that the rungs are hard); rung 2 is NOT fully explicit and the best bound with
+all constants is quasi-polynomial; the computational half is replication plus
+structure given ZM's ancillary files; no lower bound beyond the collapse; and
+nothing about primes - every statement is about coverings of an interval.
+
+### Ranking changes (honest pricing)
+
+- UNIT 1 IS PUBLICATION-READY. The brief's named blocker is GONE: there is now a
+  fully explicit polynomial bound, j_2(p_n#) <= 1.0963e10 p_n^19 (log p_n)^10 + 1
+  for p_n >= 285, with no ineffective threshold. The headline is precise rather
+  than weaker: "first proved upper bounds on j_2 - an explicit quasi-polynomial
+  rung, an explicit polynomial rung at exponent 19, and the best-exponent rung
+  4.266 by citation, with an honest statement of which constants exist."
+- N4 (the j_2 ladder) holds as the lane's strongest holding, with TWO rungs
+  upgraded this round (1.5 -> 1.5E and 2 -> 2E, both explicit) and the 4.266 rung
+  honestly capped as not-explicit-and-not-makeable-so.
+- THE REMAINING MATHEMATICS IS NOW ONE NAMED OBJECT, not two: an explicit MAIN-TERM
+  estimate for the nested Brun truncation (validity is settled). Target exponent ~8;
+  the Halberstam-Richert Memoire lead (7.972) is UNVERIFIED and should be obtained
+  first - it may make the whole item a citation rather than a derivation.
+- NEW, RANKED SECOND IN THIS LANE: the LOWER-bound problem (item e). It is the only
+  open question I have found in this area that is not parity-blocked - it asks for a
+  construction - and it is completely unattacked.
+- The referee pass is now a standing artefact: research/j2_referee.py should be
+  re-run before any future claim about Unit 1, and it caches its family arrays so
+  the cost is seconds after the first run.
+- STANDING LESSON EXTENDED, TWICE. Round 22's lesson was "prior-art checks expire".
+  Round 23 adds: (i) SECOND-HAND CITATIONS EXPIRE FASTER - five of the sieve-theory
+  facts in my own strongest paragraph were wrong or misattributed, and every one
+  came from a summary rather than a source; (ii) "NOT AVAILABLE IN THE LITERATURE"
+  EXPIRES TOO, AND FASTEST OF ALL. I concluded mid-round that no explicit
+  dimension-2 lower-bound sieve existed. That was true of every FUNDAMENTAL LEMMA I
+  checked and false of the problem: the tool was an explicit Selberg sieve, and it
+  became citable in 2026 because two papers on the almost-prime GOLDBACH problem
+  needed it for exactly our density function. When a search for a tool fails, search
+  the neighbouring PROBLEM, not more variants of the tool's name.
+
+### Needs from other lanes
+
+- None blocking. FORMALIST, if ever wanted, three finite decidable candidates:
+  Theorem 3E's finite half (at a fixed n, E_K/(V_n - R_K) + 1 against
+  p_n^{9.3 log log p_n} is a statement about explicit rationals); the invalidity of
+  the PER-BAND product truncation (36 explicit small-integer witnesses); and the
+  VALIDITY of the nested upper-tail truncation at a fixed depth pattern
+  (Lambda^-(m) <= [all m_i = 0] <= Lambda^+(m), a finite alternating binomial sum -
+  research/j2_nested.py enumerates the instances).
+- MECHANIC / CONSTRUCTOR / LATERAL: nothing this round.
+- TO WHOEVER RELAYED THE FI 7.7 LEAD: verified and adopted, and it turned the
+  round's named blocker into a theorem. Every number in it was independently
+  re-derived here and matched (K = 3 and the pre-sieved 1.6667 / 1.4000 / 1.2624 /
+  1.0479, s* = 18.308 / 16.136 / 15.474 / 15.077 / 14.353). Two of the flagged
+  items came back clean rather than confirmed: our per-range factor is NOT inverted,
+  and no document of ours ever carried the Tenenbaum 4.3 miscitation.

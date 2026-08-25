@@ -1064,3 +1064,334 @@ data/kleene23.log); kleene_stream.py (segmented, machines 23 and 29; log
 data/kleene_stream_23_29.log); lambda2_closed.py (closed form + Lateral's
 form + R42 assertions; log data/lambda2_29.log). Novel doc:
 docs/novel/kleene-generator.md.
+
+---
+
+## Round 23 append (the J=5 object, and bounded state DOES certify): R49-R54
+
+**R49 (THE HISTORY LADDER - R47's negative OVERTURNED; bounded state certifies
+(D) at 29->31, and three gaps of history are EXACT at every scannable step;
+research/kleene_history.py, logs data/kleene_history_11_23.log,
+kleene_history_29.log).** R47 replaced the Kleene generator's per-opening
+potential h by a function of a bounded class (last gap value; corridor phase
+mod 35/385/5005 with the value) and found NO bounded state certifies at
+29->31: 99/99/91 against a budget of 74, exact 58. It named three repairs.
+All three are the same repair, and it works: PUT GAP HISTORY IN THE STATE.
+
+    ABSTRACTION A_m(mod): state = the last m-1 gap VALUES ending at the
+    current opening, optionally the corridor phase mod 35/385, and the tooth.
+    An EDGE exists iff the m-tuple of consecutive gaps it encodes is REALISED
+    somewhere in the period and the middle gap's T3 transition is legal.
+
+Because the gap value is now IN the state, R47's three losses vanish at once:
+the edge weight is exactly d_i (not max over the sources realising a class
+edge), the base R is exactly d_i, and for m >= 3 the LEFT FLANK L is exactly
+d_{i-1} (the "flank abstracted separately" item). Every real chain maps to an
+abstract walk of the same weight, so the closure is a SOUND upper bound at
+every m, and it is non-increasing in m. A_2 reproduces R47's "value only"
+column digit for digit at all six steps - the check I trusted least going in.
+
+    step        exact  budget   A_2   A_2+35  A_2+385   A_3  A_3+35  A_3+385   A_4  A_4+35
+    11 -> 13      11      20     11      11       11     11     11       11     11     11
+    13 -> 17      18      28     21      21       20     18     18       18     18     18
+    17 -> 19      25      37     30      28       28     25     25       25     25     25
+    19 -> 23      34      48   CYCL      45       42     35     35       34     34     34
+    23 -> 29      43      63     60      60       45     43     43       43     43     43
+    29 -> 31      58      74   CYCL      99       99     85     85       72     58     58
+
+THREE FINDINGS.
+(i) AT THE FAILING STEP, TWO GAPS OF HISTORY BEAT ANY AMOUNT OF CORRIDOR
+    PHASE. At 29->31 R47's ladder went 99, 99, 91 as the phase modulus climbed
+    35 -> 385 -> 5005; A_3 with NO phase at all gives 85 from 1,460 states,
+    and A_3 + phase 385 CERTIFIES (72 <= 74, margin +2 = 0.06q'). I was
+    refining the wrong axis. (Not uniform: at 19->23 R47's mod-5005 state
+    gives 34 = exact where A_3 alone gives 35 - the two axes are genuinely
+    different information and the combination dominates both.)
+(ii) A_4 - three gap values, PHASE-FREE, 14,368 states and 3,513 edges at
+    machine 29 - is EXACT at ALL SEVEN scannable steps (11, 18, 25, 34, 43,
+    58, 88), machine 31 included (see the refuted prediction below). A
+    fixed-order, four-point local rule reproduces F(M+q') with no error at
+    every step anyone can scan.
+(iii) A_m IS NILPOTENT EXACTLY WHEN m > A_relax(M) (R45's relaxation arity).
+    Measured: A_relax = 1,2,2,3,2,3,4 at machines 11..31 and the smallest
+    acyclic order is 2,2,2,3,2,3,4 - agreement at 7 of 7 (at machine 31, A_3
+    is CYCLIC and A_4 is not). R41's counting boundary is precisely "the
+    abstract operator loses nilpotency below the arity", and the arity IS the
+    order of history the certificate needs.
+
+MACHINE 31 (step 31->37, period 33,426,748,355; 6.23e9 gaps, 4,924 s), and A
+PRE-REGISTERED PREDICTION HALF-REFUTED - the refuted half is the good news.
+Registered before the run in data/kleene_history_31_prediction.txt:
+    P1 A_3 value-only CYCLIC                      -> CONFIRMED
+    P2 A_4 value-only nilpotent                   -> CONFIRMED
+    P3 A_4 NOT exact (it is the boundary order)   -> REFUTED, A_4 = 88 = exact
+    P4 A_4 expected to FAIL the budget            -> REFUTED, 88 <= 95
+My reasoning for P3/P4 was that the boundary order A_{A_relax+1} had been loose
+at every earlier step (21, 30, 35, 60, 85 against exacts 18, 25, 34, 43, 58),
+so I extrapolated a ratio. Wrong: at machine 31 the boundary order is EXACT.
+A_5 also gives 88, as soundness requires. A_3 + phase 385 gives 115 and FAILS
+by +20, so the phase axis does not rescue order 3 there either.
+    step        exact  budget   A_3    A_3+385   A_4   A_5
+    31 -> 37      88      95   CYCL      115      88    88
+New exact data from the same pass, all cross-validating existing rows:
+qualmax_{k+2} = 68, 85, 88, 68 (the winner is at layer 2, a 4-gap window);
+Q_J(31;12) = 68, 85, 90, 91, 90, 88, 0 for J = 2..8, so max_J Q_J = 91 <= 95
+(margin +4); the depth-3 chain inventory is 216 windows, 188 of word
+(12,25,12) and 28 of (25,12,25) - reproducing R45's T3 cross-check exactly;
+and the maximising window is [11, 12, 37, 28] = 88, i.e. R25's known PADDED
+winner (37,12) with flanks (28,11), re-derived from the generator.
+So the generator is arity-free AND, at every measured step, bounded-state
+certifiable. It is still not MACHINE-FREE: A_m's state space is O(F^{m-1}) and
+its edge set is the machine's own dictionary of realised gap m-tuples. What
+round 22 called the wall is now one concrete finite object (R52).
+
+**R50 (THE J=5 OBJECT AT 29->31, EXACT AND PHANTOM - the round's brief).**
+Every quantity at this step splits by LAYER k (a chain of k links = k+1 killed
+openings = a window of k+2 gaps, so layer 3 IS the J=5 window). Exact, full
+period at machine 29 (2.147e8 openings, 109 s):
+
+    layer k          0     1     2     3          (window gaps: 2, 3, 4, 5)
+    qualmax_{k+2}   55    58    55    55          exact, residue + T3
+    Q_{k+2}(29;10)  55    65    68    71          exact, size floor 2u' = 10
+    A_2 + ph 35     55    80    92    99          FAILS  (+25)
+    A_3 value only  55    58    67    85          FAILS  (+11)
+    A_3 + ph 385    55    58    63    72          certifies
+    A_4 value only  55    58    55    55          EXACT
+
+THE EXACT J=5 INVENTORY IS FOUR WINDOWS. All four have the SAME interior word
+(10, 21, 10) - span 41 - and flank pairs (7,7), (7,7), (7,4), (4,7), giving
+window sums 55, 55, 52, 52. Addresses 858111062, 220171102, 672200337,
+406081827. (Independently reproduces Mechanic's four k=4 addresses and R45's
+T3-filtered count 4 of 8 residue runs; the depth-2 layer is 13,000 windows,
+6,500 (10,21) and 6,500 (21,10), exactly mirror-paired.)
+THE FAILURE IS ENTIRELY IN THE FLANKS, AND IT IS ENTIRELY AT LAYER 3. Every
+failing bound is attained at layer 3, and every one of them is the SAME
+interior word with flanks that do not occur:
+
+    A_2 + phase 35   [29, 10, 21, 10, 29]  = 99     (realised PAIRS only)
+    A_3 value only   [22, 10, 21, 10, 22]  = 85     (realised TRIPLES)
+    A_3 + phase 385  [22, 10, 21, 10,  9]  = 72
+    truth            [ 7, 10, 21, 10,  7]  = 55     (realised 5-tuples)
+
+So the J=5 object is not a hard configuration at all: the machine's real
+depth-5 maximum is 55, NINETEEN under budget, and the true maximiser sits at
+layer 1 (58, a 3-gap window) - par trading (R30) in its sharpest form. The
+"J=5 failure" was a property of the ABSTRACTION, and the flank envelope of the
+word (10,21,10) collapses 29 -> 22 -> 7 as the required context deepens from
+pairs to triples to 5-tuples. That collapse is exactly what (D) asserts, and
+it is invisible to any 2- or 3-point census (R37's boundary, re-measured).
+
+**R51 (THE MARKED QUALIFYING SPECTRUM IS EXACT, NOT A RELAXATION - the second
+half of the round's "coincidence" retracted, with the mechanism;
+research/marked_bruteforce.py, research/marked_survival.py, logs
+data/marked_survival_23.log, marked_survival_2329.log).** INDEPENDENTLY AND
+CONCURRENTLY FOUND BY MECHANIC (agents-shared "Mechanic round 23 (EARLY
+POST)", appended to that file after this round began and read only after this
+audit was complete). Same bug, same mechanism, same corrected numbers, two
+implementations, two lanes. What is added here is the PROOF that the equality
+Mechanic measures at 30 of 30 entries is forced, and the exact identification
+of the number 85. Round 22 reported
+Q^[5](23) = 85 against budget 74 as an independent failure at the same step.
+A sound relaxation cannot report that number, and it does not.
+
+SANDWICH LEMMA (proved, then verified). Fix a phase phi. A relaxed window
+x_0 < ... < x_m with marked set M (|M| = J-1, every unmarked interior killed,
+consecutive marked distances >= a) has surviving-interior set S contained in
+M, so consecutive members of S are also >= a apart. Let s^- be the largest
+survivor <= x_0 and s^+ the smallest survivor >= x_m; the survivors in
+[s^-, s^+] are exactly {s^-} u S u {s^+}, a NEW-machine window of |S|+1 gaps
+clearing the floor, of span >= x_m - x_0. Hence
+
+    Q_J(new) <= Q^[J](old) <= max_{1 <= j <= J} Q_j(new),
+
+so wherever Q_j(new) is non-decreasing up to J the relaxation LOSES NOTHING,
+and in every case max_J Q^[J](old) = max_J Q_J(new) exactly - which is the
+only quantity the criterion uses.
+
+VERIFIED FOUR WAYS. (a) BRUTE FORCE at 11->13 (machine 11 is 135 openings, so
+every window, every phase and every marked subset is enumerated with no
+pruning and no DP): Q^[J](11) = [16, 18, 23, 0] = the exact Q_J(13;6), where
+marked_qspec.py reports [16, 23, 23, 0]. (b) The CORRECTED implementation
+(same pruning, feasibility fixed) at all four checkable steps returns the
+exact Q_J(new) in 22 of 22 entries: [16,18,23,0], [25,28,31,32],
+[31,35,37,38], [39,43,50,55,60,0] - against marked_qspec.py's [16,23,23,0],
+[25,28,32,33], [31,35,38,38], [39,50,50,55,60,0]. (c) At the disputed step,
+the corrected scan of machine 23 seeded at 70 finds NOTHING above 71 at any
+J <= 7 in 79 s: max_J Q^[J](23) = 71 <= 74, THE 29->31 RUNG IS NOT LOST. (d)
+Q_J(29;10) recomputed from machine 23 by PHASE DECOMPOSITION (machine 29's
+openings in copy j are the old openings gear 29 does not kill at the
+corresponding phase) equals the direct machine-29 full-period scan exactly:
+55, 65, 68, 71, 71, 71.
+
+THE MECHANISM, exactly. marked_qspec.feasible's recursion returns True as soon
+as the marked quota J-1 is filled, without checking that the surviving
+interiors still to come are marked - and an unmarked interior is required to
+be KILLED. Worked instance, the 11->13 witness it accepts: window (252, 275),
+interiors [257, 263, 268, 270]; at phase 8 the survivors are {263, 268}, whose
+distance is 5 < a = 6, so the window is inadmissible at J = 3; the DP instead
+takes M = {257, 263} (distance 6), hits cnt = 2 and returns True, leaving the
+survivor 268 unmarked. The reported 85 is exactly my SURVIVOR-COUNT BOUND at
+J = 5 (max span of a machine-23 window carrying at most 4 surviving interiors,
+floor and marking ignored): measured 55, 65, 70, 85, 90, 92 at J = 2..7 - the
+J=5 entry is 85 to the unit. So the bug drops the floor entirely on that
+window. NET: the marked spectrum is a BETTER tool than advertised (exact at
+every step, not "buys exactly one rung"), and the round's premise of two
+independent methods failing at one step is HALF WITHDRAWN: the 85 on MY side
+(R50, A_3) is real and correct; the 85 on the census side is an artifact and
+the two are different objects that coincide numerically.
+
+**R52 (MACHINE-FREE IS SATURATED AT THE CORRIDOR - a measured negative with
+numbers; research/machinefree_cert.py).** Replace "realised m-tuple" in A_m by
+"CORRIDOR-ADMISSIBLE m-tuple with values in 1..F" - the corridor walk mod 35
+(gears 5,7) or 385 (gears 5,7,11) staying in the exposed set E - and the edge
+set depends only on the pair (F, q'), never on a period. Sound by inclusion.
+Measured at seven steps:
+
+    step        budget  exact   MF_3 mod 35  MF_3 mod 385  MF_4 mod 35  layer 0
+    11 -> 13       20      11      15  OK       15  OK       15  OK        14
+    13 -> 17       28      18      31 +3        31 +3        31 +3         21
+    17 -> 19       37      25      47 +10       47 +10       47 +10        36
+    19 -> 23       48      34     111 +63      111 +63      111 +63        50
+    23 -> 29       63      43     105 +42      105 +42      105 +42        67
+    29 -> 31       74      58     125 +51      125 +51      125 +51        86
+    31 -> 37       95      88     211 +116     211 +116     211 +116      116
+
+THE THREE COLUMNS ARE IDENTICAL AT EVERY STEP. Neither a finer corridor
+modulus nor more history buys a single unit once "realised" is weakened to
+"corridor-admissible": the realizability information A_m uses is NOT corridor
+information. This is X11 ("corridors constrain where, never how big") and X13
+(tier B adds exactly zero) in their sharpest form yet, now as a numeric
+saturation rather than an exclusion count. And LAYER 0 alone - which is
+lemma 1, F_2 <= F + q', with no chain in it - is already 2F or 2F - 2 at every
+step and fails machine-free from 19->23 on. So the machine-free wall is not
+in the deep layers (D) was always thought to be about; it is in the two-gap
+statement, which is R31's finding ("deeper cases are the EASIER ones") in
+certificate form.
+
+**R53 (HOW MANY FACTS ABOUT THE MACHINE DOES (D) ACTUALLY NEED? 6,395 -
+measured by counterexample-guided refinement; research/cegar_cert.py, logs
+data/cegar_29.log, cegar_29_f2.log).** R52 leaves a clean question: MF_4 is
+machine-free and gives 125; A_4 uses the machine's realised 4-tuples and gives
+58 (exact). The difference is a set of yes/no facts, "is this 4-tuple of
+consecutive gaps realised by M?". MF_4 has 140,471 candidate edges (68,578
+distinct value 4-tuples) against A_4's 3,513 realised ones, so answering all
+of them is hopeless. Counterexample-guided refinement measures how many are
+actually needed: close the system; if the bound clears F + q' stop; otherwise
+read off a maximising abstract walk, ask the oracle about each of its
+4-tuples, and delete every tuple that is not realised (deleting a VALUE tuple
+removes it at every corridor phase at once - sound, since an unrealised tuple
+occurs nowhere). The bound is an upper bound on F(M+q') at every stage.
+
+  RUN 1, machine-free start, at 29->31: the bound falls 125 -> 86 in 12,781
+  refinements (13,460 queries) and then STOPS - the maximising walk is the
+  EMPTY one. 86 = 43 + 43 is layer 0, which uses no edge at all, so no amount
+  of tuple refinement can touch it. That is R52's wall reappearing as a
+  termination condition rather than a table entry.
+  RUN 2, with ONE extra number given - F_2(29) = 55, i.e. lemma 1's left-hand
+  side, which deletes every state whose flank+base pair exceeds it (131,804 of
+  186,732 states survive, 83,195 edges): the bound falls 125 -> 74 and
+  (D) IS CERTIFIED at iteration 5,863, after 6,395 ORACLE QUERIES, 55 s.
+
+SO THE OBLIGATION AT 29->31 IS: lemma 1 at that machine (one integer) PLUS
+6,395 yes/no facts about gap 4-tuples - against a 1,078,282,205-slot period
+scan. HONEST STATUS: the oracle here is the dumped realised-tuple set, which
+came from the scan, so this MEASURES the obligation and does not yet avoid it;
+the refinement is greedy (one walk per iteration), so 6,395 is an upper bound
+for this strategy; and taking F_2(M) as given is taking layer 0 of (D) as
+given, which must be said plainly - the certificate reduces (D) to lemma 1
+plus a finite tuple dictionary, it does not replace both. At R43's measured
+1e3-1e6 nodes per zero-certificate, 6,395 queries is 6.4e6 to 6.4e9 nodes, and
+the queries are all span-4 patterns, the cheap end of R43's cost curve.
+
+**R54 (CROSS-LANE: LATERAL'S T1 EXPLAINS R47's FAILURE EXACTLY, AND A_m
+ESCAPES IT - the two results are complementary, not in tension).** Lateral's
+round-23 T1: a potential on the slot line that is a function of k mod m for a
+PROPER DIVISOR m of P certifies nothing, because every class mod m contains a
+blocked slot and the inequality h(k) >= h(k-1) + 1 then forces h up around the
+whole m-cycle (0 >= m). That is EXACTLY why R47's states failed: mod 35, 385
+and 5005 are all proper divisors of the machine's period, so every one of them
+"forgets gears" and cannot bound anything - the round-22 failure was
+structural, not a bad choice of modulus, and I was wrong to read it as one.
+A_m IS NOT SUCH A STATE. Its state is the tuple of the last m-1 GAP VALUES,
+which is not a function of k mod anything, and its edge set carries
+machine-specific facts (which gap m-tuples are realised). So T1 does not apply,
+and indeed A_3 + phase 385 and A_4 certify where every congruence state fails.
+The two lanes' results fit exactly: T1 says the congruence axis is dead by
+theorem; R49 says the history axis is alive by measurement. The right reading
+of R47's ladder 99 / 99 / 91 is that it was never converging - it was three
+samples of a family Lateral has now proved vacuous.
+ON THEIR ARITY LAW: Lateral's arity (how many gears a potential sees at once,
+required ~ 2 sum 1/q ~ 2 log log y) and my order m (how many consecutive gaps
+the state remembers, m > A_relax(M) = 1,2,2,3,2,3,4 at m11..31) are different
+quantities about different objects - theirs bounds F(M) directly, mine bounds
+the INCREMENT given the old machine. They do not contradict; the honest test of
+whether MY order grows is the pre-registered machine-31 run
+(data/kleene_history_31_prediction.txt), which predicts A_3 CYCLIC, A_4
+nilpotent-but-loose, and expects A_4 to FAIL - i.e. it predicts precisely
+Lateral's "a fixed arity goes vacuous while remaining feasible" for my family
+too. Their negative on unitary invariants (singular values, Schatten norms,
+Jordan type, filtration dimensions, numerical range, resolvent norms and
+pseudospectra are all functions of the gap histogram) costs my plan nothing -
+no branch of it routes through an invariant; A_m is a certificate, which is the
+one frame they identify as escaping. Their Maslov-dequantisation link (the
+Kleene star, the Boolean filtration and the analytic resolvent as one
+computation in three semirings) is recorded as a lead, not used this round.
+Finally, R48's "converging ~0.029 modulus deficit" is CLOSED by their item 4
+(it is the non-geometricity of the exposed-step law, lambda_2 = q-hat(1/e)); I
+drop it from my open list.
+
+**Round-23 negatives and corrections, recorded:**
+(i) R47's "at 29->31 NO bounded state certifies" is WITHDRAWN: it was true of
+    every state R47 tested (all of them corridor-phase refinements of a
+    one-gap state) and false in general - A_3+phase385 certifies, A_4 is
+    exact. The lesson is the one R41 already stated and R47 did not apply:
+    the missing information is JOINT REALIZABILITY of consecutive gaps, so
+    refine the history, not the congruence.
+(ii) Mechanic's Q^[J] failure at 29->31 is an implementation artifact (R51).
+    I did not accept the coincidence the brief was built on; the correct
+    reading is that only one method ever failed there.
+(iii) The machine-free corridor certificate is dead, quantified (R52).
+(iv) The first machine-31 run died of memory starvation (91 MiB allocation
+    refused at 740 MB free, the rest held by other lanes' jobs - R22(iv)
+    repeating); re-run with int16/int32 arrays and 24e6-slot segments, and it
+    completed (4,924 s, full period, all assertions passed).
+(v) MY OWN PRE-REGISTERED PREDICTIONS P3 and P4 FOR MACHINE 31 ARE REFUTED
+    (see R49): I predicted the boundary order A_4 would be loose there and
+    would fail the budget, by extrapolating the boundary order's looseness at
+    the five earlier steps. It is exact. Extrapolating a ratio across steps is
+    the same error the standing rule names ("never extrapolate a per-step
+    share - look it up"), committed in a lane that had just quoted it.
+(vi) A scratchpad file I was drafting in was overwritten by another lane's
+    write to the same path mid-round; nothing filed was lost, but shared
+    scratch paths are not safe and I re-drafted directly into the repo.
+
+**NAMED NEXT CONSTRUCT (and why it was not built this round): THE GAP-TUPLE
+DICTIONARY WITHOUT A SCAN.** (D) at a step is now exactly: "given the set of
+realised 4-tuples of consecutive gaps of M, run a 14k-state max-plus closure".
+The closure is finite, small and kernel-checkable as it stands; the dictionary
+is the only thing that still needs the period. R52 kills the corridor route to
+it. The live route is R43's pruned-IE exact pattern counter, which decides ONE
+tuple by CRT arithmetic with no scan (run_3(29) = 8 reproduced in 14 s from a
+1.08e9-slot period), and only the tuples whose window sum could exceed F + q'
+need deciding. THE SIZE OF THE OBLIGATION IS NOW MEASURED, NOT GUESSED (R53):
+deciding EVERY candidate would be 68,578 zero-certificates at R43's 1e3-1e6
+nodes each (1e8 to 1e11 nodes, too many as it stands), but counterexample-
+guided refinement needs only 6,395 of them - and it certifies. What was not
+built is the CRT side, answering those 6,395 queries by R43's pattern counter
+instead of by the dumped realised set; that needs R43's cost curve measured on
+span-4 patterns, which is a small, well-defined next job. The round's spine
+was the J=5 characterisation and the ladder, so it was deliberately left.
+
+**Reproduction (round 23):** kleene_history.py (the history ladder + exact
+layers + deep-chain inventory + size-floor spectrum, all asserted; logs
+data/kleene_history_11_23.log, kleene_history_29.log, kleene_history_31.log,
+prediction in kleene_history_31_prediction.txt); marked_bruteforce.py
+(exhaustive 11->13 audit); marked_survival.py (phase decomposition, the
+survivor-count bound, and the corrected marked spectrum; logs
+data/marked_survival_23.log, marked_survival_2329.log); machinefree_cert.py
+(R52); cegar_cert.py (R53, logs data/cegar_29.log, cegar_29_f2.log; the
+realised-tuple dump data/tuples4_29.txt comes from
+KH_DUMP4=... kleene_history.py 29 --specs 4:0). Every census full period with
+the cyclic seam stitched; Q_J values
+cross-checked against Mechanic's independently-produced rows at machines 13,
+17, 19, 23 and 29.

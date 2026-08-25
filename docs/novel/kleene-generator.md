@@ -4,7 +4,9 @@ Status: SCRIPT-VERIFIED (exact, full period) - the identity is asserted against 
 F(M+q') at all six scannable consecutive steps 11->13 .. 29->31 in
 `research/kleene_generator.py`; the certificate equivalence and the finite-state
 abstraction ladder are computed in the same script with assertions.  Established round 22
-(constructor).  THE CERTIFICATE DIRECTION IS KERNEL-CHECKED since round 22 (formalist,
+(constructor); the HISTORY LADDER of section 4b added round 23
+(`research/kleene_history.py`, `research/machinefree_cert.py`), which overturns round 22's
+"no bounded state certifies at 29 -> 31".  THE CERTIFICATE DIRECTION IS KERNEL-CHECKED since round 22 (formalist,
 proofs/Potential.lean): `Potential.IsPotential` is the three one-step clauses,
 `Potential.D_of_potential` proves that a potential bounds every legal chain of every
 length (abstract over the state type, so Constructor's (opening, tooth) states are
@@ -180,12 +182,84 @@ Inside the project:
   operator bounds nothing at all.  Adding the corridor phase mod 35 restores nilpotency
   at both, and at 19 -> 23 it also certifies (D): that is the corridor-resonance carrier
   (R42) doing proof work rather than statistical work.
-  HONEST NEGATIVE, and it is the important half: at 29 -> 31 NO bounded state tested
-  certifies - mod 35, 385 and 5005 give 99, 99, 91 against a budget of 74 (exact 58).
-  The generator is arity-free; it is NOT yet machine-free.  The loss is in the crude
-  sound edge weight (max over all source openings realising a class edge) and in pairing
-  a long chain with a large flank that never co-occur; tightening those is the named
-  next construct.
+  ROUND-22 NEGATIVE, NOW OVERTURNED (round 23, see section 4b): at 29 -> 31 no
+  CORRIDOR-PHASE state certified - mod 35, 385 and 5005 gave 99, 99, 91 against a budget
+  of 74 (exact 58).  The diagnosis in that round ("the crude sound edge weight; a long
+  chain paired with a large flank that never co-occur") was right, and both defects are
+  removed by putting GAP HISTORY in the state instead of more corridor phase.
+
+## 4b. THE HISTORY LADDER - the bounded state that does certify (round 23)
+
+Define, for m >= 2, the m-POINT HISTORY ABSTRACTION A_m: the state of opening i is the
+tuple of the last m-1 gap values (d_{i-m+2}, ..., d_i), optionally together with the
+corridor phase of o_i mod 35 / 385, and the tooth.  An EDGE exists exactly when the
+m-tuple of consecutive gaps it encodes is REALISED somewhere in the period and the T3
+transition of the middle gap's class is legal.  Because the gap value now lives in the
+state, three things become exact that were maxima over a class in the round-22
+abstraction: the edge weight (= d_i), the base R (= d_i) and - for m >= 3 - the LEFT
+FLANK L (= d_{i-1}).  A_2 is the round-22 "value only" state.
+
+Every real chain maps to an abstract walk of the same weight, so the class-level closure
+is a SOUND upper bound on F(M+q') at every m, and it is non-increasing in m.  Measured
+exactly, full period, `research/kleene_history.py`:
+
+    step        exact  budget   A_2   A_2+35  A_2+385   A_3  A_3+35  A_3+385   A_4  A_4+35
+    11 -> 13      11      20     11      11       11     11     11       11     11     11
+    13 -> 17      18      28     21      21       20     18     18       18     18     18
+    17 -> 19      25      37     30      28       28     25     25       25     25     25
+    19 -> 23      34      48   CYCL      45       42     35     35       34     34     34
+    23 -> 29      43      63     60      60       45     43     43       43     43     43
+    29 -> 31      58      74   CYCL      99       99     85     85       72     58     58
+    31 -> 37      88      95   ----      ---      ---   CYCL    ---      115     88     88
+
+(the 31 -> 37 row is A_3 value-only CYCLIC, A_3 + phase 385 = 115, A_4 = 88 = exact,
+A_5 = 88; full period 33,426,748,355 slots, 6.23e9 gaps, 4,924 s)
+
+AT THE FAILING STEP, TWO GAPS OF HISTORY BEAT ANY AMOUNT OF CORRIDOR PHASE: at 29 -> 31
+the round-22 ladder went 99, 99, 91 as the phase modulus went 35, 385, 5005, while A_3
+with NO phase at all gives 85 from 1,460 states, A_3 + phase 385 CERTIFIES (72 <= 74), and
+A_4 - three gap values, phase-free, 14,368 states and 3,513 edges at machine 29 - is EXACT
+at all SEVEN scannable steps, machine 31 included.  (The two axes are different information, not nested: at 19 -> 23 the round-22
+mod-5005 state gives the exact 34 where A_3 alone gives 35.)  So (D) at
+29 -> 31 is certifiable from a bounded local state after all; the object that was missing
+was the machine's DICTIONARY OF REALISED GAP 4-TUPLES, not a finer congruence.
+
+A_m is nilpotent exactly when m > A_relax(M) (R45's relaxation arity) - measured at all
+seven steps: A_relax = 1, 2, 2, 3, 2, 3, 4 and the smallest acyclic order is
+2, 2, 2, 3, 2, 3, 4.
+So the round-21 counting boundary is precisely "A_m is not nilpotent below the arity",
+and the arity is the order of history the certificate needs.
+
+STILL NOT MACHINE-FREE, and now measured rather than guessed.  Replace "realised
+m-tuple" by "CORRIDOR-ADMISSIBLE m-tuple with values in 1..F" - a machine-free edge set
+depending only on (F, q') - and the closure blows up (`research/machinefree_cert.py`):
+
+    step        budget  exact   MF_3 mod 35   MF_3 mod 385   MF_4 mod 35   layer 0 (lemma 1)
+    11 -> 13       20      11      15  OK         15  OK         15  OK          14
+    13 -> 17       28      18      31 +3          31 +3          31 +3           21
+    17 -> 19       37      25      47 +10         47 +10         47 +10          36
+    19 -> 23       48      34     111 +63        111 +63        111 +63          50
+    23 -> 29       63      43     105 +42        105 +42        105 +42          67
+    29 -> 31       74      58     125 +51        125 +51        125 +51          86
+    31 -> 37       95      88     211 +116       211 +116       211 +116        116
+
+HOW MANY MACHINE FACTS THE CERTIFICATE ACTUALLY NEEDS (`research/cegar_cert.py`).  The gap
+between MF_4 (125) and A_4 (58) is a set of yes/no facts "is this gap 4-tuple realised?".
+Counterexample-guided refinement - close, read off a maximising walk, ask about its tuples,
+delete the unrealised ones (sound at every stage) - measures the count.  From the pure
+machine-free start the bound falls 125 -> 86 and then STOPS, because 86 = 43 + 43 is layer
+0 and layer 0 uses no edge at all.  Given ONE extra integer, F_2(29) = 55 (lemma 1's
+left-hand side), the bound falls 125 -> 74 and (D) IS CERTIFIED after 6,395 queries.  So at
+29 -> 31 the obligation is lemma 1 plus 6,395 four-tuple facts, against a 1,078,282,205-slot
+period scan.  (Honest: the oracle is the dumped realised set, so this SIZES the obligation
+rather than discharging it without a scan; and the refinement is greedy, so 6,395 is an
+upper bound for that strategy.)
+
+The three MF columns are IDENTICAL at every step: neither a finer corridor modulus nor more
+history buys anything once "realised" is weakened to "corridor-admissible".  Layer 0 -
+which is lemma 1, F_2 <= F + q', with no chain in it at all - already fails machine-free
+from 19 -> 23 on, and its value is 2F or 2F - 2 at every step: the corridor constrains
+where a gap sits, never how big it is (X11, X13, in their sharpest form yet).
 
 Outside: for any sieve whose per-prime strike pattern has a finite-state grammar, the
 one-prime increment of the maximal gap is a max-plus closure and the increment law has a
@@ -196,6 +270,13 @@ grammar is genuinely two-letter with forced alternation.
 
 - The increment law / part (D): this is now its certificate form, and the remaining task
   is a CLOSED FORM for h (or for a bounded-state super-solution) valid at every machine.
+  Round 23 narrows this to ONE object: the machine's set of realised 4-tuples of
+  consecutive gaps.  Given that dictionary, a 14k-state max-plus closure settles (D) at
+  machine 29 exactly; the open part is producing (or soundly over-approximating) the
+  dictionary without a period scan.  Corridor congruences provably do not (section 4b);
+  the pruned-IE exact pattern counter (R43, `research/qualrun_zerocert.py`) decides one
+  tuple by CRT arithmetic with no scan, and only the tuples whose window sum could exceed
+  F + q' need deciding, which is a small set.
 - Ziller-Morack Conjecture 6 / h_2 growth: the per-prime increment is a longest path in
   an automaton of size O(n); the growth question becomes a bound on that path.
 - Jacobsthal g(n): the one-residue analogue is the same construction with a single tooth

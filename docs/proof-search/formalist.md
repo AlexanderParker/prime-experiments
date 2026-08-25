@@ -1345,3 +1345,489 @@ at once.
    multi-round job, and only if 3 fails.
 5. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged from
    round 21.
+
+## Round 23
+
+Ledger: +6 libs (`Machine23QCore`, `Machine23Q`, `Machine29`, `CoveringCert`, `CoveringCert2`,
+`PotentialLadder`), all registered with `[[lean_lib]]` and in `defaultTargets`.
+Build green at **1334 jobs** (1322 at round 22; 1332 before the post-routing section 34), zero sorries, zero warnings in
+owned files, no `native_decide` / `ofReduceBool` anywhere. Axiom audit run over
+every new theorem: the standard three or fewer;
+**`CoveringCert.cert_signs` depends on NO AXIOMS** and
+`Machine29.merge_alphabet` on `[propext, Quot.sound]`. Everything was verified
+over full periods in Python BEFORE formalising (scratchpad m23_qspec.py,
+mirror23.py, gencert.py, marked_check.py, marked_check2.py, marked29.py). Every
+job the round launched finished before this write-up.
+
+Briefed items 2 and 3 landed in full. Item 1 (the 23->29 rung) did NOT close,
+and the reason is a MEASURED kernel-cost fact, not a mathematical one. The
+round's most consequential output is a correction to the census item 1 was
+built on, which turned out to be reached independently in two other lanes the
+same round.
+
+LABEL, corrected (Constructor R49, adopted): the step everyone had been calling
+"23->29" in the failure discussion is 29->31 (budget `F(29) + 31 = 74`); both
+objects are indexed by their OLD machine, 29 for Constructor's abstraction and
+23 for the marked spectrum, so one step carried two names. **The 23->29 rung
+(budget `F(23) + 29 = 63`) was never in doubt** - it is the rung sections 30-31
+below are about, and it is the one my `Machine29.lean` states.
+
+### 30. THE MARKED QUALIFYING SPECTRUM: THE PUBLISHED NUMBERS ARE INFLATED, THE
+### DISCREPANCY IS ONE LINE OF A DP, AND ONE VERDICT REVERSES
+
+My brief said to verify Mechanic's `Q_j(new) <= Q^[j](old)` myself at the steps
+where both sides are known before building on it. I did, from their written
+DEFINITION rather than their code, and the re-derivation disagrees with their
+published table.
+
+    step (floor)     J:      2     3     4     5     6     7
+    11->13 (a=6)  Q_J(13)   16    18    23     0     0     0    exact
+                  published 16    23    23     0     0     0
+                  corrected 16    18    23     0     0     0
+    13->17 (a=6)  Q_J(17)   25    28    31    32    34     0    exact
+                  published 25    28    32    33     -     -
+                  corrected 25    28    31    32    34     0
+    17->19 (a=8)  Q_J(19)   31    35    37    38     0     0    exact
+                  published 31    35    38    38     -     -
+                  corrected 31    35    37    38     0     0
+    19->23 (a=10) Q_J(23)   39    43    50    55    60     0    exact
+                  published 39    50    50    55    60     0
+                  corrected 39    43    50    55    60     0
+    29->31 (a=10) Q_J(29)   55    65    68    71    71    71    (Mechanic's exact)
+                  published 55    65    68    85    73    73
+                  corrected 55    65    68    71    71    71
+
+**THE CORRECTED MARKED SPECTRUM EQUALS THE EXACT `Q_J(new)` IN ALL 30 ENTRIES OF
+ALL FIVE STEPS.** The construct is not merely a tight relaxation; here it is
+exact, entrywise.
+
+THE DISCREPANCY IS LOCATED EXACTLY, and it is one line of a dynamic program.
+`research/marked_qspec.py`'s feasibility search places `J-1` marks and returns
+success the moment the count is reached; it never checks that the interiors
+AFTER the last mark are killed. So it accepts windows whose tail contains an
+opening that is neither marked nor killed - a configuration the definition
+forbids. Re-running MY code with that one check disabled REPRODUCES THE
+PUBLISHED ROW DIGIT FOR DIGIT at every step (16/23/23/0, 25/28/32/33,
+31/35/38/38, 39/50/50/55/60/0). That is the proof of diagnosis; nothing else
+differs between the two implementations.
+
+CONSEQUENCES:
+- The headline verdict at 19->23 STANDS and was conservative: published
+  `max_J Q^[J](19) = 60 <= 63`, corrected also 60 (the error bites at J = 3, not
+  at the maximum). The 23->29 rung's arithmetic is unaffected.
+- **The verdict at 29->31 REVERSES.** Published `Q^[J](23) = 55 65 68 85 73 73`,
+  `max = 85` against budget 74, concluding "the construct buys EXACTLY ONE
+  RUNG". My corrected recomputation over machine 23's full 37,182,145-slot
+  period (7,952,175 openings, 191 s) gives **`55 65 68 71 71 71`, `max = 71 <=
+  74` - the rung is NOT lost by this route**, and the J = 5 entry that carried
+  the whole verdict was the DP artefact.
+
+TRIPLE-SOURCED, and I am recording the convergence rather than claiming
+priority: Mechanic retracted the row in their own early post, Constructor
+audited it from the opposite direction ("a sound relaxation CANNOT report 85")
+and proved the SANDWICH LEMMA that makes the equality forced -
+`Q_J(new) <= Q^[J](old) <= max_{j<=J} Q_j(new)`, hence
+`max_J Q^[J](old) = max_J Q_J(new)` always - and I re-derived the numbers from
+the definition and identified the offending DP line. Three lanes, three methods,
+one answer. What my half adds that the others do not have is the exact
+reproduction of the published rows from the disabled check, which is what turns
+"their numbers are wrong" into "their numbers are THIS bug".
+
+FORMALISATION NOTE. The `<=` half of the sandwich is a one-line relaxation
+argument. The `>=` half is the content, and it is what makes the construct worth
+formalising at all: with it, the marked spectrum supplies EVERY rung, not one.
+See target 2 below.
+
+### 31. THE 23->29 RUNG: EVERYTHING BUT TWO DECIDABLE FACTS
+
+`proofs/Machine23Q.lean` + `proofs/Machine29.lean`. Round 22 recorded
+`Ladder.D_at_23_29` as an instantiation over an ABSTRACT pair of machines. This
+round it becomes a statement about two CONCRETE machines with exactly two named
+hypotheses, both decidable facts about machine 23's own gap word:
+
+```lean
+-- Machine23Q.lean: machine 23's enumeration is complete (no new scan)
+theorem opSeq23_strict_mono {a b : N} (h : a < b) : opSeq23 a < opSeq23 b
+theorem windowSum_g23 (a j : N) :
+    Spectrum.windowSum g23 a j = opSeq23 (a + j) - opSeq23 a
+theorem opSeq23_surj {m : N} (hm : 1 <= m) (hE : Exposed23 m) : exists n, opSeq23 n = m
+
+-- Machine29.lean: gear 29's teeth are {5, 24}  (6 * 5 = 30 = 29 + 1)
+def Killed29 (k : N) : Prop := k % 29 = 5 or k % 29 = 24
+def Exposed29 (k : N) : Prop :=
+  Exposed23 k and not (29 | Census.lo k) and not (29 | Census.hi k)
+def g29 (n : N) : N := opSeq29 (n + 1) - opSeq29 n
+theorem killed29_iff {k : N} (hk : 1 <= k) :
+    Killed29 k <-> (29 | Census.lo k or 29 | Census.hi k)
+theorem merge_alphabet {x y : N} (hk1 : Killed29 x) (hk2 : Killed29 y)
+    (hxy : x < y) (hle : y - x <= 34) : y - x = 10 or y - x = 19 or y - x = 29
+theorem g29_le (hF2 : Spectrum.SpectrumBound g23 2 39)
+    (hQ : forall j, 3 <= j -> Spectrum.QualBound g23 5 j 60) (n : N) : g29 n <= 60
+theorem D_at_23_29 (hF2 : Spectrum.SpectrumBound g23 2 39)
+    (hQ : forall j, 3 <= j -> Spectrum.QualBound g23 5 j 60) (n : N) : g29 n <= 34 + 29
+```
+
+Everything else is discharged: machine 29's own opening enumeration
+(`exists_exposed29_above` at period `1,078,282,205 = 37,182,145 * 29`,
+`nextOp29`, `opSeq29`, `opSeq29_gap_empty`), the teeth, the containment
+`Exposed29 -> Exposed23`, machine 23's enumeration completeness, and the
+merge-law wiring. So the rung is reduced from "an abstract instantiation" to
+"`F_2(23) <= 39` and `Q_j(23; 10) <= 60`", both decidable.
+
+Verified this round over the FULL machine-23 period, independently of round 22's
+run (scratchpad m23_qspec.py): `F_1..F_8 = 34, 39, 50, 58, 65, 77, 83, 88`;
+`Q_j(23; 10) = 39, 43, 50, 55, 60, 0` for `j = 2..7`; longest run of gaps `>= 10`
+is 4. Criterion `max(39, 60) = 60`, budget 63, margin 3. `merge_alphabet` is the
+concrete content at this step: the 23->29 merge letters are exactly
+`{10, 19, 29}`, all at or above the floor `2u'' = 10`.
+
+### 32. proofs/CoveringCert.lean - A (D) RUNG PROVED A SECOND WAY, SCAN-FREE
+
+The briefed item 2, landed whole: `F(19) <= 37 = F(17) + 19` from THIRTY-SEVEN
+INTEGERS, with no period of machine 19 built and nothing shared with the
+merge-law route.
+
+```lean
+def ywList : List N := [115, 169, 265, ..., 265, 169, 115]     -- 37 weights
+def totY : N := sum over i in Finset.range 37 of yw i
+def S (bq : N -> N -> Bool) (r : N) : N                        -- single-gear sum
+def PP (bq : N -> N -> Bool) (r5 rq : N) : N                   -- pair sum
+theorem tot_eq : totY = 9757                                   -- decide +kernel
+theorem S5_le  : forall r < 5,  S b5 r <= 3905                 -- six of these
+theorem S19_le : forall r < 19, S b19 r <= 1115
+theorem P7_ge  : forall a < 5, forall b < 7, 1101 <= PP b7 a b -- five of these
+theorem P19_ge : forall a < 5, forall b < 19, 272 <= PP b19 a b
+theorem cert_signs :
+    3905+2796+1821+1648+1204+1115 < 9757 + (1101+552+548+276+272)  -- NO AXIOMS
+theorem kounias (a b c d e f : Bool) (h : (a || b || c || d || e || f) = true)
+    (w : N) : w + (the five (if a && x then w else 0))
+                <= (the six (if x then w else 0))
+theorem cover_bound (hcov : forall i < 37, the six-way or at i) :
+    totY + (PP b7 r5 r7 + ... + PP b19 r5 r19)
+      <= S b5 r5 + S b7 r7 + S b11 r11 + S b13 r13 + S b17 r17 + S b19 r19
+theorem no_cover (h5 : r5 < 5) ... (hcov) : False
+theorem no_37_run {p : N} (hp : 1 <= p) : exists i < 37, Machine19.Exposed19 (p + i)
+theorem F19_le_37 (n : N) : Machine19.g19 n <= 37
+theorem D_17_19_lp (n : N) : Machine19.g19 n <= 18 + 19
+```
+
+`no_37_run` and `F19_le_37` depend on NOTHING except the certificate arithmetic
+and `Machine19.exposed19_iff` (the definition of an opening as a CRT tuple): no
+slice, no `sliceAll`, no `qsliceAll`, no merge law, no `Spectrum`. `D_17_19_lp`
+additionally reads the budget `F(17) = 18` off `Machine17`, exactly as the
+merge-law route does. So the 17->19 rung of the (D) ladder now has TWO kernel
+proofs whose only common ancestor is the definition of the machine.
+
+THREE FACTS ABOUT THE CERTIFICATE that only appeared on formalising it (all
+recorded in docs/novel/covering-lp-certificates.md, whose status I upgraded):
+- **It is supported on ONE distinguished gear.** All 37 nonzero dual weights sit
+  on rows `(i, 5)`; the Kounias cut is used with `k = 5` at every position and
+  never with any other. The 222-row, 7-pair LP optimum uses 37 rows and 5 pairs
+  (`(7,11)` and `(7,13)` pass the visibility test and then get weight 0). That
+  is what makes the Lean statement small - six maxima and five minima, and no
+  sum over gears anywhere in the file.
+- **It is a palindrome**, `y_i = y_{36-i}` exactly - the machine's mirror
+  symmetry `k -> -k` appearing in the dual.
+- Scaled to integers (common denominator 1101) it reads `12489 < 9757 + 2749`,
+  margin 17 out of 12489 = 0.14%.
+
+Kernel cost: 11 `decide +kernel` declarations, seconds - against a 1,616,615-slot
+period scan that costs hours. `F(19) <= 37` is WEAKER than `Machine19.gap_le`'s
+exact 25; the point is the method, and the method is the only upper bound on a
+Jacobsthal-type maximal gap in this development that a kernel checks without
+enumerating a period.
+
+### 33. proofs/PotentialLadder.lean - THE DEPTH-QUANTIFIER-FREE FORM AT EVERY
+### SCANNED RUNG
+
+Round 22's own top open target, and the brief's item 3 in the form that
+discharges rungs rather than restating the target. The recipe of round 22's
+section 29 run at the three rungs below 19->23:
+
+```lean
+def h11 (i : N) : N   -- machine 11's qualifying tail, floor 4, unfolds <= 4
+def h13 (i : N) : N   -- machine 13's, floor 6, unfolds <= 3
+def h17 (i : N) : N   -- machine 17's, floor 6, unfolds <= 5
+theorem h11_C1 / h11_C2 / h11_C3, h13_C1/C2/C3, h17_C1/C2/C3
+theorem D_of_word_11 {a l : N} (hw : forall i < l, 4 <= Machine11.g11 (a+1+i)) :
+    Machine11.g11 a + Spectrum.windowSum Machine11.g11 (a+1) l
+      + Machine11.g11 (a+l+1) <= 7 + 13
+theorem D_of_word_13 ... <= 11 + 17
+theorem D_of_word_17 ... <= 18 + 19
+theorem potential_ladder : the three, collected
+```
+
+    rung      potential   floor 2u'   tail depth   budget F + q'
+    11 -> 13  h11             4           4          7 + 13 = 20
+    13 -> 17  h13             6           3         11 + 17 = 28
+    17 -> 19  h17             6           5         18 + 19 = 37
+    19 -> 23  h19 (r22)       8           4         25 + 23 = 48
+
+(C2) holds with EQUALITY in every branch at every machine, and its deepest
+branch is always exactly that machine's `no_big_run`; (C3)'s cases are always
+that machine's own spectrum ladder, with the DEEPEST case at machines 11 and 17
+supplied by the CONDITIONAL rung of `chain_facts` (`Q_5(11) <= 20`,
+`Q_6(17) <= 34`) rather than by an unconditional `F_j` - which is exactly where
+the qualifying restriction earns its keep, and it lines up with round 22's
+per-machine measurement of which depth it patches. THE TAIL DEPTHS DO NOT GROW
+WITH THE MACHINE: 4, 3, 5, 4. Each is a separate finite object; a potential
+valid at every machine at once is still not known.
+
+### Honest "will not close" verdicts (round 23)
+
+13. **THE 23->29 RUNG'S SCAN IS NOT ROUND-SCALE ON THIS MACHINE, AND THE REASON
+    IS THAT A LEAN KERNEL CANNOT SHARE A WALK ACROSS A PHASE LOOP.** Round 22
+    priced the rung at a 7,434-slice machine-23 period scan (~150-200 h). I
+    found a better factorisation; it is still too slow, for a reason worth
+    recording because it will recur at every future rung.
+    THE FACTORISATION (`proofs/Machine23QCore.lean`, kept in the ledger as the
+    encoding): machine 23's period is `1,616,615 * 23`, so scan the 323 slices
+    machine 19 ALREADY uses, each with an inner 23-fold loop over the gear-23
+    PHASE `g = k % 23`. This is EXACT - not the marked relaxation - because for
+    a fixed machine-19 tuple the phase is the only remaining freedom. One walk
+    per (tuple, phase) reads `F_1 <= 34`, `F_2 <= 39`, four guarded qualifying
+    rungs `Q_3..Q_6 <= 60`, and the five-run refutation; the guards are Bool
+    `&&` / `||`, which the kernel evaluates LAZILY, so a tuple whose second gap
+    is below the floor never walks past `o2`. Simulated exhaustively first: the
+    `chain23` Bool is true at all 7,952,175 machine-23 openings (mirror23.py,
+    two independent implementations, one numpy over the whole period and one a
+    literal transcription of the Lean defs).
+    MEASURED COST (mini-slices of 143 tuples = 1/35 of a slice, priority-boosted
+    - see the infrastructure note):
+        machine-19-style walk, no phase loop (`Machine19.qokT`)   0.7 s
+        full `chain23`, ONE phase                                 1.0 s
+        full `chain23`, 23 phases                                12   s
+    so a real 5005-tuple slice is ~420 s and the 323 slices are **~38 h
+    sequential, ~13 h at the 2-3 parallel targets the memory rule allows**. Not
+    round-scale, and not honestly startable under the job-completion rule.
+    WHY THE PHASE LOOP COSTS ITS FULL 21x - THE TRANSFERABLE FACT: the
+    machine-19 walking is IDENTICAL for 21 of the 23 phases (gear 23 kills only
+    2 of 23 phases at any one opening), so nearly all the work is repeated, and
+    it cannot be shared. I hoisted the phase-free walk out explicitly - replacing
+    the 7-residue slot test by `Machine19.seekT`, which does not mention `g` -
+    and measured NO improvement (11 s vs 12 s). A control settles why: making
+    the loop body `g`-INDEPENDENT so all 23 iterations reduce the SAME closed
+    term collapses the cost to 1.35 s. So **the kernel DOES share structurally
+    identical subterms; the walks after the first hop are not identical - they
+    are indexed by `g` even where they compute the same number** - and a pure
+    term-rewriting kernel has no way to say "evaluate once, then branch".
+    THE CONSTRUCT THAT WOULD REMOVE IT, named and priced: index the machine-19
+    opening chain by POSITION rather than offset (`w19 a b c d e f k` = the k-th
+    machine-19 opening after the base, which is `g`-free for literal `k` and
+    therefore shared), and let the phase loop only select indices into it.
+    Estimated 5x from the measurements above (~7 h sequential, ~2.5 h at
+    3-parallel), at the cost of an index-based extraction. Worth doing on an
+    UNCONTENDED machine, or by Mechanic; not worth gambling a round on.
+    NOTE the corrected marked spectrum does NOT remove this: it replaces the
+    phase quantifier by a phase MAXIMUM, which in a functional kernel encoding
+    still costs one walk per phase. Mechanic's Python avoids that with an
+    incremental mutable coverage array; a kernel term cannot.
+14. **`F_2(23) <= 63` cannot be got from `F(23) <= 34` by doubling.** Recorded
+    because it is the obvious shortcut and it misses by five: `2 * 34 = 68 > 63`
+    (and with round 21's `g23 <= 47` it is 94). The depth-2 fact genuinely needs
+    its own scan; there is no free ride from the single-gap bound.
+15. **A_4's soundness is not itself kernel-checkable at machine 29, and any
+    Lean statement of it must carry that as a hypothesis.** Constructor's A_4
+    (state = last three GAP VALUES, phase-free, 14,368 states / 3,513 edges at
+    m29, exact at all seven scannable steps) has an edge relation "this
+    4-tuple of consecutive gaps is REALISED in the period". Realisability is a
+    full-period claim about machine 29 - 1,078,282,205 slots - so the edge set
+    cannot be certified in the kernel by any method now in the lane. What CAN
+    be: the longest-path value over an EXPLICIT edge set, with "E contains every
+    realised 4-tuple" as a named hypothesis the census discharges. That is the
+    right shape (it is the shape `Ladder.D_at_23_29` had), and it is target 3.
+    Any theorem must not be worded so as to suggest (D) is proved in general:
+    A_4 is per-machine, and Constructor's own machine-free result in the same
+    report is a NEGATIVE (MF_3 mod 35 = MF_3 mod 385 = MF_4 mod 35 at all seven
+    steps, 15/31/47/111/105/125/211 against budgets 20/28/37/48/63/74/95).
+
+### Infrastructure lessons (round 23)
+
+- **PRIORITY BOOSTING IS WORTH 2.3x AND SHOULD BE THE DEFAULT ON THIS MACHINE.**
+  Every measurement was taken twice, once at normal priority and once with the
+  `lean.exe` children raised to `High` by a PowerShell poll loop running
+  alongside the build: same mini-slice, 28 s -> 12 s. The machine ran at 100%
+  CPU throughout from ~8 other-lane `python3.12` processes on 14 cores / 20
+  threads. Round 21 recorded the same effect; it is still the cheapest speedup
+  available and it costs one line:
+  `for i in $(seq 1 N); do powershell -NoProfile -Command "Get-Process lean -ErrorAction SilentlyContinue | ForEach-Object { $_.PriorityClass = 'High' }"; sleep 2; done`
+  run in parallel with the build and stopped when it exits.
+- **THE KERNEL SHARES STRUCTURALLY IDENTICAL SUBTERMS - MEASURE IT, DO NOT
+  ASSUME EITHER WAY.** The control in verdict 13 (23 identical iterations cost
+  1x, 23 nearly-identical ones cost 21x) is the cheapest diagnostic I have found
+  for "is my encoding paying for repetition?", it costs one mini-slice, and it
+  decided this round's biggest engineering question. Corollary for encodings:
+  what must be shared has to be SYNTACTICALLY free of the loop variable, not
+  merely equal in value at every iteration.
+- **A DIAGNOSTIC LADDER BEATS A SINGLE PROBE.** Four mini-slice variants
+  (calibration / one phase / two clauses / everything) in one file with
+  `set_option profiler true` and `profiler.threshold 20` gave per-declaration
+  `type checking took ...` lines and located the cost in one 2.5-minute run. The
+  round-20 single-canary probe ran 25 minutes and said only "too slow"; I made
+  that mistake first and it cost most of an hour.
+- **`decide +kernel` handles `Finset.sum` fine.** All eleven `CoveringCert`
+  numeric facts - sums over `Finset.range 37` containing `%`, `==` and `if`,
+  bounded-quantified over up to 95 phase pairs - go through with
+  `maxRecDepth 20000`. I had budgeted a `List.foldl` rewrite and did not need it.
+- **`omega` on 12 simultaneous `%`-atoms times out** (200,000 heartbeats), even
+  though each gear's residue shift is individually trivial. Fix, which is the
+  round-19 five-dvd lesson in a new costume: introduce the six shifts as
+  separate one-gear `have q5 : (p % 5 + i) % 5 = (p + i) % 5 := by omega` facts,
+  rewrite with them, and finish the propositional step with `tauto`, not `omega`.
+- The mega-dry-check earned its keep again (`Machine23Q` + `Machine29`
+  concatenated over their built imports elaborated in one `lake env lean` at
+  zero kernel cost; `PotentialLadder` and `CoveringCert` needed one dry pass
+  each). Build the dry file with `grep -v "^import "` on each source plus the
+  shared imports - trimming by line offsets silently eats `namespace` lines,
+  which cost me one wasted 3-minute pass.
+- `push_neg` is deprecated in this mathlib in favour of `push Not`; it now emits
+  a warning, which fails the zero-warning invariant.
+- Imports must all precede the first command: appending `#print axioms` blocks
+  to `AxiomCheck.lean` requires their imports to be spliced at the TOP.
+
+### Open formalisation targets (re-prioritised after round 23)
+
+1. **The machine-23 chain scan by the index encoding** (verdict 13): the only
+   thing between `Machine29.D_at_23_29` and a hypothesis-free fifth rung.
+   `Machine23QCore.lean` already holds the predicate, verified exhaustively;
+   what is needed is the `w19`-indexed rewrite (~5x, measured) and ~2.5 h of
+   uncontended parallel build.
+2. **The SANDWICH LEMMA, formalised** (Constructor R51):
+   `Q_J(new) <= Q^[J](old) <= max_{j<=J} Q_j(new)`. With it the marked spectrum
+   supplies EVERY rung from the OLD machine's period, which is the general
+   version of target 1 and would retire the per-rung scan entirely. The `<=`
+   half is a relaxation argument; the `>=` half (extend a relaxed window to the
+   nearest survivor on each side) is the content. Abstract, machine-free, and
+   it does not need a scan - the best value-per-line target in the lane.
+3. **A_4 at machine 29 or 31 as a longest-path certificate** (verdict 15):
+   `theorem D_of_A4 (E : Finset (N x N x N x N)) (hE : every realised 4-tuple of
+   consecutive gaps is in E) (hlp : longest path over E <= 58) : (D) at 29->31`.
+   14,368 states / 3,513 edges at m29 is well inside what this lane has
+   kernel-checked; the hypothesis `hE` is discharged by Constructor's census,
+   exactly as `Ladder.D_at_23_29`'s hypotheses were.
+4. **A level-2 covering certificate at machine 23 at width 63.** The LP thread's
+   degree ceiling says degree 2 goes vacuous from machine 29 on, so machine 23
+   is the LAST machine at which the `CoveringCert` vehicle can be tried at all.
+   If a certificate exists at `W = 63` it proves the 23->29 rung outright,
+   scan-free, and target 1 becomes unnecessary. Sharp, finite, cheap to ask.
+5. **The depth-sum glue at m13** (round 22 verdict 11), unchanged.
+6. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged.
+
+### 34. CONSISTENT COVERING CERTIFICATES: 11->13 AND 13->17 IN THE KERNEL TOO
+### (post-routing, after the LP-duality thread's round-23 filing)
+
+Build green at **1334 jobs**; +1 lib `CoveringCert2`, registered, axiom audit
+clean (standard three).
+
+The thread's finding is that round 22's relaxation - and the whole classical
+Bonferroni/Kounias family - drops MARGINAL CONSISTENCY, and that restoring it at
+degree 2 closes 11->13 and 13->17, which no amount of DEGREE does (at machine 13
+the inconsistent relaxation is feasible at degree 2, 3 AND 4). Their coordinator
+routing was: keep the round-22 object at 17->19 (cheap, already done) and take
+the consistent form only at 11->13 and 13->17, where it costs 464 and 2,868
+rational operations.
+
+Taken - and the formal side turns out to need NO DUAL MULTIPLIERS AT ALL, which
+makes the certificates an order of magnitude smaller than the thread's.
+
+WHERE THE INCONSISTENCY IS, IN MY OWN FILE. `CoveringCert.cover_bound` produces
+
+    sum y + sum_j P_j(r5, rj)  <=  S_5(r5) + sum_j S_j(rj)
+
+with the TRUE phases in it. Round 22's shape then bounds each block separately -
+`max_r S_5(r)`, `max_r S_j(r)`, `min_(r5,rj) P_j(r5,rj)` - which lets gear 5 use
+one phase in `S_5` and a different one in the pair minima. That IS the missing
+consistency, in this development, in one line.
+
+THE FIX IS TO KEEP THE PHASES UNDER ONE QUANTIFIER. Since the left-hand side is
+literally `sum_i y_i * Kounias_i`, the sharp bound is
+
+    sum y  <=  max over PHASE TUPLES of [ S_5(r5) + sum_j (S_j(rj) - P_j(r5,rj)) ]
+
+which is finite, decidable, and strictly stronger. It is the `k = 5` STAR case of
+marginal consistency (only gear 5's marginal is tied, because every row of the
+certificate uses gear 5 as its distinguished event - my round-23 finding that the
+optimum is supported on one gear is what makes this enough). No dual variable for
+a consistency equation ever appears.
+
+```lean
+theorem cert13 : forall a < 5, forall b < 7, forall c < 11, forall d < 13,
+    S13 b5 a + (S13 b7 b - P13 b7 a b) + (S13 b11 c - P13 b11 a c)
+      + (S13 b13 d - P13 b13 a d) < 22                      -- decide +kernel
+theorem cover13 (hcov : forall i < 20, the four-way or at i) :
+    T13 + (P13 b7 r5 r7 + P13 b11 r5 r11 + P13 b13 r5 r13)
+      <= S13 b5 r5 + S13 b7 r7 + S13 b11 r11 + S13 b13 r13
+theorem no_20_run {p : N} (hp : 1 <= p) : exists i < 20, Machine13.Exposed13 (p + i)
+theorem F13_le_20 (n : N) : Machine13.g13 n <= 20
+theorem D_11_13_lp (n : N) : Machine13.g13 n <= 7 + 13
+theorem cert17 : forall a < 5, forall b < 7, forall c < 11, forall d < 13,
+    forall e < 17, ... < 94                                 -- decide +kernel
+theorem F17_le_28 (n : N) : Machine17.g17 n <= 28
+theorem D_13_17_lp (n : N) : Machine17.g17 n <= 11 + 17
+theorem lp_ladder :   -- three consecutive rungs, one vehicle
+    (forall n, Machine13.g13 n <= 7 + 13) and (forall n, Machine17.g17 n <= 11 + 17)
+      and (forall n, Machine19.g19 n <= 18 + 19)
+```
+
+THE CERTIFICATES, and the size is the point:
+
+    rung      width  weights                     sum  max over tuples  margin  tuples
+    11 -> 13    20   20 integers, EIGHTEEN 1s     22        21           1      5,005
+    13 -> 17    28   28 integers, all in [2,5]    94        92           2     85,085
+    17 -> 19    37   37 integers (round 22)     9757     12489-2749=9740  17  1,616,615
+
+Both new ones are PALINDROMES again. Against the thread's fully-consistent dual
+at 11->13 - 106 integers over a common denominator 37, 2,868 rational operations
+- the phase-tied form is **20 small integers, eighteen of them 1**, and the
+verification is integer arithmetic with no denominators anywhere. Searched and
+verified exactly over every phase tuple before formalising (scratchpad
+consistent_cert.py, gen_consistent.py; 3,850 and 59,767 DISTINCT coefficient
+vectors among the 5,005 and 85,085 tuples).
+
+WHY THE 85,085-FOLD QUANTIFIER IS CHEAP - and this is where this round's own
+infrastructure finding pays off. `cert17` quantifies over 85,085 phase tuples,
+which by the round-20 rule of thumb (~5e3 tuples per declaration) should not fit.
+It takes seconds, because the kernel SHARES STRUCTURALLY IDENTICAL SUBTERMS (the
+control experiment in verdict 13): `S17 b7 b` is the same closed term whatever
+`a, c, d, e` are, so only 53 distinct `S` sums and 240 distinct `P` sums are ever
+evaluated and the 85,085 iterations are integer comparisons on cached values.
+The rule of thumb is about DISTINCT sub-computations, not about the quantifier's
+range - worth knowing before sizing any future check.
+
+STATUS OF THE VEHICLE AFTER THIS: three consecutive (D) rungs kernel-proved by
+covering certificates - 11->13, 13->17, 17->19 - sharing nothing with the merge
+law. 11->13 and 13->17 need consistency; 17->19 does not. The thread's fourth
+rung, 7->11, was not stated (it is the cheapest and least interesting).
+
+CORRECTIONS ADOPTED FROM THE ROUTING:
+- `F(29) = 43`, not 46. Checked against every statement in my lane: no
+  contamination. The only place F(29) enters is the 29->31 budget
+  `F(29) + 31 = 74` in section 30's table, which is 43 + 31 and was already
+  right.
+- **Round-23 open target 4 is WITHDRAWN.** I had named "a level-2 covering
+  certificate at machine 23 at width 63" as the cheap way to make the whole
+  13-hour machine-23 scan unnecessary. The thread settled it in the negative:
+  23->29 is VACUOUS at degree 2 (the uniform product measure is a global
+  distribution, hence feasible for the CONSISTENT relaxation too), so
+  "consistency buys WIDTH, not MACHINES" and every round-22 ceiling machine is
+  unchanged. The covering vehicle's honest range is 7->11 .. 17->19, with 19->23
+  undecided. It cannot reach the rung my scan is for.
+- Their exact rung-ratio row `B(y)/F(y)` = 2.29, 1.82, 1.56, 1.48, 1.41, 1.47,
+  1.28, 1.08, 1.42 is the reason, and it is worth carrying in this lane too: a
+  certificate vehicle must be NEAR-TIGHT at every step, so any bound whose gap
+  grows with the machine stops proving rungs long before it stops proving
+  anything. My margins are 4.5%, 2.1% and 0.14% at the three rungs - shrinking
+  exactly as that row predicts.
+
+### Open formalisation targets (final, after the routing)
+
+1. **The machine-23 chain scan by the index encoding** (verdict 13) - unchanged,
+   and now the ONLY route to the fifth rung, since target 4 is withdrawn.
+2. **The SANDWICH LEMMA, formalised** (Constructor R51) - unchanged, still the
+   best value-per-line object in the lane.
+3. **A_4 at machine 29 or 31 as a longest-path certificate** (verdict 15) -
+   unchanged.
+4. ~~A level-2 covering certificate at machine 23 at width 63~~ - WITHDRAWN,
+   refuted by the LP-duality thread (above).
+5. **The depth-sum glue at m13** (round 22 verdict 11), unchanged.
+6. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged.

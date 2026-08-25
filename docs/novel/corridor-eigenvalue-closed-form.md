@@ -66,6 +66,63 @@ root, e = |A_5||A_7| = 3*5 = 15, not a 35th root: the walk never visits a
 blocked phase, so the resonance counts EXPOSED phases only. That is why the
 measured period sits near 8 rather than near 35/2.
 
+## 1b. ROUND-23 UPDATE - THE DEFICIT IS CLOSED, AND IT WAS A COORDINATE
+
+The formula above understated the measured modulus by a stable, converging
+amount (+0.0076, +0.0146, +0.0192, +0.0225, +0.0245 at machines 11-23;
+Constructor independently reported ~0.029 for their p-hat(1) form). Round 23
+closed it EXACTLY, and the answer was not a correlation correction - it was
+the choice of coordinate.
+
+THE IDENTITY. Let q(n) be the machine's EXPOSED-STEP LAW: the distribution of
+the number of exposed phases mod m that one gap crosses (equivalently, how
+many steps the walk on E advances). Then
+
+    lambda_2  =  q-hat(1/e)  =  sum_n q(n) e(n/e)      TO 1e-5,
+
+measured against the exact full-period chain: |lambda_2| residual 0.000000,
+0.000011, 0.000032, 0.000065 and argument residual 0.000, 0.005, 0.009, 0.012
+degrees at machines 11/13/17/19 (mod 35), and 0 to 6 decimals at mod 385.
+A phase-blind chain in the EXPOSED-STEP coordinate is an exact circulant on
+Z_e, so its eigenvalues are exactly q-hat(j/e); the 1e-5 residual is the
+entire phase-dependence of the step law.
+
+WHAT THE OLD FORMULA WAS. Under the independence hypothesis the step law is
+GEOMETRIC(rho), and sum_n rho(1-rho)^{n-1} w^n = rho w/(1-(1-rho)w) = mu(w).
+So the round-22 closed form is exactly q-hat with q geometric, and
+
+    THE 0.029 DEFICIT IS ENTIRELY THE NON-GEOMETRICITY OF THE STEP LAW.
+
+It is not a 2-point, 3-point or higher CRT correlation effect: two refined
+models built and PRE-REGISTERED in round 23 (a 2-point conditional hazard,
+and the both-endpoint 3-point interior of the round-20 renewal law) both moved
+|lambda_2| in the WRONG DIRECTION and made the deficit 50-120% worse. They
+failed because they corrected the SLOT-LAG hazard, which double-counts the
+phase structure the corridor already carries.
+
+THE STEP LAW, PARTLY IN CLOSED FORM. Its mean is EXACTLY 1/rho at every
+machine (a CRT identity - the geometric model has the right mean, so the
+deficit is pure shape). Its first term is exactly closed-form: if d(r) is the
+slot distance from an exposed phase r to the next exposed phase, then
+
+    q(1) = avg over r in E of prod_{q not | m} c_q(d(r))/(q-2),
+
+verified against the exact law to 2.2e-16 at machines 11/13/17/19
+(0.777777777778 = 7/9, 0.636363636364, 0.551515151515, 0.486631016043).
+Measured q(n)/geometric(n) for n = 1..6 shows the shape: n=1 SUPPRESSED
+(0.951, 0.919, 0.903, 0.890 at m11/13/17/19 - two-point repulsion at the
+corridor's own step) and n=2 ENHANCED (1.494, 1.378, 1.299, 1.247), then a
+decaying tail. So the corridor pinning is a one-dimensional, fully
+measurable object: the departure of one step law from geometric.
+
+Script: `research/lambda2_pair.py` (models 0-4, all pre-registered verdicts
+printed including the two refuted ones); log
+`research/data/lambda2_pair.log`. STATUS of this update: the identity
+lambda_2 = q-hat(1/e) is SCRIPT-VERIFIED to 1e-5 (it is exact for a
+phase-independent step law, which the machine's is not quite); the q(1)
+closed form is PROVED (CRT) and verified to machine precision; the mean
+identity is exact.
+
 ## 2. WHY IT MIGHT BE NOVEL
 
 The pieces are standard (a Markov-renewal chain observed at renewal epochs;

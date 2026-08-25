@@ -13,6 +13,39 @@ It is the obstruction half of `covering-lp-certificates.md`, whose
 constructive half (scan-free Farkas certificates for F(M) <= W) it bounds
 from above.
 
+ROUND-23 AMENDMENT - THE CEILING IS NOT THE OPERATIVE LIMIT, AND IT DOES NOT
+BIND THE COSTELLO-WATTS FAMILY.  Two corrections to how this entry was read.
+
+(1) THE CEILING IS THE WRONG THRESHOLD FOR THE (D) APPLICATION.  The ceiling
+    asks when a degree-l certificate can prove ANYTHING.  A (D) rung landing
+    at machine y needs a certificate of width exactly B(y) = F(prev) + y, i.e.
+    an integrality gap no worse than B(y)/F(y).  Measured exactly at the steps
+    7->11 ... 37->41: 2.29, 1.82, 1.56, 1.48, 1.41, 1.47, 1.28, 1.08, 1.42.
+    After the first step it never again exceeds 1.48 and it dips to 1.08 at
+    31->37 - it is NOT monotone, but it is asymptotically 1, since
+    B(y)/F(y) = 1 + (y - (F(y) - F(prev)))/F(y) and y/F(y) -> 0.  So the
+    certificate must be near-tight at every step, and the rung-proving range
+    ends FAR below the vacuity ceiling.  Degree 2 is vacuous only from machine
+    29, but its rung-proving range ends much earlier.
+(2) THE CEILING SAYS NOTHING ABOUT RECURSIVE BOUNDS.  It is a theorem about
+    relaxations that keep the joint distribution of at most l gears at a time.
+    Costello-Watts (arXiv:1208.5342, read in full round 23) is not of that
+    form: its pair term is the EXACT survivor count of a smaller machine,
+    obtained by recursion, so its effective degree is unbounded.  The ceiling
+    therefore does not apply to it, and the two results are compatible - the
+    ceiling closes the fixed-degree LP route and Costello-Watts is the escape
+    hatch from it.  Transferred to the two-teeth machine and measured
+    (`research/cw_transfer.py`), that escape hatch is nevertheless FAR weaker
+    than the dual certificate on this problem: F(13) <= 35, F(17) <= 65,
+    F(19) <= 110, F(23) <= 230, F(29) <= 322, i.e. 3.2x to 7.5x above the true
+    F, where the dual certificate is at 1.14x-1.82x and proves the rungs.
+(3) THE CEILING IS UNCHANGED BY MARGINAL CONSISTENCY (round 23,
+    `consistency-over-degree.md`).  The uniform product measure is a global
+    distribution, hence a feasible point of the CONSISTENT degree-l relaxation
+    too, so every ceiling machine below is also the ceiling machine for the
+    Sherali-Adams-style consistent hierarchy at that degree.  Consistency buys
+    WIDTH, not MACHINES.
+
 ## 1. WHAT IT IS
 
 Plain language.  F(M) is decided by a covering question - is there a window

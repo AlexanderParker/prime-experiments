@@ -32,15 +32,25 @@ The computed table (exhaustive over every even difference at each y;
 research/jacobsthal_family.py, jacobsthal_h2_17.py):
 
     y    P (odd)   #diffs    h_2   p^2-p   Conj.6   margin
-    3        3         1       0      6    holds      -
+    3        3         1       6      6   EXCLUDED    0.0%   <- n = 2, equality
     5       15         7      18     20    HOLDS    10.0%
     7      105        52      30     42    HOLDS    28.6%
     11    1155       577      66    110    HOLDS    40.0%
     13   15015      7507     150    156    HOLDS     3.8%   <- the dip
     17  255255    127627     192    272    HOLDS    29.4%
 
+ROUND-23 REFEREE CORRECTION to the first row (research/j2_referee.py section R1).
+The table previously read "y = 3 ... h_2 = 0 ... holds". That was a code artefact:
+research/jacobsthal_family.py returns 0 whenever a period carries fewer than two
+survivors, and at gears = {3}, e = 1 the survivor set mod 3 is the single class
+{1}, whose CYCLIC gap is 3, so h_2 = 6. OEIS A288815 confirms h_2 = 6 at p_n = 3.
+The correct reading is sharper than the old one: h_2 = p_n^2 - p_n EXACTLY at
+n = 2 (and also at n = 1: h_2(2) = 2 = 2^2 - 2), so Conjecture 6 fails by
+EQUALITY at both excluded indices - which is exactly why Ziller-Morack state it
+for n >= 3, and the "n >= 3" hypothesis is sharp, not conservative.
+
 The Ziller-Morack Conjecture 6 bound (exact wording, arXiv:1706.00317, Conjecture 6:
-"Let n in N >= 3. Then h_2(n) < p_n^2 - p_n") holds at all five points, but the
+"Let n in N >= 3. Then h_2(n) < p_n^2 - p_n") holds at all five admissible points, but the
 margin is non-monotone with a one-off dip to 3.8% at y = 13 (vs 10.0, 28.6, 40.0,
 29.4). Round 17 resolved the dip: it belongs to the STEP 11->13, not to any
 difference class - it needs both a twin prime step (bound grows only x1.42) and a
@@ -49,8 +59,17 @@ profile must compromise (x1.28) while the bound grows x1.74.
 
 Attached structure (same computations):
 
-- Maximisers: y = 13: e = 344, 734, 839, 916, 2164 (all coprime to P, none small,
-  none structured); y = 17: F = 96 at e = 2791, 3176, 5584, 5794, 6361, 6571.
+- Maximisers, COMPLETE lists (round-23 correction: earlier versions of this line
+  printed the first five / first six entries of research/jacobsthal_family.py's
+  argmax slice `arg[:5]` and read as if complete; the true counts are 8, 16 and 64
+  at y = 11, 13, 17, matching the round-22 delta-space ladder exactly):
+    y = 11, F = 33, 8 maximisers:
+      e = 41, 146, 239, 316, 344, 349, 421, 454
+    y = 13, F = 75, 16 maximisers:
+      e = 344, 734, 839, 916, 2164, 2269, 2659, 3919, 4166, 4271, 4661, 5921,
+          6091, 7169, 7274, 7351
+    y = 17, F = 96, 64 maximisers (first six: 2791, 3176, 5584, 5794, 6361, 6571)
+  All coprime to P, none small, none structured.
 - Delta-profile law (delta_q(e) = min(e mod q, q - e mod q)): maximisers are
   exactly the carriers of specific profiles - (1,1,1,3) at gears <= 11,
   (1,1,1,3,6) at <= 13 (16 of 7507, recall and precision 100%), (1,1,2,4,6,8) and

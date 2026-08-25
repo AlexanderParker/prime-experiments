@@ -922,3 +922,231 @@ pole-phase decomposition; data/c14_asym2.log, c14_ladder.log),
 eig_stats.py (--big for m31; data/eig_big.log), psd_bite.py (--deep-only
 for m23 DFS; data/psd_deep.log). All assertion-gated; inputs
 data/gap_pair_hist.csv (Mechanic), data/depth_identity_*.csv (r20).
+
+## Round 23
+
+Brief: (a) WHAT REPLACES SPECTRUM IN A NILPOTENT SECTOR - build the object,
+measure it, say what it captures that the spectrum cannot; (b) push the
+round-22 path-decomposition theorem; (c) close the 0.029 modulus deficit in
+lambda_2 (Constructor's corridor pinning from my side). All three served.
+Three scripts, all assertion-gated: nilpotent_invariants.py (33 s),
+potential_arity.py (LP ladder), lambda2_pair.py (6 s). Two new
+novel-register docs plus a round-23 update section on my own
+corridor-eigenvalue doc. Compute stayed within the thread cap.
+
+39. THE ANSWER TO (a), AND IT IS A THEOREM PLUS A NEGATIVE
+    (docs/novel/nilpotent-invariants.md; research/nilpotent_invariants.py).
+    JORDAN = GAP HISTOGRAM. N = BS acts by N e_k = b(k+1) e_{k+1}, so its
+    directed graph is the disjoint union of the chains of consecutive blocked
+    slots and
+
+        N is PERMUTATION-similar (hence unitarily equivalent) to
+        (+)_g J_g^{(+) W_1(g)} - one nilpotent Jordan block per GAP.
+
+    Equivalently rank(N^n) = sum_g W_1(g)(g-n)_+ (the histogram TAIL SUM) and
+    #blocks of size exactly L = W_1(L), largest block = F. Verified as EXACT
+    INTEGERS at m11/13/17/19, and the permutation is built explicitly at
+    m11/13 with the permuted matrix asserted EQUAL to the block sum entry by
+    entry.
+    THE NEGATIVE (the real content): EVERY UNITARY INVARIANT OF N IS A
+    FUNCTION OF THE GAP HISTOGRAM ALONE - singular values, all Schatten
+    norms, Jordan type, kernel-filtration dimensions, numerical range,
+    resolvent norms, pseudospectra. So the brief's candidate list is
+    exhausted in one line: none of them can bound F except circularly. This
+    is Wall V in invariant-theoretic form, and it UPGRADES round 22's path
+    theorem - A = N + N^T being a union of paths P_g is the symmetrised
+    shadow of this Jordan decomposition, same index set.
+    WHAT THE INVARIANTS STILL BUY (three, each turning F into a different
+    kind of quantity):
+    (i) THE NORM CLIFF. N^n = diag(v_n)S^n is a PARTIAL ISOMETRY, singular
+    values 0/1, so ||N^n||_op = 1 for n < F and 0 for n >= F - a step
+    function with no decay rate at all, and any envelope ||N^n|| <= C lam^n
+    (lam < 1) forces C >= lam^(1-F): F SITS ENTIRELY IN THE CONSTANT. That is
+    why every analytic decay frame has stalled, stated exactly.
+    (ii) THE NUMERICAL RADIUS. w(N) = cos(pi/(F+1)) EXACTLY and the numerical
+    RANGE is that disk (direction-independence verified to 6.7e-16 at m11), so
+    F = pi/arccos(w) - 1: THE MAXIMAL GAP IS A VARIATIONAL, SDP-REPRESENTABLE
+    QUANTITY, and every upper bound on it has a dual certificate. Checked
+    two-sidedly at m11-19 with no eigensolver (path Perron weight as an exact
+    Schur test, theta = 2cos(pi/(F+1)) to 1e-9).
+    (iii) THE PSEUDOSPECTRUM. Spectrum {0}, but ||(zI-N)^-1|| = |z|^(-F)
+    (1+O(|z|)) and r_eps = eps^(1/F)(1+o(1)); recovered exponent 25.782 ->
+    25.107 -> 25.005 at m19 for eps = 1e-6/1e-12/1e-24, monotone from above.
+    With z = e^(-1/t) this is MASLOV DEQUANTISATION: t log||(zI-N)^-1|| ->
+    F, i.e. THE (+,x) RESOLVENT COMPUTES THE (max,+) LONGEST PATH.
+    Constructor's Kleene star, the Boolean window filtration and the analytic
+    resolvent are ONE computation in three semirings.
+    WHERE THE NON-INVARIANT CONTENT LIVES: ker N^n is a COORDINATE subspace
+    (verified m11), so the kernel FLAG is a nested family of SUBSETS of Z_P;
+    its dimensions are histogram tail sums (circular) while its POSITION
+    against the CRT gear basis is not a unitary invariant at all - and that
+    position is exactly round 22's Schmidt-rank profile, the part that GROWS.
+    Round 22 and round 23 therefore fit exactly: invariants = histogram,
+    growth = alignment of the kernel flag with the gear tensor basis.
+
+40. THE CERTIFICATE ARITY LADDER - (a)'s only escape route, measured
+    (docs/novel/potential-arity-ladder.md; research/potential_arity.py).
+    A certificate is not an invariant, so it escapes item 39. For h: Z_P -> R
+    with (*) h(k) - h(k-1) >= 1 at every BLOCKED slot, F <= 1 + osc(h), and it
+    is TIGHT (h = distance back to the previous opening gives osc = F-1
+    exactly, asserted m11-19). Multiplicative form w = exp(h/t) is a SCHUR
+    TEST on A; the tropical limit is Constructor's max-plus potential. The
+    frame loses nothing - only ARITY can fail, and arity is the round's spine
+    question asked as a proof obligation (an infeasibility verdict rules out
+    EVERY certificate of that arity, not one attempt).
+    T1 (one line, proved): a potential depending only on k mod m for a PROPER
+    divisor m of P is infeasible - every class mod m contains a blocked slot
+    (asserted m = 35, 385 at m11-19), so (*) forces h(r) > h(r-1) all round
+    the m-cycle and 0 >= m. A state that has forgotten a gear cannot see that
+    a slot is blocked - this is why bounded-state certificates mod 35/385/5005
+    cannot bound F (Constructor's 23->29 failures explained structurally).
+    T2 (MERTENS NO-GO, proved, exact rationals): a LEVEL-1 (per-gear)
+    potential exists only if sigma(y) = sum_(5<=q<=y) 1/q < 1/2. Proof by two
+    CRT averages (over all slots, and over "gear q at a tooth with all others
+    exposed"), giving Sigma(1 - 2 sigma) >= 2 sigma with Sigma > 0.
+    sigma(11) = 167/385 = 0.4338 but sigma(13) = 2556/5005 = 0.5107, and
+    sigma DIVERGES: ARITY-1 CERTIFICATES DIE AT MACHINE 13 AND NEVER RETURN.
+    MEASURED LADDER (LP; every FEASIBLE verdict re-checked by rebuilding h and
+    testing (*) at every blocked slot over the full period, so no bound trusts
+    the solver):
+        y=11 F=7 : arity1 23.902 (3.41x), arity2 7.753 (1.11x), arity3 7.000
+        y=13 F=11: arity1 INFEASIBLE, arity2 17.980 (1.63x), arity3 11.000,
+                   arity4 (full) 11.000
+        y=17 F=18: arity1 INFEASIBLE, arity2 37.102 (2.06x)
+        y=19 F=25: arity1 INFEASIBLE (1,237,940 rows, 110 s), arity2 FEASIBLE
+                   (certificate found on a 4,836-row subsample then VERIFIED
+                   against all 1,237,940 blocked slots, min step 1.0000; bound
+                   <= 195.5, not the optimum - see the scoped-out note below)
+    MY OWN PRE-REGISTERED P2 REFUTED: I wrote "r*(19) >= 3" into the script
+    docstring before running; arity 2 IS feasible at m19, so r*(19) = 2. The
+    correction is the threshold law itself - r* grows only when sigma crosses
+    the next half-integer, i.e. DOUBLY LOGARITHMICALLY (level 2 survives to
+    y ~ 109). Right in direction, badly wrong in rate, and the rate is the
+    point: a fixed arity stays FEASIBLE long after its BOUND is worthless, so
+    feasibility alone is the wrong statistic to watch.
+    Two facts: arity 1 dies exactly where T2 says; and WHERE A FIXED ARITY
+    SURVIVES ITS QUALITY DECAYS - the arity-2 bound is 1.11x, 1.63x, 2.06x the
+    truth at m11/13/17. A fixed-arity certificate becomes asymptotically
+    vacuous while remaining feasible.
+    THE THRESHOLD LAW (conjectured, derivation and its gap stated): the same
+    averaging at level r gives sum_U |U| a_U <= (2A-2) sigma, which closes to
+    a contradiction when sigma >= r/2 PROVIDED the a_U are non-positive - the
+    sign condition is the gap, named not hidden. Taken at face value LEVEL r
+    DIES AT sigma(y) >= r/2, fitting every measured cell, with doubly
+    exponential thresholds: level 1 at y=13, level 2 at y=109, level 3 at
+    y=2741, level 4 at y=483281. So required arity r*(y) ~ 2 sigma(y) ~
+    2 log log y - unbounded, doubly logarithmically slow. The law was written
+    down BEFORE the m19 arity-2 cell resolved and predicted it correctly
+    (2 sigma(19) = 1.244 < 2, so level 2 survives), and it fits 8 of 8
+    measured cells.
+    SCOPED OUT, with the cost measured: the OPTIMAL arity-2 bound at m19. The
+    osc-minimising LP at full row count (1.24M rows x 30 nonzeros) exceeds
+    memory, and the row-generation version did not converge within the round's
+    budget while ~20 jobs from other lanes were running. Feasibility itself is
+    settled and proved; only the sharpest number is missing.
+    THE CONVERGENCE THAT MATTERS: the project's LP-DUALITY thread, on a
+    completely different certificate family (covering/Farkas duals for (D)
+    rungs, not potentials for F), independently found required degree ~
+    2*S1(y) with the same reciprocal-prime sum, and used it to identify
+    Constructor's truncation arity 3 -> 4. TWO UNRELATED CERTIFICATE FRAMES,
+    THE SAME ARITY LAW r* proportional to sum_(q<=y) 1/q. "No fixed-arity
+    rule" now has an arithmetic source: the divergence of sum 1/q.
+
+41. TWO CHECKED NON-GAINS ON THE PATH-DECOMPOSITION THEOREM (item (b)),
+    recorded so they are not rebuilt.
+    (a) MOMENTS REDUCE TO THE RUN LADDER. tr(A^2t) = sum_L m_t(L) r_L where
+    m_t(L) counts closed 2t-walks on Z of RANGE L and r_L = rank(N^L) - a
+    closed walk's support is an interval, so it demands exactly an L-run of
+    blocked slots. Verified t = 1..6 at m11 (500, 1044, 2600, 7140, 20660,
+    61584, exact). So EVERY trace/moment - equivalently every exponential-sum
+    - attack on lambda_max(A), hence on F, is a POSITIVE COMBINATION of the
+    r_L ladder round 21 already computes exactly and scan-free. No new
+    information in the moment frame.
+    (b) WEYL ON THE MERGE STEP IS VACUOUS. A_new = A_old + Delta with Delta
+    the edges whose right endpoint is newly blocked by q'. MEASURED: the
+    longest run of consecutive newly-blocked slots is 1 at every step 11->13,
+    13->17, 17->19, 19->23, so lambda_max(Delta) = 1 exactly and the Weyl
+    bound is 2.848, 2.932, 2.973, 2.985 - above 2 at every step, hence
+    vacuous. The merge step's content is WHICH edges are added, never how
+    many.
+
+42. ITEM (c) CLOSED - AND THE 0.029 WAS A COORDINATE, NOT A CORRELATION
+    (research/lambda2_pair.py; round-23 update section in
+    docs/novel/corridor-eigenvalue-closed-form.md).
+    THE IDENTITY: let q(n) be the EXPOSED-STEP LAW - the distribution of how
+    many exposed phases mod m one gap crosses. Then
+
+        lambda_2 = q-hat(1/e) = sum_n q(n) e(n/e)   TO 1e-5,
+
+    measured against the exact full-period chain: modulus residual 0.000000,
+    0.000011, 0.000032, 0.000065 and argument residual 0.000, 0.005, 0.009,
+    0.012 deg at m11/13/17/19 (mod 35); 0 to six decimals at mod 385. In the
+    exposed-step coordinate a phase-blind chain is an exact CIRCULANT on Z_e,
+    so its eigenvalues are exactly q-hat(j/e), and the 1e-5 residual is the
+    whole of the phase-dependence.
+    WHAT ROUND 22's FORMULA WAS: under independence the step law is
+    GEOMETRIC(rho) and sum rho(1-rho)^(n-1) w^n = mu(w) - my Moebius form is
+    exactly q-hat with q geometric. SO THE DEFICIT IS ENTIRELY THE
+    NON-GEOMETRICITY OF THE STEP LAW, and Constructor's p-hat(1) is the same
+    object in the same coordinate.
+    TWO PRE-REGISTERED MODELS REFUTED (my own, both written into the script
+    docstring before running): MODEL 1 (exact 2-point conditional hazard
+    prod_q c_q(t)/(q-2) replacing the constant rho) and MODEL 2 (the
+    both-endpoint 3-point interior, i.e. round 20's renewal law with kappa=1)
+    BOTH MOVED |lambda_2| THE WRONG WAY, worsening the deficit by 52-67% and
+    83-117% respectively. They failed because they corrected the SLOT-LAG
+    hazard, which double-counts the phase structure the corridor already
+    carries. Deficits (mod 35, m11..19): M0 +0.0076/+0.0146/+0.0192/+0.0225,
+    M1 +0.0116/+0.0228/+0.0307/+0.0375, M2 +0.0140/+0.0287/+0.0394/+0.0487,
+    M3 (exact gap law, phase-blind) +0.0176/+0.0169/+0.0175/+0.0185,
+    M4 (exact STEP law, phase-blind) +0.0000/+0.0000/+0.0000/+0.0001.
+    THE STEP LAW, PARTLY IN CLOSED FORM: its mean is EXACTLY 1/rho at every
+    machine (CRT identity - the geometric model already has the right mean, so
+    the deficit is pure SHAPE); and its first term is exact closed form,
+        q(1) = avg over r in E of prod_(q not | m) c_q(d(r))/(q-2)
+    with d(r) the slot distance to the next exposed phase - verified to
+    2.2e-16 at m11/13/17/19 (7/9, 0.6363636364, 0.5515151515, 0.4866310160).
+    Shape: q(n)/geometric(n) is SUPPRESSED at n=1 (0.951, 0.919, 0.903, 0.890)
+    and ENHANCED at n=2 (1.494, 1.378, 1.299, 1.247), then decays. The
+    corridor pinning is therefore a one-dimensional measurable object.
+
+Round-23 refuted angles (added to the standing list):
+- "the lambda_2 deficit is a 2-point (or 3-point) CRT anti-correlation
+  effect" - my own pre-registered hypothesis, refuted in the SIGN by my own
+  script; both corrections make the deficit worse. The deficit is the
+  non-geometricity of the exposed-step law, in the step coordinate.
+- "singular values / Jordan structure / pseudospectra could carry what the
+  spectrum cannot" - the brief's candidate list, refuted as a class: they are
+  all unitary invariants and every unitary invariant of BS equals the gap
+  histogram (item 39).
+- moment / exponential-sum bounds on lambda_max(A): reduce exactly to the
+  r_L run ladder (41a) - no new information.
+- Weyl/eigenvalue-perturbation across the merge step: vacuous at every
+  measured step (41b).
+
+Round-23 untested angles left open:
+- Prove or refute the sigma >= r/2 arity threshold for r >= 2 (the sign
+  condition on the a_U is the whole gap; it is a finite statement per r). The
+  sharpest available test is the m19 arity-2 OPTIMUM (scoped out this round on
+  cost) and the level-2 death predicted at y ~ 109 - out of scan reach, but
+  the LP is over pairs only, so a smarter formulation might reach it.
+- TRANSPORT THE CERTIFICATE ACROSS A MERGE STEP: h_new from h_old plus a
+  gear-q' part would be the merge law in certificate form, and the arity
+  ladder says exactly how much room there is. Named, not built.
+- The numerical-radius SDP: does it admit ANY tensor-structured dual
+  certificate (the arity ladder is the LP shadow of exactly this question)?
+- Whether a bound proved in the max-plus semiring dequantises to a usable
+  resolvent bound (item 39(iii) makes the dictionary exact; nothing has been
+  pushed through it).
+- The phase-dependence residual of the step law (1e-5, growing 0 -> 6.5e-5
+  over m11..19): is it O(1/e^2) or does it grow?
+- Carried and still open: rank_n = min(2^n,d1,d2) exactly?; the peak-depth
+  law; the m29 rank profile; the interior/kappa mechanism behind gear 5's
+  bracket reality; the 1/mean_gap amplitude near-law; the m31 near-collisions.
+
+Reproduction pointers (round 23): nilpotent_invariants.py (parts 1-8; log
+data/nilpotent_invariants.log), potential_arity.py (T1/T2 + tightness +
+ladder; a "y:arity[:row_stride]" argument runs one cell; solve_cutting does
+row generation for large cells; log data/potential_arity.log),
+lambda2_pair.py (models 0-4 with pre-registered verdicts; log
+data/lambda2_pair.log). All under .venv/Scripts/python.exe.

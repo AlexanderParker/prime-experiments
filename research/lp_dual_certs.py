@@ -89,7 +89,12 @@ def F_exact(gears):
     return best
 
 
-F_KNOWN = {7: 5, 11: 7, 13: 11, 17: 18, 19: 25, 23: 34, 29: 46, 31: 58}
+# CORRECTION (round 23): F(29) = 43, not 46.  Re-verified two ways - a
+# segmented sieve over the full 1,078,282,205-slot period, and the corpus
+# twin ladder F(2,29)/3 = 129/3 = 43.  No round-22 claim used the wrong
+# value (section B stops at machine 19), but the constant was wrong here.
+F_KNOWN = {7: 5, 11: 7, 13: 11, 17: 18, 19: 25, 23: 34, 29: 43, 31: 58,
+           37: 88, 41: 91, 43: 103, 53: 145}
 
 # ============================================================== the LP build
 #

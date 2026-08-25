@@ -1,3 +1,8 @@
+import Machine23Q
+import Machine29
+import CoveringCert
+import PotentialLadder
+import CoveringCert2
 import BlockedSlots
 import Horizon
 import Layer
@@ -259,3 +264,42 @@ open BlockedSlots
 #print axioms Potential19.h19_C2
 #print axioms Potential19.h19_C3
 #print axioms Potential19.D_of_word_potential
+
+-- round 23
+
+#print axioms Machine23.opSeq23_surj
+#print axioms Machine23.opSeq23_strict_mono
+#print axioms Machine23.windowSum_g23
+#print axioms Machine29.killed29_iff
+#print axioms Machine29.merge_alphabet
+#print axioms Machine29.D_at_23_29
+#print axioms Machine29.g29_le
+#print axioms CoveringCert.tot_eq
+#print axioms CoveringCert.S5_le
+#print axioms CoveringCert.S19_le
+#print axioms CoveringCert.P7_ge
+#print axioms CoveringCert.P19_ge
+#print axioms CoveringCert.cert_signs
+#print axioms CoveringCert.kounias
+#print axioms CoveringCert.cover_bound
+#print axioms CoveringCert.no_cover
+#print axioms CoveringCert.no_37_run
+#print axioms CoveringCert.F19_le_37
+#print axioms CoveringCert.D_17_19_lp
+#print axioms PotentialLadder.h11_C3
+#print axioms PotentialLadder.h13_C3
+#print axioms PotentialLadder.h17_C3
+#print axioms PotentialLadder.D_of_word_11
+#print axioms PotentialLadder.D_of_word_13
+#print axioms PotentialLadder.D_of_word_17
+#print axioms PotentialLadder.potential_ladder
+#print axioms CoveringCert2.T13_eq
+#print axioms CoveringCert2.cert13
+#print axioms CoveringCert2.kounias4
+#print axioms CoveringCert2.cover13
+#print axioms CoveringCert2.F13_le_20
+#print axioms CoveringCert2.D_11_13_lp
+#print axioms CoveringCert2.cert17
+#print axioms CoveringCert2.F17_le_28
+#print axioms CoveringCert2.D_13_17_lp
+#print axioms CoveringCert2.lp_ladder

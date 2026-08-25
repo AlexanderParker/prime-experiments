@@ -65,7 +65,18 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   arXiv:1706.03668 Table 1 already has 18,30,66,150,192 (project premise "ZM compute none"
   FALSE - exact independent replication). Per-difference family F_d, fixed-twin ladder
   F(2,37..53), dip analysis NOVEL*. ZM h_2(19)=258 settles the project's open y=19 question.
+  ROUND 23 referee pass (research/j2_referee.py): the h_2 table, #diffs, margins,
+  delta-profile law (precision AND recall 100%), the 13->17 cap law (272 lifts,
+  extension multiset {81:208, 84:32, 87:32}, the exact 9) and the y=19 winner set
+  all reproduce from scratch; TWO documentation defects fixed - the y=3 row was a
+  single-survivor code artefact (h_2 = 6 = p^2-p, so Conjecture 6 fails by EQUALITY
+  at n = 2 and its 'n >= 3' is sharp), and the maximiser lists were truncated
+  argmax slices presented as complete (true counts 8, 16, 64 at y = 11, 13, 17)
 - twin-percentile - twins at 13.3rd percentile of own family - COMPUTED - NOVEL*
+  (round 23: every number re-derived by independent code, research/j2_referee.py
+  sections R3/R4 - all four tie-aware percentile rows, the 30..75 range, mean 38.83,
+  median 39, rank 385/2880, and the 31-class F_max/lambda spread 2.88..7.52 -
+  reproduce exactly; no defect found in this document)
 - depth-sum-identity - sum_j W_j(g) = prod_q c_q(g), closed-form sum rule over
   all window depths + depth-uniform bound - PROVED+SCRIPT-VERIFIED (machines
   11-29 exact) - PRIOR ART FOUND (harvester, 2026-08-24): this is Holt
@@ -105,7 +116,33 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   dimension-2 sifting limit and ZM Conjecture 6's exponent 2 sits below even
   Selberg's conjectural floor 2*kappa = 4, so the gap is parity, not technology -
   PROVED(paper)+SCRIPT-VERIFIED (exact rationals) - NOVEL* (the published ladder is
-  empty; ZM prove no bound, no 2018-2026 follow-up), checked 2026-08-24
+  empty; ZM prove no bound, no 2018-2026 follow-up), checked 2026-08-24.
+  ROUND 23 - publication readiness pass: (0) THEOREM 2E - RUNG 2 IS NOW FULLY
+  EXPLICIT: j_2(p_n#) <= 1.0963e10 p_n^19 (log p_n)^10 + 1 for every p_n >= 285,
+  no ineffective threshold, via the constant-free Friedlander-Iwaniec Opera de
+  Cribro Thm 7.7 plus kappa = 2, K = 3 (K = 3 independently re-derived and shown
+  best possible; the hypothesis is Dudek-Dunn arXiv:2602.22720 Lemma 2.1 for
+  LITERALLY our density, because sifting n and N-n is the same
+  two-classes-per-prime problem). Exponent 4.266 remains non-explicit and cannot
+  be made so (DHR delay system + an uncomputed (log y)^{-1/6} error). Also settled:
+  the PER-BAND truncation is invalid (36 witnesses) but the UPPER-TAIL NESTED one
+  is valid - 168,400 configurations, zero violations - so the only piece left is an
+  explicit main-term estimate for it; (a) THEOREM 3E makes the quasi-polynomial
+  rung EXPLICIT - j_2(p_n#) < p_n^(9.30 log log p_n) for all n >= 3, asymptotic
+  constant exactly 2 lambda_* = 7.1822 (so round 22's measured band [3.47,4.16] did
+  NOT contain the limit); (b) the LOWER ladder priced and a named open problem added
+  (proved sandwich p^(1+o(1)) .. p^4.266 around a truth of p^2/2; the covering-
+  capacity count explains why the paired problem is quadratic and the ordinary one
+  near-linear); (c) THE CEILING corrected - "no sieve attains 2 kappa" is an OPEN
+  problem not a theorem, the best proved floor is 2 kappa/e ~ 1.47 (Brady), so
+  exponent 2 is below the CONJECTURED optimum only, and the actual blocker is
+  PARITY via ZM Thm 4.1; (d) a citation audit fixing five second-hand errors
+  (C.S. not M. Franze; Selberg's conjecture is not in Franze; 19/36 vs Ford/Brady's
+  0.4454; Iwaniec's theorem is h(k) << (k log k)^2 not (log n)^2; Costello-Watts'
+  2e^gamma rung is arXiv:1306.1064 not 1208.5342); (e) novelty RE-CHECKED by
+  citation graph 2026-08-25 - ZM 1706.00317 has exactly ONE citation in nine years
+  (their own note), 1706.03668 has zero, zbMATH has no "paired Jacobsthal" record,
+  and Iwaniec 1978 is still the ordinary-ladder record per erdosproblems.com 970/687
 - paired-hlb-cycles - c_q(g) = q - nu_q({0,2,6g,6g+2}) (machine diagonal = HL
   quadruplet local factor); pinch theorem N2 - sum N3 <= n_g <= N2 (paired HL-B in
   cycles with explicit 1/log^2 rate, both bounds closed-form CRT); paired transfer
@@ -198,11 +235,36 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   at machines 11/13/17/19, gaps 1.14/1.91/1.72/1.48), the PAIR-VISIBILITY reduction
   q_a q_b > 4W kills a pair outright, and F(19) <= 37 = F(17) + 19 PROVES THE (D) STEP
   17->19 exactly from 37 rationals with no period scan (1,092x fewer operations than the
-  1.6M-slot scan); (D) also proved at 7->11, missed by 1 at 11->13 - SCRIPT-VERIFIED
+  1.6M-slot scan); (D) also proved at 7->11, missed by 1 at 11->13.  ROUND 23: THAT
+  CERTIFICATE IS NOW KERNEL-CHECKED (proofs/CoveringCert.lean, `F19_le_37` /
+  `D_17_19_lp`, standard three axioms, `cert_signs` on NONE) - and formalising it showed
+  the optimum is supported on a SINGLE distinguished gear (all 37 weights on rows (i,5)),
+  is a PALINDROME, and signs by 17 in 12489.  Otherwise SCRIPT-VERIFIED
   (research/lp_dual_certs.py, research/exact_lp.py; origin research/matrix_shapes.py) -
   PARTIAL OVERLAP (closed-form counting corollary is a weaker case of Costello-Watts
   arXiv:1208.5342; the dual-certificate form, the visibility reduction and the (D)
-  application NOVEL*)
+  application NOVEL*).  ROUND 23: Costello-Watts read from its LaTeX source and
+  TRANSFERRED to the two-teeth machine (research/cw_transfer.py) - their dilation lemma
+  makes the twin machine SELF-SIMILAR under "restrict to a pair modulus"; measured, the
+  transfer gives F(13)<=35, F(17)<=65, F(19)<=110, F(23)<=230, F(29)<=322, i.e. 3.2x-7.5x
+  above the true F, so it cannot prove a (D) rung while the dual certificate proves four.
+  See consistency-over-degree for what closed the miss-by-one.
+- consistency-over-degree - in the covering LP for F(M), one level of MARGINAL
+  CONSISTENCY at degree 2 strictly beats two extra degrees without it, and it is what
+  proves the (D) rungs.  At machine 13, width 20 (the 11->13 budget) the round-22
+  block-independent relaxation is FEASIBLE at degree 2, 3 AND 4 - degree 4 being all the
+  gears, i.e. the full per-position joint information, each verdict an exact point
+  completable at every position - while the CONSISTENT degree-2 LP is infeasible with an
+  exact certificate (660/37 < 664/37, 106 integers over one denominator).  So the
+  round-22 MISS BY ONE at 11->13 is CLOSED, and the vehicle proves four consecutive
+  rungs 7->11, 11->13, 13->17, 17->19.  Mechanism: a degree-l cut constrains one
+  position and per-position completability already contains all of them (Frechet
+  included); consistency is a statement ACROSS BLOCKS that no moment inequality can see.
+  Corollary: round 22's PAIR VISIBILITY (q_a q_b > 4W kills a pair) is an artefact of
+  the missing consistency, not a property of the machine - SCRIPT-VERIFIED exact both
+  ways (research/lp_degree_range.py) - PARTIAL OVERLAP (Sherali-Adams/Lasserre
+  consistency and the Bonferroni families are classical; the measured direction on this
+  problem and the (D) application NOVEL*)
 - moment-degree-ceiling - every fixed-degree covering certificate for F(M) goes VACUOUS at
   a computable machine, family-free: the uniform product measure's degree-<=l moments
   extend to a distribution with no empty atom, so every degree-l cut is satisfied at every
@@ -213,13 +275,72 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   S1*prod(1-2/q) + beta and the chain family is exponentially weaker than the sharp
   bound - SCRIPT-VERIFIED exact (research/lp_dual_certs.py C,D) - PARTIAL OVERLAP
   (Boole-Bonferroni LP of Prekopa/Boros is the machinery, Brun truncation growth is the
-  classical shadow; the per-degree exact ceiling machine and the degree law NOVEL*)
+  classical shadow; the per-degree exact ceiling machine and the degree law NOVEL*).
+  ROUND-23 AMENDMENT: the ceiling is NOT the operative limit for (D) - a rung needs an
+  integrality gap B(y)/F(y), measured 2.29, 1.82, 1.56, 1.48, 1.41, 1.47, 1.28, 1.08,
+  1.42 at 7->11 .. 37->41 (never above 1.48 after the first step, dipping to 1.08 at
+  31->37, and -> 1 asymptotically), so the rung-proving range ends far below the
+  vacuity ceiling.  The ceilings are UNCHANGED by marginal consistency (the uniform
+  product measure is a global distribution, hence feasible for the consistent hierarchy
+  too): consistency buys WIDTH, not MACHINES.  And the ceiling does not bind
+  Costello-Watts, whose recursive pair term has unbounded effective degree.
 - kleene-generator - F(M+q') = L^T (x) K* (x) R exactly, where K is the max-plus matrix of
   qualifying-and-T3-alternating successor steps and K* its Kleene star: the merge law's
   increment IS a longest path, so (D) becomes ONE arity-free dual certificate
   (h >= R, h >= K (x) h, L + h <= F + q') with no depth quantifier; the m-th layer of
   the star is qualmax_{m+2}.  Measured: the value-only abstraction is CYCLIC (bound
   vacuous) exactly where the infinite alternating word survives the 2-point relaxation,
-  and adding the corridor phase mod 35 restores nilpotency and certifies (D) -
-  SCRIPT-VERIFIED (exact, full period, steps 11->13 .. 23->29;
-  research/kleene_generator.py, kleene_stream.py) - not yet checked (round 22)
+  and adding the corridor phase mod 35 restores nilpotency and certifies (D).
+  ROUND 23 (section 4b): the HISTORY LADDER A_m - state = the last m-1 gap VALUES, edge
+  = a REALISED m-tuple - makes weight, base and left flank all exact and CERTIFIES (D) at
+  29->31 where round 22's corridor states failed (A_3 + phase 385 gives 72 <= 74), with
+  A_4 (three gap values, phase-free, 14,368 states) EXACT at all six scannable steps; and
+  A_m is nilpotent exactly when m > A_relax(M).  The machine-free version (corridor-
+  admissible tuples, values 1..F) is SATURATED: mod 35, mod 385 and three gaps of history
+  give identical, failing bounds at all seven steps; but counterexample-guided refinement
+  from the machine-free system, given only F_2(M), CERTIFIES 29->31 after 6,395 yes/no
+  "is this gap 4-tuple realised" queries against a 1.08e9-slot period -
+  SCRIPT-VERIFIED (exact, full period, steps 11->13 .. 29->31;
+  research/kleene_generator.py, kleene_stream.py, kleene_history.py,
+  machinefree_cert.py) - not yet checked (rounds 22-23)
+- nilpotent-invariants - the blocked walk N = BS is PERMUTATION-similar to the direct sum
+  over the machine's GAPS of nilpotent Jordan blocks (one J_g per gap), so rank(N^n) is the
+  gap histogram's tail sum and EVERY UNITARY INVARIANT of N - singular values, Schatten
+  norms, Jordan type, kernel-filtration dimensions, numerical range, resolvent norms,
+  pseudospectra - is a function of the gap histogram alone: no operator invariant can bound
+  F non-circularly (Wall V in invariant-theoretic form, and the round-22 path decomposition
+  is this theorem symmetrised).  Three still buy something: ||N^n||_op = 1 for n<F then 0
+  (a cliff - F sits entirely in the constant of any decay envelope); w(N) = cos(pi/(F+1))
+  EXACTLY, so the maximal gap is an SDP-representable VARIATIONAL quantity; and
+  r_eps = eps^(1/F), a Maslov dequantisation making the (+,x) resolvent, the (max,+) Kleene
+  star and the Boolean filtration one computation in three semirings.  Two checked
+  NON-GAINS: moments/exponential sums reduce to the r_L run ladder, and Weyl across a merge
+  step is vacuous (2.85-2.99 > 2) - PROVED + SCRIPT-VERIFIED exact integers
+  (research/nilpotent_invariants.py, machines 11-19) - not yet checked (round 23)
+- potential-arity-ladder - F(M) <= 1 + osc(h) for any potential with h(k) >= h(k-1)+1 at
+  every blocked slot, TIGHT (distance-to-previous-opening attains it), so F is exactly an LP
+  optimum and the only thing that can fail is the certificate's ARITY.  T1: a potential that
+  depends only on k mod m for a proper divisor m certifies NOTHING (one line) - why
+  bounded-state certificates mod 35/385/5005 cannot bound F.  T2 (MERTENS NO-GO, proved,
+  exact rationals): a per-gear (arity-1) potential exists only if sum_(5<=q<=y) 1/q < 1/2,
+  so arity 1 dies at machine 13 and never returns.  Measured ladder with every feasible
+  certificate re-verified against the full period: arity 2 gives 1.11x, 1.63x, 2.06x the
+  true F at m11/13/17 - a fixed arity goes asymptotically vacuous while staying feasible.
+  Conjectured threshold sigma >= r/2 (sign condition named as the gap) puts level 2 dead at
+  y=109, level 3 at y=2741, level 4 at y=483281, i.e. required arity ~ 2 sum 1/q ~
+  2 log log y - the SAME arity law the LP-duality thread found independently on a different
+  certificate family - PROVED (T1,T2) + SCRIPT-VERIFIED LP ladder
+  (research/potential_arity.py) - not yet checked (round 23)
+- old-machine-spectrum - the lap-phase transfer: a window of the machine r gears ahead is a
+  window of THIS machine plus r free CRT phases, so (A) the whole qualifying ladder
+  Q_J(M + q_1..q_r; a) is computable EXACTLY on M's period, at 1/(q_1...q_r) of the cost,
+  and (B) F_{r+1}(M) <= F(M + q_1 + ... + q_r) (r new gears buy r rungs of the F_j ladder,
+  one designated kill each).  (A) validated at r=1 on five steps and at r=2 (machine 31's
+  full-period ladder 68/85/90/91/90/88 recovered from machine 23's period in 338 s, period
+  ratio 899); (B) asserted at all 32 (M,j) pairs with both sides known, and it PINS
+  F_2(41) = 103 with no descent (cap F(43) = 103 free, witness at 103).  Also RETRACTS my
+  own round-22 "the marked spectrum loses the 29->31 rung (85 vs 74)": tool bug, the true
+  value is 71.  APPLIED, and it decided the project's named open computation: the word-free
+  criterion max_J Q_J <= F + q' holds at every step to 41->43 and FAILS at 43->47 (152 vs
+  150) and 47->53 (177 vs 171), both witnesses asserted at the target machine, both failures
+  confined to depths 6-7 - PROVED (elementary) + SCRIPT-VERIFIED - not yet checked (round 23)

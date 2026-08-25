@@ -1087,3 +1087,352 @@ its 2000 cap in 1.6 s against a true 7,815,766) - cost scales with the COUNT, so
 it is an exact counter only in the rare regime. covpred41.log ends in a
 ValueError (cov_sat.predict takes max() of an empty realized list when every
 probed v refutes) - tool bug, logged.
+
+## Round 23 (2026-08-25)
+
+The round's spine was "characterise the J=5 configurations at 23->29". There are none:
+the object was an artefact of a bug in MY OWN round-22 tool. Correcting it turned a
+reported failure into a certification, and the corrected tool then generalised into the
+round's main construct - the LAP-PHASE TRANSFER, which computes the qualifying ladder of a
+machine r gears ahead on THIS machine's period. Separately, the corpus-first rule paid the
+round's largest single dividend: F(47) = 118 EXACT, an open value since round 20.
+
+### R23.A THE J=5 OBJECT DOES NOT EXIST - my round-22 tool over-accepted
+
+marked_qspec.feasible() (round 22) returns True as soon as J-1 marks are placed and NEVER
+INSPECTS THE INTERIORS BEYOND THE LAST MARK. Windows carrying a live, unmarked, unkilled
+interior in the tail were therefore accepted, which is exactly a violation of the
+definition ("every UNMARKED interior is KILLED by q'").
+
+EXHIBITED, not argued (research/marked_bug_demo.py): machine 19, q' = 23, J = 3, phase
+c = 15 (gear 23 kills residues {11,19}), window k = 72,858, span 45, interiors at
++2 (r=19 KILLED), +12 (r=6 ALIVE), +14 (r=8 ALIVE), +17 (r=11 KILLED), +40 (r=11 KILLED).
+The two live interiors are 2 apart, so no legal mark set (consecutive marks >= a = 10) can
+contain both: the window is INADMISSIBLE. The old recursion marks {+2,+12}, hits its quota
+of 2, returns True, and never looks at +14.
+
+CORRECTED VALUES (research/j5_census.py, 58 s for machine 23's full period against 681 s
+for the buggy pass) - Q^[J](old) against the exact Q_J(new) at every computable step:
+
+(NAMING, stated once because it is an easy off-by-one: the scan "old -> new" computes
+Q_J(new; a) with a = 2u'' set by the gear q'' AFTER new, so the criterion it decides is the
+step new -> q'', with budget F(new) + q''. The "serves" column is that step.)
+
+    scan       object          J: 2   3   4   5   6   7   max  budget  serves   r22 said
+    11->13   Q_J(13; 6)          16  18  23   0   -   -    23     28   13->17   23 at J=3
+    13->17   Q_J(17; 6)          25  28  31  32  34   0    34     37   17->19   32,33 J=4,5
+    17->19   Q_J(19; 8)          31  35  37  38   0   -    38     48   19->23   38 at J=4
+    19->23   Q_J(23; 10)         39  43  50  55  60   0    60     63   23->29   50 at J=3
+    23->29   Q_J(29; 10)         55  65  68  71  71  71    71     74   29->31   85,73,73
+    29->31   Q_J(31; 12)         68  85  90  91  90  88    91     95   31->37   (not run)
+
+Every row now equals the exact Q_J(new) at every depth - 36 of 36 entries over six steps.
+RETRACTED: round 22's "max_J Q^[J](23) = 85 > 74, RUNG LOST" and "the construct buys
+exactly one rung, not a ladder". The 29->31 rung CERTIFIES from machine 23's census
+(71 <= 74), and so does 31->37 from machine 29's (91 <= 95).
+THE J=5 CENSUS ITSELF: J=5, 23->29, windows of span >= 75 over the full 37,182,145-slot
+period: ZERO records, zero addresses, zero words. Constructor's briefed object is empty.
+
+TRIPLE-SOURCED BY ROUND CLOSE, and I record the other two because they are stronger than
+my own half. CONSTRUCTOR found the same bug independently and concurrently, from the
+opposite direction, and proved the SANDWICH LEMMA
+Q_J(new) <= Q^[J](old) <= max_{j<=J} Q_j(new), so max_J Q^[J](old) = max_J Q_J(new)
+ALWAYS - the equality I measured at 36 of 36 entries is forced, not lucky. FORMALIST
+re-derived the numbers from my written definition rather than my code, located the same
+line, and then REPRODUCED MY PUBLISHED ROWS DIGIT FOR DIGIT by disabling that one check -
+which is what turns "those numbers are wrong" into "those numbers are THIS bug". I adopt
+their label correction: the step that appeared to fail is 29->31; the 23->29 rung (budget
+63) was never in doubt. My round-22 post indexed the object by its OLD machine and the
+other two lanes indexed it by the step it decides, and that alone cost a round of
+confusion - hence the naming note above.
+
+CONTROLS RUN BEFORE THE RETRACTION WAS POSTED (research/j5_verify.py):
+- PREDICATE CONTROL: 295,763 (window, phase, J) triples at machines 19 and 23 with
+  admissibility decided by literal itertools.combinations enumeration - the round-23
+  predicate agrees 295,763/295,763 (asserted); the round-22 predicate OVER-ACCEPTS 61,095
+  of them (20.7%).
+- SPECTRUM CONTROL: the whole Q^[J] table recomputed by brute force at 11->13 and 13->17;
+  matches the census exactly (asserted).
+- ANCHOR: regime R2 (below) must reproduce the known exact Q_J(new); asserted at all six
+  steps, including the machine-29 ladder 55/65/68/71/71/71 (r17 full-period scan) recovered
+  from machine 23's period and the machine-31 ladder 68/85/90/91/90/88 (qspec31 full
+  period) recovered from machine 29's.
+
+### R23.B THE LAP-PHASE TRANSFER (docs/novel/old-machine-spectrum.md)
+
+Three survival regimes on the same scan: R0 = no survival requirement (the round-22
+relaxation), R1 = the two endpoints survive phase c, R2 = endpoints and marks all survive.
+R2 IS EXACT: if every endpoint and mark survives and every other interior is killed, then
+endpoint-marks-endpoint are precisely the consecutive NEW-machine openings of that window,
+and every phase occurs because the old period repeats q' times inside the new one. So R2
+computes Q_J(new) EXACTLY on the OLD machine's period, at 1/q' of the cost - and R0 = R1 =
+R2 at all six steps, so the relaxation is empirically free.
+
+r NEW GEARS, r FREE PHASES. The argument never mentions how many gears are added: with
+q_1..q_r new, k maps to (k mod P, k mod q_1, ..., k mod q_r) bijectively (CRT), so a window
+of the machine r gears ahead is a window of THIS machine plus a phase TUPLE, and the period
+ratio bought is the product. Built as research/j5_multi.py, validated at r = 1 against
+j5_census, then run up the ladder from MACHINE 23's period (7,952,175 openings).
+
+CROSS-CHECKS THAT MAKE THE r=3 ROW TRUSTWORTHY: Q_2(37;14) = 90 = F_2(37) EXACT (r20 SAT +
+r21 full-period scan) and Q_3(37;14) = 97 = F_3(37) EXACT (r21, 55 refutations) - two
+independently known machine-37 numbers reproduced from a machine three gears below, plus
+Q_4/Q_5/Q_6 = 103/110/112 sitting under the exact F_4/F_5/F_6 = 105/113/120. The r20
+qspec37 16%-prefix lower bound Q_3 >= 95 is now exact at 97.
+NEW EXACT OBJECT: Q_J(37;14), J = 2..7 = 90, 97, 103, 110, 112, 114 - previously only a
+prefix lower bound at J = 3. Max 114 <= F(37) + 41 = 129, so THE 37->41 RUNG CERTIFIES
+hypothesis-free with the ALL-DEPTHS quantity (margin +15 = 0.37 q'), not merely at the
+litcap-capped depth 3.
+
+COST NOTE, because it is the surprise: adding a gear costs about 1.7x, not about q'. The
+phase walk prunes on "this gear cannot kill enough of what is left", so the tuple search
+never enumerates the product.
+
+### R23.C DELETION-LADDER BOUND: F_(r+1)(M) <= F(M + r more gears)
+
+Same one-line mechanism, other consequence. Take the window realising F_(r+1)(M); it has
+exactly r interior openings; choose the unique phase tuple putting interior i on a tooth of
+gear q_i. All r interiors die; if the endpoints also die the containing new gap is longer
+still. So F(M + q_1 + ... + q_r) >= F_(r+1)(M). (r = 1 is merge-law.md's "F(M+q') >= F2(M)
+unconditionally"; r new gears buy r rungs, one designated kill each.)
+
+research/deletion_ladder.py asserts it at all 32 (M, j) pairs where both sides are known
+exactly (machines 13..37 against F(17)..F(53)): ALL PASS, one attained with equality
+(F_2(17) = 25 = F(19)), tightest non-equality F_2(37) = 90 vs F(41) = 91.
+
+IT PAYS IMMEDIATELY: F_2(41) <= F(43) = 103 for free, and SAT says S = 103 is realized
+(k = 21,157,523,372,970, gaps [28, 75], assert-verified). Hence F_2(41) = 103 EXACT with
+NO descent - the cap is a corpus lookup and the floor is one witness. Consequence for the
+merge law: F(43) = 103 = F_2(41), so the 41->43 step record is carried by the k=1 (no
+chain) term, unlike 31->37 and 37->41 where a padded k=3 chain carried it.
+Also free: F_3(41) <= F(47), F_2(47) <= F(53) = 145, F_2(43) <= F(47).
+
+### R23.D F(47) = 118 EXACT - and F(2,47) = 354, a first computation
+
+STANDING RULE 11 ("before any tail hunt, look up the corpus ladder") was applied to the
+TOOL rather than the value: the corpus has no F(2,47), but it has the program that computed
+F(2,53) = 435 - rust2/src/bin/maxgap_pruned.rs, the endpoint-law-pruned covering search.
+Validated first on two known values (y = 41 from L = 270: F(2,41) = 273 in 15 s;
+y = 43 from L = 300: F(2,43) = 309 in 199 s), then run at y = 47.
+
+    RUN OF L = 354 IS NOT COVERABLE  ->  F(2,47) <= 354  (research/data/maxgap47_pruned.log)
+    F(47) >= 118 (r20 COV-SAT witness) ->  F(2,47) >= 3*118 = 354
+    ==> F(2,47) = 354 EXACT, and F(47) = F(2,47)/3 = 118 EXACT.
+
+Independent consistency: separate single-L probes at 390 and 417 also refute (F <= 390,
+F <= 417), as monotonicity demands. NOTE THE READING TRAP, since this lane has been burned
+by it twice: maxgap_pruned prints "F(2,47) = L" whenever L refutes, whatever L it was
+started at - that line means "L is not coverable", i.e. F <= L, and is the exact value only
+when everything below is known coverable. Here it is, because the SAT witness supplies the
+matching floor.
+
+WHAT IT SETTLES:
+- The r21 "hardness cliff at v = 118 -> 119" is EXPLAINED: v >= 119 are all UNSAT because
+  F(47) = 118. Thirteen concurrent m47 instances decided nothing in eight hours because
+  every one of them was a refutation.
+- The corpus F ladder is complete to 53: 25, 34, 43, 58, 88, 91, 103, 118, 145 at
+  y = 19, 23, 29, 31, 37, 41, 43, 47, 53; adjacent frame 75, 102, 129, 174, 264, 273, 309,
+  354, 435. The 43->47 rung that merge-law-h2-test.md lists as "NOT RUN (would be a first
+  computation)" is computed - by the covering search, not the merge law, so the merge
+  cross-check at 47 remains open exactly as it does at 43.
+- Increment F(43) -> F(47) = 15; adjacent incr/q' = 45/47 = 0.957, far under alpha = 2.5.
+- F_3(41) <= F(47) = 118 (deletion ladder), with F_3(41) >= 110 witnessed
+  (k = 30,382,499,692,410, gaps [77,11,22]) - the search collapses from 36 candidate values
+  to 8.
+- THE 47->53 BUDGET IS NOW EXACT: F(47) + 53 = 171, not a bracket.
+
+### R23.E (D) AT ALPHA=3 IS DECIDED TRUE AT EVERY STEP THROUGH 47->53, FROM THE LADDER
+
+(D) at M -> q' says F(M+q') <= F(M) + q'. With the ladder complete this is arithmetic
+(research/deletion_ladder.py, all asserted):
+
+    19->23  34 <= 48  +14     31->37  88 <= 95   +7      43->47  118 <= 150  +32
+    23->29  43 <= 63  +20     37->41  91 <= 129  +38     47->53  145 <= 171  +26
+    29->31  58 <= 74  +16     41->43 103 <= 134  +31
+
+So THE q'=53 QUESTION IS NOT ABOUT (D). (D) holds there with margin +26 = 0.49 q'. What is
+open at 47->53 is whether the WORD-FREE CRITERION - max_J Q_J(47;18) <= F(47) + 53 = 171 -
+is still SUFFICIENT, i.e. whether the proof vehicle survives a litcap-6 step, not whether
+the inequality it is trying to prove is true. Round 21 said this in words; it is now
+numbers.
+
+CRITERION MARGINS, EXACT AND ALL-DEPTHS (the quantity a hypothesis-free theorem consumes),
+replacing every prefix row. Row "M -> q'" = max_J Q_J(M; 2u'(q')) against F(M) + q':
+
+    step     max_J Q_J(M; a)   budget F(M)+q'   margin   /q'    litcap(q')
+    13->17         23                28           +5     0.29        2
+    17->19         34                37           +3     0.16        2
+    19->23         38                48          +10     0.43        4
+    23->29         60                63           +3     0.10        3
+    29->31         71                74           +3     0.10        4
+    31->37         91                95           +4     0.11        6
+    37->41        114               129          +15     0.37        2
+    41->43        132               134           +2     0.047       4
+    43->47        152               150           -2      -          -     FAILS
+    47->53        177               171           -6      -          6     FAILS
+
+The 23->29, 29->31 and 31->37 rows reproduce C13's all-depths values exactly (60, 71, 91)
+by a completely different method - the strongest control on the new machinery.
+NOTE ON THE litcap STORY, stated carefully because the two comparisons are different.
+r20/r21's "margin tracks litcap" came from qspec47's row of DIFFERENT q' at ONE machine
+(common-mode F, so the ordering survived even though the numbers were prefix). The ladder
+above is ACROSS machines, and there the exact all-depths margin does NOT order by litcap:
+litcap-4 steps run 0.047 to 0.43, litcap-2 steps 0.16 to 0.37. The step that fails IS a
+litcap-6 step (47->53), which is consistent with the hedge, but the litcap-4 step 41->43
+sits at +2 and is nearly as tight. The honest reading is that the margin is small
+(0.05-0.43 q'), non-monotone and arithmetically selected, like every other extremal
+quantity in this machine.
+
+### R23.F Deliverables to other lanes
+
+CONSTRUCTOR: (i) the J=5 object is empty (R23.A) - their round-23 spine has no target;
+(ii) F_2(41) = 103 EXACT (R23.C); (iii) F_3(41) in [110, 118], both ends established;
+(iv) the (43,43) word at machine 41, which blew their 3e8-node budget at 1127 s:
+COUNT = 4 EXACT per period, 32 s by cov_count model enumeration
+(research/data/m41/count_4343.log), addresses 116,431,845,582 / 21,381,235,210,387 /
+29,327,142,044,062 / 50,591,945,408,867, each re-verified by assert (openings at
++0/+43/+86, all 84 other interior slots blocked, both links padded), and CROSS-CHECKED BY
+THE MIRROR LAW - the four are exactly two mirror pairs summing to P - 86 =
+50,708,377,254,449 (research/m41_4343_verify.py). r21's single-source flag is cleared.
+FORMALIST: the 29->31, 31->37 and 37->41 rungs are all unblocked from machine 23's period;
+R2 says the survival predicate buys EQUALITY rather than an inequality if wanted.
+
+### R23.G Standing-rule additions
+
+14. A TOOL IS A CORPUS ITEM. Rule 11 said "look up the value"; F(47) was found by looking
+    up the PROGRAM that computed its neighbours. Before pricing any new computation, check
+    whether an existing tool already answers it at a different y.
+15. VALIDATE A PREDICATE, NOT ONLY A MAXIMUM. The round-22 marked spectrum passed every
+    check it was given (the inequality Q_J(new) <= Q^[J](old) held 22 of 22) BECAUSE the bug
+    only ever made the bound larger. What caught it was recomputing the same maxima with an
+    independent implementation; what proved it was testing the PREDICATE triple by triple
+    against a literal enumeration. An anchor on the answer does not test the predicate.
+16. SEEDED VERIFICATION IS LEGITIMATE AND MUST BE LABELLED. Seeding a running maximum at a
+    known floor (or at budget-1) cuts warm-up cost by 10-100x and is sound - every window of
+    span above the seed is still examined - but the reported value is max(true, seed) and
+    must be printed as such, never quoted as an exact value.
+
+### R23.H THE WORD-FREE CRITERION FAILS - FIRST AT 43->47, AGAIN AT 47->53
+
+This is the q'=53 decision my brief called the round's highest-value open computation. It
+is DECIDED, and it is NEGATIVE - not for (D), which holds at both steps with room
+(R23.E), but for the CRITERION. Both numbers come from the lap-phase transfer run on
+machine 23's period (r = 5 and r = 6 new gears), seeded one below the budget so the scan
+asks exactly "does any admissible window reach the budget?", and BOTH FAILURE WITNESSES
+ARE CRT'd TO A REAL ADDRESS OF THE TARGET MACHINE AND ASSERTED THERE.
+
+    step     max_J Q_J(M; a)   budget F(M)+q'   verdict         failing depths
+    41->43        132              134          CERTIFIES +2    -
+    43->47        152              150          FAILS by 2      J=7
+    47->53        177              171          FAILS by 6      J=6 (174), J=7 (177)
+
+THE TWO WITNESSES, verified by research/multi_witness_verify.py (openings where claimed,
+every other interior slot blocked, every middle gap at or above the floor):
+
+  Q_7(43; 16) >= 152 at k = 110,350,776,715,218 (machine 43, period 2.180e15)
+      gaps [35, 20, 20, 17, 20, 17, 23], middles [20,20,17,20,17] all >= 16
+      145 interior slots blocked, asserted.  Budget F(43) + 47 = 150.
+  Q_7(47; 18) >= 177 at k = 41,120,916,229,562,503 (machine 47, period 1.025e17)
+      gaps [14, 20, 36, 19, 20, 45, 23], middles [20,36,19,20,45] all >= 18
+      170 interior slots blocked, asserted.  Budget F(47) + 53 = 171.
+
+WHAT THIS DOES AND DOES NOT KILL.
+- It does NOT touch (D). F(47) = 118 <= F(43) + 47 = 150 and F(53) = 145 <= F(47) + 53 =
+  171, both with room (R23.E). The theorem is true at these steps; the vehicle stops
+  proving it.
+- It kills the ALL-DEPTHS (hypothesis-free) form of the word-free criterion from 43->47 on.
+  That is the form a kernel rung consumes when the depth is closed by no_big_run rather
+  than by a fuel cap.
+- IT DOES NOT KILL THE DEPTH-CAPPED FORM, and the failure says exactly what must be proved
+  instead. The merge law only ever needs depths j <= k_max + 1, where k_max is the step's
+  kill-chain (fuel) cap: a chain of k deleted openings merges k+1 gaps. Both failures live
+  at J = 6 and 7 ALONE - every depth at or below 5 sits under budget at both steps (they
+  are below the seed, hence <= 149 and <= 170). So ANY PROVEN CAP k_max <= 4 AT THESE TWO
+  STEPS RESTORES THE CRITERION, and that is not a speculative ask: the measured caps one
+  and two steps below are k_max(37->41) = 3 (exhaustive full-period scan AND SAT refutation
+  of all 53 legal 4-words) and k_max(41->43) = 3 (SAT over 120 words).
+- THE HANDOFF, precisely: 43->47 and 47->53 now need A_kill(43) and A_kill(47), not a
+  better spectrum bound. That is Constructor's arity lane, and the F_2/F_3 caps of R23.C
+  are its pruning inputs.
+
+THE MECHANISM, since the measurement directive asks for it rather than a shrug. The
+criterion maximises over windows whose j-2 MIDDLE gaps all clear the floor a = 2u'. The
+floor grows with the added gear (16 at machine 43, 18 at machine 47) but the machine's mean
+gap grows only like 1/prod(1-2/q) - 6.26 and 6.54 slots - so a qualifying window is a run of
+consecutive gaps each about three times the mean. Those runs are rare, and at every machine
+up to 41 the deep ones are simply ABSENT, which is why Q_J collapses to 0 or plateaus and
+the criterion holds. At 43 and 47 depth-7 runs exist for the first time, and the moment they
+exist the criterion maximises over them and clears the budget. The failure is arithmetic
+(when do six consecutive gaps >= 2u' first occur), not asymptotic.
+
+MARGIN LADDER, all ten steps: +5, +3, +10, +3, +3, +4, +15, +2, -2, -6. The criterion was
+never comfortable - inside 0.13 q' at four of the ten - and it goes negative exactly where
+the deep qualifying runs appear.
+
+SCOPE, the one caveat, stated because certifications and failures are not symmetric here:
+the scans examine windows up to a span cap (200 at r=3, 210 at r=4, 240 at r=5, 260 at
+r=6). A FAILURE carries no condition - the witness exists and is verified at the target
+machine. A CERTIFICATION is conditional on there being no admissible window above the cap;
+observed maxima sit 30-90 slots below their caps at every step, and every step for which an
+independent full-period value exists agrees exactly.
+
+TOOL NOTE (a second unsound thing caught, this one by its symptom): the 6-gear phase walk
+originally branched on PHASES, and with weak pruning that tree is
+29*31*37*41*43*47 = 2.7e9 leaves - the r=6 run stalled on individual windows. Branching on
+DISTINCT KILL SETS instead is exact (admissibility depends on a phase only through which
+interiors it removes) and collapses the branching to a handful. Both failure values were
+found before the fix and re-verified independently at the target machine after it, so
+nothing here rests on the faster version.
+
+### R23.I THE GAP-TUPLE DICTIONARY (Constructor's round-23 ask), AND A SIZING FAILURE
+
+Constructor's A_m abstraction (state = the last m-1 gap VALUES) is exact at all seven
+scannable steps, including the two that had defeated every previous method, and its exact
+certificate input is the set of REALISED m-TUPLES of consecutive gaps. Tool built
+(research/gap_tuples.py single-process, gap_tuples_par.py range-partitioned + merge), with
+the tuples packed into a 28-bit key so the dedup is a scatter write rather than a sort.
+
+MACHINE 31, FULL PERIOD, DELIVERED AND VALIDATED TWO WAYS (single-process 564 s vs four
+independent range workers; the two CSVs are BYTE-IDENTICAL). Opening count asserted against
+the closed form prod_{5<=q<=31}(q-2) = 6,226,553,025 and the maximal gap against F(31) = 58:
+
+    realised 4-tuples          115,193      research/data/gap_tuples_31_4.csv
+    induced 3-tuples            15,019
+    induced 2-tuples             1,253
+    distinct gap values             55      (= 58 - 3, and the three missing values are
+                                             exactly C14's hole list {54, 56, 57})
+
+The last line is a free consistency check the tool did not know about: the 1-tuple
+dictionary reproduces the machine-31 hole structure exactly.
+
+MACHINE 37: NOT DELIVERED, AND SCOPED RATHER THAN FUDGED. Six range workers reached ~11% of
+the 1.2368e12-slot period and were stopped at round close. The CPU accounting says this was
+SIZING, not the tool: the six accumulated 397 s of CPU EACH over 5,400 s of wall on a
+14-core machine running at 62-66% with other lanes' work - 0.44 cores between them - so the
+remaining ~3,100 s of CPU per worker would have taken about 32 h. Measured price on an idle
+core: 1.3 s per 2e8 slots (mark 0.6, flatnonzero 0.4, key+scatter 0.3), i.e. ~8,000 s total,
+about 25 min six-wide. Ranges are deterministic and the workers are independent, so it
+resumes with one command line (research/data/r23_checkpoint.txt).
+
+THE CONSTRUCT THAT WOULD MAKE IT CHEAP, named per the measurement directive and NOT built:
+THE DICTIONARY TRANSFER. A machine-37 tuple is a machine-31 window whose killed interiors
+lie in the two teeth of ONE phase of gear 37 - and whether a given phase kills a given
+interior, and whether the two endpoints survive, is decided ENTIRELY by the window's PARTIAL
+SUMS MOD 37, which the gap word already carries. So the machine-37 tuple dictionary is a
+pure arithmetic function of machine 31's j-tuple dictionaries with no machine-37 scan at
+all - the lap-phase transfer again, applied to dictionaries instead of to extremal values.
+The obstruction is depth: a window of span F_4(37) = 105 can hide up to about six killed
+interiors, so j runs to ~10, and the j-tuple count grows by ~7.7 per level (55, 1,253,
+15,019, 115,193, ...) which is ~1e9 entries at j = 10. The right version therefore
+enumerates by KILL PATTERN rather than by tuple: the pattern is a choice of which interiors
+die, and the phase condition on it is two residues mod q'. That is a next-round build.
+
+### R23.J Standing-rule addition 17 (a worse version of round 21's trap)
+
+17. THE WRAPPER CAN DIE WHILE THE SOLVER LIVES. probe_one.sh writes
+    "DIED rc=<n> after <t>s" when the WRAPPER exits abnormally - and this round the wrapper
+    alone was swept while its solver child kept running for hours afterwards (seen in the
+    process list, with an EMPTY .err file). So that line dates the wrapper's death, not the
+    solver's, and it does NOT mean the probe stopped. Round 21's lesson was "check elapsed
+    time against the timebox"; the sharper form is CHECK THE PROCESS LIST, because the log
+    can be wrong about whether the job is even still alive - in either direction.

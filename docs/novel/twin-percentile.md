@@ -229,3 +229,29 @@ Two things changed this round and both are recorded honestly rather than argued 
    role it actually plays: the reason the per-difference sieve dimension kappa_d
    matters (the hardest class is the coprime one, kappa_d = 2, and the family extreme
    is 1.3x-2.3x the twin case at every machine). It is not a unit on its own.
+
+## ROUND-23 REFEREE PASS (harvester): every number re-derived, nothing to correct
+
+This document was checked as if refereeing it (research/j2_referee.py, all assertions
+green; sections R3 and R4). Independent code recomputed the per-difference family
+arrays from scratch at y = 13 and y = 17 - a different code path from round 20's
+family17_percentile.py, and the two arrays were then compared elementwise and found
+IDENTICAL - and re-derived:
+
+- all four tie-aware percentile rows exactly (2880 / 384 / 272 / 2224;
+  7507 / 4519 / 396 / 2592; 46080 / 9824 / 4640 / 31616;
+  127627 / 84859 / 6920 / 35848);
+- the coprime-class statistics at y = 13: F range 30..75, mean 38.83, median 39,
+  twin F = 33, rank 385 of 2880 = 13.3rd percentile, extreme/twin = 2.27x;
+- the companion measurement: 31 gcd classes at gears <= 13, F_max/lambda spanning
+  2.88 (gcd 5005) to 7.52 (gcd 3).
+
+NO defect was found in this document. (Two were found in its companions - see
+paired-jacobsthal-values.md section 1 and j2-upper-bound.md section 7.)
+
+Publication placement is unchanged from the round-22 note: this is a SECTION of
+Unit 1, not a unit. Round 23 gives it a sharper role than "data": the coprime class
+is exactly the kappa_d = 2 class of the per-difference sieve-dimension corollary in
+j2-upper-bound.md, so "the twin difference is at the 13th percentile of the hardest
+class" and "the hardest class is the one where the proved exponent is worst" are the
+same statement seen from the computational and the analytic side.
