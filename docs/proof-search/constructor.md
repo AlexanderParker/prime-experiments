@@ -1395,3 +1395,169 @@ KH_DUMP4=... kleene_history.py 29 --specs 4:0). Every census full period with
 the cyclic seam stitched; Q_J values
 cross-checked against Mechanic's independently-produced rows at machines 13,
 17, 19, 23 and 29.
+
+
+## Round 24 append (the two-gap verdict): R55-R59
+
+**R55 (BOTH MACHINE-FREE SUPPLIERS OF THE TWO-GAP FACT SATURATE AT 2F - the
+negative half of the verdict, quantified; research/twogap_table.py, log
+data/twogap_table.log).** The two-gap statement F_2(M) <= F(M) + q' is
+measured exact at all seven full-period machines (slacks +9, +12, +12, +17,
++24, +19, +27 at m11..31; seam-stitched pair census - the lag-1 joint csv is
+a LINEAR scan short one cyclic-seam pair, recovered exactly from the marginal
+defect against ghist and asserted).  The two candidate machine-free suppliers:
+(i) THE HISTOGRAM.  The tight bound over all cyclic rearrangements of the gap
+multiset is F + G_2, G_2 = largest value pairable with F; maximal gaps are
+mirror-paired (W_1(F) >= 2 at 7/7, values 4, 12, 20, 20, 4, 2, 4), so
+G_2 = F and the histogram bound IS 2F - which EXCEEDS the budget F + q' from
+19->23 on (margins -2, -5, -12, -21 at m19/23/29/31).  By Lateral's
+Jordan-=-histogram theorem every unitary invariant of N = BS is a function of
+the histogram, so NO OPERATOR INVARIANT CAN SUPPLY THE TWO-GAP FACT - the
+wall is a theorem, not a search failure.
+(ii) THE CORRIDOR.  R52's machine-free layer-0 column equals 2F or 2F-1 at
+every step (cross-checked row by row: 14/21/36/50/67/86/116 vs 2F =
+14/22/36/50/68/86/116) - the corridor knows exactly as much as the histogram
+here and one unit more at two steps.  Same wall.
+CONTROL (how much structure does the statement actually need?): arranging the
+SAME multiset uniformly at random on the cycle, the typical max adjacent-pair
+sum R_2 = min{B : E[#pairs > B] < 1} is 11, 17, 28, 39, 50, 61, 76 - which
+CLEARS the budget at all seven steps, and the real F_2 sits AT OR BELOW even
+that typical value (F_2 - R_2 = +0, -1, -3, -8, -11, -6, -8).  So the machine
+is anti-correlated beyond random at the pair level (R17's anti-clustering in
+pair form), and the two-gap statement needs only "not worse than a typical
+arrangement" - but no rearrangement-invariant fact can say that, which is
+exactly why the invariant route dies at 2F.  Also measured: the adjacency law
+A(M) = max over adjacent pairs of min(g1,g2) <= q' holds 7/7 but the ratio
+A/q' climbs 0.38 -> 0.89, and its m37 partial coverage already gives
+A(37) >= 40 vs q'' = 41 - registered P5 predicts it dies at 37 (undecided,
+needs Mechanic's m37 pair census).
+
+**R56 (THE SURVIVOR-EXTENDED KLEENE GENERATOR - the positive half;
+research/survivor_generator.py, docs/novel/survivor-generator.md, logs
+data/survivor_11_23.log, survivor_29.log, survivor_31.log,
+survivor_29_m5.log).** R46's generator computes F(M+q') as L (x) K* (x) R
+over states (killed opening, tooth).  NEW IDENTITY, proved from the merge law
++ T2/T3 both directions:  a window of two consecutive NEW gaps is a window of
+old openings all killed at one q'-phase EXCEPT ONE SURVIVOR, and the spacing
+straddling the survivor is d_i + d_{i+1}; the survivor lives iff cls(d_i) is
+ILLEGAL out of the current tooth.  Adding that single SKIP transition SIGMA
+gives
+
+    F_2(M+q') = L (x) K* (x) SIGMA (x) K* (x) R      (and, proved though not
+    yet script-checked, F_j = L (x) K* (x) (SIGMA (x) K*)^(j-1) (x) R).
+
+VERIFIED EXACT, full period, seam stitched, at all XXX scannable steps:
+F_2(M+q') = 16, 25, 31, 39, 55, 68[, 90] against the INDEPENDENT pair census
+(and at 31->37 against Mechanic's CRT+SAT F_2(37) = 90) - two computations of
+the same integers by different routes, digit-for-digit.  CONSEQUENCE: the
+two-gap statement at machine M+q' is LAYER 0 OF THE SAME ALGEBRA one gear
+down, so R53's "one extra integer" is not an extra hypothesis - it is a
+PROJECTION of the very dictionary the certificate queries (the realised-pair
+sub-dictionary of A_m IS F_2(M)).
+
+**R57 (THE HISTORY LADDER ON THE SURVIVOR SYSTEM: A_4 certifies, A_5 is
+exact - one order more than the plain system).**  A_m built ONLY from
+realised m-tuples of M (skip transitions COMPOSED from two realised m-tuples,
+so no (m+1)-fact is used):
+
+    step        exact F_2(M+q')   A_4 bound   A_5 bound   next budget F(M+q')+q''
+    11 -> 13        16               16 EXACT      -            28
+    13 -> 17        25               25 EXACT      -            37
+    17 -> 19        31               31 EXACT      -            48
+    19 -> 23        39               42            39 EXACT     63
+    23 -> 29        55               57            55 EXACT     74
+    29 -> 31        68               93            68 EXACT     95
+
+A_4 CLEARS THE NEXT STEP'S TWO-GAP BUDGET AT EVERY STEP (margins +12, +12,
++17, +21, +17, +2 - the +2 at 29->31 is thin but positive), and A_5 restores
+EXACTNESS exactly where A_4 goes loose - the survivor system needs ONE MORE
+order of history than the plain system (plain: A_4 exact 7/7, R49; survivor:
+A_5 exact at all three steps tested, 91,708 states at m29).  In particular A_5(23) DELIVERS THE LITERAL
+R53 INTEGER: F_2(29) = 55, from machine 23's 5-tuple dictionary, no machine-29
+scan.
+
+**R58 (CEGAR NEEDS NO INTEGER AT ALL - R53's hypothesis discharged, and the
+slack sweep; research/cegar_pairs.py, log data/cegar_sweep.log).**  R53's
+loop refined only EDGES (4-tuples), so layer 0 - which uses no edge - was
+invisible to it and it stalled at 86 = 2F; the given F_2(29) = 55 was the
+patch.  But a state's layer-0 content is its (flank, base) PAIR - a
+realisability fact of arity 2, same kind as the edge facts.  Refining BOTH
+(pair oracle = the full-period lag-1 census, seam-stitched; edge oracle = the
+A_4 dump):
+
+    step      queries (arity-4 + arity-2)   result           edges-only control
+    19 -> 23      106 + 75  = 181           CERTIFIED 48      stalls at 50 = 2F
+    23 -> 29       28 + 62  =  90           CERTIFIED 63      stalls at 67 = 2F-1
+    29 -> 31      761 + 194 = 955           CERTIFIED 74      stalls at 86 = 2F
+
+(D) AT 29->31 IS CERTIFIED FROM THE MACHINE-FREE START BY 955 REALISABILITY
+QUERIES AND NOTHING ELSE - down from R53's 6,395 + one given integer.  The
+control stalls exactly at R55's wall, closing the loop between the two
+measurements.  THE SLACK SWEEP (feed a claimed bound U on F_2(29), edges-only
+refinement): every U <= 74 certifies, every U in [75, 85] stalls at exactly U,
+every U >= 86 stalls at 86.  So the obligation is EXACTLY the two-gap
+statement itself - F_2(M) <= F(M) + q', the OLD machine against the NEW
+budget - with zero further slack demanded, and R56/R57 supply it from one
+gear further down (55 exact via A_5, 57 via A_4; both <= 74 with room).
+Registered prediction P4 guessed the threshold at 60-68: REFUTED, the true
+threshold is the budget itself.
+BRIEF ITEM (b), the deletion ladder: F_2(M) <= F(M + 1 gear) (Mechanic,
+proved) gives F_2(29) <= F(31) = 58, and U = 58 certifies - NUMERICALLY
+sufficient, but LOGICALLY CIRCULAR for the induction: it prices F_2(29) by
+the very F(31) the step is certifying.  The survivor generator is its
+non-circular replacement (same shape, one gear DOWN, and sharper: 55/57 vs
+58).  Where the two will separate: deletion-ladder slack F(M+q') - F_2(M) is
+3 at 29/31 but 1 at 37/41 (F_2(37) = 90 vs F(41) = 91, Mechanic's tightest
+row), while the budget slack grows - so the ladder route thins as the
+survivor route doesn't.
+
+**R59 (THE TWO-GAP VERDICT, and the predictions record).**  The weakest
+machine-independent fact that substitutes for R53's integer:
+(1) NO machine-FREE fact exists at the invariant or congruence level - the
+    histogram (hence every unitary invariant, by theorem) and the corridor
+    (any modulus) both force only 2F, which is over budget from 19->23 on
+    (R55).  This is the brief's option (c), proved for the two named
+    families rather than conjectured.
+(2) The correct substitute is not a fact ABOUT M at all but a PROJECTION OF
+    THE INDUCTION: the survivor identity (R56) makes F_2(M) an output of the
+    step below, so the certificate chain needs exactly ONE kind of input per
+    step - the realised-tuple dictionary - queried finitely (90-955 times per
+    step, R58).  The two-gap statement is not an extra obligation; it
+    descends.
+(3) What remains for all-machines: (i) answer dictionary queries WITHOUT a
+    scan - R43's pruned-IE pattern counter is the named supplier, and every
+    query here is arity <= 5 and span <= F_2, the cheap end of its measured
+    cost curve; (ii) make the descent uniform in y (the survivor identity is
+    already uniform; the query count is not yet bounded by anything proven).
+PREDICTIONS (data/twogap_prediction.txt, registered before the runs):
+P1 survivor identity exact - CONFIRMED 6/6 [7/7 with m31].  P2 A_4 certifies
+- CONFIRMED 6/6; "and is exact" - REFUTED (loose +3/+2/+25 from 19->23 on;
+A_5 is the exact order, R57).  P3 nilpotency at equal orders - NOT DECIDED
+(only m = 4, 5 run; all non-cyclic, consistent but untested at m = 3).
+P4 slack threshold 60-68 - REFUTED, threshold = budget = 74 (R58).
+P5 A(37) > 41 - UNDECIDED (needs the m37 pair census; partial data >= 40).
+P6 the F_2(37) maximiser avoids the max gap - REFUTED by Mechanic's witness
+[2, 88]: F_2(37) = 90 = 2 + 88 CONTAINS the maximal gap with the minimal
+partner (the m31/37 regime differs from m29/31, where the maximisers were
+(20,35) and (33,35) - mid-size pairs).
+NEGATIVES/CORRECTIONS: (i) the first two machine-31 survivor passes died of
+the SAME memory starvation as R22(iv)/R23(iv) - third occurrence, so the
+scanner now retries refused allocations for up to 20 min instead of dying
+(patch in survivor_generator.py; a refused 8 MiB allocation is not a
+finding); (ii) the round was split by a three-day API-limit outage; every
+assertion gate was re-run from clean processes on resume before anything was
+filed (twogap_table, survivor 11-23, survivor 29, cegar --states x3 - all
+"assertions passed" reproduced); (iii) the general-j survivor identity is
+PROVED but script-verified at j = 2 only - stated as such everywhere.
+
+**Reproduction (round 24):** twogap_table.py (R55; asserts seam stitching,
+marginals == ghist, both saturation identities, the corridor cross-check and
+the random-arrangement control); survivor_generator.py (R56/R57; asserts
+F(M+q') AND F_2(M+q') against the known ladders at every step, soundness of
+every abstraction closure, and branch B0 == F_2(M)); cegar_pairs.py (R58;
+pair oracle asserted to reproduce F_2(M) exactly before use; --states and
+--sweep modes); logs in research/data/ as named above; predictions in
+data/twogap_prediction.txt (written before the runs, verdicts in R59).
+
+
+(Manager note: this append was filed by the manager from the lane's completed draft at research/data/r24/r24_draft.md - the agent was lost after drafting but before filing. Text verbatim from the draft.)

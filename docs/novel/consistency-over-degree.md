@@ -90,10 +90,29 @@ Both endpoints exact at every entry.
     machine   F    W* block-independent   W* consistent   gap: indep -> cons
       11       7            8                    7         1.143 -> 1.000
       13      11           21                   14         1.909 -> 1.273
-      17      18           31                   23         1.722 -> 1.278
+      17      18           30 (r24; was 31)     23         1.667 -> 1.278
+
+ROUND-24 CORRECTION (the assertion gate caught a round-23 error).  Round 23's
+section-G regression claim - "the adaptive machinery reproduces round 22's
+Kounias thresholds 8/21/31/37; Kounias was already family-optimal at degree
+2" - FAILED its own assert on re-run.  The true sharp block-independent
+degree-2 threshold at machine 17 is W* = 30, not 31: an exact certificate at
+width 30 (independently re-verified by from-scratch code - fresh zeta-
+transform validity of all 138 used cuts, fresh lhs < rhs over the full column
+set) and an exact feasible point at 29 whose completion is exhibited.  So the
+adaptive degree-2 cuts ARE strictly sharper than the Kounias family at
+machine 17, and round 22's 8/21/31/37 are correct only as KOUNIAS-FAMILY
+thresholds.  The wrong round-23 "feasible at 30" verdict could not be
+reproduced; the one verification asymmetry that could admit it (the
+completion-LP "extends" verdict was trusted without re-asserting the
+completion) is now hardened in research/lp_degree_range.py, and every
+standing feasible verdict in this entry has been re-run through the hardened
+gate and survives with its completion exhibited.  Nothing in the rung table
+or the headline changes: the budget-width verdicts below were all
+re-verified.
 
 At machine 11 the consistent degree-2 relaxation is EXACT - W* = F = 7, gap
-1.  And the consistency-free gap wanders (1.14, 1.91, 1.72) while the
+1.  And the consistency-free gap wanders (1.14, 1.91, 1.67) while the
 consistent gap is flat at 1.27-1.28.  That flatness is the whole story: the
 budget ratio B(y)/F(y) a rung needs is 2.29, 1.82, 1.56, 1.48 at the steps
 landing on 11, 13, 17, 19, so a gap pinned near 1.28 clears all four while a
@@ -252,10 +271,15 @@ affordable to machine 29 (6,620 columns), degree 3 only to machine 13-17.
 Where no certificate is found and no exact global point is built either, the
 entry says UNDECIDED rather than "fails".  The block-independent degree-4
 decision at machine 17 was STOPPED after about 45 minutes without settling -
-its exact-separation loop kept generating cuts - so that cell is blank, not
-"fails"; the degree row is nevertheless decided at machine 13 (degrees 2, 3
-and 4) and at machine 17 (degrees 2 and 3), and no degree tested anywhere
-reached a budget width.
+its exact-separation loop kept generating cuts - so that cell was blank, not
+"fails".  ROUND 24 FILLED IT: the cut loop was the wrong tool; posing the
+whole question as ONE completion LP (find block distributions plus, per
+position, a strictly interior completion - decide_direct in
+research/cw_consistent.py) settles it in 13 seconds: machine 17, width 28,
+degree 4 is FEASIBLE, completion exhibited and re-asserted at every position,
+so NO degree-4 certificate of the budget width exists.  The degree row is now
+decided at machine 13 (degrees 2, 3, 4) AND machine 17 (degrees 2, 3, 4), and
+no degree tested anywhere reached a budget width.
 
 ## 4. IMPLICATIONS
 

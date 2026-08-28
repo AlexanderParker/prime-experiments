@@ -1335,3 +1335,222 @@ nothing about primes - every statement is about coverings of an interval.
   1.0479, s* = 18.308 / 16.136 / 15.474 / 15.077 / 14.353). Two of the flagged
   items came back clean rather than confirmed: our per-range factor is NOT inverted,
   and no document of ours ever carried the Tenenbaum 4.3 miscitation.
+
+## ROUND 24 - the submission checklist discharged (three verdicts: confirmed /
+## obtained / settled), the LOWER LADDER gets its first real rung, exponent
+## 19 -> 15 with 15 proved the floor of the method, and two of my own round-23
+## headline readings corrected
+
+PROCESS NOTE, first: this round was interrupted mid-way by a weekly API limit
+(three days) and later by a transient stream error. After each resume, every
+assertion gate was re-run FROM A CLEAN PROCESS before anything was filed:
+research/j2_referee.py (the standing artefact) GREEN, plus the three new gates
+research/j2_lower2.py, j2_presieve.py, j2_selberg.py, all GREEN, all
+single-run, outputs in research/data/{j2_lower2,j2_presieve,j2_selberg}.out.
+Two sub-searches (Opera de Cribro book OCR; HR Memoire / literature adjacency)
+ran as agents and completed before the write-up; their verbatim harvests are
+distinguished below from what I verified myself. Docs updated:
+docs/novel/j2-upper-bound.md (header, section 1 supersessions, section 4
+ladder, NEW section 9), docs/novel/j2-lower-ladder.md (NEW), README index.
+
+### (a) THE THREE VERIFICATION ITEMS - verdicts
+
+1. OPERA DE CRIBRO CHECKED DIRECTLY (verdict: THEOREM 2E's foundation STANDS).
+   The book's own text (Google Books OCR of the AMS printing, harvested by a
+   sub-search with OCR and reconstruction reported separately) shows Theorem
+   7.7 on p. 111, Chapter 7 (Selberg Lambda^2 Lambda^-), matching BOTH
+   round-23 transcriptions (Dudek-Dunn Thm 1.3, Campbell Thm 2.1) in every
+   particular - statement, hypothesis s >= 2k+3, bracket, remainder 2 R_4.
+   Three renderings now agree, one of them the book itself. HONEST RESIDUE:
+   seen through OCR, not held - the check is of mathematical content, not
+   typography. Same-page items closed so nobody re-opens them: (7.122) is a
+   LOOSE sufficient condition (2k + 2 sqrt(2k log k) + log k + 9 = 21.6 at our
+   k = 3.0986, weaker than the exact s* = 18.308); Corollary 7.8 is
+   asymptotic-in-k and buys nothing at k ~ 3.1. TWO NAMED OPENINGS from the
+   same harvest, NOT resolved this round: ODC Chapter 6 prints beta_1 = 3.8629,
+   beta_2 = 7.5941 around pp. 71-73 - if that apparatus is constant-free at
+   kappa = 2 the explicit exponent drops from 15 to ~8.6 (its explicitness is
+   exactly the open question; the Ch. 11 beta-sieve is known non-explicit); and
+   Blight's thesis (see a3) may hold an explicit Lambda^2 Lambda^- variant -
+   not obtained.
+
+2. THE HALBERSTAM-RICHERT MEMOIRE OBTAINED (verdict: THE 7.972 LEAD IS REAL,
+   DERIVED NOT PRINTED, AND THE EXPONENT-8 ROUTE IS AN EXPLICITNESS PROBLEM).
+   "A new look at Brun's sieve", Mem. Soc. Math. France 25 (1971) 97-106, free
+   numdam scan, located and read in-round. It treats EXACTLY our density (its
+   worked example is A = {n(n+2)}: omega(2) = 1, omega(p) = 2), and its two
+   printed conditions ((1.2) lambda e^{1+lambda} < 1; positivity
+   lambda^2 e^{2 lambda}(2 + e^2) < 1) admit every level exponent
+   u > 1 + 2.01/(e^{lambda*} - 1). The figure 7.972 is NOT in the paper (it
+   says only "u < 8"); I RE-DERIVED it from the printed conditions:
+   lambda* = 0.2533219, u = 7.971954833, ASSERTED in research/j2_presieve.py
+   P4 - so the lead is confirmed independently of whoever first reported it.
+   Every remainder in the Memoire is an unspecified O(.), so what round 23
+   called "one missing piece: an explicit main-term estimate for the nested
+   truncation" is now precisely located: make THIS 1971 theorem explicit.
+
+3. 19/36 vs 0.4454 SETTLED FOR 19/36 (research/j2_selberg.py; the honest form
+   is "19/36 three-sourced, 0.4454 unverified", not "0.4454 wrong").
+   FIRST-HAND, fetched by me 2026-08-28 via the zbMATH Open API: Greaves'
+   review of Selberg's OWN announcement (Oslo 1987, Zbl 0675.10030):
+   "alpha_k > 1/(2k+19/36) for all sufficiently large k" (reciprocal
+   convention); Heath-Brown's review of Franze (Zbl 1235.11089): Selberg
+   "showed that the sieving limit satisfies beta_kappa <= 2 kappa + 19/36 +
+   o(1)". FIRST-HAND from the on-disk Franze full text: the pp. 174-176
+   computation, re-derived IN EXACT RATIONALS - optimal a = 1/4, threshold
+   d = -7/72, constant EXACTLY 19/36. NUMERICAL: at 2 kappa + 0.4454 the
+   Selberg functional's main term is strictly negative (-0.0369) - no lower
+   bound lives there; and Franze's own table (kappa = 2..10) rises to 0.525,
+   every entry already above 0.4454. LABELLED SPECULATION on the origin:
+   Greaves' review carries "a certain constant c close to 1/2.445" ONE
+   SENTENCE before the 19/36 - the digit string sits beside the true constant
+   in the primary source's own review. RESIDUAL: the printed (14.40) remains
+   unread (in-copyright, no scan found); one page scan closes it forever.
+   BANKED IN PASSING, both first-hand from Heath-Brown's review: the 4.266
+   book is Diamond-Halberstam-GALWAY (Cambridge Tracts 177, Zbl 1207.11099;
+   the METHOD is DHR), and Blight = "Refinements of Selberg's sieve" (Rutgers
+   2010), whose OWN kappa = 2 value is 4.450 - her full-precision 4.266450 is
+   a quotation of DHR, not her result.
+
+### (b) THE LOWER LADDER - built, and my own round-23 reading of the problem
+### corrected twice (docs/novel/j2-lower-ladder.md, NEW; research/j2_lower2.py)
+
+1. THE RESTATEMENT (proved; brute-forced exact against ZM at z = 3..13):
+   j_2(P(z)) - 1 = longest [1, L] such that for some even E, every z-ROUGH n
+   has n + E divisible by some p <= z. The smooth numbers are covered FREE by
+   the 0-classes, so the paired covering only has to reach a set ONE LOG
+   THINNER than the ordinary one's "every integer". That factor - one
+   logarithm, once - is the whole structural separation between j and j_2.
+
+2. THEOREM (P1), the round's construction:
+       h_2(P(z)) >= (1/(2 e^{-gamma} C_2) + o(1)) z log z = (1.349+o(1)) z log z.
+   Greedy phase (each odd p <= z^{1-eps} kills the largest nonzero class of
+   the surviving rough numbers, shrink factor (p-2)/(p-1), product = the twin
+   constant's 0.7413/log w) + matching phase (one unused prime per survivor)
+   + CRT for E. FIRST lower bound on h_2 that uses the paired structure at
+   all; beats the round-21 collapse transfer ASYMPTOTICALLY (FGKMT is
+   o(z log z)) and at every finite z with an explicit constant. Certificates
+   built and re-verified BY INDEPENDENT SIEVE (disjoint code path) at
+   z = 13..10^5; at every z with known h_2, L <= h_2. As RUN, the greedy does
+   better than its worst-case analysis: L/(z log^2 z) settles near 0.7 over
+   z = 10^3..10^5 (spread < 1.25x) while L/(z log z) climbs 4.7 -> 8.5 - the
+   construction already tracks the one-extra-log law; only the proof loses it.
+
+3. THE GROWTH LAW REREAD - my round-23 "TRUTH ~ (p^2-p)/2" IS UNSUPPORTED BY
+   ITS OWN DATA. On ZM's 21 exact values: c z^2 and c z (log z)^2 fit EQUALLY
+   (implied-constant spread 1.87x EACH; the two laws differ by z/(log z)^2
+   which only moves 2.1x across the table - 21 points cannot separate them);
+   the residuals drift in OPPOSITE directions (h_2/(z^2-z) falls 0.962 ->
+   0.499, h_2/(z log^2 z) rises 1.754 -> 1.951); the parameter-free
+   extreme-value model puts h_2 at ~2.56 z (log z)^2 with measured/model
+   0.78-0.92 (ordinary j: 0.34-0.47 of ITS model - the two problems behave
+   alike under it); and the DISCRIMINATING measurement - the paired-minus-
+   ordinary local exponent gap - is 0.33-0.75 on every range tested, the
+   signature of a LOGARITHMIC separation (predicted 0.25-0.50), nowhere near
+   the +1.0 a quadratic-vs-linear law needs. VERDICT: h_2 = z^{1+o(1)} is the
+   supported reading; the quadratic is the less supported of two admissible
+   fits. FALSIFICATION TARGET, decidable: one exact h_2 beyond p_n = 73 (at
+   z = 151-251 the log-law models sit 2.6-3.6x below the quadratic; ZM's own
+   algorithm reached 73 in 2017).
+
+4. RETRACTION (mine, round 23): the covering-capacity argument ("ordinary is
+   counting-constrained, paired is not, hence quadratic") is WRONG - capacity
+   is not scale-free; the ordinary covering reaches the same capacities at
+   z ~ 4e3..6e6 with its answer still z^{1+o(1)}. Consequently the round-23
+   NAMED OPEN PROBLEM "h_2 >> p^{1+delta}" asked for something probably false;
+   replaced by (P2) h_2 >> z (log z)^2/(loglog z)^{O(1)} via Rankin/FGKMT
+   layering (still a construction, still parity-free) and (P3) the
+   paired-Iwaniec upper question h_2 = O(z (log z)^A). Also (P4): ZM
+   Conjecture 6 is on this model TRUE WITH ROOM - it asks for far less than
+   the truth - which coexists with round 22's sieve-side point (exponent 2 on
+   a kappa = 2 problem) unchanged.
+
+5. TWO OF MY OWN OVERSTATEMENTS WERE CAUGHT BY THEIR ASSERTION GATES IN-ROUND,
+   recorded as the quality signal they are: (i) a draft claimed h_2/(z^2-z)
+   decreases MONOTONICALLY from z = 13 - false (8 of 15 steps down; it
+   DRIFTS); (ii) a draft claimed h_2/j "tracks W/V within 1.3x" - false (it
+   runs 1.33x..2.51x, drifting up; in exponent terms h_2/j = (W/V)^t,
+   t = 1.22..1.51). Both scripts now state the honest numbers and assert
+   those.
+
+6. PRIOR ART (checked by me, 2026-08-28): Kalmynin-Konyagin arXiv:2302.00459
+   ("A polynomial analogue of Jacobsthal function", full text on disk) is the
+   nearest work: Rankin machinery on shifted polynomial VALUES; for quadratic
+   f the killed classes are the <= 2 square roots of one global shift -
+   neither their family nor ours contains the other, their covered object is a
+   polynomial sequence not an interval, and paired/two-residue Jacobsthal
+   appears nowhere. NOT prior art for (P1); STRONG evidence for (P2) (their
+   M(f) = 2 buys two Rankin-type logs on a 2-class sieve). FKMPT "Long gaps in
+   sieved sets": one class per prime per the search relay - flagged
+   RELAY-SOURCED, re-verify before citing.
+
+### (c) EXPONENT 19 -> 15, AND 15 IS THE FLOOR (research/j2_presieve.py;
+### round-23 constants reproduced as in-script controls)
+
+Pre-sieving the primes below p_0 changes exactly ONE factor in Theorem 2E's
+constant: N_pre = prod_{p<p_0}(p - omega(p)) (the surviving pre-sieve classes;
+|r_d| <= 2^{nu(d)} N_pre; X V'(z) = m V(z) exactly). N_pre(5) = 1 - gear 3
+keeps a single class - so pre-sieving 2 and 3 is FREE:
+  THEOREM 2E'  (p_0 = 5):  j_2(p_n#) <= 3.5301e9 p_n^17 (log p_n)^10 + 1,
+      p_n >= 285 - smaller exponent AND constant, dominates 2E everywhere.
+  THEOREM 2E'' (p_0 = 13, N_pre = 135): <= 7.2671e11 p_n^15 (log p_n)^10 + 1,
+      p_n >= 285 - dominates 2E' from the threshold on (395x at p_n = 285).
+FLOOR: as p_0 grows, K -> 1, k -> 2, s* -> 14.169 > 14, so EXPONENT 15 IS THE
+SMALLEST INTEGER FI 7.7 CAN EVER GIVE at kappa = 2 and p_0 = 13 attains it;
+the full ladder p_0 = 2..101 is priced and p_0 = 13 is optimal at every p_n
+tested. General form: j_2 << p_n^s for every s > 16.136 free, s > 14.822 at
+cost 135. The route below 15 is (a2)/(a1)'s explicitness question, not more
+pre-sieving.
+
+### Ranking changes (honest pricing)
+
+- UNIT 1: the three submission blockers are DISCHARGED (a1 confirmed with an
+  OCR caveat, a2 obtained + re-derived, a3 settled with a stated residual).
+  Headline strengthened twice: exponent 19 -> 15 (2E''), and the lower rung
+  1.349 z log z replaces the empty transfer row. The sandwich paragraph must
+  be REWRITTEN for submission: no longer "around a truth of p^2/2" but
+  "around a truth the data cannot separate from ~2.6 z (log z)^2, with the
+  quadratic reading measurably losing ground" - and the paper gains a
+  falsifiable prediction (h_2 at z = 151+), which referees like.
+- N4 (the j_2 ladder): both ends moved this round. Remaining mathematics is
+  ONE object seen from two sides: an explicit dimension-2 lower-bound sieve
+  near exponent 8 (HR Memoire explicitness = ODC Ch.6 explicitness question).
+  Next-round sized; leads named and priced.
+- THE LOWER LADDER (round-23 rank 2 in-lane): EXECUTED - (P1) proved, the
+  target corrected, the falsification computation named. What remains there is
+  (P2) (Rankin layering - genuinely new work, KK shows the machinery lands)
+  and the h_2(151+) run (a compute decision, not mine alone: ZM's algorithm
+  reached 73 on 2017 hardware).
+- STANDING LESSON, extended by this round's own errors: MODEL CLAIMS EXPIRE
+  LIKE CITATIONS. "The truth is p^2/2" was repeated from round to round as if
+  measured; it was one of two fits, and the project inverted which was
+  supported. Any "truth ~ f(z)" statement in a summary should carry the
+  competing fit and the discriminating measurement, or not appear.
+
+### Needs from other lanes
+
+- NONE BLOCKING. FORMALIST, if ever wanted: Theorem (P1)'s certificate at one
+  fixed z is a finite statement (an explicit E, an interval, a divisibility
+  check per element - decide-able); the exact-rational 19/36 derivation
+  (S1 of j2_selberg.py) is three lines of Fraction arithmetic.
+- MECHANIC: the h_2(p_n#) computation at p_n = 151..251 would decide the
+  growth-law question against ZM's stopping point of 73. The delta/prefilter
+  method of round 22 reached z = 23 exhaustively; ZM's own published algorithm
+  reached 73 in 2017. Flagging the computation as the single most decisive
+  number now purchasable in this lane; not claiming it fits this round or my
+  mandate to run at scale.
+
+### Deliverables ledger (round 24)
+
+Scripts (all assertion-gated, all green from clean processes post-resume):
+research/j2_lower2.py, j2_presieve.py, j2_selberg.py; re-run: j2_referee.py
+(standing artefact, green). Data: research/data/{j2_lower2,j2_presieve,
+j2_selberg}.out (+ referee refresh). Docs: docs/novel/j2-lower-ladder.md
+(NEW), j2-upper-bound.md (header update, section 1 supersessions marked,
+section 4 ladder rows 2E'/2E'', NEW section 9 = the verification record),
+README index (j2-upper-bound round-24 block + j2-lower-ladder entry).
+Sub-searches: ODC book OCR (two Google Books volumes; relay recorded with
+OCR/reconstruction separated), HR Memoire + literature adjacency (numdam scan;
+KK full text pulled to disk), 19/36 sources (Franze/Ford/Brady located;
+zbMATH reviews then re-fetched FIRST-HAND by me). Nothing pending at write-up;
+no commits (per brief).

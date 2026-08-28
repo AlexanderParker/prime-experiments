@@ -55,7 +55,16 @@ patterns on <= 6 events): for every distinguished gear k,
 2. EXACT LEVEL-2 THRESHOLDS AND INTEGRALITY GAPS (round 22; both endpoints
    exact - an exact rational feasible point at W*-1 and an exact Farkas
    certificate at W*, the latter re-verified against the UNPRUNED column
-   set):
+   set).  ROUND-24 RELABELLING: these are KOUNIAS-FAMILY thresholds (the
+   level-2 LP with that one fixed cut family), NOT sharp degree-2
+   thresholds.  Round 23's section-G claim that the two coincide failed its
+   own assertion gate on re-run: the sharp block-independent degree-2
+   threshold at machine 17 is W* = 30 (exact certificate, independently
+   re-verified; 29 feasible with exhibited completion), strictly below the
+   Kounias 31; at machine 19 it is 35 or 36 (34 feasible with completion
+   exhibited, 36 infeasible exactly), strictly below the Kounias 37, so
+   result 3's "EXACTLY TIGHT" at 17->19 is a Kounias-family statement too.
+   Rows below stand as statements about the Kounias family:
 
        machine 11: W* =  8,  F =  7,  gap 8/7  = 1.143   (8 dual weights)
        machine 13: W* = 21,  F = 11,  gap 21/11 = 1.909  (32 weights)

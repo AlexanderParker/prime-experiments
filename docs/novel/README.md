@@ -142,7 +142,34 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   2e^gamma rung is arXiv:1306.1064 not 1208.5342); (e) novelty RE-CHECKED by
   citation graph 2026-08-25 - ZM 1706.00317 has exactly ONE citation in nine years
   (their own note), 1706.03668 has zero, zbMATH has no "paired Jacobsthal" record,
-  and Iwaniec 1978 is still the ordinary-ladder record per erdosproblems.com 970/687
+  and Iwaniec 1978 is still the ordinary-ladder record per erdosproblems.com 970/687.
+  ROUND 24 - submission checklist discharged + pre-sieved rungs (section 9):
+  ODC Thm 7.7 CHECKED AGAINST THE BOOK'S OWN TEXT (p. 111 OCR; three renderings
+  now agree, one the book; (7.122)/Cor 7.8 examined and dead for our k); the HR
+  Memoire OBTAINED (numdam: "A new look at Brun's sieve", treats exactly our
+  density; 7.972 DERIVED from its printed conditions, re-derived and asserted in
+  research/j2_presieve.py - the exponent-8 route is an explicitness problem, not
+  a new sieve); 19/36 vs 0.4454 SETTLED FOR 19/36 (Selberg's own announcement
+  via Greaves' review + Heath-Brown's review, both fetched first-hand, + exact-
+  rational re-derivation; 0.4454 recorded unverified, research/j2_selberg.py);
+  THEOREMS 2E'/2E'': exponent 19 -> 17 FREE (N_pre = 1) and -> 15 at constant
+  cost 135, with 15 PROVED THE FLOOR of FI 7.7 at kappa = 2 (s* -> 14.169 as
+  K -> 1); named openings: ODC Ch.6 beta_2 = 7.5941 explicitness, Blight thesis
+- j2-lower-ladder - ROUND 24, NEW: the paired covering restated as "cover only
+  the z-ROUGH numbers" (one log thinner than ordinary - the structural
+  separation), THEOREM (P1): h_2(P(z)) >= (1.349+o(1)) z log z - FIRST lower
+  bound using the paired structure, beats the FGKMT transfer asymptotically,
+  greedy+matching proof, certificates independently sieve-verified at
+  z = 13..10^5 (as run they track ~0.7 z log^2 z); the round-23 "truth ~ p^2/2"
+  DOWNGRADED (c z^2 and c z log^2 z fit ZM's table equally, spread 1.87x each;
+  local-exponent gap vs ordinary is 0.33-0.75, nowhere near quadratic's +1.0;
+  model says ~2.56 z (log z)^2) and the round-23 capacity argument RETRACTED
+  (capacity is not scale-free); open problems restated (P2: Rankin layering,
+  P3: paired-Iwaniec upper, P4: Conj. 6 true-with-room); falsification target:
+  one exact h_2 beyond p_n = 73 (models differ 2.6-3.6x by z = 151-251) -
+  PROVED(paper)+SCRIPT-VERIFIED (research/j2_lower2.py) - NOVEL* (KK
+  arXiv:2302.00459 is the nearest work: shifted polynomial VALUES, square-root
+  classes - neither family contains the other; checked 2026-08-28)
 - paired-hlb-cycles - c_q(g) = q - nu_q({0,2,6g,6g+2}) (machine diagonal = HL
   quadruplet local factor); pinch theorem N2 - sum N3 <= n_g <= N2 (paired HL-B in
   cycles with explicit 1/log^2 rate, both bounds closed-form CRT); paired transfer
@@ -268,8 +295,10 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
 - moment-degree-ceiling - every fixed-degree covering certificate for F(M) goes VACUOUS at
   a computable machine, family-free: the uniform product measure's degree-<=l moments
   extend to a distribution with no empty atom, so every degree-l cut is satisfied at every
-  width.  Sharp ceilings degree 1 -> machine 13, degree 2 -> 29 (so Kounias was already
-  degree-2-optimal), degree 3 -> >= 151; required degree ~ 2*S1(y) ~ 4 log log y,
+  width.  Sharp ceilings degree 1 -> machine 13, degree 2 -> 29 (ROUND-24 CORRECTION:
+  "Kounias already degree-2-optimal" is REFUTED - the sharp block-independent degree-2
+  threshold at m17 is W* = 30 < Kounias' 31, exact both sides; round 22's 8/21/31/37 are
+  Kounias-FAMILY thresholds), degree 3 -> >= 151; required degree ~ 2*S1(y) ~ 4 log log y,
   UNBOUNDED, so no fixed-arity covering certificate exists - the LP-side answer to the
   round-22 arity question.  Chain-cut slope has the telescoping closed form
   S1*prod(1-2/q) + beta and the chain family is exponentially weaker than the sharp
@@ -284,6 +313,18 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   product measure is a global distribution, hence feasible for the consistent hierarchy
   too): consistency buys WIDTH, not MACHINES.  And the ceiling does not bind
   Costello-Watts, whose recursive pair term has unbounded effective degree.
+- recursion-consistency-composition - composing the consistent degree-2 covering LP with
+  ONE valid row built from Costello-Watts' recursion (sum_q S_q - sum_ij n_ij >= W, with
+  n_ij the exact pair minimum over the lower gears' phases; f <= open asserted at every
+  phase tuple of m11-m19, full period): the row CUTS THE UNIFORM PRODUCT MEASURE at
+  budget widths through machine 37 - past the degree-2 vacuity ceiling at 29 - losing it
+  only at m41; the composition proves the same four (D) rungs with certificates 2-3x
+  SMALLER (562/1,456/3,303/8,179 ops), keeps the FLAT gap (1.000/1.273/1.278/1.320,
+  W* = 7/14/23/33) while the row alone wanders (1.57 -> 3.26), and certifies width 33 at
+  m19 where NO degree-2 cut certificate exists (block-independent feasible through 34) -
+  but NO NEW RUNG: 19->23 stays undecided, per the pre-registered expectation (6 of 6
+  pre-registered judgments recorded, one split).  SCRIPT-VERIFIED exact
+  (research/cw_consistent.py) - prior-art for the composition NOT YET CHECKED.
 - kleene-generator - F(M+q') = L^T (x) K* (x) R exactly, where K is the max-plus matrix of
   qualifying-and-T3-alternating successor steps and K* its Kleene star: the merge law's
   increment IS a longest path, so (D) becomes ONE arity-free dual certificate
@@ -344,3 +385,27 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   criterion max_J Q_J <= F + q' holds at every step to 41->43 and FAILS at 43->47 (152 vs
   150) and 47->53 (177 vs 171), both witnesses asserted at the target machine, both failures
   confined to depths 6-7 - PROVED (elementary) + SCRIPT-VERIFIED - not yet checked (round 23)
+- covering-hierarchy-exactness - the Jacobsthal covering CSP's pairwise (Sherali-Adams
+  level-2) LP computes F EXACTLY at machines 11/13/17 (exact rational dual certificates:
+  479/1152, 1041/2081, 1673/19767) and BREAKS at machine 19 (L* = 27 vs F = 25), where the
+  impossibility of runs 25 and 26 is invisible to ALL pairwise reasoning - the level-2 SDP
+  is feasible at the impossible L = 26 (converged PSD moment matrix, numerical) - so every
+  certificate of F(19) <= 26 needs arity >= 3.  Vacuity ratios 1.00, 1.00, 1.00, 1.08,
+  1.65, >= 1.72 at m11..29: a THIRD independent certificate family obeying the project's
+  arity law.  Companion theorem: the machine-free max-plus system equals its own LP
+  (12/12 steps), so NO convex relaxation of it can improve one unit - its gap is 100%
+  edge-set.  Level 1 dies exactly at sigma >= 1/2 (T2's threshold, covering side) -
+  PROVED (soundness, MF-LP) + EXACT RATIONAL DUALS + MEASURED (SDP verdicts numerical,
+  flagged) (research/sdp_cover.py) - not yet checked (round 24; web budget exhausted,
+  manager to run)
+- survivor-generator - F_2(M+q') (and, proved though not yet script-checked, every
+  F_j(M+q')) is the SAME max-plus Kleene algebra over machine M as F(M+q'), with ONE extra
+  transition: a skip of weight d_i + d_{i+1} through the unique SURVIVING opening, guarded
+  by "cls(d_i) illegal from the current tooth" - so the two-gap statement at a step is
+  layer 0 of the previous step's generator, and the "one extra integer" R53's CEGAR needed
+  is a PROJECTION of the dictionary the certificate already queries (the realised-pair
+  sub-dictionary).  Verified exact, full period, at all six steps 11->13 .. 29->31
+  (F_2 = 16, 25, 31, 39, 55, 68 against the independent pair census); A_4(M) bounds
+  F_2(M+q') by 16, 25, 31, 42, 57, 93 - clearing the next step's two-gap budget at every
+  step - PROVED + SCRIPT-VERIFIED (j = 2) (research/survivor_generator.py) - not yet
+  checked (round 24)

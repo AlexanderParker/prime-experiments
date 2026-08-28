@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan"]
 
 [[require]]
 name = "mathlib"
@@ -268,3 +268,60 @@ name = "PotentialLadder"
 
 [[lean_lib]]
 name = "CoveringCert2"
+
+[[lean_lib]]
+name = "Machine23Idx"
+
+[[lean_lib]]
+name = "Machine23IdxS0"
+
+[[lean_lib]]
+name = "Machine23IdxS1"
+
+[[lean_lib]]
+name = "Machine23IdxS2"
+
+[[lean_lib]]
+name = "Machine23IdxS3"
+
+[[lean_lib]]
+name = "Machine23IdxS4"
+
+[[lean_lib]]
+name = "Machine23IdxS5"
+
+[[lean_lib]]
+name = "Machine23IdxS6"
+
+[[lean_lib]]
+name = "Machine23IdxS7"
+
+[[lean_lib]]
+name = "Machine23IdxS8"
+
+[[lean_lib]]
+name = "Machine23IdxS9"
+
+[[lean_lib]]
+name = "Machine23IdxS10"
+
+[[lean_lib]]
+name = "Machine23IdxS11"
+
+[[lean_lib]]
+name = "Machine23IdxS12"
+
+[[lean_lib]]
+name = "Machine23IdxS13"
+
+[[lean_lib]]
+name = "Machine23IdxS14"
+
+[[lean_lib]]
+name = "Machine23IdxS15"
+
+[[lean_lib]]
+name = "Machine23IdxS16"
+
+[[lean_lib]]
+name = "Machine23Scan"

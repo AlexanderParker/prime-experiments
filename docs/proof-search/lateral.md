@@ -1150,3 +1150,154 @@ ladder; a "y:arity[:row_stride]" argument runs one cell; solve_cutting does
 row generation for large cells; log data/potential_arity.log),
 lambda2_pair.py (models 0-4 with pre-registered verdicts; log
 data/lambda2_pair.log). All under .venv/Scripts/python.exe.
+
+## Round 24
+
+Brief: THE SDP RELAXATION OF THE MACHINE-FREE SYSTEM - the smallest
+arity-independent statement that bounds osc(h); secondaries (c) the norm
+cliff as lower-bound technique or circularity, (d) the Maslov bridge if the
+SDP stalls. One script, assertion-gated throughout: research/sdp_cover.py
+(parts A-G); logs research/data/sdp_ladder_a.log, sdp_ladder_b.log,
+sdp_psd_19.log, sdp_cover_17_19.log, sdp_exact_23.log. Round interrupted
+mid-way by a weekly API limit (3 days); all jobs it launched completed or
+were terminated and read from disk on resume; every number below was either
+re-derived in a clean process on 2026-08-28 or is explicitly marked as a
+log-only measured value. NOTE: research/data/survivor_31.log is NOT this
+lane's file (survivor_generator.py, another lane; it records an
+ArrayMemoryError at 2.5% of a segmented m31 pass - left untouched).
+
+43. THE LITERAL BRIEF TARGET IS EMPTY - A THEOREM (part A). Constructor's
+    machine-free system MF_m is a max-plus closure = longest-path problem,
+    and its natural LP (potentials p with p_u >= R_u, p_u >= w_e + p_dst)
+    has optimum EXACTLY the closure value: the closure is the least fixed
+    point and every feasible p dominates it by induction. Verified 12/12
+    (both m at 5 steps, m=3 at 29->31 and 31->37): LP = closure to 0.00e0.
+    COROLLARY: every relaxation sandwiched between the LP and the truth -
+    every Lasserre level, every SDP - returns exactly the closure value.
+    NO CONVEX RELAXATION OF THE MACHINE-FREE SYSTEM CAN IMPROVE IT BY ONE
+    UNIT. Its 125-vs-74 gap at 29->31 is 100% EDGE SET (support), 0%
+    relaxation gap - which is exactly why CEGAR (deleting unrealised
+    tuples) was the only lever that ever moved it, now stated as a theorem
+    rather than an observation. "SDP of the machine-free system" is
+    answered: it exists, and it buys nothing, provably.
+
+44. WHERE AN SDP CAN LIVE, BUILT AND MEASURED: THE COVERING HIERARCHY
+    (parts B-E; docs/novel/covering-hierarchy-exactness.md). F(M) = 1 +
+    max coverable L is a covering CSP over one free offset per gear
+    (Mechanic's cov_sat frame, no period, no scan). The convex hierarchy
+    over THAT is machine-free by construction:
+    (a) LEVEL 1 (fractional cover) dies exactly at sigma(y) >= 1/2 - T2's
+    Mertens threshold reappears on the covering side (uniform p_q covers
+    everything as soon as 2 sigma >= 1). Machine 11 only; P2 confirmed.
+    (b) LEVEL 2 (pairwise moment LP over offset literals, matrix
+    1 + sum_q q, conditional covering with slack objective V(L)) IS EXACT
+    AT MACHINES 11, 13, 17: L* = min{L : V(L) > 0} = F exactly (7, 11,
+    18). A polynomial-size machine-free LP COMPUTES the Jacobsthal-type
+    maximum three machines running. Exact rational dual certificates
+    (weak duality, integer-checked, clean process): 479/1152, 1041/2081,
+    1673/19767.
+    (c) THE BREAK IS AT MACHINE 19, AND THE MECHANISM IS ARITY: L*(19) =
+    27 vs F = 25, exact dual 2927/270613 at L = 27; V(25) = V(26) = 0.
+    The PSD constraint does NOT repair it: at the truly-impossible L = 26
+    the cutting-plane loop CONVERGES to a PSD moment matrix with V = 0
+    (min eig -1.2e-14, 39 cuts) - the full level-2 SDP is FEASIBLE at an
+    impossible length (numerical, flagged) - and at L = 25 it stalls (187
+    cuts, V = 0 throughout, eigenvalue not improving). So every
+    certificate of F(19) <= 26 requires THREE-gear information; pairwise
+    reasoning, linear or semidefinite, provably (numerically at 26,
+    measured at 25) cannot see the obstruction.
+    (d) VACUITY GROWTH, the now-familiar law from a THIRD family: L*/F =
+    1.000, 1.000, 1.000, 1.080, 1.647, >= 1.721 (m23: L* = 56 vs 34,
+    V(55) = 0, exact dual 3427/746861 at L = 56 - clean-process retry
+    after one MemoryError, log sdp_exact_23.log; m29: V = 0
+    at every tested L <= 73, 5400 s cap, so L* >= 74). Drift, not
+    infeasibility - the same failure axis as the round-23 potential
+    ladder (1.11/1.63/2.06x) and the LP thread's degree law. The
+    exactness margin V(F) collapses first: 5/6, 1, 0.169, 0.
+    VERDICT FOR THE BRIEF: THE SDP DOES NOT BITE, and the reason now has
+    two halves, both proved or measured: on the machine-free system there
+    is NO relaxation gap to close (item 43), and on the covering CSP the
+    gap that opens at m19 is an ARITY gap that PSD cannot cross. There is
+    no small arity-independent convex statement bounding osc(h); the
+    smallest arity-independent statements are the exact ones (level-2 at
+    m11-17), and they stop existing at m19.
+
+45. ITEM (c) CLOSED - THE NORM CLIFF IS A REDUCTION, NOT A TECHNIQUE
+    (part F, exact integers m11-17). For weighted sup-norms ||x||_w =
+    max |x_k|/w_k, one line gives ||N||_w = max over blocked k of
+    w_{k-1}/w_k, and writing w = 2^h: envelope constant C = 2^osc(h),
+    rate lam = 2^{-min step}. So 1 + log C / log(1/lam) = 1 + osc(h)/
+    (min step) - IDENTICALLY the round-23 potential bound; verified
+    exact (= F at every machine, tight h). Any envelope bound in a
+    weighted norm IS a potential certificate of the same oscillation;
+    any envelope in a unitarily invariant norm is histogram-circular by
+    item 39. The norm-cliff "F sits in the constant" observation
+    therefore converts into NOTHING NEW: extracting the constant is
+    re-deriving a potential, and the arity ladder already prices those.
+    (d) FOLLOWS FOR FREE: the Maslov bridge transports bounds between
+    the three semirings at the SAME oscillation - part F is the
+    dequantised identity, computed. The bridge is an isomorphism of
+    bounds, not an amplifier; nothing to push through it until someone
+    proves a max-plus-side bound that does not come from a potential.
+
+PRE-REGISTERED PREDICTIONS, SCORED 5-2-1 (all eight written into
+sdp_cover.py docstrings before the relevant runs; P6-P8 written after m17
+was known exact and V(24) = 0 known at m19, before V(25) resolved):
+  P1 LP(MF) = closure: CONFIRMED 12/12 (it is item 43's theorem).
+  P2 LP1 dies at sigma >= 1/2 from m13: CONFIRMED.
+  P3 SA2 finite at every machine 11..23: CONFIRMED (56 at m23);
+     UNRESOLVED at 29 (cap hit at L = 73 with V still 0).
+  P4 SDP2 strictly improves SA2 somewhere: REFUTED everywhere tested -
+     cuts either converge to PSD-feasible (m19 L = 26) or stall (L = 25);
+     SDP2 never certified where SA2 did not.
+  P5 SA2 at m13 within 2x of truth: CONFIRMED (exact, 1.00x).
+  P6 SA2 exactness breaks at or below m37: CONFIRMED, at m19.
+  P7 PSD recovers >= 1 unit at the break: REFUTED (the break survives PSD).
+  P8 soundness L* >= F always: CONFIRMED (asserted V(F-1) = 0 anchor at
+     every machine; no soundness failure anywhere).
+The two refutations are my own predictions, killed by my own script -
+round-23 house standard maintained.
+
+Round-24 refuted angles (added to the standing list):
+- "An SDP relaxation of the machine-free system is the natural next
+  object" (the brief's premise): the object exists and provably equals
+  the LP equals the closure - no convex relaxation of MF_m can improve
+  it (item 43). The premise's caveat ("if it does no better, the reason
+  will matter") is answered: the gap is pure support.
+- "PSD strictly improves the pairwise covering LP" (my P4): refuted at
+  every tested cell; at m19 L = 26 the SDP is feasible at an impossible
+  length.
+- "The norm cliff converts into a lower-bound technique" (brief item c):
+  refuted by exact identity - it reduces to the potential/arity ladder
+  (item 45).
+
+Round-24 untested angles left open:
+- Partial level 3 (triple moments on chosen gear triples) at m19,
+  L = 25/26: does arity 3 suffice, and which triple is the obstruction?
+  Cost is one targeted lift, not a full level-3; the sharpest next probe
+  of the arity law. Not built this round (round interrupted; completion
+  prioritised).
+- Exact rational PSD completion of the m19 L = 26 converged point
+  (facial reduction) - would upgrade the SDP-feasibility verdict from
+  numerical to exact.
+- The exactness margin V(F) = 5/6, 1, 54752/323401(num): closed form?
+  Its collapse between 17 and 19 is the break's shadow and nothing in
+  this round explains its VALUES.
+- m29 L* (>= 74): each V(L) evaluation is 400-2000 s at this
+  implementation; a sparse/dual-simplex reformulation would reach it.
+- Level-2 exactness at m19 for SHORTER impossible lengths: V first
+  becomes positive at 27; whether some other formulation of the same
+  level (e.g. adding the g(i) witness variables of part C at scale)
+  moves 27 to 26 is untested (part-C runs at m17+ were stopped for cost).
+- Carried, still open: m19 arity-2 potential OPTIMUM; rank_n law; m29
+  rank profile; kappa(4) = 1 mechanism; gear-5 bracket reality; the
+  1/mean_gap amplitude near-law; m31 near-collisions.
+
+Reproduction pointers (round 24): sdp_cover.py partA (MF-LP theorem
+check, 12/12), partB (CSP sanity + LP1 + sigma table), partC (big lift
+with g(i) witnesses, m11 only at practical cost), partD (small lift
+first-certificate scan), partE (L* ladder by doubling+bisection, exact
+duals), partF (norm-cliff reduction, exact integers), partG (PSD
+cutting-plane loop at chosen (y, L)); exact_dual_bound2 = the
+weak-duality rationaliser (strictly-feasible dual, floor at denominator
+D, integer-exact check). All under .venv/Scripts/python.exe.

@@ -29,6 +29,12 @@ OLD = int(sys.argv[1])
 NEW = [int(x) for x in sys.argv[2].split(',')]
 QPP = int(sys.argv[3])
 A_FLOOR = 2 * round(QPP / 6)
+# ROUND-24: optional floor override (argv[7]).  Floor 1 = NO middle-gap
+# constraint, so Q_J(target; 1) = F_J(target): the same lap-phase transfer
+# decides the UNRESTRICTED spectrum of a machine r gears ahead.  Every other
+# code path is untouched; feasible_marks with a = 1 accepts any mark set.
+if len(sys.argv) > 7:
+    A_FLOOR = int(sys.argv[7])
 SPAN_CAP = int(sys.argv[5]) if len(sys.argv) > 5 else 200
 JMAX = int(sys.argv[6]) if len(sys.argv) > 6 else 7
 F_EXACT = {13: 11, 17: 18, 19: 25, 23: 34, 29: 43, 31: 58, 37: 88, 41: 91,

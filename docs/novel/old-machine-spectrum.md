@@ -190,3 +190,47 @@ function order k", "g(n,k) maximal gap k coprime residues", "cycle of gaps recur
 computation", "Ziller Morack Jacobsthal", and specifically for Corollary B
 "h_k(n) <= h(n p_1 ... p_{k-1})". Expect PARTIAL OVERLAP at least: the lap structure is
 standard, and Corollary B may well be classical.
+
+## 7. ROUND-24 EXTENSIONS (mechanic)
+
+(a) FLOOR-1 TRANSFER = THE UNRESTRICTED SPECTRUM.  Corollary A never uses the
+floor's value, so setting a = 1 computes Q_J(M'; 1) = F_J(M') - the plain
+spectrum of a machine r gears ahead, on this machine's period.  Validated
+against the only two beyond-scan F_3 values known independently:
+    machine 23 + {29,31}      -> F_2, F_3(31) = 68, 85   (exact match, 181 s)
+    machine 23 + {29,31,37}   -> F_2, F_3(37) = 90, 97   (exact match, 289 s)
+(research/j5_multi.py, optional floor-override argument; both runs
+assertion-free reproductions of full-period / SAT values.)  This is what
+decided F_3(41) = 110 EXACT (complete r=4 scan above the seeded floor 110,
+span cap 125 > the deletion-ladder cap 118) and F_3(43) = 125 EXACT (r=5,
+seed 124, cap 150 > cap 145; witness CRT'd to machine-43 address
+585,018,519,787,775, gaps [30,28,67], re-verified by direct arithmetic) -
+two first computations; details in the round-24 workstream append.
+
+(b) THE DICTIONARY TRANSFER (research/dict_transfer.py) - the same lap-phase
+mechanism applied to DICTIONARIES instead of extremal values.  A window of
+M + q' is an M-window plus one free phase, and whether the phase kills an
+interior is decided by the window's PARTIAL SUMS mod q'.  Given machine M's
+realised gap m-tuple dictionary, walking its ORDER-m CLOSURE (every
+contiguous m-window of the walk realised) against the free phase yields a
+certified SUPERSET of machine (M+q')'s m-tuple dictionary: a realised walk
+has all its m-windows realised, so nothing realised is ever missed.  That
+superset is exactly the hypothesis-shape Formalist requested for A_4
+(`hE : realised 4-tuples subset E`), and a superset of edges keeps the
+max-plus closure a sound upper bound for Constructor's certificate.
+Measured containment and inflation (superset size / true size):
+    23 -> 29:  contains all 45,854 true tuples,  inflation 4.15x   (3 s)
+    29 -> 31:  contains all 115,193 true tuples, inflation 6.21x   (11 s)
+    31 -> 37:  2,435,140 tuples emitted (116 s); exact target delivered
+               separately this round - inflation measured there.
+The inflation is the price of order-m closure: walks whose m-windows are all
+realised but which never occur jointly.  It grows with the step, so the
+transfer is a certificate-input supplier, not a census substitute.
+
+(c) A CAVEAT REPAIRED IN THE SOURCE SCAN.  The machine-37 chained scans tile
+the period, but a resumed run starts with an empty tail, so windows
+STRADDLING a junction were examined by neither range - the "max over a
+cover" argument is wrong for windows (round-24 self-catch).  Repaired by
+direct examination of every window touching the two junctions and the
+cyclic wrap (research/m37_junction_check.py): worst straddling 6-window is
+61, far under F_6(37) = 120, so the published spectrum stands unconditionally.

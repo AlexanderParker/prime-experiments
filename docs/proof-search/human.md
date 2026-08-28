@@ -1,80 +1,77 @@
 # human.md - the state of the hunt, in plain language
 
-(Manager-rewritten after round 23, 2026-08-25. Current-state snapshot; history in git and
+(Manager-rewritten after round 24, 2026-08-29. Current-state snapshot; history in git and
 docs/proof-search/archive/.)
 
 ## The five-minute version
 
-We model the twin prime question as a machine: one gear per prime, each blocking positions on a
-fixed schedule; twin primes are the positions every gear misses. The conjecture fails only if
-some set of gears could block an entire window, so the strategy is mechanism exhaustion - show
-no combination can.
+We model the twin prime question as a machine: one gear per prime, each blocking positions on
+a fixed schedule; twin primes are the positions every gear misses. The conjecture fails only
+if some set of gears could block an entire window. Everything is proven per machine; the one
+missing piece is a single machine-independent fact - WHY THE MACHINE NEVER PUTS ITS TWO
+BIGGEST GAPS NEXT TO EACH OTHER (the "two-gap law").
 
-ROUND 23 IS THE ROUND THE WALL TURNED OUT NOT TO EXIST. Last round I reported a specific
-obstruction - two independent methods failing at the same step and depth - as the project's
-sharpest open object. It was three things, none of them mathematics: a NAMING COLLISION (two
-different steps had been given the same label), A BUG (a search declared success before checking
-the end of its own window), and A CERTIFICATE BUILT ON THE WRONG VARIABLE. All three are now
-resolved, and the failing step passes comfortably.
+Round 24 was run across a three-day API outage and a memory crisis that froze the computer -
+and still delivered on both fronts:
 
-What replaced it is better. The target inequality (D) now HOLDS AT EVERY STEP WE CAN COMPUTE,
-through the 47->53 step, by arithmetic alone. A certificate keyed on the last THREE GAP SIZES -
-no residues, 14,368 states - is EXACT at all seven steps we can check, including both that had
-defeated every previous method. The insight was one sentence: they had been refining the wrong
-axis. And a companion result explains why: any certificate that FORGETS EVEN ONE GEAR proves
-nothing at all, which is why every modulus tried had failed and why no modulus could have worked.
+THE MATHEMATICS. The two-gap question was answered in both directions. Negative: we PROVED
+that no amount of clever optimisation can extract the two-gap law from the machine-free
+facts we currently have - the constraint system is already being read perfectly; it simply
+does not contain the law. (This closes the "try a fancier solver" direction permanently, by
+theorem.) Positive: the certificate machinery, upgraded, now proves the target at three steps
+NEEDING NO MACHINE-SPECIFIC FACT AT ALL - and when weakened it stalls at exactly the two-gap
+statement, confirming that is the one and only missing fact. The two-gap object also turned
+out to have its own generator (a second exact algebra, verified 6 for 6), and a chain now
+exists on paper: each machine's certificate can generate the INPUT for the next machine's -
+if the chain runs, the ladder feeds itself. Round 25's job is to run it.
+
+A FIFTH LADDER RUNG entered the computer-verified record with zero assumptions (the 23->29
+step - 37 million cases checked inside the proof kernel, resting on one standard axiom). The
+side-project paper got stronger: its headline exponent fell from 19 to 15 (and 15 is proved
+to be that method's floor), a constants dispute was settled from first-hand sources, and the
+lane proved the first-ever LOWER bound using the paired structure - while retracting two of
+its own earlier claims that its own data did not support.
+
+THE ENGINEERING. The frozen computer was a livelock: six proof workers, each needing ~5 GB,
+launched on a 16 GB box - because the cost model had no memory column. Ten and three-quarter
+hours produced literally zero finished work. Serialised to two workers by a small guard
+script (suspend, don't kill; trim pages; scale by free RAM), the same work finished in 3.6
+hours. The fix that made each worker 22x faster was measured properly this time - including
+the finisher catching its own draft being wrong by 13x on the memory figure. Cost models
+carry a memory column now; the parallelism budget for these scans is 2.
+
+THE PROCESS. The new gate-check rule (manager re-runs every lane's headline verification
+from a clean process before writing the round up) ran for the first time and immediately
+earned its keep: it caught one lane having corrected a claim but not the gate that checks it
+- and the rerun settled an open value as a side effect. The mandate audit found one lane
+(Lateral) had drifted into live-route support over three rounds - the briefs came from the
+manager, so the drift is the manager's, and round 25 restores the lane to its own territory.
 
 ## Where the proof stands
 
-- (D) is machine-verified with ZERO assumptions at four consecutive gear steps.
-- The 17->19 step now has TWO INDEPENDENT KERNEL PROOFS - one from the merge law, one from a
-  37-number certificate that verifies in seconds where the direct check needs a 1.6-million-slot
-  scan. Formalising it revealed three facts nobody had noticed: the certificate is a palindrome,
-  it is supported entirely on one distinguished gear, and it signs by 17.
-- The depth-quantifier-free form of (D) now exists at every scanned rung, and its complexity does
-  NOT grow with the machine.
-- A new transfer trick computes properties of machines SIX GEARS BEYOND what can be scanned.
-- First computation: the record gap for the machine of primes up to 47 is exactly 118.
+- (D) - "adding a gear never stretches the record gap by more than the gear" - holds at
+  every computable step through 47->53, is kernel-proven with zero hypotheses at FIVE
+  consecutive steps (11->13 through 23->29), and one step (17->19) has two independent
+  kernel proofs by unrelated methods.
+- The obligation is one fact: the two-gap law. Both its negative boundary (what cannot prove
+  it) and its positive machinery (what could) are now mapped precisely.
+- The next vehicle is ready: a dictionary-based certificate that turns the next rung into a
+  finite graph check, plus the self-feeding chain above.
 
-## The wall, honestly
+## Honest ledger
 
-Everything above is PER-MACHINE. We can now certify every step we can compute, and we still
-cannot certify all steps at once. The generator found last round is arity-free but not
-machine-free, and the machine-free system was measured SATURATING - it stops improving no matter
-how much detail is added. The remaining obligation has been narrowed to a single object: A
-TWO-GAP STATEMENT. Concretely, a certificate search that stalls on its own reaches the answer
-the moment it is handed ONE INTEGER about the machine. Round 24's question is what
-machine-independent fact could replace that integer.
-
-## A second result, nearly published
-
-Separately from the twin route, the lane working adjacent problems has taken a function that had
-NO PROVED UPPER BOUNDS OF ANY KIND - an empty ladder, zero published attempts in nine years - and
-produced explicit ones with every constant stated. That unit is publication-ready pending three
-verification items. The lane also found where the tools were hiding: not in the sieve textbooks
-(every fundamental lemma there carries unspecified constants) but in the explicit Goldbach
-literature, because sifting n and N-n has exactly the same structure as our problem. And it
-opened a new question - the LOWER ladder is emptier still, and unlike everything else here, the
-parity barrier provably does not obstruct it.
-
-## Honest ledger - every lane corrected itself this round
-
-- The census bug that created last round's "wall" was found by the lane that wrote it, proved by
-  a second lane, and diagnosed to the exact line by a third.
-- One lane retracted its own "most interesting paragraph" from last round: a claim stated as an
-  impossibility theorem is actually an open problem, and false as stated.
-- One lane's referee pass on its own paper found five defects - and one CORRECTION IS SHARPER
-  THAN THE ERROR: a published hypothesis we had assumed conservative turns out to be exactly
-  sharp.
-- A citation that passed through my own hands was a chimera - a theorem number that does not
-  exist, conflated between two books. Nine citation fixes in total. New standing rule: theorem
-  numbers are the fastest-decaying citation of all, so a numbering sweep is now part of every
-  referee pass.
-- A data-integrity flag was raised against one of our own earlier scans (an opening count that
-  disagrees with a closed form matching everywhere else) - flagged, not buried, and scheduled.
+- Two agents were lost mid-round (API limits); both rounds were completed from disk state -
+  one by a successor that independently re-verified everything, one by the manager filing
+  the lane's own completed drafts. Every gate was re-run clean afterwards.
+- The round's corrections: a claim/gate desync (caught by the gate-check), a 13x-wrong
+  memory estimate (caught by measurement), a timing artifact from a killed run (caught by
+  the lane's own standing rule), two retracted claims in the paper lane (caught by its own
+  referee pass), and a label that lied about a scan's range (the scan itself was right).
+  Nothing reached the record unverified.
 
 ## The map
 
 Route: twins infinite <=> no machine ever covers a window (kernel-checked iff).
-(A), (B), (C): closed. (D): holds at every computable step, kernel-proved at four, and reduced
-to one machine-free obligation - the two-gap statement.
+(A), (B), (C): closed. (D): five kernel rungs, every computable step verified, one named
+machine-independent obligation - the two-gap law - with a chain strategy and a derivation
+target (mirror law + kill-spacing + survivor identity) queued for round 25.

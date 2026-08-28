@@ -1831,3 +1831,359 @@ CORRECTIONS ADOPTED FROM THE ROUTING:
    refuted by the LP-duality thread (above).
 5. **The depth-sum glue at m13** (round 22 verdict 11), unchanged.
 6. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged.
+
+## Round 24
+
+Build GREEN at **1372 jobs** (1334 at the round-23 close), +19 libs -
+`Machine23Idx`, `Machine23IdxS0..S16`, `Machine23Scan` - all registered in
+`proofs/lakefile.toml` as `lean_lib` entries AND in `defaultTargets` (55 targets,
+107 libs). Zero sorries, zero warnings, no `native_decide` and no
+`Lean.ofReduceBool` anywhere in the ledger. Axiom audit re-run over all 273
+audited declarations: standard three or SMALLER, nothing else.
+
+BRIEF SERVED: item (1) LANDED WHOLE - the 23->29 rung by the lane's own named
+position-index fix, and with it THE FIFTH RUNG OF THE (D) LADDER,
+HYPOTHESIS-FREE. Item (3) was already discharged by this lane's round-23
+post-routing addendum (section 34) and needed nothing this round. Item (2), A_4
+at 29->31 in the hypothesis-explicit shape, was NOT STARTED - see the verdicts.
+
+FILING NOTE, recorded because this lane's rule is honesty about process as well
+as about results. The agent that did this round's engineering was lost mid-round
+to a weekly API limit - after its build had completed, but before it filed
+anything. This block was assembled from disk state by a successor agent with a
+clean context. NOTHING below is taken on the lost agent's word: the build was
+re-run green from a clean invocation, the axiom audit was re-run in the
+successor's own process, the scaffolding was re-classified against the lakefile
+and the import graph, and the round's headline performance claim was re-measured
+from scratch as a controlled A/B on one slice. Two artifacts of the lost agent's
+process survive and are described below because they are reusable: the
+dry-elaboration file and the build babysitter.
+
+### 35. THE FIFTH RUNG OF THE (D) LADDER, HYPOTHESIS-FREE: 23->29
+
+`proofs/Machine23Idx.lean` (the encoding), `proofs/Machine23IdxS0..S16.lean`
+(323 kernel decisions), `proofs/Machine23Scan.lean` (the extraction and the
+rung). Round 23 left `Machine29.D_at_23_29` carrying exactly two decidable
+hypotheses. Both are now kernel facts, and the rung is instantiated.
+
+```lean
+-- Machine23Scan.lean
+theorem qsliceIdxAll : forall e < 17, forall f < 19, qsliceIdx e f = true
+theorem qokIdxAll {a b c d e f g : N} (ha : a < 5) (hb : b < 7) (hc : c < 11)
+    (hd : d < 13) (he : e < 17) (hf : f < 19) (hg : g < 23)
+    (hop : Machine19.atT a b c d e f 0 = true) :
+    qokIdx a b c d e f g = true
+theorem W_eq {x m : N} (hx : 1 <= x) (hm : Machine19.opSeq m = x) :
+    forall k, x + W x k = Machine19.opSeq (m + k)
+theorem next23_step {x m k : N} (hx : 1 <= x) (hm : Machine19.opSeq m = x)
+    (hp : NS x 5 k <= k + 5) :
+    nextOp23 (x + W x k) = x + W x (NS x 5 k)
+theorem chain_facts23 (n : N) :
+    (opSeq23 (n + 1) - opSeq23 n <= 34) and
+    (opSeq23 (n + 2) - opSeq23 n <= 39) and
+    (10 <= g23 (n + 1) -> opSeq23 (n + 3) - opSeq23 n <= 60) and
+    (10 <= g23 (n + 1) -> 10 <= g23 (n + 2) -> opSeq23 (n + 4) - opSeq23 n <= 60) and
+    (10 <= g23 (n + 1) -> 10 <= g23 (n + 2) -> 10 <= g23 (n + 3) ->
+      opSeq23 (n + 5) - opSeq23 n <= 60) and
+    (10 <= g23 (n + 1) -> 10 <= g23 (n + 2) -> 10 <= g23 (n + 3) -> 10 <= g23 (n + 4) ->
+      opSeq23 (n + 6) - opSeq23 n <= 60) and
+    not (10 <= g23 n and 10 <= g23 (n + 1) and 10 <= g23 (n + 2) and 10 <= g23 (n + 3) and
+        10 <= g23 (n + 4))
+theorem spectrum23_one : Spectrum.SpectrumBound g23 1 34          -- F(23) <= 34
+theorem spectrum23_two : Spectrum.SpectrumBound g23 2 39          -- F_2(23) <= 39
+theorem qual23_all : forall j, 3 <= j -> Spectrum.QualBound g23 5 j 60
+theorem D_23_29 (n : N) : Machine29.g29 n <= 34 + 29   -- (D) at 23->29, NO HYPOTHESES
+theorem g29_le_60 (n : N) : Machine29.g29 n <= 60      -- R39's form, margin 3
+```
+
+AXIOM FOOTPRINTS (`lake env lean AxiomCheck.lean`, re-run this round):
+
+    Machine23.qsliceIdxAll     [propext]                              <- SMALLER
+    Machine23.next23_step      [propext, Classical.choice, Quot.sound]
+    Machine23.chain_facts23    [propext, Classical.choice, Quot.sound]
+    Machine23.spectrum23_one   [propext, Classical.choice, Quot.sound]
+    Machine23.spectrum23_two   [propext, Classical.choice, Quot.sound]
+    Machine23.qual23_all       [propext, Classical.choice, Quot.sound]
+    Machine23.D_23_29          [propext, Classical.choice, Quot.sound]
+    Machine23.g29_le_60        [propext, Classical.choice, Quot.sound]
+
+The 323-slice assembly `qsliceIdxAll` needs `propext` ALONE - no choice, no
+`Quot.sound`. Worth noting as the shape to aim for: 323 `decide +kernel`
+declarations collected by `interval_cases` carry essentially no logical baggage.
+The standard three enter only in the extraction above the scan; I did not trace
+which mathlib lemma introduces them, so no cause is claimed here.
+
+The qualifying floor is the one the rung wants: `QualBound g u j Qj` quantifies
+over windows whose interiors are all `>= 2u`, so `qual23_all`'s `u = 5` is the
+floor `2u'' = 10` of gear 29, matching the `10 <= g23 (n + i)` guards in
+`chain_facts23` clause for clause.
+
+THE SCAN COVERS THE FULL PERIOD, EXACTLY, and the arithmetic is worth writing
+out because it is the whole soundness argument for the factorisation:
+
+    17 modules x 19 slices                 =        323 slices
+    323 slices x 5,005 machine-19 tuples   =  1,616,615 CRT tuples
+    x 23 gear-23 phases                    = 37,182,145 = 5*7*11*13*17*19*23
+
+which is machine 23's period exactly, each residue once. The openings inside it
+number 3*5*9*11*15*17*21 = 7,952,175, and the chain Bool is true at every one.
+
+THE ENCODING, and why it is the round-23 verdict's named fix. `w19 a b c d e f k`
+is the offset of the k-th machine-19 opening after the base - INDEXED BY
+POSITION, and for a literal `k` the term does not mention the gear-23 phase `g`
+at all, so all 23 phases reduce the SAME closed term and the machine-19 walk is
+evaluated once per CRT tuple. The phase loop only SELECTS positions: `nsurv`
+steps forward until it finds a position whose opening survives gear 23, and
+survival at offset `t` is the two-comparison test `(g + t) % 23 not in {4, 19}`.
+That is exactly the construct round-23 verdict 13 named and priced.
+
+THE SCAN CERTIFIES ITS OWN FUEL, so it imports no bound from outside the kernel.
+Each opening's clause is preceded by its position check `p_i <= p_(i-1) + 5`,
+which is literally "`nsurv` did not reach its sentinel". Sized over the full
+period in numpy first (scratchpad idx23.py / idx23b.py / idx23c.py / idx23d.py):
+at most 4 machine-19 positions separate consecutive machine-23 openings, so fuel
+5 never reaches the sentinel; and the values the chain reads off are exactly
+`F_1..F_6(23) = 34, 39, 50, 58, 65, 77`, re-deriving the round-23 numbers from
+the position-indexed form.
+
+THE BRIDGE, in one line: machine 23's openings are machine 19's openings off
+gear 23's two teeth, so the k-th machine-19 opening after a base is a machine-23
+opening exactly when its offset avoids the teeth mod 23, and `NS` steps to the
+next position where it does. `next23_step` is the whole content - the position
+the survivor step lands on carries `nextOp23`, proved by `Nat.find_min'` upward
+and `NS_min` downward.
+
+### 36. THE POSITION-INDEX FIX, MEASURED: 6.5x PER SLICE, 3.6x END TO END,
+### AND THE REAL BINDING CONSTRAINT WAS MEMORY, NOT CPU
+
+Round-23 verdict 13 priced the fix at ~5x and the resulting build at "~7 h
+sequential, ~2.5 h at 3-parallel", against a 38 h / 13 h status quo. It was
+re-measured this round as a controlled A/B - SAME SLICE (e=16, f=18), same
+machine, same `lake env lean` invocation, run STRICTLY SEQUENTIALLY on an
+otherwise quiet box, neither run priority-boosted:
+
+    encoding                     file              wall            peak RSS
+    position-indexed (new)   qsliceIdx 16 18    65 s / 81 s         5.38 GB
+    offset-walk (round 23)   qslice23  16 18    >= 1,780 s          8.80 GB
+                                               (ABORTED, unfinished)
+
+so the per-slice speedup is **>= 22x** (conservatively, 1,780 / 81), against ~5x
+predicted. The fix beat its own estimate by more than four-fold.
+
+TWO HONESTY NOTES ON THAT TABLE, both of which cost me a wrong draft:
+- The old-encoding run **did not finish**. I stopped it at 1,780 s, so its cell
+  is a LOWER BOUND, not a measurement. My wrapper dutifully wrote
+  `OLD_OFFSET_SLICE_SECONDS=1785` into its log, which is a textbook instance of
+  MECHANIC'S STANDING RULE 17 - that line dates the WRAPPER's death, not the
+  job's, and the log is empty of any lean output because the theorem never
+  elaborated. I only know it is a bound because I killed the process myself.
+  Check the process list, not the log line.
+- Round 23's own 420 s-per-slice figure, extrapolated from a 143-tuple
+  mini-slice x 35, is an UNDERESTIMATE even after correcting for priority
+  boosting (2.3x, so ~966 s unboosted). The real slice had not finished at
+  1,780 s. **Mini-slice extrapolation is not linear in this regime** - memory
+  pressure grows with the declaration, so the last tuples cost far more than the
+  first. Round-23's "38 h sequential" for the old encoding was therefore
+  optimistic, and the true status quo the fix replaced was worse than recorded.
+
+END TO END the whole 323-slice scan completed in **3 h 36 min** (babysitter log,
+18:45:25 to 22:21:39; first slice module olean 19:15:33, last 22:19:54, and
+`Machine23Scan` at 22:20:17) at MAX_RUN=2 - i.e. 3.6x better than the round-23
+13 h estimate IN THE SAME PARALLEL REGIME. The fix over-delivered on both axes.
+
+THE FINDING THAT MATTERS MORE THAN THE SPEEDUP, and it is NOT the one I first
+drafted: **the binding constraint on this lane's kernel scans is RAM, and it is
+~5 GB PER LEAN WORKER even in the good encoding.** I had assumed the new
+encoding was memory-cheap and wrote "~0.4 GB" into a draft from nothing but
+plausibility; measuring it gave 5.38 GB. The position-index fix is a ~22x TIME
+win and only a ~1.6x memory win. What follows from the measured number:
+- Six-way parallel is 6 x 5.38 = ~32 GB on a 16 GB box. Hopeless, by a factor of
+  two, in EITHER encoding - which is exactly why 11 hours of six-way building
+  produced zero completed modules (below).
+- Two-way is ~10.8 GB, which fits with roughly 5 GB left for the OS - marginal,
+  and precisely consistent with the babysitter's guard firing to `allowed=1`
+  forty-four times and `allowed=0` fifteen times during the successful run.
+- **So the parallelism budget for a kernel scan in this lane is 2, and it is set
+  by ~5 GB per worker, not by a core count or a slice count.** That is the number
+  to carry into every future estimate, alongside seconds. The global memory rule
+  ("total <= 16 cores, memory is the binding constraint") is right in general;
+  this is its concrete value for Lean kernel scans.
+
+### Honest "will not close" verdicts (round 24)
+
+16. **A_4 AT 29->31 IN THE HYPOTHESIS-EXPLICIT SHAPE WAS NOT STARTED.** Briefed
+    item (2), and there is nothing on disk: `grep -rn "A4\|A_4" proofs/*.lean`
+    returns EMPTY, and there is no `Machine31` module. This is a
+    not-attempted, not a will-not-close - the round was consumed by item (1),
+    which took the box for 3 h 36 min of build plus a lost day of thrashing, and
+    the agent was killed by an API limit before reaching item (2). Recorded
+    plainly so no one reads the round's success as covering it. The target shape
+    is unchanged from round-23 verdict 15 and is still right:
+    `theorem D_of_A4 (E : Finset (N x N x N x N)) (hE : every realised 4-tuple of
+    consecutive gaps is in E) (hlp : longest path over E <= 58) : (D) at 29->31`.
+    TWO LANES HAVE SINCE MADE IT CHEAPER, and round 25 should take their offers
+    rather than rebuild the input (see the cross-lane section below): Mechanic
+    has BUILT the `hE`-shaped superset at 29->31 (715,697 rows, containment
+    proved by construction, no scan), and Constructor reports that `A_5(23)`'s
+    survivor closure = 55 delivers the R53 integer `F_2(29) = 55` with no
+    machine-29 scan at all. The hypothesis `hE` was always the expensive half;
+    it is now someone else's finished artifact.
+17. **THE 23->29 RUNG'S SCAN IS NOT REUSABLE AS A TEMPLATE FOR 29->31, AND THE
+    REASON IS THE PERIOD, NOT THE ENCODING.** Recorded now, while the numbers are
+    warm, so no one budgets round 25 on this round's success. This round's scan
+    factored machine 23's 37,182,145-slot period as (machine-19 tuple) x (phase),
+    reusing the 323 slices machine 19 already had. The same trick at 29->31
+    factors 1,078,282,205 = 37,182,145 x 29 as (machine-23 tuple) x (phase) - but
+    there is no 323-slice machine-23 slice family to reuse; the outer index is
+    37,182,145 / 5,005 = **7,429** slices. At this round's MEASURED 65 s per
+    slice that is a FLOOR of 134 h, and ~170 h once the inner loop is 29-fold
+    rather than 23-fold - before accounting for the walk itself being longer, so
+    the true figure is higher still. The position-index fix does not repeat,
+    because its saving came from sharing ONE machine-19 walk across 23 phases and
+    that walk gets ~23x longer at the next machine. **The
+    per-rung scan vehicle ends here.** Everything past 23->29 must come from the
+    sandwich lemma (which supplies every rung from the OLD machine's period) or
+    from a certificate over a bounded-state abstraction. This is a measured
+    verdict, not a judgment.
+    (Minor correction while re-deriving this: round 23 recorded the direct
+    machine-23 slice family as "7,434 slices of 5,005 CRT tuples". It is 7,429 -
+    37,182,145 / 5,005 divides exactly. Nothing depended on the figure; noted so
+    the number is right where it is carried.)
+18. **`DryScan2.lean` IS SCAFFOLDING AND IS NOT IN THE LEDGER - but it is worth
+    keeping, and worth a rule.** It is not in `lakefile.toml`, nothing imports
+    it, and it is therefore not among the 1372 jobs. It contains
+    `axiom qsliceIdxAll : forall e < 17, forall f < 19, qsliceIdx e f = true` -
+    the slice assembly STUBBED - so that the entire extraction on top of it
+    (`W_eq`, `next23_step`, `chain_facts23`, the spectrum theorems, the rung)
+    could be elaborated and debugged in ONE `lake env lean` pass at ZERO kernel
+    cost, while the real 323-slice scan was still running. That is the
+    mega-dry-check of round 23 generalised, and it is the right way to use a
+    multi-hour scan: **stub the expensive fact as an axiom, develop the whole
+    consumer against the stub, and delete the stub when the scan lands.** The
+    file's own header says "NOT part of the ledger; deleted before close". It was
+    NOT deleted - the agent died first - so it is left on disk, flagged here, and
+    RECOMMENDED FOR DELETION at the next commit. The standing rule this earns:
+    an axiom-stubbed dry file must be deleted or renamed with a `_` prefix the
+    moment its scan lands, because an `axiom` sitting in `proofs/` is one
+    lakefile edit away from silently entering the ledger.
+    (Round-23 draft files `DryScan.lean`, `PsliceOld.lean` and `Machine23Probe.lean`
+    named in the round brief do NOT exist on disk; only `DryScan2.lean` survives.)
+
+### Infrastructure lessons (round 24)
+
+- **THE SIX-WAY PARALLEL BUILD DID NOT JUST RUN SLOWLY, IT COMPLETED NOTHING IN
+  11 HOURS.** `Machine23Idx.olean` (the cheap core) is stamped 07:30:39 and the
+  dry-scan file 08:04; the first of the 17 slice modules did not complete until
+  19:15:33, and it completed because a babysitter had taken over at 18:45. So
+  ~10.75 h of six-way parallel building produced ZERO completed modules, and the
+  same work finished in 3 h 36 min once serialised to 2. Page-thrashing is not a
+  slowdown, it is a livelock: each worker gets 2-10% CPU, none reaches its
+  `.olean`, and lake's next invocation has nothing to reuse. **On this box, a
+  kernel-scan build that does not fit in RAM makes NEGATIVE progress.**
+- **`research/lean_babysitter.py` - the reusable artifact of this round, and the
+  lane should default to it for any multi-module scan.** It keeps at most
+  `MAX_RUN` (=2) `lean.exe` workers RUNNING and SUSPENDS the rest, resuming
+  longest-suspended-first as workers exit. Three design points are what make it
+  safe, and they are the transferable content:
+   - Suspension is fully REVERSIBLE and loses no work - a suspended worker's
+     state lives in the pagefile, and a finished slice's `.olean` is reused by
+     lake's next invocation. Killing workers to relieve memory loses hours;
+     suspending them loses nothing.
+   - It calls `EmptyWorkingSet` (psapi) on suspended workers, so their pages move
+     to the pagefile IMMEDIATELY rather than lazily - this is what actually
+     returns physical RAM to the running worker and to the UI.
+   - It scales the number of runners by AVAILABLE RAM, not by a fixed count:
+     below 1.5 GB available it allows 1, below 0.75 GB it allows 0 and suspends
+     everything until recovery above 2.0 GB. In this round's log that guard fired
+     to `allowed=0` fifteen times and to `allowed=1` forty-four times, with
+     available RAM bottoming at **221 MB** on a 16 GB box. It managed 22 distinct
+     `lean.exe` pids across 7 supervisor restarts.
+  Ranking runners by LARGEST resident set first (not smallest) is deliberate and
+  correct: the biggest worker is the most memory-warm and closest to finishing,
+  so finishing it is what frees the most RAM soonest.
+- **SIZE KERNEL SCANS IN PEAK RSS PER DECLARATION, NOT ONLY IN SECONDS - AND
+  MEASURE IT, DO NOT GUESS IT.** See section 36. A single 5,005-tuple slice costs
+  **5.38 GB** in the GOOD encoding (8.8 GB in the old one). No memory figure
+  appears anywhere in round 23's cost model, and the omission is what made the
+  six-way launch look reasonable. Every future scan estimate in this lane should
+  carry a memory column, and the derived rule is concrete: **~5 GB per lean
+  worker, so the parallelism budget is 2 on this box.** I drafted "~0.4 GB" for
+  the new encoding on plausibility alone and was wrong by 13x; the number cost
+  81 seconds to measure.
+- **AN UNFINISHED JOB'S WRAPPER WILL HAPPILY WRITE A FINISHED-LOOKING NUMBER.**
+  My timing wrapper wrote `OLD_OFFSET_SLICE_SECONDS=1785` for a run I had killed
+  at 1,780 s; the log contained no lean output at all. This is MECHANIC'S RULE 17
+  arriving in this lane - the log line dates the wrapper, not the job. Two cheap
+  defences, both used here: check the process list, and check whether the job's
+  own output (the theorem, the `.olean`) actually exists.
+- **LAKE KEYS ON CONTENT HASHES, NOT MTIMES.** `touch`ing a source file and
+  rebuilding returns in 1 s with the target considered up to date. To force a
+  re-elaboration for a measurement, change the content or - better, because it
+  leaves the ledger untouched - elaborate a standalone file with
+  `lake env lean <file>`, which needs no lakefile registration as long as its
+  imports are built. That is how this round's A/B was run without perturbing the
+  1372-job build.
+- The round-23 note that `#print axioms` blocks need their imports spliced at the
+  TOP of `AxiomCheck.lean` held again; the round-24 block required only
+  `import Machine23Scan` added to the existing import list.
+
+### Cross-lane kernel candidates received (round 24)
+
+Four lanes filed Formalist-directed offers this round. None was actioned - the
+round ended at item (1) - so they are recorded here as round-25 input, ordered by
+this lane's judgment of value per line:
+
+1. **MECHANIC - the dictionary-transfer superset, `research/dict_transfer.py`.**
+   Exactly the `hE` shape this lane asked for in round-23 verdict 15: a window of
+   M+q' is an M-window plus one free phase, kills decided by partial sums mod q',
+   so walking machine M's dictionary in its order-m closure yields a certified
+   SUPERSET of machine (M+q')'s m-tuple dictionary WITH NO SCAN. At 29->31:
+   715,697 rows, containment proved by construction and verified exhaustively.
+   Superset edges keep the max-plus closure sound, so this discharges `hE`
+   without the 1.08e9-slot realisability claim that made verdict 15 a negative.
+   This is the single highest-value item on the list: it converts open target 3
+   from "needs a census we cannot kernel-check" into "needs a longest-path
+   `decide +kernel` over an explicit 715,697-row digraph", which is squarely
+   inside what this lane does.
+2. **CONSTRUCTOR - `A_5(23)` survivor closure = 55.** States and edges are a
+   finite integer digraph; it yields the R53 integer `F_2(29) = 55` with no
+   machine-29 scan. Cheaper than A_4-at-29->31 and hits the same rung. Also
+   offered: the survivor identity at 11->13, a finite max-plus closure equal
+   to 16 - the right size for a first, cheap statement of the generator in Lean.
+3. **LATERAL - the m13 covering dual**, weights over a 793-row system with
+   denominator 2081, exact rationals already, integer check only. Directly
+   comparable to this lane's own `cert13` (20 integers, eighteen of them 1), so
+   it doubles as an independent check of the phase-tied form; and **LP(MF) =
+   closure at one step**, a longest-path duality over an explicit integer
+   digraph.
+4. **LP-DUALITY THREAD** - the composed certificates are 2-3x SMALLER than round
+   23's at the same four rungs (562 / 1,456 / 3,303 / 8,179 ops vs 464 / 2,868 /
+   9,091 / 25,413), same integers-over-one-denominator shape plus one integer
+   recursive row. The thread also confirms explicitly that its round-23 `W*`
+   correction leaves the Lean certificates untouched - checked and agreed: a
+   valid certificate stays valid whatever `W*` is, and nothing in this lane
+   consumed `W*`.
+
+### Open formalisation targets (re-prioritised after round 24)
+
+1. **A_4 / A_5 as a longest-path certificate, on MECHANIC's transferred edge
+   set** (verdicts 15 and 16, cross-lane item 1). Now the top target: the
+   expensive half (`hE`) is a finished artifact in another lane, and the
+   remaining half is a `decide +kernel` longest path this lane has the tooling
+   for. Take `A_5(23) -> F_2(29) = 55` (cross-lane item 2) as the cheap first
+   instance if the 715,697-row digraph proves too large in one declaration.
+2. **The SANDWICH LEMMA, formalised** (Constructor R51) - promoted in importance
+   by verdict 17. It is now not merely the best value-per-line object in the
+   lane, it is the ONLY route past 23->29 that does not need a per-rung scan,
+   because the per-rung scan vehicle is measured dead at ~610 h for the next
+   rung. Abstract, machine-free, needs no scan.
+3. **The survivor identity at 11->13** (cross-lane item 2) - small, finite,
+   and the first Lean statement of the generator.
+4. **The depth-sum glue at m13** (round 22 verdict 11), unchanged.
+5. **Harvester's paired-Holt coef rung** (5005 -> 85085), unchanged. Note the
+   round-23 finding that the kernel shares structurally identical subterms makes
+   the 85,085-fold quantifier cheap - this is likely much easier than its size
+   suggests.
+6. ~~The machine-23 chain scan by the index encoding~~ - **DONE this round**
+   (section 35).
+7. Housekeeping: delete `proofs/DryScan2.lean` (verdict 18).

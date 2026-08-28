@@ -9,6 +9,13 @@ here; research/j2_fi77.py) for THEOREM 2E, the explicit polynomial rung at
 exponent 19; PROVED-BY-STANDARD-CITATION, CONSTANT NOT EXPLICIT AND NOT MAKEABLE SO
 (dimension-2 sifting limit) for Theorem 2, the best-exponent polynomial rung at
 4.266. Section 8 settles the explicit-constant question in both directions.
+ROUND-24 UPDATES (2026-08-28, section 9): exponent 19 -> 17 FREE and -> 15 at
+constant cost 135 (THEOREMS 2E', 2E''; research/j2_presieve.py); Opera de Cribro
+Theorem 7.7 CHECKED AGAINST THE BOOK'S OWN TEXT (OCR of the AMS printing;
+section 9a); the Halberstam-Richert Memoire OBTAINED AND READ (numdam scan;
+section 9b); the 19/36-vs-0.4454 conflict SETTLED for 19/36 (section 9c;
+research/j2_selberg.py); and the round-23 lower-ladder subsection of section 1
+is superseded in three marked places by docs/novel/j2-lower-ladder.md.
 Prior-art verdict: NOVEL AS FAR AS SEARCHED - the
 published upper-bound ladder for j_2 is empty (established round 20 by full-text
 reads of both Ziller-Morack papers; RE-CHECKED 2026-08-25 by citation graph rather
@@ -290,44 +297,45 @@ j_2(p_n#) >= j(p_n#) and every ordinary-Jacobsthal lower bound
 (Ford-Green-Konyagin-Maynard-Tao class) transfers verbatim. Script-verified
 exactly at n = 3, 4, 5 (the survivor sets coincide).
 
-THE LOWER LADDER IS EMPTIER THAN THE UPPER ONE - stated in round 23 because a
-referee will ask how wide the proved sandwich is (research/j2_lower.py, all
-assertions green; A048670 recomputed from scratch for p_n <= 19):
+THE LOWER LADDER - round-23 subsection, SUPERSEDED IN THREE PLACES by
+docs/novel/j2-lower-ladder.md (round 24); kept with corrections marked.
 
-    proved lower   j(p_n#)             =  p_n^{1+o(1)}
-                   (Rankin / FGKMT: j(p#) >> p log p logloglog p / (loglog p)^2;
-                    measured exponent log j/log p in [1.10, 1.22] for
-                    11 <= p_n <= 73)
-    TRUTH          h_2(p_n#)          ~  (p_n^2 - p_n)/2
-                   (measured exponent in [1.75, 1.95]; the share h_2/(p^2-p) is
-                    0.499 at p_n = 73)
-    proved upper   p_n^{4.266+eps}
+    proved lower   h_2(P(z)) >= (1.349+o(1)) z log z
+                   [ROUND 24, Theorem (P1) of j2-lower-ladder.md - the first
+                    bound using the paired structure; strictly beats the
+                    round-23 row j(p_n#) = p_n^{1+o(1)}, whose FGKMT form is
+                    z log z logloglog z / loglog z = o(z log z). (Round 23
+                    wrote Rankin's (loglog)^2 denominator against the FGKMT
+                    attribution; the mixed citation is corrected here.)]
+    "TRUTH"        round 23 wrote "h_2 ~ (p_n^2 - p_n)/2 (measured)".
+                   SUPERSEDED: on ZM's own 21 exact values, c z^2 and
+                   c z (log z)^2 fit equally well (spread 1.87x each) with
+                   residuals drifting in opposite directions, and the local-
+                   exponent gap against the ordinary function is 0.33-0.75,
+                   nowhere near the +1.0 a quadratic law needs. The supported
+                   reading is h_2 = z^{1+o(1)}, model ~ 2.56 z (log z)^2.
+                   Full analysis: j2-lower-ladder.md 1c.
+    proved upper   p_n^{4.266+eps}; explicit p_n^15 (round 24, Theorem 2E'')
 
-So the LOWER ladder is short by a factor p_n^{1-o(1)} and the upper by
-p_n^{2.27}. NAMED OPEN PROBLEM, and the natural companion to this note: prove
-h_2(p_n#) >> p_n^{1+delta} for some delta > 0 (ideally >> p_n^2). It is a
-CONSTRUCTION problem, not a sieve-bound problem - exhibit, for each n, two
-residue classes per odd prime p <= p_n covering an interval of length >> p_n^2 -
-and nothing in the parity barrier obstructs a construction. As far as this lane
-has searched, nobody has stated it.
+The round-23 NAMED OPEN PROBLEM "prove h_2(p_n#) >> p_n^{1+delta}" is
+SUPERSEDED: on the corrected reading that target is asking for something false.
+The right problems are (P2) h_2 >> z (log z)^2 / (loglog z)^{O(1)} by carrying
+Rankin/FGKMT machinery through the paired construction (still a construction,
+still parity-free), and (P3) the paired-Iwaniec upper question
+h_2 = O(z (log z)^A). See j2-lower-ladder.md 1e.
 
-WHY THE PAIRED PROBLEM IS QUADRATIC AND THE ORDINARY ONE IS NOT (the one-line
-reason, and it is what makes exponent 2 plausible as the truth). By CRT the
-killed residues mod p are {-a, -a-2e} with a and e independently free, so
-j_2(p_n#) - 1 is exactly the longest interval coverable by TWO ARBITRARY residue
-classes mod p for each odd p <= p_n. The covering CAPACITY per unit length is
-sum_{p<=z} 1/p ~ log log z in the ordinary problem and about twice that in the
-paired one:
-
-    z             13     19     29     43     73    200   10^3   10^4   10^6
-    ordinary   1.344  1.456  1.533  1.640  1.757  1.949  2.198  2.483  2.887
-    paired     2.188  2.411  2.567  2.781  3.013  3.398  3.896  4.466  5.275
-
-The ordinary covering is COUNTING-CONSTRAINED at every size where exact values
-exist (its capacity only passes 2 beyond z ~ 10^3), which is why j(p#) is
-near-linear in p; the paired covering is not counting-constrained at all, and
-nothing elementary caps it below z^2. That is the structural reason h_2/j runs
-from 3 at p_n = 5 to 13.8 at p_n = 73 while both are exactly computable.
+WHY THE PAIRED PROBLEM SITS ABOVE THE ORDINARY ONE - round 23's capacity
+argument here ("the ordinary covering is counting-constrained, the paired one
+is not, so exponent 2 is plausible") is RETRACTED (round 24): capacity is not
+scale-free, and the ordinary problem reaches the same capacities at larger z
+with its answer still z^{1+o(1)}. What survives, and is proved: the CRT freedom
+(killed residues {-a, -a-2e} mod p with a, e independently free) makes
+j_2(p_n#) - 1 the longest interval coverable by classes {0, -E} per odd prime;
+the class 0 covers every z-smooth number for free, so the paired covering only
+has to reach the z-ROUGH numbers - a set thinner by one factor log z than what
+the ordinary covering must reach. THAT is the structural separation between the
+two problems, it is worth one logarithm, and it is the mechanism behind
+Theorem (P1). Full statement: j2-lower-ladder.md 1a, 1d.
 
 ## 2. Why it might be novel
 
@@ -454,8 +462,11 @@ Selberg's conjectural optimum 2*kappa), not a technology gap.
 
 Outside: the ladder now reads
 
-    rung -1   p_n^{1+o(1)}   LOWER bound j(p_n#)    Rankin / FGKMT transfer
-    TRUTH     ~ (p_n^2 - p_n)/2                     measured, ZM table to p_n=73
+    rung -1   (1.349+o(1)) p_n log p_n  LOWER      round 24, j2-lower-ladder.md
+              (supersedes the FGKMT transfer row, which is o(p log p))
+    TRUTH     z^{1+o(1)}, model ~2.56 p (log p)^2   round 24 reread; the round-23
+              "~(p^2-p)/2" is one of two readings the data cannot separate, and
+              the less supported one (j2-lower-ladder.md 1c)
     rung 0    p_n#                                  trivial (periodicity)
     rung 1    2*3^(n-1)/V_n + 1 < 3^(n+1) log^2 p   elementary        (round 21)
     rung 1.5  E_K/(V_n-R_K)+1                       elementary, exact rationals
@@ -467,6 +478,19 @@ Outside: the ladder now reads
     rung 2E   <= 1.0963e10 p_n^19 (log p_n)^10 + 1  EXPLICIT, p_n >= 285
               for p_n >= 285                        (round 23, FI Opera de
                                                     Cribro Thm 7.7 + K = 3)
+    rung 2E'  <= 3.5301e9 p_n^17 (log p_n)^10 + 1   EXPLICIT, p_n >= 285
+                                                    (round 24: pre-sieve 2,3 -
+                                                    FREE, N_pre = 1, K = 5/3;
+                                                    dominates 2E everywhere)
+    rung 2E'' <= 7.2671e11 p_n^15 (log p_n)^10 + 1  EXPLICIT, p_n >= 285
+                                                    (round 24: pre-sieve
+                                                    2..11, N_pre = 135;
+                                                    dominates 2E' from the
+                                                    threshold on; 15 is the
+                                                    SMALLEST integer exponent
+                                                    FI 7.7 can ever give at
+                                                    kappa = 2 - floor s* =
+                                                    14.169 as K -> 1)
     CEILING   p_n^(beta_2): 4.266 proved, 4 conjectured optimal (Selberg),
               ~1.47 the best proved floor (Brady 2*kappa/e) - so the sieve-side
               question "is beta_2 < 4?" is OPEN
@@ -482,15 +506,21 @@ top rung has not moved since 1978: Iwaniec is still the record, FGKMT (JAMS 31,
 constants. So the paired ladder is not chasing a moving target.
 NAMED REMAINING MOVES, re-priced in round 23:
   (i)  any improvement of beta_2 transfers verbatim - still free;
-  (ii) an EXPLICIT rung 2: DONE (Theorem 2E, exponent 19, all constants stated).
-       What remains on that axis is (a) exponent 19 -> ~15 by pre-sieving the small
-       primes (K falls from 3 to 5/3 at p >= 5 and to 1.0479 at p >= 101; bounded,
-       mechanical, not done); and (b) exponent ~15 -> ~8 by the nested Brun /
-       Brun-Hooley route, whose VALIDITY round 23 settled by direct test but whose
-       explicit MAIN-TERM estimate is still missing. What is NOT available at any
-       price is an explicit constant AT exponent 4.266. Full costing in section 8.
-  (iii) NEW: a LOWER bound h_2 >> p_n^{1+delta}. Not parity-blocked (it is a
-       construction), completely unattacked - see THE LOWER LADDER above.
+  (ii) an EXPLICIT rung 2: DONE (Theorem 2E, exponent 19, round 23), and the
+       pre-sieving move is now ALSO DONE (round 24, Theorems 2E'/2E'': exponent
+       17 free, 15 at constant cost 135, and 15 is the floor of the method -
+       research/j2_presieve.py, section 9d). What remains on this axis is ONLY
+       exponent ~15 -> ~8 by the nested Brun / Brun-Hooley route: validity
+       settled (round 23), and the target 7.972 is now READ FROM THE SOURCE
+       (the HR Memoire treats exactly our density with level exponent u > 7.972
+       admissible, but all its remainders are O(.) - section 9b), so the item
+       is an EXPLICITNESS problem in a known theorem, not a new sieve. What is
+       NOT available at any price is an explicit constant AT exponent 4.266.
+       Full costing in section 8.
+  (iii) the LOWER bound: round 23's h_2 >> p^{1+delta} target is SUPERSEDED
+       (it asks for something probably false); the delivered rung is
+       h_2 >= (1.349+o(1)) z log z (round 24, Theorem (P1)), and the open
+       companions are (P2)/(P3) of j2-lower-ladder.md.
 The one move that is NOT available is lowering the upper exponent towards 2 - see
 THE CEILING above.
 
@@ -876,3 +906,113 @@ the weaker form: FI Theorem 7.7's remainder is TAU_4-WEIGHTED. The correct
 statement for our problem is sum_{d<D} tau_4(d)|r_d| <= sum_{d<D squarefree}
 8^{nu(d)} << D (log D)^8, not the unweighted << D (log D)^2. Log powers only - the
 EXPONENT is unaffected - but the sketch must say the weighted form.
+
+
+## 9. ROUND-24 VERIFICATION RECORD (2026-08-28) - the three named items of the
+## submission checklist, plus the pre-sieved rungs
+
+### 9a. Opera de Cribro Theorem 7.7 - CHECKED AGAINST THE BOOK'S OWN TEXT
+
+Round 23 carried Theorem 7.7 on two agreeing verbatim transcriptions (Dudek-Dunn
+arXiv:2602.22720 Thm 1.3; Campbell arXiv:2608.09488 Thm 2.1) and said the book
+must be seen before submission. THIS ROUND IT WAS: the AMS printing's own text
+(Google Books OCR of the two library-record volumes, harvested in-round via a
+literature sub-search and relayed with OCR/reconstruction separated) shows
+Theorem 7.7 on p. 111, in Chapter 7 (the Selberg Lambda^2 Lambda^- chapter),
+with statement, hypothesis (s >= 2k+3, k = kappa + log K), bracket and remainder
+2 R_4(A, D) matching BOTH transcriptions in every particular. Three independent
+renderings of the theorem now agree, one of them the book itself. CAVEAT,
+recorded honestly: the book was seen through OCR snippets, not held; the check
+is of the mathematical content, not of the typography. RESIDUE FROM THE SAME
+PAGES: (7.122) is only a loose sufficient condition for bracket positivity
+(s >= 2k + 2 sqrt(2k log k) + log k + 9 = 21.6 at our k = 3.0986, WEAKER than
+the exact threshold s* = 18.308 we compute from the bracket itself), and
+Corollary 7.8 (s >= 2k + (2+c) sqrt(2k log k)) is asymptotic-in-k and does not
+improve our exponent at k ~ 3.1 - both examined so nobody re-opens them.
+TWO NAMED OPENINGS from the same harvest, NOT yet resolved (next-round items,
+priced): ODC Chapter 6's beta-sieve pages print sifting-limit values
+beta_1 = 3.8629, beta_2 = 7.5941 around pp. 71-73 - if THAT apparatus is
+explicit (constant-free) at kappa = 2, the explicit exponent drops from 15 to
+~8.6, converging with the HR Memoire's 7.972 (9b); its explicitness is NOT
+established (the Chapter 11 beta-sieve carries an uncomputed O((log D)^{-1/6}),
+round 23 - whether the Chapter 6 version does too is exactly the open
+question). And S. Blight, "Refinements of Selberg's sieve" (PhD thesis, Rutgers
+2010; title and her own values beta_2 <= 4.450, beta_3 <= 6.458, beta_4 <=
+8.470 now first-hand from Heath-Brown's zbMATH review, 9c) may contain an
+explicit Lambda^2 Lambda^- variant; not obtained.
+
+### 9b. The Halberstam-Richert Memoire - OBTAINED AND READ, and the 7.972 lead
+### is CONFIRMED AS DERIVED, NOT PRINTED
+
+Halberstam & Richert, "A new look at Brun's sieve" (Mem. Soc. Math. France 25
+(1971) 97-106; free numdam scan, located and read in-round). It treats EXACTLY
+our density - the paper's example is A = {n(n+2) : n <= x} with omega(2) = 1,
+omega(p) = 2 - and its two printed conditions ((1.2): lambda e^{1+lambda} < 1;
+positivity: lambda^2 e^{2 lambda}(2 + e^2) < 1) admit every level exponent
+u > 1 + 2.01/(e^{lambda*} - 1) where lambda* is the root of the second
+condition. The figure 7.972 does NOT appear in the paper (it says only
+"u < 8"); it FOLLOWS from the printed conditions, and this lane re-derived it
+independently in research/j2_presieve.py P4: lambda* = 0.2533219,
+u = 7.971954833 (asserted). STATUS OF THE LEAD, now precise: the exponent-8
+target is real, sits on OUR density in the SOURCE, and is an EXPLICITNESS
+problem (every remainder in the Memoire is an unspecified O(.)) - not a new
+sieve. The nested-truncation route of round 23 is the modern form of exactly
+this construction.
+
+### 9c. The 19/36 vs 0.4454 conflict - SETTLED FOR 19/36
+### (research/j2_selberg.py, all assertions green)
+
+VERDICT: beta_kappa <= 2 kappa + 19/36 + o(1) (kappa -> infinity) is Selberg's
+own announced constant; 0.4454 (Ford 2023 lecture notes; Brady 2017 thesis,
+both citing Lectures on Sieves (14.40)) could not be reproduced and every
+computable consequence contradicts it. Evidence, tiered:
+ 1. FIRST-HAND (fetched by this lane 2026-08-28, zbMATH Open API): Greaves'
+    review of Selberg's own announcement (Oslo 1987 symposium; Zbl 0675.10030):
+    "alpha_k > 1/(2k+19/36) for all sufficiently large k" (Selberg's alpha is
+    the reciprocal convention). Heath-Brown's review of Franze (Zbl
+    1235.11089): Selberg "showed that the sieving limit satisfies beta_kappa <=
+    2 kappa + 19/36 + o(1)".
+ 2. FIRST-HAND (arXiv:1012.3809 full text on disk): Franze's reproduction of
+    Selberg's pp. 174-176 computation, re-derived here IN EXACT RATIONALS:
+    optimal a = 1/4, threshold d = -7/72, constant exactly 19/36.
+ 3. NUMERICAL: at 2 kappa + 0.4454 the Selberg functional's main term is
+    strictly NEGATIVE (coefficient -0.0369) - no lower bound exists there.
+ 4. Franze's own computed Lambda^2 Lambda^- table (kappa = 2..10) approaches
+    0.5278 from below, every entry already ABOVE 0.4454.
+LABELLED SPECULATION on the error's origin: Greaves' review carries, one
+sentence before the 19/36, "beta_k ~ c/k ... for a certain constant c close to
+1/2.445" (the Buchstab-iterated family) - the digit string 2.445 sits directly
+beside 19/36 in the primary source's own review. RESIDUAL CAVEAT: the printed
+(14.40) itself remains unread (Lectures on Sieves is in copyright and no scan
+was found); 0.4454 is recorded as UNVERIFIED rather than WRONG. FOR THE PAPER:
+cite 19/36; nothing numerical changes anywhere (it is a large-kappa statement).
+CITATION CORRECTIONS BANKED (extending section 6a, both first-hand from
+Heath-Brown's review): the 4.266 book is Diamond-Halberstam-GALWAY, "A
+higher-dimensional sieve method", Cambridge Tracts 177 (2008), Zbl 1207.11099
+(the METHOD is DHR); and Blight's OWN kappa = 2 value is 4.450 - the 4.266450
+she prints at full precision is her quotation of DHR, not her result.
+
+### 9d. THEOREMS 2E' AND 2E'' - the pre-sieved explicit rungs
+### (research/j2_presieve.py, all assertions green; round-23 constants
+### reproduced as in-script controls)
+
+Pre-sieving changes exactly one factor in the Theorem 2E constant: with the
+primes below p_0 sieved out first, A' is a union of N_pre = prod_{p<p_0}
+(p - omega(p)) residue classes mod prod_{p<p_0} p, so |r_d| <= 2^{nu(d)} N_pre
+uniformly, while X V'(z) = m V(z) exactly; positivity needs
+m > (2/bracket(s, k(p_0))) N_pre C_8 z^s (s log z)^8 / V(z). And N_pre(5) = 1
+because gear 3 keeps a single class - PRE-SIEVING 2 AND 3 IS FREE.
+
+  THEOREM 2E'  (p_0 = 5, K = 5/3, s* = 16.136):
+      j_2(p_n#) <= 3.5301e9 * p_n^17 * (log p_n)^10 + 1     (p_n >= 285)
+    - smaller exponent AND smaller constant than 2E: dominates it everywhere.
+  THEOREM 2E'' (p_0 = 13, N_pre = 135, K = 1.18182, s* = 14.822):
+      j_2(p_n#) <= 7.2671e11 * p_n^15 * (log p_n)^10 + 1    (p_n >= 285)
+    - dominates 2E' from the threshold on (factor 395 at p_n = 285).
+  FLOOR OF THE METHOD: as p_0 grows, K -> 1, k -> 2, and the FI 7.7 bracket's
+  threshold tends to s*(k=2) = 14.169 > 14. So EXPONENT 15 IS THE SMALLEST
+  INTEGER FI 7.7 CAN EVER DELIVER at kappa = 2, and p_0 = 13 already attains
+  it; p_0 = 13 is also the optimum of the full ladder at every p_n tested
+  (deeper pre-sieving buys s* only in the third decimal while N_pre grows
+  double-exponentially). More generally j_2(p_n#) << p_n^s for every real
+  s > 16.136 free, and for every s > 14.822 at constant cost 135.

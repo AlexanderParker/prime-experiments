@@ -152,15 +152,33 @@ def fuel(y, probes, limit=None, seg=64_000_000, start=0):
                                     (k, int(ops[t]), word, fl))
         tail = ops[-(KWORD + 1):] if len(ops) else tail
     dt = time.time() - t0
-    return dict(y=y, P=P, K=K, gears=gears, openings=total_open,
-                probes=pr, Fj=Fj, secs=dt)
+    return dict(y=y, P=P, K=K, start=start, gears=gears,
+                openings=total_open, probes=pr, Fj=Fj, secs=dt)
 
 
 def report(r, csvf):
     y, K, P = r["y"], r["K"], r["P"]
-    frac = K / P
-    print(f"machine y={y}: period {P:.3e}, scanned {K:.3e} "
-          f"({100*frac:.1f}%), openings {r['openings']}, {r['secs']:.0f}s")
+    lo = r.get("start", 0)
+    # ROUND-24 FIX.  This line used to print K (the END slot) as "scanned"
+    # and K/P as coverage, IGNORING --start.  A RESUMED run therefore
+    # reported "100.0%" while having scanned only [start, K), and its
+    # openings and every N_k were counts for THAT RANGE ALONE.  That is
+    # exactly what produced the r21 machine-37 line "1.237e+12 slots
+    # (100.0%), 112,205,953,878 openings" against the exact
+    # prod_{5<=q<=37}(q-2) = 217,929,355,875: the three chained runs
+    # [0, 1.2e11), [1.2e11, 6e11), [6e11, P) have opening counts
+    # 21,144,680,389 + 84,578,721,608 + 112,205,953,878 summing EXACTLY to
+    # prod(q-2).  Always report the RANGE, never the endpoint.
+    scanned = K - lo
+    frac = scanned / P
+    print(f"machine y={y}: period {P:.3e}, range [{lo}, {K}) = "
+          f"{scanned:.3e} slots ({100*frac:.1f}% of the period), "
+          f"openings {r['openings']} (THIS RANGE ONLY), {r['secs']:.0f}s")
+    if lo:
+        print("  NOTE resumed run: openings and every N_k below are counts "
+              "for this range only - sum the chained runs to get the "
+              "period, and words straddling a junction are counted by "
+              "neither run (the tail is empty at a resume).")
     print("  spectrum F_j (max sum of j consecutive gaps), j=1..6: "
           + " ".join(str(int(r['Fj'][j])) for j in range(1, 7)))
     for q, st in r["probes"].items():

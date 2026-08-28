@@ -1,4 +1,5 @@
 import Machine23Q
+import Machine23Scan
 import Machine29
 import CoveringCert
 import PotentialLadder
@@ -303,3 +304,13 @@ open BlockedSlots
 #print axioms CoveringCert2.F17_le_28
 #print axioms CoveringCert2.D_13_17_lp
 #print axioms CoveringCert2.lp_ladder
+
+-- Round 24: the position-indexed machine-23 scan and the fifth rung
+#print axioms Machine23.qsliceIdxAll
+#print axioms Machine23.next23_step
+#print axioms Machine23.chain_facts23
+#print axioms Machine23.spectrum23_one
+#print axioms Machine23.spectrum23_two
+#print axioms Machine23.qual23_all
+#print axioms Machine23.D_23_29
+#print axioms Machine23.g29_le_60
