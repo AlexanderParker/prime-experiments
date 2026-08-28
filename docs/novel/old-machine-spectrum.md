@@ -234,3 +234,112 @@ cover" argument is wrong for windows (round-24 self-catch).  Repaired by
 direct examination of every window touching the two junctions and the
 cyclic wrap (research/m37_junction_check.py): worst straddling 6-window is
 61, far under F_6(37) = 120, so the published spectrum stands unconditionally.
+
+## 8. ROUND-25 EXTENSION: THE WORD-LEGAL CRITERION Q*_J (mechanic)
+
+WHAT IT IS.  Section 4 records that the word-free criterion
+max_J Q_J(M; 2u') <= F(M) + q' certifies (D) at every step up to 41->43 and
+FAILS at 43->47 (152 vs 150) and 47->53 (177 vs 171).  Round 25 identifies
+WHY it fails, and the failure is in the criterion, not in the machine.
+
+Look at the machine-47 window that breaks the 47->53 budget at depth 6
+(witness re-verified this round at machine-47 address 92,241,409,917,573,978):
+its gap word is [20, 22, 28, 30, 67, 7] and its four MIDDLE gaps are
+[22, 28, 30, 67].  Every one of them clears the floor a = 2u'(53) = 18, so the
+criterion counts the window.  But NOT ONE of them is congruent mod 53 to a
+value in V = {0, +s, -s} = {0, 18, 35}.  The window can never be merged: no
+phase of gear 53 deletes those five interior openings, because gear 53 deletes
+only slots lying in its two teeth, and two deleted slots differ by 0 or +-s
+mod 53.
+
+So the merge law's real requirement is the LEGALITY of the middle-gap word,
+and ">= a" is only its shadow - the smallest positive legal value IS a (18 at
+q' = 53, 16 at 47, 12 at 37, 10 at 31).  Sharpening the floor to the full
+condition gives
+
+    Q*_J(M; legal for q') = max span of a J-gap window of machine M whose
+    J-2 middle gaps g_1..g_{J-2} satisfy
+        (i)  g_i mod q' in V = {0, +s, -s},  s = 2u' mod q',  and
+        (ii) the induced letter word (0 / +1 / -1) has prefix-sum range <= 1
+             (the two teeth are one step apart in the +-s lattice),
+    i.e. the middle gaps form a KILL WORD in the sense of research/a_kill.py.
+
+SOUNDNESS (elementary, and the same argument as Corollary A).  Every gap of
+machine M + q' is a window of J consecutive M-gaps whose J-1 interior
+M-openings are all deleted by gear q'; those deleted openings lie in the two
+teeth, so consecutive ones differ by a legal letter and the whole word obeys
+(i)+(ii).  Hence
+
+    F(M + q')  <=  max_{J <= k_max(M -> q') + 1}  Q*_J(M; legal for q')
+               <=  max_J Q_J(M; 2u')            (pointwise refinement)
+
+and Q* is computed by exactly the same lap-phase transfer, on the OLD
+machine's period, at the same cost - the change is one predicate in the
+mark-acceptance test (research/j5_multi.py, optional argument 'legal').
+
+VALIDATION, AND IT IS TIGHT.  At the project's binding step 31->37, computed
+from machine 23 + {29, 31} in 193 s (research/data/r25/wordlegal_gate_29_31.log,
+seeded at 87):
+
+    max_J Q*_J(31; legal for 37) = 88 = F(37)  EXACTLY, attained at J = 4
+
+against the plain criterion's 91.  This anchor is TWO-SIDED, which is what
+makes it a real test rather than a sanity check: the value MUST be at least
+F(37) = 88 (machine 37's own maximal gap is such a window), and the scan finds
+nothing above 88 - so the refinement is not merely valid, it is EXACT here,
+and the criterion's slack at the binding step is entirely the relaxation
+just removed.  The depth J = 4 independently reproduces the measured
+k_win(31->37) = 3 (a chain of 3 kills merges 4 gaps).
+
+A SECOND ANCHOR, INDEPENDENT STEP, SAME VERDICT (346 s, machine 23 + {29},
+seeded at 57): max_J Q*_J(29; legal for 31) = 58 = F(31) EXACTLY, at J = 3,
+against the plain criterion's 71.  Both anchors are two-sided and both are
+EXACT, and in both the attaining depth reproduces the independently measured
+k_win of that step (3 at 31->37 giving J = 4, 2 at 29->31 giving J = 3, since
+a chain of k kills merges k+1 gaps).
+
+CONJECTURE (2 exact points, labelled as a conjecture): max_J Q*_J(M; legal for
+q') = F(M + q') identically - the refined criterion is not merely an upper
+bound on the merge-law value, it IS the merge-law value.  The theorem gives
+">=", and the only relaxation left is that Q* does not require the chosen
+phase to ALSO spare the window's two endpoints.
+
+AND IT REPAIRS BOTH BROKEN STEPS.  Section 4 recorded the criterion failing at
+43->47 (152 vs 150) and 47->53 (177 vs 171).  With the middle-gap word
+required to be legal, both certify - and at EVERY depth J = 2..7, so neither
+certification consumes a bound on the fuel arity:
+
+    step      plain max_J Q_J   budget   word-legal max_J Q*_J   verdict
+    29->31          71            74            58 (= F(31))     CERTIFIES
+    31->37          91            95            88 (= F(37))     CERTIFIES
+    43->47         152           150          <= 149             CERTIFIES
+    47->53         177           171          <= 170             CERTIFIES
+
+(964 s and 2,213 s on machine 23's period; logs research/data/r25/
+wordlegal_43_47.log, wordlegal_47_53.log.)  So the word-free criterion ladder
+is complete through 47->53 with no arity hypothesis anywhere - which matters
+because the round's other result, A_kill(47->53) = 5, had just destroyed the
+arity route at that step.
+
+HONEST SCOPE.  The two repair runs are SEEDED at budget-1, so their reported
+values are max(true, seed): the margins are >= +1 and the true maxima are not
+resolved.  What is established is the certification - no window of span above
+the seed carries a legal middle-gap word.  As for every scan in this document,
+a CERTIFICATION (never a failure) is conditional on the span cap, here 200
+against budgets of 150 and 171 with F(53) = 145.
+
+STATUS: PROVED (soundness, elementary) + SCRIPT-VERIFIED (the anchors exact
+and full-period; the two repairs seeded and span-capped as stated).
+Prior-art: not yet checked.
+
+COMPANION RESULT OF THE SAME ROUND, which is what motivated the refinement:
+A_kill(47->53) = 5 EXACT - the first 5-chain anywhere in the project, and the
+first step whose fuel arity exceeds 4.  Every realised 5-chain word is the
+pure alternation (18, 35, 18, 35) = (s, q'-s, s, q'-s), span 106 = 2q'; k = 6
+is refuted at both candidate words, one of them with no SAT call at all
+(gear 5 has no admissible phase against the six exposed slots).  Because the
+merge law consumes depths j <= k_max + 1, this raises the depth 47->53 needs
+from 5 to 6, and Q_6(47; 18) = 174 > 171 - so the DEPTH-CAPPED plain criterion
+is not restorable at 47->53 either.  Gate: research/akill_verify_r25.py, which
+re-derives all five parts from the definitions in plain integer arithmetic.
+(D) at 47->53 itself is unaffected and true by arithmetic: F(53) = 145 <= 171.

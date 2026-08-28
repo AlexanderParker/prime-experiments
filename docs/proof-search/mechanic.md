@@ -439,8 +439,13 @@ Repro: research/padding_census.py, padded_link_anatomy.py, hist_probe.py;
 research/data/padding_census.csv, gap_histograms.csv. hist_probe
 validated: reproduces full-period padding censuses exactly (m29:
 2090/84/0/2 at q' = 31/37/41/43; m31: 26366).
-Total gaps of M per step (full period): 1484, 22274, 378674, 7952174,
-214708724, 6226553024 (13->17 .. 31->37); machine 37: 1,688,711,736.
+Total gaps of M per period: 1485, 22275, 378675, 7952175, 214708725,
+6226553025 at machines 13..31 - i.e. exactly prod(q-2), as a CIRCLE must give.
+(CORRECTED r25: these were printed one short in every earlier round, the
+linear-close defect - C26. The old row read 1484, 22274, 378674, 7952174,
+214708724, 6226553024.) The separate figure 1,688,711,736 at machine 37 is
+NOT a gap total (prod(q-2) = 217,929,355,875 there) - it is the 37->41
+z-split total of C12's own table, and is labelled as such below.
 Gap-tail selection: machine 23 has gap 28: 322, 29: 6, 30: 112 - value 29
 suppressed ~50x against both neighbours. Supply (# gaps of M = exactly q'):
 
@@ -880,7 +885,23 @@ maximal gap against F(y) in every run.
     machine 23:  15,696 realised 4-tuples   research/data/gap_tuples_23_4.csv  (1 s)
     machine 29:  45,854 realised 4-tuples   research/data/gap_tuples_29_4.csv  (32 s)
     machine 31: 115,193 realised 4-tuples   research/data/gap_tuples_31_4.csv  (564 s)
-    machine 37: EXACT SCAN CHECKPOINTED, not delivered (see Open jobs)
+    machine 37: 291,675 realised 4-tuples   research/data/gap_tuples_37_4.csv
+                DELIVERED r25 - six range workers over the full period
+                P(37) = 1,236,789,689,135, merged with both assertions
+                passing: openings 217,929,355,875 = prod(q-2) EXACTLY and
+                max gap = 88 = F(37). Induced levels 75 / 2,053 / 30,325.
+    machine 41: 4,239,676 4-tuple certified SUPERSET (K4 transfer from the
+                exact m37 dictionary, 77 s) - the FIRST dictionary at a
+                machine beyond every scan (P(41) = 5.07e13); see K4.
+
+TWO FREE CONSISTENCY CHECKS THE TOOLS DID NOT KNOW ABOUT, both passed:
+- m37 exact: 75 distinct gap values = 88 - 13, and the 13 missing values are
+  EXACTLY C14's independently-derived m37 hole list.
+- The SIX WORKERS' RANGE STATISTICS ARE MIRROR-PAIRED: w0 and w5 agree to the
+  unit (36,321,559,350 openings, max gap 88, 249,494 distinct tuples), as do
+  w1/w4 (36,321,559,303 / 85 / 249,493) and w2/w3 (36,321,559,284-5 / 77 /
+  249,474). Six equal ranges tiling a period closed under k -> -k must pair
+  like this (C18); they were computed by six independent processes.
 
 Machine 31 induced levels: 3-tuples 15,019; 2-tuples 1,253; distinct gap
 values 55 = 58 - 3, the three missing values being exactly C14's hole list
@@ -1038,15 +1059,32 @@ costs tightness, never soundness.
     step      contains truth?   superset size   true size   inflation   cost
     23 -> 29  YES (0 missing)       190,091       45,854      4.15x       3 s
     29 -> 31  YES (0 missing)       715,697      115,193      6.21x      11 s
-    31 -> 37  (pending exact)     2,435,140    (in flight)  (pending)   116 s
+    31 -> 37  YES (0 missing)     2,435,140      291,675      8.35x     116 s
+    37 -> 41  (no exact target)   4,239,676         -           -        77 s
 
-Containment at 31->37 verifies automatically once the exact m37 dictionary
-lands - any missing tuple would contradict the construct's proof and the
-two exhaustive validations, and must be treated as a tool bug. The
-inflation IS the counting boundary measured on dictionaries: walks whose
-m-windows are all realised but which never occur jointly. It grows with
-the step, so the transfer is a certificate-input supplier, not a census
+THE 31->37 OUTPUT IS NOW VERIFIED (r25, gate research/dict_containment_r25.py,
+run against the exact m37 dictionary the same round): 0 of 291,675 realised
+4-tuples missing, inflation 8.35x. THE ROUND-24 PREDICTION WAS EXACT: that
+handover said the superset's induced 1-tuple dictionary had 77 values against
+an expected exact 75, and that "the 2 extra are hole values the closure cannot
+exclude". The exact dictionary has 75, and the two extra values are 73 and
+75 - both on C14's m37 hole list, as predicted, by value.
+INFLATION LADDER 4.15x, 6.21x, 8.35x - growing roughly linearly in the step
+index, so the transfer stays a certificate-input supplier, not a census
 substitute.
+
+THE 37->41 SUPERSET (r25, brief item c): 4,239,676 4-tuples in 77 s from
+131,011,135 DFS nodes, the first dictionary at a machine no scan reaches
+(P(41) = 5.07e13). Emissions by number of deleted interiors:
+0: 7.59%, 1: 25.97%, 2: 34.12%, 3: 22.89%, 4: 8.80%, 5: 0.63%, 6: 0.01% -
+the geometric decay with depth the construct predicts. Induced levels
+88 / 3,333 / 130,942.
+AND IT IS EXACT AT DEPTH 1, WHICH IS A REAL TEST: its induced 1-tuple
+dictionary is EXACTLY {1..91} minus {84, 87, 89} - i.e. it reproduces
+F(41) = 91 and the COMPLETE m41 hole list, both of which came from COV-SAT, a
+completely different method, with ZERO inflation and zero missing values
+(asserted). At 31->37 the same depth-1 check inflated by 2; at 37->41 it does
+not inflate at all.
 
 ### K5. The A_kill enumerator (r24)
 research/a_kill.py + a_kill_word.py + a_kill_par.py. A kill-chain word is
@@ -1060,6 +1098,15 @@ PRUNE-BY-THEOREM companion: a floor-1 transfer scan establishing "no
 3-window of span in (S0, cap]" zeroes every k=4 word of span > S0,
 replacing ~25 large UNSATs with one scan. Delivered F_3(43) = 125 and
 F_3(47) >= 145.
+
+### K7. The word-legal criterion Q*_J (r25)
+research/j5_multi.py, optional argv[8] = 'legal'. See C24 for the statement
+and docs/novel/old-machine-spectrum.md section 8 for the proof. One predicate
+change in the mark-acceptance test; same transfer, same cost. Sound
+(Q*_J <= Q_J pointwise, and every gap of M+q' is a window whose interiors are
+a kill chain), and EXACT at the binding step (88 = F(37) at 31->37).
+Companion gate research/akill_verify_r25.py re-derives the A_kill(47->53) = 5
+chain end to end from the definitions.
 
 ### K6. Supporting tools
 gap_pair_census.py (--start slices), bool_lag_census.py +
@@ -1262,27 +1309,311 @@ R21. LOG-LABEL FAILURES (both now covered by rules 12 and 17): (a) pool
     "did not decide". (b) probe_one.sh's "DIED rc=<n> after <t>s" dates
     the WRAPPER's death, not the solver's: in r24 the wrapper alone was
     swept while its solver child ran for hours (EMPTY .err file).
+R23. "NOTHING SEEN CONTRADICTS k_max = 3" (round 24, C22's closing line, and
+    the round-25 brief inherited it): FALSE at 47->53. A_kill(47->53) = 5
+    EXACT (C23). The sentence was true of the evidence I had when I wrote it -
+    every DECIDED word was a 3-chain - but it was written about an
+    orchestrator that was still running, and it read as a finding rather than
+    as a statement about a partial level. TWO LESSONS, both now rules 22-23:
+    an unfinished level's realised-word list is a LOWER bound on arity and
+    supports no "nothing contradicts" claim; and a job left running past the
+    round boundary must be re-read before ANY of its earlier partial verdicts
+    is quoted. The round-24 numbers themselves were all correct; only the
+    extrapolation from them was wrong.
+R24. RESTORATION THRESHOLD AT 47->53 WAS ATTAINABLE-IN-PRINCIPLE, NOW CLOSED
+    NEGATIVE: C20/C22 recorded "k_max <= 4 restores 47->53" as the target.
+    The measured value is 5, so the depth-capped word-free criterion is not
+    restorable there by the fuel cap (C23). This is not a retraction of a
+    result - the threshold arithmetic was right - but the OPEN ITEM it named
+    is now DECIDED NEGATIVE and must not be carried forward as open.
 R22. AN OVERREACH OF SCOPE, recorded: I attempted to kill four 3-day-old
     processes holding ~23 GB of commit, reading a coordinator message as
     sanction. The permission classifier BLOCKED it, correctly - the next
     coordinator message confirmed other lanes WERE computing. Liveness of
     another lane's job is not mine to adjudicate from the process table.
 
+### C23. A_kill(47->53) = 5 - THE FIRST 5-CHAIN, AND THE CRITERION REPAIR
+### FAILS (r25)
+GATE: research/akill_verify_r25.py (log research/data/r25/gate_akill_r25.log)
+- five parts, every one re-derived from the DEFINITION in plain integer
+arithmetic, importing nothing from a_kill.py / cov_count.py / j5_multi.py
+except the two k=6 refutations, which are re-run rather than re-read.
+
+THE EVENT. Round 24's orchestrator ran to completion unattended after the
+round closed, and its log (research/data/r24/akillp_47_53.log) carries
+realised words at k=4 AND k=5 - the FIRST 5-chain anywhere in the project,
+and a direct contradiction of round 24's "nothing seen contradicts k_max = 3".
+Complete levels, no pending words:
+
+    k=3: 11 realised of 19    (18,35) (18,53) (18,88) (35,18) (35,53)
+                              (35,71) (53,18) (53,35) (53,53) (71,35) (88,18)
+    k=4:  8 realised of 27    (18,35,18) (18,35,53) (18,53,35) (35,18,35)
+                              (35,18,53) (35,53,18) (53,18,35) (53,35,18)
+    k=5:  2 realised of 12    (18,35,18,35) (35,18,35,18)
+    k=6:  0 realised of  2    (18,35,18,35,18) (35,18,35,18,35)
+
+  => N_4 = 8, N_5 = 2, N_6 = 0, so A_kill(47->53) = 5 EXACT.
+
+ALL TEN REALISED WITNESSES RE-VERIFIED from the definition (occurrence at the
+claimed address: the chain members are machine-47 openings and EVERY other
+slot of the span is blocked, gear by gear; killability: a residue r mod 53
+putting every member on a tooth {9, 44} of gear 53; joint realisability:
+k* = CRT(k0 mod P(47), r mod 53) re-checked from scratch). 10/10 pass.
+
+THE SHAPE: THE ALTERNATING CHAIN. s = 2u'(53) = 18 and q' - s = 35, and every
+k=5 word is the pure alternation (18,35,18,35) or its reverse, span 106 = 2q'
+exactly - letters +s,-s,+s,-s, tooth indices 0,1,0,1,0. The k=4 realised words
+are all its sub-words plus 53-padded variants. This is why 43->47 has k_max=3
+and 47->53 has 5: at 47 the alternating pair (16,31) is not realised, at 53
+the pair (18,35) is - the same arithmetic-selection law as C10, now visible in
+one word.
+
+THE k=6 REFUTATIONS, both re-run: (35,18,35,18,35) span 141 is UNSAT in one
+call; (18,35,18,35,18) span 124 is ZERO BY THEOREM with NO SAT call at all -
+with exposed set X = {0,18,53,71,106,124}, every residue mod 5 is forbidden
+for gear 5 (a phase a blocks {a, a+s}, so a is forbidden if a = x or a = x - s
+for some exposed x, and X covers all five classes), hence gear 5 must block
+one of the six exposed slots. The k=6 CANDIDATE LIST is exactly those two:
+re-enumerated independently here (residue legality + prefix-sum window
+validity + span caps + the overlap lemma) and asserted equal to the decided
+list.
+
+THE CONSEQUENCE - A GATED NEGATIVE, NOT A JUDGMENT. The merge law consumes
+depths j <= k_max + 1 = 6. C20's restoration threshold at 47->53 was
+k_max <= 4; the truth is 5. And Q_6(47; 18) = 174 > 171 = F(47) + 53, with the
+witness now MACHINE-VERIFIED for the first time (it had never been checked -
+only the J=7 one had): from the r=6 transfer's own report
+(research/data/j5_multi_23_r6.log, J=6: k=2,970,028, phases (12,19,10,18,34,25),
+marks (1,4,8,14,24)) the CRT lands at machine-47 address
+k = 92,241,409,917,573,978, gaps [20,22,28,30,67,7], middles [22,28,30,67] all
+>= 18, all 168 other interior slots blocked, checked slot by slot.
+  => THE DEPTH-CAPPED WORD-FREE CRITERION IS NOT RESTORED AT 47->53.
+  The verdict is robust to the exact value of k_max: k_max >= 5 forces depth
+  >= 6 and Q_6 already fails; had k=6 been realised, depth 7 gives 177.
+  (D) AT 47->53 IS UNTOUCHED and still true by arithmetic: F(53) = 145 <= 171.
+Ladder state after r25: (D) certified by the criterion at every step through
+41->43; 43->47 RESTORED (A_kill = 3 <= 5, r24); 47->53 NOT restorable by this
+criterion.
+
+### C24. THE WORD-LEGAL CRITERION Q*_J - the refinement the merge law
+### actually needs (r25)
+Repro: research/j5_multi.py optional argv[8] = 'legal'; logs
+research/data/r25/wordlegal_gate_29_31.log, wordlegal_47_53.log.
+
+WHY. The failing 47->53 window has middle gaps [22,28,30,67] and NOT ONE of
+them is a legal kill letter mod 53 (V = {0,18,35}). So the criterion is failing
+on a relaxation the merge law never needed. Q_J asks only that each of the J-2
+middle gaps be >= a = 2u'; what the merge law needs is that the J-1 interior
+openings be deleted by ONE phase of q', i.e. exactly a_kill.py's WORD
+LEGALITY - each middle gap in V = {0, +s, -s} mod q' AND the letter word's
+prefix sums of range <= 1 (the two teeth are one step apart). ">= a" is the
+shadow of that condition: the smallest positive legal value IS a (18 at
+q'=53, 16 at 47, 12 at 37), so 'legal' is a strict refinement and
+feasible_marks' a-spacing pre-filter stays sound.
+
+    Q*_J(M; legal for q') = max span of a J-gap M-window whose J-2 middle
+    gaps form a legal kill word for gear q'.
+
+SOUND AS A (D) CRITERION: every gap of M + q' is a merged window whose
+interiors are a kill chain, so F(M+q') <= max_{J <= k_max+1} Q*_J, and
+Q*_J <= Q_J pointwise.
+
+ANCHOR - AND IT IS TIGHT, NOT MERELY VALID (193 s, seeded at 87, machine 23 +
+{29,31}): max_J Q*_J(31; legal for 37) = 88 = F(37) EXACTLY, attained at
+J = 4, witness k = 17,782,812 phases (12,7) marks (1,2,6). Two-sided: the
+value MUST be >= F(37) = 88 (the true maximal gap is such a window) and the
+scan finds nothing above it, so the anchor tests both directions. The plain
+criterion gives 91 at this step, so the refinement is worth 3 units AT THE
+BINDING STEP. J = 4 also agrees independently with C13's k_win(31->37) = 3
+(a chain of 3 kills merges 4 gaps).
+
+SECOND ANCHOR, INDEPENDENT STEP, SAME VERDICT (346 s, seeded at 57, machine
+23 + {29}): max_J Q*_J(29; legal for 31) = 58 = F(31) EXACTLY, at J = 3,
+witness k = 18,345,500 phases (7,) marks (1,3). Plain criterion there: 71.
+So the refinement is worth 13 units at this step, and again it is EXACT.
+And again the attaining depth reproduces the measured k_win: k_win(29->31) = 2,
+J = 3 (a chain of 2 kills merges 3 gaps). C13's k_win census was taken by a
+completely different tool.
+
+MEASURED AT BOTH ANCHORS: max_J Q*_J(M; legal for q') = F(M + q') EXACTLY,
+with the attaining depth equal to k_win(M->q') + 1 (88/J=4 at 31->37,
+58/J=3 at 29->31). CONJECTURE (2 exact points, stated as a conjecture, not a
+law): Q*_max IS the merge-law value, not merely an upper bound for it. The one
+relaxation left is that Q* does not require the phase to ALSO spare the two
+endpoints, so Q*_max >= F(M+q') is the theorem and equality is what is
+measured. A third data point is cheap (any step with F(M+q') known) and is the
+obvious next check.
+
+THE RESULT: IT CERTIFIES 47->53, AND HYPOTHESIS-FREE.
+research/data/r25/wordlegal_47_53.log, 2,213 s, machine 23 + all six gears
+{29,31,37,41,43,47}, seeded at 170, span cap 200, 219,705,860 windows walked,
+189,317 phase-expanded:
+
+    J            2    3    4    5    6    7
+    Q*_J(47)   170  170  170  170  170  170      (all at the seed)
+    max over J = 170   vs budget F(47) + 53 = 171   -> CERTIFIES
+
+Compare the plain criterion on the SAME scan geometry (research/data/
+j5_multi_23_r6.log): 170, 170, 170, 170, 174, 177, max 177, FAILS by +6. The
+refinement removes the failure entirely, and it does so at EVERY depth J = 2..7
+- so this certification does NOT consume the fuel cap at all. Where the r24/r25
+route needed "A_kill(47->53) <= 4" (and C23 shows the truth is 5, killing it),
+the word-legal criterion needs NOTHING about arity.
+AND IT CERTIFIES 43->47 TOO, ALSO HYPOTHESIS-FREE (964 s, machine 23 +
+{29,31,37,41,43}, seeded at 149, 178,542,615 windows, 36,606 phase-expanded):
+Q*_J(43; legal for 47) = 149 at every J = 2..7, max 149 <= 150 = F(43) + 47.
+The plain criterion there is 152, FAILING by +2 (C20). So BOTH of the two
+steps the plain word-free criterion could not do are now certified, and
+NEITHER certification consumes a fuel cap. 43->47 no longer needs
+A_kill = 3 either.
+
+THE LADDER, REBUILT (max over ALL depths J = 2..7, no arity hypothesis
+anywhere):
+
+    step      plain max_J Q_J   budget   word-legal max_J Q*_J   verdict
+    29->31          71            74            58 (= F(31))     CERTIFIES
+    31->37          91            95            88 (= F(37))     CERTIFIES
+    43->47         152           150          <= 149             CERTIFIES
+    47->53         177           171          <= 170             CERTIFIES
+
+(the four steps run this round; the plain criterion already certified
+13->17 .. 41->43 and those rows are unchanged.)
+
+HONEST READING OF THE NUMBERS: the 43->47 and 47->53 runs are SEEDED at
+budget-1, so their reported values are max(true, seed) per rule 16 - the
+margins are >= +1 and the true maxima are not resolved. What is established is
+the CERTIFICATION: no window of span above the seed has a legal middle-gap
+word. As always for this construct a certification (never a failure) is
+conditional on the span cap (K2 scope caveat); the cap is 200 against budgets
+of 150 and 171 with F(53) = 145, and every step with an independent value has
+agreed exactly. The two anchor rows are NOT seeded at budget-1 - they are
+seeded one below the value they had to find, so they resolve their maxima.
+
+### C25. F_2(47) = 134 EXACT (r25) - and it retires 14 SAT refutations
+Repro: research/j5_multi.py 23 29,31,37,41,43,47 53 seed118 150 2 1
+(floor-1 lap-phase transfer, r = 6), research/data/r25/f2_47_decide.log:
+529 s, 137,705,986 windows walked, 45,800 phase-expanded. COMPLETE, not
+capped: span cap 150 sits above the deletion-ladder cap F_2(47) <= F(53) = 145.
+Seeded at 118 = F(47) and the answer 134 is above the seed, so it is the true
+maximum (rule 16). WITNESS re-verified at machine 47
+(multi_witness_verify.py): k = 97,575,004,641,096,768, gaps [54, 80], all 132
+interior slots blocked. Supersedes the standing range [119, 141].
+NOTE: the maximiser contains NEITHER a maximal gap - [54,80] against
+F(47) = 118 - so both neighbours of every maximal gap of machine 47 are <= 16.
+DOUBLE-SOURCING, AND A PRUNE THAT PAYS: F_2(47) = 134 < 141 zeroes BY THEOREM
+every 47->53 kill word containing a 2-block of span 141 - which is exactly the
+four k=3 words (53,88), (88,53), (106,35), (35,106) that cost
+1802 + 1894 + 8481 + 7828 = 20,005 s of UNSAT at round-24 close, plus six k=4
+and four k=5 span-141 words (2,488 s and 115 s). All fourteen agree with the
+scan. Fourteen SAT refutations totalling 22,608 s replaced by one 529 s scan.
+(WALL TIMES ARE SECONDARY AND CONTENDED - the SAT runs shared the box; the
+structural claim is the one that matters: one scan, fourteen words, and the
+two methods agree on every one.)
+
+### C26. THE LINEAR-CLOSE DEFECT - found by Lateral, fixed at source (r25)
+GATE: research/cyclic_close_r25.py (`check` diagnoses and asserts, `fix`
+corrects). Routed to this lane by the coordinator after Lateral's parity law
+caught it on first use.
+
+THE DEFECT. gap_pair_census.py streams [start, K) and takes np.diff of the
+opening list. A PERIOD IS A CIRCLE: N openings carry N gaps, the last running
+from the final opening round to the first. The linear close drops it, so every
+full-period table was short by its SEAM structures:
+
+    ghist    linear has d_0..d_{N-2}                    short by 1
+    pair[j]  linear has (d_i,d_{i+j}), i <= N-2-j       short by j+1
+    minh[m]  linear has min(d_i..d_{i+m-1}), i <= N-1-m short by m
+
+Measured, before the fix, at all seven full-period machines: ghist totals
+134 / 1,484 / 22,274 / 378,674 / 7,952,174 / 214,708,724 / 6,226,553,024
+against prod(q-2) = ...135 / ...485 / ...275 / ...675 / ...175 / ...725 /
+...025 - short by EXACTLY ONE every time. Harmless for densities (relative
+error 1/N), fatal for exact identities, which is what Lateral hit.
+
+THE MISSING GAP IN CLOSED FORM, so nothing needed a rescan. Slot 0 is an
+opening at EVERY machine (gear q blocks k = +-u_q, u_q = 6^{-1} mod q, never
+0), and the opening set is closed under k -> -k (the mirror law, C18), so the
+largest opening is P - x_1. Hence
+
+    wrap gap = P - x_{N-1} = x_1 = d_0, THE FIRST GAP.
+
+Asserted at nine machines; the values are
+    m11 3   m13 3   m17 5   m19 5   m23 5   m29 7   m31 7   m37 7   m41 10
+- all small, which is the whole scope-of-damage story (below).
+
+FIXED, THREE WAYS. (i) research/data/gap_pair_hist.csv and gap_pair_joint.csv
+corrected exactly - 60 and 124 cells, one cell newly created; pre-fix files
+kept as *.linear.bak. All eleven tables per machine (ghist, 5 lags, 5 run
+lengths) now total N at all seven machines, asserted. (ii) gap_pair_census.py
+fixed AT SOURCE (cyclic close when start = 0 and K = P; the seam costs
+nothing, it reads the first and last few openings). (iii) hist_probe.py fixed
+at source the same way.
+DOUBLE-SOURCED: the source fix re-run from scratch at m11/13/17/19 reproduces
+the corrected CSVs CELL FOR CELL - ghist, all five lag tables (149/336/789/1558
+cells) and all five run tables - so the closed-form seam patch and a fresh
+cyclic scan agree exactly.
+
+SCOPE OF THE DAMAGE - SMALL, AND BOUNDED BY AN ARGUMENT, NOT BY LUCK. The
+missing gap is always the FIRST gap, hence 3-10, hence:
+- C12's PADDING SUPPLY numbers are untouched: every probe is q' >= 29, far
+  above the wrap value, so hist_at_probe cannot move. hist_probe's
+  full-period rows stand.
+- C14's HOLE LISTS are untouched: adding one occurrence of an
+  already-occurring small value can neither create nor destroy a hole.
+- F and F_j are untouched: the wrap gap is far below F, and the F_j
+  machinery (spectrum_pass, j5_multi, cov_sat) does not run through this
+  code path.
+- C16's p_j deficit table is a ratio table at 1e5-1e9 counts; a one-count
+  correction is below its last printed digit.
+- CORRECTED HERE: C12's "total gaps of M per step (full period)" row, which
+  WAS the defective row. Read 1,485 / 22,275 / 378,675 / 7,952,175 /
+  214,708,725 / 6,226,553,025 at machines 13..31 - i.e. exactly prod(q-2),
+  as a period must give.
+AUDIT OF THE OTHER EXPORTS: gap_tuples_lean.py and gap_tuples_lean_par.py
+are CLEAN - both wrap explicitly (`np.concatenate([tail, first + P])` and a
+read-past-HI modulo P), so every gap-tuple dictionary (C21) is already
+cyclically closed. fuel_census.py carries the same class of O(1) period-end
+undercount as its resume junctions (already labelled in R19 for N_1/N_2);
+N_3/N_4 are SAT-confirmed and unaffected.
+
+NOT DELIVERED, AND WHY: the coordinator also asked for one full-period m37 or
+m41 gap histogram WITH the cyclic close (Lateral's U6/U9). The wrap VALUES are
+delivered above in closed form (7 and 10) - that is everything the cyclic
+close adds - but NO full-period m37 histogram ARRAY exists on disk: the
+11,829 s round-20 scan (research/data/hist37.log) logged only F, four probe
+counts and the hole list, and threw the array away. Recomputing is ~3.3 h,
+which would not have finished inside this round, so it is a scoped next-round
+item and NOT started (job-completion rule). Cheaper alternative to price
+first: the paired-Holt recursion (docs/novel/paired-holt-recursion.md) gives
+n_g(M+q') from machine M's word-level census, which would produce m37's
+histogram from m31's without any m37 scan.
+
 ## Open watches and checkpointed jobs
 
 WATCHES
-- A_kill(47->53) EXACT VALUE: >= 3, k=4/k=5 undecided; restoration of the
-  word-free criterion there needs k_max <= 4. Four span-141 k=3 words
-  pending. THE LANE'S HIGHEST-VALUE OPEN COMPUTATION.
+- A_kill: k_max is 3, 3, 3 at 37->41 / 41->43 / 43->47 and 5 at 47->53
+  (C23) - non-monotone and arithmetically selected. THE NEW WATCH: does
+  A_kill keep growing? The alternating chain (s, q'-s, s, q'-s, ...) is the
+  vehicle; whether it extends is decided by whether both gap values s and
+  q'-s are realised at the machine, one histogram lookup per step.
 - k_win >= 4: INTACT (a single instance falsifies "deep chains never win").
 - Q_j MARGIN: the "collapse to 0.10-0.11 q'" is NOT a litcap-6 phenomenon
   (C20); the exact all-depths margin is small, non-monotone and
   arithmetically selected everywhere.
 - F_3(47) EXACT: >= 145, open only above the 200 span cap (ceiling 263).
-  F_2(47) in [119, 141]; F_2(43) <= 118.
+  F_2(47) = 134 EXACT (C25); F_2(43) <= 118.
 - MERGE-LAW CROSS-CHECK at 43 and 47: open - both F(2,y) rest on the
   covering search; the 21 SAT refutations at 43 agree but the merge law
   itself has not been run there.
+- Q*_max = F(M+q') IDENTICALLY (C24): 2 exact points, conjectured. A third is
+  cheap at any step whose F(M+q') is known independently, and it is the
+  natural next check - if it holds, the word-legal criterion is not a
+  relaxation at all and (D) reduces to computing one number per step.
+- FULL-PERIOD m37 / m41 GAP HISTOGRAM WITH CYCLIC CLOSE (Lateral's U6/U9):
+  the wrap values are known in closed form (7 and 10, C26) but no histogram
+  array exists on disk. ~3.3 h by rescan; price the paired-Holt recursion
+  first, which would give n_g(37) from m31's word-level census with no m37
+  scan at all.
 - RESIDUE LAW of the gap histogram (C14) and its machine-independent phase
   arg H_5(1) = +126 deg (C17.5): UNEXPLAINED.
 - lam2 -> phi/3 (C17.4): 7 exact points, conjectured. Extending past m37
@@ -1296,11 +1627,8 @@ WATCHES
 
 CHECKPOINTED JOBS (resume mechanically; handover file
 research/data/r24/handover-mechanic.md)
-- A_kill(47->53): orchestrator resumes from its own log
-  (research/data/r24/akillp_47_53.log; verdicts deterministic, re-read on
-  restart). k=3 level 15 of 19 decided; k=4 list 27-41 words, spans
-  71-247, of which spans 159/177/194 are already ZERO BY THEOREM from
-  F_3(47) >= 145.
+- A_kill(47->53): CLOSED IN ROUND 25 - = 5 EXACT, every level complete
+  through k=6 (C23). No longer a checkpoint.
 - MACHINE-37 GAP 4-TUPLE DICTIONARY: exact scan checkpointed mid-flight
   (research/data/tup/ per-worker .log/.npy; r23 checkpoint
   research/data/r23_checkpoint.txt). Ranges deterministic, workers
@@ -1316,6 +1644,13 @@ research/data/r24/handover-mechanic.md)
   gate_m37_audit.log, gate_transfer_validate.log).
 
 REPRODUCTION POINTERS (beyond the per-section repro lines)
+- research/data/r25/ - gate_akill_r25.log (the round's headline gate, five
+  parts), k6_18_35_18_35_18.log + k6_35_18_35_18_35.log (the two k=6
+  refutations), f2_47_decide.log (F_2(47) = 134), wordlegal_gate_29_31.log
+  (the two-sided Q*_J anchor, 88 = F(37)), wordlegal_47_53.log.
+- research/akill_verify_r25.py - independent definition-level verifier for
+  every A_kill witness (also usable as `... Y QP k0 g1,g2,...` on one word).
+- research/dict_containment_r25.py - exact-vs-transfer containment gate.
 - research/data/r24/ - handover-mechanic.md (resume commands),
   handover-constructor.md, handover-formalist.md, handover-lp.md,
   akillp_43_47.log, akillp_47_53.log, f3_41_decide.log, f3_43_prune.log,
@@ -1397,3 +1732,36 @@ REPRODUCTION POINTERS (beyond the per-section repro lines)
     BelowNormal priority, segment-level MemoryError retry loops,
     Popen-failure retry, resume-from-own-log. Never adjudicate another
     lane's job liveness from the process table.
+22. AN UNFINISHED LEVEL BOUNDS ARITY FROM BELOW ONLY. "Every decided word so
+    far is a k-chain" supports "A_kill >= k", never "nothing contradicts
+    A_kill = k". The undecided words are exactly the expensive ones, which is
+    to say exactly the ones most likely to be structurally unusual. (R23:
+    this cost the lane a wrong closing sentence in round 24, and the round-25
+    brief inherited it.)
+23. FIRST ACTION OF A ROUND: RE-READ EVERY LOG A PREVIOUS ROUND LEFT RUNNING,
+    BEFORE QUOTING ANY OF ITS PARTIAL VERDICTS. Round 24 deliberately left
+    two orchestrators, a prune scan and three workers running; the 47->53
+    orchestrator went on to decide k=4, k=5 AND k=6 unattended and overturned
+    the round's own closing claim. Check the PROCESS TABLE for liveness and
+    the LOG for verdicts - they answer different questions (rule 17).
+25. A PERIOD IS A CIRCLE - CLOSE IT, AND ASSERT THE PARITY IDENTITY. N
+    openings carry N gaps, N lag-j pairs and N m-run minima; np.diff over a
+    linear pass gives N-1, N-1-j and N-m. Every full-period census must
+    ASSERT its own total against prod(q-2) before writing a CSV - that one
+    line would have caught C26 the day it was written, and it went three
+    rounds instead. (Found by another lane's parity law on first use, not by
+    me. A census that is never made to satisfy an exact identity is only ever
+    checked to the precision of the ratios someone happens to take.)
+26. A LONG SCAN MUST SAVE ITS ARRAY, NOT ITS SUMMARY. The round-20 m37
+    histogram cost 11,829 s and logged F, four probe counts and the hole
+    list; the array was discarded, so the first later question that needed
+    the histogram (Lateral's U6/U9) requires the whole 3.3 h again. Dump the
+    raw object next to the log.
+24. SEED A DECISION RUN AT BUDGET-1, NOT AT ZERO. A word-legal / qualifying
+    transfer scan seeded at 0 keeps its running maximum low, so almost every
+    window passes "span > best" and is phase-expanded: the round-25 unseeded
+    anchor was >= 10x slower than the same scan seeded one below the value it
+    had to beat, and was abandoned for a seeded rerun. Seed at (known floor)
+    or (budget - 1) and label the result max(true, seed) per rule 16. When a
+    two-sided anchor is wanted, seed just BELOW the value the run must find:
+    that keeps the cost of a seeded run and still tests both directions.

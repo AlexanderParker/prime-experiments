@@ -7,6 +7,37 @@ j = 2 ONLY, full period, at all six scannable consecutive steps 11->13 .. 29->31
 "what machine-independent fact substitutes for the single integer F_2(29) = 55".
 Prior-art check: NOT YET CHECKED (section 6).
 
+ROUND-25 ADDENDUM (Formalist), three items:
+
+* **KERNEL-CHECKED AT 11 -> 13** (`proofs/Gen11.lean`, build green at 1392
+  jobs, axiom footprint `[propext]` alone). Machine 11's cyclic gap word is
+  135 letters over 385 slots and gear 13 kills slot residues 2 and 11, so the
+  generator is a bounded walk over 135 bases x 13 free phases:
+  `theorem gen_zero : gen 0 = 11` is `L (x) K* (x) R = F(13)` and
+  `theorem gen_one : gen 1 = 16` is `L (x) K* (x) SIGMA (x) K* (x) R =
+  F_2(13)` - the SIGMA letter inserted exactly once. Both agree with machine
+  13's own kernel-proved spectrum (`Machine13.spectrum_ladder`), and neither
+  mentions machine 13's 5005-slot period. `theorem no_truncation` shows the
+  walk's fuel exits by the span cap and never by exhaustion, so these are
+  maxima over ALL windows of span <= 30 (the Python gate `research/gen11.py`
+  shows the values are stable to span cap 60).
+  HONEST SCOPE: what is kernel-checked is that the generator COMPUTES these
+  integers, not that it MUST. The soundness bridge needs `gw11` certified as
+  machine 11's own opening sequence plus the periodicity glue
+  `opSeq11 (n + 135) = opSeq11 n + 385`; see formalist.md round-25 verdict 20.
+
+* **`F_2(29) = 55` INDEPENDENTLY CONFIRMED A THIRD TIME.** A full-period scan
+  of machine 29 (`research/qual_dict.py`, four-gated by
+  `research/qual_dict_gate.py`) gives `F_2(29) = 55` exactly, agreeing with
+  the `A_5(23)` closure of section 3 and with Mechanic's pair census. The same
+  scan gives `Q_J(29; 10) = 55, 65, 68, 71, 71, 71` for `J = 2..7`, exactly
+  the CORRECTED marked spectrum of formalist.md verdict 12c.
+
+* **CORRECTION to section 3's cost line.** Machine 29's period carries
+  `prod (q - 2) = 3*5*9*11*15*17*21*27 = 214,708,725` gaps, not 214,709,355;
+  the count is asserted in `research/qual_dict.py`. The 1,078,282,205 slot
+  figure is right.
+
 ## 1. WHAT IT IS
 
 Plain language. Adding a gear `q'` to a sieve machine `M` deletes some of its

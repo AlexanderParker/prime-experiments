@@ -274,3 +274,31 @@ Jacobsthal-type covering IP, (ii) the separation between the sharp ceiling and
 the chain family's ceiling with the telescoping closed form, and (iii) the
 measured degree law l(y) ~ 2 S1(y) ~ 4 log log y for this problem.  No source
 found states any of the three.  NOT independently confirmed.
+
+## ROUND-25 ADDENDUM - THE CEILING IS A PROPERTY OF MOMENT FUNCTIONALS ONLY
+
+The ceiling proved here is a statement about certificates that are moment
+functionals of the coverage indicators: the uniform product measure's
+degree-<=l moments extend to a law with no empty atom, so every degree-l cut
+is satisfied at every position from the ceiling machine on.
+
+Round 25 pins the boundary of that argument exactly.  The composed
+Costello-Watts row of `recursion-consistency-composition.md` is NOT such a
+functional (its n_ij carry sub-machine survivor counts), and its behaviour
+against the same product measure has a closed form:
+
+    E_uniform[f](y, W)  =  W * Pi(y)  -  Delta(y, W),
+    Pi(y) = prod_{5<=q<=y} (1 - 2/q),   Delta >= 0,   Delta = o(W),
+
+so its margin is positive at EVERY machine once the width is large enough.
+It therefore has NO CEILING MACHINE AT ALL - only a width threshold W_u(y),
+exactly 10 / 48 / 83 / 135 / 211 / 362 / 558 at y = 29 / 31 / 37 / 41 / 43 /
+47 / 53.  The obstruction changes species: for moment certificates it is a
+machine, for the recursive row it is a width-to-machine ratio.  Details,
+proof of the identity, and the STAR-k family that pushes the threshold down,
+in `product-measure-frontier.md`.
+
+This does not weaken anything above - the degree-1 -> m13, degree-2 -> m29,
+degree-3 -> >= m151 ceilings and the l(y) ~ 2 S1(y) law are unchanged - but it
+does bound the scope of the "arity law" as a claim about certificate families
+in general: it governs the moment families, and it does not govern this one.

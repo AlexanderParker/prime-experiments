@@ -197,3 +197,75 @@ large-sieve statement - named, not attempted this round).
 - Rounds 21-23 sweeps (Semantic Scholar citation graph, zbMATH, OpenAlex, OEIS
   A288815, arXiv full metadata): no paired-Jacobsthal lower-bound literature
   exists; re-confirmed unchanged this round for the lower side.
+
+## 7. ROUND 25 - (P2) SUPERSEDED, AND THE GROWTH MODEL DEMOTED
+## (research/j2_rankin_layer.py, all assertions green; full write-up in
+## docs/novel/layered-erdos-rankin.md)
+
+Round 24's named problem (P2) asked for `h_2 >> z (log z)^2/(loglog z)^O(1)` by
+Rankin-style layering. Round 25 built the layering. It gives **one log more than
+(P2) asked for**, and it generalises to a family:
+
+    j_k(P(x))  >>  x A^(2k-1) C^k/((5k)^k B^(2k)),   A = log x, B = log A, C = log B
+
+with `j_k` the k-classes-per-prime Jacobsthal function. `k = 1` IS the published
+Erdos-Rankin / Ford-Green-Konyagin-Tao length `x log x logloglog x/(loglog x)^2`;
+`k = 2` is ours:
+
+    h_2(P(z))  >>  z (log z)^3 (logloglog z)^2 / (100 (loglog z)^4).
+
+MECHANISM, in one sentence: class 0 on a SPLIT range `[2,P) u (z1,x/4]` buys a
+full log of thinning where its Mertens entitlement is only O(1) - that is Rankin's
+gain - and the paired problem's SECOND class buys the same gain a second time by
+running the identical trick on `n+2` instead of `n`, so the joint survivor set is
+the twin primes rather than the primes. Only an UPPER bound on twin primes is
+needed (Brun/Selberg), so the construction is parity-free.
+
+**STATUS: asymptotic bookkeeping, script-verified and calibrated against a
+published theorem, NOT a written-out proof.** The finite ingredients are exact
+(the restatement of sec. 1a re-brute-forced at z = 3,5,7; the shift c = 2 costing
+no class; the twins-or-smooth survivor structure by direct sieving); the
+bookkeeping is validated by running the SAME optimiser at k = 1 and checking it
+tracks the FGKT closed form with residual spread 0.072 over eight decades of
+log x. See layered-erdos-rankin.md sec. 3 for the full list of what is not
+delivered.
+
+### 7a. CORRECTION TO SECTION 1c - the extreme-value model is NOT a ceiling
+
+Section 1c above records "TRUTH z^(1+o(1)), best model ~2.56 z (log z)^2". That
+model is the largest gap in a RANDOM set of density `prod(1-k/p) ~ 1/(log z)^k`,
+i.e. `z (log z)^k` - a **random-choice heuristic**, while `j_k` is a MAXIMUM over
+choices. At k = 1 the heuristic happens to be right (Rankin attains it up to
+loglog powers). At k = 2 the layered construction **exceeds it by a full log**.
+
+So the sandwich of 1c must be re-labelled:
+
+    proved lower  h_2 >= (1.349+o(1)) z log z                    [(P1), finite-z]
+    bookkeeping   h_2 >> z (log z)^3 (lll z)^2/(ll z)^4          [round 25]
+    HEURISTIC     ~2.56 z (log z)^2   -- NOT a ceiling; a random-choice model
+    proved upper  p_n^8.04162 explicit / p_n^(4.266+eps) by citation
+
+and the word "TRUTH" must not be attached to the model. This is the round-24
+corollary "MODEL CLAIMS EXPIRE LIKE CITATIONS" firing on the round-24 model.
+
+### 7b. The problems, re-stated
+
+* **(P2) is superseded.** Replace it by **(P2') write the k = 2 construction out
+  as a theorem with every constant tracked.** That is ordinary work, not research:
+  the three ingredients (Selberg/Brun twin upper bound, Rankin's Psi bound,
+  pigeonhole greedy) are standard and unconditional.
+* **(P3)** (the paired-Iwaniec upper question) is now the interesting side: the
+  gap runs from `z (log z)^3` to `z^7.94`.
+* **NEW (P5): the k-class family.** Is `j_k(P(x)) << x A^(2k-1+eps)`? Nobody has
+  stated `j_k`, let alone bounded it above.
+* The falsification target is unchanged and sharpened: **one exact h_2 beyond
+  p_n = 73**. The competing readings are now `z(log z)^2` (heuristic) and
+  `z(log z)^3` (construction), a further factor of `log z` apart.
+
+### 7c. Honest negative
+
+There is **no finite-z content**. The pre-registration predicted the layering
+would be a LOSS at reachable z; that was wrong in mechanism - the construction
+does not exist at all below `log z ~ 300`, because the greedy range `[P, z1]` is
+empty there. Practical conclusion unchanged: **(P1) is the bound to quote at any
+z a human will ever see.**

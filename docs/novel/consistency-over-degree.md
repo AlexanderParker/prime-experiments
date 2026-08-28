@@ -91,6 +91,24 @@ Both endpoints exact at every entry.
       11       7            8                    7         1.143 -> 1.000
       13      11           21                   14         1.909 -> 1.273
       17      18           30 (r24; was 31)     23         1.667 -> 1.278
+      19      25           36 (r24 gate-check)  <= 33      1.440 -> <= 1.320
+
+ROUND-25 ADDITION (the machine-19 cell, blank since round 23).  The consistent
+degree-2 relaxation is INFEASIBLE at width 33 at machine 19, by an exact
+certificate with NO recursive row: lhs 57481/2048 < rhs 114989/4096, 20,919
+ops, 573 rows, 17 cut iterations (`research/_w19cons.py`, using the exact
+decider in `research/cw_decide25.py`).  So W*_cons(19) <= 33 while
+W*_indep(19) = 36 (settled exactly by the round-24 manager gate-check): the
+consistency gain at machine 19 is at least 3 units of width, and the flat
+consistent gap extends to a fourth machine at <= 1.320.  The exact value of
+W*_cons(19) is NOT pinned - a bisection below 33 needs an exact FEASIBLE
+verdict at the trial width, and that turned out to be harder than it looks:
+rationalising the LP's own point does not reliably land exactly in the
+consistent polytope (the consistency links are sums that rounding does not
+preserve - it works at machine 13 and the assertion FIRED at machine 19).  The
+sound route is a global point, consistent by construction; see the round-25
+correction C4 in `recursion-consistency-composition.md`.  Recorded as an open
+cell rather than guessed.
 
 ROUND-24 CORRECTION (the assertion gate caught a round-23 error).  Round 23's
 section-G regression claim - "the adaptive machinery reproduces round 22's

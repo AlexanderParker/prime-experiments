@@ -33,6 +33,9 @@ import Ladder
 import DepthSum
 import Potential
 import Potential19
+import Machine31
+import Gen11
+import Machine37
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -314,3 +317,41 @@ open BlockedSlots
 #print axioms Machine23.qual23_all
 #print axioms Machine23.D_23_29
 #print axioms Machine23.g29_le_60
+
+-- Round 25: the sixth rung by the DICTIONARY vehicle, and the generator
+#print axioms Machine29.D2_ok
+#print axioms Machine29.D3_ok
+#print axioms Machine29.D4_ok
+#print axioms Machine29.D5_ok
+#print axioms Machine29.D6_ok
+#print axioms Machine29.D7_ok
+#print axioms Machine29.opSeq29_surj
+#print axioms Machine29.spectrum29_two
+#print axioms Machine29.qual29_all
+#print axioms Machine29.criterion_29_31
+#print axioms Machine31.killed31_iff
+#print axioms Machine31.merge_alphabet
+#print axioms Machine31.D_at_29_31
+#print axioms Machine31.D_29_31
+#print axioms Machine31.g31_le_of_census
+#print axioms Gen11.gw11_sum
+#print axioms Gen11.no_truncation
+#print axioms Gen11.gen_zero
+#print axioms Gen11.gen_one
+#print axioms Gen11.generator_matches_machine13
+
+-- Round 25: the SEVENTH rung, by the same dictionary vehicle one gear up
+#print axioms Machine31.D2_ok
+#print axioms Machine31.D4_ok
+#print axioms Machine31.D5_ok
+#print axioms Machine31.D7_ok
+#print axioms Machine31.opSeq31_surj
+#print axioms Machine31.spectrum31_two
+#print axioms Machine31.qual31_five
+#print axioms Machine31.qual31_all
+#print axioms Machine31.criterion_31_37
+#print axioms Machine37.killed37_iff
+#print axioms Machine37.merge_alphabet
+#print axioms Machine37.D_at_31_37
+#print axioms Machine37.D_31_37
+#print axioms Machine37.g37_le_of_census

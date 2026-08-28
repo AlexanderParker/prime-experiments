@@ -80,6 +80,31 @@ def run(y, limit=None, seg=64_000_000, verbose=True, start=0):
         if verbose:
             print(f"  seg to {hi:.4g} ({100*hi/K:.1f}%) "
                   f"{time.time()-t0:.0f}s", flush=True)
+    # ROUND-25 DEFECT FIX (found by Lateral's parity law, routed to this lane).
+    # A PERIOD IS A CIRCLE: N openings carry N gaps, the last running from the
+    # final opening round to the first.  np.diff over a linear pass drops it,
+    # so every full-period table used to be short by its seam structures -
+    # 1 gap, j+1 pairs at lag j, m minima at run length m.  Harmless for
+    # densities, fatal for exact identities.  The seam is computed in closed
+    # form from the first and last few openings (research/cyclic_close_r25.py),
+    # so the close costs nothing and needs no rescan.
+    if start == 0 and K == P:
+        sys.path.insert(0, HERE)
+        from cyclic_close_r25 import seam_structures, LAGS as SL, RUNS as SR
+        assert (SL, SR) == (LAGS, RUNS), "seam module lag/run mismatch"
+        wrap, spairs, sruns, _, _, _ = seam_structures(y)
+        c = lambda v: min(int(v), V - 1)          # noqa: E731
+        ghist[c(wrap)] += 1
+        ngap += 1
+        for j, ps in spairs.items():
+            for a, b in ps:
+                pair[j][c(a), c(b)] += 1
+        for m, vals in sruns.items():
+            for v in vals:
+                minh[m][c(v)] += 1
+        if verbose:
+            print(f"  cyclic close: wrap gap {wrap} (= the first gap, by the "
+                  f"mirror law) + seam pairs/runs", flush=True)
     return dict(y=y, P=P, K=K, start=start, gears=gears, ghist=ghist, pair=pair,
                 minh=minh, ngap=ngap, secs=time.time() - t0)
 

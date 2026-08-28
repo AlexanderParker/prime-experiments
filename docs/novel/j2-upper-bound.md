@@ -1016,3 +1016,221 @@ because gear 3 keeps a single class - PRE-SIEVING 2 AND 3 IS FREE.
   (deeper pre-sieving buys s* only in the third decimal while N_pre grows
   double-exponentially). More generally j_2(p_n#) << p_n^s for every real
   s > 16.136 free, and for every s > 14.822 at constant cost 135.
+
+## 10. ROUND-25: THE EXPONENT FALLS 15 -> 8, AND BOTH NAMED OPENINGS CLOSE
+## (research/j2_odc6.py, all assertions green; sources read first-hand 2026-08-29)
+
+Round 24 left the upper ladder with exactly two named openings, both of them
+acquisition problems rather than mathematics. Both are now closed, and together
+they drop the fully explicit exponent from **15 to 8.042**, with the log power
+falling from 10 to 3.
+
+### 10a. OPENING 1 - BLIGHT'S THESIS: OBTAINED, READ, AND IT DOES NOT HELP
+
+**Sara Elizabeth Blight** (not "Sean"), *Refinements of Selberg's Sieve*, Ph.D.,
+Rutgers, May 2010, advisor Henryk Iwaniec. DOI 10.7282/T35T3KJ8, RUcore handle
+rutgers-lib/27420. **FREELY available**; downloaded to
+research/data/blight_thesis.pdf (367,455 bytes, 75 pages) and read here directly,
+2026-08-29. Opera de Cribro p.112 points at it in a free-standing remark, quoted
+verbatim from the page scan:
+
+> "We remark that S. Blight (thesis, Rutgers 2010) has sharpened this result
+> using a Selberg-type combination but with a Brun lower-bound sieve supported on
+> products up to three primes rather than one as in the right-hand side of
+> (7.106)."
+
+WHAT IT ACTUALLY CONTAINS (thesis sec. 2.5.2 and 2.6, read first-hand). The
+sharpening is Lambda_1 = Lambda^2 Lambda^-, with Lambda^- the three-prime sieve
+lambda_1 = 1, lambda_p = -1, lambda_{p1p2} = (4T-2)/(T(T+1)),
+lambda_{p1p2p3} = -6/(T(T+1)) for p_i <= z^(1/3), T a positive INTEGER; the
+non-negativity rests on the identity sum_{d | n*} lambda_d =
+-(m-1)(T-m)(T-(m-1))/(T(T+1)) <= 0, with the explicit remark "if T is not an
+integer, this condition does not hold." Her new sifting limits, with
+F(t) = 1 - t + c and Maple integration to error < 1e-10:
+
+    kappa = 2:    c = 0.2214971799, T = 16  =>  beta_2   < 4.45
+    kappa = 2.5:  c = 0.17,         T = 19  =>  beta_2.5 < 5.455
+    kappa = 3:    c = 0.13,         T = 24  =>  beta_3   < 6.458
+    kappa = 4:    c = 0.11,         T = 31  =>  beta_4   < 8.47
+
+**VERDICT: NO USE TO US, ON BOTH COUNTS.**
+
+1. AT kappa = 2 IT IS WORSE THAN WHAT WE ALREADY CITE. Her own sec. 2.7 says so:
+   "The sieve of Diamond and Halberstam gives a smaller sifting limit for
+   kappa = 2 and kappa = 2.5." 4.45 against DHR's 4.266450 - which her own
+   sec. 2.2.2 tabulates, quoting Diamond-Halberstam-Richert [1, p.227]. Her
+   improvement bites at kappa = 3, 4. This CONFIRMS round 22's second-hand
+   reading (harvester 2d) from the primary document.
+2. IT IS NOT EXPLICIT. Her Proposition 2.4.2 reads in full: "Let F be a
+   continuous piecewise smooth function ... Assume T_F(s) as defined above is
+   positive. **Then there is some z_0 such that if z > z_0, then V(D,z) is also
+   positive.**" Proof, in its entirety: "As z -> infinity, the error term above
+   approaches zero and the main term is positive as stated." The error term is
+   O(V(z)^-1 alpha loglog z/log z) with an implied constant inherited from the
+   "<<" in her own sifting-dimension hypothesis (sec. 2.8, condition 2) - i.e.
+   from our K, unquantified. So the thesis is a DHR-class, non-explicit result.
+
+So opening 1 is closed NEGATIVELY, and the closure is worth stating in the paper:
+it extends **the explicitness boundary** (sec. 8) from the DHR differential-delay
+system to the Lambda^2 Lambda^- family, first-hand.
+
+BY-PRODUCT, and it is not a coincidence. Blight sec. 2.2.1 records that the beta
+sieve has beta_kappa ~ c kappa asymptotically with **c = 3.591... the root of
+(c/e)^c = e**. That equation is c(log c - 1) = 1 - exactly the equation defining
+our Theorem 3E constant lambda_* = 3.591121, and ODC Theorem 6.12 prints the same
+"c = 3.591...". Our quasi-polynomial constant C_infinity = 2 lambda_* = 7.182242
+is therefore twice the beta sieve's asymptotic sifting-limit slope. Also from her
+table: the beta sieve's own beta_2 = 4.8339865967 (worse than DHR).
+
+### 10b. OPENING 2 - ODC CHAPTER 6 IS EXPLICIT. VERDICT: **YES.**
+
+Chapter 6 is "Brun's Sieve - The Big Bang"; sec. 6.6 is "Improved Bounds for the
+Sifting Limits"; **beta_1 = 3.8629..., beta_2 = 7.5941... are on p. 73**, not in
+Corollary 6.14 (which is on p. 71 and carries the weaker beta(kappa) < 4 kappa+1).
+Page scans of pp. 65, 68-73 and 112 of the AMS printing were read first-hand on
+2026-08-29 (Google Books volume Dz6REQAAQBAJ, publisher preview). The objects:
+
+    PROPOSITION 6.7 (p.68)   V^-(D,z) >= {1 - psi^-(a, s-beta) K^(1+1/alpha)} V(z),
+                             s >= beta, with a = alpha e^(1+alpha)  (6.67) and
+                             beta = 1 + 2(e^(2 alpha/kappa) - 1)^-1  (6.94)
+    (6.86)                   psi^-(a, s-beta) < 2 e^-2 (1-a^2)^-1 a^2,  s >= beta
+    COROLLARY 6.13 (p.71)    alpha = 1/4:  V^-(D,z) >= {1 - (7/8) K^5} V(z)
+                             if s >= beta_kappa;  beta_1 = 4.082, beta_2 = 8.041
+
+**THE DECISIVE POINT.** Proposition 6.7, (6.75), (6.85), (6.86) and Corollary
+6.13 carry **no O(.), no "<<", no implied constant and no "for z large"**. The
+single inexplicit sentence in the neighbourhood is COROLLARY 6.14, whose statement
+says "which means that, for z large" and whose proof says "This follows by (6.89)
+**provided K is sufficiently close to one** ... we can depress its size close to
+one by choosing a slightly larger value of kappa". That device - and ONLY that
+device - is asymptotic. **We do not need it: we buy small K by PRE-SIEVING at
+explicit finite cost, which is exactly round 24's 2E'/2E'' machinery.** So the
+Chapter 6 apparatus is usable with every constant stated.
+
+Round 24 had priced Theorem 6.9 and Corollary 6.10 from this chapter and recorded
+them as "cleaner-looking fallbacks" at s > 28.99 / 37.36 (K = 3). **It had not
+priced Proposition 6.7 / Corollary 6.13, and that is where the whole gain sits.**
+
+FIRST-HAND VERIFICATION OF THE HARVEST. Every printed number of sec. 6.6 is
+reproduced from the book's own printed formulas by independent code
+(research/j2_odc6.py section A): psi^- = 0.8637687819 from BOTH of the book's
+renderings (the general formula, and the closed form 2e(16 sqrt e - e^3)^-1)
+agreeing to 1e-9; beta_1 = 4.082988 and beta_2 = 8.041623 at alpha = 1/4;
+beta_kappa <= 4 kappa + 1 at nine dimensions; alpha^-1 = 3.774952 for (6.97).
+
+**ONE DISCREPANCY IN THE BOOK, RECORDED.** The printed root alpha* = 0.264904
+does NOT solve the book's own printed equation
+"alpha + (2+3a)/(3+4a) + log alpha + log((3+4a)/(2+3a)) = 0"; the residual there
+is -0.001707 and the true root is 0.2652637. The printed alpha* IS internally
+consistent with the printed beta_1 = 3.8629 and beta_2 = 7.5941 to within its own
+truncation, so this is not an OCR digit error - it is the book's own root-finding,
+and the book says how: "A numerical computation gives (**use the Taylor expansion
+at 1/4**)". A Taylor approximation about 1/4 is exactly what lands 3.6e-4 short.
+CONSEQUENCE, IN OUR FAVOUR: the exact root of the book's own equation gives
+**beta_2 = 7.5838, 0.0103 better than the printed 7.5941**. It does not move our
+theorem either way, because our binding root is the K -> 1 root below.
+
+### 10c. THE TWO ROUND-24 LEADS ARE ONE EQUATION
+
+Round 24 wrote: "SAME OBJECT as the HR-Memoire item: the remaining mathematics of
+the upper ladder is ONE thing seen from two sides." That is now **proved, not
+suspected** (j2_odc6.py section B):
+
+* ALGEBRAIC. The Halberstam-Richert Memoire's printed positivity condition
+  lambda^2 e^(2 lambda)(2 + e^2) < 1 and ODC (6.86)'s positivity condition
+  2 e^-2 a^2/(1-a^2) < 1 with a = lambda e^(1+lambda) are **the same
+  inequality**, since lambda^2 e^(2 lambda) = a^2/e^2. Verified identically at
+  six values of lambda, max error < 1e-12.
+* NUMERICAL. ODC's K -> 1 root is alpha_infinity = **0.253321897**; round 24's
+  re-derived HR lambda_* = **0.2533219**. Equal to 5e-7.
+* THE LEVEL EXPONENT. HR's printed form is u = 1 + 2.01/(e^lambda_* - 1) =
+  7.971954733 (round 24's re-derivation, reproduced here); ODC's is
+  beta_2 = 1 + 2/(e^alpha - 1) = **7.937268**. The 2.01 is HR's own safety
+  margin. **ODC Chapter 6 is the EXPLICIT form of the 1971 Memoire's theorem,
+  and it is very slightly sharper.**
+
+So round 24's "explicitness problem in a known 1971 theorem" is solved by the
+observation that the 2010 book already contains the explicit version.
+
+### 10d. THEOREM 2G - the new rung
+
+The beta-sieve's weights satisfy |lambda_d^-| <= 1 (they are the combinatorial
+Rosser-Iwaniec weights), so with |r_d| <= 2^nu(d) N_pre after pre-sieving at p_0,
+
+    |R^-(A,D)| <= N_pre sum_{d<D} 2^nu(d) <= N_pre sum_{d<D} tau(d)
+                <= N_pre D (log D + 1),
+
+using the elementary sum_{n<=x} tau(n) = sum_{d<=x} floor(x/d) <= x(log x + 1)
+(checked against the exact sum to x = 20000). **This is where Chapter 6 beats
+Theorem 7.7 twice over**: 2E/2E'' had to carry tau_4, i.e. sum_{d<D} 8^nu(d)
+<< C_8 D (log D)^8. Here the log power is 1, not 8.
+
+    THEOREM 2G. Let p_0 = 151, so that K <= 1.0260176 < psi^-(1/4)^(-1/5)
+    = 1.0297232 and ODC Corollary 6.13 applies verbatim at alpha = 1/4 with
+    delta = 1 - psi^- K^5 = 0.017864. Then for every n with p_n >= 285,
+
+        j_2(p_n#)  <=  C p_n^8.04162 (8.04162 log p_n + 1)(log p_n)^2  +  1,
+
+    with C = N_pre/(0.3905 delta), log_10 C = 57.5, N_pre = prod_{p<151}(p-2).
+    Every constant is stated; nothing is asymptotic.
+
+    THEOREM 2G-inf (the constant-free form). j_2(p_n#) <<_eps p_n^(s+eps) for
+    every real s > 7.93727, every implied constant computable.
+
+LADDER OF RUNGS, showing the trade of exponent against N_pre and the crossover
+against 2E'' (the p_n beyond which 2G is the better bound):
+
+    p0      s (Cor 6.13)  s (Prop 6.7)  log10 C   crossover with 2E''
+    151     8.04162       8.02805       57.5      10^5.58
+    211     8.04162       8.02742       82.2      10^8.92
+    307     8.04162       7.98875       120.0     10^14.15
+    601     8.04162       7.96945       243.9     10^31.61
+    10007   8.04162       7.94387       4296.8    none in range
+    K -> 1  --            7.93727       --        (the floor)
+
+**THE OPERATIVE ROW IS p_0 = 151: exponent 8.04162, crossover at p_n ~ 380,000.**
+Below that 2E'' (exponent 15, tiny constant) remains the better bound; above it
+2G wins and the margin grows like p_n^6.96. Both rungs stay in the paper.
+
+    p_n        log10 (2E'' bound)   log10 (2G bound)
+    285        56.21                80.45
+    10^4       81.50                93.51
+    10^6       113.27               110.12   <- 2G ahead
+    10^10      175.48               142.95
+    10^30      480.25               305.21
+
+### 10e. WHAT CHANGES IN THE PAPER
+
+* The headline becomes: "an explicit quasi-polynomial rung, an explicit
+  polynomial rung at **exponent 8.042** (and 15 with a far smaller constant, which
+  is the better bound below p_n ~ 4e5), and the best-exponent rung 4.266 by
+  citation".
+* Sec. 4a item (3) is rewritten: the best bound with all constants stated is now
+  the exponent-8.042 polynomial, not the exponent-15 one.
+* Sec. 8's explicitness boundary GAINS a first-hand datum (Blight) and LOSES its
+  pessimism about Chapter 6: the boundary is at the DHR / optimised-Lambda^2Lambda^-
+  sifting limits, not at every dimension-2 lower-bound sieve.
+* The floor statement changes: FI 7.7's floor was exponent 15 at kappa = 2; ODC
+  Ch. 6's floor is **7.93727**, and it is the same number the 1971 Memoire was
+  pointing at. Below that needs a genuinely better sieve, not more pre-sieving.
+* NAMED OPENING, NEW: the gap between 7.937 (explicit, Ch. 6 beta sieve) and
+  4.266 (DHR, not explicit) is now the whole remaining question of the upper
+  ladder. ODC's own sec. 6.6 says it "will be superseded by the results of
+  Chapter 11" - and Chapter 11's lower-bound constant B is identically zero at
+  kappa >= 1/2 (sec. 8), so Chapter 11 is NOT the route. The route, if any, is an
+  explicit form of the DHR system.
+
+### 10f. Residual risks, stated
+
+* The page images were read through a browser preview, not held in hand - the
+  same caveat as round 24's Theorem 7.7 check. Mitigation: every printed number
+  of sec. 6.6 is reproduced from the printed formulas by independent code, so an
+  OCR corruption would have to be self-consistent across eight numbers.
+* Equation (5.38) (the definition of K) and (6.69) (a condition on kappa quoted
+  in Proposition 6.7) were NOT re-fetched this round. (5.38) is the same
+  hypothesis we used for Theorem 7.7 in rounds 23-24 and matched against
+  Dudek-Dunn Lemma 2.1. (6.69) is unread; our operative alpha = 1/4 is the value
+  the book itself uses in Corollary 6.13 "for kappa > 0", so kappa = 2 at
+  alpha = 1/4 is inside the book's own applied range. FLAGGED, not assumed.
+* p. 74 (the rest of Proposition 6.16, on preliminary sieving) was not obtained;
+  our pre-sieving accounting is round 24's own, not the book's.

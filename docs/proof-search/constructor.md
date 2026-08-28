@@ -1115,3 +1115,303 @@ Anchors: requirement F(2,y) < (y^2-y)/2; F_k(M+q') chain 11/18/25/34/43/58/88; F
 
 All censuses reported here are full-period with the cyclic seam stitched; model predictions are
 labeled float; nothing filed rests on a partial scan.
+
+
+---
+
+## Constructor round 25 - THE SCAN-FREE DICTIONARY AND THE CHAIN
+
+Brief: (a) answer the 90-955 CEGAR realisability queries per step by CRT
+arithmetic instead of a dumped realised-tuple set; (b) chain the steps so each
+consumes only the previous machine's word; (c) report exactly where the chain
+first needs a fact it cannot generate.
+
+**R60 (THE REALISABILITY CSP - the dictionary supplier, built and gated).**
+Slot k is blocked by gear q iff k = +-u_q mod q, u_q = 6^{-1} mod q; by CRT a
+slot IS a phase vector (a_q). So for a gap tuple with prefix-sum points X and
+interior points Y = (0, span) \ X:
+
+  THEOREM. (v_1..v_m) occurs as m consecutive gaps of M = {5..y} iff the system
+    (open)  a_q not in {+-u_q - x : x in X}  for every gear q
+    (cover) for every t in Y some gear q has a_q = +-u_q - t
+  is feasible. The period never appears - pi(y)-2 variables, domains <= q.
+
+`research/crt_dict.py` decides it exactly: bitmask coverage, branch on the
+uncovered point with fewest live options, plus a CAPACITY BOUND (if the
+unassigned gears cannot cover the remaining points even at their individually
+best phases, the node is dead). The capacity bound is what makes REFUTATIONS -
+the only answers a certificate may act on - affordable; without it machine 31
+one-gap refutations exceeded 2e6 nodes, with it they cost 0.4-1.5 s.
+GATES (all in the script, `validate`): decision == (R43 pruned-IE count > 0) on
+2,013 tuples of arity 1, 2, 3 at machines 11, 13, 17; nine published anchors
+including (10,21,10) at m29 True and (21,10,21) False, the m19/m23 holes at 24,
+and (14,41,14) at m37; and the corpus ladder recovered with no scan -
+F = 7, 11, 18, 25, 34, 43, 58, 88 at machines 11..37 and
+F_2 = 11, 16, 25, 31, 39, 55, 68 at machines 11..31 (F_2(29) attained at the
+pair (20,35)), plus the witness pair (2,88) giving F_2(37) >= 90 = the corpus
+value.  The gate stops short of the EXACT F_2(37) deliberately: pinning it is
+~3,800 over-budget pair refutations at a measured 5.8 s each, and that cost is
+itself one of the round's findings (R66).
+
+**R61 (THE DICTIONARY, and it EQUALS the scan).** `research/scanfree_dict.py`
+builds D_1, D_2, ... level by level with the overlap lemma (R45: every
+contiguous sub-tuple of a realised tuple is realised), so F_j(M) = max span in
+D_j and D_3/D_4 are exactly what A_4 needs:
+
+    machine   D_1   D_2     D_3     D_4     F_1 F_2 F_3 F_4   build (1 core)
+    19         23   221   1,216   4,489     25  31  35  38       2 s
+    23         33   429   3,135  15,696     34  39  50  58      79 s
+    29         41   730   7,184  45,854     43  55  65  70    ~30 min
+    31         55 1,254  15,020       -     58  68  85   -      24 min
+
+Machine 31's F_1, F_2, F_3 = 58, 68, 85 are EQUAL to R49's full-period values
+(58, 68, 85, 90, 92, 97) obtained from a 3.34e10-slot scan; its level 4 was
+deliberately deferred (a ~2 h job) when the box went to 947 MB free.
+
+**At machine 23 the scan-free D_4 is SET-EQUAL to Mechanic's full-period scan
+census `gap_tuples_23_4.csv` - 15,696 tuples, identical**, and at machines 19,
+23, 29 it contains every tuple of the round-24 A_4 dumps with ZERO missing.
+A CRT computation and a period scan agreeing tuple for tuple.
+
+POST-FIX RE-GATE, and a confirmation of Mechanic's mid-round repair: with the
+bug fixed, the scan-free level-2 dictionary is SET-EQUAL BOTH WAYS to the
+REPAIRED full-period lag-1 pair census - 221 pairs at m19, 429 at m23, nothing
+in either that is not in the other. Lateral caught the defect (every ghist row
+dropped the cyclic wrap gap), Mechanic repaired it at source at 04:55, and the
+CRT dictionary independently confirms the repaired file is now exact. My own
+loader (chain_cegar.load_pairs) handles both states and asserts cyclic
+consistency rather than patching a seam.
+
+**R62 (THE CEGAR LOOP ON THE CRT ORACLE - R58 REPRODUCED QUERY FOR QUERY, AND
+A NEW RUNG).** `research/chain_cegar.py` puts the CSP oracle where round 24 had
+the dump. `--shadow y` runs both side by side and asserts agreement on every
+query:
+
+    step        queries (arity 4 + arity 2)  bound  budget  CRT vs dump
+    19 -> 23        106 + 75  = 181           48      48    181/181 agree
+    23 -> 29         28 + 62  =  90           63      63     90/90  agree
+    29 -> 31        761 + 194 = 955           74      74    955/955 agree
+    31 -> 37       (CRT only)    3,399        95      95    no dump exists
+    37 -> 41       (CRT only)       94       235     129    NOT CERTIFIED
+
+- exactly R58's counts, no disagreement in either direction, and then **31->37
+CERTIFIED with no scan and no dump anywhere in the loop** (356 s wall, 267 s of
+it oracle; MF_4 = 442,294 states / 558,182 edges). Every deletion is licensed by
+an exhaustive refutation and an UNDECIDED query deletes nothing, so the running
+value is an upper bound on F(M+q') at every stage. Oracle cost per query: 0.4 ms
+mean at m19, 2.3 ms at m23, 16.3 ms at m29, 24.4 ms at m31 (worst single
+query 0.19 s and 1.07 s). Query spans run well
+past 2F (median 45 / 57 / 84, max 90 / 105 / 127 against 2F = 50 / 68 / 86;
+at 31->37 median 62, max 167 against 2F = 116) -
+R59's "span <= F_2" was optimistic and is corrected here.
+
+**R62b (37 -> 41: NOT CERTIFIED, and the cost is the finding).** The next rung
+was run to a cancellation, and the numbers are the round's answer to "where does
+the chain stop in practice": MF_4 at (F, q') = (88, 41) is 1,566,576 states /
+2,605,925 edges and starts machine-free at 1,310 against a budget of 129. Fed
+the two-gap output of the rung below - F_2(37) <= 90, from R56's survivor
+identity at machine 31 and independently from Mechanic's CRT+SAT, i.e. EXACTLY
+the brief's chain shape - it reduces to 799,184 states / 564,661 edges and a
+start bound of 258. Two refinement iterations took it 258 -> 235 in 94 queries
+and 132 s, and it was cancelled there. THE COST IS ENTIRELY ARITY 2: at machine
+37 an over-budget PAIR refutation costs 5.8 s mean / 23.7 s worst (40 sampled)
+against 43 ms for a 4-tuple, because a pair leaves only three open points and
+therefore much larger gear domains. Nothing about the rung is unsound or stuck -
+it is a multi-hour job that was mis-sized for the round, and the mis-sizing is
+recorded as such. Log: research/data/chain_37.log (closing record at the end).
+
+**R63 (THE A_4 ENGINE - the exact value, not just the budget).**
+`research/chain_a4.py` builds R49's history abstraction over the scan-free
+D_3/D_4 and closes it:
+
+    machine   states  edges   A_4 -> F(M+q')   corpus   budget  verdict
+    19         2,432    380         34           34       48    EXACT
+    23         6,270    968         43           43       63    EXACT
+    29        14,368  3,513         58           58       74    EXACT
+
+The m29 system is R49's system exactly (3,513 edges). So the exact F needed to
+size the NEXT rung is an OUTPUT of this one: the ladder is self-propelling and
+consumes only the gear list.
+GATE PROVENANCE, stated exactly: the m19 and m23 rows are from the post-bug-fix
+rerun (research/data/chain_a4_regate.log); the m29 row is from the pre-fix run
+(research/data/chain_a4_19_29.log), which passed its own assertion (bound >=
+corpus, printed EXACT) and reported 14,370 states - two MORE than the 14,368
+above, being the two tooth-copies of the phantom state (1,1,1) the fix removes.
+Those two states carry no edge (cls(1) = 9 at q' = 31, so no T3-legal
+transition), the edge count 3,513 is identical pre and post fix at m29 exactly
+as it is at m19 (380) and m23 (968), and the closure is therefore unchanged at
+58. The post-fix m29 rerun was still in its level-4 dictionary build (a ~14 min
+job running ~6x slow against six other lanes' processes) when the round closed;
+it is a redundant confirmation, not a missing gate.
+
+**R64 (THE TWO-GAP LAW IN COVERING FORM, AND THE THREE INSTRUMENTS).** R58's
+sweep left the obligation as exactly F_2(M) <= F(M) + q'. R60 restates it with
+no algebra in it at all:
+
+  For every pair (g1,g2) with g1+g2 > F(M)+q', the system "0, g1, g1+g2 open,
+  all g1+g2-2 interior points covered by the gears <= y" is INFEASIBLE.
+
+`research/twogap_threshold.py` measures the three machine-free instruments that
+act on that form.
+* CAPACITY: kills 5 of 15 over-budget pairs at m23 and 0 of 3 / 78 / 231 /
+  1,128 / 1,176 at m19 / m29 / m31 / m37 / m41; worst-case cap/need climbs
+  1.33, 0.98, 1.04, 1.11, 1.15, 1.20. It kills only pairs with BOTH gaps near
+  F, never the asymmetric ones. NOT a supplier - but NOT vacuous either, which
+  the local form X12 did not distinguish.
+* FIRST MOMENT (independence, rho = prod(1-2/q)): the model gets the two-gap
+  law RIGHT at every machine - model increment F_2-F = 5,6,9,11,12,14,16,18,19
+  against q' = 13..43 (ratio a flat 0.35-0.48), true increment
+  4,5,7,6,5,12,10,2,12 (ratio 0.05-0.39). Unlike the histogram (X35) and the
+  corridor (X34), which saturate at 2F, INDEPENDENCE DOES NOT SATURATE. It is
+  the first machine-free instrument that gets layer 0 right.
+* ASYMPTOTICS (closed form, model only): solving E_1 = E_2 = 1 gives model
+  increment ~ log(F)/log(1/(1-rho)) = O(log^3 y) against a budget q' ~ y.
+  Measured incr/q': 0.385 (y=11), 0.103 (1,487), 0.047 (5,261), 0.019 (20,509),
+  0.0145 (29,917) - DECAYING. In the model the two-gap statement gets easier
+  without bound: R31's "deeper cases are the easier ones", now for LAYER 0 and
+  in closed form.
+
+**R65 (CROSS-LANE: LATERAL'S MIRROR PARITY LAW VERIFIED SCAN-FREE, AND THE
+F_2 = 2F ENDPOINT DECIDED).** Lateral's round-25 law says every adjacent EQUAL
+pair (g,g) occurs an EVEN number of times except at one self-mirror value k_1.
+`research/mirror_parity_lever.py` counts every equal pair exactly by CRT
+enumeration - no period - and confirms it at six machines: the odd-count value
+is unique and equals g = 3, 3, 5, 5, 5, 7 at m11..29 (counts 1, 13, 649,
+10,965, 219,553, 1,739,485), always strictly below F. Two further results:
+* (F,F) has count ZERO at all six machines - the F_2 = 2F endpoint that the
+  histogram and corridor bounds both point at is NOT ATTAINABLE;
+* the LARGEST equal adjacent pair is far under budget: max g with (g,g)
+  realised = 5, 7, 8, 8, 15, 20, so 2g = 10, 14, 16, 16, 30, 40 against budgets
+  20, 28, 37, 48, 63, 74 - slack 10, 14, 21, 32, 33, 34, GROWING. The equal-pair
+  channel is not where F_2 lives (F_2's maximisers are asymmetric: (20,35) at
+  m29, (5,34) at m23, (2,88) at m37).
+Lateral's lever ("cap the count of adjacent (F,F) at one and parity gives
+zero") is therefore live and, at these machines, already discharged by direct
+count; `crt_dict.count_solutions` supplies the capped count at any machine.
+
+**R66 (THE COST CURVE, and where the chain stops).** Pinning F(M) exactly from
+the previous rung's certified bound F-bar = F(M_prev)+q (i.e. refuting every
+one-gap value from F-bar down to F+1):
+
+    machine    F-bar   F   refutations   worst single   total
+    19           37   25       12           0.0 s        0.0 s
+    23           48   34       14           0.0 s        0.2 s
+    29           63   43       20           0.1 s        1.8 s
+    31           74   58       16          13.2 s       87.5 s
+    37           95   88        7          47.6 s      257.6 s
+
+Single-gap refutation cost grows roughly x15 per added gear (m29 < 0.1 s,
+m31 ~1 s, m37 10-20 s, m41 > 250 s undecided at a 6e7-node budget). Arity 2 and
+arity 4 queries are far cheaper than arity 1 at the same machine (more open
+points means tighter gear domains): 3 ms at m29 against 100 ms for a one-gap
+refutation there.
+
+**R67 (THE RESIDUE - the round's primary deliverable).** The chain does NOT
+break on an arithmetic fact. Every rung M -> M+q' is a finite, decidable
+computation whose only input is the list of primes up to y: the dictionary is
+generated, F(M) and F_2(M) are max spans in it, A_4 gives F(M+q') exactly, and
+the CEGAR certificate proves the budget. There is no step at which the chain
+must reach outside itself for an integer. What it cannot generate is not a fact
+about any one machine but the three quantities that decide whether the finite
+computation SUCCEEDS, none of which is an output of any rung:
+
+  (i)  THE ORDER. Nothing says which m makes A_m nilpotent and tight at machine
+       M. It is m > A_relax(M), and A_relax is non-monotone (1,2,2,3,2,3,4,3,2
+       at m11..41, R45); the plain system needs m = 4 and the survivor system
+       m = 5 at every step measured, but that is a measurement, not a theorem.
+  (ii) THE QUERY COUNT. 181, 90, 955, 3,399 at the four certified rungs -
+       growing, and bounded by nothing proven. R59 named this and it is still
+       open.
+  (iii) THE DECISION COST. One realisability refutation is an exact CSP
+       refutation whose cost grows ~x15 per gear at arity 1.
+
+So the two-gap law's irreducible core, stated as sharply as this round can:
+**every INSTANCE of the two-gap statement is a finite covering refutation the
+chain generates itself; the STATEMENT - one bound valid at every y - is not,
+because the chain has no y-uniform control of its own order, query count or
+refutation cost.** R64 locates the missing argument precisely: the first-moment
+model already proves the statement with a polylog-versus-linear margin, so what
+is missing is not a sharper inequality but an unconditional TRANSFER of that
+first moment - a large-deviation bound on the machine's own covering system -
+which no rearrangement invariant (X35) and no congruence potential (X32) can
+perform. That is Wall V with its scale named.
+
+**NEGATIVES AND SELF-CORRECTIONS (round 25).**
+* A REAL BUG, caught by a cross-lane cross-check, not by my own gates:
+  `decide_cover` returned True for a pattern with EMPTY interior before testing
+  the open-point domains, so the all-ones tuples (1,1), (1,1,1), (1,1,1,1) were
+  wrongly called realised. Found because the scan-free D_4(23) had 15,697
+  tuples against Mechanic's 15,696 and the single extra was (1,1,1,1). Fixed;
+  post-fix the two dictionaries are SET-EQUAL. Nothing reported ever depended
+  on it (those tuples carry no T3-legal edge and never attain a maximum; the
+  only visible trace was A_4(29) reporting 14,370 states where R49 has 14,368,
+  the two tooth-copies of the phantom state (1,1,1)). LESSON: the gate that
+  caught it was an independent lane's census, not any assertion I wrote - a
+  scan-free method needs a scanned counterpart to check against for exactly as
+  long as one exists.
+* A SECOND SELF-CORRECTION IN THE SAME SCRIPT: the first version of the closure
+  wrote `np.maximum(new[usrc], seg, out=new[usrc])`, which writes into a
+  fancy-index COPY, so the relaxation silently did nothing and 19->23 "certified"
+  at 48 in 3 queries from an initial bound of 50 instead of 111. Caught within
+  one run because the shadow gate compares against R58's known 181.
+* R59's "every query is arity <= 5 and span <= F_2" was written without
+  measuring the spans. MEASURED: max query span 90, 105, 127 at the three
+  steps, against F_2 = 31, 39, 55 and 2F = 50, 68, 86. The arity claim holds;
+  the span claim was wrong by a factor of 2-3. It does not change the
+  conclusion (the queries are cheap because they have MANY open points, not
+  because they are short) but the stated reason was wrong.
+* The brief's chain shape - A_5(23) -> F_2(29) -> certify 29->31 -> A_5(29) ...
+  - is superseded by its own success: once the dictionary is scan-free, the
+  two-gap integer does not have to DESCEND from the step below, it is computed
+  at the machine itself (F_2(29) = 55 in 75 s at m29 directly). R56/R59's
+  descent remains the right structure for a UNIFORM argument, where no
+  computation is available; it is no longer needed for a computed rung.
+* Compute: the first machine-37 CEGAR run (top-k = 1, sequential oracle) was
+  cancelled after 2 iterations and relaunched with top-k batching and a 5-way
+  parallel oracle. Reason: measured 10 s per refinement iteration against an
+  estimated thousands of iterations. Recorded as a cancellation, not a result.
+
+**PREDICTION SCORECARD (research/data/r25_prediction.txt, written before any
+round-25 script ran).**
+* P1 ORACLE AGREEMENT - CONFIRMED. 181 + 90 + 955 queries, 100% agreement with
+  the round-24 dumps, no disagreement in either direction.
+* P2 QUERY SPAN (max < 2F, median < 1.2F) - REFUTED. Max span 90, 105, 127
+  against 2F = 50, 68, 86 (167 against 116 at 31->37); medians 45, 57, 84
+  against 1.2F = 30, 41, 52. Both halves wrong, in the same direction.
+* P3 SCAN-FREE CERTIFICATION within 2x of 181/90/955 - CONFIRMED, and stronger
+  than predicted: the counts are IDENTICAL, not merely close (the loop is
+  deterministic and the oracle agrees, so it must be - which I should have
+  predicted).
+* P4 ORACLE COST (median < 10 ms, worst < 5 s at m19..37) - HALF CONFIRMED.
+  True for the chain's own arity-2/arity-4 queries at every machine through 37.
+  REFUTED for arity 1: 13.2 s worst at m31, 10-20 s at m37, > 250 s undecided
+  at m41. The distinction between arities was not in the prediction.
+* P5 CHAIN REACH (at least 31->37) - CONFIRMED for 31->37.  The 37->41 half
+  ("better than even odds") is UNRESOLVED: cancelled on cost at bound 235
+  against budget 129, and the cost is measured (R62b), not guessed.
+* P6 THE RESIDUE - PARTLY CONFIRMED. (i)-(iii) of the guess were right: F, F_2
+  and the certificate are all generable, so the residue is not an integer. The
+  guess "the residue is the termination of the refinement loop" is right as far
+  as it goes but incomplete - R67 names three quantities, not one, and the
+  round adds the sharper statement that the missing object is a first-moment
+  transfer, which the prediction did not anticipate.
+* P7 (an engineering wall at m41 from state-space size) - REFUTED as stated:
+  MF_4 at m41 is 1,723,138 states / 2,424,036 edges and builds in 15 s. The
+  wall at m41 is the ORACLE (arity-1 refutations), not the state space.
+
+**NEEDS / NEXT CONSTRUCTS.**
+* THE UNIFORM ORDER. Prove A_relax(M) <= 4 (or any bound) for all M, or find
+  the machine where A_4 first fails to certify. This is (i) of R67 and it is
+  now a decidable question at any single machine.
+* THE QUERY COUNT. Bound the number of refinement queries in terms of y. The
+  measured 181, 90, 955, 3,399 is not monotone in y and the 23->29 dip is
+  unexplained.
+* THE FIRST-MOMENT TRANSFER. R64 says the two-gap law holds in the
+  independence model by a polylog-vs-linear margin. The construct that would
+  close (D) is a second-moment or large-deviation bound on the covering system
+  making that margin unconditional. NOT ATTEMPTED THIS ROUND - it is
+  derivation-grade and the escalation valve applies.
+* FORMALIST HANDOFF. Each CEGAR deletion is a finite CRT refutation with an
+  explicit certificate (empty gear domain, or an uncoverable interior point, or
+  an exhausted search). The 19->23 rung is 181 such refutations plus a
+  33,038-state closure - a kernel-checkable object with no scan behind it.

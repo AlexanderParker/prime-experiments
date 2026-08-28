@@ -982,3 +982,247 @@ z; the exact-rational 19/36 derivation (S1 of j2_selberg.py); the delta reductio
 machine; the Bonferroni step of Theorem 3 at fixed n and K; one rung of the word-level paired
 transfer; the Pascal eigenvector identity at fixed size; the local-factor identity at fixed
 q; endpoint c-law cases.
+
+## 9. ROUND 25 (2026-08-29) - THE UNIT-1 OPENINGS BOTH CLOSE, EXPONENT 15 -> 8
+
+Brief: (a) Unit 1 to submission - obtain Blight's thesis and decide the ODC Ch.6
+explicitness question, re-running j2_referee.py first; (b) the Rankin-layering
+problem on the lower ladder; (c) own ranking if capacity remains.
+
+STANDING GATE FIRST. `research/j2_referee.py` re-run from a clean process at the
+top of the round: **"j2_referee: ALL ASSERTIONS GREEN"**, five recorded defects
+reproduced verbatim, h_2(19) = 258 re-confirmed by independent re-verification of
+the y = 19 winners. No claim below entered the record before that ran.
+
+### 9a. BLIGHT'S THESIS - OBTAINED. VERDICT: NO USE, ON BOTH COUNTS.
+
+**Sara Elizabeth Blight** (the name in every prior note of ours, "S. Blight" from
+ODC p.112, is a woman and the first name is Sara, not Sean), *Refinements of
+Selberg's Sieve*, Ph.D. Rutgers, May 2010, advisor Iwaniec; DOI 10.7282/T35T3KJ8,
+RUcore rutgers-lib/27420, **free**, downloaded to `research/data/blight_thesis.pdf`
+(367,455 bytes, 75 pages) and read here directly. Text extract cached at
+`research/data/blight_text.txt`. ODC p.112's pointer, verbatim from the scan:
+"We remark that S. Blight (thesis, Rutgers 2010) has sharpened this result using
+a Selberg-type combination but with a Brun lower-bound sieve supported on products
+up to three primes rather than one as in the right-hand side of (7.106)."
+
+1. **WORSE THAN WHAT WE ALREADY CITE AT kappa = 2.** Her sec. 2.6 gives
+   beta_2 < 4.45 (c = 0.2214971799, T = 16), and her own sec. 2.7 says "The sieve
+   of Diamond and Halberstam gives a smaller sifting limit for kappa = 2 and
+   kappa = 2.5" - 4.266450, which her sec. 2.2.2 tabulates from DHR [1, p.227].
+   Her Lambda^2 Lambda^- wins only at kappa = 3 (6.458) and 4 (8.47). This
+   CONFIRMS round 22's second-hand reading from the primary document.
+2. **NOT EXPLICIT.** Proposition 2.4.2, in full: "Assume T_F(s) as defined above
+   is positive. Then there is some z_0 such that if z > z_0, then V(D,z) is also
+   positive." Proof, in full: "As z -> infinity, the error term above approaches
+   zero and the main term is positive as stated." The error is
+   O(V(z)^-1 alpha loglog z/log z) with the implied constant inherited from the
+   `<<` in her own sifting-dimension hypothesis - i.e. from our K, unquantified.
+
+So the round-24 opening #1 closes NEGATIVELY, and the closure is itself a paper
+sentence: it extends **the explicitness boundary** from the DHR differential-delay
+system to the Lambda^2 Lambda^- family, first-hand.
+
+BY-PRODUCT WORTH KEEPING: her sec. 2.2.1 gives the beta sieve's asymptotic
+beta_kappa ~ c kappa with **c = 3.591..., the root of (c/e)^c = e**. That is
+c(log c - 1) = 1 - **exactly the equation defining our Theorem 3E constant
+lambda_* = 3.591121**, and ODC Thm 6.12 prints the same c. So C_infinity =
+2 lambda_* = 7.182242 is twice the beta sieve's asymptotic sifting-limit slope: a
+real adjacency between our quasi-polynomial rung and the classical beta sieve.
+Also: the beta sieve's own beta_2 = 4.8339865967, worse than DHR.
+
+### 9b. ODC CHAPTER 6 - **EXPLICIT. YES.** THE DECISIVE ANSWER OF THE ROUND.
+
+Page scans of pp. 65, 68-73, 112 of the AMS printing read first-hand 2026-08-29
+(Google Books volume Dz6REQAAQBAJ, publisher preview). Corrections to our own
+notes first: Chapter 6 is "Brun's Sieve - The Big Bang"; sec. 6.6 is "Improved
+Bounds for the Sifting Limits"; **beta_1 = 3.8629 and beta_2 = 7.5941 are on
+p. 73, NOT in Corollary 6.14** (which is on p. 71 and is the weaker
+beta(kappa) < 4kappa+1). Round 24's note said "Cor 6.14 area" - wrong location,
+right chapter.
+
+THE ANSWER. **Proposition 6.7, (6.75), (6.85), (6.86) and Corollary 6.13 carry no
+O(.), no `<<`, no implied constant and no "for z large".** Corollary 6.13 reads
+V^-(D,z) >= {1 - (7/8)K^5}V(z) for s >= beta_kappa, beta_kappa =
+1 + 2(e^(1/2kappa)-1)^-1, beta_2 = 8.041. The ONE inexplicit sentence in the
+neighbourhood is Corollary 6.14 ("for z large"; proof: "provided K is sufficiently
+close to one ... by choosing a slightly larger value of kappa") - and **that
+device is precisely what our PRE-SIEVING replaces at explicit finite cost.**
+
+WHY WE MISSED IT IN ROUND 24: we priced Theorem 6.9 and Corollary 6.10 from this
+chapter (s > 28.99 / 37.36 at K = 3) and called them "cleaner-looking fallbacks".
+**We never priced Proposition 6.7 / Corollary 6.13, and the whole gain sits there.**
+Lesson, added to 7d: when a chapter is priced, price its PROPOSITIONS, not only
+its theorems - the fundamental-lemma-shaped results are the ones with the K^10.
+
+HARVEST VERIFIED FIRST-HAND (research/j2_odc6.py section A): every printed number
+of sec. 6.6 reproduced from the book's own printed formulas by independent code -
+psi^- = 0.8637687819 from BOTH the general formula and the printed closed form
+2e(16 sqrt e - e^3)^-1, agreeing to 1e-9; beta_1 = 4.082988, beta_2 = 8.041623 at
+alpha = 1/4; beta_kappa <= 4kappa+1 at nine dimensions; alpha^-1 = 3.774952.
+
+**A DISCREPANCY IN THE BOOK, FOUND AND RECORDED.** The printed root
+alpha* = 0.264904 does NOT solve the book's own printed equation (residual
+-0.001707; the true root is 0.2652637). It IS internally consistent with the
+printed beta_1 = 3.8629 and beta_2 = 7.5941 to within its own truncation, so this
+is not an OCR digit error - the book says how it computed it ("use the Taylor
+expansion at 1/4"), and a Taylor approximation about 1/4 lands exactly 3.6e-4
+short. In our favour: the exact root gives beta_2 = 7.5838, **0.0103 better than
+the printed 7.5941**.
+
+### 9c. THE TWO ROUND-24 LEADS ARE **ONE EQUATION** (proved, not suspected)
+
+Round 24 wrote "SAME OBJECT as the HR-Memoire item ... ONE thing seen from two
+sides". Now demonstrated (j2_odc6.py section B):
+
+* ALGEBRAIC IDENTITY. HR Memoire's printed positivity condition
+  lambda^2 e^(2lambda)(2+e^2) < 1 IS ODC (6.86)'s positivity condition
+  2e^-2 a^2/(1-a^2) < 1 under a = lambda e^(1+lambda), because
+  lambda^2 e^(2lambda) = a^2/e^2. Verified identically at six lambdas, error < 1e-12.
+* NUMERICAL IDENTITY. ODC's K -> 1 root alpha_inf = **0.253321897**; round 24's
+  re-derived HR lambda_* = **0.2533219**. Equal to 5e-7.
+* THE EXPONENT. HR's u = 1 + 2.01/(e^lambda_* - 1) = 7.971954733 (2.01 is HR's own
+  margin); ODC's beta_2 = 1 + 2/(e^alpha - 1) = **7.937268**. ODC Chapter 6 is the
+  **explicit form of the 1971 Memoire's theorem, and very slightly sharper.**
+
+### 9d. THEOREM 2G - THE NEW RUNG. EXPONENT 15 -> 8.042, LOG POWER 10 -> 3.
+
+The beta sieve's weights obey |lambda_d^-| <= 1, so with |r_d| <= 2^nu(d) N_pre,
+|R^-| <= N_pre sum_{d<D} tau(d) <= N_pre D(log D + 1) (elementary
+sum_{n<=x} tau(n) = sum_{d<=x} floor(x/d) <= x(log x + 1); checked against the
+exact sum to 20000). **That is the second win of Chapter 6 over Theorem 7.7**: 2E''
+had to carry tau_4, i.e. sum 8^nu(d) << C_8 D (log D)^8.
+
+    THEOREM 2G (p_0 = 151, K = 1.0260176 < 1.0297232 = psi^-(1/4)^-1/5, so ODC
+    Corollary 6.13 applies VERBATIM at alpha = 1/4, delta = 0.017864):
+      j_2(p_n#) <= C p_n^8.04162 (8.04162 log p_n + 1)(log p_n)^2 + 1,
+      p_n >= 285, log10 C = 57.5, C = N_pre/(0.3905 delta), N_pre = prod_{p<151}(p-2).
+    THEOREM 2G-inf: j_2(p_n#) <<_eps p_n^(s+eps) for every s > 7.93727, every
+    implied constant computable.
+
+    p0      s(Cor 6.13)  s(Prop 6.7)  log10 C   crossover with 2E''
+    151     8.04162      8.02805      57.5      10^5.58   <- operative row
+    211     8.04162      8.02742      82.2      10^8.92
+    307     8.04162      7.98875      120.0     10^14.15
+    601     8.04162      7.96945      243.9     10^31.61
+    K -> 1  --           7.93727      --        (floor)
+
+2E'' (exponent 15, tiny constant) stays in the paper: it is the better bound below
+p_n ~ 380,000. Above that 2G wins by p_n^6.96. Both rungs are kept and labelled.
+
+### 9e. THE RANKIN-LAYERING PROBLEM - (P2) SUPERSEDED BY ONE LOG
+
+Own pre-registration, written before running anything, scored in the gate's
+section F. New doc: **docs/novel/layered-erdos-rankin.md**; gate
+`research/j2_rankin_layer.py`, ALL ASSERTIONS GREEN.
+
+    CLAIM (bookkeeping):  j_k(P(x)) >> x A^(2k-1) C^k/((5k)^k B^(2k)),
+                          A = log x, B = log A, C = log B,
+    j_k = the k-classes-per-prime Jacobsthal function.
+    k = 1 IS the published FGKT length x log x lll x/(ll x)^2.
+    k = 2: h_2(P(z)) >> z (log z)^3 (lll z)^2/(100 (ll z)^4).
+
+MECHANISM. Class 0 on a SPLIT range [2,P) u (z1,x/4] delivers survivor density
+~1/log y where its Mertens entitlement is only O(1) - that IS Rankin's gain, one
+log - and leaves [P,z1] free for the greedy. The paired problem's SECOND class
+runs the identical trick on n+2, so the joint survivor set is the TWIN primes.
+Only an UPPER bound on twins is needed (Brun/Selberg), so it stays parity-free.
+
+STATUS, stated bluntly: **asymptotic bookkeeping, not a written-out proof.** What
+IS exact: the restatement re-brute-forced at z = 3,5,7 against h_2 = 6,18,30; that
+c = 2 collides with no odd prime's class 0; the twins-or-smooth survivor structure
+by direct sieving at four parameter sets. What validates the bookkeeping: running
+the SAME optimiser at k = 1 reproduces the FGKT closed form with residual spread
+**0.072 over eight decades of log x** (0.271 at k = 2) - calibrated against
+someone else's theorem, not against itself.
+
+PRE-REGISTRATION SCORED: PR1 (two extra logs) CONFIRMED. PR2 (the model is not a
+ceiling) CONFIRMED. PR3 (power 2k-1 for general k) CONFIRMED at k = 1..5.
+**PR4 CONFIRMED IN CONCLUSION BUT WRONG IN MECHANISM** - I predicted the layering
+would be a LOSS at reachable z; it is not a loss, it simply does not exist below
+log z ~ 300 because [P,z1] is empty. Scored as wrong-as-worded.
+
+### 9f. CONSEQUENT CORRECTION TO OUR OWN RECORD (3c)
+
+**THE "~2.56 z (log z)^2" MODEL IS DEMOTED FROM "TRUTH" TO HEURISTIC.** It is the
+largest gap in a RANDOM set of density prod(1-k/p) ~ 1/(log z)^k, i.e. z(log z)^k,
+while j_k is a MAXIMUM over choices. At k = 1 the heuristic is right (Rankin
+attains it up to loglog powers); at k = 2 the layered construction exceeds it by a
+log. The sandwich of 3c must read:
+
+    proved lower  h_2 >= (1.349+o(1)) z log z                  [(P1)]
+    bookkeeping   h_2 >> z (log z)^3 (lll z)^2/(ll z)^4        [round 25]
+    HEURISTIC     ~2.56 z (log z)^2  -- NOT a ceiling
+    proved upper  p_n^8.04162 explicit / p_n^(4.266+eps) cited
+
+This is round 24's own corollary "MODEL CLAIMS EXPIRE LIKE CITATIONS" firing on
+round 24's model, one round later.
+
+### 9g. Ranking changes
+
+* **N4 (j_2 upper ladder) stays TOP and is now materially stronger**: the explicit
+  exponent is 8.042 with a floor of 7.937, and both round-24 openings are closed.
+* **P1-P3 (lower ladder) RISES from rank 2 toward parity with N4**: it now carries
+  a construction that beats the previous heuristic ceiling and a family
+  generalisation (j_k) that nobody has stated. Its blocker is writing, not
+  research.
+* **NEW ITEM, ranked immediately below N4: (P2') "write the k = 2 layering out
+  with constants".** Ordinary work; every ingredient is standard.
+* **The named opening of the upper ladder changes.** It is no longer "find an
+  explicit dimension-2 lower-bound sieve" - we have one. It is: **close the gap
+  between 7.937 (explicit, ODC Ch.6 beta sieve) and 4.266 (DHR, not explicit).**
+  ODC sec. 6.6 says it "will be superseded by the results of Chapter 11", but
+  Chapter 11's lower-bound constant B is identically zero at kappa >= 1/2 (our
+  sec. 2e), so Chapter 11 is NOT the route. An explicit form of the DHR
+  differential-delay system is.
+* **DEMOTED: opening 7c#1 (Blight).** Closed negatively, will not be re-attempted.
+* **7c#4 (h_2 at p_n = 151..251) RISES**, because the two competing readings are
+  now z(log z)^2 and z(log z)^3, a further log apart - the computation discriminates
+  more than it did.
+
+### 9h. Negatives and residual risks of the round
+
+* **JUDGMENT, NOT RESULT**: that the ODC Ch.6 -> DHR gap (7.937 -> 4.266) is not
+  reachable by more pre-sieving. Backed by arithmetic - the K -> 1 limit IS
+  7.93727 and pre-sieving only moves K - so it is a result for THIS sieve, and a
+  judgment for the problem.
+* Page images read through a browser preview, not held in hand (same caveat as
+  round 24's Thm 7.7 check). Mitigated: eight printed numbers all reproduce from
+  the printed formulas, so an OCR corruption would have to be self-consistent.
+* **(5.38) (the definition of K) and (6.69) (a condition on kappa quoted inside
+  Proposition 6.7) were NOT re-fetched.** (5.38) is the hypothesis we used for
+  Thm 7.7 in rounds 23-24, matched against Dudek-Dunn Lemma 2.1. (6.69) is unread;
+  our operative alpha = 1/4 is the book's own choice in Corollary 6.13 "for
+  kappa > 0", so kappa = 2 at alpha = 1/4 is inside its applied range. FLAGGED.
+* p. 74 (rest of Prop 6.16, preliminary sieving) not obtained; our pre-sieving
+  accounting remains round 24's own.
+* No journal paper by S. Blight found (arXiv author page 404); the thesis appears
+  to be the only citable form.
+* The layered construction is bookkeeping. It should not be quoted as a theorem.
+* FKMPT "Long gaps in sieved sets" (arXiv:1802.07604): round 24's RELAY-SOURCED
+  flag is **discharged** - abstract and main theorem read first-hand 2026-08-29.
+  It is the ADVERSARIAL problem (classes GIVEN, |I_p| <= C_0, bound
+  x(log x)^(1/exp(C C_0))); ours chooses the classes and maximises. Neither
+  contains the other. Must be cited in the lower-ladder note.
+
+### 9i. Additions to the standing citation-hygiene lesson (7d)
+
+4. **PRICE PROPOSITIONS, NOT ONLY THEOREMS.** Round 24 priced ODC Thm 6.9 and Cor
+   6.10 and moved on; the usable result was Proposition 6.7 / Corollary 6.13 on
+   the facing pages, and it was worth seven units of exponent. A chapter is not
+   priced until its numbered non-theorems are.
+5. **A PRINTED NUMERICAL ROOT IS A CLAIM LIKE ANY OTHER.** ODC's alpha* = 0.264904
+   does not solve ODC's own printed equation. Re-solve every printed root from the
+   printed equation; it cost nothing and it improved the constant.
+
+### 9j. Reproduction (round 25)
+
+* `research/j2_odc6.py` -> `research/data/j2_odc6.out`. Sections A (ODC Ch.6
+  reproduced from its own formulas), B (the HR identity), C (pre-sieving ladder
+  K(p_0)), D (Theorem 2G), E (crossover vs 2E''), F (constant-free form).
+* `research/j2_rankin_layer.py` -> `research/data/j2_rankin_layer.out`. Sections
+  A-F as described in 9e.
+* `research/data/blight_thesis.pdf` (367,455 bytes) and
+  `research/data/blight_text.txt` (extracted text, pypdf).
+* Page scans of ODC pp. 65, 68-73, 112 at `research/data/odc6_scans/PA*.png`.
+* `research/j2_referee.py` re-run and GREEN before any of the above.

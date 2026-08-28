@@ -10,9 +10,80 @@ any publication use).
 
 Companion entries: `covering-lp-certificates.md` (the vehicle),
 `consistency-over-degree.md` (why consistency, not degree),
-`moment-degree-ceiling.md` (the ceiling the recursion escapes).  This entry
+`moment-degree-ceiling.md` (the ceiling the recursion escapes),
+`product-measure-frontier.md` (ROUND 25 - the closed form for this row's
+product-measure margin, which corrects the frontier reading below).  This entry
 answers the round-24 brief: does marginal consistency COMPOSED WITH the
 Costello-Watts recursion reach further than either alone?
+
+## 0. ROUND-25 CORRECTIONS (read these before the round-24 text below)
+
+Three round-24 statements in this entry are corrected by round-25 work
+(`research/row_decay.py`, `research/cw_decide25.py`, `research/_w19cons.py`);
+the round-24 text is left standing below so the record is auditable.
+
+C1.  "ITS OWN UNIFORM FRONTIER IS MACHINE 41" - WRONG FRAME, RIGHT NUMBERS.
+The six measured margins are correct, but they are not a machine frontier.  In
+closed form E_u[f] = W*Pi(y) - Delta(y,W), where Pi(y) = prod(1-2/q) is the
+machine's own survival density and Delta >= 0 is the summed excess of a phase
+MAXIMUM over its MEAN inside n_ij.  The gain is exactly linear in W and Pi(y)
+is positive at every machine, while Delta grows strictly sublinearly (measured
+doubling factor 1.455-1.682 over ten doublings), so EVERY machine has a finite
+threshold W_u(y) past which the row cuts uniform.  Exact: W_u = 10 / 48 / 83 /
+135 / 211 / 362 / 558 at y = 29 / 31 / 37 / 41 / 43 / 47 / 53 against budgets
+63 / 74 / 95 / 129 / 134 / 150 / 156.  Machine 41 fails because budget(41) =
+129 < 135, by SIX.  Full statement, proof and tables in
+`product-measure-frontier.md`.
+
+C2.  "CERTIFIES WIDTH 33 AT m19 WHERE NO DEGREE-2 CUT CERTIFICATE OF ANY KIND
+EXISTS" - REFUTED, BY MY OWN LANE.  The round-24 sentence conflated two
+relaxations.  The BLOCK-INDEPENDENT degree-2 relaxation is indeed feasible at
+width 33 (W*_indep(19) = 36).  The CONSISTENT degree-2 relaxation is NOT: an
+exact certificate of width 33 with no recursive row at all was produced this
+round (lhs 57481/2048 < rhs 114989/4096, 20,919 ops, 573 rows, 17 iterations;
+`research/_w19cons.py`).  So the m19 width gain belongs to CONSISTENCY, not to
+the recursion - which is the answer to the attribution question this entry
+left open in section 5.
+
+C3.  "CERTIFICATES 2-3x SMALLER" - TRUE AT THE BUDGET WIDTHS, NOT IN GENERAL.
+At m19 width 33 the composed certificate costs 19,653 ops against the
+consistent-only 20,919 - a factor of 1.06, not 2-3.  The saving is a
+budget-width phenomenon.
+
+C4a.  BOTH OPEN RUNGS ARE NOW EXACTLY REFUTED - THE VEHICLE PROVES NO NEW RUNG, AND
+THAT IS NOW A THEOREM ABOUT THE VEHICLE RATHER THAN A FAILED SEARCH.  Section 3's table
+records "19 -> 23: NO certificate (undecided)" and "23 -> 29: NOT DECIDED (starved)".
+Round 25 closes both, by exhibiting an exact rational feasible point of the FULL
+composition at the budget width - every block summing to 1, every consistency link
+exact, EVERY position's degree-<=2 moments completable by exact rational Farkas, and the
+recursive row satisfied:
+
+    19 -> 23, width 48: cut loop reproduces round 24 to the digit (t = +0.0368, 1,640
+        rows, 54 iterations) and passes a FINAL EXACT PASS AT MARGIN ZERO; witness by the
+        margin-repair construction, row slack +0.5309.
+    23 -> 29, width 63: cut loop converges at t = +0.1363 with 1,451 rows in 29
+        iterations; witness by the double-centred construction, row slack +0.8384.
+
+Both witnesses are saved and re-verified from disk in a second pass from a clean process
+(`research/data/r25/witness_m23_w48.pkl`, `witness_m29_w63.pkl`; gate step 5 of
+`research/cw_decide25.py GATE`).  So NO CERTIFICATE OF THIS VEHICLE EXISTS AT EITHER
+STEP - E5 of section 2 is CONFIRMED, and confirmed with proofs rather than with two
+searches that came up empty.  Together with the uniform-point refutation at 37 -> 41
+(see `product-measure-frontier.md`), the composition's rung ladder is closed at exactly
+the four rungs it already had.
+
+C4.  A PROCESS CORRECTION TO MY OWN ROUND-24 RULE.  "Feasible verdicts must
+save their witness" is necessary but NOT sufficient: the witness has to be
+EXACTLY IN THE POLYTOPE.  Rationalising a float LP point and repairing it does
+not guarantee that - the consistency links are sums that rounding does not
+preserve.  It happens to work at machine 13 and FAILS at machine 19 (the
+assertion fired).  The strengthened rule: an exact feasible verdict must come
+from a point that is consistent BY CONSTRUCTION - a global point (a rational
+mixture over full phase tuples), whose degree-2 marginals come from one
+distribution and therefore satisfy every consistency link at every level.
+`research/cw_decide25.py` implements that route and validates it in both
+directions at machine 13 (refutes at width 10, finds nothing at width 20 where
+a certificate exists).
 
 ## 1. WHAT IT IS
 

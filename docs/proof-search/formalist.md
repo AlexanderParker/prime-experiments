@@ -1518,3 +1518,391 @@ WITHDRAWN / DONE:
   delivered the fifth rung.
 - ~~The (A) word-list enumeration gap~~ - **DONE** (`LiteralCapTable`, 2.12); (A)
   is now FULLY kernel-checked.
+
+---
+
+## Round 25 append (2026-08-29)
+
+Brief: (1) A_4 at 29->31 via the dictionary-transfer superset - the `hE`
+shape of verdict 15, the SIXTH rung and the first by the new vehicle;
+(2) Constructor's `A_5(23)` closure = 55 as the cheaper input; (3) the
+11->13 survivor identity = 16 as the first kernel statement of the
+generator; (4) Lateral's m13 covering dual. The per-rung scan vehicle is
+dead (verdict 17) - no 29->31 scan attempted.
+
+**Build GREEN at 1410 jobs** (1372 -> 1410), 74 targets, 127 files, **zero
+sorries, zero `axiom` declarations, no `native_decide`, no
+`Lean.ofReduceBool`**. Ten new roots: `Machine29Q`, `Machine29D2..D7`,
+`Machine29Dict`, `Machine31`, `Gen11`, and for the seventh rung `Machine31Q`,
+`Machine31D2..D7`, `Machine31Dict`, `Machine37` - nineteen in all. Scaffolding
+deleted at close
+(`DryScan2.lean`, verdict 18's outstanding item, and this round's
+`_DryR25.lean`).
+
+### R25.1 THE SIXTH RUNG - (D) at 29->31, in five minutes instead of 170 hours
+
+The vehicle is NOT the 4-tuple dictionary the brief pointed at. Measuring
+first (`research/a4_potential.py`) killed that: over machine 29's exact
+45,854-row 4-tuple dictionary the qualifying-tail potential is INFINITE -
+the qualifying subgraph of the A_4 state digraph has CYCLES, because A_4
+cannot see that a run of six gaps `>= 10` is impossible (that is a 7-tuple
+fact). Same at m23 and m31; only m19's 380-row set is acyclic. **A_4 is the
+wrong state for this certificate, and one script said so in 30 seconds.**
+
+What works is the STRATIFIED QUALIFYING FAMILY. `MergeLaw.newgap_le_step`
+consumes only `F_2(M) <= B` and `Q_j(M; a) <= B` for `j >= 3`, and `Q_j`
+quantifies ONLY over windows whose interiors reach the floor `a = 2u''`. So
+the whole input is `D_j` = the realised `j`-windows with qualifying
+interiors, one list per depth, and the family TERMINATES at `j = K + 2`
+where `K` is the longest qualifying run (3, 4, 5 at m19, m23, m29 - it does
+not grow like the period). At machine 29, floor 10, budget `43 + 31 = 74`:
+
+    j        2      3      4      5      6      7      8
+    |D_j|   730  3,692  6,688  3,915    789     46      0
+    Q_j      55     65     68     71     71     71      -      max 71, margin 3
+
+15,860 tuples against a period of 1,078,282,205 slots. Landed theorems:
+
+```lean
+-- proofs/Machine29D2..D7.lean, one module per depth (NO AXIOMS AT ALL)
+theorem D4_ok : D4.all (fun t => Nat.ble (t.1 + t.2.1 + t.2.2.1 + t.2.2.2) 68)
+    = true := by decide +kernel
+
+-- proofs/Machine29Q.lean - machine 29's enumeration is complete, NO SCAN
+theorem opSeq29_surj {m : N} (hm : 1 <= m) (hE : Exposed29 m) :
+    exists n, opSeq29 n = m
+
+-- proofs/Machine29Dict.lean
+structure Census29 : Prop where          -- THE ONLY UNPROVED INGREDIENT
+  E2 : forall n, (g29 n, g29 (n+1)) in D2
+  E3 : forall n, 10 <= g29 (n+1) -> (g29 n, g29 (n+1), g29 (n+2)) in D3
+  E4 / E5 / E6 / E7   -- likewise, one qualifying interior more each
+  run : forall n, not (10 <= g29 (n+1) and ... and 10 <= g29 (n+6))
+theorem spectrum29_two (h : Census29) : Spectrum.SpectrumBound g29 2 55
+theorem qual29_three/four/five/six/seven (h : Census29) :
+    Spectrum.QualBound g29 5 j (65/68/71/71/71)
+theorem qual29_all (h : Census29) : forall j, 3 <= j -> Spectrum.QualBound g29 5 j 71
+theorem criterion_29_31 : max 55 71 <= 43 + 31        -- NO AXIOMS
+
+-- proofs/Machine31.lean - gear 31, teeth {5, 26}, u = 5, floor 2u = 10
+def Killed31 (k : N) : Prop := k % 31 = 5 or k % 31 = 26
+def Exposed31 (k : N) : Prop := Exposed29 k and not(31 | lo k) and not(31 | hi k)
+def g31 (n : N) : N := opSeq31 (n+1) - opSeq31 n
+theorem merge_alphabet (hk1 : Killed31 x) (hk2 : Killed31 y) (hxy : x < y)
+    (hle : y - x <= 43) : y-x = 10 or y-x = 21 or y-x = 31 or y-x = 41
+theorem D_at_29_31 (hF2 : Spectrum.SpectrumBound g29 2 55)
+    (hQ : forall j, 3 <= j -> Spectrum.QualBound g29 5 j 71) (n : N) :
+    g31 n <= 43 + 31
+theorem g31_le_71 (hF2) (hQ) (n : N) : g31 n <= 71     -- R39's own form
+theorem D_29_31 (h : Census29) (n : N) : g31 n <= 43 + 31   -- THE SIXTH RUNG
+theorem g31_le_of_census (h : Census29) (n : N) : g31 n <= 71
+```
+
+    step     criterion max(F2, max_j Q_j)   budget F+q'   margin   floor 2u'
+    11->13   max(11, 20) = 20               20             0 TIGHT   4
+    13->17   max(16, 26) = 26               28             2         6
+    17->19   max(25, 35) = 35               37             2         6
+    19->23   max(31, 47) = 47               48             1         8
+    23->29   max(39, 60) = 60               63             3        10
+    29->31   max(55, 71) = 71               74             3        10   <- NEW
+
+MEASURED COST, the headline: verdict 17 priced this rung at **~170 h**. The
+dictionary rung builds from cold in **under 5 minutes** - `Machine29D4`
+(6,688 tuples, the largest module) 55 s, `Machine29Dict` 9.8 s, `Machine31`
+13 s, whole driver 04:37:53 -> 04:42:45. Peak RSS ~1.1 GB per worker, so the
+round-24 parallelism budget of 2 was never binding. **The certificate's size
+is the dictionary's, not the period's**: 990 / 2,911 / 15,860 tuples at
+m19 / m23 / m29 against periods of 3.8e5 / 3.7e7 / 1.1e9 slots - roughly 5x
+per gear against 30x per gear for the period.
+
+MEMORY/ENCODING NOTES (new infrastructure facts):
+- A list literal of a few thousand tuples needs `set_option maxRecDepth`
+  (1,000,000 used); without it `Machine29D4` dies at the DEFINITION, not the
+  decide, with "maximum recursion depth" - 43 s to find out.
+- `decide +kernel` over `List.all` on 6,688 4-tuples costs 55 s INCLUDING
+  imports and has an EMPTY axiom footprint. The r24 rule of "~5e3 tuples per
+  declaration" is about DISTINCT SUB-COMPUTATIONS; a list of tuples with one
+  addition each is far cheaper per element than a walk, and 6,688 was
+  comfortable.
+- Extraction from a list fact is three lines and costs nothing:
+  `List.all_eq_true.mp Dj_ok _ (h.Ej a ...)`, then `simp only [Nat.ble_eq]`,
+  then `rw [wsj]` where `wsj : windowSum g29 a j = g29 a + ...` is proved by
+  `simp [Spectrum.windowSum, Finset.sum_range_succ]`.
+- The whole three-file development (`Machine29Q`, `Machine29Dict`,
+  `Machine31`, 483 lines) elaborated CLEAN ON THE FIRST TRY under the
+  axiom-stubbed mega-dry file, in 20 s. That discipline has now paid twice.
+
+### R25.2 THE CENSUS INPUT, AND ITS FOUR GATES
+
+`Census29` is a full-period claim about 1,078,282,205 slots and is NOT
+kernel-checked - that is the whole design, and `Machine29Dict.lean`'s header
+says so in the file. It is measured by `research/qual_dict.py` and gated by
+`research/qual_dict_gate.py` (ALL FOUR GATES GREEN):
+
+1. **Chunk independence** - the period is scanned twice with unrelated chunk
+   sizes (40,000,000 and 23,456,789); all six dictionaries, the whole `F_j`
+   ladder and the run length come out identical. This is the defence against
+   mechanic's standing rule 18 (a window straddling a junction seen by
+   neither pass), and I introduced exactly that bug and caught it with this
+   gate: the first version of `gaps_of_period` closed the cyclic seam with
+   the wrap gap but NOT with the period's own first gaps, so windows starting
+   at the seam were invisible. Fixed, and the gap count is now asserted equal
+   to `prod (q-2) = 214,708,725`.
+2. **Cyclic seam** - explicit, asserted.
+3. **Transcription** - the Lean literals are parsed back out of
+   `proofs/Machine29D*.lean` and compared as sets with the scan: all six
+   identical, and the six maxima 55/65/68/71/71/71 re-derived Lean-side.
+4. **Corpus agreement** - the same scanner at machines 19 and 23 reproduces
+   `F_j(19) = 25,31,35,38`, `Q_j(19;8) = 31,35,37,38`,
+   `F_j(23) = 34,39,50,58,65,77,83,88`, `Q_j(23;10) = 39,43,50,55,60` and
+   `F(29) = 43` - every one a kernel-checked value in this ledger.
+
+TWO CROSS-LANE CONFIRMATIONS fall out of the same scan:
+- **`F_2(29) = 55` exactly** - Constructor's `A_5(23)` survivor closure and
+  Mechanic's pair census agree; three independent routes, one integer. This
+  is brief item (2), delivered as `spectrum29_two` (the bound the rung needs)
+  rather than as a separate closure computation.
+- **`Q_J(29; 10) = 55, 65, 68, 71, 71, 71` for `J = 2..7`** - EXACTLY the
+  CORRECTED marked spectrum of verdict 12c, entry for entry, including the
+  `J = 5` value 71 whose published predecessor 85 was the DP artefact that
+  had made this rung look lost. A fourth route confirms the correction, and
+  the rung stands on it.
+- Correction to the corpus in passing: `docs/novel/survivor-generator.md`
+  records machine 29's period as "1,078,282,205 slots / 214,709,355 gaps".
+  The gap count is **214,708,725** = `3*5*9*11*15*17*21*27` = `prod (q-2)`,
+  asserted by the gate. The 214,709,355 figure is wrong by 630.
+
+### R25.3 THE GENERATOR, FIRST KERNEL STATEMENT (`proofs/Gen11.lean`)
+
+Brief item (3). Machine 11's cyclic gap word is 135 letters over 385 slots;
+gear 13 kills slot residues 2 and 11; the phase `c` mod 13 is free because
+`gcd(385, 13) = 1`. Constructor's generator is then a bounded walk.
+
+```lean
+def gw11 : List N            -- 135 gaps, the machine-11 cyclic word
+def gAt (i : N) : N := gw11.getD (i % 135) 0
+def off (i : N) : N -> N                       -- span of k consecutive gaps
+def kil13 (r : N) : Bool := (r % 13 == 2) || (r % 13 == 11)
+def walk (i c ns : N) : N -> N -> N -> N -> N  -- pass killed, stop at the
+                                               -- (ns+1)-st survivor
+def gen (ns : N) : N         -- max over 135 bases x 13 phases, span cap 30
+
+theorem gw11_len : gw11.length = 135                          -- [propext]
+theorem gw11_sum : gw11.sum = 385                             -- [propext]
+theorem gw11_max : gw11.all (fun g => Nat.ble g 7) = true     -- F(11) = 7
+theorem no_truncation : forall i < 135, 30 < off i 13         -- fuel never binds
+theorem gen_zero : gen 0 = 11        -- L (x) K* (x) R           = F(13)
+theorem gen_one  : gen 1 = 16        -- L (x) K* (x) SIGMA (x) K* (x) R = F_2(13)
+theorem generator_matches_machine13 :
+    gen 0 = 11 and gen 1 = 16 and Spectrum.SpectrumBound Machine13.g13 1 11
+      and Spectrum.SpectrumBound Machine13.g13 2 16
+```
+
+`gen 0` / `gen 1` are `[propext]` ALONE. `ns = 0` is R46's plain Kleene
+generator; `ns = 1` inserts Constructor's SIGMA letter exactly once - the
+survivor identity. **Both integers are produced from a 135-letter word over a
+385-slot period, with no mention of machine 13's 5005-slot period, and both
+match machine 13's own kernel-proved spectrum.** `no_truncation` (thirteen
+consecutive machine-11 gaps already span 33 > 30) shows the fuel exits by the
+span cap, never by exhaustion, so `gen` is a maximum over ALL windows of span
+at most 30, not merely over short ones - and the Python gate
+(`research/gen11.py`) shows the values are stable to span cap 60.
+
+HONEST SCOPE (see verdict 20): the SOUNDNESS BRIDGE is not formalised.
+
+### R25.4 WHAT WAS NOT DONE, AND WHY
+
+- **Brief item (4), the m13 covering dual, NOT ATTEMPTED.** Reason, not
+  judgment: the exact rational dual `1041/2081` is reported in
+  `docs/novel/covering-hierarchy-exactness.md` but the DUAL VECTOR IS NOT ON
+  DISK - `research/sdp_cover.py` has no save path (grep for `np.save` /
+  `json.dump` / any file write returns nothing) and no `sdp_*` artefact in
+  `research/data/` carries it. Kernel-checking it therefore means
+  reconstructing Lateral's Sherali-Adams level-2 system at m13 (793 rows over
+  its own literal encoding) and re-solving, which is a lane-crossing
+  reconstruction rather than a transcription. Round-24's process rule
+  ("feasible verdicts must save their witness") applies here and is the fix:
+  if Lateral saves the dual vector, the denominator and the row generator,
+  the Lean side is an afternoon.
+- **The dictionary-transfer superset was NOT used as the `E` in the end.**
+  Measured reason: the transfer produces `m`-tuple dictionaries, and the
+  qualifying family needs depths up to `K + 2 = 7`; `dict_transfer.py` at
+  `out_m = 7` is far past the cost it was built for. The exact m29 census is
+  smaller and equally hypothesis-shaped. The transfer remains the right way
+  to DISCHARGE `Census29` from `Census23` - see open target 1.
+
+### R25.5 New will-not-close / honest-scope verdicts
+
+19. **The A_4 (4-tuple) abstraction cannot carry the qualifying-tail
+    potential, and the reason is a cycle, not looseness.** Measured
+    (`research/a4_potential.py`): over the exact realised 4-tuple dictionary
+    the sub-digraph on states whose first gap qualifies contains a CYCLE at
+    m23 (15,696 edges), m29 (45,854) and m31 (115,193), so the longest
+    qualifying path is INFINITE and no potential of that arity exists. Only
+    m19's 380-row set is acyclic (value 25). The obstruction is exactly that
+    a 4-tuple cannot express "no six consecutive gaps reach the floor".
+    **A_5 would not fix m29 either** (the run is 5, so the fact is a 7-tuple
+    fact); what fixes it is stratifying by depth, which is what R25.1 does.
+    Recorded because the brief pointed at A_4 and the negative is cheap,
+    exact and reusable.
+20. **The generator's SOUNDNESS BRIDGE at 11->13 is not formalised.**
+    `Gen11.gen_one = 16` says the generator COMPUTES `F_2(13)`; it does not
+    prove it MUST. Two things are missing and both are known-shaped:
+    (i) `gw11` certified as machine 11's own opening sequence (a 385-slot
+    `decide`, cheap), and (ii) the PERIODICITY GLUE
+    `Machine11.opSeq (n + 135) = Machine11.opSeq n + 385` - which is verdict
+    11's missing step at another machine. Until (ii) exists, no statement in
+    this ledger should be read as "the generator is proved sound". Naming it
+    also MERGES TWO OPEN TARGETS: the depth-sum glue at m13 (verdict 11) and
+    this are the SAME lemma at two machines, and doing it once as an abstract
+    "a periodic decidable opening predicate has a periodic enumeration"
+    discharges both.
+21. **`Census29` is not, and will not be, kernel-checkable at this machine.**
+    Unchanged from verdict 15 and restated because R25.1 might be misread:
+    the rung is `D_29_31 (h : Census29)`. Anyone quoting it must quote the
+    hypothesis. What R25.1 changes is only that the unverifiable part is now
+    ONE FINITE LIST with a published format and four gates, instead of a
+    1.08e9-slot claim with no interface.
+
+### R25.6 THE SEVENTH RUNG - (D) at 31->37, and the first non-monotone qualifying spectrum
+
+The vehicle of R25.1 is a template, so once it existed the next rung was a
+census plus a transcription. Machine 31's full period - 33,426,748,355 slots,
+6,226,553,025 gaps (`= prod (q-2)`, asserted) - scanned in **1,451 s of CPU /
+24 min wall** by the same `research/qual_dict.py`. Gear 37's teeth are
+`{6, 31}` (`6*6 = 36 = 37-1`, `6*31 = 186 = 5*37+1`), so `u = 6` and the
+qualifying floor on machine 31's gap word is `2u = 12`; the budget is
+`F(31) + 37 = 58 + 37 = 95`.
+
+    machine 31, floor 12, budget 95
+    j        2      3      4      5      6      7      8
+    |D_j|  1,253  8,155 18,566 13,049  2,120     42      0
+    Q_j       68     85     90     91     90     88      -    max 91 <= 95, margin 4
+
+    F_j(31) = 58, 68, 85, 90, 92, 97, 104, 110, 115, 131   (F(31) = 58 gate-checked)
+    longest run of gaps >= 12: 5
+
+**THE QUALIFYING SPECTRUM TURNS OVER.** `Q_j(31; 12)` rises 68, 85, 90, 91
+and then FALLS BACK to 90, 88. At machines 19, 23 and 29 it was
+non-decreasing and then saturated (31,35,37,38 / 39,43,50,55,60 /
+55,65,68,71,71,71). Machine 31 is the first machine in this ledger where it
+peaks and declines before going vacuous, and the consequence is concrete: the
+constraint that BINDS this rung is a FIVE-gap window with three qualifying
+interiors, not the two-gap statement and not the deepest window. Any argument
+that assumes `Q_j` is monotone in `j`, or that the binding depth is the last
+non-vacuous one, is false from machine 31 on. This is a new measurement of a
+new object, and it is the kind of thing the dictionary makes cheap to see.
+
+
+NEW INFRASTRUCTURE FACT, PAID FOR IN A FAILED BUILD: a big list literal has
+TWO elaborator limits, not one, and the second scales with TUPLE ARITY.
+`set_option maxRecDepth` (R25.1) gets you past the recursion depth; at machine
+31 the modules then died with
+
+    error: (deterministic) timeout at `isDefEq`, maximum number of heartbeats
+    (200000) has been reached
+
+- and the follow-on `Unknown identifier D4.all`, which is the DEFINITION
+having failed, not the decide. The failure points are diagnostic: `D4`
+(4-tuples) died at about element 6,760 and `D5` (5-tuples) at about element
+3,540, while `D3` (8,155 3-tuples) elaborated fine in 67 s. So the heartbeat
+budget is consumed roughly linearly in (count x arity), and machine 29's
+modules had merely sat under it by luck - its D5 has 3,915 5-tuples, just
+below where machine 31's D5 died. THE FIX is
+`set_option maxHeartbeats 4000000` alongside `maxRecDepth`, and it is applied
+UNIFORMLY to every emitted dictionary module including machine 29's - a file
+that builds only because it happens to sit under a hidden limit is exactly
+what bites the next machine. Both are elaboration RESOURCE limits: neither
+touches the axiom footprint, which stays empty for every `Dj_ok`.
+
+
+GATED THE SAME FOUR WAYS (`research/qual_dict_gate31.py`, MACHINE-31 GATE
+GREEN, run to completion): the whole 33,426,748,355-slot period RESCANNED at
+an unrelated chunk size (37,000,001 against 60,000,000) with all six
+dictionaries identical (1,253 / 8,155 / 18,566 / 13,049 / 2,120 / 42), the
+gap count asserted equal to `prod (q-2) = 6,226,553,025`, `F(31) = 58` against
+the corpus, the qualifying run 5, `max_j Q_j = 91 <= 95`, and the
+transcription against `proofs/Machine31D*.lean` identical set for set. The
+census hypothesis `Census31` gets exactly the standard this lane applied to
+`Census29`; nothing was claimed before the gate finished.
+
+Landed theorems (`proofs/Machine31Q.lean`, `Machine31D2..D7.lean`,
+`Machine31Dict.lean`, `Machine37.lean`):
+
+```lean
+theorem opSeq31_surj {m : N} (hm : 1 <= m) (hE : Exposed31 m) :
+    exists n, opSeq31 n = m                      -- no scan, same induction
+structure Census31 : Prop where                  -- E2..E7 + run, floor 12
+theorem spectrum31_two (h : Census31) : Spectrum.SpectrumBound g31 2 68
+theorem qual31_five (h : Census31) : Spectrum.QualBound g31 6 5 91  -- BINDS
+theorem qual31_all (h : Census31) : forall j, 3 <= j -> Spectrum.QualBound g31 6 j 91
+theorem criterion_31_37 : max 68 91 <= 58 + 37                      -- NO AXIOMS
+
+-- proofs/Machine37.lean - gear 37, teeth {6, 31}, u = 6, floor 2u = 12
+def Killed37 (k : N) : Prop := k % 37 = 6 or k % 37 = 31
+def g37 (n : N) : N := opSeq37 (n+1) - opSeq37 n
+theorem merge_alphabet ... (hle : y - x <= 58) :
+    y-x = 12 or y-x = 25 or y-x = 37 or y-x = 49
+theorem D_at_31_37 (hF2 : Spectrum.SpectrumBound g31 2 68)
+    (hQ : forall j, 3 <= j -> Spectrum.QualBound g31 6 j 91) (n : N) :
+    g37 n <= 58 + 37
+theorem g37_le_91 (hF2) (hQ) (n : N) : g37 n <= 91
+theorem D_31_37 (h : Census31) (n : N) : g37 n <= 58 + 37   -- THE SEVENTH RUNG
+theorem g37_le_of_census (h : Census31) (n : N) : g37 n <= 91
+```
+
+    step     criterion max(F2, max_j Q_j)   budget F+q'   margin   floor   |D|
+    11->13   20                             20             0 TIGHT   4       -
+    13->17   26                             28             2         6       -
+    17->19   35                             37             2         6       -
+    19->23   47                             48             1         8     990
+    23->29   60                             63             3        10   2,911
+    29->31   71                             74             3        10  15,860
+    31->37   91                             95             4        12  43,185   <- NEW
+
+**NO PERIOD SCAN OF EITHER MACHINE EXISTS OR EVER WILL.** The 23->29 rung
+needed a 37,182,145-residue kernel scan costing 3 h 36 min; machine 31's
+period is 33,426,748,355 slots, nine hundred times larger, and this rung
+never touches it. THE DICTIONARY GROWS ~3-5x PER GEAR WHILE THE PERIOD GROWS
+~30x: 990 / 2,911 / 15,860 / 43,185 tuples at m19 / m23 / m29 / m31 against
+periods of 3.8e5 / 3.7e7 / 1.1e9 / 3.3e10. And **`K`, the longest qualifying
+run - the thing that decides how DEEP the family goes - did NOT grow from
+machine 29 to machine 31** (3, 4, 5, 5 at m19, m23, m29, m31). That is the
+first evidence on the open question this vehicle's lifetime depends on.
+
+CROSS-CHECK AGAINST CONSTRUCTOR'S SCAN-FREE CERTIFICATE (checked before
+citing, and the check changed what I was going to write). Their round-25
+`docs/novel/scanfree-certificate.md` reports 31->37 as "bound 95 <= budget
+95". That is NOT a loose version of my 91: their CEGAR `bound` column is the
+BUDGET at every step by construction (48/63/74/95 against budgets
+48/63/74/95) because the loop is asked to certify `<= budget` and stops when
+it does. The two lanes therefore AGREE and are not comparable as sharpness -
+their route certifies `g(M+q') <= F(M) + q'` directly, mine certifies the
+sharper R39 criterion `g37 <= 91` (`Machine37.g37_le_91`) and then weakens it
+to the budget. Where the two CAN be compared they match exactly: their gate
+(c) reports `F_1..F_4(29) = [43, 55, 65, 70]`, and my independent full-period
+scan gives `F_j(29) = 43, 55, 65, 70`; their `F_2` row has `F_2(31) = 68`,
+and mine gives 68. Two independent codebases, one set of integers.
+
+### R25.7 Open formalisation targets (round-26 priority order)
+
+1. **Discharge `Census29` from `Census23` by the dictionary transfer.** The
+   transfer is sound by construction (the order-`m` closure of a dictionary
+   is a superset); if it can produce a superset of machine 29's QUALIFYING
+   family at depths up to 7 from machine 23's 4-tuple dictionary, then one
+   census at machine 23 underwrites every rung above it - and machine 23's
+   period is the largest this lane has ever kernel-scanned, so the chain
+   would bottom out at something already proved. Highest-value item.
+2. **The periodicity glue, once, abstractly** (verdicts 11 and 20): for a
+   decidable opening predicate periodic mod `P` with `N` openings per period,
+   `opSeq (n + N) = opSeq n + P`. It closes the depth-sum identity at m13 AND
+   the generator's soundness bridge at 11->13.
+3. ~~The 31->37 rung by the same vehicle~~ - **DONE in this round** (R25.6).
+   The next is 37->41: machine 37's period is 1,236,789,689,135 slots, about
+   15 min of CPU per pass by the same script, so still cheap. The binding
+   question is whether `K` stays at 5.
+4. **The SANDWICH LEMMA** (constructor R51) - still the only route that
+   removes the census hypothesis altogether rather than shrinking it.
+5. The m13 covering dual (blocked on the witness being saved - R25.4).
+6. Harvester's paired-Holt coef rung; suppression-corrected flatness at a
+   further machine; the CRT single-cycle reduction. Unchanged.

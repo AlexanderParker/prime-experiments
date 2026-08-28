@@ -860,3 +860,200 @@ potential-arity-ladder.md, covering-hierarchy-exactness.md.
 
 Cross-lane data cited: data/satruns_ge10.csv, data/gap_pair_joint.csv, data/gap_pair_hist.csv,
 data/gap_histograms.csv, docs/forbidden-configurations.md.
+
+## Round 25 (2026-08-29) - mandate restored: own backlog, own choice
+
+CHOSE U1 + U2 + U3 and the permitted MIRROR-LAW item, because they turned out to be
+ONE object: the involution k -> -k, which pins the parity of every count in the machine
+AND supplies the coordinates in which the round-21 phase/amplitude laws become exact
+integer statements. U4 (Farey consequences) and U5 (the 613 cosine near-collisions) were
+NOT worked this round - depth on a connected cluster beat breadth; they stay in the
+backlog untouched and unclaimed.
+
+### Established results (continuing the numbering; do not renumber 1-45)
+
+46. THE MIRROR PARITY LAWS (r25; proved, elementary, and script-verified exact).
+    Slot k is blocked iff a gear divides 6k-+1, invariant under k -> -k, so the OPENING
+    SET IS EXACTLY CLOSED UNDER NEGATION; 0 is always an opening and P is odd, so 0 is
+    the ONLY fixed slot and on indices the map is o_t -> o_{N-t}.
+    (a) WINDOW PARITY. Mirror sends the depth-j window at index t to the one at N-t-j;
+        N = prod(q-2) is odd so 2t = -j (mod N) has EXACTLY ONE solution. Hence for
+        every depth j, W_j(g) is EVEN for every g except the single length g_j* of the
+        window at t_j = -j/2 (mod N), where it is ODD. Asserted j = 1..12 at m11-19,
+        with g_j* predicted in advance and matched every time.
+        Corollary: W_1(F) is EVEN unless F is the antipodal gap (it is not, at any
+        machine tested) - THE MAXIMAL GAP ALWAYS OCCURS AN EVEN NUMBER OF TIMES.
+    (b) WORD REVERSAL. Mirror reverses gap words, so the depth-j gap-word census is
+        EXACTLY reverse-symmetric and every PALINDROMIC word count is EVEN except one
+        word per depth. At j = 2 that word is FORCED to be (k_1,k_1), k_1 = the first
+        opening. Asserted j = 2,3,4 at m11-19 (25/50/73 .. 221/1216/4489 words).
+        This upgrades r7 item 9(b) ("closest to revcomp-symmetric") from approximate to
+        EXACT for gap words - the residual asymmetry there is in the L/R labelling only.
+    (c) THE ADJACENT-GAP COROLLARY (what the brief asked for). Since k_1 < F always, the
+        unique self-mirror adjacent pair is never (F,F). SO ANY ADJACENT CONFIGURATION
+        WITH g_1 = g_2 - IN PARTICULAR AN (F,F) PAIR REALISING F_2 = 2F - OCCURS AN EVEN
+        NUMBER OF TIMES. "Big next to big" of equal size can never happen exactly once:
+        a counting argument that caps such configurations at ONE proves there are NONE.
+        Measured #(F,F) = 0 at m11/13/17/19. ROUTED TO THE MANAGER, not developed here.
+    (d) FREE CONSISTENCY CHECK, and it fired immediately: EVERY full-period ghist row in
+        data/gap_pair_hist.csv carries N-1 gaps, not N - the census closed the period
+        LINEARLY and dropped the WRAP-AROUND gap (size k_1 = 3,3,5,5,5,7,7 at m11..31).
+        Relative error 1e-9, harmless for densities, fatal to every exact integer
+        identity. mirror_cells.load_ghist repairs and asserts it. TEAM-WIDE FINDING.
+
+47. THE GEAR-p CELL DECOMPOSITION (r25; proved + exact). Openings lie on the exposed set
+    A_p (|A_p| = p-2) and p-2 consecutive exposed phases span exactly p slots, so for
+    zeta = e(1/p), zeta^{gap} depends ONLY on (start phase i, n mod (p-2)) with n the
+    EXPOSED-STEP COUNT of item 38. The (p-2)x(p-2) integer CELL MATRIX M[i][s] therefore
+    carries the whole frequency-1/p transform of the gap histogram. CRT fixes row sums
+    (N/(p-2) each); mirror pairs cell (i,s) with (-(phase_i+Delta), s). Count:
+    (p-2)^2 cells, p-2 mirror-fixed, (p-2)(p-1)/2 orbits, (p-2)(p-3)/2 FREE INTEGERS.
+    AT p = 5 THAT IS THREE - for every machine, for ever.
+    Explicitly, with (e,b,c) = (T[2][0], T[0][2], T[0][3]) and a = N/3 - b - c:
+        N_0 = a+2e, N_1 = N/3-e-c, N_2 = 2b, N_3 = 2c, N_4 = N/3-e-b,
+    so N_2 and N_3 are ALWAYS EVEN and
+        THE MIRROR RELATION:  2 (N_1 - N_4) = N_2 - N_3,  exactly, every machine,
+    and (using 1 + omega + omega^4 = phi)
+        Re H_5(1) = phi*N/3 + (3-phi) e - ((3phi+1)/2)(b+c)
+        Im H_5(1) = (2 sin36 + sin72)(b-c) = (2 sin36 + sin72)(N_2-N_3)/2.
+    Asserted from full-period scans at m11-19 and from the census at m11-31; the
+    partial-coverage m37 row is carried as a CONTROL and fails, as a period-wide law
+    must. The IMAGINARY part of the whole transform is ONE integer.
+
+48. THE PARITY THEOREM - THE POLE PHASE IS UNATTAINABLE - AND WHY GEAR 5 IS SPECIAL
+    (r25; closes backlog U3). arg H_5(1) = 126 deg (equivalently: the bracket
+    B = H(1-omega)/omega is real) iff (a) N_0+N_1 = 2N_3 AND (b) N_0+N_1 = N_2+N_4. In
+    cell variables (b) reads 2(b+c-e) = N/3, and N/3 is ODD. Therefore
+        THEOREM. D := (N_0+N_1) - (N_2+N_4) is ODD at every machine, equivalently
+        (N_2+N_3) - 2N_0 = 2 (mod 4). THE POLE PHASE 126 IS NEVER ATTAINED EXACTLY.
+    Asserted at m11..m31 (defects 38, 282, 2998, 37306, 634182, 13462586, and the m31
+    row - all = 2 mod 4). A SECOND, INDEPENDENT refutation of the r21 pin (Refuted 17
+    killed it by drift; this kills it by arithmetic).
+    BRACKET FORM: Im B_5 = alpha_1 sin72 + alpha_2 sin36 with alpha_r = beta_r-beta_{-r},
+    beta_r = N_{r+1}-N_r; the sines are Q-independent so integer realness forces
+    alpha_1 = alpha_2 = 0, and alpha_1 = -D is odd. What the machine does instead is
+    drive the RATIO to the golden direction: alpha_1/alpha_2 -> -sin36/sin72 = -1/phi,
+    measured -0.8636, -0.8393, -0.7305, -0.6403, -0.6448, -0.6231, -0.5943 at m11..31,
+    CROSSING -1/phi between m29 and m31 - exactly where arg B(5,1) crosses 0
+    (+0.06 at m29, -0.23 at m31, -0.34 on partial m37).
+    U3 ANSWERED, two ways. (i) STRUCTURAL: a GF(2) test over mirror orbits shows GEAR 5
+    IS THE ONLY PARITY-OBSTRUCTED GEAR for p <= 37; and realness costs (p-1)/2 integer
+    equations, so at p = 5 it is ONE ratio chasing one irrational while at p = 7 THREE
+    independent asymmetries must vanish at once. (ii) MEASURED: gear 7's asymmetries are
+    an order of magnitude larger and decay far more slowly (max|alpha|/N 0.259 -> 0.164
+    over m11..37 vs gear 5's 0.141 -> 0.019) - which is the whole of "arg B(7,1) climbs
+    -2.4 -> +17.0 while arg B(5,1) converges to 0".
+    Honest scope: the parity floor forces |dev| > 0 by only ~1e-6 deg. It kills the pin
+    as an EXACT statement; the measured +-4 deg is a different quantity.
+
+49. THE AMPLITUDE NEAR-LAW IS A CROSSING SCALE, NOT AN INVARIANT (r25; closes U2).
+    (a) EXACT ANCHOR. The r21 closure gives sum_{j=1..N-1} What_j(omega) =
+        (2-phi) n_side^2 - N, so THE MEAN ARM over all proper depths is
+        ((2-phi)n_side^2 - N)/(N-1) -> (2-phi)N/9 = 0.042440 N - REAL POSITIVE, and
+        exactly the value |What_1| would take if consecutive openings decorrelated.
+        Verified over ALL N-1 depths, exactly and real, at m11 and m13. Hence the
+        near-law is precisely |What_1|/mean arm = 23.92/lam, and lam = 23.92 IS THE
+        MACHINE SIZE AT WHICH DEPTH 1 BECOMES A TYPICAL ARM. 1.015 is that crossing
+        scale. (Measured |H|/N*lam: 1.1260, 1.0362, 1.0150, 1.0139, 1.0193, 1.0161 at
+        m11..29 - the m11 value is already 11% off, so "no trend over eight machines"
+        was m17-onward flatness, 1.0158 +- 0.25%.)
+    (b) PHASE GRADING. The phase-blind step model (M[i][s] independent of i) forces
+        N_2 = 2N_1 and N_3 = 2N_4; measured N_2/2N_1 = 1.200 -> 1.065 and N_3/2N_4 =
+        1.833 -> 1.126 at m11..29, and the blind model recovers |H| to 91.5% -> 95.7%.
+        So the amplitude is ~95% a statement about the exposed-step count mod 3 (item
+        38's object) and ~5% about the starting phase - AND THE GRADED PART IS SHRINKING.
+    (c) CORRIDOR-RENEWAL LADDER (new construct). Model openings as an independent
+        thinning, at the rate fixed by the true mean gap, of the slots exposed mod m;
+        compute E[omega^gap] exactly by first passage on the m-cycle. GATE: at m = P the
+        model reproduces the machine to 1e-9 (asserted). Result, |H|/N*lam:
+            y      lam    meas     m=5    m=35   m=385  m=5005 m=85085
+            11   2.852  1.1260  1.0916  1.2194  1.1260      -       -
+            13   3.370  1.0362  1.0199  1.1874  1.1050  1.0362      -
+            17   3.820  1.0150  0.9707  1.1709  1.1032  1.0380  1.0150
+            19   4.269  1.0139  0.9292  1.1594  1.1066  1.0441  1.0259
+            23   4.676  1.0193  0.8965  1.1512  1.1111  1.0503  1.0354
+            29   5.022  1.0161  0.8713  1.1449  1.1149  1.0553  1.0428
+        NO FIXED CORRIDOR DEPTH REPRODUCES THE FLAT 1.015: m=5 decays 1.09 -> 0.87 and
+        every deeper column RISES. The flatness is the cancellation of a decaying
+        shallow drift against a rising deep drift as the machine's own corridor depth
+        grows with it. Pushed past the data each fixed-m column has a MINIMUM near
+        lam ~ 16-24 and then grows toward (2-phi)lam/9.
+    HONEST OPEN PART: the plateau's WIDTH and the DIRECTION of its break are not
+    settled - the corridor model turns UP past lam ~ 24 while the r21 closed-form M1
+    predictor DECLINES (1.060 -> 0.906 over y = 41..449, data/r25_asym.log). Both agree
+    it is not constant. Decidable by one full-period m37 or m41 gap histogram.
+
+50. THE m29 DEPTH SPIRAL (r25; closes U1 - the rung nobody had run). Streaming rewrite
+    (research/spiral29.py: only opening RESIDUES mod 5 in a rolling J-buffer, since
+    omega^5 = 1; ~200 MB peak instead of the r21 code's ~1.7 GB) over the full m29
+    period P = 1,078,282,205, N = 214,708,725 openings, all gates green.
+    W_1 arm: |W_1|/N = 0.2023 at arg 126.06 deg. W_2 ARM LADDER, reproducing r21 and
+    extending it: -9.20, +33.90, +66.47, +87.71, +113.15, +118.78 deg at m11..29 -
+    STILL CLIMBING TOWARD THE POLE PHASE, but the increment COLLAPSED from +25.4 to
+    +5.6. |W_2|/N decays 0.0985 -> 0.0173. The large-j arms settle near the mean-arm
+    value with small argument (|W_j|/N ~ 0.042-0.061, arg -3 .. +13 deg for j = 19..25),
+    which is item 49(a)'s floor showing up directly in the spiral.
+
+### Refuted angles (continuing)
+
+30. My own pre-registered P4 (r25): "the corridor-renewal ladder converges UPWARD with
+    m, and m=385 is within 5% of measured at m19/23". REFUTED by my own script: m=5 is
+    below, every m >= 35 is ABOVE, so convergence is from above, and m=385 is 9.1% high
+    at m19. The useful residue is the correct statement in 49(c).
+31. My own pre-registered P5 (r25): "the phase-blind step model departs from the truth
+    by >= 5% at every machine". REFUTED: 4.8/4.5/4.3% at m19/23/29 and SHRINKING. Right
+    in direction, wrong in size, and the shrinkage is the finding.
+32. My own pre-registered P6 (r25): "the closed-form M1 model exceeds 1.10 by y <= 200",
+    i.e. the amplitude law breaks UPWARD within reach. REFUTED: M1 gives 1.060, 1.055,
+    1.053, 1.049, 1.044, 1.037, 1.027, 1.019, 1.002, 0.986, 0.967, 0.947, 0.927, 0.906
+    at y = 41..449 - a slow DECLINE. Two models now disagree on the break direction
+    (Refuted-30's ladder turns up, M1 turns down); only "not constant" is established.
+33. "The 1.015 amplitude near-law is a machine-independent invariant" (r21 item 32's own
+    label, carried as backlog U2): REFUTED as an invariant - it is the crossing scale
+    lam = 23.92 of item 49(a), it is already 11% off at m11, and no fixed corridor depth
+    reproduces its flatness. The LAW that survives is the exact mean-arm identity.
+
+### Prediction scorecard, round 25 (pre-registered before the runs)
+
+  P1 unique odd depth-2 palindrome is (k_1,k_1); #(F,F) even everywhere: CONFIRMED
+     (m11-19; #(F,F) = 0 at all four).
+  P2 gear 7's pole condition is NOT parity-obstructed: CONFIRMED (GF(2) test).
+  P3 gear 5 is the ONLY parity-obstructed gear among p <= 37: CONFIRMED - and this was
+     the round's most useful prediction, since it is the structural half of U3.
+  P4 corridor ladder converges upward, m=385 within 5% at m19/23: REFUTED (Refuted 30).
+  P5 |H_pb|/|H| departs from 1 by >= 5% everywhere: REFUTED (Refuted 31).
+  P6 the closed-form model exceeds 1.10 by y <= 200: REFUTED (Refuted 32).
+  3 confirmed, 3 refuted, all three refutations this lane's own.
+
+### Backlog changes
+
+CLOSED this round: U1 (m29 spiral, item 50), U2 (amplitude near-law, item 49),
+U3 (gear 7 vs gear 5, item 48). The permitted mirror-law item delivered items 46-48.
+STILL UNTOUCHED, carried verbatim: U4 (Farey-spectrum consequences) and U5 (the 613
+cosine near-collisions at m31) - not worked, not weakened, not claimed.
+
+NEW, from this round:
+U6. WHY does alpha_1/alpha_2 converge on -1/phi? Measured, not derived; and it has now
+    CROSSED (-0.6231 at m29, -0.5943 at m31, -0.5778 on partial m37). Does it overshoot
+    permanently, or oscillate about the golden direction? Needs one more full-period
+    histogram (m37) - the same datum item 49 needs.
+U7. The gear-7 cell matrix measured DIRECTLY (10 free integers): which orbit carries the
+    drift? Item 48 measured the aggregate asymmetries only. Cheap: one full-period pass
+    already written (spiral29.py generalises from p = 5 to any p).
+U8. Kernel handoff: the parity theorem (N_2+N_3) - 2N_0 = 2 (mod 4) and the mirror
+    relation 2(N_1-N_4) = N_2-N_3 are finite, integer, per-machine statements - the
+    cheapest Lean targets this lane has produced.
+U9. The plateau break: two models disagree in DIRECTION (Refuted 32). One full-period
+    m37 or m41 gap histogram decides it.
+
+### Reproduction pointers
+
+Round 25: research/spiral29.py (streaming depth spiral + cell table + parity columns for
+any machine; "python spiral29.py <y> --J 25"; logs data/spiral_{11,13,17,19,23}.log,
+data/spiral29.log, JSON data/spiral_<y>.json); research/mirror_cells.py (parts A-F;
+"--parts ABCDEF --maxy 19"; log data/mirror_cells.log; 9 assertion gates, exit 0);
+data/r25_asym.log (c14_phase.py --asym sweep to y = 449, the P6 test).
+NOTE: mirror_cells.load_ghist REPAIRS data/gap_pair_hist.csv's missing wrap gap; any
+future consumer of that file should use it or repeat the repair.
+Novel-register docs added: docs/novel/mirror-parity-laws.md,
+docs/novel/gear-cell-decomposition.md.

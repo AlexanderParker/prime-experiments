@@ -37,6 +37,35 @@ if len(sys.argv) > 7:
     A_FLOOR = int(sys.argv[7])
 SPAN_CAP = int(sys.argv[5]) if len(sys.argv) > 5 else 200
 JMAX = int(sys.argv[6]) if len(sys.argv) > 6 else 7
+# ROUND-25: optional argv[8] = 'legal'.  THE WORD-LEGAL CRITERION.
+# The plain qualifying condition asks only that each of the J-2 middle gaps be
+# >= a = 2u'.  What the MERGE LAW actually needs is stronger and is exactly
+# a_kill.py's word legality: the J-1 interior openings are all deleted by ONE
+# phase of gear QPP, so each middle gap must lie in V = {0, +s, -s} mod QPP
+# (s = 2u' mod QPP) AND the resulting letter word must have prefix-sum range
+# <= 1 (the two teeth are one step apart).  ">= a" is the shadow of that: the
+# smallest positive legal value IS a, so 'legal' is a strict refinement and
+# feasible_marks' a-spacing pre-filter stays sound.
+WORDLEGAL = len(sys.argv) > 8 and sys.argv[8] == 'legal'
+_S_LET = (2 * pow(6, -1, QPP)) % QPP
+
+
+def legal_word(gaps):
+    """gaps (the J-2 middle gaps) form a kill word for one phase of QPP."""
+    p = lo = hi = 0
+    for v in gaps:
+        r = v % QPP
+        if r == 0:
+            L = 0
+        elif r == _S_LET:
+            L = 1
+        elif r == (-_S_LET) % QPP:
+            L = -1
+        else:
+            return False
+        p += L
+        lo, hi = min(lo, p), max(hi, p)
+    return hi - lo <= 1
 F_EXACT = {13: 11, 17: 18, 19: 25, 23: 34, 29: 43, 31: 58, 37: 88, 41: 91,
            43: 103, 47: 118, 53: 145}   # 47 pinned this round (F(2,47) = 354)
 Q_EXACT = {(23, 10): {2: 39, 3: 43, 4: 50, 5: 55, 6: 60, 7: 0},
@@ -44,7 +73,7 @@ Q_EXACT = {(23, 10): {2: 39, 3: 43, 4: 50, 5: 55, 6: 60, 7: 0},
            (31, 12): {2: 68, 3: 85, 4: 90, 5: 91, 6: 90, 7: 88}}
 TARGET = NEW[-1]
 BUDGET = F_EXACT[TARGET] + QPP
-KNOWN_Q = Q_EXACT.get((TARGET, A_FLOOR))
+KNOWN_Q = None if WORDLEGAL else Q_EXACT.get((TARGET, A_FLOOR))
 
 
 def primes_upto(n):
@@ -102,8 +131,9 @@ def main():
     n = len(op)
     us = [pow(6, -1, q) for q in NEW]
     print(f"machine {OLD} (P = {P:,}, {n:,} openings) + gears {NEW} "
-          f"-> Q_J({TARGET}; {A_FLOOR}); budget F({TARGET})+{QPP} = {BUDGET}",
-          flush=True)
+          f"-> Q{'*' if WORDLEGAL else ''}_J({TARGET}; "
+          f"{'word-legal for ' + str(QPP) if WORDLEGAL else A_FLOOR}); "
+          f"budget F({TARGET})+{QPP} = {BUDGET}", flush=True)
     print(f"  period ratio bought: {prod(NEW):,}", flush=True)
     LOOK = 96
     ext = op + [x + P for x in op[:LOOK]]
@@ -188,8 +218,11 @@ def main():
                         if len(forced) != need:
                             continue
                         wf = tuple(sorted(forced))
-                        if all(pos[wf[t + 1]] - pos[wf[t]] >= A_FLOOR
-                               for t in range(need - 1)):
+                        mids = [pos[wf[t + 1]] - pos[wf[t]]
+                                for t in range(need - 1)]
+                        ok = (legal_word(mids) if WORDLEGAL
+                              else all(g >= A_FLOOR for g in mids))
+                        if ok:
                             if span > best[J]:
                                 best[J] = span
                                 bestw[J] = (x0, m, tuple(phases), wf)

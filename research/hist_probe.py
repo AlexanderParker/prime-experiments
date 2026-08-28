@@ -54,6 +54,23 @@ def histogram(y, limit=None, seg=64_000_000, cap=400):
             d = d[d < cap]
             hist += np.bincount(d, minlength=cap)[:cap]
         tail = ops[-2:]
+    # ROUND-25: cyclic close (see gap_pair_census.py / cyclic_close_r25.py).
+    # A full period is a CIRCLE - N openings, N gaps - and the linear np.diff
+    # dropped the wrap gap.  It equals the FIRST gap (slot 0 is always an
+    # opening and the opening set is mirror-symmetric), which is small (3-7 at
+    # every machine reached), so no PADDING SUPPLY number ever computed from
+    # this tool moves: those probe q' >= 29.  Fixed anyway.
+    if K == P:
+        first = None
+        k = 0
+        while first is None:
+            if all(k % g not in (u % g, (-u) % g) for g, u in zip(gears, uv)):
+                if k:
+                    first = k
+            k += 1
+            assert k < 10000, "first-gap window too small"
+        if first < cap:
+            hist[first] += 1
     return hist, P, K, time.time() - t0, gears
 
 
