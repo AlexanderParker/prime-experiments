@@ -31,6 +31,15 @@ requires "count over one period of the enumeration = count over residues" -
 a periodicity/re-indexing bridge for `Machine13.opSeq` that this file does
 not build. What is stated here is exactly what is proved.
 
+ROUND-26 UPDATE: the PERIODICITY half of that bridge now exists -
+`Machine13Per.lean` proves `Machine13.opSeq (n + 1485) = Machine13.opSeq n +
+5005` and hence `g13 (n + 1485) = g13 n` and
+`windowSum g13 (a + 1485) j = windowSum g13 a j`, from the abstract
+`Periodic.op_shift` plus one kernel base case.  What remains is the
+RE-INDEXING half: a `Finset` bijection between the 1,485 window starts of one
+period and the 5,005 residues `pairCount13` filters.  That is no longer a
+fact about the machine.
+
 All numbers verified over the full period first (scratchpad depthsum13.py:
 g = 0..59, zero mismatches on both halves).
 -/

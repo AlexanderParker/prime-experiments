@@ -36,6 +36,14 @@ import Potential19
 import Machine31
 import Gen11
 import Machine37
+import Periodic
+import Machine11Per
+import Machine13Per
+import Gen11Sound
+import Machine29Cen
+import Machine31Cen
+import LadderPeriod
+import Mirror
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -355,3 +363,43 @@ open BlockedSlots
 #print axioms Machine37.D_at_31_37
 #print axioms Machine37.D_31_37
 #print axioms Machine37.g37_le_of_census
+
+-- Round 26: THE PERIODIC-ENUMERATION LEMMA and the two gaps it closes
+#print axioms Periodic.next_shift
+#print axioms Periodic.op_shift
+#print axioms Periodic.index_reduce
+#print axioms Machine11.exposed11_period
+#print axioms Machine11.ow_135
+#print axioms Machine11.opSeq_shift
+#print axioms Machine11.g11_mod
+#print axioms Machine13.ow13_1485
+#print axioms Machine13.opSeq_shift
+#print axioms Machine13.g13_shift
+
+-- Round 26: THE GENERATOR'S SOUNDNESS BRIDGE at 11 -> 13
+#print axioms Gen11.word_check
+#print axioms Gen11.gAt_succ
+#print axioms Gen11.walk_sound
+#print axioms Gen11.gen_two
+#print axioms Gen11.gen_three
+#print axioms Gen11.spectrum_of_gen
+#print axioms Gen11.generator_sound
+
+-- Round 26: the census hypothesis shrunk to ONE PERIOD
+#print axioms Machine29.exposed29_period
+#print axioms Machine29.index_reduce29
+#print axioms Machine29.census29_of_period
+#print axioms Machine31.exposed31_period
+#print axioms Machine31.index_reduce31
+#print axioms Machine31.census31_of_period
+#print axioms LadderPeriod.D_29_31_period
+#print axioms LadderPeriod.D_31_37_period
+
+-- Round 26: the mirror (Lateral's parity laws, the arithmetic halves)
+#print axioms Mirror.mirror_gear
+#print axioms Mirror.mirror_exposed11
+#print axioms Mirror.mirror_exposed29
+#print axioms Mirror.antipode_open
+#print axioms Mirror.antipode_exposed11
+#print axioms Mirror.antipode_exposed29
+#print axioms Mirror.self_mirror_unique

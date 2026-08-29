@@ -300,11 +300,41 @@ Costello-Watts partition makes a second-order expansion tight.
 - Open, and now sharply posed: is Delta(y, W) = o(W) with an effective rate?
   A proved sublinear bound on Delta would turn "W_u(y) is finite" from a
   measured fact into a theorem with an explicit W_u.
-- ANSWERED THIS ROUND (was the entry's own open question): STAR-3 reduces Delta
-  at machine 41 width 129 by 42%, far more than the 1.7% the frontier needed;
-  the necessary condition then holds at every budget width through machine 53.
-  What is NOT answered is whether the STAR-3 composition, run as an LP, actually
-  certifies anything new - the uniform margin is a necessary condition only.
+- ANSWERED IN ROUND 25 (was the entry's own open question): STAR-3 reduces
+  Delta at machine 41 width 129 by 42%, far more than the 1.7% the frontier
+  needed; the necessary condition then holds at every budget width through
+  machine 53.  What was NOT answered is whether the STAR-3 composition, run as
+  an LP, actually certifies anything new - the uniform margin is a necessary
+  condition only.
+
+- ANSWERED IN ROUND 26, BOTH WAYS (see `restricted-covering-certificates.md`).
+  The right object is not the STAR-3 LP but the CASE SPLIT: holding gear 5's
+  phase at w makes case w the SAME composed vehicle on the position set
+  [0,W) minus what gear 5 blocks, and a certificate in every case is a
+  certificate of the rung.  It is strictly stronger than the STAR-3 LP (a
+  family of case points always mixes into a STAR-3 point; a STAR-3 point does
+  not condition into a family of case points).
+  * IT DOES CERTIFY SOMETHING NEW, and immediately: at 19 -> 23, budget width
+    48 - the cell round 25 REFUTED for the level-2 vehicle with an exhibited
+    exact witness - ALL FIVE CASES CERTIFY at iteration zero, with no cut
+    generation at all, 38,677 exact certificate operations in total.  So round
+    25's refutations bound the level-2 MEMBER, not the family, and this
+    entry's "the vehicle's reach is everything through 31 -> 37" understates
+    the family by exactly the rungs it had given up.
+  * ROUND 25'S REFUTATION OF 37 -> 41 DOES NOT TRANSFER.  That refutation
+    rests on the uniform product measure's degree-2 moments being COMPLETABLE
+    at machine 41 (n = 11).  Conditioned on gear 5 they are NOT: at n = 10
+    (drop 5) and n = 9 (drop 5 and 7) the conditional product moments carry an
+    exactly-verified violated degree-2 cut.  Holding one gear revives BOTH
+    ingredients, so 37 -> 41 is an open cell again for the stronger species.
+  * BUT THE CASE SPLIT STILL DOES NOT REACH MACHINE 41 AT BUDGET WIDTH.
+    Measured (not proved): the LP maximum of the recursion row runs
+    87.0713, 87.0632, 87.0230, 86.9653, 86.9331, 86.8935, 86.8664, 86.8351,
+    86.7949, 86.7556 over ten cut passes against the 78 it must fall below -
+    a residual gap of 8.8 falling about 0.03 per pass.  NECESSITY ONLY at m41.
+  * The pre-test itself became case-by-case rather than on-average: NOT ONE of
+    the 5 / 35 / 385 cases at machines 41..53 (k = 1, 2, 3) has E_u[f_w] <= 0,
+    and the case MEANS reproduce this table's STAR-k column exactly (gated).
 
 ## 6. PRIOR-ART CHECK
 

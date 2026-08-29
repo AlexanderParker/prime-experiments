@@ -12,6 +12,29 @@ four-way gated by `research/qual_dict_gate.py` and
 sorries, no `native_decide`. Established round 25 (Formalist).
 Prior-art check: NOT YET CHECKED (section 6).
 
+ROUND-26 ADDENDUM (Formalist): **THE CENSUS HYPOTHESIS IS NOW A ONE-PERIOD
+CLAIM.** `Census29` and `Census31` were stated as `∀ n` - claims about EVERY
+index of an infinite gap word - while the gates verify ONE PERIOD. The step
+between them was an unstated assumption; it is now a theorem
+(`proofs/Machine29Cen.lean`, `proofs/Machine31Cen.lean`,
+`proofs/LadderPeriod.lean`, build green at 1426 jobs):
+
+    theorem Machine29.census29_of_period (h : Census29P) : Census29
+    theorem Machine31.census31_of_period (h : Census31P) : Census31
+    theorem LadderPeriod.D_29_31_period (h : Census29P) (n) : g31 n <= 43 + 31
+    theorem LadderPeriod.D_31_37_period (h : Census31P) (n) : g37 n <= 58 + 37
+
+`Census29P` is `Census29` with every clause restricted to `opSeq29 n <= P` -
+the 214,708,725 openings of one period, exactly the finite object
+`research/qual_dict.py` scans. The engine is `Periodic.index_reduce`: every
+index's forward gap word is the forward gap word of an index whose opening
+lies in the first period. It needs only that the opening PREDICATE is periodic
+(one `omega` per gear) - NO walk and NO base case - which is why it works at a
+machine whose period a kernel will never enumerate.
+
+Verdict 21 still stands: the census is not kernel-checked. What changed is
+that the unverified part is now finite as well as explicit.
+
 ## 1. WHAT IT IS
 
 Plain language. Requirement (D) at a step `M -> M + q'` says every gap of the

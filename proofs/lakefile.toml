@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37", "Periodic", "Machine11Per", "Machine13Per", "Gen11Sound", "Machine29Cen", "Machine31Cen", "LadderPeriod", "Mirror"]
 
 [[require]]
 name = "mathlib"
@@ -382,3 +382,27 @@ name = "Machine31Dict"
 
 [[lean_lib]]
 name = "Machine37"
+
+[[lean_lib]]
+name = "Periodic"
+
+[[lean_lib]]
+name = "Machine11Per"
+
+[[lean_lib]]
+name = "Machine13Per"
+
+[[lean_lib]]
+name = "Gen11Sound"
+
+[[lean_lib]]
+name = "Machine29Cen"
+
+[[lean_lib]]
+name = "Machine31Cen"
+
+[[lean_lib]]
+name = "LadderPeriod"
+
+[[lean_lib]]
+name = "Mirror"

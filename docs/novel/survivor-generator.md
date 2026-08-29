@@ -25,6 +25,52 @@ ROUND-25 ADDENDUM (Formalist), three items:
   integers, not that it MUST. The soundness bridge needs `gw11` certified as
   machine 11's own opening sequence plus the periodicity glue
   `opSeq11 (n + 135) = opSeq11 n + 385`; see formalist.md round-25 verdict 20.
+  **[SUPERSEDED IN ROUND 26 - the bridge exists; see the round-26 addendum.]**
+
+ROUND-26 ADDENDUM (Formalist): **THE GENERATOR IS SOUND AT 11 -> 13, AND THE
+WHOLE LOW SPECTRUM OF MACHINE 13 FOLLOWS FROM MACHINE 11'S WORD.**
+`proofs/Gen11Sound.lean`, build green at 1426 jobs, axiom footprint
+`[propext, Classical.choice, Quot.sound]` (mathlib's three; no custom axiom,
+no `native_decide`):
+
+```lean
+theorem generator_sound :
+    Spectrum.SpectrumBound Machine13.g13 1 11 ∧
+      Spectrum.SpectrumBound Machine13.g13 2 16 ∧
+      Spectrum.SpectrumBound Machine13.g13 3 23 ∧
+      Spectrum.SpectrumBound Machine13.g13 4 26
+```
+
+i.e. `F_1..F_4(13) <= 11, 16, 23, 26` - the exact values - PROVED, not merely
+computed and compared. The three ingredients:
+
+1. `Gen11.gAt_succ : gAt (i + 1) = Machine11.g11 i` - `gw11` IS machine 11's
+   gap word, at every index. (A CORRECTION found in the proof: `gw11`'s base
+   is one opening EARLIER than the enumeration's, so the identity carries a
+   `+ 1`. The generator's VALUE is unaffected - `gen` maximises over all 135
+   bases and a rotation permutes them.)
+2. `Machine11.opSeq_shift : opSeq (n + 135) = opSeq n + 385` - the periodicity
+   glue, an instance of the abstract `Periodic.op_shift`.
+3. `Gen11.walk_sound` - the walk SIMULATES the machine: under the invariant
+   "`x + d` is the `k`-th machine-11 opening after `x`, and exactly `surv`
+   machine-13 openings lie in `(x, x + d]`", any value the walk returns other
+   than the sentinel is `opSeq13 (n + ns + 1) - opSeq13 n`.
+
+The bail value of `walk` was changed from `0` to the SENTINEL `999` (a sound
+value for a maximum either way; only the sentinel makes a small `gen` PROOF
+that no walk gave up). The computed values are unchanged, and two more were
+added: `gen 2 = 23` and `gen 3 = 26`, so the generator reproduces the whole
+published ladder `11, 16, 23, 26`.
+
+INDEPENDENCE IS GATED, NOT ASSERTED: `proofs/DepAudit.lean` computes the
+transitive constant closure of `generator_sound` (3,858 constants) and asserts
+that none of machine 13's fifteen period-scan constants (`Machine13.qasm`,
+`qslice`, `qokAll`, `chain_facts`, `spectrum_one..four`, `spectrum_ladder`,
+`nextOp_le_11`, ...) is among them, with eleven POSITIVE CONTROLS that must be
+reached (`Machine11.qasm`, `Machine11.ow_135`, `Periodic.op_shift`, ...). The
+controls earned their place: the first version of the audit passed vacuously
+because `ConstantInfo.value?` does not return a THEOREM's proof term in this
+toolchain.
 
 * **`F_2(29) = 55` INDEPENDENTLY CONFIRMED A THIRD TIME.** A full-period scan
   of machine 29 (`research/qual_dict.py`, four-gated by

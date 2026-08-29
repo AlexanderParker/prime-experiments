@@ -96,6 +96,25 @@ The GF(2) satisfiability of the same system was tested for `p = 5..37`:
 | 7 | 25 | 15 | 10 | 3 | no |
 | 11..37 | ... | ... | ... | ... | no |
 
+> **CORRECTED IN ROUND 26 - READ THIS BEFORE CITING THE TABLE.** The sentence
+> below ("gear 5 is the only parity-obstructed gear") is **FALSE about the
+> machine**, and true only about the GF(2) test that produced it. Round 26
+> (`mirror-parity-laws.md` 7.3, `research/mirror_lever2.py` part G) proves the
+> antipodal gap has length 1 at every machine, so `W_1(1)` is the ONLY odd entry
+> of the gap histogram; hence for EVERY modulus `p`, `N_1^(p)` is odd and every
+> other `N_r^(p)` is even, and
+>
+>     alpha_1(p) = N_2 - N_1 - N_0 + N_{p-1} = even - ODD - even + even = ODD,
+>
+> so `B_p` is never exactly real. **EVERY gear is parity-obstructed; the pole
+> phase is unattainable at all of them.** What the GF(2) table below actually
+> decides is whether the CELL-MATRIX constraints alone (odd row sums plus the
+> pole equations) force the contradiction - those constraints know nothing about
+> `W_1(1)`, which is where the real obstruction lives. Read the column as
+> "cell-orbit-obstructed", not "parity-obstructed". The gear-5 conclusion in (c)
+> and the MEASURED asymmetry story below are unaffected, and the measured story
+> is now the whole of the gear-5-vs-gear-7 explanation.
+
 **Gear 5 is the only parity-obstructed gear.** And the structural asymmetry is
 the codimension: at `p = 5` realness is ONE ratio of two integers approaching
 one irrational direction; at `p = 7` THREE independent asymmetries must vanish

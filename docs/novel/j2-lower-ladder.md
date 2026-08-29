@@ -221,8 +221,10 @@ running the identical trick on `n+2` instead of `n`, so the joint survivor set i
 the twin primes rather than the primes. Only an UPPER bound on twin primes is
 needed (Brun/Selberg), so the construction is parity-free.
 
-**STATUS: asymptotic bookkeeping, script-verified and calibrated against a
-published theorem, NOT a written-out proof.** The finite ingredients are exact
+**STATUS AS OF ROUND 25: asymptotic bookkeeping, NOT a written-out proof.
+SUPERSEDED BY SECTION 8 - round 26 wrote it out and it is a theorem.** The
+round-25 text is kept below unchanged as the record. The finite ingredients are
+exact
 (the restatement of sec. 1a re-brute-forced at z = 3,5,7; the shift c = 2 costing
 no class; the twins-or-smooth survivor structure by direct sieving); the
 bookkeeping is validated by running the SAME optimiser at k = 1 and checking it
@@ -269,3 +271,95 @@ would be a LOSS at reachable z; that was wrong in mechanism - the construction
 does not exist at all below `log z ~ 300`, because the greedy range `[P, z1]` is
 empty there. Practical conclusion unchanged: **(P1) is the bound to quote at any
 z a human will ever see.**
+
+## 8. ROUND 26 - (P2') DISCHARGED: THE LAYERING IS A THEOREM WITH AN EXPLICIT
+## CONSTANT (research/j2_layer_proof.py, ALL ASSERTIONS GREEN; full write-up in
+## docs/novel/layered-erdos-rankin.md section 4)
+
+    THEOREM (P2').  Let pi_2(t) <= c_1 t/(log t)^2 for t >= t_1.  Then
+
+        h_2(P(z)) = j_2(P(z)) >= ( 1/(18 c_1) + o(1) ) z (log z)^3 (lll z)^2
+                                                        / (ll z)^4 .
+
+    The statement carries an o(1), so the best ASYMPTOTIC c_1 is admissible:
+    Lichtman 2024 (arXiv:2109.02851, Alg. & Num. Th. 19 (2025) no. 1,
+    Theorem 1.2) gives c_1 = 3.29956 x 2C_2 = 4.356487, whence the constant is
+    **0.0127524**.  With Selberg's classical 8 x 2C_2 = 10.562589 - the constant
+    Riesel-Vaughan 1983 Lemma 5 makes effective for t >= e^42 - it is 0.0052597.
+    General k:  j_k(P(x)) >= ( k/((k(2k-1))^k c_1^(k)) + o(1) ) x A^(2k-1)
+    C^k/B^(2k).
+
+WHAT THE WRITE-OUT ADDED, beyond turning bookkeeping into proof:
+
+1. **The greedy lemma is EXACT, not approximate.** Two classes mod p always
+   capture at least `2N/p` - no `O(N/p^2)` loss (proof in the write-up, 40,000
+   random distributions asserted). This was the step named in advance as the
+   risk; it is the safest step in the argument.
+2. **A better constant.** The small-prime cut must satisfy `P > L y/x ~ A^(2k-1)`,
+   so `P = A^(2k-1)`, not round 25's `P = A^5`. Denominator `(k(2k-1))^k = 36` in
+   place of `(5k)^k = 100`: **a factor 2.778 at k = 2.**
+3. **A self-correction of round 25's general-k form.** `P = A^5` is admissible
+   only for `k <= 3`; for `k >= 4` it is too small and round 25's `(5k)^k` is too
+   optimistic. The POWER `2k-1` (round-25 PR3) is unaffected.
+4. **The constant is a supremum, not a maximum.** The medium-prime parameter
+   `u = theta B/C` needs `theta > k`; at `theta = k` exactly the smooth term
+   beats the twin term by a factor tending to infinity. Hence the `o(1)`.
+5. **A constant-level calibration.** The identical write-up at k = 1 returns
+   `(1+o(1)) x A C/B^2` against Rankin's proved `e^gamma = 1.781072` - the same
+   expression, our constant a factor 1.781 BELOW his. Landing above Rankin would
+   have been a bug; it does not.
+6. **Why the construction cannot be upgraded to FGKT strength.** The FGKT/Maynard
+   gain comes from finding MANY PRIMES in one residue class; its k = 2 analogue
+   needs many TWINS in one residue class - a lower bound for twins, i.e. the
+   parity barrier. **The construction is parity-free exactly because it stops at
+   Rankin level.** That is structural, not a gap to be closed later.
+
+### 8-bis. A NOVELTY QUALIFICATION ON (P1), SELF-FOUND IN ROUND 26
+
+Round 26's prior-art sweep turned up **Ford-Konyagin-Maynard-Pomerance-Tao,
+"Long gaps in sieved sets" (arXiv:1802.07604), REMARK 7**, read first-hand
+2026-08-29. It names our sieving system explicitly - "a two-dimensional system
+in which `I_p = {0 (mod p), 2 (mod p)}` for all primes p" - and says "the
+'trivial' bound coming from these methods would give a bound of
+`>> log X log log X` for the largest gap between lower twin primes up to X".
+
+In covering coordinates that is **`>> z log z` - the ORDER of (P1)**.
+
+So: **(P1) is NOT the first appearance of the order `z log z` for this system.**
+It remains the first PROVED bound, the first with an explicit constant (1.349),
+and the first stated for Ziller-Morack's `h_2`; but the order is recorded in
+print (2018-2022) as trivially available, without proof or constant. Section 2
+of `docs/novel/layered-erdos-rankin.md` carries the full quotation and the two
+other consequences (FKMPT hoped for "a small power of log log X" where (P2')
+delivers two full powers; and their `>> log^2 X` pigeonhole bound forbids any
+twin-prime-gap corollary while being no obstruction to a statement about `j_2`).
+Section 2 of THIS document must be read with that qualification.
+
+### 8a. The sandwich, final form
+
+    proved lower  h_2 >= (1.349+o(1)) z log z                    [(P1); finite z]
+    PROVED LOWER  h_2 >= (0.01275+o(1)) z (log z)^3 (lll z)^2/(ll z)^4
+                                                                 [(P2'), round 26]
+    HEURISTIC     ~2.56 z (log z)^2   -- NOT a ceiling; a random-choice model,
+                                         now PROVED not to be one
+    proved upper  p_n^8.04162 explicit / p_n^(4.266+eps) by citation
+
+Two proved lower bounds are kept, and which one to quote depends on `z`: (P1)
+everywhere a human can compute, (P2') asymptotically. Neither dominates the other
+at any `z` anyone will evaluate, and saying so is part of the honest statement.
+
+### 8b. The problems after round 26
+
+* **(P2') DISCHARGED.**
+* **(P3), the paired-Iwaniec problem, PRICED - see layered-erdos-rankin.md
+  section 6a.** Round 26 changes it from "is `h_2 = O(z(log z)^a)`?" to "**is
+  a = 3?**", because `a >= 3` is now forced. Price: NOT REACHABLE. `j_2 >= j`
+  (collapse transfer), so a polylog bound for `j_2` gives one for `j`; the record
+  there is still Iwaniec 1978's `j(P(z)) << z^2`, a full power of z, unmoved for
+  48 years. This lane will not attempt it. What the lane contributes is the
+  constraint `a >= 3` and the sharpened conjecture `h_2 = z(log z)^{3+o(1)}`.
+* **(P5), the k-class family upper side, remains open and is now a REFEREE TOOL**:
+  any claimed `j_k << x A^{f(k)}` with `f(k) < 2k-1` is contradicted outright.
+* The falsification target is unchanged and sharper: **one exact h_2 beyond
+  p_n = 73**, now separating `z(log z)^2` (heuristic) from `z(log z)^3` (proved
+  asymptotically).

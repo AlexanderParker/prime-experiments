@@ -82,7 +82,10 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   11-29 exact) - PRIOR ART FOUND (harvester, 2026-08-24): this is Holt
   arXiv:2502.20470 Corollary 1 (Feb 2025) at the constellation s = (2, 6g-2, 2),
   sum_{j>=J} n_{s,j}(p#) = prod_q (q - nu_q(s)) - the identity and proof are correct,
-  the novelty is not; see docs/novel/paired-hlb-cycles.md section 0
+  the novelty is not; see docs/novel/paired-hlb-cycles.md section 0.  ROUND 26: the
+  KERNEL GLUE round 22 lacked is built - Machine13.opSeq_shift (opSeq (n+1485) =
+  opSeq n + 5005) from the abstract Periodic.op_shift, so the window counts are counts
+  over one period; only the Finset re-indexing to pairCount13 remains
 - golden-spectral-gap - machine DFT closed-form and real; spectral gap phi/3
   machine-independent (gear 5's golden mode); T3 law 3u = (q+1)/2 -
   PROVED+SCRIPT-VERIFIED - not yet checked
@@ -117,6 +120,17 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   Selberg's conjectural floor 2*kappa = 4, so the gap is parity, not technology -
   PROVED(paper)+SCRIPT-VERIFIED (exact rationals) - NOVEL* (the published ladder is
   empty; ZM prove no bound, no 2018-2026 follow-up), checked 2026-08-24.
+  ROUND 26: **SECTION 11 IS THE ASSEMBLED UNIT-1 SUBMISSION CANDIDATE** - the
+  complete ladder (1, 3E quasi-poly, 2E exp-19, 2E' 17, 2E'' 15, 2G 8.04162,
+  2G-inf floor 7.93727, 2 at 4.266 by citation with the explicitness boundary),
+  the current sandwich, a rewritten not-claims list (8 items, two of them new),
+  and a submission checklist. Sections 1-10 are the working record and are
+  individually marked where superseded. The round-25 "discrepancy in the book"
+  framing of ODC's printed root is WITHDRAWN: one Newton step from 1/4 - the
+  book's own stated method - reproduces 0.264904 to seven digits, so it is the
+  book's stated approximation and ours is a sharpening of it (sec. 11d).
+  New standing gate research/j2_citesweep.py (citation-numbering sweep promoted
+  from manual referee step; caught two live defects on its first run).
   ROUND 23 - publication readiness pass: (0) THEOREM 2E - RUNG 2 IS NOW FULLY
   EXPLICIT: j_2(p_n#) <= 1.0963e10 p_n^19 (log p_n)^10 + 1 for every p_n >= 285,
   no ineffective threshold, via the constant-free Friedlander-Iwaniec Opera de
@@ -190,6 +204,13 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   layered-erdos-rankin below) and the "~2.56 z (log z)^2" model DEMOTED from
   "truth" to random-choice heuristic - it is not a ceiling and the construction
   exceeds it.
+  ROUND 26: (P2') DISCHARGED (layered-erdos-rankin is now a theorem); (P3), the
+  paired-Iwaniec problem, PRICED - a >= 3 is now FORCED, so the question becomes
+  "is a = 3?", and the answer is NOT REACHABLE (j_2 >= j, and the record for j is
+  still Iwaniec 1978's z^2, open, Erdos problems #687/#970, re-checked
+  2026-08-29). NOVELTY QUALIFICATION on (P1), self-found: FKMPT Remark 7 records
+  the ORDER z log z for this exact system as trivially available; (P1) is the
+  first PROVED bound with a constant, not the first appearance of the order.
 - layered-erdos-rankin - ROUND 25, NEW: the Erdos-Rankin construction run k
   times, one layer per available residue class, giving the k-class Jacobsthal
   function j_k(P(x)) >> x A^(2k-1) C^k/((5k)^k B^(2k)) whose k=1 case IS the
@@ -199,12 +220,27 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   buys a full log where its Mertens entitlement is O(1), and the paired
   problem's second class buys it again on n+2, so the joint survivor set is the
   TWIN primes; only an UPPER bound on twins is needed, so it is parity-free -
-  STATUS: ASYMPTOTIC BOOKKEEPING, script-verified and calibrated at k=1 against
-  FGKT (residual spread 0.072 over eight decades of log x), NOT a written-out
-  proof; no finite-z content (does not exist below log z ~ 300) -
-  research/j2_rankin_layer.py - NOVEL* (FKMPT "Long gaps in sieved sets"
-  arXiv:1802.07604 is the nearest: GIVEN classes, adversarial, x(log x)^tiny -
-  neither contains the other; j_k appears nowhere; checked first-hand 2026-08-29)
+  research/j2_rankin_layer.py.
+  **ROUND 26: WRITTEN OUT - IT IS A THEOREM WITH AN EXPLICIT CONSTANT.**
+  j_2(P(x)) >= (1/(18 c_1) + o(1)) x A^3 C^2/B^4, c_1 any admissible constant in
+  pi_2(t) <= c_1 t/(log t)^2; with Lichtman's record 3.29956 x 2C_2 = 4.356487
+  the constant is 0.0127524 (0.0052597 with Selberg's explicit 8 x 2C_2).
+  General k: k/((k(2k-1))^k c_1^(k)) - the small-prime cut is P = A^(2k-1), NOT
+  round 25's A^5, which improves the denominator 100 -> 36 at k=2 and is
+  INADMISSIBLE for k >= 4 (round-25 self-correction). The greedy lemma is EXACT
+  (two classes always capture 2N/p). theta = k exactly FAILS, so the constant is
+  a supremum. k=1 calibration is now at CONSTANT level: the same write-up gives
+  1.0 against Rankin's proved e^gamma = 1.781 - below it, which is the right
+  side. No finite-z content (does not exist below log z ~ 300) -
+  research/j2_layer_proof.py - NOVELTY QUALIFIED, checked first-hand 2026-08-29:
+  **FKMPT arXiv:1802.07604 REMARK 7 NAMES THIS SIEVING SYSTEM** (I_p = {0,2}),
+  records >> log X loglog X - the ORDER of (P1) - as "the 'trivial' bound coming
+  from these methods" (no proof, no constant), and hopes for "a small power of
+  log log X", which this theorem beats by TWO FULL POWERS. Their >> log^2 X
+  pigeonhole bound is no obstruction to a statement about j_2 (density 1/A^2
+  there) but FORBIDS ANY TWIN-PRIME-GAP COROLLARY - none is claimed. No theorem
+  anywhere on large gaps between twin primes/k-tuples by an Erdos-Rankin
+  covering; j_k appears nowhere under any name.
 - paired-hlb-cycles - c_q(g) = q - nu_q({0,2,6g,6g+2}) (machine diagonal = HL
   quadruplet local factor); pinch theorem N2 - sum N3 <= n_g <= N2 (paired HL-B in
   cycles with explicit 1/log^2 rate, both bounds closed-form CRT); paired transfer
@@ -242,7 +278,16 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   GAP at 3/pi^2 of the mean - <r~> = 0.703, ABOVE GUE. With round 21 (tensor sector ->
   Poisson) this closes the Riemann/GUE bridge at finite machines from both sides:
   spectral richness and non-factorisation are mutually exclusive here - PROVED +
-  SCRIPT-VERIFIED (research/nontensor_spec.py) - not yet checked (round 22)
+  SCRIPT-VERIFIED (research/nontensor_spec.py) - not yet checked (round 22).
+  ROUND-26 EXTENSION AND CORRECTION (section 7): the multiplicity of 2cos(pi a/b) is
+  Sigma(b) = #{gaps = -1 mod b}, INDEPENDENT of a - so the eigenvalue multiplicities
+  ARE the gap histogram's residue-class counts, invertible by Mobius over multiples
+  (W_1(b-1) = sum_t mu(t) Sigma(tb)) and even for every level except 0.  AND THE
+  PUBLISHED LEVEL COUNTS WERE THE NAIVE FAREY ONES: the true count is a
+  DIVISOR-CLOSURE statistic of the REALISED gap set, so HOLES cost exactly
+  sum phi(hole+1) - 21/41/113/183/363/549/981/1813/2467 at m11..m41 against the
+  published 21/45/119/211/383/603/1085/2455.  The hard gap and <r~> > GUE survive; the
+  NORMALISED gap 3/pi^2 does not (0.2422 at m37) - research/mirror_lever2.py part F
 - corridor-eigenvalue-closed-form - Constructor's measured corridor resonance derived:
   the corridor-phase chain's whole spectrum is the image of the e-th roots of unity
   (e = |E| = prod (q-2) over the small gears, 15 for mod 35) under the Moebius map
@@ -404,7 +449,17 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   "is this gap 4-tuple realised" queries against a 1.08e9-slot period -
   SCRIPT-VERIFIED (exact, full period, steps 11->13 .. 29->31;
   research/kleene_generator.py, kleene_stream.py, kleene_history.py,
-  machinefree_cert.py) - not yet checked (rounds 22-23)
+  machinefree_cert.py) - not yet checked (rounds 22-23).
+  ROUND 26 (section 4c): the identity is a TWO-SIDED LAW and it resolves
+  Mechanic's Q* conjecture (old-machine-spectrum s8/s9) - Q*_J is
+  definitionally layer J-2 of K*, so max_J Q*_J = F(M+q') is exactly this
+  document's identity and is a THEOREM, the open direction being the CRT
+  choice of the killing copy (an ATTAINMENT THEOREM stated without max-plus in
+  s4c; J = 2 is the deletion ladder).  VERIFIED EXACTLY AT EIGHT STEPS
+  11->13 .. 37->41 with no depth cap and no span cap (research/qstar.py),
+  attaining depth J* = k_win + 1 every time.  Consequence, and it is a
+  negative: the word-legal criterion is NOT a relaxation of (D) but the same
+  statement in another representation, so there is no slack in it to exploit
 - nilpotent-invariants - the blocked walk N = BS is PERMUTATION-similar to the direct sum
   over the machine's GAPS of nilpotent Jordan blocks (one J_g per gap), so rank(N^n) is the
   gap histogram's tail sum and EVERY UNITARY INVARIANT of N - singular values, Schatten
@@ -483,7 +538,11 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   (F_2 = 16, 25, 31, 39, 55, 68 against the independent pair census); A_4(M) bounds
   F_2(M+q') by 16, 25, 31, 42, 57, 93 - clearing the next step's two-gap budget at every
   step - PROVED + SCRIPT-VERIFIED (j = 2) (research/survivor_generator.py) - not yet
-  checked (round 24)
+  checked (round 24).  ROUND 26: KERNEL-PROVED SOUND AT 11 -> 13 - the generator does
+  not merely COMPUTE F_1..F_4(13) = 11, 16, 23, 26 from machine 11's 135-letter word,
+  it PROVES them (proofs/Gen11Sound.lean, generator_sound), with machine 13's own
+  5,005-slot period absent from the derivation - gated by a transitive-dependency audit
+  (proofs/DepAudit.lean), not asserted.
 - mirror-parity-laws - the opening set's exact symmetry k -> -k pins the PARITY of
   every window and gap-word count: for each depth j, W_j(g) is even for all g except
   the single length of the window at index t = -j/2 (mod N), which is odd; the
@@ -494,7 +553,22 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   configurations at ONE proves there are NONE.  Also caught a real defect in the
   shared census file (every full-period ghist row drops the wrap-around gap) -
   PROVED (elementary) + SCRIPT-VERIFIED m11..m29 (research/mirror_cells.py parts A,B)
-  - not yet checked (round 25)
+  - not yet checked (round 25).  ROUND-26 EXTENSION (section 7): the FULL affine
+  symmetry group of the opening set is (Z/2)^m (multiplication by c = +-1 mod every
+  gear) and only c = +-1 mod P preserves adjacency, so the lever is worth EXACTLY one
+  unit and there is no mod-4 version; the exceptional window is relocated from an
+  INDEX to an ADDRESS - it is the window centred on slot 0 (j even) or on the antipode
+  (j odd), giving g_j* = j (mod 2) and a scan-free formula at ANY machine; the
+  antipodal slots (P+-1)/2 are openings at every machine by the tooth law, so g_1* = 1
+  ALWAYS and W_1(g) is EVEN for EVERY g >= 2 unconditionally (ROUND-26 FORMALIST: the
+  ARITHMETIC halves are now KERNEL-CHECKED - proofs/Mirror.lean, mirror_gear,
+  antipode_open, self_mirror_unique, footprint [propext, Quot.sound]; the EVEN-COUNT
+  half needs an involution-counting lemma and is NOT yet formalised); a palindromic tuple's
+  count is odd iff it occurs at the single address -span/2 (mod P); the exceptional
+  window is never QUALIFYING, so the lever applies to the (D) family with no side
+  condition; and reverse-invariance of every realisability census is audited against
+  the project's own arity runs (82 decisions, every reverse pair agreeing, 46% of
+  27,946 s spent on the redundant half) - research/mirror_lever2.py, 52 gates
 - gear-cell-decomposition - the frequency-1/p Fourier coefficient of the gap
   histogram is a function of only (p-2)(p-3)/2 integers, for EVERY machine (three at
   p = 5), via the cell matrix M[i][s] indexed by (start exposed phase, exposed-step
@@ -502,8 +576,12 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   residue classes mod 5 and the three-integer closed forms for Re/Im H_5(1).
   THEOREM: (N_2+N_3) - 2N_0 = 2 (mod 4) at every machine, so round 21's pole phase
   126 deg is NEVER attained exactly - the machine instead drives an integer ratio
-  toward -1/phi (crossing it between m29 and m31).  Gear 5 is the ONLY
-  parity-obstructed gear for p <= 37 (GF(2) test) - that is backlog U3's asymmetry.
+  toward -1/phi (crossing it between m29 and m31).  ROUND-26 CORRECTION: "gear 5 is
+  the ONLY parity-obstructed gear" is TRUE OF THAT GF(2) TEST AND FALSE OF THE MACHINE -
+  since the antipodal gap has length 1 always, W_1(1) is the only odd histogram entry,
+  so N_1^(p) is odd and alpha_1(p) is odd for EVERY gear p, and the pole phase is
+  unattainable everywhere; the gear-5 vs gear-7 asymmetry is then entirely the MEASURED
+  one (three equations not one, asymmetries an order of magnitude larger).
   Backlog U2 closed: the 1.015 amplitude near-law is the crossing scale lam = 23.92
   at which the depth-1 arm meets the exactly-computable MEAN arm (2-phi)N/9, and its
   flatness is a cancellation between a decaying shallow-corridor drift and a rising
@@ -542,4 +620,52 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   family's depth) did not grow from 29 to 31.  Confirms F_2(29) = 55, F_2(31) = 68 and
   the corrected marked spectrum Q_J(29) = 55,65,68,71,71,71 by independent routes -
   KERNEL-CHECKED (given the census) + SCRIPT-VERIFIED full period, four-gated at both
-  machines - not yet checked (round 25)
+  machines - not yet checked (round 25).  ROUND 26: THE CENSUS HYPOTHESIS IS NOW A
+  ONE-PERIOD CLAIM - Census29P/Census31P restrict every clause to the openings of one
+  period (exactly what the gates scan) and IMPLY Census29/Census31 via
+  Periodic.index_reduce, which needs no walk and no base case (proofs/Machine29Cen.lean,
+  Machine31Cen.lean, LadderPeriod.lean).  The rung is still hypothesis-explicit; the
+  hypothesis is now finite.
+- phase-saturation-arity - a CLOSED-FORM, SOLVER-FREE ceiling on kill-chain arity: a
+  gap word with exposed offsets X cannot occur at all if some gear q has no admissible
+  phase, i.e. if (X mod q) u ((X - s_q) mod q) = Z_q with s_q = -2*6^{-1} mod q.  Since
+  that union has at most 2|X| elements the whole content sits at gears 5, 7, 11, and
+  applied to the pure ALTERNATION (s, q'-s, s, ...) - the shape that carries every long
+  chain in this project - it gives a per-step ceiling in closed form: 6, 2, 2, 2, 5, 3,
+  3, 4 at 31->37 .. 61->67, ATTAINED at 47->53 where A_kill = 5.  It refutes round 25's
+  alternation-pair predictor at 53->59 (the pair (20,39) IS realised at machine 53, with
+  a definition-level verified witness, and the 4- and 5-letter alternations are
+  nevertheless ZERO BY THEOREM - by gear 7 and gear 5 respectively), so the FIRST
+  5-CHAIN WAS NOT THE START OF A TREND and 53 was special for an arithmetic reason.
+  Gated: 37 realised words at five steps, none wrongly zeroed; reproduces the three
+  structural zeros already on record ((18,35,18,35,18) at 47->53 and (16,31),(31,16) at
+  43->47) - SCRIPT-VERIFIED (finite, exact) (research/akill_verify_r26.py,
+  research/alt_obstruct_r26.py) - not yet checked (round 26)
+- restricted-covering-certificates - the composed covering LP applied to a RESTRICTED
+  POSITION SET with a RESTRICTED PHASE DOMAIN, one construct with two payoffs.  (i) THE
+  CASE SPLIT: holding the k smallest gears' phases makes case w the same vehicle on
+  [0,W) minus what they block, and a certificate in every case certifies the rung - a
+  species strictly stronger than the STAR-3 LP (a family of case points always mixes into
+  a STAR-3 point; a STAR-3 point does not condition into case points).  IT CERTIFIES
+  EVERY (D) RUNG THE PROJECT HAS, at the ladder's own budget widths, HYPOTHESIS-FREE from
+  the list of primes alone: 19->23 (hold 5; five cases at iteration zero, 38,677 exact
+  ops), 23->29 and 29->31 (hold 5,7; 35 cases; 362,049 and 576,472 ops), 31->37 and
+  37->41 (hold 5,7,11; 385 cases; 8,388,426 and 12,778,058 ops) - and round 25 had
+  REFUTED 19->23, 23->29 and 37->41 for the level-2 member with exhibited exact witnesses,
+  so the refutations bound the member and not the family.  The number of held gears is a
+  real ladder parameter (each one roughly halves the residual and multiplies the case
+  count by that gear), and the cost is a PRIMORIAL in k - a new kind of limit for this
+  project, neither a degree ceiling nor a width frontier.  The same vehicle becomes TIGHT
+  ON F: F(19) <= 25, F(23) <= 34, F(29) <= 43 all certified at k = 2.  (ii) THE WINDOWED
+  STATEMENT: prescribing open positions decides ADJACENT-GAP-PAIR realisability, i.e. the
+  level-2 gap dictionary the chain and the merge law consume, by LP duality instead of
+  search - giving complete scan-free proofs of the EXACT F_2(19) <= 31 and F_2(23) <= 39,
+  locating the F_2 maximiser (at span 31 exactly the two realised splits (10,21),(21,10)
+  fail, each by an exact in-polytope witness), and certifying SPECTRUM HOLES (24, 27, 29
+  at m19, two of them below F = 25).  Sound everywhere against a full-period scan (zero
+  unsound cells in 277) but NOT exact: nine unrealised cells at m19 spans 28 and 30 are
+  not certified, four with exact feasible witnesses.  The two restrictions COMPOSE and
+  the composition is strictly stronger than either - SCRIPT-VERIFIED (finite, exact
+  rationals; every certificate and witness saved and re-verified from a clean rebuild)
+  (research/star_case.py GATE - eight items, research/window_dict.py) - not yet checked
+  (round 26)

@@ -1,5 +1,17 @@
 # j2-upper-bound - the first upper bounds on the paired Jacobsthal function j_2
 
+> **READ SECTION 11 FIRST.** Round 26 assembled Unit 1 into a submission
+> candidate: section 11 carries the CURRENT ladder, the CURRENT sandwich, and
+> the CURRENT not-claims list. Sections 1-10 are the working record, written
+> round by round; where they disagree with section 11, **section 11 wins**, and
+> the disagreements are individually marked. In particular the status block
+> immediately below and section 4a items 1/3/5 were written before rounds
+> 24-26 and are superseded there.
+> Standing gates, all re-run green at round-26 close: `research/j2_referee.py`,
+> `research/j2_citesweep.py`, `research/j2_odc6.py`, `research/j2_layer_proof.py`.
+
+## 0. STATUS BLOCK AS OF ROUND 23 (superseded by section 11 - kept as record)
+
 Status: PROVED WITH ALL CONSTANTS EXPLICIT (paper proofs below, elementary;
 script-verified in exact rationals - research/j2_bound.py, j2_brun.py,
 j2_explicit.py, all assertions green) for Theorems 1, 3 and 3E; PROVED WITH ALL
@@ -25,6 +37,13 @@ years - their own companion note - which itself has ZERO, and zbMATH Open has no
 a citation audit that corrected five second-hand facts in the round-22 text.
 
 ## 1. What it is
+
+> **NOTE (round 26).** The closing sentences of the next paragraph - "the proved
+> sandwich is `p_n^{1+o(1)} .. p_n^{4.266}` around a measured truth of
+> `(p_n^2 - p_n)/2`" and "an entirely self-contained polynomial bound (exponent
+> 19)" - are BOTH superseded. The measured-truth reading was retracted in round
+> 24; the explicit exponent is 8.04162 since round 25. Section 11a/11b are
+> current. The theorem statements in this section are unaffected.
 
 Plain language. The paired Jacobsthal function j_2(n) asks: how long can a run of
 consecutive positions be, in a pair of integer sequences offset by a fixed even
@@ -526,6 +545,14 @@ THE CEILING above.
 
 ## 4a. WHAT THIS NOTE DOES NOT CLAIM (round 23, written for the referee)
 
+> **SUPERSEDED BY SECTION 11c.** Items 1, 3 and 5 below were written in round 23
+> and are out of date: item 1's "the distance is a factor of more than two"
+> predates the round-23 retraction of the "2 kappa impossibility"; item 3 names
+> exponent 19 where the current explicit exponent is 8.04162; item 5 says there
+> is no lower bound beyond the collapse transfer, and there are now two. Section
+> 11c is the current list and adds two items 4a never had (no twin-prime-gap
+> corollary; the `z log z` order is not new). Kept here as the record.
+
 Stated positively so nobody has to infer it from what is missing.
 
 1. NO PROGRESS ON ZILLER-MORACK CONJECTURE 6. The proved exponent is 4.266; the
@@ -707,12 +734,21 @@ folklore) is worth recording.
    in arXiv:1012.3809. beta_kappa = 2*kappa is Selberg's, in Lectures on Sieves
    (Collected Papers II, sec. 14); the accessible restatement is Blight,
    "Refinements of Selberg's Sieve" (Rutgers thesis), sec. 2.1.
-4. 19/36 VERSUS 0.4454. Franze writes "Selberg proved that for sufficiently large
-   kappa, this sieve yields beta_kappa <~ 2*kappa + 19/36". But Ford (Sieve
-   Methods notes, 2023) and Brady (Stanford thesis, 2017) both attribute to the
-   SAME Selberg source the constant 0.4454, not 19/36 = 0.5278. The safe form,
-   and the one now used: cite 2*kappa + 0.4454 (Ford/Brady) as the
-   literature-standard figure, and 19/36 only as "as stated in Franze".
+4. 19/36 VERSUS 0.4454. **SUPERSEDED BY SECTION 9c - READ THAT INSTEAD.** As
+   written in round 23 this item said "the safe form, and the one now used: cite
+   2*kappa + 0.4454 (Ford/Brady), and 19/36 only as 'as stated in Franze'".
+   Round 24 SETTLED the conflict the other way, first-hand and in exact
+   rationals: **cite 2*kappa + 19/36**; 0.4454 is recorded as UNVERIFIED, not as
+   wrong. The round-23 text is kept here only as the record of what was believed
+   before the primary sources were read. (The stale instruction survived two
+   rounds inside this document and was caught in round 26 by
+   research/j2_citesweep.py section D - which is why that sweep is now a gate
+   and not a manual step.)
+   The round-23 observation itself stands: Franze writes "Selberg proved that
+   for sufficiently large kappa, this sieve yields beta_kappa <~ 2*kappa +
+   19/36", while Ford (Sieve Methods notes, 2023) and Brady (Stanford thesis,
+   2017) attribute 0.4454 to the same Selberg source. That IS a genuine conflict
+   in the literature; section 9c resolves it.
 5. IWANIEC'S THEOREM, EXACT FORM. It is h(k) << (k log k)^2 with k = omega(n),
    equivalently J(P(z)) << z^2 (Granville arXiv:2010.01211 states the deduction
    explicitly). "g(n) << (log n)^2" is a strictly weaker corollary and is NOT the
@@ -1234,3 +1270,171 @@ Below that 2E'' (exponent 15, tiny constant) remains the better bound; above it
   alpha = 1/4 is inside the book's own applied range. FLAGGED, not assumed.
 * p. 74 (the rest of Proposition 6.16, on preliminary sieving) was not obtained;
   our pre-sieving accounting is round 24's own, not the book's.
+
+## 11. UNIT 1 - FINAL ASSEMBLY (round 26, 2026-08-29)
+
+This section is the submission candidate. Everything above is the working
+record; where they disagree, this section is current.
+
+**TITLE.** The paired Jacobsthal function: first upper bounds, a first lower
+bound from the paired structure, and the structure of its maximisers.
+
+**HEADLINE.** The first proved upper bounds on a function named and conjectured
+about since 2017 - an explicit quasi-polynomial rung, an explicit polynomial
+rung at exponent 8.04162, and the best-exponent rung 4.266 by citation, with an
+honest statement of which constants exist - together with the first proved
+lower bounds using the paired structure: `(1.349+o(1)) z log z` at every finite
+scale, and `(0.01275+o(1)) z (log z)^3 (lll z)^2/(ll z)^4` asymptotically.
+
+### 11a. THE LADDER, COMPLETE AND IN ORDER
+
+| rung | statement | constants | where |
+|---|---|---|---|
+| **1** | `j_2(p_n#) <= 2*3^(n-1)/V_n + 1`; explicitly `< 3^(n+1)(log p_n)^2`, n >= 3 | ALL EXPLICIT | sec. 1, Thm 1 |
+| **3 / 3E** | `j_2 <= E_K/(V_n - R_K) + 1` for every odd K with `R_K < V_n`; at the optimal K, quasi-polynomial `j_2 < p_n^{9.30 loglog p_n}`, asymptotic constant EXACTLY `2 lambda_* = 7.182242` | ALL EXPLICIT | sec. 1, Thm 3/3E |
+| **2E** | `j_2 <= 1.0963e10 p_n^19 (log p_n)^10 + 1`, `p_n >= 285` | ALL EXPLICIT | sec. 1, Thm 2E |
+| **2E'** | `j_2 <= 3.5301e9 p_n^17 (log p_n)^10 + 1`, `p_n >= 285` (pre-sieve at 5; free) | ALL EXPLICIT | sec. 9d |
+| **2E''** | `j_2 <= 7.2671e11 p_n^15 (log p_n)^10 + 1`, `p_n >= 285` (pre-sieve at 13, `N_pre = 135`) | ALL EXPLICIT | sec. 9d |
+| **2G** | `j_2 <= C p_n^8.04162 (8.04162 log p_n + 1)(log p_n)^2 + 1`, `p_n >= 285`, `log10 C = 57.5` | ALL EXPLICIT | sec. 10d |
+| **2G-inf** | `j_2 <<_eps p_n^{s+eps}` for every `s > 7.93727`, every implied constant computable | EXPLICIT IN PRINCIPLE | sec. 10d |
+| **2** | `j_2 <<_eps p_n^{beta_2+eps}`, `beta_2 = 4.266` | **NOT EXPLICIT, and not makeable so** | sec. 1, sec. 8 |
+
+**WHICH RUNG TO QUOTE.** 2E'' (exponent 15, tiny constant) is the better bound
+below `p_n ~ 3.8e5`; 2G (exponent 8.04162, `log10 C = 57.5`) wins above that, by
+`p_n^6.96`. **Both are kept and both are labelled.** 2E and 2E' are dominated
+everywhere by 2E'' and are retained only because they are the intermediate steps
+of the pre-sieving ladder and a referee will want the cost of each.
+
+**THE EXPLICITNESS BOUNDARY, stated once so nobody re-attempts it.** 4.266 is
+the numerically-solved output of the DHR differential-delay system; the sieve
+inequality at that dimension carries an uncomputed
+`O((loglog y)^2 (log y)^{-1/6})`, and even computed, the 1/6 puts
+`s = beta_2 + 0.01` at `log y ~ 10^12`. There is no explicit-constant sieve AT
+its sifting limit for any `kappa > 1`. Round 25 extended this boundary
+first-hand from DHR to the `Lambda^2 Lambda^-` family via Blight's thesis (her
+Proposition 2.4.2 is "there is some z_0", the constant inherited from an
+unquantified `<<`). **The remaining question of the upper ladder is the gap
+between 7.937 (explicit) and 4.266 (not explicit)**, and ODC Chapter 11 is NOT
+the route to it - its lower-bound constant B is identically zero for
+`kappa >= 1/2`.
+
+### 11b. THE SANDWICH, CURRENT
+
+    PROVED LOWER   h_2 >= (1.349 + o(1)) z log z                     [(P1)]
+    PROVED LOWER   h_2 >= (0.01275 + o(1)) z (log z)^3 (lll z)^2/(ll z)^4
+                                                                     [(P2')]
+    HEURISTIC      ~2.56 z (log z)^2  -- a RANDOM-CHOICE model, and PROVED
+                   NOT to be a ceiling (it is exceeded by a full log)
+    PROVED UPPER   p_n^{8.04162} explicit  /  p_n^{4.266+eps} by citation
+
+Neither lower bound dominates the other at any `z` a human will evaluate: (P1)
+is the one to quote at finite scale, (P2') is the asymptotic statement.
+**Two earlier readings are RETRACTED and must not reappear**: "the truth is
+`(p^2-p)/2`" (retracted r24 - `c z^2` and `c z log^2 z` fit ZM's 21 values
+equally, the residuals drift in OPPOSITE directions, and the discriminating
+paired-minus-ordinary exponent gap 0.33-0.75 is the signature of a LOGARITHMIC
+separation, not the +1.0 a quadratic-vs-linear law needs) and "the
+extreme-value model is the truth" (retracted r25/r26 - it is a competitor to a
+lower bound, not a ceiling).
+
+**FALSIFICATION TARGET, and the paper should print it**: one exact `h_2(p_n#)`
+beyond `p_n = 73`. The competing readings are now `z(log z)^2` and `z(log z)^3`,
+a full `log z` apart, so the computation discriminates more than it did.
+
+### 11c. WHAT THIS PAPER DOES NOT CLAIM (round-26 replacement for section 4a)
+
+Section 4a was written in round 23; its items 1, 3 and 5 are out of date. This
+is the current list.
+
+1. **NO PROGRESS ON ZILLER-MORACK CONJECTURE 6.** The proved exponent is 4.266
+   (8.04162 with constants); the conjecture asks for 2. Section "THE CEILING"
+   argues the gap is parity, not arithmetic: exponent 2 is exactly the level at
+   which a survivor in `(y, y^2]` IS a prime pair, so a dimension-2 lower-bound
+   sieve there would manufacture two simultaneous primes. Nothing here moves the
+   conjecture. **The sifting-limit numbers calibrate the distance and no more:
+   4.266 proved, 4 conjectured (Selberg), proved floor
+   `beta_kappa >= (1+o(1)) 2 kappa/e ~ 1.47` (Brady 2017). Exponent 2 is NOT
+   proved to sit below the sifting limit, only below the conjectured one** -
+   round 22's "2 kappa impossibility" paragraph is RETRACTED.
+2. **NO NEW SIEVE THEORY.** Theorems 1, 3, 3E are Legendre and Brun with the
+   arithmetic done carefully; 2E/2E'/2E''/2G are explicit sieves of
+   Friedlander-Iwaniec applied to a dimension-2 problem. **The contribution is
+   that the ladder was EMPTY, not that the rungs are hard.**
+3. **THE EXPLICIT BOUND AND THE BEST BOUND ARE NOT THE SAME BOUND.** The best
+   bound with all constants stated is **2G, exponent 8.04162** (below
+   `p_n ~ 3.8e5`, 2E'' at exponent 15 with a far smaller constant); the best
+   exponent, 4.266, is not explicit and cannot be made so with published tools.
+   Both are stated, and 11a says which is which. *(Replaces 4a item 3, which
+   named exponent 19 and then 15.)*
+4. **THE COMPUTATIONAL HALF IS REPLICATION PLUS STRUCTURE.** Ziller-Morack's
+   companion note arXiv:1706.03668 computes `h_2` to `p_n = 73` and its
+   ancillary files list the extremal configurations; our delta reduction is
+   essentially their Proposition 1.5(2). What is new is the PER-DIFFERENCE
+   family `F_d(y)`, the twin percentile inside it, the shallow-extension cap
+   law, and the cross-gear extension ladder - questions they do not ask.
+5. **THE LOWER BOUNDS ARE THE PAIRED-STRUCTURE ONES OF 11b, AND THE ORDER
+   `z log z` IS NOT NEW.** *(Replaces 4a item 5, which said there was no lower
+   bound beyond the collapse transfer.)* Ford-Konyagin-Maynard-Pomerance-Tao,
+   arXiv:1802.07604 **Remark 7** names this exact sieving system
+   (`I_p = {0 (mod p), 2 (mod p)}`) and records `>> log X log log X` - the order
+   of (P1) - as "the 'trivial' bound coming from these methods", without proof
+   or constant. **(P1) is the first PROVED bound with an explicit constant and
+   the first stated for `h_2`; it is not the first appearance of the order.**
+   (P2') is two full powers of `log log X` above that, where the same remark
+   hoped only for "a small power of log log X".
+6. **NO TWIN-PRIME-GAP COROLLARY.** The same Remark 7 notes that a sieve upper
+   bound plus pigeonhole already gives `>> log^2 X` for gaps between actual twin
+   primes - which beats anything (P2') implies about them. That argument is
+   **no obstruction to a statement about `j_2`** (there the sifted set has
+   density `~1/(log x)^2`, so pigeonhole gives only `>> (log x)^2`, beaten by a
+   full power of `x`), but any twin-prime-gap corollary would be weaker than an
+   argument those authors call trivial. **We claim none.**
+7. **NOTHING ABOUT PRIMES.** Every statement here is about coverings of an
+   interval by residue classes. The bridge to Goldbach and Polignac is
+   Ziller-Morack's Theorem 4.1 and it needs their conjecture, not these bounds.
+8. **THE ODC alpha* READING IS A SHARPENING, NOT AN ERRATUM.** See 11d.
+
+### 11d. THE ODC alpha* READING - stated as ours, with the derivation
+
+Round 25 recorded "a discrepancy in the book": ODC sec. 6.6's printed root
+`alpha* = 0.264904` does not solve the equation printed beside it. **That
+framing is withdrawn.** Round 26 did what the book instructs and the number
+comes out exactly:
+
+* Our transcription, from the page image, of the printed equation is
+  `f(a) = a + (2+3a)/(3+4a) + log a + log((3+4a)/(2+3a)) = 0`.
+* The book says "A numerical computation gives (**use the Taylor expansion at
+  1/4**)".
+* `f(1/4) = -0.0741009117`, `f'(1/4) = +4.9715909084`, so ONE first-order
+  Taylor/Newton step from `a = 1/4` gives
+  `1/4 - f(1/4)/f'(1/4) = 0.2649048691` - **the printed `0.264904`, to seven
+  digits.**
+
+So the printed value IS the book's own stated approximation, computed the way
+the book says it was. What we have is a sharpening of a stated approximation:
+the exact root of the same equation is `0.2652636746`, giving
+`beta_2 = 7.583827` against the printed `7.594004`, an improvement of
+`0.010177`. **And the caveat that belongs with it: `f` is OUR READING of a page
+image, so any residual could equally be ours.** Nothing in Theorem 2G moves
+either way - 2G's binding root is the `K -> 1` root `alpha_infinity =
+0.253321897`. Gate: `research/j2_citesweep.py` section A.
+
+### 11e. SUBMISSION CHECKLIST - state at round-26 close
+
+| item | state |
+|---|---|
+| Round-23 blockers (ODC 7.7 confirmed; HR Memoire obtained; 19/36 settled) | DISCHARGED (r24) |
+| Round-24 openings (Blight; ODC Ch.6 explicitness) | CLOSED (r25) - one negatively, one decisively |
+| Sandwich paragraph rewritten off "truth = p^2/2" | DONE (11b) |
+| Lower ladder written out with constants | DONE (r26; (P2')) |
+| Not-claims section current | DONE (11c) |
+| Citation-numbering sweep | GATE, GREEN (`j2_citesweep.py`; caught 2 live defects in r26) |
+| Referee pass over every recomputable number | GATE, GREEN (`j2_referee.py`) |
+| FKMPT Remark 7 quoted and addressed | DONE (11c items 5-6) |
+| Prior art re-checked this round | DONE (2026-08-29; layered-erdos-rankin.md sec. 7) |
+
+**REMAINING, and it is writing rather than research:** (i) the ODC page-image
+caveat is unresolved and should be closed by one library visit before
+submission - (5.38), (6.69) and p. 74 were never re-fetched; (ii) the paper must
+decide whether the per-difference family `F_d` travels with Unit 1 or splits
+off; (iii) LaTeX. **Unit 1 is handable to the human as a submission candidate.**

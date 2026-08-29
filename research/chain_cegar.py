@@ -36,7 +36,12 @@ import crt_dict                                          # noqa: E402
 DDIR = os.path.join(HERE, "data")
 
 # y : (F(M), q', exact F(M+q') where known else None)
-STEPS = {19: (25, 23, 34), 23: (34, 29, 43), 29: (43, 31, 58),
+# ROUND 26: the three small steps 11->13, 13->17, 17->19 added so the QUERY
+# COUNT can be measured on the whole scannable ladder under one fixed strategy
+# (they were never run in round 25 - the chain started at 19->23 because that
+# is where the round-24 dumps started).
+STEPS = {11: (7, 13, 11), 13: (11, 17, 18), 17: (18, 19, 25),
+         19: (25, 23, 34), 23: (34, 29, 43), 29: (43, 31, 58),
          31: (58, 37, 88), 37: (88, 41, 91), 41: (91, 43, 103)}
 MOD = 35
 M = 4
@@ -359,7 +364,9 @@ def run_step(y, oracle, shadow=None, verbose=True, itcap=ITCAP,
             return dict(status="STALLED", it=it, y=y, bound=bnd,
                         q4=len(asked4), q2=len(asked2), k4=len(killed4),
                         k2=len(killed2), secs=time.time() - t0,
-                        disagree=disagree, edges=int(live.sum()))
+                        disagree=disagree, edges=int(live.sum()),
+                        killed4=sorted(killed4), killed2=sorted(killed2),
+                        asked4=sorted(asked4), asked2=sorted(asked2))
         if verbose and (it % 500 == 0 or it < 3):
             print("    it %6d  bound %4d  q %5d+%5d  killed %5d+%5d  "
                   "edges %8d  %6.0fs"
@@ -368,12 +375,17 @@ def run_step(y, oracle, shadow=None, verbose=True, itcap=ITCAP,
                   flush=True)
         if it > itcap:
             return dict(status="ITCAP", it=it, y=y, bound=bnd,
-                        q4=len(asked4), q2=len(asked2),
-                        secs=time.time() - t0, disagree=disagree)
+                        q4=len(asked4), q2=len(asked2), k4=len(killed4),
+                        k2=len(killed2), secs=time.time() - t0,
+                        disagree=disagree,
+                        killed4=sorted(killed4), killed2=sorted(killed2),
+                        asked4=sorted(asked4), asked2=sorted(asked2))
     return dict(status="CERTIFIED", it=it, y=y, bound=bnd, budget=budget,
                 q4=len(asked4), q2=len(asked2), k4=len(killed4),
                 k2=len(killed2), secs=time.time() - t0, disagree=disagree,
-                states=S, edges0=len(esrc), edges=int(live.sum()))
+                states=S, edges0=len(esrc), edges=int(live.sum()),
+                killed4=sorted(killed4), killed2=sorted(killed2),
+                asked4=sorted(asked4), asked2=sorted(asked2))
 
 
 def report(r, orc, F, Q1, EXACT, shadowed=False):

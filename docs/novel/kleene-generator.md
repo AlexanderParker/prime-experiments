@@ -266,6 +266,95 @@ one-prime increment of the maximal gap is a max-plus closure and the increment l
 dual-certificate form.  The two-residue (paired / twin) case is the first where the
 grammar is genuinely two-letter with forced alternation.
 
+## 4c. ROUND 26 - THE IDENTITY IS A TWO-SIDED LAW, AND MECHANIC'S Q* CONJECTURE IS IT
+
+WHAT HAPPENED.  Round 25 (mechanic, `docs/novel/old-machine-spectrum.md` section 8)
+built the WORD-LEGAL CRITERION independently, from the census side, and registered as a
+CONJECTURE on two exact points:
+
+    Q*_J(M; legal for q') = max span of a J-gap window of M whose J-2 MIDDLE gaps
+        (i)  are each = 0 or +-s (mod q'),  s = 2u' mod q', and
+        (ii) induce a letter word (0/+1/-1) of prefix-sum range <= 1;
+    CONJECTURE:  max_J Q*_J = F(M + q')  -  not merely an upper bound.
+
+Q*_J IS qualmax_J IS LAYER J-2 OF K*.  Condition (i) is exactly K's edge condition
+`d_i mod q' in {0, a, b}`; condition (ii) is exactly K's T3 tooth transition (letter 0
+keeps the tooth, +-1 are the two tooth swaps, and "prefix-sum range <= 1" says the walk
+stays inside the two teeth); the two unconstrained flanks are exactly L and R.  So
+
+    Q*_J  =  max over K-paths of J-2 edges of  L (x) K^{J-2} (x) R  =  layer J-2 of K*,
+
+and the conjecture "max_J Q*_J = F(M+q')" is, verbatim, the identity of section 1.  It
+is therefore a THEOREM, proved in section 3 in round 22; the direction mechanic left
+open (Q*_J <= F(M+q') for every J) is the (>=) half of that proof - the CRT choice of
+the killing copy.
+
+STATED ON ITS OWN, because the theorem deserves a form that needs no max-plus:
+
+  ATTAINMENT THEOREM.  Let x_0 < ... < x_J be consecutive openings of M whose J-2 middle
+  gaps satisfy (i) and (ii).  Then x_J - x_0 <= F(M + q').
+  PROOF.  (i)+(ii) hold iff there is a tooth assignment t_1..t_{J-1} in {+,-} with
+  x_{i+1} - x_i = (t_{i+1} - t_i) c (mod q'), c = 6^{-1} mod q'.  Fix one and set
+  r = t_1 c - x_1 (mod q'); then x_i + r = t_i c (mod q') for every interior i.  The
+  joint period of M + q' is P(M) q' with gcd(P(M), q') = 1, so some translate
+  x + jP(M), jP(M) = r (mod q'), is a window of M with the same gaps in which gear q'
+  blocks EVERY interior.  No opening of M + q' then lies strictly between x_0 and x_J,
+  so the gap of M + q' containing that interval is at least x_J - x_0 (equality iff q'
+  also spares x_0 and x_J - and if it does not, the containing gap is only LONGER).  []
+
+  J = 2 is mechanic's own DELETION LADDER F_2(M) <= F(M + one gear).  The theorem is its
+  extension to every depth, and it is the exact converse of the criterion direction, so
+  together they give  max_J Q*_J = F(M + q')  identically.
+
+THE COMPUTATION (round 26, `research/qstar.py`, log `research/data/r26_qstar.log`).  A
+three-line proof deserves an independent check, and the "for every J" quantifier is
+closed computationally rather than by a depth cap: every real legal window maps to an
+A_4 walk of the same weight, so the A_4 CLOSURE is an upper bound on max_J Q*_J over ALL
+J at once, and A_4's layer vector TERMINATES, which rigorously caps the depth (no
+abstract walk of length k means no legal window of J = k+2 gaps).  Per-depth values are
+then computed exactly by descending-span search seeded at the A_4 layer bound, against
+the realised-tuple oracle (mechanic's exact full-period censuses at arity <= 4 where they
+exist, the scan-free CRT decision of `research/crt_dict.py` elsewhere):
+
+    M    q'   F(M)  F(M+q')   Q*_2  Q*_3  Q*_4  Q*_5   max_J Q*_J   J*    verdict
+    11   13     7       11      11     8     -     -           11    2     EXACT
+    13   17    11       18      16    18     -     -           18    3     EXACT
+    17   19    18       25      25    25     -     -           25    2,3   EXACT
+    19   23    25       34      31    33    34     -           34    4     EXACT
+    23   29    34       43      39    43     -     -           43    3     EXACT
+    29   31    43       58      55    58    55    55           58    3     EXACT
+    31   37    58       88      68    85    88    68           88    4     EXACT
+    37   41    88       91      90    90    91     -           91    4     EXACT
+
+EIGHT steps, all exact - the seven scannable ones and, because mechanic's round-25 m37
+census makes it decidable, 37 -> 41, beyond every Q* computation anyone had run.  The
+attaining depth J* reproduces k_win + 1 at every step (mechanic's two anchors J = 3 at
+29->31 and J = 4 at 31->37 among them), and the attaining WINDOWS are the project's known
+extremal objects, re-derived: (4,8,15,7) at 19->23 is R41's k=3 record window,
+(7,10,21,10,7) at 29->31 is R50's exact J=5 inventory, (11,12,37,28) at 31->37 is R25's
+padded winner, and (2,88) at 37->41 is mechanic's F_2(37) maximiser.  NEW: F(41) = 91 is
+attained at the window (21,14,41,15).
+
+WHAT THE EXACTNESS MEANS - and it cuts both ways.
+* POSITIVE: the criterion is not a relaxation of (D), it is a CHANGE OF REPRESENTATION.
+  Q* is computed on the OLD machine's period (or, scan-free, on its dictionary), so it
+  prices F(M+q') without ever building M+q'.  That is the whole value, and it is a real
+  one: it is how the ladder runs past every scannable machine.
+* NEGATIVE, and it should be said plainly: BECAUSE Q*_max = F(M+q') EXACTLY, "the
+  criterion certifies (D)" is not weaker than "(D) holds" - it is the same statement.
+  The margins the criterion reports (0.52-0.69 q' at the literal steps) are the TRUE
+  margins of (D) itself, not slack in a relaxation, and no proof can be obtained by
+  exploiting looseness in the criterion, because there is none.
+* CONSEQUENCE FOR MECHANIC'S TWO SEEDED ANCHORS: their runs at 43->47 and 47->53 were
+  seeded at budget-1 and reported <= 149 and <= 170.  The theorem gives the exact values
+  outright: max_J Q*_J(43; legal for 47) = F(47) = 118 and max_J Q*_J(47; legal for 53)
+  = F(53) = 145.  Both certifications hold with margins 32 and 26, not +1.
+* CONSEQUENCE FOR THE RECORD: R39 reported the criterion value equal to F(M+q') "at 6 of
+  7, slack 2 at 23->29".  The exact computation gives max_J Q*_J(23; legal for 29) = 43
+  = F(29), attained at J = 3 by the window (10,10,23).  The recorded slack is an
+  artifact; equality holds at 7 of 7 - as the theorem requires it to, at every step,
+  for ever.
+
 ## 5. UNSOLVED QUESTIONS OR CONJECTURES IT TOUCHES
 
 - The increment law / part (D): this is now its certificate form, and the remaining task

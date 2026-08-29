@@ -520,8 +520,11 @@ Nearest prior art, and the correction:
    per-difference refinement.
 3. Context: ordinary-Jacobsthal computations (Hagedorn 2009 to n = 49;
    Ziller-Morack 1611.03310 to p = 251; A048670 to n = 64) are the one-residue
-   analogue; Costello-Watts arXiv:1208.5342 bounds, Ford-Green-Konyagin-
-   Maynard-Tao asymptotics - none paired.
+   analogue; Costello-Watts bounds (arXiv:1306.1064 for the explicit
+   g(n) <= 2 e^gamma k^{5+5 loglog k}, k > 120; their arXiv:1208.5342 is a
+   SEPARATE range-restricted computational bound for 50 <= k <= 10000 and must
+   not be quoted for the first - corrected round 26 by research/j2_citesweep.py),
+   Ford-Green-Konyagin-Maynard-Tao asymptotics - none paired.
 
 VERDICT: PARTIAL OVERLAP. The five headline h_2 values and the Conjecture 6
 verification are KNOWN (Ziller-Morack 2017, arXiv:1706.03668 + OEIS A288815;

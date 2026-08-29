@@ -1906,3 +1906,379 @@ and mine gives 68. Two independent codebases, one set of integers.
 5. The m13 covering dual (blocked on the witness being saved - R25.4).
 6. Harvester's paired-Holt coef rung; suppression-corrected flatness at a
    further machine; the CRT single-cycle reduction. Unchanged.
+
+## Round 26 append (2026-08-29)
+
+Brief: (1) THE SOUNDNESS BRIDGE - one abstract lemma discharging both the
+generator's bridge (verdict 20) and the depth-sum glue (verdict 11);
+(2) `Census29`/`Census31` from hypotheses toward kernel facts;
+(3) the eighth rung 37->41 IF other lanes' inputs land in the `hE` shape;
+(4) Lateral's parity theorem. No per-rung period scan (brief instruction).
+
+**Build GREEN at 1426 jobs** (1410 -> 1426), 82 targets, 135 files, **zero
+sorries, zero `axiom` declarations, no `native_decide`, no
+`Lean.ofReduceBool`**. Eight new roots: `Periodic`, `Machine11Per`,
+`Machine13Per`, `Gen11Sound`, `Machine29Cen`, `Machine31Cen`, `LadderPeriod`,
+`Mirror`, plus the unregistered audit tool `DepAudit.lean`. Every job this
+round launched has finished.
+
+### R26.1 THE PERIODIC-ENUMERATION LEMMA - two standing gaps, one theorem
+
+`proofs/Periodic.lean`, no machine, no gears, nothing but `omega`:
+
+```lean
+theorem next_shift {E : ℕ → Prop} {next : ℕ → ℕ} {P : ℕ}
+    (hgt : ∀ k, k < next k) (hE : ∀ k, E (next k))
+    (hmin : ∀ k m, k < m → m < next k → ¬ E m)
+    (hper : ∀ k, 1 ≤ k → (E (k + P) ↔ E k)) (k : ℕ) :
+    next (k + P) = next k + P
+
+theorem op_shift {next op : ℕ → ℕ} {P N : ℕ}
+    (hsucc : ∀ n, op (n + 1) = next (op n))
+    (hnext : ∀ k, next (k + P) = next k + P)
+    (h0 : op N = op 0 + P) (n : ℕ) : op (n + N) = op n + P
+```
+
+`next_shift` carries the mathematics (periodicity makes `next k + P` an
+`E`-point above `k + P`, and pulling `next (k+P)` back by `P` makes one above
+`k`, so the two minimalities pin the values to each other); `op_shift` is a
+one-line induction whose ONLY machine-specific input is the finite fact
+`op N = op 0 + P`. Also in the file: `op_shift_mul`, `gap_shift`,
+`gap_shift_mul`, `gap_mod`, `windowSum_shift`, `pred_shift_mul`,
+`next_shift_mul`, `index_reduce` (R26.3).
+
+The `1 <= k` side condition on periodicity is load-bearing, not cosmetic: slot
+`0` carries `(0, 1)` rather than `(-1, 1)`, so `Exposed 0` is FALSE while
+`Exposed P` is TRUE at every machine in this ledger. Every use of `hper` is at
+a provably positive point.
+
+MAKING THE BASE CASE KERNEL-COMPUTABLE. `opSeq` is built from `Nat.find` and
+does not reduce. The fix is the `seekT` walk that `seek_next` already proves
+equal to `nextOp`:
+
+```lean
+-- proofs/Machine11Per.lean            -- proofs/Machine13Per.lean
+def ow  : ℕ → ℕ                        def ow13 : ℕ → ℕ
+  | 0 => 0                               | 0 => 0
+  | i+1 => seekT 3 3 3 7 (ow i)          | i+1 => seekT 3 3 3 3 11 (ow13 i)
+theorem opSeq_zero : opSeq 0 = 3       theorem opSeq_zero : opSeq 0 = 3
+theorem opSeq_eq_ow : ∀ i, opSeq i = 3 + ow i
+theorem ow_135 : ow 135 = 385          theorem ow13_1485 : ow13 1485 = 5005
+        -- NO AXIOMS                            -- NO AXIOMS
+theorem opSeq_shift (n) :              theorem opSeq_shift (n) :
+    opSeq (n + 135) = opSeq n + 385        opSeq (n + 1485) = opSeq n + 5005
+theorem g11_shift / g11_mod            theorem g13_shift / g13_mod
+                                       theorem windowSum_g13_shift
+```
+
+`Machine11.opSeq_shift` is verdict 20's missing step (ii);
+`Machine13.opSeq_shift` is verdict 11's missing step. ONE lemma, two machines,
+as the brief predicted. Both base cases are `decide +kernel` with EMPTY axiom
+footprints (135 and 1,485 walk steps).
+
+COST NOTE, and it is a new infrastructure fact: `exposed13_period` written as
+`unfold ...; omega` over all EIGHT gears at once elaborated fine and then
+**failed in the KERNEL with "(deterministic) timeout"** - omega's certificate
+for sixteen simultaneous divisibility constraints is too big to re-check.
+Split into one `omega` per gear (`(5 | x + 30030) <-> (5 | x)`, sixteen of
+them) it is instant. The same shape recurs at machines 29 and 31 with sixteen
+and eighteen gears. RULE: **one divisibility per `omega` call.**
+
+### R26.2 THE GENERATOR IS SOUND AT 11 -> 13 (verdict 20 closed)
+
+With the glue in hand the bridge is finishable, and it was worth finishing:
+
+```lean
+-- proofs/Gen11Sound.lean
+theorem word_check : ∀ i < 135,
+    gw11.getD ((i + 1) % 135) 0 = Machine11.ow (i + 1) - Machine11.ow i
+theorem gAt_succ (i : ℕ) : gAt (i + 1) = Machine11.g11 i
+theorem walk_sound (ns n j : ℕ) : ∀ fuel k d surv,
+    Machine11.opSeq (j + k) = Machine13.opSeq n + d →
+    Machine13.opSeq (n + surv) ≤ Machine13.opSeq n + d →
+    Machine13.opSeq n + d < Machine13.opSeq (n + surv + 1) →
+    surv ≤ ns →
+    walk (j + 1) (Machine13.opSeq n % 13) ns fuel k d surv ≠ 999 →
+    Machine13.opSeq n + walk (j + 1) (Machine13.opSeq n % 13) ns fuel k d surv
+      = Machine13.opSeq (n + ns + 1)
+theorem spectrum_of_gen {ns : ℕ} (hgen : gen ns < 999) :
+    Spectrum.SpectrumBound Machine13.g13 (ns + 1) (gen ns)
+theorem generator_sound :
+    Spectrum.SpectrumBound Machine13.g13 1 11 ∧
+      Spectrum.SpectrumBound Machine13.g13 2 16 ∧
+      Spectrum.SpectrumBound Machine13.g13 3 23 ∧
+      Spectrum.SpectrumBound Machine13.g13 4 26
+```
+
+`F_1..F_4(13) <= 11, 16, 23, 26` - the exact values - **derived from machine
+11's 135-letter word, with machine 13's 5,005-slot period nowhere in the
+derivation.** Round 25 could only assert that the two computations AGREE.
+
+THREE THINGS THE PROOF NEEDED, all of them findings:
+
+* A CORRECTION TO `gw11`. The word's base is ONE OPENING EARLIER than the
+  enumeration's: `gAt (i+1) = g11 i`, not `gAt i = g11 i` (machine 11's first
+  opening is slot 3 and `gw11` starts with the gap ENDING there). `gen` is a
+  maximum over all 135 bases, so its VALUE is unaffected - but a soundness
+  proof has to get the index right, and a "certified word" claim written
+  without the `+1` would have been false.
+* THE BAIL VALUE HAD TO BECOME A SENTINEL. `Gen11.walk` returned `0` when the
+  span cap or the fuel ran out. That is sound for a MAXIMUM and fatal for a
+  bound: a walk that gives up is indistinguishable from a short gap. Changed
+  to `999`; `gen ns < 999` is then itself the proof that no walk bailed, which
+  is exactly the hypothesis `spectrum_of_gen` needs. Values unchanged
+  (checked by simulation before editing), and two more landed: `gen 2 = 23`,
+  `gen 3 = 26` - the generator reproduces the whole published ladder.
+* THE INVARIANT. "`x + d` is the `k`-th machine-11 opening after `x`, and
+  exactly `surv` machine-13 openings lie in `(x, x + d]`". The killed branch
+  preserves it because no machine-13 opening can hide between consecutive
+  machine-11 openings; the surviving branch closes it because
+  `opSeq13 (n+surv+1)` is then squeezed between the two.
+
+INDEPENDENCE IS GATED, NOT ASSERTED - `proofs/DepAudit.lean` (new, an audit
+tool like `AxiomCheck.lean`, deliberately not a `defaultTarget`):
+
+    DEP AUDIT GREEN: Gen11.generator_sound closes over 3858 constants;
+    all 11 positive controls reached; none of the 15 machine-13-period
+    constants is among them.
+
+It walks the transitive constant closure of the proof term and fails
+elaboration if `Machine13.qasm`, `qslice`, `qokAll`, `chain_facts`,
+`spectrum_one..four`, `spectrum_ladder`, `nextOp_le_11` (etc.) are reachable.
+**THE POSITIVE CONTROLS EARNED THEIR PLACE IMMEDIATELY**: the first version
+passed vacuously, reaching only 310 constants, because `ConstantInfo.value?`
+does NOT return a THEOREM's proof term in this toolchain - one must match
+`.thmInfo` explicitly. A dependency audit written the obvious way is a no-op.
+(New standing lesson; `#print axioms` cannot see this class of claim at all.)
+
+### R26.3 THE CENSUS HYPOTHESIS SHRINKS TO ONE PERIOD (brief item 2)
+
+`Census29` says `forall n, ...` - a claim about EVERY index of an infinite gap
+word. `research/qual_dict.py` verifies ONE PERIOD. Nothing in the ledger
+connected them; that step was an unstated assumption inside a named
+hypothesis. It is now a theorem, and the engine is abstract:
+
+```lean
+-- proofs/Periodic.lean
+theorem index_reduce {E : ℕ → Prop} {next op g : ℕ → ℕ} {P : ℕ} (hP : 0 < P)
+    (hsucc) (hnext) (hEop) (hposop) (hper) (hsurj) (hg) (n : ℕ) :
+    ∃ m, op m ≤ P ∧ ∀ i, g (n + i) = g (m + i)
+
+-- proofs/Machine29Cen.lean, proofs/Machine31Cen.lean
+theorem Machine29.exposed29_period {k} (hk : 1 ≤ k) :
+    Exposed29 (k + 1078282205) ↔ Exposed29 k
+theorem Machine29.index_reduce29 (n) :
+    ∃ m, opSeq29 m ≤ 1078282205 ∧ ∀ i, g29 (n + i) = g29 (m + i)
+structure Machine29.Census29P : Prop      -- every clause restricted to
+                                          -- opSeq29 n <= 1078282205
+theorem Machine29.census29_of_period (h : Census29P) : Census29
+theorem Machine31.census31_of_period (h : Census31P) : Census31
+
+-- proofs/LadderPeriod.lean
+theorem D_29_31_period (h : Machine29.Census29P) (n) : Machine31.g31 n ≤ 43 + 31
+theorem D_31_37_period (h : Machine31.Census31P) (n) : Machine37.g37 n ≤ 58 + 37
+theorem g31_le_of_period / g37_le_of_period      -- R39's own form
+```
+
+WHY THIS WORKS WHERE THE GLUE OF R26.1 CANNOT. `op_shift` needs the base case
+`op N = op 0 + P` - a walk of `N` steps, which is 135 at machine 11 and
+214,708,725 at machine 29. `index_reduce` needs NO base case and NO walk: it
+needs only that the opening PREDICATE is periodic (one `omega` per gear) plus
+surjectivity of the enumeration, both of which machines 29 and 31 already
+have. The reduction therefore applies at machines whose period a kernel will
+never enumerate.
+
+WHAT IT DOES AND DOES NOT BUY. Verdict 21 STANDS: `Census29` is not
+kernel-checked and will not be. What changed is that the unverified part is
+now FINITE as well as explicit - a claim about the 214,708,725 openings of one
+period (6,226,553,025 at machine 31), which is exactly the object the four
+gates scan. Anyone quoting the rung still has to quote the hypothesis; the
+hypothesis is now the same shape as the evidence.
+
+### R26.4 LATERAL'S PARITY LAWS, THE ARITHMETIC HALVES (brief item 4)
+
+`proofs/Mirror.lean`, axiom footprint `[propext, Quot.sound]` - not even
+`Classical.choice`:
+
+```lean
+theorem mirror_gear {q P k : ℕ} (hqP : q ∣ P) (hk1 : 1 ≤ k) (hk2 : k < P) :
+    ((q ∣ Census.lo (P - k)) ↔ (q ∣ Census.hi k)) ∧
+      ((q ∣ Census.hi (P - k)) ↔ (q ∣ Census.lo k))
+theorem mirror_exposed11 {k} (hk1 : 1 ≤ k) (hk2 : k < 385) :
+    Machine11.Exposed11 (385 - k) ↔ Machine11.Exposed11 k
+theorem mirror_exposed29 {k} (hk1 : 1 ≤ k) (hk2 : k < 1078282205) :
+    Machine29.Exposed29 (1078282205 - k) ↔ Machine29.Exposed29 k
+theorem antipode_open {q P s : ℕ} (hq : 5 ≤ q) (hqP : q ∣ P) (hs : 2 * s = P + 1) :
+    ¬ (q ∣ Census.lo s) ∧ ¬ (q ∣ Census.hi s)
+theorem antipode_exposed11 : Machine11.Exposed11 193
+theorem antipode_exposed29 : Machine29.Exposed29 539141103
+theorem self_mirror_unique {N j t1 t2 : ℕ} (hN : N % 2 = 1)
+    (h1 : t1 < N) (h2 : t2 < N)
+    (e1 : (2 * t1 + j) % N = 0) (e2 : (2 * t2 + j) % N = 0) : t1 = t2
+theorem periods_odd : 135 % 2 = 1 ∧ ... ∧ 6226553025 % 2 = 1
+```
+
+`mirror_gear` is Lateral's M0 for one gear at any period: the mirror EXCHANGES
+the slot's two members and blocking is symmetric in them. `antipode_open` is
+their round-26 `g_1* = 1`, and the arithmetic is even shorter than their
+residue argument - `6 * ((P+1)/2) = 3P + 3`, so the antipodal slot's members
+are `3P + 2` and `3P + 4` and a gear would have to divide `2` or `4`. Note
+`antipode_exposed29` is an opening of machine 29 exhibited BY ARITHMETIC: no
+scan, no `decide`, at slot 539,141,103.
+
+NOT DONE, and it is the half the lever needs: "every count is EVEN except the
+exceptional one" requires a counting step - a fixed-point-free involution on a
+`Finset` has even cardinality - which this file does not build. What is proved
+is the involution and the UNIQUENESS of its fixed point, which is the half the
+route consumes ("fewer than two" proves "none").
+
+### R26.5 THE EIGHTH RUNG WAS NOT ATTEMPTED - the reason, not a judgment
+
+Brief item (3) was conditional on Mechanic's and Constructor's round-26
+outputs landing in the `hE` shape. At my round close `agents-shared.md`
+carried round-26 blocks from LATERAL and HARVESTER only; neither Constructor's
+37->41 chain nor a machine-37 qualifying dictionary exists. Two independent
+reasons the rung could not be built anyway:
+
+* THE VEHICLE NEEDS MACHINE 37's QUALIFYING FAMILY `D_2..D_{K+2}` at floor
+  `2u' = 14` (gear 41's teeth are `{7, 34}`, `6*7 = 42 = 41+1`). That is a
+  full-period scan of 1,236,789,689,135 slots - and the brief says explicitly
+  "do NOT start any per-rung period scan". (R25.7's "about 15 min of CPU per
+  pass" for machine 37 is wrong by three orders of magnitude on its own
+  measured scaling: machine 31's 33.4e9 slots cost 1,451 s CPU, and machine 37
+  is 37x larger. Correcting my own estimate.)
+* MECHANIC's m41 superset is the WRONG OBJECT for this vehicle twice over: it
+  is a dictionary of machine 41 (the NEW machine), where the merge law
+  consumes the OLD machine's word, and it is 4-tuples, where the qualifying
+  family needs depths up to `K + 2 = 7`.
+
+The honest route to the eighth rung is Constructor's scan-free CRT dictionary
+generating machine 37's qualifying windows at depths 2..7 - which is their
+tool, mid-round. Recorded as the top open target, not as a failure.
+
+### R26.6 New verdicts
+
+22. **`ConstantInfo.value?` DOES NOT SEE A THEOREM'S PROOF TERM in this
+    toolchain (Lean 4.34.0-rc1).** Any dependency audit written with it
+    reports a closure of only the TYPES' constants and passes vacuously
+    (measured: 310 constants instead of 3,858). Match `.thmInfo` explicitly.
+    The general lesson is bigger than the API: **an audit needs positive
+    controls or it is not an audit** - `DepAudit.lean` now asserts eleven
+    constants that MUST be reachable, and they are what caught this.
+23. **A single `omega` over sixteen divisibility constraints elaborates and
+    then fails IN THE KERNEL** ("(deterministic) timeout"). The elaborator is
+    not the binding limit for omega certificates; the kernel is. One
+    divisibility per call. (Machine 13's period lemma, and by extension 29's
+    and 31's.)
+24. **The generator's soundness needed a SENTINEL, and that is a general
+    lesson about computed bounds.** A search that returns a neutral value when
+    it gives up can only ever certify a maximum, never a bound. `gen 0 = 11`
+    was true and useless for soundness until the bail value moved above every
+    attainable span; then the SAME number became a proof that no walk bailed.
+    Any "computed maximum" in this project used as an upper bound should be
+    checked for this: what does the computation return when it fails?
+25. **The census hypotheses are now finite, and that is the whole of what
+    round 26 could shrink.** `Census29P`/`Census31P` are one-period claims
+    (verdict 21 unchanged: still not kernel-checked). The route to REMOVING
+    them is unchanged and is not the periodicity lemma: it is either the
+    dictionary transfer from machine 23 (blocked on `dict_transfer.py` at
+    `out_m = 7`) or Constructor's sandwich lemma.
+
+### R26.7 Open formalisation targets (round-27 priority order)
+
+**0. THE LP THREAD'S CASE-SPLIT CERTIFICATES (added post-filing; see R26.8 for the
+sizing and the order of attack).** It outranks everything below it because it
+retires the census hypotheses rather than shrinking them - the residue verdicts
+21 and 25 name.
+
+1. **Machine 37's qualifying dictionary, scan-free** (Constructor's
+   `crt_dict.py` / `scanfree_dict.py` at depths 2..7, floor 14). It is the
+   ONLY missing input to the eighth rung, and it is a CSP job, not a scan.
+2. **Discharge `Census29` from `Census23`** by the dictionary transfer -
+   unchanged from R25.7 item 1, and now sharper: with `index_reduce` the
+   target is a one-period claim on both sides.
+3. **The involution-parity counting lemma** (a fixed-point-free involution on
+   a `Finset` has even cardinality). It converts `Mirror.self_mirror_unique`
+   into Lateral's actual lever - "every configuration occurs an even number of
+   times except the named one" - and it is the last piece of the endpoint
+   killer. Check `Finset.card_modEq_card_fixedPoints` before rolling one.
+4. **The depth-sum re-indexing bijection** at machine 13: `Finset.range 1485`
+   window starts vs the 5,005 residues of `pairCount13`. The periodicity half
+   is done (R26.1); what remains is Finset bookkeeping.
+5. **The generator at 13 -> 17** by the `Gen11Sound` template. Machine 13's
+   word is 1,485 letters (vs 135), gear 17's teeth are `{3, 14}`, and the
+   periodicity glue already exists (`Machine13Per`). If it works, the
+   generator - not the dictionary - becomes the ladder's vehicle, and the
+   dictionary's census hypothesis disappears from those rungs.
+6. **The SANDWICH LEMMA** (Constructor R51) - unchanged, still the only route
+   that removes the census hypothesis rather than shrinking it.
+7. The m13 covering dual (blocked on Lateral saving the dual vector).
+
+### R26.8 THE LP THREAD'S CASE-SPLIT CERTIFICATES - SIZED, AND TAKEN AS THE TOP ROUND-27 ITEM
+
+Routed in after my round was filed (LP-duality thread round 26, section 9): every (D)
+rung through 37->41 is certified hypothesis-free by their case-split vehicle, and the
+checking predicate is arithmetic. That is the alternative to verdicts 21/25 - a rung with
+NO `Census29P`, NO `Census31P`, nothing empirical.
+
+I MEASURED THE ARTEFACTS BEFORE JUDGING, because the numbers quoted for it are OP COUNTS,
+not certificate sizes, and those are not the same quantity. `research/data/r26/
+cert_gate_m23_w48_h*.pkl` (the 19->23 rung, five cases, gear 5 held):
+
+    per case:   29 cut rows x 22 rational entries + 29 row weights (`y`)
+                + 450 link weights (`nu`) + 1 recursion weight (`yff`)
+                = ~1,120 rationals, 5.4 KB
+    magnitudes: DENOMINATORS <= 5 BITS (21, 7, 3), numerators <= 10 bits
+    verdict record: lhs 202/7 < rhs 607/21 - the published table row, exactly
+    whole rung: 5 cases, ~5,600 small rationals, ~27 KB
+
+**THE DATA IS NOT THE OBSTACLE.** ~11,000 numerals is the scale of `Machine29D4` (6,688
+4-tuples, 55 s, empty axiom footprint), and the entries are single small fractions rather
+than tuples, so the round-25 `count x arity` isDefEq budget is not close to binding. One
+module per case, five modules, is a comfortable shape.
+
+**THE OBSTACLE IS SOUNDNESS, AND IT IS NOT ARITHMETIC.** Checking a certificate is easy;
+the theorem is `certificate -> rung`, and that needs the vehicle formalised. This lane
+already has that scaffold for the UNRESTRICTED level-2 consistent vehicle
+(`CoveringCert.lean` at 11->13, `CoveringCert2.lean` at 11->13 and 13->17). `RelaxStar`
+is a strict extension and needs four further soundness lemmas, none of them hard and none
+of them free:
+
+  1. `pos` restricted - the held gears' blocked positions are removed, and a real
+     configuration with those held phases still induces a 0/1 point;
+  2. `dom(q)` restricted - the lower gears range only over phases blocking no required-open
+     position, and restricting them only RAISES `n_ij` while `n_ij <= N_ij` still holds at
+     the actual tuple;
+  3. cuts taken at the positions of `pos` only - validity is "the row's subset-sums are
+     >= 1 at every nonempty atom", `<= 2^n` atoms with `n <= 11`;
+  4. CASE EXHAUSTIVENESS - the held gears' phases range over all residues, so the five
+     (35, 385) cases cover every configuration. This is the one with no analogue in the
+     existing files, and it is the reason the vehicle escapes round 25's refutations.
+
+VERDICT: **ROUND-27 TARGET, TOP OF THE LIST - not a this-round pickup.** Not because it
+is unattractive (it is the most attractive thing offered to this lane in several rounds:
+it retires the census hypotheses outright rather than shrinking them), but because it is
+a four-lemma soundness development plus five transcribed modules, and my round is filed
+and green at 1426 jobs. The job-completion rule says launch work of that size EARLY or
+narrow it; starting it now would do neither. What this round contributes is the sizing:
+round 27 starts from a measured object rather than "looks reachable".
+
+ORDER OF ATTACK, so it is decided in advance and not re-litigated:
+  (i)   `RelaxStar` soundness at ONE case, no case split - the smallest true statement;
+  (ii)  case exhaustiveness over one held gear, giving the 19->23 rung (5 cases);
+  (iii) 29->31 (35 cases) - the first rung that REPLACES a census-hypothesis rung, which
+        is the whole point; `D_29_31` would then exist in two forms, one of them
+        hypothesis-free.
+Stop after (ii) if the transcription cost per case exceeds one module.
+
+WHAT I NEED FROM THE LP THREAD (their offer: "ask and I will emit them in whatever shape
+the Lean side wants") - JSON, not pickles, one file per case:
+  * `rows`: a list of `[pos, [[num, den], ...22]]` - integers only, no `Fraction` repr;
+  * `y`, `nu` as `[[num, den], ...]`; `yff` as `[num, den]`;
+  * the ATOM INDEXING made explicit: which subset of gears each of the 22 entries is,
+    as a list of gear-index bitmasks, so the Lean side can state cut validity without
+    reconstructing their column order;
+  * `held`, `ws`, `W`, `full`, and the claimed `lhs`/`rhs` as integer pairs;
+  * for exhaustiveness: the list of held-phase tuples the case files are indexed by, and
+    the assertion that it is all of `prod (residues of held gears)`.
+With that, (i)+(ii) is an afternoon of transcription plus the soundness lemmas.

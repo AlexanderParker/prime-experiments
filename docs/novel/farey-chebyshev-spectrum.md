@@ -159,3 +159,122 @@ Expected nearest art: Hall (1970) on Farey spacings and the
 Boca-Cobeli-Zaharescu work on Farey statistics; the delta to check is the
 identification of a sieve/Jacobsthal operator's spectrum with a Farey set and
 the resulting GUE-exclusion argument.
+
+---
+
+## 7. ROUND-26 EXTENSION: THE MULTIPLICITY THEOREM, AND A CORRECTION TO
+##    COROLLARIES 1 AND 2
+
+Lateral, round 26 (2026-08-29), backlog item U4. Script
+`research/mirror_lever2.py` part F (log `research/data/mirror_lever2.log`).
+
+### 7.1 The multiplicity theorem
+
+Write an eigenvalue `2 cos(pi j/(g+1))` as `2 cos(pi a/b)` with `a/b` in lowest
+terms. Then `b | g+1`, and for a FIXED `b` the values of `a` coprime to `b`
+arise from exactly the gaps `g = -1 (mod b)`, each contributing once. Hence
+
+>   **THEOREM.  mult(2 cos(pi a/b)) = Sigma(b) := sum_{g = -1 (mod b)} W_1(g),
+>   independent of `a`.**
+
+So the eigenvalue multiplicities of `A` **are the gap histogram's residue-class
+counts**, one class (`-1`) per modulus. The map is invertible: by Mobius
+inversion over multiples,
+
+>   `W_1(b-1) = sum_{t >= 1} mu(t) Sigma(tb)`,
+
+so `spec(A)` (with multiplicity) and the gap histogram determine each other
+exactly, and `F + 1 = max{ b : Sigma(b) > 0 }`. This is the constructive form of
+`nilpotent-invariants.md`'s negative ("every unitary invariant of `BS` is the
+gap histogram"): here is the inversion.
+
+Two corollaries.
+
+**(i) PARITY.** By the mirror parity law (`mirror-parity-laws.md` 7.3) the only
+gap length with an odd count is `1`, so `Sigma(b)` is odd iff `b | 2`:
+
+>   **every eigenvalue multiplicity of `A` is EVEN, except that of the
+>   eigenvalue `0` (`b = 2`).**
+
+Asserted exactly at m11..m29 for every `b <= F+1`. In particular the top
+eigenvalue `2cos(pi/(F+1))` has even multiplicity: `A` never has a simple
+Perron eigenvalue, and the maximal gap never occurs exactly once.
+
+**(ii) THE LEVEL COUNT IS A DIVISOR-CLOSURE STATISTIC.** Corollary 1's
+`|Farey(F+1)| - 2` silently assumes **every** gap length `1..F` is realised.
+The true statement is
+
+>   `#distinct = sum { phi(b) : b >= 2 and b | g+1 for some REALISED gap g }`,
+
+and machines with HOLES in their gap spectrum break the Farey form.
+
+### 7.2 CORRECTION to Corollary 1's table
+
+Recomputed on the true supports (m11-m29 from the full-period `W_j` census,
+m31/m37 from the exact realised 4-tuple dictionaries, m41 from the COV-SAT
+support `{1..91} \ {84,87,89}`; the tuple route is validated at m23 and m29
+where both sources exist, and the `phi`-sum is cross-checked against direct
+construction of the level set at every machine):
+
+    y      F   holes                 distinct (TRUE)   as published (naive)
+    11     7   -                                  21                    21
+    13    11   {9}                                41                    45
+    17    18   {17}                              113                   119
+    19    25   {19,24}                           183                   211
+    23    34   {24}                              363                   383
+    29    43   {41,42}                           549                   603
+    31    58   {54,56,57}                        981                 1,085
+    37    88   13 holes (73..87)               1,813                 2,455
+    41    91   {84,87,89}                      2,467                 2,595
+
+Only machine 11 (whose spectrum has no holes) was right. **THE LOSS RULE**, and
+it is exact at all nine machines: `b` is absent iff every multiple of `b` in
+`[2, F+1]` is `hole+1`; for `b > (F+1)/2` that is just "`b-1` is a hole", and
+since every observed hole lies in the top half of the range (the spectrum fills
+monotonically from below),
+
+>   `loss = sum over holes h of phi(h+1)`,
+
+e.g. `phi(85) + phi(88) + phi(90) = 64 + 40 + 24 = 128` at m41 - predicted
+before the run and matched exactly. **The hole list is a spectral observable**:
+an arithmetic-selection object nobody can predict is exactly the defect between
+the true level count and the Farey count.
+
+### 7.3 CORRECTION to Corollary 2's rigidity numbers
+
+Corollary 2's spacing statistics were also computed on the full Farey set.
+On the true level set (same unfolding):
+
+    y    #levels   <r~> true   <r~> as published   s_min/s_mean true
+    11        21      0.7206              0.7206              0.4762
+    13        41      0.6306              0.6987              0.3636
+    17       113      0.6785              0.6928              0.3875
+    19       183      0.6507              0.7002              0.3297
+    23       363      0.6876              0.7046              0.3226
+    29       549      0.6982              0.7026              0.3182
+    31       981      0.6897              0.7030              0.3070
+    37     1,813      0.6788              0.7046              0.2422
+    41     2,467      0.6938              0.7049              0.3011
+
+WHAT SURVIVES: `P(s < 0.1 mean) = 0` exactly at every machine - and now for a
+reason rather than a measurement, since deleting levels only lengthens spacings,
+so a subset of a set with a hard gap keeps it. `<r~>` stays above GUE's 0.6027
+at every machine, so the round-22 conclusion (this spectrum is MORE RIGID than
+GUE, the Riemann bridge is closed at finite machines) is unchanged.
+
+WHAT DOES NOT: the **normalised** hard gap. "Descending to `3/pi^2 = 0.30396`"
+was a property of the full Farey set; on the true level set `s_min/s_mean` is
+not monotone and **dips below the Hall constant at m37 (0.2422)**, because
+deleting levels raises the mean spacing while the surviving minimal spacing is
+unchanged. The ABSOLUTE hard gap is intact; the ratio statement is not a law.
+
+(Floats in 7.3 are labeled as such; all integers in 7.1-7.2 are exact.)
+
+### 7.4 Status and prior art
+
+The multiplicity theorem and the Mobius inversion are proved (one paragraph
+each) and assertion-gated. The corrected level counts are exact integers, each
+cross-checked by direct construction of the level set. Prior-art check for the
+round-26 material: **not yet checked**; suggested terms - "eigenvalue
+multiplicities of a disjoint union of paths", "Chebyshev spectrum path forest
+divisor", "Farey subset spacing statistics", plus section 6's terms.

@@ -32,14 +32,18 @@ at all.
 WHAT IS AND IS NOT CLAIMED.  What is kernel-checked is the GENERATOR'S VALUE:
 `gen 0 = 11`, `gen 1 = 16`, over every base, every phase, and every window of
 span at most 30 (`no_truncation` shows the fuel never binds inside that cap -
-thirteen consecutive machine-11 gaps already span 33).  What is NOT
-formalised is the SOUNDNESS BRIDGE - that every machine-13 gap really is one
-of the windows this search enumerates.  That needs `gw11` certified as
-machine 11's own opening sequence together with the periodicity glue
-`opSeq11 (n + 135) = opSeq11 n + 385` (round-24 verdict 11's missing step at
-another machine), and it is recorded as an open target rather than assumed.
-So this file states that the generator COMPUTES the right integers; it does
-not yet prove that it MUST.
+thirteen consecutive machine-11 gaps already span 33).  What was NOT
+formalised in round 25 is the SOUNDNESS BRIDGE - that every machine-13 gap
+really is one of the windows this search enumerates.
+
+ROUND 26: THE BRIDGE IS BUILT, in `proofs/Gen11Sound.lean`.  `gw11` is
+certified as machine 11's own gap word (`Gen11.gAt_succ`), the periodicity
+glue `opSeq11 (n + 135) = opSeq11 n + 385` is `Machine11Per.opSeq_shift`, and
+`Gen11.walk_sound` shows the walk simulates the machine, giving
+`Gen11.generator_sound : F_1..F_4(13) <= 11, 16, 23, 26` with machine 13's own
+period nowhere in the derivation (gated by `proofs/DepAudit.lean`).  So this
+file states that the generator COMPUTES the right integers, and `Gen11Sound`
+proves that it MUST.
 -/
 
 import Machine13Q
@@ -74,13 +78,20 @@ def kil13 (r : ℕ) : Bool := (r % 13 == 2) || (r % 13 == 11)
 /-- **The generator's walk.**  From the base opening at index `i` and slot
 residue `c` mod 13, advance through machine 11's word; killed openings are
 passed over (that is `K`), surviving ones are counted.  Stop at the
-`(ns+1)`-st survivor and return its offset - the merged span.  Return 0 if
-the span cap 30 is exceeded or the fuel runs out. -/
+`(ns+1)`-st survivor and return its offset - the merged span.  Return the
+SENTINEL 999 if the span cap 30 is exceeded or the fuel runs out.
+
+(Round 26: the bail value was `0` when this file was written, which is a
+sound value for a MAXIMUM but destroys soundness in the other direction - a
+walk that gives up would silently lower nothing and be indistinguishable
+from a short gap.  With a sentinel above every attainable span, `gen ns` is
+small ONLY IF no walk ever bailed, which is exactly the hypothesis
+`Gen11Sound` needs.  The computed values are unchanged: 11, 16, 23, 26.) -/
 def walk (i c ns : ℕ) : ℕ → ℕ → ℕ → ℕ → ℕ
-  | 0, _, _, _ => 0
+  | 0, _, _, _ => 999
   | fuel + 1, k, d, surv =>
       let d' := d + gAt (i + k)
-      if 30 < d' then 0
+      if 30 < d' then 999
       else if kil13 (c + d') then walk i c ns fuel (k + 1) d' surv
       else if surv == ns then d'
       else walk i c ns fuel (k + 1) d' (surv + 1)
@@ -119,6 +130,13 @@ theorem gen_zero : gen 0 = 11 := by decide +kernel
 `L (x) K* (x) SIGMA (x) K* (x) R = 16 = F_2(13)` - Constructor's survivor
 identity at its first step, in the kernel. -/
 theorem gen_one : gen 1 = 16 := by decide +kernel
+
+/-- Two SIGMA letters: `F_3(13) = 23`. -/
+theorem gen_two : gen 2 = 23 := by decide +kernel
+
+/-- Three: `F_4(13) = 26`.  The generator reproduces machine 13's whole low
+spectrum ladder `11, 16, 23, 26` from machine 11's word. -/
+theorem gen_three : gen 3 = 26 := by decide +kernel
 
 /-- **The identity at 11 -> 13, both sides kernel-checked.**  The left-hand
 sides are the generator over machine 11's word (this file); the right-hand

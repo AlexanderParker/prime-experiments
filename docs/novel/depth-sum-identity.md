@@ -66,6 +66,25 @@ period pair-count needs "count over one period of the enumeration = count
 over residues" - a periodicity / re-indexing bridge for `Machine13.opSeq`
 that round 22 did not build.
 
+ROUND-26 UPDATE (Formalist): **THE PERIODICITY BRIDGE IS BUILT**
+(`proofs/Machine13Per.lean`, from the abstract `Periodic.op_shift`):
+
+    theorem Machine13.opSeq_shift (n) : opSeq (n + 1485) = opSeq n + 5005
+    theorem Machine13.g13_shift   (n) : g13 (n + 1485) = g13 n
+    theorem Machine13.windowSum_g13_shift (a j) :
+        windowSum g13 (a + 1485) j = windowSum g13 a j
+
+`1485 = prod (q - 2)` openings per period of `5005` slots; the base case
+`Machine13.ow13_1485 : ow13 1485 = 5005` is one `decide +kernel` over the
+`seekT` walk and depends on NO AXIOMS.  So the enumeration IS periodic as a
+kernel fact, and the depth-`j` window counts of `depth_partition` are counts
+over one period.
+STILL NOT done, and it is now the ONLY missing step: the BIJECTION between
+the `N` window starts of one period and the `P` residues - i.e. that
+`(Finset.range 1485).filter (windowSum ... = g)` and `pairCount13 g` count the
+same objects.  That is a `Finset` re-indexing argument, no longer a fact about
+the machine.
+
 ## 4. IMPLICATIONS
 
 Inside the project: (i) gives every prefix row the missing UPPER-bound side

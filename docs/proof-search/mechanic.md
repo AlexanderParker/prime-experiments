@@ -387,8 +387,11 @@ touching a resume junction or the cyclic wrap; worst straddling 6-window
 BEYOND 37 (exact where stated):
     F(41) = 91   F_2(41) = 103   F_3(41) = 110   F_4(41) <= 145
     F(43) = 103  F_2(43) <= 118  F_3(43) = 125
-    F(47) = 118  F_2(47) in [119,141]   F_3(47) >= 145 (<= 263)
-    F(53) = 145
+    F(47) = 118  F_2(47) = 134 (r25)   F_3(47) >= 145 (<= 263)
+    F(53) = 145  F_2(53) = 159 (r26, C30; >= is unconditional, <= conditional
+                 on the span cap 200 - the deletion-ladder cap F_2(53) <= F(59)
+                 is unavailable, the corpus F ladder stopping at 53)
+    F(59) >= 159 (r26: deletion ladder applied to F_2(53); see C15/C30)
 F_2(41) = 103 EXACT with NO descent: cap F_2(41) <= F(43) = 103 (deletion
 ladder), floor by SAT witness k = 21,157,523,372,970, gaps [28,75].
 F_3(41) = 110 EXACT (r24/f3_41_decide.log): floor-1 transfer from m23 +
@@ -687,11 +690,17 @@ does NOT predict the holes: hits at m13 (rank 2/7), m19 (1/14), m23
 ### C15. The corpus F ladder, complete to 53 (r21, r23)
 F(2,y) plus the frame identity F_adjacent = 3 F_slot determines F(y):
 
-    y         19   23   29   31    37    41    43    47    53
-    F(2,y)    75  102  129  174   264   273   309   354   435
-    F(y)      25   34   43   58    88    91   103   118   145
+    y         19   23   29   31    37    41    43    47    53      59
+    F(2,y)    75  102  129  174   264   273   309   354   435   >=477
+    F(y)      25   34   43   58    88    91   103   118   145   >=159
 
 Machines 19..41 match our independent measurements 6/6 where both exist.
+THE y = 59 ENTRY IS NEW (r26) AND IS A LOWER BOUND, NOT A LADDER VALUE: the
+corpus ladder has no 53->59 rung, and F(59) >= F_2(53) = 159 comes from the
+deletion-ladder bound K3 applied to this lane's own F_2(53) computation (C30).
+It is UNCONDITIONAL - the >= side of F_2(53) rests on an exhibited witness at
+machine 53 - and it leaves (D) at 53->59 (which needs F(59) <= 204) at most 45
+of room.
 F(2,47) = 354 IS A FIRST COMPUTATION (r23): the corpus had no 43->47 rung
 ("NOT RUN"). Method: rust2/src/bin/maxgap_pruned.rs, the endpoint-law-
 pruned covering search, validated first on two known values (y = 41 from
@@ -1765,3 +1774,404 @@ REPRODUCTION POINTERS (beyond the per-section repro lines)
     or (budget - 1) and label the result max(true, seed) per rule 16. When a
     two-sided anchor is wanted, seed just BELOW the value the run must find:
     that keeps the cost of a seeded run and still tests both directions.
+
+## Round-26 additions (mechanic)
+
+### C27. THE Q* CONJECTURE IS EXACT AT BOTH DEEP ANCHORS (r26)
+Repro: research/j5_multi.py with the new RANGE-WORKER option (argv[9], argv[10]
+= the half-open range of START-OPENING indices this process walks); every
+witness translated to the target machine and re-checked from the definition by
+research/qstar_witness_r26.py.  Logs research/data/r26/qstar_43_47_w*.log
+(ten workers) and q53_w*.log (fourteen).
+
+WHY.  Round 25's certifications at these two steps were SEEDED AT BUDGET-1
+(149 and 170), so their reported values were max(true, seed): they established
+the CERTIFICATION, not the maxima.  The Q* CONJECTURE (C24) - that
+max_J Q*_J(M; legal for q') = F(M + q') EXACTLY - rested on two exact points
+INSIDE the scannable range (58 = F(31) at 29->31, 88 = F(37) at 31->37).
+These two steps are the out-of-scan test.
+
+METHOD - THE TWO-SIDED SEED (rule 24).  Q*_max >= F(M+q') is already a theorem
+(the true maximal gap of M+q' IS such a window), so seeding ONE BELOW the
+conjectured value keeps the cost of a seeded run and still tests both
+directions: a run reporting exactly the conjectured value has found a witness
+at that span AND refuted everything above it.
+
+    step     seed  cap   result                    round-25 said   budget
+    43->47   117   200   118 = F(47)  EXACT        <= 149          150
+    47->53   144   171   145 = F(53)  EXACT        <= 170          171
+
+  (the 47->53 run's cap 171 composes with round 25's cap-200 seed-170 run,
+  which already decided (170, 200]; together they cover (144, 200] with no
+  gap.  The 43->47 run carries the whole range (117, 200] by itself.)
+
+THE FOUR WITNESSES, each verified AT THE TARGET MACHINE from the definition
+(openings where claimed, EVERY other slot of the span blocked slot by slot,
+middle gaps a legal kill word for the next gear) - and they come in MIRROR
+PAIRS, found by different workers that knew nothing of each other:
+
+  43->47, J = 3, span 118:
+    m43 k =    18,497,829,635,337   gaps [85, 31, 2]   middle [31] = -s mod 47
+    m43 k = 2,161,962,392,309,550   gaps [2, 31, 85]
+  47->53, J = 4, span 145:
+    m47 k = 82,799,441,296,736,535  gaps [70, 35, 18, 22]  middles [35, 18]
+    m47 k = 19,682,189,134,678,555  gaps [22, 18, 35, 70]  middles [18, 35]
+
+  THE 47->53 MAXIMISER'S MIDDLE WORD IS THE ALTERNATION (35, 18) = (q'-s, s) -
+  the same object C29 shows controls fuel arity.  The two constructs meet on
+  one window.
+
+CONTROL: the ten 43->47 workers' window counts sum to 178,542,615 - DIGIT FOR
+DIGIT the round-25 serial total at a completely different seed.  Cost of the
+extra resolution: expansions rose 36,606 -> 5,419,312 (148x) at 43->47 and
+189,317 -> 4,611,029 (24x) at 47->53; 51,500 and 74,736 core-seconds.
+
+THE CONJECTURE'S SCOREBOARD - FOUR EXACT POINTS, TWO OF THEM BEYOND EVERY SCAN:
+
+    step      max_J Q*_J   F(M+q')   attaining J   k_win(M->q')
+    29->31        58          58          3          2  (measured, C13)
+    31->37        88          88          4          3  (measured, C13)
+    43->47       118         118          3          2  <- PREDICTION
+    47->53       145         145          4          3  <- PREDICTION
+
+  The attaining depth equalled k_win + 1 at both steps where k_win had been
+  measured independently (a chain of k kills merges k+1 gaps).  It therefore
+  PRE-REGISTERS k_win = 2 at 43->47 and k_win = 3 at 47->53 - claims C13's
+  k_win census (which stops at 37->41) has never tested, and each one
+  kwin_census run away.  Both are consistent with A_kill: 3 at 43->47 and 5 at
+  47->53, i.e. longer chains EXIST at both steps and neither carries the
+  record - the same "par trading" C13 measured lower down.
+
+WHAT IT MEANS.  Q* is not a relaxation at all at any step where it has been
+computed: (D) at a step reduces to computing ONE NUMBER on a small machine's
+period.  And the margins the ladder actually has are not round 25's +1: they
+are 150 - 118 = +32 at 43->47 and 171 - 145 = +26 at 47->53.
+SCOPE, unchanged and stated every time: a certification (never a failure) is
+conditional on the span cap - 200 and 171 here, against budgets 150 and 171 -
+and every step of this construct with an independent value has agreed exactly.
+### C28. FULL-PERIOD GAP HISTOGRAMS BY LAP-PHASE TRANSFER, CYCLICALLY CLOSED (r26)
+Repro: research/ghist_transfer.py (worker / merge / optional --delta); gate
+research/ghist_gate_r26.py (log research/data/r26/gate_ghist_r26.log); CSVs
+research/data/r26/ghist_{13,17,19,23,29,31,37}.csv; handover for the asking
+lane research/data/r26/handover-lateral-U6-U9.md.
+
+THE ASK (Lateral's U6/U9, carried over from r25's "NOT DELIVERED") and A
+CORRECTION TO ITS PREMISE.  The brief said "your tiling runs cover the period,
+only the close was missing".  They do not: the m37 tiling workers computed the
+DISTINCT-4-TUPLE SET, not counts, and there were never any m41 tiling runs at
+all (the m41 dictionary is a dict_transfer superset).  The round-20 m37 scan
+that could have supplied the array threw it away (rule 26).  So the histograms
+had to be built.
+
+THE CONSTRUCTION - K2's BIJECTION USED FOR COUNTING, NOT MAXIMISING.  Machine
+OLD has period P and openings O; add gears q_1..q_r, T = prod q_i, new period
+T*P.  Slot x + jP survives gear q_i iff x avoids the two teeth of PHASE
+c_i = -jP mod q_i, and P is invertible mod each q_i, so j -> (c_i(j)) is a
+BIJECTION from the T laps onto all T phase tuples.  Hence
+
+   new machine's gaps = (internal gaps of S_c over ALL T phase tuples)
+                      + (the T LAP-BOUNDARY gaps, taken IN LAP ORDER),
+
+S_c = {x in O : x in no tooth of any c_i}.  The boundary term is exactly what a
+linear close drops (C26, rule 25) - so this construction is cyclically closed BY
+BUILD, not by patch.  gap(j -> j+1) = P - last(S_{c(j)}) + first(S_{c(j+1)}),
+and the last of them IS the period's wrap gap.  Asserted at merge: total =
+prod(q-2) and sum(g*count) = period.
+
+VALIDATION - SIX MACHINES CELL FOR CELL, AND TWO INDEPENDENT METHODS BEYOND:
+  m13/17/19/23/29/31 identical, cell for cell, to the round-25 CYCLICALLY
+  CORRECTED census gap_pair_hist.csv (10/17/23/33/41/55 cells; totals 1,485 ...
+  6,226,553,025 all = prod(q-2); every wrap gap = the first gap, C26's closed
+  form).  m31 DOUBLE-SOURCED WITHIN THE CONSTRUCT: from machine 23 + {29,31}
+  (899 laps) AND from machine 19 + {23,29,31} (20,677 laps) - different base
+  machines, different lap counts, the same 55 cells.
+  m37 EXACT, FULL PERIOD, THE NEW OBJECT: 217,929,355,875 gaps over
+  1,236,789,689,135 slots, in 4,764 core-seconds (six workers, 794 s each)
+  against the round-20 direct sieve's 11,829 s - and it reproduces that scan on
+  everything the scan recorded: F = 88, the complete 13-value hole list, and all
+  four padding supplies hist[41] = 61,460, hist[43] = 144,162, hist[47] = 48,722,
+  hist[53] = 10,390.  Those four are far above the wrap gap (7), so the
+  linear-close defect cannot touch them: an exact cross-method check.
+  NEW NUMBERS the round-20 scan never produced: hist[59] = 28 and hist[61] = 108
+  - the padding supplies for 37->59 and 37->61, and note they are NOT monotone
+  in q' (28 at 59 against 108 at 61), the arithmetic selection of C10/R8 again.
+
+THE GEAR-5 TRANSFORM, NOW EXACT AND CYCLIC THROUGH m37 (research/
+gear5_transform_r26.py) - the object Lateral's U6/U9 waits on:
+
+    machine   arg H_5(1)    |H_5(1)|/H0   mean gap
+     m13      +129.7765      0.307453      3.3704
+     m17      +127.8077      0.265725      3.8198
+     m19      +126.3336      0.237506      4.2691
+     m23      +126.3521      0.218002      4.6757
+     m29      +126.0588      0.202323      5.0221
+     m31      +125.7680      0.188132      5.3684
+     m37      +125.6592      0.178687      5.6752   <- NEW
+
+C17.5 read this as "+126 deg +- 2 at ALL SEVEN machines, machine-independent".
+On exact cyclic data the ladder is monotone DOWNWARD from m19 (one +0.02 uptick
+at m23), has crossed BELOW 126 and stayed there, with increments -1.97, -1.47,
++0.02, -0.29, -0.29, -0.11: decaying, but not to 126.
+AND IT CAUGHT ONE MORE INSTANCE OF THE C26 DEFECT, IN ANOTHER LANE'S NUMBERS:
+round 21's m31 mod-5 class counts were [1475661970, 976216219, 2069637131,
+1175760034, 529277670]; the exact cyclic counts differ in EXACTLY ONE CELL by
+EXACTLY ONE - class 2, because the m31 wrap gap is 7 and 7 = 2 (mod 5).  The
+size and the location of the discrepancy are both PREDICTED by "wrap gap =
+first gap", so the two constructions agree to the unit and disagree by exactly
+the one gap a linear close drops.  Nothing concluded moves (relative error
+1.6e-10); any future exact-integer identity on those counts must use the
+cyclic row.
+
+THE DELTA FAST PATH (--delta), AND AN HONEST NEGATIVE.  The q children of one
+phase-tuple parent differ only by the removal of two residue classes (~2/q of
+the elements), so a child's histogram is the parent's with a local correction
+at each removed element: a maximal run of removed indices [S..E] deletes the
+parent gaps D[S-1..E] and creates one merged gap arr[E+1] - arr[S-1], and
+consecutive runs are separated by a kept element so their D-index ranges are
+disjoint.  That is O(2n/q) instead of O(n) and should have been ~20x.
+MEASURED ALONE AND SEQUENTIALLY on the same m37 slice (benchmark protocol):
+simple 71 s, delta 65 s - 1.09x.  The saving is eaten by numpy per-call
+overhead: 25 calls on 400-750k arrays cost what 4 calls on 7M cost.  The path
+is KEPT because its output is BIT-IDENTICAL to the simple path (hist, first and
+last arrays all equal, asserted), which makes it a permanent equivalence gate -
+but it is not the speedup it was built to be.
+
+m41: NOT DELIVERED, AND PRICED.  T = 1,363,783 laps at the measured 0.062 s/lap
+(alone) = ~85,000 core-seconds, each worker holding ~330 MB.  Launched at 15
+workers, it drove free RAM from 6.0 GB to 1.1 GB with the CPU counter at 38% -
+paging, not computing - produced no completed worker in 80 minutes, and was
+killed; free RAM went straight back to 6.0 GB.  Not restarted: at a
+memory-safe 6-8 workers it is a 3-5 hour job and would not have finished
+in-round (job-completion rule).  One command, tool gated at six machines.
+### C29. A_kill(53->59), THE PREDICTOR REFUTED, AND PHASE SATURATION (r26)
+GATE: research/akill_verify_r26.py -> ALL ASSERTIONS PASSED (log
+research/data/r26/gate_akill_r26.log). Pre-registration written BEFORE any SAT
+call: research/data/r26/prereg_akill_53_59.md. Screen:
+research/alt_obstruct_r26.py. Novel doc: docs/novel/phase-saturation-arity.md.
+
+THE PRE-REGISTERED PREDICTOR (round 25's C23 shape, restated as a test):
+A_kill(M->q') >= 5 <=> the alternating pair (s, q'-s) is realised at machine M.
+The "=>" half is a theorem (overlap lemma); the "<=" half was the content.
+At 53->59: u' = 10, s = 20, q'-s = 39; legal gap values 20,39,59,79,98,118,138.
+Registered predictions: P1 the pair (20,39) is realised; P2 hence A_kill >= 5
+(the 5-chain shape RECURS); P3 A_kill = 5 exactly; P4 F_2(53) in [155,175].
+
+THE MEASUREMENT, AND IT SPLITS THE PREDICTION IN HALF.
+  P1 CONFIRMED.  (20,39) REALISED at machine 53, witness
+     k0 = 5,408,553,654,414,421,963; (39,20) REALISED, witness
+     k0 = 1,522,353,991,400,668,678.  Both re-derived in the gate from the
+     DEFINITION (3 consecutive m53 openings with exactly that gap word, every
+     other slot of the span blocked gear by gear; killable at r = 49 resp. 10
+     mod 59, teeth {10,49}; CRT k* re-verified from scratch).
+  P2 REFUTED.  (20,39,20) [k=4], (39,20,39) [k=4], (20,39,20,39) [k=5],
+     (39,20,39,20) [k=5] and (20,39,20,39,20) [k=6] are ALL ZERO - and every
+     one of them with ZERO SAT CALLS.
+  => THE 5-CHAIN SHAPE DOES NOT RECUR AT 53->59.  Pair realisability is
+  NECESSARY and NOT SUFFICIENT, so the round-25 predictor is a one-sided test
+  only.  A_kill(53->59) >= 3 (rule 22: the full level was not run).
+
+WHAT REPLACES IT - THE PHASE-SATURATION OBSTRUCTION, A THEOREM WITH NO SOLVER.
+In the CRT/COV encoding (K1) gear q blocks {a, a + s_q} mod q for a free phase
+a, s_q = -2*6^{-1} mod q.  A word with exposed offsets X occurs somewhere only
+if every gear has a phase avoiding X:
+
+    FREE_q(X) = Z_q \ ( (X mod q) u ((X - s_q) mod q) )  must be NON-EMPTY,
+
+and |FREE_q(X)| >= q - 2|X|, so only gears q < 2|X| can ever fire - the whole
+content is at gears 5, 7, 11.  This is C23's gear-5 argument, which round 25
+ran once by hand, turned into a screen.
+
+THE ALTERNATION CEILING, CLOSED FORM (gate part D):
+
+    step        s   q'-s   ceiling   dead gear   measured A_kill
+    31->37     25    12       6        5              4
+    37->41     14    27       2        5              3
+    41->43     29    14       2        5              3
+    43->47     16    31       2        5              3
+    47->53     18    35       5        5              5   <- ATTAINED
+    53->59     20    39       3        7              -
+    59->61     41    20       3        5              -
+    61->67     45    22       4        7              -
+
+So A_kill(47->53) = 5 sat EXACTLY at its ceiling, and at 53->59 the ceiling
+falls back to 3: 53 WAS SPECIAL, and now for an arithmetic reason rather than
+an observation.  Note 53->59 is the first step where the binding gear is 7,
+not 5.
+
+SOUNDNESS AND REPRODUCTION (gate parts B and C, both asserted):
+- 37 words known REALISED at five steps (37->41, 41->43, 43->47, 47->53,
+  53->59), each with an independent machine-verified SAT witness: the
+  obstruction calls NONE of them zero.
+- It REPRODUCES the three structural zeros already on record -
+  (18,35,18,35,18) at 47->53 (C23 found this by hand) and (16,31), (31,16) at
+  43->47 (on C22's zero list, which paid SAT for them).
+- It agrees with cov_count.build_pattern, which returns None in exactly this
+  case: a_kill_word.py prints "ZERO (0 calls, 0.0s)" for every obstructed
+  word.  CONTROLS RE-RUN at 47->53 this round and they reproduce C23 exactly:
+  (18,35) REALISED, (18,35,18,35) REALISED, (18,35,18,35,18) ZERO with 0 SAT
+  calls, (35,18,35,18,35) ZERO with 1 SAT call.
+
+THE SCREEN AS A LEVEL PRUNE (alt_obstruct_r26.py, pure arithmetic, instant):
+zeroes 3/11 of the k=3 words at 37->41, 6/15 at 41->43, 6/15 at 43->47,
+4/19 at 47->53, 7/36 at 53->59; and at deeper levels 27/41 (47->53 k=4),
+16/22 (k=5), 4/5 (k=6) - at 41->43 it closes the k=6 level outright
+(1 legal word, obstructed: N_6 = 0 BY THEOREM), and at 43->47 the k=7 level
+(2 words, both obstructed).
+
+HONEST LIMITS.  The ceiling bounds the ALTERNATION family only; A_kill is a
+maximum over all legal words and the PADDED letters (multiples of q') give
+words the obstruction does not kill - which is exactly why A_kill is 3 while
+the alternation ceiling is 2 at the three steps 37->41, 41->43, 43->47.  The
+full A_kill(53->59) level campaign was NOT run: without F_2(53)/F_3(53) span
+caps the screen still leaves 29 words at k=3 and 170 at k=5 needing SAT at
+14 gears, which would not have finished in-round.  A_kill(53->59) >= 3 is what
+is established.
+### C30. F_2(53) = 159 - a first computation, and it prices the next rung (r26)
+Repro: research/j5_multi.py 23 29,31,37,41,43,47,53 59 seed145 200 2 1 plain
+LO HI (floor-1 lap-phase transfer, r = 7 - the deepest transfer run to date);
+logs research/data/r26/f2_53_{head,mid,w1}.log, three range workers TILING
+[0, 7,952,175) exactly.  Witness verified at machine 53 by
+research/qstar_witness_r26.py --nolegal.
+
+    range                        max 2-window span
+    [0,         1,590,435)             152
+    [1,590,435, 3,180,870)             151
+    [3,180,870, 7,952,175)             159   <- the maximum
+
+    F_2(53) = 159, seeded at 145 = F(53) and the answer sits above the seed
+    (rule 16), so it is the true maximum up to the span cap.
+
+WITNESS, re-verified at machine 53 from the definition: k =
+327,666,424,664,536,738, gaps [77, 82], all 157 other interior slots of the
+span blocked, checked slot by slot.  Ratio F_2/F_1 = 159/145 = 1.097, in the
+measured band (1.17, 1.02, 1.13, 1.14 at m31, m37, m41, m47).
+SCOPE: the >= 159 direction is UNCONDITIONAL (exhibited witness).  The <= 159
+direction is conditional on the span cap 200, and here that condition is real -
+the deletion-ladder cap F_2(53) <= F(59) is unavailable because the corpus F
+ladder stops at 53.  The trivial cap is 2F(53) = 290.
+
+TWO CONSEQUENCES, both immediate:
+1. A NEW LOWER BOUND ON THE NEXT CORPUS RUNG, unconditional.  The deletion
+   ladder (K3) gives F_2(M) <= F(M + one more gear), so
+
+        F(59) >= F_2(53) = 159,   equivalently  F(2,59) >= 477
+
+   where the corpus ladder previously stopped at F(2,53) = 435 with nothing
+   at 59.  (D) at 53->59 needs F(59) <= F(53) + 59 = 204, so the remaining
+   room at that step is at most 45.
+2. IT PRICES THE A_kill(53->59) CAMPAIGN.  Feeding 159 in as the 2-block span
+   cap, and then applying the phase-saturation screen (K9) and the mirror law
+   (rule 27), the levels collapse:
+
+        level   legal words   after F_2 cap   after screen   SAT calls
+        k=3          36            19             12             6
+        k=4         170            59             19            11
+        k=5         776           169             20            10
+
+   i.e. 982 words -> 27 solver calls, a 36x cut, with every step of the cut a
+   theorem.  That is the scoped next-round item; it was NOT started this round
+   because 27 refutations at FOURTEEN gears would not have finished in-round
+   (job-completion rule).
+### C31. THE PHASE-SATURATION SCREEN APPLIED TO A GAP-TUPLE DICTIONARY (r26)
+Repro: research/screen_tuples_r26.py (log research/data/r26/screen_41_r26.log);
+output research/data/r26/gap_tuples_41_4_screened.csv.
+
+The obstruction of C29/K9 is not special to kill words - it applies to ANY
+prescribed pattern of openings, so it applies to Constructor's gap-tuple
+dictionaries.  A gap m-tuple is realised at machine M only if every gear has a
+phase avoiding all m+1 exposed offsets; and since |FREE_q(X)| >= q - 2(m+1),
+for a 4-tuple ONLY GEARS 5 AND 7 can ever fire.  Two lookups per tuple, seconds
+over millions of rows.
+
+SOUNDNESS GATE FIRST - it must remove NOTHING from a set of realised tuples:
+
+    machine 23  15,696 exact 4-tuples  ->  15,696 survive  (0 removed)
+    machine 29  45,854                 ->  45,854          (0)
+    machine 31 115,193                 -> 115,193          (0)
+    machine 37 291,675                 -> 291,675          (0)
+
+468,418 tuples known realised by full-period scan, zero false kills.
+
+APPLIED TO CONSTRUCTOR'S m41 ARITY-4 SUPERSET (their stated blocker for rung
+nine: the dict_transfer superset is inflated enough that 12/12 sampled
+superset-YES tuples were CRT-refuted):
+
+    input     4,239,676 tuples (research/data/gap_tuples_41_4_transfer.csv)
+    gear 5 has no admissible phase for   780,486  -> ZERO BY THEOREM
+    gear 7 has no admissible phase for   644,616  -> ZERO BY THEOREM
+    gears >= 10 can never fire
+    SURVIVORS 2,814,574 (66.39%);  1,425,102 removed by arithmetic alone
+
+and the induced 3-tuple dictionary falls 130,942 -> 111,899 with it (the
+induced 1- and 2-tuple dictionaries, 88 and 3,333, are unchanged - they were
+already exact against COV-SAT).  A screened superset is still a superset, so
+it drops straight into the same certificate slot with no soundness argument to
+redo; it is simply tighter.
+### K8. The lap-phase GAP HISTOGRAM transfer (r26)
+research/ghist_transfer.py (worker / merge / --delta), gate
+research/ghist_gate_r26.py.  K2's bijection used for COUNTING: laps of the new
+machine are phase-filtered copies of the old machine's opening set, so the new
+machine's whole gap histogram is a sum over T phase tuples plus T lap-boundary
+gaps taken IN LAP ORDER - the cyclic close, exactly (rule 25).  Both period
+identities asserted at merge (total = prod(q-2), sum(g*count) = period).
+Gated cell for cell against the round-25 corrected census at m13/17/19/23/29/31,
+m31 additionally from TWO different base machines, m37 against the round-20
+direct 11,829 s sieve (F, the 13 holes, four padding supplies), m41 against
+COV-SAT (F = 91 and the hole list {84,87,89}).  See C28.
+
+### K9. The phase-saturation screen (r26)
+research/alt_obstruct_r26.py, gate research/akill_verify_r26.py.  A word whose
+exposed set X leaves some gear q with NO admissible phase - i.e.
+(X mod q) u ((X - s_q) mod q) = Z_q, s_q = -2*6^{-1} mod q - is ZERO with no
+solver call.  |FREE_q| >= q - 2|X|, so only gears q < 2|X| can fire: the whole
+content is at gears 5, 7, 11.  Sound (never zeroes any of the 37 words known
+realised), reproduces every structural zero on record, reverse-invariant, and
+gives a CLOSED-FORM ceiling on the alternating chain per step.  See C29 and
+docs/novel/phase-saturation-arity.md.
+
+## Retracted / corrected (round-26 additions)
+
+R25. THE ALTERNATION-PAIR PREDICTOR - REFUTED BY ITS OWN PRE-REGISTERED TEST.
+    Round 25's C23 closed with the observation "at q' = 47 the alternating pair
+    (16,31) is not realised, at q' = 53 the pair (18,35) is", and round 26's
+    brief promoted it to a checkable predictor: A_kill(M->q') >= 5 iff the pair
+    (s, q'-s) is realised at M.  Pre-registered
+    (research/data/r26/prereg_akill_53_59.md) and tested at 53->59: the pair
+    (20,39) IS realised - two definition-level verified witnesses - and the
+    4-letter and 5-letter alternations are nevertheless ZERO BY THEOREM.
+    NOTHING MEASURED IN ROUND 25 IS WRONG; the INFERENCE from it was.  Pair
+    realisability is NECESSARY (overlap lemma) and NOT SUFFICIENT.  Replaced by
+    the phase-saturation ceiling (C29), which is a theorem, costs no solver
+    call, and retrodicts every step including the two the predictor got right.
+
+## Standing rules (round-26 additions)
+
+27. DECIDE ONE WORD PER REVERSE CLASS.  #occ(w) = #occ(reverse(w)) EXACTLY
+    (Lateral's mirror law: the opening set is closed under k -> -k).  Their
+    audit of THIS LANE's round-24 logs found 82 decisions in which every
+    reverse pair agreed and 12,877 s of 27,946 s - 46% - was spent on the
+    redundant half, including two of the four span-141 words that cost
+    20,005 s.  a_kill_par.py now collapses each level to its reverse classes
+    and copies the verdict; the legal-word lists are reverse-closed and the
+    phase-saturation screen is provably reverse-invariant (both asserted in
+    research/akill_verify_r26.py).
+28. SET A WORKER'S PROGRESS STRIDE FROM ITS OWN SHARE, NOT THE WHOLE JOB.  This
+    round's histogram workers printed every 20,000 laps and had 5,735 each;
+    the Q* range workers print every 200,000 start indices and have 795,217
+    each.  Both ran for forty minutes with NO output at all, so "slow",
+    "stalled" and "crashed" were indistinguishable and a healthy job was
+    nearly killed twice.  Stride = worker share / 20, and print at start-up.
+29. A REFUTATION MAY BE FREE - RUN THE ARITHMETIC SCREEN BEFORE THE SOLVER.
+    Before paying for an UNSAT, test whether some SMALL gear has no admissible
+    phase against the pattern's exposed set (K9).  It costs microseconds, it
+    fired on 3-27 words per level at every step measured, and one of the words
+    it kills at 47->53 had already been refuted by hand in round 25 - i.e. the
+    project has been paying SAT for facts that are two lines of modular
+    arithmetic.  General form: a pattern question has a PIGEONHOLE LAYER
+    (does every gear have somewhere to stand?) below its search layer.
+30. PROCESS COUNT IS NOT LOAD - MEASURE % PROCESSOR TIME.  With 43 python
+    processes box-wide the CPU sat at 42%: the box was PAGING, not computing,
+    and every lane's jobs were running at a fraction of speed while looking
+    busy.  Check \Processor(_Total)\% Processor Time and free physical memory
+    together; if utilisation is far below the process count, the fix is FEWER,
+    FASTER processes, not more of them.

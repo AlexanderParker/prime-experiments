@@ -1,65 +1,61 @@
 # human.md - the state of the hunt, in plain language
 
-(Manager-rewritten after round 25, 2026-08-30. Current-state snapshot; history in git and
+(Manager-rewritten after round 26, 2026-08-31. Current-state snapshot; history in git and
 docs/proof-search/archive/.)
 
 ## The five-minute version
 
-We model the twin prime question as a machine: one gear per prime, each blocking positions on
-a fixed schedule; twin primes are the positions every gear misses. The strategy is mechanism
-exhaustion: prove no combination of gears can ever block an entire window.
+We model twin primes as a machine: one gear per prime, each blocking positions on a fixed
+schedule; twins are the positions every gear misses. Strategy: prove no set of gears can ever
+block an entire window.
 
-Round 25 was the first run with the new setup - worker agents on the cheaper model, the
-manager on the stronger one, every claim forced through verification gates. Verdict: it
-worked. Every lane corrected itself at least once, the gates caught everything, and the round
-produced more per token than any before it.
+ROUND 26 FOUND THE MACHINE'S EXACT RECORD LAW. For months the project has bounded how big the
+machine's record gap can get. This round, three lanes converged from three directions on
+something stronger: a closed-form expression that does not bound the record - IT IS THE
+RECORD, exactly. One lane supplied the missing half of the proof (the law is attained, not
+just an upper bound); the census lane then tested it blind at the two deepest machines
+anyone can compute - the theorem predicted 118 and 145, and the measurements came back 118
+and 145, with witnesses arriving in mirror pairs exactly as the symmetry theory says they
+must. The first step of the law is proved inside the proof kernel with the bigger machine's
+period PROVABLY absent from the derivation - the strongest "no hidden scan" guarantee
+possible. And an independent optimisation vehicle certified every single step of the ladder
+with no hypotheses at all, from lists of small exact fractions.
 
-THE LADDER: seven steps of the key inequality are now computer-verified. Two were added this
-round in FIVE MINUTES EACH by a new method - down from a 170-hour estimate - because the lane
-noticed the proof only needs a small, slowly-growing dictionary of window shapes, not the
-astronomically growing full pattern.
+What this means for the conjecture: the target statement (D) now reads "the record law's
+value never exceeds the budget" - and because the law is EXACT, there is no slack to hide
+in. One uniform inequality about one closed-form object. Everything else is proven.
 
-THE CHAIN: the certificate machinery now runs with NO big computations at all - it asks
-small yes/no questions it generates itself, and one step's answers produce the ingredients
-for the next step's questions. It certified a new step this way, self-contained. Where it
-stalls, the reason is measured precisely: not mathematics, but the cost of answering single
-questions at bigger machines.
+## Also this round
 
-A BELIEF DIED AND SOMETHING BETTER REPLACED IT: a computation left running from last round
-quietly finished and disproved our own standing claim about how gap-merging chains are capped
-(a 5-link chain exists where we believed 3 was the max). The repair found the real criterion -
-and at both machines where it was computed exactly, the new criterion doesn't just bound the
-answer, IT EQUALS IT. If that pattern holds, we may have found the exact law of the machine's
-records - now a registered conjecture under test.
-
-THE TARGET SHARPENED: the "two-gap law" framing was corrected (the binding window can be
-deeper than two gaps at bigger machines - an assumption died there too), and the missing
-argument is now stated in one sentence: transfer a first-moment bound that already has a
-huge measured margin (polylog versus linear) into an unconditional statement. That is the
-manager-level derivation target for round 26. A new symmetry lever helps: gap patterns come
-in mirror pairs, so the worst-case configuration occurs an EVEN number of times - meaning
-proving "at most one" proves "none". The worst case is already verified absent at all six
-computable machines.
-
-THE PAPER: the headline exponent fell again, 15 to 8.04 - last round's miss had a named
-cause (we priced the book's theorems but never its propositions, and the propositions were
-the explicit ones). A thesis lead was obtained and closed negatively first-hand; two
-independent leads turned out to be literally the same equation in two books; and we caught
-an arithmetic slip in the published book itself (in our favour).
+- A prediction was refuted and replaced by a theorem: the census lane's rule of thumb for
+  chain shapes failed its pre-registered test, and the replacement (phase saturation -
+  a pattern is impossible if some gear runs out of usable positions) refutes whole families
+  with zero solver calls and gives closed-form ceilings, one attained exactly.
+- The mirror symmetry lever was perfected: the machine's symmetry group is proved to be
+  exactly one flip - so the lever is worth exactly one factor of two, and the worst-case
+  configuration provably never occurs an odd number of times. The maximal gap NEVER occurs
+  exactly once, at any machine, unconditionally.
+- The side paper's lower-bound claim became a real proof with explicit constants - after
+  the lane caught its own constant being wrong by a factor of two in the flattering
+  direction, by fetching the primary source for a number it was sure of.
+- The manager ran his own pre-registered derivation probe: one prediction refuted (recorded),
+  and a candidate "increment law" surfaced that holds at 8 of 9 known steps and fails
+  exactly at the one padded step - the derivation target for round 27.
+- 46% of one lane's historical solver time turned out to be provably redundant (mirror-image
+  words have identical counts) - future runs halved.
 
 ## Honest ledger
 
-Every lane on the cheaper model made mistakes - and every one was caught by the safety net,
-none by luck: a bug caught by another lane's census, a silent no-op caught by a shadow gate,
-a never-measured claim exposed, a wrong prediction falsified by the lane's own script, an
-open cell closed by exhibiting an exact witness rather than by a failed search. Two false
-beliefs of the project itself (the fuel cap, the fixed two-gap depth) were destroyed by the
-project's own machinery. This is the system working exactly as designed.
+Every lane self-corrected again: one lane fixed its own published table (three claims, one
+previously scored CONFIRMED), one nearly filed a first-computation that a sibling had
+already pinned, one owned a badly-sized launch, one killed its own 15-worker run rather
+than report around it, and the manager's own probe refuted one of his own predictions. The
+gates caught everything; nothing unverified reached the record.
 
 ## The map
 
 Route: twins infinite <=> no machine ever covers a window (kernel-checked iff).
-(A), (B), (C): closed. (D): SEVEN kernel rungs; every computable step verified; the
-obligation now precisely stated as a first-moment transfer over the qualifying-window
-family, with a candidate exact law (Q* = F) under test and a parity lever on the endpoint.
-Round 26 is briefed: the derivation attempt moves to the manager.
+(A), (B), (C): closed. (D): restated as one uniform inequality on the now-exact record law;
+eight rungs kernel-checked; every rung independently LP-certified; the derivation assets
+(increment law, phase saturation, parity lever, uniform-order question) all named and all
+but one already theorems. Round 27 is briefed: uniformity or bust.

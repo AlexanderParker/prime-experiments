@@ -60,6 +60,25 @@ for k in range(kfrom, kto + 1):
     if res:
         log(f"  {len(res)} of {len(words)} known from resume; "
             f"{len(pending)} to decide")
+    # ROUND-26 (Lateral's mirror law, routed in by the coordinator):
+    # #occ(w) = #occ(reverse(w)) EXACTLY - the machine's opening set is closed
+    # under k -> -k, so every occurrence of w mirrors to one of reverse(w).
+    # Deciding both halves of a reverse pair is pure waste: an audit of THIS
+    # LANE's round-24 logs found 12,877 s of 27,946 s (46%) spent on the
+    # redundant half, including two of the four span-141 words.  So decide one
+    # representative per reverse class and copy the verdict.
+    reps, mirror_of = [], {}
+    for w in pending:
+        r = w[::-1]
+        if r in mirror_of:
+            mirror_of[w] = mirror_of[r]
+        else:
+            mirror_of[w] = w
+            reps.append(w)
+    if len(reps) < len(pending):
+        log(f"  MIRROR LAW: {len(pending)} words -> {len(reps)} reverse "
+            f"classes ({len(pending) - len(reps)} decided by reversal)")
+    pending = reps
     running = {}       # popen -> word
     while pending or running:
         while pending and len(running) < POOL:
@@ -93,6 +112,13 @@ for k in range(kfrom, kto + 1):
                 (": ZERO" in line) else 1
             res[w] = n
             log("  " + line)
+    # copy each representative's verdict onto its mirror (Lateral's law)
+    for w, rep in mirror_of.items():
+        if w not in res and rep in res:
+            res[w] = res[rep]
+            log(f"  MIRROR m{y} word {w} = reverse{rep}: "
+                f"{'REALISED' if res[w] else 'ZERO'} (0 calls, by the "
+                f"mirror law)")
     nz = sorted(w for w, n in res.items() if n)
     log(f"N_{k}({y}->{qp}): {len(nz)} realised of {len(res)} decided "
         f"[{time.time()-t0:.0f}s]  realised: {nz}")

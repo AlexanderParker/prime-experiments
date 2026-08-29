@@ -343,3 +343,89 @@ from 5 to 6, and Q_6(47; 18) = 174 > 171 - so the DEPTH-CAPPED plain criterion
 is not restorable at 47->53 either.  Gate: research/akill_verify_r25.py, which
 re-derives all five parts from the definitions in plain integer arithmetic.
 (D) at 47->53 itself is unaffected and true by arithmetic: F(53) = 145 <= 171.
+
+## 9. ROUND-26 RESOLUTION OF THE Q* CONJECTURE (constructor)
+
+THE CONJECTURE OF SECTION 8 IS A THEOREM, AND THE PROJECT ALREADY HAD IT.
+Q*_J(M; legal for q') is definitionally the same object as Constructor's
+qualmax_J = LAYER J-2 OF THE KLEENE STAR K* (R46, round 22): condition (i) is
+K's edge condition `d mod q' in {0, a, b}`, condition (ii) is K's T3 tooth
+transition, and the two unconstrained flanks are K*'s L and R.  R46's identity
+
+    F(M + q')  =  L (x) K* (x) R          (proved BOTH ways in round 22)
+
+therefore says exactly max_J Q*_J = F(M + q'), and the direction section 8
+left open - Q*_J <= F(M+q') for every J - is R46's (>=) half, the CRT choice
+of the killing copy.  Stated without max-plus: if the J-2 middle gaps of a
+window of M form a legal kill word, a tooth assignment exists, hence a residue
+r mod q' killing every interior; since the joint period is P(M) q' with
+gcd(P(M), q') = 1 some translate of the window sits at that residue, so its
+span is contained in a single gap of M + q' and is therefore <= F(M + q').
+J = 2 is the deletion ladder F_2(M) <= F(M + one gear); the theorem is its
+extension to every depth.
+
+VERIFIED EXACTLY AT EIGHT STEPS (`research/qstar.py`, log
+`research/data/r26_qstar.log`) - the seven scannable ones and 37 -> 41, which
+this document's own m37 census makes decidable:
+max_J Q*_J = 11, 18, 25, 34, 43, 58, 88, 91 = F(M+q') at
+11->13 .. 37->41, attained at J* = 2, 3, 2&3, 4, 3, 3, 4, 4 - i.e. J* =
+k_win + 1, reproducing both of section 8's anchors.
+
+CONSEQUENCE FOR SECTION 8's TWO SEEDED RUNS: their reported values <= 149 and
+<= 170 are seeds, and the theorem gives the true ones outright -
+max_J Q*_J(43; legal for 47) = F(47) = 118 and
+max_J Q*_J(47; legal for 53) = F(53) = 145.  Both steps certify with margins
+32 and 26, not +1, and no span cap is involved.
+
+AND A WARNING THAT COMES WITH THE UPGRADE: because Q*_max EQUALS F(M+q'),
+"the word-legal criterion certifies (D)" is not a weaker statement than "(D)
+holds" - it is the same statement in a different representation.  The value of
+Q* is that it is computed on the OLD machine (period or dictionary), never on
+M + q'; it is not that it has slack to exploit.  Details in
+`docs/novel/kleene-generator.md` section 4c.
+
+## 10. ROUND-26: THE THEOREM TESTED AT THE TWO DEEPEST STEPS (mechanic)
+
+Section 9 turns the round-25 conjecture into a theorem and, in doing so, makes a
+FALSIFIABLE PREDICTION about two numbers this lane had only bounded: round 25's
+runs at 43->47 and 47->53 were seeded at budget-1 (149 and 170) and span-capped,
+so they established certification and not maxima. The theorem says the maxima are
+F(47) = 118 and F(53) = 145, i.e. margins 32 and 26 rather than the +1 a seeded
+run can see.
+
+RUN AND RESULT (research/j5_multi.py with the round-26 range-worker option; ten
+workers at 43->47, fourteen at 47->53; logs research/data/r26/qstar_43_47_w*.log
+and q53_w*.log). Both were re-run with a TWO-SIDED SEED - one below the predicted
+value, so the scan must FIND the value as well as refute everything above it:
+
+    step     seed  cap   predicted   measured    round 25   budget
+    43->47   117   200   118=F(47)   118         <= 149     150
+    47->53   144   171   145=F(53)   145         <= 170     171
+
+The 47->53 cap 171 composes with round 25's cap-200 seed-170 run, so (144, 200]
+is covered with no gap; the 43->47 run carries (117, 200] alone.
+
+FOUR WITNESSES, each translated to the target machine and re-verified there FROM
+THE DEFINITION (research/qstar_witness_r26.py: the J+1 offsets are openings,
+every other slot of the span is blocked slot by slot, the middle gaps form a
+legal kill word for the next gear):
+
+    m43 k = 18,497,829,635,337      gaps [85, 31, 2]       middle [31] = -s mod 47
+    m43 k = 2,161,962,392,309,550   gaps [2, 31, 85]
+    m47 k = 82,799,441,296,736,535  gaps [70, 35, 18, 22]  middles [35, 18]
+    m47 k = 19,682,189,134,678,555  gaps [22, 18, 35, 70]
+
+Two independent facts fall out. (i) The witnesses come in MIRROR PAIRS, found by
+range workers that shared no state - the reversal law of the machine's gap-word
+census, showing up unbidden. (ii) The 47->53 maximiser's middle word is
+(35, 18) = (q'-s, s), THE PURE ALTERNATION - the same object that sets kill-chain
+arity via the phase-saturation obstruction (docs/novel/phase-saturation-arity.md).
+The attainment theorem and the arity ceiling meet on a single window.
+
+CONTROL: the ten 43->47 workers' window counts sum to 178,542,615, digit for
+digit the round-25 serial total at a completely different seed.
+
+CONSEQUENCE. The attaining depth (J = 3 and J = 4) equals k_win + 1 at both steps
+where k_win was measured independently (29->31 and 31->37), so these two runs
+PRE-REGISTER k_win(43->47) = 2 and k_win(47->53) = 3 - a prediction no census has
+tested, since C13's k_win census stops at 37->41.

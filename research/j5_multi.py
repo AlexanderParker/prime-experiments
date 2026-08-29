@@ -47,6 +47,15 @@ JMAX = int(sys.argv[6]) if len(sys.argv) > 6 else 7
 # smallest positive legal value IS a, so 'legal' is a strict refinement and
 # feasible_marks' a-spacing pre-filter stays sound.
 WORDLEGAL = len(sys.argv) > 8 and sys.argv[8] == 'legal'
+# ROUND-26: optional argv[9], argv[10] = I0, I1 - the half-open range of START
+# OPENING INDICES this process walks.  The outer loop over start openings is
+# embarrassingly parallel: every window is attributed to exactly one start
+# index, so disjoint ranges tile the period and max over workers = the global
+# maximum.  Each worker keeps its OWN running best (seeded identically), which
+# only ever skips windows of span <= its own best >= the seed, so the union is
+# still exact.  Purely additive: with fewer than 10 args nothing changes.
+I0 = int(sys.argv[9]) if len(sys.argv) > 9 else 0
+I1 = int(sys.argv[10]) if len(sys.argv) > 10 else None
 _S_LET = (2 * pow(6, -1, QPP)) % QPP
 
 
@@ -91,7 +100,7 @@ def openings(y):
         u = pow(6, -1, g)
         ex[u % g::g] = True
         ex[(-u) % g::g] = True
-    return [int(x) for x in np.flatnonzero(~ex)], P
+    return np.flatnonzero(~ex).astype(np.int64), P
 
 
 def feasible_marks(pos, forced, need, a):
@@ -136,8 +145,23 @@ def main():
           f"budget F({TARGET})+{QPP} = {BUDGET}", flush=True)
     print(f"  period ratio bought: {prod(NEW):,}", flush=True)
     LOOK = 96
-    ext = op + [x + P for x in op[:LOOK]]
-    res = [[x % q for x in ext] for q in NEW]
+    # ROUND-26: build ext/res ONLY over the index window this process walks.
+    # A start index i touches ext[i .. i+LOOK), so a worker on [I0, I1) needs
+    # exactly [I0, I1 + LOOK) - and the local lists are then 1/nworkers of the
+    # memory.  This matters: the full ext + res for six gears is ~700 MB of
+    # Python objects per process, and MEMORY IS THE BINDING CONSTRAINT on this
+    # box (compute policy).  With I0 = 0 and I1 = n this is the old object,
+    # wrapped exactly as before (op + the first LOOK openings shifted by P).
+    i_lo = I0
+    i_hi = n if I1 is None else min(I1, n)
+    hi_need = i_hi + LOOK
+    if hi_need <= n:
+        seg = op[i_lo:hi_need]
+    else:
+        seg = np.concatenate([op[i_lo:], op[:hi_need - n] + P])
+    ext = [int(x) for x in seg]
+    res = [[int(x) % q for x in seg] for q in NEW]
+    NLOC = i_hi - i_lo
     arg = sys.argv[4] if len(sys.argv) > 4 else ''
     SEEDED = arg.startswith('seed')
     if SEEDED and arg != 'seed':
@@ -155,7 +179,18 @@ def main():
         best = {J: 0 for J in range(2, JMAX + 1)}
     bestw = {J: None for J in range(2, JMAX + 1)}
     nwin = ncand = 0
-    for i in range(n):
+    # ROUND-26: print the walked range ALWAYS.  The range comes from trailing
+    # POSITIONAL arguments, and a caller that omits an earlier optional slot
+    # shifts them silently - which happened once this round (the F_2(53) launch
+    # left out argv[8], so every worker read its own HI as its I0 and walked a
+    # SUFFIX instead of a tile, leaving [0, HI_0) uncovered).  Printing the
+    # range unconditionally makes that visible in the first line of the log.
+    print(f"  WALKING start-opening indices [{i_lo:,}, {i_hi:,}) of {n:,}"
+          + ("" if (i_lo, i_hi) == (0, n) else
+             " - RANGE WORKER: the reported maxima are this range's; the "
+             "global maximum is the max over a TILING set of workers"),
+          flush=True)
+    for i in range(NLOC):
         x0 = ext[i]
         covs = [[0] * q for q in NEW]
         mxs = [0] * len(NEW)
@@ -255,8 +290,11 @@ def main():
                     phases.pop()
             phases = []
             walk(0, list(range(n_int)), True)
-        if i % 1000000 == 0 and i:
-            print(f"  i={i:,}/{n:,} t={time.time()-t0:.0f}s best={best} "
+        # ROUND-26 rule 28: the progress stride must come from the WORKER's
+        # own share, not the whole job - a stride larger than a worker's range
+        # makes a healthy job indistinguishable from a stalled one.
+        if i % max(1, NLOC // 20) == 0 and i:
+            print(f"  i={i + i_lo:,}/{n:,} t={time.time()-t0:.0f}s best={best} "
                   f"(windows {nwin:,}, expanded {ncand:,})", flush=True)
 
     dt = time.time() - t0

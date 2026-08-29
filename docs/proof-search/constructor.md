@@ -1415,3 +1415,341 @@ round-25 script ran).**
   explicit certificate (empty gear domain, or an uncoverable interior point, or
   an exhausted search). The 19->23 rung is 181 such refutations plus a
   33,038-state closure - a kernel-checkable object with no scan behind it.
+
+
+---
+
+## Constructor round 26 - THE EXACT RECORD LAW, THE COST OF A RUNG, AND THE EIGHTH RUNG SCAN-FREE
+
+Brief: (a) prove or refute Mechanic's Q* conjecture at the scannable steps;
+(b) bound the CEGAR query count as a function of y (R67 item ii);
+(c) extend the chain 37->41 with the oracle-cost fix.
+Pre-registration: `research/data/r26_prediction.txt`, written before any
+round-26 script ran; scored at the end of this append.
+
+**R68 (MECHANIC'S Q* CONJECTURE IS A THEOREM - AND THE PROJECT ALREADY HAD
+IT. Verified exactly at EIGHT steps.)** Mechanic's word-legal maximum
+
+    Q*_J(M; legal for q') = max span of a J-gap window of M whose J-2 middle
+    gaps are each 0 or +-s mod q' and induce a letter word of prefix-sum
+    range <= 1
+
+is, definitionally, R46's qualmax_J = LAYER J-2 OF THE KLEENE STAR K*:
+condition (i) is K's edge condition `d mod q' in {0, a, b}`, condition (ii) is
+K's T3 tooth transition ("stays inside the two teeth"), and the two free
+flanks are K*'s L and R. R46's identity F(M+q') = L (x) K* (x) R - proved BOTH
+ways in round 22 - therefore says exactly max_J Q*_J = F(M+q'), and the
+direction Mechanic left open is R46's (>=) half, the CRT choice of the killing
+copy. Stated without max-plus:
+
+  ATTAINMENT THEOREM. If consecutive openings x_0 < ... < x_J of M have a
+  legal middle-gap word then x_J - x_0 <= F(M+q').
+  PROOF. Legality is exactly the existence of a tooth assignment t_1..t_{J-1}
+  with x_{i+1} - x_i = (t_{i+1} - t_i)c (mod q'), c = 6^{-1} mod q'. Fix one,
+  set r = t_1 c - x_1 (mod q'); the joint period is P(M) q' with
+  gcd(P(M), q') = 1, so some translate x + jP(M) with jP(M) = r (mod q') is a
+  window of M with the same gaps in which q' blocks EVERY interior. No opening
+  of M+q' is then strictly inside, so the containing gap of M+q' is at least
+  the span (longer still if q' also kills an endpoint). []
+  J = 2 IS MECHANIC'S OWN DELETION LADDER F_2(M) <= F(M + one gear); the
+  theorem is its extension to every depth.
+
+COMPUTED INDEPENDENTLY at eight steps (`research/qstar.py`, log
+`research/data/r26_qstar.log`, all assertions green). The "for every J"
+quantifier is closed WITHOUT a depth cap or a span cap: every real legal
+window maps to an A_4 walk of the same weight (R49 soundness), so the A_4
+closure bounds max_J Q*_J over ALL J at once, and A_4's layer vector
+terminates, which rigorously caps the depth. Per-depth values are then exact
+by descending-span search seeded at the layer bound.
+
+    M    q'   F(M)  F(M+q')  Q*_2 Q*_3 Q*_4 Q*_5  max_J Q*_J  J*    verdict
+    11   13     7      11      11    8    -    -         11    2     EXACT
+    13   17    11      18      16   18    -    -         18    3     EXACT
+    17   19    18      25      25   25    -    -         25    2,3   EXACT
+    19   23    25      34      31   33   34    -         34    4     EXACT
+    23   29    34      43      39   43    -    -         43    3     EXACT
+    29   31    43      58      55   58   55   55         58    3     EXACT
+    31   37    58      88      68   85   88   68         88    4     EXACT
+    37   41    88      91      90   90   91    -         91    4     EXACT
+
+The eighth row is NEW - Mechanic's round-25 m37 census makes 37->41 decidable
+and no Q* computation had ever reached it. J* = k_win + 1 at every step, and
+the attaining windows are the project's own extremal objects re-derived:
+(4,8,15,7) at 19->23 is R41's k=3 record window, (7,10,21,10,7) at 29->31 is
+R50's exact J=5 inventory, (11,12,37,28) at 31->37 is R25's padded winner,
+(2,88) at 37->41 is Mechanic's F_2(37) maximiser. NEW DATUM: F(41) = 91 is
+attained at the window (21,14,41,15).
+
+TWO CONSEQUENCES, one for each side of the ledger.
+* FOR MECHANIC'S TWO SEEDED ANCHORS: their 43->47 and 47->53 runs were seeded
+  at budget-1 and reported <= 149 and <= 170. The theorem gives the true
+  values outright - max_J Q*_J(43; legal for 47) = F(47) = 118 and
+  max_J Q*_J(47; legal for 53) = F(53) = 145 - so both certify with margins
+  32 and 26, not +1, and no span cap is involved.
+* A NEGATIVE THAT MUST BE SAID: because Q*_max EQUALS F(M+q'), "the word-legal
+  criterion certifies (D)" is NOT a weaker statement than "(D) holds" - it is
+  the same statement in another representation. The criterion's reported
+  margins (0.52-0.69 q') are the TRUE margins of (D), not slack in a
+  relaxation, and no proof can come from exploiting looseness in the
+  criterion, because there is none. Q*'s value is entirely that it is computed
+  on the OLD machine and never builds M + q'.
+* A CORRECTION TO THE RECORD: R39 reported the criterion value equal to
+  F(M+q') "at 6 of 7, slack 2 at 23->29". The exact computation gives
+  max_J Q*_J(23; legal for 29) = 43 = F(29), attained at J = 3 by the window
+  (10,10,23). The slack was an artifact; equality holds 7 of 7 - as the
+  theorem requires, at every step, for ever.
+Docs: `docs/novel/kleene-generator.md` section 4c (the theorem + the table),
+`docs/novel/old-machine-spectrum.md` section 9 (the resolution, in Mechanic's
+own vocabulary).
+
+**R69 (THE QUERY COUNT IS BOUNDED - R67 item (ii) was too pessimistic, and the
+question was aimed at the wrong object).** Two results.
+
+(a) A PROVED CAP, machine-free. The loop only ever asks whether a value
+4-tuple carried by a live MF_4 EDGE is realised, or whether the (flank, base)
+pair of a live MF_4 STATE is; every answer is memoised, so no tuple is asked
+twice. Hence FOR ANY STRATEGY WHATEVER
+
+    queries  <=  T_4(F, q') + T_2(F, q')  <=  F^4 + F^2,
+
+T_4, T_2 being the distinct value-tuple counts of MF_4, computable in advance
+from the two integers (F, q') with no machine in them.  Measured
+(`research/query_cap.py`, all asserted; T_4 = 68,578 at 29->31 reproduces
+R53's independently measured number):
+
+    M    q'   F   queries    T_4      T_2      cap      used %
+    11   13    7        0        43       36       79    0.00
+    13   17   11        6       342       88      430    1.40
+    17   19   18       18     2,353      243    2,596    0.69
+    19   23   25      181    14,730      475   15,205    1.19
+    23   29   34       90    26,306      862   27,168    0.33
+    29   31   43      955    68,578    1,398   69,976    1.36
+    31   37   58    3,399   232,374    2,547  234,921    1.45
+    37   41   88    2,879 1,128,323    5,871 1,134,194   0.25
+
+So R67's "bounded by nothing proven" is superseded: the count IS bounded, by a
+machine-free function of the step's own parameters, and the measured usage is
+0.25-1.45% of it - a 5.8x band, the TIGHTEST correlate of the eight tried
+(q/F^2 spans 20x, q/MF_4-edges spans 10x). T_4 ~ 0.02 F^4 at the four largest
+machines, so queries ~ (5e-5 to 5e-4) F^4 measured.
+
+(b) THE QUERY COUNT IS A PROPERTY OF THE STRATEGY, NOT OF THE STEP - so it was
+the wrong object to ask for a law about. At 37->41 THE SAME RUNG costs 2,879
+queries (topk = 1, no given integer), 12,695 (topk = 256, no given integer) or
+5,771 (topk = 256, given F_2(37) <= 90). ORACLE-independence, by contrast, is
+exact and was checked rather than assumed: run with Mechanic's full-period
+censuses in place of the CRT decider, the loop reproduces round 25's counts
+181 / 90 / 955 / 3,399 DIGIT FOR DIGIT at 19->23, 23->29, 29->31, 31->37
+(`research/query_law.py`, asserted). Three new small steps: 11->13 costs ZERO
+queries (MF_4 machine-free already certifies, 15 <= 20), 13->17 costs 6,
+17->19 costs 18. The ladder is 0, 6, 18, 181, 90, 955, 3,399, 2,879 - NOT
+monotone, and now non-monotone TWICE (the 23->29 dip of round 25, and a new
+dip at 37->41).
+
+**R70 (THE STRATEGY-FREE OBJECT: THE IRREDUNDANT CERTIFICATE).** What a kernel
+proof must carry is not the queries but the DELETIONS - the set of
+realisability refutations that brings MF_4's closure to the budget. That set
+can be minimised: restore one member, re-close, and drop it permanently if the
+bound still clears (restoring can only RAISE a max-plus closure, so the test
+is exact; the result is irredundant, hence an upper bound on the true
+minimum). `research/cert_minimise.py`:
+
+    step        queries  greedy deletions  IRREDUNDANT  ratio
+    11 -> 13          0             0            0        -
+    13 -> 17          6             6            2      3.0x
+    17 -> 19         18            18           11      1.6x
+    19 -> 23        181           163           76      2.1x
+    23 -> 29         90            90           58      1.6x
+    29 -> 31        955           905          712      1.3x
+    31 -> 37      3,399         3,235        2,189      1.5x
+    37 -> 41      2,879         2,769        2,077      1.3x
+
+THE DIP SURVIVES MINIMISATION: 23->29 needs 58 refutations against 19->23's 76
+even though its machine is bigger, and 37->41 needs 2,077 against 31->37's
+2,189. So the non-monotonicity is a fact about the STEPS, not an artifact of
+the greedy search - the certificate cost tracks the added gear's arithmetic,
+exactly as A_kill, A_relax and litcap do (R45). FOR FORMALIST: the eighth rung
+is 2,077 finite CRT refutations plus one closure.
+
+**R71 (THE EIGHTH RUNG: 37 -> 41 CERTIFIED, SCAN-FREE, WITH NO GIVEN
+INTEGER).** R62b left this rung uncertified and named the blocker correctly -
+oracle cost, not state space. The fix is to separate the two things the oracle
+does. `research/chain_dict_oracle.py`:
+
+  PHASE 1 - run the loop with Mechanic's EXACT full-period m37 4-tuple census
+  as the oracle. Its induced level-2 projection is the exact realised-PAIR set
+  (every consecutive pair sits inside some 4-window), and its induced F = 88,
+  F_2 = 90 are asserted against the corpus before anything is deleted on its
+  say-so. CERTIFIED: bound 129 <= budget 129, 12,695 queries, 204 iterations,
+  63 s - with NO given integer at all.
+  PHASE 2 - re-prove every one of the 12,587 deletions with the scan-free CRT
+  decider, in parallel, now that the list is known in advance instead of being
+  discovered one at a time inside the loop.
+
+    RESULT: 12,587 of 12,587 deletions re-proved unrealised by CRT.
+            CONTRADICTIONS with the census: 0.   UNDECIDED: 0.
+            10,859 s of CPU, 2,174 s wall on 5 workers; mean 0.86 s,
+            median 0.30 s, worst 25.1 s.
+
+So the rung is a SCAN-FREE certificate: the census was used only to CHOOSE
+which refutations to attempt, and every one of them is independently
+established by CRT arithmetic from the gear list. Log
+`research/data/r26_chain41_phase2_nof2.log`. The cost split confirms R62b's
+diagnosis quantitatively - solving 1191x + 11396y = 10,859 with the measured
+median gives x ~ 5.8 s for a pair and y ~ 0.35 s for a 4-tuple, i.e. Mechanic-
+free reproduction of round 25's measured 5.8 s arity-2 figure (inference from
+the aggregate, labelled as such).
+CROSS-CHECK, independent vehicle: A_4 over the same census returns
+F(41) = 91 EXACTLY (60,650 states, 12,843 edges) - so the ninth rung's input
+integer is an output of the eighth, as the self-propelling ladder requires.
+
+**R72 (THE NINTH RUNG 41 -> 43: NOT CERTIFIED, AND THE FAILURE SHAPE IS THE
+FINDING - PLUS F_2(41) EXACT AS A BY-PRODUCT).**
+* A SUPERSET IS A SOUND ORACLE, and this is worth stating because it is not
+  obvious: the loop only ever ACTS on a NO, and "t is absent from a superset
+  of the realised set" implies "t is unrealised". So Mechanic's m41 transfer
+  dictionary (4,239,676 tuples, exact at depth 1) licenses genuine deletions.
+  Run alone it STALLS at bound 222 against budget 134 after 2,452 queries and
+  2,143 deletions in 38 s: the transfer dictionary is too inflated at arity 4
+  to finish the job. HONEST NEGATIVE, gated by the run.
+* HOW INFLATED, measured: of the 249 arity-4 tuples the stalled run's oracle
+  called REALISED, the CRT decider refutes 12 of 12 sampled - mean 3.6 s,
+  worst 6.0 s. So a HYBRID oracle (superset first, free; CRT on every YES) is
+  exact and removes the cheap refutations from the CRT's workload.
+* THE HYBRID RUN WAS MIS-SIZED AND WAS CANCELLED, not completed. Three
+  attempts, all recorded: at topk = 16 it accumulated only 1,723 s of CPU in
+  55 minutes with 5 workers (poor utilisation - `pool.map` blocks on the
+  slowest member of a batch and m41 PAIR refutations cost 30-140 s each) and
+  was cancelled; the properly-sized rerun (topk = 256, F_2 = 103, 6 workers)
+  was KILLED BY A MEMORY EVENT at 12:35 along with the qual_spectrum job
+  (three Application fault records; commit 41.5 of 65 GB, 3.6 GB physical
+  free, other lanes running) - cause found and fixed at source, the superset
+  being a 4.2M-entry Python int set (~500 MB), now a sorted numpy int64 array
+  queried by searchsorted (34 MB); the lean third run went 95 minutes clean
+  and was CANCELLED AT ROUND CLOSE with 5,575 s of worker CPU (~1,550 m41
+  refutations) against 32 s in the main process. THE RUNG IS ENTIRELY
+  ORACLE-BOUND, not closure-bound - R62b's diagnosis one gear earlier,
+  reproduced. Closing record in `research/data/r26_chain43_hyb3.log`.
+* THE BY-PRODUCT: F_2(41) = 103, INDEPENDENTLY AND NON-CIRCULARLY. CORRECTION
+  TO MY OWN FIRST DRAFT OF THIS PARAGRAPH, caught by reading Mechanic's index
+  entry rather than assuming: this is NOT a first computation. Mechanic's
+  lap-phase transfer already pinned it (docs/novel/README.md: "it PINS
+  F_2(41) = 103 with no descent (cap F(43) = 103 free, witness at 103)"). What
+  is new is that their pin uses the DELETION-LADDER cap F_2(41) <= F(43) =
+  103 - legitimate as a computation, circular as an induction step (X36) -
+  whereas the sweep here never mentions F(43): it refutes every candidate pair
+  ABOVE 103 outright. Sweeping Mechanic's m41 superset dictionary downwards by
+  pair SUM and deciding each by CRT (`research/f2_41.py`; only 36 superset
+  pairs have sum > 103, so the sweep is short even at machine 41's cost):
+    F_2(41) = 103 EXACT, scan-free and non-circular, witness (75,28);
+    refutations at sums 115, 113, 110, 108, 107, 106, 105, 104 (36 pairs,
+    0 undecided), log `research/data/r26_f2_41.log`.
+  Two methods, two vehicles, same integer. It also SHARPENS X36: F(M+q') -
+  F_2(M) is 3 at 29->31, 1 at 37->41 and 0 at 41->43 - the deletion ladder's
+  slack is exhausted exactly where the budget slack is growing.
+
+**R73 (CROSS-LANE, FOR FORMALIST'S EIGHTH RUNG: THE m37 QUALIFYING SPECTRUM AT
+FLOOR 14, WITHOUT A SCAN).** Formalist's stratified-dictionary vehicle is
+blocked on Q_J(37; 14) - the size-floor spectrum at the floor 2u'(41) = 14 -
+and a 1.24e12-slot scan is out. `research/qual_spectrum.py` computes it from
+the realised-tuple dictionary by the same two-layer method as R68: an A_4
+closure with the SIZE FLOOR as the edge predicate gives sound upper bounds at
+every depth, and branch-and-bound over A_4 walks with those layer potentials
+as an admissible heuristic gives the exact values.
+
+    Q_2 = 88   witness (2,88)              [upper bound  90]
+    Q_3 = 90   witness (2,62,28)           [upper bound  97]
+    Q_4 = 97   witness (2,37,23,37)        [upper bound 103]
+    Q_5 = 103  witness (4,26,14,35,28)     [upper bound 127]
+    Q_6 = 110  witness (2,30,32,15,20,13)  [upper bound 146]
+
+Q_2..Q_6 are EXACT, all against the budget F(37) + 41 = 129. Q_7 IS NOT
+DELIVERED: the branch-and-bound was still running when the memory event of
+12:35 killed the job, and the follow-up probe (does machine 37 realise a run
+of FIVE consecutive gaps all >= 14? - which would settle Q_7 = 0 outright)
+was still enumerating level 5 at round close and was stopped. What stands for
+depth 7 is the sound layer bound Q_7 <= 174. Known: m37 realises 2,839
+distinct 4-runs of gaps >= 14, so Q_6 > 0 is not marginal. NOTE FOR THAT LANE, and it
+is the interesting part: unlike the WORD-LEGAL family, the size-floor family
+does NOT terminate in the abstraction - the floor-14 A_4 layer bounds keep
+growing (90, 97, 103, 127, 146, 174, ... , 380 at layer 16), so no depth cap
+comes free and every depth needs its own exact computation. That is the
+concrete price of using the size floor rather than the kill-word predicate,
+and it is the same distinction R68 draws.
+
+**NEGATIVES AND SELF-CORRECTIONS (round 26).**
+* MY OWN R61 TABLE IS WRONG AT MACHINE 31. It records the scan-free
+  D_2(31) = 1,254 and D_3(31) = 15,020. The correct values are 1,253 and
+  15,019: that run predates round 25's own `decide_cover` empty-interior fix,
+  so it counted the phantom tuples (1,1) and (1,1,1). Both are now refuted by
+  the fixed decider and both are absent from Mechanic's independent
+  full-period census (which the round-25 append had no chance to compare
+  against, since D_4(31) was deferred). Nothing downstream used them - F_1,
+  F_2, F_3 = 58, 68, 85 are unchanged - and MECHANIC'S m31 CENSUS IS CLEAN;
+  the defect was mine.
+* R67's "(ii) THE QUERY COUNT ... bounded by nothing proven" was too strong a
+  negative and is corrected by R69(a): a machine-free cap exists and is
+  trivial to prove. What is genuinely unbounded is the RATIO to that cap, and
+  the count is anyway strategy-dependent, so the object worth bounding is
+  R70's certificate, not the query count. I asked for a law about a quantity
+  that has no reason to have one.
+* THE 41->43 HYBRID RUN was launched at topk = 16 and cancelled on cost after
+  55 minutes; the right shape (large topk, so each parallel batch is big
+  enough to hide a 140 s outlier) was identified from the measurement, not
+  before it. Recorded as a cancellation.
+* I PIPED TWO LONG BACKGROUND RUNS THROUGH `tail`, which buffers, so they
+  produced no visible progress for 25 and 10 minutes respectively and one had
+  to be killed and relaunched. Trivial, and it cost real round time.
+
+**PREDICTION SCORECARD (`research/data/r26_prediction.txt`, pre-registered).**
+* P1 Q* HOLDS at all seven scannable steps - CONFIRMED, and at an eighth.
+* P2 attaining depths 2 / 3 / 2&3 / 4 / 3 / 3 / 4 - CONFIRMED exactly, all
+  seven, with 37->41 coming in at J* = 4 as the pattern predicts.
+* P3 R39's slack-2 at 23->29 is wrong - CONFIRMED (the value is 43 = F(29)).
+* P4 Q*_max(43;47) = 118 and Q*_max(47;53) = 145 - NOT CHECKABLE IN THIS LANE
+  (it needs Mechanic's j5_multi at those steps); it is a theorem-implied
+  prediction and stands as a falsifiable ask for their lane.
+* P5 (i) the three small steps under 100 queries - CONFIRMED (0, 6, 18);
+  (ii) non-monotone - CONFIRMED, and twice; (iii) report no fit - CONFIRMED.
+* P6 the MF_4 SIZE is the best correlate - PARTLY CONFIRMED: the best of the
+  eight correlates tried is the MF_4 distinct-tuple count T_4 + T_2 (5.8x
+  band), which is an MF_4 size; but the edge count itself is worse (10x), so
+  the prediction was right in kind and wrong in the specific statistic.
+* P7 37->41 needs MORE queries than 31->37's 3,399 - REFUTED at the canonical
+  strategy: 2,879 < 3,399. (It is true at topk = 256, which is exactly why
+  P7 was a badly-posed prediction - see R69(b).)
+* P8 37->41 CERTIFIES - CONFIRMED (129 <= 129).
+* P9 the exact m37 census is the oracle that reaches it, with < 500 pair
+  deletions to re-verify - HALF CONFIRMED: the census does reach it, but the
+  no-given-integer run leaves 1,191 pair deletions, not < 500 (the
+  F_2-seeded run leaves 79). All 1,191 were verified anyway.
+* P10 arity 2 remains the cost - CONFIRMED (~64% of phase 2's CPU on 9% of the
+  deletions). The D_1 pre-filter half was NOT TESTED (the dictionary oracle
+  subsumes it).
+* P11 at least one of P1-P10 refuted, and named - CONFIRMED (P7; P6 and P9
+  partial).
+
+**NEEDS / NEXT CONSTRUCTS.**
+* THE NINTH RUNG, PROPERLY SIZED. 41->43 needs an exact m41 oracle. Two routes
+  are now costed: (i) the hybrid superset+CRT loop at large topk with >= 6
+  workers - the arity-2 refutations at m41 (30-140 s) are the whole cost and
+  they parallelise; (ii) ask Mechanic for an EXACT m41 4-tuple census by
+  transfer-plus-refutation (their transfer dictionary is exact at depth 1
+  already; the inflation is at arity >= 2, and R72 measures it at 12/12).
+  Route (ii) is the cheaper one and it is their vehicle, not mine.
+* THE UNIFORM ORDER (R67 item i) is untouched and remains the sharpest single
+  open question the chain has: prove A_relax(M) <= 4 for all M, or find the
+  machine where A_4 first fails to certify.
+* THE FIRST-MOMENT TRANSFER (R64/R67) remains the derivation-grade item and
+  the escalation valve still applies. R68 sharpens what it must deliver: since
+  Q*_max = F(M+q') exactly, there is no slack anywhere in the criterion family
+  to trade against, and the transfer has to prove the record itself.
+* THE INCREMENT-LAW CANDIDATE routed in by the manager -
+  F(M+q') - F_2(M) <= min(2u', q'-2u') = 2u' at every LITERAL step, failing at
+  the padded 31->37 - is reproduced from R68's witness table: the differences
+  are 0, 2, 0, 3, 4, 3, 20, 1, 0 against 4, 6, 6, 8, 10, 10, 12, 14, 14 at
+  11->13 .. 41->43, so it holds 8 of 9 and fails exactly at the padded step by
+  +8. READING, labelled HYPOTHESIS: 2u' is the smallest positive legal letter,
+  so the candidate says "one more link buys at most one small letter over the
+  old two-gap maximum, unless the link is padded (worth a full q')". R68's
+  witnesses are the record-window decompositions that would test it further.

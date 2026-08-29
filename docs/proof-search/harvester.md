@@ -1226,3 +1226,364 @@ round 24's model, one round later.
   `research/data/blight_text.txt` (extracted text, pypdf).
 * Page scans of ODC pp. 65, 68-73, 112 at `research/data/odc6_scans/PA*.png`.
 * `research/j2_referee.py` re-run and GREEN before any of the above.
+
+## 10. ROUND 26 (2026-08-29) - THE LAYERING IS A THEOREM; UNIT 1 ASSEMBLED
+
+Brief: (a) write out the k = 2 Rankin layering with constants - proof or break;
+(b) price the paired-Iwaniec problem honestly after (a); (c) Unit 1 final
+assembly with the 8.04 rung, the referee pass and the citation-numbering sweep
+re-run, the ODC root correction stated as OUR reading, the ladder restated, and
+the not-claims section.
+
+GATES, all five re-run from clean processes at round close, all GREEN:
+  research/j2_referee.py       -> ALL ASSERTIONS GREEN   (run FIRST, before
+                                  anything below entered the record)
+  research/j2_citesweep.py     -> ALL CHECKS GREEN       (NEW this round)
+  research/j2_layer_proof.py   -> ALL ASSERTIONS GREEN   (NEW this round)
+  research/j2_odc6.py          -> ALL ASSERTIONS GREEN
+  research/j2_rankin_layer.py  -> ALL ASSERTIONS GREEN
+Every job this round launched has finished; nothing left running.
+
+PRE-REGISTRATION, written before `j2_layer_proof.py` was run, scored in its
+section G and again in 10f below:
+  PR1 the layering CLOSES as a proof; my named risk is the greedy (layer 3).
+  PR2 the constant is k/((k(2k-1))^k c_1^(k)); at k = 2, 1/(18 c_1); I predict
+      it lands in [1e-3, 1e-1].
+  PR3 the small-prime cut is P = A^(2k-1), not round 25's A^5.
+  PR4 the medium-prime parameter theta -> k FROM ABOVE; theta = k exactly fails.
+  PR5 at k = 1 the same write-up must land BELOW Rankin's proved e^gamma; above
+      it would be a bug.
+
+### 10a. (a) THE VERDICT: **PROOF.** THE k = 2 LAYERING IS WRITTEN OUT.
+
+    THEOREM (P2').  Let c_1 satisfy pi_2(t) <= c_1 t/(log t)^2 for t >= t_1.
+    Write A = log x, B = log A, C = log B.  Then
+
+        j_2(P(x))  >=  ( 1/(18 c_1) + o(1) ) x A^3 C^2 / B^4 ,
+
+    and generally, for the k-class Jacobsthal function,
+
+        j_k(P(x))  >=  ( k/((k(2k-1))^k c_1^(k)) + o(1) ) x A^(2k-1) C^k/B^(2k).
+
+    The statement carries an o(1), so the best ASYMPTOTIC twin constant is
+    admissible: **the headline constant is 0.0127524** (Lichtman 2024,
+    c_1 = 3.29956 x 2C_2 = 4.356487); the fully-effective alternative, with
+    Selberg's classical 8 x 2C_2 = 10.562589 - the constant Riesel-Vaughan 1983
+    Lemma 5 makes effective for t >= e^42 - is **0.0052597**.
+
+Full write-up: docs/novel/layered-erdos-rankin.md section 4 (parameters, four
+layers, survivor structure, the two counts, the greedy lemma, capacity, and the
+solution of the assembly inequality). What the write-out ADDED beyond
+bookkeeping-to-proof:
+
+1. **THE GREEDY LEMMA IS EXACT, AND IT WAS THE NAMED RISK.** Two distinct
+   classes mod p always capture at least **2N/p** of any finite set - no
+   O(N/p^2) loss. Proof: with n_(1) >= n_(2) the two largest class counts,
+   n_(1) >= N/p and n_(2) >= (N-n_(1))/(p-1), and the sum is increasing in
+   n_(1), so it is minimised at n_(1) = N/p where it equals N(2p-2)/(p(p-1)) =
+   2N/p. Asserted at every prime <= 200 in exact form and over 40,000 random
+   class distributions. PR1's risk does not bite; the step I flagged as most
+   likely to break is the safest in the argument.
+2. **A BETTER CONSTANT, FROM ACTUALLY DOING THE ACCOUNTING.** P must exceed
+   L y/x ~ A^(2k-1), so P = A^(2k-1). Round 25 fixed P = A^5. Denominator
+   (k(2k-1))^k = 36 in place of (5k)^k = 100: **a factor 2.778 at k = 2.**
+3. **A SELF-CORRECTION OF ROUND 25's GENERAL-k FORM.** P = A^5 is admissible
+   only for k <= 3 (it coincides with the correct cut exactly at k = 3) and is
+   **INADMISSIBLE for k >= 4** - the cofactor argument fails there, so round
+   25's printed closed form is too optimistic for k >= 4. Round 25's PR3 (the
+   POWER is 2k-1) is unaffected; its printed CONSTANT is not.
+4. **THE CONSTANT IS A SUPREMUM, NOT A MAXIMUM.** With u = theta B/C, the
+   smooth term dies iff theta > k. At theta = k EXACTLY the bracket is
+   +k(log C + 1 - log k)/C > 0 and the smooth term beats the tuple term by a
+   factor tending to infinity. Hence the o(1); theta(x) = k + 4(log C+1)/C is
+   the choice that realises it. Tabulated to C = 10^6 with monotone convergence
+   to within 0.006% of the limit.
+5. **A CONSTANT-LEVEL CALIBRATION, where round 25 could only check the shape.**
+   The identical write-up at k = 1 returns (1 + o(1)) x A C/B^2. Rankin's proved
+   theorem in the same coordinates is (e^gamma + o(1)) x A C/B^2,
+   e^gamma = 1.781072. **Our accounting lands a factor 1.781 BELOW the classical
+   constant** - the correct side, by a small factor. Coming out ABOVE Rankin
+   would have been a bug. (The shortfall is the crude greedy and the elementary
+   rho <= 1/Gamma bound.) PR5 confirmed.
+6. **WHY IT CANNOT BE UPGRADED, AND WHY THAT IS THE POINT.** The FGKT/Maynard
+   improvement of the ordinary construction works by producing MANY PRIMES in a
+   single residue class via a multidimensional sieve. Its k = 2 analogue needs
+   many TWINS in a single residue class - a LOWER bound for twin primes, i.e.
+   the parity barrier. **The construction is parity-free EXACTLY BECAUSE it
+   stops at Rankin level.** That is structural, not a gap someone will close,
+   and it is the round's sharpest new statement about the method.
+
+### 10b. THE PRIOR-ART FINDING THAT MATTERS - AND IT IS A SELF-FOUND DOWNGRADE
+
+Round 26's sweep (sub-search; then the two LOAD-BEARING items re-read
+FIRST-HAND by me, per 7d clause 2) turned up **Ford-Konyagin-Maynard-Pomerance-
+Tao, "Long gaps in sieved sets", arXiv:1802.07604, REMARK 7** - read first-hand
+2026-08-29 in the ar5iv rendering:
+
+  "Unfortunately our methods only seem to give good results in the
+  one-dimensional case. Consider for instance the set {n in P : n+2 in P} of
+  (the lower) twin primes. This corresponds to a two-dimensional system in which
+  I_p = {0 (mod p), 2 (mod p)} for all primes p. The 'trivial' bound coming from
+  these methods would give a bound of >> log X log log X for the largest gap
+  between lower twin primes up to X ... and one could possibly hope to improve
+  this bound by a small power of log log X using a variant of the methods in
+  this paper. However, a sieve upper bound (e.g., [7, Cor. 2.4.1]) combined with
+  the pigeonhole principle already gives a bound of >> log^2 X in this case."
+
+**THAT IS OUR SIEVING SYSTEM, NAMED IN PRINT, BY THOSE FIVE AUTHORS.** Round
+25's sentence "nobody appears to have asked what happens when you have two
+classes per prime" is WITHDRAWN. Three consequences, all arithmetic, all
+asserted in j2_layer_proof.py section F0:
+
+1. **NOVELTY QUALIFICATION ON (P1).** In covering coordinates (log X ~ x,
+   loglog X ~ A), their ">> log X loglog X" is ">> z log z" - **the ORDER of our
+   (P1)**. So (P1) is NOT the first appearance of that order for this system; it
+   remains the first PROVED bound, the first with an explicit constant (1.349),
+   and the first stated for Ziller-Morack's h_2. Recorded in j2-lower-ladder.md
+   section 8-bis and in Unit 1's not-claims list. This is the fourth self-found
+   novelty downgrade this lane has taken, and the standing lesson (7d clause 1,
+   prior-art checks EXPIRE) is what produced it.
+2. **THEY HOPED FOR "A SMALL POWER OF log log X". (P2') GIVES TWO FULL ONES.**
+   x A^3 C^2/B^4 over x A is A^(2-o(1)) - asserted numerically at C = 10..10^3.
+   The route is different from theirs (a layered Erdos-Rankin covering, not
+   their sieved-set machinery). **FKMPT flagging the two-dimensional case as out
+   of reach for their methods is the sharpest available statement of what this
+   construction contributes** - far better framing than "nobody thought of it".
+3. **NO TWIN-PRIME-GAP COROLLARY MAY BE CLAIMED - and their pigeonhole bound is
+   nonetheless no obstruction to us.** Two different quantities:
+     gaps between ACTUAL twin primes near X: twin density ~1/(log X)^2, so
+       pigeonhole gives >> (log X)^2 = x^2, which BEATS x A^3 C^2/B^4;
+     j_2(P(x)) itself: the SIFTED SET has density prod(1-2/p) ~ 1/A^2 inside its
+       period, so the same pigeonhole gives only >> A^2 = (log x)^2, which
+       (P2') beats by a full power of x.
+   So the theorem is a genuine statement about j_2 = h_2, and any twin-prime-gap
+   corollary would be weaker than an argument those authors call trivial. Added
+   as item 6 of Unit 1's not-claims list.
+
+Also from the sweep, all dated 2026-08-29: **Erdos problems #687 and #970 both
+confirm Iwaniec 1978 is STILL the record upper bound for the ordinary Jacobsthal
+function, both open** (#687 carries a $1000 prize; page last edited 2025-12-06);
+#689/#1205/#1200 are covering-MULTIPLICITY questions, one class per prime, not
+our object; Maynard's survey arXiv:1910.13450 Lemma 5 states the Erdos-Rankin
+framework as one class per prime; the nearest-looking precedent is
+Maier-Pomerance's use of one class at a large prime to remove TWO survivors,
+which is a different thing and should be named in the paper so a referee does
+not confuse them; **no theorem anywhere on large gaps between consecutive twin
+primes or prime k-tuples by an Erdos-Rankin covering** (round 25 named this as
+the largest risk - it is clear, and FKMPT Remark 7 explains why nobody built
+it); Kalmynin-Konyagin arXiv:2302.00459 remains one-dimensional and is not our
+object; **j_k appears nowhere under any name.**
+
+### 10c. A CONSTANT ERROR OF MY OWN, CAUGHT BY GOING TO THE PRIMARY SOURCE
+
+The first draft of j2_layer_proof.py set c_1 = 8 C_2 = 5.2813, reading Selberg's
+classical constant 8 as multiplying the twin constant C_2. **It multiplies the
+FULL Hardy-Littlewood singular series 2 C_2.** Caught by reading Lichtman
+arXiv:2109.02851 (Algebra & Number Theory 19 (2025) no. 1) first-hand
+2026-08-29: his normalisation is Pi(x) = 2x/(log x)^2 prod_{p>2}
+(1-2/p)/(1-1/p)^2 = 2 C_2 x/(log x)^2, his Theorem 1.2 is pi_2(x) <~ 3.29956
+Pi(x), and his history table reads Selberg 1947 = 8, Bombieri-Davenport 1966 =
+4, BFI 1986 = 3.5, Wu 2004 = 3.39951. **The draft was a factor of two too good**
+- and by coincidence its wrong value 5.2813 is exactly Bombieri-Davenport's
+constant, which is why nothing looked odd. Every constant in the theorem is now
+carried against 2 C_2 and asserted.
+
+### 10d. (b) THE PAIRED-IWANIEC PROBLEM (P3), PRICED
+
+**Statement.** Is h_2(P(z)) = O(z (log z)^a) for some a?
+
+**What round 26 changes.** Before (P2') there was no constraint on a. Now:
+* **a >= 3 is FORCED**, and a >= 2k-1 for the general j_k. (P3) is no longer
+  "is it polylog?" but "**is the polylog exponent exactly 3?**"
+* **The matching conjecture is now sharp and falsifiable**: h_2(P(z)) =
+  z (log z)^(3+o(1)), i.e. the construction is essentially optimal. Attackable
+  from either side.
+
+**Price: NOT REACHABLE, and the reason is structural rather than effort.**
+1. (P3) at k = 1 - "is j(P(z)) = O(z (log z)^a)?" - is a KNOWN OPEN PROBLEM. The
+   record is Iwaniec 1978, j(P(z)) << z^2: a full power of z, not a polylog,
+   unmoved for 48 years (Erdos problems #687/#970, re-checked 2026-08-29).
+2. Our k = 2 version cannot be easier: j_2 >= j by the collapse transfer
+   (b - a = p#), so a polylog bound for j_2 gives one for j.
+3. Our own upper ladder reaches z^8.04 explicitly and z^(4.266+eps) by citation,
+   both far above any polylog, and section 2e shows the exponent IS the sifting
+   limit - no level or bilinear refinement moves it.
+**Therefore (P3) is strictly harder than an open Erdos problem with a standing
+prize, and this lane will not attempt it.** What the lane contributes is the
+constraint a >= 3 and the sharpened conjecture.
+**What IS reachable, and it is a referee tool rather than a theorem:** the
+family j_k gives infinitely many instances of the same question, and any claimed
+j_k << x A^f(k) with f(k) < 2k-1 is contradicted outright by (P2') at that k.
+Any future upper-bound claim on this family can be consistency-checked for free.
+
+### 10e. (c) UNIT 1 - ASSEMBLED. **docs/novel/j2-upper-bound.md SECTION 11.**
+
+The round-25 report listed what would change in the paper (its section 10e) but
+never applied it to the head of the document, so the status block, section 1's
+prose and section 4a still carried "exponent 19", "the proved sandwich ...
+around a measured truth of (p^2-p)/2", and "no lower bound beyond the collapse".
+Round 26 assembled the unit properly:
+
+* **NEW SECTION 11, the submission candidate**: 11a the complete ladder in one
+  table (1; 3E quasi-polynomial with the exact asymptotic constant 2 lambda_* =
+  7.182242; 2E exponent 19; 2E' 17; 2E'' 15; **2G 8.04162**; 2G-inf floor
+  7.93727; 2 at 4.266 by citation) with WHICH RUNG TO QUOTE (2E'' below
+  p_n ~ 3.8e5, 2G above, by p_n^6.96) and the explicitness boundary stated once;
+  11b the current sandwich with both retracted readings named; 11c a rewritten
+  eight-item not-claims list; 11d the ODC root; 11e a submission checklist.
+* **Every stale section is now individually marked**, not deleted: a pointer
+  block at the top of the file, one on the round-23 status block, one on
+  section 1's superseded closing sentences, one on section 4a items 1/3/5.
+* **THE ODC alpha* READING RESTATED AS OURS, WITH THE DERIVATION - the round-25
+  "discrepancy in the book" framing is WITHDRAWN.** The book says "A numerical
+  computation gives (use the Taylor expansion at 1/4)". Doing exactly that:
+  f(1/4) = -0.0741009117, f'(1/4) = +4.9715909084, and ONE first-order
+  Taylor/Newton step gives 1/4 - f(1/4)/f'(1/4) = **0.2649048691** - the printed
+  **0.264904 to seven digits**. So the printed value IS the book's own stated
+  approximation, computed the way the book says. Ours is a SHARPENING of a
+  stated approximation (exact root 0.2652636746, beta_2 = 7.583827 against the
+  printed 7.594004, gain 0.010177), carrying the caveat that the equation is OUR
+  READING of a page image and any residual could be ours. Nothing in 2G moves;
+  2G's binding root is the K -> 1 root 0.253321897.
+
+**THE CITATION-NUMBERING SWEEP IS NOW A GATE, NOT A MANUAL STEP -
+research/j2_citesweep.py.** A hand sweep does not fail when a document drifts;
+this one does. It (A) re-derives the ODC root reading; (B) extracts every arXiv
+id from the five Unit-1 documents and asserts each is in an ADJUDICATED REGISTRY
+carrying who/what/when - an unregistered id FAILS the gate, which forces a new
+citation to be adjudicated before it can be used; (C) scans for six FORBIDDEN
+strings (the "Iwaniec-Kowalski Theorem 6.9" chimera, "M. Franze", Tenenbaum
+4.3 / I.4.2, Costello-Watts under 1208.5342, "Sean Blight"), exempting explicit
+do-not-cite context; (D) scans for INTERNAL CONTRADICTIONS between sections of
+one document; (E) reports the age of every dated check and fails past 14 days.
+
+**IT CAUGHT TWO LIVE DEFECTS ON ITS FIRST RUN, both fixed:**
+1. `paired-jacobsthal-values.md` still attributed the Costello-Watts bound to
+   arXiv:1208.5342. That is the SEPARATE range-restricted computational paper;
+   the bound is arXiv:1306.1064. Round 23 recorded the correction and the
+   document was never updated.
+2. `j2-upper-bound.md` section 6a item 4 still instructed "the safe form, and
+   the one now used: cite 2 kappa + 0.4454", while section 9c SETTLED the
+   conflict the other way in round 24 and instructs "cite 19/36". **A direct
+   self-contradiction inside one document, which a referee reading
+   top-to-bottom would hit.** It survived two rounds of manual sweeps.
+Two of my own bugs in the gate were also caught by running it: an unformatted
+%d, and date-extraction counting a cited source's own date (Tao's 2014 blog
+post) as one of OUR check dates.
+
+### 10f. Pre-registration scored, and the round's negatives
+
+PR1 CONFIRMED - the layering closes; the named risk is exact, not merely safe.
+PR2 CONFIRMED - K = k/((k(2k-1))^k c_1^(k)); at k = 2, 1/(18 c_1) = 0.0127524,
+    inside the predicted band [1e-3, 1e-1].
+PR3 CONFIRMED - P = A^(2k-1) forced and optimal; factor 2.778 gained.
+PR4 CONFIRMED - theta = k exactly fails; the constant is a supremum.
+PR5 CONFIRMED - k = 1 gives 1.0, a factor 1.781 below Rankin's e^gamma.
+Five for five, which is itself worth a caveat: the predictions were made after a
+round of thinking about the same construction, so they were not hard.
+
+NEGATIVES AND COSTS OF THE ROUND:
+* **My own constant was wrong by a factor of two** in the first draft (10c),
+  and it was wrong in the direction that flatters the result. Caught only by
+  going to the primary source for a number I thought I knew.
+* **Round 25's novelty sentence was too strong and is withdrawn** (10b). FKMPT
+  Remark 7 existed throughout and names the system; round 25's own sweep read
+  that paper's abstract and main theorem and did not reach Remark 7. LESSON,
+  added to 7d as clause 6: **when a paper is checked for prior art, its REMARKS
+  and its "what our methods cannot do" section are where your problem will be,
+  not its theorems** - the same failure shape as round 25's "price the
+  propositions, not only the theorems", one level further down.
+* **Round 25's general-k closed form is wrong for k >= 4** (10a item 3), my own
+  from one round ago.
+* **(P1)'s novelty is qualified** (10b item 1). The order z log z for this exact
+  system is in print.
+* **(P3) is priced NOT REACHABLE** - a gated negative in the sense that it rests
+  on a checked fact (Iwaniec 1978 still the record, Erdos #687/#970 open,
+  re-checked 2026-08-29) plus the one-line implication j_2 >= j, not on
+  judgment. The JUDGMENT part, labelled: that no other route to a polylog upper
+  bound exists. **JUDGMENT, NOT RESULT.**
+* **(P2') has no finite-z content and no kernel check**, unchanged from round
+  25: the construction does not exist below log z ~ 300, and the threshold,
+  though effective, decays like (log C + 1)/C with C = logloglog log x and is
+  not writeable. (P1) remains the bound to quote at any z anyone will evaluate.
+* **The ODC page-image caveat is still open**: (5.38), (6.69) and p. 74 were not
+  re-fetched this round either. One library visit closes it and it should happen
+  before submission.
+* The (loglog)^4 exponent and the constant 1/(18 c_1) are what THIS parameter
+  choice gives, not what the method gives. Not optimised.
+
+### 10g. Ranking changes
+
+* **N4 (j_2 upper ladder) stays TOP but is now a WRITING item, not a research
+  item.** Section 11 is the assembled unit; what remains is LaTeX, one library
+  visit, and a scope decision about F_d. Its research frontier (7.937 -> 4.266)
+  is priced as needing an explicit form of the DHR differential-delay system,
+  which nobody has.
+* **P1-P3 (lower ladder) REACHES PARITY WITH N4 and is now the more active
+  side.** It carries two proved bounds, a k-family nobody has stated, an
+  explicit constant, and a sharp falsifiable conjecture. Its own novelty is
+  qualified but not damaged.
+* **(P2') CLOSED.** **(P3) PRICED AND CLOSED as unreachable** - it should not
+  appear in a future brief as a target, only as the frontier.
+* **NEW ITEM, ranked immediately below N4: (P6) THE k-FAMILY AS A PUBLISHED
+  OBJECT.** j_k is defined, has a proved lower bound for every k, has a stated
+  upper conjecture, and appears nowhere in the literature. It is a short paper
+  on its own or a section of Unit 1, and it is the cheapest genuinely new thing
+  this lane holds. The k >= 4 shift-set question (6.3 of the doc) is its one
+  piece of real work.
+* **7c#4 (h_2 at p_n = 151..251) RISES AGAIN** - it now separates z(log z)^2
+  from z(log z)^3 where the competing readings used to be closer, and it is the
+  only purchasable number that discriminates.
+* **DEMOTED: nothing.** Round 25's demotion of the Blight opening stands.
+
+### 10h. Additions to the standing citation-hygiene lesson (7d)
+
+6. **A PAPER'S REMARKS ARE WHERE YOUR PROBLEM LIVES.** Round 25 read FKMPT's
+   abstract and main theorem and cleared it as "the adversarial problem".
+   Remark 7 of the same paper names our sieving system, states the order of our
+   (P1) as trivial, and explains why nobody built our construction. **When
+   clearing a paper for prior art, read its remarks and its limitations section
+   FIRST** - authors put "here is the thing our method cannot do" exactly where
+   your problem is. Same failure shape as round 25's clause 4 (price the
+   propositions, not only the theorems), one level further down.
+7. **A CONSTANT YOU THINK YOU KNOW IS A CITATION.** "Selberg's twin constant is
+   8" is true; "8 times C_2" is not - it is 8 times 2 C_2, and the error
+   flattered the result by a factor of two. Normalisations are the part of a
+   remembered constant that goes wrong. Re-derive or re-read the normalisation,
+   not just the digits.
+8. **A MANUAL SWEEP DOES NOT FAIL.** Rounds 23-25 ran the citation-numbering
+   sweep by hand and it passed; two live defects were sitting in the documents
+   the whole time, one of them a direct self-contradiction. The sweep is now
+   research/j2_citesweep.py and it exits non-zero. Any standing referee step
+   that can be a gate should be one.
+
+### 10i. Reproduction (round 26)
+
+* `research/j2_layer_proof.py` -> `research/data/j2_layer_proof.out`. Sections
+  A (greedy lemma, exact, 40,000 random distributions), B (two-sided survivor
+  structure, 0 violations at five parameter sets), C (the assembly inequality,
+  K tabulated to C = 10^6, monotone to within 0.006% of 1/(18 c_1)),
+  D (P = A^(2k-1) forced and optimal), E (k = 1 constant-level calibration
+  against Rankin's e^gamma; general-k table with the k >= 4 correction),
+  F0 (FKMPT Remark 7, the three consequences, all asserted), F (the honest
+  boundary, six items), G (pre-registration scored).
+* `research/j2_citesweep.py` -> `research/data/j2_citesweep.out`. Sections A-E
+  as in 10e. **Re-run alongside j2_referee.py before any future claim about
+  Unit 1.**
+* `research/j2_referee.py` re-run and GREEN before any of the above.
+* Documents changed: `docs/novel/layered-erdos-rankin.md` (rewritten - the
+  proof is section 4, FKMPT is section 2, (P3) is section 6a);
+  `docs/novel/j2-lower-ladder.md` (new sections 8, 8-bis, 8a, 8b);
+  `docs/novel/j2-upper-bound.md` (new section 11 = the assembled unit; four
+  supersession markers); `docs/novel/paired-jacobsthal-values.md` (the
+  Costello-Watts id); `docs/novel/README.md` (three index entries).
+* Sources read FIRST-HAND by me on 2026-08-29: arXiv:1802.07604 Remark 7,
+  Theorem 1 and Definition 1 (ar5iv); arXiv:2109.02851 Theorem 1.2, abstract and
+  history table (ar5iv). Sources taken from the sub-search and NOT re-read by
+  me, labelled as such: the Erdos-problems #687/#689/#970/#1200/#1205 texts,
+  Maynard's survey Lemma 5, FGKT Theorem 1's exact statement, Riesel-Vaughan
+  1983 Lemma 5 (which reached the sub-search through OCR of a 1983 scan - the
+  "+100 x^(1/2)" term and the (L,A) table row should be re-checked against a
+  clean copy before that constant is printed), and the Hildebrand-Tenenbaum
+  1993 theorem numbering. **The theorem's headline constant depends only on
+  Lichtman, which I read myself.**

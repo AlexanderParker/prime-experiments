@@ -1057,3 +1057,268 @@ NOTE: mirror_cells.load_ghist REPAIRS data/gap_pair_hist.csv's missing wrap gap;
 future consumer of that file should use it or repeat the repair.
 Novel-register docs added: docs/novel/mirror-parity-laws.md,
 docs/novel/gear-cell-decomposition.md.
+
+## Round 26 (2026-08-29) - own backlog, own choice: the parity lever's second half
+
+CHOSE the brief's optional item ("what OTHER counting arguments does the lever unlock?")
+plus U4 (Farey-spectrum consequences), because they are ONE object: the lever's reach is
+decided by where the mirror's FIXED POINTS are, and the Farey spectrum's multiplicities
+are exactly the gap histogram's residue-class counts, whose parities are those same
+fixed points. Depth on the connected pair beat breadth again.
+NOT WORKED, and honestly: U5 (the 613 cosine near-collisions) - untouched, unclaimed.
+U7 (gear-7 cells) - its FRAMING changed under item 56 and it should be re-posed before
+it is run (see backlog). U6 and U9 are blocked on one full-period m37/m41 gap histogram,
+which Mechanic is computing this round; nothing this lane can do without it.
+GATE: `research/mirror_lever2.py --parts ABCDEFG` -> 52 assertion gates, exit 0
+(log `research/data/mirror_lever2.log`). Predictions pre-registered in
+`research/data/r26_lateral_predictions.txt` before any of it was coded.
+
+### Established results (continuing the numbering; do not renumber 1-50)
+
+51. THE SYMMETRY GROUP IS EXACTLY Z/2 - AN EXACT CEILING ON THE LEVER (r26; proved,
+    brute-force gated).
+    (a) AFFINE FORM. The affine maps k -> ck + b of Z_P carrying the opening set onto
+        itself are exactly {k -> ck : c = +-1 (mod q) for every gear q} = (Z/2)^m, m =
+        #gears. Proof: preserving O means permuting each tooth pair {+-u_q}; adding the
+        two requirements cu + b = -+u gives 2b = 0 (mod q) with q odd, so b = 0, and then
+        cu = +-u with u invertible gives c = +-1. The element flipping the gears in S has
+        exactly P/prod_S q fixed slots - ONE when S is everything (the mirror).
+        Gated at m11 over ALL 240 units x 385 shifts = 92,400 affine maps, at m13 over
+        all 2,880 units; group, fixed-point counts and adjacency verdict all exact.
+    (b) ONLY c = +-1 ACTS ON WINDOWS. Of the 2^m symmetries only the identity and the
+        mirror send consecutive openings to consecutive openings (gated m11, m13).
+    (c) AND WITHOUT THE AFFINE ASSUMPTION. Anything acting on windows preserves the
+        CIRCULAR order of Z_P, so it is a rotation k -> k+b or a reflection k -> b-k.
+        Both force b = 0 (mod q) at every gear by the same two-equation argument. So
+            THE FULL SYMMETRY GROUP OF THE OPENING SET INSIDE THE CIRCLE Z_P IS
+            {identity, mirror} = Z/2, EXACTLY.
+        Brute-forced over all 2P rotations and reflections at m11 and m13.
+    CONSEQUENCE, and it is the honest half: the lever "cap at one, parity gives zero" is
+    worth EXACTLY ONE UNIT - a factor of two in a counting argument - and there is no
+    mod-4 version to hope for from any symmetry of the machine. A finer parity must come
+    from something that is not a symmetry of the opening set.
+
+52. THE EXCEPTIONAL WINDOW, RELOCATED FROM AN INDEX TO AN ADDRESS (r26; proved + gated).
+    Round 25 (item 46a) located the unique self-mirror depth-j window by its INDEX
+    t_j = -j/2 (mod N), which is useless without an enumerated period. In slot space: a
+    depth-j window with endpoints x < y = x+g in [0,P) is self-mirror iff x + y = 0
+    (mod P), i.e. 2x + g in {P, 2P}, so it is CENTRED ON THE ANTIPODE (g odd) or ON SLOT 0
+    (g even). Counting openings on each arc,
+        j even:  g_j* = 2 o_{j/2}             (through slot 0, itself an opening)
+        j odd :  g_j* = 2 b_{(j+1)/2} - P     (through the antipode)
+    with o_i the openings just above 0 and b_i those just above (P-1)/2. Both lists come
+    from sieving a few dozen slots, so g_j* IS SCAN-FREE AT EVERY MACHINE.
+    COROLLARY (the free half): g_j* = j (mod 2), so W_j(g) is EVEN for every g of the
+    wrong parity with NO computation at all.
+    VERIFIED against the exact full-period W_j census at m11..m29 for every depth j <= 12:
+    the set of g with W_j(g) odd is exactly {g_j*}, no exceptions. Table:
+
+        y \ j    1   2   3   4   5   6   7   8   9  10  11  12
+        11       1   6  11  10  21  14  25  20  31  24  35  34
+        13       1   6  11  10  21  14  25  20  31  24  39  34
+        17       1  10  21  14  25  20  31  24  39  34  41  36
+        19       1  10  21  14  31  20  39  24  41  34  49  36
+        23       1  10  21  14  39  20  41  24  49  34  55  36
+        29       1  14  21  20  41  24  49  34  55  36  71  46
+        31       1  14  49  20  55  24  71  34  85  36  99  46
+        37       1  14  55  20  71  24  85  34 105  36 109  46
+        41       1  20  71  24  85  34 105  36 111  46 115  50
+        43       1  20  71  24  85  34 105  36 111  46 119  50
+        47       1  20  71  24  85  34 105  36 111  46 119  50
+        53       1  20  85  24 105  34 111  36 119  46 129  50
+
+    (m31 and above are computed at machines no scan reaches.)
+
+53. g_1* = 1 ALWAYS - THE ANTIPODAL GAP IS A THEOREM (r26). Round 25 recorded g_1* = 1
+    "at the machines checked". It is universal, and it is this lane's own T3 law wearing
+    a different hat. P = 0 (mod q), so the antipodal slot s = (P+1)/2 reduces mod every
+    gear to inverse(2) = (q+1)/2. Multiply by 6: 6s = 3(q+1) = 3 (mod q), while
+    6(+-u_q) = +-1 by the tooth law. So s is a tooth iff 3 = +-1 (mod q), i.e. q | 2 or
+    q | 4 - impossible for q >= 5. THE ANTIPODAL SLOTS (P+-1)/2 ARE OPENINGS AT EVERY
+    MACHINE, the antipodal gap has length 1, and therefore
+
+        W_1(g) IS EVEN FOR EVERY g >= 2, at every machine, unconditionally.
+
+    Only the count of gaps of size 1 is odd. In particular the number of MAXIMAL gaps is
+    even with no side condition - round 25's caveat ("unless F is the antipodal gap") is
+    discharged for ever - so the maximal gap never occurs exactly once.
+
+54. THE FIXED-POINT CRITERION, THE REVERSAL THEOREM, AND WHAT NOT KNOWING IT COST (r26).
+    (a) CRITERION. For a PALINDROMIC tuple w of span s the occurrence set is
+        mirror-invariant and an occurrence at k is self-mirror iff 2k = -s (mod P); P is
+        odd, so there is exactly one candidate address k_w = -s * inverse(2) (mod P).
+        THEOREM: #occ(w) is ODD iff w occurs at k_w - an O(#gears) test. Specialising to
+        w = (g,g) gives k_w = -g and forces openings at -g, 0, g with nothing between,
+        i.e. g = k_1: round 25's "the unique odd depth-2 palindrome is (k_1,k_1)" in one
+        line, now valid at every arity. Gated at m11..m23 against the exact period census:
+        the criterion predicts the parity of EVERY palindromic 2- and 3-tuple.
+    (b) REVERSAL. The mirror sends an occurrence of w at k to one of reverse(w) at
+        -(k + span w), bijectively, so #occ(w) = #occ(reverse w) EXACTLY, and
+        realisability is reverse-invariant - including for MERGE KILL WORDS, since the old
+        machine's openings and the new gear's teeth are both negation-symmetric. So every
+        realisability census need only decide ONE WORD PER REVERSE CLASS.
+        Gated: the realised 4-tuple dictionaries at m23/m29/m31/m37 are exactly
+        reverse-closed (15,696 / 45,854 / 115,193 / 291,675 tuples; at m37, 145,768
+        reverse pairs and 139 palindromes = 145,907 classes, a 50.0% decision saving).
+        AUDIT of this project's own arity censuses (research/data/r24/akillp_*.log):
+        82 word decisions, EVERY reverse pair agreeing - the theorem's falsifiable gate -
+        and 12,877 s of 27,946 s (46%) spent deciding the second member of a reverse pair,
+        including two of the four span-141 words at 47->53 that cost 20,005 s between them.
+    (c) THE LEVER HAS NO SIDE CONDITION ON THE (D) FAMILY. The merge law quantifies only
+        over QUALIFYING windows (middle gaps >= the next gear's tooth floor a = 2u'). The
+        exceptional window sits against slot 0 or the antipode, where the gaps are the
+        machine's shortest, so it is NEVER qualifying: checked at every rung 11->13 ..
+        47->53 and every depth j <= 7, all 66 cells negative. Hence an exact bound "at
+        most ONE qualifying depth-j window exceeds the budget" proves there are NONE.
+        (Reported for the route, not developed - mandate.)
+
+55. THE MULTIPLICITY THEOREM, AND THE FAREY LEVEL COUNT CORRECTED (r26; closes U4).
+    In the path decomposition (item 36) write an eigenvalue 2cos(pi j/(g+1)) as
+    2cos(pi a/b) in lowest terms. Then b | g+1, and for FIXED b every a coprime to b
+    arises from exactly the gaps g = -1 (mod b). So
+
+        THEOREM. mult(2 cos(pi a/b)) = Sigma(b) := sum_{g = -1 mod b} W_1(g),
+        INDEPENDENT of a.
+
+    The eigenvalue multiplicities of A ARE the gap histogram's residue-class counts, one
+    class per modulus, and the map inverts: W_1(b-1) = sum_{t>=1} mu(t) Sigma(tb), with
+    F + 1 = max{b : Sigma(b) > 0}. This is the CONSTRUCTIVE form of item 39's negative
+    ("every unitary invariant of BS is the gap histogram") - here is the inversion.
+    (a) PARITY (with item 53). Sigma(b) is odd iff b | 2, so EVERY eigenvalue multiplicity
+        of A is EVEN except that of the eigenvalue 0. Asserted exactly at m11..m29 for
+        every b <= F+1. Corollary: A never has a simple Perron eigenvalue.
+    (b) THE LEVEL COUNT IS A DIVISOR-CLOSURE STATISTIC, and item 36's corollary 1 was the
+        NAIVE Farey count: #distinct = sum{phi(b) : b >= 2 divides g+1 for some REALISED
+        gap g}. Recomputed on the true supports (m11-29 from the full-period census,
+        m31/m37 from the exact 4-tuple dictionaries - validated at m23/m29 where both
+        sources exist - m41 from the COV-SAT support {1..91}\{84,87,89}):
+
+            y          11   13   17   19   23   29     31      37      41
+            TRUE       21   41  113  183  363  549    981   1,813   2,467
+            published  21   45  119  211  383  603  1,085   2,455       -
+
+        Only machine 11 (holeless) was right. LOSS RULE, exact at all nine machines: b is
+        absent iff every multiple of b in [2,F+1] is (hole+1); since every observed hole
+        is in the top half of the range, loss = sum over holes h of phi(h+1) - e.g.
+        phi(85)+phi(88)+phi(90) = 128 at m41, pre-registered and matched.
+        SO THE HOLE LIST IS A SPECTRAL OBSERVABLE: the arithmetic-selection object nobody
+        can predict is exactly the defect between the true level count and the Farey count.
+    (c) RIGIDITY, recomputed on the true level set: <r~> = 0.7206, 0.6306, 0.6785, 0.6507,
+        0.6876, 0.6982, 0.6897, 0.6788, 0.6938 at m11..m41 (floats), still ABOVE GUE's
+        0.6027 everywhere, and P(s < 0.1 mean) = 0 exactly - now for a REASON, since
+        deleting levels only lengthens spacings, so a subset of a set with a hard gap keeps
+        it. Round 22's conclusion is unchanged; two of its numbers are not.
+
+56. EVERY GEAR IS PARITY-OBSTRUCTED - THE POLE PHASE IS UNATTAINABLE EVERYWHERE (r26).
+    Since W_1(1) is the only odd histogram entry (item 53) and 1 = 1 (mod p) for every p,
+
+        N_1^(p) := #{gaps = 1 mod p} is ODD and N_r^(p) is EVEN for every other r,
+
+    at EVERY machine and EVERY modulus p. The bracket B_p = sum_s beta_s omega^s
+    (beta_r = N_{r+1}-N_r) is real iff alpha_s := beta_s - beta_{-s} vanishes for
+    s = 1..(p-1)/2, the omega^s - omega^{-s} being Q-linearly independent (disjoint pairs
+    of the power basis). But
+
+        alpha_1 = beta_1 - beta_{p-1} = N_2 - N_1 - N_0 + N_{p-1}
+                = even - ODD - even + even = ODD != 0.
+
+    THEOREM: for every gear p >= 5 and every machine, alpha_1(p) is odd, so B_p is never
+    exactly real and THE POLE PHASE IS NEVER ATTAINED - at gear 7, gear 11, gear 37,
+    everywhere, not only at gear 5. Asserted at m11..m29 for every p in the gear set plus
+    41 and 43 (alpha_1 values in the log). This supersedes item 48's uniqueness claim;
+    item 48's gear-5 conclusion stands, and its MEASURED half (three equations instead of
+    one, asymmetries an order of magnitude larger and slower to decay) is still the real
+    explanation of why gear 5's bracket looks real and gear 7's drifts.
+
+### Refuted angles (continuing)
+
+34. "GEAR 5 IS THE ONLY PARITY-OBSTRUCTED GEAR FOR p <= 37" - my own round-25 prediction
+    P3, scored CONFIRMED and called the structural half of U3. REFUTED by item 56: every
+    gear is parity-obstructed. The round-25 GF(2) test was sound but answered a NARROWER
+    question than its label - whether the CELL-MATRIX constraints alone (row sums odd plus
+    the pole equations) force a parity contradiction. Those constraints know nothing about
+    W_1(1), which is where the real obstruction lives. LESSON, and it is general: a
+    satisfiability verdict over a chosen constraint set is a statement about THAT SET, not
+    about the machine; label it with the set.
+35. "#distinct eigenvalues = |Farey(F+1)| - 2" (item 36 corollary 1, r22): REFUTED for
+    every machine with holes - true only at m11. The published table 21/45/119/211/383/
+    603/1085/2455 is the naive count; the true one is item 55(b). My own error, found by
+    my own script, and the cause is exact: the code enumerated `for g in range(1, F+1)`
+    instead of the realised support.
+36. "s_min/s_mean descends to Hall's 3/pi^2 = 0.30396" (item 36 corollary 2, r22):
+    REFUTED on the true level set - the ratio is not monotone and dips to 0.2422 at m37,
+    because deleting levels raises the mean spacing while the surviving minimal spacing is
+    unchanged. The ABSOLUTE hard gap survives (P(s < 0.1 mean) = 0 exactly, now proved by
+    the subset argument); the NORMALISED statement is not a law.
+
+### Prediction scorecard, round 26 (pre-registered in data/r26_lateral_predictions.txt)
+
+  P1  only the 2^m multiplications, only c=+-1 acts on windows, no mod-4 lever: CONFIRMED
+  P2  scan-free g_j* matches the only odd W_j column at m11..29, j <= 12:      CONFIRMED
+  P3  g_j* = j (mod 2):                                                       CONFIRMED
+  P4  every reverse pair in the A_kill logs agrees; > 40% redundant time:      CONFIRMED
+      (82 decisions, zero disagreements, 46%)
+  P5  the m23/29/31/37 4-tuple dictionaries are exactly reverse-closed:        CONFIRMED
+  P6  the m41 level count is short by exactly phi(85)+phi(88)+phi(90) = 128:   CONFIRMED
+  P7  the loss rule (only holes above (F+1)/2 cost anything) is exact:         CONFIRMED
+  P8  Sigma(b) odd exactly when b | g_1*+1:                                    CONFIRMED
+  P9  N_1^(p) odd, all other N_r^(p) even, every machine and modulus:          CONFIRMED
+  P10 alpha_1(p) odd for EVERY gear - contradicting my round-25 P3:            CONFIRMED
+
+  10 of 10, and I do not read that as a good scorecard. P1-P3, P5, P8 and P9 are
+  corollaries of theorems I had already proved when I wrote them down, so they were cheap.
+  The risk this round was taken elsewhere and it paid: P6, P7 and P10 were real bets, and
+  P10 overturned a prediction this lane had scored CONFIRMED last round. The three
+  refutations above are all of MY OWN published record, two of them numbers other lanes
+  could have cited.
+
+### Backlog changes
+
+CLOSED: U4 (Farey-spectrum consequences) - item 55, plus the two corrections it forced.
+STRENGTHENED: U8 (kernel handoff) - g_1* = 1 is now the cheapest Lean target this lane has
+  ever produced: "6s = 3 and 6u = +-1, and 3 != +-1 mod q for q >= 5" is five lines and it
+  implies the whole even-count law for gaps.
+RE-POSED: U7 (gear-7 cells). Item 56 answers the parity half for every gear at once, so
+  the remaining question is not "is gear 7 obstructed" but "WHICH cell orbit carries the
+  measured drift, and why does its magnitude decay so much more slowly than gear 5's".
+STILL UNTOUCHED: U5 (the 613 cosine near-collisions at m31) - not worked, not weakened.
+STILL BLOCKED: U6 (-1/phi overshoot) and U9 (the plateau break direction) - both need one
+  full-period m37 or m41 gap histogram. Mechanic's h37 workers were running at round
+  close; the moment that array exists, both are a five-minute computation for this lane.
+NEW:
+U10. Where could a mod-4 lever come from? Item 51 proves NO symmetry of the opening set
+     supplies one. Candidates that are not symmetries: a free Z/4 action on a SUBSET of
+     configurations (e.g. the qualifying family), or a pairing not induced by a map of Z_P
+     at all. Named, not built.
+U11. Is "every hole lies in the top half of the gap range" a theorem? It is what makes
+     item 55(b)'s loss rule exact, it holds at all nine machines with hole data, and the
+     project already observes that the spectrum fills monotonically from below.
+
+### Needs / handoffs
+
+(1) MECHANIC: item 54(b) halves every arity census and every dictionary build - decide one
+    word per reverse class and copy the verdict. Measured, on your own logs: 46% of
+    27,946 s. The check is one line (`w[::-1] in decided`).
+(2) FORMALIST: three cheap kernel targets, in increasing size - g_1* = 1 (item 53, five
+    lines, implies "every gap length >= 2 occurs an even number of times"); the fixed-point
+    criterion (item 54a, a decidable membership test at one address); and the round-25
+    parity theorem, which item 56 now derives more simply.
+(3) MANAGER / CONSTRUCTOR: item 54(c) - on the qualifying family the lever has NO side
+    condition, so a first-moment argument only has to reach "fewer than two" rather than
+    "fewer than one". Item 51 prices that honestly: it is one factor of two and no more.
+(4) LP THREAD (UNTESTED, offered not claimed): the covering CSP is invariant under
+    negating every gear offset together with reflecting the window, so its feasible set is
+    symmetric and any LP/SDP relaxation may be restricted to the symmetric subspace without
+    loss - roughly halving the variable count. Not built or measured here.
+(5) ANY LANE citing item 36's distinct-level table: use item 55(b)'s numbers.
+
+### Reproduction pointers
+
+Round 26: research/mirror_lever2.py (parts A-G; "--parts ABCDEFG"; log
+data/mirror_lever2.log, 52 assertion gates, exit 0); predictions in
+data/r26_lateral_predictions.txt. Inputs: data/depth_identity_{11,13,17,19,23,29}.csv
+(exact W_j census), data/gap_tuples_{23,29,31,37}_4.csv and
+data/gap_tuples_41_4_transfer.csv (supports), data/r24/akillp_{43_47,47_53}.log (the
+arity-census audit). Novel-register docs updated: docs/novel/mirror-parity-laws.md
+section 7, docs/novel/farey-chebyshev-spectrum.md section 7 (which CORRECTS its own
+corollaries 1 and 2), and the two README index entries.
