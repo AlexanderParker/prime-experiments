@@ -125,3 +125,54 @@ tensor product spectrum Poisson proof"; "level statistics almost periodic
 "spectral statistics of sieve matrices". Expected nearest art: Berry-Tabor
 literature (Marklof's rigorous cases for harmonic oscillators / tori) -
 the machine instance and the degeneracy law are the delta to check.
+
+## 7. ROUND-27 UPDATE (Lateral): THE DEGENERACY LAW IS A THEOREM AND THE
+##    NEAR-COLLISIONS ARE CROWDING (backlog U5 closed)
+
+Round 21 measured the full-spectrum tie count as P - prod (q+1)/2 EXACTLY at
+m11/13/17, attributed every tie to the mirror, and left 6 (m29) and 613 (m31)
+DESYMMETRIZED near-collisions at tolerance 1e-12 unexplained. That was the
+lane's backlog item U5, untouched for three rounds. It is now closed, in both
+halves.
+
+THEOREM (no accidental collisions, at any machine). The circulant's eigenvalue
+at CRT frequency vector (j_q) is prod_q f_q(j_q) with per-gear factor set
+S_q = {q-2} u {-2 cos(2 pi r / q) : r = 1..q-1} (u_q is invertible, so j u_q runs
+over all residues). No element of S_q vanishes (-2cos(2 pi r/q) = 0 needs 4 | q).
+Suppose prod_q f_q = prod_q f'_q. Then prod_q a_q = 1 with a_q = f_q/f'_q in
+K_q := Q(zeta_q)^+. The K_q have pairwise coprime conductors, so each K_q is
+linearly disjoint from the compositum of the others and meets it in Q; hence
+every a_q lies in Q. And a_q in Q forces f_q = f'_q:
+  - both rational: both are q-2;
+  - one rational, one not: the ratio is irrational;
+  - both irrational: they are Galois conjugates, so they have equal norms, so
+    a_q^{(q-1)/2} = 1, so a_q = +-1; a_q = -1 needs cos(2 pi r/q) =
+    -cos(2 pi r'/q), i.e. 2(r+r') = q or 2(r'-r) = q, impossible for odd q.
+So lambda(j) = lambda(j') iff j'_q = +-j_q at every gear: THE DEGENERACY IS
+EXACTLY THE PER-GEAR SIGN GROUP, #distinct = prod (q+1)/2 and the tie count is
+P - prod (q+1)/2, AT EVERY MACHINE. Round 21's exact measurement at three
+machines is upgraded to a theorem at all of them, and NO accidental exact
+collision exists anywhere.
+
+CONSEQUENCE FOR U5: every reported near-collision must be a near-miss. Tested
+decisively at m29, where round 21 reported 6: research/u5_collisions.py rebuilds
+all 8,164,800 desymmetrized levels in float64, finds exactly those 6 pairs within
+1e-12, and recomputes each pair at 60 decimal digits with mpmath. All six
+separate; the smallest 60-digit separation is 8.635e-14, and none is zero.
+Crowding is the explanation and it is measured: the median adjacent spacing of
+the desymmetrized spectrum is 1.30e-05, the bottom 1% of spacings are below
+4.20e-08, and 19.0% of levels sit inside |lambda| < 1. m31's 613 are covered by
+the theorem (they cannot be exact) and were not re-measured - holding 1.3e8
+labelled levels is not memory-safe in this implementation, and the theorem makes
+the measurement unnecessary.
+
+GATES: research/u5_collisions.py, 10 assertion gates, exit 0, log
+research/data/u5_collisions_29.log. Part A independently re-derives round 21's
+tie counts 313 / 4501 / 80549 at m11/13/17 by brute force over the full spectrum,
+so the round-21 numbers are double-sourced as well as explained.
+
+PRIOR-ART NOTE for this section: the linear disjointness of real cyclotomic
+fields of coprime conductor is standard algebraic number theory; the statement
+proved here is an application, not a new field-theoretic result. What is new (as
+far as searched) is the identification of the machine's spectral degeneracy group
+as exactly (Z/2)^{#gears} with no accidental ties.

@@ -9,6 +9,33 @@ exact rational primal point verified to be IN the polytope.
 Established round 26 (LP-duality dedicated explorer).
 Prior-art check: NOT YET CHECKED (agent has no web access this round).
 
+ROUND-27 ADDENDUM (Formalist): **THE SPECIES IS NOW KERNEL-CHECKED AT THE
+19->23 RUNG** - `proofs/CaseSplit.lean` + `proofs/CaseCert23B/C0..C4/.lean`,
+`CaseCert23.D_19_23_case (n) : Machine23.g23 n <= 25 + 23`, axiom footprint
+the standard three, no `native_decide`, no census hypothesis and no period
+anywhere in the derivation. Two things had to be settled first, and both are
+findings about the vehicle rather than about Lean:
+ * EVERY CERTIFIED CASE OF THE THREE LADDER RUNGS ON DISK USES **ONLY THE
+   BASE CUT** (`rows_all_base_cut`, asserted for 5 + 35 + 35 cases in
+   `research/lp_cert_lean.py`): the cut loop separated nothing at these
+   widths, so the coverage rows are just "this position is blocked by some
+   free gear". The whole certificate is therefore the RECURSION ROW plus the
+   consistency links.
+ * THE RECURSION ROW IS THE **LOWEST-BLOCKER IDENTITY**, and that is what the
+   kernel proof discharges pointwise: at a real configuration each position
+   contributes `d - 1` to `sum_{a<b} n_ab` because only the lowest blocker can
+   be the `a` of a counted pair. Formalised as `CaseSplit.lowest6/7` (a
+   64-/128-case Boolean decision) - so `sum_a |A_a| >= |pos| + sum_ab n_ab`
+   with no combinatorial machinery at all.
+ * A KERNEL-SIZING FACT worth having: `n_ab` is ZERO for **96.4%** of the
+   gear-index-1 columns at 29->31 (1,972 of 54,145 over the 35 cases), because
+   the single gear below can cover the whole overlap. Listing the exceptions
+   lets the kernel skip the max-cover evaluation everywhere else and cut the
+   per-case check from 9m01 to 4m10 solo (the whole 35-case rung then built in
+   47 minutes wall at two workers). The vehicle's recursion row is,
+   numerically, almost entirely a Kounias row at the SMALLEST FREE GEAR.
+See `covering-lp-certificates.md` section 8 for the Lean side in full.
+
 Companion entries: `product-measure-frontier.md` (the width frontier this
 entry escapes and the STAR-k question it left open),
 `recursion-consistency-composition.md` (the composed vehicle),
@@ -258,6 +285,108 @@ beat, a 4.7% residual.  With gear 5 held, three of the five cases are VACUOUS
 impossible outright) and the remaining two CERTIFY - in ONE SECOND.  The
 vacuous cases are the point: prescribing open positions does not merely shrink
 the obligation, it deletes whole branches of the case split for free.
+
+## 2A. ROUND-27 ADDITIONS (three, all with the same construct)
+
+RESULT 7 - THE NINTH RUNG, 41 -> 43, CASE-SPLIT CERTIFIED.  Round 26 left this
+one a PARTIAL SWEEP (163 of 385 cases at k = 3, six stalls at a 45 s/case
+budget) and said so.  Round 27 finished it: 228 further cases on ten striped
+workers at 240 s/case, and ALL 385 CASES CERTIFY.
+
+  rung      W    held        cases   exact certificate ops   re-verified
+  41->43  134    (5,7,11)      385              18,649,193   all 385 from disk
+
+Case (0,0,0) closes 3523/128 < 1763/64; the SMALLEST margin over all 385 cases
+is 19/100000, so the budget width 134 is only just enough - as at every other
+rung.  Iteration histogram over the 385 cases: 371 certify at ITERATION ZERO
+(level-1 coverage rows plus the recursion row, no cut generation at all) and 14
+need between 2 and 7 cut passes.  The gate
+(`research/gate_rung_41_43_r27.py`) rebuilds each relaxation from the primes,
+re-checks every cut row's validity by the exact zeta transform, and re-closes
+lhs < rhs in exact rationals, for every one of the 385.
+
+This rung matters beyond arithmetic: it is the step the project's other
+scan-free route (Constructor's CRT closure) reported as NOT CERTIFIED in round
+26, oracle-bound at arity 4.  So the ladder now stands at TEN rungs - 7->11,
+11->13, 13->17, 17->19, 19->23, 23->29, 29->31, 31->37, 37->41, 41->43 - every
+(D) step the project has, plus one it did not.
+
+RESULT 8 - THE VEHICLE REACHES THE INCREMENT WIDTH, SO THE MANAGER'S INCREMENT
+LAW GETS ITS LITERAL-STEP BASE CASES BY CERTIFICATE.  The round-26 derivation
+block conjectured
+
+    F(M + q') - F_2(M)  <=  s_min(q') = min(2u' mod q', (-2u') mod q')
+
+at every literal step (u' = 6^{-1} mod q', the tooth).  The half a DUAL
+certificate can carry is the upper half, and it is exactly this vehicle run at
+the INCREMENT WIDTH  W_inc = F_2(M) + s_min(q')  instead of at the ladder's
+budget width F(M) + q'.  W_inc is strictly smaller at every step, so this is a
+STRICTLY HARDER obligation than the corresponding (D) rung and is not implied
+by it.  All six literal steps the vehicle reaches CERTIFY:
+
+  step     s_min  F_2(M)  W_inc   budget  k   cases   exact ops   secs
+  11->13     4      11      15       20    1     5        4,416      2
+  13->17     6      16      22       28    1     5       10,620     <1
+  17->19     6      25      31       37    1     5       22,409      1
+  19->23     8      31      39       48    2    35      203,921      5
+  23->29    10      39      49       63    2    35      365,473     23
+  29->31    10      55      65       74    2    35      574,172     55
+
+THE TIGHTER WIDTH COSTS EXACTLY ONE HELD GEAR, AND ONLY WHERE THERE WAS ROOM
+FOR IT TO.  19 -> 23 certifies at k = 1 at the budget width 48 (five cases at
+iteration zero) and does NOT at W_inc = 39 - case w = 0 stalls - certifying only
+at k = 2.  23 -> 29 and 29 -> 31 already needed k = 2 at their budget widths and
+still need exactly k = 2 at W_inc, so the extra difficulty is absorbed.  The
+ladder parameter is measuring difficulty rather than serving as a knob.
+
+The OTHER half of the increment law - F_2(M) >= W_inc - s_min, i.e. that the
+two-gap record really is that large - is a REALISABILITY statement and no dual
+certificate can carry it.  It is discharged here by exhibited configurations
+instead: `increment_cert_r27.witness_f2` builds an explicit phase vector by an
+exact-cover backtrack over the gears (NO PERIOD SCAN), and `check_witness`
+re-checks it by CRT arithmetic on [0, s].  Witnesses at machines 11, 13, 17,
+19, 23, 29 realise spans 11, 16, 25, 31, 39, 55 - the recorded F_2 values, so
+each is tight.  The machine-19 witness has split (10, 21), which is exactly the
+maximiser this vehicle located from the dual side in round 26 (RESULT 4); the
+machine-29 witness independently reproduces the project's F_2(29) = 55 with no
+scan.  So at every literal step through 29->31 the increment law holds by
+CERTIFICATE + WITNESS, with no period scan anywhere in the chain.
+
+NOT REACHED: 41 -> 43 at W_inc = 117 (from F_2(41) = 103, s_min(43) = 14).  The
+pre-test is passed - E_u[f] is positive in every sampled case at k = 1, 2, 3
+(min +5.62, +10.80, +14.01 at W = 117), so nothing REFUTES the species there -
+but the LP does not converge: at k = 3, case (0,0,0), the LP maximum of the
+recursion row falls 44.2578 -> 43.4856 over fifteen cut passes (654 rows, 377 s)
+against the 43 it must beat, about 0.05 per pass and decelerating, and a single
+case did not decide in 35 minutes against 10-40 s per case at the budget width
+134.  So the vehicle's cost is not a smooth function of the width: it explodes
+as W approaches the value being proved, while the product-measure necessary
+condition stays healthy.  There are two frontiers, and only the width one has a
+closed form (see `product-measure-frontier.md` section 5).  Priced, not
+attempted.
+
+RESULT 8b - THE VEHICLE IS TIGHT ON F AT A FOURTH MACHINE, AS PRE-REGISTERED.
+Round 26 predicted (E3) that F(31) <= 58 - the exact value, which FAILS at
+k = 2 (19 of 35 cases) - would certify at k = 3.  It does: 385/385 cases,
+5,294,517 exact ops, ~180 s on four workers, zero failures.  So the tightness
+list is F(19) <= 25, F(23) <= 34, F(29) <= 43 (k = 2) and F(31) <= 58 (k = 3),
+each the exact value, each scan-free and hypothesis-free.  The monotonicity
+prediction (E2) also held where tested: the 29 -> 31 rung at budget width 74,
+certified at k = 2, re-certifies at k = 3 (385/385, 5,220,357 ops) - a real test
+because the k = 3 case problems are different LPs, not refinements of the k = 2
+ones.
+
+RESULT 9 - THE CERTIFICATES CARRY NO DEGREE-2 CUT AT ALL AT THE TWO RUNGS
+EMITTED FOR THE KERNEL.  At 19->23 (5 cases) and 29->31 (35 cases) every case
+certifies at iteration zero, so every row of every certificate is the BASE CUT
+`sum_i x_i >= 1`.  Two consequences: cut validity is valid by inspection rather
+than by a 2^n subset-sum check, and since a pair column's mask is not a
+singleton, the cut rows contribute NOTHING to pair columns - `a_j = yff*frow_j`
+plus link terms there, and only single columns see `y`.  The degree-2 structure
+of the vehicle enters these certificates ONLY through the recursion row's
+n_ij coefficients.  The machine-readable emission (`research/data/r27/`,
+`research/emit_certs_r27.py`, integers only, gated by re-verification from
+disk) records this as `rows_all_base_cut`.
 
 ## 3. WHY IT MIGHT BE NOVEL
 

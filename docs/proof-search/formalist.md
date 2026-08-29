@@ -2282,3 +2282,293 @@ the Lean side wants") - JSON, not pickles, one file per case:
   * for exhaustiveness: the list of held-phase tuples the case files are indexed by, and
     the assertion that it is all of `prod (residues of held gears)`.
 With that, (i)+(ii) is an afternoon of transcription plus the soundness lemmas.
+
+## Round 27 append (2026-08-29)
+
+GATES, all re-run at round close from clean invocations:
+  cd proofs && lake build           -> Build completed successfully (1521 jobs)
+                                       (1426 -> 1521; 45 new modules: 40 case
+                                       transcriptions, 2 gear bases, 2 rung roots,
+                                       1 shared soundness module)
+  lake env lean AxiomCheck.lean     -> footprints below; zero custom axioms,
+                                       no native_decide, no ofReduceBool
+  research/lp_cert_lean.py GATE     -> ALL ASSERTIONS PASSED (this lane's own
+                                       independent transcription + soundness gate)
+Zero sorries. Every job this round launched has finished; nothing left running.
+
+### R27.0 A TOOLING TRAP THAT COST THE ROUND'S FIRST BUILD, AND IT IS A LANE RULE NOW
+
+`~/.elan/bin/lake.exe` is an ELAN PROXY: it reads `lean-toolchain` from the
+**current working directory**, not from `--dir`/`-d`. Run from anywhere but
+`proofs/` it picks elan's DEFAULT toolchain (here 4.33.1 against the project's
+4.34.0-rc1) and starts REBUILDING MATHLIB FROM SOURCE, which then fails on
+version-skewed `Batteries` lemmas ("Unknown identifier `ite_eq_left`"). The
+symptom looks like a corrupt cache; it is a wrong compiler.
+NEW LANE RULE: every lake invocation must be issued with `proofs/` as the
+actual cwd. `-d`/`--dir` is NOT a substitute. (Agent shells that reset cwd
+between calls must chain `cd proofs && lake ...` in one command.) Re-run from
+`proofs/`, the baseline was GREEN at 1426 jobs with nothing to repair.
+
+### R27.1 ITEM 0 - THE LP CASE-SPLIT CERTIFICATES ARE IN THE KERNEL
+
+The round-26 addendum (R26.8) fixed the order of attack; it was followed, and
+step (iii) was reached rather than stopped at (ii).
+
+    theorem CaseCert23.D_19_23_case (n : ℕ) : Machine23.g23 n ≤ 25 + 23
+    theorem CaseCert23.F_le (n : ℕ) : Machine23.g23 n ≤ 48
+    theorem CaseCert23.no_run {p : ℕ} (hp : 1 ≤ p) :
+        ∃ i < 48, Machine23.Exposed23 (p + i)
+
+hypothesis-free, no period, no census, standard-three axiom footprint. New
+files: `proofs/CaseSplit.lean` (the reusable half), `proofs/CaseCert23B.lean`
+(gears), `proofs/CaseCert23C0..C4.lean` (one module per case), and
+`proofs/CaseCert23.lean` (the exhaustiveness + the rung).
+
+THE FOUR SOUNDNESS LEMMAS I SIZED IN R26.8: THREE COLLAPSED AND THE FOURTH WAS
+NOT ON THE LIST. Recorded because the sizing was wrong in an instructive way.
+
+ 1. `pos` RESTRICTED - trivial. `pos` is a literal list in the Lean file; the
+    only fact needed is `gb5 w (q t) = false` at every index, one `decide` per
+    case. The held gear appears nowhere else in the argument.
+ 2. `dom(q)` RESTRICTED - VACUOUS at this instance. Domains shrink only when
+    OPEN positions are prescribed (the windowed instance); a case split
+    prescribes none.
+ 3. CUT VALIDITY - VACUOUS at every certified rung on disk. My own
+    transcription asserts `rows == base_cut` for all 75 cases of 19->23,
+    23->29 and 29->31: the separation loop never fired at these widths. So
+    the coverage row is `sum_q [q blocks i] >= 1` - literally the hypothesis
+    "the window is fully blocked" - and `lam_0 = 0`, so
+    `rhs = sum_r y_r + yff*|pos|`. (The LP thread reached the same conclusion
+    independently and posted it mid-round; the two statements were written
+    from different code.)
+ 4. CASE EXHAUSTIVENESS - ONE `omega`. `p % 5 = 0 or ... or p % 5 = 4` and five
+    `nocase` applications. The step I called "the one with no analogue in the
+    existing files" is the cheapest of the four.
+
+WHAT THE WORK ACTUALLY WAS - THE RECURSION ROW, AND IT HAS A CLEAN LEMMA.
+`frow` carries a coefficient `n_ab` per gear pair, defined in the LP thread's
+code as a MAX-COVER over the phases of the gears BELOW `a`. Taken literally
+that is ~8.2 million evaluations to certify in the kernel at 19->23 alone.
+The identity that removes it:
+
+    CaseSplit.lowest6 / lowest7  (NO AXIOMS AT ALL)
+    if some gear blocks x, then
+      1 + #{(a,b) : a < b, both block x, no gear below a blocks x}
+        = #{a : a blocks x}
+    - only the LOWEST blocker can be the `a` of such a pair, and it pairs with
+    each of the other blockers exactly once.
+
+Summed over `pos` this gives `sum_a |A_a| >= |pos| + sum_{a<b} n_ab` for ANY
+`n_ab` at most the "a is lowest and b also blocks" count - which is what the
+vehicle's `n_ab` is, being a MINIMUM over the lower gears' phases. In Lean it
+is a `decide` over 2^m Boolean assignments. Everything else in the case proof
+is `Finset.sum_le_sum` plus one `linarith` over 43 facts.
+
+THE SUPPORTING PIECES, all in `CaseSplit.lean`, all `[propext, Quot.sound]` or
+smaller: `mxr` / `mxr2` (block maxima as a kernel-evaluable fold) with
+`le_mxr` / `le_mxr2`; `ind_low2` ("[not A and B and C] = [B and C] -
+[B and C and A]", the step that turns "a is lowest" into `|P| - cover`);
+`ind_nonneg`; `degpos6` / `degpos7`.
+
+### R27.2 THE EMISSION, AND WHY THIS LANE BUILT ITS OWN
+
+My brief said: check `research/data/r27/` early, and if the LP thread's JSON is
+not there by mid-round, transcribe from the round-26 pickles and flag the gap.
+It was not there at my first look, so I wrote `research/lp_cert_lean.py`, which
+does more than transcribe - it REBUILDS the relaxation from the primes and
+re-derives every number:
+
+  1. asserts every cut row equals `base_cut` (finding 3 above);
+  2. RECOMPUTES `n_ab` from the closed form the kernel will use (0 above gear
+     index 1; `|P|` at index 0; `|P| - max_s |P & hits(q_0,s)|` at index 1) and
+     asserts it equal to `RelaxStar.frow` COLUMN BY COLUMN - 3,381 columns per
+     case at 19->23, 7,201 at 29->31. This is what licenses the kernel-cheap
+     form;
+  3. recomputes `lhs`/`rhs` from its own formulas (not `certificate_star`) in
+     exact integers after scaling by the case denominator, and asserts they
+     equal the recorded verdict;
+  4. a SOUNDNESS GATE on the recursion row over random phase tuples:
+     `#covered + sum n_ab <= sum_a |A_a|` and `n_ab <= #{a lowest, b blocks}`.
+
+The LP thread's emission then landed mid-round, matching my R26.8 spec exactly
+(atom bitmasks, block spans, link order, the exhaustiveness assertion). CROSS-
+CHECK RUN: their `cert_19_23_h*.json` and my independent transcription agree on
+`pos`, `y`, `nu`, `yff`, `lhs`, `rhs` for all five cases as exact rationals.
+TWO CODEBASES, ONE CERTIFICATE - and the "every row is the base cut" finding
+was made twice, independently, in the same round.
+
+### R27.3 STEP (iii): 29->31, THE FIRST RUNG THAT REPLACES A CENSUS HYPOTHESIS
+
+    theorem CaseCert31.D_29_31_case (n : ℕ) : Machine31.g31 n ≤ 43 + 31
+
+35 case modules (`CaseCert31C0..C34`), seven free gears, 21 gear pairs, held
+gears (5,7). `D_29_31` NOW EXISTS IN TWO FORMS: `Machine31.D_29_31` (merge law
++ `Machine29.Census29`, a full-period claim about 214,708,725 openings) and
+`CaseCert31.D_29_31_case`, WHICH HAS NO HYPOTHESIS AT ALL. Verdicts 21 and 25
+name the census as the ledger's residue; at this rung it is now optional.
+
+### R27.4 A KERNEL-SIZING FACT THAT MADE THE 35-CASE RUNG AFFORDABLE
+
+First cut, 9 min per case at 29->31 => 5 h serial for the rung. Measured where
+it went and found a fact about the vehicle, not about Lean:
+
+  `n_ab = 0` FOR 96.4% OF THE GEAR-INDEX-1 COLUMNS (52,173 of 54,145 over the
+  35 cases) - one gear below suffices to cover the whole two-gear overlap - and
+  `n_ab = 0` is SOUND WITH NO EVALUATION AT ALL (`0 <= anything`).
+
+So the exceptions go in a literal list and the kernel skips the 11-phase
+maximum everywhere else. 9m01 -> 4m10 per case measured SOLO at 29->31, and 1m50 for two cases at
+19->23. MEASURED END TO END: the 35-case rung built in 47 MINUTES WALL at two
+concurrent workers (1.34 min/case throughput, ~2.7 min per case inside a
+batch); 19->23's five cases in about 5 minutes. Structurally: the recursion row is, numerically, almost entirely a
+KOUNIAS ROW AT THE SMALLEST FREE GEAR - the only pairs with a systematically
+nonzero coefficient are those whose lower member has nothing below it.
+
+COST CURVE FOR THE NEXT RUNG, honestly: the kernel cost is the BLOCK MAXIMA -
+one `aP` per phase pair per gear pair, ~3,400 columns at 19->23 and ~7,200 at
+29->31, each a `Finset.range |pos|` sum. That grows ~2x per rung. The CASE
+COUNT grows as a primorial. At the measured 1.34 min/case (two workers) k = 4 (5,005
+cases) is ~5 days of kernel. IN THE KERNEL IT IS THE CASE COUNT THAT BITES, NOT THE COLUMNS.
+
+### R27.5 ITEM 1 - THE MIRROR'S COUNTING HALF (round 26's named gap, closed)
+
+`proofs/Mirror.lean`, appended (footprint: the standard three - `Classical.choice`
+enters through the `Finset` machinery, unlike round 26's arithmetic halves, which
+need only `[propext, Quot.sound]`):
+
+    theorem Mirror.even_card_involution {α} [DecidableEq α] (f : α → α) :
+        ∀ (n : ℕ) (s : Finset α), s.card ≤ n →
+          (∀ a ∈ s, f a ∈ s) → (∀ a ∈ s, f (f a) = a) → (∀ a ∈ s, f a ≠ a) →
+          s.card % 2 = 0
+    theorem Mirror.window_count_even {N g : ℕ} (m L : ℕ → ℕ)
+        (hlt : ∀ t, t < N → m t < N) (hmm : ∀ t, t < N → m (m t) = t)
+        (hL : ∀ t, t < N → L (m t) = L t)
+        (hg : ∀ t, t < N → m t = t → L t ≠ g) :
+        (((Finset.range N).filter (fun t => L t = g)).card) % 2 = 0
+    theorem Mirror.adjacent_equal_even ... (hexc : L t0 ≠ 2 * F) : ... % 2 = 0
+    theorem Mirror.none_of_at_most_one ... (hone : ... ≤ 1) : ... = 0
+
+`even_card_involution` is a structural induction on a cardinality bound: remove
+`a` and `f a`, and the hypotheses restrict because `f x = f a` forces `x = a`
+and `f x = a` forces `x = f a`. `none_of_at_most_one` is the form the live
+route quotes - parity plus "at most one" gives "none".
+
+HONEST SCOPE, and it is the reason this is not a closure: what is kernel-checked
+is the LEVER over an ABSTRACT index involution. The INSTANTIATION at a machine -
+that the depth-`j` window family is mirror-equivariant with the length function
+invariant - needs `mirror_gear`/`mirror_exposed29` composed with the opening
+ENUMERATION (`Periodic.lean`), and that composition is not built. Named, not
+claimed. It is the natural round-28 continuation of this item.
+
+### R27.6 ITEM 2 - RUNG EIGHT (37->41): NOT ATTEMPTED, PRECONDITION ABSENT
+
+My brief made this conditional on Constructor's emission landing in the `hE`
+shape. Their round-27 block is filed and it does NOT contain it: no machine-37
+qualifying dictionary at depths 2..7 floor 14 and no `qual_dict.py`-format
+emission of the 12,587 deletions. Their own round closed with "no exact m41
+census appeared on disk, so item (c)'s precondition never arrived", and rung
+nine is likewise not certified on their vehicle. So this is a MISSING INPUT,
+not a judgment and not a will-not-close. UNCHANGED ASK, and it is cheap for
+them: emit machine 37's qualifying windows at depths 2..7, floor 14, in
+`qual_dict.py`'s format, and the rung is a transcription.
+NEW OFFER RECEIVED FROM THEM, and it is a good one for round 28:
+`A_relax(M) <= 5` as 48 classes mod 210, each a small phase-saturation check -
+the same shape as `LiteralCapTable.lean`, and it would be the FIRST UNIFORM
+(machine-free) ORDER STATEMENT in the Lean corpus. Their warning is recorded
+with it: do NOT lift it to "A_m nilpotent for m >= 6", which their padded-cycle
+example refutes.
+
+### R27.7 ITEM 3 - LATERAL'S `g_1* = 1`: ALREADY DONE, AND NOW IT PAYS
+
+`Mirror.antipode_open` landed in round 26. What round 27 adds is the half that
+makes it useful: with `window_count_even`, "the antipodal slot is open" plus
+"the exceptional window is unique" gives `W_1(g)` EVEN for every `g >= 2` as a
+kernel-checked implication - once the instantiation of R27.5 exists. The
+arithmetic is done; the plumbing is what is missing, and it is named.
+
+### R27.8 NEW VERDICTS
+
+26. **A LAKE INVOCATION OUTSIDE `proofs/` IS A DIFFERENT COMPILER.** See R27.0.
+    The failure mode (mathlib rebuilding from source and failing on Batteries)
+    is indistinguishable from cache corruption and is neither.
+27. **THREE OF THE FOUR SOUNDNESS LEMMAS I SIZED IN R26.8 WERE VACUOUS AT THE
+    ARTEFACTS, AND THE REAL WORK WAS NOT ON THE LIST.** The sizing was done on
+    the CLASS `RelaxStar` (which supports required-open positions, restricted
+    domains and separated cuts) rather than on the INSTANCES the rungs actually
+    use (which have none of the three). General lesson for this lane: size the
+    obligation against the ARTEFACT ON DISK, not against the generality of the
+    code that produced it - the artefact is usually in a degenerate corner of
+    its own class, and the degeneracy is checkable.
+28. **A CERTIFICATE COEFFICIENT THAT IS ZERO NEEDS NO EVIDENCE.** `n_ab = 0` is
+    sound outright, so the expensive max-cover only has to be evaluated where
+    the certificate is nonzero - 3.6% of the columns. A general kernel tactic:
+    look for the certificate's SUPPORT before formalising its DEFINITION.
+29. **THE CASE SPLIT'S KERNEL LIMIT IS THE CASE COUNT.** Per-case cost grows
+    ~2x per rung (columns); the case count grows as a primorial in the number
+    of held gears. k = 3 (385 cases) is ~8.6 h of kernel at 29->31 rates (two
+    workers) and k = 4 (5,005) is ~5 days and out of reach. The LP thread's cost law transfers to Lean
+    with the same shape and a worse constant.
+30. **STOPPING A BACKGROUND TASK DOES NOT NECESSARILY STOP THE SCRIPT IT
+    LAUNCHED, AND TWO RESUMABLE DRIVERS OVER ONE `.olean` TREE IS A
+    CORRECTNESS PROBLEM, NOT JUST A MESS.** Mine cost about 20 minutes and it
+    is recorded because the failure is silent. I stopped a 3-wide driver
+    (reported "Successfully stopped"), rewrote the script and launched a 2-wide
+    one; the process list later showed FOUR copies of the script alive, both
+    generations interleaving into the same log and both racing on the same
+    modules. The `[ ! -f x.olean ]` resume guard does not exclude two builders
+    starting the SAME module at the same time, and lake does not lock a module
+    against another lake process - so an `.olean` could be written twice
+    concurrently. Oleans are TRUSTED on load, not re-checked, so a raced file
+    is exactly the kind of thing this lane must not build on. Response: killed
+    every driver and worker, VERIFIED by process list rather than by the tool's
+    success message, DELETED all 35 case `.olean`s and rebuilt from clean under
+    a single driver. Standing rules now: (a) after stopping a background build,
+    confirm from the process list that the script and its `lean`/`lake`
+    children are gone; (b) never run two builders over one build tree; (c) if
+    it happened anyway, delete the artefacts - a kernel claim on a possibly
+    raced `.olean` is not a kernel claim.
+
+### R27.10 SCORING R26.8's OWN PREDICTIONS (this lane made no other pre-registration
+this round, and that is itself a gap - the round's only pre-committed statements
+were the sizing paragraph and the stop rule)
+
+  * "one module per case is a comfortable shape" - CONFIRMED. Exactly one module
+    per case, 320 lines at 19->23 and 408 at 29->31, and the STOP CONDITION
+    ("stop after (ii) if transcription exceeds one module per case") never fired,
+    which is why step (iii) was reached.
+  * "round 25's `count x arity` isDefEq budget is nowhere near binding" -
+    CONFIRMED. It was never approached. The binding limit is KERNEL EVALUATION
+    TIME of the block maxima, which round 26 did not name at all.
+  * "the obstacle is soundness, not arithmetic" - HALF RIGHT, and the wrong half
+    was the specific one. Soundness was indeed the work, but three of the four
+    named lemmas were vacuous and the actual obligation (the recursion row's
+    max-cover coefficients) was not on the list. See verdict 27.
+  * "(i)+(ii) is an afternoon of transcription plus the soundness lemmas" -
+    CONFIRMED as an estimate of shape; the transcription was automated
+    (`research/gen_case_lean.py`) rather than typed, which is what made (iii)
+    affordable on the same day.
+
+### R27.9 Open formalisation targets (round-28 priority order)
+
+0. **INSTANTIATE THE MIRROR LEVER AT A MACHINE** (R27.5's named gap): compose
+   `mirror_exposed29` with the opening enumeration so that `window_count_even`'s
+   three hypotheses are discharged from the machine rather than assumed. This
+   is the piece that turns the lever from a tool into a theorem about the
+   machine, and it is the same `Periodic.lean` plumbing as `index_reduce`.
+1. **31->37 BY THE CASE SPLIT** (385 cases at k = 3, or 35 at k = 2 if the LP
+   thread's ladder parameter allows) - it would retire `Census31P` the way
+   29->31 now retires `Census29P`. PRICED FROM THIS ROUND'S MEASUREMENT: 1.34
+   min/case throughput at two workers, so 385 cases is ~8.6 HOURS of kernel and
+   35 cases is ~45 min. Ask the LP thread for the smallest k that certifies it
+   BEFORE launching; k = 2 is a comfortable round, k = 3 is the whole round.
+2. **`A_relax(M) <= 5`** (Constructor's offer, R27.6) - 48 classes mod 210,
+   `LiteralCapTable.lean` shape, the first uniform order statement in Lean.
+3. Machine 37's qualifying dictionary, scan-free (unchanged, R26.7 item 1) -
+   still the only missing input to rung eight on the merge-law vehicle.
+4. Discharge `Census29` from `Census23` by dictionary transfer (unchanged) -
+   NOTE its priority DROPS: at 29->31 the census hypothesis now has a
+   hypothesis-free alternative, so this matters for 31->37 and above.
+5. The involution-parity counting lemma - **DONE** (R27.5).
+6. The depth-sum re-indexing bijection at machine 13 (unchanged).
+7. The generator at 13 -> 17 by the `Gen11Sound` template (unchanged).
+8. The sandwich lemma (unchanged).

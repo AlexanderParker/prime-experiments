@@ -336,6 +336,25 @@ Costello-Watts partition makes a second-order expansion tight.
     the 5 / 35 / 385 cases at machines 41..53 (k = 1, 2, 3) has E_u[f_w] <= 0,
     and the case MEANS reproduce this table's STAR-k column exactly (gated).
 
+- ROUND 27: THERE IS A SECOND FRONTIER, AND IT IS NOT THIS ONE.  The width
+  frontier of this entry is a statement about the uniform product measure - a
+  NECESSARY condition for the vehicle.  Round 27 found a case where necessity
+  holds comfortably and the vehicle still does not deliver: machine 43 at width
+  117 (the increment width F_2(41) + s_min(43), against the budget width 134).
+  The pre-test is passed at every sampled case - E_u[f_w] = +5.62, +10.80,
+  +14.01 (min over samples at k = 1, 2, 3) - so nothing here refutes the
+  species; but the cut loop's LP maximum falls only 44.2578 -> 43.4856 over
+  FIFTEEN passes (654 cut rows, 377 s) against the 43 it must beat - about 0.05
+  per pass and decelerating - and one case did not decide in 35 minutes against
+  10-40 s per case at width 134.
+  So the vehicle's cost is NOT a smooth function of the width: it explodes as W
+  approaches the value being proved, while the product-measure margin stays
+  healthy.  The width frontier bounds where the vehicle CAN work; a second,
+  independent quantity - call it the convergence frontier - bounds where it
+  does so affordably, and only the first of the two has a closed form.
+  New open question: is the convergence rate of the cut loop predictable from
+  E_u[f_w] and W - F(machine) at all, or is it a genuinely separate object?
+
 ## 6. PRIOR-ART CHECK
 
 NOT YET CHECKED (2026-08-29; this agent has no web access this round).

@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37", "Periodic", "Machine11Per", "Machine13Per", "Gen11Sound", "Machine29Cen", "Machine31Cen", "LadderPeriod", "Mirror"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37", "Periodic", "Machine11Per", "Machine13Per", "Gen11Sound", "Machine29Cen", "Machine31Cen", "LadderPeriod", "Mirror", "CaseSplit", "CaseCert23B", "CaseCert23C0", "CaseCert23C1", "CaseCert23C2", "CaseCert23C3", "CaseCert23C4", "CaseCert23", "CaseCert31B", "CaseCert31C0", "CaseCert31C1", "CaseCert31C2", "CaseCert31C3", "CaseCert31C4", "CaseCert31C5", "CaseCert31C6", "CaseCert31C7", "CaseCert31C8", "CaseCert31C9", "CaseCert31C10", "CaseCert31C11", "CaseCert31C12", "CaseCert31C13", "CaseCert31C14", "CaseCert31C15", "CaseCert31C16", "CaseCert31C17", "CaseCert31C18", "CaseCert31C19", "CaseCert31C20", "CaseCert31C21", "CaseCert31C22", "CaseCert31C23", "CaseCert31C24", "CaseCert31C25", "CaseCert31C26", "CaseCert31C27", "CaseCert31C28", "CaseCert31C29", "CaseCert31C30", "CaseCert31C31", "CaseCert31C32", "CaseCert31C33", "CaseCert31C34", "CaseCert31"]
 
 [[require]]
 name = "mathlib"
@@ -406,3 +406,138 @@ name = "LadderPeriod"
 
 [[lean_lib]]
 name = "Mirror"
+
+[[lean_lib]]
+name = "CaseSplit"
+
+[[lean_lib]]
+name = "CaseCert23B"
+
+[[lean_lib]]
+name = "CaseCert23C0"
+
+[[lean_lib]]
+name = "CaseCert23C1"
+
+[[lean_lib]]
+name = "CaseCert23C2"
+
+[[lean_lib]]
+name = "CaseCert23C3"
+
+[[lean_lib]]
+name = "CaseCert23C4"
+
+[[lean_lib]]
+name = "CaseCert23"
+
+[[lean_lib]]
+name = "CaseCert31B"
+
+[[lean_lib]]
+name = "CaseCert31C0"
+
+[[lean_lib]]
+name = "CaseCert31C1"
+
+[[lean_lib]]
+name = "CaseCert31C2"
+
+[[lean_lib]]
+name = "CaseCert31C3"
+
+[[lean_lib]]
+name = "CaseCert31C4"
+
+[[lean_lib]]
+name = "CaseCert31C5"
+
+[[lean_lib]]
+name = "CaseCert31C6"
+
+[[lean_lib]]
+name = "CaseCert31C7"
+
+[[lean_lib]]
+name = "CaseCert31C8"
+
+[[lean_lib]]
+name = "CaseCert31C9"
+
+[[lean_lib]]
+name = "CaseCert31C10"
+
+[[lean_lib]]
+name = "CaseCert31C11"
+
+[[lean_lib]]
+name = "CaseCert31C12"
+
+[[lean_lib]]
+name = "CaseCert31C13"
+
+[[lean_lib]]
+name = "CaseCert31C14"
+
+[[lean_lib]]
+name = "CaseCert31C15"
+
+[[lean_lib]]
+name = "CaseCert31C16"
+
+[[lean_lib]]
+name = "CaseCert31C17"
+
+[[lean_lib]]
+name = "CaseCert31C18"
+
+[[lean_lib]]
+name = "CaseCert31C19"
+
+[[lean_lib]]
+name = "CaseCert31C20"
+
+[[lean_lib]]
+name = "CaseCert31C21"
+
+[[lean_lib]]
+name = "CaseCert31C22"
+
+[[lean_lib]]
+name = "CaseCert31C23"
+
+[[lean_lib]]
+name = "CaseCert31C24"
+
+[[lean_lib]]
+name = "CaseCert31C25"
+
+[[lean_lib]]
+name = "CaseCert31C26"
+
+[[lean_lib]]
+name = "CaseCert31C27"
+
+[[lean_lib]]
+name = "CaseCert31C28"
+
+[[lean_lib]]
+name = "CaseCert31C29"
+
+[[lean_lib]]
+name = "CaseCert31C30"
+
+[[lean_lib]]
+name = "CaseCert31C31"
+
+[[lean_lib]]
+name = "CaseCert31C32"
+
+[[lean_lib]]
+name = "CaseCert31C33"
+
+[[lean_lib]]
+name = "CaseCert31C34"
+
+[[lean_lib]]
+name = "CaseCert31"

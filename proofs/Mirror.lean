@@ -207,4 +207,124 @@ theorem periods_odd :
   refine ⟨by norm_num, by norm_num, by norm_num, by norm_num, by norm_num,
     by norm_num, by norm_num⟩
 
+/-! ## 4. The counting half (round 27)
+
+Round 26 left the lever's second half open and named it: "every configuration
+occurs an EVEN number of times except the self-mirror one" needs a
+fixed-point-free-involution counting lemma, which round 26 did not build.
+It is built here, and it needs nothing from the machine. -/
+
+/-- **A FIXED-POINT-FREE INVOLUTION PAIRS A FINSET UP.**  If `f` maps `s` into
+itself, is an involution there and fixes nothing, then `s` has even
+cardinality.  Structural induction: remove `a` and `f a` - two distinct
+elements - and the hypotheses restrict to what is left, because `f x = f a`
+forces `x = a` and `f x = a` forces `x = f a`. -/
+theorem even_card_involution {α : Type*} [DecidableEq α] (f : α → α) :
+    ∀ (n : ℕ) (s : Finset α), s.card ≤ n →
+      (∀ a ∈ s, f a ∈ s) → (∀ a ∈ s, f (f a) = a) → (∀ a ∈ s, f a ≠ a) →
+      s.card % 2 = 0 := by
+  intro n
+  induction n with
+  | zero => intro s hle _ _ _; omega
+  | succ m ih =>
+      intro s hle hmap hinv hfix
+      rcases Finset.eq_empty_or_nonempty s with rfl | hne
+      · simp
+      obtain ⟨a, ha⟩ := hne
+      have hbs : f a ∈ s := hmap a ha
+      have hab : f a ≠ a := hfix a ha
+      have hb' : f a ∈ s.erase a := Finset.mem_erase.mpr ⟨hab, hbs⟩
+      have hc1 : (s.erase a).card = s.card - 1 := Finset.card_erase_of_mem ha
+      have hc2 : ((s.erase a).erase (f a)).card = (s.erase a).card - 1 :=
+        Finset.card_erase_of_mem hb'
+      have hpos : 1 ≤ (s.erase a).card := Finset.card_pos.mpr ⟨f a, hb'⟩
+      have hspos : 1 ≤ s.card := Finset.card_pos.mpr ⟨a, ha⟩
+      have hsub : ∀ x ∈ (s.erase a).erase (f a), x ∈ s := by
+        intro x hx
+        exact Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hx)
+      have hmap' : ∀ x ∈ (s.erase a).erase (f a),
+          f x ∈ (s.erase a).erase (f a) := by
+        intro x hx
+        have hx1 : x ≠ f a := (Finset.mem_erase.mp hx).1
+        have hx2 : x ∈ s.erase a := (Finset.mem_erase.mp hx).2
+        have hx3 : x ≠ a := (Finset.mem_erase.mp hx2).1
+        have hxs : x ∈ s := Finset.mem_of_mem_erase hx2
+        refine Finset.mem_erase.mpr ⟨?_, Finset.mem_erase.mpr ⟨?_, hmap x hxs⟩⟩
+        · intro hc
+          apply hx3
+          have h1 : f (f x) = x := hinv x hxs
+          rw [hc, hinv a ha] at h1
+          exact h1.symm
+        · intro hc
+          apply hx1
+          have h1 : f (f x) = x := hinv x hxs
+          rw [hc] at h1
+          exact h1.symm
+      have := ih ((s.erase a).erase (f a)) (by omega) hmap'
+        (fun x hx => hinv x (hsub x hx)) (fun x hx => hfix x (hsub x hx))
+      omega
+
+/-! ## 5. The parity law in the form the route consumes
+
+`m` is the mirror on window INDICES, `L` the window's length.  Nothing below
+knows what a machine is: the only inputs are that `m` is an involution of
+`range N` preserving `L`, and that its unique fixed point does not carry the
+length being counted. -/
+
+/-- **EVERY WINDOW LENGTH OCCURS AN EVEN NUMBER OF TIMES**, except possibly
+the one carried by the self-mirror window.  This is the half round 26 named
+and did not have; with `self_mirror_unique` it is the whole lever. -/
+theorem window_count_even {N g : ℕ} (m L : ℕ → ℕ)
+    (hlt : ∀ t, t < N → m t < N)
+    (hmm : ∀ t, t < N → m (m t) = t)
+    (hL : ∀ t, t < N → L (m t) = L t)
+    (hg : ∀ t, t < N → m t = t → L t ≠ g) :
+    (((Finset.range N).filter (fun t => L t = g)).card) % 2 = 0 := by
+  set s := (Finset.range N).filter (fun t => L t = g) with hs
+  have hmem : ∀ t, t ∈ s ↔ (t < N ∧ L t = g) := by
+    intro t
+    simp only [hs, Finset.mem_filter, Finset.mem_range]
+  refine even_card_involution m s.card s (le_refl _) ?_ ?_ ?_
+  · intro t ht
+    obtain ⟨h1, h2⟩ := (hmem t).mp ht
+    exact (hmem (m t)).mpr ⟨hlt t h1, by rw [hL t h1]; exact h2⟩
+  · intro t ht
+    exact hmm t ((hmem t).mp ht).1
+  · intro t ht
+    obtain ⟨h1, h2⟩ := (hmem t).mp ht
+    intro hc
+    exact hg t h1 hc h2
+
+/-- **THE ENDPOINT LEVER.**  With the self-mirror window located (round 26's
+`self_mirror_unique` supplies its uniqueness, and Lateral's address formula
+its value), any length the exceptional window does NOT carry occurs an even
+number of times - so a counting bound of "at most one" proves "none".  In
+particular an ADJACENT EQUAL PAIR `(F, F)` - length `2F` at depth 2 - can
+never occur exactly once. -/
+theorem adjacent_equal_even {N F t0 : ℕ} (m L : ℕ → ℕ)
+    (hlt : ∀ t, t < N → m t < N)
+    (hmm : ∀ t, t < N → m (m t) = t)
+    (hL : ∀ t, t < N → L (m t) = L t)
+    (ht0 : t0 < N) (hf0 : m t0 = t0)
+    (huniq : ∀ t, t < N → m t = t → t = t0)
+    (hexc : L t0 ≠ 2 * F) :
+    (((Finset.range N).filter (fun t => L t = 2 * F)).card) % 2 = 0 :=
+  window_count_even m L hlt hmm hL
+    (fun t ht hfix => by rw [huniq t ht hfix]; exact hexc)
+
+/-- The same statement with the conclusion the route quotes: a configuration
+whose count is at most one, and which the exceptional window does not carry,
+does not occur at all. -/
+theorem none_of_at_most_one {N F t0 : ℕ} (m L : ℕ → ℕ)
+    (hlt : ∀ t, t < N → m t < N)
+    (hmm : ∀ t, t < N → m (m t) = t)
+    (hL : ∀ t, t < N → L (m t) = L t)
+    (ht0 : t0 < N) (hf0 : m t0 = t0)
+    (huniq : ∀ t, t < N → m t = t → t = t0)
+    (hexc : L t0 ≠ 2 * F)
+    (hone : (((Finset.range N).filter (fun t => L t = 2 * F)).card) ≤ 1) :
+    (((Finset.range N).filter (fun t => L t = 2 * F)).card) = 0 := by
+  have h := adjacent_equal_even m L hlt hmm hL ht0 hf0 huniq hexc
+  omega
+
 end Mirror

@@ -1322,3 +1322,306 @@ data/gap_tuples_41_4_transfer.csv (supports), data/r24/akillp_{43_47,47_53}.log 
 arity-census audit). Novel-register docs updated: docs/novel/mirror-parity-laws.md
 section 7, docs/novel/farey-chebyshev-spectrum.md section 7 (which CORRECTS its own
 corollaries 1 and 2), and the two README index entries.
+
+## Round 27 (2026-08-29) - the routed 2n law, plus three backlog items closed
+
+CHOSE: the routed 2n-gap law in full (prove / prior-art / the shuffle question),
+then U6 + U9 (Mechanic's exact full-period m37 histogram finally exists, so both
+really were the five-minute computations round 26 said they were), then U5 - the
+item this lane has left untouched for three consecutive rounds - which turned out
+to fall to a two-line field-theory argument once it was actually attacked. The 2n
+work then threw off a NEW object that had nothing to do with the brief and is the
+round's most interesting number: the twin machine's position in the distribution
+of F over its own counterfactual sievings.
+NOT WORKED, honestly: U7 (which cell orbit carries the gear-7 drift) and U10/U11
+- untouched, unclaimed, and U7's re-posed form is still the right one.
+GATES, all from clean processes at round close, all exit 0:
+  research/lex_odometer.py --parts ABCDEFGH   -> 145 gates (log data/lex_odometer.log)
+  research/ghist37_u69.py                     ->  45 gates (log data/ghist37_u69.log)
+  research/u5_collisions.py --y 29            ->  10 gates (log data/u5_collisions_29.log)
+  research/tooth_counterfactual.py --upto 19  ->  10 gates (log data/tooth_counterfactual.log)
+  research/tooth_msweep.py                    ->  (report, log data/tooth_msweep.log)
+Predictions P1-P13 pre-registered in research/data/r27_lateral_predictions.txt,
+each block written before the code it scores. Every job this round launched has
+finished; nothing is left running.
+
+### Established results (continuing the numbering; do not renumber 1-56)
+
+57. THE 2n-GAP REORDERING LAW - PROVED, WITH ITS VALUES AND MULTIPLICITIES
+    (r27; the human's sort-step idea, routed by the manager).
+    Under CRT the opening set is the product A_1 x ... x A_n, A_i = Z_{q_i}
+    minus the two teeth, and CRT-LEX ORDER IS EXACTLY THE MIXED-RADIX ODOMETER
+    on the digit vector. The lex successor increments the last non-maximal digit
+    i and wraps everything below it, so the value difference is
+
+        D(i, delta) = CRT( 0 for i'<i ; delta for i ; w_{i'} for i'>i ),
+        w_i = -max(A_i) mod q_i,  delta a consecutive difference of sorted A_i.
+
+    Coordinates below i are 0, so the carry position is RECOVERABLE from the
+    difference and distinct (i, delta) give distinct differences. Hence
+
+        #distinct differences = sum_i d_i,   d_i = #distinct consecutive
+                                                   differences of sorted A_i,
+
+    and for the machine d_i = 2 at every gear because the teeth {u, -u} are
+    NEVER adjacent (adjacency needs 3 = +-1 mod q, i.e. q | 4) and 0 is never a
+    tooth. So the count is 2n. Multiplicities are closed form:
+    mult(D(i,delta)) = s_i(delta) * prod_{i'<i}(q_{i'}-2) with s_i(2) = 1 at
+    gears 5 and 7 and 2 elsewhere, s_i(1) = q_i - 3 - s_i(2).
+    (a) THE CYCLIC CLOSURE IS FREE, and that IS a fact about the machine: the
+        last-to-first difference has first coordinate w_1 = -max(A_1), which is 1
+        when q_1-1 is exposed and 2 when q_1-1 is a tooth (q_1 = 5 or 7) - either
+        way w_1 in {1,2}, so the wrap IS D(1,w_1). Linear and cyclic counts are
+        both 2n. For a general two-point sieve the wrap CAN be a 2n+1-st value.
+    (b) ORDER-INDEPENDENT: d_i depends only on A_i, so all n! gear orderings give
+        2n (all orderings at n <= 4, twelve sampled at n = 5,6). The 2n VALUES do
+        depend on the ordering; only the count is invariant.
+    (c) THE STEP-TYPE LAW, the general form: for an arbitrary removed set T the
+        sorted survivors' differences are {L+1 : L an INTERIOR maximal run of T}
+        plus 1 if two survivors are adjacent, "interior" = the run touches
+        neither 0 nor q-1. Gated on 400 random removals.
+    (d) THE DIGITAL-SEQUENCE FORM: Phi(t) = sum_i A_i[j_i(t)] E_i mod P (E_i the
+        CRT idempotent, j_i(t) the mixed-radix digits) is an explicit bijection
+        [0,N) -> O - a generalised van der Corput / Halton point set, in which F
+        is exactly P times the sequence's DISPERSION. Gated exactly at m7..m17.
+    PRIOR ART (checked in-round, web): KNOWN IN MECHANISM. Langevin's theorem -
+    lex order on a planar lattice has successor in {w+u, w+v, w+u+v}, and it
+    RECOVERS the three-distance and three-gap theorems - is the same carry
+    argument; Fried-Sos generalise it to ordered abelian groups (both reported in
+    Chevallier, "Cyclic groups and the three distance theorem"). The finite CRT
+    version is folklore-grade. The delta that survives is technical: the exact
+    multiplicity table, the free wrap, order-independence.
+
+58. THE DEFLATION - THE 2n COUNT IS BLIND TO F, AND THAT IS A PROOF (r27).
+    By 57 the count depends on each gear ONLY through "how many distinct interior
+    run lengths does the removed set have", which is 1 for EVERY two-point
+    removal except the degenerate terminal pair {q-2,q-1}. Consequences, gated:
+    (a) Over 60 admissible re-choices of the teeth at mods [5,7,11,13] the
+        distinct-difference count is 2n = 8 EVERY TIME while F ranges over
+        [10,18] - a factor of 1.8.
+    (b) It does not even need primes: coprime NON-prime moduli [8,9,25] with
+        two-point removals also give 2n.
+    (c) The only way to leave 2n is to remove {q-2,q-1} - a fact about where you
+        cut the cycle.
+    So the reordering is an exact change of coordinates that DISCARDS precisely
+    the arithmetic F depends on. And F is not a statistic of the phase-order ->
+    natural-order PERMUTATION at all: a permutation records order, F needs the
+    metric, and the metric lives in the VALUES Phi(t). The dual measurement says
+    the same thing from the other side - the number of distinct LEX-INDEX
+    displacements between NATURAL-order neighbours is 5, 25, 95, 368, 1362 at
+    n = 2..6, i.e. growing. THE DOC'S OWN FRAMING ("every hard question is a
+    property of the shuffle alone") IS TRUE AND EMPTY: the trivial side is
+    trivial for reasons independent of the arithmetic. Closed line, not a route.
+    What the frame DOES buy, and it is real if small: an exact sieve-free
+    O(n)-memory streaming enumeration of the opening set at any machine, in phase
+    order, from 3n integers (n radices + 2n strides).
+
+59. U5 CLOSED - THERE ARE NO ACCIDENTAL COSINE COLLISIONS, AND THE DEGENERACY
+    LAW IS A THEOREM AT EVERY MACHINE (r27; three rounds untouched, then two
+    lines). The circulant's eigenvalue at frequency vector (j_q) is
+    prod_q f_q(j_q) with per-gear factor set S_q = {q-2} u {-2cos(2 pi r/q)},
+    and no element vanishes. If prod f_q = prod f'_q then prod (f_q/f'_q) = 1
+    with f_q/f'_q in K_q = Q(zeta_q)^+; the K_q have pairwise COPRIME CONDUCTORS,
+    hence each is linearly disjoint from the compositum of the others and meets
+    it in Q, so every ratio is RATIONAL. A rational ratio inside S_q forces
+    equality: both rational means both are q-2; one rational and one not is
+    impossible; both irrational makes them Galois conjugates with equal norms, so
+    the ratio is +-1, and -1 needs 2(r+r') = q or 2(r'-r) = q, impossible for odd
+    q. THEREFORE lambda(j) = lambda(j') iff j'_q = +-j_q at every gear:
+        the degeneracy group is exactly (Z/2)^{#gears},
+        #distinct = prod (q+1)/2 and ties = P - prod (q+1)/2, EVERY machine.
+    Round 21 had this as a MEASUREMENT at m11/13/17; it is now a theorem
+    everywhere, and it implies every "near-collision" is a near-miss.
+    TESTED DECISIVELY at m29, where round 21 reported 6 at tolerance 1e-12: all
+    8,164,800 desymmetrized levels rebuilt, exactly those 6 pairs found, each
+    recomputed at 60 decimal digits - ALL SIX SEPARATE, smallest separation
+    8.635e-14, none zero. Crowding measured: median adjacent spacing 1.30e-05,
+    bottom 1% below 4.20e-08, 19.0% of levels inside |lambda| < 1. m31's 613 are
+    covered by the theorem and were NOT re-measured (1.3e8 labelled levels is not
+    memory-safe here, and the theorem makes it unnecessary) - said plainly rather
+    than reported around. Free double-source: the same script re-derives round
+    21's tie counts 313 / 4501 / 80549 at m11/13/17 by brute force.
+
+60. U6 AND U9 CLOSED ON THE EXACT m37 HISTOGRAM - AND -1/phi IS A CROSSING, NOT
+    A LIMIT (r27, on research/data/r26/ghist_37.csv).
+    (a) U6. The gear-5 asymmetry ratio, now exact at m37: alpha_1 = 4,107,707,379,
+        alpha_2 = -7,109,650,222, ratio -0.577765. Full exact ladder m11..m37:
+        -0.863636, -0.839286, -0.730507, -0.640249, -0.644811, -0.623140,
+        -0.594340, -0.577765. It CROSSES -1/phi = -0.618034 between m29 and m31
+        and keeps rising: at m37 it is +0.0403 past the golden direction, seven
+        times its distance at m29, with post-crossing increments +0.0288 and
+        +0.0166 - decaying, but not turning. SO ITEM 48's "the machine drives the
+        ratio TO the golden direction" IS REFUTED as an asymptotic claim (see
+        Refuted 37). The exact identities under it are untouched: Im B_5 =
+        alpha_1 sin72 + alpha_2 sin36, alpha_1 odd, pole phase unattainable.
+        The crossing is the same event as arg H_5(1) crossing 126 deg.
+    (b) U9. The amplitude plateau |H_5(1)|/N * lam, exact at m11..m37:
+        1.125953, 1.036230, 1.015003, 1.013946, 1.019315, 1.016081, 1.009970,
+        1.014085. IT DOES NOT BREAK - it OSCILLATES inside [1.0100, 1.0193] from
+        m17 on with no monotone trend. The m31 -> m37 move is UP, which is the
+        corridor-renewal ladder's direction and against the M1 model's - and
+        against this lane's own pre-registered P8, which called DOWN (Refuted 38).
+        The honest verdict is that the "which model" question was mis-posed:
+        neither direction is in evidence at reachable machines.
+    CROSS-GATES, all passing: total gap count = prod(q-2) and gap sum = P at all
+    eight machines; gap 1 the ONLY odd entry at all eight (item 53); alpha_1 odd
+    at all eight (item 56); arg H_5(1) reproduces Mechanic's exact ladder
+    (129.776 ... 125.659) to 5e-3 deg; the amplitude column reproduces this lane's
+    round-25 table to 6e-4 at m11..m29.
+
+61. THE TOOTH COUNTERFACTUAL - THE TWIN MACHINE IS A LOW-F OUTLIER IN ITS OWN
+    FAMILY (r27; new object, exhaustive, exact; docs/novel/tooth-counterfactual-
+    percentile.md). The machine has two inputs: WHICH gears, and WHERE the teeth
+    are. The gears are the problem; the teeth are forced (v_q = 6^{-1} mod q).
+    Move them. Keep the mirror symmetry (teeth +-v_q) and let v_q range over
+    {1..(q-1)/2}: every member has the SAME period, the SAME survivor count
+    prod(q-2) (the sharing law) and the same per-gear density - only positions
+    move. F is invariant under k -> +-k+b but NOT under k -> ck, so F genuinely
+    varies, and |V(y)| = 30 / 180 / 1440 / 12960 at m11/13/17/19 is small enough
+    to ENUMERATE EXHAUSTIVELY.
+
+        y    |V|     F(twin)  min  median  max   twin's percentile
+        11   30      7        6    8       11    20.0%
+        13   180     11       10   13      25    18.1%
+        17   1440    18       14   19      32    26.4%
+        19   12960   25       20   28      43    17.1%
+
+    THE TWIN MACHINE'S RECORD GAP IS IN THE BOTTOM FIFTH TO QUARTER OF ITS OWN
+    COUNTERFACTUAL DISTRIBUTION at every machine tested, ~10-15% below the median,
+    never the minimum, in a family whose maximum is 1.6-1.9x the twin value.
+    This is the FIRST quantity on which the real phase vector is distinguished -
+    round 2's enumeration (Refuted 3) scored it on WASTE metrics and found no
+    handle; F itself separates, and in the favourable direction.
+    TWO MECHANISMS PROPOSED AND BOTH REFUTED, both mine:
+      - P11 ANGULAR COHERENCE (the twin has v_q/q ~ 1/6 at every gear, the
+        smallest angular dispersion in the family). REFUTED IN THE SIGN:
+        spearman(F, dispersion) = -0.14 / -0.20 / -0.11 at m13/17/19, and the
+        twin sits in the LOWEST-dispersion quartile, which has the HIGHEST mean F
+        (28.56 vs 27.69 at m19). Inside that quartile alone the twin is at the
+        15.6% / 20.8% / 10.5% percentile - a low-F outlier INSIDE the high-F class.
+      - P13 "m IS SMALL" (every vector is v_q = m^{-1} mod q for some m; the twin
+        is m = 6). REFUTED: over m = 1..60 at m19 the median F is 28.0, EXACTLY
+        the full family's median, with m = 1,2,4 giving 33,34,32 and the sweep's
+        minimum F = 20 at m = 12, not at m = 6.
+    HONEST CAVEAT, stated because it matters: the four rows are NESTED (the m19
+    twin vector extends the m17 one), so they are not four independent draws and
+    no p-value is claimed - only "consistently below median, deficit neither
+    growing nor shrinking".
+
+### Refuted angles (continuing)
+
+37. "alpha_1/alpha_2 -> -sin36/sin72 = -1/phi - the machine drives the integer
+    ratio to the golden direction" - MY OWN item 48 (r25), carried as backlog U6
+    and cited in docs/novel/gear-cell-decomposition.md. REFUTED on the exact m37
+    histogram (item 60a): the ratio crosses -1/phi between m29 and m31 and is
+    +0.0403 past it at m37, still rising. The golden value is a point the ladder
+    passes through, not a limit. Everything exact under item 48 survives; only
+    the asymptotic reading dies.
+38. My own pre-registered P8 (r27): "the amplitude plateau breaks DOWNWARD, siding
+    with M1 against my own corridor ladder". REFUTED by my own script - the
+    m31 -> m37 move is UP. And the correction is bigger than the sign: there is
+    no break at all, only a 0.9%-wide oscillation (item 60b).
+39. My own pre-registered P11 (r27): angular coherence explains the twin machine's
+    low F. REFUTED IN THE SIGN (item 61).
+40. My own pre-registered P13 (r27): the feature is "the teeth are the reciprocal
+    of a SMALL integer". REFUTED - the m-sweep's median is exactly the family
+    median (item 61).
+41. THE 2n REORDERING AS A ROUTE - the routed item's own stated promise ("the
+    machine = a trivial product order x an arithmetic shuffle, and every hard
+    question is a property of the shuffle alone"). REFUTED by item 58: the count
+    is invariant under every tooth re-choice while F moves by 1.8x, so the
+    coordinates discard exactly what F depends on; and F is not a function of the
+    order permutation at all. The LAW is true and now proved; the ROUTE is dead.
+
+### Prediction scorecard, round 27 (pre-registered in data/r27_lateral_predictions.txt)
+
+  P1  the 2n law holds for EVERY gear ordering:                       CONFIRMED
+  P2  the closed-form value set AND multiplicity table:               CONFIRMED
+  P3  the cyclic wrap is free (equals D(1,w_1), w_1 in {1,2}):        CONFIRMED
+  P4  2n is not a product-set fact; the law is sum_i d_i:             CONFIRMED
+  P5  the digital-sequence closed form Phi is a bijection:            CONFIRMED
+  P6  the inverse shuffle is NOT small:                               CONFIRMED
+  P7  U6: exact m37 ratio in (-0.60,-0.55) and still rising:          CONFIRMED (-0.5778)
+  P8  U9: the plateau breaks DOWNWARD:                                REFUTED (it is UP,
+      and there is no break)
+  P9  m37: gap 1 the only odd entry, total prod(q-2):                 CONFIRMED
+  P10 the twin's F is below the counterfactual median everywhere:     CONFIRMED (17-26%)
+  P11 angular coherence is the mechanism:                             REFUTED IN THE SIGN
+  P12 U5: every near-collision separates at 60 digits:                CONFIRMED
+  P13 the mechanism is "m small":                                     REFUTED
+
+  9 confirmed, 4 refuted, all four refutations my own. Self-assessment, since
+  last round's 10/10 was rightly called suspicious: P1, P2, P3 and P5 are
+  corollaries of a proof I had already sketched before writing them down and were
+  cheap. The real bets were P7, P8, P10, P11, P12, P13 - and I lost three of the
+  six. That is the right shape for a round; last round's shape was not.
+
+### Backlog changes
+
+CLOSED: U5 (the 613 cosine near-collisions - item 59, by theorem plus a decisive
+  60-digit test at m29), U6 (item 60a - and it refuted the claim it was asking
+  about), U9 (item 60b - answered as far as the data go, with the question
+  re-posed as mis-framed).
+STILL UNTOUCHED, carried verbatim and unclaimed: U7 (which gear-7 cell orbit
+  carries the drift - its round-26 re-posing stands), U10 (where could a mod-4
+  lever come from), U11 (is "every hole lies in the top half of the gap range" a
+  theorem). U8 (kernel handoffs) is with Formalist.
+NEW:
+U12. THE MECHANISM OF ITEM 61. Two candidates dead (angular coherence, small m).
+     The next probes, in order of cost: (i) the m23 rung of the percentile table
+     (142,560 sievings over P = 37,182,145, about an hour single-core) - does the
+     ~20% percentile drift with the machine or hold; (ii) what DOES separate the
+     low-F vectors - the obvious untried statistic is the joint distribution of
+     tooth DIFFERENCES v_q - v_q' against the corridor classes mod 35, since
+     gears 5 and 7 decide every <= 5-point shape (completeness lemma) and the
+     twin vector's (v_5, v_7) = (1,1) is one of only six (v_5,v_7) classes;
+     (iii) the same percentile for F_2 and for the hole list, which would say
+     whether the effect is about the record or about the whole spectrum.
+U13. Does item 61 transfer to the LIVE ROUTE's quantity? The counterfactual family
+     leaves prod(q-2) fixed, so it is a clean null model for (D) as well: what is
+     the twin machine's percentile in the counterfactual distribution of
+     F(M+q') - F(M) - q' (the budget slack)? If the twin is favourably placed
+     there too, the first-moment transfer has a measured amount of room it is
+     currently not using. Named, not built; routed as a QUESTION to the manager
+     rather than worked here (mandate).
+U14. The 2n frame's one surviving asset (item 58): a 3n-integer, sieve-free,
+     O(n)-memory streaming enumerator of the opening set in phase order at ANY
+     machine. Nothing in the project currently needs phase order - but a census
+     that is invariant under order (any histogram of a phase-local statistic)
+     could use it at machines no sieve reaches. Named, not built.
+
+### Needs / handoffs
+
+(1) MECHANIC: nothing owed to me - your exact cyclic m37 histogram closed two of
+    this lane's backlog items in one pass, and my script re-derives your arg
+    ladder to 5e-3 deg as an independent check of it. If an exact m41 histogram
+    ever lands, item 60's two ladders each gain one more rung and the U6 question
+    "does the overshoot decelerate to a limit" becomes decidable.
+(2) MANAGER: the routed 2n item is PROVED and PRIOR-ART-CHECKED, and it is a
+    closed line, not a route (items 57-58, Refuted 41) - docs/novel/
+    two-n-gap-reordering.md is rewritten accordingly and its verdict is KNOWN IN
+    MECHANISM / PARTIAL OVERLAP. The item worth your attention from this round is
+    instead item 61 and U13.
+(3) FORMALIST (offered, not claimed): item 59's counting half is a clean finite
+    statement per machine - #distinct eigenvalues = prod (q+1)/2 - and item 57's
+    2n law is a finite combinatorial statement whose proof is a carry argument.
+    Both are smaller than the mirror even-count lemma you already have queued.
+(4) ANY LANE citing "alpha_1/alpha_2 -> -1/phi" (item 48, and the
+    gear-cell-decomposition index entry): it is a crossing, not a limit - use
+    item 60a's exact ladder.
+
+### Reproduction pointers
+
+Round 27: research/lex_odometer.py (parts A-H; "--parts ABCDEFGH"; log
+data/lex_odometer.log, 145 gates); research/ghist37_u69.py (U6/U9 on the exact
+histograms; log data/ghist37_u69.log, 45 gates); research/u5_collisions.py
+("--y 29"; needs mpmath; log data/u5_collisions_29.log, 10 gates);
+research/tooth_counterfactual.py ("--upto 19"; log data/tooth_counterfactual.log,
+10 gates); research/tooth_msweep.py (log data/tooth_msweep.log). Predictions in
+data/r27_lateral_predictions.txt. Inputs: research/data/r26/ghist_{13,17,19,23,
+29,31,37}.csv (Mechanic's exact cyclic full-period histograms - m11 is sieved
+directly in-script). Novel-register docs: docs/novel/two-n-gap-reordering.md
+(rewritten - proof, deflation, prior-art verdict), docs/novel/tooth-counterfactual-
+percentile.md (new), docs/novel/eigenvalue-statistics.md section 7 (U5),
+docs/novel/gear-cell-decomposition.md section 7 (U6/U9, and it corrects that
+doc's own section 5), plus three README index entries.

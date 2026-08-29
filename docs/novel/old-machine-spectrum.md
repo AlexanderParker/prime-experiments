@@ -429,3 +429,63 @@ CONSEQUENCE. The attaining depth (J = 3 and J = 4) equals k_win + 1 at both step
 where k_win was measured independently (29->31 and 31->37), so these two runs
 PRE-REGISTER k_win(43->47) = 2 and k_win(47->53) = 3 - a prediction no census has
 tested, since C13's k_win census stops at 37->41.
+
+## 11. ROUND-27: THE RECORD LAW USED AS A COMPUTATIONAL INSTRUMENT (mechanic)
+
+Sections 9 and 10 established that `max_J Q*_J(M; legal for q')` EQUALS `F(M + q')`
+and TESTED that equality at the two deepest steps whose answer was already known
+(118 = F(47), 145 = F(53)).  Round 27 is the first use of the law where the answer
+is NOT known - the first step of the ladder for which no upper bound on the new
+machine's F exists anywhere, in this project or in the published F(2,y) corpus.
+
+THE STEP.  53 -> 59.  Going in: `F(59) >= F_2(53) = 159` (round 26, deletion
+ladder on an exhibited machine-53 witness, unconditional), the budget is
+`F(53) + 59 = 204`, and the corpus F(2,y) ladder simply stops at y = 53.  So (D)
+at 53 -> 59 was the first genuinely OPEN step: at most 45 of room and no vehicle
+that had ever produced an upper bound there.
+
+THE COMPUTATION.  `research/j5_multi.py 23 29,31,37,41,43,47,53 59 seed203 260 7
+20 legal LO HI` - the word-legal lap-phase transfer with r = 7 new gears, run on
+MACHINE 23's period (37,182,145 slots) to decide a property of MACHINE 59
+(period 1.96e19).  The period ratio bought is 1.46e11.  Two range workers tiling
+the period, 1,806 s each.
+
+    J                2    3    4    5    6    7
+    Q*_J(53; 59)   203  203  203  203  203  203   (all at the seed, i.e. EMPTY)
+
+    ==>  F(59) = max_J Q*_J(53; legal for 59) <= 203 < 204 = F(53) + 59
+    ==>  (D) HOLDS AT 53 -> 59.
+
+Three further bands, all EMPTY - (178,184], (183,194], (193,204] - bring the
+upper side to F(59) <= 178, and one exhibited machine-53 window of span 161
+with a legal (double-padded) middle gap gives F(59) >= 161.  So
+
+    161 <= F(59) <= 178,
+
+which decides the manager's candidate INCREMENT LAW
+F(M+q') - F_2(M) <= min(2u', q'-2u') at a step it had never seen: it predicts
+F(59) <= 179 and the measured bound is 178.
+
+The exact value is then pinned by a DESCENDING-BAND SWEEP
+(`research/f59_sweep_r27.py`): because the transfer's cost is dominated by phase
+expansion of windows exceeding the running best, a run seeded at `lo` with span
+cap `hi` answers exactly "the largest word-legal span in (lo, hi], or lo if
+none", and bands run in descending order stop at the first non-empty one - whose
+maximum IS F(59), every larger span having been refuted already.  Bands compose
+with no gap by construction.  This is a general technique for the construct and
+it is what makes an out-of-range value affordable at all: a single run seeded at
+the floor pays for every band at once and yields no intermediate verdict, while
+the descent yields a monotonically improving upper bound at every step.
+
+A SECOND YIELD, and it is the reason the sweep was worth more than its own
+target: because a realised k-chain KILL WORD is a word-legal window of J = k-1
+gaps (all its gaps are legal letters, so the J-2 middles are legal a fortiori),
+each empty band refutes EVERY kill word whose span lands in it, at every depth
+J <= 7, with no solver call.  At 53 -> 59 that closed the whole k = 3 level of
+A_kill without a single UNSAT, after three of its words had each run for over two
+hours on a 14-gear SAT solver.  See docs/proof-search/mechanic.md C35-C36.
+
+STATUS: SCRIPT-VERIFIED (the transfer is exact by section 3's Corollary A; the
+record law it is read through is Constructor's round-26 theorem).  As for every
+scan of this construct, a CERTIFICATION is conditional on the span cap - here
+260 against a budget of 204 - while a FAILURE would carry no condition.

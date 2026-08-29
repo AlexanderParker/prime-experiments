@@ -245,3 +245,57 @@ modulo small primes residue classes parity"; Holt arXiv:2502.20470 (cycle of
 gaps `G(p#)`) - his framework is the closest and would be the place a relation
 like `2(N_1-N_4) = N_2-N_3` could already sit; Hagedorn; Ziller & Morack;
 Sun's work on gaps mod small primes. Standing lesson: prior-art checks expire.
+
+## 7. ROUND-27 UPDATE (Lateral): `-1/phi` IS A CROSSING, NOT A LIMIT
+
+Section 5's open question ("WHY does `alpha_1/alpha_2` converge on `-1/phi`, and
+does it overshoot permanently?") was blocked on one exact full-period `m37` gap
+histogram. Mechanic delivered it in round 26
+(`research/data/r26/ghist_37.csv`, cyclically closed by construction), and the
+answer is available in one pass (`research/ghist37_u69.py`, 45 assertion gates,
+exit 0, log `research/data/ghist37_u69.log`).
+
+EXACT `m37` ROW: `alpha_1 = 4,107,707,379`, `alpha_2 = -7,109,650,222`,
+ratio `-0.577765`. The full exact ladder at `m11..m37` is
+
+    -0.863636, -0.839286, -0.730507, -0.640249, -0.644811, -0.623140,
+    -0.594340, -0.577765            (-1/phi = -0.618034)
+
+VERDICT, and it CORRECTS SECTION 5's OWN LANGUAGE. The ratio does not converge
+to `-1/phi`; it CROSSES it (between `m29` and `m31`) and keeps rising, and at
+`m37` it is `+0.0403` past it - seven times its distance at `m29` (`-0.0051`).
+The increments after the crossing are `+0.0288` (m29->m31) and `+0.0166`
+(m31->m37): decaying, but the ladder is not turning round. So the parity theorem
+(section 4: the ratio can never equal `-1/phi` exactly) is not the reason the
+ratio hugs the golden direction - THE RATIO DOES NOT HUG IT. What the data show
+is a monotone ladder that happens to pass through `-1/phi` near `m29-m31`, which
+is exactly the same event as `arg H_5(1)` crossing the pole phase `126` deg
+(Mechanic's exact ladder `129.776 -> 125.659` over `m13..m37`, reproduced here to
+three decimals as a cross-gate). The apparent golden limit was a coincidence of
+where the two ladders happened to sit at the machines then measured.
+
+The identity `Im B_5 = alpha_1 sin72 + alpha_2 sin36` and the parity theorem
+`alpha_1` odd (so `Im B_5 != 0`, the pole phase unattainable) are unaffected:
+they are exact and remain exact. Only the ASYMPTOTIC reading changes, and it
+changes to "no golden limit is in evidence".
+
+SECOND RESULT FROM THE SAME PASS - THE AMPLITUDE PLATEAU. The lane's amplitude
+near-law `|H_5(1)|/N * lam` now reads, exactly, at `m11..m37`:
+
+    1.125953, 1.036230, 1.015003, 1.013946, 1.019315, 1.016081, 1.009970,
+    1.014085
+
+The plateau does not break: it OSCILLATES inside `[1.0100, 1.0193]` from `m17`
+on, with no monotone trend. The `m31 -> m37` move is UP, which is the direction
+of the round-25 corridor-renewal ladder and against the round-21 closed-form M1
+model - and against this lane's own pre-registered round-27 prediction P8, which
+called it DOWN. Neither model's asymptotic direction is confirmed by the data;
+what is established is that the quantity is not settling and not breaking, at
+least to `m37`.
+
+CROSS-GATES (all in the same script): the total gap count equals `prod (q-2)`
+and the gap sum equals `P` at all eight machines; gap 1 is the ONLY odd histogram
+entry at all eight (mirror-parity item 53); `alpha_1` is odd at all eight
+(item 56); `arg H_5(1)` reproduces Mechanic's exact ladder to `5e-3` deg at
+`m13..m37`; and the amplitude column reproduces this lane's round-25 table to
+`6e-4` at `m11..m29`.

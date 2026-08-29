@@ -1432,9 +1432,71 @@ either way - 2G's binding root is the `K -> 1` root `alpha_infinity =
 | Referee pass over every recomputable number | GATE, GREEN (`j2_referee.py`) |
 | FKMPT Remark 7 quoted and addressed | DONE (11c items 5-6) |
 | Prior art re-checked this round | DONE (2026-08-29; layered-erdos-rankin.md sec. 7) |
+| ODC (5.38), (6.69), p. 74 fetched and read | **DONE (r27, 2026-08-29)** - see 11f; gate `research/j2_odcpages.py` |
 
-**REMAINING, and it is writing rather than research:** (i) the ODC page-image
-caveat is unresolved and should be closed by one library visit before
-submission - (5.38), (6.69) and p. 74 were never re-fetched; (ii) the paper must
+**REMAINING, and it is writing rather than research:** (i) the paper must
 decide whether the per-difference family `F_d` travels with Unit 1 or splits
-off; (iii) LaTeX. **Unit 1 is handable to the human as a submission candidate.**
+off, and whether the `j_k` family note (`docs/novel/jk-family.md`, round 27)
+travels as a closing section or separately; (ii) LaTeX; (iii) the
+AI-assistance disclosure decision, which is the human's
+(`docs/novel/unit1-submission-memo.md`). **Unit 1 is handable to the human as
+a submission candidate.**
+
+### 11f. THE ODC PAGE CAVEAT - CLOSED (round 27, 2026-08-29)
+
+Rounds 24-26 each carried forward "one library visit closes it": ODC **(5.38)**
+(the sieve-dimension hypothesis every rung from 2E on assumes), **(6.69)** (the
+condition on `kappa` quoted inside Proposition 6.7, hence inside Corollary 6.13
+and Theorem 2G), and **p. 74** (the rest of the preliminary-sieving
+proposition) had never been read. All three were fetched from the publisher
+preview of the AMS printing and read on 2026-08-29
+(`research/data/odc6_scans/PA42.png`, `PA67.png`, `PA74.png`; also PA43-PA45).
+Gate: `research/j2_odcpages.py`, **ALL ASSERTIONS GREEN**.
+
+**Nothing in the ladder moves. No constant, exponent or threshold changes.**
+What changes is the caveat list, and each page paid something:
+
+1. **(5.38), p. 42.** Printed as
+   `prod_{w<=p<z}(1-g(p))^{-1} <= K (log z/log w)^kappa` for `z > w >= 2`,
+   `K > 1` - the form rounds 23-24 took from Dudek-Dunn Lemma 2.1 and Campbell
+   Theorem 2.1, now confirmed against the book. **Two by-products we did not
+   have:** `K > 1` is *required*, not merely natural; and the book prints
+   `g(p) <= 1 - 1/K`, whose converse `K >= (1-g(p))^{-1}` (take `w = p`,
+   `z -> p+`) **explains the whole pre-sieved `K`-ladder in one line** -
+   `K = 3` at `p_0 = 3` because `g(3) = 2/3`, `5/3` at `p_0 = 5`, `7/5` at
+   `p_0 = 7`. Round 23 found those by grid search and could not say why.
+2. **(6.69), p. 67.** It is `kappa < (2/c)(log((beta+1)/(beta-1)))^{-1}` with
+   `c` the root of `c(log c - 1) = 1` (the book's (6.11)/(6.68) - **the same
+   constant as our Theorem 3E's `lambda_* = 3.591121`**), i.e. exactly
+   `alpha < 1/c = 0.2784645`, which is the convergence condition
+   `a = alpha e^{1+alpha} < 1` of (6.67). Corollary 6.13's own `beta_kappa`
+   gives `(beta+1)/(beta-1) = e^{1/(2 kappa)}` and hence `alpha = 1/4`
+   **identically in `kappa`**, so the hypothesis holds for every `kappa > 0` -
+   the caveat is discharged not just at our `kappa = 2`. **New number:** since
+   `beta = coth(alpha/kappa)` decreases in `alpha`, (6.69) puts an absolute
+   floor of `7.22859` under Chapter 6 at `kappa = 2`, below our positivity
+   floor `7.93727`. **So (6.69) is not what stops Chapter 6 - positivity is** -
+   and even discarding both, the chapter cannot print an exponent under
+   `7.229`, still 3.0 above DHR's 4.266. The 7.937 → 4.266 gap is not reachable
+   by any tuning of this chapter.
+3. **p. 74.** ODC's own preliminary sieving, (6.99)/(6.100), carries
+   `O(e^{-s_0} V(z_0)/V(z))` "where the implied constant depends only on `K_0`
+   and `kappa_0`" - **it is not explicit**, so it could not have supplied our
+   pre-sieving factor. Our elementary `N_pre = prod_{p<p_0}(p - omega(p))`
+   accounting is therefore the only explicit route and stays ours. **And the
+   book's other route to `K -> 1` is now priced and rejected on the book's own
+   arithmetic:** (5.42)/(5.43) (pp. 43-44) get `K` arbitrarily close to 1 with
+   *no* preliminary sifting by raising the dimension by `eps`; since
+   `beta = coth(alpha/kappa)` increases in `kappa`, `eps = 1` costs 3.93 of
+   exponent (`11.87` against `7.937`) and even `eps = 1/2` costs 1.98. Round 24
+   chose pre-sieving without this comparison; it is now compared.
+
+**THE ONLY PAGE CAVEAT LEFT** is the one that has always been there and cannot
+be removed by more fetching: these are publisher-preview page *images* read on
+screen, not a copy held in hand. The mitigation is now stronger than in rounds
+24-25 - the pages cross-check each other (p. 45 quotes (5.38) and its
+consequence; p. 67's (6.65)-(6.70) reproduce Corollary 6.13's `beta_kappa`
+exactly; p. 67's `c` is our own `lambda_*`), so an OCR corruption would have to
+be self-consistent across four pages of two chapters *and* agree with two
+independent transcriptions of Theorem 7.7. A submission should cite
+"[FI], Theorem 7.7 / Corollary 6.13" and say nothing about typography.

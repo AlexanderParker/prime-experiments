@@ -2,211 +2,163 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 26 - THE RECORD-LAW ROUND. The machine's record gap now has an EXACT
-CLOSED-FORM LAW, proved in both directions, tested at the two deepest reachable steps, sound
-in the kernel at the first step, and certified hypothesis-free by an independent LP vehicle at
-every rung. Three lanes converged on it from three directions in one round. (D) is thereby
-restated in its final shape: the law's value never exceeds F + q' - and since the law is EXACT,
-there is no slack anywhere; the remaining obligation must prove the record itself.
+State after round 27 - THE ROUND THAT LEFT THE CORPUS. (D) is now decided TRUE at 53->59, a
+step where NO upper bound on the new machine's record existed anywhere - computed on machine
+23's period for a property of machine 59 (period ratio 5.3e11) through the record law. The
+uniform-order meta-residue fell to a machine-free theorem. The increment law survived a
+pre-registered test at a padded step it had never seen. The LP certificates entered the
+kernel, giving a hypothesis-free D_29_31. And the human's sort-step idea was proved, honestly
+deflated by its own prior-art-and-counterfactual analysis, and paid off sideways with the
+project's first quantity distinguishing the real machine from its counterfactuals.
 
-THE RECORD LAW (the round's headline, assembled from three lanes):
-  F(M+q') = max_J Q*_J(M; q') = L (x) K* (x) R   (max-plus)
-- SOUNDNESS (Q* <= F): round 22's generator identity, both ways.
-- ATTAINMENT (Q* >= F, the half Mechanic's round-25 conjecture left open): CONSTRUCTOR'S
-  STANDALONE PROOF - legality of the middle word gives a killing residue mod q'; gcd(P,q')=1
-  puts some translate of the window at that residue; the containing gap of M+q' is at least
-  the span. Q*_J <= F(M+q') for EVERY J; J=2 is Mechanic's own deletion ladder generalised.
-- VERIFIED EXACTLY AT EIGHT STEPS with no depth or span caps (research/qstar.py, gate GREEN):
-  max_J Q*_J = F(M+q') = 11, 18, 25, 34, 43, 58, 88, 91 - EQUALITY 8 OF 8 (and it CORRECTED
-  THE RECORD: R39's "slack 2 at 23->29" was wrong - the value is 43 = F(29) at J=3, window
-  (10,10,23); equality was always 7 of 7, now 8 of 8 with the new m37 row). J* = k_win + 1
-  at every step. New datum: F(41) = 91 attained at (21,14,41,15).
-- TESTED AT THE TWO DEEPEST REACHABLE STEPS (mechanic; the theorem handed their lane a
-  falsifiable prediction mid-round): two-sided unseeded-below runs landed EXACTLY on the
-  predicted values - Q*_max(43;47) = 118 = F(47) and Q*_max(47;53) = 145 = F(53), witnesses
-  re-verified from the definition at the target machines, arriving in MIRROR PAIRS from
-  workers sharing no state; the 47->53 maximiser's middle word is the PURE ALTERNATION
-  (q'-s, s). Margins vs budget: 32 and 26. Pre-registers k_win(43->47)=2, k_win(47->53)=3.
-- SOUND IN THE KERNEL AT 11->13 (formalist): generator_sound - F_1..F_4(13) <= 11,16,23,26
-  (the exact values) proved from machine 11's 135-letter word, with machine 13's period
-  PROVABLY ABSENT from the derivation (DepAudit over 3,858 constants, positive controls after
-  the first audit was found to pass vacuously - ConstantInfo.value? does not see theorem
-  proofs in Lean 4.34).
-- CERTIFIED HYPOTHESIS-FREE BY THE LP CASE-SPLIT VEHICLE AT EVERY RUNG (LP thread): see below.
+MANAGER GATE-CHECK (2026-08-31/09-01, clean processes): constructor uniform_order.py GREEN,
+increment_law.py GREEN; lateral lex_odometer.py 145/145 GREEN; LP emit_certs_r27.py GATE
+GREEN (3 s), increment_cert_r27.py GATE GREEN (42 s); formalist lp_cert_lean.py ALL PASSED
+(incl. 400-random-tuple soundness gate); harvester j2_referee/citesweep/odcpages GREEN
+(in-lane, clean); mechanic two-sided decider gates GREEN (in-lane); lake build GREEN AT 1521
+JOBS, zero sorries, 367 audited footprints all standard-three or smaller.
 
-MANAGER GATE-CHECK (2026-08-30/31, clean processes): constructor qstar.py GREEN ("max_J Q*_J
-= F(M+q') at every step tested"); lateral mirror_lever2.py 52/52 GREEN; LP star_case.py GATE
-GREEN (40 s); mechanic ghist_gate_r26.py GREEN and akill_verify_r26.py GREEN (under
-.venv-sat); harvester j2_citesweep.py ALL CHECKS GREEN; lake build GREEN AT 1426 JOBS (zero
-sorries, zero axiom declarations, no native_decide). Anchor logs corroborate the theorem test
-(two independent 43->47 workers found max = 118 exactly; the rest topped at 117).
-qstar_witness_r26.py re-verification: LANE-VERIFIED in-round (needs per-witness args).
+(D) BEYOND THE CORPUS (mechanic): max_J Q*_J(53; legal for 59) <= 203 < 204 = F(53) + 59 -
+(D) TRUE AT 53->59, the first step past the corpus ladder's end. Four empty bands + one
+exhibited witness give 161 <= F(59) <= 178. THE INCREMENT LAW CONFIRMED at this never-seen
+PADDED step (pre-registered genuine bet: predicts <= 179, measured <= 178) - so the law's one
+failure (31->37) may be specific to that step, not to padding. Also: A_kill(53->59) = 4 EXACT
+at the cost of ONE solver call (the refuted-span band table killed 63 words solver-free);
+shape is the PADDED alternation (20,98,20); A_kill - ceiling now -2,+1,+1,+1,0,+1 across six
+steps. Q_J(37;14) J=2..8 delivered with witnesses (reproducing the round-23 row four rounds
+later; J=8 TURNS OVER; Constructor's lost Q_7 = 112). Predictor scorecard 4-3-1 with the
+honest line "I extrapolated a pattern instead of computing it."
 
-THE LP CASE-SPLIT VEHICLE - EVERY (D) RUNG CERTIFIED HYPOTHESIS-FREE FROM THE PRIMES ALONE
-(LP thread): STAR-k was the wrong object; CASE-SPLITTING on held gears' phases is strictly
-stronger (proved: case points mix into a STAR point, not back). Rungs 19->23 (5 cases),
-23->29 (35), 29->31 (35), 31->37 (385), 37->41 (385) all certified - with round 24's four,
-EVERY (D) step the project has, including THREE CELLS ROUND 25 HAD REFUTED WITH EXACT
-WITNESSES (no contradiction: those refutations bound the level-2 member, not the family; the
-reopening mechanism identified - conditioning on gear 5 breaks the degree-2 completability the
-refutation rested on). The vehicle is TIGHT on F itself (F(19)<=25, F(23)<=34, F(29)<=43 at
-k=2) and the WINDOWED variant decides adjacent-gap-pair realisability scan-free and tight
-(F_2(19)<=31, F_2(23)<=39 - the exact values - plus spectrum holes and the maximiser located).
-COST LAW: a PRIMORIAL IN k (case count carries all growth; ~33,000 ops per case, flat in the
-machine) - a new species of limit, neither degree ceiling nor width frontier. k=4 affordable,
-k=6 not. Self-corrections: its own round-25 rule RELAXED with reason (nine REFUTED cells had
-silently become UNDECIDED under it; the standing rule is "verified exactly in the polytope,
-whatever produced it"); aborts replaced by recorded NODUAL verdicts. Honest partial: 41->43 at
-k=3 stopped at 163/385, owned as a badly-sized launch.
-FORMALIST'S SIZING VERDICT ON KERNELISING THESE (their addendum): round-27 target, top of
-list, NOT a same-round pickup - measured the artifacts first (5.4 KB per case, 5-bit
-denominators - THE DATA IS NOT THE OBSTACLE; the work is four soundness lemmas + case
-exhaustiveness, which has no analogue in existing files). Order of attack fixed; exact JSON
-emission format specified to the LP thread; and the DepAudit lesson applied - the LP
-certificates are self-checked code, redeemed as formalisation-worthy by their below-F positive
-control (m29 W=42: 33/35 certify, sound and sharp).
+THE UNIFORM-ORDER THEOREM (constructor): A_relax(M) <= 5 AT EVERY MACHINE, <= 4 unless
+q' = 37, 53, 83, 127, 157, 173 (mod 210) - proved by phase saturation at GEARS 5 AND 7 ONLY,
+hence machine-free; all 48 classes enumerated; cross-checked against every prime q' < 20000.
+THE SIX EXCEPTIONAL CLASSES ARE EXACTLY R20'S LITCAP-6 CLASSES - phase saturation at {5,7} IS
+the literal cap's arithmetic under a different quantifier; two invariants five rounds apart
+are one object. THE COMPANION NEGATIVE, sharper: the correctly-posed order question is N(M)
+(every legal cycle broken); R49's N = max(2, A_relax) REFUTED at m37 (padded cycle); CORRCAP
+goes INFINITE from 53->59 on - no fixed small-gear set caps the order the chain needs; the
+open question is the COVER half of the CSP. Self-correction: R45's A_relax(37) was a
+hardcoded value in their own script (3 -> 2); corrected ladder 1,2,2,3,2,3,4,2,2.
 
-MECHANIC'S ROUND BEYOND THE ANCHORS:
-- A_kill(53->59) predictor REFUTED, replaced by a THEOREM: P1 confirmed (the pair (20,39) is
-  realised at m53) but P2 refuted - every alternation from 4 letters up is ZERO WITH ZERO SAT
-  CALLS. Pair realisability is necessary, not sufficient. The replacement is PHASE SATURATION:
-  a pattern is zero if some gear has no admissible phase; |FREE_q| >= q - 2|X| puts all
-  content at gears 5/7/11; closed-form arity ceilings per step (6,2,2,2,5,3,3,4 at
-  31->37..61->67), ATTAINED EXACTLY at 47->53, gated sound against all 37 realised words on
-  record. docs/novel/phase-saturation-arity.md. A_kill(53->59) itself NOT decided (>= 3;
-  campaign priced at 27 solver calls).
-- THE HISTOGRAM PREMISE CORRECTED AND THE DELIVERY IMPROVED: the brief's premise was wrong
-  (tiling runs made tuple SETS, not counts; no m41 runs existed). Built ghist_transfer.py -
-  full-period histogram BY LAP-PHASE TRANSFER, cyclically closed by construction: m37's
-  217,929,355,875 gaps delivered at 4,764 core-s (vs the round-20 sieve's 11,829 s, whose
-  array was discarded), reproducing F, the 13 holes, and all four padding supplies. Gated
-  cell-for-cell at six machines. The gear-5 ladder is exact through m37: arg H_5(1) CROSSES
-  BELOW 126 DEG AND STAYS THERE. The wrap-gap defect (C26) caught AGAIN in round-21 m31
-  numbers (one cell, off by one, class 2 - the wrap gap is 7).
-- F_2(53) = 159 EXACT (first computation) => F(59) >= 159, F(2,59) >= 477 - a new
-  unconditional lower bound on the next corpus rung.
-- For rung nine: Constructor's m41 superset screened 4,239,676 -> 2,814,574 by phase
-  saturation alone (zero-false-kill gate on 468,418 realised tuples). The m41 exact census
-  NOT delivered - priced at ~85,000 core-s; a 15-worker launch drove the box to paging and
-  WAS KILLED rather than reported around (the round-24 lesson holding). Four new standing
-  rules (27-30), incl. "BelowNormal priority on a loaded box is starvation, not politeness".
-- m31 wrap-gap discrepancy vs Lateral's row: packaged and delivered (one cell, exactly the
-  wrap gap 7 = 2 mod 5).
+THE INCREMENT LAW AND THE TRIPLE INEQUALITY (manager + constructor + LP + mechanic):
+- Now holds at ELEVEN OF TWELVE testable steps + the 53->59 confirmation; only 31->37 fails.
+- THE TRIPLE INEQUALITY (manager's reduction: adjacent gap triples (a,w,b) of M with w = +-s
+  mod q' satisfy a+w+b <= F_2(M) + s_min) holds at all eight censused steps FOR LITERAL
+  MIDDLES INCLUDING 31->37 (70 <= 80 there - the padded middle alone carries that step's
+  failure), and is CERTIFIED AT A NINTH STEP 41->43 SCAN-FREE by CRT (literal <= 107, padded
+  <= 116, both < 117, zero undecided).
+- CONSTRUCTOR'S FREE REDUCTION: span <= F_2 + min(g_L, g_R) with no hypothesis discharges 6
+  of 8 steps outright; the residual Delta_3 = max(span - F_2) IS BOUNDED BY A CONSTANT
+  (-3..4, no trend) while s_min grows linearly - THE DERIVATION TARGET IS Delta_3 = O(1),
+  sharper than the s_min form.
+- LP THREAD: THE INCREMENT LAW IS CERTIFIED AT ALL SIX LITERAL STEPS THROUGH 29->31 BY
+  CERTIFICATE + WITNESS, NO PERIOD SCAN ANYWHERE - the dual half at the tighter increment
+  width (strictly harder than the rung), the realisability half by scan-free CRT witnesses,
+  each tight. The manager's induction has its base cases BY CERTIFICATE. New finding: TWO
+  frontiers (width - closed form; cut-loop convergence - new open question, the 41->43
+  increment width fails by a decelerating loop, not by width).
 
-CONSTRUCTOR'S ROUND BEYOND THE THEOREM:
-- QUERY COUNT CAPPED MACHINE-FREE (their own R67 negative was too strong, self-corrected):
-  queries <= T_4(F,q') + T_2(F,q') <= F^4 + F^2 by memoisation over live MF_4 edges; measured
-  usage 0.25-1.45% of cap. Strategy-dependent (same rung: 2,879/12,695/5,771 under three
-  settings - P7 refuted); oracle-independent (census oracle reproduces 181/90/955/3,399 digit
-  for digit). The strategy-free object is the IRREDUNDANT CERTIFICATE: 0, 2, 11, 76, 58, 712,
-  2,189, 2,077 - non-monotonicity SURVIVES minimisation (a fact about the steps).
-- EIGHTH RUNG 37->41 CERTIFIED SCAN-FREE: census-guided phase 1 (63 s), then ALL 12,587
-  deletions re-proved by the CRT decider - 12,587/12,587, zero contradictions (10,859 s CPU).
-  The census only CHOSE which refutations to attempt. NINTH RUNG 41->43 NOT certified -
-  oracle-bound, not closure-bound (superset too inflated at arity 4: 12/12 sampled
-  superset-YES tuples CRT-refuted; the exact hybrid's third run cancelled at round close).
-  F_2(41) = 103 exact, scan-free, NON-CIRCULAR (never uses F(43)).
-- For Formalist: m37 qualifying spectrum at floor 14, NO SCAN - Q_2..Q_6 = 88, 90, 97, 103,
-  110 exact with witnesses vs budget 129 (Q_7 lost to a memory event; <= 174 stands). Caveat:
-  the size-floor family does NOT terminate in the abstraction (layer bounds grow to 380) -
-  no free depth cap, unlike the word-legal family.
-- Self-corrections: R61 m31 dictionary counts were pre-bug-fix phantoms (Mechanic's census
-  was clean, THE DEFECT WAS MINE); nearly filed F_2(41) as a first computation when Mechanic
-  had already pinned it; ninth rung mis-sized twice.
+THE LP CERTIFICATES ARE IN THE KERNEL (formalist + LP): CaseCert23.D_19_23_case and
+CaseCert31.D_29_31_case - HYPOTHESIS-FREE (D) RUNGS from case-split certificates; D_29_31 now
+exists in TWO kernel forms (census-hypothesis and none). Three of the four feared soundness
+lemmas were VACUOUS AT THE ARTEFACTS (every cut row of all 75 certified cases is the BASE
+CUT - the LP thread's emission discovery, which collapsed the validity obligation from a
+2^n subset-sum to ">= 1 by inspection"); exhaustiveness was one omega; the real work was the
+recursion row via the lowest-blocker identity as a 2^m Boolean decide. Kernel wall = CASE
+COUNT (k=3 ~ 8.6 h, k=4 ~ 5 days), not columns. Emission landed early, gated, independently
+transcribed (agrees as exact rationals). THE LP LADDER IS TEN RUNGS (41->43 k=3 finished
+385/385, incl. all six round-26 stalls - "budget-limited, not blocked" was right); the
+vehicle is TIGHT ON F at four machines. MIRROR LEVER'S COUNTING CORE KERNEL-CHECKED
+(even_card_involution, window_count_even, none_of_at_most_one - the "at most one implies
+zero" corollary); machine instantiation is round-28 item 0.
 
-LATERAL'S ROUND (own mandate, second consecutive round):
-- THE LEVER PERFECTED: the exceptional (self-mirror) window is NEVER QUALIFYING (66/66 cells
-  negative, all 11 rungs x depths 2-7) - so "at most one qualifying over-budget window per
-  depth" proves ZERO, no side condition. THE CEILING PROVED: the full symmetry group of the
-  opening set is EXACTLY Z/2 (affine c = +-1 only; no rotations/reflections beyond identity
-  and mirror) - the lever is worth exactly one factor of two, no more; the manager's
-  first-moment target need only reach "fewer than two".
-- g_1* = 1 ALWAYS (a theorem, via this lane's own T3): W_1(g) IS EVEN FOR EVERY g >= 2
-  UNCONDITIONALLY - the maximal gap never occurs exactly once. The exceptional window moved
-  from an index to an ADDRESS (centred on slot 0 or the antipode) - scan-free at every
-  machine; g_j* = j mod 2 forces half the window spectrum even with no computation.
-- #occ(w) = #occ(reverse w) EXACTLY - and 46% OF MECHANIC'S ROUND-24 SAT TIME (12,877 of
-  27,946 s) was spent on the redundant half. Reverse-class halving routed to Mechanic and
-  applied.
-- U4 CLOSED: mult(2cos(pi a/b)) = #{gaps = -1 mod b}, Mobius-invertible - the constructive
-  form of "every unitary invariant is the histogram".
-- REFUTED THREE OF ITS OWN PUBLISHED CLAIMS, one previously scored CONFIRMED: "gear 5 is the
-  only parity-obstructed gear" (alpha_1(p) is odd at EVERY gear); the round-22 distinct-
-  eigenvalue table (only m11 was right; corrected counts + exact loss rule at all nine
-  machines); the Hall's-law descent (survives as an absolute gap by a subset argument).
-  Scored its own 10/10 prediction round as SUSPICIOUS, not good - six were corollaries.
-- U5 untouched; U6/U9 unblocked by Mechanic's m37 histogram late in the round.
+THE SORT-STEP ARC CLOSED HONESTLY (lateral, the human's idea): THE 2n-GAP LAW IS PROVED
+(mixed-radix odometer, carry argument, closed-form multiplicities, explicit van-der-Corput
+bijection) - then DEFLATED BY ITS OWN ANALYSIS: prior art KNOWN IN MECHANISM (Langevin's
+lex-successor theorem recovers three-gap; Fried-Sos generalise), and the gated counterfactual
+test shows the 2n count is INSENSITIVE TO THE TEETH (60 re-choosings: always 2n, while F
+moves over [10,18]; holds for non-prime moduli) - the phase coordinates discard exactly the
+arithmetic F depends on; "F as a shuffle statistic" REFUTED (order vs metric). Closed line.
+THE SIDEWAYS PAYOFF: THE TOOTH-COUNTERFACTUAL FAMILY - keeping gears, mirror symmetry and
+survivor count fixed and moving only the teeth (exhaustive: 30/180/1440/12960 sievings), THE
+REAL TWIN MACHINE IS A LOW-F OUTLIER at the 20.0/18.1/26.4/17.1 percentile (m11..19), in a
+family whose max runs 1.6-1.9x the truth - THE FIRST QUANTITY ON WHICH THE REAL PHASE VECTOR
+IS DISTINGUISHED, in the favourable direction. U13 routed to the manager: the same family as
+a NULL MODEL for (D) - the twin's percentile in the budget-slack distribution; if favourable,
+the first-moment transfer has measured room it is not using. Also: U5 closed by two lines of
+field theory (real cyclotomic fields of coprime conductor are linearly disjoint => the
+degeneracy group is exactly (Z/2)^#gears, NO accidental collision exists at any machine -
+round 21's law upgraded measurement -> theorem); U6/U9 closed (-1/phi is a CROSSING between
+m29 and m31, refuting their own item 48; the amplitude plateau oscillates in [1.0100,
+1.0193]). Scorecard 9-4 with three of six real bets lost - "the shape last round's 10/10
+lacked".
 
-HARVESTER'S ROUND: THE LAYERING IS A PROOF - Theorem (P2'): j_2(P(x)) >= (1/(18 c_1) + o(1))
-x A^3 C^2 / B^4 (A = log x, B = log A, C = log B), headline constant 0.0127524 (Lichtman);
-general-k form; the greedy lemma EXACT (the step pre-named as the likely break is the safest);
-constant improved 2.778x by P = A^{2k-1}; calibration at k=1 lands a factor 1.781 BELOW
-Rankin's proved constant (the correct side). SELF-FOUND NOVELTY DOWNGRADE: FKMPT
-arXiv:1802.07604 Remark 7 records the ORDER of (P1) as "the trivial bound" (P1 remains the
-first with a constant; P2' beats their hoped-for target by two full powers; their pigeonhole
-forbids a twin-gap corollary, ours does not apply to twins). ROUND-25 GENERAL-k CONSTANT WRONG
-for k >= 4 (P = A^5 inadmissible there); own Selberg constant read WRONG BY A FACTOR OF 2 in
-the flattering direction - caught only by fetching the primary source. (P3) paired-Iwaniec
-PRICED AS UNREACHABLE on checked facts (the sharp form is now "is the exponent 3?"), labelled
-judgment where judgment. UNIT 1 ASSEMBLED AND HANDABLE (j2-upper-bound.md section 11: the
-ladder 1/3E/2E/2E'/2E''/2G-8.04/floor 7.937/4.266-by-citation, not-claims, submission
-checklist; the ODC root restated as OUR SHARPENING of the book's stated approximation, not an
-erratum). THE CITATION SWEEP IS NOW A GATE (j2_citesweep.py) and caught two live defects on
-its first run that three manual sweeps had passed. New hygiene clauses: a paper's remarks are
-where your problem lives; a constant you think you know is a citation; a manual sweep does
-not fail. New item (P6): the k-family j_k as a published object.
+HARVESTER - UNIT 1 CLOSED OUT, MEMO ON THE HUMAN'S DESK: all three page caveats closed
+first-hand (the fetch failure was a cookie-session issue - new hygiene clause 9: a page that
+would not fetch is not a page that cannot be fetched); (5.38) explains the whole pre-sieved
+K-ladder in one line (K >= (1-g(p))^-1); (6.69) was never at risk (positivity, not (6.69),
+stops Chapter 6 - absolute floor 7.229 < our 7.937); p.74's implied constant means OUR N_pre
+accounting is the only explicit route. THE SUBMISSION MEMO (docs/novel/unit1-submission-memo.md)
+DOES NOT RECOMMEND SUBMITTING: strongest (empty nine-year ladder four explicit rungs deep
+with the explicitness boundary itself proved; P2' genuinely new and parity-free structurally;
+a self-auditing paper), weakest (audience: the anchor paper has ONE citation in nine years),
+venue tiers, the write-to-Ziller-and-Morack suggestion, AI-disclosure facts laid out AND THE
+DECISION LEFT TO THE HUMAN. (P6) WRITTEN with a FIRST EVALUATION: j_3 = 6, 24, 78 (covering
+restatement reproduces A048669 at k=1 and ZM at k=2); uniform ladder in k; conjecture
+j_k = x(log x)^{2k-1+o(1)}. Lower ladder's k>=4 defect resolved AT ZERO COST (colliding
+primes sit inside the Eratosthenes layers where collisions cost nothing). New hygiene clause
+10: a hypothesis cited by number is an unread hypothesis.
 
-MANAGER'S DERIVATION BLOCK (pre-registered, research/data/r26/manager_derivation_prereg.md +
-manager_derivation_probe.py): P-M2 REFUTED AS WORDED (a depth-3 record window TIES the
-two-gap value at 17->19 - the tie case was not anticipated); P-M3 tight 3/4; P-M4 holds 4/4
-but with enormous slack (true but not the sharp law). POST-PROBE HYPOTHESIS (not a result):
-THE INCREMENT LAW - F(M+q') - F_2(M) <= s_min(q') = min(2u', q'-2u') at every LITERAL step
-(verified at 8 of 9 known steps from Constructor's witness table; fails by +8 exactly at the
-padded 31->37, where the (q',q') word has its own algebra; reading: 2u' is the smallest legal
-letter). If derivable from T1-T5 + alternation, the induction closes at literal steps and
-padding needs only the survivor identity. CONSTRUCTOR'S SHARPENING OF THE TARGET: since
-Q*_max EQUALS the record, the criterion has NO SLACK - the first-moment transfer must prove
-the record itself; Lateral's ceiling adds that the parity lever contributes exactly one
-factor of two ("fewer than two" suffices).
+MECHANIC'S CENSUS PRICING (the finding IS the price): the exact m41 4-tuple census costs
+>= 1,121 CORE-HOURS by the CRT route (round 26's ~85,000 core-s figure was for the HISTOGRAM,
+a strictly easier object) - a multi-round object, deliberately not started. Delivered
+instead: F_4(41) = 118 EXACT (first computation, 602 core-s) - and since a realised 4-tuple's
+span is <= F_4 BY DEFINITION, 58.8% OF THE ARITY-4 SUPERSET FALLS BY THEOREM (4,239,676 ->
+1,747,819; induced 3-tuples 130,942 -> 95,331); the exact shard complete at every span <= 77
+(338,855 tuples, checkpointed); the two-sided decider gate green at three machines. The
+INFLATION ONSET IS SHARP AT SPAN 68 - a fact about the order-4 closure. RUNG NINE remains
+oracle-blocked; the screened+exact-shard oracle is the round-28 path.
 
-WHAT REMAINS, in one paragraph: the record law is exact and two-sided; every computable step
-of (D) is verified, eight rungs are kernel-checked (five hypothesis-free, two on finite gated
-census hypotheses, one via the LP certificates pending kernelisation), and every rung is
-independently LP-certified hypothesis-free. The single remaining obligation is UNIFORMITY:
-prove max_J Q*_J(M; q') <= F(M) + q' for ALL machines - equivalently, prove the record law's
-value never exceeds the budget. The concrete assets aimed at it: the increment-law hypothesis
-(manager), the uniform-order question A_relax <= ? (constructor R67-i, untouched), phase
-saturation (mechanic - closed-form arity ceilings), the mirror parity lever (worth exactly
-one factor of two), and the case-split certificate family (LP - certifies any single step
-cheaply; the primorial cost law is its own uniformity obstacle).
+SELF-CORRECTIONS THIS ROUND (every lane again): constructor's hardcoded A_relax entries and
+two repeated process mistakes owned; mechanic's extrapolated predictor refuted + the
+conflated Q_7 premise unpicked + four campaign restarts owned; lateral refuted its own item
+48 and three predictions; LP refuted its own cost model (k=4 predicted, k=3 sufficed) with
+"the sentence I had already written about other people's work"; formalist discarded 20 min
+of possibly-raced build ("a kernel claim on a possibly-raced olean is not a kernel claim")
+and found the lake-toolchain-cwd trap; harvester's round-26 inadmissible-tuple table and
+over-long proof owned. MANAGER: the s_min increment form superseded by Delta_3 = O(1) -
+my own pre-registered shape was the weaker one.
 
-ROUND-27 (briefed, NOT launched; spine = UNIFORMITY OF THE RECORD LAW):
-MANAGER (Fable) -> the increment-law derivation attempt from T1-T5 + alternation + phase
-saturation (the three ingredients now all theorems); if it derives, (D) at literal steps
-follows by induction and the padded case reduces to the survivor identity's (q',q') algebra.
-CONSTRUCTOR (Opus) -> the uniform-order question (R67-i): prove A_relax(M) <= 4 or exhibit
-the first failure - now decidable at any single machine by your closure; and the increment
-law tested at 41->43, 43->47, 47->53 via your witness machinery + Mechanic's anchors.
-MECHANIC (Opus) -> the m41 EXACT 4-tuple census via the screened superset (2.8M tuples,
-phase-saturation-cut; batch + reverse-halving + pool 3 - price it honestly first); decide
-A_kill(53->59) (27 priced solver calls); extend the F_2 exact ladder toward 59/61 where the
-lap-phase transfer reaches.
-FORMALIST (Opus) -> item 0: the LP case-split certificates in Lean per your fixed order of
-attack (soundness at one case -> exhaustiveness -> the 19->23 rung -> 29->31 replacing a
-census hypothesis); then the mirror even-count half (needs the fixed-point-free-involution
-counting lemma); then rung eight from Constructor's 12,587 CRT-proved deletions if the
-emission lands.
-LATERAL (Opus) -> own mandate: U5, U6/U9 (now unblocked - the m37 histogram exists), U7 via
-the cell orbits, and the -1/phi limit; plus anything the mirror ceiling suggests about OTHER
-involutions on derived objects (words, dictionaries) with few fixed points.
-HARVESTER (Opus) -> Unit 1: the two unfetched pages ((5.38), (6.69), ODC p.74) and the
-submission decision handed to the human; then (P6) the k-family write-up; then the lower
-ladder's next rung.
-LP THREAD (Opus) -> emit the JSON per Formalist's spec for 19->23 and 29->31 (blocking their
-item 0); finish 41->43 k=3 (163/385, sized properly this time); then the windowed vehicle
-aimed at the increment law: certify F_2(M) + s_min bounds directly at small machines - if the
-windowed vehicle can certify THE INCREMENT ITSELF, the manager's induction gets its base
-cases by certificate.
+THE DERIVATION STATE (manager's item, end of round 27): the literal-step induction now has
+(i) Q*_2 <= F_2 immediate; (ii) the triple inequality - 8 censused steps + 1 certified, and
+BY CERTIFICATE at 6 steps; (iii) deeper-J range capped by the uniform-order theorem (<= 5
+machine-free) so only J <= 6 matters; (iv) Delta_3 = O(1) as the sharp target; (v) the
+padded case isolated to the (q',q') word with 53->59 evidence that padding per se is fine.
+WHAT WOULD CLOSE IT: a derivation of Delta_3 = O(1) (or even Delta_3 <= s_min) from T1-T5 +
+phase saturation, plus the per-J analogues for J = 4, 5, 6 - A FINITE LIST OF LEMMAS.
+
+ROUND-28 (briefed, NOT launched; spine = THE FINITE LEMMA LIST):
+MANAGER (Fable) -> Delta_3 = O(1): attempt the derivation with the full toolkit (T1-T5,
+phase saturation, mirror parity, the free reduction); U13 (the counterfactual null model for
+(D) - is the twin's budget slack also favourably placed?).
+CONSTRUCTOR (Opus) -> the per-J triple analogues for J = 4, 5, 6 (the uniform-order theorem
+makes this a FINITE program); the cover-half order question N(M) via the pruned-IE counter;
+rung nine with the screened+exact-shard oracle (1.75M tuples + 338K exact).
+MECHANIC (Opus) -> F_2(59) and the F(59) pin (the bracket is [161,178]); extend the exact
+m41 shard span-upward as capacity allows (the checkpoint resumes); the span-68 inflation
+onset - is it arithmetic (predictable per machine)?
+LATERAL (Opus) -> own mandate: U7, U10-U12, U14; the counterfactual family's OTHER
+statistics (percentile of F_2? of the increment? - each favourable placement is evidence the
+transfer has room); the "at most one" instantiation questions the mirror lever raises.
+FORMALIST (Opus) -> item 0: the mirror lever instantiated at a machine (even_card_involution
+composed with the opening enumeration); the increment-law certificates (LP's six steps) as
+kernel statements; rung eight if the m37 emission lands; case-count economics for k=3.
+HARVESTER (Opus) -> the human's memo decision executed (whatever it is); h_2 at p_n=151-251
+(the lane's top research item - the falsification target both models diverge on); j_3 beyond
+z=7 (needs the real algorithm, named and priced).
+LP THREAD (Opus) -> the cut-loop frontier (the second frontier, no closed form - map it);
+increment certificates at 31->37 (the padded step - does the certificate see the padding
+excess?); emission for the mirror-lever and increment kernel work as Formalist specifies.
 
 NOVEL-FINDINGS RULE (all agents, standing - from the human, 2026-08-23):
 Anything potentially novel to mathematics gets its own document in docs/novel/ (template and
@@ -2533,3 +2485,1050 @@ ROUTED TO LATERAL (round 27, optional addition to their own-mandate list): prove
 (odometer/carry analysis), check prior art, and ask their question - what shuffle statistic
 is the natural-order record gap? Deliberately NOT added to any route-critical path per the
 human's "don't shift direction" instruction.
+
+
+## LP-duality thread (round 27)
+
+### 0. FOR FORMALIST - THE JSON IS ON DISK AND GATED (posted as soon as it landed)
+
+`research/data/r27/` : `cert_19_23_h<w>.json` (5 cases) and `cert_29_31_h<w1>_<w2>.json`
+(35 cases), one file per case, integers only; `layout_<rung>.json` (the case-independent
+column/link/atom layout - PROVED identical across cases, since with no required-open
+positions every phase domain is all of Z_q); `manifest_<rung>.json` (held-phase tuple list
++ the exhaustiveness assertion `= prod Z_q`).  Emitter and gate:
+`.venv/Scripts/python.exe research/emit_certs_r27.py GATE` (~5 s, ALL ASSERTIONS GREEN) -
+it re-loads every JSON from disk, rebuilds the layout FROM THE PRIMES, recomputes every
+O_j, re-checks every cut row by the exact zeta transform, and recomputes lhs/rhs from the
+file's own integers.  Sizes: 15.1 KB per case at 19->23, 30.0 KB at 29->31.
+
+**AND ONE FACT THAT SHRINKS YOUR OBLIGATION 3.  EVERY CUT ROW IN BOTH RUNGS IS THE BASE
+CUT** (`rows_all_base_cut: true` in every file; both rungs certify at iteration zero, so no
+degree-2 separating cut was ever generated).  So "cut validity" is not a 2^n subset-sum
+check at all here - it is `sum_i x_i >= 1`, valid by inspection.  Two corollaries you can
+use: `lam_0 = 0` in every row, so `rhs = sum_r y_r + yff*|pos|`; and a PAIR column's mask
+is not a singleton, so cut rows contribute NOTHING to it - `a_j = yff*frow_j + (link terms)`
+on pair columns, and only single columns see `y`.
+
+### 0b. GATES (all four green this round, clean processes)
+
+  research/star_case.py GATE                  ALL ASSERTIONS GREEN   91 s  (round 26's
+                                              headline gate, unchanged and still green)
+  research/emit_certs_r27.py GATE             ALL ASSERTIONS GREEN    5 s  (40 JSON files)
+  research/gate_rung_41_43_r27.py <i> 5       385/385 re-verified   ~65 s per stripe
+  research/increment_cert_r27.py GATE         ALL ASSERTIONS GREEN   75 s  (120 certs +
+                                              6 witnesses rebuilt)
+New files: `emit_certs_r27.py`, `increment_cert_r27.py`, `gate_rung_41_43_r27.py`,
+`_m43k3_r27.py` (the resumable striped worker), `_predscore_r27.py`; data in
+`research/data/r27/` (47 JSON, 1,118 certificates, 18 MB).
+
+### 1. (b) THE NINTH RUNG IS CLOSED: 41 -> 43 CASE-SPLIT CERTIFIED AT k = 3, 385/385
+
+Round 26's one badly-sized job is finished, and it certifies.  228 remaining cases on ten
+striped resumable workers at 240 s/case (the round-26 sweep used 45 s and stalled on six);
+ALL SIX ROUND-26 STALLS CERTIFY at the larger budget, so "budget-limited, not blocked" was
+the right reading.
+
+  rung      W    held        cases   exact certificate ops   re-verified from disk
+  41->43  134    (5,7,11)      385              18,649,193   all 385, 5 stripes, ~65 s
+
+  * case (0,0,0) closes 3523/128 < 1763/64; the SMALLEST margin over all 385 cases is
+    19/100000, so width 134 is only just enough - the same knife-edge as every other rung.
+  * iteration histogram: 371 cases certify at ITERATION ZERO (level-1 coverage rows plus
+    the recursion row, NO cut generation), 14 need 2-7 cut passes.
+  * gate: `.venv/Scripts/python.exe research/gate_rung_41_43_r27.py <i> 5` (five stripes,
+    ~65 s each) - rebuilds each relaxation FROM THE PRIMES, re-checks every cut row's
+    validity by the exact zeta transform, re-closes lhs < rhs in exact rationals, and
+    asserts the 385 held-phase tuples are exactly Z_5 x Z_7 x Z_11.
+
+WHY IT MATTERS BEYOND ARITHMETIC: 41 -> 43 is the step CONSTRUCTOR reported in round 26 as
+NOT certified (oracle-bound at arity 4).  So the LP ladder is now TEN rungs - 7->11, 11->13,
+13->17, 17->19, 19->23, 23->29, 29->31, 31->37, 37->41, 41->43 - every (D) step the project
+has, plus one it did not have.
+
+### 2. (c) THE VEHICLE REACHES THE INCREMENT WIDTH - THE MANAGER'S BASE CASES BY CERTIFICATE
+
+THE QUESTION, restated precisely.  The increment law is
+F(M+q') - F_2(M) <= s_min(q') = min(2u' mod q', (-2u') mod q').  A DUAL certificate can
+carry the UPPER half only, and that half is exactly this vehicle run at the INCREMENT WIDTH
+W_inc = F_2(M) + s_min(q') in place of the ladder's budget width F(M) + q'.  W_inc is
+strictly smaller at every step, so this is a STRICTLY HARDER obligation than the (D) rung
+and is NOT implied by it.
+
+ANSWER: YES, at every literal step the vehicle reaches.
+
+  step     s_min  F_2(M)  W_inc   budget   k   cases   exact ops   secs
+  11->13     4      11      15       20    1     5        4,416      2
+  13->17     6      16      22       28    1     5       10,620     <1
+  17->19     6      25      31       37    1     5       22,409      1
+  19->23     8      31      39       48    2    35      203,921      5
+  23->29    10      39      49       63    2    35      365,473     23
+  29->31    10      55      65       74    2    35      574,172     55
+
+THE TIGHTER WIDTH COSTS EXACTLY ONE HELD GEAR, AND ONLY WHERE THERE WAS ROOM FOR IT TO.
+19 -> 23 certifies at k = 1 at the budget width 48 (five cases at iteration zero) and does
+NOT at W_inc = 39 - case w = 0 stalls - certifying only at k = 2.  23 -> 29 and 29 -> 31
+already needed k = 2 at their budget widths and still need exactly k = 2 at W_inc, so the
+extra difficulty is absorbed.  The ladder parameter is measuring difficulty, not serving as
+a knob.
+
+THE OTHER HALF IS A WITNESS OBLIGATION, AND IT IS DISCHARGED TOO.  F_2(M) >= its claimed
+value is a REALISABILITY statement and no dual certificate can carry it.  `witness_f2`
+builds an explicit phase vector by an exact-cover BACKTRACK over the gears - NO PERIOD SCAN
+- and `check_witness` re-checks it by CRT arithmetic on [0, s]:
+
+  F_2(11) >= 11  phases [2,0,10]                 openings [0,5,11]   split (5,6)
+  F_2(13) >= 16  phases [2,0,10,0]               openings [0,5,16]   split (5,11)
+  F_2(17) >= 25  phases [0,5,0,6,8]              openings [0,7,25]   split (7,18)
+  F_2(19) >= 31  phases [2,2,8,7,11,7]           openings [0,10,31]  split (10,21)
+  F_2(23) >= 39  phases [3,5,10,4,1,7,15]        openings [0,5,39]   split (5,34)
+  F_2(29) >= 55  phases [0,3,7,1,6,17,12,2]      openings [0,20,55]  split (20,35)
+
+Each is TIGHT (equals the recorded F_2), so the increment law holds at every literal step
+through 29 -> 31 by CERTIFICATE + WITNESS with NO PERIOD SCAN ANYWHERE IN THE CHAIN.  Two
+cross-checks worth noting: the m19 witness has split (10,21), which is exactly the maximiser
+this vehicle located from the DUAL side in round 26; and the m29 witness reproduces the
+project's F_2(29) = 55 independently and scan-free.
+
+GATE: `.venv/Scripts/python.exe research/increment_cert_r27.py GATE` - ALL ASSERTIONS GREEN
+(75 s); re-verifies all 120 increment certificates from disk and rebuilds every witness.
+
+FOR THE MANAGER: this is the base-case supply your induction asked for.  What it does NOT
+give you is the induction STEP - every one of these is a finite certificate at one machine,
+and the vehicle's cost is a primorial in k, so it cannot be run "for all M".
+
+### 3. NEGATIVE, AND IT IS THE INTERESTING ONE: A SECOND FRONTIER
+
+41 -> 43 AT THE INCREMENT WIDTH W_inc = 117 (F_2(41) = 103 + s_min(43) = 14) IS NOT REACHED,
+and the reason is new.  The pre-test PASSES comfortably - E_u[f_w] over sampled cases has
+min +5.62 (k=1), +10.80 (k=2), +14.01 (k=3) at W = 117, so the product-measure width
+frontier of `product-measure-frontier.md` does not obstruct it.  The CUT LOOP is what fails:
+at k = 3, case (0,0,0), the LP maximum of the recursion row falls
+
+  44.2578, 44.2083, 44.1398, 44.0282, 43.9540, 43.9020, 43.8266, 43.7705, 43.7399,
+  43.6940, 43.6339, 43.5601, 43.5196, 43.4856   against the 43 it must fall below
+
+(fifteen passes, 654 cut rows, 377 s), about 0.05 per pass and DECELERATING - at that rate
+the crossing is ~10 more passes away and each pass is lengthening.  One case did not decide
+in 35 minutes against 10-40 s per case at
+the budget width 134.  SO THE VEHICLE'S COST IS NOT A SMOOTH FUNCTION OF THE WIDTH: it
+explodes as W approaches the value being proved, while the necessary condition stays
+healthy.  There are TWO frontiers here, and only the first has a closed form: the WIDTH
+frontier (where the vehicle can work at all) and a CONVERGENCE frontier (where it does so
+affordably).  Recorded in `product-measure-frontier.md` section 5 as a new open question.
+
+### 4. SCORING MY ROUND-26 PRE-REGISTERED PREDICTIONS
+
+E1 ("41->43 completes at k = 4 (5,005 cases) and 43->47 too; 47->53 needs k = 5")
+   FIRST CLAUSE REFUTED, IN THE OPTIMISTIC DIRECTION - AND IT IS MY OWN COST MODEL THAT
+   WAS WRONG.  41->43 completes at k = 3 (385 cases), not k = 4.  I over-priced my own
+   vehicle by a factor of 13 in case count, because I read round 26's six stalls as
+   "k = 3 is not enough" when they were "45 s is not enough".  A stall is a budget
+   verdict, never a reach verdict, and I had already written that sentence about someone
+   else's work.  The 43->47 and 47->53 clauses were NOT tested this round.
+
+E2 ("the case-split ladder is monotone in k: no rung certified at k fails at k+1")
+   CONFIRMED at the tested rung.  29->31 at budget width 74 - certified at k = 2 in round
+   26 - re-run at k = 3: 385/385 CERTIFIED, 5,220,357 exact ops, 144 s on four workers,
+   zero failures.  These are genuinely different LPs (the k = 3 case problems are not
+   refinements of the k = 2 ones), so the test had content.  ONE RUNG ONLY - not a proof
+   of monotonicity.
+
+E3 ("the vehicle is tight on F at every machine once k is large enough: F(31) <= 58,
+   which fails at k = 2 with 19/35, certifies at k = 3")
+   CONFIRMED, EXACTLY AS PRE-REGISTERED.  385/385 cases certified, 5,294,517 exact ops,
+   ~180 s on four workers, zero failures.  So the vehicle is now TIGHT ON F at FOUR
+   machines: F(19) <= 25 and F(23) <= 34 and F(29) <= 43 at k = 2, F(31) <= 58 at k = 3 -
+   each the exact value, each scan-free, each hypothesis-free.
+
+E4 ("the windowed vehicle's integrality-gap cells at machine 29 cluster at spans 56-58
+   against F_2(29) = 55, none below 53")
+   NOT TESTED - and the probe says why it is expensive.  At machine 29, span 60, the
+   PLAIN windowed vehicle (no held gear) leaves 8 of 22 sampled splits STUCK at a 40 s
+   budget while 14 certify.  So the m29 F_2 ladder is a HELD-GEAR job throughout, not the
+   one-second-per-cell sweep m19 and m23 were, and the full ladder (spans 56..86) needs
+   sizing before it is launched.  Deferred deliberately rather than started late.
+
+### 5. FOR OTHER LANES
+
+- FORMALIST: section 0 above.  The two rungs you named are emitted and gated; the
+  base-cut fact removes your obligation 3 for both of them.
+- CONSTRUCTOR: 41 -> 43 - the rung you recorded as NOT certified - is certified here at
+  the same budget width 134, hypothesis-free, 385 exact dual certificates.  Independent
+  vehicle, same conclusion; if your closure route later reaches it, the two are a
+  cross-check rather than a duplication.
+- MANAGER: your increment law's LITERAL-STEP BASE CASES now exist as certificates plus
+  scan-free witnesses at 11->13, 13->17, 17->19, 19->23, 23->29, 29->31 (section 2).  The
+  vehicle gives you base cases, not the induction step - its cost is a primorial in k, so
+  it cannot be run "for all M", and the width at which it stops converging (section 3) is
+  a second obstacle with no closed form.
+- MECHANIC: `witness_f2` reproduces F_2(29) = 55 with an explicit phase vector and no
+  period scan, in about two minutes.  The same backtrack should reach F_2(41) = 103 and
+  F_2(53) = 159 as independent scan-free confirmations of your exact values.
+
+### 6. PRE-REGISTERED PREDICTIONS FOR ROUND 28 (score them next round)
+
+E5  The vehicle is tight on F at machine 37 too: F(37) <= 88 certifies at k = 3 or k = 4.
+E6  THE CONVERGENCE FRONTIER IS ABOUT THE MARGIN, NOT THE WIDTH: at machine 43, k = 3,
+    the cut loop converges for every W >= 128 and for no W <= 120.  (The budget width 134
+    converges in 10-40 s; W = 117 does not converge in 35 minutes.)
+E7  41 -> 43 at the increment width 117 CERTIFIES at k = 4 (5,005 cases).  Recorded
+    knowing E1's lesson: this is a reach claim, and if it fails at k = 4 within a proper
+    budget I will say the reach claim was wrong rather than that the budget was.
+E8  The m29 F_2 ladder completes with gear 5 held throughout, and its leftover cells sit
+    at spans 56-58 (E4 restated at the k it actually needs).
+
+
+
+## Harvester round 27
+
+GATES, all four re-run from clean processes at round close, all GREEN:
+  .venv/Scripts/python.exe research/j2_referee.py    -> ALL ASSERTIONS GREEN
+  .venv/Scripts/python.exe research/j2_citesweep.py  -> ALL CHECKS GREEN
+  .venv/Scripts/python.exe research/j2_odcpages.py   -> ALL ASSERTIONS GREEN (NEW)
+  .venv/Scripts/python.exe research/jk_family.py     -> ALL ASSERTIONS GREEN (NEW)
+j2_referee.py was run FIRST, before anything below entered the record. Every
+job this round launched has finished; nothing left running.
+
+BRIEF ITEM (a) - **THE ODC PAGE-IMAGE CAVEAT IS CLOSED.** Rounds 24, 25 and 26
+each ended with the same sentence - "(5.38), (6.69) and p. 74 were not
+re-fetched; one library visit closes it". All three are now read first-hand
+(2026-08-29), plus pp. 43, 44, 45 for context: research/data/odc6_scans/PA42,
+PA43, PA44, PA45, PA67, PA74. **NOTHING IN THE LADDER MOVES** - no constant,
+exponent or threshold changes - but each page paid something:
+
+- **(5.38), p. 42** is `prod_{w<=p<z}(1-g(p))^{-1} <= K (log z/log w)^kappa`
+  for z > w >= 2, "where K is a constant, K > 1" - exactly the form rounds
+  23-24 took from two transcriptions, now confirmed against the book. TWO
+  BY-PRODUCTS: K > 1 is REQUIRED, and the book prints `g(p) <= 1 - 1/K`, whose
+  converse `K >= (1-g(p))^{-1}` **EXPLAINS OUR WHOLE PRE-SIEVED K-LADDER IN ONE
+  LINE** (K = 3 at p_0 = 3 because g(3) = 2/3 exactly; 5/3 at 5; 7/5 at 7).
+  Round 23 found those by grid search and could not say why.
+- **(6.69), p. 67** turns out to be `alpha < 1/c` with c the root of
+  c(log c - 1) = 1 - i.e. the convergence condition a = alpha e^{1+alpha} < 1,
+  and **c IS our own Theorem 3E constant lambda_* = 3.591121**. Corollary
+  6.13's own beta_kappa forces **alpha = 1/4 IDENTICALLY IN kappa**, so the
+  hypothesis holds at EVERY dimension, not merely ours (checked at nine).
+  NEW NUMBER: since beta = coth(alpha/kappa) decreases in alpha, (6.69) puts an
+  ABSOLUTE FLOOR of **7.22859** under ODC Ch. 6 at kappa = 2, below our
+  positivity floor 7.93727 - **so (6.69) is not what stops Chapter 6,
+  POSITIVITY IS**, and even discarding both the chapter cannot print an
+  exponent under 7.229, still 3.0 above DHR's 4.266.
+- **p. 74** shows ODC's own preliminary sieving (6.99)/(6.100) carrying an
+  implied constant "depending only on K_0 and kappa_0" - **NOT EXPLICIT**. So
+  it could never have supplied our pre-sieving factor: round 24's elementary
+  N_pre accounting is THE ONLY EXPLICIT ROUTE and stays ours. AND the book's
+  OTHER route to K -> 1, which we had never considered - (5.42)/(5.43),
+  enlarging the dimension by eps instead of pre-sieving - is now priced and
+  REJECTED on the book's own arithmetic: eps = 1 costs 3.93 of exponent
+  (11.871 vs 7.937), eps = 1/2 costs 1.98. Pre-sieving keeps kappa = 2 and is
+  the right device; round 24 chose it without the comparison.
+
+METHOD NOTE FOR EVERY LANE: round 25's fetch failed because the publisher
+preview serves page images only to a session holding its cookies - the naked
+URL returns a 9,103-byte placeholder. Driving a browser to the volume, reading
+the jscmd=click3 page list for the SIGNED image URLs and fetching them inside
+that session returns the pages. **A source recorded as "not obtainable" was a
+missing cookie, and three rounds inherited the verdict.**
+
+BRIEF ITEM (a) - **THE SUBMISSION MEMO IS WRITTEN:
+docs/novel/unit1-submission-memo.md.** One page, and it deliberately does NOT
+recommend submitting - THE DECISION IS THE HUMAN'S. It carries: what the paper
+claims and what it does not; the three strongest points a referee will see (an
+empty ladder now four explicit rungs deep, WITH the explicitness boundary
+proved so the obvious improvement is pre-answered; (P2') as a new construction
+that is parity-free for a structural reason; a visibly self-auditing paper);
+the three weakest ("this is an exercise"; the audience; an asymptotic lower
+half over a replicated computational half); a venue-class assessment; and the
+AI-assistance disclosure question, flagged with the facts and NOT decided.
+THE AUDIENCE NUMBER, stated plainly because it decides the venue:
+**arXiv:1706.00317 has EXACTLY ONE CITATION IN NINE YEARS** (its own companion
+note), and zbMATH returns no records for "paired Jacobsthal". Venue reading:
+arXiv math.NT first whatever else is decided; JNT / Ramanujan J / Acta Arith /
+Mathematika in range IF (P2') travels with it; INTEGERS or JIS if it stays
+elementary; not a general-audience venue. Plus one free suggestion: write to
+Ziller and Morack, who are the prior readership, the natural referees, and the
+people who can compute h_2 at p_n = 151.
+
+BRIEF ITEM (b) - **(P6), THE k-FAMILY, IS WRITTEN: docs/novel/jk-family.md.**
+The object: j_k(m) = max over ADMISSIBLE k-tuples E of the largest gap between
+consecutive n with all n+E_i coprime to m. k = 1 is the ordinary Jacobsthal
+function, k = 2 is Ziller-Morack's h_2.
+
+  PROPOSITION (covering restatement, and it is the whole content):
+    j_k(P(z)) - 1 = the longest interval coverable by choosing at each prime
+    p <= z a set S_p of classes mod p with  |S_p| <= min(k, p-1).
+
+Both directions are CRT. `min(k, p-1)` gives 1 everywhere at k = 1 and
+**ZM's omega(2) = 1, omega(p) = 2 at k = 2** - our own g(2) = 1/2, g(p) = 2/p -
+and it is what makes THE SIFTING DIMENSION EQUAL TO k. Both forms were
+brute-forced independently and agree at k = 1,2,3 x z = 3,5,7: k = 1 returns
+A048669's 4, 6, 10; k = 2 returns ZM's 6, 18, 30; and **k = 3 returns
+j_3(P(3)) = 6, j_3(P(5)) = 24, j_3(P(7)) = 78 - a first evaluation.**
+THE LADDER IS UNIFORM IN k, which is the reason to publish the family:
+Legendre with omega_p = min(k,p-1); **the explicit polynomial rung
+j_k <<_{k,eps} z^{beta_k+eps} with beta_k = 1 + 2(e^{1/(2k)}-1)^{-1} in
+(4k-1, 4k+1)** - whose k = 2 entry IS Theorem 2G's 8.041623, so the family
+rung CONTAINS Unit 1's best explicit bound - and (P2')'s
+x A^{2k-1} C^k/B^{2k}. CONJECTURE: j_k(P(x)) = x (log x)^{2k-1+o(1)}.
+HONEST AND IN THE NOTE: at k = 1 the family rung (4.083) is WORSE than
+Iwaniec's record 2; the upper rungs are standard sieve theory applied to a new
+object, not new sieve theory. WHY IT MATTERS: it converts Unit 1's weakest
+structural point ("one function, standard tools") into "a family, and the
+family is the contribution", and it locates ZM Conjecture 6 inside the family
+- exponent k at dimension k, the level at which a survivor in (y, y^2] IS a
+prime k-tuple, so **THE PARITY CEILING IS UNIFORM IN k**, not special to twins.
+
+BRIEF ITEM (c) - **THE LOWER LADDER'S NAMED NEXT QUESTION IS ANSWERED, AND IT
+COSTS NOTHING.** layered-erdos-rankin.md sec. 6 item 3 (the k >= 4 shift set):
+(i) `0,2,...,2(k-1)` is the WRONG tuple - from k = 3 it is not even admissible
+(0,2,4 covers Z/3), which round 26 did not notice while tabulating its
+collisions; (ii) with ANY admissible tuple, a collision needs p | E_j - E_i so
+p <= M_k, a constant in k, while the greedy layer runs over [P, z1] with
+P = A^{2k-1} -> oo - so for large x EVERY colliding prime is BELOW P, inside
+the Eratosthenes layers, where a collision merely means two layers coincide
+and the survivor structure is untouched. Sigma = prod(1-k/p) needs no
+correction and K_k stands as printed; (iii) threshold x > exp(M_k^{1/(2k-1)}),
+under e^4 for every k <= 12 against the construction's own log x ~ 300. What
+is left is a finite optimisation (which admissible tuple minimises c_1^{(k)}),
+not a gap.
+ALSO, A SIMPLIFICATION OF OUR OWN: the greedy lemma at general k has a
+ONE-LINE proof - the p class counts average N/p, so the k largest average at
+least N/p and sum to at least kN/p - which subsumes round 26's k = 2 argument.
+The k = 2 statement 2N/p was and is exact; this is a simplification, not a
+correction.
+
+NEGATIVES AND COSTS:
+- ROUND 26 TABULATED COLLISIONS FOR AN INADMISSIBLE TUPLE (mine, one round
+  old). Harmless at k = 2, but it is the lane's recurring shape: carrying a
+  small-k object into general k without re-checking the definition.
+- ROUND 26's GREEDY PROOF WAS LONGER THAN NECESSARY (also mine).
+- (6.69) TURNS OUT NEVER TO HAVE BEEN AT RISK - it holds at every kappa. Three
+  rounds carried it as an open caveat because we priced Proposition 6.7 and
+  did not read the condition it cites BY NUMBER.
+- THE PAGE IMAGES ARE STILL IMAGES, not a copy in hand. Mitigated four ways
+  (the pages cross-check each other and agree with two transcriptions of Thm
+  7.7), not removed.
+- j_3 BEYOND z = 7 NOT COMPUTED: the covering-form search is exponential in
+  the number of primes and z = 11 needs a real algorithm. Named, priced, and
+  deliberately not started - it would not have finished in-round.
+- NO PRE-REGISTRATION THIS ROUND. Fetch-and-write work; the one outcome I did
+  not know in advance was (6.69) and I wrote down no prediction. A miss.
+
+TWO ADDITIONS TO THE STANDING CITATION-HYGIENE LESSON (harvester 7d):
+9.  **A PAGE THAT WOULD NOT FETCH IS NOT A PAGE THAT CANNOT BE FETCHED.** When
+    a source is recorded as unobtainable, record HOW the attempt was made, so
+    the next round attacks the method instead of inheriting the verdict.
+10. **A HYPOTHESIS CITED BY NUMBER IS AN UNREAD HYPOTHESIS.** Follow every
+    numbered reference inside a result you are using, to the page. Clause 4
+    (price the propositions) one level further down again.
+
+RANKING CHANGES: N4 (upper ladder) stays TOP and its LAST research-shaped item
+is gone - every blocker, opening and caveat of rounds 23-26 is closed, and
+what remains is LaTeX, a scope decision, and a decision that is the human's.
+**(P6) RISES to sit beside N4**: written, gated, prior-art-checked, and it is
+the piece that answers the strongest referee objection to N4. P1-P3 unchanged
+in rank, one item lighter. **7c#4 (h_2 at p_n = 151..251) becomes the lane's
+top RESEARCH item by default** - the only purchasable number separating
+z(log z)^2 from z(log z)^3. DEMOTED: nothing.
+
+FOR OTHER LANES:
+- ANY LANE THAT HAS RECORDED A SOURCE AS UNOBTAINABLE: see lesson 9. Ours was
+  a missing cookie and it cost three rounds.
+- FORMALIST: still nothing new that is kernel-reachable - the family's rungs
+  are asymptotic. But the COVERING RESTATEMENT (|S_p| <= min(k, p-1)) is a
+  finite, decidable statement at any fixed (k, z), and the k = 1,2,3 values at
+  z = 3,5,7 are exact integers with witnesses; if a finite kernel candidate is
+  ever wanted from this lane, that is the cleanest one it has ever had.
+- MANAGER: Unit 1 needs no more research. The memo is the handover;
+  the submission decision, the scope decision (does F_d travel? does j_k
+  travel inside Unit 1 or separately?) and the AI-disclosure decision are all
+  the human's, and the memo is written to make them makeable rather than to
+  make them.
+
+## Lateral round 27
+
+GATES (all re-run from clean processes at round close, all exit 0):
+  research/lex_odometer.py --parts ABCDEFGH   -> 145 assertion gates
+  research/ghist37_u69.py                     ->  45 assertion gates
+  research/u5_collisions.py --y 29            ->  10 assertion gates (needs mpmath)
+  research/tooth_counterfactual.py --upto 19  ->  10 assertion gates
+Predictions P1-P13 pre-registered in research/data/r27_lateral_predictions.txt,
+each block written before the code it scores. Every job launched has finished;
+nothing left running.
+
+CHOSE: the routed 2n law in full, then U6 + U9 (unblocked by Mechanic's exact
+m37 histogram), then U5 - untouched for three rounds and it fell to two lines of
+field theory. NOT WORKED, unclaimed: U7, U10, U11.
+
+1. THE ROUTED 2n LAW IS PROVED - AND THEN REFUTED AS A ROUTE, BY ITS OWN PROOF.
+   CRT-lex order IS the mixed-radix odometer, so the lex successor increments the
+   last non-maximal digit and wraps the rest, giving difference
+   D(i,delta) = CRT(0 below i ; delta at i ; the wrap w above i). The carry
+   position is recoverable (coordinates below i are 0), so
+       #distinct differences = sum_i d_i,  d_i = #distinct consecutive
+                                                differences of the sorted A_i,
+   and d_i = 2 at every gear because the teeth are NEVER adjacent (adjacency
+   needs 3 = +-1 mod q). Hence 2n. Closed-form multiplicities
+   mult(D(i,delta)) = s_i(delta) prod_{i'<i}(q_{i'}-2); the CYCLIC closure is
+   FREE for the machine's own teeth (w_1 = -max(A_1) is 1 or 2, so the wrap is
+   already D(1,w_1)); the count holds for EVERY gear ordering. Also an explicit
+   bijection Phi: [0,N) -> O (a generalised van der Corput point set), so F is
+   literally P times a digital sequence's dispersion.
+   PRIOR ART, checked this round on the web: KNOWN IN MECHANISM. Langevin's
+   lex-successor theorem for planar lattices (successor in {w+u, w+v, w+u+v},
+   and it RECOVERS the three-distance/three-gap theorems) is the same carry
+   argument; Fried-Sos extend it to ordered abelian groups. The finite CRT
+   version is folklore-grade, as the first probe guessed. Surviving delta: the
+   multiplicity table, the free wrap, order-independence.
+   THE DEFLATION, and it is gated, not a judgment: the count depends on each gear
+   ONLY through "how many distinct interior run-lengths does the removed set
+   have", which is 1 for every two-point removal bar a degenerate terminal pair.
+   So over 60 admissible RE-CHOICES OF THE TEETH the count stays 2n = 8 while F
+   ranges over [10,18] - a factor 1.8 - and the law even holds for coprime
+   NON-prime moduli. THE COORDINATES DISCARD EXACTLY THE ARITHMETIC F DEPENDS ON.
+   And F is not a statistic of the order permutation at all: a permutation
+   records order, F needs the metric. The dual count (distinct lex-index
+   displacements between natural-order neighbours) is 5, 25, 95, 368, 1362 at
+   n = 2..6 - complexity moved, not reduced. docs/novel/two-n-gap-reordering.md
+   rewritten: PROVED, prior-art verdict recorded, and marked a CLOSED LINE.
+
+2. U5 CLOSED AFTER THREE ROUNDS - AND THE ROUND-21 DEGENERACY LAW IS NOW A
+   THEOREM AT EVERY MACHINE. The circulant's eigenvalues are products of one
+   factor per gear from S_q = {q-2} u {-2cos(2 pi r/q)}, none zero. Equality of
+   two such products forces prod (f_q/f'_q) = 1 with the ratios in the real
+   cyclotomic fields Q(zeta_q)^+, which have PAIRWISE COPRIME CONDUCTORS and are
+   therefore linearly disjoint - so every ratio is rational, and a rational ratio
+   inside S_q forces equality (norms kill -1; 2(r+-r') = q is impossible for odd
+   q). Hence the degeneracy group is exactly (Z/2)^{#gears}: #distinct =
+   prod (q+1)/2, ties = P - prod (q+1)/2, EVERYWHERE, and NO accidental exact
+   collision exists at any machine. Round 21's measurement at three machines is
+   upgraded to a proof at all. DECISIVE TEST at m29 (where round 21 logged 6
+   near-collisions at 1e-12): all 8,164,800 desymmetrized levels rebuilt, exactly
+   those 6 found, each recomputed at 60 digits - ALL SIX SEPARATE, smallest
+   8.635e-14. Crowding measured (median spacing 1.30e-05). m31's 613 are covered
+   by the theorem and NOT re-measured - 1.3e8 labelled levels is not memory-safe
+   here, said plainly. Free double-source: the script re-derives round 21's tie
+   counts 313 / 4501 / 80549 at m11/13/17 by brute force.
+
+3. U6 AND U9 CLOSED ON MECHANIC'S EXACT m37 HISTOGRAM - AND -1/phi IS A CROSSING,
+   NOT A LIMIT. Exact m37: alpha_1 = 4,107,707,379, alpha_2 = -7,109,650,222,
+   ratio -0.577765. Ladder m11..m37: -0.8636, -0.8393, -0.7305, -0.6402,
+   -0.6448, -0.6231, -0.5943, -0.5778. It crosses -1/phi = -0.61803 between m29
+   and m31 and is +0.0403 past it at m37, still rising (increments +0.0288,
+   +0.0166 - decaying, not turning). SO MY OWN ITEM 48's "the machine drives the
+   ratio TO the golden direction" IS REFUTED as an asymptotic claim; every exact
+   identity under it survives. Same event as arg H_5(1) crossing 126 deg.
+   AMPLITUDE (U9): |H_5(1)|/N * lam exact at m11..m37 = 1.125953, 1.036230,
+   1.015003, 1.013946, 1.019315, 1.016081, 1.009970, 1.014085 - it does NOT
+   break, it OSCILLATES in [1.0100, 1.0193] from m17 on. The m31 -> m37 move is
+   UP, siding with the corridor ladder against M1 - and against my own
+   pre-registered P8, which called DOWN. The "which model" question was mis-posed.
+   CROSS-GATES: total = prod(q-2) and gap sum = P at all eight machines; gap 1
+   the only odd entry at all eight; alpha_1 odd at all eight; arg H_5(1)
+   reproduces Mechanic's exact ladder to 5e-3 deg; the amplitude column
+   reproduces my round-25 table to 6e-4.
+
+4. THE ROUND'S MOST INTERESTING NUMBER, AND IT WAS NOT IN THE BRIEF - THE TWIN
+   MACHINE IS A LOW-F OUTLIER AMONG ITS OWN COUNTERFACTUALS. Keep the gears, keep
+   the mirror symmetry, and move the teeth: v_q ranges over {1..(q-1)/2}, every
+   member has the SAME period, the SAME survivor count prod(q-2) and the same
+   per-gear density - only positions move. F is invariant under k -> +-k+b but
+   NOT under k -> ck, so F genuinely varies, and the family (30 / 180 / 1440 /
+   12960 members at m11/13/17/19) is small enough to ENUMERATE EXHAUSTIVELY:
+
+       y    |V|     F(twin)  min  median  max   twin's percentile
+       11   30      7        6    8       11    20.0%
+       13   180     11       10   13      25    18.1%
+       17   1440    18       14   19      32    26.4%
+       19   12960   25       20   28      43    17.1%
+
+   THE REAL MACHINE SITS IN THE BOTTOM FIFTH TO QUARTER OF ITS OWN F
+   DISTRIBUTION at every machine tested, ~10-15% below the median, never the
+   minimum, in a family whose maximum is 1.6-1.9x the truth. This is the FIRST
+   quantity on which the real phase vector is distinguished: round 2's
+   enumeration (my Refuted 3) scored it on WASTE metrics and found "no
+   variational handle"; F itself separates, and in the FAVOURABLE direction.
+   MECHANISM: OPEN, with two of my own candidates already dead - angular
+   coherence REFUTED IN THE SIGN (spearman(F, dispersion) = -0.14/-0.20/-0.11;
+   the twin sits in the lowest-dispersion quartile, which has the HIGHEST mean F,
+   and is at the 10.5-20.8 percentile INSIDE it), and "the teeth are the
+   reciprocal of a small integer" REFUTED (median over m = 1..60 is exactly the
+   family median; the sweep's argmin is m = 12, not the twin's m = 6).
+   CAVEAT I insist on: the four rows are NESTED, so they are not four independent
+   draws and no p-value is claimed. docs/novel/tooth-counterfactual-percentile.md.
+
+SCORECARD: 9 confirmed, 4 refuted, all four refutations my own (P8, P11, P13 and
+the routed item's own framing). Last round I called my 10/10 suspicious; this
+round four of thirteen were cheap corollaries and I lost three of the six real
+bets, which is the right shape.
+
+FOR OTHER LANES:
+- MANAGER: the routed 2n item is proved, prior-art-checked and CLOSED as a route.
+  What is worth your attention instead is item 4 and its route-side question,
+  which I am routing rather than working (mandate): the counterfactual family
+  fixes prod(q-2), so it is a clean null model for (D) too - what is the twin
+  machine's percentile in the counterfactual distribution of the budget slack
+  F(M+q') - F(M) - q'? If it is favourably placed there as well, the first-moment
+  transfer has a MEASURED amount of room it is not using.
+- ANY LANE citing "alpha_1/alpha_2 -> -1/phi": it is a crossing, not a limit.
+- FORMALIST (offered, not claimed): "#distinct eigenvalues = prod (q+1)/2" and
+  the 2n law are both finite per machine and smaller than the mirror even-count
+  lemma already queued.
+- MECHANIC: nothing owed to me. Your exact cyclic m37 histogram closed two
+  backlog items in one pass and my script re-derives your arg ladder to 5e-3 deg
+  as an independent check. An exact m41 histogram would add one rung to both
+  ladders and make "does the overshoot decelerate to a limit" decidable.
+## Constructor round 27
+
+GATES (all re-run from clean processes at round close, all GREEN):
+  .venv/Scripts/python.exe research/uniform_order.py   -> all assertions passed
+  .venv/Scripts/python.exe research/increment_law.py   -> all assertions passed
+  .venv/Scripts/python.exe research/triple_41.py --y 37 --q 41 --floor 89
+      -> MAX = 90, witness (28,14,48) - reproduces the exact m37 census answer,
+         value and witness, by a completely different vehicle
+  research/chain_ps.py -> 0 false kills on all 291,675 realised m37 4-tuples
+Logs: research/data/r27_uniform_order.log, r27_increment_law.log,
+r27_triple_41.log, r27_chain_ps_41.log, r27_chain_ps_41_f2.log.
+Pre-registration: research/data/r27_prediction.txt (written first, scored in
+docs/proof-search/constructor.md).
+Every job this round launched has finished; nothing is left running.
+
+
+HEADLINE, AND IT IS TWO-SIDED. R67's residue (i) - THE ORDER, "nothing says
+which m makes A_m nilpotent at machine M", asked for in two consecutive rounds
+as "a bound, any bound, valid at every machine" - now has one for the object
+the project has always used as its proxy, and a PROOF THAT NO SUCH BOUND EXISTS
+FOR THE OBJECT THE CHAIN ACTUALLY NEEDS.
+
+THEOREM (uniform alternation order). For every machine M = {5..y}, y >= 7,
+    A_relax(M) <= 5,
+and <= 4 unless q' = 37, 53, 83, 127, 157, 173 (mod 210). Proved by phase
+saturation at GEARS 5 AND 7 ALONE, so the whole statement is a function of
+q' mod 210 with no machine in it: X for the m-letter alternation is
+{0, a, q', q'+a, 2q', ...}, so X mod g depends only on (a mod g, q' mod g), and
+3a = q' -+ 1 fixes a mod g from q' mod 6g. All 48 invertible classes enumerated:
+orders 2 / 3 / 4 / 5 at 24 / 16 / 2 / 6 classes. Gears 11 and 13 refute NOTHING
+further (60 of 60 and 720 of 720 refinements stay at 5). Cross-checked by a
+direct sweep of every prime q' < 20000 with all gears up to 100 - same
+distribution, same exceptional residues.
+
+AND THE SIX EXCEPTIONAL CLASSES ARE EXACTLY R20's LITCAP-6 CLASSES. By CRT a
+translate of a point set fits inside the exposed sets of gears 5 and 7
+separately iff it fits inside the corridor E mod 35 - so MECHANIC'S PHASE
+SATURATION AT {5,7} AND THE LITERAL CAP ARE THE SAME ARITHMETIC, and the only
+difference is the quantifier over starting letters (litcap MAXIMISES, being
+about chain existence; the order MINIMISES, since one broken window kills the
+cycle). Two invariants found independently five rounds apart are one object.
+
+THE COMPANION NEGATIVE, and it is the sharper half. A_relax tests ONE candidate
+cycle; A_m is nilpotent only when EVERY legal cycle is broken, and padded
+letters (= 0 mod q') are T3-transparent. With N(M) = smallest m at which A_m is
+acyclic, measured exactly from the same dictionaries:
+
+    machine   11 13 17 19 23 29 31 37
+    A_relax    1  2  2  3  2  3  4  2      (corrected - see the self-correction)
+    N          2  2  2  3  2  3  4  3
+
+R49's identity N = max(2, A_relax), which held 7 of 7, is REFUTED at the eighth
+machine, and the extra order is bought by a PADDED cycle (m37's legal values are
+{14,27,41,55,68,82}; 41 and 82 are transparent, so 14 -> 41 -> 27 -> 41 -> 14
+is legal where the pure alternation (14,27) does not even occur).
+AND THE METHOD DIES AT A LOCATABLE STEP. CORRCAP(q',F) = longest T3-legal word
+with values <= F whose prefix-sum walk stays in E mod 35 - the strongest cap
+gears 5 and 7 can EVER give - is 4, 2, 3, 5, 25, 25, 11, 5 at 19->23 .. 47->53
+and INFINITE FROM 53 -> 59 ON (F/q' = 2.5), and at every larger ratio tested.
+Mechanism: padded letters step by j*q' mod 35 and gcd(q',35) = 1, so once F/q'
+is large the steps fill Z_35 and the corridor stops constraining. F/q' grows
+without bound along the chain, so NO FIXED SET OF SMALL GEARS CAN EVER CAP THE
+ORDER AGAIN. The correctly-posed uniform-order question is about the COVER half
+of the realisability CSP, which no bounded gear set can supply (bigger machines
+make covering EASIER).
+
+THE INCREMENT LAW AT THE THREE DEEP STEPS: HOLDS 3 OF 3.
+    41->43   F(43) - F_2(41) = 103 - 103 =  0  <= 14
+    43->47   F(47) - F_2(43) <= 118 - 103 = 15  <= 16
+    47->53   F(53) - F_2(47) = 145 - 134 = 11  <= 18
+The middle row needs NO COMPUTATION: F_2 is non-decreasing in the machine
+(proof in the append), so F_2(43) >= F_2(41) = 103 without ever computing
+F_2(43), which the corpus only brackets in [103,118]. With R68's witness table
+the increment law now holds at ELEVEN of the twelve testable steps, failing only
+at the padded 31->37 by +8.
+
+THE MANAGER'S TRIPLE INEQUALITY, EXACT AT EIGHT STEPS PLUS A NINTH SCAN-FREE,
+AND THE PADDED STEP'S FAILURE IS ENTIRELY IN THE PADDED MIDDLE. Separating
+LITERAL middles (w = +-s mod q') from PADDED ones (w = 0 mod q'), which the
+manager's five-step probe never had to do (no padded middle exists below
+19->23):
+
+     M    q'  s_min  F_2  rhs | literal max slack witness    | padded max slack
+    11    13     4    11   15 |     8       +7  (1,4,3)      |  none
+    13    17     6    16   22 |    18       +4  (5,11,2)     |  none
+    17    19     6    25   31 |    25       +6  (5,13,7)     |  none
+    19    23     8    31   39 |    33       +6  (5,8,20)     |    31   +8
+    23    29    10    39   49 |    43       +6  (10,10,23)   |    40   +9
+    29    31    10    55   65 |    58       +7  (18,10,30)   |    49  +16
+    31    37    12    68   80 |    70      +10  (5,25,40)    |    85   -5
+    37    41    14    90  104 |    90      +14  (28,14,48)   |    83  +21
+
+THE LITERAL TRIPLE INEQUALITY HOLDS AT EVERY STEP INCLUDING THE PADDED 31->37
+(70 <= 80). My literal column reproduces the manager's independent probe digit
+for digit at their five steps (8, 18, 25, 33, 43). Per depth, against R68's
+exact Q* table, Q*_J - F_2 <= s_min holds 7 of 8 and every failing cell contains
+the padded letter 37.
+
+A FREE REDUCTION OF THE DEPTH-3 OBLIGATION, FOR THE MANAGER'S DERIVATION. Both
+(g_L + w) and (w + g_R) are 2-gap windows of M, so with no hypothesis at all
+    g_L + w + g_R <= F_2(M) + min(g_L, g_R),
+i.e. the triple inequality is AUTOMATIC whenever the smaller flank is <= s_min -
+which discharges 6 of the 8 steps outright. And the quantity the law must cap,
+Delta_3 = max over legal triples of (span - F_2), is -3, 2, 0, 2, 4, 3, 2, 0:
+BOUNDED BY A CONSTANT, no trend, while s_min grows linearly (4, 6, 6, 8, 10, 10,
+12, 14). THE SHAPE TO AIM AT IS "Delta_3 = O(1)", NOT "Delta_3 <= s_min".
+
+AND A NINTH STEP, SCAN-FREE. research/triple_41.py sweeps Mechanic's m41
+transfer SUPERSET downward by span (a superset is a sound candidate source),
+halves it by Lateral's reversal theorem, prefilters by phase saturation for
+free, and decides the survivors with crt_dict. GATED at machine 37, where it
+returns MAX = 90 with witness (28,14,48) - the exact census answer, value and
+witness, by a completely different vehicle. AT MACHINE 41 (budget
+F_2(41) + s_min(43) = 117), every candidate decided, ZERO undecided:
+    LITERAL middles: spans 144 down to 108 all REFUTED  => max <= 107
+    PADDED  middles: spans 130 down to 117 all REFUTED  => max <= 116
+so Q*_3(41; legal for 43) <= 116 < 117 - THE TRIPLE INEQUALITY IS CERTIFIED AT
+41 -> 43, the ninth step and the first with no census of any kind behind it.
+The PADDED half is the tight one (+1 against the literal half's +10) - the same
+asymmetry that makes 31->37 the family's single failure, seen one gear later
+without a failure.
+HONEST LIMITS: the exact maximum is NOT delivered (the literal descent was
+stopped at the span-108 level boundary after one arity-3 instance at span 107
+ran past 20 minutes against a 30-70 s norm; every completed level is a
+self-contained refutation set, so "<= 107" is exact and "= 107" is not
+claimed), and the stop decision was made on a STALE POLL - the level had
+completed 156 s earlier and the job was healthy. New measurement for the
+oracle-cost curve: m41 arity-3 CRT refutation cost is NOT uniform in span -
+mean ~40 s with a heavy tail a node budget does not bound in practice.
+
+RUNG NINE: NOT CERTIFIED, and the failure is now pinned to the ORACLE'S
+INFORMATION CONTENT rather than to cost or strategy. No exact m41 census
+appeared on disk, so item (c)'s precondition never arrived. What was done:
+- PHASE SATURATION AS A FREE ORACLE TIER (research/chain_ps.py), gated sound
+  (0 false kills on all 291,675 realised m37 4-tuples).
+- IT ANSWERS ZERO of the 27,197 superset-YES queries the 41->43 loop asks. Not
+  few - zero. Reason, structural: MF_4 is built MOD 35, so every edge it carries
+  is already corridor-admissible, and phase saturation at gears 5 and 7 IS the
+  corridor condition. FOR MECHANIC: "screens 4,239,676 -> 2,814,574 of the
+  dictionary" is real as a screen of the DICTIONARY and worth nothing on the
+  loop's own query stream; those are two different numbers and only the second
+  is the oracle's cost.
+- THE STALL IS AT 222 UNDER THREE SETTINGS: superset alone (R72), + phase
+  saturation, and + phase saturation + the exact F_2(41) = 103 (which cuts the
+  system to 1,058,228 states / 819,629 edges and 3,209 queries). 222 is the
+  transfer superset's INFORMATION LIMIT. Only the CRT tier moves it. Route (ii)
+  of R72 - Mechanic's exact m41 4-tuple census - remains the cheap route.
+
+SELF-CORRECTIONS AND HONEST NEGATIVES:
+- R45's A_relax(37) = 3 IS WRONG (it is 2), and the defect is MINE: my own
+  arity_ladder.py HARDCODES the m = 1 and m = 2 entries at machines 29/31/37 as
+  "realised" instead of looking them up. Second round running that a hardcoded
+  convenience in my own script entered the record as a measurement (R61's m31
+  counts were the first). New lane rule: a cell a script FILLS IN rather than
+  LOOKS UP is printed as such, or not printed.
+- My pre-registered P1 (phase saturation caps A_relax at 4) is REFUTED - it caps
+  at 5. P6 (the triple inequality at 31->37) is REFUTED AS WRITTEN, because I
+  predicted against a quantifier the manager's own message had already drawn.
+  P7 refuted too (the maximisers ARE realised windows; at depth 3 the relaxation
+  costs nothing).
+- I PIPED A LONG BACKGROUND RUN THROUGH `tail` AGAIN - the exact mistake in the
+  round-26 negatives, same lane, one round later.
+- increment_law.py's own verdict line calls the m41 SUPERSET row a failure. It
+  is not: 144 is a superset maximum and R72 measured that superset as heavily
+  inflated at arity >= 2. Flagged, not silently patched; the corrected reading
+  is the CRT sweep.
+
+FOR OTHER LANES:
+- MANAGER: the depth-3 half of your increment law is a CONSTANT against a LINEAR
+  function (Delta_3 <= 4 at all eight steps), the free flank reduction already
+  discharges 6 of 8, and the literal/padded separation makes the 31->37 exception
+  a statement about the padded middle only - all three are in your derivation's
+  favour. The per-J family is NOT uniform in the same way: Q*_J - F_2 exceeds
+  s_min at 31->37 for J = 3 AND J = 4, always via the padded letter.
+- MECHANIC: your phase-saturation theorem is EXACTLY the corridor condition mod
+  35 (CRT), which explains both why it fires only at gears 5, 7, 11 and why it
+  adds nothing to a corridor-built abstraction; and its alternation ceiling is
+  litcap's own arithmetic under a different quantifier. Also: the exact m41
+  4-tuple census is the only thing that moves rung nine, measured.
+- FORMALIST: A_relax(M) <= 5 is a finite, per-class, integer statement (48
+  classes mod 210, each a small phase-saturation check) - kernel-checkable in the
+  same shape as LiteralCapTable.lean, and it would be the first UNIFORM order
+  statement in the Lean corpus. Do NOT lift it to "A_m is nilpotent for m >= 6":
+  that is false in general (see the padded-cycle refutation above).
+- LATERAL: your reversal theorem halves every sweep in triple_41.py, and the
+  round used it as a matter of course.
+
+## Formalist round 27
+
+GATES, all re-run at round close from clean invocations, all GREEN:
+  cd proofs && lake build            -> **Build completed successfully (1521 jobs)**
+                                        (1426 -> 1521; 45 new modules: 40 case
+                                        transcriptions, 2 gear bases, 2 rung
+                                        roots, 1 shared soundness module)
+  cd proofs && lake env lean AxiomCheck.lean
+                                     -> 367 footprints, ONLY [propext,
+                                        Classical.choice, Quot.sound]; zero custom
+                                        axioms, no native_decide, no ofReduceBool;
+                                        `CaseSplit.lowest6/7`, `degpos6/7`,
+                                        `ind_low2`, `ind_nonneg` depend on NO
+                                        AXIOMS AT ALL
+  .venv/Scripts/python.exe research/lp_cert_lean.py GATE
+                                     -> ALL ASSERTIONS PASSED
+Zero sorries. Every job this round launched has finished; nothing left running.
+
+THE HEADLINE: **THE LP THREAD'S CASE-SPLIT CERTIFICATES ARE IN THE KERNEL, AND
+`D_29_31` NOW EXISTS IN A FORM WITH NO CENSUS HYPOTHESIS AT ALL.**
+
+    theorem CaseCert23.D_19_23_case (n : ℕ) : Machine23.g23 n ≤ 25 + 23
+    theorem CaseCert31.D_29_31_case (n : ℕ) : Machine31.g31 n ≤ 43 + 31
+
+Both hypothesis-free: no period, no census, no `native_decide`, standard-three
+axiom footprint. The second is the point of the exercise - `Machine31.D_29_31`
+consumes `Machine29.Census29`, a full-period claim about 214,708,725 openings
+that no kernel has seen or will see (verdicts 21/25, the ledger's standing
+residue). The same rung now has a second proof that consumes NOTHING but the
+primes 5..31 and 35 case certificates.
+
+R26.8's fixed order of attack was followed - (i) one case, (ii) exhaustiveness
+-> the 19->23 rung, (iii) 29->31 - and step (iii) was REACHED, not stopped at
+(ii). New files: `proofs/CaseSplit.lean`, `CaseCert23B/C0..C4/CaseCert23.lean`,
+`CaseCert31B/C0..C34/CaseCert31.lean`; generator `research/gen_case_lean.py`;
+transcription + gate `research/lp_cert_lean.py`.
+
+MY OWN R26.8 SIZING WAS WRONG IN AN INSTRUCTIVE WAY - THREE OF THE FOUR NAMED
+SOUNDNESS LEMMAS WERE VACUOUS AT THE ARTEFACTS, AND THE REAL WORK WAS NOT ON
+THE LIST.
+- `pos` restricted: trivial (`pos` is a literal list; one `decide` per case).
+- `dom(q)` restricted: VACUOUS - domains only shrink when OPEN positions are
+  prescribed, and a case split prescribes none.
+- Cut validity: VACUOUS at every rung on disk. **EVERY CUT ROW OF ALL 75
+  CERTIFIED CASES OF 19->23, 23->29 AND 29->31 IS THE BASE CUT** - the
+  separation loop never fired at these widths - so the coverage row is
+  literally the hypothesis "some gear blocks this position", and `lam_0 = 0`.
+  (The LP thread found this independently and posted it mid-round; two
+  codebases, same finding, same round.)
+- Case exhaustiveness, which I called "the one with no analogue in the existing
+  files": ONE `omega`.
+THE ACTUAL WORK WAS THE RECURSION ROW, whose coefficients `n_ab` are defined in
+the LP code as a MAX-COVER over the lower gears' phases - 8.2 million
+evaluations to certify literally at 19->23. It has a clean lemma:
+
+    THE LOWEST-BLOCKER IDENTITY (CaseSplit.lowest6 / lowest7, NO AXIOMS)
+    if some gear blocks x, then
+      1 + #{(a,b) : a<b, both block x, no gear below a blocks x}
+        =  #{a : a blocks x}
+    - only the LOWEST blocker can be the `a` of such a pair, and it pairs with
+    each of the other blockers exactly once.
+
+Summed over the position set that is `sum_a |A_a| >= |pos| + sum n_ab` for ANY
+`n_ab` bounded by the "a lowest, b also blocks" count - which is what the
+vehicle's `n_ab` is. In Lean it is a `decide` over 2^m Boolean assignments.
+
+A KERNEL-SIZING FACT THAT MADE THE 35-CASE RUNG AFFORDABLE, and it is a fact
+about the VEHICLE: **`n_ab = 0` for 96.4% of the gear-index-1 columns at
+29->31** (52,173 of 54,145 over the 35 cases) - one gear below suffices to
+cover the whole two-gear overlap - and `n_ab = 0` is sound with NO evaluation.
+Listing the exceptions cut the per-case kernel check from 9m01 to 4m10 solo;
+the whole 35-case rung then built in 47 MINUTES WALL at two concurrent workers.
+Structurally the recursion row is, numerically, almost entirely a KOUNIAS ROW
+AT THE SMALLEST FREE GEAR. General kernel tactic, filed as verdict 28: look
+for a certificate's SUPPORT before formalising its DEFINITION.
+
+THE EMISSION - I BUILT MY OWN AND IT AGREES WITH THEIRS. The LP thread's JSON
+was not on disk at my first look, so per my brief's contingency I wrote
+`research/lp_cert_lean.py`, which does more than transcribe: it rebuilds the
+relaxation FROM THE PRIMES, asserts every row equals `base_cut`, recomputes
+`n_ab` from the kernel-cheap closed form and asserts it equal to
+`RelaxStar.frow` COLUMN BY COLUMN (3,381 columns/case at 19->23, 7,201 at
+29->31), recomputes `lhs`/`rhs` from its own formulas in exact scaled integers
+and asserts agreement with the recorded verdicts, and runs a random-tuple
+SOUNDNESS GATE on the recursion row. Their emission then landed mid-round,
+matching my R26.8 spec exactly; CROSS-CHECKED: their `cert_19_23_h*.json` and
+my independent transcription agree as exact rationals on `pos`, `y`, `nu`,
+`yff`, `lhs`, `rhs` for all five cases. This lane's JSON (`cert_19_23.json`,
+`cert_23_29.json`, `cert_29_31.json`) also covers 23->29, which theirs does not.
+
+ITEM 1 - THE MIRROR'S COUNTING HALF, round 26's named gap, CLOSED
+(`proofs/Mirror.lean`; the standard three - `Classical.choice` enters through the
+`Finset` machinery, where round 26's arithmetic halves needed only
+`[propext, Quot.sound]`):
+  `even_card_involution` - a fixed-point-free involution of a `Finset` gives
+    even cardinality (structural induction; remove `a` and `f a`).
+  `window_count_even` - EVERY window length occurs an EVEN number of times
+    except the one the self-mirror window carries.
+  `adjacent_equal_even` / `none_of_at_most_one` - the endpoint lever verbatim:
+    an adjacent EQUAL pair `(F,F)` occurs an even number of times, so a
+    counting bound of "at most one" proves "none".
+HONEST SCOPE: what is kernel-checked is the LEVER over an ABSTRACT index
+involution. INSTANTIATING it at a machine - proving the depth-j window family
+is mirror-equivariant with the length invariant - needs `mirror_exposed29`
+composed with the opening ENUMERATION (`Periodic.lean`), and that composition
+is NOT built. Named as round-28 item 0, not claimed.
+
+ITEM 2 - RUNG EIGHT (37->41): NOT ATTEMPTED, PRECONDITION ABSENT, and this is
+a missing input rather than a judgment. My brief made it conditional on
+Constructor's emission landing in the `hE` shape; their round-27 block is filed
+and carries no machine-37 qualifying dictionary (depths 2..7, floor 14) and no
+`qual_dict.py`-format emission of the 12,587 deletions. The ask is unchanged
+and cheap for them: emit those windows and the rung is a transcription.
+
+A TOOLING TRAP WORTH THE OTHER LANES KNOWING (verdict 26): `~/.elan/bin/lake.exe`
+is an ELAN PROXY that reads `lean-toolchain` from the CURRENT WORKING DIRECTORY,
+not from `-d`/`--dir`. Invoked from the repo root it silently picks elan's
+default toolchain (4.33.1 here, against the project's 4.34.0-rc1) and starts
+REBUILDING MATHLIB FROM SOURCE, failing on version-skewed `Batteries` lemmas.
+The symptom is indistinguishable from a corrupt cache and is neither. Any agent
+shell that resets cwd between calls must chain `cd proofs && lake ...`.
+
+A SECOND PROCESS FINDING, MINE, AND IT IS A CORRECTNESS ONE (verdict 30):
+STOPPING A BACKGROUND TASK DID NOT STOP THE SCRIPT IT LAUNCHED. I stopped a
+3-wide build driver (the tool reported success), rewrote it 2-wide and
+relaunched; the process list later showed FOUR copies alive, interleaving into
+one log and racing on the same modules. A `[ ! -f x.olean ]` resume guard does
+NOT stop two builders starting the same module at once, lake does not lock a
+module against another lake process, and `.olean`s are TRUSTED on load rather
+than re-checked - so a raced file is precisely what this lane must not build a
+claim on. Response: killed every driver and worker, VERIFIED FROM THE PROCESS
+LIST rather than from the tool's success message, DELETED all 35 case oleans
+and rebuilt from clean under a single driver (~20 min of work discarded).
+Standing rules: confirm a stopped build is really gone from the process list;
+never run two builders over one build tree; if it happens anyway, delete the
+artefacts.
+
+FOR OTHER LANES:
+- LP THREAD: your emission is exactly right and the base-cut fact shrinks the
+  Lean obligation as you said. What the kernel needs NEXT, if you want 31->37
+  kernel-checked, is the SMALLEST k that certifies it - at the measured 1.34
+  min/case throughput (two workers), 35 cases is ~45 min and 385 cases is
+  ~8.6 h - so k = 2 is a comfortable round and k = 3 is the whole round. Also: the exception-list fact
+  above (96.4% of gear-index-1 `n_ab` are zero) is a statement about your
+  vehicle, not about Lean, and may be worth a line in your own cost law.
+- CONSTRUCTOR: `A_relax(M) <= 5` as 48 classes mod 210 is ACCEPTED as a
+  round-28 target - it is exactly the `LiteralCapTable.lean` shape and would be
+  the first UNIFORM order statement in the Lean corpus; your warning against
+  lifting it to "A_m nilpotent for m >= 6" is recorded with it. The m37
+  qualifying dictionary remains the only missing input to rung eight here.
+- MANAGER: the ladder's hypothesis inventory changed. 29->31 no longer NEEDS
+  `Census29`; the census hypotheses now bind only at 31->37 and above.
+
+## Mechanic round 27
+
+GATES (all re-run from clean processes at round close, all GREEN):
+  .venv/Scripts/python.exe research/m41_census_r27.py gate      -> ALL ASSERTIONS PASSED
+  .venv-sat/Scripts/python.exe research/akill_verify_r27.py     -> ALL ASSERTIONS PASSED
+  .venv-sat/Scripts/python.exe research/akill_bands_r27.py      -> 6 tilings re-asserted
+  .venv-sat/Scripts/python.exe research/akill_verify_r26.py     -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/ghist_gate_r26.py <7 csv>   -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/cyclic_close_r25.py check   -> ALL ASSERTIONS PASSED
+  .venv-sat/Scripts/python.exe research/akill_verify_r25.py --nosat -> ALL ASSERTIONS PASSED
+Pre-registration written before any solver call:
+research/data/r27/prereg_mechanic_r27.md - EIGHT predictions, THREE REFUTED by
+my own runs (scored below).
+
+HEADLINE: (D) AT 53 -> 59 IS DECIDED TRUE - the first step of the ladder with no
+upper bound on the new machine's F anywhere in the project or in the published
+corpus.  The corpus F(2,y) ladder stops at y = 53; round 26 could only say
+F(59) >= F_2(53) = 159 with "at most 45 of room".  Round 27 computes the other
+side, on MACHINE 23's period (37,182,145 slots) for a property of MACHINE 59
+(period 1.96e19, ratio 5.3e11), through Constructor's round-26 attainment
+theorem F(M+q') = max_J Q*_J(M; legal for q'):
+
+    max_J Q*_J(53; legal for 59) <= 203  <  204 = F(53) + 59     ==>  (D) HOLDS
+    and, after four empty bands and one exhibited window,  161 <= F(59) <= 178.
+
+AND THE BRACKET DECIDES THE MANAGER'S INCREMENT LAW AT A STEP IT HAD NEVER
+SEEN.  F(M+q') - F_2(M) <= s_min(q') = min(2u', q'-2u') gives F(59) <= 179 at
+53 -> 59 (s_min = 20, F_2(53) = 159).  MEASURED F(59) <= 178: THE LAW HOLDS,
+increment in [2, 19] against a cap of 20.  Pre-registered as B2 before the scan
+and it was a real bet - the law's one known failure is the PADDED step 31 -> 37,
+and this step has padding (the lower-bound witness itself has a 2q' interior).
+
+This is the record law's FIRST USE AS A COMPUTATIONAL INSTRUMENT where the
+answer was not already known.  The lower bound 161 is up from 159 and comes with
+a machine-53 witness re-verified from the definition:
+k = 2,505,673,933,219,103,747, gaps [10, 118, 33], span 161, all 158 other slots
+of the span blocked, middle gap 118 = 2q' a legal (padded) kill letter.
+
+THE TECHNIQUE THAT MADE IT AFFORDABLE, and it generalises (new rule 31): a
+DESCENDING LADDER OF BANDS.  A transfer run seeded at lo with span cap hi
+decides exactly "the maximum in (lo, hi], or lo if empty", so bands with
+hi_{i+1} = lo_i compose with no gap, each one finishes, each tightens the bound
+the moment it lands, and the first non-empty band from the top IS the answer.
+MEASURED: lowering the seed by ten costs about four times the run, while
+lowering the cap makes the walk cheaper - so a single run seeded at the floor
+pays for every band at once and reports nothing until it is done.  Also new
+rule 32: a DEPTH cap is a cost control, not just a scope choice - the same band
+at JMAX = 7 was projected at nine hours per worker and killed; at JMAX = 3,
+which was all the question needed, it ran in 45 minutes.
+
+AND THE BANDS PAID FOR A SECOND LANE ITEM.  A realised k-chain kill word is a
+word-legal window of J = k-1 gaps, so an EMPTY band refutes every kill word
+whose span lands in it, at every depth it covers, with no solver call.  Six
+completed scans give a refuted-span band table (research/akill_bands_r27.py,
+every tiling re-asserted), and it decided 63 of the A_kill(53->59) words
+outright:
+
+    A_kill(53 -> 59) = 4 EXACT, every level complete.
+      N_3 = 8 of 36: (20,39) (20,59) (20,98) (20,118) and their four reverses -
+        EVERY realised 3-chain carries the letter s = 20, paired with q'-s = 39,
+        q' = 59, q'+(q'-s) = 98 or 2q' = 118.  Nothing pairs two non-s letters.
+      N_4 = 1 of 18: the palindrome (20, 98, 20), witness
+        5,179,823,167,446,585,215, re-verified from the definition.
+      N_5 = 0, and the k=5 level is EMPTY BEFORE ANY DECISION - a 4-letter word
+        needs both 3-letter sub-words realised and the only one is a palindrome
+        whose two overlaps cannot both be it.  The overlap lemma closes it.
+      THE WHOLE CAMPAIGN COST ONE UNSAT (2,666 s); 63 words fell to the band
+      table, 7 to the screen, the rest to the mirror law.
+      THE SHAPE IS THE PADDED ALTERNATION: the ceiling for the PURE alternation
+      is 3 and (20,39,20) IS zero as C29's theorem says; what carries arity 4 is
+      (20,98,20) = (s, q'+(q'-s), s).  A_kill - ceiling is now
+      -2, +1, +1, +1, 0, +1 at 31->37 .. 53->59: at every step whose ceiling is
+      2 or 3 the answer is ceiling+1 and the lifting word is PADDED.  NAMED NEXT
+      CONSTRUCT: the phase-saturation ceiling of the PADDED alternation family,
+      a closed form in the small gears exactly like C29's.
+
+C30 priced this campaign at 27 solver calls; the k=3 level cost FOUR, all of
+them satisfiable hits of 0-49 s, and ZERO UNSATs.  The cost of not doing it this
+way was measured, not imagined: the first launch put three of those words on
+pysat at fourteen gears and they were still running after two hours each -
+every one of them refuted by a scan already on disk or costing 1,300-1,800 s.
+THE SCOPE POINT THAT MAKES IT SOUND: a span cap conditions claims about spans
+ABOVE it, never claims INSIDE the scanned interval.  "F_2(53) <= 159" is
+cap-conditional; "no 2-window has span in (159, 200]" is not.  Only the second
+kind is used.
+NEW DATUM FROM THE SAME MACHINERY: machine 53's adjacent-pair span spectrum has
+a SIX-WIDE HOLE at 153..158, immediately below its maximum F_2(53) = 159 (the
+largest 2-window span at or below 158 is 152, from two range workers tiling the
+period).  That hole is what killed the two words SAT could not.
+
+BRIEF ITEM (a) - THE m41 EXACT 4-TUPLE CENSUS: PRICED FIRST, AND THE PRICE IS
+THE FINDING.  Span-stratified timing over the round-26 screened superset
+(1,407,543 reverse classes after mirror halving) gives >= 4,036,276 CORE-SECONDS
+= 1,121 core-hours by the CRT-decision route, and >= 2e5 core-seconds by the
+period route (round 26's ~85,000 s figure was for the HISTOGRAM, a strictly
+easier object; a tuple pass needs a 6.2M-element scatter per lap on top, and the
+route enumerates all prod(q-2) = 8.499e12 openings of m41's period).  BOTH
+VEHICLES EXCEED THE ROUND BY ONE TO THREE ORDERS OF MAGNITUDE.  Delivered
+instead, in three parts:
+
+ (1) F_4(41) = 118 EXACT, a first computation (602 core-seconds, r = 4 floor-1
+     transfer, cap 150 ABOVE the deletion-ladder cap 145 so the value is NOT
+     span-capped).  The standing entry was "F_4(41) <= 145", which is the
+     superset's own maximum span, i.e. nothing.  Three controls the tool was not
+     told about: J = 3 returns 110 = F_3(41) seeded one below, AT ROUND 24's OWN
+     SAT ADDRESS k = 30,382,499,692,410; the two workers' J = 4 maximisers are
+     an exact MIRROR PAIR (4,834,947 + 32,347,080 = P(23) - 118) verified at
+     machine 41 with gaps [51,2,50,15] and [15,50,2,51]; and that maximiser is
+     present in the screened superset, so the cap is attained, i.e. tight.
+     => A realised 4-tuple span is at most F_4(41) BY DEFINITION, so
+     4,239,676 -> 2,814,574 (r26 phase saturation) -> 1,747,819:
+     58.8% OF CONSTRUCTOR'S ARITY-4 SUPERSET REMOVED BY THEOREM ALONE, in
+     seconds, no solver.  Induced 3-tuple dictionary 130,942 -> 95,331.
+     research/data/r27/gap_tuples_41_4_screened_spancap.csv
+ (2) THE EXACT SHARD, BY ASCENDING SPAN:
+     research/data/r27/gap_tuples_41_4_exact_le77.csv - COMPLETE AT EVERY SPAN
+     <= 77, 169,981 reverse classes decided, ZERO undecided, 338,855 tuples
+     (178,886 classes decided in all, 868 refuted; two waves, the second
+     resuming from the first's checkpoint and moving the frontier 75 -> 77).
+     Reverse-closure of the emitted set asserted, containment in the superset
+     asserted.  Checkpointed: each worker resumes from its own log with one
+     command line.
+ (3) THE DECIDER GATE, TWO-SIDED, at the three machines whose exact 4-tuple
+     dictionary this lane scanned in full: m23 15,696/15,696 YES and 2,000/2,000
+     NO, m29 3,000+3,000, m31 2,000+2,000 (90 s).  The negative controls are
+     4-tuples built from each machine own realised gap VALUES but absent from
+     its exact dictionary - Formalist's round-26 lesson applied in both
+     directions.
+
+AND A STRUCTURAL FINDING THE SHARD PRODUCED: THE INFLATION ONSET IS SHARP AND IT
+IS AT SPAN 68.  Every one of the ~137,000 reverse classes of span <= 67 is
+REALISED; the first refutation anywhere is at span 68, and the refuted count
+climbs 2, 0, 6, 14, 26, 17, 68, 117, 117, 105 over spans 68..77, against 20/24 refuted at
+span 81-100 and 24/24 at 101-140 in the timed sample.  So the dictionary
+transfer (K4) is EXACT below 68 and collapses over the next ~30 units of span -
+a fact about the ORDER-4 CLOSURE, not about the machine: a machine-37 walk short
+enough to be pinned by its 4-windows is realised, and past ~68 the closure stops
+determining it.
+
+CROSS-LANE, FOR CONSTRUCTOR - THE m37 QUALIFYING SPECTRUM, AND YOUR LOST Q_7.
+research/data/r27/qspec37_w{0,1}.log, two range workers tiling the period, both
+reporting the same row, with witnesses re-verified at machine 37:
+
+    J             2    3    4    5    6    7    8
+    Q_J(37; 14)  90   97  103  110  112  114  112     budget F(37) + 41 = 129
+
+J = 2..7 REPRODUCES C20's round-23 row exactly, four rounds later, by an
+independent run; J = 8 is new AND IT TURNS OVER (114 -> 112), the second machine
+at which the qualifying spectrum is non-monotone in depth (Formalist found it at
+m31).  Your round-26 row Q_2..Q_6 = 88, 90, 97, 103, 110 matches mine SHIFTED BY
+ONE (your Q_3..Q_6 = my Q_2..Q_5), which reads as your J counting OPENINGS where
+mine counts GAPS.  On that reading YOUR MISSING Q_7 IS 112, far under your layer
+bound 174 and under budget.  I am not adjudicating your index convention - the
+row above is in mine, with witnesses, so it can be re-indexed unambiguously.
+(Rule 5 exists because this project has been bitten by exactly this before.)
+
+HONEST NEGATIVES AND COSTS OF THE ROUND:
+- THE m41 EXACT CENSUS IS NOT DELIVERED, and after pricing it is a MULTI-ROUND
+  object rather than a next-round one.  What would change that is a cheaper
+  decision vehicle, not more cores: at 3-4 s per refutation the remaining
+  ~1,229,000 reverse classes are ~1,100 core-hours.
+- F(59) IS BRACKETED, NOT PINNED: 161 <= F(59) <= 178.  The remaining spans are
+  (161, 178] and, by the depth-3 band, only at depths J >= 4.  Each band gets
+  dearer as it descends (1,038 / 3,256 / 4,930 s x 7 workers for 11, 11 and 6
+  units of width), and a single wide band (161, 184] at JMAX = 7 was launched
+  and KILLED at a four-hour projection.
+- F_2(59) NOT COMPUTED (brief item c, second half).  It wants F(59) as a seed
+  and the round spent its cores getting the first side of that.
+- I MIS-SIZED A BAND AND KILLED IT: the word-legal band (152, 158] at JMAX = 7
+  was under 8% after 40 minutes (a nine-hour projection) because seeding six
+  units below a low span expands an enormous number of windows.  Re-run at
+  JMAX = 3 - all the question needed - it finished in 45 minutes.  Rule 32.
+- I READ A HEALTHY JOB AS A STALLED ONE TWICE, because j5_multi.py's progress
+  stride is a GLOBAL constant (198,804 start indices) rather than a share of the
+  worker's own range, so a worker can run an hour before its first line.  This
+  is rule 28 recurring inside a tool rather than an orchestrator; recorded as
+  rule 33.
+- I RESTARTED THE A_kill CAMPAIGN FOUR TIMES as each new scan landed.  The
+  driver's resume-from-own-log made that free, but the right shape would have
+  been to compute the band table FIRST and hand the solver only what no scan
+  owns.
+- MY OWN PRE-REGISTRATION WENT 3 REFUTED / 4 CONFIRMED / 1 UNRESOLVED:
+    A1 "A_kill(53->59) = 3"            REFUTED - (20,98,20) is realised at k=4.
+       I extrapolated a per-step pattern from three steps instead of computing
+       it: standing rule 1 in a new costume.  C29's alternation ceiling itself
+       is untouched - the pure alternation (20,39,20) IS zero, as the theorem
+       says; what lifts A_kill past it is padding.  The value is 4, EXACTLY
+       ONE above the ceiling - which is what four of the six measured steps do.
+    A2 "(59,59) is realised"           REFUTED - it is ZERO, by the phase-
+       saturation screen with no solver call.  The run of DOUBLE-PADDED 3-chains
+       that held at 41->43, 43->47 and 47->53 ENDS at 53->59.
+    C1 "the superset is exact at span <= 80"  REFUTED - the onset is at 68.
+    A3 (the nine k=3 words above the F_2(53) cap are all zero - an independent
+       SAT-free cross-check of C30's upper direction) CONFIRMED.
+    B1 ((D) holds at 53->59) CONFIRMED.  B3 (F(59) > 159 strictly) CONFIRMED
+       (>= 161).  C3 (F_4(41) in [113,125]) CONFIRMED (118).
+    B2 (the manager's INCREMENT LAW at this step: F(59) <= F_2(53) + s_min(59)
+       = 179) CONFIRMED - band (178, 184] came back EMPTY, so F(59) <= 178.
+       This is the round's one prediction that was a bet rather than a
+       corollary.
+    B4 (the attaining depth J* = k_win + 1, predicted 3 or 4) UNRESOLVED while
+       F(59) is a bracket; the deepest word-legal window found is at J = 3.
+
+FOR OTHER LANES:
+- CONSTRUCTOR: your rung-nine oracle input is 58.8% smaller by theorem alone
+  (gap_tuples_41_4_screened_spancap.csv), F_4(41) = 118 is a new exact input,
+  and the exact shard at span <= 77 is 338,855 tuples with zero inflation
+  below span 68.  Your Q_7(37;14) is 112 on the index reading above.
+- MANAGER: your increment law is CONFIRMED at 53 -> 59, a step it had never
+  seen - F(59) <= 178 against the law's 179, with the increment in [2, 19]
+  against a cap of 20.  It was pre-registered before the scan.
+- FORMALIST: F_4(41) = 118, F(59) <= 203 and the m37 row Q_2..Q_8 are finite
+  integers with exhibited witnesses; the A_kill(53->59) k=3 level is complete
+  and its refutations are BAND MEMBERSHIPS, i.e. arithmetic, not solver runs.

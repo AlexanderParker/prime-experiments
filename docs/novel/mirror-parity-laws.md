@@ -31,6 +31,35 @@ involution on a `Finset` has even cardinality), which `Mirror.lean` does not
 build. What is proved there is the involution and the uniqueness of its fixed
 point, not the parity of the counts.
 
+ROUND-27 ADDENDUM (Formalist): **THE COUNTING HALF IS NOW KERNEL-CHECKED**
+(same file, same build). Round 26's named gap is closed:
+
+* `Mirror.even_card_involution` - a map `f` that sends a `Finset s` into
+  itself, is an involution there and fixes nothing has `s.card % 2 = 0`.
+  Structural induction on a cardinality bound; the step removes `a` and `f a`
+  and restricts the hypotheses, which works because `f x = f a` forces
+  `x = a` and `f x = a` forces `x = f a`. No machine, no arithmetic.
+* `Mirror.window_count_even` - **EVERY WINDOW LENGTH OCCURS AN EVEN NUMBER OF
+  TIMES**, except possibly the one carried by the self-mirror window: for any
+  `m` that is an involution of `range N` preserving a length function `L`, and
+  any `g` that no fixed point of `m` carries,
+  `#{t < N : L t = g}` is even.
+* `Mirror.adjacent_equal_even` - the endpoint lever at depth 2: an adjacent
+  EQUAL pair `(F, F)` (length `2F`) occurs an even number of times whenever
+  the exceptional window's length is not `2F`.
+* `Mirror.none_of_at_most_one` - the form the live route quotes: parity plus
+  a counting bound of `<= 1` gives `= 0`.
+
+HONEST SCOPE, and it is the reason this is an addendum and not a closure.
+What is kernel-checked is the LEVER, stated over an abstract index involution:
+the counting argument, and its specialisation to the `(F,F)` endpoint. What is
+NOT kernel-checked is the INSTANTIATION at a particular machine - that the
+machine's own depth-`j` window family is mirror-equivariant with `L` invariant
+requires composing `mirror_gear`/`mirror_exposed29` with the opening
+ENUMERATION (the `Periodic.lean` machinery), and that composition is not
+built. So the lever is available to any argument that supplies its three
+hypotheses; the project does not yet supply them from a machine.
+
 ## 1. WHAT IT IS
 
 The machine's opening set is exactly symmetric about slot 0. That is obvious.

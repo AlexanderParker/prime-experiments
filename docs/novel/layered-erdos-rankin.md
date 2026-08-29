@@ -342,11 +342,26 @@ technical. This is the round's sharpest new statement about the method.
 2. **The exponent 4 of `loglog`.** `4 = 2k`; it comes from `sigma ~ B^2` and is
    not optimised. Sharpening `rho` (the `log log u` term) and the greedy moves
    the constant, not the exponent.
-3. **The general-`k` shift set.** For `k >= 4` the shifts `0,2,...,2(k-1)` are
-   not pairwise distinct modulo every odd prime (`3 | 6` already at `k = 4`).
-   The finitely many offending primes can be set aside, but a clean statement
-   wants the optimal shift set. (Sets with all pairwise differences a power of 2
-   have size at most 3, so no choice of shifts avoids this for `k >= 4`.)
+3. ~~**The general-`k` shift set.**~~ **ANSWERED IN ROUND 27 - see
+   `docs/novel/jk-family.md` §4; gate `research/jk_family.py` section E.** The
+   question was: for `k >= 4` the shifts `0,2,...,2(k-1)` are not pairwise
+   distinct modulo every odd prime (`3 | 6` already at `k = 4`), so what does
+   the optimal shift set look like? **The answer is that it costs nothing.**
+   `0,2,...,2(k-1)` is the wrong tuple - from `k = 3` it is not even admissible
+   (`0,2,4` covers `Z/3`). Take any admissible `k`-tuple (e.g.
+   `{q_1,...,q_k} - q_1` for the `k` least primes `q_i > k`). A collision
+   `E_i ≡ E_j (mod p)` then needs `p | E_j - E_i`, hence
+   `p <= M_k := max_{i<j}(E_j - E_i)`, a constant in `k`; and the greedy layer
+   runs over `[P, z1]` with `P = A^{2k-1} → ∞`, so for large `x` every
+   colliding prime lies **below** `P`, inside the Eratosthenes layers, where a
+   collision merely means two layers coincide and uses *fewer* than the `k`
+   available classes - the survivor structure of §4.3 is untouched. Hence
+   `Sigma = prod_{P<=p<=z1}(1-k/p)` with no correction, `K_k` stands as
+   printed, and the threshold `x > exp(M_k^{1/(2k-1)})` is under `e^4` for
+   every `k <= 12` against this construction's own `log x ~ 300`. **What is
+   left is a finite optimisation, not a gap:** which admissible tuple minimises
+   `c_1^{(k)}` (equivalently the singular series `S(E)`)? That moves the
+   constant only.
 4. **The upper side of the family.** Is `j_k << x A^{2k-1+eps}`? At `k = 1` this
    is Iwaniec's territory and open; see 6a.
 

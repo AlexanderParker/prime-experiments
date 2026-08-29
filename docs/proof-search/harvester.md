@@ -1587,3 +1587,293 @@ NEGATIVES AND COSTS OF THE ROUND:
   clean copy before that constant is printed), and the Hildebrand-Tenenbaum
   1993 theorem numbering. **The theorem's headline constant depends only on
   Lichtman, which I read myself.**
+
+## 11. ROUND 27 (2026-08-29) - THE PAGE CAVEAT CLOSES; THE FAMILY IS WRITTEN
+
+Brief: (a) fetch the two unfetched ODC pages ((5.38), (6.69), p. 74), re-run
+the two standing gates, and write a ONE-PAGE SUBMISSION MEMO for the human;
+(b) (P6) the k-family write-up; (c) the lower ladder's next rung if capacity.
+
+GATES, all four re-run from clean processes at round close, all GREEN:
+  research/j2_referee.py    -> ALL ASSERTIONS GREEN  (run FIRST)
+  research/j2_citesweep.py  -> ALL CHECKS GREEN      (now over SIX documents)
+  research/j2_odcpages.py   -> ALL ASSERTIONS GREEN  (NEW this round)
+  research/jk_family.py     -> ALL ASSERTIONS GREEN  (NEW this round)
+Every job this round launched has finished; nothing left running.
+
+### 11a. (a) THE ODC PAGE-IMAGE CAVEAT IS CLOSED. ALL THREE PAGES FETCHED.
+
+Rounds 24, 25 and 26 each closed with the same sentence - "(5.38), (6.69) and
+p. 74 were not re-fetched; one library visit closes it" - and each time it was
+carried forward. It is closed. Method: the Google Books publisher preview of
+the AMS printing (volume Dz6REQAAQBAJ) serves page images only to a session
+that holds its cookies, which is why round 25's direct URL fetches returned a
+9,103-byte placeholder; driving a real browser to the volume, reading the
+`jscmd=click3` page list for the signed image URLs and fetching them IN the
+page's own session returns the images. Six new pages on disk beside round 25's
+nine: research/data/odc6_scans/PA42, PA43, PA44, PA45, PA67, PA74.
+
+**NOTHING IN THE LADDER MOVES.** No constant, exponent or threshold changes.
+Each page nevertheless paid something.
+
+**(5.38), p. 42, section 5.5 "The Sieve Dimension".** Printed as
+`prod_{w<=p<z}(1-g(p))^{-1} <= K (log z/log w)^kappa` for `z > w >= 2`,
+"where K is a constant, K > 1" - the form rounds 23-24 used from Dudek-Dunn
+Lemma 2.1 and Campbell Thm 2.1, now confirmed against the book, so THE
+ROUND-23/24 CAVEAT ON (5.38) IS DISCHARGED. Two by-products we did not have:
+K > 1 is REQUIRED, not merely natural; and the book prints the consequence
+`g(p) <= 1 - 1/K`, whose converse `K >= (1-g(p))^{-1}` (take w = p, z -> p+)
+**EXPLAINS THE WHOLE PRE-SIEVED K-LADDER IN ONE LINE** - K = 3 at p_0 = 3
+because g(3) = 2/3 exactly, 5/3 at p_0 = 5, 7/5 at p_0 = 7. Round 23 found
+those by grid search over all (w,z) and recorded "supremum at w = 3, z -> 3+"
+without being able to say why. Asserted at every operative K of the ladder.
+
+**(6.69), p. 67 - and it settles the hypothesis for EVERY kappa, not ours.**
+The page prints (6.65) alpha = (kappa/2) log((beta+1)/(beta-1)); (6.67) the
+convergence condition a = alpha e^{1+alpha} < 1; (6.68) e^{1+1/c} = c with c
+the root of (6.11), i.e. c(log c - 1) = 1 - **EXACTLY OUR THEOREM 3E CONSTANT
+lambda_* = 3.591121**; then "the condition a < 1 means alpha < c^{-1}, or
+equivalently" (6.69) and (6.70). So (6.69) IS `alpha < 1/c = 0.2784645`. And
+Corollary 6.13's own beta_kappa = 1 + 2(e^{1/(2kappa)}-1)^{-1} gives
+(beta+1)/(beta-1) = e^{1/(2kappa)}, hence **alpha = 1/4 IDENTICALLY IN
+kappa** - which is why the book states the corollary "for kappa > 0". The
+hypothesis holds at every dimension, checked at nine of them.
+NEW NUMBER, and it is the sharpest thing the page buys: since
+beta = coth(alpha/kappa) DECREASES in alpha, (6.69) puts an ABSOLUTE FLOOR of
+**7.22859** under ODC Chapter 6 at kappa = 2, below our positivity floor
+7.93727. **So (6.69) is not what stops Chapter 6 - POSITIVITY IS** - and even
+discarding every K-loss AND positivity, the chapter cannot print an exponent
+under 7.229, still 3.0 above DHR's 4.266. The 7.937 -> 4.266 gap is not
+reachable by any tuning of this chapter; round 25's "JUDGMENT, NOT RESULT"
+label on that statement can now be narrowed to the problem, not the device.
+
+**p. 74 - and it closes POSITIVELY.** ODC's own preliminary sieving,
+(6.99)/(6.100), carries `O(e^{-s_0} V(z_0)/V(z))` "where the implied constant
+depends only on K_0 and kappa_0" - **NOT EXPLICIT**. So the book's apparatus
+could not have supplied our pre-sieving factor, and round 24's elementary
+N_pre = prod_{p<p_0}(p - omega(p)) accounting is not an alternative to it but
+THE ONLY EXPLICIT ROUTE. It stays ours.
+AND THE BOOK'S OTHER ROUTE TO K -> 1, PRICED FOR THE FIRST TIME. pp. 43-44
+offer (5.42)/(5.43): K as close to 1 as one likes with NO preliminary sifting,
+by enlarging the dimension by epsilon ("the constant K given by (5.42) is
+fine, even for y = 2"). We had never considered it. It LOSES, on the book's
+own arithmetic, because beta = coth(alpha/kappa) INCREASES in kappa: eps = 1
+costs 3.93 of exponent (11.871 against 7.937) and even eps = 1/2 costs 1.98.
+Pre-sieving keeps kappa = 2 and is therefore the right device - a conclusion
+round 24 reached without the comparison and which is now compared.
+
+RESIDUAL, and it is the only page caveat that cannot be removed by fetching:
+these are publisher-preview page IMAGES read on screen, not a copy in hand.
+The mitigation is stronger than in rounds 24-25 - the pages cross-check each
+other (p. 45 quotes (5.38) and its consequence; p. 67's (6.65)-(6.70)
+reproduce Cor 6.13's beta_kappa exactly; p. 67's c is our own lambda_*), so an
+OCR corruption would have to be self-consistent across four pages of two
+chapters and agree with two independent transcriptions of Theorem 7.7.
+
+Written into Unit 1 as **j2-upper-bound.md section 11f**, with the checklist
+row added at 11e.
+
+### 11b. (a) THE SUBMISSION MEMO - docs/novel/unit1-submission-memo.md
+
+One page, and it does NOT recommend submitting: the decision is the human's
+and the memo exists to make it makeable. Contents: what the paper claims (the
+six-rung table, the two lower bounds, the falsification target); what it does
+not (the eight-item list, with the load-bearing four quoted); the three
+strongest points a referee will see (an empty ladder now four explicit rungs
+deep WITH the explicitness boundary proved so the obvious improvement is
+pre-answered; (P2') as a genuinely new construction that is parity-free for a
+structural reason; a visibly self-auditing paper); the three weakest ("this is
+an exercise", the audience, and an asymptotic lower half over a replicated
+computational half); a venue-class assessment; and the disclosure question.
+
+THE AUDIENCE NUMBER, stated plainly because it is the thing that decides the
+venue: **arXiv:1706.00317 has EXACTLY ONE CITATION IN NINE YEARS** - its own
+companion note - and zbMATH returns NO RECORDS for "paired Jacobsthal". The
+referee's real question is not "is this correct?" but "who is this for?".
+VENUE CLASSES, as an assessment and not a pick: arXiv math.NT first whatever
+else is decided (ZM's work and Holt's programme both live on arXiv, so a
+preprint reaches the entire actual readership in a day and timestamps j_k);
+JNT / Ramanujan J / Acta Arith / Mathematika are in range IF (P2') travels
+with it, since (P2') is what makes it a research paper rather than a note;
+INTEGERS or JIS if it stays elementary; NOT a general-audience venue. And one
+suggestion that costs nothing: write to Ziller and Morack, who are
+simultaneously the prior readership, the natural referees, and the people who
+can compute h_2 at p_n = 151 - the single number that would most improve the
+paper.
+
+THE AI-ASSISTANCE DISCLOSURE QUESTION IS FLAGGED AND NOT DECIDED. The memo
+gives the facts (no venue permits an AI author, so authorship is the human's;
+most major publishers now require disclosure of generative-AI use, with
+policies differing on derivation versus prose, and this work is far more the
+former; a minority of editors desk-reject) and one asymmetry worth weighing -
+this paper's strongest defence is that every recomputable claim is reproduced
+by independent code and every citation number is gate-checked, so disclosure
+makes that apparatus the point rather than a curiosity, while non-disclosure
+that later surfaces damages exactly the credibility the gates were built to
+earn. Three shapes offered, no choice made.
+
+### 11c. (b) (P6) THE k-FAMILY - WRITTEN. docs/novel/jk-family.md
+
+**THE OBJECT.** For k >= 1 and an ADMISSIBLE k-tuple E = (0 = E_0 <= ... <=
+E_{k-1}), j_E(m) is the largest cyclic gap between consecutive n with
+gcd(prod(n+E_i), m) = 1, and j_k(m) = max over admissible E. k = 1 is the
+ordinary Jacobsthal function; k = 2 is Ziller-Morack's h_2.
+
+**PROPOSITION (the covering restatement), and it is the whole content:**
+
+    j_k(P(z)) - 1  =  the longest interval coverable by choosing, at each
+                      prime p <= z, a set S_p of classes mod p with
+                            |S_p| <= min(k, p-1).
+
+Both directions are CRT. `min(k, p-1)` reproduces the ordinary problem at
+k = 1 and **Ziller-Morack's omega(2) = 1, omega(p) = 2 at k = 2** - i.e. our
+own g(2) = 1/2, g(p) = 2/p - and it is what makes THE SIFTING DIMENSION EQUAL
+TO k. Admissibility is exactly what the `p-1` encodes.
+
+BRUTE-FORCED, both forms independently, and they agree at every case
+exhaustion reaches (k = 1,2,3 x z = 3,5,7). k = 1 returns A048669's 4, 6, 10;
+k = 2 returns ZM's 6, 18, 30; and **k = 3 returns j_3(P(3)) = 6,
+j_3(P(5)) = 24, j_3(P(7)) = 78 - a first evaluation** (witnesses (0,0,2),
+(0,2,6), (0,2,18)). Their smallness is the point: the object is elementary,
+hand-computable, and unnamed.
+
+**THE LADDER IS UNIFORM IN k**, which is the reason to publish the family:
+- Legendre rung with omega_p = min(k, p-1); at k = 2 the numerator is
+  2*3^{n-1}, Theorem 1 verbatim.
+- **THE POLYNOMIAL RUNG AT EVERY k:** ODC Corollary 6.13 gives
+  beta_k = 1 + 2(e^{1/(2k)}-1)^{-1}, so j_k(P(z)) <<_{k,eps} z^{beta_k+eps}
+  with 4k-1 < beta_k < 4k+1 (4.082988, **8.041623**, 12.027765, 16.020828,
+  ... - the k = 2 entry IS Theorem 2G's exponent, so the family rung CONTAINS
+  Unit 1's best explicit bound). Its two hypotheses are (5.38) and (6.69),
+  both read first-hand this round and both holding at every kappa. The one
+  arithmetic change with k is |r_d| <= k^{nu(d)}, so the remainder carries
+  (log D)^{k-1} instead of (log D); the level and the exponent are unchanged.
+- **(P2') at every k**: x A^{2k-1} C^k/B^{2k} with K_k = k/((k(2k-1))^k c_1^k).
+- SANDWICH x A^{2k-1} C^k/B^{2k} << j_k << x^{beta_k+eps}, beta_k ~ 4k, and
+  the CONJECTURE j_k(P(x)) = x (log x)^{2k-1+o(1)} for every k.
+
+HONEST, AND IN THE NOTE: **at k = 1 the family rung (4.083) is WORSE than the
+record** - Iwaniec 1978's exponent 2, unmoved for 48 years. So the family rung
+is the ONLY bound in existence for k >= 2 and is NOT the best at k = 1. And
+the upper rungs are standard sieve theory applied to a new object, not new
+sieve theory - Unit 1's not-claim 2, inherited unchanged.
+
+WHY IT MATTERS TO UNIT 1: it converts the paper's weakest structural point
+("one function, standard tools") into "a family, and the family is the
+contribution", and it locates ZM Conjecture 6 inside the family - their
+exponent 2 at dimension 2 is exponent k at dimension k, the level at which a
+survivor in (y, y^2] IS a prime k-tuple, so **THE PARITY CEILING OF UNIT 1 IS
+UNIFORM IN k**, not special to twins.
+
+### 11d. (c) THE LOWER LADDER'S NEXT RUNG - THE k >= 4 SHIFT SET, ANSWERED
+
+layered-erdos-rankin.md section 6 item 3 was the family's one named piece of
+real work. **IT COSTS NOTHING**, and the write-up is in jk-family.md section 4
+with the gate at jk_family.py section E.
+1. `0,2,...,2(k-1)` is the WRONG TUPLE - from k = 3 it is not even admissible
+   (0,2,4 covers Z/3, so no n survives at all). Round 26 tabulated its
+   "collisions" without noticing that.
+2. With ANY admissible tuple (e.g. {q_1..q_k} - q_1 for the k least primes
+   q_i > k), a collision E_i = E_j mod p needs p | E_j - E_i, hence
+   p <= M_k = max pairwise difference, A CONSTANT IN k. The greedy layer runs
+   over [P, z1] with P = A^{2k-1} -> oo, so for large x EVERY colliding prime
+   lies BELOW P, inside the Eratosthenes layers - where a collision merely
+   means two layers coincide, uses FEWER than the k available classes, and
+   leaves the survivor structure untouched. Hence Sigma = prod(1-k/p) with NO
+   correction and K_k stands as printed.
+3. THRESHOLD: x > exp(M_k^{1/(2k-1)}), which is under e^4 for every k <= 12,
+   against this construction's own log x ~ 300. Tabulated with the tuples.
+What remains is a FINITE OPTIMISATION AND NOT A GAP: which admissible tuple
+minimises c_1^{(k)} (equivalently S(E))? It moves the constant only.
+
+**A SIMPLIFICATION OF OUR OWN ARGUMENT, recorded rather than hidden.** The
+greedy lemma at general k - some k distinct classes mod p hold at least kN/p
+of any N-set - has a ONE-LINE proof: the p class counts average N/p, so the k
+largest average at least N/p and sum to at least kN/p. That subsumes round
+26's k = 2 lemma, whose proof (n_(1) >= N/p, n_(2) >= (N-n_(1))/(p-1),
+monotonicity) was correct but longer than it needed to be. The k = 2 statement
+2N/p was and is exact; this is a simplification, not a correction.
+
+### 11e. Negatives, costs and residual risks of the round
+
+* **ROUND 26 TABULATED COLLISIONS FOR AN INADMISSIBLE TUPLE** (11d item 1) -
+  my own, one round old. The numbers were right about `0,2,...,2(k-1)`; that
+  tuple is not a tuple the construction can use from k = 3 on. The error was
+  harmless (k = 2 is our case and is unaffected) but it is exactly the shape
+  of mistake the lane keeps making: carrying a small-k object into general k
+  without re-checking the definition.
+* **ROUND 26's GREEDY PROOF WAS LONGER THAN NECESSARY** (11d). Also mine.
+* THE PAGE IMAGES ARE STILL IMAGES. Mitigated four ways, not removed.
+* **(6.69) turns out never to have been at risk** - it holds at every kappa
+  because Cor 6.13's alpha is 1/4 identically. Three rounds carried it as an
+  open caveat. The lesson is round 25's clause 4 again: the condition was
+  quoted BY NUMBER inside a proposition we had priced, and pricing a
+  proposition means reading what it cites.
+* **j_3 beyond z = 7 was NOT computed.** The covering-form search is
+  exponential in the number of primes and z = 11 needs a real algorithm, not
+  exhaustion. Named, priced (Ziller's ordinary-side algorithm is the model),
+  and deliberately not started - it would not have finished in-round.
+* THE FAMILY'S UPPER RUNGS ARE NOT NEW MATHEMATICS and the note says so twice.
+* NO PRE-REGISTRATION THIS ROUND. The work was fetch-and-write; there was
+  nothing whose outcome I did not already expect except (6.69), and I did not
+  write down a prediction for it before fetching. Recorded as a miss.
+
+### 11f. Additions to the standing citation-hygiene lesson (7d)
+
+9. **A PAGE THAT WOULD NOT FETCH IS NOT A PAGE THAT CANNOT BE FETCHED.** Round
+   25 tried the obvious image URL, got a 9,103-byte placeholder, and recorded
+   "not obtained; one library visit closes it" - which three rounds then
+   repeated as if it were a fact about the world. It was a fact about a
+   missing cookie. **When a source is recorded as unobtainable, record HOW the
+   attempt was made, so the next round can attack the method instead of
+   inheriting the verdict.**
+10. **A HYPOTHESIS CITED BY NUMBER IS AN UNREAD HYPOTHESIS.** Theorem 2G rests
+    on Corollary 6.13, which rests on Proposition 6.7, which requires "kappa
+    bounded by (6.69)". We priced the proposition (clause 4) and still did not
+    read the condition it names. It was fine - but we did not know that for
+    three rounds. **Follow every numbered reference inside a result you are
+    using, to the page.**
+
+### 11g. Ranking changes
+
+* **N4 (j_2 upper ladder) stays TOP and its LAST research-shaped item is
+  gone.** Every blocker, opening and caveat of rounds 23-26 is closed. What
+  remains is LaTeX, a scope decision, and a decision that is the human's.
+* **(P6) RISES to sit beside N4** rather than below it: the family is written,
+  gated, prior-art-checked, and it is the piece that answers the strongest
+  referee objection to N4. Its one open item is exact values of j_3 beyond
+  z = 7 - a computation, not research.
+* **P1-P3 (lower ladder): unchanged in rank, one item lighter.** Its named
+  next question (the k >= 4 shift set) is answered. The two remaining items
+  are the (loglog)^{2k} exponent, which is a parameter choice nobody has
+  optimised, and the threshold, which is not writeable.
+* **7c#4 (h_2 at p_n = 151..251) is now the lane's TOP RESEARCH ITEM by
+  default**, being the only purchasable number that discriminates z(log z)^2
+  from z(log z)^3 - and, per the memo, the natural thing to ask Ziller and
+  Morack for.
+* **DEMOTED: nothing.**
+
+### 11h. Reproduction (round 27)
+
+* `research/j2_odcpages.py` -> `research/data/j2_odcpages.out`. Sections
+  A ((5.38), the K-ladder explained, every operative K checked against K > 1
+  and g(p) <= 1 - 1/K), B ((6.69) as alpha < 1/c, Cor 6.13's alpha = 1/4 at
+  nine dimensions, the 7.22859 hard floor), C (p. 74, and (5.42)/(5.43)
+  priced), D (what moved in Unit 1: nothing in the ladder).
+* `research/jk_family.py` -> `research/data/jk_family.out`. Sections A
+  (definition + covering restatement, both forms brute-forced), B (beta_k, and
+  the honest k = 1 comparison with Iwaniec), C (Legendre rung vs the exact
+  values), D (K_k), E (the shift-set answer, tuples and thresholds to k = 12),
+  F (the general-k greedy lemma, 40,000 random distributions).
+* `research/j2_citesweep.py` now sweeps SIX documents (jk-family.md added).
+* Page images: `research/data/odc6_scans/PA42,43,44,45,67,74.png` (new,
+  2026-08-29) beside round 25's PA65, PA68-73, PA112.
+* Documents changed: `docs/novel/j2-upper-bound.md` (new section 11f + a
+  checklist row + the 11e remaining-list rewritten);
+  `docs/novel/layered-erdos-rankin.md` (section 6 item 3 answered);
+  `docs/novel/README.md` (two new index entries, one amendment).
+  New: `docs/novel/jk-family.md`, `docs/novel/unit1-submission-memo.md`.
+* Sources read FIRST-HAND by me on 2026-08-29: Opera de Cribro pp. 42, 43, 44,
+  45, 67, 74 (page images, publisher preview); the OEIS search endpoint for
+  `seq:6,24,78` (19 sequences, none number-theoretic in our sense) and
+  `jacobsthal function primorial` (6 sequences, all one-class).

@@ -67,9 +67,22 @@ HOLES[47] = []                    # no hole list computed
 # F_{r+1}(M) <= F(M + r more gears) with the corpus F ladder.
 DEFAULT_CAPS = {
     37: [88, 90, 97, 105, 113, 120],        # exact full-period spectrum (r21)
-    41: [91, 103, 110],                     # F_2(41)=103, F_3(41)=110 (r24 exact)
+    # F_2(41)=103, F_3(41)=110 (r24 exact), F_4(41)=118 (r27 exact, floor-1
+    # lap-phase transfer at cap 150 > the deletion-ladder cap 145, so the
+    # value is NOT span-capped)
+    41: [91, 103, 110, 118],
     43: [103, 118, 145],                    # F_2<=F(47), F_3<=F(53)
     47: [118, 145, 263],                    # F_2<=F(53); F_3<=F_2+F_1
+    # ROUND 27, step 53 -> 59.  The corpus F ladder STOPS at 53, so the
+    # deletion-ladder cap F_2(53) <= F(59) is unavailable and this lane's own
+    # F_2(53) = 159 (C30) has a `<=` side that is CONDITIONAL on a span cap.
+    # A verdict must not inherit that condition, so the caps here are the
+    # UNCONDITIONAL ones F_2 <= 2 F_1 and F_3 <= 3 F_1.  Measured price of
+    # unconditionality (research/akill_53_59_plan_r27.py): the k=3 level goes
+    # from 6 reverse classes to 15.  Deeper levels are pruned adaptively by
+    # the overlap lemma from the REALISED words actually found, so the
+    # worst-case counts in that script are not the campaign's cost.
+    53: [145, 290, 435],
 }
 
 

@@ -35,6 +35,7 @@ DOCS = [
     r"docs\novel\layered-erdos-rankin.md",
     r"docs\novel\twin-percentile.md",
     r"docs\novel\paired-jacobsthal-values.md",
+    r"docs\novel\jk-family.md",          # added r27: the (P6) family note
 ]
 
 OUT = []

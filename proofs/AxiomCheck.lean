@@ -1,3 +1,6 @@
+import CaseCert31
+import CaseCert23
+import CaseSplit
 import Machine23Q
 import Machine23Scan
 import Machine29
@@ -403,3 +406,35 @@ open BlockedSlots
 #print axioms Mirror.antipode_exposed11
 #print axioms Mirror.antipode_exposed29
 #print axioms Mirror.self_mirror_unique
+
+-- Round 27: the case-split LP certificates (the 19->23 rung, hypothesis-free)
+#print axioms CaseSplit.le_mxr
+#print axioms CaseSplit.le_mxr2
+#print axioms CaseSplit.lowest6
+#print axioms CaseSplit.lowest7
+#print axioms CaseSplit.degpos6
+#print axioms CaseSplit.ind_low2
+#print axioms CaseCert23.cert0
+#print axioms CaseCert23.cert1
+#print axioms CaseCert23.cert2
+#print axioms CaseCert23.cert3
+#print axioms CaseCert23.cert4
+#print axioms CaseCert23.nocov0
+#print axioms CaseCert23.nocov4
+#print axioms CaseCert23.blocked
+#print axioms CaseCert23.no_run
+#print axioms CaseCert23.F_le
+#print axioms CaseCert23.D_19_23_case
+
+-- Round 27: the counting half of the mirror lever
+#print axioms Mirror.even_card_involution
+#print axioms Mirror.window_count_even
+#print axioms Mirror.adjacent_equal_even
+#print axioms Mirror.none_of_at_most_one
+#print axioms CaseCert31.cert0
+#print axioms CaseCert31.cert34
+#print axioms CaseCert31.nocov0
+#print axioms CaseCert31.blocked
+#print axioms CaseCert31.no_run
+#print axioms CaseCert31.F_le
+#print axioms CaseCert31.D_29_31_case

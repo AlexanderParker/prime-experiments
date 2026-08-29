@@ -1753,3 +1753,355 @@ and it is the same distinction R68 draws.
   so the candidate says "one more link buys at most one small letter over the
   old two-gap maximum, unless the link is padded (worth a full q')". R68's
   witnesses are the record-window decompositions that would test it further.
+
+
+---
+
+## Constructor round 27 - THE ORDER IS BOUNDED (AND IT IS THE WRONG ORDER), AND THE INCREMENT LAW AT THE DEEP STEPS
+
+Brief: (a) the uniform-order question (R67 item i) - prove A_relax(M) <= 4 for
+all M or exhibit the first failure, using Mechanic's phase-saturation ceilings
+as an arithmetic function the way R20 handled litcap; (b) the increment law
+tested at 41->43, 43->47, 47->53, plus (routed in mid-round by the manager)
+their depth-3 reduction, THE TRIPLE INEQUALITY, at 29->31, 31->37, 37->41 and
+deeper if the tooling reaches; (c) the ninth rung 41->43 if an exact m41 census
+lands from Mechanic.
+Pre-registration: `research/data/r27_prediction.txt`, written before any
+round-27 script ran; scored at the end of this append.
+Gates, all re-run clean at round close and all green:
+  research/uniform_order.py   -> all assertions passed  (r27_uniform_order.log)
+  research/increment_law.py   -> all assertions passed  (r27_increment_law.log)
+  research/triple_41.py --y 37 --q 41 --floor 89
+      -> reproduces the exact m37 answer (MAX = 90, witness (28,14,48))
+  research/chain_ps.py        -> 0 false kills on all 291,675 realised m37
+                                 4-tuples
+
+**R74 (THE UNIFORM ORDER: A_relax(M) <= 5 AT EVERY MACHINE - a theorem, in
+closed form, with the six exceptional classes identified as an object the
+project already had).** R67 named this "(i) THE ORDER" and both R25 and R26
+closed asking for "a bound, any bound, valid at every machine". There is one.
+
+  THEOREM. For every machine M = {5..y} with y >= 7 and q' = nextprime(y),
+      A_relax(M) <= 5,
+  and A_relax(M) <= 4 unless q' = 37, 53, 83, 127, 157 or 173 (mod 210).
+  (For the one smaller machine M = {5}, A_relax = 1 directly: the letter
+  b = 5 exceeds F({5}) = 2.)
+
+PROOF, and the whole of it is arithmetic. By Mechanic's round-26 phase
+saturation, a word with prefix-sum offsets X occurs nowhere if for some gear g
+of M no translate of X fits inside E_g = Z_g minus {+-6^{-1}} - which uses only
+the EXPOSED half of the realisability CSP and is therefore a fortiori a
+refutation of "m consecutive gaps". For the m-letter alternation
+X = {0, a, q', q'+a, 2q', ...}, so X mod g is determined by (a mod g, q' mod g),
+and 3a = q' -+ 1 with the sign fixed by q' mod 6, so everything at gears 5 and 7
+is a function of q' mod 210. Enumerating all 48 invertible classes:
+
+    PS-order 2 : 24 classes      PS-order 4 :  2 classes  (23, 187)
+    PS-order 3 : 16 classes      PS-order 5 :  6 classes  (37, 53, 83, 127,
+                                                           157, 173)
+
+Maximum 5 - the theorem. Adding gears 11 and 13 (moduli 2310, 30030) refutes
+NOTHING further: 60 of 60 and 720 of 720 refinements of the six classes stay at
+order 5. Independently, a direct sweep of every prime q' < 20000 with all gears
+of M up to 100 reproduces the same distribution and the same exceptional
+residues (the only extra is q' = 7, where gear 7 is not yet in M).
+
+THE SIX CLASSES ARE EXACTLY R20's LITCAP-6 CLASSES, and that is not a
+coincidence: by CRT a translate of a point set fits inside the exposed sets of
+gears 5 and 7 separately iff it fits inside the corridor E mod 35, so phase
+saturation at {5,7} and the literal cap are the same arithmetic seen from two
+sides. The only difference is the quantifier over the two starting letters -
+litcap MAXIMISES over them (it is about chain existence), the order MINIMISES
+(one broken window kills the cycle). Two invariants the project found
+independently, five rounds apart, are one object.
+
+GATES. The refuter reproduces phase-saturation-arity.md's alternation-ceiling
+column exactly at all eight steps 31->37 .. 61->67 in Mechanic's own convention
+(the phase starting with s = 2*6^{-1} mod q'; the OTHER phase differs at three
+of the eight steps, which is why the two numbers must not be conflated), and
+refutes none of the seven words on the project's realised record.
+
+A SELF-CORRECTION TO MY OWN R45 TABLE, and it is what made the question
+answerable. A_relax recomputed EXACTLY at nine machines from full-period data
+(direct cyclic scans m11..m23, Mechanic's exact 4-tuple censuses m29/31/37,
+R45's exact CRT count at m41):
+
+    machine   11 13 17 19 23 29 31 37 41
+    A_relax    1  2  2  3  2  3  4  2  2     round 27, every entry from data
+    R45 table  1  2  2  3  2  3  4  3  2     m37 entry was an ASSUMPTION
+
+`arity_ladder.py` hardcodes "the 1- and 2-letter alternations are realised" at
+machines 29, 31 and 37 instead of looking them up. At m37 that is false: gear 5
+refutes (14, 27) by phase saturation, and Mechanic's exact m37 dictionary
+confirms it is absent. Doc: `docs/novel/uniform-order-bound.md`.
+
+**R75 (THE COMPANION NEGATIVE, AND IT IS THE SHARPER HALF: A_relax IS NOT THE
+ORDER THE CHAIN NEEDS, AND THE ORDER THE CHAIN NEEDS CANNOT BE CAPPED THIS
+WAY).** A_relax tests ONE candidate cycle. A_m is nilpotent - hence bounds
+anything at all - only when EVERY legal cycle is broken, and padded letters
+(= 0 mod q') are transparent to T3, so mixed padded/literal cycles are legal
+too. Define N(M) = smallest m at which A_m is acyclic; then
+max(2, A_relax) <= N <= A_res. Measured exactly this round from the same
+dictionaries (small explicit graphs, cycle detection):
+
+    machine   11 13 17 19 23 29 31 37
+    A_relax    1  2  2  3  2  3  4  2
+    N          2  2  2  3  2  3  4  3
+
+R49's identity N = max(2, A_relax), which held 7 of 7, is REFUTED at the eighth
+machine: A_relax(37) = 2 but N(37) = 3. The extra order is bought by a PADDED
+cycle - machine 37's legal value set is {14, 27, 41, 55, 68, 82} and 41, 82 are
+T3-transparent, so a cycle 14 -> 41 -> 27 -> 41 -> 14 alternates legally where
+the pure alternation (14,27) does not even occur. So the corrected A_relax table
+changes a PROXY, and the proxy is now known to be lossy.
+
+AND THE METHOD DIES AT A LOCATABLE STEP. A cycle in A_m needs arbitrarily long
+runs of legal gaps, so N(M) <= 1 + (longest realisable T3-legal word). Gears 5
+and 7 refute a word iff its prefix-sum walk leaves the corridor E mod 35, so
+    CORRCAP(q', F) = longest T3-legal word, values <= F, staying in E mod 35
+is the strongest cap those gears can EVER give. Exactly (30 states = corridor
+residue x tooth; INFINITE means the graph has a cycle):
+
+    step     F(M)  F/q'  CORRCAP        step     F(M)  F/q'  CORRCAP
+    19->23     25   1.1      4          37->41     88   2.1     25
+    23->29     34   1.2      2          41->43     91   2.1     25
+    29->31     43   1.4      3          43->47    103   2.2     11
+    31->37     58   1.6      5          47->53    118   2.2      5
+                                        53->59    145   2.5   INFINITE
+
+and INFINITE at every larger ratio tested (F/q' = 3.3, 4.5, 7.0, 13.7). The
+mechanism is explicit: the padded letters contribute steps j*q' mod 35, and
+since gcd(q',35) = 1 those fill Z_35 as soon as F/q' is large enough, so the
+corridor stops constraining. F/q' grows without bound along the chain (F is
+Jacobsthal-scale, q' ~ y), so NO FIXED SET OF SMALL GEARS CAN EVER CAP THE
+ORDER AGAIN. The first step where it fails is 53 -> 59.
+
+VERDICT ON THE BRIEF'S QUESTION, stated plainly: phase saturation alone DOES cap
+A_relax uniformly (at 5, not 4), and does NOT cap N. The uniform order, correctly
+posed, is a question about the COVER half of the realisability CSP - "every
+interior point blocked" - and no bounded gear set can supply that half
+uniformly, because larger machines make covering EASIER, not harder. That is
+where R67(i) actually lives, and it is not where I was looking.
+
+**R76 (THE INCREMENT LAW AT THE THREE DEEP STEPS: HOLDS, 3 OF 3 - AND ONE OF
+THEM NEEDS NO COMPUTATION AT ALL).** The manager's hypothesis is
+F(M+q') - F_2(M) <= s_min(q') = min(2u', q'-2u') = 2u' (a = 2u' is always the
+smaller letter, since a ~ q'/3 and b ~ 2q'/3).
+
+    step        F(M+q')   F_2(M)     diff   s_min   verdict
+    41->43         103       103        0      14   HOLDS
+    43->47         118   [103,118]   <= 15     16   HOLDS - by monotonicity
+    47->53         145       134       11      18   HOLDS
+
+The middle row is the interesting one. F_2(43) is not on record (the corpus has
+103 <= F_2(43) <= 118) and computing it at machine 43 is expensive - but it is
+not needed. F_2 IS NON-DECREASING IN THE MACHINE (adding a gear deletes openings
+and can only merge gaps, so every adjacent pair of M is a sub-sum of an adjacent
+pair of M + q'), hence F_2(43) >= F_2(41) = 103, and 118 - 103 = 15 <= 16.
+Together with R68's witness table (0, 2, 0, 3, 4, 3, 20, 1, 0 at 11->13 ..
+41->43) the increment law now holds at ELEVEN of the twelve steps the project
+can test, failing only at the padded 31->37, by +8.
+
+**R77 (THE MANAGER'S TRIPLE INEQUALITY, EXACT AT EIGHT STEPS - AND THE PADDED
+STEP'S FAILURE IS ENTIRELY IN THE PADDED MIDDLE).** Their reduced form: for
+every adjacent gap triple (g_L, w, g_R) of M with LEGAL middle,
+g_L + w + g_R <= F_2(M) + s_min(q'). Computed exactly (scans at m11..m23,
+Mechanic's exact 4-tuple censuses at m29/31/37, projected to triples;
+`research/increment_law.py`), with the LITERAL middles (w = +-s mod q') and the
+PADDED middles (w = 0 mod q') separated - a separation the manager's five-step
+probe never had to make, since no padded middle exists below 19->23:
+
+     M    q'  s_min   F_2   rhs |  literal max  slack  witness   | padded max
+    11    13     4     11    15 |      8         +7   (1,4,3)    |  none
+    13    17     6     16    22 |     18         +4   (5,11,2)   |  none
+    17    19     6     25    31 |     25         +6   (5,13,7)   |  none
+    19    23     8     31    39 |     33         +6   (5,8,20)   |   31  +8
+    23    29    10     39    49 |     43         +6   (10,10,23) |   40  +9
+    29    31    10     55    65 |     58         +7   (18,10,30) |   49 +16
+    31    37    12     68    80 |     70        +10   (5,25,40)  |   85  -5
+    37    41    14     90   104 |     90        +14   (28,14,48) |   83 +21
+
+  * THE LITERAL TRIPLE INEQUALITY HOLDS AT ALL EIGHT STEPS, the padded
+    31->37 INCLUDED (70 <= 80, slack +10). The failure at 31->37 is carried
+    entirely by the padded middle 37, exactly as the manager's reading of the
+    increment law says it should be.
+  * My round-27 P6 was therefore REFUTED AS WRITTEN (I predicted the whole
+    inequality holds at 31->37) and CONFIRMED in the form that matters (the
+    literal half does).
+  * CROSS-VALIDATION: my literal column reproduces the manager's independently
+    implemented probe digit for digit at the five steps they ran - 8, 18, 25,
+    33, 43. Two implementations, same numbers.
+  * THE SLACK SEQUENCE +7, +4, +6, +6, +6, +7, +10, +14 is bounded and GROWING
+    at the last two steps, but the sharper reading is on the other side of the
+    ledger (R78).
+
+PER-DEPTH (the generalisation the manager asked about), against R68's exact Q*
+table: Q*_2 = F_2(M) identically, so the law is a statement about J >= 3, and
+Q*_J - F_2 <= s_min holds at 7 of the 8 steps, failing at 31->37 at BOTH J = 3
+(+5) and J = 4 (+8). Every failing cell contains the padded letter 37.
+
+**R78 (A FREE REDUCTION OF THE DEPTH-3 OBLIGATION, FOR THE MANAGER'S
+DERIVATION).** For any triple of consecutive gaps, (g_L + w) and (w + g_R) are
+2-gap windows of M, so both are <= F_2(M). Hence WITH NO HYPOTHESIS AT ALL
+
+    g_L + w + g_R  <=  F_2(M) + min(g_L, g_R),
+
+so the triple inequality is AUTOMATIC at any triple whose smaller flank is
+<= s_min, and the entire depth-3 obligation reduces to triples with both flanks
+above s_min. Measured, with Delta_3 = max over legal triples of (span - F_2) -
+the quantity the law must cap - and the min-flank at the argmax:
+
+     M    q'  s_min  Delta_3  minflank@argmax  free?  #legal  #both flanks>s_min
+    11    13     4      -3           1          yes        6        0
+    13    17     6       2           2          yes       72        0
+    17    19     6       0           5          yes     1088       16
+    19    23     8       2           5          yes    11698        4
+    23    29    10       4          10          yes   243810       24
+    29    31    10       3          18          no       544      131
+    31    37    12       2           5          yes      991      205
+    37    41    14       0          28          no      1327      317
+
+THE SHAPE, and it is the useful part: Delta_3 is BOUNDED BY A CONSTANT (max 4
+over all eight steps, no trend) while s_min grows linearly in q'. The free bound
+already discharges 6 of the 8 steps outright. So the depth-3 half of the
+increment law is not a tight inequality at all - it is a constant against a
+linear function, with the free reduction covering most cases. If the manager's
+induction needs a derivable statement, "Delta_3 = O(1)" is the shape to aim at,
+not "Delta_3 <= s_min".
+
+**R79 (THE NINTH RUNG: STILL NOT CERTIFIED, AND THE FAILURE IS NOW PINNED TO
+THE ORACLE'S INFORMATION CONTENT, NOT TO COST OR STRATEGY).** No exact m41
+4-tuple census appeared on disk this round, so brief item (c)'s precondition
+never arrived. What was done instead is cheap and it settles a question.
+
+  * PHASE SATURATION AS A FREE ORACLE TIER (`research/chain_ps.py`): superset
+    ABSENT -> NO (free); else phase saturation -> NO (free, exact, and it comes
+    from no scan); else CRT. Soundness gate: 0 false kills on all 291,675
+    realised m37 4-tuples (an independent gate from Mechanic's, which used
+    468,418 realised tuples).
+  * MEASURED, AND IT IS A NEGATIVE: phase saturation answers 0 of the 27,197
+    superset-YES queries the 41->43 loop actually asks. ZERO, not few. The
+    reason is structural and worth recording: MF_4 is built MOD 35, so every
+    edge it carries is already corridor-admissible, and phase saturation at
+    gears 5 and 7 IS the corridor condition (R74's CRT remark). Gears 11 and
+    13 fire only at |X| large, which arity-4 queries never reach. So Mechanic's
+    "screens 4,239,676 -> 2,814,574 of the dictionary" is real as a screen of
+    the DICTIONARY and worth exactly nothing on the loop's own query stream -
+    two different numbers, and only the second one is the oracle's cost.
+  * THE STALL IS AT 222 UNDER THREE SETTINGS: superset alone (R72), superset +
+    phase saturation, and superset + phase saturation + the exact F_2(41) = 103
+    (which cuts the state space to 1,058,228 states / 819,629 edges and the
+    queries to 3,209, and still stalls at 222). So 222 is the transfer
+    superset's INFORMATION LIMIT, not a search artifact and not a budget
+    artifact. Only the CRT tier moves it, which is R72's costing unchanged.
+    Route (ii) - Mechanic's exact m41 census - remains the cheap route and
+    remains their vehicle.
+
+**NEGATIVES AND SELF-CORRECTIONS (round 27).**
+* R45's A_relax(37) = 3 IS WRONG (it is 2) and the defect is mine: my own
+  `arity_ladder.py` hardcodes the m = 1 and m = 2 entries at machines 29, 31 and
+  37 as "realised" instead of looking them up in the census. Nothing downstream
+  used the entry, but it is the second time in two rounds that a hardcoded
+  convenience in my own script has entered the record as a measurement (R61's
+  m31 counts were the first). LESSON, and it is now a standing rule for this
+  lane: a table cell that a script FILLS IN rather than LOOKS UP must be printed
+  as such, or not printed.
+* MY PRE-REGISTERED P1 IS REFUTED: phase saturation does NOT cap A_relax at 4.
+  It caps it at 5, and the six classes where it stops at 5 are stable under
+  gears 11 and 13. My hand computation P2 (gear 5 alone fails exactly on
+  q' = 7, 23 mod 30) was CONFIRMED, which is what let me see that the gap is a
+  class phenomenon rather than a machine phenomenon.
+* P6 REFUTED AS WRITTEN (the triple inequality does not hold at 31->37 with a
+  padded middle) - I predicted the wrong half of a distinction the manager's own
+  message had already drawn ("w = +-s (mod q')"). I should have read the
+  quantifier before predicting against it.
+* I PIPED A LONG BACKGROUND RUN THROUGH `tail` AGAIN - the exact mistake
+  recorded in the round-26 negatives, in the same lane, one round later. It cost
+  about four minutes of blind waiting on the m37 gate. Background runs write to
+  a log file, never to a pipe.
+* THE SCRIPT'S OWN VERDICT LINE FOR THE m41 SUPERSET ROW SAYS "FAILS" and that
+  is a presentation defect, not a result: 144 is a SUPERSET maximum and R72 had
+  already measured the superset as heavily inflated at arity >= 2. The corrected
+  reading is the CRT sweep in R80. Flagged here rather than silently patched.
+* The two superset runs of `chain_ps.py` first wrote to the same JSON path
+  (the F_2 seed was not in the tag), so the unseeded artifact was overwritten
+  once before the tag was fixed. Both runs' numbers survive in their logs.
+
+**R80 (THE TRIPLE INEQUALITY AT THE NINTH STEP, SCAN-FREE - and the sweep is a
+reusable instrument).** `research/triple_41.py`: sweep Mechanic's m41 transfer
+SUPERSET downward by span (a superset is a sound source of candidates, since
+every realised triple is in it), halve by Lateral's reversal theorem, apply
+phase saturation as a free prefilter, and decide the survivors with
+`crt_dict.decide_cover`. Descending order means the first realised triple found
+IS the maximum, with every larger candidate refuted.
+GATE, at machine 37 where the answer is known from the exact census: MAX = 90
+with witness (28,14,48) - identical to the exact-dictionary computation, value
+and witness. Two vehicles, one number.
+RESULT AT MACHINE 41 (q' = 43, budget F_2(41) + s_min(43) = 103 + 14 = 117),
+every candidate decided, ZERO UNDECIDED at either half:
+
+    LITERAL middles: every candidate of span 144 down to 108 REFUTED
+                     (37 span levels, 0 realised, 0 undecided) => max <= 107
+    PADDED  middles: every candidate of span 130 down to 117 REFUTED
+                     (11 span levels, 0 realised, 0 undecided) => max <= 116
+
+    so Q*_3(41; legal for 43) <= 116 < 117 - THE TRIPLE INEQUALITY IS
+    CERTIFIED AT 41 -> 43, the NINTH step and the first certified with no
+    census of any kind behind it.
+
+Two remarks that are part of the result. (i) The padded half is the tight one
+(+1 against the literal half's +10) - the same asymmetry that makes 31->37 the
+single failing step in the whole family, now visible one gear later without a
+failure. (ii) THE EXACT MAXIMUM IS NOT DELIVERED: the literal descent was
+stopped at the span-108 level boundary after one arity-3 instance at span 107
+ran past 20 minutes (against a 30-70 s norm at the levels above it). Every
+completed level is a self-contained refutation set, so "max <= 107" is exact
+and gate-clean; "= 107" is not claimed. The cost of an m41 arity-3 CRT
+refutation is NOT uniform in span, and that is a new measurement for the
+oracle-cost curve (R66/R72): mean ~40 s, but with a heavy tail that a node
+budget does not bound in practice.
+
+MY OWN OPERATIONAL ERROR, recorded because it cost round time: I killed the
+first sweep at the span-108 boundary on the strength of a POLL THAT WAS STALE -
+the level had in fact completed 156 s earlier and the job was healthy and
+working on 107. Nothing was lost that the resumed run could not redo, but the
+decision was made on a read, not on the log, and the log was right.
+
+**PREDICTION SCORECARD (`research/data/r27_prediction.txt`, pre-registered).**
+* P1 PS-order <= 4 for every q' with gears 5,7,11,13 - REFUTED. It is <= 5, with
+  six exceptional classes mod 210 that gears 11 and 13 do not touch.
+* P2 gear 5 alone fails exactly on q' = 7, 23 (mod 30) - CONFIRMED exactly.
+* P3 the worst case is attained and the bound cannot be improved - CONFIRMED in
+  the corrected form (order 4 is attained at classes 23 and 187, order 5 at the
+  six litcap-6 classes; neither can be lowered by gears 11 or 13).
+* P4 A_relax(37) = 2, not 3, and my R45 table is wrong - CONFIRMED, and the
+  corrected ladder is 1,2,2,3,2,3,4,2,2 exactly as predicted.
+* P5 the increment law holds at all three deep steps, with 43->47 needing no new
+  computation - CONFIRMED, both halves.
+* P6 the triple inequality holds at 29->31, 31->37, 37->41 - REFUTED as written
+  (31->37 fails with a padded middle) and CONFIRMED for literal middles. The
+  predicted slack band [3,15] was right (+7, +10, +14).
+* P7 the maximiser is a relaxed-superset object, not a realised record window,
+  from 29->31 on - REFUTED: every maximiser in the table is a realised triple of
+  the exact census. At depth 3 the relaxation costs nothing.
+* P8 rung nine not certified absent an exact m41 census - CONFIRMED.
+* P9 at least one of P1-P8 refuted and named - CONFIRMED (P1, P6, P7).
+
+**NEEDS / NEXT CONSTRUCTS.**
+* THE ORDER QUESTION, CORRECTLY POSED. Is N(M) bounded? R74 settles the
+  alternation; R75 shows the corridor cannot settle the rest and locates the
+  step where it stops (53 -> 59). The object to attack is the longest realisable
+  T3-LEGAL WORD (= A_res - 1), which is capped by the COVER half of the CSP, and
+  the only machine-free handle on the cover half the project has is R43's pruned
+  inclusion-exclusion counter. NOT ATTEMPTED THIS ROUND, and it is the natural
+  round-28 item for this lane.
+* Delta_3 = O(1). The depth-3 obligation's true shape (R78): the largest legal
+  triple exceeds F_2(M) by at most 4 at every step measured, with no trend, while
+  the budget s_min grows linearly. A derivation of the O(1) statement would give
+  the manager's induction its depth-3 base with room to spare, and it is a
+  statement about the old machine alone.
+* THE NINTH RUNG needs the exact m41 4-tuple census (Mechanic's vehicle, route
+  (ii) of R72's costing). The superset's information limit is now measured at
+  222 under three settings and is not going to move.
+* THE FIRST-MOMENT TRANSFER (R64/R67) remains the derivation-grade item and the
+  escalation valve still applies.

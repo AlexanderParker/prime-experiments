@@ -98,9 +98,42 @@ The alternation ceiling, computed by the gate:
     41->43     29    14       2        5              3
     43->47     16    31       2        5              3
     47->53     18    35       5        5              5   <- ATTAINED
-    53->59     20    39       3        7              -
+    53->59     20    39       3        7              4   <- r27, CEILING + 1
     59->61     41    20       3        5              -
     61->67     45    22       4        7              -
+
+### ROUND-27 MEASUREMENT AT 53 -> 59, AND WHAT IT SHOWS (mechanic)
+
+A_kill(53 -> 59) = 4 EXACTLY, every level complete (N_3 = 8 of 36, N_4 = 1 of
+18, N_5 = 0 by the overlap lemma before any decision).  Gate
+`research/akill_verify_r27.py`; the campaign cost ONE UNSAT, 63 of its words
+having been refuted by SCAN BANDS and 7 by this obstruction.
+
+The theorem is confirmed exactly where it speaks: the PURE alternation
+(20, 39, 20) IS zero, as the ceiling 3 requires.  What carries arity 4 is
+
+    (20, 98, 20) = (s,  q' + (q'-s),  s)
+
+- the alternation with ONE LAP OF PADDING inserted.  Against the whole table:
+
+    step      31->37 37->41 41->43 43->47 47->53 53->59
+    ceiling      6      2      2      2      5      3
+    A_kill       4      3      3      3      5      4
+    A - ceil    -2     +1     +1     +1      0     +1
+
+so at every step whose pure-alternation ceiling is 2 or 3 the answer is
+CEILING + 1, and the lifting word is padded every time ((14,41) at 37->41,
+(43,43) at 41->43, (47,47) at 43->47, (20,98,20) at 53->59).  That is four
+steps, not a proof, and it is exactly the extrapolation this lane's standing
+rule 1 warns about - it is recorded as a pattern with the named construct that
+would settle it: THE PHASE-SATURATION CEILING OF THE PADDED ALTERNATION FAMILY
+(s, q'+(q'-s), s, ...), which is the same pigeonhole applied to a different
+exposed set and is therefore another closed form in the small gears, with no
+solver.  Section 5's open question ("is the ceiling attained whenever the
+alternation is not otherwise blocked?") gains a second data point: it is
+attained at 47->53, loose by 2 at 31->37, and at 53->59 the alternation is
+blocked exactly at the ceiling while a padded relative survives one step
+further.
 
 ## 4. IMPLICATIONS
 
@@ -115,7 +148,9 @@ The alternation ceiling, computed by the gate:
 - THE FIRST 5-CHAIN WAS NOT THE START OF A TREND. A_kill(47->53) = 5 sat at its
   phase-saturation ceiling exactly. At 53->59 the ceiling drops back to 3, so the
   5-chain SHAPE does not recur; 53 was special, and now there is a reason rather
-  than an observation.
+  than an observation. ROUND 27 MEASURED the step: A_kill(53->59) = 4, i.e. the
+  arity does fall back, and the pure alternation is zero from k = 4 on exactly
+  as the ceiling says - what reaches 4 is a PADDED alternation.
 - FOR THE MERGE LAW. The merge law consumes depths j <= A_kill + 1. Any bound on
   A_kill that is a closed form in the primes - rather than a SAT campaign per step -
   is exactly the shape a hypothesis-free (D) rung needs, and it is finite, integer
