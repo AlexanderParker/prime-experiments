@@ -297,6 +297,10 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   the residual IS the anti-correlation and is pre-registered for m29 -
   PROVED(model) + SCRIPT-VERIFIED(machine) - not yet checked (round 22)
 
+- two-n-gap-reordering - openings sorted by phase vector have exactly 2n distinct
+  gaps (n gears; exact at 5 machines) - MEASURED - not yet checked (human's sort-step
+  idea, manager probe 2026-08-31)
+
 ## Seeding backlog - COMPLETE 2026-08-23 (all 10 written up and checked; kept for provenance)
 
 - merge-law - F(M+q') computable from the old machine alone (proved, script-verified at 4 steps)

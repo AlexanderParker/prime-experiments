@@ -2519,3 +2519,17 @@ HONEST NEGATIVES AND COSTS:
 STANDING ADDITIONS: rules 27 (one word per reverse class), 28 (progress stride
 from the worker's own share), 29 (run the arithmetic screen before the solver),
 30 (process count is not load - measure % processor time and free RAM).
+
+
+## Manager note (2026-08-31, post round-26 close): the human's sort-step idea - first probe
+
+The human suggested viewing the sliding windows in a SORTED order (a sort step per turn)
+under which the gap pattern becomes obvious. Manager probe confirms on contact: in CRT-LEX
+ORDER (sort openings by phase vector) the distinct adjacent-difference count is EXACTLY 2n
+at n gears - 6, 8, 10, 12, 14 at machines [5,7,11] .. [5..23], verified exact. Natural
+order: 7, 10, 17, irregular. Registered as docs/novel/two-n-gap-reordering.md (MEASURED,
+prior art not yet checked - the lex fact may be folklore; the shuffle framing is the delta).
+ROUTED TO LATERAL (round 27, optional addition to their own-mandate list): prove the 2n law
+(odometer/carry analysis), check prior art, and ask their question - what shuffle statistic
+is the natural-order record gap? Deliberately NOT added to any route-critical path per the
+human's "don't shift direction" instruction.
