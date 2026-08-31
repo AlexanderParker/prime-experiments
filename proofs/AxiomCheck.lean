@@ -1,3 +1,5 @@
+import Increment
+import MirrorM11
 import CaseCert31
 import CaseCert23
 import CaseSplit
@@ -438,3 +440,45 @@ open BlockedSlots
 #print axioms CaseCert31.no_run
 #print axioms CaseCert31.F_le
 #print axioms CaseCert31.D_29_31_case
+
+-- Round 28: the mirror lever instantiated at machine 11
+#print axioms Machine11.opSeq_133
+#print axioms Machine11.opSeq_mirror
+#print axioms Machine11.g11_mirror
+#print axioms Machine11.mir2_invol
+#print axioms Machine11.L2_mirror
+#print axioms Machine11.L2_133
+#print axioms Machine11.window2_even
+#print axioms Machine11.adjacent_max_none_of_at_most_one
+#print axioms Machine11.adjacent_max_none
+#print axioms CaseSplit.lowest5
+#print axioms CaseSplit.degpos5
+
+-- Round 28: the increment law at the six literal steps
+#print axioms IncCert23.cert0
+#print axioms IncCert23.nocov0
+#print axioms IncCert23.blocked
+#print axioms IncCert23.no_run
+#print axioms IncCert23.F_le
+#print axioms IncCert23.inc_19_23
+#print axioms IncCert29.cert0
+#print axioms IncCert29.nocov0
+#print axioms IncCert29.F_le
+#print axioms IncCert29.inc_23_29
+#print axioms IncCert31.cert0
+#print axioms IncCert31.nocov34
+#print axioms IncCert31.F_le
+#print axioms IncCert31.inc_29_31
+#print axioms Increment.f2_11
+#print axioms Increment.f2_13
+#print axioms Increment.f2_17
+#print axioms Increment.f2_19
+#print axioms Increment.f2_23
+#print axioms Increment.f2_29
+#print axioms Increment.increment_11_13
+#print axioms Increment.increment_13_17
+#print axioms Increment.increment_17_19
+#print axioms Increment.increment_19_23
+#print axioms Increment.increment_23_29
+#print axioms Increment.increment_29_31
+#print axioms Increment.increment_law_literal_steps

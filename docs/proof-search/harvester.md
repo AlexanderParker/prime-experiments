@@ -1877,3 +1877,273 @@ monotonicity) was correct but longer than it needed to be. The k = 2 statement
   45, 67, 74 (page images, publisher preview); the OEIS search endpoint for
   `seq:6,24,78` (19 sequences, none number-theoretic in our sense) and
   `jacobsthal function primorial` (6 sequences, all one-class).
+
+## 12. ROUND 28 (2026-08-29/30) - THE z-AXIS IS PRICED, THE k-AXIS IS BOUGHT
+
+Brief: (a) h_2 at p_n = 151-251, the lane's top research item - "build or adapt
+ZM's own extremal-search algorithm class, price honestly, get as far up as the
+round allows"; (b) j_3 beyond z = 7 (needs the real algorithm named and priced
+in r27); (c) execute the human's memo decision if it arrives.
+
+GATES, re-run from clean processes at round close:
+  research/j2_referee.py    -> ALL ASSERTIONS GREEN  (run FIRST, before
+                               anything below entered the record)
+  research/j2_citesweep.py  -> ALL CHECKS GREEN
+  research/jk_cover.py      -> ALL ASSERTIONS GREEN  (NEW - reference engine
+                               + definition-vs-restatement brute force)
+  research/jk_growth.py     -> ALL ASSERTIONS GREEN  (NEW - the discriminator)
+Pre-registration: research/data/r28_harvester_prereg.txt, written before the
+runs it scores, with an addendum written before the j_3(23) answer landed.
+
+### 12a. (a) THE HONEST ANSWER IS A PRICE, NOT A VALUE - AND IT IS MEASURED
+
+**h_2 BEYOND p_n = 73 IS NOT REACHABLE, AND THE ROUND SAYS SO WITH A COST
+CURVE RATHER THAN A SHRUG.** I built the algorithm the brief asked for, ran it
+to the point where it stops, and measured where that is.
+
+Exhaustive node counts, k = 2, `rust2/src/bin/jkcov6.rs`, each an exact
+two-sided answer (witness + infeasibility proof):
+
+    z        13      17       19        23          29             31
+    nodes   150   2,577   53,560  1,491,366  55,917,112  2,367,554,226
+    ratio     -    17.2     20.8       27.8        37.5           42.3
+
+The ratio is itself growing ~1.25x per step. At a measured 2.0e5 nodes/s/core
+on 16 cores: **z = 37 is a ~17-hour job (the next purchasable rung), z = 41 is
+~59 days, and z = 43 is 17 years.** ZM's own frontier sits at z = 73 - six
+primes past where my vehicle dies - and **p_n = 151..251 is five to nine
+primes past THAT**. The projection was checked one step out of sample before
+being quoted: fitted on 13..29 it predicts 2.97e9 nodes at z = 31 against a
+measured 2.37e9, 25% high.
+
+THE MEASURED FACT ABOUT THE TARGET, not about my vehicle: **A072753 has carried
+exactly 21 terms since June 2017 and A288815 exactly 21 since June 2017**
+(OEIS records #79 and #19, read first-hand 2026-08-29), with both authors still
+editing the sequences. Nobody has moved p_n = 73 in nine years. The r27 memo's
+suggestion - ask Ziller and Morack for p_n = 151 - is now costed: it is not a
+favour, it is a research project on somebody else's better machine.
+
+WHAT WAS DELIVERED INSTEAD OF A REFUSAL: **the tenth rung reproduced
+independently.** omega_2(31) = 94, i.e. h_2(31#) = 570, EXACT, 2,367,554,226
+nodes, 2192 s on 8 workers - matching Ziller-Morack. Together with z = 2..29
+that is **nine published A288815 values and fourteen published A048670 values
+reproduced by a DIFFERENT ALGORITHM from the published ones**, which as far as
+the prior-art check reaches is the first independent verification of the paired
+Jacobsthal numbers since they were deposited.
+
+### 12b. THE ENGINE (and it is the r27 named opening, closed)
+
+Round 27 recorded "j_3 beyond z = 7 was NOT computed: the covering-form search
+is exponential and z = 11 needs a real algorithm, not exhaustion." Built:
+
+1. **THE REDUCTION, at every k.** In the covering restatement, every prime
+   p <= k+1 has cap = p-1, so it kills all but one class and the problem
+   rescales. With `D = prod_{p <= k+1} p`,
+       j_k(P(z)) = D * (m+1),  m = longest run [1,m] coverable by k NON-ZERO
+                                  classes mod p for each prime k+1 < p <= z.
+   D = 2 at k = 1 IS Hagedorn's h(n+1) = 2w(n)+2; D = 6 at k = 2 IS ZM's
+   h_2 = 6 omega_2 + 6 (= A288815 = 6*A072753+6); D = 30 at k = 4, 5.
+   **Class 0 is excluded because a MAXIMAL run has an uncovered position on
+   each side** - which derives ZM's own `a_i, b_i in {1..p_i-1}` normalisation
+   rather than assuming it, and generalises it to every k.
+2. **THE CANONICAL FORM, worth 125x.** Branch on which prime covers the
+   leftmost uncovered position; reject prime p at position j when an earlier
+   commit (j', p') has j' == j (mod p) and p' > p. Among the orderings
+   producing a given class set, exactly "always take the smallest available
+   prime" survives. This is ZM's RPA2 rule transported to a different search.
+   Measured at k = 1, z = 29: 476,683 nodes -> 3,801.
+3. **THE v3 BOUND - the sliding form of Hagedorn's criterion.** For EVERY
+   prefix [j, x] of the residual window, uncovered count <= capacity of the
+   free classes RESTRICTED TO THAT PREFIX (per prime, the f_p largest
+   |uncovered == r mod p|, r != 0). Short prefixes are where large primes are
+   weakest. One pass, incremental residues, no division in the inner loop.
+   Hagedorn's m_i is an a-priori worst case; this uses the exact residual.
+
+VALIDATION, four independent ways, because the canonical rule was the round's
+**named risk (PR6)** - if unsound, values come out TOO SMALL:
+  (i)  the covering restatement checked AGAINST THE DEFINITION by brute force
+       at k = 1,2,3 x z = 2,3,5,7 (12 cases, all equal) - research/jk_cover.py;
+  (ii) 14 published A048670 values and 9 published A288815 values reproduced
+       exactly;
+  (iii) `rust2/src/bin/jkcover.rs`, a second engine with NO reduction and NO
+       canonical rule, agrees on 12 of 12 shared cases including j_3(11)=180;
+  (iv) every witness re-verified by code sharing nothing with the search, and a
+       SAT encoding (CaDiCaL) agrees wherever it reaches.
+**PR6 CONFIRMED.**
+
+### 12c. (b) THE FIRST EXACT VALUES OF j_k FOR k >= 3
+
+    z        3     5     7     11     13     17     19
+    j_3      6    24    78    180    306    612    972
+    j_4      -    30   150    420   1230      -      -
+    j_5      -     -   180    930   2070   5490      -
+
+Round 27 had only 6, 24, 78. Everything else is new, each exact in both
+directions. `j_4(P(5)) = 30` is the degenerate case where every prime <= 5 is
+peeled by the reduction. Doc: docs/novel/jk-growth-discriminator.md; the
+jk-family.md table is updated with a pointer.
+
+### 12d. THE ROUND'S IDEA: TRADE THE z-AXIS FOR THE k-AXIS
+
+The two live readings of h_2 differ by `(log z)^{k-1}`:
+  (A) the parameter-free random-choice heuristic  j_k ~ z (log z)^k
+  (B) the layered construction (P2'), a THEOREM,  j_k >> z (log z)^{2k-1}.
+**At k = 2 that is ONE log** - which is exactly why r24-r27 named "one exact
+h_2 beyond p_n = 73" as the falsification target and why nobody has bought it.
+**At k = 3 it is two logs and at k = 5 four, and those values cost seconds.**
+
+Put delta_k(z) = prod(1 - min(k,p-1)/p) EXACTLY, N = delta_k P(z), and
+model_k = log(N)/delta_k - the expected largest gap among N random points on a
+cycle of length P, with no free parameter. R_k = j_k/model_k.
+
+* **THE CALIBRATION.** R_1 falls 0.590 -> 0.376 over z = 7..23 and is then
+  FLAT TO WITHIN 4% over eighteen further values to z = 113. At k = 1 the two
+  models COINCIDE and the truth is known (Rankin/FGKT attain z log z up to
+  loglog powers), so k = 1 measures the method's own bias: it is ~0.
+* **THE k = 2 SIGNAL.** R_2 runs 0.821 -> 0.889 on the clean window
+  z = 23..73: a real **+8% drift where model (A) needs 0% and model (B) needs
+  +37%**.
+* **THE CROSS-k STATISTIC, which is what the family buys.** With
+  Q_k = R_k/R_1 (removing the transient) and
+      f_k = log(Q_k(z1)/Q_k(z0)) / ((k-1) log(log z1/log z0)),
+  f = 0 under (A), f = 1 under (B) - **and under (B) f is the SAME AT EVERY k.**
+  That equality IS the (k-1) scaling, and it is the thing the k = 2 ladder
+  alone cannot test.
+
+      window     |   f_2   |   f_3   |   f_4   |   f_5
+      7..13      |  1.599  | -0.282  | -0.104  | -0.310
+      7..17      |  1.116  |  0.229  |    -    |  0.014
+      7..19      |  0.882  |  0.251  |    -    |    -
+      23..73     |  0.257  |    -    |    -    |    -   (clean, k=2 only)
+
+  **They are not equal across k: f falls steeply as k rises on every matched
+  window.** The extra logs (B)'s shape needs are not appearing at the rate
+  (k-1) demands.
+* **THE SECOND, INDEPENDENT FORM.** Fitting j_k ~ z (log z)^{a_k} gives
+  a_k = 0.921, 2.614, 3.556, 4.757, 6.724 at k = 1..5, i.e. excess
+  e_k = a_k - k of **-0.079, 0.614, 0.556, 0.757, 1.724** against the
+  **k-1 = 0, 1, 2, 3, 4** that (B) requires. The excess is REAL (measured
+  against a calibration bias of -0.08) and **does not grow with k.**
+
+**THE HONEST CAVEAT, and it is load-bearing, and it is in the doc twice:**
+(P2') carries a `C^k/B^{2k}` factor worth about 0.03 at z = 73, k = 2, and the
+construction does not exist below log x ~ 300 (r26 10f, my own record). **So
+none of this refutes the theorem.** What is measured is the shape of the TRUTH
+on the range where exact values exist, and on that range it looks like model
+(A) plus a constant excess, uniformly in k. The lane's own standing corollary
+- MODEL CLAIMS EXPIRE LIKE CITATIONS - applies to this measurement too.
+
+### 12e. (c) THE MEMO
+
+No decision from the human arrived during the round. Per the brief, the
+submission was not touched in either direction. docs/novel/unit1-submission-memo.md
+stands as filed; nothing in round 28 changes what it says, though 12a costs its
+one concrete suggestion (write to Ziller and Morack for p_n = 151) more
+honestly than it was costed when written.
+
+### 12f. Pre-registration scored
+
+PR1 **CONFIRMED** - growth 20-45x per prime near z = 29 (measured 27.8, 37.5,
+     42.3), and the round's answer to brief item (a) is a price.
+PR2 **CONFIRMED ON THE VALUE, MISSED ON THE COST** - omega_2(31) = 94 confirmed
+     as predicted, but I said "under 4 core-hours" and it took 4.9.
+PR3a **CONFIRMED** - a_k rises with k.
+PR3b **CONFIRMED** - a_k in [k, 2k-1] at every k >= 2; neither model attained.
+PR3c **REFUTED AS WORDED** - R_2 does rise (+12% over z = 7..73, reproducing
+     r24's +11% from a different statistic) but R_3, R_4, R_5 FALL. The reason
+     is one I had not thought of: R_k carries a large small-z transient common
+     to every k, and the k >= 3 ranges lie ENTIRELY inside it. **The calibrated
+     Q_k = R_k/R_1 was built BECAUSE this prediction failed**, and it is the
+     round's headline statistic. A refuted prediction produced the instrument.
+PR4, PR5 - see 12g.
+PR6 **CONFIRMED** - the canonical rule is sound (12b(iii)).
+
+### 12g. Negatives, costs and residual risks
+
+* **BRIEF ITEM (a) IS NOT DELIVERED AS A VALUE.** No h_2 beyond p_n = 73, and
+  none is reachable here. This is a MEASURED negative with an exhibited cost
+  curve, not a judgment - but the JUDGMENT part, labelled: that no
+  reformulation available to this lane closes the gap. ZM reached z = 73 with a
+  portioned ILP (Giovanni Resta's binary-ILP formulation, recorded in A072753's
+  own OEIS comments); I did not build an ILP, and I do not know how much it
+  would buy. **That is the honest hole in my price.**
+* **MY FIRST TWO PARALLEL LAUNCHES LEAKED 14 ORPHAN WORKERS.** `nohup ... &`
+  under the shell tool returns immediately and the driver dies while its
+  children live; I then relaunched, reached 28 processes on a 20-core box - over
+  the compute policy's 16-core ceiling - and ran everything at half speed for
+  ~25 minutes before noticing. Found by counting processes, not by a gate. New
+  standing rule for this lane: **after launching any parallel job, COUNT THE
+  PROCESSES.**
+* **A THIRD RUN WAS KILLED MID-FLIGHT** by a session interruption and had to be
+  restarted from scratch; the driver has no checkpoint. `jk_run.py` resumes
+  nothing. That is a real defect for multi-hour work and it should be fixed
+  before the next long run.
+* The k >= 3 data lies inside the small-z transient. **The k = 2 window
+  z = 23..73 remains the single cleanest measurement**, and the family's
+  contribution is the CROSS-k comparison on matched windows, not a longer
+  lever. j_3 at z = 29 and 31 would move it materially and is priced at
+  ~10 and ~100 core-hours respectively.
+* **THE DISCRIMINATOR CANNOT REFUTE (B)** and the doc says so twice. It
+  measures the truth's finite-range shape. Anyone quoting it as evidence
+  against the theorem is misquoting it.
+* The cost projection below z = 43 is an extrapolation of an extrapolation and
+  is printed to show the shape of the wall, not to predict a runtime.
+
+### 12h. Ranking changes
+
+* **7c#4 (h_2 at p_n = 151..251) IS DEMOTED FROM TOP RESEARCH ITEM TO A PRICED
+  DEAD END for this lane.** It was the lane's top item by default for three
+  rounds. It is now measured: five to nine primes past a frontier that has not
+  moved in nine years, on a vehicle six primes short of that frontier. It
+  should not appear in a future brief as a target. **What replaces it is the
+  k-axis**, which answers the same question.
+* **NEW ITEM, and it is the lane's new top research item: THE k-AXIS PROGRAMME.**
+  j_3 at z = 23, 29, 31 and j_4 at z = 17, 19 would put the cross-k statistic on
+  post-transient data. Priced: z = 23 is ~1-2 core-hours at k = 3, z = 29 is
+  ~10, z = 31 ~100. **This is the only place in the lane where a purchasable
+  computation still changes a conclusion.**
+* **(P6) THE k-FAMILY RISES ABOVE N4.** It now has exact data, an engine, an
+  independent replication of both published ladders, and a measurement that
+  bears on its own conjecture. It is no longer "a section of Unit 1" - it is
+  the piece with live research in it.
+* **N4 (the j_2 upper ladder) unchanged**: still TOP for publication, still a
+  writing item, still waiting on a decision that is the human's.
+* **jk-family.md's own CONJECTURE is now amended against itself**: the first
+  finite data ever available points away from the (2k-1) shape on the computed
+  range, and the doc says so in a marked block rather than burying it.
+
+### 12i. Additions to the standing citation-hygiene lesson (7d)
+
+11. **A PUBLISHED TABLE IS A CLAIM LIKE ANY OTHER, AND REPRODUCING IT IS
+    CHEAPER THAN YOU THINK.** This lane quoted Ziller-Morack's h_2 values for
+    seven rounds without ever recomputing one. Reproducing nine of them took a
+    day and turned up the reduction, the symmetry rule and the cost curve - all
+    three of which were needed for the round's actual result. **When a lane
+    depends on someone else's numbers, recompute the cheap end of them.**
+12. **AN OEIS RECORD CARRIES THE ALGORITHM, NOT ONLY THE VALUES.** A072753's
+    comments hold Giovanni Resta's binary-ILP formulation, John F. Morack's
+    GLPK runs, and the fact that a(19) was published as 355 and CORRECTED to
+    364. None of that is in either arXiv paper. **Read the comment field.**
+
+### 12j. Reproduction (round 28)
+
+* `research/jk_cover.py` -> reference engine (Python DFS + SAT) and the
+  definition-vs-restatement brute force. **Gate.**
+* `rust2/src/bin/jkcov6.rs` -> the fast engine (reduction + canonical form +
+  v3 bound). `cargo build --release --bin jkcov6`.
+* `rust2/src/bin/jkcover.rs` -> the unreduced engine, kept as the independent
+  cross-check (no reduction, no canonical rule).
+* `research/jk_run.py` -> two-phase parallel driver (witness, then seeded split
+  infeasibility proof). Logs `research/data/r28_k2_z31.log`,
+  `research/data/r28_k3_z23.log`.
+* `research/jk_growth.py` -> `research/data/jk_growth.out`. Sections A (the
+  ladders), B (the parameter-free model and R_k), C (measured exponents),
+  D (cross-k slope), D2 (Q_k and f_k - the headline), E (the calibrated
+  excess), E2, G (the price of the z-axis), F (assertions). **Gate.**
+* `research/data/r28_harvester_prereg.txt` -> pre-registration + the addendum
+  written before the j_3(23) answer.
+* Docs: **NEW** `docs/novel/jk-growth-discriminator.md`; `docs/novel/jk-family.md`
+  (new section 1a, and the conjecture amended against itself);
+  `docs/novel/README.md` (index entry).
+* Sources read FIRST-HAND by me on 2026-08-29: OEIS records A072753 (#79),
+  A288815 (#19), A048670 (#164), A048669 (#92), in full, via the text endpoint.

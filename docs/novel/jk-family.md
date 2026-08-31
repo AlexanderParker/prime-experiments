@@ -84,6 +84,38 @@ The `k = 1` row is A048669 (`4, 6, 10`); the `k = 2` row is Ziller-Morack's
 establish, the first evaluation of the function** - and their smallness is the
 point: the object is elementary, computable by hand, and unnamed.
 
+### 1a. The ladders, extended (ROUND 28)
+
+Round 27 recorded "`j_3` beyond `z = 7` was NOT computed; the covering-form
+search is exponential and `z = 11` needs a real algorithm". The algorithm was
+built in round 28 (`rust2/src/bin/jkcov6.rs`; the reduction, the canonical
+form and the prefix-window bound are described in
+`docs/novel/jk-growth-discriminator.md` §3), and it validates by reproducing
+**fourteen** published `A048670` values and **nine** published
+`A288815`/`A072753` values exactly, by a different algorithm from the
+published ones.
+
+| `z` | `j_1` | `j_2` | `j_3` | `j_4` | `j_5` |
+|---|---|---|---|---|---|
+| 3 | 4 | 6 | 6 | – | – |
+| 5 | 6 | 18 | 24 | 30 | – |
+| 7 | 10 | 30 | 78 | 150 | 180 |
+| 11 | 14 | 66 | **180** | **420** | **930** |
+| 13 | 22 | 150 | **306** | **1230** | **2070** |
+| 17 | 26 | 192 | **612** | – | **5490** |
+| 19 | 34 | 258 | **972** | – | – |
+
+Every bold entry is exact in both directions: an explicit witness (`k` residue
+classes per prime), independently re-verified, plus an exhaustive proof that
+one more position cannot be covered. `j_4(P(5)) = 30` is the degenerate case
+where every prime `<= 5` is peeled by the reduction.
+
+**These values are the family's first real data, and they immediately do work:**
+they discriminate between the two competing growth readings of `h_2` along the
+`k`-axis instead of the `z`-axis, which is what §3d's conjecture needed and
+what nine years of stalled computation at `p_n = 73` could not supply. See
+`docs/novel/jk-growth-discriminator.md`.
+
 ---
 
 ## 2. Why it might be novel
@@ -189,6 +221,21 @@ factor `e^gamma = 1.781` below Rankin's proved constant - the correct side. At
                                                      beta_k ~ 4k
 
 **CONJECTURE.** `j_k(P(x)) = x (log x)^{2k-1 + o(1)}` for every `k >= 1`.
+
+> **ROUND-28 AMENDMENT, and it is a caveat against our own conjecture.** The
+> first exact `j_3, j_4, j_5` values (§1a) let the conjecture's *shape* be
+> tested along `k` for the first time. Fitting `j_k ~ z (log z)^{a_k}` over
+> each `k`'s computed range gives `a_k = 0.921, 2.614, 3.556, 4.757, 6.724`
+> for `k = 1..5`, i.e. an excess `a_k - k` of `-0.08, 0.61, 0.56, 0.76, 1.72`.
+> The conjecture needs that excess to be `k-1 = 0, 1, 2, 3, 4`. **It is real
+> (the `k = 1` calibration, where the models coincide and the truth is known,
+> gives `-0.08`) but it does not grow with `k`.** This is evidence about the
+> *computed range only* - `(P2')` carries a `C^k/B^{2k}` factor of about
+> `0.03` at `z = 73, k = 2` and has no finite-`z` content below `log x ~ 300`
+> - so nothing here contradicts the theorem. But the conjecture should be read
+> as an asymptotic claim with **no supporting finite data**, and the finite
+> data that now exists points the other way. Full analysis:
+> `docs/novel/jk-growth-discriminator.md` §4.
 
 At `k = 1` this is the standard expectation for the Jacobsthal function; at
 `k = 2` it is round 26's sharpened form of (P3); at `k >= 3` it is new because

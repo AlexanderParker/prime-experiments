@@ -2572,3 +2572,392 @@ were the sizing paragraph and the stop rule)
 6. The depth-sum re-indexing bijection at machine 13 (unchanged).
 7. The generator at 13 -> 17 by the `Gen11Sound` template (unchanged).
 8. The sandwich lemma (unchanged).
+
+## Round 28 append (2026-08-29/30)
+
+GATES, all re-run at round close from clean invocations:
+  cd proofs && lake build             -> Build completed successfully (1749 jobs)
+                                         (1521 -> 1749; 114 new modules)
+  lake env lean AxiomCheck.lean       -> 405 declarations, footprints in R28.7;
+                                         zero custom axioms, no native_decide,
+                                         no ofReduceBool
+  research/lp_cert_inc_r28.py GATE    -> ALL ASSERTIONS PASSED (47 s) - this
+                                         lane's independent re-derivation of all
+                                         120 increment-width certificates from
+                                         the primes, plus the recursion-row
+                                         soundness gate on random phase tuples
+  research/lp_cert_inc_r28.py CROSS   -> CROSS-CHECK PASSED (120 cases, two
+                                         codebases) - against the LP thread's own
+                                         round-28 emission, as exact rationals
+  research/lp_cert_lean.py GATE       -> ALL ASSERTIONS PASSED (round 27's gate,
+                                         re-run, unchanged)
+Zero sorries. Every job this round launched has finished; nothing left running.
+
+### R28.0 ITEM 0 - THE MIRROR LEVER IS INSTANTIATED AT A MACHINE
+
+Round 27 closed the lever's counting core and named the gap in the same breath:
+`window_count_even` quantifies over an ABSTRACT index involution, and nothing
+tied it to a machine. `proofs/MirrorM11.lean` ties it, at machine 11 - the
+smallest machine with a complete kernel enumeration.
+
+    theorem Machine11.opSeq_mirror :
+        forall n, n <= 133 -> opSeq n + opSeq (133 - n) = 385
+    theorem Machine11.g11_mirror {n : N} (hn : n <= 132) : g11 (132 - n) = g11 n
+    theorem Machine11.L2_mirror : forall t, t < 135 -> L2 (mir2 t) = L2 t
+    theorem Machine11.window2_even {g : N} (hg : g != 6) :
+        (((Finset.range 135).filter (fun t => L2 t = g)).card) % 2 = 0
+    theorem Machine11.adjacent_max_none_of_at_most_one
+        (hone : (((Finset.range 135).filter (fun t => L2 t = 2 * 7)).card) <= 1) :
+        (((Finset.range 135).filter (fun t => L2 t = 2 * 7)).card) = 0
+
+`L2 t = g11 t + g11 (t + 1)` is the depth-2 window length and
+`mir2 t = (266 - t) % 135` is the mirror on window indices.
+
+WHAT THE WORK ACTUALLY WAS, and I mis-sized it in the same direction as round
+27's verdict 27. `Mirror.mirror_exposed11` (round 26) says the opening SET is
+closed under `k -> 385 - k`. It does NOT say the ENUMERATION reverses - that is
+a statement about the sorted order, and getting it needs an induction. That
+induction IS the composition round 27 named and did not build:
+
+    assume  opSeq n + opSeq (133 - n) = 385.
+    Then `385 - opSeq (132 - n)` is exposed (set-closure), lies above `opSeq n`,
+    and has nothing exposed strictly between it and `opSeq n` (the mirror image
+    of an empty interval is empty) - which is exactly `nextOp`'s defining
+    property, so it IS `opSeq (n + 1)`.
+
+The only finite computation in the whole chain is the base case
+`opSeq 133 = 382`, one `decide +kernel` on the `ow` walk of `Machine11Per.lean`.
+THE 135 WINDOW LENGTHS ARE NEVER ENUMERATED IN THE KERNEL, and the argument uses
+nothing about machine 11 beyond mirror-closure and `nextOp` minimality - so it
+transfers to any machine that has a kernel base case.
+
+THE INSTANTIATION IS NOT VACUOUS, and I checked that before formalising. The
+depth-2 length histogram of machine 11's period is
+
+    length  3   4   5   6   7   8  10  11
+    count  20  18  40  11  26   8   6   6
+
+EXACTLY ONE ODD ENTRY, at length 6 - and 6 = g11 133 + g11 134 = 3 + 3 is the
+length of the window at the unique self-mirror index 133. The theorem predicts
+the parity of eight counts and gets eight for eight.
+
+CROSS-CHECK BUILT INTO THE FILE, and it doubles as the honest scope note.
+`Machine11.adjacent_max_none` proves the `(7,7)` count is ZERO outright by a
+route that never mentions the mirror: machine 11's kernel spectrum ladder gives
+`F_2(11) <= 11 < 14`. The two routes agree. So at machine 11 the lever is not
+yet BUYING anything - the direct bound is available and cheaper. It buys
+something at a machine where the direct bound is out of reach, and what this
+round establishes is the PRICE of moving it there: one kernel base case plus the
+induction above, not a new theory.
+
+### R28.1 ITEM 1 - THE INCREMENT LAW IS A KERNEL STATEMENT AT ALL SIX LITERAL STEPS
+
+The LP thread's round-27 increment-width certificates are in the kernel, and the
+realisability half is with them. `proofs/Increment.lean`:
+
+    theorem Increment.increment_19_23 :
+        exists a b c, AdjPair Machine19.Exposed19 a b c and c - a = 31 and
+          forall n, Machine23.g23 n <= (c - a) + 8
+    theorem Increment.increment_23_29 :
+        exists a b c, AdjPair Machine23.Exposed23 a b c and c - a = 39 and
+          forall n, Machine29.g29 n <= (c - a) + 10
+    theorem Increment.increment_29_31 :
+        exists a b c, AdjPair Machine29.Exposed29 a b c and c - a = 55 and
+          forall n, Machine31.g31 n <= (c - a) + 10
+    theorem Increment.increment_law_literal_steps :     -- all six conjoined
+        11->13 and 13->17 and 17->19 and 19->23 and 23->29 and 29->31
+
+with `AdjPair E a b c` = "a, b, c are three CONSECUTIVE openings of E". Each
+statement is SELF-CONTAINED - no `F_2` symbol, no census, no period scan: it
+exhibits the old machine's realised adjacent pair and bounds every gap of the
+new machine by that pair's span plus `s_min(q')`.
+
+The upper halves at 19->23, 23->29 and 29->31 are the new rungs `IncCert23`,
+`IncCert29`, `IncCert31` - 35 exact dual certificates each, generated by
+`research/gen_inc_lean.py` (which reuses `gen_case_lean.gen_case` verbatim, so
+the two rung families share one soundness skeleton) from JSON that
+`research/lp_cert_inc_r28.py` rebuilds from the primes. EACH ALSO IMPROVES THE
+LEDGER'S BEST HYPOTHESIS-FREE BOUND ON THAT MACHINE'S RECORD GAP:
+
+    step      s_min  F_2(M)  W_inc   best previous kernel F(q')   now   true F
+    19->23      8      31      39    47  (Machine23.g23_le)        39     34
+    23->29     10      39      49    none hypothesis-free          49     43
+    29->31     10      55      65    74  (CaseCert31.F_le)         65     58
+
+- and at machine 29 it is the FIRST hypothesis-free kernel bound at all
+(`Machine29.g29_le` carries a census hypothesis; `IncCert29.F_le` carries none).
+
+AT THE THREE SMALL STEPS THE CERTIFICATE IS NOT NEEDED, and that is a finding,
+not a shortcut: the corpus already carries a STRICTLY TIGHTER kernel bound on
+F(q') than the increment width - 11 < 15 at machine 13, 18 < 22 at 17, 25 < 31
+at 19 - so `Machine13.spectrum_one`, `Machine17.spectrum_one` and
+`Machine19.spectrum_one` discharge those three outright. THE INCREMENT WIDTH IS
+SLACK AT THE SMALL MACHINES AND KNIFE-EDGE AT THE LARGE ONES, and the crossing
+is at machine 23. I transcribed and re-verified the LP thread's three small-step
+certificates anyway (all 120 round-27 increment certificates are re-derived by
+my gate) and deliberately did NOT build them: a kernel module whose statement is
+implied by a one-line consequence of an existing theorem is ledger weight with
+no content, and ledger weight costs rebuild time forever.
+
+THE LOWER HALF - WHAT NO DUAL CERTIFICATE CAN CARRY. `F_2(M) >= v` is a
+realisability statement. The LP thread emitted six witnesses as PHASE VECTORS
+(exact-cover backtrack, no period scan). CRT turns each phase vector into a
+single slot of the real machine, and that slot is what the kernel checks:
+
+    F_2(11) >= 11   openings 252, 257, 263                    gaps (5, 6)
+    F_2(13) >= 16   openings 117, 122, 133   (round 11's `pair16_realized`)
+    F_2(17) >= 25   openings 110, 117, 135                    gaps (7, 18)
+    F_2(19) >= 31   openings 1118917, 1118927, 1118948        gaps (10, 21)
+    F_2(23) >= 39   openings 19016898, 19016903, 19016937     gaps (5, 34)
+    F_2(29) >= 55   openings 858386140, 858386160, 858386195  gaps (20, 35)
+
+Each is three `decide`s plus an `interval_cases` over the interior; the machine
+29 one costs 35 s for 55 interior slots at numbers near 8.6e8. THE PROJECT'S
+`F_2(29) = 55` - a full-period census number over 214,708,725 openings - IS NOW
+REPRODUCED IN THE KERNEL FROM A SINGLE SLOT. All six slots were re-derived
+independently from the LP thread's round-28 `witness_inc_*.json` phase vectors
+and agree exactly, split for split. The m19 witness has split (10, 21), which is
+the maximiser their windowed vehicle located from the DUAL side in round 26.
+
+AND THE LEDGER GETS A SHARPNESS RESULT IT DID NOT HAVE. `Machine29.g29_le` and
+`Machine31.g31_le_71` each stand on a census hypothesis `SpectrumBound g_M 2 F2`
+- an UPPER bound on the old machine's two-gap record. The realisers are LOWER
+bounds on the same quantity, so with one abstract lemma they PIN it.
+`Increment.pair_attained` turns "three consecutive openings" into "an index of
+the gap word" using only `next`'s three defining properties and the machine's
+`opSeq_surj`; then
+
+    theorem Increment.f2_19_sharp : not (Spectrum.SpectrumBound Machine19.g19 2 30)
+    theorem Increment.f2_23_sharp : not (Spectrum.SpectrumBound Machine23.g23 2 38)
+    theorem Increment.f2_29_sharp : not (Spectrum.SpectrumBound Machine29.g29 2 54)
+
+THE HYPOTHESES THE MERGE-LAW RUNGS STAND ON CANNOT BE STATED WITH A SMALLER
+CONSTANT. And the sharpest form of the law itself,
+
+    theorem Increment.increment_23_29_index :
+        exists i, forall n, Machine29.g29 n <=
+          (Machine23.g23 i + Machine23.g23 (i + 1)) + 10
+
+- no constant on the right that is not itself a realised quantity of the old
+machine.
+
+TWO CODEBASES, ONE CERTIFICATE, AGAIN. My pipeline reads the LP thread's
+PICKLES and rebuilds every number from the primes; their `emit_inc_r28.py`
+writes JSON from the same pickles by different code. `lp_cert_inc_r28.py CROSS`
+compares the two on `pos`, `y`, `nu`, `yff`, `lhs`, `rhs` AS EXACT RATIONALS:
+120 of 120 cases agree. Their reported minimum margin collapses 1 -> 1/384 over
+the six steps; the Lean side sees that as the case denominator, and the 29->31
+`cert` decides `518 < 519` after scaling by 31.
+
+### R28.2 A FIVE-FREE-GEAR ARITY, AND THE LAKE FACT THAT DECIDED WHERE IT LIVES
+
+The 19->23 increment rung holds TWO gears where the (D) rung held one, leaving
+five free, so it needs `CaseSplit.lowest5` / `degpos5` - round 27's
+lowest-blocker inequality one gear narrower. They went in a NEW module
+`proofs/CaseSplit5.lean` (same namespace, reopened) rather than being appended
+to `CaseSplit.lean`, for a mechanical reason that is now a lane rule: LAKE KEYS
+ON CONTENT HASHES, so touching `CaseSplit.lean` would have invalidated all 75
+existing case modules and cost about an hour of kernel to rebuild artefacts that
+had not changed. A new module in the same namespace costs nothing.
+
+### R28.3 ITEM 2 - RUNG EIGHT (37->41): PRECONDITION ABSENT FOR THE THIRD ROUND
+
+Unchanged and honest. Rung eight on the merge-law vehicle needs machine 37's
+qualifying dictionary at depths 2..7, floor 14, in `qual_dict.py`'s format.
+Constructor's round-28 pre-registration
+(`research/data/r28/constructor_prereg_r28.txt`, read early in the round) lists
+the per-J triple analogues, the cover-half order N(M) and rung nine; their
+round-28 block delivers those and does not contain the m37 emission. MISSING
+INPUT, not a judgment and not a will-not-close.
+BUT THIS ROUND MAKES THE ROUTE AROUND IT VISIBLE, and it should be said plainly:
+THE CASE-SPLIT VEHICLE NEEDS NO DICTIONARY AT ALL. If the LP thread certifies
+31->37 or 37->41 at any width, the Lean side is a mechanical transcription -
+`gen_inc_lean.py` takes a tag and a three-number step table, and this round it
+produced 114 modules from that. The qualifying dictionary is the MERGE-LAW
+vehicle's input, not the certificate vehicle's, and the certificate vehicle is
+now the one running ahead.
+
+### R28.4 ITEM 3 - CASE-COUNT ECONOMICS: BATCHING IS WORTH 1.2x AND PRIORITY IS
+### WORTH 8.9x
+
+THE QUESTION AS BRIEFED: can case modules share elaboration, and is there a 2x
+in it? MEASURED ANSWER: sharing gives 1.12-1.24x and cannot give more than
+1.40x - but the round found a 8.9x sitting beside it that costs nothing.
+
+METHOD. Three scratch modules built by `research/econ_r28.py` from the
+ALREADY-GENERATED `IncCert31` case files (7 free gears, 27 positions - the
+largest family in the ledger, so the extrapolation to a k = 3 rung is not
+flattered): `Econ0` = the same imports and NO declarations, `Econ1` = one case
+body, `Econ5` = five case bodies concatenated. Bodies copied by CONTENT, never
+by line offset (round 22's lesson). Each measured SOLO and SEQUENTIALLY via
+`lake env lean` - never side by side - with 30-48 other-lane python processes on
+the box at 42-48% total CPU, which is the realistic operating condition.
+
+    run                       priority   wall
+    Econ0  imports only         High      13.8 s
+    Econ1  one case             High      53.8 s   (paired re-run: 48.4 s)
+    Econ5  five cases           High     216.3 s
+    Econ0  imports only        Normal     26.7 s
+    Econ1  one case            Normal    432.6 s
+
+(1) THE MARGINAL COST IS ADDITIVE. Predicted `T0 + 5 (T1 - T0)` = 213.8 s,
+measured 216.3 s - 1.2% high. Round 24's superadditive blow-up (eight heavy walk
+decides in one file: >2.3 GB, 20+ min, each 17-60 s alone) DOES NOT REPEAT at
+this workload, two orders of magnitude smaller per decide. So batching is safe.
+
+(2) BUT THE SHAREABLE PART IS SMALL. The fixed cost is `T0` = 13.8 s of a 53.8 s
+case, 26%, so five-batching gives 5 T1 / T5 = 1.24x (1.12x against the paired
+T1) and the CEILING at any batch size is T1 / (T1 - T0) = 1.35-1.40x. THE
+BRIEF'S 2x IS NOT AVAILABLE FROM SHARING ELABORATION. I did not adopt batching:
+1.2x is not worth losing one-module-per-case resumability, which is what made
+this round's 105-module build survive two fork-table failures with no loss.
+
+(3) THE REAL FINDING, AND IT WAS NOT THE QUESTION I WAS ASKED. Raising
+`lean.exe` to `High` is worth 8.9x on a case module (432.6 s -> 48.4 s), paired,
+both runs solo, both under the same other-lane load. AND THE EFFECT SPLITS
+CLEANLY: the import phase moves only 1.9x (26.7 -> 13.8) while the
+elaboration-and-kernel phase moves 11.7x (405.9 -> 34.6). Import loading is
+I/O-bound and priority barely touches it; kernel evaluation is pure CPU and at
+Normal priority it is STARVED by the other lanes' 30-odd python workers. Round
+24 measured 2.3x for the same lever on a mini-slice; the multiplier is not a
+constant, it is a function of the competing load, and at this round's load it is
+nearly four times larger.
+IN-SITU CORROBORATION, labelled as such: my own driver log shows m29 case
+modules at 242 s before the boost loop started and 86-95 s after, at unchanged
+worker count. That is NOT a controlled A/B (other-lane load also varied) and is
+recorded only as agreeing in direction with the paired measurement above.
+
+(4) THE k = 3 REPRICE. Round-27 verdict 29 priced a 385-case rung at ~8.6 h from
+1.34 min/case at two workers. At High priority the same family costs 48.4 s
+solo, so 385 cases is 5.2 core-hours - ABOUT 2.6 h AT TWO WORKERS, and ~2.1 h if
+batched five-up. THE CASE-COUNT WALL MOVED BY 3.3x, AND NOT BY THE MECHANISM THE
+BRIEF PROPOSED. k = 3 is now a half-round job. k = 4 (5,005 cases) is ~34 h at
+two workers - still out of reach for one round, but no longer "5 days".
+
+### R28.5 SCORING THIS ROUND'S PRE-REGISTERED PREDICTIONS
+
+Written in `research/data/r28/formalist_prereg_r28.txt` before the measurement
+and before the m29/m31 families finished building.
+
+  F1 (T0 >= 25 s and >= 25% of T1; hence >= 1.4x at B = 5) - REFUTED, AND THE
+     WAY IT FAILED IS THE POINT. At High priority T0 = 13.8 s (below 25) though
+     the ratio clause just holds at 25.6%; at Normal T0 = 26.7 s (above 25) and
+     the ratio is 6.2%. I PREDICTED A CONSTANT WHERE THERE IS A TWO-PARAMETER
+     SURFACE, because I had not thought to name a priority class - the same
+     variable that turned out to dominate the whole item. The consequence
+     (>= 1.4x at B = 5) is refuted at 1.12-1.24x measured.
+  F2 (additivity within 20%) - CONFIRMED at 1.2% on the first T1 and 16% on the
+     paired one; inside the band either way.
+  F3 (all 70 IncCert29/31 cases certify, no case failing) - CONFIRMED. All 105
+     case modules built, and all three roots' exhaustiveness closed. The kernel
+     is an independent checker of the LP thread's certificates at five, six and
+     seven free gears and it agreed everywhere.
+  F4 (rung eight's precondition absent again) - CONFIRMED. See R28.3.
+
+### R28.6 NEW VERDICTS
+
+31. **A SYMMETRY OF A SET IS NOT A SYMMETRY OF ITS ENUMERATION, AND THE GAP IS
+    ONE INDUCTION.** Round 26 proved the opening set closed under `k -> P - k`;
+    the lever needs `opSeq (N-1-n) = P - opSeq n`, which is a statement about
+    SORTED ORDER. The upgrade is an induction on `nextOp` minimality with one
+    finite base case - cheap, but not free, and it was the whole of item 0. The
+    general shape: when a kernel statement is about an ENUMERATION and the
+    available lemma is about a SET, budget for the order argument.
+32. **DO NOT BUILD A MODULE WHOSE STATEMENT AN EXISTING THEOREM ALREADY
+    IMPLIES.** Three of the six increment steps had certificates and did not
+    need them (the corpus bound is strictly tighter). Transcribe and gate them -
+    the cross-check is free - but keep them out of the ledger. Ledger weight is
+    a permanent rebuild cost and a permanent audit surface.
+33. **THE CORPUS BOUND AND THE VEHICLE BOUND ARE TWO LADDERS AND THEY CROSS.**
+    At machines 13/17/19 the kernel's spectrum ladder beats the increment width;
+    at 23/29/31 the increment width beats the kernel's best. The crossing is at
+    machine 23 and it is exactly where the case-split vehicle starts paying its
+    way. Check which side of the crossing a target sits on before building.
+34. **A NEW ARITY GOES IN A NEW MODULE, NEVER INTO THE SHARED ONE.** Lake keys
+    on content hashes, so adding `lowest5` to `CaseSplit.lean` would have
+    invalidated 75 unchanged case modules. Reopening the namespace in a new file
+    costs nothing. (Corollary of a fact this lane already knew and had not drawn
+    the consequence from.)
+35. **THE CASE-SPLIT'S KERNEL LIMIT IS NOT THE CASE COUNT, IT IS CPU STARVATION
+    AT NORMAL PRIORITY.** Verdict 29 said the limit is the case count. Measured
+    this round, paired and solo: the same case module costs 432.6 s at Normal
+    and 48.4 s at High under the same other-lane load - 8.9x, and 11.7x on the
+    kernel phase alone. Sharing elaboration across cases, which is what the
+    brief proposed, is worth at most 1.40x. RUN EVERY KERNEL SCAN AT HIGH
+    PRIORITY; it is the largest single lever this lane has and it costs a
+    two-line loop.
+36. **REALISABILITY IS CHEAP IN THE KERNEL, AND THIS LANE LEFT IT ON THE TABLE
+    FOR THREE ROUNDS.** `F_2(29) = 55` is a full-period census number over
+    214.7M openings; in the kernel it is three `decide`s and one
+    `interval_cases` over 55 slots, 35 seconds - ONCE SOMEONE HANDS YOU THE
+    SLOT. The blocker was never the kernel, it was that the project's witnesses
+    lived as PHASE VECTORS and nobody had run CRT on them. One line of Python
+    converts a dual-side artefact into a kernel-checkable object. Ask every lane
+    that reports a "witness" what its CRT slot is.
+
+### R28.7 BUILD, AXIOMS, AND WHAT IS ON DISK
+
+BUILD GREEN AT 1749 JOBS (1521 -> 1749). 114 new modules: `CaseSplit5`,
+`MirrorM11`, `Increment`, three `IncCert{23,29,31}B`, 105 case modules
+`IncCert{23,29,31}C0..C34`, three rung roots `IncCert{23,29,31}`.
+
+AXIOM AUDIT over 405 declarations (367 -> 405), all standard-three or smaller:
+299 `[propext, Classical.choice, Quot.sound]`, 51 `[propext, Quot.sound]`, 14
+`[propext]`, 41 with NO axioms at all. Zero custom axioms, no `native_decide`,
+no `Lean.ofReduceBool`. Worth noting from the round-28 rows: `CaseSplit.lowest5`,
+`CaseSplit.degpos5` and `Machine11.mir2_invol` need NO axioms; and FOUR OF THE
+SIX REALISERS (`f2_11`, `f2_17`, `f2_23`, `f2_29`) are CHOICE-FREE
+(`[propext, Quot.sound]`) - only `f2_13` and `f2_19` pull `Classical.choice` in,
+through the `exposed13_iff` / `exposed19_iff` simp path rather than through
+anything mathematical.
+
+NEW RESEARCH FILES (all mine): `research/lp_cert_inc_r28.py` (transcription +
+GATE + CROSS), `research/gen_inc_lean.py` (the Lean emitter),
+`research/econ_r28.py` (item 3), `research/inc_build_r28.sh` (the single
+resumable driver), `research/data/r28/formalist_prereg_r28.txt`,
+`research/data/r28/inc_build.log`, `research/data/r28/formalist_axiom.log`.
+
+PROCESS NOTES, both small and both worth the line:
+- TWO OF THE 105 CASE MODULES FAILED TO LAUNCH, not to compile: `rc=126` and
+  `rc=127` with "Resource temporarily unavailable" - the project's known
+  fork-table exhaustion, hitting the DRIVER rather than a worker. The
+  skip-if-built resume loop made this a non-event: one `lake build` of the two
+  named modules finished them. A driver that logs its own return codes turns a
+  silent gap into a two-line repair; one that logged only successes would have
+  produced a root that failed to import 90 minutes later.
+- ONE DRIVER ONLY, per round-27 verdict 30, and the process list was checked
+  rather than the tool's success message. No races, no deleted oleans.
+- The dry-elaboration discipline paid again: the whole of `Increment.lean` was
+  developed and elaborated against three `axiom` stubs for the `IncCert*.F_le`
+  facts while the 105 case modules built (`proofs/DryInc28.lean`, DELETED on
+  landing per the standing rule), and it compiled first try when the real
+  imports arrived. `MirrorM11.lean` was dry-checked the same way and needed one
+  fix (a `133 + 1` that `omega` would not identify with `134`).
+
+### R28.8 Open formalisation targets (round-29 priority order)
+
+0. **THE MIRROR LEVER WHERE IT PAYS.** R28.0 makes machine 11's instantiation a
+   theorem and prices the transfer: one kernel base case (`opSeq (N-1) = P - o_0`)
+   plus the induction. Machine 13 is the next rung with a computable walk
+   (`Machine13Per.ow13_1485`); at machine 29 the base case is not reachable by a
+   walk and the lever needs a different route to `opSeq (N-1)` - naming that is
+   the real question, and it is where the lever would start buying something.
+1. **31->37 BY THE CASE SPLIT, NOW REPRICED.** At High priority, 385 cases is
+   ~2.6 h at two workers, not the ~8.6 h of verdict 29. Ask the LP thread for
+   the smallest k that certifies it and the emission; the Lean side is then
+   mechanical. This is the single highest-value target and it is now affordable.
+2. **`A_relax(M) <= 5`** (Constructor's standing offer) - 48 classes mod 210,
+   `LiteralCapTable.lean` shape, the first uniform (machine-free) order
+   statement in the Lean corpus. Unchanged and still unattempted.
+3. **Machine 37's qualifying dictionary, scan-free** - still the only missing
+   input to rung eight ON THE MERGE-LAW VEHICLE, and now demoted: the
+   certificate vehicle does not need it (R28.3).
+4. **The remaining `F_2` upper halves.** `f2_23_sharp` / `f2_29_sharp` pin the
+   census hypotheses from below; the matching upper halves (`SpectrumBound g23 2
+   39`, `SpectrumBound g29 2 55`) are still census hypotheses. The windowed
+   vehicle at machine 29 is a held-gear job (the LP thread's round-27 E4), so
+   this is a certificate ask, not a scan.
+5. Discharge `Census29` from `Census23` by dictionary transfer (unchanged).
+6. The depth-sum re-indexing bijection at machine 13 (unchanged).
+7. The generator at 13 -> 17 by the `Gen11Sound` template (unchanged).
+8. The sandwich lemma (unchanged).

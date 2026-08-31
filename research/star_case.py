@@ -590,7 +590,7 @@ def certificate_star(R, yf, yff, nuf):
 
 # ========================================================== the deciding loop
 def decide_star(R, maxrounds=400, verbose=True, tag=None, fastsep=True,
-                time_budget=None, filt=True):
+                time_budget=None, filt=True, trace=None):
     """EXACT decision of the restricted composition.  Verdicts:
        CERTIFIED - exact rational dual certificate;
        REFUTED   - exact rational feasible point, verified in-polytope;
@@ -641,6 +641,11 @@ def decide_star(R, maxrounds=400, verbose=True, tag=None, fastsep=True,
                 return 'NODUAL', dict(verdict='NODUAL', its=it, lp_max=val,
                                       rows=len(R.rows), cols=len(R.cols),
                                       secs=time.time() - t0)
+            if trace is not None:
+                trace.append(dict(it=it, lp_max=(None if val is None
+                                                 else float(val)),
+                                  added=0, rows=len(R.rows),
+                                  secs=time.time() - t0, closed=True))
             info = dict(verdict='CERTIFIED', lhs=lhs, rhs=rhs, ops=ops,
                         rows=len(R.rows), cols=len(R.cols), its=it,
                         support=sum(1 for v in yq if v) + (1 if yffq else 0)
@@ -671,6 +676,10 @@ def decide_star(R, maxrounds=400, verbose=True, tag=None, fastsep=True,
             if lam is not None:
                 R.rows.append((i, lam))
                 added += 1
+        if trace is not None:
+            trace.append(dict(it=it, lp_max=float(val), added=added,
+                              rows=len(R.rows), secs=time.time() - t0,
+                              final_pass=bool(final_pass), closed=False))
         if verbose:
             print("      it %d: max row = %.4f (need < %s), %d cuts,"
                   " %d rows%s  [%.0fs]"

@@ -355,9 +355,196 @@ Costello-Watts partition makes a second-order expansion tight.
   New open question: is the convergence rate of the cut loop predictable from
   E_u[f_w] and W - F(machine) at all, or is it a genuinely separate object?
 
-## 6. PRIOR-ART CHECK
+- ROUND 28 ANSWERS THE ROUND-27 QUESTION, AND THE ANSWER IS "NEITHER - IT IS
+  AN INSTRUMENT PROBLEM".  See section 7.  The convergence frontier is not a
+  separate species of obstruction at all: the cut loop's limit is the optimum
+  of ONE LP, computable directly, and the deceleration is the loop bending
+  towards that limit.  At machine 43 width 117 the limit polytope is EMPTY -
+  round 27's decelerating loop was converging to a certificate, not to an
+  asymptote, and the cell now certifies at ITERATION ZERO.
+
+## 7. ROUND 28 - THE CUT LOOP'S LIMIT IS ONE LP, AND THE SECOND FRONTIER IS A
+## WIDTH TOO (AT EACH k)
+
+Status: THEOREM (7.1, two lines) + SCRIPT-VERIFIED exact objects.  Gate:
+`research/gate_r28.py GATE`.  Files: `research/cutlimit_r28.py`,
+`frontier_r28.py`, `wc_r28.py`, `decel_r28.py`.
+
+### 7.1 The theorem: the loop's limit is the lifted optimum
+
+Fix a case cell: machine y, width W, held gears at phases ws, free gears
+q_0 < ... < q_{n-1}, position set pos, and the level-2 relaxation `RelaxStar`.
+The cut loop's rows are drawn from the family of EXACTLY VALID degree-2 cuts
+
+    lam_0 + sum_{S subset x, S nonempty} lam_S  >=  1    for every nonempty x,
+
+and a point z satisfies EVERY member of that family at position i exactly when
+its degree-<=2 moment vector at i extends to a probability distribution on the
+NONEMPTY subsets of the free gears.  Define the LIFTED PROGRAM
+
+    V*  =  max  sum_j frow_j z_j
+    over z >= 0 and p_i >= 0 on the 2^n - 1 nonempty subsets, subject to
+      (B) every block of z sums to 1;      (L) every consistency link;
+      (N) sum_x p_{i,x} = 1 for every i in pos;
+      (M) sum_{j : i in O_j, mask(S_j) = m} z_j = sum_{x superset m} p_{i,x}
+          for every atom mask m of a subset of size 1 or 2.
+
+THEOREM.  The cut loop's LP maximum is >= V* at every pass, and equals V* at
+termination.  PROOF.  (>=) the loop's rows are a subset of the valid cuts, so
+its feasible region contains the lifted projection.  (<=) at termination the
+EXACT separation oracle has found no violated cut at any position, so every
+position's moment vector is completable, so the loop's optimal z lifts to a
+feasible (z, p) and its value is at most V*.  QED.
+
+CONSEQUENCE - the exact dichotomy, replacing "does the loop converge":
+
+    V* < |pos|  (or the lifted polytope EMPTY)  the cell IS certifiable;
+    V* >= |pos|                                 the cell is NOT, ever.
+
+And the round-27 decomposition of the observed deceleration is forced:
+
+    lp_max_t - |pos|  =  (lp_max_t - V*)  +  (V* - |pos|).
+                          the convergence      A CONSTANT OFFSET
+
+A loop whose "gap to the target" decelerates is a loop converging normally to
+a limit that is somewhere else.  The two things round 27 could not separate
+are separated by computing V* once.
+
+### 7.2 The instrument, validated against the stalling loop
+
+Machine 37, width 88, k = 2, case (0,0), |pos| = 38.  The ordinary cut loop
+runs 24 passes in 259 s and stalls at LP maximum 40.4834.  The lifted LP
+returns V* = 40.48344218 in 35 s.  The loop was measuring V*, slowly.
+
+Excess e_t = lp_max_t - V* over those 24 passes:
+0.372 0.363 0.320 0.275 0.196 0.132 0.098 0.083 0.068 0.054 0.033 0.021
+0.014 0.009 0.005 0.004 0.003 0.003 0.001 0.000 ... - GEOMETRIC, ratio about
+0.75 per pass.  So the loop's own convergence was never slow; what did not
+move was the offset V* - |pos| = +2.483.
+
+### 7.3 A PROOF OF ASYMPTOTE (the first one this family has had)
+
+For a cell with V* >= |pos| an exact witness turns "the loop stalled" into
+"the loop cannot succeed".  Rationalising the lifted optimum fails - the
+optimum sits ON the completability boundary at 19-24 of the 38 positions, and
+no denominator up to 10^10 repairs it.  The fix is to ask for an INTERIOR
+point instead: maximise t subject to the recursion row already clearing |pos|
+and p_{i,x} >= t at every atom of size <= 2 and at the full atom (the columns
+of the incidence matrix that span the degree-<=2 moment space).  At the cell
+above t = 6.3139e-4 > 0, and the rationalised primal verifies EXACTLY:
+
+    every block sums to 1, every consistency link holds, ALL 38 positions
+    exactly completable, recursion row 38.5021 >= 38 = |pos|.
+
+So machine 37 at width 88 with TWO held gears can never be certified by this
+species, however long the cut loop runs.  (It is certified at THREE held gears
+in every one of the 385 cases - see `restricted-covering-certificates.md`.)
+
+### 7.4 The round-27 cell: SLOW CONVERGENCE, and my round-27 reading was wrong
+
+Machine 43, width 117 (the increment width F_2(41) + s_min(43)), k = 3, case
+(0,0,0), |pos| = 43 - the cell whose LP maximum fell 44.2578 -> 43.4856 over
+fifteen passes in 377 s and which round 27 could not decide.
+
+    THE LIFTED POLYTOPE IS EMPTY.
+
+V* = -infinity: level-2 consistency alone, with no recursion row at all,
+already excludes a fully blocked window of width 117 in that case.  Round 27's
+"about 0.05 per pass and decelerating - at that rate the crossing is ~10 more
+passes away" was reading a converging loop as a possible asymptote.  THE
+CONVERGENCE FRONTIER, AS ROUND 27 POSED IT, DOES NOT EXIST AT THAT CELL.
+
+That reading is a float LP's infeasibility, hence a measurement; the EXACT form
+is a split.  Case (0,0,0) at k = 3 decomposes into its 13 sub-cases at k = 4
+(the phases of gear 13, exhaustive by construction), and every one carries its
+own exact rational dual certificate: 13/13 CERTIFIED, all at iteration zero,
+571,466 exact certificate operations, each re-verified from disk.  So the cell
+is excluded by exact certificates, and the round-27 loop was converging to one.
+
+### 7.5 The cost finding: with the lifted duals, there is no loop
+
+When the lifted polytope is nonempty the duals of (M) and (N) give, at each
+position, mu_i / nu_i - a valid cut with lam_0 = 0 (dual feasibility at the
+p-columns is literally the validity condition), repaired to exact validity by
+raising lam_0 to the exact deficit, which only weakens the row.  When the
+polytope is EMPTY there are no duals, and the companion program supplies them:
+relax (N) to sum_x p_{i,x} = s_i in [0,1], impose the recursion row as a hard
+constraint, and maximise sum_i s_i; it is always feasible, its optimum is
+|pos| exactly when the lifted polytope is nonempty, and its duals carry the
+same cuts.
+
+Seeded with those rows, EVERY certifiable cell measured this round certifies
+at ITERATION ZERO.  Two cells that the ordinary loop left STUCK at a 300 s
+budget certify in one pass once seeded (m37 W=88 k=3 case (0,5,8): mass optimum
+28.98697 < 29 = |pos|, 29 seeded rows, 29,586 exact ops, iteration 0).
+The cut loop was never the vehicle; it was a way of discovering the vehicle's
+rows one separation at a time.
+
+### 7.6 The frontier is a width at each k
+
+G(y, k, W) = V*(y, k, W, case 0) - |pos| falls with W and crosses once.
+Measured (exact rational |pos|, float V*; the crossing itself is then
+re-decided exactly by the certificate or the witness):
+
+    y  k    W    |pos|      V*        G        G/W
+   23  1   30      18   20.5000   +2.5000   +0.0833
+   23  1   32      19   21.0000   +2.0000   +0.0625
+   23  1   34      21   22.5455   +1.5455   +0.0455
+   23  1   38      23   23.4428   +0.4428   +0.0117
+   23  1   40      24   24.2548   +0.2548   +0.0064
+   23  1   41      25    EMPTY       -          -
+   29  1   36      22   25.3333   +3.3333   +0.0926
+   29  1   44      27   30.2967   +3.2967   +0.0749
+   29  1   52      31   32.7106   +1.7106   +0.0329
+   29  1   60      36   37.0888   +1.0888   +0.0182
+   29  1   64      39   39.1508   +0.1508   +0.0024
+   31  1   44      27   33.2376   +6.2376   +0.1418
+   31  1   48      29   34.6667   +5.6667   +0.1181
+   31  1   52      31   36.2273   +5.2273   +0.1005
+   37  1   80      48   57.0461   +9.0461   +0.1131
+   37  2   88      38   40.4834   +2.4834   +0.0282
+   43  3  117      43    EMPTY       -          -
+   43  4  117      35    EMPTY       -          -
+
+W_c(y, k) = min{W : G < 0} is located by bisection on the lifted value and the
+sign pattern is then ASSERTED width by width over a nine-wide band, not
+assumed monotone.  W_c(23, 1) = 41 exactly (F(23) = 34, budget 48), single
+crossing confirmed.  The frontier moves DOWN with k, which is the knob the
+case split has and the level-2 vehicle did not.
+
+### 7.7 What this does NOT settle
+
+- The lifted program has 2^n columns per position, so it is affordable only
+  while the FREE-gear count is small - n <= 8 costs seconds, n = 9 costs
+  8-14 minutes at machine 43.  It decides cells; it does not scale to the
+  ladder's largest cells any more than the loop does.
+- W_c has no closed form here.  What replaced round 27's open question is a
+  DECISION PROCEDURE with a two-line correctness proof, plus the observation
+  that the frontier is a width at each k - the same shape as Result 3, one
+  level up.
+- The offset V* - |pos| is an integrality gap of the level-2 case-split
+  relaxation.  Bounding it in closed form is the same unsolved problem as
+  bounding Delta, one relaxation stronger.
+
+## 8. PRIOR-ART CHECK
 
 NOT YET CHECKED (2026-08-29; this agent has no web access this round).
+ROUND-28 ADDITION, and it needs the check most: THE LIFTED PROGRAM OF SECTION
+7.1 IS NOT CLAIMED AS NEW MATHEMATICS.  Writing a cutting-plane loop over a
+moment cone as one extended formulation with a distribution variable per
+constraint is the standard lift-and-project / Sherali-Adams move (Lovasz-
+Schrijver, Sherali-Adams, Balas), and the "loop's limit = lifted optimum"
+theorem is the textbook separation-equals-optimisation observation for that
+pair.  What is offered as possibly new is (i) the READING - that a
+cutting-plane loop's observed deceleration decomposes into a normal geometric
+convergence plus a constant integrality-gap offset, so "the loop is slow" and
+"the loop cannot succeed" are separated by one LP solve; (ii) the INTERIOR
+witness construction of 7.3 (floor the atom distribution on the low-order
+atoms only - flooring all 2^n - 1 atoms is infeasible because the pair moments
+are O(1/q_a q_b)); and (iii) the frontier reading W_c(y, k) for this family.
+Terms to search: separation-vs-optimisation for the Sherali-Adams level-2
+covering relaxation; cutting-plane convergence rate versus integrality gap;
+interior points of moment cones by low-order-atom flooring.
 Terms to search: "lowest blocking prime" second-order expansion exactness;
 Costello-Watts arXiv:1208.5342 pair term density; Bonferroni truncation
 exactness with lowest-index conditioning; extreme-value excess in covering LP

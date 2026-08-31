@@ -2601,3 +2601,735 @@ WATCHES
 - Q_8(37; 14) = 112 TURNS OVER from Q_7 = 114 - the second machine at which the
   qualifying spectrum is non-monotone in depth (Formalist found it at m31).
   Whether the turnover point is arithmetic or structural is untested.
+
+## Round-28 additions (mechanic)
+
+### C39. THE INFLATION-ONSET LADDER, AND THE ONSET LAW (r28)
+Repro: research/onset_r28.py (four steps from the dictionaries already on
+disk), research/onset_ladder_r28.py (three more steps, small machines
+recomputed from the period), research/onset_law_r28.py (mechanism + law),
+research/onset_oos_r28.py (the out-of-sample test); logs
+research/data/r28/{onset_anatomy,onset_law,onset_oos,y5}.log.  Brief item (c).
+Novel doc: docs/novel/dictionary-monotonicity-onset.md.
+
+THE QUESTION.  Round 27 found the 37 -> 41 arity-4 dictionary transfer EXACT
+below span 68 and refuting sharply above it.  Is 68 predictable from the
+machine's constants?
+
+THREE CLOSED FORMS WERE PRE-REGISTERED BEFORE THE LADDER WAS MEASURED
+(research/data/r28/prereg_mechanic_r28.md D1-D3): F_2 one machine back
+(F_2(31) = 68), 2F two machines back (2 F(23) = 68), and a constant ratio to
+F(M) (0.773).  ALL THREE FAIL AT EVERY OUT-OF-SAMPLE STEP; the third only ever
+matched its own calibration point.  D4 - my own registered expectation that all
+three would fail - is the one that stood.
+
+THE LADDER, EXACT AT EIGHT STEPS (both dictionaries exact at all eight; the
+small machines' were recomputed in-round from the CYCLICALLY CLOSED period with
+F and F_4 asserted against their known values):
+
+    step       11->13 13->17 17->19 19->23 23->29 29->31 31->37 37->41
+    onset         13     15     17     25     31     41     53     68
+    onset/F(M)  1.857  1.364  0.944  1.000  0.912  0.953  0.914  0.773
+    onset/F_2(M)1.182  0.938  0.680  0.806  0.795  0.745  0.779  0.756
+
+- no ratio is constant, and the ladder 13,15,17,25,31,41,53,68 is SMOOTHER
+  than F itself (successive ratios 1.15, 1.13, 1.47, 1.24, 1.32, 1.29, 1.28
+  against F's 1.57, 1.64, 1.39, 1.36, 1.26, 1.35, 1.52) - the onset is NOT
+  arithmetic-selected the way F is.
+
+THE LAW, AND IT IS A RECURSION, NOT A FORMULA IN THE LETTERS.  With q'' the
+next prime after q':
+
+        onset(M -> q')  =  min span of [ (D_4(q'') \ D_4(q'))  INTERSECT
+                                         the transfer's own emissions ]
+
+"the transfer M -> q' first over-generates exactly where the NEXT machine's new
+repertoire begins - it emits, one gear ahead of schedule, the tuples that only
+become realisable when the following gear is added."
+    HIT AT 6 OF 6 in-sample steps 13->17 ... 31->37, exactly - AND REFUTED AT
+    THE BOTTOM RUNG 11->13 (research/onset_m11_r28.py, run because the ladder
+    was cheap there and nothing had been fitted to it): onset = 13 while
+    min span D_4(17)\D_4(13) = 10, witness (2,2,1,5).
+    THE REFINEMENT THAT FIXES IT IS THE LAW'S OWN MECHANISM, not a patch: the
+    right-hand side must be intersected with WHAT THE TRANSFER CAN EMIT, and
+    machine 11's dictionary (73 4-tuples) has no walk emitting (2,2,1,5) at
+    all - asserted, not inferred.  Intersected, the minimum is 13 = the onset.
+        REFINED FORM 8/8, SIMPLE FORM 7/8 at arity 4.
+    AND THE ARITY-3 TEST SETTLES WHICH FORM IS THE LAW.  D_3(M) is the induced
+    3-tuple dictionary of D_4(M) EXACTLY (every realised 3-tuple sits inside a
+    realised 4-tuple), so a second arity costs no scan
+    (research/onset_arity3_r28.py ARITY, logs research/data/r28/onset_arity{2,3}.log):
+
+        step            11->13 13->17 17->19 19->23 23->29 29->31 31->37
+        onset (arity 2)     -      -      -     27     41     50     66
+        onset (arity 3)    17     14     20     25     36     44     57
+        onset (arity 4)    13     15     17     25     31     41     53
+
+        output arity   refined law   simple law   steps with NO onset
+             2           3/3 tested     1/3                 3
+             3           6/6            2/6                 0
+             4           8/8            7/8                 0
+             5           3/3            2/3                 0    <- new scans
+             6           3/3            2/3                 0    <- new scans
+             7           2/2            2/2                 0    (1 step skipped:
+                                     the depth-0 lemma genuinely fails at m=7 there)
+            TOTAL       25/25          16/25
+
+    ARITY 5 (research/onset_arity5_r28.py, log onset_arity5.log) needed exact
+    5-TUPLE dictionaries, which m11..m23 supply in seconds; it keeps the SOURCE
+    at the exact 4-tuple dictionary, so the CLOSURE is still order 4 and only
+    the OUTPUT size moves - the variation that asks whether the law is about
+    the transfer or about the arity the chain happens to consume.  It is about
+    the transfer.  Onsets 13, 17, 18 at 11->13, 13->17, 17->19.
+    The depth-0 lemma is asserted at arities 2, 3, 4 AND 5.
+
+    so the SIMPLE form's arity-4 record was the luck of rich dictionaries, and
+    the intersection with the emissions IS the law.  THE LAW IS
+    ARITY-INDEPENDENT.  (31->37 is not testable at arity 3: it needs D_3(41),
+    and the m41 shard's induced 3-tuples are span-restricted, i.e. a LOWER
+    bound, not the dictionary.  The arity-3 onsets are mostly HIGHER than the
+    arity-4 ones: a shorter pattern is pinned by the same order-4 closure for
+    more span, which is the direction it must go.)
+    AND THE LAW TRACKS THE SCREEN.  The walk screen (C40) moves ONE onset
+    (13->17: 15 -> 17).  The law's right-hand side is intersected with the
+    transfer's EMISSIONS, and the walk screen changes what an emission is - so
+    this is the law's own variable moving, not a re-run.  Under the walk screen
+    the refined law is 6 OF 6, with the 13->17 right-hand side moving to 17 in
+    step with the onset (research/onset_law_ws_r28.py, log onset_law_ws.log).
+    Running total for the refined form: 31 OF 31 across six output arities
+    (2,3,4,5,6,7) and two screens.
+    THE CAUSAL VERSION IS 8/8 (and implies the refined form): every tuple
+    refuted AT the onset span is realised at machine q''.  Witnesses (1,2,3,7),
+    (1,5,4,5), (3,2,3,9), (1,5,2,17), (8,2,6,15), (5,5,25,6), (10,2,28,13).
+    AND THE SEVENTH STEP OUT OF SAMPLE: nu(41 -> 43), computed from the
+    round-27 m41 SHARD alone (span cap 75, inside the shard's exact region;
+    no m43 dictionary, no scan, no solver), is 68 - reproducing round 27's
+    MEASURED onset(37 -> 41) by a route that never saw it.  Witness
+    (5, 36, 2, 25).
+
+THE PARTIAL MECHANISM, and it says what a proof must supply.  Emissions split
+by DEPTH (interiors deleted by q'); depth 0 is realised by C40's lemma, so
+every refutation needs a walk of >= 5 M-gaps that the order-4 closure admits.
+    X_5(M) := min span of a 5-walk whose two 4-windows are realised at M but
+              which is not itself realised at M
+            = 9 AT EVERY MACHINE 13, 17, 19, 23, WITH THE SAME WITNESS
+              (1,2,3,2,1) - and that witness is PHASE-SATURATED at gear 5
+              (X = {0,1,3,6,8,9}, X u (X-3) = Z_5), hence zero at every machine
+              by K9.
+    This explains the UNSCREENED onset EXACTLY: it is 9 at all seven steps.
+    Y_5(M) (unrealised AND not phase-saturated) is a lower bound on the
+    screened onset, and IT WAS EXTENDED TO m29 THIS ROUND
+    (research/y5_m29_r28.py, log research/data/r28/y5_m29.log) by a STREAMED
+    full-period machine-29 pass - the round's named open construct, built:
+
+        machine   m13  m17  m19  m23  m29
+        X_5         9    9    9    9    9      (always the same witness)
+        Y_5        10   17   18   22   30
+        onset      15   17   25   31   41
+        onset/Y_5 1.50 1.00 1.39 1.41 1.37
+
+    so the multiplicity residue is NOT growing without bound - at the three
+    largest machines where both are known the ratio sits in [1.37, 1.41], a
+    band of width 0.04.  Y_5(29) = 30 with witness (1, 19, 1, 7, 2).
+    THE m29 PASS IS ITSELF GATED TWO WAYS: the cyclic close is asserted (N gaps,
+    sum = P, wrap gap = first gap, max = 43 = F(29)), and the exact 5-tuple
+    dictionary's INDUCED 4-tuple dictionary is EXACTLY the round-25 full-period
+    census (45,854 tuples) - two independent full-period scans agreeing cell for
+    cell.  New object on disk: machine 29's exact 5-tuple dictionary,
+    research/data/r28/gap_tuples_29_5.csv, 208,668 tuples, ASSERTED
+    reverse-closed and ASSERTED to have max span 85 - which INDEPENDENTLY
+    CONFIRMS Constructor's round-28 F_5(29) = 85, by a full-period scan against
+    their scan-free route.
+    AND THE ARITY-5 ONSET AT A BIG STEP.  With D_5(29) on disk the onset test
+    runs at OUTPUT ARITY 5 for the step 23 -> 29 (the arity-5 tests had only
+    ever reached 17 -> 19, on 37,000-slot periods):
+    ONSET(23 -> 29, arity 5) = 30, against 31 at arity 4 and 36 at arity 3, and
+    the depth-0 lemma at arity 5 holds there (q' = 29 > 2(m+1) = 12).
+    research/onset_arity5_big_r28.py.
+    A FULLY STREAMED VERSION (research/y5_stream_r28.py) reaches machine 31 -
+    period 3.34e10, 6.23e9 openings, never materialising the gap array - and it
+    was VALIDATED AT m29 FIRST, reproducing the in-memory tool exactly (208,668
+    tuples, X_5 = 9, Y_5 = 30, induced 4-tuple dictionary EQUAL to the census)
+    - AT FOUR DIFFERENT BLOCK SIZES (2^22, 2^23, 2^24, 2^26), which is the
+    control that matters for a streamed tool, since the block boundary is
+    exactly where a carry bug would hide.
+    Two bugs it caught in itself, both by the cyclic-close assertions rather
+    than by eyeball: the wrap gap was being compared to the first OPENING
+    instead of the first GAP, and the four 5-windows straddling the seam were
+    missing (they are now the windows of carry ++ [wrap] ++ head4).
+    AND IT REACHED MACHINE 31.  The stream ran over all 33,426,748,355 slots
+    (997 blocks, 1,262 s) with the cyclic close asserted (wrap = first = 7,
+    max = 58 = F(31)), giving machine 31's EXACT 5-TUPLE DICTIONARY - 636,575
+    distinct 5-tuples, whose INDUCED 4-tuple dictionary is EXACTLY the round-25
+    full-period census (115,193): a THIRD independent two-scan agreement.  Then
+
+        X_5(31) = 9 (the universal witness again), Y_5(31) = 38 with witness
+        (2, 3, 2, 1, 30), against onset(31 -> 37) = 53:  onset / Y_5 = 1.395.
+
+    THE FULL LADDER, six machines:
+
+        machine    m13   m17   m19   m23   m29   m31
+        X_5          9     9     9     9     9     9
+        Y_5         10    17    18    22    30    38
+        onset       15    17    25    31    41    53
+        onset/Y_5 1.50  1.00  1.39  1.41  1.37  1.40
+
+    - at the FOUR largest machines the ratio is 1.389, 1.409, 1.367, 1.395, a
+    band of width 0.042.  The multiplicity residue is a near-constant FACTOR,
+    not a growing gap.  (The 5-tuple dictionary was NOT written to disk at m31:
+    the running process predated the emission edit by fifteen minutes.  Cheap to
+    redo - the pass is 21 minutes - and it is what an arity-5 onset-law test at
+    23 -> 29 would need.)
+    Y_5 at m37 remains out of reach by scan (period 1.2e12); the construct for
+    it is a lap-phase transfer emitting 5-TUPLES instead of extremal values -
+    the same K2 bijection with a different payload - and it is not priced.
+
+### C40. THE DEPTH-0 LEMMA AND THE WALK SCREEN (r28)
+Repro: research/onset_anatomy_r28.py (the lemma + the trim),
+research/onset_walkscreen_r28.py (the walk screen, ladder + m41).
+
+THE DEPTH-0 LEMMA (proved, three lines, no scan):
+
+        D_m(M)  SUBSET  D_m(M + q')   for every prime q' > 2(m+1),
+
+in particular the realised 4-tuple dictionary only ever GROWS along the ladder.
+Proof: a realised m-tuple at opening y_0 has m+1 exposed offsets, so at most
+2(m+1) < q' residues are forbidden for the new gear's phase A = (u' - y_0) mod
+q'; P(M) is invertible mod q', so A runs over ALL residues across the q' laps -
+pick a lap with an admissible A.  Then every point survives and the m+1
+openings are still CONSECUTIVE (a new opening between them would be an old one).
+    CHECKED at arities 2, 3, 4 at all six exact pairs 13->17 ... 31->37 and at
+    D_4(37)|span<=77 subset the round-27 exact m41 shard; and at arities 5, 6,
+    7 at the small steps where exact m-tuple dictionaries exist (arity 7 is
+    where it FAILS at 11->13, which is the sharpness table below firing as an
+    assertion inside research/onset_arity5_r28.py).
+
+AND THE HYPOTHESIS IS SHARP (research/depth0_sharp_r28.py).  Sweeping m upward:
+
+    step     proof covers   first m at which D_m(M) is NOT inside D_m(M+q')
+    7->11       m <= 4                 6     witness (2,1,2,2,1,2)
+    11->13      m <= 5                 7     witness (3,2,2,1,2,2,3)
+    13->17      m <= 7                 8     witness (5,2,2,1,2,2,1,4)
+    17->19      m <= 8                 9     witness (2,5,5,2,1,2,5,2,5)
+
+At q' = 17 and 19 the first failure is at EXACTLY the first m the proof does
+not cover - the hypothesis is tight, not an artefact - and at q' = 11, 13 it
+has slack 1.  Every witness is a dense small-gap pattern, which is what
+saturates the new gear's phase set.  (This was pre-registered inside the script
+as "the first failure should sit ABOVE 2(m+1), not at it" - CONFIRMED, by 1-2
+in m.)
+
+AND IT PAYS AT ONCE.  Of the 874,087 reverse classes of the machine-41 arity-4
+screened superset, 145,907 (16.7%, = 291,675 tuples) ARE ALREADY IN D_4(37) and
+are therefore YES BY THEOREM - at EVERY span, including the bands round 27
+priced at 3.5 s a decision:
+
+    band       classes   free (in D_4(37))   PAID
+      1- 60     59,245        59,137          108
+     61- 77    110,736        77,181       33,555
+     78- 80     30,936         4,207       26,729
+     81- 90    122,031         4,954      117,077
+     91-100    172,760           424      172,336
+    101-110    206,984             4      206,980
+    111-118    171,395             0      171,395
+
+so the exact census's remaining PAID population is 728,180 classes, not 874,087,
+and the free share collapses with span exactly as F_4(37) = 105 predicts.
+On the WALK-SCREENED superset the same table reads 857,186 classes, 145,907
+free (17.0%), 711,279 paid - the walk screen's removals land almost entirely
+above span 100 (206,984 -> 201,712 and 171,395 -> 161,217), i.e. exactly in the
+bands that cost 3-4 seconds a decision.
+
+THE WALK SCREEN - the round-26 screen applied to the right object.  C31 screens
+the EMITTED tuple; but every point of the underlying WALK, the deleted
+interiors included, is an M-opening, so the whole walk must have an admissible
+phase at every gear q <= M.  Screening the walk is SOUND (a realised walk has an
+actual phase), STRICTLY STRONGER (it sees obstructions the emission has
+forgotten - the universal (1,2,3,2,1) among them) and a PREFIX PRUNE (the
+bad-phase set only grows).
+
+    step      truth      raw   emission-screened   WALK-screened   walk+emis
+    13->17    1,281    2,283          1,967            1,901        1,901
+    17->19    4,489    9,118          7,849            7,601        7,601
+    19->23   15,696   66,238         47,623           42,045       42,045
+    23->29   45,854  190,091        130,069          121,671      121,671
+    29->31  115,193  715,697        471,135          419,990      419,990
+    31->37  291,675 2,435,140      1,182,475        1,153,814    1,153,814
+
+    walk-screened == walk+emission at ALL SIX STEPS: THE WALK SCREEN SUBSUMES
+    THE EMISSION SCREEN.  Inflation falls 4.054x -> 3.956x at 31->37 and
+    3.034x -> 2.679x at 19->23; and at 13->17 it RAISES THE ONSET (15 -> 17).
+    Soundness asserted at every step: no realised tuple removed.
+
+DELIVERED TO CONSTRUCTOR: research/data/r28/gap_tuples_41_4_walkscreened.csv,
+1,714,020 4-tuples against round 27's 1,747,819 - ASSERTED to be a SUBSET of it
+and ASSERTED to contain all 338,855 tuples of the exact m41 shard.  The DFS
+pruned 15,186,064 of 102,740,755 nodes.  The gear list is capped at 26 by a
+COMPUTED argument, not a guess: s = 2*6^{-1} mod 41 = 14, so kills are >= 14
+apart, span <= F_4(41) = 118 allows at most 9 kills, so a walk has at most 13
+exposed points and no gear above 26 can saturate.  The 37 -> 41 onset is
+UNCHANGED at 68 under the walk screen (a control: the walk screen removes only
+things that were refuted anyway in that region).
+
+### C41. THE m41 EXACT SHARD, EXTENDED - AND THE COST LAW RE-PRICED (r28)
+Repro: research/m41_shard_r28.py (price / work / merge).  Brief item (b).
+Round 27 left the exact m41 arity-4 dictionary COMPLETE AT EVERY SPAN <= 77
+with ~1.23M reverse classes and ~4.0e6 core-seconds still to pay.
+
+TWO THINGS CHANGED THE PRICE, BOTH BY THEOREM AND BOTH IN SECONDS.
+1. THE DEPTH-0 LEMMA (C40) decides 145,907 of the 874,087 reverse classes YES
+   with no solver - 16.7%, at every span.
+2. The band table above shows where that free half lives, and it is NOT
+   uniform: 99.8% free at span <= 60, 70% at 61-77, 14% at 78-80, 4% at 81-90,
+   0.2% at 91-100, 0% above 110 - the collapse tracks F_4(37) = 105 exactly.
+
+So the remaining PAID population is 728,180 reverse classes, and the honest
+next-band prices, at round 27's measured per-decision costs, are
+
+    band 78- 80    26,729 paid classes    ~5.1e3 core-s   (this round)
+    band 81- 90   117,077 paid classes    ~4.1e5 core-s   (a 23-h job at 5 wk)
+    band 91-100   172,336 paid classes    ~6.0e5 core-s
+
+DELIVERED: THE FRONTIER MOVES 77 -> 80.  Four workers, 19,292 paid decisions,
+ZERO undecided (Y = 17,303, N = 1,989), 8,610-8,818 s each - inside the 3.5 h
+deadline, so no class was left hanging.  Merged with the free half:
+
+    research/data/r28/gap_tuples_41_4_exact_le80.csv  (gate:
+    research/shard_gate_r28.py - reverse-closed, max span exactly 80, agrees
+    with the round-27 shard CELL FOR CELL below 77, inside the walk-screened
+    superset, and contains all 280,911 m37 4-tuples of span <= 80)
+    THE EXACT MACHINE-41 4-TUPLE DICTIONARY IS COMPLETE AT EVERY SPAN <= 80:
+    395,941 tuples (338,855 at span <= 77 in round 27), 370,263 reverse classes
+    carrying a verdict of which 140,525 are FREE by the depth-0 lemma.
+    Inflation of the screened superset over that region: 1.0149x.
+
+Above 80 the price is the wall: span 81-90 alone is 117,077 paid decisions at
+~3.5 s, i.e. 23 hours at five workers.  The census remains a multi-round object
+and is honestly labelled as one.
+
+THE REFUTED-BY-SPAN TABLE, EXTENDED THREE ROWS (research/onset_41_extend_r28.py,
+log onset_41_extend.log).  Round 27 could only publish it to span 77 - the old
+frontier - and it now runs to 80, with the walk-screened superset alongside:
+
+    span    68  69  70  71  72  73  74  75  76  77   78   79    80
+    refuted  4   0  12  28  52  34 136 234 228 210  900 1284  2585
+    (identical under the emission screen and the walk screen: the walk screen's
+     removals all lie above span 100, so it changes nothing in this region -
+     which is itself the control that says the two screens agree where both
+     have been checked against exact truth)
+
+    ONSET still 68 under both screens; inflation over span <= 80 is 1.0144x.
+
+### C42. THE PEAK DEPTH OF THE QUALIFYING SPECTRUM (r28, brief item d)
+Repro: research/peak_depth_r28.py (log research/data/r28/peak_depth.log).
+Round 27 left "Q_8(37;14) = 112 turns over from Q_7 = 114; whether the turnover
+point is arithmetic or structural is untested".
+
+THE CHEAP EXACT VEHICLE.  Over a machine's CYCLIC gap array, with R[i] the run
+of consecutive gaps >= a starting at i and S the prefix sums,
+
+    Q_j(M; a) = max { S[i+j] - S[i] : R[i+1] >= j - 2 },
+
+so EVERY depth of every machine up to 23 is exact in seconds - no transfer, no
+solver, no seed, and the WHOLE profile rather than the first few depths.
+
+    machine  a       2    3    4    5    6    7   ...
+       m11   4      11   16   18   20    0    0
+       m13   6      16   18   23    0    0    0
+       m17   6      25   28   31   32   34    0
+       m19   8      31   35   37   38    0    0
+       m23  10      39   43   50   55   60    0
+
+    GATED CONTROL (an assertion in the script, not an eyeball): every
+    Q_3..Q_7 entry at m11, m13, m17, m19, m23 reproduces C13's published row
+    EXACTLY, by a vehicle sharing no code with qualifying_spectrum.py, which
+    produced them.
+
+THE ANSWER TO (d), AND IT LOCATES THE TRANSITION.  At every machine <= 23 the
+qualifying spectrum is MONOTONE UP TO VACUUM - the peak is the LAST non-empty
+depth (5, 4, 6, 5, 6 at m11..m23) and there is NO turnover.  At m31 the peak is
+INTERIOR (5 of 7) and at m37 it is interior (7 of 8).  So
+
+    "the peak is terminal"  ->  "the peak is interior"
+    happens between machine 23 and machine 31,
+
+and the turnover is not a property of large depth per se: it is the point at
+which the qualifying-run structure stops being the binding constraint and the
+FLANK structure takes over.  m29 is the one machine in the gap (C13 gives
+Q_2..Q_7 = 55 65 68 71 71 71, a PLATEAU, with Q_8 unmeasured); deciding whether
+m29 turns over needs one full-period m29 pass (1.078e9 slots, ~1.7 GB for the
+prefix-sum array), which is the NAMED CONSTRUCT for this item and was not run
+this round - the box was at 48-59 GB of a 63.6 GB commit limit all round.
+
+### C43. F(59) = 161 EXACT - the corpus ladder gains a rung it never had (r28)
+Repro: research/f59_pin_r28.py run 7 (band (161, 178] at JMAX = 5, seven range
+workers TILING machine 23's period exactly); logs
+research/data/r28/f59_pin_161_178_J5_w{0..6}.log.  Lower half re-verified from
+the definition by research/f59_lower_r28.py; UPPER half re-asserted end to end
+by research/f59_upper_r28.py, which re-reads every round-27 band, re-asserts
+each band's tiling, and asserts the bands COVER (178, 260] WITH NO HOLE - the
+(178,184] band is the one that closes the gap between 178 and 183 and is NOT in
+akill_bands_r27.py's list, so this is a new check, not a re-run.  Brief item
+(a).
+
+    ALL SEVEN WORKERS REPORT max over J = 161, i.e. THE BAND IS EMPTY.
+    Round 27 had already refuted every span above 178 (four bands, JMAX = 7)
+    and exhibited a J = 3 window of span 161.  Therefore
+
+        F(59) = 161   EXACT      (equivalently F(2,59) = 483)
+
+    and every depth J = 2, 3, 4, 5 reports 161 - the record is carried at
+    J = 3, i.e. k_win(53 -> 59) = 2.
+
+WHY IT WAS AFFORDABLE THIS ROUND AND NOT LAST.  Round 27 launched this exact
+band at JMAX = 7 and KILLED it (no worker reached its first progress stride in
+35 minutes).  The depth cap is now a THEOREM (standing rule 34).  Stated with the
+index convention checked (rule 5): a word-legal window of J gaps has J-1
+INTERIOR OPENINGS, all deleted by one phase of q', i.e. it carries a realised
+kill chain of ARITY J-1 (whose WORD has J-2 letters - A_kill counts openings,
+not letters).  A_kill(53 -> 59) = 4 EXACT with N_5 = 0 (C36) therefore forces
+J - 1 <= 4, so Q*_6 = Q*_7 = 0 and JMAX = 5 is EXHAUSTIVE.  Measured on one identical 20,000-index probe run alone:
+JMAX = 5 completes in 57 s, JMAX = 7 does not complete in 600 s.  The full band
+then cost 7 workers x ~4.8 h under a loaded box.
+
+THE LOWER HALF IS AN EXHIBITED OBJECT, re-derived this round from the
+definition at machine 53 (14 gears, slot by slot):
+    k = 2,505,673,933,219,103,747, openings at k + [0, 10, 128, 161],
+    gaps [10, 118, 33], all 158 other slots of the span blocked,
+    middle 118 = 2q' = the letter 0 (TWO laps of padding).
+
+CONSEQUENCES, all immediate:
+1. THE CORPUS LADDER.  F(2,y) had no 53 -> 59 rung; round 26 could only say
+   F(59) >= 159 and round 27 bracketed [161, 178].  It is now a value.
+2. (D) AT 53 -> 59 with a margin of 43, not 26: 161 <= 204 = F(53) + 59.
+3. THE INCREMENT LAW: F(59) - F_2(53) = 161 - 159 = +2, against
+   s_min(59) = 20.  The law holds with 18 to spare.
+4. CONSTRUCTOR'S Delta BAND SURVIVES AN OUT-OF-SAMPLE STEP.  Their round-27
+   finding is Delta_J = Q*_J - F_2 in [-3, +4] uniformly in M and J, measured
+   at m11..m41.  At machine 53 - outside their sample - Delta_J = +2 at EVERY
+   J = 2..5.  Their uniform-constant claim, not the s_min form, is what the
+   new step confirms.
+5. THE DELETION LADDER IS NEARLY TIGHT HERE: F_2(53) = 159 <= F(59) = 161,
+   slack 2.
+6. IT UNBLOCKS THE TENTH RUNG: F_4(43) <= F(43 + three gears) = F(59) = 161,
+   so a span cap of 180 makes F_4(43) UNCONDITIONAL (C44).
+7. AND IT RETRO-UPGRADES F_2(53) FOR FREE.  C30 recorded F_2(53) = 159 with the
+   upper direction CONDITIONAL on the round-26 span cap 200, explicitly because
+   "the deletion-ladder cap F_2(53) <= F(59) is unavailable, the corpus F ladder
+   stopping at 53".  It is available now: F_2(53) <= F(59) = 161 < 200, so the
+   cap excluded nothing and
+
+        F_2(53) = 159 IS NOW UNCONDITIONAL.
+
+   The same argument frees every earlier run whose cap exceeded its own
+   deletion-ladder bound once F(59) is known - and it is the reason C44's and
+   C45's new values carry no span condition either.
+
+MY PRE-REGISTRATION WAS WRONG, AND IT WAS THE ROUND'S ONLY REAL BET
+(research/data/r28/prereg_mechanic_r28.md, written before the band):
+    A1 "the band is non-empty, F(59) >= 165"          REFUTED - it is empty.
+    A2 "the attaining depth is J = 4"                 REFUTED - it is J = 3.
+    A4 "Delta_4, Delta_5 exceed Constructor's [-3,4]" REFUTED - all are +2.
+    A3 "Delta_J <= s_min = 20 at every J"             CONFIRMED (all +2).
+The reasoning behind A1 was that the k_win census (C13) shows the step record
+carried at k_win = 3 at two of four measured steps, and that the realised
+2-letter word (20,118) has letters summing to 138 with room for flanks.  What
+actually happens is that the deeper words, though REALISED, never occur with
+large enough flanks - the same "occurrence count, not span" law this lane
+established in C13 and then argued past.  Standing rule 1 again, in its third
+costume.
+
+### C43b. THE M1 AUDIT (r28, routed in by the coordinator)
+Repro: research/m1_audit_r28.py (log research/data/r28/m1_audit.log), all
+assertions passing.  Constructor's M1 - "the legal kill alphabet is
+{a, b, q'}" - is REFUTED.  QUESTION: does any mechanic claim lean on it?
+ANSWER: NO, and this lane's own data is corroboration of the refutation.
+This lane's legality test has always been RESIDUE-based (j5_multi.legal_word
+and a_kill both accept any v with v mod q' in {0, +s, -s}, plus the prefix-sum
+range condition), and that set is infinite.  At 53 -> 59 the letters actually
+enumerated were {20, 39, 59, 79, 98, 118, 138} - FOUR of the seven outside M1's
+alphabet - and the letters in the REALISED words (C36, complete levels) are
+{20, 39, 59, 98, 118}, of which 98 = q'+(q'-s) and 118 = 2q' are outside it.
+The arity-4 carrier (20, 98, 20) has one of the omitted values as its MIDDLE
+letter and is exactly what lifts A_kill from 3 to 4.  So round 27's C36 was
+already evidence against M1, filed before M1 was refuted.
+
+### C15-UPDATE. THE CORPUS F LADDER (r28)
+    y         19   23   29   31    37    41    43    47    53    59
+    F(2,y)    75  102  129  174   264   273   309   354   435   483
+    F(y)      25   34   43   58    88    91   103   118   145   161
+The y = 59 column is NEW AND EXACT (C43), replacing round 26's lower bound
+(>= 159) and round 27's bracket [161, 178].  It is the first ladder value the
+project computed rather than looked up, and it was computed on machine 23's
+period - a period ratio of 5.3e11 to machine 59's.
+SCOPE, stated as always: the upper direction rests on the round-27 bands above
+178, which were run with span caps 184/194/204/260; the lower direction is an
+exhibited machine-53 window re-verified from the definition this round.
+
+### C44. F_2(43) = 116, F_3(43) = 125, F_4(43) = 132 - THE TENTH RUNG'S
+###      SHOPPING LIST, ALL EXACT AND ALL UNCONDITIONAL (r28)
+Repro: research/j5_multi.py 23 29,31,37,41,43 47 seed102 180 4 1 plain LO HI
+(floor-1 lap-phase transfer, r = 5), three range workers TILING
+[0, 7,952,175); logs research/data/r28/fj43_w{0,1,2}.log, 660-720 s each.
+Routed in by the coordinator from Constructor's round-28 filing: their
+spectrum-depth certificate needs F_2(43), F_3(43), F_4(43) and one emptiness
+certificate at J_max(43)+1.
+
+    J        Q_J(43; 1)     status
+    2           116         = F_2(43), NEW AND EXACT (standing entry: <= 118)
+    3           125         = F_3(43), the KNOWN exact value - TWO-SIDED ANCHOR
+    4           132         = F_4(43), NEW AND EXACT (standing entry: nothing)
+
+    max over J = 132  vs budget F(43) + 47 = 150  ->  CERTIFIES
+
+NOTHING HERE IS SPAN-CONDITIONAL, and that is a direct dividend of C43.  The
+run's cap is 180 and the deletion-ladder caps are F_2(43) <= F(47) = 118,
+F_3(43) <= F(53) = 145, F_4(43) <= F(59) = 161 - the last of which only became
+a number this round.  180 sits above all three, so no window was excluded by
+the cap.  The seed 102 = F(43) - 1, and F_2(43) >= F(43) = 103, so the seed
+hides nothing either.
+
+THREE CONTROLS, none of which the tool was told about:
+ (a) J = 3 returns 125 = the known F_3(43), seeded 23 below it, so the run had
+     to FIND it as well as refute everything above.
+ (b) The J = 3 witness verified at machine 43 is k = 1,595,441,702,157,105 with
+     gaps [67, 28, 30] - the exact REVERSE of C11's round-24 SAT witness
+     [30, 28, 67] at a different address: the mirror law, unprompted.
+ (c) Two of the three range workers independently report the same 116/125/132.
+All three maxima re-verified AT MACHINE 43 from the definition
+(research/qstar_witness_r26.py --nolegal, 12 gears, slot by slot):
+    F_2: k = 2,161,962,392,309,552  gaps [31, 85]         114 others blocked
+    F_3: k = 1,595,441,702,157,105  gaps [67, 28, 30]     122 others blocked
+    F_4: k =   280,183,736,276,020  gaps [18, 24, 8, 82]  128 others blocked
+
+THE EMPTINESS CERTIFICATE IS FREE - NO RUN AT ALL.  A word-legal 5-window
+carries a realised kill chain of ARITY 4 at the step 43 -> 47, and
+A_kill(43 -> 47) = 3 EXACT by full-period decision (C10/C22) means N_4 = 0, so
+
+    Q*_5(43; legal for 47) is EMPTY BY THEOREM,  i.e. J_max(43) = 4.
+
+This is the same argument that made JMAX = 5 exhaustive for the F(59) pin
+(standing rule 34): the completed arity level IS the depth cap.
+
+CONSEQUENCE FOR CONSTRUCTOR: their criterion F(M+q') <= max_{2<=J<=J_max} F_J(M)
+now reads F(47) <= max(116, 125, 132) = 132 at the tenth rung, against the
+budget F(43) + 47 = 150 - so (D) AT 43 -> 47 IS CERTIFIED with margin 18, from
+machine 43's spectrum alone, with no word list, no flank envelope and no
+realisability oracle.  (The corollary F(47) <= 132 is weaker than the known
+exact 118, as it must be - the criterion is a certificate, not a computation.)
+CORRECTION TO C11: the entry "F_2(43) <= 118" is superseded by F_2(43) = 116,
+and "F_4(43)" had no entry at all.
+
+### C45. F_5(41) = 128 EXACT - Constructor's other "small job" (r28)
+Repro: research/j5_multi.py 23 29,31,37,41 43 seed118 165 5 1 plain LO HI
+(r = 4), three range workers TILING [0, 7,952,175); logs
+research/data/r28/f5_41_w{0,1,2}.log, ~380 s each.  Routed in by the
+coordinator; Constructor called F_5(37) and F_5(41) "the same small job" and
+they were right, but only because F(59) landed first.
+
+    F_5(41) = 128 EXACT, UNCONDITIONAL.
+
+The cap 165 sits above the deletion-ladder cap F_5(41) = F_{4+1}(41) <=
+F(41 + four gears) = F(59) = 161 - a bound that DID NOT EXIST before C43, since
+the corpus ladder stopped at 53.  Seed 118 = F_4(41), and F_5 >= F_4 always, so
+the seed hides nothing.  (F_5(37) = 113 was already exact in C11; the standing
+entry for F_5(41) was nothing at all.)
+
+THE TWO MAXIMISERS ARE AN EXACT MIRROR PAIR, from two processes sharing no
+state: 4,834,937 + 32,347,080 = 37,182,017 = P(23) - 128 (C18's k -> -k).
+Verified AT MACHINE 41 from the definition, slot by slot:
+    k = 33,044,111,735,742  gaps [10, 51, 2, 50, 15]  123 others blocked
+    k = 17,664,265,518,665  gaps [15, 50, 2, 51, 10]  123 others blocked
+AND THE SHAPE IS INHERITED: round 27's F_4(41) = 118 maximisers were
+[51,2,50,15] and [15,50,2,51] at k = 33,044,111,735,752 and
+17,664,265,518,665 - the SAME addresses (the second identical, the first ten
+slots along).  So the depth-5 record is the depth-4 record with ONE MORE GAP
+OF 10 prepended, not a different configuration: F_5(41) = F_4(41) + 10.
+
+FREE BONUS FOR THE NINTH RUNG: the run's own budget line is F(41) + 43 = 134,
+and 128 <= 134, so Constructor's spectrum-depth criterion certifies (D) at
+41 -> 43 using the UNRESTRICTED depth-5 value - i.e. that rung does not need
+the Q*_5(41) emptiness certificate at all, it is robust to the J_max choice.
+
+### C46. F_3(47) = 145 EXACT AND UNCONDITIONAL (r28)
+Repro: research/j5_multi.py 23 29,31,37,41,43,47 53 seed144 165 3 1 plain LO HI
+(r = 6), three range workers TILING [0, 7,952,175); logs
+research/data/r28/f3_47_w{0,1,2}.log, ~600 s each.
+
+    F_3(47) = 145.  The standing entry (C11) was "F_3(47) >= 145 (<= 263)".
+
+The cap 165 sits above the deletion-ladder cap F_3(47) <= F(47 + two gears)
+= F(59) = 161 - again a bound that did not exist before C43 - so nothing here
+is span-conditional.  Seeded at 144, so the run had to FIND 145 as well as
+refute everything above it, and all three workers report the same row
+(Q_2 = 144 at the seed, Q_3 = 145).
+
+THE CONTROL IS AS GOOD AS THIS LANE HAS EVER GOT: the witness translates to
+machine-47 address k = 36,068,193,854,725,102 with gaps [28, 33, 84] - which is
+C11's round-24 witness, at the SAME ADDRESS, found by a completely different
+vehicle (that one was the endpoint-law-pruned covering search f3_47_prune; this
+one is the lap-phase transfer from machine 23).  Re-verified slot by slot at
+machine 47: 4 openings at k + [0, 28, 61, 145], all 142 other slots blocked.
+
+### C11-UPDATE. THE F_j SPECTRA AFTER ROUND 28
+    machine   F_1  F_2  F_3  F_4  F_5  F_6
+    13         11   16   23   26   28   31
+    17         18   25   28   33   35   40
+    19         25   31   35   38   47   50
+    23         34   39   50   58   65   77
+    29         43   55   65   70   85   90
+    31         58   68   85   90   92   97
+    37         88   90   97  105  113  120
+    41         91  103  110  118  128    -     <- F_5 NEW this round (C45)
+    43        103  116  125  132    -    -     <- F_2, F_4 NEW this round (C44)
+    47        118  134  145    -     -    -     <- F_3 pinned this round (C46)
+    53        145  159    -    -     -    -
+    59        161   ?     -    -     -    -    <- F_1 NEW this round (C43)
+F_2(11) = 11 and the m11..m29 F_2 column were independently re-derived this
+round from the cyclically closed period (research/onset_ladder_r28.py's
+machinery) and agree with the corpus row cell for cell.
+
+### C47. THE WITNESS GATE (r28)
+research/witness_gate_r28.py (log research/data/r28/witness_gate.log).  Every
+exhibited window this round produced, re-checked AT ITS OWN MACHINE from the
+definition - the J+1 offsets are openings, every other slot of the span is
+blocked, gear by gear - importing nothing from the tools that found them:
+
+    F(59) >= 161   m53  gaps [10,118,33]        158 others blocked
+    F_2(43) = 116  m43  gaps [31,85]            114
+    F_3(43) = 125  m43  gaps [67,28,30]         122
+    F_4(43) = 132  m43  gaps [18,24,8,82]       128
+    F_5(41) = 128  m41  gaps [10,51,2,50,15]    123
+    F_5(41) mirror m41  gaps [15,50,2,51,10]    123
+    F_3(47) = 145  m47  gaps [28,33,84]         142
+
+plus the mirror identity 4,834,937 + 32,347,080 = P(23) - 128 asserted.  ALL
+ASSERTIONS PASSED.
+
+## Standing rules (round-28 additions)
+
+34. A DEPTH CAP CAN BE A THEOREM, NOT A BUDGET CHOICE.  Rule 32 said "ask what
+    depth the question needs"; this says the answer is sometimes COMPUTABLE.
+    A word-legal window of J gaps has J-1 INTERIOR OPENINGS deleted by one
+    phase, i.e. a realised kill chain of ARITY J-1 (its word has J-2 letters -
+    A_kill counts OPENINGS, and getting that index wrong is rule 5's trap), so
+    Q*_J = 0 whenever J - 1 > A_kill; with A_kill(53->59) = 4 closed in r27,
+    JMAX = 5 is EXHAUSTIVE for the F(59) pin, not a scope choice.  Measured on
+    one identical 20,000-index probe, run alone: JMAX = 5 completes in 57 s,
+    JMAX = 7 does not complete in 600 s.  Round 27 launched the same band at
+    JMAX = 7 and had to kill it.  Before choosing a depth, look for a COMPLETED
+    ARITY LEVEL that fixes it.
+35. SCREEN THE OBJECT THE SEARCH ACTUALLY WALKS, NOT THE OBJECT IT EMITS.  The
+    phase-saturation screen had been applied to the emitted tuple for two
+    rounds; the transfer walks a longer object whose deleted interiors are also
+    openings, so the obstruction belongs there.  Sound, strictly stronger,
+    SUBSUMES the emission screen at all six steps, and it is a prefix prune
+    rather than a post-filter.  General form: when a construct emits from a
+    richer intermediate object, put the arithmetic obstruction on the
+    intermediate.
+36. BEFORE PAYING A SOLVER FOR "IS THIS OLD OBJECT STILL THERE?", ASK WHETHER
+    IT MUST BE.  The depth-0 lemma is three lines and it decides 16.7% of a
+    1.4M-decision census - a population this lane had been pricing at 3.5 s a
+    head.  Rule 29's pigeonhole layer has a twin: a MONOTONICITY layer.
+37. COUNT MY OWN PROCESSES AGAINST THE COMPUTE POLICY, AND WATCH COMMIT, NOT
+    JUST FREE RAM.  Mid-round I had 12 compute processes up while other lanes
+    had 9 plus two Lean builds holding 2.4 GB; committed memory reached 59.3 of
+    the box's 63.6 GB limit, total CPU sat at 42%, and my own headline job was
+    running at a quarter of its measured solo speed.  Rule 30 said measure
+    utilisation; this adds: measure \Memory\Committed Bytes against the commit
+    limit, and when the box is loaded the fix is to kill MY OWN lowest-value
+    job, not to wait.
+
+## Retracted / corrected (round-28 additions)
+
+R27. MY ROUND-28 PRE-REGISTRATION - THE HEADLINE BET LOST, AND THREE OF THE
+    FOUR ONSET FORMULAS WERE MINE TO LOSE
+    (research/data/r28/prereg_mechanic_r28.md, written before any band).
+    A1 "the band (161,178] is non-empty; F(59) >= 165"  REFUTED - it is EMPTY
+       and F(59) = 161.  My reasoning was the k_win census (the step record is
+       carried at k_win = 3 at two of four measured steps) plus the realised
+       2-letter word (20,118) leaving room for flanks.  What the machine does
+       instead is what THIS LANE established in C13 and then argued past: the
+       envelope follows OCCURRENCE COUNT, not span - the deeper words are
+       realised but never occur with big enough flanks.  Standing rule 1 in its
+       third costume.
+    A2 "the attaining depth is J = 4"                   REFUTED - it is J = 3.
+    A4 "Delta_4, Delta_5 exceed Constructor's [-3,+4]"  REFUTED - every
+       Delta_J is +2, so their uniform band survives an out-of-sample machine.
+    A3 "Delta_J <= s_min(59) = 20 at every J = 2..5"    CONFIRMED.
+    D1 "onset = F_2 of the machine one below" (F_2(31) = 68)   REFUTED
+    D2 "onset = 2F two machines below"        (2F(23) = 68)    REFUTED
+    D3 "onset/F(M) is the constant 0.773"                      REFUTED
+       - all three fitted the single round-27 data point and none survives a
+       second step.  Fitting a closed form to one measurement is the same
+       error as extrapolating a per-step share (rule 1); I made it three ways
+       at once and registered all three so they could be shot.
+    D4 "none of the three works; the onset sits closer to F(M) than to F_2(M)"
+       CONFIRMED on both clauses - the three fail, and |onset - F(M)| <
+       |onset - F_2(M)| at 6 of the 8 steps (it fails at the two smallest
+       machines, m11 and m13).
+R29. I RECORDED A PROCESS KILL THAT NEVER HAPPENED.  Seeing no machine-31
+    python process and no emitted CSV, I wrote into this log that the m31
+    streamed pass "was killed before it wrote the CSV or computed Y_5(31)".
+    It was not: it exited NORMALLY, having already printed Y_5(31) = 38; my
+    liveness check landed after it finished, and the CSV is missing only
+    because the running process predated the emission edit by fifteen minutes.
+    Corrected in place.  Standing rule 23 in a new costume - re-read the log
+    before quoting a verdict about a process, and "it died" is a verdict.
+    (The OTHER kill in this round's negatives - the seven F_2(59) workers - IS
+    real: they left no completion line, their launcher died with them, and the
+    partial logs stop mid-range.)
+
+R28. AN INDEX SLIP IN MY OWN PROSE, CAUGHT ON REVIEW AND CORRECTED IN PLACE.
+    The depth-cap argument (standing rule 34) was written as "a word-legal
+    window of J gaps carries a realised (J-1)-LETTER kill word".  It does not:
+    it carries J-1 INTERIOR OPENINGS deleted by one phase - a kill chain of
+    ARITY J-1 - and that chain's WORD has J-2 letters.  A_kill counts OPENINGS
+    (C10's own definition: "N_k counts TUPLES"), so the inequality that matters
+    is J - 1 <= A_kill, which is what every script actually computed and what
+    the gate actually asserts (its R27_WORDS table is keyed by ARITY and the
+    empty level is arity 5).  NOTHING COMPUTED IS AFFECTED - the JMAX = 5 cap,
+    the F(59) pin and C44's emptiness certificate are all unchanged - but the
+    sentence was wrong in four documents and is now right in all of them.
+    This is standing rule 5 (check the index convention before quoting) applied
+    to my own text rather than to another lane's.
+
+    E1 "the peak depth of Q_J is non-decreasing in M"  REFUTED by my own
+       exact table: 5, 4, 6, 5, 6 at m11..m23 (then 5 at m31, 7 at m37).  It is
+       not monotone and it was never going to be - the peak is terminal below
+       m31 and interior from m31 on, which is a different statement about a
+       different regime.
+
+## Open watches and checkpointed jobs (round-28 additions)
+
+WATCHES
+- THE ONSET LAW IS MEASURED, NOT PROVED (26 of 26 across four output arities
+  and two screens, plus one out-of-sample prediction).  What would settle it:
+  bound, for the smallest over-generated span, the deletion budget of an
+  order-4-closure walk against the deletion budget of ONE extra gear.  The
+  cheapest new evidence is the 41 -> 43 rung, which needs D_4(43) - i.e. the
+  m41 shard extended, or an m43 dictionary.
+- Y_5(M) IS NOW COMPUTED AT m29 AND m31 (30 and 38, by streamed full-period
+  passes over 1.08e9 and 3.34e10 slots, C39), and the residual ratio onset/Y_5
+  is 1.389, 1.409, 1.367, 1.395 at m19, m23, m29, m31.  m37 is NOT reachable by
+  scan (period 1.2e12); the construct that would reach it is a lap-phase
+  transfer emitting 5-TUPLES rather than extremal values - the same K2
+  bijection, a different payload - and it has not been priced.
+  ALSO OUTSTANDING AND CHEAP: machine 31's 5-tuple dictionary was computed but
+  NOT written to disk (the running process predated the emission edit), so a
+  21-minute re-run would bank it - and it is exactly what an arity-5 onset-law
+  test at 23 -> 29 needs, the arity-5 onset there being already measured at 30.
+- THE m41 EXACT 4-TUPLE CENSUS: COMPLETE AT EVERY SPAN <= 80 (was 77).  The
+  remaining paid population is 711,279 reverse classes on the walk-screened
+  superset; span 81-90 alone is 117,077 decisions at ~3.5 s = 23 h at five
+  workers.  Still a multi-round object.  research/m41_shard_r28.py work/merge
+  resumes from the per-worker logs and skips the depth-0-free half.
+- DOES m29's QUALIFYING SPECTRUM TURN OVER?  The "peak terminal -> peak
+  interior" transition happens between m23 and m31 and m29 is the machine in
+  the gap (C13 gives a PLATEAU 71, 71, 71 with Q_8 unmeasured).  One
+  full-period m29 pass decides it; the prefix-sum array is ~1.7 GB, which is
+  the reason it was not run on this box this round.
+- THE WALK SCREEN should replace the emission screen everywhere the transfer is
+  used.  research/data/r28/gap_tuples_41_4_walkscreened.csv is the drop-in
+  tighter superset (1,714,020 vs 1,747,819, asserted subset, asserted to
+  contain the exact shard).

@@ -27,7 +27,7 @@ import os
 import datetime
 from math import log
 
-TODAY = datetime.date(2026, 8, 29)
+TODAY = datetime.date(2026, 8, 30)
 ROOT = r"C:\dev\primes"
 DOCS = [
     r"docs\novel\j2-upper-bound.md",
@@ -36,6 +36,7 @@ DOCS = [
     r"docs\novel\twin-percentile.md",
     r"docs\novel\paired-jacobsthal-values.md",
     r"docs\novel\jk-family.md",          # added r27: the (P6) family note
+    r"docs\novel\jk-growth-discriminator.md",  # added r28: the k-axis note
 ]
 
 OUT = []

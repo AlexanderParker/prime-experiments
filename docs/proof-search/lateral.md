@@ -1625,3 +1625,490 @@ directly in-script). Novel-register docs: docs/novel/two-n-gap-reordering.md
 percentile.md (new), docs/novel/eigenvalue-statistics.md section 7 (U5),
 docs/novel/gear-cell-decomposition.md section 7 (U6/U9, and it corrects that
 doc's own section 5), plus three README index entries.
+
+## Round 28 (2026-08-29) - the counterfactual family's other statistics, the
+## lever's exception list, and three backlog items closed
+
+CHOSE: (a) the brief's own item first - my round-27 discovery extended from F to
+the statistics the LIVE ROUTE actually consumes (F_2, F_3, the increment, the
+increment law's own margin), plus the m23 rung; then the mechanism of that
+discovery, where a third candidate died; then (c) the mirror lever's
+generalisation question, which turned into an exact answer AND a deflation
+(the two involutions we thought we had are one); then U11 and U7.
+NOT WORKED, honestly, and unclaimed: U14 (the streaming phase-order enumerator -
+still named, not built, and still nothing in the project needs phase order).
+ATTEMPTED AND WITHDRAWN: U10 - I thought I had closed half of it and I had not
+(item 66(b)). It is untouched by this round.
+NOT COMPLETED, and narrowed rather than reported around: the FULL m23
+counterfactual family (142,560 members). The box spent this round at 96% of its
+commit limit with six lanes running, which killed two worker pools and turned an
+80-minute job into a 2.7-hour one; per the job-completion rule I stopped it and
+delivered the exhaustive PINNED family instead (item 63), with the full family
+scoped for next round and 106 of 216 shards already on disk.
+
+GATES, all from clean processes at round close, all exit 0:
+  research/tooth_stats_r28.py --upto 19      -> 19 gates (log data/r28/tooth_stats.log)
+  research/tooth_m23_r28.py --gate           -> 41 gates
+  research/tooth_m23_r28.py --pinned --report ->  5 gates (log data/r28/tooth_m23_report.log)
+  research/tooth_mech_r28.py --upto 19       ->  4 gates (log data/r28/tooth_mech.log)
+  research/mirror_selfwindow_r28.py --upto 23 --maxdepth 30
+                                             -> 83 gates (log data/r28/mirror_selfwindow.log)
+  research/tuple_reversal_r28.py             -> 18 gates
+  research/hole_topband_r28.py               -> 16 gates
+  research/gear7_cells_r28.py --upto 23      -> 40 gates (log data/r28/gear7_cells.log)
+Predictions P1-P16 pre-registered in research/data/r28_lateral_predictions.txt;
+Blocks A-D written before any round-28 code existed, Block E written mid-round
+before tooth_mech_r28.py existed and with that fact stated in the file. Every
+job this round launched has finished or was explicitly stopped and reported as
+narrowed above; nothing is left running.
+
+### Established results (continuing the numbering; do not renumber 1-61)
+
+62. THE COUNTERFACTUAL FAMILY'S OTHER STATISTICS - AND THE ONE THAT MATTERS IS
+    THE INCREMENT LAW'S OWN MARGIN (r28; brief item (a)).
+    Round 27 placed the twin machine in ONE statistic, F. The route does not use
+    F: it uses F_2, the increment F(M+q') - F_2(M), and the budget slack. All
+    are defined for every member of the family (which fixes gears, period and
+    survivor count), so all are null models. Exhaustive and exact at m11..m19:
+
+        machine  |V|      F        F_2      F_3      #gap values
+        m11      30       20.0%    46.7%    75.0%    43.3%
+        m13      180      18.1%    34.2%    61.1%     8.3%
+        m17      1440     26.4%    47.6%    15.2%    38.3%
+        m19      12960    17.1%    12.3%     6.3%    10.5%
+
+    F_2 is below the median at every machine but only marginally at m11/m17 -
+    then at m19 it REVERSES AND STRENGTHENS WITH DEPTH (17.1 / 12.3 / 6.3 for
+    F / F_2 / F_3). The step statistics, (A) = full V(y'), (B) = new gear's
+    tooth pinned to the twin's:
+
+        step        F(M+q')      increment     budget slack   law margin
+                     (A)/(B)      (A)/(B)        (A)/(B)      s_min - inc (A)
+        7->11     20.0 / 25.0   25.0 / 25.0   15.0 / 25.0       83.3%
+        11->13    18.1 / 15.0   23.6 / 21.7   32.5 / 28.3       78.9%
+        13->17    26.4 / 28.3   61.5 / 60.8   59.0 / 58.6       66.8%
+        17->19    17.1 / 17.9   14.9 / 13.9   37.2 / 38.7       82.2%
+
+    (i) THE LAW MARGIN IS THE FAVOURABLE ONE, AND IT IS THE STEADIEST THING
+        HERE. s_min - inc is the slack the increment law actually has at a
+        member; the twin sits at the 66.8-83.3 percentile of it at all four
+        steps - THE TWIN MACHINE USES LESS OF THE INCREMENT LAW'S BUDGET THAN
+        TWO THIRDS TO FOUR FIFTHS OF ITS OWN COUNTERFACTUALS. This is the
+        measured room the brief asked for, and it is in the law's own currency
+        rather than in F.
+    (ii) THE INCREMENT LAW IS NOT GENERIC. Over the full family it is VIOLATED
+        by 13.3 / 13.9 / 14.5 / 21.7 percent of members at the four steps, and
+        the rate GROWS with the machine. No argument using only "same gears,
+        same density, symmetric teeth" can prove it.
+    (iii) AND MOST OF WHAT IT NEEDS IS THE NEW GEAR'S TOOTH. Pinning v_q' to
+        round(q'/6) and letting the OLD machine's teeth range freely drops the
+        violation rate to 0 / 0 / 1.1 / 6.5 percent. The new gear's tooth
+        carries most of the law and the old machine's arithmetic the rest - a
+        decomposition of the law's difficulty that no scan of the real machine
+        can state, because the real machine is one point.
+    (iv) THE BUDGET SLACK IS THE UNFAVOURABLE ONE - the honest negative of the
+        round. At the two largest steps the twin sits at 59.0% and 37.2%:
+        essentially undistinguished. THE TWIN'S ADVANTAGE DOES NOT APPEAR IN
+        F(M+q') - F(M) - q'. (Measured free from the same sieves; the
+        budget-slack null model is the manager's item U13 and this is offered
+        as replication, not as a claim on that item.)
+    CROSS-VALIDATION, unplanned and free: my increment column reproduces
+    Constructor's independently computed R68 witness table at the three steps
+    that overlap - 0, 2, 0 at 11->13, 13->17, 17->19, against caps 4, 6, 6 -
+    by a completely different vehicle (exhaustive counterfactual sieving vs
+    record-window decomposition).
+
+63. THE m23 RUNG - THE PLATEAU HOLDS, AND THE DEPTH TREND IS CONFIRMED (r28;
+    advances U12(i), and DELIVERED IN A NARROWED FORM - read the scope note).
+    SCOPE, first, because it decides how much this is worth. The full family
+    V(23) is 142,560 sievings and it did NOT complete: at ~0.15 s each it is
+    ~6 core-hours, and this box spent the round at 96% of its commit limit with
+    six lanes running, which turned an 80-minute job into a 2.7-hour one and
+    killed two worker pools outright. Per the job-completion rule I NARROWED it
+    rather than reporting around it: what is delivered is the EXHAUSTIVE,
+    EXACT PINNED FAMILY (B) - all 12,960 m19 tooth vectors with v_23 fixed at
+    the twin's own value 4 - which is precisely the (B) column reported at every
+    other step in item 62, at 1/11 the cost. 106 of the 216 full shards had
+    completed and were reused; the remaining 110 were computed pinned. THE FULL
+    FAMILY (A) AT m23 IS NOT MEASURED and is a scoped next-round item (the
+    shards resume with one command).
+
+        m23, pinned family, |V| = 12,960, exhaustive and exact:
+          F(m23)      twin 34   min 27   median 37   max 57   percentile 11.9%
+          F_2(m23)    twin 39   min 35   median 45   max 65   percentile  3.1%
+          increment   twin  3   min  0   median  2   max 24   percentile 56.0%
+          budget slack twin -14 min -22  median -14  max  9   percentile 49.3%
+
+    (i) THE ~20% PLATEAU HOLDS AND DOES NOT DRIFT TO 50% - 11.9% at m23 against
+        20.0 / 18.1 / 26.4 / 17.1 at m11..m19. Five machines now, no trend
+        toward the median.
+    (ii) AND THE DEPTH TREND IS CONFIRMED, WHICH IS THE ROUTE-RELEVANT PART.
+        F_2 is at the 3.1 PERCENTILE - the most extreme placement anywhere in
+        this line of work, and far below F's own 11.9%. Together with m19
+        (F 17.1, F_2 12.3, F_3 6.3) the two largest machines both say the twin's
+        advantage GROWS WITH DEPTH, while m13/m17 said the opposite. Since the
+        route consumes F_2 and not F, this is the direction that matters, and
+        it is now the strongest thing in this whole line. (F_3 at m23 not
+        computed - scoped as U16.)
+    (iii) AND THE TWO STEP QUANTITIES AGREE WITH ITEM 62's READING. The
+        increment sits at 56.0% and the budget slack at 49.3% - both
+        UNDISTINGUISHED, exactly as the budget slack was at the two largest
+        steps of item 62. The increment law is violated by 5.7% of this pinned
+        family, in line with the 0-6.5% pinned rates there.
+    FOURTH INDEPENDENT AGREEMENT WITH CONSTRUCTOR'S R68 TABLE: the twin's
+    19->23 increment comes out 3 against a cap of 8, which is their fourth entry
+    (0, 2, 0, 3, ...) against their fourth cap (4, 6, 6, 8, ...), exactly.
+
+64. THE THIRD MECHANISM FOR ITEM 61 IS DEAD - THE EFFECT IS AN INTERACTION, NOT
+    A MAIN EFFECT (r28; advances U12(ii)).
+    U12(ii) named the next candidate: gears 5 and 7 decide every <= 5-point
+    shape, so the low-F effect should be localised in (v_5, v_7), of which the
+    twin's (1,1) is one of six classes. REFUTED, and in the same direction as
+    round 27's angular-coherence refutation.
+      * The gear whose tooth explains the most variance in F is gear 7 at
+        m13/m17 (eta^2 = 0.092 / 0.091) and gear 11 at m19 (0.066). NEVER gear
+        5; eta^2 is NOT monotone in q; no single gear explains more than 9%.
+      * The twin's own v_q is the argmin of the marginal F profile for 0 of 4,
+        0 of 5 and 1 of 6 gears at m13/m17/m19. On gears 5 and 7 it is the
+        ARGMAX - the twin takes the WORST small-gear teeth on the main effects.
+      * Its class (v_5,v_7) = (1,1) has the HIGHEST mean F of the six at m13
+        (14.57 vs 12.94) and m17 (22.12 vs 19.65), joint-highest at m19
+        (28.48 vs 27.90) - and INSIDE that worst class the twin is at the
+        1.7 / 6.9 / 4.6 percentile, far more extreme than its overall
+        18.1 / 26.4 / 17.1.
+      * Conditioning ladder at m19 (pin the twin's own value on a growing prefix
+        and re-rank): 17.1 -> 11.4 -> 4.6 -> 7.1 -> 26.4 -> 22.2 -> 50 percent.
+        It DEEPENS while the pinned set is small and dilutes only as the
+        sub-family collapses to 72, 9 and 1 members, where it is uninformative;
+        pinning the LARGE gears instead keeps it at 17.9-33.3%.
+    So: THE TWIN VECTOR IS A LOW-F OUTLIER INSIDE THE HIGH-F CLASS ON EVERY AXIS
+    ANYONE HAS PROPOSED. Three mechanisms dead in two rounds, and the shape of
+    all three deaths is the same.
+
+65. THE SELF-MIRROR WINDOW: AN ADDRESS FORMULA, ITS SIZE, AND THE LEVER'S
+    EXCEPTION LIST (r28; brief item (c)).
+    Formalist's kernel lemma `Mirror.none_of_at_most_one` is machine-free except
+    for `hexc : L t0 <> 2*F` - the self-mirror window must not carry the length
+    being counted. So the whole machine-side content of the lever is one
+    question, and it now has a closed-form answer. With N = prod(q-2) ODD and
+    M = (N-1)/2, the mirror on depth-j window indices is t -> -(t+j), whose
+    unique fixed point gives
+
+        j = 2i   : t_j = -i,    SPAN = 2 * o_i
+        j = 2i+1 : t_j = M - i, SPAN = P - 2 * o_{M-i}
+
+    GEOMETRICALLY: Z_P has exactly two mirror centres, the slot 0 and the
+    antipode P/2; THE SELF-MIRROR WINDOW AT DEPTH j IS THE BALL OF j+1
+    CONSECUTIVE OPENINGS CENTRED ON A MIRROR CENTRE - on 0 for even j, on the
+    antipode for odd j. Verified for every depth j = 1..30 at m7..m23.
+    PRIOR-WORK CHECK ON MYSELF: the geometric half is NOT new - my own round-26
+    item 54 already relocated the exceptional window "from an INDEX to an
+    ADDRESS ... the window centred on slot 0 (j even) or on the antipode
+    (j odd)", and item 54(c) proved the STRONGER route-facing statement that it
+    is never QUALIFYING, over more rungs (to 47->53) and depths j <= 7 than this
+    round covers. WHAT IS ACTUALLY NEW HERE is the quantitative half: the closed
+    SPAN formulas above, the span_self/F_j table, the exception list, and the
+    literal discharge of the kernel lemma's own hypothesis below.
+    THE SIZE, and this is what makes the lever usable: the self-mirror window is
+    centred on a fixed point of the geometry rather than chosen for its size, so
+    its span is a TYPICAL j-window span (~ j*P/N) while F_j is the MAXIMUM.
+    Measured span_self(j)/F_j at j = 2..6 tops out at 0.913 (m11), 0.750 (m13),
+    0.750 (m17), 0.660 (m19), 0.600 (m23) - falling in the machine.
+    THE EXCEPTION LIST - where span_self(j) = F_j exactly, so hexc FAILS and
+    "at most one implies zero" is NOT available, over all j <= 30:
+        m7 : j = 3,7,9,11,14    m11 : j = 11    m13/m17/m19/m23 : NONE.
+    AND AT THE ROUTE'S OWN TARGET IT IS FREE: at depth 2 the formula gives
+    span_self(2) = 2*d_0, twice the FIRST gap, so hexc <=> d_0 <> F, with
+    d_0 = 2,3,3,5,5,5 against F = 5,7,11,18,25,34 at m7..m23. The hypothesis is
+    discharged by a one-line inequality at every machine, and d_0 already has a
+    closed form (Mechanic's wrap-gap identity, r25).
+
+66. THE TWO LEVERS ARE ONE - PLUS A REPLICATION I INITIALLY MIS-SOLD AS NEW
+    (r28).
+    (a) REPLICATION, NOT A NEW RESULT, and I am recording it as such because I
+        wrote it up as new before checking my own item 51. The opening set
+        carries 2^n - 1 non-trivial involutions sigma_S (flip gear q's sign for
+        q in S); their fixed-point counts on the OPENING set are exact with no
+        scan, #fix = N/prod_{S}(q-2) (gated at m23 for |S| = 1, 2, 7 and by
+        formula for all 127 subsets), exactly one has a single fixed point, and
+        only it is an isometry. MY OWN ROUND-26 ITEM 51 ALREADY PROVED ALL OF
+        THIS in the affine form - group (Z/2)^m, fixed-point count P/prod_S q,
+        ONE when S is everything, and only c = +-1 acting on windows, brute-force
+        gated over 92,400 affine maps at m11. The round-28 version is the same
+        theorem counted on the opening set instead of on Z_P. NET NEW CONTENT:
+        the restatement in terms of the exposed sets, nothing more.
+    (b) AND MY U10 CLAIM WAS WRONG - SELF-CORRECTED BEFORE FILING. I first wrote
+        that "no element of order 4 exists in the machine's automorphism group,
+        so U10's candidate (a) is dead". That does NOT close candidate (a). U10
+        was posed KNOWING item 51 rules out symmetries; its candidate (a) is a
+        free Z/4 action on a SUBSET OF CONFIGURATIONS, which need not be induced
+        by any automorphism of Z_P at all - which is exactly what "not a
+        symmetry" means in U10's own wording. What I actually proved is the
+        sub-case "a Z/4 action restricted FROM the machine's automorphism
+        group", and item 51 already implied that. U10 REMAINS OPEN, BOTH
+        CANDIDATES, and this round contributed nothing to it.
+    (c) AND THE DEFLATION: WORD REVERSAL IS THE SAME INVOLUTION, NOT A SECOND
+        ONE. Verified cell for cell at m7/m11/m13, depths 2,3,4: the gap-word
+        census is exactly reversal-symmetric, exactly one PALINDROME has odd
+        multiplicity, and it is the self-mirror window's own word. The brief's
+        question "where else does it bite?" therefore has a smaller answer than
+        hoped: the two assets round 25 listed separately are one object.
+    (d) WHERE IT DOES REACH FURTHER: the two CRT TRANSFER supersets. Section 7.6
+        gated reversal-closure on the four EXACT 4-tuple dictionaries; those are
+        re-derived here (replication) and the check EXTENDS to
+        gap_tuples_37_4_transfer (2,435,140 tuples, 546 palindromes) and
+        gap_tuples_41_4_transfer (4,239,676; 874), which are built by CRT
+        emission with no scan and had no a-priori reason to inherit the
+        symmetry unless the emission is itself mirror-faithful. IT IS. Payoff:
+        ~50% of every one of these files need never be visited by a
+        reversal-invariant predicate.
+
+67. U11 ANSWERED - EVERY HOLE EXCEEDS 0.70 F, AND 0.70 IS VERY NEARLY SHARP
+    (r28; closes U11 as a measurement, leaves a conjecture).
+    U11 asked whether "every hole lies in the top half of the gap range" is a
+    theorem. It is TRUE at all nine machines with hole data, with room:
+    min(hole)/F = 0.818, 0.944, 0.760, 0.706, 0.953, 0.931, 0.830, 0.923, 0.990
+    at m13..m43. The tightest is m23 at 0.7059 - so "> 0.70 F" holds and
+    "> 0.71 F" would FAIL. m11 has no holes at all.
+    FREE DOUBLE-SOURCE: machines 11..23 are directly sievable here, so their F
+    and hole lists are recomputed FROM SCRATCH and asserted equal to Mechanic's
+    reference table (mechanic.md 653-662) - five of its ten rows independently
+    re-derived. m29..m43 are CITED and marked as cited.
+    THE COMPLEMENTARY FORM, which is the one that might be a theorem: with
+    G(M) = min(hole) - 1 = the largest G with every g <= G realised, G >= 2n
+    (n = #gears) at all ten machines and is TIGHT at m13 (G = 8 = 2*4). The
+    competing bound n^2 fails. CONJECTURE C-U11: every g <= 2 * #gears is
+    realised. NOT PROVED: the counting argument it suggests (a window of length
+    g needs g-1 interior slots blocked, and n gears supply at most 2 blocked
+    residues each in a short window) gives the right shape but does not show the
+    CRT system with the two ENDPOINTS LEFT OPEN is solvable - which is exactly
+    the covering-half obstruction Constructor's N(M) negative names.
+
+68. U7 ANSWERED - THE GEAR-7 DRIFT MIGRATES ONTO THE MIRROR-FIXED CELLS (r28;
+    closes U7 after four rounds untouched).
+    The right object is the ENDPOINT cell matrix C[a][b] = #gaps from an opening
+    at residue a to the next at residue b, both in the exposed set A_p; row and
+    column sums are exactly N/(p-2) by CRT, and the mirror acts as
+    C[a][b] = C[-b][-a] (asserted cell for cell at m11..m23, gears 5 and 7),
+    whose fixed cells are the anti-diagonal b = -a. That gives (p-2)(p-1)/2
+    orbits and (p-2)(p-3)/2 free integers - THREE at p=5, TEN at p=7, which is
+    U7's "10 free integers" in a cleaner indexing.
+    THE ANSWER, ranking each orbit's deviation from the CRT-flat value N/(p-2)^2:
+      * GEAR 5 has ONE STABLE LEADING ORBIT, (0,2), at all five machines, and it
+        is NOT a fixed cell (deviation/N = 0.1111, 0.0869, 0.0759, 0.0684,
+        0.0631 at m11..m23).
+      * GEAR 7's LEADING ORBIT MOVES - (0,2), (0,2), (0,0)fix, (4,3)fix,
+        (4,3)fix at m11..m23 - and FROM m17 ON IT IS A MIRROR-FIXED CELL
+        (0.0637, 0.0448, 0.0371, 0.0337, 0.0323).
+    READING, and it joins up with round 25's U3 answer: THE MIRROR CONSTRAINS
+    PAIRED ORBITS AND SAYS NOTHING ABOUT FIXED CELLS, so a drift that has
+    migrated onto the anti-diagonal is exactly a drift the parity argument
+    cannot touch. Gear 5's drift sits on a paired orbit (which is why its
+    evenness constraints bite and why it is the only parity-obstructed gear);
+    gear 7's has moved onto the cells with no constraint.
+    FREE CROSS-CHECK in a completely different indexing: gear 5's length-class
+    asymmetries come out a_2 = 2*a_1 EXACTLY at all five machines
+    (19/38, 165/330, 2199/4398, 34069/68138, 656539/1313078) - which is round
+    25's mirror relation 2(N_1 - N_4) = N_2 - N_3, re-derived from the endpoint
+    cells. Gear 7's three asymmetries are in no fixed ratio and even REORDER
+    (a_2 is largest at m11..m17, a_3 at m19..m23).
+    HONEST SCOPE, stated because it would otherwise read as a contradiction: my
+    alpha_v = N_v - N_{-v} are the GAP-LENGTH CLASS asymmetries; round 25's
+    alpha_1, alpha_2 (the ones whose ratio crosses -1/phi) are the BRACKET
+    asymmetries in the cell variables, a different pair. In MY normalisation
+    max|alpha|/N decays 0.2815 -> 0.1651 at gear 5 and 0.2519 -> 0.0715 at gear
+    7, i.e. gear 7 decays FASTER - this neither confirms nor contradicts round
+    25's "gear 7 decays far more slowly", which is a statement about the other
+    object and which I did NOT reproduce. U7's ORBIT half is answered; its
+    "why so much slower" half is answered only in the endpoint normalisation.
+
+### Refuted angles (continuing)
+
+42. My own pre-registered P10 (r28): "the self-mirror window's span is at most
+    0.8 * F_j at every machine and every depth j >= 1". REFUTED as written by my
+    own script: span_self(j) = F_j EXACTLY at m7 (j = 3,7,9,11,14) and m11
+    (j = 11), and the 0.8 line is crossed at j = 19-21 at m13/m17/m19. The
+    correction is not a weaker constant but an EXPLICIT EXCEPTION LIST, which is
+    empty from m13 up and empty at every machine >= m11 in the route-relevant
+    range j = 2..6 (item 65).
+43. My own pre-registered P14 (r28): "the variance of F explained by a single
+    gear's tooth is largest for gear 5 and decreases monotonically in q".
+    REFUTED on both halves - the largest is gear 7 (m13/m17) or gear 11 (m19),
+    never gear 5, and eta^2 is not monotone at any machine (item 64).
+44. My own pre-registered P3 (r28): "the increment places the twin near the
+    middle, 35-65%, because a difference of two suppressed quantities cancels".
+    REFUTED, and IN THE FAVOURABLE DIRECTION - 25.0, 23.6, 61.5, 14.9 percent at
+    the four steps, so the twin is favourably placed at three of four including
+    the largest. My stated reason (cancellation) was wrong; what cancels is the
+    BUDGET SLACK, not the increment (item 62 (i) and (iv)).
+45. U12(ii)'s OWN PROPOSED MECHANISM - "the effect is localised in (v_5, v_7)
+    because gears 5 and 7 decide every <= 5-point shape". REFUTED by item 64:
+    conditioning on (v_5,v_7) makes the twin MORE extreme, not less, and its
+    class is the highest-F class. That is the third dead mechanism for item 61
+    and the second one I proposed myself.
+46. My own round-25 phrasing "the depth-j gap-word census has exactly one odd
+    palindrome", insofar as it reads as "exactly one WORD of odd multiplicity".
+    REFUTED by my own gate: non-palindromic words come in reversal pairs of
+    EQUAL count and equal counts may both be odd (m7 depth 2 has five words of
+    odd multiplicity). The exact law is about PALINDROMES, and the safe form is
+    "AT MOST one palindrome of odd multiplicity, and only the self-mirror word
+    can be it" - the self-mirror word's own count can be even (m7 depth 4).
+
+### Prediction scorecard, round 28 (pre-registered in data/r28_lateral_predictions.txt)
+
+  P1  F_2 percentile below the median at every machine m11..m19:  CONFIRMED
+      (46.7 / 34.2 / 47.6 / 12.3) - but marginally at m11 and m17, so this is a
+      weak confirmation and I say so.
+  P2  the F_2 effect is WEAKER than the F effect at a majority:   CONFIRMED
+      (higher at 3 of 5) - and the confirmation is misleading, because the ONE
+      machine where it goes the other way is the largest (m19: F_2 12.3% vs F
+      17.1%). A prediction that passes on the small machines and fails on the
+      big one is not evidence for the mechanism I proposed.
+  P3  the increment places the twin near the middle, 35-65%:      REFUTED
+      (25.0 / 23.6 / 61.5 / 14.9) - and refuted favourably
+  P4  the increment law is violated by 5-40% of the family:       CONFIRMED
+      (13.3 / 13.9 / 14.5 / 21.7)
+  P5  pinning v_q' moves the placement by <= 15 points:           CONFIRMED
+      (max move 5.0 points, and <= 2.0 at the three largest steps)
+  P6  budget slack near the middle, 30-70% [CHEAP]:               REFUTED as
+      written (15.0 at 7->11, 83.3 at the degenerate 5->7); CONFIRMED at the two
+      largest steps (59.0, 37.2), which is the part that matters
+  P7  the twin's m23 F percentile stays in [10,32]%:              CONFIRMED at
+      11.9% - but IN THE PINNED FAMILY (B) only; the prediction was written
+      about the full family (A), which did not complete (item 63). At every
+      other step pct(A) and pct(B) differ by <= 2.0 points, so 11.9% is a good
+      proxy - but a proxy is not the measurement, and I am not banking this as
+      a clean hit.
+  P8  the twin's m23 F is not the family minimum, max >= 1.5x:    CONFIRMED
+      (min 27 < 34; max 57 = 1.68x), same pinned-family caveat
+  P9  the self-mirror address formula, BOTH parities:             CONFIRMED
+      (exact at every depth j = 1..30 at six machines)
+  P10 span_self(j) <= 0.8 F_j at every machine and depth:         REFUTED
+      (= F_j exactly at m7 j=3,7,9,11,14 and m11 j=11)
+  P11 the unique odd palindrome is not extremal:                  MIS-POSED,
+      scored REFUTED-AS-WRITTEN: it is not a second involution at all, it is the
+      SAME object as P10 (item 66(c)), so it cannot be independent evidence
+  P12 every hole exceeds 0.70 * F:                                CONFIRMED,
+      narrowly - the minimum is 0.7059 at m23, so 0.71 would have failed
+  P13 every even g <= 12 and every ODD g is realised at m >= 17:  REFUTED - the
+      odd half is plainly false (19 is a hole at m19; 57 at m31; six odd holes
+      at m37). The even half holds only vacuously (the smallest hole anywhere is
+      9). A badly posed prediction, and its replacement is conjecture C-U11.
+  P14 eta^2 largest at gear 5 and monotone decreasing in q:       REFUTED, both
+      halves
+  P15 the twin is still below median inside its (v_5,v_7) class:  CONFIRMED, and
+      by much more than "still" - 1.7 / 6.9 / 4.6 percent
+  P16 the twin's v_q is the marginal argmin for <= half the gears: CONFIRMED
+      (0 of 4, 0 of 5, 1 of 6)
+
+  TOTAL: 10 confirmed (two of them in a narrowed family and flagged as such),
+  5 refuted, 1 mis-posed. Every refutation is of my own prediction by my own
+  script.
+  SELF-ASSESSMENT. P9 and P5 were near-certain and should not be counted as
+  skill; P2 and P6 "passed" on technicalities I have flagged rather than banked;
+  P7 and P8 passed in a family I narrowed mid-round. The real bets were P3, P4,
+  P10, P12, P14, P15, P16 and I lost three of seven. Beyond the
+  scorecard, TWO claims I had already written up as results were withdrawn on
+  checking my own earlier rounds (item 66(a) is a replication of my item 51;
+  item 66(b) was a wrong U10 claim) - those cost more than the lost predictions
+  did, and they are the reason this lane should read its own back-catalogue
+  before writing "new".
+
+### Backlog changes
+
+CLOSED: U7 (item 68 - the orbit half answered, the decay half answered only in
+  the endpoint normalisation and explicitly left open in the bracket one),
+  U11 (item 67 - answered as an exact measurement over ten machines, with the
+  conjecture it becomes named as C-U11).
+ADVANCED: U12 (item 63 - the m23 rung; item 64 - the third mechanism dead, and
+  the effect characterised as an interaction rather than a main effect).
+NOT ADVANCED, and I withdrew a claim that it was: U10. Item 66(b) records why -
+  what I proved rules out a Z/4 action INDUCED BY the machine's automorphisms,
+  which is the case item 51 already covered; U10's candidate (a) is a Z/4 action
+  on a subset of CONFIGURATIONS, not induced by a map of Z_P, and it stands.
+STILL UNTOUCHED, carried verbatim and unclaimed: U14 (the 3n-integer, sieve-free,
+  O(n)-memory streaming enumerator of the opening set in phase order - named, not
+  built, and still nothing in the project needs phase order).
+NEW:
+U15. THE MECHANISM OF ITEM 61, RE-POSED AFTER THREE DEATHS. Angular coherence,
+     "m is small" and "the small gears / the (v_5,v_7) class" are all refuted,
+     and all three died the SAME way: the twin is a low-F outlier INSIDE the
+     high-F class of the proposed variable. That repeated shape is itself the
+     clue and is the thing to attack next. Concretely: is there ANY function of
+     the tooth vector, of any order, whose conditioning does not deepen the
+     anomaly? The cheap version is a two-way interaction sweep - all C(n,2) gear
+     pairs, mean F by (v_q, v_q') - looking for a pair whose class containing the
+     twin has BELOW-average mean F. If no pair does, the effect is genuinely
+     higher than second order and the next object is the corridor word of the
+     whole vector, not any marginal.
+U16. IS THE m19 DEPTH TREND REAL? At m19 the twin's placement strengthens with
+     depth (17.1 / 12.3 / 6.3 percent for F / F_2 / F_3) and at m13/m17 it does
+     not. Item 63 adds the m23 rung for F and F_2 but not F_3. If the trend is
+     real it is the single most route-relevant fact in this line, because the
+     route consumes F_2 and not F. F_3 at m23 is 142,560 more cyclic 3-gap
+     maxima over the block decomposition - cheap now that the decomposition
+     exists, and deliberately not started this round (job-completion rule).
+
+### Needs / handoffs
+
+(1) FORMALIST - the one that matters. `Mirror.none_of_at_most_one`'s hypothesis
+    `hexc : L t0 <> 2*F` now has a closed form and needs no census: at depth 2
+    the self-mirror window's span is 2*d_0 (twice the FIRST gap), so hexc is
+    exactly `d_0 <> F`, with d_0 = 2,3,3,5,5,5 against F = 5,7,11,18,25,34 at
+    m7..m23. General depth: span = 2*o_{j/2} (j even), P - 2*o_{M-j/2} (j odd),
+    M = (N-1)/2. If you want the instantiation as a kernel statement, that is
+    the arithmetic side of it, and the exception list (item 65) says where it
+    would be FALSE - m7 and m11 only.
+(2) MANAGER - U13 is yours and I did not work it, but the same sieves produced
+    the budget-slack column free, so here is an independent replication to
+    compare against at close: the twin's percentile in the counterfactual
+    distribution of F(M+q') - F(M) - q' is 15.0 / 32.5 / 59.0 / 37.2 at
+    7->11 / 11->13 / 13->17 / 17->19 - i.e. UNDISTINGUISHED at the two largest
+    steps. My reading, offered not asserted: the twin's advantage does NOT show
+    up in the budget slack, and the quantity that IS favourably placed is the
+    INCREMENT LAW'S OWN MARGIN s_min - (F(M+q') - F_2(M)), at the 66.8-83.3
+    percentile at all four steps (item 62). If U13 comes out the same way, the
+    honest headline is "the room is in the increment law, not in the budget".
+(3) CONSTRUCTOR - two things. (a) Your R68 increment table is reproduced by a
+    completely different vehicle at the three overlapping steps (0, 2, 0 against
+    caps 4, 6, 6). (b) The increment law is violated by 13-22% of the
+    counterfactual family and by only 0-6.5% once v_q' is pinned to round(q'/6):
+    if you are deriving the law, that says the NEW GEAR'S TOOTH POSITION carries
+    most of it and the old machine's arithmetic the rest - a decomposition of
+    where the difficulty lives, from a family the real machine is one point of.
+(4) ANY LANE enumerating over gap_tuples_*_4.csv - including the two TRANSFER
+    supersets, which are new here - the files are exactly reversal-closed with
+    546 and 874 palindromes, so a reversal-invariant predicate need only visit
+    the ~50% orbit representatives (item 66(d)).
+(5) EVERY LANE - AN OPERATIONAL FINDING, not a mathematical one, and it cost me
+    about an hour. Detached python processes on this box silently HANG AT
+    STARTUP (11 MB working set, no CPU, no error) whenever the system commit
+    charge is near its limit - which it was at 62.4 of 65.2 GB with six lanes
+    running. The same condition later killed an 8-worker pool of mine with
+    "Unable to allocate 2.89 MiB". Three practical rules I now follow and
+    recommend: (a) `Start-Process -WindowStyle Hidden` works where
+    `-NoNewWindow` does not; (b) check the COMMIT charge, not just free RAM,
+    before launching workers - free RAM looked fine at 2.5 GB while commit was
+    at 96%; (c) make every orchestrator resume from its own shards, which is
+    what saved this round's m23 census from having to restart twice.
+
+### Reproduction pointers
+
+Round 28: research/tooth_stats_r28.py ("--upto 19"; log data/r28/tooth_stats.log,
+19 gates); research/tooth_m23_r28.py ("--gate" 41 gates; "--run --workers 4";
+"--report"; shards data/r28/m23_shards/, merged data/r28/tooth_m23.npy, logs
+data/r28/tooth_m23_run*.log); research/tooth_mech_r28.py ("--upto 19"; log
+data/r28/tooth_mech.log, 4 gates); research/mirror_selfwindow_r28.py
+("--upto 23 --maxdepth 30"; log data/r28/mirror_selfwindow.log, 83 gates);
+research/tuple_reversal_r28.py (18 gates); research/hole_topband_r28.py
+(16 gates); research/gear7_cells_r28.py ("--upto 23"; log
+data/r28/gear7_cells.log, 40 gates). Predictions in
+data/r28_lateral_predictions.txt. Inputs: research/data/gap_tuples_{23,29,31,37}_4.csv
+and gap_tuples_{37,41}_4_transfer.csv (Mechanic's dictionaries); Mechanic's hole
+table at docs/proof-search/mechanic.md 653-662 (rows m11..m23 re-derived here
+from scratch, rows m29..m43 cited). Novel-register docs:
+docs/novel/tooth-counterfactual-percentile.md section 5A (new),
+docs/novel/mirror-parity-laws.md section 8 (new, and it withdraws one of its own
+claims in 8.7 and marks 8.4 as a replication),
+docs/novel/gear-cell-decomposition.md section 8 (U7), plus three README index
+entries.

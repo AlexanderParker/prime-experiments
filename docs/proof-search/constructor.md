@@ -2105,3 +2105,351 @@ decision was made on a read, not on the log, and the log was right.
   222 under three settings and is not going to move.
 * THE FIRST-MOMENT TRANSFER (R64/R67) remains the derivation-grade item and the
   escalation valve still applies.
+
+---
+
+## Constructor round 28 - THE PER-J FAMILY IS FINITE, AND IT CERTIFIES THE NINTH RUNG
+
+Brief: (a) the per-J triple analogues for J = 4, 5, 6 - formulate, measure
+exactly, find the sharp form, attempt the derivation; (b) the cover-half order
+N(M) via the pruned-IE counter; (c) rung nine with Mechanic's round-27 oracle.
+Mid-round the manager routed in the U13 counterfactual negative (a
+tooth-counterfactual VIOLATES (D), so no derivation from the current structural
+theorem set can be valid) and the palindrome route it opens; predictions
+P10-P13 respond to it.
+Pre-registration: `research/data/r28/constructor_prereg_r28.txt`, written before
+any round-28 script ran (P10-P13 after reading the manager's message, before
+testing it); scored at the end of this append.
+Gates, all green:
+  research/perj_window.py     -> all assertions passed; reproduces R68's exact
+                                 Q* table at every cell it covers
+  research/perj_scanfree.py   -> reproduces Q*_4(19)=34, Q*_4(29)=55,
+                                 Q*_4(31)=88, Q*_4(37)=91, Q*_5(29)=55,
+                                 Q*_5(31)=68 and the EMPTINESS of Q*_4(23),
+                                 Q*_5(19), Q*_5(37) - value AND witness, by CRT
+                                 arithmetic with no period anywhere
+  research/cover_order.py     -> N(M) reproduces R75's row 2,2,2,3,2,3,4,3 at
+                                 m11..m37 from a different vehicle
+  research/rung9_perj_cert.py -> all assertions passed; --recheck re-derives
+                                 Q*_5(41) = -inf from scratch, 0 undecided
+  research/padded_value_law.py-> all assertions passed
+  research/rung9_r28.py       -> gates green (screened superset induces F(41)=91
+                                 and the exact hole list; the exact shard is a
+                                 subset of it; 0 phase-saturation false kills)
+
+**R81 (THE PER-J FAMILY, STATED AND MEASURED - and it is FINITE).** Define a
+WORD-LEGAL J-WINDOW of M as J consecutive gaps (g_L, w_1..w_{J-2}, g_R) whose
+J-2 middles are each 0 or +-2c mod q' (T2) with the nonzero classes strictly
+alternating, padded middles transparent (T3); Q*_J = max span,
+Delta_J = Q*_J - F_2(M), Phi_J = max flank sum. The manager's triple inequality
+is J = 3 and R68's attainment theorem says max_J Q*_J = F(M+q'), so the family
+IS the increment law.
+
+    M   q'  s_min  F_2 | Delta_3 Delta_4 Delta_5 Delta_6 | J_max  A_kill+1
+   11   13    4     11 |   -3     EMPTY   EMPTY   EMPTY  |   3       3
+   13   17    6     16 |   +2     EMPTY   EMPTY   EMPTY  |   3       3
+   17   19    6     25 |   +0     EMPTY   EMPTY   EMPTY  |   3       3
+   19   23    8     31 |   +2      +3     EMPTY   EMPTY  |   4       4
+   23   29   10     39 |   +4     EMPTY   EMPTY   EMPTY  |   3       3
+   29   31   10     55 |   +3      +0      +0     EMPTY  |   5       5
+   31   37   12     68 |   +2      +3      +0     EMPTY  |   5       5
+   37   41   14     90 |   +0    (pad +1) EMPTY   EMPTY  |   4       4
+   41   43   14    103 |    -       -     EMPTY   EMPTY  |  <=4     (=4)
+
+(Delta columns are LITERAL middles; including padded middles Delta_3/Delta_4
+are +17/+20 at m31 and +1 at m37 - the project's one failing step and nothing
+else.) THREE FACTS.
+  * J_max(M) = A_kill(M) + 1 AT ALL EIGHT CENSUSED MACHINES, by a vehicle
+    independent of the one that measured A_kill. The per-J program TERMINATES,
+    and below m47 it terminates at J = 5. Every EMPTY cell is a CERTIFICATE
+    (every candidate refuted, zero undecided), not a missing row.
+  * Delta_J IS BOUNDED BY A SMALL CONSTANT UNIFORMLY IN BOTH M AND J: every
+    literal cell is in [-3, +4] while s_min grows linearly. The excess over F_2
+    does not grow with depth, it SHRINKS - Delta_5 = 0 exactly, at both
+    machines where J = 5 is non-empty. R78's "Delta_3 = O(1)" is the J = 3 slice
+    of a J-uniform shape.
+  * A_kill(41) = 3 EXACTLY (new): Q*_5(41) is certified EMPTY scan-free, so
+    A_kill(41) <= 3, and R45's realised padded 2-words give >= 3. Project item
+    O7 closed, without F_3(41).
+
+**R82 (THE MIDDLE-SUM LEMMA, THE J-PARITY OF PALINDROMES, AND THE PEEL BOUND -
+what is actually provable).** Doc: `docs/novel/per-j-window-analogues.md`.
+* THEOREM A (from T1-T3). In a literal J-window the middles alternate class, so
+  with k = floor((J-2)/2) the middle sum is >= k q' (J even) or >= k q' + a
+  (J odd). So a literal J-window's span exceeds its flank sum by an amount
+  growing by q' every two levels, and the per-J analogue forces
+  Phi_J <= F_2 + s_min - m_min(J) - THE FLANK ENVELOPE MUST COLLAPSE AT RATE
+  q' PER TWO LEVELS. That is par trading (R30) in exact form and it is why the
+  deep layers are the cheap ones.
+* THEOREM B (from T3 and a != b). For J EVEN a literal word-legal J-window is
+  NEVER a palindrome (the even-length alternating class word reverses to the
+  other class). For J ODD the class word is forced palindromic, so the window is
+  a palindrome exactly when its middle values are symmetric and its flanks are
+  equal.
+* PROPOSITION C. The realised legal J-windows are closed under reversal
+  (Lateral's mirror theorem; T2 pointwise, T3 reversal-invariant) and span is
+  reversal-invariant, so the maximising WORD SET is reversal-closed - if it is a
+  single word, that word is a palindrome.
+* THEOREM D (peel bound, hypothesis-free). Deleting either flank leaves a legal
+  (J-1)-window, so Q*_J <= Q*_{J-1} + min(g_L,g_R) at the argmax - R78's free
+  reduction at every J.
+
+**R83 (THE SHARP FORM: ONE INEQUALITY PER LEGAL WORD - 36 ROWS FOR THE WHOLE
+CORPUS, 3 OF THEM FAILING).** Moving the middle sum to the right-hand side turns
+the whole per-J family into a single family indexed by legal middle WORDS:
+
+    (L_w)    Phi(w)  <=  F_2(M) + s_min(q') - span(w),
+    Phi(w) = max flank sum over occurrences of w.
+
+This is R26's clause (D) with F + q' replaced by the strictly sharper
+F_2 + s_min, with no depth quantifier: a comparison of gaps at distance |w|+1
+against gaps at distance 1. Every legal word with a realised occurrence at
+every censused machine is 36 rows (`research/perj_window.py`, part "THE SHARP
+FORM"); the tightest row per (machine, word length) is
+
+     M    |w|=1        |w|=2
+    11     +7  (4)        -
+    13     +4  (11)       -
+    17     +6  (13)       -
+    19     +6  (8)       +5  (8,15)
+    23     +6  (10)       -
+    29     +7  (10)     +10  (10,21)
+    31     -5  (37)      -8  (12,37)   *** the only failures in the corpus
+    37    +14  (27)     +13  (14,41)
+
+THREE ROWS FAIL, all at m31, all containing the padded letter 37: w = (37),
+(12,37) and its reverse (37,12). The entire open part of the increment law at
+every step the project can compute is those three rows. The mirror theorem is
+visible in the data: Phi(w) = Phi(reverse w) exactly at every reversal pair.
+
+**R84 (THE SPECTRUM-PLUS-DEPTH CERTIFICATE, AND THE NINTH RUNG - CERTIFIED).**
+Doc: `docs/novel/spectrum-depth-certificate.md`. Two elementary lemmas on top of
+R68's attainment theorem:
+  (i)  Q*_J <= F_J(M) by definition;
+  (ii) EMPTINESS IS UPWARD CLOSED - deleting a flank of a legal J-window leaves
+       a legal (J-1)-window, so no legal J_0-window implies none at any J >= J_0.
+Hence, with J_max = A_kill + 1,
+
+    THEOREM.  F(M+q')  <=  max_{2 <= J <= J_max}  F_J(M),
+
+and (D) holds at the step whenever that is <= F(M) + q'. No word list, no flank
+envelope, no CEGAR loop, no oracle - the OLD machine's spectrum plus ONE
+emptiness certificate. AT 41 -> 43:
+
+    F_2(41) = 103 EXACT | F_3(41) <= 117 (superset) | F_4(41) = 118 EXACT
+    Q*_5(41) = -inf     NEW THIS ROUND
+    => F(43) = max_J Q*_J <= max(103,117,118) = 118 < 134 = F(41) + 43.
+
+**(D) AT 41 -> 43 IS CERTIFIED, MARGIN +16 - THE NINTH RUNG**, left open by
+R72, R79 and by this round's own CEGAR attempt. Corollary F(43) <= 118 from m41
+alone. THE CRITERION IS GENUINE, NOT A RESTATEMENT: it certifies 8 of the 9
+steps whose spectrum is complete and FAILS at 29 -> 31, where F_5(29) = 85
+exceeds the budget 74 by 11 while Q*_5(29) = 55 - thirty units of real work done
+by legality at exactly the step with the smallest F/q' and a non-empty deep
+layer. **F_5(29) = 85 EXACT is new** (the m29 spectrum is now 43, 55, 65, 70,
+85): a realised 5-tuple has both 4-sub-tuples realised, so Mechanic's exact
+4-tuple census gives 428 candidates of sum > 84, decided by descending CRT with
+0 undecided; the four maximisers are two mirror pairs.
+
+**R85 (THE COVER-HALF ORDER N(M), SCAN-FREE, AND N(41) = 3).** R75 posed the
+question and left it. `research/cover_order.py` decides it by CRT: enumerate
+every T3-legal word of length m over the legal letters <= F(M) (few - legality
+is severe), prune by the spectrum, refute by phase saturation then
+decide_cover, build the de Bruijn graph on realised legal m-tuples and look for
+a cycle.
+
+    machine   11 13 17 19 23 29 31 37 | 41
+    N(M)       2  2  2  3  2  3  4  3 |  3   <- m41 NEW, no census exists
+    L(M)       1  1  1  2  1  3  3  2 |  2   (longest realised legal word)
+    A_relax    1  2  2  3  2  3  4  2 |  2
+
+GATE: the m11..m37 row reproduces R75's hand-computed values exactly, from a
+completely different vehicle (there: dictionaries from full-period scans; here:
+CRT arithmetic from the gear list). N(41) = 3 > 2 = max(2, A_relax(41)), the
+SECOND refutation of R49's identity, and THE CYCLE IS AGAIN PADDED: at order 2
+the graph cycles [43] -> [29] -> [43], i.e. the padded letter q' = 43
+alternating with the literal letter b = 29 - legal at order 2 because T3 only
+sees one nonzero class per window, illegal at order 3 where (43,29,43) shows two
+b's in a row. That is the mechanism the brief asked to be named: **the cycles
+that push N above A_relax are padded 2-cycles, and they die at order 3 because
+T3-transparency is not T3-legality once the window is long enough to see two
+literal letters.** VERDICT ON THE BRIEF'S QUESTION: N(M) <= 4 at every machine
+reached, m41 included; the bound N <= L+1 is tight at 5 of 9. NOT SETTLED:
+whether N is bounded in general - and m43 is where this vehicle stops, for a
+measured reason (below).
+
+**R86 (M1 IS REFUTED, AND THE VIOLATOR'S SHAPE IS AN ARITHMETIC ACCIDENT).**
+R40's measured law M1 - "every realised legal spacing value is exactly a, b or
+q'" - was measured at 11->13 .. 29->31, where the larger representatives either
+exceed F(M) or happen to be holes. Computing the LEGAL ALPHABET
+Lambda(M) = {v <= F : v = 0 or +-2c mod q', v a realised gap} exactly
+(`research/padded_value_law.py`):
+
+    M      11  13  17  19    23     29      31        37           41
+    Lambda {4} {6, {6, {8,15, {10,19, {10,21, {12,25, {14,27,41,  {14,29,43,
+               11}  13}  23}    29}     31}   37,49}   55,68}      57,72,86}
+
+**M1 FAILS at m31 (49 = a+q'), m37 (55 = a+q', 68 = b+q') and m41 (57, 72 and
+86 = 2q').** It is a small-machine phenomenon; the alphabet grows
+1,2,2,3,3,3,4,5,6. At m37 the value 82 = 2q' is a HOLE, which is why the padded
+half of M1 survives one machine longer than the literal half.
+THE MANAGER'S VIOLATOR, TESTED. Their (D)-violating counterfactual is the J = 5
+window whose central middle IS the old record gap. For that window to be
+word-legal at all, F(M) mod q' must be in {0, a, b}. Over the twelve corpus
+steps that happens at EXACTLY ONE: m13, where F(13) = 11 = b - and there the
+J = 5 layer is CERTIFIED EMPTY (m13 has no legal 4-window, let alone a 5-one).
+HONEST SCOPE, and it matters: 3 of q' residues are legal, so the expected number
+of hits over these twelve steps is 3*sum(1/q') = 1.29 and the observed 1 is
+exactly typical. This is ARITHMETIC LUCK PER STEP, not a law - it will recur,
+and when it does the kill must come from the cover half, which is where it came
+from at m13. What the test DOES establish is the shape of the teeth-sensitive
+input the manager's negative demands: not "padded values are only q'" (false),
+but "F(M) is not congruent to a tooth difference", a statement about
+6^{-1} mod q' that no structural theorem sees.
+
+**R87 (THE MANAGER'S PALINDROME ROUTE: TRUE AT J = 5, FALSE AT J = 3 AND 4, AND
+THEOREM B EXPLAINS THE SPLIT).** At every measured cell the maximising word is
+unique up to reversal. Then:
+
+    J = 3  (11 cells)  maximiser is a reversal PAIR - never a palindrome
+    J = 4  ( 4 cells)  maximiser is a reversal PAIR - never a palindrome, and
+                       Theorem B forbids it outright for literal windows
+    J = 5  ( 2 cells)  maximiser is UNIQUE and SELF-REVERSE - A PALINDROME both
+                       times: (7,10,21,10,7) at m29 and (3,25,12,25,3) at m31,
+                       each with Delta_5 = 0 exactly
+
+So the exchange step the manager asked for is TRUE exactly at the deep odd
+layer - which is the layer that decides A_kill and the layer where Delta_J
+collapses to 0 - and FALSE at J = 3 and J = 4. Handed back: the palindrome
+route is a J-ODD route; at even J the mirror lever has nothing to bite on and
+the route must be replaced. Since J = 5 is the deepest non-empty layer at every
+machine below m47, killing self-mirror windows would close the deepest member of
+the finite list outright.
+
+**R88 (THE DERIVATION ATTEMPT, AND ITS HONEST LIMIT).** From T1-T5 + phase
+saturation + the free reduction the provable content is Theorems A-D above.
+What they do NOT give is J >= 4, and the shortfall is exactly quantifiable. At
+J = 4 with literal middles w_1 + w_2 = q', the analogue is
+g_L + g_R <= F_2 - b; the free reduction gives only g_L <= F_2 - w_1 and
+g_R <= F_2 - w_2, i.e. g_L + g_R <= 2F_2 - q'. **THE FREE REDUCTION IS SHORT BY
+EXACTLY F_2 - a AT J = 4** - and 2F_2 - q' against F_2 - b is the same 2F wall
+R55 proved no rearrangement-invariant fact can cross. So the J >= 4 analogues
+are NOT free reductions: they are flank-PAIR statements about one specific
+2-letter word, and (R83) there are at most two such words per machine. The
+J >= 4 obligation is therefore small but genuinely new content, numerically
+comfortable (slack +5 to +13 at every step but m31), and it is the residue.
+
+**NEGATIVES AND SELF-CORRECTIONS (round 28).**
+* `perj_window.py` first printed "EMPTY" for the m29/m31 J = 5,6 cells, where
+  the vehicle simply HAS no data (its source is a 4-tuple census). That is the
+  exact defect round 27's own lesson named - "a table cell a script FILLS IN
+  rather than LOOKS UP must be printed as such". Caught before filing and fixed
+  by giving the table a separate `nodata` state, but it is the third round
+  running in which this lane has had to repair a fabricated cell. The rule is
+  now enforced in code, not in the write-up.
+* I LAUNCHED THE CEGAR CRT TIER WITH NO PER-INSTANCE CAP. It ran ~2.5 hours
+  producing nothing: five of six pool workers idle while the batch serialised on
+  a single multi-minute m41 refutation (R80's heavy tail, now confirmed as the
+  binding cost). Killed, log kept as
+  `data/r28/rung9_crt_unbounded_ABANDONED.log`, relaunched node-capped. LESSON:
+  a parallel batch whose tail is one hard instance is a serial job; cap the
+  per-instance cost, not the pool size.
+* AN INTERRUPTED FOREGROUND COMMAND LEFT AN ORPHAN. A shell timeout killed the
+  pipeline but not the python child, which ran 40 minutes with its output
+  discarded. Found only by process inspection. Long sweeps go to a log file and
+  to the background, never inside a foreground loop that can be cut.
+* P10/P12 WERE WRONG AND IN THE INSTRUCTIVE DIRECTION. I predicted the
+  padded-value law M1 was the teeth-sensitive separator between the machine and
+  the counterfactual. M1 is REFUTED at the first three machines where it is
+  testable. I had promoted "measured at six steps" to "law" - the standing rule
+  against exactly that is in this lane's own section 4.5.
+* `cover_order.py` drops UNDECIDED words when building the graph, which would
+  make an acyclicity verdict unsound if any appeared. Zero appeared at
+  m11..m41 (checked, and reported per row), so nothing filed is affected; the
+  sound handling (treat undecided as present) is not built in and should be
+  before the vehicle is used at m43+.
+* THE VEHICLE STOPS AT m43, FOR A MEASURED REASON. `cover_order` needs arity-1
+  and arity-2 CRT decisions, and those are the EXPENSIVE end of the cost curve
+  (few open points, large gear domains): 199 s for the six arity-1 words at m41
+  against >50 minutes for the six at m43. The deep-J sweeps are the cheap end
+  and reach m41 comfortably. That asymmetry - shallow queries dear, deep queries
+  cheap - is the opposite of the intuition the project carried for five rounds.
+
+**PREDICTION SCORECARD** (`research/data/r28/constructor_prereg_r28.txt`).
+* P1  |Delta_J^lit| <= 6 for J = 3..6 at m11..m41 - CONFIRMED (all in [-3,+4]).
+* P2  Delta_4^lit > 0 at m19 and <= 0 at m29, m31, m37 - HALF. +3 at m19 and 0
+      at m29 as predicted; REFUTED at m31 (+3); vacuous at m37 (no literal
+      4-window exists there at all).
+* P3  Delta_5 = 0 exactly at m29 and m31 - CONFIRMED, by an independent
+      scan-free vehicle.
+* P4  J = 6 EMPTY at every machine m11..m41 - CONFIRMED, and certified.
+* P5  Phi_J + m(J) non-increasing in J - REFUTED (m19: 33 -> 34; m31: 68 -> 71).
+      The true shape is "nearly constant", not monotone.
+* P6  the free reduction does not discharge J >= 4 - CONFIRMED, and quantified
+      (short by exactly F_2 - a at J = 4).
+* P7  rung nine still not certified, new stall in [150, 215] - REFUTED IN THE
+      FAVOURABLE DIRECTION. The free-tier stall is 135, ONE unit over the budget
+      134 (from 222), and the rung is CERTIFIED outright by the per-J route.
+* P8  N(41) = 2, N <= 4 everywhere - HALF. N <= 4 through m41 CONFIRMED;
+      N(41) = 3, not 2. The mechanism half ("the padded alphabet is the single
+      letter q'") is REFUTED - at m41 it is {43, 86} - although the cycle that
+      lifts N to 3 does use only 43.
+* P9  at least one of P1-P8 refuted and named - CONFIRMED (P2, P5, P7, P8).
+* P10 F(M) never 0 mod q' - CONFIRMED 12/12; no gap of value 2q' or q'+a
+      realised at m29..m41 - REFUTED (49, 55, 68, 57, 72, 86).
+* P11 the extremal window is not palindromic at a majority of J = 4, 5 cells -
+      CONFIRMED at J = 3 and J = 4 (15 cells, none), REFUTED at J = 5 (2 of 2
+      ARE palindromes). Theorem B explains the even-J half; the J = 5 half is
+      the manager's route, confirmed.
+* P12 the padded-value law is the separating mechanism - REFUTED as stated; the
+      correct teeth-sensitive separator is "F(M) mod q' is not a tooth
+      difference" (11 of 12 steps).
+* P13 padded Q*_J exceeds literal only at 31 -> 37 - CONFIRMED, with the caveat
+      that at m37 J = 4 the literal set is EMPTY so the comparison is vacuous
+      rather than favourable.
+
+**NEEDS / NEXT CONSTRUCTS.**
+* THE TENTH RUNG'S SHOPPING LIST IS NOW EXPLICIT AND SHORT (for Mechanic):
+  43 -> 47 by the spectrum-plus-depth certificate needs F_2(43), F_3(43),
+  F_4(43) - none on record - plus one emptiness certificate at
+  J = J_max(43) + 1, which is the CHEAP half and which this lane can supply as
+  soon as an m43 value set exists. The certificate's margin at 41 -> 43 is +16,
+  so there is room.
+* THE THREE FAILING ROWS. The entire open part of the increment law over the
+  whole corpus is Phi(37) <= 43, Phi(12,37) <= 31 and Phi(37,12) <= 31 at
+  machine 31, currently 48, 39, 39. Three inequalities about the flank pairs of
+  three specific words at one machine.
+* Delta_J = O(1) UNIFORMLY IN J is the sharp target, replacing Delta_3 = O(1).
+  The derivation must be teeth-sensitive (manager's U13) and the palindrome
+  route supplies the odd-J half.
+* F_5(37) AND F_5(41) would extend the spectrum-plus-depth certificate's reach
+  and are computable by the same overlap-filter-plus-CRT method that gave
+  F_5(29) = 85 - a small, well-defined job.
+
+**ROUND-28 CLOSE-OUT (every job this round started is finished; two ended
+early and both endings are findings).**
+* `Q*_4(41) <= 100` EXACT-DECIDED (678 candidates from the F_4(41) = 118
+  ceiling down to span 101, 0 undecided, 2,084 s on 4 workers) - so
+  Delta_4(41) <= -3 and the J = 4 analogue at 41 -> 43 certifies with slack 17.
+  `Q*_3(41) <= 116` INDEPENDENTLY REPRODUCED by the enumerative vehicle (the
+  spectrum caps J = 3 candidates at F_3(41) <= 117 and the span-117 level is
+  fully decided: 58 candidates, 0 realised, 0 undecided) - the same value R80
+  got from Mechanic's superset sweep, by a different candidate source. The
+  descent below 116 was STOPPED: ~130 s per hard instance with 766 candidates
+  left is several hours, and nothing needs the exact maximum (116 already
+  clears both the per-J budget 117 and the (D) budget 134).
+* THE NODE-CAPPED CEGAR CRT RUN DIED OF COMMIT EXHAUSTION - numpy could not
+  allocate 1.64 MiB two iterations in, with five other lanes' jobs running
+  (f59_pin/j5_multi x7, tooth_m23 x5, tooth_mech, onset_walkscreen). That is
+  the COMPUTE POLICY's named binding constraint, hit for the fourth time in the
+  project's history and the first time by this lane. It changes no result: the
+  FREE-TIER run of the same script completed earlier and is item (c)'s
+  deliverable (STALLED at 135 against budget 134, 54 s), and the rung is
+  certified by the per-J route, which needs neither the loop nor its oracle.
+  LESSON for the shared file: a lane that needs ~1 GB of resident numpy state
+  must check the box's COMMIT, not its core count, before launching - cores were
+  never the constraint here.
+* Item (b)'s vehicle was stopped at m43 for a stated soundness reason (its
+  arity-1 row there already carries one UNDECIDED word and the graph builder
+  drops undecideds); every row through m41 is fully decided and is the
+  deliverable.

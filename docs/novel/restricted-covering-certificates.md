@@ -388,6 +388,93 @@ n_ij coefficients.  The machine-readable emission (`research/data/r27/`,
 `research/emit_certs_r27.py`, integers only, gated by re-verification from
 disk) records this as `rows_all_base_cut`.
 
+## 2B. ROUND-28 ADDITIONS
+
+### 2B.1 THE CUT LOOP IS NOT PART OF THE VEHICLE (and every cell certifies at
+### iteration zero)
+
+The species as built in rounds 26-27 decides a case by a CUT LOOP: solve, find
+a violated degree-2 cut at some position, add it, repeat.  Round 28 shows the
+loop is dispensable.  Its limit is the optimum V* of a single LIFTED LP - the
+same relaxation written with an atom-distribution variable p_i on the 2^n - 1
+nonempty subsets at each position instead of with cuts - and the DUALS of that
+LP are the loop's rows, all of them at once (`product-measure-frontier.md`
+section 7 carries the theorem and the construction; the empty case is served
+by a companion program that relaxes the mass rows and maximises total mass).
+
+Consequences for this certificate species, all measured this round:
+
+  * SEEDED WITH THE LIFTED DUALS, EVERY CERTIFIABLE CELL CERTIFIES AT
+    ITERATION ZERO.  Two cells that the ordinary loop left STUCK at a 300 s
+    budget certify in a single pass once seeded.
+  * A CELL CAN NOW BE PROVED UNCERTIFIABLE.  Where V* >= |pos| the lifted
+    primal gives an exhibited exact feasible point, verified in the polytope,
+    and that is a PROOF that no cut generation will ever close the cell -
+    a verdict this species did not previously have (round 26-27 recorded such
+    cells as NOCERT/STUCK, i.e. undecided).
+  * THE ROUNDS 26/27 "STALL = BUDGET, NOT REACH" RULE IS NOW A THEOREM WITH A
+    TEST.  It was right, and the test costs one LP.
+
+### 2B.2 THE PADDED STEP 31 -> 37, FROM THE CERTIFICATE SIDE
+
+The increment law F(M + q') <= F_2(M) + s_min(q') holds at eleven of twelve
+testable steps and fails at exactly one: 31 -> 37, where
+W_inc = F_2(31) + s_min(37) = 68 + 12 = 80 while the true F(37) = 88.  The
+question this round asked is whether the certificate machinery SEES that
+excess.  It does, and the picture is sharp on both sides:
+
+  * AT THE TRUE VALUE W = 88 THE CASE SPLIT CERTIFIES AT k = 3, ALL 385 CASES
+    (8,512,816 exact certificate operations, every case at ITERATION ZERO, all
+    385 re-verified from disk).  So the vehicle is TIGHT ON F AT A FIFTH MACHINE
+    (19, 23, 29, 31, and now 37): F(37) <= 88, exactly the truth, scan-free and
+    hypothesis-free.  And in EVERY ONE of the 385 cases the LIFTED POLYTOPE IS
+    EMPTY - level-2 consistency alone excludes a fully blocked window of width
+    88, before the recursion row is consulted at all.
+  * AT THE INCREMENT WIDTH W = 80 IT CANNOT, AND THAT IS NOT A WEAKNESS.  A
+    fully blocked window of width 87 exists at machine 37 (F(37) = 88), so
+    "no fully blocked window of width 80" is FALSE and no sound method can
+    certify it at any k.  The certificate machinery's failure at 80 is the
+    machine's own padding excess, not the vehicle's.  And the failure is
+    EXHIBITED rather than inferred: three cases of the k = 2 split at width 80
+    carry exact in-polytope refutation witnesses (recursion row 36.0606 >= 35,
+    33.9455 >= 33, 36.7799 >= 36), each verified with exact block sums, exact
+    links and exact completability at every position.
+  * AT k = 2 THE WHOLE WIDTH IS OFF-SCALE, NOT MARGINALLY OFF.  Machine 37 at
+    the increment width with one held gear has V* - |pos| = +9.05 (57.046
+    against 48).  The excess the derivation must handle is not a rounding
+    error in the vehicle: it is nine units of LP value at the first held gear.
+  * THE CONTRAST IS THE MEASUREMENT.  Same machine, same species, same k = 3:
+    at 88 the limit polytope is empty in essentially every case; at 80 it is
+    not.  The eight units of padding excess sit exactly between those two
+    widths, and the vehicle's own crossing width W_c(37, 3) is the third
+    number in that interval.
+
+### 2B.3 THE INCREMENT CERTIFICATES ARE EMITTED, GATED, AND CARRY BOTH HALVES
+
+`research/emit_inc_r28.py EMIT` writes, per literal step, the case-independent
+layout, one integers-only JSON per case, a manifest with the exhaustiveness
+assertion, and - new this round - the REALISABILITY WITNESS as its own JSON
+with a re-check recipe, so the two halves of the increment law travel together:
+
+  step      W_inc = F_2(M) + s_min   k   cases   min margin (rhs - lhs)   witness split
+  11 -> 13     15 = 11 + 4           1     5      1                        (5, 6)
+  13 -> 17     22 = 16 + 6           1     5      2/3                      (5, 11)
+  17 -> 19     31 = 25 + 6           1     5      1/5                      (7, 18)
+  19 -> 23     39 = 31 + 8           2    35      1                        (10, 21)
+  23 -> 29     49 = 39 + 10          2    35      1/8                      (5, 34)
+  29 -> 31     65 = 55 + 10          2    35      1/384                    (20, 35)
+
+`python research/emit_inc_r28.py GATE` re-verifies all 120 case certificates
+and all 6 witnesses FROM THE JSON ALONE in 35 s - relaxation rebuilt from the
+primes, position set recomputed from the held phases, every cut row re-checked
+valid by the exact zeta transform over the 2^n atoms, lhs/rhs recomputed from
+the file's own integers, and each witness re-checked by CRT arithmetic.
+
+THE MARGIN COLUMN IS ITSELF A FINDING: the certificate's slack at the
+increment width collapses from 1 to 1/384 over six steps.  The increment width
+is a knife-edge that gets sharper, which is the certificate-side statement of
+"the increment law is tight".
+
 ## 3. WHY IT MIGHT BE NOVEL
 
 - The move itself.  Covering/packing LP relaxations are normally strengthened

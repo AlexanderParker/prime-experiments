@@ -299,3 +299,73 @@ entry at all eight (mirror-parity item 53); `alpha_1` is odd at all eight
 (item 56); `arg H_5(1)` reproduces Mechanic's exact ladder to `5e-3` deg at
 `m13..m37`; and the amplitude column reproduces this lane's round-25 table to
 `6e-4` at `m11..m29`.
+
+## 8. ROUND-28 UPDATE (Lateral): BACKLOG U7 - WHICH ORBIT CARRIES THE DRIFT
+
+Status: SCRIPT-VERIFIED, exact, m11..m23, gears 5 and 7
+(`research/gear7_cells_r28.py --upto 23`, 40 assertion gates, exit 0, log
+`research/data/r28/gear7_cells.log`). U7 was posed in round 25, re-posed in
+round 26 after item 56 answered its parity half for every gear at once, and left
+untouched for four rounds. The surviving question was: WHICH mirror orbit of
+gear 7's cell matrix carries the measured asymmetry, and why does its magnitude
+decay so much more slowly than gear 5's?
+
+### 8.1 The object, in endpoint coordinates
+
+Section 1(a) indexed the cells by (start exposed phase, exposed-step count).
+The equivalent and cleaner indexing is by ENDPOINTS: for consecutive openings
+`o -> o'`,
+
+>   `C[a][b] = #{ gaps with o = a, o' = b  (mod p) }`,   `a, b in A_p`.
+
+Row and column sums are exactly `N/(p-2)` by CRT, and the mirror `k -> -k` sends
+the gap `(o, o')` to `(-o', -o)`, so
+
+>   `C[a][b] = C[-b][-a]` exactly, at every machine
+
+(asserted cell for cell at m11..m23 for both gears). `A_p` is negation-closed, so
+the fixed cells are the anti-diagonal `b = -a`, one per row: `(p-2)(p-1)/2`
+orbits and `(p-2)(p-3)/2` free integers after the row sums - THREE at `p = 5`,
+TEN at `p = 7`, which is U7's "10 free integers".
+
+### 8.2 The answer
+
+Ranking each orbit's deviation from the CRT-flat value `N/(p-2)^2`, as a
+fraction of `N`:
+
+    gear 5   m11 (0,2) +0.1111 | m13 (0,2) +0.0869 | m17 (0,2) +0.0759
+             m19 (0,2) +0.0684 | m23 (0,2) +0.0631        -> LEADING ORBIT STABLE
+    gear 7   m11 (0,2) +0.0637 | m13 (0,2) +0.0448 | m17 (0,0)fix -0.0371
+             m19 (4,3)fix -0.0337 | m23 (4,3)fix -0.0323  -> LEADING ORBIT MOVES
+
+**GEAR 5's DRIFT SITS ON ONE STABLE, NON-FIXED ORBIT AT EVERY MACHINE. GEAR 7's
+MIGRATES, AND FROM m17 ON IT SITS ON A MIRROR-FIXED CELL.**
+
+READING, and it joins up with section 1(d)'s structural answer to U3: the mirror
+constrains PAIRED orbits (that is where the evenness relations such as
+`2(N_1-N_4) = N_2-N_3` come from) and says NOTHING about the anti-diagonal. A
+drift that has migrated onto fixed cells is precisely a drift the parity argument
+cannot reach. Gear 5 is the only parity-obstructed gear and its drift lives on a
+paired orbit; gear 7's has moved to the cells carrying no constraint.
+
+### 8.3 Free cross-check, and an honest scope limit
+
+CROSS-CHECK in a completely different indexing: gear 5's gap-length class
+asymmetries come out `alpha_2 = 2 * alpha_1` EXACTLY at all five machines
+(`19/38`, `165/330`, `2199/4398`, `34069/68138`, `656539/1313078`) - which is
+section 1(b)'s mirror relation `2(N_1 - N_4) = N_2 - N_3`, re-derived from the
+endpoint cells. Gear 7's three asymmetries are in no fixed ratio and REORDER
+(`alpha_2` largest at m11..m17, `alpha_3` at m19..m23).
+
+SCOPE LIMIT, stated because it would otherwise read as a contradiction of
+round 25. The `alpha_v = N_v - N_{-v}` above are the GAP-LENGTH CLASS
+asymmetries. Round 25's `alpha_1, alpha_2` - the pair whose ratio crosses
+`-1/phi` - are the BRACKET asymmetries in the cell variables, a different pair
+(their ratio is negative; mine is exactly `+1/2` at gear 5). In the endpoint
+normalisation `max|alpha|/N` decays `0.2815 -> 0.1651` at gear 5 and
+`0.2519 -> 0.0715` at gear 7, i.e. gear 7 decays FASTER. This neither confirms
+nor contradicts round 25's "gear 7's asymmetries decay far more slowly", which is
+a statement about the other object and which was NOT reproduced here. **U7's
+ORBIT half is answered; its "why so much slower" half is answered only in the
+endpoint normalisation, and remains open in the bracket normalisation it was
+originally asked in.**

@@ -348,6 +348,23 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   distinguished, and in the favourable direction - SCRIPT-VERIFIED (exhaustive,
   exact) - not yet checked (round 27; angular-coherence mechanism pre-registered
   and REFUTED in the sign)
+  ROUND-28 EXTENSION (section 5A): the comparison extended to the statistics the
+  LIVE ROUTE consumes. THE FAVOURABLE ONE IS THE INCREMENT LAW'S OWN MARGIN -
+  the twin uses less of s_min - (F(M+q') - F_2(M)) than 67-82% of its own
+  counterfactuals at every step; F_2 is below the median everywhere and at the
+  TWO LARGEST machines the effect STRENGTHENS WITH DEPTH (m19: 17.1 / 12.3 / 6.3
+  percentile for F/F_2/F_3; m23: F 11.9%, F_2 3.1%) - the direction that matters,
+  since the route consumes F_2 and not F. The m23 rung holds the ~20% plateau
+  over five machines but is delivered only for the PINNED family (v_q' fixed at
+  the twin's value); the full 142,560-member family did not complete.
+  THE INCREMENT LAW IS NOT GENERIC (violated by 13-22% of the family, growing
+  with the machine) and most of what it needs is the NEW GEAR'S TOOTH (pinning
+  v_q' = round(q'/6) drops violations to 0-6.5%). HONEST NEGATIVE: the budget
+  slack F(M+q')-F(M)-q' places the twin at 59.0%/37.2% - undistinguished. And a
+  THIRD mechanism is dead: the effect is not a main effect of any gear's tooth
+  (max eta^2 = 0.09, never gear 5), the twin's (v_5,v_7) class is the HIGHEST-F
+  class, and inside it the twin sits at the 1.7-6.9 percentile - an interaction,
+  not a main effect
 
 ## Seeding backlog - COMPLETE 2026-08-23 (all 10 written up and checked; kept for provenance)
 
@@ -640,6 +657,19 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   the project's own arity runs (82 decisions, every reverse pair agreeing, 46% of
   27,946 s spent on the redundant half) - research/mirror_lever2.py, 52 gates
   ROUND 27 (Formalist): THE COUNTING HALF IS KERNEL-CHECKED - `Mirror.even_card_involution`, `window_count_even`, `adjacent_equal_even`, `none_of_at_most_one`. Round 26's named gap is closed for the ABSTRACT lever; instantiating it at a machine (mirror-equivariance of the window family through the opening enumeration) is NOT built and is named as the next step.
+  ROUND-28 EXTENSION (section 8, Lateral): the kernel lemma's ONE non-free
+  hypothesis `hexc : L t0 <> 2F` gets a closed form. The self-mirror window at
+  depth j has SPAN 2*o_{j/2} (j even) or P - 2*o_{M-j/2} (j odd), M = (N-1)/2 -
+  so at the route's own depth-2 target `hexc <=> d_0 <> F`, a one-line inequality
+  at every machine. Its span is a TYPICAL j-window span against F_j's maximum,
+  so the LEVER'S EXCEPTION LIST (span_self = F_j exactly) is m7 {3,7,9,11,14} and
+  m11 {11} and EMPTY at m13/m17/m19/m23 for all j <= 30. Reversal-closure extends
+  to the two CRT TRANSFER supersets (2.4M and 4.2M tuples, 546 and 874
+  palindromes), which had no a-priori reason to inherit it. Self-corrections:
+  section 8.4 is a REPLICATION of item 51 in different coordinates, not a new
+  result; a claim to close half of backlog U10 was WITHDRAWN (8.7); and round
+  25's "exactly one odd palindrome" is correct only for PALINDROMES and only as
+  "at most one" (8.5)
 
 - gear-cell-decomposition - the frequency-1/p Fourier coefficient of the gap
   histogram is a function of only (p-2)(p-3)/2 integers, for EVERY machine (three at
@@ -781,3 +811,86 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   (research/gate_rung_41_43_r27.py, research/increment_cert_r27.py GATE,
   research/emit_certs_r27.py GATE)
   ROUND 27 (Formalist): KERNEL-CHECKED AT TWO RUNGS - `CaseCert23.D_19_23_case` (19->23) and `CaseCert31.D_29_31_case` (29->31, 35 case modules), no census hypothesis anywhere. Two facts fell out: EVERY cut row of all 75 certified cases of 19->23/23->29/29->31 is the base cut (the loop never separated at these widths), and `n_ab = 0` for 96.4% of the gear-index-1 columns, so the recursion row is numerically almost entirely a Kounias row at the smallest free gear.
+- per-j-window-analogues - the per-J family Q*_J of the manager's triple inequality: the
+  MIDDLE-SUM LEMMA (a literal J-window's middles sum to >= floor((J-2)/2)q', so the flank
+  envelope must collapse at rate q' per two levels of J), the J-PARITY OF PALINDROMES (for J
+  even a literal legal window is NEVER a palindrome; for J odd the class word is forced
+  palindromic), the PEEL BOUND, and the exact table: Delta_J = Q*_J - F_2 lies in [-3,+4]
+  uniformly in BOTH M and J at m11..m41 (against s_min growing linearly), Delta_5 = 0 exactly
+  at both machines where J = 5 is non-empty, J_max(M) = A_kill(M) + 1 at all eight censused
+  machines, and A_kill(41) = 3 exactly (project item O7 closed).  THE SHARP FORM is one
+  inequality per legal middle word - 36 rows over the whole corpus, of which exactly THREE
+  fail, all at machine 31, all containing the padded letter 37.  The manager's
+  "extremal implies palindromic" step is TRUE at J = 5 (2 of 2, unique self-reverse
+  maximisers) and FALSE at J = 3, 4 (15 cells, none) - Theorem B explains the even-J half -
+  PROVED (Theorems A-D) + SCRIPT-VERIFIED (exact, gated against R68's independent Q* table
+  and reproduced by a second scan-free CRT vehicle) - not yet checked (round 28)
+- spectrum-depth-certificate - F(M+q') <= max_{2<=J<=J_max} F_J(M), from R68's attainment
+  theorem plus "Q*_J <= F_J" and "emptiness is upward closed": (D) at a step follows from the
+  OLD machine's spectrum over a FINITE depth range, with no word list, no flank envelope, no
+  CEGAR loop and no realisability oracle.  It CERTIFIES (D) AT 41 -> 43 - THE NINTH RUNG,
+  margin +16, left open by two previous rounds - from F_2(41)=103, F_3(41)<=117, F_4(41)=118
+  and the new Q*_5(41) = -inf; corollary F(43) <= 118 from machine 41 alone.  The criterion
+  is genuine, not a restatement: it certifies 8 of the 9 steps whose spectrum is complete and
+  FAILS at 29 -> 31, where the new exact value F_5(29) = 85 is 11 over budget while
+  Q*_5(29) = 55 - PROVED + SCRIPT-VERIFIED (every input asserted against the corpus; the one
+  new input re-derived from scratch with 0 undecided) - not yet checked (round 28)
+- dictionary-monotonicity-onset - TWO findings.  (a) THE DEPTH-0 LEMMA: the realised gap
+  m-tuple dictionary is MONOTONE along the machine ladder, D_m(M) subset D_m(M+q') for
+  every q' > 2(m+1) - a new gear destroys openings and merges gaps, yet every old
+  configuration survives, because the pattern forbids at most 2(m+1) < q' phases and CRT
+  supplies a lap with an admissible one.  Checked at all six exact pairs 13->17 ... 31->37
+  and against the round-27 exact m41 shard, and at output arities 2,3,4,5,6,7; it decides
+  16.7% of the m41 arity-4 superset (145,907 reverse classes, 291,675 tuples) as YES with no
+  solver, at every span.  THE HYPOTHESIS IS SHARP: at q' = 17 and 19 the first m at which
+  monotonicity fails is EXACTLY the first m the proof does not cover (slack 1 at q' = 11, 13),
+  and every failure witness is a dense small-gap pattern.
+  (b) THE INFLATION-ONSET LAW: the dictionary transfer M -> q' is exact below a sharp span
+  and over-generates above it, and that span is  min span of D_4(q'') \ D_4(q')  with q''
+  the NEXT prime - "the transfer first over-generates exactly where the next machine's new
+  repertoire begins" - onset ladder 13, 15, 17, 25, 31, 41, 53, 68 at 11->13 ... 37->41; the
+  causal version (the tuples refuted at the onset span are realised at the NEXT machine) is
+  8 of 8 and the refined law with it (the right-hand side must be intersected with what the
+  transfer can EMIT), while the SIMPLE form is 7 of 8 at arity 4 and only 2 of 6 at ARITY 3 -
+  so the intersection is the law, not a patch.  THE LAW IS ARITY-INDEPENDENT: over output
+  arities 2, 3, 4 and 5 the refined form is 20 of 20 and the simple form 12 of 20, and the
+  depth-0 lemma holds at every one of those arities.  AND one step OUT OF SAMPLE
+  (nu(41->43) = 68 from the m41 shard alone reproduces round 27's measured onset(37->41), by
+  a route that never saw it).  Three pre-registered closed forms in F, F_2 and ratios were
+  all REFUTED: the onset is a recursion in the ladder, not a letter combination.  Mechanism half-explained and quantified: X_5(M) = 9 with the
+  SAME witness (1,2,3,2,1) at every machine, phase-saturated at gear 5, which explains the
+  unscreened onset (9 at every step) exactly; and Y_5 (the same minimum with the saturated
+  walks removed) = 10, 17, 18, 22, 30, 38 at m13..m31 against onsets 15, 17, 25, 31, 41, 53,
+  so the remaining multiplicity residue is a near-constant FACTOR (onset/Y_5 = 1.389, 1.409,
+  1.367, 1.395 at the four largest machines, a band of width 0.042) rather than a growing gap.
+  Machines 29 and 31's exact 5-TUPLE dictionaries (208,668 and 636,575 tuples, by streamed
+  full-period passes over 1.08e9 and 3.34e10 slots) are new objects, each gated by its induced
+  4-tuple dictionary matching the round-25 full-period census cell for cell.  Also proves the WALK SCREEN
+  (screen the transfer's walk, not its emission - sound, strictly stronger, subsumes the
+  round-26 screen, 2.4-11.7% tighter supersets) - (a) PROVED + SCRIPT-VERIFIED,
+  (b) MEASURED 6/6 - not yet checked (round 28)
+- jk-growth-discriminator - THE k-AXIS REPLACES THE z-AXIS.  (i) THE FIRST EXACT VALUES OF
+  j_k FOR k >= 3: j_3(P(z)) = 180, 306, 612, 972 at z = 11, 13, 17, 19 (round 27 had only
+  6, 24, 78 at z = 3, 5, 7 and recorded that z = 11 "needs a real algorithm"), plus
+  j_4 = 30, 150, 420, 1230 and j_5 = 180, 930, 2070, 5490 - each with a machine-verified
+  witness AND an exhaustive proof that one more position cannot be covered.  The engine
+  (reduced lattice j_k = D(m+1) with D = prod_{p<=k+1} p, generalising Hagedorn's 2w+2 and
+  Ziller-Morack's 6*omega_2+6; the RPA2 canonical form, worth 125x; and a sliding
+  prefix-window capacity bound) reproduces FOURTEEN published A048670 values and NINE
+  published A288815 values by a DIFFERENT algorithm - the first independent verification of
+  the paired Jacobsthal numbers since they were deposited.  (ii) THE METHOD: the two live
+  growth readings of h_2 differ by (log z)^(k-1), so at k = 2 they need z = 151..251 to
+  separate - a number nobody has computed in nine years (A072753 and A288815 both still
+  carry exactly 21 terms; read first-hand 2026-08-29) - while at k = 3 they are two logs
+  apart and at k = 5 four, and those values cost seconds.  MEASURED: against the
+  parameter-free random-choice model, R_1 is FLAT to 4% over eighteen values (the
+  calibration, where the two models coincide and the truth is known), R_2 drifts +8% on the
+  clean window where model (A) needs 0% and model (B) needs +37%, and the calibrated
+  A-to-B fraction f_k FALLS steeply with k on every matched window where model (B) requires
+  it to be CONSTANT.  The excess exponent a_k - k is 0.61, 0.56, 0.76 at k = 2, 3, 4 against
+  a calibration bias of -0.08 and against the k-1 = 1, 2, 3 that the (2k-1) reading needs.
+  HONEST SCOPE, stated in the doc: (P2') has no finite-z content below log x ~ 300, so this
+  is evidence about the TRUTH's shape on the computed range and NOT a refutation of the
+  theorem.  Also prices brief item (a) with a measured cost curve: z = 37 is the next
+  purchasable rung (~15 h at 16 cores), z = 41 is 51 days - SCRIPT-VERIFIED (values) +
+  MEASURED (statistics) - prior art checked first-hand 2026-08-29, NOVEL AS FAR AS SEARCHED

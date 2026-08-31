@@ -127,6 +127,146 @@ the honest state: a real, exactly-measured, consistently-signed anomaly with no
 mechanism, which by the project's own measurement directive is a target rather
 than a wall.
 
+## 5A. ROUND-28 EXTENSION: THE OTHER STATISTICS, AND THE THIRD DEAD MECHANISM
+
+Lateral, round 28. Status: SCRIPT-VERIFIED, exhaustive and exact.
+`research/tooth_stats_r28.py --upto 19` (19 gates, log
+`research/data/r28/tooth_stats.log`); `research/tooth_mech_r28.py --upto 19`
+(4 gates, log `research/data/r28/tooth_mech.log`).
+
+Round 27 placed the twin in ONE statistic, `F`. The live route does not use `F`
+alone: it uses `F_2`, the INCREMENT `F(M+q') - F_2(M)` (the increment law says
+this is `<= s_min(q') = min(2v_q', q' - 2v_q')`), and the budget slack
+`F(M+q') - F(M) - q'`. Every one of these is defined for every member of the
+family, because the family fixes the gears, the period and the survivor count -
+so each is a null model, and each favourable placement is measured evidence that
+the route's inequality has room the worst case does not use.
+
+### 5A.1 THE TWIN'S PERCENTILE IN EACH STATISTIC
+
+    machine  |V|      F        F_2      F_3      #gap values
+    m7       6        66.7%    41.7%    91.7%    33.3%
+    m11      30       20.0%    46.7%    75.0%    43.3%
+    m13      180      18.1%    34.2%    61.1%     8.3%
+    m17      1440     26.4%    47.6%    15.2%    38.3%
+    m19      12960    17.1%    12.3%     6.3%    10.5%
+
+`F_2` is below the median at EVERY machine, but only marginally at m11/m17 - so
+on the small machines the effect is real for `F` and weak for `F_2`. **At m19 it
+reverses and STRENGTHENS WITH DEPTH: 17.1% for `F`, 12.3% for `F_2`, 6.3% for
+`F_3`.** Since the route consumes `F_2` and not `F`, that is the favourable
+direction, and m23 is the test.
+
+### 5A.1b THE m23 RUNG - THE PLATEAU HOLDS AND THE DEPTH TREND IS CONFIRMED
+
+SCOPE FIRST. The full family `V(23)` is 142,560 sievings (~6 core-hours) and it
+did NOT complete: the box ran the round at 96% of its commit limit with six
+lanes active, which killed two worker pools. What is delivered is the
+EXHAUSTIVE, EXACT **pinned family (B)** - all 12,960 m19 tooth vectors with
+`v_23` fixed at the twin's own value 4, which is exactly the (B) column reported
+at every other step below. **The full family (A) at m23 is NOT measured.**
+
+    m23, pinned family, 12,960 members, exhaustive and exact:
+      F(m23)       twin 34   min 27   median 37   max 57   percentile 11.9%
+      F_2(m23)     twin 39   min 35   median 45   max 65   percentile  3.1%
+      increment    twin  3   min  0   median  2   max 24   percentile 56.0%
+      budget slack twin -14  min -22  median -14  max  9   percentile 49.3%
+
+**The ~20% plateau holds** (11.9% against 20.0 / 18.1 / 26.4 / 17.1 at m11..m19 -
+five machines, no drift toward the median), **and the depth trend is confirmed:
+`F_2` sits at the 3.1 percentile, far below `F`'s own 11.9%.** The two largest
+machines now both say the twin's advantage GROWS WITH DEPTH while m13/m17 said
+the opposite - and depth is where the route lives. The increment (56.0%) and the
+budget slack (49.3%) are undistinguished, matching 5A.2(iv).
+
+FOURTH INDEPENDENT AGREEMENT with Constructor's R68 increment table: the twin's
+19->23 increment is 3 against a cap of 8, their fourth entry against their
+fourth cap, from a completely different vehicle.
+
+### 5A.2 THE STEP STATISTICS
+
+For a step `M -> M + q'` the family is `V(y')`, which factors exactly as
+`V(y) x {1..(q'-1)/2}`, so both the old machine's teeth and the new gear's tooth
+vary. Column (A) is that full family; column (B) pins `v_q'` to the twin's own
+value (the cleaner null model for "given the new gear, is the OLD machine's
+arithmetic favourable?").
+
+    step        F(M+q')      increment      budget slack   law margin
+                 (A)/(B)       (A)/(B)        (A)/(B)      s_min - inc (A)
+    5->7      66.7 / 75.0   66.7 / 75.0    83.3 / 75.0       41.7%
+    7->11     20.0 / 25.0   25.0 / 25.0    15.0 / 25.0       83.3%
+    11->13    18.1 / 15.0   23.6 / 21.7    32.5 / 28.3       78.9%
+    13->17    26.4 / 28.3   61.5 / 60.8    59.0 / 58.6       66.8%
+    17->19    17.1 / 17.9   14.9 / 13.9    37.2 / 38.7       82.2%
+
+Readings, in order of how much they matter:
+
+(i) **THE LAW MARGIN IS THE FAVOURABLE ONE, CONSISTENTLY.** `s_min - inc` is the
+    slack the increment law actually has at a member. The twin sits at the
+    66.8-83.3 percentile of it at the four non-degenerate steps - i.e. THE TWIN
+    MACHINE USES LESS OF THE INCREMENT LAW'S BUDGET THAN TWO THIRDS TO FOUR
+    FIFTHS OF ITS OWN COUNTERFACTUALS. That is the statement the route wants,
+    and it is stronger and steadier than the raw-increment placement.
+
+(ii) **THE INCREMENT LAW IS NOT GENERIC.** Over the full family it is VIOLATED
+     by 0 / 13.3 / 13.9 / 14.5 / 21.7 percent of members at the five steps, and
+     the rate GROWS with the machine. So no argument that uses only "same gears,
+     same density, symmetric teeth" can prove it: the law needs the arithmetic.
+
+(iii) **AND MOST OF WHAT IT NEEDS IS THE NEW GEAR'S TOOTH.** Pinning `v_q'` to
+      `round(q'/6)` and letting the old machine's teeth range freely drops the
+      violation rate to 0 / 0 / 0 / 1.1 / 6.5 percent. The new gear's tooth
+      position carries most of the law, the old machine's arithmetic the rest -
+      a decomposition of the law's difficulty that the counterfactual frame can
+      state and no scan of the real machine can.
+
+(iv) **THE BUDGET SLACK IS THE UNFAVOURABLE ONE - the honest negative.** At the
+     two largest steps the twin sits at 59.0% and 37.2%, i.e. essentially
+     undistinguished. The twin machine's advantage does NOT show up in
+     `F(M+q') - F(M) - q'`. (Reported here because it was measured as a free
+     byproduct of the same sieves; the budget-slack null model is the manager's
+     item U13 and this row is offered as an independent replication, not as a
+     claim of that item.)
+
+(v) Pinning `v_q'` (column B) never moves any placement by more than about 2
+    percentile points except at the degenerate 2-gear step.
+
+### 5A.3 THE THIRD MECHANISM IS DEAD TOO - AND IT DIED THE SAME WAY
+
+Round 27 killed angular coherence (refuted in the sign) and "the teeth are the
+reciprocal of a small integer". U12(ii) named the next candidate: gears 5 and 7
+decide every `<= 5`-point shape (the completeness lemma), so the effect should be
+localised in `(v_5, v_7)`, of which the twin's `(1,1)` is one of six classes.
+
+**REFUTED, and in the same direction as the first candidate.** One-way variance
+decomposition over the exhaustive family:
+
+  * The gear whose tooth explains the most variance in `F` is **gear 7** at
+    m13/m17 (`eta^2` = 0.092 / 0.091) and **gear 11** at m19 (0.066). It is
+    NEVER gear 5, and `eta^2` is NOT monotone in `q`. No single gear explains
+    more than 9% of the variance at any machine.
+  * The twin's own `v_q` is the argmin of the marginal `F` profile for 0 of 4,
+    0 of 5 and 1 of 6 gears at m13/m17/m19. On gears 5 and 7 it is the ARGMAX.
+  * The twin's class `(v_5, v_7) = (1,1)` has the HIGHEST mean `F` of all six
+    classes at m13 (14.57 vs family 12.94) and m17 (22.12 vs 19.65), and is
+    joint-highest at m19 (28.48 vs 27.90).
+  * **Inside that worst class the twin is at the 1.7 / 6.9 / 4.6 percentile**,
+    far more extreme than its overall 18.1 / 26.4 / 17.1.
+
+Conditioning ladder at m19 (pin the twin's own value on a growing prefix of the
+gears and re-rank inside the survivors): 17.1% -> 11.4% -> 4.6% -> 7.1% ->
+26.4% -> 22.2% -> 50%. The percentile DEEPENS while the pinned set is small and
+then dilutes only as the sub-family collapses to 72, 9 and 1 members, where the
+number is no longer informative. Pinning the LARGE gears instead keeps it at
+17.9-33.3%.
+
+**So the pattern of round 27 repeats with a sharper conditioning variable: the
+twin vector is a low-F outlier INSIDE the high-F class on every axis anyone has
+proposed. The effect is not a main effect of any gear's tooth; it is an
+interaction spread over the whole vector.** Three candidate mechanisms are now
+dead and the anomaly stands unexplained - which by the project's measurement
+directive is the target, not the wall.
+
 ## 6. PRIOR-ART CHECK
 
 Not yet checked. Terms to run: "Jacobsthal function admissible tuple dependence";

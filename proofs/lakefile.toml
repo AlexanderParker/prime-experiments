@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37", "Periodic", "Machine11Per", "Machine13Per", "Gen11Sound", "Machine29Cen", "Machine31Cen", "LadderPeriod", "Mirror", "CaseSplit", "CaseCert23B", "CaseCert23C0", "CaseCert23C1", "CaseCert23C2", "CaseCert23C3", "CaseCert23C4", "CaseCert23", "CaseCert31B", "CaseCert31C0", "CaseCert31C1", "CaseCert31C2", "CaseCert31C3", "CaseCert31C4", "CaseCert31C5", "CaseCert31C6", "CaseCert31C7", "CaseCert31C8", "CaseCert31C9", "CaseCert31C10", "CaseCert31C11", "CaseCert31C12", "CaseCert31C13", "CaseCert31C14", "CaseCert31C15", "CaseCert31C16", "CaseCert31C17", "CaseCert31C18", "CaseCert31C19", "CaseCert31C20", "CaseCert31C21", "CaseCert31C22", "CaseCert31C23", "CaseCert31C24", "CaseCert31C25", "CaseCert31C26", "CaseCert31C27", "CaseCert31C28", "CaseCert31C29", "CaseCert31C30", "CaseCert31C31", "CaseCert31C32", "CaseCert31C33", "CaseCert31C34", "CaseCert31"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37", "Periodic", "Machine11Per", "Machine13Per", "Gen11Sound", "Machine29Cen", "Machine31Cen", "LadderPeriod", "Mirror", "CaseSplit", "CaseCert23B", "CaseCert23C0", "CaseCert23C1", "CaseCert23C2", "CaseCert23C3", "CaseCert23C4", "CaseCert23", "CaseCert31B", "CaseCert31C0", "CaseCert31C1", "CaseCert31C2", "CaseCert31C3", "CaseCert31C4", "CaseCert31C5", "CaseCert31C6", "CaseCert31C7", "CaseCert31C8", "CaseCert31C9", "CaseCert31C10", "CaseCert31C11", "CaseCert31C12", "CaseCert31C13", "CaseCert31C14", "CaseCert31C15", "CaseCert31C16", "CaseCert31C17", "CaseCert31C18", "CaseCert31C19", "CaseCert31C20", "CaseCert31C21", "CaseCert31C22", "CaseCert31C23", "CaseCert31C24", "CaseCert31C25", "CaseCert31C26", "CaseCert31C27", "CaseCert31C28", "CaseCert31C29", "CaseCert31C30", "CaseCert31C31", "CaseCert31C32", "CaseCert31C33", "CaseCert31C34", "CaseCert31", "CaseSplit5", "IncCert23B", "IncCert23C0", "IncCert23C1", "IncCert23C2", "IncCert23C3", "IncCert23C4", "IncCert23C5", "IncCert23C6", "IncCert23C7", "IncCert23C8", "IncCert23C9", "IncCert23C10", "IncCert23C11", "IncCert23C12", "IncCert23C13", "IncCert23C14", "IncCert23C15", "IncCert23C16", "IncCert23C17", "IncCert23C18", "IncCert23C19", "IncCert23C20", "IncCert23C21", "IncCert23C22", "IncCert23C23", "IncCert23C24", "IncCert23C25", "IncCert23C26", "IncCert23C27", "IncCert23C28", "IncCert23C29", "IncCert23C30", "IncCert23C31", "IncCert23C32", "IncCert23C33", "IncCert23C34", "IncCert23", "IncCert29B", "IncCert29C0", "IncCert29C1", "IncCert29C2", "IncCert29C3", "IncCert29C4", "IncCert29C5", "IncCert29C6", "IncCert29C7", "IncCert29C8", "IncCert29C9", "IncCert29C10", "IncCert29C11", "IncCert29C12", "IncCert29C13", "IncCert29C14", "IncCert29C15", "IncCert29C16", "IncCert29C17", "IncCert29C18", "IncCert29C19", "IncCert29C20", "IncCert29C21", "IncCert29C22", "IncCert29C23", "IncCert29C24", "IncCert29C25", "IncCert29C26", "IncCert29C27", "IncCert29C28", "IncCert29C29", "IncCert29C30", "IncCert29C31", "IncCert29C32", "IncCert29C33", "IncCert29C34", "IncCert29", "IncCert31B", "IncCert31C0", "IncCert31C1", "IncCert31C2", "IncCert31C3", "IncCert31C4", "IncCert31C5", "IncCert31C6", "IncCert31C7", "IncCert31C8", "IncCert31C9", "IncCert31C10", "IncCert31C11", "IncCert31C12", "IncCert31C13", "IncCert31C14", "IncCert31C15", "IncCert31C16", "IncCert31C17", "IncCert31C18", "IncCert31C19", "IncCert31C20", "IncCert31C21", "IncCert31C22", "IncCert31C23", "IncCert31C24", "IncCert31C25", "IncCert31C26", "IncCert31C27", "IncCert31C28", "IncCert31C29", "IncCert31C30", "IncCert31C31", "IncCert31C32", "IncCert31C33", "IncCert31C34", "IncCert31", "MirrorM11", "Increment"]
 
 [[require]]
 name = "mathlib"
@@ -541,3 +541,345 @@ name = "CaseCert31C34"
 
 [[lean_lib]]
 name = "CaseCert31"
+
+[[lean_lib]]
+name = "CaseSplit5"
+
+[[lean_lib]]
+name = "IncCert23B"
+
+[[lean_lib]]
+name = "IncCert23C0"
+
+[[lean_lib]]
+name = "IncCert23C1"
+
+[[lean_lib]]
+name = "IncCert23C2"
+
+[[lean_lib]]
+name = "IncCert23C3"
+
+[[lean_lib]]
+name = "IncCert23C4"
+
+[[lean_lib]]
+name = "IncCert23C5"
+
+[[lean_lib]]
+name = "IncCert23C6"
+
+[[lean_lib]]
+name = "IncCert23C7"
+
+[[lean_lib]]
+name = "IncCert23C8"
+
+[[lean_lib]]
+name = "IncCert23C9"
+
+[[lean_lib]]
+name = "IncCert23C10"
+
+[[lean_lib]]
+name = "IncCert23C11"
+
+[[lean_lib]]
+name = "IncCert23C12"
+
+[[lean_lib]]
+name = "IncCert23C13"
+
+[[lean_lib]]
+name = "IncCert23C14"
+
+[[lean_lib]]
+name = "IncCert23C15"
+
+[[lean_lib]]
+name = "IncCert23C16"
+
+[[lean_lib]]
+name = "IncCert23C17"
+
+[[lean_lib]]
+name = "IncCert23C18"
+
+[[lean_lib]]
+name = "IncCert23C19"
+
+[[lean_lib]]
+name = "IncCert23C20"
+
+[[lean_lib]]
+name = "IncCert23C21"
+
+[[lean_lib]]
+name = "IncCert23C22"
+
+[[lean_lib]]
+name = "IncCert23C23"
+
+[[lean_lib]]
+name = "IncCert23C24"
+
+[[lean_lib]]
+name = "IncCert23C25"
+
+[[lean_lib]]
+name = "IncCert23C26"
+
+[[lean_lib]]
+name = "IncCert23C27"
+
+[[lean_lib]]
+name = "IncCert23C28"
+
+[[lean_lib]]
+name = "IncCert23C29"
+
+[[lean_lib]]
+name = "IncCert23C30"
+
+[[lean_lib]]
+name = "IncCert23C31"
+
+[[lean_lib]]
+name = "IncCert23C32"
+
+[[lean_lib]]
+name = "IncCert23C33"
+
+[[lean_lib]]
+name = "IncCert23C34"
+
+[[lean_lib]]
+name = "IncCert23"
+
+[[lean_lib]]
+name = "IncCert29B"
+
+[[lean_lib]]
+name = "IncCert29C0"
+
+[[lean_lib]]
+name = "IncCert29C1"
+
+[[lean_lib]]
+name = "IncCert29C2"
+
+[[lean_lib]]
+name = "IncCert29C3"
+
+[[lean_lib]]
+name = "IncCert29C4"
+
+[[lean_lib]]
+name = "IncCert29C5"
+
+[[lean_lib]]
+name = "IncCert29C6"
+
+[[lean_lib]]
+name = "IncCert29C7"
+
+[[lean_lib]]
+name = "IncCert29C8"
+
+[[lean_lib]]
+name = "IncCert29C9"
+
+[[lean_lib]]
+name = "IncCert29C10"
+
+[[lean_lib]]
+name = "IncCert29C11"
+
+[[lean_lib]]
+name = "IncCert29C12"
+
+[[lean_lib]]
+name = "IncCert29C13"
+
+[[lean_lib]]
+name = "IncCert29C14"
+
+[[lean_lib]]
+name = "IncCert29C15"
+
+[[lean_lib]]
+name = "IncCert29C16"
+
+[[lean_lib]]
+name = "IncCert29C17"
+
+[[lean_lib]]
+name = "IncCert29C18"
+
+[[lean_lib]]
+name = "IncCert29C19"
+
+[[lean_lib]]
+name = "IncCert29C20"
+
+[[lean_lib]]
+name = "IncCert29C21"
+
+[[lean_lib]]
+name = "IncCert29C22"
+
+[[lean_lib]]
+name = "IncCert29C23"
+
+[[lean_lib]]
+name = "IncCert29C24"
+
+[[lean_lib]]
+name = "IncCert29C25"
+
+[[lean_lib]]
+name = "IncCert29C26"
+
+[[lean_lib]]
+name = "IncCert29C27"
+
+[[lean_lib]]
+name = "IncCert29C28"
+
+[[lean_lib]]
+name = "IncCert29C29"
+
+[[lean_lib]]
+name = "IncCert29C30"
+
+[[lean_lib]]
+name = "IncCert29C31"
+
+[[lean_lib]]
+name = "IncCert29C32"
+
+[[lean_lib]]
+name = "IncCert29C33"
+
+[[lean_lib]]
+name = "IncCert29C34"
+
+[[lean_lib]]
+name = "IncCert29"
+
+[[lean_lib]]
+name = "IncCert31B"
+
+[[lean_lib]]
+name = "IncCert31C0"
+
+[[lean_lib]]
+name = "IncCert31C1"
+
+[[lean_lib]]
+name = "IncCert31C2"
+
+[[lean_lib]]
+name = "IncCert31C3"
+
+[[lean_lib]]
+name = "IncCert31C4"
+
+[[lean_lib]]
+name = "IncCert31C5"
+
+[[lean_lib]]
+name = "IncCert31C6"
+
+[[lean_lib]]
+name = "IncCert31C7"
+
+[[lean_lib]]
+name = "IncCert31C8"
+
+[[lean_lib]]
+name = "IncCert31C9"
+
+[[lean_lib]]
+name = "IncCert31C10"
+
+[[lean_lib]]
+name = "IncCert31C11"
+
+[[lean_lib]]
+name = "IncCert31C12"
+
+[[lean_lib]]
+name = "IncCert31C13"
+
+[[lean_lib]]
+name = "IncCert31C14"
+
+[[lean_lib]]
+name = "IncCert31C15"
+
+[[lean_lib]]
+name = "IncCert31C16"
+
+[[lean_lib]]
+name = "IncCert31C17"
+
+[[lean_lib]]
+name = "IncCert31C18"
+
+[[lean_lib]]
+name = "IncCert31C19"
+
+[[lean_lib]]
+name = "IncCert31C20"
+
+[[lean_lib]]
+name = "IncCert31C21"
+
+[[lean_lib]]
+name = "IncCert31C22"
+
+[[lean_lib]]
+name = "IncCert31C23"
+
+[[lean_lib]]
+name = "IncCert31C24"
+
+[[lean_lib]]
+name = "IncCert31C25"
+
+[[lean_lib]]
+name = "IncCert31C26"
+
+[[lean_lib]]
+name = "IncCert31C27"
+
+[[lean_lib]]
+name = "IncCert31C28"
+
+[[lean_lib]]
+name = "IncCert31C29"
+
+[[lean_lib]]
+name = "IncCert31C30"
+
+[[lean_lib]]
+name = "IncCert31C31"
+
+[[lean_lib]]
+name = "IncCert31C32"
+
+[[lean_lib]]
+name = "IncCert31C33"
+
+[[lean_lib]]
+name = "IncCert31C34"
+
+[[lean_lib]]
+name = "IncCert31"
+
+[[lean_lib]]
+name = "MirrorM11"
+
+[[lean_lib]]
+name = "Increment"

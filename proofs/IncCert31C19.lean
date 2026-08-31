@@ -1,0 +1,464 @@
+/-
+INCREMENT-WIDTH CERTIFICATE, step 29->31, case 19 of 35 (GENERATED
+by research/gen_inc_lean.py from
+research/data/r27/cert_inc_29_31.json, which re-derives every number
+from the primes alone).
+
+Machine 31, INCREMENT width 65 = F_2(29) + s_min(31) = 55 + 10,
+held gears [5, 7] at phases [2, 5].  Free gears [11, 13, 17, 19, 23, 29, 31].
+All numbers are the LP thread's exact rational dual scaled by the
+case denominator 14.
+-/
+import IncCert31B
+
+namespace IncCert31
+
+/-! ### case 19: held gears at phases [2, 5] -/
+
+def p19 : List ℕ := [0, 5, 6, 11, 13, 16, 18, 20, 21, 23, 25, 26, 28, 30, 33, 35, 40, 41, 46, 48, 51, 53, 55, 56, 58, 60, 61, 63]
+def q19 (t : ℕ) : ℕ := p19.getD t 0
+def n19 : ℕ := 28
+def yl19 : List ℤ := [0, 3, 4, 7, 5, 8, 11, 2, 12, 14, 9, 7, 10, 7, 5, 2, 0, 0, 2, 2, 0, 11, 6, 2, 14, 7, 0, 1]
+def w19 (t : ℕ) : ℤ := yl19.getD t 0
+def ul19 : List ℤ := [(-1), (-1), (-1), (-1), (-6), (-3), 0, (-1), 0, (-1), (-1), (-1), (-1), 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, (-6), (-6), 0, (-1), (-6), (-6), (-1), (-1), 0, (-6), (-6), (-6), (-1), 0, 0, (-6), (-6), 0, 1, 1, 0, 0, 0, 6, 1, 0, 0, 0, 0, 0, 0, (-3), (-3), (-3), 0, 0, (-3), (-3), (-3), 0, (-3), 0, (-3), 0, (-3), 0, (-3), 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, (-6), (-6), (-6), (-6), (-2), (-6), (-6), (-6), (-6), 0, (-6), (-6), (-6), (-6), (-1), (-6), (-6), 0, (-6), (-2), (-6), (-6), (-1), 0, 1, 6, 0, 0, 1, 2, 0, 6, 1, 0, (-6), (-2), (-6), (-6), (-6), (-2), (-6), (-6), 0, (-6), (-6), (-6), (-6), (-2), (-6), (-6), (-6), (-6), (-6), (-6), (-2), (-6), (-6), (-2), (-2), (-6), (-6), (-2), (-6), 0, 0, 6, (-7), 2, 2, 0, 0, 2, 6, 0, (-2), (-2), (-2), (-2), (-2), (-2), 0, (-2), 0, (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), (-2), 0, (-2), (-2), (-2), 0, 0, 2, 2, 0, 0, 2, 2, 0, 0, 0, 50, 50, 40, 50, 50, 31, 24, 50, 50, 50, 50, 50, 50, 50, 47, 47, 35, (-50), (-50), (-50), (-50), (-50), (-50), (-50), (-50), (-50), (-50), (-50), (-50), (-50), 40, 40, 38, 26, 28, 40, 30, 32, 22, 40, 40, 34, 37, 34, 40, 40, 40, 40, 40, (-40), (-40), (-40), (-40), (-40), (-40), (-40), (-40), (-40), (-40), (-43), (-40), (-40), 6, 41, 41, 20, 41, 19, 34, 41, 19, 41, 30, 20, 41, 28, 41, 41, 41, 41, 17, 35, 35, 33, 41, (-41), (-41), (-41), (-41), (-41), (-41), (-41), (-41), (-41), (-41), (-41), (-41), (-41), 38, 38, 18, 36, 26, 36, 38, 38, 38, 21, 23, 38, 38, 38, 14, 14, 38, 38, 38, 21, 13, 38, 38, 33, 28, 21, 14, 38, 38, (-38), (-38), (-38), (-38), (-38), (-38), (-38), (-38), (-38), (-38), (-38), (-38), (-38), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (-10), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (-3), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 32, 13, 32, 26, 25, 32, 15, 32, 30, 28, 32, 13, 32, 19, 32, 21, 8, 19, 10, 26, 18, 10, 13, 13, 32, 13, 24, 15, 17, 31, 0, (-6), 0, 0, 0, 0, 0, 0, 0, 0, 0, (-2), 0, 0, 0, 0, (-15), (-24), (-1), 0, 0, (-16), (-14), 0, 0, 0, 0, (-12), 0]
+def u19 (k : ℕ) : ℤ := ul19.getD k 0
+
+def c19_0 (r t : ℕ) : Bool := gb11 r (q19 t)
+def c19_1 (r t : ℕ) : Bool := gb13 r (q19 t)
+def c19_2 (r t : ℕ) : Bool := gb17 r (q19 t)
+def c19_3 (r t : ℕ) : Bool := gb19 r (q19 t)
+def c19_4 (r t : ℕ) : Bool := gb23 r (q19 t)
+def c19_5 (r t : ℕ) : Bool := gb29 r (q19 t)
+def c19_6 (r t : ℕ) : Bool := gb31 r (q19 t)
+
+def S19_0 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (w19 t + 6) * (if c19_0 r t then 1 else 0)
+def S19_1 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (w19 t + 6) * (if c19_1 r t then 1 else 0)
+def S19_2 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (w19 t + 6) * (if c19_2 r t then 1 else 0)
+def S19_3 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (w19 t + 6) * (if c19_3 r t then 1 else 0)
+def S19_4 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (w19 t + 6) * (if c19_4 r t then 1 else 0)
+def S19_5 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (w19 t + 6) * (if c19_5 r t then 1 else 0)
+def S19_6 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (w19 t + 6) * (if c19_6 r t then 1 else 0)
+
+def L19_0 (r : ℕ) : ℤ := u19 (13 + r) + u19 (41 + r) + u19 (71 + r) + u19 (105 + r) + u19 (145 + r) + u19 (187 + r)
+def L19_1 (r : ℕ) : ℤ := u19 (0 + r) + u19 (215 + r) + u19 (247 + r) + u19 (283 + r) + u19 (325 + r) + u19 (369 + r)
+def L19_2 (r : ℕ) : ℤ := u19 (24 + r) + u19 (198 + r) + u19 (401 + r) + u19 (441 + r) + u19 (487 + r) + u19 (535 + r)
+def L19_3 (r : ℕ) : ℤ := u19 (52 + r) + u19 (228 + r) + u19 (382 + r) + u19 (575 + r) + u19 (623 + r) + u19 (673 + r)
+def L19_4 (r : ℕ) : ℤ := u19 (82 + r) + u19 (260 + r) + u19 (418 + r) + u19 (552 + r) + u19 (721 + r) + u19 (775 + r)
+def L19_5 (r : ℕ) : ℤ := u19 (116 + r) + u19 (296 + r) + u19 (458 + r) + u19 (594 + r) + u19 (692 + r) + u19 (829 + r)
+def L19_6 (r : ℕ) : ℤ := u19 (156 + r) + u19 (338 + r) + u19 (504 + r) + u19 (642 + r) + u19 (744 + r) + u19 (798 + r)
+
+def aS19_0 (r : ℕ) : ℤ := S19_0 r - L19_0 r
+def MS19_0 : ℤ := CaseSplit.mxr (aS19_0) 10
+def aS19_1 (r : ℕ) : ℤ := S19_1 r - L19_1 r
+def MS19_1 : ℤ := CaseSplit.mxr (aS19_1) 12
+def aS19_2 (r : ℕ) : ℤ := S19_2 r - L19_2 r
+def MS19_2 : ℤ := CaseSplit.mxr (aS19_2) 16
+def aS19_3 (r : ℕ) : ℤ := S19_3 r - L19_3 r
+def MS19_3 : ℤ := CaseSplit.mxr (aS19_3) 18
+def aS19_4 (r : ℕ) : ℤ := S19_4 r - L19_4 r
+def MS19_4 : ℤ := CaseSplit.mxr (aS19_4) 22
+def aS19_5 (r : ℕ) : ℤ := S19_5 r - L19_5 r
+def MS19_5 : ℤ := CaseSplit.mxr (aS19_5) 28
+def aS19_6 (r : ℕ) : ℤ := S19_6 r - L19_6 r
+def MS19_6 : ℤ := CaseSplit.mxr (aS19_6) 30
+
+def N19_0 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_0 ra t && c19_1 rb t then 1 else 0)
+def aP19_0 (ra rb : ℕ) : ℤ := -(6) * N19_0 ra rb + u19 (0 + rb) + u19 (13 + ra)
+def MP19_0 : ℤ := CaseSplit.mxr2 (aP19_0) 10 12
+def N19_1 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_0 ra t && c19_2 rb t then 1 else 0)
+def aP19_1 (ra rb : ℕ) : ℤ := -(6) * N19_1 ra rb + u19 (24 + rb) + u19 (41 + ra)
+def MP19_1 : ℤ := CaseSplit.mxr2 (aP19_1) 10 16
+def N19_2 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_0 ra t && c19_3 rb t then 1 else 0)
+def aP19_2 (ra rb : ℕ) : ℤ := -(6) * N19_2 ra rb + u19 (52 + rb) + u19 (71 + ra)
+def MP19_2 : ℤ := CaseSplit.mxr2 (aP19_2) 10 18
+def N19_3 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_0 ra t && c19_4 rb t then 1 else 0)
+def aP19_3 (ra rb : ℕ) : ℤ := -(6) * N19_3 ra rb + u19 (82 + rb) + u19 (105 + ra)
+def MP19_3 : ℤ := CaseSplit.mxr2 (aP19_3) 10 22
+def N19_4 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_0 ra t && c19_5 rb t then 1 else 0)
+def aP19_4 (ra rb : ℕ) : ℤ := -(6) * N19_4 ra rb + u19 (116 + rb) + u19 (145 + ra)
+def MP19_4 : ℤ := CaseSplit.mxr2 (aP19_4) 10 28
+def N19_5 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_0 ra t && c19_6 rb t then 1 else 0)
+def aP19_5 (ra rb : ℕ) : ℤ := -(6) * N19_5 ra rb + u19 (156 + rb) + u19 (187 + ra)
+def MP19_5 : ℤ := CaseSplit.mxr2 (aP19_5) 10 30
+def P19_6 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_2 rb t then 1 else 0)
+def C19_6 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_2 rb t && c19_0 s t then 1 else 0)
+def M19_6 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C19_6 ra rb) 10
+def E19_6 : List ℕ := [3, 9, 25, 31, 70, 76, 93, 99, 104, 115, 140, 151, 160, 166, 188, 194]
+def N19_6 (ra rb : ℕ) : ℤ := if E19_6.contains (ra * 17 + rb) = true then P19_6 ra rb - M19_6 ra rb else 0
+def aP19_6 (ra rb : ℕ) : ℤ := -(6) * N19_6 ra rb + u19 (198 + rb) + u19 (215 + ra)
+def MP19_6 : ℤ := CaseSplit.mxr2 (aP19_6) 12 16
+def P19_7 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_3 rb t then 1 else 0)
+def C19_7 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_3 rb t && c19_0 s t then 1 else 0)
+def M19_7 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C19_7 ra rb) 10
+def E19_7 : List ℕ := [13, 20, 41, 44, 47, 50, 78, 84, 120, 126, 131, 154, 160, 184, 191, 207, 212, 218]
+def N19_7 (ra rb : ℕ) : ℤ := if E19_7.contains (ra * 19 + rb) = true then P19_7 ra rb - M19_7 ra rb else 0
+def aP19_7 (ra rb : ℕ) : ℤ := -(6) * N19_7 ra rb + u19 (228 + rb) + u19 (247 + ra)
+def MP19_7 : ℤ := CaseSplit.mxr2 (aP19_7) 12 18
+def P19_8 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_4 rb t then 1 else 0)
+def C19_8 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_4 rb t && c19_0 s t then 1 else 0)
+def M19_8 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C19_8 ra rb) 10
+def E19_8 : List ℕ := [50]
+def N19_8 (ra rb : ℕ) : ℤ := if E19_8.contains (ra * 23 + rb) = true then P19_8 ra rb - M19_8 ra rb else 0
+def aP19_8 (ra rb : ℕ) : ℤ := -(6) * N19_8 ra rb + u19 (260 + rb) + u19 (283 + ra)
+def MP19_8 : ℤ := CaseSplit.mxr2 (aP19_8) 12 22
+def P19_9 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_5 rb t then 1 else 0)
+def C19_9 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_5 rb t && c19_0 s t then 1 else 0)
+def M19_9 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C19_9 ra rb) 10
+def E19_9 : List ℕ := [90, 206, 240, 356]
+def N19_9 (ra rb : ℕ) : ℤ := if E19_9.contains (ra * 29 + rb) = true then P19_9 ra rb - M19_9 ra rb else 0
+def aP19_9 (ra rb : ℕ) : ℤ := -(6) * N19_9 ra rb + u19 (296 + rb) + u19 (325 + ra)
+def MP19_9 : ℤ := CaseSplit.mxr2 (aP19_9) 12 28
+def P19_10 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_6 rb t then 1 else 0)
+def C19_10 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n19, (if c19_1 ra t && c19_6 rb t && c19_0 s t then 1 else 0)
+def M19_10 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C19_10 ra rb) 10
+def E19_10 : List ℕ := [25, 149, 185, 309]
+def N19_10 (ra rb : ℕ) : ℤ := if E19_10.contains (ra * 31 + rb) = true then P19_10 ra rb - M19_10 ra rb else 0
+def aP19_10 (ra rb : ℕ) : ℤ := -(6) * N19_10 ra rb + u19 (338 + rb) + u19 (369 + ra)
+def MP19_10 : ℤ := CaseSplit.mxr2 (aP19_10) 12 30
+def N19_11 (_ra _rb : ℕ) : ℤ := 0
+def aP19_11 (ra rb : ℕ) : ℤ := -(6) * N19_11 ra rb + u19 (382 + rb) + u19 (401 + ra)
+def MP19_11 : ℤ := CaseSplit.mxr2 (aP19_11) 16 18
+def N19_12 (_ra _rb : ℕ) : ℤ := 0
+def aP19_12 (ra rb : ℕ) : ℤ := -(6) * N19_12 ra rb + u19 (418 + rb) + u19 (441 + ra)
+def MP19_12 : ℤ := CaseSplit.mxr2 (aP19_12) 16 22
+def N19_13 (_ra _rb : ℕ) : ℤ := 0
+def aP19_13 (ra rb : ℕ) : ℤ := -(6) * N19_13 ra rb + u19 (458 + rb) + u19 (487 + ra)
+def MP19_13 : ℤ := CaseSplit.mxr2 (aP19_13) 16 28
+def N19_14 (_ra _rb : ℕ) : ℤ := 0
+def aP19_14 (ra rb : ℕ) : ℤ := -(6) * N19_14 ra rb + u19 (504 + rb) + u19 (535 + ra)
+def MP19_14 : ℤ := CaseSplit.mxr2 (aP19_14) 16 30
+def N19_15 (_ra _rb : ℕ) : ℤ := 0
+def aP19_15 (ra rb : ℕ) : ℤ := -(6) * N19_15 ra rb + u19 (552 + rb) + u19 (575 + ra)
+def MP19_15 : ℤ := CaseSplit.mxr2 (aP19_15) 18 22
+def N19_16 (_ra _rb : ℕ) : ℤ := 0
+def aP19_16 (ra rb : ℕ) : ℤ := -(6) * N19_16 ra rb + u19 (594 + rb) + u19 (623 + ra)
+def MP19_16 : ℤ := CaseSplit.mxr2 (aP19_16) 18 28
+def N19_17 (_ra _rb : ℕ) : ℤ := 0
+def aP19_17 (ra rb : ℕ) : ℤ := -(6) * N19_17 ra rb + u19 (642 + rb) + u19 (673 + ra)
+def MP19_17 : ℤ := CaseSplit.mxr2 (aP19_17) 18 30
+def N19_18 (_ra _rb : ℕ) : ℤ := 0
+def aP19_18 (ra rb : ℕ) : ℤ := -(6) * N19_18 ra rb + u19 (692 + rb) + u19 (721 + ra)
+def MP19_18 : ℤ := CaseSplit.mxr2 (aP19_18) 22 28
+def N19_19 (_ra _rb : ℕ) : ℤ := 0
+def aP19_19 (ra rb : ℕ) : ℤ := -(6) * N19_19 ra rb + u19 (744 + rb) + u19 (775 + ra)
+def MP19_19 : ℤ := CaseSplit.mxr2 (aP19_19) 22 30
+def N19_20 (_ra _rb : ℕ) : ℤ := 0
+def aP19_20 (ra rb : ℕ) : ℤ := -(6) * N19_20 ra rb + u19 (798 + rb) + u19 (829 + ra)
+def MP19_20 : ℤ := CaseSplit.mxr2 (aP19_20) 28 30
+
+def rhs19 : ℤ := (∑ t ∈ Finset.range n19, w19 t) + 6 * (n19 : ℤ)
+
+set_option maxRecDepth 40000
+set_option maxHeartbeats 4000000
+
+theorem wnn19 : ∀ t, t < n19 → (0 : ℤ) ≤ w19 t := by decide
+theorem plt19 : ∀ t, t < n19 → q19 t < 65 := by decide
+theorem pfree19_5 : ∀ t, t < n19 → gb5 2 (q19 t) = false := by decide
+theorem pfree19_7 : ∀ t, t < n19 → gb7 5 (q19 t) = false := by decide
+theorem MSv19_0 : MS19_0 = 55 := by decide +kernel
+theorem MSv19_1 : MS19_1 = 222 := by decide +kernel
+theorem MSv19_2 : MS19_2 = 2 := by decide +kernel
+theorem MSv19_3 : MS19_3 = 1 := by decide +kernel
+theorem MSv19_4 : MS19_4 = 2 := by decide +kernel
+theorem MSv19_5 : MS19_5 = 1 := by decide +kernel
+theorem MSv19_6 : MS19_6 = 1 := by decide +kernel
+theorem MPv19_0 : MP19_0 = 0 := by decide +kernel
+theorem MPv19_1 : MP19_1 = 0 := by decide +kernel
+theorem MPv19_2 : MP19_2 = 0 := by decide +kernel
+theorem MPv19_3 : MP19_3 = 0 := by decide +kernel
+theorem MPv19_4 : MP19_4 = 0 := by decide +kernel
+theorem MPv19_5 : MP19_5 = 0 := by decide +kernel
+theorem MPv19_6 : MP19_6 = 0 := by decide +kernel
+theorem MPv19_7 : MP19_7 = 0 := by decide +kernel
+theorem MPv19_8 : MP19_8 = 0 := by decide +kernel
+theorem MPv19_9 : MP19_9 = 0 := by decide +kernel
+theorem MPv19_10 : MP19_10 = 0 := by decide +kernel
+theorem MPv19_11 : MP19_11 = 0 := by decide +kernel
+theorem MPv19_12 : MP19_12 = 0 := by decide +kernel
+theorem MPv19_13 : MP19_13 = 0 := by decide +kernel
+theorem MPv19_14 : MP19_14 = 0 := by decide +kernel
+theorem MPv19_15 : MP19_15 = 0 := by decide +kernel
+theorem MPv19_16 : MP19_16 = 0 := by decide +kernel
+theorem MPv19_17 : MP19_17 = 0 := by decide +kernel
+theorem MPv19_18 : MP19_18 = 0 := by decide +kernel
+theorem MPv19_19 : MP19_19 = 0 := by decide +kernel
+theorem MPv19_20 : MP19_20 = 32 := by decide +kernel
+theorem rhsv19 : rhs19 = 319 := by decide +kernel
+
+/-- **The case-19 certificate**: the dual objective falls short of the
+    recursion row's right-hand side.  Margin 3/14.
+    (Scaled by the common denominator 14: 316 < 319.) -/
+theorem cert19 : MS19_0 + MS19_1 + MS19_2 + MS19_3 + MS19_4 + MS19_5 + MS19_6 + MP19_0 + MP19_1 + MP19_2 + MP19_3 + MP19_4 + MP19_5 + MP19_6 + MP19_7 + MP19_8 + MP19_9 + MP19_10 + MP19_11 + MP19_12 + MP19_13 + MP19_14 + MP19_15 + MP19_16 + MP19_17 + MP19_18 + MP19_19 + MP19_20 < rhs19 := by
+  rw [MSv19_0, MSv19_1, MSv19_2, MSv19_3, MSv19_4, MSv19_5, MSv19_6, MPv19_0, MPv19_1, MPv19_2, MPv19_3, MPv19_4, MPv19_5, MPv19_6, MPv19_7, MPv19_8, MPv19_9, MPv19_10, MPv19_11, MPv19_12, MPv19_13, MPv19_14, MPv19_15, MPv19_16, MPv19_17, MPv19_18, MPv19_19, MPv19_20, rhsv19]
+  decide
+
+def Dg19 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := (if c19_0 r0 t then 1 else 0) + (if c19_1 r1 t then 1 else 0) + (if c19_2 r2 t then 1 else 0) + (if c19_3 r3 t then 1 else 0) + (if c19_4 r4 t then 1 else 0) + (if c19_5 r5 t then 1 else 0) + (if c19_6 r6 t then 1 else 0)
+def Wl19_0 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if c19_0 r0 t && c19_1 r1 t then 1 else 0
+def Wl19_1 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if c19_0 r0 t && c19_2 r2 t then 1 else 0
+def Wl19_2 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if c19_0 r0 t && c19_3 r3 t then 1 else 0
+def Wl19_3 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if c19_0 r0 t && c19_4 r4 t then 1 else 0
+def Wl19_4 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if c19_0 r0 t && c19_5 r5 t then 1 else 0
+def Wl19_5 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if c19_0 r0 t && c19_6 r6 t then 1 else 0
+def Wl19_6 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && c19_1 r1 t && c19_2 r2 t then 1 else 0
+def Wl19_7 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && c19_1 r1 t && c19_3 r3 t then 1 else 0
+def Wl19_8 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && c19_1 r1 t && c19_4 r4 t then 1 else 0
+def Wl19_9 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && c19_1 r1 t && c19_5 r5 t then 1 else 0
+def Wl19_10 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && c19_1 r1 t && c19_6 r6 t then 1 else 0
+def Wl19_11 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && c19_2 r2 t && c19_3 r3 t then 1 else 0
+def Wl19_12 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && c19_2 r2 t && c19_4 r4 t then 1 else 0
+def Wl19_13 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && c19_2 r2 t && c19_5 r5 t then 1 else 0
+def Wl19_14 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && c19_2 r2 t && c19_6 r6 t then 1 else 0
+def Wl19_15 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && !c19_2 r2 t && c19_3 r3 t && c19_4 r4 t then 1 else 0
+def Wl19_16 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && !c19_2 r2 t && c19_3 r3 t && c19_5 r5 t then 1 else 0
+def Wl19_17 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && !c19_2 r2 t && c19_3 r3 t && c19_6 r6 t then 1 else 0
+def Wl19_18 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && !c19_2 r2 t && !c19_3 r3 t && c19_4 r4 t && c19_5 r5 t then 1 else 0
+def Wl19_19 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && !c19_2 r2 t && !c19_3 r3 t && c19_4 r4 t && c19_6 r6 t then 1 else 0
+def Wl19_20 (r0 r1 r2 r3 r4 r5 r6 t : ℕ) : ℤ := if !c19_0 r0 t && !c19_1 r1 t && !c19_2 r2 t && !c19_3 r3 t && !c19_4 r4 t && c19_5 r5 t && c19_6 r6 t then 1 else 0
+
+/-- **No configuration blocks the whole window in case 19.** -/
+theorem nocov19 {r0 r1 r2 r3 r4 r5 r6 : ℕ} (h0 : r0 < 11) (h1 : r1 < 13) (h2 : r2 < 17) (h3 : r3 < 19) (h4 : r4 < 23) (h5 : r5 < 29) (h6 : r6 < 31)
+    (hcov : ∀ t, t < n19 → (c19_0 r0 t || c19_1 r1 t || c19_2 r2 t || c19_3 r3 t || c19_4 r4 t || c19_5 r5 t || c19_6 r6 t) = true) : False := by
+  have hpt : ∀ t ∈ Finset.range n19, (1 : ℤ) + (Wl19_0 r0 r1 r2 r3 r4 r5 r6 t + Wl19_1 r0 r1 r2 r3 r4 r5 r6 t + Wl19_2 r0 r1 r2 r3 r4 r5 r6 t + Wl19_3 r0 r1 r2 r3 r4 r5 r6 t + Wl19_4 r0 r1 r2 r3 r4 r5 r6 t + Wl19_5 r0 r1 r2 r3 r4 r5 r6 t + Wl19_6 r0 r1 r2 r3 r4 r5 r6 t + Wl19_7 r0 r1 r2 r3 r4 r5 r6 t + Wl19_8 r0 r1 r2 r3 r4 r5 r6 t + Wl19_9 r0 r1 r2 r3 r4 r5 r6 t + Wl19_10 r0 r1 r2 r3 r4 r5 r6 t + Wl19_11 r0 r1 r2 r3 r4 r5 r6 t + Wl19_12 r0 r1 r2 r3 r4 r5 r6 t + Wl19_13 r0 r1 r2 r3 r4 r5 r6 t + Wl19_14 r0 r1 r2 r3 r4 r5 r6 t + Wl19_15 r0 r1 r2 r3 r4 r5 r6 t + Wl19_16 r0 r1 r2 r3 r4 r5 r6 t + Wl19_17 r0 r1 r2 r3 r4 r5 r6 t + Wl19_18 r0 r1 r2 r3 r4 r5 r6 t + Wl19_19 r0 r1 r2 r3 r4 r5 r6 t + Wl19_20 r0 r1 r2 r3 r4 r5 r6 t) ≤ Dg19 r0 r1 r2 r3 r4 r5 r6 t := by
+    intro t ht
+    simp only [Wl19_0, Wl19_1, Wl19_2, Wl19_3, Wl19_4, Wl19_5, Wl19_6, Wl19_7, Wl19_8, Wl19_9, Wl19_10, Wl19_11, Wl19_12, Wl19_13, Wl19_14, Wl19_15, Wl19_16, Wl19_17, Wl19_18, Wl19_19, Wl19_20, Dg19]
+    exact CaseSplit.lowest7 _ _ _ _ _ _ _ (hcov t (Finset.mem_range.mp ht))
+  have hd1 : ∀ t ∈ Finset.range n19, (1 : ℤ) ≤ Dg19 r0 r1 r2 r3 r4 r5 r6 t := by
+    intro t ht
+    simp only [Dg19]
+    exact CaseSplit.degpos7 _ _ _ _ _ _ _ (hcov t (Finset.mem_range.mp ht))
+  have hsum : (n19 : ℤ) + ((∑ t ∈ Finset.range n19, Wl19_0 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_1 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_2 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_3 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_4 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_5 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_6 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_7 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_8 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_9 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_10 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_11 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_12 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_13 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_14 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_15 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_16 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_17 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_18 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_19 r0 r1 r2 r3 r4 r5 r6 t) + (∑ t ∈ Finset.range n19, Wl19_20 r0 r1 r2 r3 r4 r5 r6 t)) ≤ ∑ t ∈ Finset.range n19, Dg19 r0 r1 r2 r3 r4 r5 r6 t := by
+    have h := Finset.sum_le_sum hpt
+    simp only [Finset.sum_add_distrib, Finset.sum_const, Finset.card_range, nsmul_eq_mul, mul_one] at h
+    exact h
+  have hn0 : N19_0 r0 r1 ≤ ∑ t ∈ Finset.range n19, Wl19_0 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_0, Wl19_0, le_refl]
+  have hn1 : N19_1 r0 r2 ≤ ∑ t ∈ Finset.range n19, Wl19_1 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_1, Wl19_1, le_refl]
+  have hn2 : N19_2 r0 r3 ≤ ∑ t ∈ Finset.range n19, Wl19_2 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_2, Wl19_2, le_refl]
+  have hn3 : N19_3 r0 r4 ≤ ∑ t ∈ Finset.range n19, Wl19_3 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_3, Wl19_3, le_refl]
+  have hn4 : N19_4 r0 r5 ≤ ∑ t ∈ Finset.range n19, Wl19_4 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_4, Wl19_4, le_refl]
+  have hn5 : N19_5 r0 r6 ≤ ∑ t ∈ Finset.range n19, Wl19_5 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_5, Wl19_5, le_refl]
+  have hn6 : N19_6 r1 r2 ≤ ∑ t ∈ Finset.range n19, Wl19_6 r0 r1 r2 r3 r4 r5 r6 t := by
+    have hsp : ∀ t ∈ Finset.range n19, Wl19_6 r0 r1 r2 r3 r4 r5 r6 t
+        = (if c19_1 r1 t && c19_2 r2 t then (1:ℤ) else 0)
+          - (if c19_1 r1 t && c19_2 r2 t && c19_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl19_6]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n19, Wl19_6 r0 r1 r2 r3 r4 r5 r6 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl19_6]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n19, Wl19_6 r0 r1 r2 r3 r4 r5 r6 t
+        = P19_6 r1 r2 - C19_6 r1 r2 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P19_6, C19_6]
+    have hm : C19_6 r1 r2 r0 ≤ M19_6 r1 r2 :=
+      CaseSplit.le_mxr (C19_6 r1 r2) 10 r0 (by omega)
+    simp only [N19_6]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn7 : N19_7 r1 r3 ≤ ∑ t ∈ Finset.range n19, Wl19_7 r0 r1 r2 r3 r4 r5 r6 t := by
+    have hsp : ∀ t ∈ Finset.range n19, Wl19_7 r0 r1 r2 r3 r4 r5 r6 t
+        = (if c19_1 r1 t && c19_3 r3 t then (1:ℤ) else 0)
+          - (if c19_1 r1 t && c19_3 r3 t && c19_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl19_7]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n19, Wl19_7 r0 r1 r2 r3 r4 r5 r6 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl19_7]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n19, Wl19_7 r0 r1 r2 r3 r4 r5 r6 t
+        = P19_7 r1 r3 - C19_7 r1 r3 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P19_7, C19_7]
+    have hm : C19_7 r1 r3 r0 ≤ M19_7 r1 r3 :=
+      CaseSplit.le_mxr (C19_7 r1 r3) 10 r0 (by omega)
+    simp only [N19_7]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn8 : N19_8 r1 r4 ≤ ∑ t ∈ Finset.range n19, Wl19_8 r0 r1 r2 r3 r4 r5 r6 t := by
+    have hsp : ∀ t ∈ Finset.range n19, Wl19_8 r0 r1 r2 r3 r4 r5 r6 t
+        = (if c19_1 r1 t && c19_4 r4 t then (1:ℤ) else 0)
+          - (if c19_1 r1 t && c19_4 r4 t && c19_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl19_8]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n19, Wl19_8 r0 r1 r2 r3 r4 r5 r6 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl19_8]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n19, Wl19_8 r0 r1 r2 r3 r4 r5 r6 t
+        = P19_8 r1 r4 - C19_8 r1 r4 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P19_8, C19_8]
+    have hm : C19_8 r1 r4 r0 ≤ M19_8 r1 r4 :=
+      CaseSplit.le_mxr (C19_8 r1 r4) 10 r0 (by omega)
+    simp only [N19_8]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn9 : N19_9 r1 r5 ≤ ∑ t ∈ Finset.range n19, Wl19_9 r0 r1 r2 r3 r4 r5 r6 t := by
+    have hsp : ∀ t ∈ Finset.range n19, Wl19_9 r0 r1 r2 r3 r4 r5 r6 t
+        = (if c19_1 r1 t && c19_5 r5 t then (1:ℤ) else 0)
+          - (if c19_1 r1 t && c19_5 r5 t && c19_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl19_9]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n19, Wl19_9 r0 r1 r2 r3 r4 r5 r6 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl19_9]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n19, Wl19_9 r0 r1 r2 r3 r4 r5 r6 t
+        = P19_9 r1 r5 - C19_9 r1 r5 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P19_9, C19_9]
+    have hm : C19_9 r1 r5 r0 ≤ M19_9 r1 r5 :=
+      CaseSplit.le_mxr (C19_9 r1 r5) 10 r0 (by omega)
+    simp only [N19_9]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn10 : N19_10 r1 r6 ≤ ∑ t ∈ Finset.range n19, Wl19_10 r0 r1 r2 r3 r4 r5 r6 t := by
+    have hsp : ∀ t ∈ Finset.range n19, Wl19_10 r0 r1 r2 r3 r4 r5 r6 t
+        = (if c19_1 r1 t && c19_6 r6 t then (1:ℤ) else 0)
+          - (if c19_1 r1 t && c19_6 r6 t && c19_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl19_10]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n19, Wl19_10 r0 r1 r2 r3 r4 r5 r6 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl19_10]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n19, Wl19_10 r0 r1 r2 r3 r4 r5 r6 t
+        = P19_10 r1 r6 - C19_10 r1 r6 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P19_10, C19_10]
+    have hm : C19_10 r1 r6 r0 ≤ M19_10 r1 r6 :=
+      CaseSplit.le_mxr (C19_10 r1 r6) 10 r0 (by omega)
+    simp only [N19_10]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn11 : N19_11 r2 r3 ≤ ∑ t ∈ Finset.range n19, Wl19_11 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_11]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_11]
+    exact CaseSplit.ind_nonneg _
+  have hn12 : N19_12 r2 r4 ≤ ∑ t ∈ Finset.range n19, Wl19_12 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_12]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_12]
+    exact CaseSplit.ind_nonneg _
+  have hn13 : N19_13 r2 r5 ≤ ∑ t ∈ Finset.range n19, Wl19_13 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_13]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_13]
+    exact CaseSplit.ind_nonneg _
+  have hn14 : N19_14 r2 r6 ≤ ∑ t ∈ Finset.range n19, Wl19_14 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_14]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_14]
+    exact CaseSplit.ind_nonneg _
+  have hn15 : N19_15 r3 r4 ≤ ∑ t ∈ Finset.range n19, Wl19_15 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_15]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_15]
+    exact CaseSplit.ind_nonneg _
+  have hn16 : N19_16 r3 r5 ≤ ∑ t ∈ Finset.range n19, Wl19_16 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_16]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_16]
+    exact CaseSplit.ind_nonneg _
+  have hn17 : N19_17 r3 r6 ≤ ∑ t ∈ Finset.range n19, Wl19_17 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_17]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_17]
+    exact CaseSplit.ind_nonneg _
+  have hn18 : N19_18 r4 r5 ≤ ∑ t ∈ Finset.range n19, Wl19_18 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_18]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_18]
+    exact CaseSplit.ind_nonneg _
+  have hn19 : N19_19 r4 r6 ≤ ∑ t ∈ Finset.range n19, Wl19_19 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_19]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_19]
+    exact CaseSplit.ind_nonneg _
+  have hn20 : N19_20 r5 r6 ≤ ∑ t ∈ Finset.range n19, Wl19_20 r0 r1 r2 r3 r4 r5 r6 t := by
+    simp only [N19_20]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl19_20]
+    exact CaseSplit.ind_nonneg _
+  have hS : ∑ t ∈ Finset.range n19, (w19 t + 6) * Dg19 r0 r1 r2 r3 r4 r5 r6 t = S19_0 r0 + S19_1 r1 + S19_2 r2 + S19_3 r3 + S19_4 r4 + S19_5 r5 + S19_6 r6 := by
+    simp only [S19_0, S19_1, S19_2, S19_3, S19_4, S19_5, S19_6, Dg19, mul_add, Finset.sum_add_distrib]
+  have hSD : ∑ t ∈ Finset.range n19, (w19 t + 6) * Dg19 r0 r1 r2 r3 r4 r5 r6 t
+      = (∑ t ∈ Finset.range n19, w19 t * Dg19 r0 r1 r2 r3 r4 r5 r6 t)
+        + 6 * (∑ t ∈ Finset.range n19, Dg19 r0 r1 r2 r3 r4 r5 r6 t) := by
+    simp only [add_mul, Finset.sum_add_distrib, Finset.mul_sum]
+  have hwD : (∑ t ∈ Finset.range n19, w19 t)
+      ≤ ∑ t ∈ Finset.range n19, w19 t * Dg19 r0 r1 r2 r3 r4 r5 r6 t := by
+    apply Finset.sum_le_sum
+    intro t ht
+    have h1 : (1:ℤ) ≤ Dg19 r0 r1 r2 r3 r4 r5 r6 t := hd1 t ht
+    have h2 : (0:ℤ) ≤ w19 t := wnn19 t (Finset.mem_range.mp ht)
+    calc w19 t = w19 t * 1 := (mul_one _).symm
+      _ ≤ w19 t * Dg19 r0 r1 r2 r3 r4 r5 r6 t := by exact mul_le_mul_of_nonneg_left h1 h2
+  have hid : (aS19_0 r0 + aS19_1 r1 + aS19_2 r2 + aS19_3 r3 + aS19_4 r4 + aS19_5 r5 + aS19_6 r6) + (aP19_0 r0 r1 + aP19_1 r0 r2 + aP19_2 r0 r3 + aP19_3 r0 r4 + aP19_4 r0 r5 + aP19_5 r0 r6 + aP19_6 r1 r2 + aP19_7 r1 r3 + aP19_8 r1 r4 + aP19_9 r1 r5 + aP19_10 r1 r6 + aP19_11 r2 r3 + aP19_12 r2 r4 + aP19_13 r2 r5 + aP19_14 r2 r6 + aP19_15 r3 r4 + aP19_16 r3 r5 + aP19_17 r3 r6 + aP19_18 r4 r5 + aP19_19 r4 r6 + aP19_20 r5 r6) = (S19_0 r0 + S19_1 r1 + S19_2 r2 + S19_3 r3 + S19_4 r4 + S19_5 r5 + S19_6 r6) - 6 * (N19_0 r0 r1 + N19_1 r0 r2 + N19_2 r0 r3 + N19_3 r0 r4 + N19_4 r0 r5 + N19_5 r0 r6 + N19_6 r1 r2 + N19_7 r1 r3 + N19_8 r1 r4 + N19_9 r1 r5 + N19_10 r1 r6 + N19_11 r2 r3 + N19_12 r2 r4 + N19_13 r2 r5 + N19_14 r2 r6 + N19_15 r3 r4 + N19_16 r3 r5 + N19_17 r3 r6 + N19_18 r4 r5 + N19_19 r4 r6 + N19_20 r5 r6) := by
+    simp only [aS19_0, aS19_1, aS19_2, aS19_3, aS19_4, aS19_5, aS19_6, aP19_0, aP19_1, aP19_2, aP19_3, aP19_4, aP19_5, aP19_6, aP19_7, aP19_8, aP19_9, aP19_10, aP19_11, aP19_12, aP19_13, aP19_14, aP19_15, aP19_16, aP19_17, aP19_18, aP19_19, aP19_20, L19_0, L19_1, L19_2, L19_3, L19_4, L19_5, L19_6]
+    ring
+  have bS0 : aS19_0 r0 ≤ MS19_0 := CaseSplit.le_mxr (aS19_0) 10 r0 (by omega)
+  have bS1 : aS19_1 r1 ≤ MS19_1 := CaseSplit.le_mxr (aS19_1) 12 r1 (by omega)
+  have bS2 : aS19_2 r2 ≤ MS19_2 := CaseSplit.le_mxr (aS19_2) 16 r2 (by omega)
+  have bS3 : aS19_3 r3 ≤ MS19_3 := CaseSplit.le_mxr (aS19_3) 18 r3 (by omega)
+  have bS4 : aS19_4 r4 ≤ MS19_4 := CaseSplit.le_mxr (aS19_4) 22 r4 (by omega)
+  have bS5 : aS19_5 r5 ≤ MS19_5 := CaseSplit.le_mxr (aS19_5) 28 r5 (by omega)
+  have bS6 : aS19_6 r6 ≤ MS19_6 := CaseSplit.le_mxr (aS19_6) 30 r6 (by omega)
+  have bP0 : aP19_0 r0 r1 ≤ MP19_0 := CaseSplit.le_mxr2 (aP19_0) 10 12 r0 r1 (by omega) (by omega)
+  have bP1 : aP19_1 r0 r2 ≤ MP19_1 := CaseSplit.le_mxr2 (aP19_1) 10 16 r0 r2 (by omega) (by omega)
+  have bP2 : aP19_2 r0 r3 ≤ MP19_2 := CaseSplit.le_mxr2 (aP19_2) 10 18 r0 r3 (by omega) (by omega)
+  have bP3 : aP19_3 r0 r4 ≤ MP19_3 := CaseSplit.le_mxr2 (aP19_3) 10 22 r0 r4 (by omega) (by omega)
+  have bP4 : aP19_4 r0 r5 ≤ MP19_4 := CaseSplit.le_mxr2 (aP19_4) 10 28 r0 r5 (by omega) (by omega)
+  have bP5 : aP19_5 r0 r6 ≤ MP19_5 := CaseSplit.le_mxr2 (aP19_5) 10 30 r0 r6 (by omega) (by omega)
+  have bP6 : aP19_6 r1 r2 ≤ MP19_6 := CaseSplit.le_mxr2 (aP19_6) 12 16 r1 r2 (by omega) (by omega)
+  have bP7 : aP19_7 r1 r3 ≤ MP19_7 := CaseSplit.le_mxr2 (aP19_7) 12 18 r1 r3 (by omega) (by omega)
+  have bP8 : aP19_8 r1 r4 ≤ MP19_8 := CaseSplit.le_mxr2 (aP19_8) 12 22 r1 r4 (by omega) (by omega)
+  have bP9 : aP19_9 r1 r5 ≤ MP19_9 := CaseSplit.le_mxr2 (aP19_9) 12 28 r1 r5 (by omega) (by omega)
+  have bP10 : aP19_10 r1 r6 ≤ MP19_10 := CaseSplit.le_mxr2 (aP19_10) 12 30 r1 r6 (by omega) (by omega)
+  have bP11 : aP19_11 r2 r3 ≤ MP19_11 := CaseSplit.le_mxr2 (aP19_11) 16 18 r2 r3 (by omega) (by omega)
+  have bP12 : aP19_12 r2 r4 ≤ MP19_12 := CaseSplit.le_mxr2 (aP19_12) 16 22 r2 r4 (by omega) (by omega)
+  have bP13 : aP19_13 r2 r5 ≤ MP19_13 := CaseSplit.le_mxr2 (aP19_13) 16 28 r2 r5 (by omega) (by omega)
+  have bP14 : aP19_14 r2 r6 ≤ MP19_14 := CaseSplit.le_mxr2 (aP19_14) 16 30 r2 r6 (by omega) (by omega)
+  have bP15 : aP19_15 r3 r4 ≤ MP19_15 := CaseSplit.le_mxr2 (aP19_15) 18 22 r3 r4 (by omega) (by omega)
+  have bP16 : aP19_16 r3 r5 ≤ MP19_16 := CaseSplit.le_mxr2 (aP19_16) 18 28 r3 r5 (by omega) (by omega)
+  have bP17 : aP19_17 r3 r6 ≤ MP19_17 := CaseSplit.le_mxr2 (aP19_17) 18 30 r3 r6 (by omega) (by omega)
+  have bP18 : aP19_18 r4 r5 ≤ MP19_18 := CaseSplit.le_mxr2 (aP19_18) 22 28 r4 r5 (by omega) (by omega)
+  have bP19 : aP19_19 r4 r6 ≤ MP19_19 := CaseSplit.le_mxr2 (aP19_19) 22 30 r4 r6 (by omega) (by omega)
+  have bP20 : aP19_20 r5 r6 ≤ MP19_20 := CaseSplit.le_mxr2 (aP19_20) 28 30 r5 r6 (by omega) (by omega)
+  have hrhs : rhs19 = (∑ t ∈ Finset.range n19, w19 t) + 6 * (n19 : ℤ) := rfl
+  have hc := cert19
+  linarith [hsum, hS, hSD, hwD, hid, hrhs, hc, hn0, hn1, hn2, hn3, hn4, hn5, hn6, hn7, hn8, hn9, hn10, hn11, hn12, hn13, hn14, hn15, hn16, hn17, hn18, hn19, hn20, bS0, bS1, bS2, bS3, bS4, bS5, bS6, bP0, bP1, bP2, bP3, bP4, bP5, bP6, bP7, bP8, bP9, bP10, bP11, bP12, bP13, bP14, bP15, bP16, bP17, bP18, bP19, bP20]
+
+end IncCert31

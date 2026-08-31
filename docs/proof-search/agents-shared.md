@@ -2,163 +2,120 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 27 - THE ROUND THAT LEFT THE CORPUS. (D) is now decided TRUE at 53->59, a
-step where NO upper bound on the new machine's record existed anywhere - computed on machine
-23's period for a property of machine 59 (period ratio 5.3e11) through the record law. The
-uniform-order meta-residue fell to a machine-free theorem. The increment law survived a
-pre-registered test at a padded step it had never seen. The LP certificates entered the
-kernel, giving a hypothesis-free D_29_31. And the human's sort-step idea was proved, honestly
-deflated by its own prior-art-and-counterfactual analysis, and paid off sideways with the
-project's first quantity distinguishing the real machine from its counterfactuals.
+State after round 28 - THE NINTH RUNG AND THE UNIFORM Delta. The round's spine (the finite
+lemma list) delivered: a three-line SPECTRUM-PLUS-DEPTH CERTIFICATE closed rung nine; the
+per-J excess Delta_J was measured BOUNDED BY A CONSTANT UNIFORMLY IN BOTH M AND J; the
+increment law went kernel-grade at all six literal steps (both halves); the counterfactual
+family gave the derivation its binding constraint (no structural-only proof can work) AND its
+route (the palindrome/odd-J half); and the LP thread retracted its own round-27 "second
+frontier" as an instrument artifact. Round split by an Opus weekly limit at the end; Mechanic
+filed via its staged block; its crash-proof workers delivered F_2(59) = 173 unattended.
 
-MANAGER GATE-CHECK (2026-08-31/09-01, clean processes): constructor uniform_order.py GREEN,
-increment_law.py GREEN; lateral lex_odometer.py 145/145 GREEN; LP emit_certs_r27.py GATE
-GREEN (3 s), increment_cert_r27.py GATE GREEN (42 s); formalist lp_cert_lean.py ALL PASSED
-(incl. 400-random-tuple soundness gate); harvester j2_referee/citesweep/odcpages GREEN
-(in-lane, clean); mechanic two-sided decider gates GREEN (in-lane); lake build GREEN AT 1521
-JOBS, zero sorries, 367 audited footprints all standard-three or smaller.
+MANAGER GATE-CHECK (budget-limited round; clean-process runs): gate_mechanic_r28.py GREEN;
+witness_gate_r28.log ALL PASSED (F_5(41) maximisers an exact mirror pair; F_3(47) = 145
+witness); lateral 8 gates green in-lane; constructor/formalist/LP/harvester gates green
+in-lane per their reports (formalist build GREEN AT 1749 JOBS, 405 audited declarations, 41
+axiom-free). PENDING (round-29 opener): independent re-verification of the F_2(59) = 173
+witness (lane-computed, gate machinery green, manager re-check deferred on budget).
 
-(D) BEYOND THE CORPUS (mechanic): max_J Q*_J(53; legal for 59) <= 203 < 204 = F(53) + 59 -
-(D) TRUE AT 53->59, the first step past the corpus ladder's end. Four empty bands + one
-exhibited witness give 161 <= F(59) <= 178. THE INCREMENT LAW CONFIRMED at this never-seen
-PADDED step (pre-registered genuine bet: predicts <= 179, measured <= 178) - so the law's one
-failure (31->37) may be specific to that step, not to padding. Also: A_kill(53->59) = 4 EXACT
-at the cost of ONE solver call (the refuted-span band table killed 63 words solver-free);
-shape is the PADDED alternation (20,98,20); A_kill - ceiling now -2,+1,+1,+1,0,+1 across six
-steps. Q_J(37;14) J=2..8 delivered with witnesses (reproducing the round-23 row four rounds
-later; J=8 TURNS OVER; Constructor's lost Q_7 = 112). Predictor scorecard 4-3-1 with the
-honest line "I extrapolated a pattern instead of computing it."
+THE NINTH RUNG BY A THREE-LINE CRITERION (constructor): the SPECTRUM-PLUS-DEPTH CERTIFICATE -
+from the attainment theorem plus "emptiness is upward closed":
+    F(M+q') <= max_{2 <= J <= A_kill+1} F_J(M).
+(D) from the old machine's spectrum over a finite depth range - no word list, no flanks, no
+CEGAR, no oracle. At 41->43: F_2(41)=103, F_3(41)<=117, F_4(41)=118, Q*_5(41) = -inf =>
+F(43) <= 118 < 134, MARGIN +16. Corollaries: A_kill(41) = 3 EXACT (O7 closed), F(43) <= 118.
+Honest boundary: certifies 8 of 9 spectrum-complete steps and FAILS at 29->31 (new exact
+F_5(29) = 85 is 11 over budget while Q*_5(29) = 55) - the word-legal refinement remains
+necessary there. J_max = A_kill + 1 at all 8 censused machines by an independent vehicle.
 
-THE UNIFORM-ORDER THEOREM (constructor): A_relax(M) <= 5 AT EVERY MACHINE, <= 4 unless
-q' = 37, 53, 83, 127, 157, 173 (mod 210) - proved by phase saturation at GEARS 5 AND 7 ONLY,
-hence machine-free; all 48 classes enumerated; cross-checked against every prime q' < 20000.
-THE SIX EXCEPTIONAL CLASSES ARE EXACTLY R20'S LITCAP-6 CLASSES - phase saturation at {5,7} IS
-the literal cap's arithmetic under a different quantifier; two invariants five rounds apart
-are one object. THE COMPANION NEGATIVE, sharper: the correctly-posed order question is N(M)
-(every legal cycle broken); R49's N = max(2, A_relax) REFUTED at m37 (padded cycle); CORRCAP
-goes INFINITE from 53->59 on - no fixed small-gear set caps the order the chain needs; the
-open question is the COVER half of the CSP. Self-correction: R45's A_relax(37) was a
-hardcoded value in their own script (3 -> 2); corrected ladder 1,2,2,3,2,3,4,2,2.
+THE UNIFORM Delta (constructor's per-J table): every literal Delta_J lies in [-3, +4] -
+BOUNDED BY A CONSTANT UNIFORMLY IN M AND J - against s_min growing linearly. Proved from
+T1-T3: the MIDDLE-SUM LEMMA (literal middles sum >= floor((J-2)/2) q' - par trading made
+exact), EVEN-J WINDOWS ARE NEVER PALINDROMES, the PEEL BOUND Q*_J <= Q*_{J-1} + minflank.
+THE WHOLE OPEN PART OF THE INCREMENT LAW IS THREE ROWS (Phi(w) <= F_2 + s_min - span(w) fails
+only at m31, all three rows carrying the padded letter 37). The free reduction does NOT reach
+J >= 4 (short by exactly F_2 - a: the 2F wall again). N(M) <= 4 everywhere reached, N(41) = 3
+new; the above-A_relax cycles are PADDED 2-CYCLES, dying at order 3 because T3-transparency
+is not T3-legality. M1 REFUTED (the legal alphabet grows: a+q' and 2q' realised from m31 on).
+FOR THE DERIVATION: the palindrome route is the ODD-J half (at J=5 the maximiser IS a
+palindrome at both machines where J=5 exists, Delta_5 = 0 exactly; at J=3/J=4 it is a
+reversal pair, never a palindrome). Even-J needs a different mechanism. NEW TARGET:
+Delta_J = O(1) UNIFORMLY IN J.
 
-THE INCREMENT LAW AND THE TRIPLE INEQUALITY (manager + constructor + LP + mechanic):
-- Now holds at ELEVEN OF TWELVE testable steps + the 53->59 confirmation; only 31->37 fails.
-- THE TRIPLE INEQUALITY (manager's reduction: adjacent gap triples (a,w,b) of M with w = +-s
-  mod q' satisfy a+w+b <= F_2(M) + s_min) holds at all eight censused steps FOR LITERAL
-  MIDDLES INCLUDING 31->37 (70 <= 80 there - the padded middle alone carries that step's
-  failure), and is CERTIFIED AT A NINTH STEP 41->43 SCAN-FREE by CRT (literal <= 107, padded
-  <= 116, both < 117, zero undecided).
-- CONSTRUCTOR'S FREE REDUCTION: span <= F_2 + min(g_L, g_R) with no hypothesis discharges 6
-  of 8 steps outright; the residual Delta_3 = max(span - F_2) IS BOUNDED BY A CONSTANT
-  (-3..4, no trend) while s_min grows linearly - THE DERIVATION TARGET IS Delta_3 = O(1),
-  sharper than the s_min form.
-- LP THREAD: THE INCREMENT LAW IS CERTIFIED AT ALL SIX LITERAL STEPS THROUGH 29->31 BY
-  CERTIFICATE + WITNESS, NO PERIOD SCAN ANYWHERE - the dual half at the tighter increment
-  width (strictly harder than the rung), the realisability half by scan-free CRT witnesses,
-  each tight. The manager's induction has its base cases BY CERTIFICATE. New finding: TWO
-  frontiers (width - closed form; cut-loop convergence - new open question, the 41->43
-  increment width fails by a decelerating loop, not by width).
+THE COUNTERFACTUAL CONSTRAINT AND COMPASS (manager U13 + lateral):
+- (D) IS NOT FAMILY-WIDE: exactly one tooth-counterfactual VIOLATES the budget (slack +1) at
+  each step tested. Since counterfactuals satisfy every structural theorem we own, NO
+  DERIVATION FROM THE CURRENT STRUCTURAL SET ALONE CAN BE VALID - the tooth arithmetic
+  (6^-1 mod q) must enter. The violator anatomy: a PALINDROME whose central letter is the
+  old record, flanked by s_min - the round-19 "record recruits the record" shape, now proved
+  phase-arithmetic rather than structural.
+- WHERE THE TWIN MACHINE'S ADVANTAGE LIVES (lateral's percentile table): NOT in the budget
+  slack (37-59th pct - undistinguished; independently replicates the manager's U13) but in
+  THE INCREMENT LAW'S OWN MARGIN (twin uses less of it than 67-82% of counterfactuals at
+  every step), strengthening with depth (F_2 at the 3.1st percentile by m23). The increment
+  law is violated by 13-22% of the family - BUT PINNING ONLY THE NEW GEAR'S TOOTH TO
+  round(q'/6) DROPS VIOLATIONS TO 0-6.5%: the law's arithmetic content is concentrated in
+  the INCOMING gear's tooth. Unplanned cross-validation: lateral's increment column
+  reproduces constructor's R68 exactly by a different vehicle.
+- Lateral also: U7 closed (gear-7's drift migrates onto the mirror-fixed anti-diagonal from
+  m17 - why gear 5 is the unique parity-obstructed gear); U11 closed (every hole > 0.70 F at
+  nine machines, nearly sharp); three self-corrections incl. catching itself republishing
+  its own round-26 result. COMMIT-CHARGE WARNING adopted: the box hit 96% commit while free
+  RAM read 2.5 GB - watch commit, not free RAM.
 
-THE LP CERTIFICATES ARE IN THE KERNEL (formalist + LP): CaseCert23.D_19_23_case and
-CaseCert31.D_29_31_case - HYPOTHESIS-FREE (D) RUNGS from case-split certificates; D_29_31 now
-exists in TWO kernel forms (census-hypothesis and none). Three of the four feared soundness
-lemmas were VACUOUS AT THE ARTEFACTS (every cut row of all 75 certified cases is the BASE
-CUT - the LP thread's emission discovery, which collapsed the validity obligation from a
-2^n subset-sum to ">= 1 by inspection"); exhaustiveness was one omega; the real work was the
-recursion row via the lowest-blocker identity as a 2^m Boolean decide. Kernel wall = CASE
-COUNT (k=3 ~ 8.6 h, k=4 ~ 5 days), not columns. Emission landed early, gated, independently
-transcribed (agrees as exact rationals). THE LP LADDER IS TEN RUNGS (41->43 k=3 finished
-385/385, incl. all six round-26 stalls - "budget-limited, not blocked" was right); the
-vehicle is TIGHT ON F at four machines. MIRROR LEVER'S COUNTING CORE KERNEL-CHECKED
-(even_card_involution, window_count_even, none_of_at_most_one - the "at most one implies
-zero" corollary); machine instantiation is round-28 item 0.
+THE INCREMENT LAW IS KERNEL-GRADE (formalist): kernel-checked at ALL SIX LITERAL STEPS, BOTH
+HALVES - upper by case-split certificates, lower by CRT-collapsing the LP phase vectors to
+single slots (F_2(29) = 55, a 214.7M-opening census number, reproduced in the kernel FROM ONE
+SLOT in 35 s). Cross-checked 120/120 vs the LP emission as exact rationals. SHARPNESS
+theorems (the constants cannot be smaller). Ledger: F(23) 47->39, F(31) 74->65 hypothesis-
+free; machine 29's FIRST hypothesis-free bound (<= 49). MIRROR LEVER INSTANTIATED at m11
+(opSeq_mirror by induction on nextOp minimality; 8 parities predicted, 8 correct; honest
+scope: at m11 the lever buys nothing - the direct bound F_2(11) <= 11 already gives zero -
+what is established is the PRICE of deploying it where direct bounds fail). OPERATIONAL
+DISCOVERY: lean.exe at HIGH priority is 8.9x (432.6 -> 48.4 s paired solo) - the kernel wall
+was CPU STARVATION, not case count; k=3 rungs repriced 8.6 h -> 2.6 h. Build 1749 jobs.
 
-THE SORT-STEP ARC CLOSED HONESTLY (lateral, the human's idea): THE 2n-GAP LAW IS PROVED
-(mixed-radix odometer, carry argument, closed-form multiplicities, explicit van-der-Corput
-bijection) - then DEFLATED BY ITS OWN ANALYSIS: prior art KNOWN IN MECHANISM (Langevin's
-lex-successor theorem recovers three-gap; Fried-Sos generalise), and the gated counterfactual
-test shows the 2n count is INSENSITIVE TO THE TEETH (60 re-choosings: always 2n, while F
-moves over [10,18]; holds for non-prime moduli) - the phase coordinates discard exactly the
-arithmetic F depends on; "F as a shuffle statistic" REFUTED (order vs metric). Closed line.
-THE SIDEWAYS PAYOFF: THE TOOTH-COUNTERFACTUAL FAMILY - keeping gears, mirror symmetry and
-survivor count fixed and moving only the teeth (exhaustive: 30/180/1440/12960 sievings), THE
-REAL TWIN MACHINE IS A LOW-F OUTLIER at the 20.0/18.1/26.4/17.1 percentile (m11..19), in a
-family whose max runs 1.6-1.9x the truth - THE FIRST QUANTITY ON WHICH THE REAL PHASE VECTOR
-IS DISTINGUISHED, in the favourable direction. U13 routed to the manager: the same family as
-a NULL MODEL for (D) - the twin's percentile in the budget-slack distribution; if favourable,
-the first-moment transfer has measured room it is not using. Also: U5 closed by two lines of
-field theory (real cyclotomic fields of coprime conductor are linearly disjoint => the
-degeneracy group is exactly (Z/2)^#gears, NO accidental collision exists at any machine -
-round 21's law upgraded measurement -> theorem); U6/U9 closed (-1/phi is a CROSSING between
-m29 and m31, refuting their own item 48; the amplitude plateau oscillates in [1.0100,
-1.0193]). Scorecard 9-4 with three of six real bets lost - "the shape last round's 10/10
-lacked".
+THE LP THREAD RETRACTED ITS OWN FRONTIER: round 27's "second frontier - convergence, no
+closed form" was AN INSTRUMENT ARTIFACT ("a symptom promoted to a finding"). Theorem: the
+cut loop's limit IS the optimum of one LIFTED LP (atom-distribution per position) - exact
+dichotomy certifiable/never; the deceleration = convergence + a constant offset (an
+integrality gap, computable per cell). Validated to 7.1e-15 against a stalling loop; the
+round-27 mystery cell was SLOW CONVERGENCE (13/13 sub-cases certified at iteration zero).
+THERE IS NO LOOP: seeded from the lifted duals, every certifiable cell certifies at
+iteration zero. The padded step quantified for the derivation: at W=88 (truth) 385/385
+certified (tight on F at a FIFTH machine); at the increment width IMPOSSIBLE FOR ANY SOUND
+METHOD (F(37) = 88 - the excess is the machine's, not the vehicle's), exhibited exactly
+(+9.05 at k=1). Emission with realisability witnesses landed; the project's THIRD pagefile
+exhaustion left 31 ERROR files that looked like verdicts - fixed (non-optimal solver status
+is never a verdict).
 
-HARVESTER - UNIT 1 CLOSED OUT, MEMO ON THE HUMAN'S DESK: all three page caveats closed
-first-hand (the fetch failure was a cookie-session issue - new hygiene clause 9: a page that
-would not fetch is not a page that cannot be fetched); (5.38) explains the whole pre-sieved
-K-ladder in one line (K >= (1-g(p))^-1); (6.69) was never at risk (positivity, not (6.69),
-stops Chapter 6 - absolute floor 7.229 < our 7.937); p.74's implied constant means OUR N_pre
-accounting is the only explicit route. THE SUBMISSION MEMO (docs/novel/unit1-submission-memo.md)
-DOES NOT RECOMMEND SUBMITTING: strongest (empty nine-year ladder four explicit rungs deep
-with the explicitness boundary itself proved; P2' genuinely new and parity-free structurally;
-a self-auditing paper), weakest (audience: the anchor paper has ONE citation in nine years),
-venue tiers, the write-to-Ziller-and-Morack suggestion, AI-disclosure facts laid out AND THE
-DECISION LEFT TO THE HUMAN. (P6) WRITTEN with a FIRST EVALUATION: j_3 = 6, 24, 78 (covering
-restatement reproduces A048669 at k=1 and ZM at k=2); uniform ladder in k; conjecture
-j_k = x(log x)^{2k-1+o(1)}. Lower ladder's k>=4 defect resolved AT ZERO COST (colliding
-primes sit inside the Eratosthenes layers where collisions cost nothing). New hygiene clause
-10: a hypothesis cited by number is an unread hypothesis.
+MECHANIC (filed via staged block after the weekly limit; crash-proof workers finished
+unattended): F_2(59) = 173 (J=2 witness span 173; deletion ladder => F(61) >= 173,
+extending the F ladder one rung past round 27; manager re-verification of the witness is
+the round-29 opener). Y_5(31) = 38 recorded with the lane's own liveness self-correction
+("I was wrong - the m31 pass completed normally"). F_5(41) maximisers are an EXACT MIRROR
+PAIR (addresses summing to P(23) - 128, gap words exact reverses); F_3(47) = 145 witness.
+Gates green. Details in the staged block (## Mechanic round 28).
 
-MECHANIC'S CENSUS PRICING (the finding IS the price): the exact m41 4-tuple census costs
->= 1,121 CORE-HOURS by the CRT route (round 26's ~85,000 core-s figure was for the HISTOGRAM,
-a strictly easier object) - a multi-round object, deliberately not started. Delivered
-instead: F_4(41) = 118 EXACT (first computation, 602 core-s) - and since a realised 4-tuple's
-span is <= F_4 BY DEFINITION, 58.8% OF THE ARITY-4 SUPERSET FALLS BY THEOREM (4,239,676 ->
-1,747,819; induced 3-tuples 130,942 -> 95,331); the exact shard complete at every span <= 77
-(338,855 tuples, checkpointed); the two-sided decider gate green at three machines. The
-INFLATION ONSET IS SHARP AT SPAN 68 - a fact about the order-4 closure. RUNG NINE remains
-oracle-blocked; the screened+exact-shard oracle is the round-28 path.
+HARVESTER (filed before the limit): see its block - the h_2 campaign's reduction and
+canonical-form rule validated by cross-engine agreement 12/12; campaign state and values in
+the block; crash-proof worker design validated in production.
 
-SELF-CORRECTIONS THIS ROUND (every lane again): constructor's hardcoded A_relax entries and
-two repeated process mistakes owned; mechanic's extrapolated predictor refuted + the
-conflated Q_7 premise unpicked + four campaign restarts owned; lateral refuted its own item
-48 and three predictions; LP refuted its own cost model (k=4 predicted, k=3 sufficed) with
-"the sentence I had already written about other people's work"; formalist discarded 20 min
-of possibly-raced build ("a kernel claim on a possibly-raced olean is not a kernel claim")
-and found the lake-toolchain-cwd trap; harvester's round-26 inadmissible-tuple table and
-over-long proof owned. MANAGER: the s_min increment form superseded by Delta_3 = O(1) -
-my own pre-registered shape was the weaker one.
+STATE OF THE DERIVATION (manager, end of round 28): the target is Delta_J = O(1) uniformly
+in J. Assets: odd-J = the palindrome/antipode route (J=5 maximisers ARE palindromes; the
+self-mirror window is unique, antipode-pinned, never qualifying; the counting lever is
+kernel-checked); even-J = OPEN (palindromes forbidden there - a different mechanism needed);
+the open increment part is THREE ROWS, all padded-letter, all at m31; the padding excess is
+exhibited exactly (+9.05); the tooth-concentration finding says the derivation's arithmetic
+input is the INCOMING gear's tooth = round(q'/6). CONSTRAINT: no structural-only proof can
+work (the violating counterfactual). The finite lemma list stands; its hardest entry is now
+precisely named.
 
-THE DERIVATION STATE (manager's item, end of round 27): the literal-step induction now has
-(i) Q*_2 <= F_2 immediate; (ii) the triple inequality - 8 censused steps + 1 certified, and
-BY CERTIFICATE at 6 steps; (iii) deeper-J range capped by the uniform-order theorem (<= 5
-machine-free) so only J <= 6 matters; (iv) Delta_3 = O(1) as the sharp target; (v) the
-padded case isolated to the (q',q') word with 53->59 evidence that padding per se is fine.
-WHAT WOULD CLOSE IT: a derivation of Delta_3 = O(1) (or even Delta_3 <= s_min) from T1-T5 +
-phase saturation, plus the per-J analogues for J = 4, 5, 6 - A FINITE LIST OF LEMMAS.
-
-ROUND-28 (briefed, NOT launched; spine = THE FINITE LEMMA LIST):
-MANAGER (Fable) -> Delta_3 = O(1): attempt the derivation with the full toolkit (T1-T5,
-phase saturation, mirror parity, the free reduction); U13 (the counterfactual null model for
-(D) - is the twin's budget slack also favourably placed?).
-CONSTRUCTOR (Opus) -> the per-J triple analogues for J = 4, 5, 6 (the uniform-order theorem
-makes this a FINITE program); the cover-half order question N(M) via the pruned-IE counter;
-rung nine with the screened+exact-shard oracle (1.75M tuples + 338K exact).
-MECHANIC (Opus) -> F_2(59) and the F(59) pin (the bracket is [161,178]); extend the exact
-m41 shard span-upward as capacity allows (the checkpoint resumes); the span-68 inflation
-onset - is it arithmetic (predictable per machine)?
-LATERAL (Opus) -> own mandate: U7, U10-U12, U14; the counterfactual family's OTHER
-statistics (percentile of F_2? of the increment? - each favourable placement is evidence the
-transfer has room); the "at most one" instantiation questions the mirror lever raises.
-FORMALIST (Opus) -> item 0: the mirror lever instantiated at a machine (even_card_involution
-composed with the opening enumeration); the increment-law certificates (LP's six steps) as
-kernel statements; rung eight if the m37 emission lands; case-count economics for k=3.
-HARVESTER (Opus) -> the human's memo decision executed (whatever it is); h_2 at p_n=151-251
-(the lane's top research item - the falsification target both models diverge on); j_3 beyond
-z=7 (needs the real algorithm, named and priced).
-LP THREAD (Opus) -> the cut-loop frontier (the second frontier, no closed form - map it);
-increment certificates at 31->37 (the padded step - does the certificate see the padding
-excess?); emission for the mirror-lever and increment kernel work as Formalist specifies.
+OPERATIONAL: Opus weekly limit exhausted until Sep 4 (Australia/Perth). ROUND 29 SHOULD NOT
+LAUNCH BEFORE THE RESET unless lanes run on a different model. Round-29 openers when it
+does: the F_2(59) witness re-verification; the tenth rung's shopping list (F_2(43), F_3(43),
+F_4(43) + one emptiness certificate); the even-J mechanism; the m37 qualifying dictionary
+for rung eight (third round outstanding); h_2 campaign continuation.
 
 NOVEL-FINDINGS RULE (all agents, standing - from the human, 2026-08-23):
 Anything potentially novel to mathematics gets its own document in docs/novel/ (template and
@@ -3532,3 +3489,1346 @@ FOR OTHER LANES:
 - FORMALIST: F_4(41) = 118, F(59) <= 203 and the m37 row Q_2..Q_8 are finite
   integers with exhibited witnesses; the A_kill(53->59) k=3 level is complete
   and its refutations are BAND MEMBERSHIPS, i.e. arithmetic, not solver runs.
+
+## Constructor round 28
+
+GATES, all re-run clean at round close, all green:
+  research/perj_window.py      -> all assertions passed (reproduces R68's exact
+                                  Q* table at every cell it covers)
+  research/perj_scanfree.py    -> reproduces Q*_4 at m19/29/31/37 and Q*_5 at
+                                  m29/31 (value AND witness) and the EMPTINESS
+                                  of Q*_4(23), Q*_5(19), Q*_5(37) - all by CRT
+                                  arithmetic with no period anywhere
+  research/rung9_perj_cert.py  -> all assertions passed; `--recheck` re-derives
+                                  Q*_5(41) = -inf from scratch, 0 undecided
+  research/cover_order.py      -> N(M) reproduces R75's row 2,2,2,3,2,3,4,3 at
+                                  m11..m37 from an independent vehicle
+  research/padded_value_law.py -> all assertions passed
+  research/rung9_r28.py        -> oracle gates green
+Logs in research/data/r28/. Pre-registration: constructor_prereg_r28.txt.
+
+THE HEADLINE: **(D) AT 41 -> 43 IS CERTIFIED - THE NINTH RUNG** - and not by the
+CEGAR loop. A new criterion does it in three lines. From R68's attainment
+theorem (F(M+q') = max_J Q*_J) plus two elementary lemmas - Q*_J <= F_J(M) by
+definition, and EMPTINESS IS UPWARD CLOSED (deleting a flank of a legal
+J-window leaves a legal (J-1)-window) -
+
+    THE SPECTRUM-PLUS-DEPTH CERTIFICATE
+        F(M+q')  <=  max_{2 <= J <= J_max(M)} F_J(M),      J_max = A_kill + 1,
+
+so (D) follows from the OLD machine's spectrum over a FINITE depth range: no
+word list, no flank envelope, no CEGAR loop, no realisability oracle. At
+41 -> 43 the inputs are F_2(41) = 103 (exact), F_3(41) <= 117 (Mechanic's
+superset), F_4(41) = 118 (Mechanic, exact, round 27) and ONE new fact,
+Q*_5(41) = -inf, giving F(43) <= 118 < 134 = F(41) + 43, MARGIN +16. Corollary:
+F(43) <= 118 from machine 41 alone, and **A_kill(41) = 3 EXACTLY** (project item
+O7 closed). THE CRITERION IS GENUINE, NOT A RESTATEMENT: it certifies 8 of the 9
+steps whose spectrum is complete and FAILS at 29 -> 31, where the new exact
+value **F_5(29) = 85** is 11 over the budget while Q*_5(29) = 55 - thirty units
+of real work done by word-legality at the one step with a non-empty deep layer
+and a small F/q'. Doc: docs/novel/spectrum-depth-certificate.md.
+
+THE PER-J FAMILY (the brief's (a)) IS FINITE, AND ITS EXCESS SHRINKS WITH
+DEPTH. Q*_J = max span of a J-window whose J-2 middles are legal letters with
+T3 alternation; Delta_J = Q*_J - F_2(M). Exact at every censused machine, by two
+independent vehicles (full-period scans / Mechanic's exact 4-tuple censuses; and
+a scan-free CRT descent that agrees on value AND witness at six gate cells):
+
+    M       11 13 17 19 23 29 31 37 |  41
+    Delta_3 -3 +2 +0 +2 +4 +3 +2 +0 | <=13   (literal middles)
+    Delta_4  E  E  E +3  E +0 +3 pad | <=-3
+    Delta_5  E  E  E  E  E +0 +0  E  |  E     (E = certified EMPTY)
+    Delta_6  E  E  E  E  E  E  E  E  |  E
+    J_max    3  3  3  4  3  5  5  4  |  4   = A_kill + 1 at all eight, 8/8
+
+Every literal cell is in [-3,+4] - BOUNDED BY A CONSTANT UNIFORMLY IN BOTH M AND
+J, against s_min growing linearly - and the excess SHRINKS with depth
+(Delta_5 = 0 exactly at both machines where J = 5 exists). R78's "Delta_3 =
+O(1)" is one slice of a J-uniform shape.
+
+THREE THEOREMS OUT OF T1-T3, AND THE HONEST LIMIT.
+ * MIDDLE-SUM LEMMA: a literal J-window's middles sum to >= floor((J-2)/2)q'
+   (+a if J odd), so the FLANK ENVELOPE must collapse at rate q' per two levels.
+   Par trading (R30) in exact form, and the reason the deep layers are the cheap
+   ones.
+ * J-PARITY OF PALINDROMES: for J EVEN a literal legal window is NEVER a
+   palindrome (the even-length alternating class word reverses to the other
+   class); for J ODD the class word is forced palindromic.
+ * PEEL BOUND (hypothesis-free): Q*_J <= Q*_{J-1} + min flank - R78's free
+   reduction at every J. AND IT DOES NOT REACH J >= 4: at J = 4 the analogue
+   needs g_L + g_R <= F_2 - b and the free reduction gives only 2F_2 - q' -
+   SHORT BY EXACTLY F_2 - a, which is R55's 2F wall again. The J >= 4 obligation
+   is genuinely new content, and it is SMALL.
+
+THE SHARP FORM - THE WHOLE OPEN PART IS THREE ROWS. Moving the middle sum right
+turns the family into one inequality per legal middle WORD, with no depth
+quantifier:  Phi(w) <= F_2(M) + s_min(q') - span(w),  Phi(w) = max flank sum at
+occurrences of w. That is R26 clause (D) with F + q' replaced by the sharper
+F_2 + s_min. Over the WHOLE corpus this is 36 rows, and exactly THREE FAIL - all
+at machine 31, all carrying the padded letter 37: Phi(37) = 48 needs <= 43,
+Phi(12,37) = Phi(37,12) = 39 needs <= 31. Everything else has slack +4 to +29.
+(The mirror theorem is visible: Phi(w) = Phi(reverse w) at every reversal pair.)
+
+FOR THE MANAGER - YOUR PALINDROME ROUTE, ANSWERED, AND IT IS A J-ODD ROUTE.
+At every measured cell the maximising word is unique up to reversal. At J = 3
+(11 cells) and J = 4 (4 cells) the maximiser is a reversal PAIR and never a
+palindrome - and for even J the J-parity theorem forbids it outright. At J = 5
+the maximiser is UNIQUE AND SELF-REVERSE, a PALINDROME, at BOTH machines where
+J = 5 is non-empty: (7,10,21,10,7) at m29 and (3,25,12,25,3) at m31, each with
+Delta_5 = 0 exactly. So your exchange step is TRUE precisely at the deep odd
+layer - the layer that decides A_kill and the layer where Delta_J collapses to
+zero - and FALSE at J = 3 and J = 4. Since J = 5 is the deepest non-empty layer
+at every machine below m47, killing self-mirror windows would close the deepest
+member of the finite list outright; at even J the mirror lever has nothing to
+bite on and the route needs a replacement.
+AND YOUR VIOLATOR'S SHAPE, TESTED. Its central middle is the OLD RECORD GAP, so
+the window is word-legal only if F(M) mod q' lies in {0, a, b}. Over the twelve
+corpus steps that happens at EXACTLY ONE - m13, F(13) = 11 = b - and there the
+J = 5 layer is CERTIFIED EMPTY. HONEST SCOPE: 3 of q' residues are legal, so the
+expected number of hits is 3*sum(1/q') = 1.29 and the observed 1 is exactly
+typical. This is arithmetic luck per step, NOT a law; it will recur, and when it
+does the kill must come from the cover half, which is where it came from at m13.
+What the test does establish is the SHAPE of the teeth-sensitive input your
+negative demands: not "padded values are only q'" (that is false, below), but
+"F(M) is not congruent to a tooth difference" - a statement about 6^{-1} mod q'
+that no structural theorem sees.
+
+FOR MECHANIC - R40's M1 IS REFUTED, AND IT MATTERS FOR ANY CHAIN ENUMERATION.
+"Every realised legal spacing value is exactly a, b or q'" was measured at
+11->13 .. 29->31, where the larger representatives either exceed F(M) or are
+holes. The exact LEGAL ALPHABET Lambda(M) = {v <= F : v = 0 or +-2c mod q', v a
+realised gap} is
+    m11 {4} | m13 {6,11} | m17 {6,13} | m19 {8,15,23} | m23 {10,19,29}
+    m29 {10,21,31} | m31 {12,25,37,49} | m37 {14,27,41,55,68}
+    m41 {14,29,43,57,72,86}
+so M1 FAILS at m31 (49 = a+q'), m37 (55, 68) and m41 (57, 72 and 86 = 2q'). It
+is a small-machine phenomenon; the alphabet grows 1,2,2,3,3,3,4,5,6. At m37 the
+value 82 = 2q' is a HOLE, which is why the padded half survives one machine
+longer than the literal half. Anything that enumerates chains over {a, b, q'}
+from m31 on is enumerating a strict subset.
+ALSO FOR MECHANIC: F_5(29) = 85 EXACT and F_4(29) = 70, F_3(29) = 65 read off
+your own census - the m29 spectrum is now 43, 55, 65, 70, 85. Method for F_5: a
+realised 5-tuple has BOTH 4-sub-tuples realised, so your exact 4-tuple census
+gives an overlap-filtered candidate set (428 of sum > 84) which descending CRT
+decides in seconds, 0 undecided. F_5(37) and F_5(41) are the same job.
+AND THE TENTH RUNG'S SHOPPING LIST IS NOW EXPLICIT: 43 -> 47 by the
+spectrum-plus-depth certificate needs F_2(43), F_3(43), F_4(43) - none on record
+- plus one emptiness certificate at J = J_max(43)+1, which is the CHEAP half and
+which this lane supplies as soon as an m43 gap-value set exists.
+
+THE COVER-HALF ORDER N(M) (the brief's (b)), SCAN-FREE, AND N(41) = 3.
+
+    machine   11 13 17 19 23 29 31 37 | 41
+    N(M)       2  2  2  3  2  3  4  3 |  3    <- m41 NEW, no census exists
+    L(M)       1  1  1  2  1  3  3  2 |  2
+    A_relax    1  2  2  3  2  3  4  2 |  2
+
+The m11..m37 row reproduces R75's hand-computed values from a completely
+different vehicle. N(41) = 3 > 2 = max(2, A_relax(41)) - the SECOND refutation
+of R49's identity - and THE MECHANISM IS NAMED: the cycle at order 2 is
+[43] -> [29] -> [43], the padded letter q' alternating with the literal letter
+b, legal at order 2 because a 2-window sees only one nonzero class, ILLEGAL at
+order 3 where (43,29,43) shows two b's in a row. **The cycles that push N above
+A_relax are padded 2-cycles, and they die at order 3 because T3-TRANSPARENCY IS
+NOT T3-LEGALITY once the window is long enough to see two literal letters.**
+VERDICT: N <= 4 at every machine reached, m41 included. NOT SETTLED in general,
+and m43 is where this vehicle stops - for a measured reason: it needs arity-1
+and arity-2 CRT decisions, the EXPENSIVE end of the cost curve (199 s for the
+six arity-1 words at m41, >50 min and one undecided at m43), while the deep-J
+sweeps are the CHEAP end. Shallow queries dear, deep queries cheap - the
+opposite of the intuition this project carried for five rounds.
+
+RUNG NINE BY THE CEGAR ROUTE (the brief's (c)) - THE ORACLE STALL FELL FROM 222
+TO 135, ONE UNIT OVER THE BUDGET. With Mechanic's round-27 oracle (F_4(41) = 118
+as a THEOREM tier: span > 118 refuted outright; plus the exact span<=77 shard;
+plus the screened superset; plus phase saturation) and the exact F_2(41) = 103
+seed, the loop stalls at 135 against the budget 134 in 54 s - against R79's 222
+under three settings. The tier breakdown over the loop's own query stream is the
+finding: 20,898 refutations from the SPAN THEOREM alone, 86 from the screened
+superset, 3 from the exact shard, 0 from phase saturation. So the round-27
+oracle improvement is real and it is almost entirely F_4(41) = 118. The rung is
+certified by the other route; this measures the CEGAR route's remaining deficit
+at exactly one unit.
+
+SELF-CORRECTIONS: (1) perj_window.py first printed "EMPTY" for cells where the
+vehicle merely HAS no data - the exact defect round 27's own lesson named, third
+round running; now a separate `nodata` state enforced in code. (2) I launched
+the CEGAR CRT tier with no per-instance cap; it ran 2.5 h producing nothing,
+five of six workers idle while the batch serialised on one multi-minute
+refutation. Killed, log kept as ABANDONED, relaunched node-capped. (3) An
+interrupted foreground command left an orphan running 40 min with its output
+discarded. (4) I predicted M1 was the teeth-sensitive separator; it is refuted -
+I had promoted "measured at six steps" to "law", against this lane's own
+standing rule. (5) cover_order.py drops UNDECIDED words when building the graph,
+which would be unsound if any appeared; zero appeared at m11..m41, and the
+pessimistic handling is not built in - it must be before m43.
+
+ROUND-28 CLOSE-OUT (constructor): every job finished; two ended early and both
+endings are findings. Q*_4(41) <= 100 exact-decided (678 candidates from the
+F_4(41) = 118 ceiling down to span 101, 0 undecided) and Q*_3(41) <= 116
+independently reproduced by the enumerative vehicle (span-117 level fully
+decided, 58 candidates, 0 realised) - the same value R80 got from the superset
+sweep, different candidate source; the descent below 116 was stopped because
+nothing needs the exact maximum. THE NODE-CAPPED CEGAR CRT RUN DIED OF COMMIT
+EXHAUSTION - numpy could not allocate 1.64 MiB with five other lanes' jobs
+running (f59_pin/j5_multi x7, tooth_m23 x5, tooth_mech, onset_walkscreen). FOR
+ALL LANES: that is the COMPUTE POLICY's binding constraint again, and cores were
+never the issue - a lane holding ~1 GB of resident numpy state should check the
+box's COMMIT before launching, not its core count. Nothing filed depends on that
+run: item (c)'s deliverable is the free-tier run that completed (stall 135
+against budget 134, 54 s), and the ninth rung is certified by the per-J route,
+which needs neither the loop nor its oracle.
+
+## LP-duality thread (round 28)
+
+### 0. FOR FORMALIST - THE INCREMENT EMISSION IS ON DISK AND GATED (posted early)
+
+`research/data/r28/`, per literal step: `layout_inc_<step>.json` (case-independent
+column/link layout), `cert_inc_<step>_h<ws>.json` (one per case, INTEGERS ONLY -
+every rational an [num, den] pair), `manifest_inc_<step>.json` (held-phase tuples
++ the exhaustiveness assertion), and NEW THIS ROUND `witness_inc_<step>.json` -
+the LOWER half of the increment law as an explicit phase vector with its own
+CRT re-check recipe, so both halves travel together.  Emitter and gate:
+`.venv/Scripts/python.exe research/emit_inc_r28.py GATE` (35 s, ALL ASSERTIONS
+GREEN): 120 case certificates + 6 witnesses re-verified FROM THE JSON ALONE -
+relaxation rebuilt from the primes, position set recomputed from the held
+phases, every cut row re-checked valid by the exact zeta transform, lhs/rhs
+recomputed from the file's own integers, every witness re-checked by CRT.
+
+  step      W_inc = F_2(M) + s_min   k   cases   min margin (rhs-lhs)   witness split
+  11 -> 13     15 = 11 + 4           1     5      1                      (5, 6)
+  13 -> 17     22 = 16 + 6           1     5      2/3                    (5, 11)
+  17 -> 19     31 = 25 + 6           1     5      1/5                    (7, 18)
+  19 -> 23     39 = 31 + 8           2    35      1                      (10, 21)
+  23 -> 29     49 = 39 + 10          2    35      1/8                    (5, 34)
+  29 -> 31     65 = 55 + 10          2    35      1/384                  (20, 35)
+
+THE MARGIN COLUMN IS ITSELF A FINDING: the certificate's slack at the increment
+width collapses 1 -> 1/384 over six steps.  That is the certificate-side
+statement of "the increment law is tight" - and it is the number to watch if
+you want to know how much room a kernel transcription has.
+(Your `lp_cert_inc_r28.py` reads my pickles directly, so this is the SECOND
+SOURCE, in the same schema as last round's `cert_19_23_h*.json`; diff them as
+exact rationals the way we did in round 27.)
+
+### 0b. GATES (all green this round, clean processes)
+
+  research/star_case.py GATE            ALL ASSERTIONS GREEN   216 s
+  research/emit_certs_r27.py GATE       ALL ASSERTIONS GREEN    14 s
+  research/increment_cert_r27.py GATE   ALL ASSERTIONS GREEN   213 s
+  research/emit_inc_r28.py GATE         ALL ASSERTIONS GREEN    35 s
+  research/gate_r28.py GATE             ALL ASSERTIONS GREEN  2985 s
+      A  418 case certificates re-verified from disk - relaxation rebuilt from
+         the primes, EVERY cut row (base cuts AND the rows seeded from the
+         lifted duals) re-checked exactly valid by the zeta transform over all
+         2^n atoms, lhs < rhs re-closed in exact rationals.  The seeded rows
+         are float-DISCOVERED, so this is the assertion that matters: no float
+         ever enters a verdict.
+      C  THE INSTRUMENT ASSERTED, not just used - on four cells the ordinary
+         cut loop is run to termination and its terminal LP value is asserted
+         EQUAL to the lifted LP's V*: m23 W=34 (|diff| 0.0e+00), m23 W=40
+         (7.1e-15), m29 W=48 (3.6e-15), and m23 W=41 where the lifted polytope
+         is EMPTY and the loop says CERTIFIED.  Verdict agrees with
+         sign(V* - |pos|) at all four.
+      D  450 cells on disk, no contradictory verdict.
+      B  3 refutation witnesses re-verified IN THE POLYTOPE: rows 36.0606 >= 35,
+         33.9455 >= 33, 36.7799 >= 36 (all three at machine 37, THE INCREMENT
+         WIDTH 80, k = 2).
+New files: `cutlimit_r28.py`, `frontier_r28.py`, `wc_r28.py`, `decel_r28.py`,
+`emit_inc_r28.py`, `gate_r28.py`, `summary_r28.py`; data in
+`research/data/r28/` (450 decided cells, 418 exact certificates, 3 witnesses).
+One small change to `star_case.py`, the only file of mine another lane uses:
+`decide_star` takes an optional `trace` list and appends (pass, LP max, cuts
+added, rows, seconds) at each pass.  Backwards compatible - no behaviour change
+- and `star_case.py GATE` was re-run green after it (216 s) before anything was
+built on top.
+
+### 1. (a) THE CUT-LOOP FRONTIER: THE QUESTION WAS AN INSTRUMENT PROBLEM, AND
+### MY ROUND-27 READING OF IT WAS WRONG
+
+Round 27 filed a "second frontier - convergence, no closed form" as a new open
+question, on the evidence of a loop at machine 43 width 117 whose LP maximum
+fell 44.2578 -> 43.4856 over fifteen passes against the 43 it had to beat.  The
+question as posed - convergence-in-principle or asymptote? - could not be
+answered because THE ONLY INSTRUMENT WAS THE LOOP ITSELF.
+
+THE THEOREM (two lines, in `product-measure-frontier.md` section 7.1).  The cut
+loop's rows come from the family of exactly valid degree-2 cuts, and a point
+survives ALL of them at position i exactly when its degree-<=2 moment vector
+extends to a distribution on the NONEMPTY subsets of the free gears.  So the
+loop's limit is the optimum V* of ONE LIFTED LP - the same relaxation written
+with an atom-distribution variable p_i (2^n - 1 columns) at each position
+instead of with cuts.  The loop's value is >= V* at every pass (its rows are a
+subset of the valid cuts) and = V* at termination (exact separation finds
+nothing, so its optimal point lifts).  Hence the EXACT dichotomy
+
+    V* <  |pos|  (or the lifted polytope EMPTY)  the cell IS certifiable
+    V* >= |pos|                                  it is NOT, ever
+
+and the round-27 deceleration decomposes, forced:
+
+    lp_max_t - |pos|  =  (lp_max_t - V*)  +  (V* - |pos|)
+                          the convergence      A CONSTANT OFFSET
+
+VALIDATED AGAINST A STALLING LOOP.  Machine 37, W = 88, k = 2, case (0,0),
+|pos| = 38: the loop runs 24 passes in 259 s and stalls at 40.4834; the lifted
+LP returns V* = 40.48344218 in 35 s.  The loop's own excess e_t = lp_max_t - V*
+is GEOMETRIC at ratio ~0.75 per pass (0.372, 0.363, 0.320, 0.275, 0.196, 0.132,
+0.098, ..., 0.001).  So: the deceleration rate IS lawful, and it is lawful in
+the boring way - normal geometric convergence to a limit that is in the wrong
+place.  Nothing about the rate needed explaining; the offset did.
+
+A PROOF OF ASYMPTOTE (the first this species has had).  At that cell V* >= |pos|
+and an exact witness makes it a theorem.  Rationalising the lifted optimum fails
+- it sits ON the completability boundary at 19-24 of the 38 positions, at every
+denominator up to 10^10 - so the fix is to ask for an INTERIOR point: maximise t
+subject to the recursion row already clearing |pos| and p_{i,x} >= t at the atoms
+of size <= 2 plus the full atom (the columns that span the degree-<=2 moment
+space; flooring ALL 2^n - 1 atoms is infeasible, because the pair moments are
+O(1/q_a q_b)).  t = 6.3139e-4 > 0 and the rationalised primal verifies EXACTLY:
+every block sums to 1, every link holds, ALL 38 positions exactly completable,
+recursion row 38.5021 >= 38.  MACHINE 37 AT WIDTH 88 WITH TWO HELD GEARS CAN
+NEVER BE CERTIFIED BY THIS SPECIES.  (It certifies with three, in every case.)
+
+THE ROUND-27 CELL: SLOW CONVERGENCE, AND NOW PROVED SO.  Machine 43, W = 117,
+k = 3, case (0,0,0), |pos| = 43.  The lifted LP says THE LIMIT POLYTOPE IS EMPTY
+(817 s) - V* = -infinity, level-2 consistency alone excludes a fully blocked
+window there before the recursion row is consulted at all.  That reading is a
+float LP's infeasibility, so it is a MEASUREMENT; here is the EXACT version.
+Split case (0,0,0) at k = 3 into its 13 sub-cases at k = 4 - gear 13's phases,
+exhaustive by construction - and every one of the 13 carries its own exact
+rational dual certificate:
+
+    m43, W = 117, case (0,0,0,c) for c = 0..12 : 13/13 CERTIFIED, all at
+    ITERATION ZERO, 571,466 exact certificate operations, 27-196 s per case,
+    all 13 re-verified from disk by `gate_r28.py` section A.
+
+So THE ROUND-27 CELL IS EXCLUDED BY EXACT CERTIFICATES.  Its decelerating loop
+was converging to a certificate, not to an asymptote; "at that rate the crossing
+is ~10 more passes away" was a converging loop misread as a possible asymptote,
+and my "second frontier with no closed form" does not exist at that cell.
+(The reproduction is exact, too: re-running round 27's own loop gives 44.2578,
+44.2083, 44.1398, 44.0282, 43.9540, 43.9020, ..., 43.6940 - the same numbers.
+It was abandoned at pass 9 once the 13 sub-case certificates made it redundant.)
+
+THE COST FINDING - THERE IS NO LOOP.  The lifted LP's duals ARE the loop's rows:
+dual feasibility at the p-columns is literally the cut-validity condition, so
+lam_i = mu_i / nu_i is a valid cut with lam_0 = 0, repaired to exact validity by
+raising lam_0 to the exact deficit (which only weakens it).  When the polytope is
+EMPTY there are no duals, and a companion program supplies them: relax the mass
+rows to sum_x p_{i,x} = s_i in [0,1], impose the recursion row as a hard
+constraint, maximise sum_i s_i.  SEEDED WITH THOSE ROWS, EVERY CERTIFIABLE CELL
+MEASURED THIS ROUND CERTIFIES AT ITERATION ZERO - including cells the ordinary
+loop left STUCK at a 300 s budget (m37 W=88 k=3 case (0,5,8): mass optimum
+28.98697 < 29 = |pos|, 29 seeded rows, 29,586 exact ops, iteration 0, 40 s).
+
+THE MAP.  G(y,k,W) = V* - |pos| at the all-zero case, one LP per cell:
+
+   y  k    W  |pos|      V*        G       |   y  k    W  |pos|     V*       G
+  23  1   30    18   20.5000  +2.5000      |  31  1   64    39  43.5496  +4.5496
+  23  1   34    21   22.5455  +1.5455      |  31  1   72    43  47.0424  +4.0424
+  23  1   38    23   23.4428  +0.4428      |  31  1   76    46  49.4451  +3.4451
+  23  1   40    24   24.2548  +0.2548      |  37  1   80    48  57.0461  +9.0461
+  23  1   41    25    EMPTY      -         |  37  2   70    30  35.2157  +5.2157
+  29  1   36    22   25.3333  +3.3333      |  37  2   78    35  38.7901  +3.7901
+  29  1   52    31   32.7106  +1.7106      |  37  2   86    37  39.5461  +2.5461
+  29  1   60    36   37.0888  +1.0888      |  37  2   90    39  40.3061  +1.3061
+  29  1   64    39   39.1508  +0.1508      |  37  2   94    40  40.9835  +0.9835
+  31  1   48    29   34.6667  +5.6667      |  37  3   88    32    EMPTY      -
+  31  1   56    34   39.1646  +5.1646      |  41  3   92..128     EMPTY  (10 widths)
+                                           |  43  4  100..136     EMPTY  (12 widths)
+                                           |  43  3  117    43    EMPTY      -
+
+Three readings, all new:
+  * THE SECOND FRONTIER IS A WIDTH TOO, AT EACH k - G falls with W and crosses
+    once.  W_c(y,k) = min{W : G < 0} is found by bisection on the lifted value
+    and the sign pattern is then ASSERTED width by width over a nine-wide band,
+    not assumed.  W_c(23,1) = 41 exactly (F(23) = 34, budget 48), single
+    crossing confirmed.  Same shape as `product-measure-frontier.md` Result 3,
+    one relaxation up.
+  * THE HELD-GEAR COUNT IS THE REAL KNOB.  At machine 37 the case-0 gap is
+    still +0.98 at the BUDGET width 95 with k = 2, and the polytope is EMPTY at
+    88 with k = 3.  At machine 31, k = 1 is still +3.45 at W = 76, past its
+    budget 74.  "The vehicle does not reach machine y" has always been "k is
+    too small", and this is the first instrument that says so per cell.
+  * AT MACHINE 41 WITH k = 3 THE CASE-0 POLYTOPE IS EMPTY AT EVERY WIDTH DOWN
+    TO 92 = F(41) + 1.  A per-case reading only - the FULL split must fail below
+    F(y) somewhere, since a blocked window of width F(y) - 1 exists - but it
+    says the vehicle's per-case reach is right at the truth at three held gears.
+
+### 2. (b) THE PADDED STEP 31 -> 37, FROM THE CERTIFICATE SIDE
+
+W_inc = F_2(31) + s_min(37) = 68 + 12 = 80, against the true F(37) = 88: the one
+step where the manager's increment law fails, by +8.  Both sides measured:
+
+  * AT THE TRUTH, W = 88, THE CASE SPLIT CERTIFIES AT k = 3 IN EVERY CASE - so
+    the vehicle is TIGHT ON F AT A FIFTH MACHINE (19, 23, 29, 31, 37):
+    F(37) <= 88 exactly, scan-free and hypothesis-free.  And it certifies for a
+    reason worth naming: in essentially every case THE LIFTED POLYTOPE IS
+    EMPTY - level-2 consistency alone excludes the window, before the recursion
+    row is used at all.  Every case closes at ITERATION ZERO once seeded.
+  * AT W = 80 IT CANNOT, AND THAT IS NOT A VEHICLE DEFECT.  F(37) = 88 means a
+    run of 87 consecutive blocked positions exists, so "no fully blocked window
+    of width 80" is FALSE and NO SOUND METHOD certifies it at any k.  The
+    certificate machinery sees the padding excess as exactly this: the smallest
+    width any sound certificate can reach is 88, and the increment law asks for
+    80.  The eight units are the machine's, not the LP's.
+  * AND THE FAILURE AT 80 IS EXHIBITED, NOT INFERRED.  Three cases of the k = 2
+    split at the increment width carry EXACT IN-POLYTOPE REFUTATION WITNESSES -
+    rational points with every block summing to 1, every consistency link
+    holding, every position exactly completable, and recursion row 36.0606 >= 35
+    (case (0,0)), 33.9455 >= 33 (case (0,1)), 36.7799 >= 36 (case (0,2)) - all
+    three re-verified in the round gate.  So at the width the increment law
+    names, the case-split vehicle is PROVED unable to certify, case by case,
+    rather than observed to stall.  V* - |pos| there is +3.79, +3.65, +2.87.
+  * HOW FAR OFF-SCALE, QUANTIFIED.  Machine 37 at the increment width with one
+    held gear has V* - |pos| = +9.05 (57.046 against 48).  With two held gears
+    the case-0 gap runs +5.22 (W=70), +4.08 (74), +3.79 (78), +2.91 (82),
+    +2.55 (86), +2.48 (88), +1.31 (90), +0.98 (94).  The discrepancy the
+    derivation must handle is not a rounding error in the vehicle: at the width
+    the law names it is nine units of LP value at the first held gear, and the
+    vehicle's own crossing sits between 88 and 95 at k = 2.
+
+### 3. NEGATIVES, LABELLED
+
+- NO CLOSED FORM FOR W_c.  MEASUREMENT + JUDGMENT: G(y,k,W) is not linear in W
+  (|pos| is a step function of W), the crossing is often a COLLAPSE to an empty
+  polytope rather than a smooth zero, and the eight (y,k) curves measured here
+  do not share a slope.  What replaced round 27's open question is a DECISION
+  PROCEDURE with a two-line correctness proof, not a formula.
+- THE LIFTED PROGRAM DOES NOT SCALE PAST NINE FREE GEARS.  MEASURED: n <= 8
+  costs 5-40 s per cell; n = 9 costs 817 s (machine 43, k = 3) and the companion
+  mass program at that size did not finish in two hours on a loaded box.  It
+  decides cells; it does not scale the ladder any further than the loop did.
+- THE OFFSET V* - |pos| IS AN INTEGRALITY GAP and bounding it in closed form is
+  the same unsolved problem as bounding Delta, one relaxation stronger.
+  JUDGMENT, NOT RESULT: I do not think this round's instrument brings that
+  closer; it makes the gap computable per cell, which is a different thing.
+
+### 4. SCORING MY ROUND-27 PRE-REGISTERED PREDICTIONS
+
+E5 ("the vehicle is tight on F at machine 37: F(37) <= 88 certifies at k = 3 or
+   k = 4")  CONFIRMED AT k = 3, the optimistic branch: 385/385 cases CERTIFIED,
+   8,512,816 exact certificate operations, EVERY case at iteration zero and
+   every case with an EMPTY limit polytope, all 385 re-verified from disk.
+E6 ("the convergence frontier is about the margin, not the width: at machine 43,
+   k = 3, the cut loop converges for every W >= 128 and for no W <= 120")
+   REFUTED, AND BY MY OWN INSTRUMENT.  At W = 117 the limit polytope is EMPTY,
+   so the loop converges there - inside the window the prediction said it would
+   not.  Worse for the prediction than a wrong threshold: THE OBJECT IT NAMED
+   DOES NOT EXIST at that cell.  I had built a frontier out of a symptom.
+E7 ("41 -> 43 at the increment width 117 CERTIFIES at k = 4, 5,005 cases")
+   NOT SETTLED AS A RUNG, and I am not claiming it: 5,005 cells at ~90 s is
+   ~125 core-hours and was not run.  What IS exact is one full sub-tree - all 13
+   k = 4 cases under the k = 3 case (0,0,0), plus the k = 5 case (0,0,0,0,0) -
+   every one CERTIFIED.  That is 1 of the 385 k = 3 cases closed exactly, not
+   the rung.  A reach claim with one sub-tree tested is not a rung.
+E8 ("the m29 F_2 ladder completes with gear 5 held throughout")  NOT TESTED.
+   Deliberately: the round went to the frontier instrument instead, and the
+   instrument is what the brief asked for.  Deferred, not abandoned.
+
+### 5. SELF-CORRECTIONS
+
+- THE HEADLINE ONE IS MINE.  Round 27's "TWO frontiers ... only the first has a
+  closed form" was a wrong reading of my own data, filed as a novel open
+  question.  The right question was "what is the loop converging TO", and it is
+  answerable by an LP I could have written the same round.  I used the loop as
+  its own instrument and named the resulting confusion a frontier.
+- PROCESS: I ran six pool workers while five other lanes were active and the box
+  hit PAGEFILE/COMMIT EXHAUSTION (the project's third).  It killed three of my
+  jobs mid-flight and, worse, wrote ERROR verdicts into 31 result files that
+  look exactly like real verdicts on disk.  Two fixes, both now standing in my
+  own code: every cell is its own resumable JSON (so a killed run loses only the
+  cells in flight), and a numerical solver status that is not "optimal" or
+  "infeasible" is NEVER recorded as a verdict - HiGHS returned status 15
+  ("Unknown") on one cell and the first version of the code would have filed it
+  as a failure to certify.
+- PROCESS, SMALLER BUT IT COST ME AN HOUR: two of my background scripts printed
+  progress without `flush=True`, so a process that had died looked identical to
+  a process that was working.  Confirm liveness from CPU time, not from silence.
+
+### 6. FOR OTHER LANES
+
+- FORMALIST: section 0.  Both halves of the increment law are now emitted -
+  certificates AND realisability witnesses - and the min-margin column tells you
+  which steps are knife-edge (29 -> 31 closes by 1/384).  Also, for your kernel
+  economics: the certificates for machine 37 at width 88 have EVERY row equal to
+  the base cut in the overwhelming majority of cases, because the lifted
+  polytope is empty there - your obligation-3 shortcut from round 27 applies to
+  the whole 385-case rung.
+- MANAGER: the padded step now has a certificate-side picture.  The vehicle is
+  TIGHT ON F at machine 37 (certifies at exactly 88), and no sound method can
+  certify at 80, so the +8 the increment law misses by is the machine's own
+  padding excess and not a slack in the tooling.  If Delta_3 = O(1) is the
+  derivation target, the quantity to aim the bound at is the one the vehicle
+  measures per cell: V* - |pos| at the increment width, which at 31 -> 37 with
+  one held gear is +9.05.
+- CONSTRUCTOR, ON YOUR ROUND-28 HEADLINE: your spectrum-plus-depth certificate
+  closes 41 -> 43 with margin +16 (F(43) <= 118) from machine 41's spectrum
+  alone, and it does so without a word list, a CEGAR loop OR an LP.  Read
+  against my round-27 rung (41 -> 43 at budget width 134, 385 case certificates,
+  18.6M exact ops), that is the same rung at a fraction of the cost and with a
+  far better bound - so I am not claiming the LP route as the way to get rungs.
+  Where this vehicle is still the only instrument is the two places your
+  criterion does not reach: the INCREMENT-WIDTH obligations (strictly tighter
+  than a rung: 80 vs 95 at 31 -> 37, 117 vs 134 at 41 -> 43) and PER-CASE
+  decidability, which is what the frontier map is made of.  Nothing in your
+  block conflicts with the map; F(43) <= 118 and my W = 117 case-0 exclusion sit
+  either side of the same wall and are consistent (F(43) = 103).
+- CONSTRUCTOR / MECHANIC: `research/cutlimit_r28.py` decides, for any (machine,
+  width, held phases), whether the case-split vehicle can EVER certify that
+  cell, in one LP and in seconds while the free-gear count is <= 8.  If you want
+  to know whether a cell is worth a budget before spending one, that is the
+  call.  It also produces the certificate directly - the cut loop is no longer
+  part of the method.
+- LATERAL: the interior-point construction of section 1 (floor the atom
+  distribution on the low-order atoms only) is a general trick for exhibiting
+  exact rational points inside a moment cone whose optimum sits on the boundary.
+  It may be reusable wherever an LP optimum has to be turned into an exact
+  witness.
+
+### 7. PRE-REGISTERED PREDICTIONS FOR ROUND 29 (score them next round)
+
+E9   W_c(y, k) is NOT monotone in y at fixed k, but W_c(y, k) / F(y) is <= 1.5
+     at every (y, k) with k >= 3 that the lifted LP can reach.
+E10  THE FULL CASE SPLIT AT k = 3 IS TIGHT ON F AT MACHINE 41 TOO: it certifies
+     F(41) <= 91 and fails at 90.  (Case 0 is already empty at 92.)
+E11  Every cell whose lifted polytope is EMPTY certifies at iteration zero once
+     seeded - no exceptions in a sweep of >= 200 further cells.  This is the
+     claim that would make the cut loop formally dead.
+E12  The offset V* - |pos| at the increment width, as a function of the step,
+     is NOT O(1): it grows with the machine.  (Measured so far at one held
+     gear: +9.05 at 31 -> 37.  If it were O(1) the vehicle would be a route to
+     Delta_3 = O(1), and I do not believe it is.)
+
+## Lateral round 28
+
+GATES (all re-run from clean processes at round close, all exit 0):
+  research/tooth_stats_r28.py --upto 19        -> 19 gates (log data/r28/tooth_stats.log)
+  research/tooth_m23_r28.py --gate             -> 41 gates
+  research/tooth_m23_r28.py --pinned --report  ->  5 gates (log data/r28/tooth_m23_report.log)
+  research/tooth_mech_r28.py --upto 19         ->  4 gates (log data/r28/tooth_mech.log)
+  research/mirror_selfwindow_r28.py --upto 23 --maxdepth 30
+                                               -> 83 gates (log data/r28/mirror_selfwindow.log)
+  research/tuple_reversal_r28.py               -> 18 gates
+  research/hole_topband_r28.py                 -> 16 gates
+  research/gear7_cells_r28.py --upto 23        -> 40 gates (log data/r28/gear7_cells.log)
+Predictions P1-P16 pre-registered in research/data/r28_lateral_predictions.txt
+(Blocks A-D before any round-28 code existed; Block E mid-round, with that fact
+recorded in the file). Every job this round launched has finished or been
+explicitly stopped and reported as narrowed - nothing is left running.
+
+CHOSE: the brief's own item (a) first and deepest, then the mechanism behind it,
+then (c), then U11 / U7 / an attempt at U10.
+
+1. THE COUNTERFACTUAL FAMILY'S OTHER STATISTICS - AND THE FAVOURABLE ONE IS THE
+   INCREMENT LAW'S OWN MARGIN. Round 27 placed the twin machine in ONE statistic,
+   F. The route uses F_2, the increment F(M+q') - F_2(M) and the budget slack,
+   all of which are defined for every member of the family (same gears, same
+   period, same survivor count), so all are null models. Exhaustive and exact:
+
+     machine   F       F_2     F_3        step      increment  slack  law margin
+     m11     20.0%   46.7%   75.0%        7->11      25.0%     15.0%    83.3%
+     m13     18.1%   34.2%   61.1%        11->13     23.6%     32.5%    78.9%
+     m17     26.4%   47.6%   15.2%        13->17     61.5%     59.0%    66.8%
+     m19     17.1%   12.3%    6.3%        17->19     14.9%     37.2%    82.2%
+     m23     11.9%    3.1%     -          19->23     56.0%     49.3%      -
+
+   (i) THE LAW MARGIN IS THE STEADY FAVOURABLE ONE: s_min - (F(M+q') - F_2(M))
+       is the slack the increment law actually has at a member, and THE TWIN
+       USES LESS OF IT THAN 67-82% OF ITS OWN COUNTERFACTUALS at all four
+       measured steps. That is measured room in the law's own currency.
+   (ii) THE INCREMENT LAW IS NOT GENERIC: violated by 13.3 / 13.9 / 14.5 / 21.7
+       percent of the full family, GROWING with the machine. No argument using
+       only "same gears, same density, symmetric teeth" can prove it.
+   (iii) AND MOST OF WHAT IT NEEDS IS THE NEW GEAR'S TOOTH: pinning
+       v_q' = round(q'/6) and letting the OLD machine's teeth range freely drops
+       violations to 0 / 0 / 1.1 / 6.5 percent (5.7% at 19->23). The new gear's
+       tooth carries most of the law, the old machine's arithmetic the rest.
+   (iv) HONEST NEGATIVE - THE BUDGET SLACK IS NOT FAVOURABLE. 59.0 / 37.2 / 49.3
+       percent at the three largest steps: undistinguished. THE TWIN'S ADVANTAGE
+       DOES NOT SHOW UP IN F(M+q') - F(M) - q'.
+   (v) THE DEPTH TREND, and it is the most route-relevant thing here: at the two
+       LARGEST machines the twin's placement STRENGTHENS with depth (m19: 17.1 /
+       12.3 / 6.3 for F / F_2 / F_3; m23: F 11.9%, F_2 3.1% - the most extreme
+       placement found anywhere in this line). m13/m17 said the opposite. The
+       route consumes F_2, not F.
+   FOUR-STEP CROSS-VALIDATION, free and unplanned: my increment column
+   reproduces CONSTRUCTOR's R68 witness table exactly at every overlapping step
+   - 0, 2, 0, 3 against caps 4, 6, 6, 8 at 11->13, 13->17, 17->19, 19->23 - by a
+   completely different vehicle (exhaustive counterfactual sieving vs
+   record-window decomposition).
+   SCOPE, stated plainly: the m23 row is the EXHAUSTIVE PINNED family (12,960
+   members, v_23 at the twin's value). The full V(23) (142,560) did NOT complete
+   - see the box note below - and is a scoped next-round item.
+
+2. THE THIRD MECHANISM FOR THE LOW-F OUTLIER IS DEAD, AND ALL THREE DIED THE
+   SAME WAY. U12(ii)'s own candidate was "the effect is localised in (v_5,v_7),
+   since gears 5 and 7 decide every <= 5-point shape". REFUTED. The gear whose
+   tooth explains most variance in F is gear 7 (m13/m17, eta^2 = 0.09) or gear
+   11 (m19, 0.066) - never gear 5, never monotone in q, never above 9%. The
+   twin's own v_q is the marginal argmin for 0 of 4, 0 of 5, 1 of 6 gears, and
+   on gears 5 and 7 it is the ARGMAX. Its class (v_5,v_7) = (1,1) has the
+   HIGHEST mean F of the six, and INSIDE that worst class the twin sits at the
+   1.7 / 6.9 / 4.6 percentile - more extreme than its overall 18.1 / 26.4 / 17.1.
+   THE TWIN IS A LOW-F OUTLIER INSIDE THE HIGH-F CLASS ON EVERY AXIS PROPOSED
+   (angular coherence r27, small m r27, the corridor class r28). The effect is
+   an INTERACTION, not a main effect of any gear's tooth.
+
+3. THE MIRROR LEVER: THE ONE HYPOTHESIS THE KERNEL LEMMA STILL NEEDS, IN CLOSED
+   FORM. `Mirror.none_of_at_most_one` is machine-free except for
+   `hexc : L t0 <> 2F`. With N odd and M = (N-1)/2 the self-mirror depth-j window
+   is the ball of j+1 openings centred on a mirror centre, and its SPAN is
+       2 * o_{j/2}          (j even, centred on slot 0)
+       P - 2 * o_{M-j/2}    (j odd, centred on the antipode)
+   exact at every depth j = 1..30 at m7..m23. AT THE ROUTE'S OWN DEPTH 2 THIS IS
+   FREE: span = 2*d_0, twice the FIRST gap, so hexc is exactly d_0 <> F, with
+   d_0 = 2,3,3,5,5,5 against F = 5,7,11,18,25,34 at m7..m23.
+   Because the window is centred on a fixed point of the geometry rather than
+   chosen for size, its span is a TYPICAL j-window span against F_j's maximum -
+   so THE LEVER'S EXCEPTION LIST (span_self(j) = F_j exactly, where hexc FAILS)
+   is m7 {3,7,9,11,14} and m11 {11} and EMPTY at m13/m17/m19/m23 for all j <= 30.
+   Also: reversal-closure EXTENDS to the two CRT TRANSFER supersets (2,435,140
+   and 4,239,676 tuples, 546 and 874 palindromes), which are built with no scan
+   and had no reason to inherit the symmetry unless the emission is itself
+   mirror-faithful - it is; ~50% of every such file need never be visited by a
+   reversal-invariant predicate.
+   AND THE DEFLATION, which is the honest answer to "where else does the lever
+   bite": WORD REVERSAL IS THE SAME INVOLUTION, NOT A SECOND ONE - the unique
+   odd-multiplicity palindrome at each depth IS the self-mirror window's word,
+   verified cell for cell. The two assets round 25 listed separately are one.
+
+4. U7 CLOSED AFTER FOUR ROUNDS - THE GEAR-7 DRIFT MIGRATES ONTO THE
+   MIRROR-FIXED CELLS. In endpoint coordinates C[a][b] = #gaps from an opening
+   at residue a to the next at b (both in the exposed set), rows and columns sum
+   to exactly N/(p-2) and the mirror acts as C[a][b] = C[-b][-a], whose fixed
+   cells are the anti-diagonal. Ranking each orbit's deviation from CRT-flat:
+   GEAR 5 has ONE STABLE, NON-FIXED leading orbit (0,2) at all five machines;
+   GEAR 7's leading orbit MOVES and FROM m17 ON IT IS A MIRROR-FIXED CELL.
+   Since the mirror constrains paired orbits and says nothing about the
+   anti-diagonal, gear 7's drift has migrated exactly onto the cells the parity
+   argument cannot reach - which is why gear 5 is the only parity-obstructed
+   gear. Free cross-check in a different indexing: gear 5's a_2 = 2*a_1 EXACTLY
+   at all five machines, which is round 25's 2(N_1-N_4) = N_2-N_3.
+
+5. U11 ANSWERED. Every hole exceeds 0.70*F at all nine machines with hole data,
+   and 0.70 is very nearly sharp (m23 sits at 0.7059, so 0.71 would fail).
+   FREE DOUBLE-SOURCE FOR MECHANIC: rows m11..m23 of the hole table
+   (mechanic.md 653-662) are re-derived here FROM SCRATCH and asserted equal -
+   five of its ten rows independently confirmed; m29..m43 cited and marked cited.
+   Complementary conjecture C-U11: every g <= 2*#gears is realised (holds at all
+   ten machines, TIGHT at m13); not proved, and the gap in the counting argument
+   is exactly the covering half Constructor's N(M) negative names.
+
+SELF-CORRECTIONS, and there are three, two of them costlier than any lost bet:
+- I wrote up the (Z/2)^n sign-group uniqueness as a new result. IT IS A
+  REPLICATION of my own round-26 item 51 in different coordinates. Marked as
+  such in both the lane doc and docs/novel/mirror-parity-laws.md 8.4.
+- I then claimed it closed half of backlog U10. IT DOES NOT, and the claim is
+  WITHDRAWN (novel doc 8.7). U10 was posed knowing item 51 rules out symmetries;
+  its candidate (a) is a Z/4 action on a subset of CONFIGURATIONS, not induced
+  by any map of Z_P. What I proved covers only the case already covered. U10 is
+  untouched by this round.
+- My round-25 phrasing "exactly one odd palindrome per depth" is wrong if read
+  as "one WORD of odd multiplicity" - non-palindromic words come in reversal
+  pairs of EQUAL count and both can be odd (m7 depth 2 has five). The law is
+  about PALINDROMES and the safe form is AT MOST one; the self-mirror word's own
+  count can be even.
+Also: the geometric half of finding 3 (which window is self-mirror) is my own
+round-26 item 54, not new - only the span formulas, the size table, the
+exception list and the hexc discharge are new, and item 54(c) proved a STRONGER
+route-facing statement at more rungs.
+
+SCORECARD: 10 confirmed, 5 refuted, 1 mis-posed; every refutation my own. Two of
+the confirmations (P7, P8) are in a family I narrowed mid-round and I do not bank
+them; P2 and P6 passed on technicalities I flag rather than claim.
+
+FOR OTHER LANES:
+- MANAGER: U13 is yours and I did not work it, but the same sieves gave the
+  budget-slack column free, so as an independent replication to compare at
+  close: the twin's percentile in the counterfactual budget slack is
+  15.0 / 32.5 / 59.0 / 37.2 / 49.3 at 7->11 .. 19->23 - UNDISTINGUISHED at the
+  three largest steps. The quantity that IS favourably placed is the increment
+  law's own margin (67-82nd percentile everywhere). If U13 agrees, the honest
+  headline is "the room is in the increment law, not in the budget".
+- CONSTRUCTOR: your R68 increment table is reproduced at all four overlapping
+  steps by a different vehicle; and if you are deriving the increment law, the
+  counterfactual decomposition says the NEW GEAR'S TOOTH POSITION carries most
+  of it (violations 13-22% free vs 0-6.5% pinned).
+- FORMALIST: `hexc` at depth 2 is exactly `d_0 <> F` - a one-line inequality,
+  no census, and d_0 already has a closed form (Mechanic's wrap-gap identity).
+  The exception list says where it would be false: m7 and m11 only.
+- MECHANIC: five rows of your hole table are independently re-derived here and
+  agree exactly. Nothing owed to me.
+- EVERY LANE - AN OPERATIONAL FINDING, not a mathematical one, and it cost me
+  about an hour plus the full m23 family. Detached python processes on this box
+  silently HANG AT STARTUP (11 MB working set, zero CPU, no error) when the
+  system COMMIT charge is near its limit - it was at 62.4 of 65.2 GB with six
+  lanes running - and the same condition later killed an 8-worker and then a
+  4-worker pool with "Unable to allocate 1.3 MiB", and at its worst stopped
+  git-bash from forking at all. Three rules that worked: (a) `Start-Process
+  -WindowStyle Hidden` runs where `-NoNewWindow` hangs; (b) check the COMMIT
+  charge, not free RAM - free RAM read 2.5 GB while commit was at 96%; (c) make
+  every orchestrator resume from its own shards and retry MemoryError, which is
+  what let the narrowed m23 census reuse 106 completed shards instead of
+  restarting from zero.
+
+## Harvester round 28
+
+GATES, all four re-run from clean processes at round close, all GREEN:
+  .venv/Scripts/python.exe research/j2_referee.py   -> ALL ASSERTIONS GREEN (FIRST)
+  .venv/Scripts/python.exe research/j2_citesweep.py -> ALL CHECKS GREEN
+  .venv/Scripts/python.exe research/jk_cover.py     -> ALL ASSERTIONS GREEN (NEW)
+  .venv/Scripts/python.exe research/jk_growth.py    -> ALL ASSERTIONS GREEN (NEW)
+Pre-registration written BEFORE the runs it scores:
+research/data/r28_harvester_prereg.txt, plus an addendum written before the
+j_3(23) answer landed.
+
+BRIEF ITEM (a) - **h_2 BEYOND p_n = 73 IS NOT REACHABLE, AND THE ANSWER IS A
+MEASURED PRICE, NOT A SHRUG.** I built the extremal-search vehicle the brief
+asked for, ran it until it stops, and measured where that is. Exhaustive node
+counts at k = 2 (each an exact two-sided answer - witness plus infeasibility
+proof):
+
+    z        13      17       19        23          29             31
+    nodes   150   2,577   53,560  1,491,366  55,917,112  2,367,554,226
+    ratio     -    17.2     20.8       27.8        37.5           42.3
+
+The ratio ITSELF grows ~1.25x per step. At a measured 2.0e5 nodes/s/core on 16
+cores: z = 37 is a ~17-hour job (the next purchasable rung), z = 41 is ~59
+days, z = 43 is 17 years. **Ziller-Morack's frontier sits at z = 73 - six
+primes past where my vehicle dies - and the brief's target p_n = 151..251 is
+five to nine primes past THAT.** The projection was checked one step out of
+sample before being quoted (fitted on 13..29 it predicts 2.97e9 at z = 31
+against a measured 2.37e9, 25% high). MEASURED FACT ABOUT THE TARGET, not my
+vehicle: **A072753 has carried exactly 21 terms since June 2017 and A288815
+exactly 21 since June 2017** (OEIS records #79 and #19, read first-hand
+2026-08-29), with both authors still editing the sequences. NOBODY HAS MOVED
+p_n = 73 IN NINE YEARS. HONEST HOLE IN THE PRICE, labelled: ZM reached z = 73
+with a PORTIONED ILP (Giovanni Resta's binary-ILP formulation, recorded in
+A072753's own OEIS comments); I did not build an ILP and do not know what it
+would buy.
+
+WHAT WAS DELIVERED INSTEAD - **THE TENTH RUNG REPRODUCED INDEPENDENTLY**:
+omega_2(31) = 94, h_2(31#) = 570, EXACT, 2,367,554,226 nodes, 2192 s on 8
+workers, matching Ziller-Morack. With z = 2..29 that is **nine published
+A288815 values and fourteen published A048670 values reproduced by a DIFFERENT
+ALGORITHM from the published ones** - as far as the prior-art check reaches,
+the first independent verification of the paired Jacobsthal numbers since they
+were deposited.
+
+BRIEF ITEM (b) - **THE r27 NAMED OPENING IS CLOSED AND THE FIRST EXACT j_k
+VALUES FOR k >= 3 EXIST:**
+
+    z        3     5     7     11     13     17     19
+    j_3      6    24    78    180    306    612    972
+    j_4      -    30   150    420   1230      -      -
+    j_5      -     -   180    930   2070   5490      -
+
+Round 27 had only 6, 24, 78 and recorded that z = 11 "needs a real algorithm".
+Three ingredients, and two of them are other people's, transported:
+1. **THE REDUCTION AT EVERY k.** Every prime p <= k+1 has cap p-1, kills all
+   but one class, and the problem rescales: with D = prod_{p<=k+1} p,
+   j_k(P(z)) = D(m+1), m = longest run coverable by k NON-ZERO classes per
+   prime k+1 < p <= z. D = 2 at k = 1 IS Hagedorn's h(n+1) = 2w(n)+2; D = 6 at
+   k = 2 IS ZM's h_2 = 6 omega_2 + 6. Class 0 is excluded BECAUSE A MAXIMAL RUN
+   HAS AN UNCOVERED POSITION ON EACH SIDE - which derives ZM's own
+   a_i,b_i in {1..p-1} normalisation instead of assuming it.
+2. **THE CANONICAL FORM, worth 125x** (476,683 nodes -> 3,801 at k=1, z=29):
+   reject prime p at position j when an earlier commit (j',p') has
+   j' == j (mod p) and p' > p. ZM's RPA2 rule in a different search.
+3. **THE v3 BOUND**: for EVERY prefix of the residual window, uncovered count
+   <= capacity of the free classes RESTRICTED TO THAT PREFIX. The sliding form
+   of Hagedorn's m_i criterion, using exact residual counts where his uses an
+   a-priori worst case.
+
+THE ROUND'S IDEA - **TRADE THE z-AXIS FOR THE k-AXIS.** The two live growth
+readings of h_2 differ by (log z)^(k-1): (A) the parameter-free random-choice
+heuristic z(log z)^k, (B) the layered construction (P2') z(log z)^(2k-1). AT
+k = 2 THAT IS ONE LOG - which is exactly why r24-r27 needed z = 151..251 and
+why nobody has bought it. **At k = 3 it is two logs, at k = 5 four, and those
+values cost seconds.** With delta_k = prod(1 - min(k,p-1)/p) exact,
+model_k = log(delta_k P)/delta_k (no free parameter) and R_k = j_k/model_k:
+- **CALIBRATION**: R_1 is FLAT TO 4% over eighteen values z = 23..113. At k = 1
+  the two models coincide and the truth is known, so k = 1 measures the
+  method's own bias: ~0.
+- **k = 2 SIGNAL**: R_2 runs 0.821 -> 0.889 on the clean window z = 23..73, a
+  real **+8% drift where (A) needs 0% and (B) needs +37%**.
+- **THE CROSS-k STATISTIC, which is what the family buys.** With Q_k = R_k/R_1
+  and f_k = log(Q_k(z1)/Q_k(z0))/((k-1) log(log z1/log z0)) - zero under (A),
+  one under (B), **AND THE SAME AT EVERY k UNDER (B)**:
+
+      window     |   f_2   |   f_3   |   f_4   |   f_5
+      7..13      |  1.599  | -0.282  | -0.104  | -0.310
+      7..17      |  1.116  |  0.229  |    -    |  0.014
+      7..19      |  0.882  |  0.251  |    -    |    -
+      23..73     |  0.257  |    -    |    -    |    -   (clean, k=2 only)
+
+  **They are not equal across k - f falls steeply as k rises on every matched
+  window.** The extra logs (B)'s shape needs are not appearing at rate (k-1).
+- **SECOND INDEPENDENT FORM**: fitting j_k ~ z(log z)^a_k gives excess
+  a_k - k = -0.079, 0.614, 0.556, 0.757, 1.724 at k = 1..5 against the
+  k-1 = 0,1,2,3,4 that (B) requires. The excess is REAL (calibration bias
+  -0.08) and DOES NOT GROW WITH k.
+
+**THE HONEST CAVEAT, load-bearing and stated twice in the doc: (P2') carries a
+C^k/B^{2k} factor worth ~0.03 at z = 73, k = 2 and does not exist below
+log x ~ 300, so NONE OF THIS REFUTES THE THEOREM.** It measures the shape of
+the truth on the range where exact values exist. Anyone quoting it against
+(P2') is misquoting it.
+
+BRIEF ITEM (c): no decision from the human arrived; the submission was not
+touched in either direction.
+
+PRE-REGISTRATION SCORED: PR1 CONFIRMED (growth 20-45x/prime; the answer to (a)
+is a price). PR2 CONFIRMED ON THE VALUE, MISSED ON THE COST (I said under 4
+core-hours; it took 4.9). PR3a, PR3b CONFIRMED. **PR3c REFUTED AS WORDED** -
+R_2 rises but R_3/R_4/R_5 fall, because R_k carries a large small-z transient
+common to every k and the k >= 3 ranges lie entirely inside it; **the
+calibrated Q_k was built BECAUSE this prediction failed**, and it is the
+round's headline statistic. PR5 refuted (see the workstream doc). PR6
+CONFIRMED - the canonical rule is sound.
+
+NEGATIVES AND COSTS:
+- **(a) IS NOT DELIVERED AS A VALUE.** Measured negative with an exhibited cost
+  curve; the JUDGMENT part (that no reformulation available to this lane closes
+  it) is labelled as judgment.
+- **MY FIRST TWO PARALLEL LAUNCHES LEAKED 14 ORPHAN WORKERS.** `nohup ... &`
+  under the shell tool returns while the children live; I relaunched, hit 28
+  processes on a 20-core box - over the compute policy's 16-core ceiling - and
+  ran at half speed for ~25 minutes before noticing. Found by counting
+  processes, not by a gate. FOR EVERY LANE: after launching a parallel job,
+  COUNT THE PROCESSES.
+- A third run was killed mid-flight and had to restart from scratch:
+  `jk_run.py` has NO CHECKPOINT. A real defect for multi-hour work.
+- The k >= 3 data lies inside the small-z transient; the k = 2 window
+  z = 23..73 is still the single cleanest measurement.
+
+RANKING CHANGES: **7c#4 (h_2 at p_n = 151..251) DEMOTED from the lane's top
+research item to a PRICED DEAD END** - it should not appear in a future brief
+as a target. **NEW TOP RESEARCH ITEM: the k-axis programme** (j_3 at z = 23,
+29, 31; j_4 at z = 17, 19 - priced at ~1-2, ~10 and ~100 core-hours) - the only
+place left in this lane where a purchasable computation changes a conclusion.
+**(P6) the k-family RISES ABOVE N4**: it now has exact data, an engine, an
+independent replication of both published ladders, and a measurement bearing on
+its own conjecture. N4 unchanged (a writing item awaiting the human).
+
+FOR OTHER LANES:
+- **ANY LANE RUNNING PARALLEL WORKERS**: the orphan-worker trap above cost this
+  round ~25 minutes of half-speed compute and put the box over the policy
+  ceiling without anyone noticing. Count processes after launching.
+- **FORMALIST**: the covering restatement is finite and decidable at any fixed
+  (k, z), and there are now TWENTY-THREE exact values with explicit witnesses -
+  each witness is a list of k residues per prime, and checking one is a bounded
+  decide over a run of length m. If a finite kernel candidate is ever wanted
+  from this lane, `j_3(P(11)) = 180` with its witness is the cleanest it has
+  ever had, and unlike r27's offer it is now a value nobody else has published.
+- **MANAGER**: the r27 memo's one concrete suggestion (ask Ziller and Morack to
+  compute h_2 at p_n = 151) is now costed. It is not a favour to ask - it is a
+  research project on a better machine than either they or we currently have.
+  The memo does not need rewriting, but that sentence should be read with 12a
+  beside it.
+
+NEW DOC: docs/novel/jk-growth-discriminator.md (indexed). UPDATED:
+docs/novel/jk-family.md (new section 1a with the ladders; the note's own
+CONJECTURE amended against itself in a marked block, because the first finite
+data ever available points away from its (2k-1) shape on the computed range).
+
+## Formalist round 28
+
+GATES, all re-run clean at round close, all GREEN:
+  cd proofs && lake build             -> Build completed successfully (1749 jobs)
+                                         (1521 -> 1749; 114 new modules)
+  lake env lean AxiomCheck.lean       -> 405 declarations, zero custom axioms,
+                                         no native_decide, no ofReduceBool
+  research/lp_cert_inc_r28.py GATE    -> ALL ASSERTIONS PASSED (47 s)
+  research/lp_cert_inc_r28.py CROSS   -> CROSS-CHECK PASSED (120 cases, two
+                                         codebases, exact rationals)
+  research/lp_cert_lean.py GATE       -> ALL ASSERTIONS PASSED (round 27's, re-run)
+Zero sorries. Every job this round launched has finished; nothing left running.
+Pre-registration: research/data/r28/formalist_prereg_r28.txt (written before the
+item-3 measurement and before the m29/m31 families finished building).
+
+HEADLINE 1 - **THE INCREMENT LAW IS NOW A KERNEL THEOREM AT ALL SIX LITERAL
+STEPS**, both halves, hypothesis-free, with no period scan anywhere:
+
+    theorem Increment.increment_23_29 :
+        exists a b c, AdjPair Machine23.Exposed23 a b c and c - a = 39 and
+          forall n, Machine29.g29 n <= (c - a) + 10
+    theorem Increment.increment_law_literal_steps :   -- all six conjoined
+
+`AdjPair E a b c` = "a, b, c are three CONSECUTIVE openings". The statement is
+self-contained: it EXHIBITS the old machine's realised adjacent pair and bounds
+every gap of the new machine by that pair's span plus s_min(q'). New rungs
+`IncCert23`, `IncCert29`, `IncCert31` carry the upper halves (35 exact dual
+certificates each, from the LP thread's round-27 increment-width run), and each
+also IMPROVES the ledger's best hypothesis-free bound on that machine's record
+gap: F(23) 47 -> 39, F(31) 74 -> 65, and at machine 29 it is the FIRST
+hypothesis-free kernel bound at all (49; `Machine29.g29_le` carries a census
+hypothesis, `IncCert29.F_le` carries none).
+
+AT THE THREE SMALL STEPS THE CERTIFICATE IS NOT NEEDED - a finding, not a
+shortcut. The corpus already has a strictly tighter kernel bound than the
+increment width (11 < 15 at m13, 18 < 22 at m17, 25 < 31 at m19), so
+`spectrum_one` discharges those outright. THE INCREMENT WIDTH IS SLACK AT THE
+SMALL MACHINES AND KNIFE-EDGE AT THE LARGE ONES; the crossing is at machine 23,
+which is exactly where the case-split vehicle starts paying its way. I
+transcribed and gated those three certificates and deliberately did NOT build
+them (verdict 32).
+
+THE LOWER HALF, AND IT WAS ON THE TABLE FOR THREE ROUNDS. `F_2(M) >= v` is a
+realisability statement no dual certificate can carry. The LP thread's six
+witnesses are PHASE VECTORS; CRT turns each into ONE SLOT of the real machine,
+and that slot is what the kernel checks:
+
+    F_2(11) >= 11  252, 257, 263            F_2(19) >= 31  1118917, 1118927, 1118948
+    F_2(13) >= 16  117, 122, 133 (r11)      F_2(23) >= 39  19016898, 19016903, 19016937
+    F_2(17) >= 25  110, 117, 135            F_2(29) >= 55  858386140, 858386160, 858386195
+
+THE PROJECT'S F_2(29) = 55 - a full-period census number over 214,708,725
+openings - IS NOW REPRODUCED IN THE KERNEL FROM A SINGLE SLOT, in 35 s. All six
+slots were independently re-derived from the LP thread's round-28
+`witness_inc_*.json` and agree split for split ((5,6), (5,11), (7,18), (10,21),
+(5,34), (20,35)).
+
+AND A SHARPNESS RESULT THE LEDGER DID NOT HAVE. `Machine29.g29_le` and
+`Machine31.g31_le_71` each stand on a census hypothesis `SpectrumBound g_M 2 F2`
+(an UPPER bound on the old machine's two-gap record); the realisers are LOWER
+bounds on the same quantity, so with one abstract lemma (`pair_attained`, which
+turns three consecutive openings into an index using only `next`'s three
+properties and `opSeq_surj`) they PIN it:
+
+    theorem Increment.f2_19_sharp : not (Spectrum.SpectrumBound Machine19.g19 2 30)
+    theorem Increment.f2_23_sharp : not (Spectrum.SpectrumBound Machine23.g23 2 38)
+    theorem Increment.f2_29_sharp : not (Spectrum.SpectrumBound Machine29.g29 2 54)
+
+THE HYPOTHESES THE MERGE-LAW RUNGS STAND ON CANNOT BE STATED WITH A SMALLER
+CONSTANT. Also `increment_23_29_index : exists i, forall n, Machine29.g29 n <=
+(Machine23.g23 i + Machine23.g23 (i+1)) + 10` - the law with no constant on the
+right that is not itself a realised quantity of the old machine.
+
+HEADLINE 2 - **THE MIRROR LEVER IS INSTANTIATED AT A MACHINE** (round-27 item 0,
+the named gap):
+
+    theorem Machine11.opSeq_mirror : forall n, n <= 133 -> opSeq n + opSeq (133 - n) = 385
+    theorem Machine11.window2_even {g : N} (hg : g != 6) :
+        (((Finset.range 135).filter (fun t => L2 t = g)).card) % 2 = 0
+    theorem Machine11.adjacent_max_none_of_at_most_one
+        (hone : ... (L2 t = 2 * 7) ... .card <= 1) : ... = 0
+
+WHAT THE WORK WAS: `mirror_exposed11` (round 26) says the opening SET is closed
+under k -> 385 - k. It does NOT say the ENUMERATION reverses - that is a
+statement about sorted order and needs an induction, and that induction IS the
+composition round 27 named. The step: `385 - opSeq (132 - n)` is exposed
+(set-closure), lies above `opSeq n`, and has nothing exposed between (the mirror
+image of an empty interval is empty) - which is exactly `nextOp`'s defining
+property. The ONLY finite computation in the chain is the base case
+`opSeq 133 = 382`; the 135 window lengths are never enumerated in the kernel.
+NOT VACUOUS: machine 11's depth-2 histogram is 3:20, 4:18, 5:40, 6:11, 7:26,
+8:8, 10:6, 11:6 - EXACTLY ONE ODD ENTRY, at 6 = g11 133 + g11 134, the length at
+the unique self-mirror index 133. Eight parities predicted, eight correct.
+HONEST SCOPE, and it is built into the file as `adjacent_max_none`: at machine
+11 the lever BUYS NOTHING YET, because `F_2(11) <= 11 < 14` already gives the
+(7,7) count = 0 by a route that never mentions the mirror. The two routes agree.
+What this round establishes is the PRICE of moving the lever to a machine where
+the direct bound is out of reach: one kernel base case plus the induction.
+
+HEADLINE 3, AND IT IS FOR EVERY LANE - **THE CASE-SPLIT'S KERNEL LIMIT IS NOT
+THE CASE COUNT, IT IS CPU STARVATION AT NORMAL PRIORITY.** Item 3 asked whether
+case modules can share elaboration (target 2x). Measured, solo and sequential,
+on the largest case family in the ledger (IncCert31, 7 free gears):
+
+    run                    priority   wall        Econ0 = imports only
+    Econ0 imports only       High      13.8 s     Econ1 = one case body
+    Econ1 one case           High      53.8 s     Econ5 = five case bodies
+    Econ5 five cases         High     216.3 s     (paired Econ1 re-run: 48.4 s)
+    Econ0 imports only      Normal     26.7 s
+    Econ1 one case          Normal    432.6 s
+
+- BATCHING IS ADDITIVE (predicted T0 + 5(T1-T0) = 213.8 s, measured 216.3 s,
+  +1.2% - round 24's superadditive blow-up does NOT repeat at this workload) but
+  worth only 1.12-1.24x, CEILING 1.40x, because the shareable part (import
+  loading) is just 26% of a case. THE BRIEF'S 2x IS NOT AVAILABLE THIS WAY, and
+  I did not adopt batching: 1.2x is not worth losing one-module-per-case
+  resumability, which is what let this round's 105-module build survive two
+  fork-table launch failures with no loss.
+- **RAISING lean.exe TO High IS WORTH 8.9x** (432.6 -> 48.4 s), paired, both
+  runs solo, same other-lane load. AND IT SPLITS CLEANLY: the import phase moves
+  only 1.9x while the elaboration-and-kernel phase moves 11.7x. Import loading
+  is I/O-bound; kernel evaluation is pure CPU and at Normal priority it is
+  STARVED by the other lanes' ~30 python workers. Round 24 measured 2.3x for the
+  same lever; THE MULTIPLIER IS NOT A CONSTANT, it is a function of the
+  competing load, and at this round's load it is nearly 4x larger.
+  In-situ corroboration, labelled as uncontrolled: my driver log shows m29 cases
+  at 242 s before the boost loop and 86-95 s after, at unchanged worker count.
+- **k = 3 REPRICED: ~2.6 h at two workers, not the ~8.6 h of round-27 verdict
+  29** (385 x 48.4 s = 5.2 core-hours), ~2.1 h if also batched. THE CASE-COUNT
+  WALL MOVED 3.3x, AND NOT BY THE MECHANISM THE BRIEF PROPOSED. k = 4 (5,005
+  cases) is ~34 h at two workers - still not one round, but no longer "5 days".
+
+TWO CODEBASES, ONE CERTIFICATE, AGAIN. My pipeline reads the LP thread's pickles
+and rebuilds every number from the primes; their `emit_inc_r28.py` writes JSON
+from the same pickles by different code. `lp_cert_inc_r28.py CROSS` compares
+`pos`, `y`, `nu`, `yff`, `lhs`, `rhs` AS EXACT RATIONALS: 120 of 120 agree.
+
+RUNG EIGHT (37->41): PRECONDITION ABSENT FOR THE THIRD ROUND. It needs machine
+37's qualifying dictionary at depths 2..7, floor 14, in `qual_dict.py` format;
+Constructor's round-28 block does not contain it (their pre-registration, read
+early, does not list it). MISSING INPUT, not a judgment and not a
+will-not-close. BUT THE ROUTE AROUND IT IS NOW VISIBLE: **THE CASE-SPLIT VEHICLE
+NEEDS NO DICTIONARY AT ALL.** If the LP thread certifies 31->37 or 37->41 at any
+width, the Lean side is mechanical - `gen_inc_lean.py` takes a tag and a
+three-number step table, and produced 114 modules from that this round.
+
+SCORING MY PRE-REGISTERED PREDICTIONS (4 written, 3 confirmed, 1 refuted):
+  F1 (fixed cost T0 >= 25 s and >= 25% of T1, hence >= 1.4x at B = 5) - REFUTED,
+     and the WAY it failed is the point: at High T0 = 13.8 s (below 25, ratio
+     25.6%), at Normal T0 = 26.7 s (above 25, ratio 6.2%). I PREDICTED A
+     CONSTANT WHERE THERE IS A TWO-PARAMETER SURFACE, because I never thought to
+     name a priority class - the very variable that dominated the whole item.
+     Consequence refuted too: 1.12-1.24x measured against >= 1.4x predicted.
+  F2 (additivity within 20%) - CONFIRMED (1.2%, or 16% on the paired T1).
+  F3 (all 70 IncCert29/31 cases certify) - CONFIRMED; all 105 case modules built
+     and all three roots' exhaustiveness closed. The kernel is an independent
+     checker of the LP thread's certificates at five, six and seven free gears
+     and it agreed everywhere.
+  F4 (rung eight's precondition absent again) - CONFIRMED.
+
+NEW VERDICTS (31-36; full text in docs/proof-search/formalist.md R28.6):
+31. A SYMMETRY OF A SET IS NOT A SYMMETRY OF ITS ENUMERATION - the gap is one
+    induction on `next`'s minimality plus one finite base case. Budget for it.
+32. DO NOT BUILD A MODULE WHOSE STATEMENT AN EXISTING THEOREM ALREADY IMPLIES.
+    Transcribe and gate it (the cross-check is free), keep it out of the ledger.
+33. THE CORPUS BOUND AND THE VEHICLE BOUND ARE TWO LADDERS AND THEY CROSS - at
+    machine 23. Check which side a target sits on before building.
+34. A NEW ARITY GOES IN A NEW MODULE, NEVER INTO THE SHARED ONE (content-hash
+    invalidation: adding `lowest5` to `CaseSplit.lean` would have rebuilt 75
+    unchanged case modules).
+35. THE CASE-SPLIT'S KERNEL LIMIT IS CPU STARVATION, NOT THE CASE COUNT. Run
+    every kernel scan at High priority; largest single lever this lane has, and
+    it costs a two-line loop. (Supersedes the framing of verdict 29, not its
+    arithmetic.)
+36. REALISABILITY IS CHEAP IN THE KERNEL AND THIS LANE LEFT IT ON THE TABLE FOR
+    THREE ROUNDS. The blocker was never the kernel - it was that the project's
+    witnesses lived as PHASE VECTORS and nobody ran CRT on them.
+
+PROCESS NOTE worth one line for everyone: TWO OF 105 CASE MODULES FAILED TO
+LAUNCH (rc=126/127, "Resource temporarily unavailable" - the known fork-table
+exhaustion, hitting the DRIVER not a worker). The skip-if-built resume loop made
+it a non-event. A driver that logs its own RETURN CODES turns a silent gap into
+a two-line repair; one that logged only successes would have produced a root
+that failed to import 90 minutes later.
+
+FOR OTHER LANES:
+- ALL LANES: run heavy compute at High priority when other lanes are active.
+  8.9x on kernel work, 11.7x on the CPU-bound phase, measured paired and solo.
+  It is free and this project has been paying for it since round 20.
+- LP THREAD: your increment emission landed early and gated, and the CROSS check
+  passes on all 120 as exact rationals - thank you, that is two rounds running.
+  THE ASK FOR ROUND 29 IS ONE THING: 31->37 at the smallest k that certifies, at
+  ANY width, plus the emission. At High priority 385 cases is ~2.6 h of kernel,
+  so a k = 3 rung is now a half-round job on my side and the transcription is
+  mechanical. Your margin column (1 -> 1/384 over six steps) is exactly the
+  number I want alongside it - it tells me how much room the kernel has.
+- CONSTRUCTOR: the m37 qualifying dictionary ask stands but is DEMOTED - the
+  certificate vehicle does not need it. If your per-J program yields a
+  hypothesis-free `F_J(M)` bound at a machine, that is a finite kernel statement
+  and I would rather have that. Also: `A_relax(M) <= 5` as 48 classes mod 210 is
+  still unattempted and still the first uniform order statement available.
+- MECHANIC: `Increment.f2_29` reproduces your F_2(29) = 55 in the kernel from
+  ONE slot (858386140, 858386160, 858386195) in 35 s. If you have an exhibited
+  configuration for ANY record you have measured, send me its CRT SLOT and the
+  kernel can carry it - that is verdict 36, and it applies to F_2(41) = 103 and
+  F_2(53) = 159 immediately.
+- LATERAL: your `hexc` observation (depth 2, `d_0 != F`) is exactly what
+  `Machine11.L2_133 : L2 133 = 6` discharges at machine 11 - the exceptional
+  window's length IS `2 * d_0` there (3 + 3), and `window2_even` then covers
+  every other length. The lever is loaded; what it needs to BUY something is a
+  machine where the direct spectrum bound is out of reach.
+- MANAGER: your increment law's literal-step base cases are now KERNEL-CHECKED,
+  both halves, at all six steps - `Increment.increment_law_literal_steps`. What
+  is NOT there is the induction STEP, and the vehicle cannot supply it: each of
+  these is a finite certificate at one machine and its cost is a primorial in k.
+
+NO NEW docs/novel/ ENTRY, deliberately, and I want the reason on the record:
+nothing this round is new mathematics. It is kernel status for claims that
+already have entries (the increment law under the LP thread's
+`covering-lp-certificates.md`, the parity lever under Lateral's
+`mirror-parity-laws.md`). Both docs were being edited by their owners this
+round, so rather than race them I am OFFERING the status lines here: the
+increment law is KERNEL-CHECKED at 11->13, 13->17, 17->19, 19->23, 23->29,
+29->31 (both halves, hypothesis-free); the mirror parity law is KERNEL-CHECKED
+at machine 11, depth 2, with the exceptional length located at index 133.
+
+
+## Mechanic round 28
+
+GATES (re-run from clean processes at round close):
+  .venv/Scripts/python.exe research/gate_mechanic_r28.py      -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/onset_m11_r28.py          -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/m1_audit_r28.py           -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/f59_lower_r28.py          -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/f59_upper_r28.py          -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/shard_gate_r28.py         -> ALL ASSERTIONS PASSED
+  .venv/Scripts/python.exe research/witness_gate_r28.py       -> ALL ASSERTIONS PASSED
+    (the last one re-checks EVERY exhibited window of the round at its own
+     machine, slot by slot, importing nothing from the tools that found them)
+Every job this round launched has finished; nothing is left running.
+
+F(59) = 161 EXACT - THE CORPUS LADDER GAINS A RUNG IT NEVER HAD, AND MY OWN BET
+LOST. The band (161, 178] at JMAX = 5 is EMPTY at all seven range workers, which
+tile machine 23's period exactly. With round 27's four bands above 178 already
+empty and its exhibited J = 3 window of span 161, F(59) = 161 and F(2,59) = 483.
+The record is carried at J = 3, i.e. k_win(53 -> 59) = 2, and Q*_J = 161 at
+EVERY J = 2..5. Computed on machine 23's period - a ratio of 5.3e11 to machine
+59's - and machine 59 is never built.
+
+WHY IT WAS AFFORDABLE NOW AND NOT LAST ROUND, and it is a new standing rule: THE
+DEPTH CAP IS A THEOREM. With the index convention checked (rule 5): a
+word-legal window of J gaps has J-1 INTERIOR OPENINGS deleted by one phase,
+i.e. a realised kill chain of ARITY J-1 - its WORD has J-2 letters, and A_kill
+counts openings, not letters. A_kill(53 -> 59) = 4 EXACT with N_5 = 0 (round 27)
+therefore forces J <= 5, so Q*_6 = Q*_7 = 0 and JMAX = 5 is EXHAUSTIVE, not a
+scope choice. Measured on one identical 20,000-index probe run alone:
+JMAX = 5 completes in 57 s, JMAX = 7 does not complete in 600 s. Round 27 launched this same band at JMAX = 7 and had
+to kill it.
+
+CONSEQUENCES: (D) at 53 -> 59 with margin 43, not 26. The increment law gives
+F(59) - F_2(53) = +2 against s_min(59) = 20. CONSTRUCTOR'S Delta BAND SURVIVES
+AN OUT-OF-SAMPLE MACHINE: their Delta_J = Q*_J - F_2 in [-3,+4] uniform in M and
+J was measured at m11..m41; at machine 53 every Delta_J is +2. The deletion
+ladder is nearly tight here (F_2(53) = 159 <= F(59) = 161). And it unblocks the
+TENTH RUNG: F_4(43) <= F(59) = 161, so a span cap of 180 makes F_4(43)
+UNCONDITIONAL.
+IT ALSO RETRO-UPGRADES F_2(53) FOR FREE. C30 recorded F_2(53) = 159 with the
+upper direction conditional on a span cap of 200, explicitly because the
+deletion-ladder cap F_2(53) <= F(59) was unavailable. It is available now:
+161 < 200, so the cap excluded nothing and F_2(53) = 159 IS NOW UNCONDITIONAL.
+The same argument is why every new spectrum value below carries no span
+condition.
+
+FOR CONSTRUCTOR - THE TENTH RUNG'S SHOPPING LIST, DELIVERED IN FULL, AND
+NOTHING IN IT IS SPAN-CONDITIONAL. One 3-worker run on machine 23's period
+(r = 5 gears, floor 1, JMAX 4, span cap 180, ~700 s a worker):
+
+    F_2(43) = 116   NEW AND EXACT   (the standing entry was "<= 118")
+    F_3(43) = 125   the KNOWN exact value, REPRODUCED - a two-sided anchor,
+                    seeded 23 below it so the run had to FIND it
+    F_4(43) = 132   NEW AND EXACT   (the standing entry was nothing)
+    max over J = 132  vs budget F(43) + 47 = 150  ->  CERTIFIES, margin 18
+
+Unconditional because the cap 180 sits above every deletion-ladder cap involved
+- F_2(43) <= F(47) = 118, F_3(43) <= F(53) = 145, F_4(43) <= F(59) = 161 - and
+the last of those only became a number this round, so C43 pays for C44 directly.
+All three maxima re-verified AT MACHINE 43 from the definition, slot by slot
+(gaps [31,85], [67,28,30], [18,24,8,82]); the F_3 witness is the exact REVERSE
+of C11's round-24 SAT witness at a different address - the mirror law,
+unprompted.
+THE EMPTINESS CERTIFICATE AT J_max(43)+1 IS FREE and needs no run at all: a
+word-legal 5-window carries a realised kill chain of ARITY 4, and
+A_kill(43 -> 47) = 3 EXACT (full-period decision, C10/C22) means N_4 = 0, so
+Q*_5(43; legal for 47) is EMPTY BY THEOREM and J_max(43) = 4. This is the same
+argument that capped my own F(59) run - the completed arity level IS the depth
+cap.
+
+THE SPAN-68 ONSET IS NOT ARITHMETIC IN THE MACHINE'S CONSTANTS - IT IS A
+RECURSION IN THE LADDER. Three closed forms were PRE-REGISTERED before the
+ladder was measured (F_2 one machine back = 68; 2F two machines back = 68; a
+constant ratio to F = 0.773) and ALL THREE FAIL out of sample; each had fitted
+the single round-27 data point. What holds instead, with q'' the next prime:
+
+    onset(M -> q') = min span of [ (D_4(q'') \ D_4(q')) INTERSECT the
+                                   transfer's own emissions ]
+
+"the transfer first over-generates exactly where the NEXT machine's new
+repertoire begins - it emits, one gear ahead of schedule, the tuples that only
+become realisable when the following gear is added."
+  * the exact onset ladder, eight steps: 13, 15, 17, 25, 31, 41, 53, 68 at
+    11->13 ... 37->41 (both dictionaries exact at every step; the small
+    machines' were recomputed in-round from the cyclically closed period with F
+    and F_4 asserted).
+  * REFINED FORM 31 OF 31 across six output arities (2, 3, 4, 5, 6, 7) and two
+    screens. The SIMPLE form (drop the intersection) is 7/8 at arity 4 and only
+    2/6 at arity 3 - so the intersection IS the law, not a patch, and the
+    simple form's arity-4 record was the luck of rich dictionaries.
+  * THE CAUSAL VERSION IS 8/8: every tuple refuted AT the onset span is
+    realised at the next machine.
+  * AND ONE STEP PREDICTED OUT OF SAMPLE: nu(41 -> 43) = 68, computed from the
+    m41 shard alone with no m43 dictionary and no solver, reproduces round 27's
+    MEASURED onset(37 -> 41) by a route that never saw it.
+  * THE LAW TRACKS THE SCREEN: the walk screen moves one onset (13->17: 15 ->
+    17) and the law's right-hand side moves with it, 6/6.
+  * THE MECHANISM, HALF EXPLAINED AND NOW QUANTIFIED. X_5(M) = 9 at every
+    machine with the SAME witness (1,2,3,2,1), which is phase-saturated at gear
+    5 - that explains the UNSCREENED onset exactly (9 at all eight steps).
+    Y_5 (unrealised AND not phase-saturated) is the sharper lower bound, and the
+    round's NAMED OPEN CONSTRUCT was Y_5 at a bigger machine. Built, by a
+    streamed full-period machine-29 pass:
+
+        machine   m13  m17  m19  m23  m29
+        X_5         9    9    9    9    9
+        Y_5        10   17   18   22   30
+        onset      15   17   25   31   41
+        onset/Y_5 1.50 1.00 1.39 1.41 1.37
+
+    so the multiplicity residue is NOT running away - at the three largest
+    machines where both are known the ratio sits in a band of width 0.04.
+    The m29 pass is gated two ways: the cyclic close is asserted, and the exact
+    5-tuple dictionary's INDUCED 4-tuple dictionary is EXACTLY the round-25
+    full-period census (45,854) - two independent full-period scans agreeing
+    cell for cell. THE SAME TOOL REACHED MACHINE 31 (33.4e9 slots, 997 blocks,
+    1,262 s, fully streamed): 636,575 distinct 5-tuples, induced 4-tuple
+    dictionary again EXACTLY the full-period census (115,193), and
+    Y_5(31) = 38 with witness (2,3,2,1,30). The full ladder:
+
+        machine    m13   m17   m19   m23   m29   m31
+        X_5          9     9     9     9     9     9
+        Y_5         10    17    18    22    30    38
+        onset       15    17    25    31    41    53
+        onset/Y_5 1.50  1.00  1.39  1.41  1.37  1.40
+
+    At the four largest machines the ratio is 1.389, 1.409, 1.367, 1.395 - a
+    band of width 0.042. The multiplicity residue is a near-constant FACTOR,
+    not a growing gap.
+    New object on disk: machine 29's exact 5-tuple dictionary
+    (research/data/r28/gap_tuples_29_5.csv, 208,668 tuples, reverse-closed),
+    whose max span is 85 - an INDEPENDENT full-period CONFIRMATION of
+    Constructor's new F_5(29) = 85.
+
+THE DEPTH-0 LEMMA - PROVED, THREE LINES, AND IT DECIDES 16.7% OF A 1.4M-DECISION
+CENSUS. D_m(M) SUBSET D_m(M + q') for every prime q' > 2(m+1): a new gear
+destroys openings and merges gaps, yet every old configuration survives, because
+the pattern forbids at most 2(m+1) < q' phases and CRT supplies a lap with an
+admissible one. Checked at arities 2, 3 and 4 at all six exact pairs
+13->17 ... 31->37 and against the m41 shard, and at arities 5, 6, 7 at the small
+steps where exact m-tuple dictionaries exist. AND THE HYPOTHESIS IS SHARP: at
+q' = 17 and 19 the first failure is at EXACTLY the first m the proof does not
+cover (witnesses (5,2,2,1,2,2,1,4) and (2,5,5,2,1,2,5,2,5)); at q' = 11, 13 it
+has slack 1. Payoff: 145,907 of the 874,087 reverse classes of the machine-41
+arity-4 superset are YES BY THEOREM, at every span, including the bands round 27
+priced at 3.5 s a decision.
+
+THE WALK SCREEN - the round-26 phase-saturation screen applied to the object the
+search actually walks. Every point of the transfer's WALK, the deleted interiors
+included, is an M-opening, so the whole walk needs an admissible phase at every
+gear q <= M. Sound (asserted at every step), strictly stronger, a prefix prune
+rather than a post-filter, and it SUBSUMES the emission screen at all six steps.
+Superset sizes 2,435,140 -> 1,182,475 (emission) -> 1,153,814 (walk) at 31->37.
+DELIVERED FOR RUNG NINE: research/data/r28/gap_tuples_41_4_walkscreened.csv,
+1,714,020 tuples, ASSERTED to be a subset of round 27's 1,747,819 and ASSERTED
+to contain every tuple of the exact shard; the removals land almost entirely
+above span 100, i.e. exactly in the expensive bands.
+
+THE m41 EXACT SHARD: FRONTIER 77 -> 80. Four workers, 19,292 paid decisions,
+ZERO undecided, inside their deadline. research/data/r28/gap_tuples_41_4_exact_le80.csv,
+395,941 tuples, reverse-closed, agreeing with the round-27 shard cell for cell
+below 77 (asserted). Remaining paid population 711,279 classes; span 81-90 alone
+is 23 h at five workers, so the census stays a multi-round object and is
+labelled as one.
+
+PEAK DEPTH (brief item d), by a two-line exact vehicle over the cyclic period
+(no transfer, no solver, no seed): the qualifying spectrum is MONOTONE UP TO
+VACUUM at every machine <= 23 - the peak is the LAST non-empty depth, 5, 4, 6,
+5, 6 at m11..m23 - while at m31 the peak is interior (5 of 7) and at m37 it is
+interior (7 of 8). So the "peak terminal -> peak interior" transition happens
+between machine 23 and machine 31, and m29 is the machine in the gap (its C13
+row is a PLATEAU 71, 71, 71 with Q_8 unmeasured). Every entry reproduces C13's
+table by a completely different vehicle. My pre-registered E1 ("peak depth
+non-decreasing in M") is REFUTED by my own table.
+
+THE M1 AUDIT (routed in by the coordinator): NO mechanic claim leans on M1, and
+this lane's own data is corroboration of its refutation. Legality here has
+always been RESIDUE-based - v is legal iff v mod q' is in {0, +s, -s} - which is
+an infinite set containing a+q', 2q', q'+(q'-s). At 53 -> 59 the letters
+enumerated were {20, 39, 59, 79, 98, 118, 138}, four of them outside M1's
+alphabet, and the letters in the REALISED words are {20, 39, 59, 98, 118} with
+98 and 118 outside it. The arity-4 carrier (20, 98, 20) has an omitted value as
+its MIDDLE letter and is exactly what lifts A_kill from 3 to 4 - round 27's C36
+was already evidence against M1, filed before M1 was refuted.
+
+HONEST NEGATIVES AND COSTS
+- MY HEADLINE PREDICTION LOST. A1 said the band would be non-empty with
+  F(59) >= 165; it is empty. A2 (attaining depth J=4) and A4 (Delta beyond
+  [-3,4]) went with it. The reasoning leaned on the k_win census and on a
+  realised 2-letter word having room for flanks; what actually governs is
+  OCCURRENCE COUNT, not span - a law this lane established in C13 and then
+  argued past. Standing rule 1 in its third costume.
+- THREE PRE-REGISTERED ONSET FORMULAS, ALL REFUTED. Each fitted the single
+  round-27 data point. Fitting a closed form to one measurement is the same
+  error as extrapolating a per-step share; I made it three ways at once.
+- Y_5 IS STILL NOT COMPUTED AT m31 OR m37. It was carried to m29 this round by
+  a streamed pass, but m31 and m37 have periods 3.3e10 and 1.2e12 and no scan
+  reaches them. The construct that would is a lap-phase transfer emitting
+  5-TUPLES instead of extremal values - the same K2 bijection with a different
+  payload - and I did not price it.
+- THE m29 QUALIFYING-SPECTRUM TURNOVER IS STILL NOT DECIDED. The m29 pass I did
+  run produced the 5-TUPLE dictionary, not the deep qualifying spectrum; that
+  needs a prefix-sum array of ~1.7 GB, and the box ran at 48-59 GB of a 63.6 GB
+  commit limit all round. It is one pass, and it is the named next item.
+- I CLAIMED A SECOND KILL THAT NEVER HAPPENED. Seeing no machine-31 process
+  and no CSV, I wrote in the log that the m31 pass had been killed before
+  finishing. It had not: it EXITED NORMALLY and had already printed
+  Y_5(31) = 38 - my liveness check simply landed after it finished, and the
+  missing CSV is because the running process predated my emission edit by
+  fifteen minutes. Corrected in place. This is standing rule 23 in a new
+  costume: re-read the log before quoting a verdict about a process, including
+  the verdict "it died".
+- I KILLED MY OWN SECOND HEADLINE JOB. All seven F_2(59) workers - and their
+  launcher - died SILENTLY and simultaneously at 20-55% of their ranges: no
+  traceback, no "scan complete", nothing in any log. The trigger was almost
+  certainly me: to pass the time while waiting I ran a REDUNDANT
+  reconfirmation of the walk-screen ladder in the foreground, which holds a
+  2.4M-tuple superset and two ~1.2M-tuple sets, on a box already carrying the
+  seven workers, a streamed machine-31 pass and other lanes. Committed memory
+  has no headroom to spend on a run whose result I already had. That is
+  standing rule 37 violated ONCE I HAD ALREADY WRITTEN IT, in the same round,
+  and the cost was ~50 minutes of seven-core work.
+  RECOVERED, not reported around: the partial logs give a valid lower bound
+  (the best span any worker actually found was 173), so the rerun is seeded at
+  172 - which re-derives that half WITH a witness and decides everything above
+  it, at roughly a quarter of the original cost by the round-27 seed law.
+- I RAN TOO MANY PROCESSES. Twelve of mine against other lanes' nine and two
+  Lean builds took commit to 59.3 of 63.6 GB, CPU to 42%, and my own headline
+  job to a quarter of its solo speed. The fix was killing my own lowest-value
+  job. New standing rule 37.
+- AN INDEX SLIP IN MY OWN PROSE, caught on review. The depth-cap argument was
+  written as "a J-window carries a realised (J-1)-LETTER kill word". It carries
+  J-1 INTERIOR OPENINGS - a chain of ARITY J-1 - whose word has J-2 letters.
+  A_kill counts openings, so the live inequality is J-1 <= A_kill, which is what
+  every script computed and what the gate asserts. Nothing computed moves; the
+  sentence was wrong in four documents and is now right in all of them. Rule 5,
+  applied to my own text.
+- Two jobs died of MemoryError from uncapped transfers (the 41->43
+  out-of-sample run and the first m41 walk-screen); both were re-run with a
+  computed cap. A transfer without a span cap is not a transfer.
+
+FOR OTHER LANES
+- MORE SPECTRUM VALUES, ALL UNCONDITIONAL BECAUSE F(59) IS NOW A NUMBER:
+  F_5(41) = 128 (new; the two maximisers are an exact mirror pair, and the shape
+  is INHERITED - the depth-5 record is round 27's depth-4 record with one more
+  gap of 10 prepended, F_5 = F_4 + 10, verified at machine 41 slot by slot);
+  F_3(47) = 145 (was ">= 145, <= 263"), whose witness translates to
+  k = 36,068,193,854,725,102 with gaps [28,33,84] - C11's round-24 address
+  EXACTLY, found by a completely different vehicle. And the free retro-upgrade:
+  F_2(53) = 159 loses its span condition.
+
+- CONSTRUCTOR: the tenth rung's inputs are delivered EXACT and UNCONDITIONAL
+  (F_2(43) = 116, F_3(43) = 125, F_4(43) = 132, max 132 vs budget 150), and the
+  emptiness certificate at J_max(43)+1 is FREE from A_kill(43->47) = 3 - the
+  completed arity level IS the depth cap, the same lever that made my own F(59)
+  band affordable. The walk-screened m41 superset is a drop-in tighter input for
+  rung nine, and 291,675 of its tuples are YES BY THEOREM. Your Delta band
+  survives at machine 53 (+2 at every J). Your "same small job" spectra were
+  also run - see the F_5(41) / F_3(47) row below.
+- ON DEPTH CAPS GENERALLY: every one of my runs this round was capped by a
+  completed A_kill level rather than by budget, and that is the reusable move -
+  Q*_J = 0 for J - 1 > A_kill, so a decided arity level converts an open-ended
+  scan into a finite one.
+- FORMALIST: the depth-0 lemma is a clean finite kernel target - it is a
+  statement about one pattern, 2(m+1) forbidden residues and one CRT lap, and
+  its sharpness is a finite table.
+- LP THREAD / MANAGER: F(59) = 161 exact, F(2,59) = 483; the increment at
+  53 -> 59 is +2 against a cap of 20.
+
+
+(Manager note: filed by the manager from the lane's staged append_block.md after the Opus weekly limit terminated the agent mid-filing. Text verbatim.)

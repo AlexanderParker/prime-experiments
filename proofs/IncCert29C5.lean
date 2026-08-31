@@ -1,0 +1,369 @@
+/-
+INCREMENT-WIDTH CERTIFICATE, step 23->29, case 5 of 35 (GENERATED
+by research/gen_inc_lean.py from
+research/data/r27/cert_inc_23_29.json, which re-derives every number
+from the primes alone).
+
+Machine 29, INCREMENT width 49 = F_2(23) + s_min(29) = 39 + 10,
+held gears [5, 7] at phases [0, 5].  Free gears [11, 13, 17, 19, 23, 29].
+All numbers are the LP thread's exact rational dual scaled by the
+case denominator 6.
+-/
+import IncCert29B
+
+namespace IncCert29
+
+/-! ### case 5: held gears at phases [0, 5] -/
+
+def p5 : List ℕ := [0, 2, 5, 7, 12, 13, 18, 20, 23, 25, 27, 28, 30, 32, 33, 35, 37, 40, 42, 47, 48]
+def q5 (t : ℕ) : ℕ := p5.getD t 0
+def n5 : ℕ := 21
+def yl5 : List ℤ := [1, 0, 1, 0, 1, 0, 0, 2, 3, 3, 3, 6, 5, 4, 1, 6, 4, 1, 2, 0, 0]
+def w5 (t : ℕ) : ℤ := yl5.getD t 0
+def ul5 : List ℤ := [0, (-2), 0, (-2), 0, (-2), 0, (-2), 0, 0, (-2), 0, 0, 2, 0, 0, (-2), 0, 0, 0, 0, 0, 0, 0, (-1), 0, 0, (-2), (-2), (-2), (-1), 0, (-2), (-2), (-2), (-1), (-1), (-1), (-2), (-2), (-2), 2, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (-3), (-3), (-3), (-3), (-3), (-3), (-3), 0, (-3), (-3), (-3), (-3), (-3), (-3), 0, 0, (-3), (-3), (-3), (-3), (-3), (-3), 0, 3, 0, 0, 0, 3, 0, 0, 3, 3, 0, 0, (-1), (-1), (-1), 0, (-1), (-1), 1, (-1), (-1), (-1), (-1), 0, (-1), (-1), (-1), (-1), (-1), (-1), 0, (-1), (-1), 1, 0, (-1), (-1), 0, (-1), (-1), 1, (-1), (-1), (-1), (-1), (-1), (-1), (-1), 1, (-1), (-1), 0, 16, 16, 16, 15, 11, 9, 15, 16, 16, 15, 7, 13, 15, 15, 16, 10, 16, (-16), (-16), (-16), (-16), (-16), (-16), (-16), (-16), (-16), (-16), (-16), (-16), (-16), 14, 7, 9, 14, 14, 8, 14, 14, 14, 13, 11, 12, 14, 14, 12, 8, 14, 14, 14, (-14), (-14), (-14), (-14), (-14), (-14), (-14), (-14), (-14), (-14), (-14), (-14), (-14), 14, 6, 18, 18, 18, 10, 6, 18, 18, 18, 18, 3, 13, 10, 16, 18, 3, 18, 13, 18, 13, 3, 18, (-18), (-18), (-18), (-18), (-18), (-18), (-18), (-18), (-18), (-18), (-18), (-18), (-18), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (-5), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (-5), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (-2), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 11, 8, 3, 14, 8, 14, 7, 1, 7, 1, 14, 5, 5, 6, 4, 14, 4, 9, 5, 5, 14, 7, 12, 5, 9, 14, 4, 14, 0, 0, 0, (-13), (-5), 0, 0, 0, (-11), (-9), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+def u5 (k : ℕ) : ℤ := ul5.getD k 0
+
+def c5_0 (r t : ℕ) : Bool := gb11 r (q5 t)
+def c5_1 (r t : ℕ) : Bool := gb13 r (q5 t)
+def c5_2 (r t : ℕ) : Bool := gb17 r (q5 t)
+def c5_3 (r t : ℕ) : Bool := gb19 r (q5 t)
+def c5_4 (r t : ℕ) : Bool := gb23 r (q5 t)
+def c5_5 (r t : ℕ) : Bool := gb29 r (q5 t)
+
+def S5_0 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (w5 t + 3) * (if c5_0 r t then 1 else 0)
+def S5_1 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (w5 t + 3) * (if c5_1 r t then 1 else 0)
+def S5_2 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (w5 t + 3) * (if c5_2 r t then 1 else 0)
+def S5_3 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (w5 t + 3) * (if c5_3 r t then 1 else 0)
+def S5_4 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (w5 t + 3) * (if c5_4 r t then 1 else 0)
+def S5_5 (r : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (w5 t + 3) * (if c5_5 r t then 1 else 0)
+
+def L5_0 (r : ℕ) : ℤ := u5 (13 + r) + u5 (41 + r) + u5 (71 + r) + u5 (105 + r) + u5 (145 + r)
+def L5_1 (r : ℕ) : ℤ := u5 (0 + r) + u5 (173 + r) + u5 (205 + r) + u5 (241 + r) + u5 (283 + r)
+def L5_2 (r : ℕ) : ℤ := u5 (24 + r) + u5 (156 + r) + u5 (315 + r) + u5 (355 + r) + u5 (401 + r)
+def L5_3 (r : ℕ) : ℤ := u5 (52 + r) + u5 (186 + r) + u5 (296 + r) + u5 (441 + r) + u5 (489 + r)
+def L5_4 (r : ℕ) : ℤ := u5 (82 + r) + u5 (218 + r) + u5 (332 + r) + u5 (418 + r) + u5 (537 + r)
+def L5_5 (r : ℕ) : ℤ := u5 (116 + r) + u5 (254 + r) + u5 (372 + r) + u5 (460 + r) + u5 (508 + r)
+
+def aS5_0 (r : ℕ) : ℤ := S5_0 r - L5_0 r
+def MS5_0 : ℤ := CaseSplit.mxr (aS5_0) 10
+def aS5_1 (r : ℕ) : ℤ := S5_1 r - L5_1 r
+def MS5_1 : ℤ := CaseSplit.mxr (aS5_1) 12
+def aS5_2 (r : ℕ) : ℤ := S5_2 r - L5_2 r
+def MS5_2 : ℤ := CaseSplit.mxr (aS5_2) 16
+def aS5_3 (r : ℕ) : ℤ := S5_3 r - L5_3 r
+def MS5_3 : ℤ := CaseSplit.mxr (aS5_3) 18
+def aS5_4 (r : ℕ) : ℤ := S5_4 r - L5_4 r
+def MS5_4 : ℤ := CaseSplit.mxr (aS5_4) 22
+def aS5_5 (r : ℕ) : ℤ := S5_5 r - L5_5 r
+def MS5_5 : ℤ := CaseSplit.mxr (aS5_5) 28
+
+def N5_0 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_0 ra t && c5_1 rb t then 1 else 0)
+def aP5_0 (ra rb : ℕ) : ℤ := -(3) * N5_0 ra rb + u5 (0 + rb) + u5 (13 + ra)
+def MP5_0 : ℤ := CaseSplit.mxr2 (aP5_0) 10 12
+def N5_1 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_0 ra t && c5_2 rb t then 1 else 0)
+def aP5_1 (ra rb : ℕ) : ℤ := -(3) * N5_1 ra rb + u5 (24 + rb) + u5 (41 + ra)
+def MP5_1 : ℤ := CaseSplit.mxr2 (aP5_1) 10 16
+def N5_2 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_0 ra t && c5_3 rb t then 1 else 0)
+def aP5_2 (ra rb : ℕ) : ℤ := -(3) * N5_2 ra rb + u5 (52 + rb) + u5 (71 + ra)
+def MP5_2 : ℤ := CaseSplit.mxr2 (aP5_2) 10 18
+def N5_3 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_0 ra t && c5_4 rb t then 1 else 0)
+def aP5_3 (ra rb : ℕ) : ℤ := -(3) * N5_3 ra rb + u5 (82 + rb) + u5 (105 + ra)
+def MP5_3 : ℤ := CaseSplit.mxr2 (aP5_3) 10 22
+def N5_4 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_0 ra t && c5_5 rb t then 1 else 0)
+def aP5_4 (ra rb : ℕ) : ℤ := -(3) * N5_4 ra rb + u5 (116 + rb) + u5 (145 + ra)
+def MP5_4 : ℤ := CaseSplit.mxr2 (aP5_4) 10 28
+def P5_5 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_2 rb t then 1 else 0)
+def C5_5 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_2 rb t && c5_0 s t then 1 else 0)
+def M5_5 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C5_5 ra rb) 10
+def E5_5 : List ℕ := [25, 31, 68, 79, 104, 115, 120, 126, 188, 194, 210, 216]
+def N5_5 (ra rb : ℕ) : ℤ := if E5_5.contains (ra * 17 + rb) = true then P5_5 ra rb - M5_5 ra rb else 0
+def aP5_5 (ra rb : ℕ) : ℤ := -(3) * N5_5 ra rb + u5 (156 + rb) + u5 (173 + ra)
+def MP5_5 : ℤ := CaseSplit.mxr2 (aP5_5) 12 16
+def P5_6 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_3 rb t then 1 else 0)
+def C5_6 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_3 rb t && c5_0 s t then 1 else 0)
+def M5_6 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C5_6 ra rb) 10
+def E5_6 : List ℕ := [33, 41, 44, 67, 78, 91, 120, 131, 154, 167, 204, 207, 212, 238]
+def N5_6 (ra rb : ℕ) : ℤ := if E5_6.contains (ra * 19 + rb) = true then P5_6 ra rb - M5_6 ra rb else 0
+def aP5_6 (ra rb : ℕ) : ℤ := -(3) * N5_6 ra rb + u5 (186 + rb) + u5 (205 + ra)
+def MP5_6 : ℤ := CaseSplit.mxr2 (aP5_6) 12 18
+def P5_7 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_4 rb t then 1 else 0)
+def C5_7 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_4 rb t && c5_0 s t then 1 else 0)
+def M5_7 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C5_7 ra rb) 10
+def E5_7 : List ℕ := []
+def N5_7 (ra rb : ℕ) : ℤ := if E5_7.contains (ra * 23 + rb) = true then P5_7 ra rb - M5_7 ra rb else 0
+def aP5_7 (ra rb : ℕ) : ℤ := -(3) * N5_7 ra rb + u5 (218 + rb) + u5 (241 + ra)
+def MP5_7 : ℤ := CaseSplit.mxr2 (aP5_7) 12 22
+def P5_8 (ra rb : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_5 rb t then 1 else 0)
+def C5_8 (ra rb s : ℕ) : ℤ := ∑ t ∈ Finset.range n5, (if c5_1 ra t && c5_5 rb t && c5_0 s t then 1 else 0)
+def M5_8 (ra rb : ℕ) : ℤ := CaseSplit.mxr (C5_8 ra rb) 10
+def E5_8 : List ℕ := []
+def N5_8 (ra rb : ℕ) : ℤ := if E5_8.contains (ra * 29 + rb) = true then P5_8 ra rb - M5_8 ra rb else 0
+def aP5_8 (ra rb : ℕ) : ℤ := -(3) * N5_8 ra rb + u5 (254 + rb) + u5 (283 + ra)
+def MP5_8 : ℤ := CaseSplit.mxr2 (aP5_8) 12 28
+def N5_9 (_ra _rb : ℕ) : ℤ := 0
+def aP5_9 (ra rb : ℕ) : ℤ := -(3) * N5_9 ra rb + u5 (296 + rb) + u5 (315 + ra)
+def MP5_9 : ℤ := CaseSplit.mxr2 (aP5_9) 16 18
+def N5_10 (_ra _rb : ℕ) : ℤ := 0
+def aP5_10 (ra rb : ℕ) : ℤ := -(3) * N5_10 ra rb + u5 (332 + rb) + u5 (355 + ra)
+def MP5_10 : ℤ := CaseSplit.mxr2 (aP5_10) 16 22
+def N5_11 (_ra _rb : ℕ) : ℤ := 0
+def aP5_11 (ra rb : ℕ) : ℤ := -(3) * N5_11 ra rb + u5 (372 + rb) + u5 (401 + ra)
+def MP5_11 : ℤ := CaseSplit.mxr2 (aP5_11) 16 28
+def N5_12 (_ra _rb : ℕ) : ℤ := 0
+def aP5_12 (ra rb : ℕ) : ℤ := -(3) * N5_12 ra rb + u5 (418 + rb) + u5 (441 + ra)
+def MP5_12 : ℤ := CaseSplit.mxr2 (aP5_12) 18 22
+def N5_13 (_ra _rb : ℕ) : ℤ := 0
+def aP5_13 (ra rb : ℕ) : ℤ := -(3) * N5_13 ra rb + u5 (460 + rb) + u5 (489 + ra)
+def MP5_13 : ℤ := CaseSplit.mxr2 (aP5_13) 18 28
+def N5_14 (_ra _rb : ℕ) : ℤ := 0
+def aP5_14 (ra rb : ℕ) : ℤ := -(3) * N5_14 ra rb + u5 (508 + rb) + u5 (537 + ra)
+def MP5_14 : ℤ := CaseSplit.mxr2 (aP5_14) 22 28
+
+def rhs5 : ℤ := (∑ t ∈ Finset.range n5, w5 t) + 3 * (n5 : ℤ)
+
+set_option maxRecDepth 40000
+set_option maxHeartbeats 4000000
+
+theorem wnn5 : ∀ t, t < n5 → (0 : ℤ) ≤ w5 t := by decide
+theorem plt5 : ∀ t, t < n5 → q5 t < 49 := by decide
+theorem pfree5_5 : ∀ t, t < n5 → gb5 0 (q5 t) = false := by decide
+theorem pfree5_7 : ∀ t, t < n5 → gb7 5 (q5 t) = false := by decide
+theorem MSv5_0 : MS5_0 = 19 := by decide +kernel
+theorem MSv5_1 : MS5_1 = 67 := by decide +kernel
+theorem MSv5_2 : MS5_2 = 1 := by decide +kernel
+theorem MSv5_3 : MS5_3 = 1 := by decide +kernel
+theorem MSv5_4 : MS5_4 = 1 := by decide +kernel
+theorem MSv5_5 : MS5_5 = 1 := by decide +kernel
+theorem MPv5_0 : MP5_0 = 0 := by decide +kernel
+theorem MPv5_1 : MP5_1 = 0 := by decide +kernel
+theorem MPv5_2 : MP5_2 = 0 := by decide +kernel
+theorem MPv5_3 : MP5_3 = 0 := by decide +kernel
+theorem MPv5_4 : MP5_4 = 0 := by decide +kernel
+theorem MPv5_5 : MP5_5 = 0 := by decide +kernel
+theorem MPv5_6 : MP5_6 = 0 := by decide +kernel
+theorem MPv5_7 : MP5_7 = 0 := by decide +kernel
+theorem MPv5_8 : MP5_8 = 0 := by decide +kernel
+theorem MPv5_9 : MP5_9 = 0 := by decide +kernel
+theorem MPv5_10 : MP5_10 = 0 := by decide +kernel
+theorem MPv5_11 : MP5_11 = 0 := by decide +kernel
+theorem MPv5_12 : MP5_12 = 0 := by decide +kernel
+theorem MPv5_13 : MP5_13 = 0 := by decide +kernel
+theorem MPv5_14 : MP5_14 = 14 := by decide +kernel
+theorem rhsv5 : rhs5 = 106 := by decide +kernel
+
+/-- **The case-5 certificate**: the dual objective falls short of the
+    recursion row's right-hand side.  Margin 2/6.
+    (Scaled by the common denominator 6: 104 < 106.) -/
+theorem cert5 : MS5_0 + MS5_1 + MS5_2 + MS5_3 + MS5_4 + MS5_5 + MP5_0 + MP5_1 + MP5_2 + MP5_3 + MP5_4 + MP5_5 + MP5_6 + MP5_7 + MP5_8 + MP5_9 + MP5_10 + MP5_11 + MP5_12 + MP5_13 + MP5_14 < rhs5 := by
+  rw [MSv5_0, MSv5_1, MSv5_2, MSv5_3, MSv5_4, MSv5_5, MPv5_0, MPv5_1, MPv5_2, MPv5_3, MPv5_4, MPv5_5, MPv5_6, MPv5_7, MPv5_8, MPv5_9, MPv5_10, MPv5_11, MPv5_12, MPv5_13, MPv5_14, rhsv5]
+  decide
+
+def Dg5 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := (if c5_0 r0 t then 1 else 0) + (if c5_1 r1 t then 1 else 0) + (if c5_2 r2 t then 1 else 0) + (if c5_3 r3 t then 1 else 0) + (if c5_4 r4 t then 1 else 0) + (if c5_5 r5 t then 1 else 0)
+def Wl5_0 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if c5_0 r0 t && c5_1 r1 t then 1 else 0
+def Wl5_1 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if c5_0 r0 t && c5_2 r2 t then 1 else 0
+def Wl5_2 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if c5_0 r0 t && c5_3 r3 t then 1 else 0
+def Wl5_3 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if c5_0 r0 t && c5_4 r4 t then 1 else 0
+def Wl5_4 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if c5_0 r0 t && c5_5 r5 t then 1 else 0
+def Wl5_5 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && c5_1 r1 t && c5_2 r2 t then 1 else 0
+def Wl5_6 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && c5_1 r1 t && c5_3 r3 t then 1 else 0
+def Wl5_7 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && c5_1 r1 t && c5_4 r4 t then 1 else 0
+def Wl5_8 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && c5_1 r1 t && c5_5 r5 t then 1 else 0
+def Wl5_9 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && !c5_1 r1 t && c5_2 r2 t && c5_3 r3 t then 1 else 0
+def Wl5_10 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && !c5_1 r1 t && c5_2 r2 t && c5_4 r4 t then 1 else 0
+def Wl5_11 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && !c5_1 r1 t && c5_2 r2 t && c5_5 r5 t then 1 else 0
+def Wl5_12 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && !c5_1 r1 t && !c5_2 r2 t && c5_3 r3 t && c5_4 r4 t then 1 else 0
+def Wl5_13 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && !c5_1 r1 t && !c5_2 r2 t && c5_3 r3 t && c5_5 r5 t then 1 else 0
+def Wl5_14 (r0 r1 r2 r3 r4 r5 t : ℕ) : ℤ := if !c5_0 r0 t && !c5_1 r1 t && !c5_2 r2 t && !c5_3 r3 t && c5_4 r4 t && c5_5 r5 t then 1 else 0
+
+/-- **No configuration blocks the whole window in case 5.** -/
+theorem nocov5 {r0 r1 r2 r3 r4 r5 : ℕ} (h0 : r0 < 11) (h1 : r1 < 13) (h2 : r2 < 17) (h3 : r3 < 19) (h4 : r4 < 23) (h5 : r5 < 29)
+    (hcov : ∀ t, t < n5 → (c5_0 r0 t || c5_1 r1 t || c5_2 r2 t || c5_3 r3 t || c5_4 r4 t || c5_5 r5 t) = true) : False := by
+  have hpt : ∀ t ∈ Finset.range n5, (1 : ℤ) + (Wl5_0 r0 r1 r2 r3 r4 r5 t + Wl5_1 r0 r1 r2 r3 r4 r5 t + Wl5_2 r0 r1 r2 r3 r4 r5 t + Wl5_3 r0 r1 r2 r3 r4 r5 t + Wl5_4 r0 r1 r2 r3 r4 r5 t + Wl5_5 r0 r1 r2 r3 r4 r5 t + Wl5_6 r0 r1 r2 r3 r4 r5 t + Wl5_7 r0 r1 r2 r3 r4 r5 t + Wl5_8 r0 r1 r2 r3 r4 r5 t + Wl5_9 r0 r1 r2 r3 r4 r5 t + Wl5_10 r0 r1 r2 r3 r4 r5 t + Wl5_11 r0 r1 r2 r3 r4 r5 t + Wl5_12 r0 r1 r2 r3 r4 r5 t + Wl5_13 r0 r1 r2 r3 r4 r5 t + Wl5_14 r0 r1 r2 r3 r4 r5 t) ≤ Dg5 r0 r1 r2 r3 r4 r5 t := by
+    intro t ht
+    simp only [Wl5_0, Wl5_1, Wl5_2, Wl5_3, Wl5_4, Wl5_5, Wl5_6, Wl5_7, Wl5_8, Wl5_9, Wl5_10, Wl5_11, Wl5_12, Wl5_13, Wl5_14, Dg5]
+    exact CaseSplit.lowest6 _ _ _ _ _ _ (hcov t (Finset.mem_range.mp ht))
+  have hd1 : ∀ t ∈ Finset.range n5, (1 : ℤ) ≤ Dg5 r0 r1 r2 r3 r4 r5 t := by
+    intro t ht
+    simp only [Dg5]
+    exact CaseSplit.degpos6 _ _ _ _ _ _ (hcov t (Finset.mem_range.mp ht))
+  have hsum : (n5 : ℤ) + ((∑ t ∈ Finset.range n5, Wl5_0 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_1 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_2 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_3 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_4 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_5 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_6 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_7 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_8 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_9 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_10 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_11 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_12 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_13 r0 r1 r2 r3 r4 r5 t) + (∑ t ∈ Finset.range n5, Wl5_14 r0 r1 r2 r3 r4 r5 t)) ≤ ∑ t ∈ Finset.range n5, Dg5 r0 r1 r2 r3 r4 r5 t := by
+    have h := Finset.sum_le_sum hpt
+    simp only [Finset.sum_add_distrib, Finset.sum_const, Finset.card_range, nsmul_eq_mul, mul_one] at h
+    exact h
+  have hn0 : N5_0 r0 r1 ≤ ∑ t ∈ Finset.range n5, Wl5_0 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_0, Wl5_0, le_refl]
+  have hn1 : N5_1 r0 r2 ≤ ∑ t ∈ Finset.range n5, Wl5_1 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_1, Wl5_1, le_refl]
+  have hn2 : N5_2 r0 r3 ≤ ∑ t ∈ Finset.range n5, Wl5_2 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_2, Wl5_2, le_refl]
+  have hn3 : N5_3 r0 r4 ≤ ∑ t ∈ Finset.range n5, Wl5_3 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_3, Wl5_3, le_refl]
+  have hn4 : N5_4 r0 r5 ≤ ∑ t ∈ Finset.range n5, Wl5_4 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_4, Wl5_4, le_refl]
+  have hn5 : N5_5 r1 r2 ≤ ∑ t ∈ Finset.range n5, Wl5_5 r0 r1 r2 r3 r4 r5 t := by
+    have hsp : ∀ t ∈ Finset.range n5, Wl5_5 r0 r1 r2 r3 r4 r5 t
+        = (if c5_1 r1 t && c5_2 r2 t then (1:ℤ) else 0)
+          - (if c5_1 r1 t && c5_2 r2 t && c5_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl5_5]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n5, Wl5_5 r0 r1 r2 r3 r4 r5 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl5_5]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n5, Wl5_5 r0 r1 r2 r3 r4 r5 t
+        = P5_5 r1 r2 - C5_5 r1 r2 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P5_5, C5_5]
+    have hm : C5_5 r1 r2 r0 ≤ M5_5 r1 r2 :=
+      CaseSplit.le_mxr (C5_5 r1 r2) 10 r0 (by omega)
+    simp only [N5_5]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn6 : N5_6 r1 r3 ≤ ∑ t ∈ Finset.range n5, Wl5_6 r0 r1 r2 r3 r4 r5 t := by
+    have hsp : ∀ t ∈ Finset.range n5, Wl5_6 r0 r1 r2 r3 r4 r5 t
+        = (if c5_1 r1 t && c5_3 r3 t then (1:ℤ) else 0)
+          - (if c5_1 r1 t && c5_3 r3 t && c5_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl5_6]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n5, Wl5_6 r0 r1 r2 r3 r4 r5 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl5_6]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n5, Wl5_6 r0 r1 r2 r3 r4 r5 t
+        = P5_6 r1 r3 - C5_6 r1 r3 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P5_6, C5_6]
+    have hm : C5_6 r1 r3 r0 ≤ M5_6 r1 r3 :=
+      CaseSplit.le_mxr (C5_6 r1 r3) 10 r0 (by omega)
+    simp only [N5_6]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn7 : N5_7 r1 r4 ≤ ∑ t ∈ Finset.range n5, Wl5_7 r0 r1 r2 r3 r4 r5 t := by
+    have hsp : ∀ t ∈ Finset.range n5, Wl5_7 r0 r1 r2 r3 r4 r5 t
+        = (if c5_1 r1 t && c5_4 r4 t then (1:ℤ) else 0)
+          - (if c5_1 r1 t && c5_4 r4 t && c5_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl5_7]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n5, Wl5_7 r0 r1 r2 r3 r4 r5 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl5_7]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n5, Wl5_7 r0 r1 r2 r3 r4 r5 t
+        = P5_7 r1 r4 - C5_7 r1 r4 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P5_7, C5_7]
+    have hm : C5_7 r1 r4 r0 ≤ M5_7 r1 r4 :=
+      CaseSplit.le_mxr (C5_7 r1 r4) 10 r0 (by omega)
+    simp only [N5_7]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn8 : N5_8 r1 r5 ≤ ∑ t ∈ Finset.range n5, Wl5_8 r0 r1 r2 r3 r4 r5 t := by
+    have hsp : ∀ t ∈ Finset.range n5, Wl5_8 r0 r1 r2 r3 r4 r5 t
+        = (if c5_1 r1 t && c5_5 r5 t then (1:ℤ) else 0)
+          - (if c5_1 r1 t && c5_5 r5 t && c5_0 r0 t then (1:ℤ) else 0) := by
+      intro t _
+      simp only [Wl5_8]
+      exact CaseSplit.ind_low2 _ _ _
+    have hnn : (0:ℤ) ≤ ∑ t ∈ Finset.range n5, Wl5_8 r0 r1 r2 r3 r4 r5 t := by
+      apply Finset.sum_nonneg
+      intro t _
+      simp only [Wl5_8]
+      exact CaseSplit.ind_nonneg _
+    have hL : ∑ t ∈ Finset.range n5, Wl5_8 r0 r1 r2 r3 r4 r5 t
+        = P5_8 r1 r5 - C5_8 r1 r5 r0 := by
+      rw [Finset.sum_congr rfl hsp, Finset.sum_sub_distrib]
+      simp only [P5_8, C5_8]
+    have hm : C5_8 r1 r5 r0 ≤ M5_8 r1 r5 :=
+      CaseSplit.le_mxr (C5_8 r1 r5) 10 r0 (by omega)
+    simp only [N5_8]
+    split
+    · rw [hL]; omega
+    · exact hnn
+  have hn9 : N5_9 r2 r3 ≤ ∑ t ∈ Finset.range n5, Wl5_9 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_9]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl5_9]
+    exact CaseSplit.ind_nonneg _
+  have hn10 : N5_10 r2 r4 ≤ ∑ t ∈ Finset.range n5, Wl5_10 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_10]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl5_10]
+    exact CaseSplit.ind_nonneg _
+  have hn11 : N5_11 r2 r5 ≤ ∑ t ∈ Finset.range n5, Wl5_11 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_11]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl5_11]
+    exact CaseSplit.ind_nonneg _
+  have hn12 : N5_12 r3 r4 ≤ ∑ t ∈ Finset.range n5, Wl5_12 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_12]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl5_12]
+    exact CaseSplit.ind_nonneg _
+  have hn13 : N5_13 r3 r5 ≤ ∑ t ∈ Finset.range n5, Wl5_13 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_13]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl5_13]
+    exact CaseSplit.ind_nonneg _
+  have hn14 : N5_14 r4 r5 ≤ ∑ t ∈ Finset.range n5, Wl5_14 r0 r1 r2 r3 r4 r5 t := by
+    simp only [N5_14]
+    apply Finset.sum_nonneg
+    intro t _
+    simp only [Wl5_14]
+    exact CaseSplit.ind_nonneg _
+  have hS : ∑ t ∈ Finset.range n5, (w5 t + 3) * Dg5 r0 r1 r2 r3 r4 r5 t = S5_0 r0 + S5_1 r1 + S5_2 r2 + S5_3 r3 + S5_4 r4 + S5_5 r5 := by
+    simp only [S5_0, S5_1, S5_2, S5_3, S5_4, S5_5, Dg5, mul_add, Finset.sum_add_distrib]
+  have hSD : ∑ t ∈ Finset.range n5, (w5 t + 3) * Dg5 r0 r1 r2 r3 r4 r5 t
+      = (∑ t ∈ Finset.range n5, w5 t * Dg5 r0 r1 r2 r3 r4 r5 t)
+        + 3 * (∑ t ∈ Finset.range n5, Dg5 r0 r1 r2 r3 r4 r5 t) := by
+    simp only [add_mul, Finset.sum_add_distrib, Finset.mul_sum]
+  have hwD : (∑ t ∈ Finset.range n5, w5 t)
+      ≤ ∑ t ∈ Finset.range n5, w5 t * Dg5 r0 r1 r2 r3 r4 r5 t := by
+    apply Finset.sum_le_sum
+    intro t ht
+    have h1 : (1:ℤ) ≤ Dg5 r0 r1 r2 r3 r4 r5 t := hd1 t ht
+    have h2 : (0:ℤ) ≤ w5 t := wnn5 t (Finset.mem_range.mp ht)
+    calc w5 t = w5 t * 1 := (mul_one _).symm
+      _ ≤ w5 t * Dg5 r0 r1 r2 r3 r4 r5 t := by exact mul_le_mul_of_nonneg_left h1 h2
+  have hid : (aS5_0 r0 + aS5_1 r1 + aS5_2 r2 + aS5_3 r3 + aS5_4 r4 + aS5_5 r5) + (aP5_0 r0 r1 + aP5_1 r0 r2 + aP5_2 r0 r3 + aP5_3 r0 r4 + aP5_4 r0 r5 + aP5_5 r1 r2 + aP5_6 r1 r3 + aP5_7 r1 r4 + aP5_8 r1 r5 + aP5_9 r2 r3 + aP5_10 r2 r4 + aP5_11 r2 r5 + aP5_12 r3 r4 + aP5_13 r3 r5 + aP5_14 r4 r5) = (S5_0 r0 + S5_1 r1 + S5_2 r2 + S5_3 r3 + S5_4 r4 + S5_5 r5) - 3 * (N5_0 r0 r1 + N5_1 r0 r2 + N5_2 r0 r3 + N5_3 r0 r4 + N5_4 r0 r5 + N5_5 r1 r2 + N5_6 r1 r3 + N5_7 r1 r4 + N5_8 r1 r5 + N5_9 r2 r3 + N5_10 r2 r4 + N5_11 r2 r5 + N5_12 r3 r4 + N5_13 r3 r5 + N5_14 r4 r5) := by
+    simp only [aS5_0, aS5_1, aS5_2, aS5_3, aS5_4, aS5_5, aP5_0, aP5_1, aP5_2, aP5_3, aP5_4, aP5_5, aP5_6, aP5_7, aP5_8, aP5_9, aP5_10, aP5_11, aP5_12, aP5_13, aP5_14, L5_0, L5_1, L5_2, L5_3, L5_4, L5_5]
+    ring
+  have bS0 : aS5_0 r0 ≤ MS5_0 := CaseSplit.le_mxr (aS5_0) 10 r0 (by omega)
+  have bS1 : aS5_1 r1 ≤ MS5_1 := CaseSplit.le_mxr (aS5_1) 12 r1 (by omega)
+  have bS2 : aS5_2 r2 ≤ MS5_2 := CaseSplit.le_mxr (aS5_2) 16 r2 (by omega)
+  have bS3 : aS5_3 r3 ≤ MS5_3 := CaseSplit.le_mxr (aS5_3) 18 r3 (by omega)
+  have bS4 : aS5_4 r4 ≤ MS5_4 := CaseSplit.le_mxr (aS5_4) 22 r4 (by omega)
+  have bS5 : aS5_5 r5 ≤ MS5_5 := CaseSplit.le_mxr (aS5_5) 28 r5 (by omega)
+  have bP0 : aP5_0 r0 r1 ≤ MP5_0 := CaseSplit.le_mxr2 (aP5_0) 10 12 r0 r1 (by omega) (by omega)
+  have bP1 : aP5_1 r0 r2 ≤ MP5_1 := CaseSplit.le_mxr2 (aP5_1) 10 16 r0 r2 (by omega) (by omega)
+  have bP2 : aP5_2 r0 r3 ≤ MP5_2 := CaseSplit.le_mxr2 (aP5_2) 10 18 r0 r3 (by omega) (by omega)
+  have bP3 : aP5_3 r0 r4 ≤ MP5_3 := CaseSplit.le_mxr2 (aP5_3) 10 22 r0 r4 (by omega) (by omega)
+  have bP4 : aP5_4 r0 r5 ≤ MP5_4 := CaseSplit.le_mxr2 (aP5_4) 10 28 r0 r5 (by omega) (by omega)
+  have bP5 : aP5_5 r1 r2 ≤ MP5_5 := CaseSplit.le_mxr2 (aP5_5) 12 16 r1 r2 (by omega) (by omega)
+  have bP6 : aP5_6 r1 r3 ≤ MP5_6 := CaseSplit.le_mxr2 (aP5_6) 12 18 r1 r3 (by omega) (by omega)
+  have bP7 : aP5_7 r1 r4 ≤ MP5_7 := CaseSplit.le_mxr2 (aP5_7) 12 22 r1 r4 (by omega) (by omega)
+  have bP8 : aP5_8 r1 r5 ≤ MP5_8 := CaseSplit.le_mxr2 (aP5_8) 12 28 r1 r5 (by omega) (by omega)
+  have bP9 : aP5_9 r2 r3 ≤ MP5_9 := CaseSplit.le_mxr2 (aP5_9) 16 18 r2 r3 (by omega) (by omega)
+  have bP10 : aP5_10 r2 r4 ≤ MP5_10 := CaseSplit.le_mxr2 (aP5_10) 16 22 r2 r4 (by omega) (by omega)
+  have bP11 : aP5_11 r2 r5 ≤ MP5_11 := CaseSplit.le_mxr2 (aP5_11) 16 28 r2 r5 (by omega) (by omega)
+  have bP12 : aP5_12 r3 r4 ≤ MP5_12 := CaseSplit.le_mxr2 (aP5_12) 18 22 r3 r4 (by omega) (by omega)
+  have bP13 : aP5_13 r3 r5 ≤ MP5_13 := CaseSplit.le_mxr2 (aP5_13) 18 28 r3 r5 (by omega) (by omega)
+  have bP14 : aP5_14 r4 r5 ≤ MP5_14 := CaseSplit.le_mxr2 (aP5_14) 22 28 r4 r5 (by omega) (by omega)
+  have hrhs : rhs5 = (∑ t ∈ Finset.range n5, w5 t) + 3 * (n5 : ℤ) := rfl
+  have hc := cert5
+  linarith [hsum, hS, hSD, hwD, hid, hrhs, hc, hn0, hn1, hn2, hn3, hn4, hn5, hn6, hn7, hn8, hn9, hn10, hn11, hn12, hn13, hn14, bS0, bS1, bS2, bS3, bS4, bS5, bP0, bP1, bP2, bP3, bP4, bP5, bP6, bP7, bP8, bP9, bP10, bP11, bP12, bP13, bP14]
+
+end IncCert29

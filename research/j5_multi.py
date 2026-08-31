@@ -81,7 +81,12 @@ Q_EXACT = {(23, 10): {2: 39, 3: 43, 4: 50, 5: 55, 6: 60, 7: 0},
            (29, 10): {2: 55, 3: 65, 4: 68, 5: 71, 6: 71, 7: 71},
            (31, 12): {2: 68, 3: 85, 4: 90, 5: 91, 6: 90, 7: 88}}
 TARGET = NEW[-1]
-BUDGET = F_EXACT[TARGET] + QPP
+# ROUND-28: F_EXACT is a table of KNOWN maximal gaps and it stops at 53 (the
+# corpus ladder's end).  A transfer whose TARGET is past it - e.g. F_2(59),
+# where the target machine's own F is what this lane is computing - must not
+# die on a KeyError; the budget line is informational, every reported maximum
+# is unaffected.
+BUDGET = (F_EXACT[TARGET] + QPP) if TARGET in F_EXACT else None
 KNOWN_Q = None if WORDLEGAL else Q_EXACT.get((TARGET, A_FLOOR))
 
 
@@ -305,8 +310,12 @@ def main():
         kn = KNOWN_Q.get(J) if KNOWN_Q else None
         print(f"  {J:2d}      {best[J]:6d}      {kn}")
     mx = max(best.values())
-    print(f"\n  max over J = {mx}  vs budget {BUDGET}  -> "
-          f"{'CERTIFIES' if mx <= BUDGET else 'FAILS by +%d' % (mx-BUDGET)}")
+    if BUDGET is None:
+        print(f"\n  max over J = {mx}   (no budget: F({TARGET}) is not in the "
+              f"known-value table, so no (D) verdict is printed)")
+    else:
+        print(f"\n  max over J = {mx}  vs budget {BUDGET}  -> "
+              f"{'CERTIFIES' if mx <= BUDGET else 'FAILS by +%d' % (mx-BUDGET)}")
     if KNOWN_Q:
         bad = [(J, best[J], KNOWN_Q[J]) for J in range(2, JMAX + 1)
                if KNOWN_Q.get(J) is not None and best[J] != KNOWN_Q[J]]

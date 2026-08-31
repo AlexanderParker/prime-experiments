@@ -356,3 +356,190 @@ check for the round-26 material: **not yet checked**; suggested terms in
 addition to section 6 - "affine automorphism group of reduced residue system",
 "symmetry group of a primorial covering system", "palindromic gap words
 primorial", "Jacobsthal antipodal residue".
+
+## 8. ROUND-28 EXTENSION: THE SELF-MIRROR WINDOW'S SIZE, AND THE LEVER'S EXCEPTION LIST
+
+Lateral, round 28. Status: PROVED (elementary) + SCRIPT-VERIFIED exactly at
+m7..m23, all depths j = 1..30 (`research/mirror_selfwindow_r28.py`, 83 assertion
+gates, exit 0, log `research/data/r28/mirror_selfwindow.log`), plus
+`research/tuple_reversal_r28.py` (18 gates).
+
+Formalist's kernel lemma `Mirror.none_of_at_most_one` is machine-free except for
+ONE hypothesis:
+
+    hexc : L t0 <> 2 * F        -- the self-mirror window does not itself carry
+                                -- the length being counted
+
+`t0` is the unique mirror-fixed window index at that depth. So the entire
+machine-side content of the "at most one implies zero" lever is: WHAT IS THE
+SELF-MIRROR WINDOW, AND HOW BIG IS IT? This section answers both, exactly.
+
+### 8.1 THE ADDRESS FORMULA (theorem)
+
+Openings `o_0 = 0 < o_1 < ... < o_{N-1}`, `N = prod (q-2)` ODD, mirror closure
+`o_{N-t} = P - o_t` (section 1). The mirror carries the depth-`j` window
+`W_t = [o_t, o_{t+j}]` to `[-o_{t+j}, -o_t] = W_{N-t-j}`, so on indices it is the
+involution `t -> -(t+j)`, span-preserving; its fixed points solve `2t = -j`
+(mod `N`), unique because `N` is odd. Writing `M = (N-1)/2`:
+
+    j = 2i   (EVEN):  t_j = -i,     W = [o_{N-i}, o_i],       SPAN = 2 * o_i
+    j = 2i+1 (ODD) :  t_j = M - i,  W = [o_{M-i}, P - o_{M-i}],
+                                              SPAN = P - 2 * o_{M-i}
+
+Proof of the even case: `W = [o_{N-i}, o_i]` and `o_{N-i} = P - o_i`, so the
+forward span is `o_i + P - (P - o_i) = 2 o_i`. Odd case: `2(M-i) = N-1-2i =
+-(2i+1)` (mod `N`), and `N - (M-i) = M+i+1`, so the far endpoint is
+`P - o_{M-i}`. []
+
+**THE GEOMETRIC STATEMENT.** `Z_P` has exactly two mirror centres: the slot `0`
+(an opening, the involution's only fixed slot) and the antipode `P/2` (not a
+slot, `P` odd). THE SELF-MIRROR WINDOW AT DEPTH `j` IS THE BALL OF `j+1`
+CONSECUTIVE OPENINGS CENTRED ON A MIRROR CENTRE - on slot `0` when `j` is even,
+on the antipode when `j` is odd. Both formulas are "twice the distance from a
+mirror centre to the `i`-th opening outward".
+
+**THIS GEOMETRIC HALF IS NOT NEW** - section 7 (round 26) already relocated the
+exceptional window from an index to exactly this address, and proved the
+stronger route-facing statement that it is never QUALIFYING, over more rungs
+(to `47->53`) and depths (`j <= 7`) than round 28 covers. What sections 8.1-8.3
+add is the QUANTITATIVE half: the closed span formulas, the size table against
+`F_j`, the exception list, and the literal discharge of the kernel lemma's own
+hypothesis.
+
+### 8.2 THE SIZE, AND THE LEVER'S EXCEPTION LIST
+
+Because the self-mirror window is centred on a FIXED point of the geometry
+rather than chosen for its size, its span is a TYPICAL `j`-window span, i.e.
+about `j * P/N`, while `F_j` is the MAXIMUM over all `N` windows. So the lever
+should fail only where typical and extremal nearly coincide - small machines.
+Measured, exactly (`span_self(j) / F_j`):
+
+    j     m7     m11    m13    m17    m19    m23
+    1    0.200  0.143  0.091  0.056  0.040  0.029
+    2    0.571  0.545  0.375  0.400  0.323  0.256
+    3    1.000  0.688  0.478  0.750  0.600  0.420
+    4    0.462  0.556  0.385  0.424  0.368  0.241
+    5    0.938  0.913  0.750  0.714  0.660  0.600
+    6    0.556  0.538  0.452  0.500  0.400  0.260
+
+**THE EXCEPTION LIST** - the `(machine, depth)` pairs with `span_self(j) = F_j`
+exactly, i.e. where `hexc` FAILS for the target "span `= F_j`" and the lever is
+NOT available - over all depths `j <= 30`:
+
+    m7  : j = 3, 7, 9, 11, 14        m17 : none
+    m11 : j = 11                     m19 : none
+    m13 : none                       m23 : none
+
+**So from m13 upward the lever is available at every depth up to 30, and the
+only failures anywhere are at the two smallest machines.** Restricted to the
+route-relevant depths `j = 2..6` (the uniform-order theorem caps the alternation
+at `A_relax <= 5`), the exception list is EMPTY from m11 up and the worst ratio
+falls monotonically in the machine: 0.913 (m11), 0.750 (m13), 0.750 (m17),
+0.660 (m19), 0.600 (m23).
+
+### 8.3 hexc DISCHARGED AT THE ROUTE'S OWN TARGET
+
+The lemma as stated counts windows of length `2F` (an adjacent EQUAL pair, the
+`(F,F)` configuration). At depth 2 the address formula gives
+`span_self(2) = 2 * o_1 = 2 * d_0`, twice the FIRST GAP - so
+
+    hexc  <=>  d_0 <> F,
+
+and `d_0 = 2, 3, 3, 5, 5, 5` against `F = 5, 7, 11, 18, 25, 34` at
+m7..m23. **The hypothesis is discharged by a one-line inequality at every
+machine, and `d_0` is itself already a closed form (Mechanic's wrap-gap
+identity, r25).** This is the machine instantiation the round-27 handover asked
+for, in the only place it was not free.
+
+### 8.4 THE LEVER IS UNIQUE - A REPLICATION OF SECTION 7's ITEM 51, NOT A NEW RESULT
+
+**Recorded honestly: this subsection restates a round-26 theorem in different
+coordinates.** Round 26 (item 51) already proved that the affine maps carrying
+the opening set onto itself are exactly `(Z/2)^m`, that the element flipping the
+gears in `S` has `P / prod_{q in S} q` fixed slots - ONE when `S` is everything -
+and that only `c = +-1` sends consecutive openings to consecutive openings,
+brute-force gated over 92,400 affine maps at m11. What follows is the same
+statement counted on the OPENING set rather than on `Z_P`; the net new content is
+the restatement in terms of the exposed sets.
+
+The opening set carries a whole group of involutions, not one: for each subset
+`S` of the gears, `sigma_S : k_q -> -k_q` for `q in S` (identity elsewhere) is an
+involution of the opening set, because each exposed set `A_q` is closed under
+negation. There are `2^n - 1` non-trivial ones. Their fixed-point counts are
+exact and need no scan:
+
+    #fix(sigma_S) = N / prod_{q in S} (q-2)
+
+(verified directly on the opening set at m23 for `|S| = 1, 2, 7`). Hence
+**EXACTLY ONE of the `2^n - 1` sign involutions has a single fixed point, and it
+is the full mirror `S = all gears`** (m23: 127 subsets, next-smallest
+fixed-point counts 3, 5, 9). Moreover only `S = all gears` is an ISOMETRY of
+`Z_P`: the others permute openings but move distances, so they do not preserve
+window length and cannot support a length-counting parity argument at all.
+
+**Conclusion, stated as a negative with its proof: the machine's own symmetry
+group supplies exactly ONE parity lever.** Round 26's item 51 showed no symmetry
+of the opening set gives a mod-4 lever; this says more - within the natural
+`(Z/2)^n` there is not even a second mod-2 lever.
+
+### 8.5 WORD REVERSAL IS THE SAME INVOLUTION, NOT A SECOND ONE
+
+Round 25 listed the mirror on `Z_P` and the reversal symmetry of the gap-word
+census as two assets. They are one. Verified cell for cell at m7/m11/m13,
+depths 2, 3, 4: the census is exactly reversal-symmetric, exactly ONE PALINDROME
+has odd multiplicity, and **it is the self-mirror window's own word** (e.g.
+`(2,2)`, `(5,1,5)`, `(1,2,2,1)` at m7).
+
+SELF-CORRECTION of my own round-25 phrasing, which said "exactly one odd
+palindrome per depth" in a way that reads as "exactly one word of odd
+multiplicity". That is FALSE and my own gate caught it: non-palindromic words
+come in reversal pairs of EQUAL count, and equal counts may both be odd - m7
+depth 2 has five words of odd multiplicity. The exact law is about PALINDROMES
+only, and the safe universal form is "AT MOST one palindrome of odd
+multiplicity, and only the self-mirror word can be it": the self-mirror word's
+own multiplicity can itself be even (it is 3 at m7 depth 2 and 1 at m7 depth 4,
+but nothing forces it odd).
+
+### 8.6 THE LEVER REACHES THE TRANSFER SUPERSETS
+
+Section 7.6 gated reversal-closure on the four EXACT 4-tuple dictionaries. Round
+28 re-derives those independently (a replication, not a new fact) and extends
+the check to the two CRT TRANSFER supersets, which ARE new here: they are built
+by a completely different route (emission from the previous machine, no scan)
+and had no a-priori reason to inherit the symmetry unless the emission is itself
+mirror-faithful. IT IS. Palindrome counts are new at every row:
+
+    dictionary                          #tuples    #palindromes   orbits
+    m23 4-tuples (exact)                 15,696          28        7,862
+    m29 4-tuples (exact)                 45,854          50       22,952
+    m31 4-tuples (exact)                115,193          79       57,636
+    m37 4-tuples (exact)                291,675         139      145,907
+    m37 4-tuples (31->37 transfer)    2,435,140         546    1,217,843
+    m41 4-tuples (37->41 transfer)    4,239,676         874    2,120,275
+
+Operational payoff, ~50% at every file: any census, LP enumeration or SAT sweep
+over one of these dictionaries whose predicate is reversal-invariant need only
+visit the orbit representatives.
+
+### 8.7 A CLAIM ABOUT BACKLOG U10 THAT WAS WITHDRAWN
+
+This subsection originally claimed to close half of backlog U10 ("where could a
+mod-4 lever come from?"). **The claim was wrong and is withdrawn.** The argument
+was: the sign group is elementary abelian, so every non-identity element has
+order exactly 2 (gated at all 127 subsets at m23), and the isometries of `Z_P`
+preserving the opening set are `{k -> +-k}`, of order 2; hence no `Z/4` action
+can be restricted from the machine's automorphism group.
+
+That is true, and it does not touch U10. U10 was posed KNOWING item 51 rules out
+symmetries; its surviving candidate (a) is a free `Z/4` action on a SUBSET OF
+CONFIGURATIONS, which by construction need not be induced by any map of `Z_P` -
+that is what "not a symmetry" means there. The argument above only rules out the
+sub-case already covered. **U10 remains open on both candidates.**
+
+### 8.8 STATUS AND PRIOR ART
+
+8.1 and 8.4 are elementary theorems with proofs above; 8.2, 8.3, 8.5, 8.6 are
+exact script-verified measurements. PRIOR-ART CHECK: **not yet checked**.
+Suggested terms beyond section 6: "fixed point of reflection on a difference
+set", "self-conjugate gap in a reduced residue system", "palindromic window
+primorial sieve", "Burnside orbit counting covering system enumeration".
