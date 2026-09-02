@@ -313,3 +313,44 @@ mechanism of section 2, now visible in runs of length 15 as well as 200), the bo
 2:5 on average). Nothing new for a proof: it confirms that the run structure inside a
 section is the generic Mertens tree at that run length, with no section-specific feature
 from the gear p that owns the section (it kills at most three slots, section 7.1).
+
+### 7.5 The tuple side (follow-up; exploratory, not pre-registered)
+
+Sections 2 and 7.4 index the tree by gears. research/tuple_tree_r29.py forgets the gears
+and reads the same trees as merge events on the pieces: a kill joins the piece of length a
+on its left and b on its right into a + 1 + b (an "extension" when a or b is 0, a "join"
+when both are positive). Maximal run per section, 667 sections, log
+research/data/r29/tuple_tree.log.
+
+    q range     merges   join frac   median join ratio   top quarter median   last-3 median
+    5-100          343   0.359       0.500               0.444                0.392
+    100-300       1469   0.385       0.500               0.400                0.368
+    300-1000      9107   0.393       0.500               0.432                0.375
+    1000-3000    36765   0.396       0.500               0.429                0.375
+    3000-5003    47478   0.397       0.500               0.412                0.348
+
+    join ratio min/max by stage (tenths of the merge sequence, q >= 1000):
+    stage   4      5      6      7      8      9
+    median  0.500  0.500  0.500  0.500  0.444  0.360
+    mean    0.749  0.697  0.571  0.524  0.470  0.411
+    (stages 0-3 are the gear-5 kills: no piece exists yet, every kill is an extension)
+
+    most common join pairs (min, max), q >= 1000: (1,2) 21%, (1,1) 15%, (1,4) 11%,
+    (2,3) 3%, (2,6) 2%, (4,5) 2%, (4,4) 2% - and 13% with both pieces >= 8.
+
+    top 3-tuple as fractions of the run: 149 distinct patterns in 640 sections; the most
+    common, (0.2, 0.3, 0.5), occurs 18 times (2.8%).
+
+What this says. (a) The tuple trees are all different objects: no top 3-tuple pattern
+reaches 3% of sections, so nothing repeats from section to section at the tuple level -
+only the statistics of the merges are universal. (b) 60% of all merges are extensions
+(the kill lands beside an already blocked slot), 40% are joins, in every band. (c) The
+median join ratio is exactly 1/2 through the whole middle of the tree, in every band and
+at every stage up to the 8th tenth. This is the 5,7 comb: after gears 5 and 7 the pieces
+have lengths 1, 2, 4 only (section 2), and the middle gears join them in the pairs (1,2),
+(1,1), (1,4), (2,4), ... so the typical join is "a piece plus one of half its length". The
+doubling seen along twin paths (section 6.2, median flank ratio 2.00 per event) is the same
+fact seen from the twin's side. (d) The top of the tree is unbalanced: the last merges join
+pieces in ratio about 1:3 (median 0.35-0.44), not halves. The run is sealed when a
+near-twin slot (one single-kill gear) closes the gap between a large piece and a piece a
+third its size; the last gear does not "meet in the middle".
