@@ -198,3 +198,80 @@ record. This is exact and needs no computation; what follows is what it looks li
       of its flank.
   (c) Nothing here is proof-relevant beyond confirming that in-window words are generic
       sieve words. The period-scale record (killer-spec.md, the ladder) remains the object.
+
+## 7. The new section each machine adds (follow-up, same day)
+
+Human's framing: machine 5 has window 25, machine 7 has window 49; look only at the new
+section 26..48 that machine 7 adds, and likewise for every machine. Section of the rung
+p -> q: the slots k with p^2 < 6k+1 < q^2. The sections partition the slots from k = 5 on.
+Pre-registration research/data/r29/section_prereg.md (S1-S5), script
+research/section_probe_r29.py, log research/data/r29/section_probe.log; 667 sections up to
+q = 5003; 8 of 9 gates green, the failure (S4) is a bookkeeping error explained below.
+
+### 7.1 What is forced
+
+Every composite below q^2 has a prime factor <= p. So inside the section p -> q the gears
+5..p are exact - the periodic word of m_p restricted to the section IS the twin-prime
+indicator there - and the new gear q does nothing in its own section (its first kill is q^2,
+the far edge). In this numbering the section attributed to machine q is the last stretch
+where the PREVIOUS machine is still telling the truth, just before it starts lying at q^2.
+The previous gear p enters only through p*m with m a prime in (p, q^2/p): the slot p^2 is
+the section's near edge and excluded, so the candidates are p*q and at most two more.
+
+The first sections as words (T = twin, number = death rung):
+
+     5 ->  7  (25, 49)    slots 5..7     T 5 T
+     7 -> 11  (49, 121)   slots 9..19    5 T 5 T 7 5 7 5 T T 5
+    11 -> 13  (121, 169)  slots 21..27   5 7 T 5 T 5 7
+    13 -> 17  (169, 289)  slots 29..47   5 T 5 T T 5 11 5 13 T 5 T 5 11 7 5 T 5 T
+    29 -> 31  (841, 961)  slots 141..159 5 23 T 5 11 5 T 7 5 17 5 11 7 5 7 5 23 13 5
+
+### 7.2 Measured
+
+    q range     sections  min twins (at q)  max G_S/|S| (at q)  twins/H-L  gear-p kills = 0  last sealer > p/2
+    5-100       22        2  (7)            0.684 (31)          0.987      0.73              0.95
+    100-300     37        6  (109)          0.352 (109)         0.980      0.62              0.89
+    300-1000    106       10 (463)          0.221 (601)         0.993      0.74              0.87
+    1000-3000   262       21 (1153)         0.177 (1291)        1.007      0.79              0.89
+    3000-5003   240       51 (3541)         0.092 (3253)        1.000      0.74              0.88
+
+  No dead section (S1): every one of the 667 sections holds a twin; the minimum count rises
+  2, 6, 10, 21, 51 across the bands, and the minimum is always at a gap-2 rung (7, 109,
+  1153, 3541 are the upper members of twin-prime pairs), whose section is the shortest:
+  |S| = (4q - 4)/6 slots.
+
+  The section gap shrinks against the section (S2): G_S/|S| (largest gap between twins in
+  the section or from an edge to the nearest twin) is below 1 everywhere, maximum 0.684 at
+  29 -> 31 (19 slots, 2 twins, gap 13), then 0.352, 0.221, 0.177, 0.092 by band. At the gap-2
+  rungs G_S is 0.5-2.9 times ln^2 q while |S| is 2q/3, so the ratio falls like ln^2 q / q.
+
+  Twin counts are Hardy-Littlewood (S3): summed over the sections with 1000 <= q <= 5003
+  the observed/predicted ratio is 1.0028 (band 3%), and 0.98-1.01 in every band; single
+  sections scatter 0.6-1.4 as Poisson counts do.
+
+  The old gear is almost invisible in the new section (S4): gear p is the death rung of at
+  most 3 slots in its section, and of none at 77% of sections with q >= 500. My
+  pre-registered band [0.35, 0.70] counted p^2 as a candidate; p^2 is the excluded near edge,
+  so the candidates are 1-3 slots p*q, p*q_2, ... each credited with probability about
+  1.7 / ln p, which gives 75-80% zero. Refuted as stated, explained by the boundary.
+
+  Section Mertens: fraction of slots with death rung <= 7 is 0.571-0.577 (4/7 = 0.5714) in
+  every band. Last sealer of the maximal run > p/2 at 88% of sections (S5 held): the same
+  near-twin mechanism as the window (products of two primes from (p/2, 2p)).
+
+### 7.3 What the sections say
+
+  (a) The new territory a machine claims is sieved entirely by the OLD machine; the newest
+      gear is silent there by construction and the previous gear touches at most three
+      slots. Sections differ from one another only by scale, and at every scale they are
+      Mertens words with Hardy-Littlewood twin counts.
+  (b) A dead section p -> q would be a twin-free stretch of 2q(q - p) integers ending at
+      q^2, i.e. a twin gap >= 4 sqrt(x) at x = q^2 for a gap-2 rung. Observed twin gaps in the
+      sections are ln^2-scale; the margin G_S/|S| is 0.09 at q ~ 5000 and falls like
+      ln^2 q / q. Killing twins for ever means every section dead from some rung on, and
+      the section framing shows the first obstacle is already a sqrt(x)-size twin gap.
+  (c) Nothing here is provable by the machine: twin gaps are unbounded in principle and
+      the ln^2 scale is heuristic. The section decomposition is the clean way to state
+      what the kernel iff demands rung by rung: survivor in the window = a twin in at
+      least one section of the window, and the sections are independent samples of the
+      same Mertens process at growing scale.
