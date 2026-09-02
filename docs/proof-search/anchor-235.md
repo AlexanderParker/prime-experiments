@@ -335,6 +335,37 @@ visible in the components at this depth is the hit indicator, and the searched f
 set, which contains every arithmetic and comparison operation used elsewhere in this
 document, does not close it.
 
+With the lower walk supplied as a primitive (gp_rec.py: terminals hit0 = [g hits x],
+L1 = W_{g-}(x + 1), and the chain hit1, L2, hit2, L3 at the next landings) the search
+closes the hop in one line, H = hit0 (hit0 + L1), i.e. 1 + W_{g-}(x + 1) on a hit, at
+99.80% exact (99.66% on the unseen rung); the missing 0.2% are the double hits, whose
+chain terminals were available and declined because the parsimony penalty exceeded the
+gain. Whatever a closed form for the walk is, the search finds nothing in the components
+beyond "hit or not" once the lower walk is given.
+
+### 9c. The layered walk from q^2 and what the closure is (layered_walk.py; results/layered_5000.txt)
+
+The closure W_g = W_{g-} + hits of g, run recursively from the slot holding q^2 under
+gears 5..q for every prime q <= 5000 (667 walks): every landing is a twin prime pair;
+walk length median 19, maximum 265 at q = 4637 (second 187 at q = 2593 and 4003);
+between 1 and 44 layers hop per walk. Total hops equal the walk length in every walk.
+That is an identity, not a discovery: each traversed slot is counted once, at the layer
+of its smallest blocking gear, so hops by gear are the densities (2/g) prod_{h<g} (1 - 2/h)
+(gear 5: 7564 of 18743 hops = 0.404 against 2/5; gear 7: 0.175 against 0.171), and
+gears <= 13 make 71% of all hops. The layered closure is therefore bookkeeping for the
+walk length; its only content is the cap on hits per layer (the uniform-order theorem's
+<= 5 within one lift record; at most 106 hops at gear 5 across a 265-slot walk here) and
+the fact that each layer's hop is the lower walk again. The walk is closed, in this sense,
+by recursion of depth pi(q); what has not been found is a formula that collapses the
+recursion.
+
+Memetic search (memetic.py: the genetic algorithm with every child polished by the
+best-response sweep; population 32, 6000 generations, three seeds each) reaches F = 99,
+99, 100 at {5..43} (exact 102) and 114, 114, 116 at {5..47} (exact 117): no better than
+plain ILS. The record covers past rung 41 sit in narrow optima that neither crossover nor
+local sweeps reach reliably, so the F_2, F_3, G_2 entries at rungs 47 and 53 in the table
+above are probably a few slots low.
+
 ## 10. Corrections on record
 
   - First anchor pass appended "the real machine grows, untouched happens exactly once" - the

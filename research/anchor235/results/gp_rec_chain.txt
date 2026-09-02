@@ -1,0 +1,14 @@
+target hop of gear 13 on 5+7+11+13, terminals ['aTOP', 'bTOP', 'hit0', 'L1', 'hit1', 'L2', 'hit2', 'L3', 'g']; unseen gear 17; H=0 at 0.8462
+  gen    0: best exact-match 0.8761  size 1  hit0   | unseen machine exact-match 0.9004
+  gen   25: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen   50: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen   75: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  100: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  125: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  150: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  175: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  200: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  225: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  250: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  275: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
+  gen  299: best exact-match 0.9980  size 5  mul(add(hit0, L1), hit0)   | unseen machine exact-match 0.9966
