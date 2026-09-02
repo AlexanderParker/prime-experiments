@@ -135,3 +135,28 @@ copy up to a constant.
 Reading in the window: once P > W (q >= 11) the window sits inside copy 0, and gear q's
 in-window hits on old openings are the near-twins of section 2 (at most three per rung);
 everything else it strides over below q_next^2 is already the lower sieve's.
+
+Two corrections to the human's reading of the copy tables, for the record. Copy 0 of the
+{5, 7} lower sieve under gear 11 is not untouched: gear 11 makes one new block there, at the
+slot (11 | 13) - the gear's own prime. Untouched copies exist only at {5} + 7.
+
+## 6. Twin-twin spacings on the section (human's follow-up: 210, 2310, 2520)
+
+Script research/pair_spacing_r29.py, log research/data/r29/pair_spacing.log; sections
+1000 <= q <= 5000 (501 sections), pairs of new twins of the same section at slot spacing D
+(numbers 6D), D <= 450.
+
+Forced mechanism. In the lower sieve's word the number of residues a mod g with a and a + D
+both open is c_g(D) = g-2 if g | D, g-3 if D = +-2u mod g, g-4 otherwise; pairs of openings
+at spacing D carry the weight prod_g c_g(D). Relative to a generic spacing (no small gear
+divides D or D +- 2u) this is x 3 for 5 | D, x 5/3 for 7 | D, x 9/7 for 11 | D: 30 -> 3, 210 -> 5,
+2310 -> 6.43 from the first three gears alone, and 2520 = 2310 + 210 gets only 210's factor
+(11 does not divide it).
+
+Measured on the sections (count / generic mean, predicted in brackets): 6: 1.05 (1.00);
+12: 2.68 (2.67); 30: 3.95 (4.00); 42: 3.78 (3.81); 210: 5.70 (5.56); 420: 6.09 (6.10);
+1260: 5.47 (5.55); 2310: 6.55 (6.92); 2520: 5.32 (5.56). Over all 450 spacings
+observed / predicted averages 0.991 (min 0.924, max 1.105). The most frequent spacing below
+2700 is 2310 (9759 pairs), then 420, 2550, 1890, 210. So yes: twins favour 210 and 2310, and
+2520 only as a multiple of 210. The trend is the lower sieve's pair weight, inherited by the
+twins because twins are the word's openings that turned out prime - CRT, not a new law.
