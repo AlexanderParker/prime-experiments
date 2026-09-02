@@ -502,3 +502,29 @@ new twin is whether its two numbers are hit by some scaled open word of a smalle
 Both sides of the question - which vectors survive (A), where the kills come from (B) - reduce
 to CRT and to the smaller machines' open words. No section-specific feature was found in
 either listing, and the pre-registration said none was expected.
+
+### 9.3 C - the tooth counterfactual on the new section (pre-registered; one refutation)
+
+Pre-registration data/r29/section_c_prereg.md, script research/section_c_r29.py, log
+research/data/r29/section_c.log. Gear s*'s teeth {+-u} moved to {+-v}, every other gear real;
+on the section the counterfactual machine loses the real twins in the class +-v and gains the
+slots that only gear s* touched (composites s* x m beside a prime) outside +-v. For 47 -> 53
+and s* = 13 the gained slots are k = 375 (2249 = 13 x 173 | 2251), 392 (2351 | 2353 = 13 x 181)
+and 457 (2741 | 2743 = 13 x 211) - three near-twins whose cofactors 173, 181, 211 are the
+primes of the section 13 -> 17 - against one to three twins lost per v.
+
+I pre-registered that the section cannot tell the real teeth from moved ones (CRT makes
+every class the same size). That is refuted at the fine level and the refutation is the
+finding of this rerun: pooled over the sections q >= 1000, moving gear 13's teeth to any v
+leaves 3.6-3.8% more survivors than the real teeth, gear 7's 6.4%, and all moved positions
+agree with each other - the real class is the odd one out. Post hoc, parameter-free: among
+the slots no gear but s* touches, the tooth class is richer than every other class by
+1.160 (s* = 7), 1.202 (13), 1.273 (31), and the cofactor model ln n / ln(n/s*) gives 1.138,
+1.190, 1.271. The mechanism: a number s* x m in the tooth class is clean iff its cofactor m,
+smaller by the factor s*, is prime - likelier than for a full-size number - so the real
+teeth of every gear sit exactly on the residue class where the relaxed machine's survivors
+are densest, and the real machine removes more of them than any counterfactual teeth would,
+in every section, by the factor ln n / ln(n/s*). This is the section-view face of the
+period result (the real machine a low-F outlier under moved teeth): the real teeth are not
+a generic choice of classes, they are the classes with the small cofactors, and that shows
+on the new section directly, as a listing of which near-twins each gear owns.
