@@ -171,7 +171,88 @@ differences 2u' mod q' and q' - 2u' have opposite parity, so any gap parity has 
 arrangement. The obstacle is arithmetic mod q', never parity. Extensions realised: +4, +7, +7,
 +9 against allowances 13, 17, 19, 23; +16 of 59 at 53 -> 59.
 
-## 9. Corrections on record
+## 9. (D) as a statement about the old word alone (record_decomp.py, both.py, mincount.py, three_in_q.py, gsparse.py)
+
+Conventions in this section: F, F_2, F_3 are blocked-slot counts (corpus F minus 1); F_m is
+the largest sum of m consecutive gaps of the old word {5..q} minus 1; F' = F(M + q'). All
+figures are exact over the full period, rungs {5}+7 through {5..23}+29 (P = 37182145).
+
+Decomposition of the new record at every rung (record_decomp.py):
+
+  rung   F   F_2  F'   F'-F_2  s_min  kills  old gaps in the record (interior mod q')
+  +7     1    3    4   1       2      2      [2, 2, 1]
+  +11    4    6    6   0       4      1      [2, 5]
+  +13    6   10   10   0       4      1      [6, 5]
+  +17   10   15   17   2       6      2      [5, 11, 2]     11 = -2u'
+  +19   17   24   24   0       6      1      [7, 18]
+  +23   24   30   33   3       8      3      [4, 8, 15, 7]  8 = 2u', 15 = -2u'
+  +29   33   38   42   4      10      2      [10, 10, 23]   10 = 2u'
+
+Three facts.
+
+  - Lower side, forced with no computation: F' >= F_2(M). The middle opening of any two
+    consecutive old gaps dies in exactly 2 of its q' lifts; the ends survive (run = both
+    gaps) or die too (run longer). The best one-kill run equals F_2 at every rung.
+  - Upper side: F' - F_2 = 1, 0, 0, 2, 0, 3, 4 against s_min = 2, 4, 4, 6, 6, 8, 10 - the
+    increment law, over every kill chain, not only the record (both.py: rung 23 has 733670
+    one-kill chains max 30, 11746 two-kill max 32, 62 three-kill max 33; rung 29 has 15.4M
+    one-kill max 38, 243822 two-kill max 42, no three-kill chain).
+  - Interior gaps of the record chain are exactly +-2u' mod q', never a multiple of q':
+    kills alternate teeth at the minimum stride. Since 3 x 2u' = 1 mod q', s_min = (q' +- 1)/3,
+    so a chain of m kills spends at least (m - 1)(q' - 1)/3 slots on its interior.
+
+Counterfactual teeth (both.py). Teeth {a, a + delta}: only delta matters, because the lifts
+jP run over every residue mod q', so shifting both teeth relabels the lifts. Over every
+delta = 1 .. (q' - 1)/2 at all eight rungs: (D) F' <= F + q' never fails (max over delta
+4, 10, 15, 22, 27, 38, 49 against F + q' = 8, 15, 19, 27, 36, 47, 62; the real delta = 2u' is
+never the worst). The increment law with budget s_min(delta) = min(delta, q' - delta) fails
+only at small delta (rung 11: 1, 2; 13: 1; 17: 1, 5; 19: 1; 23: 2; 29: 2, 3, 4). So the
+"not generic" verdict of section 7 is about the increment law; (D) itself is teeth-free on
+every computed rung.
+
+Teeth-free proof of (D) at a rung. Two teeth are two step-q' progressions, so within any q'
+consecutive slots they kill at most 2 openings. Hence a run of the new word is a stretch of
+the old word in which every q'-window holds <= 2 openings ("3-sparse"). Let G_t(M, q') be
+the longest stretch in which every q'-window holds <= t openings (G_0 = F once F >= q').
+Then
+
+    F_2 <= F'(real teeth) <= max over delta F'(delta) <= G_2,   and   F_3 <= max over delta F'(delta)
+
+(the last: three consecutive gaps d_0, d_1, d_2 - take delta = d_1 mod q' and kill both
+middle openings). Measured (gsparse.py, three_in_q.py):
+
+  rung    F   F_2  F_3   G_1  G_2   F + q'   margin F + q' - G_2
+  +13     6   10   15     0   15     19       4
+  +17    10   15   22     0   22     27       5
+  +19    17   24   27    24   32     36       4
+  +23    24   30   34    31   38     47       9
+  +29    33   38   49    39   49     62      13
+
+At rung 29 the cap is exact: G_2 = F_3 = 49, worst stretch gaps 23 | 4 | 23, and delta = 4
+was the worst counterfactual (49). Counting alone (mincount.py: min openings in an
+F + q' + 1 stretch against the two-progression capacity 2 ceil((F + q' + 1)/q')) proves
+(D) at rungs 7, 11, 17, 19 and fails at 13, 23, 29; the q'-window criterion (some q'-window
+of every F + q' + 1 stretch holds >= 3 openings) holds at all eight rungs, exactly 3 at
+13, 17, 19, 29.
+
+What must be proved for every rung, both about the CRT word {5..q} only:
+
+  - sufficient:  G_2(M, q') <= F(M) + q'   (longest 3-sparse stretch <= record + one stride);
+  - necessary for the delta-uniform form:  F_3(M) - F(M) <= q'   (three consecutive gaps
+    never sum past record + q' + 1); measured 3, 6, 9, 12, 10, 10, 16 against q' = 7 .. 29,
+    about half of q' with no clear trend (0.43, 0.55, 0.69, 0.71, 0.53, 0.43, 0.55).
+
+Record gaps are isolated (both.py, part (a)): the neighbours of every record gap are
+(1,2) at {5,7}; (1,3) at {5..11}; (2,2), (2,5) at {5..13}; up to 7 at {5..17}; <= 5 at
+{5..19}; <= 7 next to any gap >= 0.8 F at {5..23}, <= 7 at {5..29}. F_2 - F = 2, 2, 4, 5, 7,
+6, 5 against q' - s_min = 5, 7, 9, 11, 13, 15, 19. This is the part with no teeth in it at
+all: why a record-size gap of a CRT word has only small neighbours.
+
+Caveat on record: if F_3 - F ever crosses q' the delta-uniform route dies and only the real
+delta = 2u' remains; extending F_3 and G_2 past rung 29 needs the ladder's stratified
+dictionary (the full period is too large).
+
+## 10. Corrections on record
 
   - First anchor pass appended "the real machine grows, untouched happens exactly once" - the
     human said this overstepped the line of enquiry; withdrawn, memory saved.
