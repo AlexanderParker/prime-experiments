@@ -350,14 +350,11 @@ gears 5..q for every prime q <= 5000 (667 walks): every landing is a twin prime 
 walk length median 19, maximum 265 at q = 4637 (second 187 at q = 2593 and 4003);
 between 1 and 44 layers hop per walk. Total hops equal the walk length in every walk.
 That is an identity, not a discovery: each traversed slot is counted once, at the layer
-of its smallest blocking gear, so hops by gear are the densities (2/g) prod_{h<g} (1 - 2/h)
-(gear 5: 7564 of 18743 hops = 0.404 against 2/5; gear 7: 0.175 against 0.171), and
-gears <= 13 make 71% of all hops. The layered closure is therefore bookkeeping for the
-walk length; its only content is the cap on hits per layer (the uniform-order theorem's
-<= 5 within one lift record; at most 106 hops at gear 5 across a 265-slot walk here) and
-the fact that each layer's hop is the lower walk again. The walk is closed, in this sense,
-by recursion of depth pi(q); what has not been found is a formula that collapses the
-recursion.
+of its smallest blocking gear. Hops by gear come out at the density rates (gear 5: 7564 of
+18743 hops = 0.404 against 2/5; gear 7: 0.175 against 0.171; gears <= 13 make 71%), but
+a rate measures and decides nothing (the human's point); the laws that decide the hops
+are in 9d. The walk is closed, in this sense, by recursion of depth pi(q); what has not
+been found is a formula that collapses the recursion.
 
 Memetic search (memetic.py: the genetic algorithm with every child polished by the
 best-response sweep; population 32, 6000 generations, three seeds each) reaches F = 99,
@@ -365,6 +362,56 @@ best-response sweep; population 32, 6000 generations, three seeds each) reaches 
 plain ILS. The record covers past rung 41 sit in narrow optima that neither crossover nor
 local sweeps reach reliably, so the F_2, F_3, G_2 entries at rungs 47 and 53 in the table
 above are probably a few slots low.
+
+### 9d. Laws of the layered walk, not rates (layer_law.py; results/layer_law.txt)
+
+The human's rule: a law defines behaviour, a density measures it. Two laws decide every
+hop, and one of them fixes the recursion depth per layer exactly.
+
+Hit law: gear g hops at the lower landing x iff x = +-u_g (mod g). Chain law: two
+consecutive lower openings x < y are both hopped by g iff y - x = 0 or +-d_g (mod g),
+d_g = 2u_g mod g (the two teeth are d_g apart, so two hits on the same tooth differ by a
+multiple of g and hits on different teeth by +-d_g). Since a lower gap is at most
+F_{g-} + 1, the lower gap sizes that can carry a second hop at layer g are the short list
+{d_g, g - d_g, g, g + d_g, 2g - d_g, ...} cut at F_{g-} + 1, and the hop chain of g from x
+is exactly the maximal run of consecutive lower gaps after x lying in those classes. Over
+the full period of every machine {5..23}, the realised double-hit gaps are:
+
+  layer  d_g  lower F   admissible gaps <= F+1   realised     chain depth
+    7     5      1      {2}                      {2}              2
+   11     4      4      {4}                      none             1
+   13     9      6      {4}                      {4}              2
+   17     6     10      {6, 11}                  {6, 11}          2
+   19    13     17      {6, 13}                  {6, 13}          2
+   23     8     24      {8, 15, 23}              {8, 15, 23}      3
+
+The law holds without exception (every realised double-hit gap is in its class). Layer 11
+never hops twice: the only admissible gap 4 is never presented at a hit, so W_11 =
+W_{5,7} + [hit] (1 + W_{5,7}(x + 1)) with no recursion at all. Chain depth 3 first appears
+at 23, where the admissible list has three members; the depth grows with the number of
+admissible gaps, i.e. with F_{g-} / g, and the increment law's <= 5 kills per lift record
+is the cap on the same chain inside one record. This is the closed form of one layer: the
+hop of gear g is decided by the residues mod g of the lower gaps following the landing,
+nothing else.
+
+What the record stretch does at each layer (survivors S_g of the record stretch under
+{5..g}, against random stretches of the same length):
+
+  machine   record L   survivors S_5, S_7, ...          random-stretch mean
+  {5..11}      6       3, 1, 0                          3.6, 2.6, 2.1
+  {5..13}     10       6, 3, 1, 0                       6.0, 4.3, 3.5, 3.0
+  {5..17}     17       10, 5, 3, 2, 0                   10.2, 7.3, 6.0, 5.1, 4.5
+  {5..19}     24       14, 8, 5, 3, 1, 0                14.4, 10.3, 8.5, 7.2, 6.3, 5.6
+  {5..23}     33       19, 13, 10, 7, 5, 3, 0           19.8, 14.2, 11.6, 9.8, 8.7, 7.7, 7.0
+
+At the bottom layers the record stretch is an ordinary stretch (S_5 / mean = 0.96-1.0,
+S_7 / mean 0.92 at {5..23}); the record is made at the top three or four layers, where
+each gear removes 2-3 survivors that a random stretch would keep (hops 3, 2, 2, 3 at the
+top four layers of {5..23}, all <= 5). The three longest gaps of every machine share the
+same profile to within one survivor. So the behaviour that defines a record is: an
+ordinary lower stretch whose last few survivors sit exactly on the teeth of the last few
+gears - the alignment the record law (docs/proof-search) describes from above, seen here
+from below.
 
 ## 10. Corrections on record
 

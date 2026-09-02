@@ -1,0 +1,71 @@
+
+5+7: F = 4, record stretch L = 4 blocked slots; density E_g = 2.4, 1.7
+      gap #1 L=4: survivors S_g = [2, 0]  hops = [2, 2]
+      gap #2 L=4: survivors S_g = [2, 0]  hops = [2, 2]
+      gap #3 L=2: survivors S_g = [1, 0]  hops = [1, 1]
+  random L-stretch: survivors mean = [2.4, 1.7]
+  record S_g / E_g = [0.83, 0.0]
+  layer 7 (d=5, lower F=1): chain depth 2, double-hit gaps [2], law True, doubles 2 of 6 hits
+
+
+5+7+11: F = 6, record stretch L = 6 blocked slots; density E_g = 3.6, 2.6, 2.1
+      gap #1 L=6: survivors S_g = [3, 1, 0]  hops = [3, 2, 1]
+      gap #2 L=6: survivors S_g = [3, 1, 0]  hops = [3, 2, 1]
+      gap #3 L=6: survivors S_g = [3, 1, 0]  hops = [3, 2, 1]
+  random L-stretch: survivors mean = [3.6, 2.6, 2.1]
+  record S_g / E_g = [0.83, 0.39, 0.0]
+  layer 7 (d=5, lower F=1): chain depth 2, double-hit gaps [2], law True, doubles 22 of 66 hits
+  layer 11 (d=4, lower F=4): chain depth 1, double-hit gaps [], law True, doubles 0 of 30 hits
+
+
+5+7+11+13: F = 10, record stretch L = 10 blocked slots; density E_g = 6.0, 4.3, 3.5, 3.0
+     gap #1 L=10: survivors S_g = [6, 3, 1, 0]  hops = [4, 3, 2, 1]
+     gap #2 L=10: survivors S_g = [6, 3, 1, 0]  hops = [4, 3, 2, 1]
+     gap #3 L=10: survivors S_g = [6, 2, 1, 0]  hops = [4, 4, 1, 1]
+  random L-stretch: survivors mean = [6.0, 4.3, 3.5, 3.0]
+  record S_g / E_g = [1.0, 0.7, 0.29, 0.0]
+  layer 7 (d=5, lower F=1): chain depth 2, double-hit gaps [2], law True, doubles 286 of 858 hits
+  layer 11 (d=4, lower F=4): chain depth 1, double-hit gaps [], law True, doubles 0 of 390 hits
+  layer 13 (d=9, lower F=6): chain depth 2, double-hit gaps [4], law True, doubles 6 of 270 hits
+
+
+5+7+11+13+17: F = 17, record stretch L = 17 blocked slots; density E_g = 10.2, 7.3, 6.0, 5.0, 4.5
+     gap #1 L=17: survivors S_g = [10, 5, 3, 2, 0]  hops = [7, 5, 2, 1, 2]
+     gap #2 L=17: survivors S_g = [10, 5, 3, 2, 0]  hops = [7, 5, 2, 1, 2]
+     gap #3 L=17: survivors S_g = [10, 5, 3, 2, 0]  hops = [7, 5, 2, 1, 2]
+  random L-stretch: survivors mean = [10.2, 7.3, 6.0, 5.1, 4.5]
+  record S_g / E_g = [0.98, 0.69, 0.5, 0.4, 0.0]
+  layer 7 (d=5, lower F=1): chain depth 2, double-hit gaps [2], law True, doubles 4862 of 14586 hits
+  layer 11 (d=4, lower F=4): chain depth 1, double-hit gaps [], law True, doubles 0 of 6630 hits
+  layer 13 (d=9, lower F=6): chain depth 2, double-hit gaps [4], law True, doubles 102 of 4590 hits
+  layer 17 (d=6, lower F=10): chain depth 2, double-hit gaps [6, 11], law True, doubles 72 of 2970 hits
+
+
+5+7+11+13+17+19: F = 24, record stretch L = 24 blocked slots; density E_g = 14.4, 10.3, 8.4, 7.1, 6.3, 5.6
+     gap #1 L=24: survivors S_g = [14, 8, 5, 3, 1, 0]  hops = [10, 6, 3, 2, 2, 1]
+     gap #2 L=24: survivors S_g = [14, 8, 5, 4, 2, 0]  hops = [10, 6, 3, 1, 2, 2]
+     gap #3 L=24: survivors S_g = [14, 8, 5, 3, 1, 0]  hops = [10, 6, 3, 2, 2, 1]
+  random L-stretch: survivors mean = [14.4, 10.3, 8.5, 7.2, 6.3, 5.6]
+  record S_g / E_g = [0.97, 0.78, 0.59, 0.42, 0.16, 0.0]
+  layer 7 (d=5, lower F=1): chain depth 2, double-hit gaps [2], law True, doubles 92378 of 277134 hits
+  layer 11 (d=4, lower F=4): chain depth 1, double-hit gaps [], law True, doubles 0 of 125970 hits
+  layer 13 (d=9, lower F=6): chain depth 2, double-hit gaps [4], law True, doubles 1938 of 87210 hits
+  layer 17 (d=6, lower F=10): chain depth 2, double-hit gaps [6, 11], law True, doubles 1368 of 56430 hits
+  layer 19 (d=13, lower F=17): chain depth 2, double-hit gaps [6, 13], law True, doubles 1088 of 44550 hits
+
+
+5+7+11+13+17+19+23: F = 33, record stretch L = 33 blocked slots; density E_g = 19.8, 14.1, 11.6, 9.8, 8.6, 7.7, 7.1
+     gap #1 L=33: survivors S_g = [19, 13, 10, 7, 5, 3, 0]  hops = [14, 6, 3, 3, 2, 2, 3]
+     gap #2 L=33: survivors S_g = [19, 13, 10, 8, 5, 3, 0]  hops = [14, 6, 3, 2, 3, 2, 3]
+     gap #3 L=33: survivors S_g = [19, 13, 10, 7, 5, 3, 0]  hops = [14, 6, 3, 3, 2, 2, 3]
+  random L-stretch: survivors mean = [19.8, 14.2, 11.6, 9.8, 8.7, 7.7, 7.0]
+  record S_g / E_g = [0.96, 0.92, 0.86, 0.71, 0.58, 0.39, 0.0]
+  layer 7 (d=5, lower F=1): chain depth 2, double-hit gaps [2], law True, doubles 2124694 of 6374082 hits
+  layer 11 (d=4, lower F=4): chain depth 1, double-hit gaps [], law True, doubles 0 of 2897310 hits
+  layer 13 (d=9, lower F=6): chain depth 2, double-hit gaps [4], law True, doubles 44574 of 2005830 hits
+  layer 17 (d=6, lower F=10): chain depth 2, double-hit gaps [6, 11], law True, doubles 31464 of 1297890 hits
+  layer 19 (d=13, lower F=17): chain depth 2, double-hit gaps [6, 13], law True, doubles 25024 of 1024650 hits
+  layer 23 (d=8, lower F=24): chain depth 3, double-hit gaps [8, 15, 23], law True, doubles 11870 of 757350 hits
+
+          ~~^~~
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 8.03 GiB for an array with shape (1078282205,) and data type int64
