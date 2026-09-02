@@ -275,3 +275,41 @@ The first sections as words (T = twin, number = death rung):
       what the kernel iff demands rung by rung: survivor in the window = a twin in at
       least one section of the window, and the sections are independent samples of the
       same Mertens process at growing scale.
+
+### 7.4 The trees inside the sections (follow-up; exploratory, not pre-registered)
+
+The first pass over the sections computed aggregates only (twin counts, gaps, and the
+sealing-gear count of the maximal run). This pass builds the fusion tree of the maximal
+blocked run in every section, prints it for the sections ending at q = 31, 53, 199, 997,
+1999, 4999, and measures the shape of all 667. Two examples from the log:
+
+    29 -> 31 (19 slots, run of 12, 6 sealing gears): 23, 17, 13, 11 each kill one slot
+    (fusing 2-, 3-, 3-, 4-tuples); 7 kills 3, leaving the 5-tuple [1,1,1,1,1]; 5 kills 5.
+    991 -> 997 (1987 slots, run of 116, 28 sealing gears): every gear from 47 up to 607
+    (15 levels) kills exactly one slot; 43, 41, 31 kill two; 23: 3, 19: 4, 13: 7, 11: 11,
+    7: 19, 5: 47. Top merge: gear 607 fuses [62, 53].
+
+Shape of the maximal-run tree by band (depth = number of distinct death rungs in the run;
+single/depth = fraction of levels that kill exactly one slot; top chain = number of
+consecutive single-kill levels from the top; top balance = shorter/longer piece at the
+final merge):
+
+    q range     sections  run len  depth  single/depth  top chain  chain/depth  top balance
+    5-100         22       15.6     6.6     0.587         2.8       0.471        0.36
+    100-300       37       39.7    12.6     0.579         5.6       0.463        0.36
+    300-1000     106       85.9    20.8     0.578         9.8       0.461        0.45
+    1000-3000    262      140.3    29.6     0.627        14.3       0.483        0.42
+    3000-5003    240      197.8    36.8     0.626        17.7       0.477        0.40
+
+Pooled over the 502 sections with q >= 1000, the top five levels are single-kill in 100% of
+the trees, level 6-8 in 98-99%, level 12 in 91%.
+
+What this says. The section trees are the window trees of section 2 in miniature and the
+shape is scale-free: the top single-kill chain is 46-48% of the depth and the single-kill
+levels are 58-63% of the depth in every band from q = 5 to q = 5003, while the run length
+grows 13x. The top of every tree is a chain of one-slot binary merges (the near-twin
+mechanism of section 2, now visible in runs of length 15 as well as 200), the bottom is the
+5,7 comb, and the final merge is not balanced (the last gear joins pieces of ratio about
+2:5 on average). Nothing new for a proof: it confirms that the run structure inside a
+section is the generic Mertens tree at that run length, with no section-specific feature
+from the gear p that owns the section (it kills at most three slots, section 7.1).

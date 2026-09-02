@@ -13,7 +13,7 @@ from collections import Counter
 
 import numpy as np
 
-from word_tree_r29 import spf_sieve, death_rungs, runs_of
+from word_tree_r29 import spf_sieve, death_rungs, runs_of, print_tree
 
 NGATE, NFAIL = 0, 0
 TWO_C2 = 1.3203236
@@ -33,6 +33,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--qmax", type=int, default=5003)
     ap.add_argument("--words", type=int, default=12)
+    ap.add_argument("--trees", type=str, default="31,53,199,997,1999,4999")
     a = ap.parse_args()
     primes = [int(p) for p in np.flatnonzero(spf_sieve(a.qmax + 100) == np.arange(a.qmax + 101)) if p >= 5]
     ps = [p for p in primes if p <= a.qmax]
@@ -41,6 +42,8 @@ def main():
     r_all = death_rungs(Wmax, spf)
 
     rows = []
+    trees = {int(x) for x in a.trees.split(",") if x}
+    shape = []  # per section: (run length, depth, single-kill levels, top single-kill chain, top tuple ratio)
     print("=== sections p -> q: slots with p^2 < 6k+1 < q^2 ===")
     for i in range(len(ps) - 1):
         p, q = ps[i], ps[i + 1]
@@ -71,11 +74,32 @@ def main():
             s, e = max(rs, key=lambda t: t[1] - t[0])
             sub = r[s:e + 1]
             last = int(sub.max()); nseal = len(set(sub.tolist())); runlen = e - s + 1
+            # tree shape of the maximal run: per level (gear) number of kills; chain of
+            # single-kill levels from the top; balance of the top merge
+            present = sorted(set(sub.tolist()), reverse=True)
+            kills = [int((sub == g).sum()) for g in present]
+            single = sum(1 for x in kills if x == 1)
+            chain = 0
+            for x in kills:
+                if x == 1:
+                    chain += 1
+                else:
+                    break
+            if len(present) >= 2:
+                blk = sub <= present[1]
+                tup = sorted(e2 - s2 + 1 for s2, e2 in runs_of(blk))
+                top_ratio = tup[0] / tup[-1] if len(tup) >= 2 else 0.0
+            else:
+                top_ratio = 0.0
+            shape.append((q, runlen, nseal, single, chain, top_ratio, kills))
         else:
             last = 0; nseal = 0; runlen = 0
         rows.append(dict(p=p, q=q, k_lo=k_lo, k_hi=k_hi, S=S, n=n_tw, G=G, G_in=G_in, G_edge=G_edge,
                          hl=hl, kills_p=kills_p, ncand=len(cand), f7=f7, dens=dens,
                          last=last, nseal=nseal, runlen=runlen))
+        if q in trees and rs:
+            print(f"  --- section {p} -> {q}: tree of the maximal run (length {runlen} of |S| = {S}) ---")
+            print_tree(r, s, e, ps, q)
         if i < a.words:
             word = " ".join("T" if x == 0 else str(int(x)) for x in r)
             print(f"  {p:>4} -> {q:<4} numbers ({p * p}, {q * q}) slots {k_lo}..{k_hi} ({S}): {word}")
@@ -109,6 +133,30 @@ def main():
         f7 = np.mean([d["f7"] * d["dens"] for d in sel])
         print(f"{lo:>5}-{hi:<6} {len(sel):>8} {mn['n']:>9} {mn['q']:>6} {mg['G'] / mg['S']:>9.3f} {mg['q']:>6} "
               f"{tot / hl:>8.3f} {z:>9.3f} {mk:>12.3f} {big:>8.3f} {f7:>10.3f}")
+
+    print("\n=== tree shape of the maximal run, by q range ===")
+    print(f"{'q range':>12} {'sections':>8} {'run len':>8} {'depth':>6} {'single/depth':>12} "
+          f"{'top chain':>9} {'chain/depth':>11} {'top balance':>11} {'chain>=3':>9}")
+    for lo, hi in bands:
+        sel = [t for t in shape if lo <= t[0] <= hi]
+        if not sel:
+            continue
+        rl = np.mean([t[1] for t in sel]); dp = np.mean([t[2] for t in sel])
+        sg = np.mean([t[3] / t[2] for t in sel]); ch = np.mean([t[4] for t in sel])
+        cd = np.mean([t[4] / t[2] for t in sel]); tb = np.mean([t[5] for t in sel])
+        c3 = np.mean([t[4] >= 3 for t in sel])
+        print(f"{lo:>5}-{hi:<6} {len(sel):>8} {rl:>8.1f} {dp:>6.1f} {sg:>12.3f} {ch:>9.2f} {cd:>11.3f} "
+              f"{tb:>11.3f} {c3:>9.3f}")
+    # kills per level counted from the top of the tree, pooled over sections q >= 1000
+    print("  kills per level from the TOP, pooled over sections q >= 1000:")
+    prof = {}
+    for t in shape:
+        if t[0] >= 1000:
+            for j, x in enumerate(t[6][:12]):
+                prof.setdefault(j, []).append(x)
+    print("   level from top: " + " ".join(f"{j:>5}" for j in sorted(prof)))
+    print("   mean kills:     " + " ".join(f"{np.mean(prof[j]):>5.2f}" for j in sorted(prof)))
+    print("   frac single:    " + " ".join(f"{np.mean([x == 1 for x in prof[j]]):>5.2f}" for j in sorted(prof)))
 
     print("\n=== gates ===")
     z_all = [d for d in rows if d["n"] == 0]
