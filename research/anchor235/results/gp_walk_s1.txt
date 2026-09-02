@@ -1,0 +1,18 @@
+target: walk W(s) on 5+7+11+13 (5005 starts; W=0 at 0.297, mean 1.78, max 10); baseline 'predict 0' exact 0.2967; unseen machine + 17
+  gen    0: best exact-match 0.4613  size 36  min(div(1, min(min(b11, add(b13, b13)), mul(min(b5, a5), min(b7, 3)))), add(ite(a13, add(min(a7, b13), div(a13, a11)), 7), div(max(lt(b11, 0), add(b11, b7)), 0)))   | unseen machine exact-match 0.4071
+  gen   25: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen   50: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen   75: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  100: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  125: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  150: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  175: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  200: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  225: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  250: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  275: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  300: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  325: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  350: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  375: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903
+  gen  399: best exact-match 0.5556  size 17  lt(mul(min(min(b13, mul(b11, mul(a7, b7))), mul(min(a13, a5), b5)), a11), 1)   | unseen machine exact-match 0.4903

@@ -252,6 +252,89 @@ Caveat on record: if F_3 - F ever crosses q' the delta-uniform route dies and on
 delta = 2u' remains; extending F_3 and G_2 past rung 29 needs the ladder's stratified
 dictionary (the full period is too large).
 
+### 9a. Past rung 29 by search (ea_cover.py, ils_cover.py, tail.py; results/ils_run.txt, results/delta_run.txt)
+
+The covering form makes every quantity above a search over offset vectors: F + 1 is the
+longest interval [0, L) that offsets (c_g) can cover with every i congruent to c_g or
+c_g + d_g (mod g) for some g; F_2 and F_3 allow one and two holes; G_2 allows at most two
+holes per q'-window. ea_cover.py is a genetic algorithm on the offset genome (tournament
+selection, 1-3 gear mutation, 20% uniform crossover, replace-worst, restarts); it recovers
+F, F_2, F_3 exactly at {5..23} but stalls on larger machines (F 69 against 87 at {5..37}).
+ils_cover.py is best-response coordinate ascent with sideways moves and random kicks; it
+recovers F exactly at {5..29}, {5..31}, {5..37}, {5..41}, {5..53} and is short by 3 at
+{5..43} and 1 at {5..47}. Everything below is therefore a lower bound (exact corpus F in
+brackets).
+
+  machine  q'    F      F_2   F_3   G_2   F+q'
+  {5..29}  31   42[42]   54    64    69    73
+  {5..31}  37   57[57]   67    84    92    94
+  {5..37}  41   87[87]   89    96   119   128
+  {5..41}  43   90[90]  102   109   132   133
+  {5..43}  47   99[102] 115   122   152   149
+  {5..47}  53  116[117] 131   144   174   170
+  {5..53}  59  144[144] 144   160   194   203
+
+The sufficient criterion G_2 <= F + q' fails from rung 47 (152 > 149, 174 > 170). The
+stretches that beat it are not two-progression patterns (holes at 10, 12, 64, 69, 125, 129
+in the 152-stretch), so (D) itself is untouched; the 3-sparse relaxation is simply too
+loose past 43. The necessary condition F_3 - F <= q' holds everywhere, ratios 0.71, 0.73,
+0.22, 0.44, 0.43, 0.51, 0.27.
+
+Tooth spacing tested directly (results/delta_run.txt): add gear q' with teeth {a, a + delta} for
+every delta and search the new record. Rung 41 -> 43: F + q' = 133, worst delta = 7 gives
+111, the real delta = 14 gives 102 = exact F(43). Rung 43 -> 47: 149, worst delta = 19 gives
+121. Rung 47 -> 53: 170, worst delta = 9 gives 139, real delta = 18 gives 129 (exact 144;
+the search is weak here). No delta approaches F + q' at any of the three rungs; the real
+spacing is never the worst one. Lower bounds can confirm survival, not refute it.
+
+Why holes are cheap and the stride is not (tail.py): the number of gaps >= L in one period
+falls like exp(-lambda L) with lambda between 0.46 and 0.69 at rungs 13..29; each allowed
+hole multiplies the number of admissible configurations by about the number of hole
+positions, so it buys about ln(F)/lambda slots. Predicted F_2 - F = 2.6, 3.9, 6.2, 6.6, 6.2
+against measured 4, 5, 7, 6, 5; F_3 - F predicted 5, 8, 12, 13, 12.5 against 9, 12, 10, 10,
+16. Holes buy logarithmic length; q' grows linearly. Heuristic, not a proof.
+
+### 9b. Closed form for the walk: genetic programming (gp_walk.py, hopdepth.py; results/gp_*.txt)
+
+The human asked for a genetic algorithm hunting a closed form for the walk, in the
+machine's own parts. gp_walk.py evolves expression trees over the components a_g = (u_g -
+s) mod g, b_g = (-u_g - s) mod g (distance from start s to gear g's next tooth), gear
+sizes and small constants, with +, -, *, min, max, mod, floor-div, <, if-then-else;
+fitness is the exact-match rate on all 5005 starts of {5,7,11,13} with a parsimony term;
+every reported tree is also scored on the unseen machine {5..17}.
+
+Direct target W(s) (distance to the next opening): population 1000, 400 generations, the
+best tree plateaus at 55.6% (baseline "always 0" is 29.7%) with
+
+    W = [a5 b5 a7 b7 a11 b11 min(a13, b13) ... == 0]
+
+i.e. it rediscovers "W = 1 exactly when some gear hits s and the next slot is open" and
+never learns any W >= 2. Nothing in the function set expresses the chain of hits.
+
+Layered target H_g(s) = W_g(s) - W_{g-}(s), the hop the top gear adds at the lower walk's
+landing x: the best tree is
+
+    H = 0 if a_g(x) b_g(x) != 0 else 2
+
+at 90.8% (92.2% on the unseen rung). That is the layered closure of section 8 found by the
+search itself: the hop is zero unless the top gear hits the landing, and then it is the
+lower word's walk again from x + 1. hopdepth.py measures the recursion: the fraction of
+starts with no hit is exactly 1 - 2/g (0.8182, 0.8462, 0.8824, 0.8947, 0.9130 at g = 11,
+13, 17, 19, 23), one hit 18%, 15%, 11%, 10%, 8.6%, two hits 0.2-0.3%, three hits essentially
+never (the uniform-order theorem's <= 5 is the cap). Given one hit the hop is the lower
+word's gap from the landing: 1 (11-26%), 2 (27-54%), 3, 5, up to the lower record.
+
+So the walk closes layer by layer as
+
+    W_g(s) = W_{g-}(s) + sum over hits of (1 + W_{g-}(landing + 1)),
+
+with at most a handful of hits, and the residual the search cannot express is the lower
+walk itself. A closed form for W_g would need a closed form for W_{g-} at the shifted
+landings; none has been found. The genetic programming result is that the only structure
+visible in the components at this depth is the hit indicator, and the searched function
+set, which contains every arithmetic and comparison operation used elsewhere in this
+document, does not close it.
+
 ## 10. Corrections on record
 
   - First anchor pass appended "the real machine grows, untouched happens exactly once" - the
