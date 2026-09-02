@@ -354,3 +354,94 @@ fact seen from the twin's side. (d) The top of the tree is unbalanced: the last 
 pieces in ratio about 1:3 (median 0.35-0.44), not halves. The run is sealed when a
 near-twin slot (one single-kill gear) closes the gap between a large piece and a piece a
 third its size; the last gear does not "meet in the middle".
+
+## 8. Provenance of the new twins (the object the human asked for; same day)
+
+Sections 7.4 and 7.5 traced runs and merges; the human's question was the opposite object:
+take each NEW twin (a twin in the section p -> q, the part of the window that machine q
+adds), and trace the words it lives in - at level r it is an opening of the sub-machine m_r,
+sitting at position k mod r of gear r's own word and inside a local word of m_r; going up,
+that word is absorbed into a larger word whenever a gear kills the opening bounding it. The
+old window is ignored (already checked by the smaller machine). Pre-registration
+research/data/r29/provenance_prereg.md (V1-V4, scorecard), script
+research/twin_provenance_r29.py, log research/data/r29/twin_provenance.log; 130,664 new
+twins across the 667 sections up to q = 5003; 8/10 gates.
+
+### 8.1 What a provenance looks like
+
+Word at level r = (L_r, R_r), the gaps to the nearest openings of m_r; the letter string is
+m_r on k-8..k+8. From the log, section 29 -> 31 (19 slots, two new twins):
+
+    twin at slot 143 (857, 859); residues 5:3 7:3 11:0 13:0 17:7 19:10 23:5
+      level  5 (k mod 5 = 3):   word (1, 2)  oxooxoxoTxoxooxox
+      level 11 (k mod 11 = 0):  word (1, 4)  oxooxoxoTxxxoxxox
+      level 23 (k mod 23 = 5):  word (3, 4)  oxooxoxxTxxxoxxxx
+      level 29 (k mod 29 = 27): word (5, 4)  oxooxxxxTxxxoxxxx   final
+      interacting gears: left [23, 29], right [5, 11]; framing pair (5, 5)
+    twin at slot 147 (881, 883); residues 5:2 7:0 11:4 13:4 17:11 19:14 23:9
+      level  5 (k mod 5 = 2):   word (2, 1)  xoxooxoxToxoxooxo
+      level  7 (k mod 7 = 0):   word (2, 3)  xoxooxoxTxxoxoxxx
+      level 11 (k mod 11 = 4):  word (4, 3)  xoxooxxxTxxoxxxxx
+      level 17 (k mod 17 = 11): word (4, 10) xoxooxxxTxxxxxxxx
+      level 23 (k mod 23 = 9):  word (4, 23) xoxxoxxxTxxxxxxxx
+      level 29 (k mod 29 = 2):  word (4, 23) xxxxoxxxTxxxxxxxx   final
+      interacting gears: left [5, 11], right [7, 17, 23]; framing pair (5, 5)
+
+Every new twin of the sections 29 -> 31 and 47 -> 53 and two of 991 -> 997 are printed the
+same way in the log. Gear 31 (resp. 53, 997) appears in no provenance: the section's own
+gear kills nothing in its section (7.1), so a new twin's provenance ends at gear p.
+
+### 8.2 Measured (all 667 sections)
+
+  V1 - which residue combinations enable the new twins. Over the 122,546 new twins with
+  q >= 1000, the residue classes are uniform over the tooth-avoiding classes to total
+  variation 0.0026 (mod 5: 0.331 / 0.335 / 0.334 at k = 0, 2, 3), 0.0033 (mod 35, 15 open
+  classes, least 0.0658 most 0.0675 against 0.0667) and 0.0097 (mod 385, 135 classes).
+  V2 - framing pairs (death rungs of the two slots bounding the twin's final word). Joint
+  within TV 0.024 of the product of its marginals; left marginal 5: 0.665, 7: 0.134,
+  11: 0.045, 13: 0.028, 17: 0.017, right the same to three figures; (5,5) alone 44%.
+  V3 - interacting gears per new twin (levels where the word changes, one side):
+
+      q range     new twins   mean left   mean right   iid-records model
+      5-100          191       2.20        2.14         2.17
+      100-300        880       2.81        2.85         2.70
+      300-1000      7047       3.21        3.19         3.03
+      1000-3000    45710       3.52        3.51         3.31
+      3000-5003    76836       3.69        3.69         3.47
+
+  V4 - REFUTED. The largest gear interacting with a new twin exceeds p/2 for 46-48% of new
+  twins at q >= 1000 (pre-registered 5-25%, carried over from the twin-path pass, whose
+  11.7% was a window average). Checked by k-decile at m4999: 0.000 in the lowest two
+  deciles of the window, 0.427 in the top decile (left flank alone 0.243). The section IS
+  the top of the window, so the provenance of a new twin is framed by a gear above p/2
+  about half the time - a fact the window average hid. Also refuted: the fraction of new
+  twins whose word is final by level 13 is 0.7-2%, not 5-25% (a guess without derivation).
+
+### 8.3 What the provenance says
+
+  (a) The combination of gear interactions that enables a new twin is any tooth-avoiding
+      residue vector, and the new section samples those vectors uniformly (V1 at three
+      moduli, to a few parts per thousand). There is no preferred combination, no gear
+      whose position in its own word makes a new twin more or less likely: the enabling
+      pattern is the CRT product, nothing finer. This is the same statement as U1 for the
+      window, now restricted to the new part where the human wanted it tested, and it is
+      sharper there.
+  (b) The two sides of a new twin are independent (V2): the left word and the right word
+      are drawn separately. A new twin is framed by gear 5 on each side two thirds of the
+      time (residue argument of 6.2), and by (5,5) 44% of the time.
+  (c) The number of gears that touch a new twin's word grows like the records of an iid
+      Mertens sequence (V3, model within 6%): 2.2 at q < 100, 3.7 at q ~ 5000, about one
+      more gear per factor 10 in q. Provenance depth is ln ln-slow.
+  (d) The one new thing: the top of a new twin's provenance is a big gear (> p/2) about half
+      the time, because a new twin lives at numbers ~ p^2 where slots with no factor below
+      p/2 in either number - near-twins - have density of the same order as twins, so each
+      flank of ~ ln^2 p slots holds about one. The window average (11.7%) was dominated by
+      the low part of the window where such slots cannot exist (a number below (p/2)^2 with
+      no factor <= p/2 is prime). This is the section view earning its keep: the new twins
+      are the ones framed by the newest gears, and the old window is not representative of
+      them.
+  (e) For the proof: the provenance is the twin's residue vector plus the records of its
+      flank rungs; the first is uniform by CRT and the second is a Mertens records process.
+      Killing twins for ever would need a rung from which no tooth-avoiding vector lands in
+      the section, and (a) says the vectors that land are the generic ones with no
+      preference - the kill would have to remove every class at once, not a pattern.
