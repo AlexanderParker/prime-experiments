@@ -312,7 +312,8 @@ mechanism of section 2, now visible in runs of length 15 as well as 200), the bo
 5,7 comb, and the final merge is not balanced (the last gear joins pieces of ratio about
 2:5 on average). Nothing new for a proof: it confirms that the run structure inside a
 section is the generic Mertens tree at that run length, with no section-specific feature
-from the gear p that owns the section (it kills at most three slots, section 7.1).
+from the gear p that owns the section (it is the death rung of at most three slots, section
+7.2; as number-kills p*q, p*q_2, ... it reaches up to six at the widest rungs, section 9).
 
 ### 7.5 The tuple side (follow-up; exploratory, not pre-registered)
 
@@ -445,3 +446,59 @@ gear kills nothing in its section (7.1), so a new twin's provenance ends at gear
       Killing twins for ever would need a rung from which no tooth-avoiding vector lands in
       the section, and (a) says the vectors that land are the generic ones with no
       preference - the kill would have to remove every class at once, not a pattern.
+
+## 9. Section reruns A and B: odometer order and kill lists (same day; pre-registered)
+
+Pre-registration data/r29/section_ab_prereg.md, script research/section_ab_r29.py, log
+research/data/r29/section_ab.log (sections 29 -> 31, 47 -> 53, 197 -> 199, 991 -> 997 printed;
+gates over 666 sections). Human's direction: rerun the historical checks (the sort step, the
+matrix delete step) on the new section only and read the objects, not the counts.
+
+### 9.1 A - the new twins in odometer order
+
+The section's twins listed by digit vector (k mod 5, k mod 7, ..., k mod p) in lex order and in
+reverse lex. The listing for 47 -> 53 (13 twins) shows what every section shows: in lex order
+the carry position is a digit among the first three or four (gears 5, 7, 11, 13) in no
+pattern, and the k-differences between lex-consecutive twins are +-35, +-70, +-55, ... -
+multiples of the moduli below the carry, as CRT dictates, and otherwise arbitrary; in reverse
+lex the carry is at the top gear for almost every pair (k mod p runs through only a few cycles
+in a section), so the order is just k mod p order. Gate A1 held: the carry-position multiset
+over the sections q >= 1000 is within TV 0.043 of the iid-uniform model of the open vectors.
+The one deviation, a deficit of pairs with identical vector mod 5.7.11.13 (9853 against
+15031 in the model), is the interval: two such twins must be a multiple of 5005 slots apart,
+and a section is only ~ p(q - p)/3 slots long; it is the model that is naive, not a twin
+preference. Verdict as pre-registered: the sort step on the new section is the CRT product
+and nothing finer. The 2n-gap law needs the whole product set and has no section content.
+
+### 9.2 B - the kill lists as words of the smaller machines
+
+For every gear s <= p the kills in the section are (B1 gate, 666 sections, and the bands of
+gear s over consecutive sections are contiguous)
+
+    K_s(p -> q) = s x { m in (p^2/s, q^2/s) : no prime factor below s }.
+
+The set on the right is the OPEN WORD of the sub-machine with gears below s, read at the
+numbers (p^2/s, q^2/s) - not in slots but in numbers, since m need not be +-1 mod 6. So the
+new section's blocked word is stitched from the open words of every smaller machine, each
+scaled by its next gear:
+
+    blocked(p -> q) = union over s of  s * open_{<s}( (p^2/s, q^2/s) ),
+
+and a new twin is a slot that no such scaled open word reaches on either side. Read as
+provenance across sections: gear s consumes the numbers of the section at scale p/sqrt(s) -
+the feeder table for 991 -> 997 runs from gear 5 eating 795 numbers of the section 443 -> 449
+down to the gears near 991 eating a handful of primes each from the sections 31 -> 37 and
+37 -> 41, and every section between is a feeder of exactly one or two gears. Gear p's own
+kills are p x (the primes q, q_2, ... below q^2/p) (B2 gate); my pre-registered "1 to 3 of
+them" was wrong (distribution 1: 324, 2: 215, 3: 79, 4: 36, 5: 10, 6: 2 over the 666
+sections) - the count is the number of primes in (q, q + 2(q - p) + ...), which is up to six
+at wide rungs; the "at most three" of section 7 is about death rungs (the slot's minimum over
+both sides), and stands. Refutation recorded.
+
+What this says for the mechanism the human asked about: the section p -> q does not contain
+a new pattern of gear interactions. Its word is the divisibility lattice s * m, i.e. the sieve
+of Eratosthenes in section coordinates, and the only thing that decides whether a slot is a
+new twin is whether its two numbers are hit by some scaled open word of a smaller machine.
+Both sides of the question - which vectors survive (A), where the kills come from (B) - reduce
+to CRT and to the smaller machines' open words. No section-specific feature was found in
+either listing, and the pre-registration said none was expected.
