@@ -15,8 +15,8 @@ ROUND 29 IN FOUR RESULTS:
    criterion from last round closed step ten with room to spare (132 against a budget of
    150). At step eleven it fails: the old machine's deepest spectrum value is 177 against
    a budget of 171, on an actual exhibited position. The reason is clean. Each extra unit of
-   a quantity called the kill depth buys a whole new spectrum level (7 to 16 units) while
-   the budget only grows by 4 to 6. Every step with kill depth at most 3 certifies; both
+   a quantity called A_kill (the kill index) buys a whole new spectrum level (7 to 16 units) while
+   the budget only grows by 4 to 6. Every step with A_kill at most 3 certifies; both
    failures are the steps where it reaches 4 or 5. The finer word-based tool still has 26
    units of room at step eleven, so the ladder is not stuck, but the cheap criterion is done.
 
@@ -25,7 +25,7 @@ ROUND 29 IN FOUR RESULTS:
    excess is the previous depth's excess minus a per-letter residual. So the uniform bound
    we need is equivalent to two things: the residual is bounded per letter (measured, never
    above 4), and the longest legal word L is bounded across machines. That second piece is
-   the crux, because L is the same quantity as the kill depth above: L grew to 4 at machine
+   the crux, because A_kill is exactly L + 1 (a theorem this round): L grew to 4 at machine
    47, a new maximum, and that growth is exactly what broke the cheap criterion. Nothing we
    have says L is bounded; nothing says it is not. That is now the sharpest open question.
    One caution: these two pieces settle the depth part of the obligation. The depth-2 part,
@@ -54,8 +54,8 @@ ROUND 29 IN FOUR RESULTS:
 
 Also: the round's opening re-verification passed (the record extension F(61) >= 173 is now
 manager-checked by an independent path); the small-machine laws found in the "anchor 2,3,5"
-line are now kernel theorems for every gear at once, including the new fact F(17) = 18 with
-its witness; and two invariants found five rounds apart (phase saturation and the literal
+line are now kernel theorems for every gear at once, including the attainment of F(17) = 18 with
+its witness (the value was known by scan; the kernel had only the upper bound); and two invariants found five rounds apart (phase saturation and the literal
 cap) were proved identical at all 48 residue classes in the kernel.
 
 ## Honest ledger
