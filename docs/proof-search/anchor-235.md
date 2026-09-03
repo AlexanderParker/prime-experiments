@@ -441,6 +441,53 @@ a random blocked slot (0.2481) and much more often than the neighbour of an open
 (0.0881: openings repel, since k and k + 1 must both miss every gear's tooth pair). So "one
 side of a hit is open" is true for that gear only; it is not a way to find openings.
 
+### 9f. The walk as a nested residue formula, and what its size is (nested_form.py, chain_depth.py; results/nested_form.txt, chain_depth.txt)
+
+Bottom terms. W_5(s) = [s = 1 or 4 mod 5]. W_{5,7} is the period-35 table
+
+    s = 0..34: 0 1 0 0 1 0 1 0 2 1 0 1 0 4 3 2 1 0 0 4 3 2 1 0 1 0 2 1 0 1 0 1 0 0 1
+
+(the two 4-3-2-1 runs are the record F = 4 twice, the two mirror images). Each layer g on
+top of the machine M = {5..g-} is the hit law and the chain law of section 9d written as
+terms: with x = s + W_M(s) the lower landing,
+
+    W_g(s) = W_M(s) + h1 (1 + W_M(x + 1)) + h1 h2 (1 + W_M(x1 + 1)) + ...   (D_g terms)
+    h1 = [x on g's teeth],  x1 = x + 1 + W_M(x + 1),  h2 = [x1 on g's teeth],  ...
+
+where D_g is the layer's chain depth (longest run of consecutive lower openings on the
+teeth). With D = 2, 1, 2, 2, 2, 3 for g = 7, 11, 13, 17, 19, 23 the capped formula equals
+the true walk at every slot of the full period for {5,7}, {5..11}, {5..13}, {5..17},
+{5..19} (periods 35 to 1616615; all exact). So the walk IS a closed nested residue
+expression of bounded depth per layer, built from the listed interactions only.
+
+Its size. Unrolled to W_5 the formula needs prod (1 + D_g) bottom evaluations: 3, 6, 18,
+54, 162, 648, 1944 for the machines up to {5..29}. That is exponential in the number of
+layers (about 3^layers), not polynomial, and D_g does not stay at 2 (D_23 = 3). This is the
+honest size of the collapse found here: each layer multiplies the expression by 1 + D_g,
+because a hop on layer g re-enters the whole lower machine at the new landing. No
+cross-layer cancellation was found that shortens it; none is claimed absent.
+
+Gap-sequence form (the run-level meta-sieve the human described). Layer g's gap sequence
+is the lower gap sequence with consecutive gaps merged at every prefix sum = +-u_g (mod g).
+Over the full period this deletes exactly 2/g of the lower openings (6 of 21, 30 of 165,
+270 of 1755, 2970 of 25245, 44550 of 423225 - exact, not approximate), leaves prod (g - 2)
+gaps per period, and the largest merged gap is F + 1 at every rung checked. Because P_M is
+invertible mod g, the g copies of the lower period inside the full period realise every
+deletion phase r in Z_g exactly once (copy j has phase -j P_M mod g), each phase deleting
+the lower openings with residue r or r + d_g. Hence the layer needs the lower opening
+residues mod g once, not the full period:
+
+    D_g   = longest run of consecutive lower openings with residues in one set {r, r + d_g}
+    F_g+1 = max over such runs of (gap before) + (run span) + (gap after).
+
+chain_depth.py computes both on one lower period: F = 4, 6, 10, 17, 24, 33, 42 for
+{5..7} through {5..29}, all equal to the corpus, the last from 7952175 lower openings
+instead of a 6.5e9-slot period (819 times smaller; the record law of round 26 in the
+anchor-2,3,5 language). This is where the closed form stops being a formula and becomes a
+scan: the deletion phase is a single residue test, but which run of lower openings falls
+into a two-class set is a property of the whole lower opening sequence mod g, and the
+lower sequence is itself the same construction one layer down.
+
 ## 10. Corrections on record
 
   - First anchor pass appended "the real machine grows, untouched happens exactly once" - the

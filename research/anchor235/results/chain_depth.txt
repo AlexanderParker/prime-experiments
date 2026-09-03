@@ -1,0 +1,7 @@
+layer  7 on 5: lower openings 3, chain depth D_7 = 2, F_7 = 4 (phase r = 5), unrolled terms prod(1 + D) = 3
+layer 11 on 5+7: lower openings 15, chain depth D_11 = 1, F_11 = 6 (phase r = 1), unrolled terms prod(1 + D) = 6
+layer 13 on 5+7+11: lower openings 135, chain depth D_13 = 2, F_13 = 10 (phase r = 0), unrolled terms prod(1 + D) = 18
+layer 17 on 5+7+11+13: lower openings 1485, chain depth D_17 = 2, F_17 = 17 (phase r = 2), unrolled terms prod(1 + D) = 54
+layer 19 on 5+7+11+13+17: lower openings 22275, chain depth D_19 = 2, F_19 = 24 (phase r = 0), unrolled terms prod(1 + D) = 162
+layer 23 on 5+7+11+13+17+19: lower openings 378675, chain depth D_23 = 3, F_23 = 33 (phase r = 3), unrolled terms prod(1 + D) = 648
+layer 29 on 5+7+11+13+17+19+23: lower openings 7952175, chain depth D_29 = 2, F_29 = 42 (phase r = 5), unrolled terms prod(1 + D) = 1944

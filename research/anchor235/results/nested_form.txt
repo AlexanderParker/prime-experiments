@@ -1,0 +1,12 @@
+W_5(s) = [s = 1 or 4 mod 5]
+W_{5,7}(s), s = 0..34: 0 1 0 0 1 0 1 0 2 1 0 1 0 4 3 2 1 0 0 4 3 2 1 0 1 0 2 1 0 1 0 1 0 0 1
+5+7: formula exact over the full period 35: True; W_5 evaluations in the unrolled formula 3 = prod(1 + D_g) = 3
+   gap-sequence form: 3 lower gaps per lower period (max 2), 6 of 21 lower openings per full period on 7's teeth (= 2/7 exactly: True); merged: 15 gaps per period (= prod(g - 2) = 15), max merged gap 5 = F + 1 = 5
+5+7+11: formula exact over the full period 385: True; W_5 evaluations in the unrolled formula 6 = prod(1 + D_g) = 6
+   gap-sequence form: 15 lower gaps per lower period (max 5), 30 of 165 lower openings per full period on 11's teeth (= 2/11 exactly: True); merged: 135 gaps per period (= prod(g - 2) = 135), max merged gap 7 = F + 1 = 7
+5+7+11+13: formula exact over the full period 5005: True; W_5 evaluations in the unrolled formula 18 = prod(1 + D_g) = 18
+   gap-sequence form: 135 lower gaps per lower period (max 7), 270 of 1755 lower openings per full period on 13's teeth (= 2/13 exactly: True); merged: 1485 gaps per period (= prod(g - 2) = 1485), max merged gap 11 = F + 1 = 11
+5+7+11+13+17: formula exact over the full period 85085: True; W_5 evaluations in the unrolled formula 54 = prod(1 + D_g) = 54
+   gap-sequence form: 1485 lower gaps per lower period (max 11), 2970 of 25245 lower openings per full period on 17's teeth (= 2/17 exactly: True); merged: 22275 gaps per period (= prod(g - 2) = 22275), max merged gap 18 = F + 1 = 18
+5+7+11+13+17+19: formula exact over the full period 1616615: True; W_5 evaluations in the unrolled formula 162 = prod(1 + D_g) = 162
+   gap-sequence form: 22275 lower gaps per lower period (max 18), 44550 of 423225 lower openings per full period on 19's teeth (= 2/19 exactly: True); merged: 378675 gaps per period (= prod(g - 2) = 378675), max merged gap 25 = F + 1 = 25
