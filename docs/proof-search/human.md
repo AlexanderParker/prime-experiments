@@ -28,6 +28,10 @@ ROUND 29 IN FOUR RESULTS:
    the crux, because L is the same quantity as the kill depth above: L grew to 4 at machine
    47, a new maximum, and that growth is exactly what broke the cheap criterion. Nothing we
    have says L is bounded; nothing says it is not. That is now the sharpest open question.
+   One caution: these two pieces settle the depth part of the obligation. The depth-2 part,
+   that the budget exceeds the depth-2 spectrum value by a margin that keeps growing, is a
+   separate uniform statement that is measured (margin 9 at machine 11, 37 at machine 47)
+   and not proved.
 
 3. THE FORMULA IS STRUCTURAL; ONLY ITS SIZE DEPENDS ON THE TEETH. The identity that computes
    the new record from the old machine's spectrum holds at every one of 27,570 counterfactual
@@ -71,7 +75,10 @@ worst yet (6 of 17 refuted) and is recorded as such.
 
 Route: twins infinite <=> no machine ever covers a window (kernel-checked iff).
 (A), (B), (C): closed. (D): true at every computable step and beyond the corpus; ten
-certified rungs; increment law kernel-grade at seven steps; the uniform obligation now
-equals two statements - a per-letter residual is bounded (measured) and the longest legal
-word is bounded (open, and the crux). Next: the tiered kernel root, rung eleven by the finer
+certified rungs; increment law kernel-grade at six steps and certified by exact LP
+certificates (not yet in the kernel) at a seventh; the depth part of the uniform obligation
+now equals two statements - a per-letter residual is bounded (measured) and the longest
+legal word is bounded (open, and the crux) - and the depth-2 part (the old record plus the
+new prime must exceed the depth-2 spectrum value by a margin that stays large) remains a
+separate, unproved uniform statement. Next: the tiered kernel root, rung eleven by the finer
 tool, the padded-gap census that would decide the three open rows, and any handle on L.

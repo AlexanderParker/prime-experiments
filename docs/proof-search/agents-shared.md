@@ -136,8 +136,14 @@ is structural; the teeth enter only through the SIZE of Q*_J. Delta_J = Delta_{J
 splits the uniform target into (A) eps = O(1) per letter (measured <= 4, mechanism open) and
 (B) L(M) bounded. (B) is the crux for both routes: L = A_kill - 1 = J_max - 2 = D_g, and its
 growth (L(47) = 4) is exactly what defeats the spectrum certificate at rung eleven. Nothing
-found says L is bounded; nothing found says it is not. The finite lemma list stands with (B)
-as its hardest entry.
+found says L is bounded; nothing found says it is not. MANAGER VALIDATION NOTE (2026-09-03):
+(A)+(B) give max_J Delta_J = O(1), i.e. F(M+q') <= F_2(M) + C. That is (D) only together with
+the DEPTH-2 HALF, F_2(M) + C <= F(M) + q' uniformly - the J = 2 slack F(M) + q' - F_2(M) is
+9 at m11 and 37 at m47, measured, not proved (the "2F wall"). Also: R74's A_relax <= 5 bounds a
+PROXY (the pure alternation word under gears 5 and 7 only); N(M) <= L + 1 goes the wrong way;
+neither bounds L, and R75 shows gears 5 and 7 alone cannot (CORRCAP is infinite from 53 -> 59).
+Any L bound must come from the cover half (all gears). The finite lemma list stands with (B)
+and the depth-2 half as its hardest entries.
 
 OPERATIONAL: at 5:07 PM on 2026-09-03 the box crashed (bugcheck 0xEF, CRITICAL_PROCESS_DIED):
 one lean.exe elaborating the 385-import CaseCert37 root reached 53.7 GB virtual memory and
@@ -6247,8 +6253,8 @@ manager's note R29.5 are in formalist.md.)
 
 HEADLINE: the anchor-2,3,5 layer laws are kernel theorems for every gear at once; A_relax <= 5
 is a kernel statement over the 48 classes mod 210 with the identity "phase saturation at {5,7}
-= the literal cap" checked at all 48 classes; F(17) = 18 EXACTLY is a new kernel-checked corpus
-fact; the 31 -> 37 case-split rung is 385/385 case modules in the kernel and 0/1 roots - the
+= the literal cap" checked at all 48 classes; the ATTAINMENT F(17) = 18 is now kernel-checked
+(the value itself was corpus by scan; the kernel had only the upper half); the 31 -> 37 case-split rung is 385/385 case modules in the kernel and 0/1 roots - the
 root's single-process elaboration reached 53.7 GB and crashed the machine.
 
 BUILD / AUDIT LINES (manager, after the reboot, from proofs/):
