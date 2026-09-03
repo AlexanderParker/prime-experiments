@@ -488,6 +488,55 @@ scan: the deletion phase is a single residue test, but which run of lower openin
 into a two-class set is a property of the whole lower opening sequence mod g, and the
 lower sequence is itself the same construction one layer down.
 
+### 9g. Evolving simpler forms of the closed form (gp_simplify.py, lazy_cost.py; results/gp_simp_*.txt, lazy_cost.txt)
+
+Pre-registered: (P1) an exact W_{5,7} in residues r5, r7 with fewer nodes than the seed
+exists and the GP finds one under 25 nodes (50%); (P2) no exact hop form of a layer uses
+fewer than D_g lower gaps (confident); (P3) the GP replaces hit_1, hit_2 by residue tests
+on the gaps, i.e. rediscovers the chain law (medium). Scored below.
+
+Static size, three exact forms of the same function (bottom evaluations or residue tests,
+{5..19}): nested form prod (1 + D_g) = 162 W_5 terms; flat form W(s) = min over the
+openings o of (o - s) mod P, prod (g - 2) = 378675 terms; scan form
+W(s) = sum_{j >= 1} prod_{i < j} B(s + i) with B the blocked indicator, F + 1 = 25 terms of
+pi(q) = 6 gear tests. The scan is the smallest for every machine beyond the tiny ones
+(about 2 pi(q) (F + 1) tests, quadratic in q, against 3^pi(q) and prod (g - 2)); it is the
+definition written as arithmetic and needs F + 1 as its term bound, which is the unknown.
+
+Evaluation cost is not static size. Entered lazily (a hit term only when its landing is
+on the teeth), the nested form costs at slot s exactly 1 + (crossed slots not on 5's teeth)
+bottom evaluations - checked at every slot of every machine to {5..19}; my pre-registered
+count W(s) + 1 was wrong by the gear-5 hops, which W_5 absorbs. Means 1.37, 1.61, 1.87,
+2.11, 2.36 for {5,7} .. {5..19} (against static 3 .. 162), maxima 3, 4, 7, 11, 15 (F + 1
+= 5, 7, 11, 18, 25). Residue tests per slot with the smallest blocker tried first: mean
+3.3, 5.1, 7.2, 9.3, 11.5, max 8, 13, 24, 43, 64, against the flat scan's 3.9 .. 21.6 mean
+and 10 .. 150 max. So the exponential static size is not a cost: the walk from a typical
+slot costs two to three bottom evaluations, the record walk F + 1 minus the gear-5 hops.
+
+GP on the nested form (lexicographic fitness: slots exact, then nodes; hoist mutation as
+the shrinking move). W_{5,7} in residues, seeded with the nested form written out (327
+nodes as a tree, no sharing): 327 -> 65 nodes in 1253 generations, exact on all 35 slots.
+The 65-node form keeps the three terms W_5 + h1 (1 + W_5(x + 1)) + h1 h2 (...) but drops
+every dead mod-5 wrapper and uses a machine-specific fact: at {5,7} a chain of two hits
+happens on one tooth of 7 only, so the second term tests eq(x mod 7, 6) alone. From
+random trees (no seed) the best in 1500 generations is 27/35 exact with 9 nodes,
+eq(1, min(r7 mod 5, r5 mod 3)) - never exact. P1 half right: smaller exists (5 times
+smaller), not under 25 nodes, and not found from scratch.
+
+Per-layer hop H_g = W_g - W_M in chain primitives (hit_i, gap L_i costing 10 each, landing
+residue, g, d, u): the GP returns hit0 (L1 + hit1 L2) at layers 13 and 19 (exact on the full
+periods 5005 and 1616615) and hit0 (L1 + hit1 (L2 + hit2 L3)) at 23 (exact on 37182145),
+nothing with fewer gaps in 200-300 generations. P2 holds within the search (D_g gaps are
+needed because the chain of length D_g exists; not a proof of minimality for any other
+primitive set). P3 not tested by this run: hit_i were free primitives, cheaper than the
+residue tests that would replace them, so the GP had no reason to rediscover the chain law.
+
+What "simpler" comes to: the same function has an exponential-size nested form, an
+exponential-size flat form and a quadratic-size scan; the nested form is cheap to evaluate
+because almost every hit term is skipped. Below the scan, a form would have to compute
+the first integer outside a union of 2 pi(q) arithmetic progressions from the pi(q)
+residues of s alone; none is known here and none was found.
+
 ## 10. Corrections on record
 
   - First anchor pass appended "the real machine grows, untouched happens exactly once" - the
