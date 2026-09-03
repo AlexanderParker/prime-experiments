@@ -365,6 +365,43 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   (max eta^2 = 0.09, never gear 5), the twin's (v_5,v_7) class is the HIGHEST-F
   class, and inside it the twin sits at the 1.7-6.9 percentile - an interaction,
   not a main effect
+  ROUND-29 EXTENSION (section 5B): what the RESIDUAL violators are after the
+  tooth is pinned. First, a structural result the family gives free - THE RECORD
+  LAW IS FAMILY-WIDE: max(F_2, max_J Q*_J) = F(M+q') at ALL 27,570 counterfactual
+  machines across five steps, so Constructor's attainment theorem survives moving
+  the teeth exactly where (D) and the increment law do not, which localises the
+  arithmetic to the SIZE of Q*_J and not to the identity that computes F(M+q').
+  Then the brief's question, answered NEGATIVELY: the residual set is NOT one
+  congruence on F(M) - "F(M) = a tooth difference mod q'" has sensitivity 34.0%
+  at 17->19 and 5.6% at 19->23, the depth-3 attaining middle IS the old record in
+  0.0% of 19->23 violators, and the best predictor of the form "F mod q' in S"
+  reaches 57.9% balanced accuracy. What describes it is a DEPTH-4 WORD-LEGAL
+  WINDOW (depth 3 explains 100% / 63% / 30% of violators at 13->17 / 17->19 /
+  19->23; depth 4 is the MODE at 19->23 and depth 6 is populated), and the
+  elementary necessary condition is the PEEL BOUND on the FLANKS (min flank >
+  s_min), not any condition on the middle. Also priced: the purely spectral
+  certificate max(F_2..F_5) <= F_2 + s_min is sound but certifies only 0.3-1.2%
+  of the family against word-legality's 96-100% - the arithmetic is worth ~100x
+  in coverage
+
+- walk-transform-pole-identity - the distance-to-next-opening function W has
+  What(m)(1 - e(m/P)) = -e(m/P) Ghat(m) at every nonzero frequency, where Ghat is
+  the GAP-WEIGHTED opening transform: the walk has no Fourier content of its own,
+  only a Dirichlet pole times one hard object, and lateral's round-21 pole-phase
+  law is exactly this transform. Ghat splits as lambda*Shat + Dhat with Shat =
+  prod_q hat_q(m c_q) CLOSED FORM (and the CRT frequency c_q = (P/q)^{-1} mod q,
+  which the round-20 statement of the machine DFT omits); Parseval puts
+  0.77/0.74/0.71/0.69 of the walk's energy in the closed-form part at m11..m19,
+  DECREASING. THE USABLE HALF IS A PROVED NEGATIVE: sum_m |Shat|/P = prod_q S_q/q
+  with S_q = (q-2) + sum_k |2cos(2 pi k/q)| is INDEPENDENT OF THE TEETH, so the
+  L1 character bound is identical at all 30/180/1440 counterfactual tooth vectors
+  while F spreads 1.83x/2.50x/2.29x - no bound built from |Shat| can determine F.
+  The L2/Chebyshev bound does vary with the teeth but its rank correlation with F
+  is -0.038/+0.023/-0.186, and its certifying length is 7.7x/29.4x/161.3x above F.
+  Verdict on the anchor-235 floor: the character form is THE SCAN IN DISGUISE
+  (scan 2 pi(q)(F+1) tests beats P coefficients and 2^(F+1) inclusion-exclusion
+  terms at every machine) but it NAMES the irreducible object - PROVED (identities)
+  + SCRIPT-VERIFIED to 5e-16 at m11..m19 - not yet checked (round 29)
 
 ## Seeding backlog - COMPLETE 2026-08-23 (all 10 written up and checked; kept for provenance)
 
@@ -670,6 +707,23 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   result; a claim to close half of backlog U10 was WITHDRAWN (8.7); and round
   25's "exactly one odd palindrome" is correct only for PALINDROMES and only as
   "at most one" (8.5)
+  ROUND-29 EXTENSION (section 9, Lateral): THE LEVER'S HYPOTHESIS IS NOW A
+  THEOREM AT EVERY DEPTH >= 3, on the WORD-LEGAL family the live route actually
+  uses. The self-mirror depth-J window is NEVER word-legal for J >= 3: at ODD J
+  its central middle is the antipodal gap, of length 1, and 1 is a legal letter
+  only if 3 = +-1 mod q' (impossible, since 2u' = 3^{-1}); at EVEN J >= 4 its
+  two CENTRAL middles are both d_0, so T3 forbids two equal nonzero classes and
+  0 < d_0 < q' forbids both being padded. Hence the mirror is FIXED-POINT-FREE
+  on that family and every span count is EVEN with no exceptional class, no
+  exception list and no census - which replaces round 26's 66-cell check and
+  round 28's span table by arithmetic. J = 2 is the ONLY depth needing a
+  hypothesis, and there it is exactly d_0 != F. Gated at m11..m23, J = 2..7,
+  185 assertions, and every Q*_J reproduces Constructor's R68 table by a
+  different vehicle. HONEST NEGATIVE, and it answers the round-29 brief: the
+  even-J reversal symmetry yields NO inequality on F_J or Q*_J - being
+  span-preserving, all it adds is the quotient by an involution, i.e. the SAME
+  one unit ("fewer than two proves none") that section 7.1 already proved is
+  the ceiling. What changes is the PRICE of that unit, not its size
 
 - gear-cell-decomposition - the frequency-1/p Fourier coefficient of the gap
   histogram is a function of only (p-2)(p-3)/2 integers, for EVERY machine (three at
@@ -825,6 +879,12 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   maximisers) and FALSE at J = 3, 4 (15 cells, none) - Theorem B explains the even-J half -
   PROVED (Theorems A-D) + SCRIPT-VERIFIED (exact, gated against R68's independent Q* table
   and reproduced by a second scan-free CRT vehicle) - not yet checked (round 28)
+  ROUND 29 (Constructor): the family's DEPTH quantifier is closed - J_max(M) = L(M) + 2 with
+  L the longest realised legal letter word (see even-j-mechanism), so "J_max = A_kill + 1"
+  is proved rather than measured and every EMPTY cell of the Delta table is free.  The
+  literal Delta_J table is reproduced by a third independent vehicle
+  (research/evenj_r29.py) and gains the m31 literal J = 4 maximiser (6,25,12,28), span 71,
+  Phi = 34, not previously exhibited
 - spectrum-depth-certificate - F(M+q') <= max_{2<=J<=J_max} F_J(M), from R68's attainment
   theorem plus "Q*_J <= F_J" and "emptiness is upward closed": (D) at a step follows from the
   OLD machine's spectrum over a FINITE depth range, with no word list, no flank envelope, no
@@ -835,6 +895,35 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   FAILS at 29 -> 31, where the new exact value F_5(29) = 85 is 11 over budget while
   Q*_5(29) = 55 - PROVED + SCRIPT-VERIFIED (every input asserted against the corpus; the one
   new input re-derived from scratch with 0 undecided) - not yet checked (round 28)
+  ROUND 29 (Constructor): THE TENTH RUNG, 43 -> 47, RATIFIED - max_J F_J(43) = 132 <= 150 =
+  F(43) + 47, MARGIN +18, from Mechanic's exact unconditional F_2(43)=116, F_3(43)=125,
+  F_4(43)=132 and J_max(43) = 4; every input re-asserted against its own deletion-ladder cap
+  from a clean process (research/rung10_r29.py).  AND THE DEPENDENCY IS NAMED: those three
+  values' EXHAUSTIVENESS rests on span caps F(47)/F(53)/F(59), corpus values ABOVE machine 43,
+  so rung ten - like every rung below m59 - is a METHOD rung, not a logically independent
+  bound on F(47).  The independent version is priced exactly: 38,072 CRT decisions at machine
+  43 (J=2/3/4 bands above 150 up to j.F(43)), at a measured 30-46 s and only ~25% decided per
+  instance at a 300,000-node budget
+- even-j-mechanism - the even-J half of the increment law, which the round-28 palindrome
+  route provably cannot reach (Theorem B forbids literal even-J palindromes).  THE WORD
+  REDUCTION (proved; the forward half is Mechanic's r28 index observation, the converse is
+  new): Q*_J > -inf iff L(M) >= J-2 with L the longest REALISED legal letter word, so
+  J_max = L+2 and A_kill = L+1 - R81's MEASURED 8/8 identity is a theorem, and J = 6 is
+  certified empty at every machine on record from one dictionary fact.  THE SAME-TOOTH LEMMA
+  (proved, 38/38): the middle span is 0 mod q' exactly when the number of non-padded middles
+  is even, so a literal even-J chain starts and ends on the SAME tooth.  THE IDENTITY IS A
+  TWO-WAY TOOL: L(43) = 2 and L(47) = 4 were computed this round directly from the word
+  dictionary (8 and 4 CRT calls, 0 undecided, no census and no period), re-deriving
+  A_kill(43 -> 47) = 3 and INDEPENDENTLY CONFIRMING the round-25 value A_kill(47 -> 53) = 5;
+  the realised word (18,35,18,35) at m47 is the first legal 4-word recorded in the project.
+  THE NEW OBJECT is
+  the PAR-TRADING RESIDUAL eps(v) = Phi(u) - Phi(v) - x, the failure of the flank envelope to
+  pay for one added letter: Delta_J = Delta_{J-1} - eps, so "Delta_J = O(1) uniformly in J"
+  splits into "eps = O(1) per letter" and "L(M) bounded".  MEASURED: |eps| <= s_min at 14 of
+  14 LITERAL cells and 10 of 16 PADDED cells (all six failures carry the letter q'), and
+  max |eps| = 4 along the maximising chains, against s_min 4..14 - PROVED (two theorems) +
+  SCRIPT-VERIFIED (21 of 22 recorded Q*_J cells reproduced, 0 mismatches) - not yet checked
+  (round 29)
 - dictionary-monotonicity-onset - TWO findings.  (a) THE DEPTH-0 LEMMA: the realised gap
   m-tuple dictionary is MONOTONE along the machine ladder, D_m(M) subset D_m(M+q') for
   every q' > 2(m+1) - a new gear destroys openings and merges gaps, yet every old
@@ -891,6 +980,23 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   a calibration bias of -0.08 and against the k-1 = 1, 2, 3 that the (2k-1) reading needs.
   HONEST SCOPE, stated in the doc: (P2') has no finite-z content below log x ~ 300, so this
   is evidence about the TRUTH's shape on the computed range and NOT a refutation of the
-  theorem.  Also prices brief item (a) with a measured cost curve: z = 37 is the next
+  theorem.  ROUND-29 ADDENDUM (section 9): THREE NEW EXACT VALUES - j_3(P(23)) = 1398,
+  j_4(P(17)) = 2340, j_4(P(19)) = 3810 - and the model question DECIDED at two clean
+  POST-TRANSIENT steps, both pre-registered with a number from each model before the
+  answer existed: at k = 3, 19 -> 23 the prediction was 1398 under (A) and 1590 under (B)
+  and the answer is 1398 EXACTLY TO THE UNIT (R_3 flat to 0.13% where (B) needs +13.4%);
+  at k = 4, 17 -> 19 R_4 FELL 4.56% where (B) needs +12.2%.  Round 28's "the excess does
+  not grow with k" is WITHDRAWN against itself and replaced by something sharper - the
+  excess is a CONSISTENT FRACTION of what (B) demands, e_k/(k-1) = 0.61, 0.37, 0.48, 0.43,
+  so the truth on the computed range looks like z(log z)^(k + 0.45(k-1)), strictly between
+  the two models AND AT THE SAME PLACE AT EVERY k.  Also: round 28's own j_3(23) split run
+  was INVALID BY ITS OWN PROTOCOL (two of fourteen workers beat the seed, so the parts need
+  not partition the tree - a branch-and-bound split is a proof only when the incumbent is a
+  fixed point of the run), caught here and reproved TWICE; and the round-28 ILP hole is
+  closed by measurement - CaDiCaL on Ziller-Morack's own eq. (2.2) generalised to k classes
+  proved j_3(P(23)) = 1398 in 831 s on ONE core against the DFS's 13.6 core-hours, which
+  makes j_3(P(29)) purchasable (~17 core-hours) after the DFS priced it at ~3,500.  A PRICE
+  IS A PROPERTY OF A VEHICLE, NOT OF A TARGET - this doc learned it twice.
+  Also prices brief item (a) with a measured cost curve: z = 37 is the next
   purchasable rung (~15 h at 16 cores), z = 41 is 51 days - SCRIPT-VERIFIED (values) +
   MEASURED (statistics) - prior art checked first-hand 2026-08-29, NOVEL AS FAR AS SEARCHED

@@ -49,6 +49,16 @@ def gen_case(D, ci):
     A = L.append
     A('/-! ### case %d: held gears at phases %s -/' % (ci, C['ws']))
     A('')
+    # ROUND 29: these must precede the DEFINITIONS, not just the theorems.  The
+    # dual list `ul<ci>` is ~1000 integer literals and elaborating it alone
+    # exceeds the default 200000-heartbeat budget once the certificate carries
+    # a couple of hundred NEGATIVE entries (each `(-k)` costs a `Neg.neg`
+    # instance).  Measured at the 31->37 rung: case 25 (214 negatives) timed out
+    # in 61 s at the default and elaborates in 118 s with the budget raised,
+    # while case 0 (109 negatives) never hit the limit.
+    A('set_option maxRecDepth 40000')
+    A('set_option maxHeartbeats 4000000')
+    A('')
     A('def p%d : List ℕ := [%s]' % (ci, ', '.join(map(str, pos))))
     A('def q%d (t : ℕ) : ℕ := p%d.getD t 0' % (ci, ci))
     A('def n%d : ℕ := %d' % (ci, n))
@@ -115,10 +125,9 @@ def gen_case(D, ci):
     A('def rhs%d : ℤ := (∑ t ∈ Finset.range n%d, w%d t) + %d * (n%d : ℤ)'
       % (ci, ci, ci, yff, ci))
     A('')
-    # the finite checks
-    A('set_option maxRecDepth 40000')
-    A('set_option maxHeartbeats 4000000')
-    A('')
+    # the finite checks (the options are set at the TOP of the module, see the
+    # note there: the dual list `ul<ci>` alone can exceed the default heartbeat
+    # budget when the certificate has many negative entries)
     A('theorem wnn%d : ∀ t, t < n%d → (0 : ℤ) ≤ w%d t := by decide'
       % (ci, ci, ci))
     A('theorem plt%d : ∀ t, t < n%d → q%d t < %d := by decide'
@@ -292,7 +301,10 @@ def gen_case(D, ci):
 
 def main():
     tag = sys.argv[1] if len(sys.argv) > 1 else '19_23'
-    with open(os.path.join(R27, 'cert_%s.json' % tag)) as f:
+    # round 29: the transcription may live in another round's data directory
+    datadir = os.path.join(HERE, 'data', sys.argv[2]) if len(sys.argv) > 2 \
+        else R27
+    with open(os.path.join(datadir, 'cert_%s.json' % tag)) as f:
         D = json.load(f)
     y, W, held, free = D['y'], D['W'], D['held'], D['free']
     ncase = len(D['cases'])
@@ -460,7 +472,7 @@ def main():
              '(Machine%d.opSeq%d n + 1 + i)' % (y, y, y, y))
     R.append('    (by omega) (by omega) hE')
     R.append('')
-    prevF = {23: (19, 25), 29: (23, 34), 31: (29, 43)}[y]
+    prevF = {23: (19, 25), 29: (23, 34), 31: (29, 43), 37: (31, 58)}[y]
     R.append('/-- **(D) at alpha = 3 at the %d->%d step, BY CASE-SPLIT LP'
              % (prevF[0], y))
     R.append('DUALITY**: every gap of machine %d is at most `F(%d) + %d = %d`.'

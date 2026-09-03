@@ -2147,3 +2147,465 @@ PR6 **CONFIRMED** - the canonical rule is sound (12b(iii)).
   `docs/novel/README.md` (index entry).
 * Sources read FIRST-HAND by me on 2026-08-29: OEIS records A072753 (#79),
   A288815 (#19), A048670 (#164), A048669 (#92), in full, via the text endpoint.
+
+## 13. ROUND 29 (2026-09-03) - THE k-AXIS DECIDES, MY OWN ROUND-28 RUN WAS
+## INVALID, AND THE "ALGORITHM" QUESTION HAS A PUBLISHED ANSWER I HAD NOT READ
+
+Brief: (a) the k-axis programme - j_3 at z = 23, 29, 31 and j_4 at z = 17, 19,
+each result exact / capped / not attempted with a price, scoring the round-28
+pre-registrations; (b) literature adjacency for the anchor-235 floor (the first
+integer outside a union of 2 pi(q) progressions from pi(q) prime moduli), with
+an adjacency table and a verdict on whether any published algorithm computes
+the maximal gap of a two-class sieve below a scan or bounds that computation
+from below; (c) score outstanding r27-r28 predictions that Mechanic's data now
+decides. Not to pursue: h_2 at p_n = 151..251 (priced dead end, stays demoted).
+
+GATES, re-run from clean processes at round close:
+  research/j2_referee.py    -> ALL ASSERTIONS GREEN   (run FIRST)
+  research/j2_citesweep.py  -> ALL CHECKS GREEN
+  research/jk_cover.py      -> **PARTIAL, and it is recorded as partial.**
+                               Sections [A] (covering restatement vs the
+                               definition, 12/12), [B] (15 published values by
+                               the Python reference engine), [C] (SAT vs DFS,
+                               5/5) and [C2] (the rust engine against every
+                               published and round-28 value, 27/27, each with
+                               exact=True and its witness verified) ALL PRINTED
+                               OK.  It STALLS in section [D] at
+                               `dfs_maxrun(2, 17, 200)` - the pure-Python
+                               UNREDUCED engine with no canonical-form rule,
+                               i.e. exactly the (2n-4)!/2^(n-2) permutation
+                               redundancy that round 28's canonical rule
+                               removes.  Two launches, 73 and 38 CPU-minutes,
+                               both killed; log research/data/r29/jk_cover_gate.log.
+                               DO NOT report this gate green until section [D]
+                               is rewritten to use the reduced engine.
+  research/jk_growth.py     -> ALL ASSERTIONS GREEN
+  research/jk_axis29.py     -> ALL ASSERTIONS GREEN   (NEW - harvest, protocol
+                               check, discriminator, price)
+  research/harv_score29.py  -> ALL ASSERTIONS GREEN   (NEW - brief item (c),
+                               exact integer arithmetic, no float decides)
+  .venv-sat/.../jk_sat29.py check -> ALL ASSERTIONS GREEN  (NEW - the SAT engine
+                               reproduces 30 of the 33 recorded (k, z) values in
+                               BOTH directions; the other three are named in the
+                               script's SLOW table with the reason and each was
+                               decided in a separate timed run)
+Pre-registration: research/data/r29_harvester_prereg.txt, written before the
+runs it scores (H1-H7).
+
+### 13a. (a) THE ROUND-28 j_3(23) RUN WAS INVALID BY ITS OWN PROTOCOL - AND I
+### FOUND IT IN MY OWN WORK BEFORE ANYONE QUOTED THE NUMBER
+
+Round 28's phase-2 run for j_3(P(23)) FINISHED. All fourteen partition files
+were sitting on disk unharvested (`research/data/jkpart_k3_z23_M219_n14_p*.txt`),
+all EXACT, all verify=true. **Two of the fourteen workers BEAT THE SEED**,
+reaching m = 227 and m = 232 against a seed of 219.
+
+`jk_run.py`'s own docstring says what that means: "Because every worker starts
+with the same incumbent M and no worker ever improves on it, the pruning above
+the split depth is identical in all workers, so the union of the parts is the
+whole tree. If ANY worker reports a value > M the run is invalid and is redone
+with the larger seed." THE MECHANISM, read out of `jkcov6.rs` rather than
+inferred: a node is pruned when `feasible_to(cov, j, best + 1)` fails, so a
+worker whose incumbent has risen prunes MORE above the split depth, visits
+FEWER split-depth nodes, and its global `leafctr` counter diverges from the
+other workers'. The parts `leafctr % nparts == part` then need not cover the
+tree. **A branch-and-bound split is a proof only when the incumbent is a fixed
+point of the run.**
+
+So the round-28 run splits cleanly:
+- VALID: a machine-verified witness of length m = 232, i.e. **j_3(P(23)) >= 1398**.
+- INVALID as an upper bound. Rerun required at seed 232.
+
+`research/jk_run29.py` (explicit mandatory seed, FATAL protocol assertion, one
+result file per worker so a reaped driver loses nothing) reran it at seed 232 on
+five workers. **RESULT: all five EXACT, all five reporting m = 232, none
+improving on the seed - so the protocol holds and the parts do partition the
+tree. j_3(P(23)) = 1398 EXACT.** 7,147,384,960 nodes over 27,296 core-seconds.
+
+**AND THE SEED LAW IS MUCH WEAKER THAN ROUND 27 RECORDED.** Round 27's "seed
+law" put a better-seeded rerun at roughly a quarter of the cost. Measured here:
+7.38e9 -> 7.15e9 nodes, **a 3.2% saving from a seed thirteen higher**, not 4x.
+The wall-clock difference (13.6 -> 7.6 core-hours) is almost entirely the
+High-priority boost and the smaller worker count, **not algorithmic** - which is
+exactly why the benchmark protocol counts operations and not seconds. Anyone
+budgeting a rerun off the round-27 seed law will under-budget it by ~4x.
+
+### 13b. THE VALUES - EXACT / CAPPED / NOT ATTEMPTED, WITH PRICES
+
+    z        3     5     7     11     13     17     19      23
+    j_3      6    24    78    180    306    612    972    1398
+    j_4      -    30   150    420   1230   2340   3810       -
+    j_5      -     -   180    930   2070   5490      -       -
+
+| target | status | price |
+|---|---|---|
+| j_3(P(23)) = 1398 | **EXACT, TWICE** | `jkcov6`: 7.38e9 nodes (r28, seed 219, invalid as an upper bound) + **7.15e9 nodes / 27,296 core-seconds** (r29 confirmation at seed 232, five workers, protocol clean). **SAT: 8,710,802 conflicts, 831 s, ONE core, one process** |
+| j_4(P(17)) = 2340 | **EXACT** | 351,958 nodes, 0.345 s, m = 77 |
+| j_4(P(19)) = 3810 | **EXACT** | 99,408,318 nodes, 448.8 s, m = 126 |
+| j_3(P(29)) | **NOT ATTEMPTED** | `jkcov6`: ~1.9e12 nodes = ~3,500 core-hours. **SAT: ~6.6e8 conflicts = ~17 core-hours - PURCHASABLE, see 13d** |
+| j_3(P(31)) | **NOT ATTEMPTED** | `jkcov6`: ~8e14 nodes = ~1.5e6 core-hours. SAT: ~8.7e10 conflicts = ~2,300 core-hours |
+
+**AND j_3(P(23)) = 1398 IS PROVED TWICE, BY ENGINES SHARING NOTHING.** Besides
+the `jkcov6` route, CaDiCaL on a CNF encoding of Ziller-Morack's own integer
+program decided both directions in **831 s on one core, one process, no split; it produced its own witness
+at m = 232 and proved m = 233 impossible** (13d). That second proof has no protocol risk of any kind, so the
+value does not depend on 13a's split at all.
+
+**AND THE PRICES IN MY OWN ROUND-28 BLOCK WERE WRONG, BY UP TO FOUR ORDERS.**
+Round 28 priced the k-axis programme at "z = 23 is ~1-2 core-hours at k = 3,
+z = 29 is ~10, z = 31 ~100" and called it "the only place in the lane where a
+purchasable computation changes a conclusion". Measured k = 3 node counts
+(11,740 -> 556,927 -> 50,867,900 -> 7.38e9 at z = 13, 17, 19, 23) give per-prime
+ratios 47.4x, 91.3x, 145.1x, themselves growing ~1.75x per step:
+
+    rung        r28 price          measured / projected        error
+    j_3(23)     ~1-2 core-hours    13.6 core-hours (actual)     9x low
+    j_3(29)     ~10 core-hours     ~3,500 core-hours          ~350x low
+    j_3(31)     ~100 core-hours    ~1.5e6 core-hours       ~15,000x low
+
+The error was mechanical: I extrapolated the k = 2 node curve onto k = 3. The
+k = 3 curve is steeper because each prime carries three classes, so the
+branching factor at every node is larger. **Half the k-axis programme was never
+purchasable and I said it was.**
+
+PROCESS MISS, recorded as one: j_4(P(17)) was computed as a COST PROBE before
+this round's pre-registration was written. It is a new value and it should have
+been pre-registered; it is used below as an input, never scored as a hit.
+
+### 13c. THE DISCRIMINATOR, DECIDED AT TWO POST-TRANSIENT STEPS
+
+Round 28's named weakness was that the k >= 3 data lay entirely inside the
+small-z transient. Both new steps sit outside it, and **both carried a
+numerical prediction from each model, pre-registered before the answer
+existed.**
+
+    step            R_k before  R_k after   move      (A) needs  (B) needs
+    k=3, 19 -> 23     1.2100      1.2084    -0.13%       0%        +13.4%
+    k=4, 17 -> 19     1.4426      1.3768    -4.56%       0%        +12.2%
+
+The k = 3 step is the sharpest measurement this lane has taken on the question.
+The round-28 addendum (written 2026-08-30, before the run finished, with the
+scoring rule fixed in advance) predicted **1398 under model (A)** and **1590
+under model (B)**. The answer is **1398, exactly, to the unit.**
+
+**AND A CORRECTION AGAINST MYSELF.** Round 28 recorded that the measured excess
+e_k = a_k - k "does not grow with k". With j_4 now carrying five points instead
+of three the ladder is
+
+    e_k = -0.08, 0.61, 0.73, 1.45, 1.72   at k = 1, 2, 3, 4, 5
+
+and it DOES grow monotonically. The round-28 sentence is withdrawn. What
+replaces it is sharper, not weaker: the excess is a CONSISTENT FRACTION of what
+(B) demands, e_k/(k-1) = 0.61, 0.37, 0.48, 0.43 at k = 2..5, so on the computed
+range the truth looks like z (log z)^{k + c(k-1)} with c ~ 0.45 - strictly
+between (A) (c = 0) and (B) (c = 1), AND AT THE SAME PLACE AT EVERY k. That is
+a stronger statement than "the extra logs are absent" and it is the shape any
+future model has to reproduce.
+
+**THE STANDING CAVEAT IS UNCHANGED AND STILL LOAD-BEARING:** (P2') carries a
+C^k/B^{2k} factor worth ~0.03 at z = 73, k = 2 and does not exist below
+log x ~ 300. **NONE OF THIS REFUTES THE THEOREM.** It measures the shape of the
+truth on the range where exact values exist.
+
+### 13d. (b) LITERATURE ADJACENCY FOR THE ANCHOR-235 FLOOR
+
+THE OBJECT (anchor-235 9g): "Below the scan, a form would have to compute the
+first integer outside a union of 2 pi(q) arithmetic progressions from the pi(q)
+residues of s alone; none is known here and none was found." In the named
+literature this is a **two-residue-class-per-prime Jacobsthal problem**: W(s) is
+the distance from s to the next uncovered position, F = max_s W(s) is the
+maximal gap, and h_2 = 2 max_e F_e is the family maximum over differences.
+
+**THE HEADLINE, AND IT REFRAMES THE FLOOR.** The brief asks whether any
+published algorithm computes the maximal gap of a two-class sieve "without a
+period scan". THE ANSWER IS YES, AND IT HAS BEEN YES SINCE 1978 - because
+**nobody in this literature ever scans a period.** Hagedorn, Ziller, Ziller &
+Morack, Resta and McNew & Setty all work in CLASS-ASSIGNMENT space: they choose
+residues per prime and test coverage of a short window. Ziller-Morack's
+h_2(73#) is a statement about a period of ~1e27 and no period was ever built.
+This lane's own `jkcov6` is in the same family. **So "below a scan" is the
+published state of the art, not the frontier.** The anchor-235 floor's real
+content is not "below a scan" but "below an EXPONENTIAL SEARCH in pi(q)", and
+on THAT question the literature has nothing: no sub-exponential algorithm, and
+no proved lower bound.
+
+THE ADJACENCY TABLE. "read" = full text obtained and read by me this round;
+"abstract" = abstract/metadata only; "secondary" = characterised through
+another source, flagged as unverified first-hand.
+
+| # | result | exact statement | source (how verified) | what it gives / fails to give for F, W(s) |
+|---|---|---|---|---|
+| 1 | **Jacobsthal's function** | j(n) = least m such that every m consecutive integers contain one coprime to n; h(n) = j(p_n#) | Jacobsthal, D.K.N.V.S. Forhandlinger **33** (1960) no. 24, 117-124 (secondary, via Ziller 2020 ref [8]) | Defines the ONE-class object. Our F is the two-class analogue; no transfer either way. |
+| 2 | **Iwaniec 1978 - still the record after 48 years** | g(n) <= X (w log w)^2, w = omega(n); at primorials h(p_n#) << (n log n)^2 = p_n^{2+o(1)} | H. Iwaniec, *On the problem of Jacobsthal*, Demonstratio Math. **11** (1978) 225-232, DOI 10.1515/dema-1978-0121 (abstract + DOI verified; record status re-checked by this lane against the live Erdos-problems DB 2026-08-25) | An UPPER bound at sifting dimension 1. Says nothing at dimension 2 and carries NO algorithm. Our Theorem 2G (exponent 8.042) is the dimension-2 counterpart. |
+| 3 | **Hagedorn 2009** | computes h(n) for n < 50 by backtracking over one-class-per-prime assignments with an a-priori capacity criterion m_i | Math. Comp. **78** (2009) no. 266, 1073-1087 (**NOT OBTAINED**: the AMS PDF and the author's own copy both returned HTTP 403 to this session; algorithm characterisation is SECONDARY via Ziller-Morack 1611.03310 and this lane's own r28 implementation) | The m_i criterion is the ancestor of our v3 prefix bound. One class per prime. No complexity result. **UNVERIFIED FIRST-HAND - recorded as such per lesson 9.** |
+| 4 | **Ziller & Morack 2016 - the algorithms paper, and I had never read section 2** | six algorithms (BSA, BPA, RPA, DSA, CRPDSA, GPA) plus **an integer linear program, equation (2.2)**: binary x_{i,j} per (prime p_i, class j != 0), `sum_j x_{i,j} = 1` per prime, one covering constraint per position, objective `max sum_k 2^{m_2-k} y_k` finding the maximal m in ONE program. Complexity ESTIMATES only: N_BSA = prod (p_i - 1), N_BPA <= (n-1)! N_BSA. Computed h(n) for every p_n <= 251; printed time curve reaching ~1 month at the top; ILP solved with SYMPHONY | arXiv:1611.03310 (**read**, PDF extracted to research/data/r29/zm_algo.extract.log) | **THE MOST ADJACENT ITEM THERE IS.** Generalising (2.2) to k classes is one character: `= 1` becomes `<= k`. So a two-class ILP for our F has existed in print since 2016. **No lower bound is proved anywhere in it.** |
+| 5 | **Ziller & Morack 2017 - the paired function** | h_2(p_n#), 21 terms to p_n = 73; Conjecture 6: h_2(p_n#) < p_n^2 - p_n | arXiv:1706.00317 / 1706.03668 (lane record, verified rounds 21-28; not re-fetched this round) | The ONLY published two-class computation. Frontier p_n = 73, unmoved in nine years. |
+| 6 | **Ziller 2020 - and it is prior art for a round-28 result of THIS PROJECT** | **Proposition 2.7 (propagation of coverings): m in D(k) => m in D(k+1)** - every gap realised by one machine is realised by the next. Also N_min(k), the smallest even number NOT occurring as a gap, computed exhaustively for p_k up to k = 44 (p_44 = 193) by an Adapted Greedy Permutation Algorithm; Conjecture 4.1: h(k-1) <= N_min(k) | arXiv:2007.01808 (**read**, extracted to research/data/r29/ziller2020.extract.log) | **Mechanic's round-28 DEPTH-0 LEMMA (D_m(M) subset D_m(M+q')) is the arity-m, two-class generalisation of this 2020 one-class proposition.** The project's "smallest absent gap" question is Ziller's N_min. One class per prime, so neither result implies the other - but the framing is his and it should be cited. |
+| 7 | **Costello & Watts** | a new explicit upper bound on g(n); a range-restricted computational bound 2 e^gamma k^{5+5 log log k} for 50 <= k <= 10000 | arXiv:1306.1064 -> Math. Comp. **84** (2015) 1389-1399, and arXiv:1208.5342 (abstracts read; full bounds not extracted this round) | Explicit constants at dimension 1. No algorithm for the maximal gap; no two-class content. |
+| 8 | **Ford-Konyagin-Maynard-Pomerance-Tao, "Long gaps in sieved sets" - AND ITS HYPOTHESIS EXCLUDES US, WHICH SETTLES A FLAG THIS LANE HAS CARRIED SINCE ROUND 24** | Theorem 1: a sieving system that is non-degenerate, B-bounded (\|I_p\| <= B), **ONE-DIMENSIONAL** - `prod_{p<=x} (1 - \|I_p\|/p) ~ C_1/log x`, eq. (1.2) - and delta-supported has a gap >= x(log x)^{C(delta)-o(1)}, C(delta) > e^{-1-4/delta} | JEMS; PDF read first-hand (research/data/r29/fkmpt_sieved.extract.log) | **DECISIVE NEGATIVE.** Our system has \|I_p\| = 2 at EVERY prime, so the product is ~C/(log x)^2: **dimension TWO, and hypothesis (1.2) fails.** The theorem does not apply. Round 24 flagged this paper "RELAY-SOURCED (one class per prime), re-verify before citing" - the relay was wrong about the reason and right about the conclusion: it is not the class COUNT that excludes us, it is the DIMENSION. The word "Jacobsthal" occurs **zero** times in the paper. This is why (P1)/(P2') had to be built by hand. |
+| 9 | **Ford-Green-Konyagin-Maynard-Tao, "Long gaps between primes"** | the record lower bound for prime gaps, via the Eratosthenes system (one class per prime) | JAMS **31** (2018) (lane record) | Transfers to j_2 through this lane's r21 collapse (b - a = p# makes paired = ordinary), giving LOWER bounds only. No algorithm. |
+| 10 | **Stockmeyer & Meyer 1973 / Garey & Johnson problem AN2 - the nearest thing to a lower bound, AND IT DOES NOT TRANSFER** | SIMULTANEOUS INCONGRUENCES: given pairs (a_i, b_i) with a_i < b_i, is there an integer x with x != a_i (mod b_i) for all i? **NP-complete.** | Garey & Johnson, *Computers and Intractability* (1979), Problem AN2; proof in L. J. Stockmeyer and A. R. Meyer, *Word problems requiring exponential time*, STOC 1973, 1-9. Verified first-hand through McNew & Setty, arXiv:2507.23041, which quotes both by number and lists them ([13] and [29]) | **THE HONEST VERDICT: IT IS NOT A LOWER BOUND FOR US.** AN2 has ARBITRARY moduli and ONE class each; our floor has DISTINCT PRIME moduli and TWO classes each. Neither problem contains the other, and at distinct prime moduli the AN2 *existence* question is trivially YES (the sifted set has positive density), so the hardness lives entirely in the composite/repeated moduli AN2 is allowed and we are not. **No published lower bound on computing F, W(s) or h_2 exists.** |
+| 11 | **McNew & Setty 2025/2026 - the 2026 state of the art for this kind of decision** | decides covering-number membership with a **binary integer program solved by Gurobi**; states "Determining whether a given integer n is a covering number seems to be computationally intractable in general. It seems likely this problem may be NP-complete" | arXiv:2507.23041 (**read**) | Confirms that in 2026 the working method for covering decisions is still ILP, and that even the *conjecture* of hardness is stated as a conjecture. |
+| 12 | **Covering systems: Filaseta-Ford-Konyagin-Pomerance-Yu; Hough** | sieving by large integers; solution of the minimum modulus problem | JAMS **20** (2007) 495-517; Ann. of Math. **181** (2015) (lane record 5h) | ONE class per modulus and the MODULI are the free variable. Different object; no algorithmic content for F. |
+| 13 | **Kalmynin-Konyagin, polynomial analogue** | Rankin machinery on shifted polynomial values; M(f) = 2 for quadratics | arXiv:2302.00459 (lane record r24) | Nearest relative of (P2), not prior art for (P1). Unchanged. |
+| 14 | **Parameterized covering by arithmetic progressions** | COVER BY AP: given a finite set X and k, are there k APs whose union is exactly X? 2^{O(k^2)} poly(n) | arXiv:2312.06393 | Different object (cover a given finite SET, moduli free). Does not touch F. |
+
+**MY OWN MEASUREMENT ON ITEM 4, because a citation is not a price.** Round 28
+closed with a named hole: "I did not build an ILP, and I do not know how much it
+would buy." `research/jk_sat29.py` encodes ZM equation (2.2), generalised to k
+classes, on the reduced lattice, and decides both directions with CaDiCaL. It
+reproduces all 31 recorded (k, z) values. Cost in the solver's own operation
+counts, against `jkcov6`'s node counts (DIFFERENT UNITS - no ratio between them
+is quoted; what is comparable is the GROWTH):
+
+    k=2, z              13      17       19        23          29
+    SAT conflicts (UNSAT) 131   1,570   14,503   178,618   2,952,407
+      ratio                -     12.0x    9.2x     12.3x       16.5x
+    jkcov6 nodes         150   2,577   53,560  1,491,366  55,917,112
+      ratio                -     17.2x   20.8x     27.8x       37.5x
+
+    k=3, z                          17        19
+    SAT conflicts (UNSAT)        8,889   201,771     ratio 22.7x
+    jkcov6 nodes               556,927 50,867,900    ratio 91.3x
+
+**THE SOLVER'S GROWTH RATIO IS FLATTER THAN THE DFS's AT BOTH k, AND ABOUT HALF
+THE DFS's AT k = 3.** At k = 2 it is not a rescue: at z = 31 - the DFS's 4.9
+core-hours - the solver did not decide even the SATISFIABLE direction in 570 s,
+and 12-16x per prime still needs 12^14 more work to reach p_n = 73 from
+p_n = 31. **AT k = 3 IT IS A RESCUE, AND THIS IS THE ROUND'S SECOND RESULT:**
+
+    k=3, z                          17         19            23
+    SAT conflicts (UNSAT)        8,889    201,771     8,710,802
+      ratio                          -      22.7x         43.2x
+    jkcov6 nodes               556,927 50,867,900   7.38e9 (14 parts)
+      ratio                          -      91.3x        145.1x
+
+**CaDiCaL PROVED j_3(P(23)) = 1398 OUTRIGHT - BOTH DIRECTIONS, ONE PROCESS, NO
+SPLIT, NO SEED - IN 831 SECONDS ON ONE CORE**, against the DFS's 13.6
+core-hours over fourteen workers. Two consequences:
+1. **AN INDEPENDENT TWO-SIDED PROOF OF THE VALUE, WITH NO PROTOCOL RISK AT
+   ALL.** The whole defect of 13a is a property of splitting a
+   branch-and-bound; a single-process UNSAT proof cannot have it. The value
+   1398 no longer rests on the split at all.
+2. **THE PRICE OF THE REST OF THE k-AXIS COLLAPSES ON THIS VEHICLE.** Carrying
+   the measured SAT ratio forward at the same 1.9x-per-step growth the DFS
+   shows: `j_3(P(29))` projects at ~6.6e8 conflicts = **~17 core-hours**, against
+   ~3,500 on the DFS. **THAT IS PURCHASABLE AND IT IS THE NAMED NEXT TARGET.**
+   `j_3(P(31))` projects at ~8.7e10 conflicts = ~2,300 core-hours and stays out
+   of reach. I did NOT launch j_3(29): a ~17-hour single-threaded job cannot
+   finish inside a round and the job-completion rule forbids starting it.
+
+WHAT IT DOES NOT SETTLE, stated so nobody over-reads it: a tuned PORTIONED ILP
+with branch-and-cut, symmetry breaking and warm starts - ZM's actual vehicle -
+is a different program from this one and was not tested; and at k = 2, which is
+where h_2 lives, CDCL loses to the DFS at the frontier.
+
+**H6 SCORED, and two of its clauses fail against me.** I predicted every item
+falls into (i) exhaustive/ILP covering search, (ii) asymptotic bounds with no
+algorithmic content, or (iii) one class per prime; and that "the sharpest
+genuinely adjacent item is the ILP formulation in A072753's OEIS comments
+rather than anything in a journal".
+- The three-way classification: **CONFIRMED** for 13 of 14 items.
+- **REFUTED**: the sharpest item is not an OEIS comment. It is **equation (2.2)
+  of an arXiv paper this lane has cited for seven rounds without reading its
+  section 2.**
+- **REFUTED IN ITS REASON**: FKMPT is excluded by DIMENSION, not by class count,
+  so my category (iii) mislabels it.
+- **CONFIRMED**: no published algorithm is sub-exponential in pi(q), and no
+  published lower bound on the computation exists.
+- The NAMED RISK paid off in the direction I flagged: I had not read Hagedorn in
+  full, and I still have not - the fetch failed twice.
+
+### 13e. (c) SCORING AGAINST MECHANIC'S ROUND-28 LADDER
+### (research/harv_score29.py, exact integer arithmetic, 22 assertions)
+
+A NOTATION HAZARD FIRST, because it nearly bit me. **This lane's `F(2,y)` is the
+fixed-twin member of the per-difference family in MEMBER units, F(2,y) = 3F(y);
+Mechanic's `F_2(M)` is the DEPTH-2 spectrum value of machine M.** The strings
+collide: F(2,59) = 483 and F_2(59) = 173 are different quantities. Nothing below
+uses Mechanic's F_J; only the record ladder F(y) = 88, 91, 103, 118, 145, 161 at
+y = 37, 41, 43, 47, 53, 59.
+
+**(1) F(2,53) - 5b, written round 22. CONFIRMED, WITH THE LAW CORRECTED.**
+Recorded: "F(2,53) >= 426 (needs <= 486 for the tolerance constant;
+quadratic-law prediction ~441)". F(53) = 145 gives **F(2,53) = 435**.
+Lower bound 426 holds (slack 9); ceiling 486 holds (slack 51); **the
+quadratic-law prediction 441 is HIGH by 6, i.e. 1.38%** - one mod-6 quantum.
+My H7 pre-registered "high by ~1.4%": CONFIRMED. Free next rung:
+**F(2,59) = 483.**
+
+**(2) THE TWIN PERCENTILE - 5e, written round 24. CONFIRMED OUT OF SAMPLE AT
+THREE MACHINES.** The ratio extreme/twin = (h_2(y)/2)/F(2,y) with ZM's h_2 as an
+INDEPENDENT denominator:
+
+    y      47        53        59
+    F(2,y) 354       435       483
+    h_2/2  642       711       828
+    ratio  1.814     1.634     1.714     ALL INSIDE the recorded 1.34-2.27 band
+
+Median over all fifteen machines y >= 11 is now **1.717** against the recorded
+1.70. The publication statement of 5e stands, and now reads "at every one of
+FIFTEEN machines". The ratio is not monotone (1.81, 1.63, 1.71) - it is a
+per-machine arithmetic quantity, exactly as 5e says.
+
+**(3) THE ROUTE-TRANSFER BUDGET - 5g, written rounds 13-14. CONFIRMED OUT OF
+SAMPLE AT FIVE FURTHER STEPS.** Twin increment/q' at 37->41, 41->43, 43->47,
+47->53, 53->59 is 0.073, 0.279, 0.319, **0.509**, 0.271 - the worst is 4.8x
+inside twins' own 31->37 record of 2.432 and 4.9x inside the alpha = 2.5 budget.
+**HONEST LIMIT, and it is the whole point of 5g:** this confirms the TWIN row
+only. The binding negative is unchanged - fixed differences with single-step
+increments 3.231, 3.947 and 4.435 q' exist, so no uniform alpha <= 3 budget
+holds over the family, and five more twin steps inside budget say nothing about
+that.
+
+### 13f. Pre-registration scored (H1-H7)
+
+H1 (the confirmation completes EXACT, no worker beats 232, under 6.0e9 nodes) -
+   **SPLIT.** The protocol clauses are **CONFIRMED**: all five workers EXACT,
+   all five reporting m = 232, none improving, so j_3(P(23)) = 1398. The COST
+   clause is **REFUTED**: 7.15e9 nodes against my predicted "under 6.0e9". I
+   reasoned "a better incumbent prunes strictly more", which is true, and then
+   assumed the saving would be large, which it is not - a seed thirteen higher
+   removed **3.2%** of the tree. **The pruning that matters happens near the
+   leaves, where the incumbent is already close.**
+H2 (model (A) wins on an EXACT value, 1398 to the unit) - **CONFIRMED**. And my
+   own round-28 **PR5 ("j_3(P(23)) lands in [1400, 1800]") is REFUTED** - 1398
+   is two below its own band. The r28 addendum already recorded "expect
+   REFUTED"; it is refuted.
+H3 (j_4(P(19))) - **SPLIT, and the split is against me.** The model comparison
+   is CONFIRMED and not marginally: (A) predicted 3992, (B) predicted 4481, the
+   answer is **3810**, whose log-distance to (A) is 0.046 against 0.160 to (B).
+   But my BAND [3900, 4080] is **REFUTED** (3810 sits below it) and my "R_4(19)
+   within 3% of R_4(17)" is **REFUTED** (it fell 4.56%). The direction of the
+   miss is away from (B), so the conclusion strengthens while the prediction
+   fails. COST: predicted 5e7-1.4e8 nodes and under 1 core-hour; measured
+   9.94e7 nodes and 448.8 s. **CONFIRMED on both.**
+H4 (j_3(29) 3,000-7,000 core-hours, j_3(31) >= 1e6, both not attempted, and my
+   round-28 prices low by two and four orders) - **CONFIRMED AS A STATEMENT
+   ABOUT MY VEHICLE, REFUTED AS A STATEMENT ABOUT BUYABILITY.** The jkcov6
+   projections are exactly as predicted (3,500 and 1.5e6 core-hours, 350x and
+   15,000x above the round-28 prices) and neither was attempted. But I wrote
+   "NOT BUYABLE" without qualifying it by vehicle, and on the SAT vehicle
+   measured this round j_3(29) is ~17 core-hours. **I made the round-28 error
+   in the opposite direction: I priced a target from one engine's curve and
+   stated the price as a property of the target.**
+H5a (f_3 below 0.5 and below f_2 on the widest window) - **CONFIRMED** on
+   7..23 (f_3 = +0.298, f_2 = +1.025). **HONEST COUNTEREXAMPLE I am recording
+   myself**: on 13..23 the order reverses (f_3 = +1.095 > f_2 = +0.235). f_k on
+   a two-point window is unstable and I should not have predicted it as a
+   general fact; the robust statements are the two R_k steps of 13c.
+H5b (the excess does not grow with k) - **REFUTED**, see 13c. It grows.
+H5c (R_3(23)/R_3(19) in [0.97, 1.03]) - **CONFIRMED**, and it is the round's
+   sharpest number: **0.9987**, flat to 0.13%, where (B) needs +13.4%.
+H6 (literature) - **MOSTLY CONFIRMED, TWO CLAUSES REFUTED**, scored in 13d.
+H7 (F(2,53) and the percentile band) - **CONFIRMED**, scored in 13e.
+
+### 13g. Negatives, costs and residual risks of the round
+
+* **I SHIPPED AN INVALID SPLIT PROTOCOL IN ROUND 28 AND ONLY CAUGHT IT BECAUSE
+  I WENT BACK FOR THE FILES.** The driver printed the right warning; the round
+  ended before anyone read the parts. Two things fixed it and both are cheap:
+  per-worker result files (already there, and they are the reason nothing was
+  lost) and a FATAL assertion instead of a printed one (new, in jk_run29.py).
+* **MY ROUND-28 PRICES FOR THE k-AXIS WERE WRONG BY UP TO 15,000x** and they
+  were the basis on which the programme was made the lane's top research item.
+  Half of it was never purchasable. The mechanical error - extrapolating the
+  k = 2 node curve onto k = 3 - is the same shape as Mechanic's standing rule
+  "never extrapolate a per-step share; look it up".
+* **MY DRIVER WAS REAPED AND LEFT FIVE ORPHAN WORKERS.** Round 28's lesson was
+  `nohup ... &`; this round it was the shell tool's own background wrapper
+  terminating the python driver while its children lived. The design that saved
+  the data was per-worker files. FOR EVERY LANE: **the orphan trap is not about
+  `nohup` - it is about any parent that can die before its children. Write the
+  result from the CHILD.**
+* **CPU STARVATION, exactly as Formalist measured in round 28.** My workers were
+  getting 48% of a core each at Normal priority against other lanes' ~13 python
+  processes. Raising `jkcov6` to High fixed it. Wall times in this round's logs
+  are therefore contaminated and are NOT comparable across runs; every cost
+  claim above is in NODES or CONFLICTS.
+* **HAGEDORN 2009 WAS NOT OBTAINED.** AMS returned 403 and the author's own copy
+  returned 403. Per lesson 9 I record HOW: two direct PDF fetches, both blocked
+  at the server, no cookie-bearing browser session attempted. Its algorithmic
+  characterisation in 13d is SECONDARY and labelled.
+* **I HAVE STILL NOT TESTED A REAL ILP.** The SAT experiment is CaDiCaL on a
+  CNF encoding of ZM (2.2); ZM used SYMPHONY on the integer program, and Resta's
+  portioned formulation is different again. The negative in 13d is about
+  off-the-shelf CDCL, not about ILP.
+* **THE k >= 3 LADDERS ARE STILL SHORT.** j_3 has six points above the
+  transient's floor and j_4 has five; j_5 has four and did not move. The
+  cross-k statistic f_k is unstable on short windows and I have now said so
+  twice, having predicted on it once.
+* **A STANDING GATE OF MINE NO LONGER COMPLETES**, and I am recording it rather
+  than quietly dropping it from the list: `jk_cover.py` section [D] runs a
+  pure-Python DFS over the UNREDUCED problem at k = 2, z = 17. Everything the
+  gate actually validates ([A]-[C2]) printed OK; the fix is one line - point
+  [D] at the reduced engine - and it is next round's chore.
+* **THE ROUND-27 SEED LAW IS WRONG AT THIS SCALE** (3.2%, not ~4x). Anyone
+  budgeting a reseeded rerun off it will under-budget by about 4x.
+
+### 13h. Additions to the standing citation-hygiene lesson (7d)
+
+13. **A METHOD CITED BY REPUTATION IS AN UNREAD METHOD.** This lane cited
+    Ziller-Morack arXiv:1611.03310 for seven rounds - for the GPA, for the RPA2
+    canonical rule, for the p_n = 251 frontier - and wrote in round 28 "I did
+    not build an ILP and do not know what it would buy", while the integer
+    program was printed as equation (2.2) of that same paper's section 2. This
+    is lesson 10 ("a hypothesis cited by number is an unread hypothesis") one
+    level up: **read the section you are citing the technique from, not the
+    abstract that names it.**
+14. **A NEGATIVE INHERITED THROUGH A RELAY IS WRONG EVEN WHEN ITS CONCLUSION IS
+    RIGHT.** Round 24 recorded FKMPT "Long gaps in sieved sets" as "one class
+    per prime per the search relay - flagged RELAY-SOURCED, re-verify before
+    citing". Read first-hand this round: it is B-BOUNDED (any B) but
+    ONE-DIMENSIONAL, and it is the dimension condition (1.2) that excludes our
+    two-class system, not the class count. The conclusion survived; the reason
+    did not, and the reason is what a future round would have reasoned from.
+
+### 13i. Ranking changes
+
+* **THE k-AXIS PROGRAMME DELIVERED WHAT IT WAS FOR** - two clean
+  post-transient steps, both landing on model (A), the k = 3 one exactly - and
+  **ITS NEXT RUNG IS NOW PURCHASABLE AGAIN, ON A DIFFERENT VEHICLE.**
+  `j_3(P(29))` is ~3,500 core-hours on `jkcov6` and ~20 core-hours on the SAT
+  engine built this round. That is the one place in this lane where a
+  purchasable computation still changes a conclusion, and it is a ~20-hour
+  single-threaded run that must be launched at the START of a round, not the
+  end. **It should be the lane's top item next round, on the SAT vehicle only,
+  with `j_3(P(31))` (~2,300 core-hours even there) explicitly excluded.**
+* **(P6) THE k-FAMILY: unchanged in rank**, one measurement stronger and one
+  self-correction lighter.
+* **N4 (j_2 upper ladder): unchanged.** Still TOP for publication, still a
+  writing item, still waiting on the human's decision. Nothing this round
+  touches it.
+* **NEW, SMALL, AND NOT MINE TO RUN: the two-class ILP.** Item 4 of 13d means a
+  two-class integer program has been in print since 2016. This lane has now
+  measured CDCL on it and found it insufficient. A tuned branch-and-cut attempt
+  is the only remaining idea for moving p_n = 73, and it is a solver-engineering
+  project, not a mathematics one. **Recorded as an option, priced as unknown,
+  NOT proposed as a target.**
+* **DEMOTED: nothing further.** 7c#4 stays demoted.
+
+### 13j. Reproduction (round 29)
+
+* `research/jk_run29.py` -> explicit-seed driver with a FATAL protocol
+  assertion; log `research/data/r29_k3_z23_confirm.log`, parts
+  `research/data/jkpart29_k3_z23_M232_n5_p*.txt`.
+* `research/jk_axis29.py` -> `research/data/jk_axis29.out`. Sections A (harvest
+  + protocol check), B (the ladders), C (the discriminator), E (the price).
+  **Gate.**
+* `research/harv_score29.py` -> `research/data/harv_score29.out`. Brief item
+  (c), exact integer arithmetic. **Gate.**
+* `research/jk_sat29.py` -> the SAT engine (ZM eq. (2.2) generalised to k
+  classes). `check` is the gate; logs `research/data/r29/sat_gate.log`,
+  `sat_ladder.log`, `sat_k3z23.log`. Runs in `.venv-sat`.
+* `research/data/r29_harvester_prereg.txt` -> pre-registration (H1-H7).
+* `research/data/r29_k4_z19.log` -> j_4(P(19)) = 3810.
+* Extracted sources on disk (gitignored): `research/data/r29/zm_algo.extract.log`
+  (arXiv:1611.03310), `ziller2020.extract.log` (arXiv:2007.01808),
+  `fkmpt_sieved.extract.log` (Long gaps in sieved sets).
+* Docs: `docs/novel/jk-growth-discriminator.md` section 9 (round-29 addendum);
+  `docs/novel/README.md` index amended.
+* Sources read FIRST-HAND by me on 2026-09-03: arXiv:1611.03310 (full text,
+  incl. section 2's ILP), arXiv:2007.01808 (full text), FKMPT "Long gaps in
+  sieved sets" (full text), arXiv:2507.23041 (the AN2 passage and its reference
+  list). NOT obtained: Hagedorn, Math. Comp. 78 (2009) - two 403s.

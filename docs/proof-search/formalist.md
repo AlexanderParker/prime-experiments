@@ -2961,3 +2961,393 @@ PROCESS NOTES, both small and both worth the line:
 6. The depth-sum re-indexing bijection at machine 13 (unchanged).
 7. The generator at 13 -> 17 by the `Gen11Sound` template (unchanged).
 8. The sandwich lemma (unchanged).
+
+## Round 29 append (2026-09-03)
+
+GATES (build/axiom lines in R29.6; every job this round launched finished and
+is recorded):
+  research/anchor235/r29_record17_gate.py   -> ALL ASSERTIONS PASSED
+  research/anchor235/r29_arelax_gate.py     -> ALL ASSERTIONS PASSED
+  research/lp_cert_case_r29.py GATE         -> ALL ASSERTIONS PASSED (390 s):
+      385 cases re-derived FROM THE PRIMES and cross-checked against the LP
+      thread's round-29 JSON emission as exact rationals; margins 1/5 .. 3;
+      soundness gate 400 random tuples
+
+A TOOLING NOTE FIRST, because it changes the lane's build command. In an agent
+thread the Bash and PowerShell tools BOTH reset the working directory between
+calls, so the standing rule "one standalone `cd C:/dev/primes/proofs`, then bare
+`lake build`" cannot be executed: the `cd` does not survive to the next call.
+Every build below was therefore run as ONE PowerShell command
+`Set-Location C:\dev\primes\proofs; & lake.exe build <target>` - identical in
+effect (lake runs with its working directory in `proofs`, never `lake -d` from
+the repo root), and the reason for the deviation is recorded here rather than
+left implicit.
+
+### R29.0 ITEM (a) - THE 31 -> 37 RUNG IS IN THE KERNEL, AND THE CERTIFICATES
+### HAD BEEN ON DISK SINCE ROUND 26
+
+The brief said: check `agents-shared.md` for an "LP-duality thread round 29"
+block; if the emission is there, build the rung; if not, prepare the checker.
+THE BLOCK WAS NOT THERE (checked at the start of the item and again at round
+close). THE EMISSION WAS - in `research/data/r29/`, unannounced:
+
+    manifest_31_37.json   schema lp-case-split-manifest/2, claim
+                          "F(37) <= 95 = F(31) + 37 : (D) at 31 -> 37,
+                          hypothesis-free", k = 3, held {5,7,11},
+                          free {13,17,19,23,29,31,37}, 385 cases,
+                          rows_all_base_cut = true, iterations_max = 0,
+                          margin_min 1/5, margin_max 3, ops_total 8,388,426
+    layout_31_37.json     the case-independent column/link layout
+    cert_31_37_h<a>_<b>_<c>.json   385 case certificates, integers only
+
+and the emission's own `source_pickle` field points at
+`research/data/r26/cert_rung3_m37_w95_h*.pkl` - **385 pickles that have been on
+disk since round 26.** So the rung this lane has listed as its highest-value
+target for two rounds was never waiting on a computation; it was waiting on
+someone to name the files. I built it rather than only preparing the checker,
+and the justification is that nothing is taken on the emission's word: my
+pipeline rebuilds every number from the primes, and the emission is used only
+as a SECOND SOURCE to diff against.
+
+WHAT THE TRANSCRIPTION COST: TWO LINES. Round 27's `lp_cert_lean.transcribe`
+turned out to be generic in the number of held gears (`free = gears[len(held):]`,
+pairs over free indices), so the whole 385-case rung needed one rung entry
+(`research/lp_cert_case_r29.py`, which imports round 27's transcriber verbatim)
+and one row in `gen_case_lean.py`'s `prevF` table (`37: (31, 58)`), plus an
+optional data-directory argument. THE VEHICLE WAS NEVER THE OBSTACLE.
+
+    lp_cert_case_r29.py GATE, 385 cases, 390 s:
+      * RelaxStar rebuilt from the gear list for every case
+      * position set recomputed from the held phases
+      * every cut row asserted EQUAL to the base cut (385/385)
+      * recursion-row coefficients recomputed from the closed form the kernel
+        uses and asserted against RelaxStar.frow column by column
+      * lhs/rhs recomputed in exact integers after scaling; lhs < rhs
+      * CROSS against the LP thread's JSON: pos, y, nu, yff, lhs, rhs, margin
+        as exact rationals, 385/385 agree
+      * exhaustiveness: the case list IS the cartesian product Z_5 x Z_7 x Z_11
+      * soundness gate: 400 random free-gear phase tuples
+
+    theorem CaseCert37.F_le (n : N) : Machine37.g37 n <= 95
+    theorem CaseCert37.D_31_37_case (n : N) : Machine37.g37 n <= 58 + 37
+
+hypothesis-free and scan-free: the inputs are the primes up to 37 and the 385
+certificates. This is the SECOND proof of the 31 -> 37 rung in the ledger
+(R25.6 got it from the qualifying dictionary) and the first that needs no
+dictionary, no census and no period.
+
+COST, MEASURED (op-count proxy: positions x free gears per case module; wall
+solo at High priority, never side by side):
+
+    rung family        |pos|  free gears   W    solo elaboration
+    IncCert31 (r28)      27       7        65     48.4 s
+    CaseCert37 (r29)     34       7        95    154.5 s
+
+THE CASE MODULE'S COST SCALES WITH THE POSITION COUNT, NOT THE CASE COUNT:
+1.26x the positions cost 3.2x the time. Round 28's reprice ("385 cases is
+~2.6 h at two workers") was computed from a 27-position family and is
+optimistic by that factor; the real 385-case rung is ~16 core-hours. PRICE A
+RUNG BY |pos|, AND READ |pos| OFF THE EMISSION BEFORE COMMITTING - it is in
+every case file.
+
+DE-RISKED BEFORE THE LONG BUILD, and it is the sorry'd-assembly dry-check doing
+its job at a new scale: the generated root's 385-way nested `rcases` over
+`Z_5 x Z_7 x Z_11` had never been exercised (round 27/28 roots had one or two
+held gears). `proofs/_DryCase37.lean` - the root with all 385 `nocase` proofs
+replaced by `sorry` and the case imports dropped - elaborated CLEAN in 85 s,
+before a single case module was built, for zero kernel cost. Deleted on
+landing, per the standing rule.
+
+AND ONE REAL BUG, CAUGHT 25 MODULES INTO 385 BY THE DRIVER'S RETURN CODES.
+`CaseCert37C25` failed with `(deterministic) timeout at "synthesize pending
+MVars"` on line 21 - the DEFINITION of the dual list `ul25`, not on any proof.
+The generator emitted `set_option maxRecDepth 40000` / `maxHeartbeats 4000000`
+before the theorems but AFTER the definitions, and a ~1000-entry `List Z`
+literal exceeds the default 200,000-heartbeat budget once the certificate
+carries a couple of hundred NEGATIVE entries (each `(-k)` costs a `Neg.neg`
+instance on top of the `OfNat`).  The distribution over the 385 cases is
+78 - 259 negatives, mean 152: case 0 (109) never hit the limit, case 25 (214)
+died at 61 s and elaborates in 118 s with the options moved to the top of the
+module.  Fixed in `gen_case_lean.py` (the options now precede the definitions,
+with the measurement in a comment), all 385 modules regenerated, the 32 stale
+`.olean`s deleted so the skip-if-built loop could not reuse them, and the first
+attempt's log kept as `case37_build_attempt1.log`.  COST: about twenty minutes.
+The same defect without per-module return codes would have surfaced as a root
+that failed to import three hours later.
+
+### R29.1 ITEM (b) - THE ANCHOR-2,3,5 LAYER LAWS
+
+Three files. The residue laws are machine-free and carry no `decide` at all -
+they are algebra over `ZMod g`, uniform in the gear - and that is the point:
+the anchor doc states them per layer, and per layer the scripts check them;
+here they are theorems for every gear at once.
+
+**(i) THE CHAIN LAW IN GENERAL FORM** (`proofs/AnchorChain.lean`):
+
+    def OnTeeth (u x : ZMod g) : Prop := x = u or x = -u
+    def DeletedAt (d r x : ZMod g) : Prop := x = r or x = r + d
+
+    theorem teeth_eq_phase : OnTeeth u x <-> DeletedAt (2*u) (-u) x
+    theorem chain_law (d x y : ZMod g) :
+        (exists r, DeletedAt d r x and DeletedAt d r y) <->
+          (y - x = 0 or y - x = d or y - x = -d)
+    theorem copy_phase (u P j x : ZMod g) :
+        OnTeeth u (x + j * P) <-> DeletedAt (2*u) (-u - j*P) x
+    theorem phase_bijective (u P : ZMod g) (hP : IsUnit P) :
+        Function.Bijective (fun j : ZMod g => -u - j * P)
+    theorem no_two_up   ... (h1 : y - x = d)  (h2 : z - y = d)  ... : 2 * d = 0
+    theorem no_two_down ... (h1 : y - x = -d) (h2 : z - y = -d) ... : 2 * d = 0
+
+`chain_law` is `anchor-235.md` 9d's law verbatim and in both directions.
+`copy_phase` + `phase_bijective` are 9f's "the `g` copies realise every
+deletion phase in `Z_g` exactly once", which the doc asserts and the scripts
+rely on: the deleted set in copy `j` IS the two-class set at phase `-u - jP`,
+and `j -> -u - jP` is a bijection whenever the lower period is invertible mod
+`g`. `no_two_up` / `no_two_down` are the algebraic half of T3 alternation: a
+run inside one two-class set cannot take two steps the same way.
+
+HONEST BOUNDARY, written into the file's header: **the chain DEPTH `D_g` is not
+an algebraic consequence.** A run in a two-class set alternates freely between
+the two classes, so nothing in the residue arithmetic bounds its length; `D_g`
+is a fact about the lower gap SIZES (9d's admissible list cut at `F_M + 1`) and
+stays a per-machine measurement.
+
+**(ii) THE NEIGHBOUR-OF-HIT IDENTITY, AND THE NESTED FORMULA'S HOP STEP.**
+
+    theorem neighbour_of_hit {u : ZMod g} (h6 : (6 : ZMod g) * u = 1)
+        (hg : 5 <= g) (hx : OnTeeth u x) : not (OnTeeth u (x + 1))
+
+The proof is three lines and it names the mechanism: `d = 2u = 3^{-1}`, so
+`d = +-1` would force `g | 2` or `g | 4`. The anchor doc says "d_g is never 1";
+this says WHY, for every gear at once, from `6u = 1` alone. (`TwoTeeth.
+kill_spacing_min` already gives `2u <= y - x` at a fixed gear from the tooth
+pair; this is the mod-`g` statement with the arithmetic reason attached, and it
+is the one the nested formula needs.)
+
+The walk half is abstract in the machine - `M` the lower opening predicate, `H`
+the new gear's hit predicate:
+
+    theorem hop_zero (h : not (H (nextM hM x))) : nextG hG x = nextM hM x
+    theorem hop_iter (hrun : forall i < k, H ((nextM hM)^[i+1] x))
+        (hstop : not (H ((nextM hM)^[k+1] x))) :
+        nextG hG x = (nextM hM)^[k+1] x
+    theorem hop_one ...                     -- the two-term form
+
+`hop_iter` IS `nested_form.py`'s recursion as a theorem: the enlarged machine's
+next opening is the lower machine's `nextM` iterated past the hit run, and the
+`D_g`-term cap in the formula is the `k` of this statement. Proved once, for
+every layer of every machine, by induction on `nextM`'s minimality.
+
+**(iii) THE PHASE-REDUCTION RECORD LAW AT MACHINE 17** - and the brief's
+numbers were off by one machine, which the gate caught in thirty seconds.
+
+The brief asked for `F(17) + 1 = 25` gated against `chain_depth.py`'s
+`F_17 = 24`. `chain_depth.py` actually prints
+
+    layer 17 on 5+7+11+13: lower openings 1485, chain depth D_17 = 2,
+        F_17 = 17 (phase r = 2)
+    layer 19 on 5+7+11+13+17: lower openings 22275, chain depth D_19 = 2,
+        F_19 = 24 (phase r = 0)
+
+so 24/25 is the LAYER-19 line (`{5..19}` on the 22,275 openings of `{5..17}`).
+Layer 17 on the 1485 openings of `{5,7,11,13}` (period 5005, not the brief's
+15015) gives `F_17 = 17` blocked-count, merged gap 18. I FORMALISED THE MAX-GAP
+CONVENTION and said so in the file: `mg r` is endpoint-minus-endpoint, and
+
+    theorem AnchorRecord17.record_max :
+        (forall r, r < 17 -> mg r <= 18) and mg 2 = 18
+
+with the seventeen phases each their own `decide +kernel`
+(`AnchorRecord17Core.mg0 .. mg16`, values 16 16 18 18 18 16 18 18 16 15 16 18
+18 16 18 18 18). The encoding is `chain_depth.py`'s, slot for slot: the walk
+runs over `[0, 5005 + 64)`, the residue mod 17 is the ABSOLUTE one so a run
+crossing the period boundary sees the next copy's shifted phase exactly as the
+real machine does, and only gaps whose left endpoint lies in `[0, 5005)` count
+(`chain_depth.py`'s `starts < len(X)`).
+
+AND THE BRIDGE, which is what makes it a reduction rather than a coincidence:
+
+    theorem AnchorRecord17.surv_shift (hr : r < 17) (y : N) :
+        surv r y = openT17 (y + tOf r * 5005)     -- tOf r = ((31 - r) * 5) % 17
+    theorem AnchorRecord17.phase_is_machine (hr : r < 17) (hy : 1 <= ...) :
+        surv r y = true <-> Machine17.Exposed17 (y + tOf r * 5005)
+
+`5005 = 7 mod 17` and `7^{-1} = 5 mod 17`, so phase `r` IS machine 17, shifted
+by `tOf r` whole lower periods - the concrete instance of
+`AnchorChain.copy_phase` + `phase_bijective`.
+
+**A NEW CORPUS FACT FELL OUT: `F(17) = 18` EXACTLY.** The phase maximum is
+attained, so the record has a witness, and the corpus carried only the upper
+half (`Machine17.gap_le`, no attainment theorem at 17):
+
+    theorem AnchorRecord17.gap18_realized :
+        Exposed17 117 and Exposed17 135 and
+        forall j, 117 < j -> j < 135 -> not (Exposed17 j)
+    theorem AnchorRecord17.F17_eq_18 : (every gap <= 18) and (a gap of 18 exists)
+
+HONEST SCOPE, in the file header: the identity "max over phases = F(17) + 1" is
+verified IN THE KERNEL AT BOTH ENDS (the phase table by one file, the machine
+record by `Machine17.gap_le` plus the witness) rather than derived from one to
+the other - that would need a correctness proof of the walk against
+`Machine17.nextOp`, which is not written.
+
+AND AN HONEST NEGATIVE ON THE ECONOMICS. The phase reduction is a real saving
+in Python (5,005 slot tests to build the lower openings, then 17 x 1,485
+opening tests = 30,250 ops, against the full machine's 85,085 slots). IT DOES
+NOT TRANSFER TO THIS KERNEL ENCODING: walking slots rather than openings costs
+17 x 5,069 = 86,173 kernel slot tests, 1.01x the direct scan. To collect the
+reduction in the kernel the walk must run over the OPENING LIST, which means
+the opening list has to become a kernel object. Named, not done.
+
+### R29.2 ITEM (c) - A_relax <= 5 AS 48 CLASSES MOD 210
+
+`proofs/AlternationOrder.lean`. The finite statement, exactly:
+
+    aMod g inv3 c  = 3^{-1} (c -+ 1) mod g, sign from c mod 6   -- the letter a = 2u'
+    fitsAt g u inv3 c m sA = exists t < g, forall i < m,
+        (t + (i/2) c + [i odd] lead) mod g not in {u, g - u}    -- E_g
+    fits c m sA  = fitsAt 5 1 2 c m sA and fitsAt 7 6 5 c m sA
+    survMin c m  = fits c m true and fits c m false   -- R74's minimising convention
+    survMax c m  = fits c m true or  fits c m false   -- the maximising one
+    psMin c      = the largest m <= 9 with survMin c m      (as a count over sizes;
+    psMax c      = the largest m <= 9 with survMax c m       `surv_downward`
+                                                             certifies the count
+                                                             IS the largest)
+
+`m` counts POINTS of the alternation offset set `{0, a, q', q'+a, 2q', ...}`,
+which is R74's convention (see the trap below). Kernel theorems, all `decide`:
+
+    ps_min_le_five   : forall c < 210, gcd c 210 = 1 -> psMin c <= 5
+    ps_min_five_iff  : psMin c = 5 <-> c in {37, 53, 83, 127, 157, 173}
+    ps_min_four_iff  : 4 <= psMin c <-> c in {23, 187} + those six
+    ps_min_counts    : the distribution 24 / 16 / 2 / 6
+    ps_max_eq_capC   : psMax c = LiteralCapTable.capC c, ALL 48 CLASSES
+    ps_max_le_six    : hence psMax <= 6
+
+**THE ONE WORTH MORE THAN THE BOUND: `ps_max_eq_capC`.** R74 says "phase
+saturation at {5,7} and the literal cap are the same arithmetic seen from two
+sides ... two invariants the project found independently, five rounds apart,
+are one object." That is now a kernel identity at all 48 classes, and the two
+sides share no code: `capC` is computed by a WALK IN THE CORRIDOR mod 35
+(`LiteralCapTable.runL`, round 21), `psMax` by TRANSLATES AT THE TWO GEARS
+SEPARATELY (this file, round 29). The distribution `{2:24, 3:4, 4:14, 6:6}`
+matches `LiteralCapTable.cap_spectrum_counts` class for class.
+
+WHAT `A_relax` MEANS IN LEAN TERMS, AND WHY THERE IS NO `sorry` FILE. The brief
+offered an unregistered file with a labelled `sorry` if the definition is not
+machine-checkable. `A_relax` - the nilpotency index of Constructor's
+residue-qualifying successor operator - is indeed not defined in the Lean
+corpus, and I did not invent a definition for another lane's object. But the
+corpus's own idiom does better than a `sorry`: state the missing step as an
+explicit hypothesis and keep the theorem registered and axiom-clean.
+
+    theorem arelax_le_five (ARelax : N -> N)
+        (hred : forall q, gcd (q % 210) 210 = 1 -> ARelax q <= psMin (q % 210))
+        (q : N) (hq : gcd (q % 210) 210 = 1) : ARelax q <= 5
+    theorem arelax_le_four ... (hex : q % 210 not in the six) : ARelax q <= 4
+
+`hred` is R74's own reduction (a cycle in the operator forces BOTH rotations of
+the alternation, which is why the minimising convention is the right one) and
+is the only thing not checked here. A hypothesis-explicit theorem carries the
+same information as a `sorry` with none of the risk, and it stays in the default
+build.
+
+A CONVENTION TRAP, RECORDED BECAUSE IT NEARLY COST A WRONG THEOREM. R74's prose
+says "the m-LETTER alternation X = {0, a, q', q'+a, 2q', ...}" while its `X` has
+`m` POINTS - a word of `m` letters spans `m+1` openings. Reading it as letters
+makes the tables come out shifted and, worse, makes the bound look FALSE (at
+`q' = 17` the letter-reading refutes a 2-letter alternation that
+`A_relax(M = 13) = 2` says exists). Reading it as points reproduces R74 exactly
+(distribution 24/16/2/6, order-4 classes `{23, 187}`, order-5 classes the litcap
+six) and `A_relax <= psMin` holds at all nine measured machines (psMin
+2,2,2,4,3,3,5,2,2 against A_relax 1,2,2,3,2,3,4,2,2 at q' = 13..43). The
+point-reading is also the SOUND one: an m-letter word forces `m+1` consecutive
+openings, so its first `m` offsets are a necessary condition.
+`research/anchor235/r29_arelax_gate.py` computes all four readings and prints
+which one reproduces R74, so the convention is gated rather than assumed.
+
+### R29.3 NEGATIVE CONTROLS
+
+Both new kernel computations were run against a deliberately wrong value first,
+because a `decide` that is accidentally vacuous looks exactly like one that is
+true:
+
+    mg 0 = 15    -> "Tactic `decide` proved that the proposition ... is false"
+    psMin c <= 4 -> "Tactic `decide` proved that the proposition ... is false"
+
+### R29.4 NEW VERDICTS
+
+37. **A BRIEF'S NUMBERS ARE DATA, NOT AXIOMS - RUN THE NAMED SCRIPT FIRST.**
+    The round-29 brief named `F(17) + 1 = 25` and `chain_depth.py`'s
+    `F_17 = 24`; both are the layer-19 line, and the brief's "1485 openings on
+    period 15015" is 5005. Thirty seconds of `uv run python` moved the target
+    by one machine and saved formalising a false statement.
+38. **THE PHASE REDUCTION IS CONCEPTUAL, NOT ECONOMIC, IN A SLOT-WALK
+    ENCODING.** 86,173 kernel slot tests against the direct scan's 85,085 -
+    1.01x, no saving. The Python saving (2.8x) comes from walking OPENINGS, and
+    to collect it the kernel needs the opening list as an object. Do not
+    inherit a reduction's economics from the script it was measured in.
+39. **A HYPOTHESIS-EXPLICIT THEOREM BEATS A `sorry`.** When the missing step
+    belongs to another lane, make it a hypothesis, not a hole: the theorem
+    stays registered, stays axiom-clean, and says exactly what is owed.
+40. **THE TRANSCRIBER WAS ALREADY GENERIC AND NOBODY CHECKED.** Round 27's
+    `lp_cert_lean.transcribe` needed NO change for three held gears; the
+    385-case 31 -> 37 rung cost one rung entry and one table row. Before filing
+    "precondition absent" for a third round, re-read your own tool.
+41. **PRICE A RUNG BY |pos|, NOT BY THE CASE COUNT.** 27 positions -> 48 s,
+    34 positions -> 154 s: 1.26x the positions, 3.2x the cost. Round 28's
+    "385 cases is ~2.6 h" extrapolated across a position-count change and is
+    optimistic by 3.2x. `|pos|` is in every case file of the emission.
+42. **AN EMISSION CAN LAND ON DISK BEFORE ITS BLOCK IS FILED - AND ITS INPUTS
+    CAN BE THREE ROUNDS OLD.** The 31 -> 37 certificates were written in round
+    26. Check `research/data/` as well as `agents-shared.md` before concluding
+    an input is missing.
+43. **`set_option` PLACEMENT IS PART OF THE ENCODING, NOT A DETAIL.** The case
+    generator put `maxHeartbeats` before the THEOREMS and after the
+    DEFINITIONS; a ~1000-entry `List Z` literal with ~200 negative entries
+    blows the default budget on the DEFINITION line. It never bit at the
+    earlier rungs because their duals were sparser - a latent bug that only a
+    denser certificate exposes. Put the options at the top of the module.
+44. **THE RESUMABLE DRIVER'S RETURN CODES ARE THE ONLY THING THAT MAKES A
+    385-MODULE FAMILY SAFE**, and this is the second round running they have
+    paid. The failure was at module 25 of 385; the cost was twenty minutes
+    instead of a round, because the driver logs `rc` per module and the
+    skip-if-built loop restarts from disk. (Corollary learned this round:
+    skip-if-built keys on the `.olean` EXISTING, so after a regeneration the
+    stale `.olean`s must be deleted or the loop silently keeps them.)
+
+### R29.5 MANAGER NOTE (2026-09-03, written by the manager: the lane's session was killed
+### twice before it could file this section or its agents-shared block)
+
+THE 31 -> 37 ROOT IS NOT IN THE KERNEL. R29.0 above was written before the root build
+finished, and the root build never finished. What is built and axiom-audited:
+
+    AnchorChain, AnchorRecord17Core, AnchorRecord17, AlternationOrder   - oleans present;
+        all 27 audited declarations report only propext / Classical.choice / Quot.sound
+        (manager re-run of the lane's _AuditR29.lean, then the scratch file deleted)
+    CaseCert37B and all 385 case modules CaseCert37C0 .. CaseCert37C384  - oleans present;
+        nocov0, nocov25, nocov384 audited: propext / Classical.choice / Quot.sound only
+    CaseCert37 (the root: 385 imports, no_run, F_le, D_31_37_case)         - NOT BUILT
+
+WHY: elaborating the root in one lean.exe reached 38 GB virtual memory at 4:26 PM (that
+attempt killed the lane's VS Code session) and, relaunched by the manager's resume message
+at 4:42 PM, 53.7 GB by 5:02 PM (Resource-Exhaustion-Detector, System log), exhausted the
+16 GB + 45 GB pagefile commit, and crashed Windows at 5:07 PM (bugcheck 0xEF
+CRITICAL_PROCESS_DIED, Kernel-Power 41). The 35-case CaseCert31 root never showed this;
+nobody priced the root by import count. The relaunch was the manager's error.
+
+STATE OF THE BUILD FILES: CaseCert37 stays registered in lakefile.toml but is removed from
+defaultTargets, and its import and five #print lines are removed from AxiomCheck.lean, so
+`lake build` and the axiom audit can no longer start that process. `_DryCase37.lean` and
+`_AuditR29.lean` are gone.
+
+WHAT WOULD CLOSE IT (priced, not done): a tiered assembly - 35 sub-roots of 11 cases each
+(one held-gear residue pair per sub-root, each a 11-way rcases), then a root of 35 imports -
+keeps every process at the CaseCert31 scale that is known to fit. The 385 case oleans are
+reusable as they stand. Until that lands, the kernel-grade statement for 31 -> 37 remains
+the round-25 qualifying-dictionary proof (R25.6); the case-split proof is 385/385 cases in
+the kernel and 0/1 roots.
+
+VERDICT 45 (manager). A ROOT'S MEMORY SCALES WITH ITS IMPORT COUNT, AND THE ONLY TRACE IS
+IN THE SYSTEM LOG. Price a many-case root before launching it, watch commit charge while it
+runs, and never assemble more than ~35 cases in one process on this box.

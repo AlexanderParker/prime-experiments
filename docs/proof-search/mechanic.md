@@ -3333,3 +3333,414 @@ WATCHES
   used.  research/data/r28/gap_tuples_41_4_walkscreened.csv is the drop-in
   tighter superset (1,714,020 vs 1,747,819, asserted subset, asserted to
   contain the exact shard).
+
+## Round 29
+
+GATE (one command, clean process, imports nothing from the tools that produced
+the numbers):
+    uv run python research/gate_mechanic_r29.py      -> ALL ASSERTIONS PASSED
+    uv run python research/crt_slots_r29.py          -> ALL ASSERTIONS PASSED
+    uv run python research/chain_depth_r29.py gate   -> ALL ASSERTIONS PASSED
+    uv run python research/witness47_r29.py          -> ALL ASSERTIONS PASSED
+Pre-registration: research/data/r29/prereg_mechanic_r29.md, written before any
+round-29 script existed.  Persistent results: research/r29_results.txt.
+Gate log: research/data/r29/gate.log.  New files this round:
+research/crt_slots_r29.py, research/fj47_r29.py, research/witness47_r29.py,
+research/criterion_margin_r29.py, research/chain_depth_r29.py,
+research/gate_mechanic_r29.py, research/r29_results.txt.
+JOB COMPLETION: finished and recorded - the seed-174 band run (64/64 shards),
+the machine-31 and machine-37 chain-depth passes, every gate.  Stopped and
+recorded as stopped - the seed-145 F_J(47) run (12/64 shards, resumable), the
+word-legal Q*_J(47) run (0 shards, killed on the control argument), the six
+machine-41 workers (423/1147 chunks, resumable).  Nothing left running.
+
+### C48. THE CRT SLOTS FOR FORMALIST (r29, brief item a)
+
+Repro: research/crt_slots_r29.py (log research/data/r29/crt_slots.log); gate
+section A.  Formalist's verdict 36 - "realisability is cheap in the kernel once
+a witness is a SLOT and not a phase vector" - applied to every F_2 record this
+project owns.  Each line below is an adjacent OPENING TRIPLE of its own
+machine, re-derived here from the definition (slot k blocked by gear q iff
+k = +-6^{-1} mod q), with the two neighbours outside the window located so the
+triple is pinned as maximal rather than merely exhibited:
+
+  F_2(41) = 103  m41  y = 21,157,523,372,970
+                 openings y, y+28, y+103   flanks (7, 4)    101 interior blocked
+  F_2(53) = 159  m53  y = 327,666,424,664,536,738
+                 openings y, y+77, y+159   flanks (6, 3)    157 interior blocked
+  F_2(59) = 173  m59  y = 307,199,471,342,884,027,665
+                 openings y, y+100, y+173  flanks (13, 4)   171 interior blocked
+  F_2(59) = 173  m59  y = 13,260,587,016,151,412,007
+                 openings y, y+73, y+173   flanks (4, 13)   171 interior blocked
+
+Each y is asserted to lie in [0, P(machine)); P(41) = 50,708,377,254,535,
+P(53) = 5,431,526,412,865,007,455, P(59) = 320,460,058,359,035,439,845.
+FIVE CONSECUTIVE OPENINGS, which is the form a kernel `AdjPair` chain wants:
+  m41  21157523372963 / ...70 / ...98 / 21157523373073 / ...77   word [7,28,75,4]
+  m53  327666424664536732 / ...738 / ...815 / ...897 / ...900    word [6,77,82,3]
+  m59  307199471342884027652 / ...665 / ...765 / ...838 / ...842 word [13,100,73,4]
+  m59  13260587016151412003 / ...007 / ...080 / ...180 / ...193  word [4,73,100,13]
+BLOCKER CERTIFICATE, emitted per witness: for every other slot of the span, the
+SMALLEST gear that blocks it, so "all 171 interior slots are blocked" becomes
+171 single modular equalities on numerals rather than one existential.  The
+residue vector y mod q for every gear is emitted with it.
+
+THE TWO m59 SLOTS ARE AN EXACT MIRROR PAIR, and the flanks mirror too:
+    y_A + y_B + 173 = P(59) = 320,460,058,359,035,439,845
+    gap words [100,73] / [73,100] and flank pairs (13,4) / (4,13).
+Pre-registered (A2, A3) and confirmed.  Third instance of the mirror law
+producing a free control on a pair of maximisers (C45's F_5(41) pair, C44's
+F_3(43) reversal, now this).
+
+WHAT THE SCAN'S COMPLETENESS CLAIM RESTS ON - the honest separation the brief
+asked for.  None of these three numbers comes from a period scan; the machine is
+never built.  They come from the lap-phase transfer (j5_multi.py), whose
+completeness is a CRT bijection: an address k in [0, P(y)) is determined by
+(k mod P(23), k mod q_1, ..., k mod q_r), the machine-y openings inside a window
+of machine-23 openings are exactly the machine-23 openings that no new gear's
+phase deletes, so every J-window of machine y is exactly one pair (machine-23
+window, phase tuple) and conversely.  The scan walks EVERY start opening of
+machine 23's period (7,952,175, tiled across workers, cyclically closed) and at
+each one every distinct KILL SET of phase tuples - one representative phase per
+distinct kill set is exact, because admissibility depends on the phase only
+through which interiors it removes.  Two cuts make it finite, and only one of
+them bites at J = 2:
+  (i)  THE SPAN CAP.  Only windows of span <= C are examined, so what is proved
+       is "no 2-window of machine y has span in (v, C]".  That is the exact
+       maximum only when F_2(y) <= C is known independently.  At y = 41 it is
+       (deletion ladder F_2(41) <= F(43) = 103); at y = 53 it is (F_2(53) <=
+       F(59) = 161 < 200 - C43's dividend, which is what retired C30's span
+       condition); AT y = 59 IT IS NOT, because the corresponding bound is
+       F_2(59) <= F(61) and F(61) is not a number this project owns.  The
+       round-28 run used C = 220 (research/f2_59_r28.py).
+  (ii) THE DEPTH CAP JMAX.  Irrelevant at J = 2: a 2-window has one interior
+       opening and no depth question at all.  (It is what capped C43's F(59)
+       band, via A_kill.)
+So, stated as Formalist should transcribe them: F_2(41) = 103 and F_2(53) = 159
+are EXACT AND UNCONDITIONAL; F_2(59) SPLITS - ">= 173" is unconditional and is
+what the slot above carries into the kernel, while "<= 173" is conditional on
+"no 2-window of machine 59 has span in (173, 220]", which is what the round-28
+scan proved and which is NOT a theorem about machine 59.  The kernel can carry
+the lower half today; the upper half must travel with its span condition until
+F(61) exists.
+
+### C49. RUNG ELEVEN (47 -> 53): THE SPECTRUM-PLUS-DEPTH CERTIFICATE FAILS,
+### AND THE FAILURE IS A_kill's, NOT MACHINE 47's (r29, brief item b)
+
+Repro: research/fj47_r29.py (sharded, crash-proof, resumable) driving
+j5_multi.py 23 29,31,37,41,43,47 53 seed<S> 290 6 1 plain LO HI; logs
+research/data/r29/fj47/ and research/data/r29/fj47_s174/; gate section D.
+Inputs already on record: F(47) = 118, F_2(47) = 134 (C25), F_3(47) = 145
+(C46), A_kill(47 -> 53) = 5 EXACT with N_6 = 0 (C23), so J_max(47) = 6 and
+Q*_7(47) is EMPTY BY THEOREM (standing rule 34) - the emptiness certificate the
+criterion needs is FREE, exactly as at 43 (C44).
+
+    F_4(47) in [154, 174],  F_5(47) in [167, 174],  **F_6(47) = 177 EXACT**
+    max over J = 2..6  =  177   vs budget F(47) + 53 = 171   ->  FAILS by 6
+
+F_6(47) = 177 IS EXACT AND UNCONDITIONAL: the seed-174 band run covers 100% of
+machine 23's period (64 of 64 shards, 7,952,175 start indices, exact tiling
+asserted in gate section D) with span cap 290, and 177 is the largest span it
+finds at any depth.  F_4 and F_5 are bracketed rather than pinned because the
+seed-174 run reports them only as "<= 174" and the seed-145 run (which would
+pin them) reached 18.7% before being stopped - and they are NOT NEEDED, since
+F_J is non-decreasing in J and the criterion consumes F_{J_max} alone.
+
+THE MAXIMISER IS A SLOT, NOT A PHASE VECTOR (research/witness47_r29.py, gate
+section E).  The transfer reports k = 26,216,680 on machine 23 with phases
+(3,21,29,26,26,27) for gears (29,31,37,41,43,47) and marks (5,10,16,17,19); CRT
+on t (t = -c_q * P(23)^{-1} mod q at each new gear) lifts it to
+
+    MACHINE 47, slot x = 46,615,676,895,423,125  (P(47) = 102,481,630,431,415,235)
+    seven consecutive openings at offsets [0, 42, 70, 103, 107, 115, 177]
+    gap word [42, 28, 33, 4, 8, 62],  span 177,  all 171 other slots blocked
+
+re-checked at machine 47 from the definition, importing nothing from the tool
+that found it.  177 > 171, therefore
+**max_{2<=J<=J_max(47)} F_J(47) > F(47) + 53 and Constructor's round-28
+spectrum-plus-depth certificate does NOT close 47 -> 53.**
+
+SPAN CAP: 290 = 2 F_3(47), at or above the SUBADDITIVITY ceiling of every depth
+in range (F_{a+b} <= F_a + F_b gives F_4 <= 2F_2 = 268, F_5 <= F_2 + F_3 = 279,
+F_6 <= 2F_3 = 290).  Nothing here is span-conditional.
+
+AND THE FAILURE IS NOT AN ACCIDENT OF MACHINE 47.  Since F_J(M) is
+non-decreasing in J, the criterion's margin at a step is exactly
+    margin(M -> q')  =  F(M) + q'  -  F_{A_kill+1}(M),
+so it is a statement about the DEPTH the fuel census allows.  Tabulated exactly
+(research/criterion_margin_r29.py):
+
+    step      A_kill  J_max  F_Jmax(M)  budget  margin  verdict
+    13 -> 17     2      3        23        28     +5    CERTIFIES
+    17 -> 19     2      3        28        37     +9    CERTIFIES
+    19 -> 23     3      4        38        48    +10    CERTIFIES
+    23 -> 29     2      3        50        63    +13    CERTIFIES
+    29 -> 31     4      5        85        74    -11    FAILS
+    31 -> 37     4      5        92        95     +3    CERTIFIES
+    37 -> 41     3      4       105       129    +24    CERTIFIES
+    41 -> 43     3      4       118       134    +16    CERTIFIES
+    43 -> 47     3      4       132       150    +18    CERTIFIES
+    47 -> 53     5      6       177        171     -6    FAILS
+
+    by A_kill:  2 -> {+5,+9,+13}   3 -> {+10,+16,+18,+24}   4 -> {-11,+3}
+                5 -> {-6}
+    F-ladder cost per level (F_{J+1} - F_J, exact): m37 [2,7,8,8,7],
+    m41 [12,7,8,10], m43 [13,9,7], m47 [16,11,...]
+
+EVERY step with A_kill <= 3 certifies; both failures and the one +3 squeaker are
+the steps with A_kill >= 4.  MECHANISM, not trend: each extra unit of A_kill
+admits one more level of the F ladder, which costs 7-16 units, while the budget
+only gains q' - q'_prev (4 to 6 at this end of the ladder).  The criterion is
+therefore a FINITE-DEPTH criterion in the literal sense - it works exactly while
+the fuel census keeps J_max small, and the fuel census is arithmetic-selected
+(C10), not monotone.  THIS IS THE HONEST SCOPE OF CONSTRUCTOR'S R81: it is not
+"8 of 9 and one exception", it is "every A_kill <= 3 step, and it will fail
+again at the next A_kill >= 4 step".
+
+WHAT CLOSES THE RUNG INSTEAD, and it needs no run: the ATTAINMENT THEOREM (R68,
+proved two-sided in round 26) says F(M+q') = max_J Q*_J(M) with Q*_J the
+WORD-LEGAL spectrum, and Q*_J <= F_J is exactly where the criterion loses its
+30 units at 29 -> 31.  At 47 -> 53 the same theorem plus the corpus value
+F(53) = 145 gives max_J Q*_J(47) = 145 <= 171, margin 26.  That is a
+certificate that uses machine 53's own record; the INDEPENDENT computation of
+max_J Q*_J(47) from machine 23 was priced and NOT RUN (below).
+
+COSTS, AS OP COUNTS (benchmark protocol), on one identical 20,000-start-index
+probe - windows walked is 517,183 in every row, so the row is the price of the
+phase expansion alone:
+
+    configuration                     phase-expanded   wall (secondary)
+    seed 171, floor 1  (band only)          111             1 s   [alone]
+    seed 145, floor 1                     3,800            10 s   [alone]
+    seed 133, floor 1                    14,949           225 s   [alone]
+    seed 145, word-legal for 53           3,800            32 s   [5 of my
+    seed 144, word-legal for 53           4,596            46 s    procs up]
+
+Two readings.  (a) THE SEED IS THE PRICE: 12 units of seed (145 -> 133) is 3.9x
+the expansions and 22x the wall - the per-expansion cost rises too, because the
+surviving windows are deeper.  (b) WORD-LEGALITY IS NOT FREE: at IDENTICAL
+expansion count (3,800) the legal check costs 3.2x, which is `feasible_marks`
+searching at a = 18 instead of a = 1 plus `legal_word` itself.  Extrapolated
+prices for the whole period (7,952,175 start indices): 400 s at seed 171,
+4,000 s at seed 145, 89,500 s at seed 133, 12,700 s word-legal at seed 145.
+
+PER-ITEM STATUS, as the brief asked:
+    F_2(47) = 134   EXACT-UNCONDITIONAL, already on record (C25); the deletion
+                    ladder F_2(47) <= F(53) = 145 confirms the cap it was
+                    computed under.
+    F_3(47) = 145   EXACT-UNCONDITIONAL (C46).
+    F_6(47) = 177   EXACT-UNCONDITIONAL, NEW (seed-174 band run, 64/64 shards,
+                    100% of machine 23's period, span cap 290)
+    F_4(47) in      EXHIBITED >= 154 and >= 167 by the seed-145 run (18.7%
+      [154,174]     coverage, stopped to fund item (c)); <= 174 by the band
+    F_5(47) in      run at 100%.  Exact values NOT COMPLETED; price of the
+      [167,174]     remaining 81.3% of the seed-145 run ~3,250 s of single-core
+                    walk.  Not needed for the rung.
+    max_J F_J(47)   = 177 EXACT, > 171 -> the criterion fails by 6.
+    Q*_J(47)        NOT ATTEMPTED.  Priced at 12,700 s single-core (3.5
+                    core-hours).  Killed deliberately mid-round after the
+                    attainment theorem made it a CONTROL rather than a
+                    decision: max_J Q*_J(47) = F(53) = 145 follows from R68 and
+                    a corpus value already on record.
+    Q*_7(47) = 0    EXACT-UNCONDITIONAL BY THEOREM, no run (A_kill = 5).
+
+### C50. THE ANCHOR-235 CHAIN DEPTH AND THE RECORD LAW AT 31 / 37 / 41 (r29,
+### brief item c) - AND D_g = A_kill(M -> g) IS AN IDENTITY, NOT A COINCIDENCE
+
+Repro: research/chain_depth_r29.py (build | gate | run g | merge); logs
+research/data/r29/chain{31,37,41*}.log; gate sections B and C.
+anchor-235 section 9f defines, for the layer g on M = {5 .. prev(g)},
+    D_g   = longest run of consecutive M-openings whose slot residues mod g all
+            lie in ONE two-class set {r, r+d},  d = 2*6^{-1} mod g
+    F_g   = max over such runs of (gap before) + (run span) + (gap after)
+and computes both on ONE LOWER PERIOD, because the g copies of the lower period
+realise every deletion phase exactly once.  chain_depth.py stops at g = 29
+(it materialises the lower period as an array).  This round carries it to 31,
+37 and 41 with NO full-period array beyond machine 29.
+
+THE VEHICLE.  (1) Machine 29's opening list is built once as 214,708,725 uint32
+entries plus three uint8 residue arrays (1.5 GB on disk, memory-mapped, never
+in a process's own heap).  (2) The {5..31} lower sequence is streamed as 31
+chunks of it and the {5..37} lower sequence as 31 x 37 = 1147 chunks, each chunk
+being the machine-29 list under one or two residue filters - so the 1.24e12-slot
+period with 2.18e11 openings is walked without ever holding it.  (3) THE PHASE
+IS NOT LOOPED OVER: mapping residues by d^{-1} turns "{r, r+d} for some r" into
+"two adjacent values", so one rolling max/min over a length-L window decides all
+g phases at once and the winning phase is read back as r = s*d mod g.  Cost per
+level is one pass, not g passes.  (4) Cyclic closure is EXACT - the lower
+sequence's head is appended at position + P_lower with the residues of the
+SHIFTED slot, so the copy-to-copy phase change is carried, not ignored (this is
+what chain_depth.py's X2 = [X, X+P] already does correctly, and getting it wrong
+would silently lose every record that straddles a copy boundary).
+
+VALIDATION FIRST: the vehicle reproduces chain_depth.py's published row exactly
+at all seven rungs it can reach - D = 2,1,2,2,2,3,2 and F = 5,7,11,18,25,34,43
+at g = 7..29 (chain_depth.py prints F-1).  Then:
+
+    g   lower      lower period   openings      D_g  record   corpus F(g)
+    31  {5..29}     1.078e9 slots  214,708,725   4     58        58   MATCH
+    37  {5..31}     3.343e10       6,226,553,025 4     88        88   MATCH
+    41  {5..37}     1.237e12     217,929,355,875 3     91        91   MATCH
+
+    machine 31 (30 s, EXACT full lower period, one chunk)
+      L   merged  before span after   phase r  copy j  slot of survivor before
+      1     55      30    0    25       3       30     32,481,956,680
+      2     58      18   10    30      14       20     21,844,264,615   <- record
+      3     55       2   31    22       7        1      1,495,243,370
+      4     55       7   41     7      29       12     13,159,557,555
+
+    machine 37 (898 s, EXACT full lower period, 31 streamed chunks)
+      L   merged  before span after   phase r  copy j  slot of survivor before
+      1     68      33    0    35      16        8    273,663,783,992
+      2     85      18   37    30      33       29    974,041,253,237
+      3     88      28   49    11      30       34  1,145,973,108,145   <- record
+      4     68       3   62     3      23       21    702,105,074,232
+
+FIVE THINGS FALL OUT, all pre-registered (C1-C4) and all confirmed:
+
+1. **D_g = A_kill(M -> g) EXACTLY.**  D_31 = 4 = A_kill(29->31), D_37 = 4 =
+   A_kill(31->37), D_41 = 3 = A_kill(37->41), and in the small-g gate
+   D_17 = D_19 = 2, D_23 = 3, D_29 = 2 reproduce A_kill(13->17) = 2,
+   A_kill(17->19) = 2, A_kill(19->23) = 3, A_kill(23->29) = 2.  This is an
+   IDENTITY, not a measurement: both count maximal runs of consecutive
+   M-openings that one phase of g deletes (C10's "co-deletable k-tuples", whose
+   legality condition "prefix-sum range <= 1" is exactly "all in one two-class
+   set").  Two vehicles built four rounds apart in two different languages
+   compute the same integer, 7 for 7.  ALSO: the sample-vs-census halves MEET -
+   a streamed pass gives D_g >= v and C10's exact full-period fuel census gives
+   D_g <= A_kill, so a partial pass that reaches A_kill has proved the value.
+2. **THE RECORD LAW HOLDS AT 31, 37 AND 41**: max(before + span + after) = 58 =
+   F(31), 88 = F(37), 91 = F(41).  All three survivors were then re-derived at
+   the TARGET machine slot by slot (gate section B): at machine 31, slot
+   21,844,264,615 and slot+58 are openings, all 57 slots between are blocked,
+   and exactly TWO machine-29 openings sit inside at +18 and +28; at machine 37,
+   slot 1,145,973,108,145 and slot+88 are openings, all 87 between blocked,
+   exactly THREE machine-31 openings inside at +28, +65, +77; at machine 41,
+   slot 7,244,836,295,007 and slot+91 are openings, all 90 between blocked,
+   exactly THREE machine-37 openings inside at +15, +56, +70.
+3. **THE ATTAINING RUN LENGTH IS k_win.**  L = 2 at g = 31, L = 3 at g = 37 and
+   L = 3 at g = 41, which is C13's k_win census (k_win(29->31) = 2,
+   k_win(31->37) = 3, k_win(37->41) = 3) recovered by a completely different
+   vehicle, 3 for 3.
+4. **THE L = 1 ROW IS F_2 OF THE LOWER MACHINE, EVERY TIME** - 55 = F_2(29),
+   68 = F_2(31), 90 = F_2(37), which is a free control on each pass (a run of
+   one deleted opening merges exactly two lower gaps).  It is also why the
+   record cannot be carried at L = 1 anywhere at this end of the ladder:
+   F_2(lower) < F(g) at all three.  More generally the L-row maximum IS
+   Q*_{L+1}(M; word-legal for g) WITH PADDING INCLUDED, and the m37 pass reads
+   off Q*_2(31) = 68, Q*_3(31) = 85, Q*_4(31) = 88, Q*_5(31) = 68, whose maximum
+   88 = F(37) is R68's attainment theorem verified end to end on a 6.2e9-opening
+   sequence.  NOTE FOR CONSTRUCTOR: these are NOT the numbers in your round-28
+   Delta table, which is the LITERAL-middles restriction (Delta_3(31) = +2, i.e.
+   Q*_3 = 70); the padded letter 37 is what takes 70 to 85 and it is the letter
+   your three failing rows carry.
+5. **A FREE CROSS-VEHICLE HIT, UNPROMPTED**: the machine-31 record's survivor
+   sits at lower-period position 278,620,515 - which is C13's kwin_census
+   winner for 29 -> 31, "k = 278,620,515, word (10,)", with the same span 10 and
+   the same flank sum 18 + 30 = 48.  Round 17's envelope census and round 29's
+   anchor-235 stream produce the same address.
+
+MACHINE 41 IS A DELIBERATE PARTIAL SWEEP, AND SAYING SO IS THE POINT.  The full
+pass is 1147 chunks; it ran on six resumable workers over disjoint j37 ranges,
+each dumping its own JSON after EVERY chunk with the list of chunks done, so the
+stop leaves an exactly specified sample rather than a guess.  THE WORKERS WERE
+STOPPED DELIBERATELY at coverage 423 of 1147 chunks (36.9%), with twelve laps
+j37 = 0, 1, 7, 8, 13, 14, 19, 20, 25, 26, 31, 32 COMPLETE and the rest partial;
+`chain_depth_r29.py merge 41 w0..w5` prints that line and
+research/data/r29/chain_41.json carries the chunk list.
+BOTH ANSWERS ARE NEVERTHELESS EXACT, because in each case the sample supplies
+one half and an existing exact census the other:
+  D_41 = 3   : the sample gives D_41 >= 3 (reached in the FIRST chunk of all six
+               workers) and C10's A_kill(37->41) = 3 EXACT gives D_41 <= 3.
+  record 91  : the sample EXHIBITS a merged gap of 91 (machine-41 slot
+               7,244,836,295,007, verified there slot by slot) and C14's
+               F(41) = 91 EXACT (COV-SAT, full period) caps it.
+What the remaining coverage would buy is only the exact per-L rows Q*_J(37),
+not either headline.  That is standing rule 39.
+
+### C11-UPDATE. THE F_j SPECTRA AFTER ROUND 29
+    machine   F_1  F_2  F_3      F_4        F_5     F_6
+    47        118  134  145  [154,174]  [167,174]   177   <- new this round
+(the rest of the table is unchanged from the round-28 C11-UPDATE.)
+
+## Standing rules (round-29 additions)
+
+38. A DELIBERATE PARTIAL SWEEP MUST DUMP AFTER EVERY UNIT OF COVERAGE.  Round
+    28 lost seven workers and round 29 lost six more to the same silent commit
+    death, and in both cases the loss was total because the result was written
+    only at the end.  Every long streamed pass now writes its own JSON after
+    each chunk WITH THE LIST OF CHUNKS DONE, and resumes from it.  The
+    consequence is not just crash-safety: it converts "I had to stop" from an
+    apology into a SAMPLE WITH A STATED SUPPORT.
+39. A SAMPLE AND A CENSUS CAN MEET IN THE MIDDLE.  A streamed partial pass gives
+    a LOWER bound on a maximum; an already-decided arity level gives the UPPER
+    bound.  D_41 >= 3 (one chunk of a sample) plus A_kill(37->41) <= 3 (C10,
+    exact) is an EXACT value from 0.1% coverage.  Before pricing a full sweep,
+    ask which half of the answer is already on record.
+40. WHEN A RUN'S ANSWER IS IMPLIED BY A THEOREM PLUS A NUMBER YOU ALREADY HAVE,
+    IT IS A CONTROL, NOT A DECISION - price it as one.  I launched the
+    word-legal Q*_J(47) sweep before noticing that R68 plus the corpus
+    F(53) = 145 already gives its answer.  Killed at 3.5 core-hours; the
+    remaining value (an INDEPENDENT computation of F(53) from machine 47) is
+    real but is a control, and controls do not get the round's last cores.
+41. RAISE THE SEED TO THE QUESTION, NOT TO THE ANSWER.  The exact F_4/F_5/F_6
+    ladder costs 4,000 s; the question actually asked - "does the maximum clear
+    171?" - costs 400 s at seed 171 and is answered UNCONDITIONALLY by one
+    exhibited window.  Rule 16 says the answer must sit above the seed; this
+    adds: choose the seed from the DECISION the number has to make.
+
+## Retracted / corrected (round-29 additions)
+
+R30. I LOST SIX WORKERS AND A STREAMED PASS TO THE EXACT FAILURE MODE I WROTE
+    STANDING RULE 37 ABOUT, IN THE ROUND AFTER I WROTE IT.  Six j5_multi
+    workers (item b) and the machine-37 pass died SILENTLY and simultaneously -
+    no traceback, no completion line, launcher exited 0.  Committed memory was
+    at 37-41 of 63.6 GB and five other lanes had ~12 python processes up; my own
+    contribution was seven jobs PLUS two foreground profiling scripts that each
+    loaded the memmapped machine-29 arrays.  Same cause as round 28's kill and
+    the same trigger: running a diagnostic in the foreground on a box already
+    carrying my own workers.  RECOVERED, not reported around: the item-(b)
+    partial logs are valid maxima over the index ranges they walked, and they
+    already contained the round's headline (a 174-span 6-window); the machine-37
+    pass was relaunched under standing rule 38 and completed.  COST: ~40 minutes
+    of six-core work and ~15 minutes of one-core work.
+R31. MY PRE-REGISTERED PRICE FOR MACHINE 41 WAS WRONG BY 5x.  C5 predicted the
+    exact g = 41 pass in "under 90 minutes at 6 workers"; the measured cost is
+    26 s a chunk x 1147 chunks = 8.2 core-hours, i.e. ~2.7 h at 3 workers and
+    ~1.4 h at 6.  I priced it from the machine-31 pass (30 s for ONE chunk)
+    without multiplying by the 37 laps of the outer loop - an arithmetic slip in
+    my own pre-registration, caught by the run.
+R32. SCORING THE ROUND-29 PRE-REGISTRATION (research/data/r29/prereg_mechanic_r29.md)
+    A1 four witnesses re-verify                       CONFIRMED (4/4)
+    A2 the m59 pair is a mirror pair                  CONFIRMED (exact)
+    A3 the flanks mirror too                          CONFIRMED ((13,4)/(4,13))
+    B1 "the certificate FAILS at 47 -> 53"            CONFIRMED - and this was
+       the deliberate two-sided call, made from the F_J increment ladder before
+       any window above 171 had been seen.
+    B2 F_4 = 154 +-4 / F_5 = 164 +-6 / F_6 = 174 +-8  CONSISTENT on all three:
+       F_4 in [154,174], F_5 in [167,174], F_6 = 177 EXACT (3 over the centre,
+       inside the band).  F_4/F_5 not banked as exact.
+    B3 the maximum is at J = 6                        CONFIRMED (177 at J = 6)
+    B4 band run under 2 h at 6 workers                CONFIRMED - the full band
+       run finished at 4 workers, and its measured price is 400 s single-core
+    C1 D_31 = D_37 = 4, D_41 = 3                      CONFIRMED (3/3)
+    C2 record law = 58 / 88 / 91                      CONFIRMED (3/3)
+    C3 attaining L = 2, 3, 3                          CONFIRMED (3/3)
+    C4 the L = 1 row is F_2 of the lower machine      CONFIRMED (55, 68, 90)
+    C5 g = 41 exact under 90 min at 6 workers         REFUTED (R31)
+
+## Open watches and checkpointed jobs (round-29 additions)
+
+- F_4(47), F_5(47), F_6(47) EXACT: the seed-145 sharded run is resumable
+  (research/fj47_r29.py run <workers> 64) and 12 of 64 shards are complete on
+  disk.  Remaining price ~3,250 s of single-core walk.
+- max_J Q*_J(47) BY INDEPENDENT COMPUTATION (not via F(53)): priced at 3.5
+  core-hours, resumable (research/fj47_r29.py run <workers> 64 legal).  It is a
+  control, and its value is that it would re-derive F(53) = 145 from machine 23
+  with machine 53 never built.
+- THE MACHINE-41 CHAIN-DEPTH PASS is resumable per worker; the full sweep is
+  8.2 core-hours and the completed chunk list travels in the JSON.
+- THE CRITERION-MARGIN LADDER (C49) has one missing cell: A_kill(53 -> 59) = 4
+  gives J_max(53) = 5, and F_4(53), F_5(53) are not on record, so the 53 -> 59
+  row cannot be filled.  It is the cheapest test of the "A_kill >= 4 fails"
+  reading, and its budget is F(53) + 59 = 204 against F_5(53).

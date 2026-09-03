@@ -475,6 +475,76 @@ increment width collapses from 1 to 1/384 over six steps.  The increment width
 is a knife-edge that gets sharper, which is the certificate-side statement of
 "the increment law is tight".
 
+## 2C. ROUND-29 ADDITIONS - THE LADDER PARAMETER IS NOW EXACT, NOT OBSERVED
+
+Round 26 introduced the held-gear count k and called it "a ladder parameter,
+not decoration", on the evidence of cut-loop STALLS: "23 -> 29 does NOT
+certify with one held gear (LP maximum 38.316 against 38 after 33 cut
+passes)"; "31 -> 37 does not certify with two (40.994 against 40)".  A stall
+is an undecided cell.  With the lifted LP of `product-measure-frontier.md`
+section 7.1 the parameter becomes a THEOREM of the vehicle: at 31 -> 37, the
+budget width W = 95,
+
+    k = 1   case (0)     V* = 63.7758  >= |pos| = 57   offset +6.776
+    k = 2   35 cases     26 of 35 NOT certifiable, 22 of them with an EXACT
+                         in-polytope point (V* - |pos| from +0.798 to +2.172);
+                         9 certifiable (lifted polytope EMPTY); 4 ASYMPTOTE
+                         with no exact witness constructed (a float reading at
+                         +0.456, labelled, not a verdict)
+    k = 3   385 cases    ALL CERTIFIED, every one at ITERATION ZERO off the
+                         base cuts alone, 8,388,426 exact certificate ops,
+                         margin column min 1/5, max 3
+
+So k = 3 IS THE SMALLEST k THAT CERTIFIES THIS RUNG, and the smaller ones are
+REFUTED rather than merely unfinished: an exhibited rational point of the
+level-2 polytope with every block summing to 1, every consistency link exact,
+every position exactly completable and the recursion row cleared is a proof
+that no dual certificate exists in that case, however many cuts are generated.
+(Widths above 95 are irrelevant to the rung, and G falls with W with the
+single crossing asserted, so 95 is the easiest width that proves it.)
+
+AND THE CASE SPLIT IS MIRROR-EQUIVARIANT - A LEMMA, NOT A MEASUREMENT.
+
+  LEMMA.  For every gear q and every width W,
+      reflect(hits(q, r, W))  =  hits(q, (1 - W - r) mod q, W),
+  where reflect(i) = W - 1 - i.  Hence the case at held phases ws and the case
+  at MIRROR(ws) = ((1 - W - ws) mod q) have position sets that are reflections
+  of each other, their relaxations are isomorphic, and V*, |pos| and the
+  certificate cost are EQUAL.
+  PROOF.  i is blocked by q at phase r iff i = t - r (mod q) for a tooth t.
+  The teeth are {u', q - u'}, so t -> -t permutes them.  Then
+  W - 1 - i = W - 1 - t + r = (-t) - ((1 - W) - r) (mod q), which is the
+  blocking condition at phase (1 - W - r).  []
+
+GATE (non-vacuous instance): at machine 37, W = 95, k = 2 the map preserves
+BOTH V* and |pos| at ALL 35 cases, and those 35 cases carry only 11 distinct
+(V*, |pos|) pairs.  CONSEQUENCE FOR EVERY SWEEP OF THIS SPECIES: decide one
+case per mirror orbit and copy the verdict - the same 2x that Lateral's
+reversal law buys on word decisions, now on LP cells.  The value classes are
+COARSER than the mirror orbits (orbits of size 4 where the mirror gives 2);
+that extra coincidence is NOT explained here, and it is not a translation - no
+`ws -> ws + t` preserves V* except t = 0 (tested at all 35).
+
+AND A SEVENTH INCREMENT STEP, BY A MIXED-k SPLIT.  Round 27 certified the
+increment width W_inc = F_2(M) + s_min(q') at the six LITERAL steps, all with a
+uniform held-gear count.  At 37 -> 41 (W_inc = 90 + 14 = 104) a uniform k does
+not work and the fix is a REFINEMENT rather than a bigger k: of the 385 k = 3
+cases, 376 certify and 9 are refuted by exact in-polytope points; each of the 9
+is split once more on gear 13's phases, and all 117 children certify.  The 376
+k = 3 tuples and the 117 k = 4 tuples PARTITION prod(Z_5 x Z_7 x Z_11) - each
+refined 3-tuple carries all 13 phases of gear 13, no tuple is in both roles,
+and the union is the whole product - so the 493 certificates prove
+F(41) <= 104 outright.  With an exhibited machine-37 configuration realising
+the adjacent pair (2, 88) - phases [0,3,1,6,11,7,15,27,25,18], checked by CRT
+with no period scan - that is the increment law at 37 -> 41, and 41 is the
+first machine on the list the project cannot scan.
+THE GENERAL MOVE, worth stating because it changes the cost curve: the case
+split does NOT have to be uniform in k.  Refining only the cases that fail
+costs 13 cells each instead of multiplying the whole sweep by 13, so the cost
+is (cases at k) + q_{k+1} x (failures at k) rather than the primorial.  Here
+that is 385 + 117 = 502 cells against 5,005 for a uniform k = 4 sweep - a
+factor of ten - and the exhaustiveness argument is still one line.
+
 ## 3. WHY IT MIGHT BE NOVEL
 
 - The move itself.  Covering/packing LP relaxations are normally strengthened

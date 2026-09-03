@@ -1,0 +1,119 @@
+ROUND 29 (mechanic) - PERSISTENT RESULTS
+========================================
+Gate:  uv run python research/gate_mechanic_r29.py
+Logs:  research/data/r29/ (gitignored)
+Pre-registration: research/data/r29/prereg_mechanic_r29.md
+
+(a) CRT SLOTS - every F_2 record as an explicit slot of its own machine
+    Each line: machine, slot y, opening offsets, flank gaps (the neighbours
+    outside the window), interior slots blocked.  All re-derived from the
+    definition by research/crt_slots_r29.py and by the round gate.
+
+    F_2(41) = 103  m41  y = 21157523372970
+                   offsets [0, 28, 103]   flanks (7, 4)     101 blocked
+                   five consecutive openings 21157523372963, 21157523372970,
+                     21157523372998, 21157523373073, 21157523373077
+                   full word [7, 28, 75, 4]
+    F_2(53) = 159  m53  y = 327666424664536738
+                   offsets [0, 77, 159]   flanks (6, 3)     157 blocked
+                   five consecutive openings 327666424664536732, ...738,
+                     ...815, ...897, ...900        full word [6, 77, 82, 3]
+    F_2(59) = 173  m59  y = 307199471342884027665
+                   offsets [0, 100, 173]  flanks (13, 4)    171 blocked
+                   five consecutive openings 307199471342884027652, ...665,
+                     ...765, ...838, ...842        full word [13, 100, 73, 4]
+    F_2(59) = 173  m59  y = 13260587016151412007
+                   offsets [0, 73, 173]   flanks (4, 13)    171 blocked
+                   five consecutive openings 13260587016151412003, ...007,
+                     ...080, ...180, ...193        full word [4, 73, 100, 13]
+
+    P(41) = 50708377254535
+    P(53) = 5431526412865007455
+    P(59) = 320460058359035439845
+    MIRROR PAIR:  y_A + y_B + 173 = P(59)   (and the flanks reverse)
+
+    SCOPE.  F_2(41) = 103 and F_2(53) = 159 are exact and unconditional.
+    F_2(59):  >= 173 unconditional (the slot above);  <= 173 conditional on
+    "no 2-window of machine 59 has span in (173, 220]" - the round-28 scan's
+    span cap, which cannot be retired until F(61) is a number.
+
+(b) RUNG ELEVEN 47 -> 53   budget F(47) + 53 = 171,  J_max(47) = A_kill + 1 = 6
+    F_1(47) = 118   exact-unconditional (C15)
+    F_2(47) = 134   exact-unconditional (C25)
+    F_3(47) = 145   exact-unconditional (C46)
+    F_4(47)         in [154, 174]  (>=154 exhibited, <=174 from the band run)
+    F_5(47)         in [167, 174]  (>=167 exhibited, <=174 from the band run)
+    F_6(47) = 177   EXACT-UNCONDITIONAL, NEW.  Seed-174 band run, 64/64 shards,
+                    100% of machine 23's period, span cap 290.
+    Q*_7(47) = 0    exact-unconditional BY THEOREM (A_kill(47->53) = 5, N_6 = 0)
+
+    VERDICT: max_{2<=J<=6} F_J(47) = 177 > 171, so Constructor's
+    spectrum-plus-depth certificate does NOT close 47 -> 53, margin -6.
+    THE MAXIMISER AS A SLOT (research/witness47_r29.py):
+        machine 47, slot x = 46615676895423125   (P(47) = 102481630431415235)
+        seven consecutive openings at offsets [0, 42, 70, 103, 107, 115, 177]
+        gap word [42, 28, 33, 4, 8, 62], span 177, 171 other slots blocked
+    Span cap 290 = 2 F_3(47) is at or above the subadditivity ceiling of every
+    depth in range (F_4 <= 2F_2, F_5 <= F_2+F_3, F_6 <= 2F_3), so nothing here
+    is span-conditional.
+    WHAT CLOSES THE RUNG INSTEAD, with no run: R68's attainment theorem
+    (F(M+q') = max_J Q*_J(M), Q*_J the WORD-LEGAL spectrum) plus the corpus
+    F(53) = 145 gives max_J Q*_J(47) = 145 <= 171, margin 26.
+
+    CRITERION MARGIN LADDER  margin = F(M) + q' - F_{A_kill+1}(M)
+    (research/criterion_margin_r29.py)
+      13->17 +5   17->19 +9   19->23 +10  23->29 +13  29->31 -11  31->37 +3
+      37->41 +24  41->43 +16  43->47 +18  47->53 negative
+    Every A_kill <= 3 step certifies; both failures are A_kill >= 4 steps.
+
+(c) ANCHOR-235 CHAIN DEPTH AND THE RECORD LAW
+    (research/chain_depth_r29.py; anchor-235 section 9f extended past g = 29)
+
+      g   lower      lower period (slots)  lower openings   D_g   record  F(g)
+       7  {5}                 5                    3         2      5      5
+      11  {5,7}              35                   15         1      7      7
+      13  {5..11}           385                  135         2     11     11
+      17  {5..13}          5005                 1485         2     18     18
+      19  {5..17}         85085                22275         2     25     25
+      23  {5..19}       1616615               378675         3     34     34
+      29  {5..23}      37182145              7952175         2     43     43
+      31  {5..29}    1078282205            214708725         4     58     58
+      37  {5..31}   33426748355           6226553025         4     88     88
+      41  {5..37} 1236789689135        217929355875         3     91     91
+
+    D_g = A_kill(M -> g) EXACTLY at every g where both are known (7 for 7).
+    The record law max(before + span + after) = F(g) holds at every g computed.
+
+    RECORD SURVIVOR PROFILES (verified at the target machine, slot by slot)
+      g = 31: F(31) = 58 at slot 21844264615, chain arity L = 2, machine-29
+              openings inside at +18, +28, profile (before 18, span 10,
+              after 30), phase r = 14, copy j = 20.
+              Lower-period position 278620515 = C13's kwin_census winner.
+      g = 37: F(37) = 88 at slot 1145973108145, chain arity L = 3, machine-31
+              openings inside at +28, +65, +77, profile (28, 49, 11),
+              phase r = 30, copy j = 34.
+      g = 41: F(41) = 91 at slot 7244836295007, chain arity L = 3, machine-37
+              openings inside at +15, +56, +70, profile (15, 55, 21),
+              phase r = 29, copy j = 5.
+
+    THE L-ROW MAXIMUM IS Q*_{L+1}(lower machine; word-legal for g), padding
+    included, so each pass verifies R68's attainment theorem end to end:
+      g = 31:  Q*_2..Q*_5(29) = 55, 58, 55, 55                        max 58
+      g = 37:  Q*_2..Q*_5(31) = 68, 85, 88, 68                        max 88
+      g = 41:  Q*_2..Q*_4(37) = 90, 90, 91  (partial sweep)           max 91
+    and the L = 1 row is F_2 of the lower machine every time (55 = F_2(29),
+    68 = F_2(31), 90 = F_2(37)) - a free control on each pass, and the reason
+    the record is never carried at L = 1 at this end of the ladder.
+    The attaining run length is k_win at all three: L = 2, 3, 3.
+
+    SCOPE AT g = 41.  The pass over the {5..37} lower period is a DELIBERATE
+    PARTIAL SWEEP: six resumable workers on disjoint j37 ranges with per-chunk
+    dumping, stopped at COVERAGE 423 of 1147 chunks (36.9%), twelve laps
+    j37 = 0,1,7,8,13,14,19,20,25,26,31,32 complete and the rest partial
+    (chunk list in research/data/r29/chain_41.json).  BOTH ANSWERS ARE STILL EXACT because in
+    each case the sample gives one half and an existing exact census the other:
+      D_41 = 3  : sample >= 3 (first chunk of every worker) and C10's
+                  A_kill(37 -> 41) = 3 EXACT gives <= 3;
+      record 91 : sample EXHIBITS 91 (slot above, verified at machine 41) and
+                  C14's F(41) = 91 EXACT (COV-SAT, full period) caps it.
+    g = 31 and g = 37 are FULL lower periods with no such caveat.

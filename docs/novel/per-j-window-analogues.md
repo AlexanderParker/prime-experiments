@@ -138,6 +138,35 @@ odd layer** - which is the layer that decides `A_kill` and the layer at which `D
 and **false at J = 3 and J = 4**, where Theorem B explains half of it (even J cannot be
 palindromic at all) and measurement the other half.
 
+### 1.7 ROUND 29 - THE DEPTH QUANTIFIER IS CLOSED, AND THE `EMPTY` CELLS ARE FREE
+
+Section 1.5's third bullet recorded `J_max(M) = A_kill(M) + 1` as MEASURED at eight
+machines by two independent vehicles.  It is a **theorem**:
+
+> `Q*_J(M; q') > -inf` iff `L(M) >= J - 2`, where `L(M)` is the length of the longest
+> *realised* word of legal letters with alternating nonzero classes.  Hence
+> `J_max(M) = L(M) + 2` and `A_kill(M -> q') = L(M) + 1`.
+
+Proof and attribution in `docs/novel/even-j-mechanism.md` section 1.1 (the forward half is
+Mechanic's round-28 index observation; the converse and the `L` formulation are round 29).
+Consequences for this document:
+
+* every `EMPTY` cell of the `Delta_J` table is now a **one-line dictionary fact**, not a CRT
+  sweep: `J = 6` is empty at every machine m11..m43 because `L <= 3` everywhere;
+* the depth cap of a NEW machine costs the decision of its legal words of length `L+1` -
+  at m43 that is 31 candidates of which phase saturation refutes 23 for free;
+* `L(M)` at m11..m37 is `1, 1, 1, 2, 1, 3, 3, 2`, every value CERTIFIED (the next length up
+  has no realised legal word), reproducing the recorded `J_max` and `A_kill` rows 16/16.
+
+The literal `Delta_J` table is reproduced by a third vehicle (`research/evenj_r29.py`, a
+word-indexed flank census over full-period scans at m11..m23 and Mechanic's exact censuses
+at m29/m31/m37; 21 of the 22 recorded `Q*_J` cells reproduced, 0 mismatches), which also
+exhibits the m31 **literal** `J = 4` maximiser for the first time: `(6, 25, 12, 28)`, span
+71, `Phi = 34`, middle sum `37 = q'` exactly.
+
+The even-`J` half of the family - the half the palindrome route of section 1.6 provably
+cannot reach - is worked out in the companion note.
+
 ---
 
 ## 2. WHY IT MIGHT BE NOVEL

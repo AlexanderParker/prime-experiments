@@ -526,6 +526,81 @@ case split has and the level-2 vehicle did not.
   relaxation.  Bounding it in closed form is the same unsolved problem as
   bounding Delta, one relaxation stronger.
 
+## 7.8 ROUND 29 - THE k = 3 FRONTIER LADDER, AND WHAT THE OFFSET ACTUALLY
+## TRACKS
+
+TWO MEASUREMENTS, both by the section-7.1 lifted LP, both with their sign
+pattern asserted width by width rather than assumed.
+
+(A) THE FRONTIER LADDER AT THREE HELD GEARS.  W_c(y, 3) = min{W : G < 0} at
+the all-zero case, bisected and then asserted single-crossing over the band
+around the crossing (`research/lp_cells_r29.py WCALL`, logs
+`research/data/r29/wc_m*_k3.json`):
+
+    y            23     29     31     37     41
+    W_c(y, 3)    13     31     46     66     81
+    F(y)         34     43     58     88     91
+    W_c / F(y)  0.382  0.721  0.793  0.750  0.890
+
+  * W_c(y, 3) IS STRICTLY MONOTONE IN y over the five machines the lifted LP
+    reaches at k = 3.  Round 28's pre-registered E9 guessed it would NOT be,
+    and that half of E9 is REFUTED by this table.
+  * THE RATIO IS RISING TOWARDS 1 (0.38 -> 0.89), so the per-case reach is
+    closing on the machine's own record gap from BELOW.  Round 28 recorded
+    "at machine 41 with k = 3 the case-0 polytope is EMPTY at every width down
+    to 92 = F(41) + 1"; the bisection extends that by eleven units - the
+    case-0 cell is certifiable down to 81, i.e. TEN BELOW F(41) = 91.  This is
+    a per-case statement and stays one: the FULL split must fail below F(y)
+    somewhere, because a fully blocked window of width F(y) - 1 exists and its
+    held phases put it in SOME case.
+  * The ratio's own shape is not monotone (0.382, 0.721, 0.793, 0.750, 0.890),
+    so no law is claimed for it - only the direction over five machines.
+
+(B) THE OFFSET AT THE INCREMENT WIDTH IS NOT A FUNCTION OF THE MACHINE.
+Round 28 measured V* - |pos| = +9.05 at machine 37, one held gear, at the
+31 -> 37 increment width 80, and pre-registered (E12) that this offset "grows
+with the machine".  IT DOES NOT, and the reason is arithmetic rather than
+asymptotic.  Write the increment width against the new machine's own record:
+
+    step      W_inc = F_2(M) + s_min(q')   F(q')   W_inc - F(q')
+    11 -> 13     15 = 11 + 4                 11        + 4
+    13 -> 17     22 = 16 + 6                 18        + 4
+    17 -> 19     31 = 25 + 6                 25        + 6
+    19 -> 23     39 = 31 + 8                 34        + 5
+    23 -> 29     49 = 39 + 10                43        + 6
+    29 -> 31     65 = 55 + 10                58        + 7
+    31 -> 37     80 = 68 + 12                88        - 8     <- the padded step
+    37 -> 41    104 = 90 + 14                91        +13
+    41 -> 43    117 = 103 + 14              103        +14
+    43 -> 47    132 = 116 + 16              118        +14
+
+At 31 -> 37 the increment width is EIGHT BELOW the truth, so a fully blocked
+window of that width exists and NO SOUND METHOD can certify it at any k - the
+offset there is the machine's own padding excess.  Everywhere else W_inc
+exceeds F(q') and the obligation is TRUE, so a positive offset there is an
+integrality gap of the relaxation and nothing else.  Measured, all at the
+all-zero case:
+
+    step        W_inc   W_inc - F(q')   k=1        k=2        k=3
+    31 -> 37      80        - 8         +9.0461    +3.7901    EMPTY (-inf)
+    37 -> 41     104        +13         n = 10,    +5.1667    EMPTY (-inf)
+                                        out of reach
+
+TWO READINGS, and they point opposite ways, so both are stated:
+  * AT FIXED k THE OFFSET DOES GROW: +3.7901 -> +5.1667 at k = 2, the only
+    matched pair the lifted LP can reach (k = 1 at machine 41 is n = 10 free
+    gears, past the program's scaling wall).  Two points, one k.
+  * BUT THE OFFSET IS NOT A PROPERTY OF THE STEP - IT IS A PROPERTY OF
+    (step, k), AND THE LADDER PARAMETER ABSORBS IT.  At 37 -> 41 the full
+    k = 3 split leaves only 9 of 385 cases with a positive offset (+0.54 to
+    +1.83), and all 9 close when each is split once more on gear 13: 376 + 117
+    = 493 exact certificates over a partition, so the increment width at
+    37 -> 41 IS certified.  At 31 -> 37 no such k exists, because the
+    obligation is false.
+So "the offset grows with the machine" is true at fixed small k and is the
+wrong quantity to watch: what decides certifiability is W_inc - F(q'), which
+is negative at exactly one step of the corpus.
+
 ## 8. PRIOR-ART CHECK
 
 NOT YET CHECKED (2026-08-29; this agent has no web access this round).

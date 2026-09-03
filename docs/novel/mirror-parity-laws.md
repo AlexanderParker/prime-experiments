@@ -543,3 +543,112 @@ exact script-verified measurements. PRIOR-ART CHECK: **not yet checked**.
 Suggested terms beyond section 6: "fixed point of reflection on a difference
 set", "self-conjugate gap in a reduced residue system", "palindromic window
 primorial sieve", "Burnside orbit counting covering system enumeration".
+
+## 9. ROUND-29 EXTENSION: THE LEVER'S HYPOTHESIS IS A THEOREM AT EVERY DEPTH >= 3
+
+Lateral, round 29 (2026-09-03).  Script `research/evenj_reversal_r29.py`
+(185 assertion gates, exit 0, log `research/data/r29/evenj_reversal.log`).
+Status: PROVED (elementary) + SCRIPT-VERIFIED at m11..m23, J = 2..7.
+
+Sections 7.5 and 8 left the lever usable but hypothesis-carrying: round 26
+checked at 66 cells that the self-mirror window is never QUALIFYING, and round
+28 gave its span formula and an EXCEPTION LIST.  Both are measurements.  This
+section replaces them with a theorem, on the sharper family the live route
+actually uses (WORD-LEGAL windows, i.e. the family `Q*_J` maximises over -
+middles `0` or `+-2u'` mod `q'` with the nonzero classes strictly alternating,
+padded middles transparent).
+
+### 9.1 THE MAP, AND WHAT IT PRESERVES
+
+With openings `o_0 = 0 < ... < o_{N-1}`, `N = prod(q-2)` ODD, the mirror carries
+the depth-`J` window `W_t = [o_t, o_{t+J}]` to `W_{N-t-J}`, so on indices it is
+the involution
+
+>   `R_J(t) = -(t + J)  (mod N)`,   on addresses `k -> -(k + span)`,
+>   on gap words `w -> reverse(w)`, on killing residues `r -> -(r + span)`.
+
+`R_J` preserves DEPTH, SPAN, the INTERIOR OPENING COUNT `J-1`, condition T2
+(value-wise, hence reversal-invariant) and condition T3 (strict alternation of
+the nonzero classes is reversal-invariant).  **So the word-legal family is
+`R_J`-invariant and `R_J` preserves span on it**, and `N` odd gives `R_J`
+exactly one fixed point per depth - the self-mirror window, centred on slot `0`
+for `J` even and on the antipode for `J` odd (section 8.1).
+
+### 9.2 THEOREM.  FOR EVERY `J >= 3` THE SELF-MIRROR WINDOW IS NEVER WORD-LEGAL
+
+*`J` ODD.*  The window has `J+1` openings placed symmetrically about the
+antipode, so its central gap is the one straddling the antipode - and by 7.3
+both antipodal slots `(P+-1)/2` are OPENINGS, so that gap has length `1`.  For
+`J >= 3` the central gap is a MIDDLE, so T2 requires `1 = 0` or `1 = +-2u'`
+(mod `q'`).  Now `2u' = 2*6^{-1} = 3^{-1}` (mod `q'`), so `1 = +-2u'` needs
+`3 = +-1` (mod `q'`), i.e. `q' | 2` or `q' | 4` - impossible for `q' >= 5`, and
+`1 = 0` is impossible.  []
+
+*`J` EVEN, `J >= 4`.*  The window has `J+1` openings placed symmetrically about
+slot `0`, which is itself an opening, so its two CENTRAL gaps are both equal to
+`d_0 = o_1`, the machine's first gap; for `J >= 4` both are MIDDLES.  Two equal
+adjacent middles are either both of the same NONZERO class - which T3 forbids -
+or both padded, which needs `q' | d_0`, impossible since `0 < d_0 < q'`.  []
+
+*`J = 2`.*  There are no middles, so every 2-window is word-legal and the
+self-mirror one is `(d_0, d_0)`.  **This is the only depth at which the lever
+needs a hypothesis, and there it is exactly `d_0 != F`** (round 28, 8.3), with
+`d_0 = 2,3,3,5,5,5` against `F = 5,7,11,18,25,34` at m7..m23.
+
+> **COROLLARY.**  `R_J` is FIXED-POINT-FREE on the word-legal depth-`J` family
+> for every `J >= 3`, so **every span count over that family is EVEN, with no
+> exceptional class, no exception list and no census**.  "At most one word-legal
+> `J`-window exceeds the budget" therefore proves there are NONE,
+> unconditionally, at every depth `J >= 3` and every machine.
+
+This is strictly stronger than 7.5's route (which excluded the self-mirror window
+by SIZE - it is never qualifying - a per-rung check) and than 8.2's exception
+list (a span table).  The `J` odd branch needs nothing at all about the machine;
+the `J` even branch needs only `0 < d_0 < q'`, one line per rung.
+
+### 9.3 THE GATE
+
+`research/evenj_reversal_r29.py --upto 23 --maxj 7`, 185 assertions at
+m11/m13/m17/m19/m23 (`q' = 13, 17, 19, 23, 29`), `J = 2..7`: the self-mirror
+word is a palindrome at every depth; it is NOT word-legal at every `J >= 3`,
+with the two central middles exhibited (`d_0, d_0` for even `J`, the antipodal
+`1` for odd `J`); the word-legal family is `R_J`-closed; `R_J` preserves span on
+it; every span count is EVEN at `J >= 3`; exactly ONE odd span count at `J = 2`,
+at `2 d_0`; the number of windows attaining `Q*_J` is EVEN at every `J >= 3`.
+
+    machine  q'   d_0  |legal J=2|  |J=3|    |J=4|  Q*_2 Q*_3 Q*_4
+    m11      13   3      135          6        0     11    8   -
+    m13      17   3     1485         72        0     16   18   -
+    m17      19   5    22275       1088        0     25   25   -
+    m19      23   5   378675      11784       62     31   33  34
+    m23      29   5  7952175     243816        0     39   43   -
+
+Every `Q*_J` reproduces Constructor's independently computed R68 table exactly,
+by a different vehicle, as do the emptiness verdicts `Q*_4(23)` and `Q*_5(19)`.
+ZERO literal palindromes at even `J >= 4` (Constructor's Theorem B), verified.
+
+### 9.4 WHAT EVEN `J` DOES NOT GIVE, AND WHY
+
+Round 28 observed that at even `J` the maximisers come in REVERSAL PAIRS.  That
+is now explained rather than observed: Theorem B forbids a literal word-legal
+even-`J` palindrome, so an attaining window is never its own mirror image and
+the attaining set has even cardinality (gated at every non-empty cell).
+
+**It yields no inequality on `F_J` or `Q*_J`.**  `R_J` is span-preserving, so the
+only object it adds to a counting argument over the word-legal family is the
+QUOTIENT by an involution, of cardinality `|family|/2`; every consequence is
+therefore the same ONE UNIT the odd-`J` route already gives - "fewer than two
+proves none" in place of "fewer than one" - and section 7.1's Theorem A2 already
+proved that one unit is the ceiling (the full symmetry group is `Z/2`, exactly).
+What 9.2 changes is not the size of the lever but its PRICE: at every depth
+`>= 3` the hypothesis is discharged by arithmetic instead of by a machine check.
+(PROVED for counting arguments over the word-legal family; **JUDGMENT, NOT
+RESULT** for "no argument of any kind".)
+
+### 9.5 STATUS AND PRIOR ART
+
+9.1 and 9.2 are elementary theorems with the proofs above; 9.3 is exact
+script-verification.  PRIOR-ART CHECK: **not yet checked**.  Terms beyond
+sections 6 and 8.8: "fixed-point-free involution on admissible gap words",
+"palindromic constraint alternating residue classes sieve", "antipodal gap
+reduced residue system parity".

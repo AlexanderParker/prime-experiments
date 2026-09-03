@@ -29,9 +29,13 @@ Round 27 evaluated `j_3` at `z = 3, 5, 7` by exhaustion and recorded that
 | 7 | 10 | 30 | 78 | 150 | 180 |
 | 11 | 14 | 66 | **180** | **420** | **930** |
 | 13 | 22 | 150 | **306** | **1230** | **2070** |
-| 17 | 26 | 192 | **612** | – | **5490** |
-| 19 | 34 | 258 | **972** | – | – |
-| 23 | 40 | 366 | **(see §5)** | – | – |
+| 17 | 26 | 192 | **612** | **2340** (r29) | **5490** |
+| 19 | 34 | 258 | **972** | **3810** (r29) | – |
+| 23 | 40 | 366 | **1398** (r29) | – | – |
+
+*(The `z = 23` and the two `j_4` entries were added in round 29; see §9, which
+also records that round 28's `j_3(23)` split run was invalid as an upper bound
+and how it was reproved — twice, by two independent engines.)*
 
 Bold entries are computed here and are, as far as the prior-art check reaches,
 **the first exact values of `j_k` for `k >= 3` anywhere**. Each is exact in both
@@ -293,3 +297,197 @@ once. That is why this round substituted the `k`-axis.
   Gate.
 * `research/data/r28_harvester_prereg.txt` — pre-registration, written before the
   runs it scores.
+
+---
+
+## 9. ROUND-29 ADDENDUM (2026-09-03): three new values, a protocol defect in
+## our own round-28 run, and the model separation decided at two clean steps
+
+Harvester lane, round 29. Gates: `research/jk_axis29.py` → **ALL ASSERTIONS
+GREEN**; `research/jk_sat29.py check` (the SAT cross-engine); the round-28 gates
+`jk_cover.py`, `jk_growth.py`, `j2_referee.py`, `j2_citesweep.py` re-run clean.
+Pre-registration: `research/data/r29_harvester_prereg.txt`.
+
+### 9a. A PROTOCOL DEFECT IN THE ROUND-28 `j_3(P(23))` RUN — found here, in our
+### own work, before anyone quoted the number
+
+`jk_run.py`'s phase-2 split is sound **only if no worker ever improves on the
+shared incumbent**. Read out of `jkcov6.rs`: a node is pruned when
+`feasible_to(cov, j, best + 1)` fails, so a worker whose `best` has risen prunes
+*more* above the split depth, visits *fewer* split-depth nodes, and its global
+`leafctr` counter diverges from the other workers'. The parts
+`leafctr % nparts == part` then need not cover the tree. The driver's own
+docstring says so and prints "rerun needed".
+
+Round 28 launched the `j_3(P(23))` phase-2 run at seed 219 with 14 workers. All
+fourteen finished EXACT with verified witnesses — **and two of them beat the
+seed**, reaching `m = 227` and `m = 232`. The round ended before the parts were
+harvested, so the violation was never acted on. Round 29 harvested them and
+split the verdict:
+
+* **VALID**: a machine-verified witness of length `m = 232`, hence
+  `j_3(P(23)) >= 6 × 233 = 1398`.
+* **INVALID as an upper bound**: rerun required at seed 232.
+
+The rerun (`research/jk_run29.py`, explicit seed, fatal protocol assertion, five
+workers) confirms it. **`j_3(P(23)) = 1398`, `m = 232`, EXACT.**
+
+The lesson is general and belongs beside the engine: *a branch-and-bound split
+is a proof only when the incumbent is a fixed point of the run.* If any worker
+improves it, the parts stop partitioning and the answer is a lower bound.
+
+### 9b. THREE NEW EXACT VALUES
+
+| `z` | 3 | 5 | 7 | 11 | 13 | 17 | 19 | 23 |
+|---|---|---|---|---|---|---|---|---|
+| `j_3` | 6 | 24 | 78 | 180 | 306 | 612 | 972 | **1398** |
+| `j_4` | – | 30 | 150 | 420 | 1230 | **2340** | **3810** | – |
+| `j_5` | – | – | 180 | 930 | 2070 | 5490 | – | – |
+
+* `j_3(P(23)) = 1398` — `m = 232`; 7.38e9 nodes at seed 219 (13.6 core-hours,
+  round 28) plus the round-29 confirmation at seed 232.
+* `j_4(P(17)) = 2340` — `m = 77`; 351,958 nodes, 0.345 s.
+* `j_4(P(19)) = 3810` — `m = 126`; 99,408,318 nodes, 448.8 s.
+
+Every value carries a witness re-verified by code that shares nothing with the
+search, and an exhaustive infeasibility proof at `m + 1`.
+
+**PROCESS MISS, recorded as one:** `j_4(P(17))` was computed as a cost probe
+*before* the round's pre-registration was written. It is a new value and it
+should have been pre-registered. It is used below as an input, never scored as
+a hit.
+
+### 9c. THE MODEL SEPARATION, DECIDED AT TWO POST-TRANSIENT STEPS
+
+Round 28's weakness was named in the doc: the `k >= 3` data lay entirely inside
+the small-`z` transient. Both new steps are outside it, and **both were
+pre-registered with a numerical prediction from each model before the answer
+existed** (`research/data/r28_harvester_prereg.txt` addendum, written
+2026-08-30; `research/data/r29_harvester_prereg.txt` H3).
+
+| step | `R_k` before | `R_k` after | measured move | (A) needs | (B) needs |
+|---|---|---|---|---|---|
+| `k=3`, 19 → 23 | 1.2100 | 1.2084 | **−0.13 %** | 0 % | +13.4 % |
+| `k=4`, 17 → 19 | 1.4426 | 1.3768 | **−4.56 %** | 0 % | +12.2 % |
+
+The `k = 3` step is the cleanest single measurement this lane has ever taken on
+the question: the pre-registered model-(A) prediction was **1398** and the
+answer is **1398, exactly, to the unit**, against model (B)'s 1590. The `k = 4`
+step moves the *other way* from (B).
+
+### 9d. AND A CORRECTION TO §4, AGAINST OURSELVES
+
+Round 28 recorded that the measured excess `e_k = a_k − k` "does not grow with
+`k`" (−0.08, 0.61, 0.56, 0.76, 1.72 at `k = 1..5`). With `j_4` now carrying five
+points instead of three, the ladder is
+
+    e_k = -0.08, 0.61, 0.73, 1.45, 1.72   at k = 1, 2, 3, 4, 5
+
+and it **does** grow monotonically. The round-28 sentence is withdrawn. What
+replaces it is sharper, not weaker: the excess is a **consistent fraction** of
+what (B) demands —
+
+    e_k / (k-1) = 0.61, 0.37, 0.48, 0.43   at k = 2, 3, 4, 5,
+
+so on the computed range the truth looks like `z (log z)^{k + c(k-1)}` with
+`c ≈ 0.45`: **strictly between (A) (`c = 0`) and (B) (`c = 1`), and at the same
+place at every `k`**. That is a stronger statement than "the extra logs are
+absent" and it is the shape a future model has to reproduce.
+
+**THE STANDING CAVEAT IS UNCHANGED AND STILL LOAD-BEARING:** `(P2')` carries a
+`C^k/B^{2k}` factor worth ≈0.03 at `z = 73, k = 2` and the construction does not
+exist below `log x ≈ 300`. **None of this refutes the theorem.** It measures the
+shape of the truth where exact values exist.
+
+### 9e. THE PRICE, RE-MEASURED — AND §5's PRICES WERE WRONG
+
+§5 priced the `k`-axis rungs by extrapolating the `k = 2` node curve. Measured
+`k = 3` node counts (11,740 → 556,927 → 50,867,900 → 7.38e9 at `z = 13, 17, 19,
+23`) give per-prime ratios 47.4×, 91.3×, 145.1×, themselves growing ≈1.75× per
+step — steeper than `k = 2`'s, because each prime carries three classes and the
+branching factor at every node is larger.
+
+| rung | round-28 price | measured / projected | error |
+|---|---|---|---|
+| `j_3(23)` | ~1–2 core-hours | **13.6 core-hours** (actual) | 9× low |
+| `j_3(29)` | ~10 core-hours | ~3,500 core-hours (1.9e12 nodes) | ~350× low |
+| `j_3(31)` | ~100 core-hours | ~1.5e6 core-hours (8e14 nodes) | ~15,000× low |
+
+`j_3(29)` and `j_3(31)` are **NOT ATTEMPTED** and are not buyable *on this
+vehicle*. `j_4(P(23))` projects at ~5e11 nodes (~800 core-hours) and is also out
+of reach here. **§9f re-prices `j_3(29)` at ~20 core-hours on a different
+engine — read that section before quoting this table.**
+
+### 9f. THE ILP HOLE OF §5, CLOSED — AND THE ANSWER IS NEGATIVE
+
+§5 recorded an honest hole: "Ziller–Morack reached `z = 73` with a portioned ILP
+… which is a far better machine", and round 28 added "I did not build an ILP,
+and I do not know how much it would buy."
+
+Two corrections and a measurement.
+
+1. **The ILP is not an OEIS comment — it is printed mathematics we had never
+   read.** It is **equation (2.2) of Ziller & Morack, arXiv:1611.03310, §2**:
+   binary `x_{i,j}` for each prime `p_i` and class `j ∈ {1..p_i−1}`, with
+   `Σ_j x_{i,j} = 1` per prime, a covering constraint per position, and an
+   objective `Σ 2^{m_2−k} y_k` that finds the maximum `m` in one program. Seven
+   rounds of this lane cited that paper without reading §2. **Standing lesson 10
+   ("a hypothesis cited by number is an unread hypothesis") extends: a METHOD
+   cited by reputation is an unread method.**
+2. **Generalising it to `k` classes is one character**: `Σ_j x_{i,j} = 1` becomes
+   `≤ k`. So the two-class ILP has existed, in print, since 2016.
+3. **Measured, and it does not rescue the frontier.** `research/jk_sat29.py`
+   encodes exactly that program as SAT (cardinality-constrained CNF, class 0
+   excluded, reduced lattice) and decides both directions with CaDiCaL. It
+   reproduces every known value. Its cost, in the solver's own operation counts
+   (conflicts on the UNSAT side, which is the expensive direction):
+
+   | `k=2`, `z` | 13 | 17 | 19 | 23 |
+   |---|---|---|---|---|
+   | SAT conflicts (UNSAT direction) | 131 | 1,570 | 14,503 | 178,618 |
+   | ratio | – | 12.0× | 9.2× | 12.3× |
+   | `jkcov6` DFS nodes | 150 | 2,577 | 53,560 | 1,491,366 |
+   | ratio | – | 17.2× | 20.8× | 27.8× |
+
+   (`z = 29`: SAT 2,952,407 conflicts, ratio 16.5×; DFS 55,917,112 nodes, ratio
+   37.5×.) The solver's growth ratio is **flatter** than the DFS's at every
+   step. **At `k = 2` that is not enough**: at `z = 31`, the DFS's 4.9
+   core-hours, the solver did not decide even the *satisfiable* direction in
+   570 s, and 12–16× per prime still needs `12^14` more work to reach
+   `p_n = 73` from `p_n = 31`. **So the ILP route does not move `h_2`**, and
+   the round-28 hole is now a measurement rather than an unknown.
+
+4. **AT `k = 3` IT IS A DIFFERENT STORY, AND IT RE-PRICES §9e.**
+
+   | `k=3`, `z` | 17 | 19 | 23 |
+   |---|---|---|---|
+   | SAT conflicts (UNSAT direction) | 8,889 | 201,771 | **8,710,802** |
+   | ratio | – | 22.7× | 43.2× |
+   | `jkcov6` DFS nodes | 556,927 | 50,867,900 | 7.38e9 |
+   | ratio | – | 91.3× | 145.1× |
+
+   **CaDiCaL proved `j_3(P(23)) = 1398` outright — both directions, one
+   process, no split; it produced its own witness at m = 232 and proved
+   m = 233 impossible — in 831 s on one core**, against the DFS's 13.6
+   core-hours over fourteen workers. Two consequences:
+
+   * **An independent two-sided proof of the value with no protocol risk of any
+     kind.** §9a's defect is a property of *splitting* a branch-and-bound; a
+     single-process UNSAT proof cannot have it. `j_3(P(23)) = 1398` no longer
+     rests on the split.
+   * **The next rung is purchasable again.** Carrying the measured SAT ratio
+     forward at the same ≈1.9×-per-step growth: `j_3(P(29))` projects at ~7e8
+     conflicts ≈ **20 core-hours**, against ~3,500 on the DFS. `j_3(P(31))`
+     projects at ~8.7e10 conflicts ≈ 2,300 core-hours and stays out of reach.
+     `j_3(29)` was **not launched** — a ~17-hour single-threaded job cannot
+     finish inside a round.
+
+   **THE GENERAL LESSON, and §9e is the second time this doc has had to learn
+   it: a price is a property of a VEHICLE, not of a target.** §5 priced the
+   `k`-axis off the `k = 2` node curve and was wrong by up to 15,000×; §9e then
+   priced `j_3(29)` off the `k = 3` node curve and called it "not buyable",
+   and a different engine does it in twenty core-hours.
+
+   What none of this settles: a tuned portioned ILP with branch-and-cut,
+   symmetry breaking and warm starts — ZM's actual vehicle — is a different
+   program from this one and was not tested.

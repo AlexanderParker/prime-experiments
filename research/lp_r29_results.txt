@@ -1,0 +1,109 @@
+==============================================================================
+LP-DUALITY ROUND 29 - RESULTS FROM DISK  (1475 decided cells)
+==============================================================================
+
+1. 31 -> 37 AT THE (D) BUDGET WIDTH W = 95 - WHICH k CERTIFIES
+
+   k  cases  CERTIFIED  ASYMPTOTE(exact refutation)  ASYMPTOTE(no witness)  other
+   1      1          0                            1                     0      0
+        exact refutation: cell_m37_w95_k1_h0  V* = 63.7758 >= |pos| = 57, row 201249457991324980145494... >= 57
+   2     35          9                           22                     4      0
+        exact refutation: cell_m37_w95_k2_h0_0  V* = 40.9835 >= |pos| = 40, row 497405261826468577061418... >= 40
+        exact refutation: cell_m37_w95_k2_h0_3  V* = 40.9205 >= |pos| = 40, row 468663506698444733688671... >= 40
+        exact refutation: cell_m37_w95_k2_h0_5  V* = 41.1716 >= |pos| = 39, row 340062517971036658455376... >= 39
+
+   A cell with an EXACT in-polytope refutation PROVES the case-split
+   vehicle at that k can never certify this rung, however many cuts
+   are generated.  Round 26 had only a cut-loop STALL at k = 2 (LP
+   max 40.994 against 40), which is an undecided cell.
+
+2. EMITTED RUNG 31->37  (machine 37, W = 95, k = 3, held (5, 7, 11))
+   claim: F(37) <= 95 = F(31) + 37 : (D) at 31 -> 37, hypothesis-free
+   385 cases, exhaustive = True; all rows base cut = True; max iterations 0; 8388426 exact ops
+   MARGIN COLUMN (rhs - lhs per case): min 1/5, max 3
+   histogram: 1/5 x3, 1/4 x8, 1/3 x22, 2/5 x12, 1/2 x24, 3/5 x8, 2/3 x13, 3/4 x7, 4/5 x3, 1 x146, 7/6 x1, 4/3 x7, 3/2 x19, 5/3 x3, 2 x97, 5/2 x8, 3 x4
+
+2. EMITTED RUNG inc->37->41->k3  (machine 41, W = 104, k = 3, held (5, 7, 11))
+   claim: the 376 k = 3 cases of F(41) <= 104 that certify at three held gears
+   376 cases, exhaustive = None; all rows base cut = False; max iterations 0; 12933466 exact ops
+   MARGIN COLUMN (rhs - lhs per case): min 845127/512000000, max 1
+   histogram: 845127/512000000 x1, 1/512 x1, 1724209/512000000 x1, 118459/32000000 x1, 1/256 x5, 771463/192000000 x1, 33441/8000000 x1, 1/192 x3, 360019/64000000 x1, 1/128 x1, 3013769/384000000 x1, 186573/21500000 x1, 1/96 x2, 1340767/128000000 x1, 1025503/96000000 x1, 52537/4200000 x1, 5/384 x2, 287697/20000000 x1, 2002409/128000000 x1, 2198543/128000000 x1, 17908763/1024000000 x1, 6169/320000 x1, 1/51 x1, 328701/16000000 x1, 42983/2000000 x1, 1/46 x1, 280767/12800000 x1, 726051/32000000 x1, 2264981/96000000 x1, 43081/1400000 x1, 3004807/96000000 x1, 646689/20500000 x1, 1/31 x1, 81329/2500000 x1, 1/29 x1, 1/25 x3, 1/24 x2, 1/23 x4, 5760639/128000000 x1, 1/22 x3, 1/20 x9, 1029259/20000000 x1, 6727357/128000000 x1, 1/19 x3, 1/18 x2, 1/17 x3, 2/33 x1, 625263/10250000 x1, 1/16 x8, 1/15 x3, 1/14 x6, 7152683/96000000 x1, 1/13 x9, 3111933/40000000 x1, 2/25 x2, 1/12 x11, 1/11 x6, 1/10 x7, 4568613/43000000 x1, 1/9 x17, 2/17 x3, 247481/2000000 x1, 1/8 x25, 2/15 x1, 1/7 x27, 14171017/96000000 x1, 2/13 x3, 61551/400000 x1, 1/6 x23, 2/11 x9, 3/16 x2, 1/5 x25, 2433337/11000000 x1, 2/9 x6, 3/13 x3, 1/4 x23, 4/15 x5, 3/11 x3, 2/7 x15, 3/10 x2, 1/3 x15, 4/11 x1, 3/8 x7, 2/5 x6, 5/12 x1, 3/7 x1, 4/9 x2, 1/2 x8, 3/5 x2, 1 x5
+
+2. EMITTED RUNG inc->37->41->k4  (machine 41, W = 104, k = 4, held (5, 7, 11, 13))
+   claim: the 117 k = 4 children of the 9 k = 3 cases that do NOT certify
+   117 cases, exhaustive = None; all rows base cut = True; max iterations 0; 3324208 exact ops
+   MARGIN COLUMN (rhs - lhs per case): min 1/6, max 5/2
+   histogram: 1/6 x1, 1/4 x4, 2/7 x2, 1/3 x7, 1/2 x13, 3/5 x1, 2/3 x2, 3/4 x2, 1 x56, 4/3 x1, 3/2 x10, 2 x17, 5/2 x1
+
+2b. THE STEP MANIFEST FOR 37 -> 41 (a MIXED-k split)
+    W_inc = F_2(37) + s_min(41) = 90 + 14 = 104
+    part k=3, held (5, 7, 11): 376 cases
+    part k=4, held (5, 7, 11, 13): 117 cases
+    493 cases total; PARTITION ASSERTED: the 376 k=3 tuples of part 1 and the 117 k=4 tuples of part 2 PARTITION prod(Z_5 x Z_7 x Z_11): the 3-prefixes of part 2 are exactly the 9 tuples part 1 omits, and each carries all 13 phases of gear 13.  ASSERTED by lp_emit_r29.step_manifest.
+    margin min 845127/512000000 max 5/2; 16257674 exact ops; witness witness_inc_37_41.json
+
+3. E12 - THE OFFSET AT THE INCREMENT WIDTH, AND WHAT IT TRACKS
+
+   step      W_inc = F_2(M)+s_min   F(q')   W_inc - F(q')   G at the all-zero case
+   11->13    15 =  11 + 4           11       +4          -
+   13->17    22 =  16 + 6           18       +4          -
+   17->19    31 =  25 + 6           25       +6          -
+   19->23    39 =  31 + 8           34       +5          -
+   23->29    49 =  39 + 10          43       +6          -
+   29->31    65 =  55 + 10          58       +7          -
+   31->37    80 =  68 + 12          88       -8          k=1 +9.0461; k=2 +3.7901; k=3 EMPTY(-inf)
+   37->41   104 =  90 + 14          91      +13          k=2 +5.1667; k=3 EMPTY(-inf)
+   41->43   117 = 103 + 14         103      +14          -
+   43->47   132 = 116 + 16         118      +14          -
+
+   The offset is NOT a function of the machine: it is a function of
+   W_inc - F(q').  Where that is NEGATIVE (31 -> 37, -8) no sound
+   method can certify and the offset must be positive; where it is
+   positive the cell can be, and is, certifiable.
+
+4. E11 - CELLS WHOSE LIFTED POLYTOPE IS EMPTY
+   879 empty-polytope cells on disk (r28 + r29); 879 certified at ITERATION ZERO once seeded; 0 did not
+   of these, 461 are ROUND-29 cells (the 'further cells' E11 asks for), 461 of them at iteration zero
+
+5. RUNG TEN 43 -> 47 AT THE INCREMENT WIDTH W_inc = 116 + 16 = 132
+   (Constructor's spectrum-plus-depth bound at this step is F_4(43)
+   = 132, budget F(43) + 47 = 150, margin 18 - the SAME number.)
+
+   k   case            |pos|   V*         verdict     ops      secs
+   4   (0, 0, 0, 0)    37      EMPTY      CERTIFIED   69003    122
+   4   (1, 2, 3, 4)    43      EMPTY      CERTIFIED   64065    159
+   5   (0, 0, 0, 0, 0)  31      EMPTY      CERTIFIED   63354    86
+   5   (1, 1, 1, 1, 1)  30      EMPTY      CERTIFIED   55766    49
+   5   (2, 3, 5, 7, 9)  35      EMPTY      CERTIFIED   47598    56
+
+6. THE 37 -> 41 INCREMENT-WIDTH SWEEP (machine 41, W = 104, k = 3)
+   385 of 385 cases decided; 376 CERTIFIED; 9 other
+     cell_m41_w104_k3_h0_0_8  REFUTED
+     cell_m41_w104_k3_h1_1_9  REFUTED
+     cell_m41_w104_k3_h1_3_9  REFUTED
+     cell_m41_w104_k3_h1_6_9  REFUTED
+     cell_m41_w104_k3_h2_2_10  REFUTED
+     cell_m41_w104_k3_h3_3_0  REFUTED
+     cell_m41_w104_k3_h3_5_6  REFUTED
+     cell_m41_w104_k3_h4_4_1  REFUTED
+   iteration counts: max 0; methods: {None: 4, 'plain-loop': 340, 'lifted': 41}
+
+7. E9 - W_c(y, k) = min{W : G < 0} at the all-zero case
+
+   y    k   W_c   F(y)   W_c / F(y)
+   23   3   13    34     0.3824   (r29)
+   29   3   31    43     0.7209   (r29)
+   31   3   46    58     0.7931   (r29)
+   37   3   66    88     0.7500   (r29)
+   41   3   81    91     0.8901   (r29)
+
+8. MIRROR EQUIVARIANCE OF THE CASE SPLIT (a lemma, gated here)
+   reflect(hits(q,r,W)) = hits(q, (1-W-r) mod q, W), because the teeth
+   {u', q-u'} are closed under t -> -t.  So the case at ws and the
+   case at (1-W-ws) mod q have reflected position sets, isomorphic
+   relaxations, and therefore equal V* and |pos|.
+   LEMMA ASSERTED for every gear of m11..m47 at W = 74, 95, 104, 132
+   m37 W=95 k=2 : 35 cells, 35 mirror pairs on disk; |pos| agrees 35/35; V* agrees 35/35 on the 35 cells the lifted LP decided   (11 distinct value classes)
+   m41 W=104 k=3 : 385 cells, 385 mirror pairs on disk; |pos| agrees 385/385; V* agrees 41/41 on the 45 cells the lifted LP decided   (10 distinct value classes)
+   m31 W=74 k=3 : 385 cells, 385 mirror pairs on disk; |pos| agrees 385/385; V* agrees 385/385 on the 385 cells the lifted LP decided   (8 distinct value classes)
+   m47 W=132 k=5 : 3 cells, 0 mirror pairs on disk; |pos| agrees 0/0; V* agrees 0/0 on the 3 cells the lifted LP decided   (3 distinct value classes)

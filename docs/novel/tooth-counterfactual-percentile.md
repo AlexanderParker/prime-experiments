@@ -267,6 +267,112 @@ interaction spread over the whole vector.** Three candidate mechanisms are now
 dead and the anomaly stands unexplained - which by the project's measurement
 directive is the target, not the wall.
 
+## 5B. ROUND-29 EXTENSION: WHAT THE INCREMENT LAW'S RESIDUAL VIOLATORS ACTUALLY ARE
+
+Lateral, round 29 (2026-09-03).  Status: SCRIPT-VERIFIED, exhaustive and exact.
+`research/tooth_resid_r29.py --steps small` (21 gates) and `--steps 19_23`
+(9 gates); logs `research/data/r29/tooth_resid_{small,1923}.log`; tables
+`research/lateral_r29_results.txt` block A.
+
+Section 5A(iii) established that pinning the incoming gear's tooth to
+`v_q' = round(q'/6)` drops the increment law's violation rate over the family
+from 13-22% to 0-6.5%.  This section asks what the RESIDUAL violators are, and
+tests the shape Constructor proposed for them.
+
+### 5B.1 FIRST, A STRUCTURAL RESULT THE FAMILY DELIVERS FOR FREE
+
+> **THE RECORD LAW IS FAMILY-WIDE.**  For every member of the counterfactual
+> family, at every step,
+>
+>     max( F_2(M),  max_{J >= 3} Q*_J(M; q') )  =  F(M + q')
+>
+> exactly.  Asserted at 30 + 180 + 1440 + 12960 + 12960 = **27,570
+> counterfactual machines**, zero exceptions.
+
+`Q*_J` is the maximal span of a word-legal `J`-window (middles `0` or `+-2v_q'`
+mod `q'`, nonzero classes strictly alternating, padded middles transparent).
+Constructor's attainment theorem (R68) proves this for the TWIN machine from CRT
+plus the two-tooth structure; both ingredients survive moving the teeth, so the
+theorem should be family-wide - and it is.  **That is the sharp localisation of
+where arithmetic enters the route:** the RECORD LAW is structural, and only the
+SIZE of `Q*_J` is arithmetic.  (D) and the increment law are the arithmetic half;
+the identity that computes `F(M+q')` from the old machine is not.
+
+### 5B.2 CONSTRUCTOR'S CONGRUENCE SHAPE IS REFUTED AS A CHARACTERISATION
+
+Round 28's violator anatomy was "a palindrome whose central letter is the old
+record", so the natural predicate is
+`Pcong := F(M) mod q' in {0, A, B}` with `A = 2v_q' mod q'`, `B = q' - A`
+("the old record is congruent to a tooth difference").  Over the pinned family:
+
+    step     violators   Pcong sensitivity  PPV    specificity  best "F mod q' in S"
+    13->17    2 / 180      0.0%             0.0%   88.8%        88.5% (2 violators)
+    17->19   94 / 1440    34.0%             9.8%   78.2%        64.6%
+    19->23  745 / 12960    5.6%             6.5%   95.0%        57.9%
+
+At the largest step **94.4% of the residual violators have `F(M)` NOT congruent
+to a legal letter**, and the depth-3 attaining middle IS the old record in
+**0.0%** of them.  The best predictor of the form "`F(M) mod q'` in `S`", chosen
+optimally over all `S` by greedy search, reaches only 57.9% balanced accuracy -
+barely above chance.  So the answer to the question "is the residual set one
+congruence condition on `F(M)`?" is **no**, and decisively so at the machine
+where it matters most.
+
+### 5B.3 WHAT IT IS INSTEAD: A DEPTH-4 WORD-LEGAL WINDOW
+
+`P3 := Q*_3 > F_2 + s_min` (a depth-3 word-legal window beating the budget) is
+SOUND - it implies violation at all 27,570 members, zero false positives - but
+INCOMPLETE, and increasingly so:
+
+    step     agreement of P3   violators needing J >= 4   attaining-depth split
+    13->17   100.000%          0                          J=3:2
+    17->19    97.569%          35 of 94   (37%)           J=3:47 J=4:43 J=5:4
+    19->23    95.949%          525 of 745 (70%)           J=3:176 J=4:425
+                                                          J=5:136 J=6:8
+
+**Depth 4 is the MODE at 19->23, and depth 6 is populated.**  Counterfactual
+machines therefore exist whose kill arity exceeds the real m19's `A_kill`, which
+is exactly what one wants of a null family: the real machine's shallow `J_max`
+is itself arithmetic, not structural.
+
+### 5B.4 THE CORRECT ELEMENTARY NECESSARY CONDITION IS THE PEEL BOUND
+
+`F_2 >= g_L + w` and `F_2 >= w + g_R`, so a depth-3 window's span is at most
+`F_2 + min(g_L, g_R)`.  Hence
+
+> `Q*_3 > F_2 + s_min` forces **MIN FLANK `> s_min`** at the attaining window.
+
+Asserted at all 27,570 members.  It is a condition on the FLANKS, not on the
+middle: 41-100% of depth-3 violators have their middle equal to the MINIMAL
+legal letter `s_min`.  (I pre-registered the opposite - that the middle must
+exceed `s_min`, "because `g_L + g_R <= F_2`" - which is false: `g_L` and `g_R`
+are at lag 2, not adjacent.  Scored REFUTED, by my own gate.)
+
+### 5B.5 HOW MUCH OF THE LAW IS SPECTRAL AND HOW MUCH IS ARITHMETIC
+
+Constructor's spectrum-plus-depth certificate uses no congruence at all:
+`SPEC_J := max(F_2 .. F_J) <= F_2 + s_min`.  Over the pinned family:
+
+    step     SPEC_3 holds  unsound at  SPEC_4  unsound at  SPEC_5  unsound at
+    13->17    85.0%          0          22.8%      0        0.6%       0
+    17->19    79.5%         30          20.6%      0        1.1%       0
+    19->23    87.7%        437          14.5%      5        0.3%       0
+
+`SPEC_5` is sound at every step tested and certifies **0.3-1.2%** of the family;
+word-legality certifies 96-100%.  **The arithmetic (word-legality) is worth
+roughly a hundredfold in coverage over the purely spectral certificate** - a
+number the counterfactual frame can state and no scan of the real machine can.
+
+### 5B.6 CROSS-CHECKS AND SCOPE
+
+The 19->23 rung reuses round 28's gated `F(m23)` table
+(`research/data/r28/tooth_m23_pinned.npy`); this round re-sieves all 12,960
+`m19` members independently and asserts `F(m19)` and `F_2(m19)` agree cell for
+cell, and re-derives `F(m23)` from scratch at 400 randomly sampled members
+(400/400 agree).  The pinned violation rates 0 / 0 / 1.11 / 6.53 / 5.75 percent
+reproduce round 28's 0 / 0 / 1.1 / 6.5 / 5.7 by a second vehicle that also
+carries `Q*_J`.  The FULL (unpinned) family at 19->23 is still not measured.
+
 ## 6. PRIOR-ART CHECK
 
 Not yet checked. Terms to run: "Jacobsthal function admissible tuple dependence";

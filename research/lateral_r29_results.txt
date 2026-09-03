@@ -1,0 +1,201 @@
+LATERAL ROUND 29 - RESULTS THAT MUST PERSIST
+(logs live in research/data/r29/ and are gitignored; this file is the record)
+
+Scripts and gate commands
+  uv run python research/tooth_resid_r29.py --steps small --workers 3   -> 21 gates
+  uv run python research/tooth_resid_r29.py --steps 19_23 --workers 3   ->  9 gates
+  uv run python research/evenj_reversal_r29.py --upto 23 --maxj 7       -> 185 gates
+  uv run python research/walk_fourier_r29.py --upto 19 --closed-upto 23 ->  55 gates
+Pre-registration: research/data/r29_lateral_predictions.txt (written first).
+
+================================================================================
+BLOCK A - RESIDUAL INCREMENT-LAW VIOLATORS AFTER TOOTH PINNING
+================================================================================
+Family V(y) = prod_{q<=y}{1..(q-1)/2} (gears, period and survivor count fixed;
+only the teeth +-v_q move).  Step M -> q': A = 2v_q' mod q', B = q'-A,
+s_min = min(A,B).  inc = F(M+q') - F_2(M); violation iff inc > s_min.
+
+A.1 THE RECORD LAW IS FAMILY-WIDE (new; the round's structural headline)
+    max( F_2(M), max_{J>=3} Q*_J(M; q') )  ==  F(M+q')
+    asserted at EVERY member of EVERY step: 30 + 180 + 1440 + 12960 + 12960
+    = 27,570 counterfactual machines, zero exceptions.  So Constructor's
+    attainment theorem (R68) is STRUCTURAL - it survives moving the teeth,
+    exactly where (D) and the increment law do not.
+
+A.2 VIOLATION RATES (reproduces round 28 by a second vehicle)
+    step      full family        pinned v_q' = round(q'/6)
+    7->11     4/30    13.33%     0/6       0.00%
+    11->13    25/180  13.89%     0/30      0.00%
+    13->17    209/1440 14.51%    2/180     1.11%
+    17->19    2808/12960 21.67%  94/1440   6.53%
+    19->23    -                  745/12960 5.75%
+
+A.3 CONSTRUCTOR'S CONGRUENCE SHAPE IS REFUTED AS A CHARACTERISATION.
+    Pcong := "F(M) mod q' in {0, A, B}"  (the old record is a tooth difference)
+    step (pinned)  sensitivity  PPV    specificity  best "F mod q' in S" bal.acc.
+    13->17          0.0%        0.0%   88.8%        88.5% (2 violators - noise)
+    17->19         34.0%        9.8%   78.2%        64.6%
+    19->23          5.6%        6.5%   95.0%        57.9%
+    At 19->23, 94.4% of residual violators have F(M) NOT congruent to a legal
+    letter, and the attaining depth-3 middle IS the old record in 0.0% of them.
+    NO single-congruence predictor on F(M) reaches 65% balanced accuracy.
+
+A.4 WHAT DOES DESCRIBE IT: A DEPTH-4 WORD-LEGAL WINDOW, NOT A CONGRUENCE ON F.
+    P3 := Q*_3 > F_2 + s_min.  P3 => violation always (0 false positives at
+    every step, all 27,570 members); the converse fails:
+    step (pinned)  agreement   violators needing J >= 4   attaining-depth split
+    13->17         100.000%    0                          J=3:2
+    17->19          97.569%    35 of 94  (37%)            J=3:47 J=4:43 J=5:4
+    19->23          95.949%    525 of 745 (70%)           J=3:176 J=4:425
+                                                          J=5:136 J=6:8
+    DEPTH 4 IS THE MODE AT 19->23 and depth 6 is populated (8 members), i.e.
+    counterfactual machines exist whose A_kill exceeds the real m19's.
+
+A.5 THE CORRECT ELEMENTARY NECESSARY CONDITION IS THE PEEL BOUND, NOT A
+    STATEMENT ABOUT THE MIDDLE.  F_2 >= g_L + w and F_2 >= w + g_R, so
+    span <= F_2 + min(g_L, g_R); hence Q*_3 > F_2 + s_min forces
+    MIN FLANK > s_min.  Asserted at all 27,570 members.  (My own pre-registered
+    A0 said the MIDDLE must exceed s_min; that is FALSE - g_L + g_R is a lag-2
+    sum, not a 2-window - and 41-100% of depth-3 violators have middle exactly
+    s_min.)
+
+A.6 HOW MUCH OF THE LAW IS SPECTRAL AND HOW MUCH IS ARITHMETIC.
+    SPEC_J := "max(F_2..F_J) <= F_2 + s_min" is Constructor's spectrum-plus-
+    depth certificate, and uses NO congruence at all.
+    step (pinned)  SPEC_3 holds  SPEC_4  SPEC_5 (sound at every step)
+    13->17          85.0%        22.8%   0.6%
+    17->19          79.5%        20.6%   1.1%
+    19->23          87.7%        14.5%   0.3%
+    SPEC_3 and SPEC_4 are UNSOUND (they certify 437 and 5 actual violators at
+    19->23); SPEC_5 is sound everywhere tested and certifies 0.3-1.2% of the
+    family, against word-legality's 94-96%.  THE ARITHMETIC IS WORTH ~100x IN
+    COVERAGE OVER THE PURELY SPECTRAL CERTIFICATE.
+
+================================================================================
+BLOCK B - THE REVERSAL SYMMETRY AT EVEN J
+================================================================================
+THE MAP.  R_J(t) = -(t+J) on window indices (mod N); on addresses
+k -> -(k + span); on words, REVERSAL; on killing residues r -> -(r + span).
+It preserves depth, span, interior count, T2 (value-wise) and T3 (alternation
+is reversal-invariant), so the word-legal family is R_J-invariant.  N odd gives
+exactly one fixed point per depth: the SELF-MIRROR window, centred on slot 0
+(J even) or on the antipode (J odd).
+
+B.1 THEOREM (new).  For every J >= 3 the self-mirror depth-J window is NEVER
+    WORD-LEGAL.
+      J ODD: its central middle is the gap straddling the antipode, of length 1
+        (both antipodal slots are openings - lateral 7.3).  1 is a legal letter
+        iff 1 = 0 or +-2u' (mod q'); 2u' = 2*6^{-1} = 3^{-1}, so that needs
+        3 = +-1 (mod q'), i.e. q' | 2 or q' | 4.  Impossible for q' >= 5.
+      J EVEN >= 4: its two CENTRAL middles are BOTH d_0, the machine's first
+        gap.  T3 forbids two equal nonzero classes in a row; 0 < d_0 < q'
+        forbids both being padded.
+      J = 2: no middles, so the self-mirror 2-window (d_0, d_0) IS legal - the
+        one depth where the lever needs a hypothesis, and there it is d_0 != F.
+    CONSEQUENCE: R_J is fixed-point-free on the word-legal family at every
+    J >= 3, so every span count there is EVEN with NO exceptional class and no
+    census.  This upgrades lateral round 26 item 7.5 (a 66-cell check) and
+    round 28 item 65 (a span table plus an exception list) to a theorem.
+
+B.2 GATED at m11, m13, m17, m19, m23 (q' = 13, 17, 19, 23, 29), J = 2..7,
+    185 assertions: the self-mirror word is a palindrome at every depth; it is
+    not word-legal at every J >= 3; the legal family is R_J-closed and R_J
+    preserves span on it; every span count is even at J >= 3; exactly ONE odd
+    span count at J = 2, at 2*d_0; the number of windows attaining Q*_J is
+    EVEN at every J >= 3.
+
+    machine  q'   d_0  |legal J=2| |J=3|   |J=4|  Q*_2 Q*_3 Q*_4  palindromes
+    m11      13   3    135         6       0      11   8    -     21 / 2 / -
+    m13      17   3    1485        72      0      16   18   -     201 / 22 / -
+    m17      19   5    22275       1088    0      25   25   -     2499 / 296 / -
+    m19      23   5    378675      11784   62     31   33   34    36871/2222/0
+    m23      29   5    7952175     243816  0      39   43   -     690277/11700/-
+    Every Q*_J here reproduces Constructor's R68 table exactly, by a different
+    vehicle.  Zero LITERAL palindromes at even J >= 4 (Constructor Theorem B).
+
+B.3 THE ANSWER TO "DOES EVEN J GIVE A NEW INEQUALITY": NO.
+    R_J is span-preserving, so the only object it adds is the quotient of the
+    legal family by an involution, whose cardinality is |family|/2.  Every
+    consequence is therefore the SAME ONE UNIT the odd-J route gives - "fewer
+    than two proves none" instead of "fewer than one" - and no inequality on
+    F_J or Q*_J follows.  What IS new is that at even J the unit is FREE: the
+    hypothesis is discharged by B.1 rather than by a per-machine check.
+    (PROVED for counting arguments over the legal family; JUDGMENT, NOT RESULT
+    for "any argument whatsoever".)
+
+================================================================================
+BLOCK C - THE ANCHOR-235 FLOOR AS A CHARACTER SUM
+================================================================================
+W(s) = distance from slot s to the next open slot.  chi = open indicator.
+
+C.1 THE POLE IDENTITY (new).  From the exact recursion W(s) = 1 + B(s+1)W(s+1),
+
+        What(m) * (1 - e(m/P))  =  - e(m/P) * Ghat(m),      m != 0,
+        Ghat(m) = sum over openings o of g(o) e(-mo/P),
+
+    verified at ALL nonzero frequencies at m11/m13/m17/m19 (max relative error
+    6.95e-16, 3.49e-16, 2.93e-16, 5.07e-16; P up to 1,616,615).  Also
+    Ghat(0) = P and What(0) = sum_g W_1(g) g(g+1)/2.
+    The pole factor 1/(1 - e(m/P)) is exactly the shape of lateral's round-21
+    pole-phase law H_p(k) = [omega/(1-omega)] B: THE POLE-PHASE LAW IS THE
+    WALK'S OWN FOURIER TRANSFORM, and the "B" it multiplies is Ghat.
+
+C.2 THE SPLIT, AND WHERE THE CLOSED FORM STOPS.  Ghat = lambda*Shat + Dhat,
+    lambda = P/N, Shat(m) = prod_q hat_q(m c_q) CLOSED FORM (hat_q(0) = q-2,
+    hat_q(j) = -2 cos(2 pi j v_q/q); c_q = (P/q)^{-1} mod q - the CRT frequency,
+    which lateral item 29a's statement omits).  Parseval:
+        closed-form share of the walk's Fourier energy = lambda^2/(lambda^2+Var g)
+        = 0.7683, 0.7385, 0.7117, 0.6902 at m11, m13, m17, m19 - DECREASING.
+    The residual Dhat is the gap-FLUCTUATION transform: no closed form, and it
+    is the depth-1 (adjacency) selection - exactly the place where lateral item
+    27's depth-SUM identity is closed form and the depth-1 term is not.
+
+C.3 TERM COUNTS OF THE THREE EXACT FORMS (no asymptotics)
+    y    P           N         F   scan tests  flat/DFT terms  IE subsets
+    11   385         135       7   48          385             2^8  = 2.56e2
+    13   5005        1485      11  96          5005            2^12 = 4.10e3
+    17   85085       22275     18  190         85085           2^19 = 5.24e5
+    19   1616615     378675    25  312         1616615         2^26 = 6.71e7
+    23   37182145    7952175   34  490         37182145        2^35 = 3.44e10
+    THE SCAN WINS AT EVERY MACHINE.  The character route is the flat form (P
+    coefficients) or the inclusion-exclusion form (2^{F+1} gear-factorised
+    terms); neither approaches 2 pi(q) (F+1).
+
+C.4 THE L1 (LARGE-SIEVE) BOUND IS VACUOUS AND PROVABLY TEETH-BLIND.
+    |N_L(s) - L N/P| <= (1/P) sum_{m!=0} |Shat(m)| |D_L(m)|.
+    At L = F the bound/main-term ratio is 2.740, 5.254, 8.501, 15.37 at
+    m11/13/17/19 - vacuous everywhere and growing.
+    Closed form: sum_m |Shat(m)|/P = prod_q S_q/q with
+    S_q = (q-2) + sum_{k=1}^{q-1} |2 cos(2 pi k/q)|, which does NOT depend on
+    v_q (k -> k v_q permutes the summands).  MEASURED CONSEQUENCE, asserted:
+    the L1 mass is IDENTICAL (4.898341 / 9.643122 / 19.669645 at m11/13/17) at
+    EVERY one of the 30 / 180 / 1440 counterfactual tooth vectors, while F
+    ranges over [6,11] / [10,25] / [14,32] - spreads of 1.83x / 2.50x / 2.29x.
+    SO NO BOUND BUILT FROM |Shat| ALONE CAN DETERMINE F.  Per-gear factor
+    S_q/(q-2) -> 1 + 4/pi = 2.2732, and the measured mass ratios grow x2.32,
+    x2.31, x2.31 per gear.
+
+C.5 THE L2 / CHEBYSHEV BOUND SEES THE TEETH, BUT NOT F.
+    Var(N_L) is exactly closed form from c(d) = prod_q c_q(d) (c_q(0) = q-2,
+    q-3 if d = +-2v_q mod q, q-4 otherwise - gated against the direct count).
+    Chebyshev on #{s : no opening in (s, s+L]}:
+      L = F-1: bound 63.2 / 669.2 / 6948.9 / 89921.7 against TRUE 4 / 12 / 20 /
+               20 - vacuity factor 15.8x / 55.8x / 347.4x / 4496.1x, growing.
+      L = F:   bound 49.0 / 612.6 / 6373.2 / 81565.3 against TRUE 0 - NO
+               CERTIFICATE at any machine.
+    Over the counterfactual family, the smallest L whose Chebyshev bound drops
+    below 1 ("L2cert"):
+      m11  F in [6,11]   L2cert in [35,131]     median L2cert/F   7.7x
+      m13  F in [10,25]  L2cert in [280,637]    median          29.4x
+      m17  F in [14,32]  L2cert in [2119,4989]  median         161.3x
+      spearman(F, L2cert) = -0.038, +0.023, -0.186.
+    So the second moment DOES vary with the teeth (2.3-3.7x) but its variation
+    is essentially UNCORRELATED with F, and negatively correlated at m17.
+
+C.6 VERDICT.  The character-sum form of W is exact and it is the scan in
+    disguise: the identity relocates the whole difficulty into ONE object,
+    Ghat, the gap-weighted opening transform - i.e. into depth-1 adjacency
+    selection - and the two bounds the frame supplies are vacuous by factors
+    that grow with the machine.  NO CANCELLATION IS PROVED HERE; none is
+    observed either.  What IS proved is a negative: the L1 bound is constant on
+    a family over which F moves by a factor 1.8-2.5, so it cannot decide F.

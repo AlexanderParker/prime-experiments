@@ -2112,3 +2112,412 @@ docs/novel/mirror-parity-laws.md section 8 (new, and it withdraws one of its own
 claims in 8.7 and marks 8.4 as a replication),
 docs/novel/gear-cell-decomposition.md section 8 (U7), plus three README index
 entries.
+
+## Round 29 (2026-09-03) - the residual violators after tooth pinning, the
+## reversal lever made unconditional, and the anchor floor in characters
+
+CHOSE, in brief order: (a) the residual increment-law violators after pinning
+the incoming gear's tooth - pre-registered Constructor's congruence shape and
+scored it; (b) the even-J reversal symmetry, which turned out to give a THEOREM
+covering odd J as well, and a clean negative on the inequality question; (c) the
+anchor-235 floor in additive characters, which gave one new exact identity, one
+proved obstruction, and an honest "it is the scan in disguise".
+NOT WORKED, unclaimed, carried verbatim: U10 (a mod-4 lever), U14 (the
+streaming phase-order enumerator), U15 (the two-way interaction sweep for item
+61's mechanism), U16 (F_3 at m23), and the FULL (unpinned) V(23) family, still
+not measured.
+
+GATES, all re-run from clean processes at round close, all exit 0:
+  uv run python research/tooth_resid_r29.py --steps small --workers 3
+                                          -> 21 gates (log data/r29/tooth_resid_small.log)
+  uv run python research/tooth_resid_r29.py --steps 19_23 --workers 3
+                                          ->  9 gates (log data/r29/tooth_resid_1923.log)
+  uv run python research/evenj_reversal_r29.py --upto 23 --maxj 7
+                                          -> 185 gates (log data/r29/evenj_reversal.log)
+  uv run python research/walk_fourier_r29.py --upto 19 --closed-upto 23
+                                          -> 55 gates (log data/r29/walk_fourier.log)
+Predictions A0-A7, B1-B4, C1-C5 pre-registered in
+research/data/r29_lateral_predictions.txt, written before any round-29 code
+existed. Persistent results: research/lateral_r29_results.txt. Every job this
+round launched has finished or was killed and is reported below; nothing is
+left running.
+
+### Established results (continuing the numbering; do not renumber 1-68)
+
+69. THE RECORD LAW IS FAMILY-WIDE (r29; the round's structural headline, and it
+    was not in the brief - it fell out of building block (a)'s instrument).
+    For every member of the tooth-counterfactual family, at every step,
+
+        max( F_2(M),  max_{J >= 3} Q*_J(M; q') )  =  F(M + q')   EXACTLY,
+
+    where Q*_J is the maximal span of a word-legal J-window (middles 0 or
+    +-2v_q' mod q', nonzero classes strictly alternating, padded middles
+    transparent). ASSERTED AT 30 + 180 + 1440 + 12960 + 12960 = 27,570
+    COUNTERFACTUAL MACHINES across 7->11, 11->13, 13->17, 17->19 and 19->23,
+    zero exceptions.
+    WHY IT MATTERS. Constructor's attainment theorem (R68) proves this for the
+    TWIN machine out of CRT plus the two-tooth structure. Both ingredients
+    survive moving the teeth, so the theorem OUGHT to be family-wide - and the
+    test says it is. Against round 28's constraint ("no derivation from the
+    current structural set alone can be valid, because a counterfactual violates
+    the budget"), this is the complementary half and it is the useful one:
+    THE IDENTITY THAT COMPUTES F(M+q') FROM THE OLD MACHINE IS STRUCTURAL; only
+    the SIZE of Q*_J is arithmetic. The counterfactual obstruction is therefore
+    NOT an obstruction to the record law - it is an obstruction to bounding
+    Q*_J, and that is a strictly smaller target than "the merge step".
+
+70. THE RESIDUAL VIOLATORS ARE NOT ONE CONGRUENCE ON F(M) (r29; brief item (a),
+    and the pre-registered shape is REFUTED). With the incoming gear's tooth
+    pinned to v_q' = round(q'/6), the increment law inc = F(M+q') - F_2(M) <=
+    s_min is violated by 0 / 0 / 1.11 / 6.53 / 5.75 percent of the family at
+    7->11 .. 19->23 (reproducing round 28's 0 / 0 / 1.1 / 6.5 / 5.7 by a second
+    vehicle that also carries Q*_J). Constructor's proposed predicate
+    Pcong := "F(M) mod q' in {0, A, B}", A = 2v_q' mod q', B = q' - A:
+
+        step (pinned)  violators   sens.   PPV    spec.   best "F mod q' in S"
+        13->17           2/180      0.0%   0.0%   88.8%   88.5% (2 violators)
+        17->19          94/1440    34.0%   9.8%   78.2%   64.6%
+        19->23         745/12960    5.6%   6.5%   95.0%   57.9%
+
+    At the largest step 94.4% of residual violators have F(M) NOT congruent to a
+    legal letter, and the depth-3 attaining middle IS the old record in 0.0% of
+    them. The best predictor of the form "F(M) mod q' in S", optimised greedily
+    over all S, reaches 57.9% balanced accuracy - barely above chance. The
+    answer to the brief's question is therefore NO, and decisively so where it
+    matters. (Round 28's violator anatomy - "a palindrome whose central letter
+    is the old record" - is a description of ONE violator at ONE step, not the
+    shape of the residual set.)
+
+71. WHAT DOES DESCRIBE IT: A DEPTH-4 WORD-LEGAL WINDOW, AND A FLANK CONDITION
+    (r29). P3 := Q*_3 > F_2 + s_min is SOUND (implies violation at all 27,570
+    members, zero false positives) and INCOMPLETE, increasingly:
+
+        step (pinned)  agreement   need J >= 4    attaining-depth split
+        13->17         100.000%    0              J=3:2
+        17->19          97.569%    35/94  (37%)   J=3:47 J=4:43 J=5:4
+        19->23          95.949%    525/745 (70%)  J=3:176 J=4:425 J=5:136 J=6:8
+
+    DEPTH 4 IS THE MODE AT 19->23 AND DEPTH 6 IS POPULATED - counterfactual
+    machines exist whose kill arity exceeds the real m19's, so the real
+    machine's shallow J_max is itself arithmetic, not structural.
+    AND THE ELEMENTARY NECESSARY CONDITION IS THE PEEL BOUND ON THE FLANKS:
+    F_2 >= g_L + w and F_2 >= w + g_R give span <= F_2 + min(g_L, g_R), so
+    Q*_3 > F_2 + s_min forces MIN FLANK > s_min (asserted at all 27,570). It
+    says nothing about the middle: 41-100% of depth-3 violators have their
+    middle equal to the MINIMAL legal letter s_min.
+
+72. HOW MUCH OF THE INCREMENT LAW IS SPECTRAL AND HOW MUCH IS ARITHMETIC (r29).
+    Constructor's spectrum-plus-depth certificate uses no congruence at all:
+    SPEC_J := max(F_2..F_J) <= F_2 + s_min. Over the pinned family:
+
+        step     SPEC_3   unsound  SPEC_4   unsound  SPEC_5   unsound
+        13->17   85.0%      0      22.8%      0      0.6%       0
+        17->19   79.5%     30      20.6%      0      1.1%       0
+        19->23   87.7%    437      14.5%      5      0.3%       0
+
+    SPEC_3 and SPEC_4 are UNSOUND on the family (they certify 437 and 5 genuine
+    violators at 19->23 - the depth range must reach J_max, which is 5 or 6
+    there, not 3 or 4). SPEC_5 is sound at every step tested and certifies
+    0.3-1.2% of the family against word-legality's 96-100%. SO THE ARITHMETIC
+    IS WORTH ABOUT A HUNDREDFOLD IN COVERAGE over the purely spectral
+    certificate - a decomposition the counterfactual frame can state and no scan
+    of the real machine can.
+
+73. THE MIRROR LEVER'S HYPOTHESIS IS A THEOREM AT EVERY DEPTH >= 3 (r29; brief
+    item (b), and it covers odd J as well as even).
+    THE MAP: R_J(t) = -(t+J) on depth-J window indices (mod N), k -> -(k+span)
+    on addresses, w -> reverse(w) on words, r -> -(r+span) on killing residues.
+    It preserves depth, span, the interior opening count J-1, T2 (value-wise)
+    and T3 (alternation is reversal-invariant), so the WORD-LEGAL family is
+    R_J-invariant and R_J is span-preserving on it; N odd gives exactly one
+    fixed point, the self-mirror window.
+
+        THEOREM. For every J >= 3 the self-mirror depth-J window is NEVER
+        word-legal.
+          J ODD: its central middle is the gap straddling the antipode, of
+            length 1 (both antipodal slots are openings, item 54/7.3). 1 is a
+            legal letter iff 1 = 0 or +-2u' mod q'; 2u' = 2*6^{-1} = 3^{-1}, so
+            that needs 3 = +-1 mod q', i.e. q' | 2 or q' | 4 - impossible.
+          J EVEN >= 4: its two CENTRAL middles are BOTH d_0, the machine's first
+            gap. T3 forbids two equal nonzero classes in a row, and 0 < d_0 < q'
+            forbids both being padded.
+          J = 2: no middles, so the self-mirror 2-window (d_0, d_0) IS legal -
+            the ONE depth needing a hypothesis, and there it is exactly d_0 != F.
+
+    COROLLARY: R_J is FIXED-POINT-FREE on the word-legal family at every
+    J >= 3, so every span count there is EVEN with no exceptional class, NO
+    EXCEPTION LIST and NO CENSUS. This replaces my round-26 item 7.5 (a 66-cell
+    "never qualifying" check) and my round-28 item 65 (a span table plus an
+    exception list) by arithmetic, and on the sharper family.
+    GATED at m11/m13/m17/m19/m23 (q' = 13,17,19,23,29), J = 2..7, 185
+    assertions. Free cross-lane check: every Q*_J computed here reproduces
+    Constructor's R68 table exactly - 11/8, 16/18, 25/25, 31/33/34, 39/43 - as
+    do the emptiness verdicts Q*_4(23) and Q*_5(19), by a different vehicle.
+
+74. WHAT THE EVEN-J SYMMETRY DOES NOT GIVE, AND WHY (r29; the honest half of
+    brief item (b)). Round 28 observed that at even J the maximisers come in
+    REVERSAL PAIRS. That is now explained: Constructor's Theorem B forbids a
+    literal word-legal even-J palindrome, so an attaining window is never its
+    own mirror image and the attaining count is EVEN (gated at every non-empty
+    cell, J >= 3).
+    IT YIELDS NO INEQUALITY ON F_J OR Q*_J. R_J is span-preserving, so the only
+    object it adds to a counting argument over the word-legal family is the
+    QUOTIENT by an involution, of cardinality |family|/2. Every consequence is
+    the SAME ONE UNIT the odd-J route already gives - "fewer than two proves
+    none" in place of "fewer than one" - and my round-26 item 51/Theorem A2
+    already proved that one unit is the ceiling (the full symmetry group of the
+    opening set inside Z_P is Z/2, exactly). What item 73 changes is not the
+    SIZE of the lever but its PRICE. (PROVED for counting arguments over the
+    word-legal family; JUDGMENT, NOT RESULT for "no argument of any kind".)
+
+75. THE WALK'S FOURIER TRANSFORM IS A POLE FACTOR TIMES ONE HARD OBJECT (r29;
+    brief item (c); docs/novel/walk-transform-pole-identity.md).
+    From the exact recursion W(s) = 1 + B(s+1) W(s+1), for every m != 0
+
+        What(m) * (1 - e(m/P))  =  - e(m/P) * Ghat(m),
+        Ghat(m) = sum over openings o of g(o) e(-mo/P)
+
+    (the GAP-WEIGHTED opening transform), with Ghat(0) = P and
+    What(0) = sum_g W_1(g) g(g+1)/2. Verified at ALL nonzero frequencies at
+    m11/m13/m17/m19, max relative error 6.95e-16 / 3.49e-16 / 2.93e-16 /
+    5.07e-16, P up to 1,616,615. SO THE WALK HAS NO FOURIER CONTENT OF ITS OWN.
+    AND THE POLE FACTOR IS THE ROUND-21 POLE-PHASE LAW: 1/(1 - e(m/P)) is
+    exactly the omega/(1-omega) of item 32, so THE POLE-PHASE LAW IS THE WALK'S
+    OWN TRANSFORM and its "B" is Ghat.
+    THE SPLIT: Ghat = lambda*Shat + Dhat, lambda = P/N, with
+    Shat(m) = prod_q hat_q(m c_q) CLOSED FORM. c_q = (P/q)^{-1} mod q is the
+    CRT frequency each gear sees - A CORRECTION TO MY OWN ITEM 29(a), whose
+    statement uses m mod q and is wrong off the frequencies where c_q = 1
+    (measured discrepancy 1.0e+2 at m11 before the fix; 3e-12 after). Parseval:
+    the closed-form energy share is lambda^2/(lambda^2 + Var g) = 0.7683,
+    0.7385, 0.7117, 0.6902 at m11..m19 - DECREASING. The residual Dhat is the
+    gap-FLUCTUATION transform: no closed form, and it is depth-1 adjacency
+    selection - the same place item 27's depth-SUM identity is closed form and
+    its depth-1 term is not.
+
+76. THE L1 CHARACTER BOUND IS PROVABLY BLIND TO THE TEETH (r29; the usable half
+    of item 75, and a proved NEGATIVE of the same species as item 58's
+    deflation of the 2n reordering).
+
+        sum_m |Shat(m)| / P  =  prod_q S_q / q,
+        S_q = (q-2) + sum_{k=1}^{q-1} |2 cos(2 pi k / q)|,
+
+    which does NOT depend on v_q, because k -> k v_q permutes the summands.
+    ASSERTED: the L1 mass is IDENTICAL (4.898341 / 9.643122 / 19.669645 at
+    m11/m13/m17) at ALL 30 / 180 / 1440 counterfactual tooth vectors, while F
+    ranges over [6,11] / [10,25] / [14,32] - spreads of 1.83x / 2.50x / 2.29x.
+    SO NO BOUND BUILT FROM |Shat| ALONE CAN DETERMINE F. Per-gear factor
+    S_q/(q-2) -> 1 + 4/pi = 2.2732 and the measured mass ratios grow x2.32,
+    x2.31, x2.31 per gear, so the L1 vacuity is exponential in the gear count.
+    Measured vacuity at L = F: bound/main term = 2.740, 5.254, 8.501, 15.37 at
+    m11..m19.
+
+77. THE SECOND MOMENT SEES THE TEETH BUT NOT F (r29). Var(N_L) for the count of
+    openings in a window of length L is exactly closed form from
+    c(d) = prod_q c_q(d) (item 21; gated against the direct count). Chebyshev on
+    the number of empty windows:
+      L = F-1: bound 63.2 / 669.2 / 6948.9 / 89921.7 against TRUE 4 / 12 / 20 /
+               20 - vacuity 15.8x / 55.8x / 347.4x / 4496.1x, GROWING;
+      L = F:   bound 49.0 / 612.6 / 6373.2 / 81565.3 against TRUE 0 - no
+               certificate at any machine.
+    Over the counterfactual family, with L2cert = the smallest L whose
+    Chebyshev bound drops below 1:
+
+        m11  F in [6,11]   L2cert in [35,131]     median L2cert/F   7.7x
+        m13  F in [10,25]  L2cert in [280,637]    median          29.4x
+        m17  F in [14,32]  L2cert in [2119,4989]  median         161.3x
+        spearman(F, L2cert) = -0.038, +0.023, -0.186
+
+    So the L2 instrument is NOT blind (its spread is 2.3-3.7x) but what it
+    varies with is essentially uncorrelated with F, and NEGATIVELY correlated at
+    the largest machine. That is the sharpest statement this project has of why
+    moment methods never bite (items 34a, 43): not weakness, but wrong variable.
+    VERDICT ON THE ANCHOR-235 FLOOR: the character form of W is exact and is the
+    SCAN IN DISGUISE - term counts 48 / 96 / 190 / 312 / 490 scan tests against
+    P = 385 / 5005 / 85085 / 1616615 / 37182145 flat coefficients and 2^(F+1) =
+    2.6e2 / 4.1e3 / 5.2e5 / 6.7e7 / 3.4e10 inclusion-exclusion terms at
+    m11..m23 - but the disguise NAMES the irreducible object, Ghat.
+
+### Refuted angles (continuing)
+
+47. MY OWN PRE-REGISTERED A0, AND IT IS AN ELEMENTARY ERROR OF MINE, NOT A
+    LOST BET. I wrote "a violating 3-window cannot have its middle equal to the
+    minimal legal letter s_min: span = g_L + s_min + g_R > F_2 + s_min would
+    force g_L + g_R > F_2, impossible." FALSE: g_L and g_R are the gaps at lag
+    2 either side of the middle, NOT an adjacent pair, so g_L + g_R is not
+    bounded by F_2. Measured: 41.4% - 100% of depth-3 violators have middle
+    exactly s_min. The correct elementary statement is the PEEL BOUND on the
+    FLANKS (item 71), which the code now gates instead. This error also killed
+    my A5.
+48. MY OWN A1 - "Constructor's congruence shape is necessary at >= 70% of
+    residual violators". REFUTED: 34.0% at 17->19 and 5.6% at 19->23 (item 70).
+49. MY OWN A4 - "the depth-3 predicate Q*_3 > F_2 + s_min is EXACTLY equivalent
+    to violation at 11->13, 13->17 and 17->19". REFUTED at 17->19 (97.57%) and
+    at 19->23 (95.95%); confirmed only at the two smallest steps. Depth 4 is the
+    mode at the largest step (item 71).
+50. MY OWN A5 - "Pbig (the old machine realises a legal gap > s_min) is
+    NECESSARY for violation, 100%". REFUTED: sensitivity 0.0% / 4.0% / 28.2% in
+    the full families at 7->11 / 11->13 / 13->17 (it is 100% only at the two
+    largest pinned steps). Same root cause as 47.
+51. MY OWN A6 - "the attaining middle is the larger letter B or B+q' in >= 70%
+    of violators". REFUTED: 0.0% / 0.0% / 30.5% / 53.6%. The modal middle is the
+    SMALLER letter.
+52. MY OWN A7 - "the pinned violation rate is non-decreasing". REFUTED by the
+    new rung: 1.11, 6.53, 5.75 percent at 13->17, 17->19, 19->23. (I flagged in
+    the pre-registration that round 28's own numbers already made this doubtful
+    and registered it anyway to force the comparison on identical definitions.)
+53. MY OWN C2 - "the closed-form share of the walk's Fourier energy is below 50%
+    from m13 on". REFUTED on the level (it is 0.7683 / 0.7385 / 0.7117 / 0.6902)
+    and CONFIRMED on the direction (decreasing). So the closed-form part is the
+    MAJORITY of the energy and still cannot bound F - which is the more
+    interesting version of the finding.
+54. MY OWN C3 - "the L1 bound exceeds the main term by more than 10x already at
+    m11". REFUTED as worded (2.740 at m11); the growth half is confirmed
+    (2.740 -> 15.37 over four machines).
+55. MY OWN ITEM 29(a) AS WRITTEN. The machine DFT closed form is
+    prod_q hat_q(m c_q) with c_q = (P/q)^{-1} mod q, not prod_q hat_q(m mod q).
+    The two agree only where c_q = 1; the discrepancy at m11 is 1.0e+2 at the
+    first 385 frequencies. Everything item 29 concludes (realness, the golden
+    gap phi/3, the factorisation, the line collapse) is unaffected, because
+    those are statements about the MULTISET of factors and m -> m c_q is a
+    bijection mod q; the per-frequency FORMULA is what was wrong. Corrected in
+    docs/novel/walk-transform-pole-identity.md section 1 and flagged for
+    golden-spectral-gap.md.
+
+### Prediction scorecard, round 29 (pre-registered in data/r29_lateral_predictions.txt)
+
+  A0  no depth-3 violator has middle = s_min            REFUTED (my own error,
+      not a bet - see Refuted 47; the correct lemma is the peel bound)
+  A1  Pcong necessary at >= 70% of residual violators   REFUTED (34.0%, 5.6%)
+  A2  Pcong not sufficient, PPV < 0.5                   CONFIRMED (9.8%, 6.5%)
+  A3  best "F mod q' in S" has bal. acc. < 0.80         CONFIRMED (64.6%, 57.9%)
+  A4  the depth-3 predicate is exact                    REFUTED (97.57%, 95.95%)
+  A5  Pbig necessary at 100%                            REFUTED (0-28% at the
+      three smallest steps)
+  A6  the attaining middle is B or B+q' >= 70%          REFUTED (0-53.6%)
+  A7  the pinned rate is non-decreasing                 REFUTED (1.11, 6.53, 5.75)
+  B1  even-J: fixed-point-free, all span counts even    CONFIRMED, and
+      STRENGTHENED to every J >= 3 by a theorem covering odd J too (item 73)
+  B2  no new inequality from even-J reversal            CONFIRMED, and upgraded
+      from JUDGMENT to a proof for counting arguments (item 74)
+  B3  no self-mirror even-J PADDED legal window         CONFIRMED, and the
+      reason is T3 + 0 < d_0 < q', a theorem, not the size argument I predicted
+  B4  the number of windows attaining Q*_J is even      CONFIRMED at every J >= 3
+  C1  the pole identity, verified to < 1e-9             CONFIRMED (7e-16)
+  C2  closed-form share below 50% and decreasing        HALF (level REFUTED,
+      direction CONFIRMED)
+  C3  L1 ratio > 10 at m11 and growing                  HALF (m11 REFUTED at
+      2.740, growth CONFIRMED)
+  C4  Chebyshev vacuous by a growing factor             CONFIRMED (15.8x ->
+      4496.1x)
+  C5  "the scan in disguise", irreducible object named  CONFIRMED (Ghat)
+
+  TOTAL: 9 confirmed, 2 half, 6 refuted. Every refutation is of my own
+  prediction by my own gate.
+  SELF-ASSESSMENT. This is the worst scorecard this lane has filed and it is the
+  right one: A0 and A5 both died of a single elementary slip I made while
+  WRITING the pre-registration (treating g_L + g_R as a 2-window), and I would
+  rather record that than a clean sheet. The genuinely informative bets were A1,
+  A4, A6, B2, C2, C3 - I lost four of six, and three of those losses (A1, A4,
+  A6) are what made item 70's negative answer to the brief solid rather than
+  suggestive. B1-B4 were near-certain once the theorem was in hand and should
+  not be counted as skill. Item 69 was NOT predicted at all: I built the Q*
+  instrument to test A4 and only then noticed it was asserting the attainment
+  theorem 27,570 times.
+
+### Backlog changes
+
+CLOSED: nothing this round - the brief's three items were all worked and all
+  three are answered, but none of them was a standing backlog item.
+ADVANCED: the mirror-lever thread (items 73, 74) is now closed as far as this
+  lane can take it: the hypothesis is a theorem at J >= 3, the ceiling is
+  proved, and the only remaining lever work is Formalist's instantiation.
+STILL UNTOUCHED, carried verbatim and unclaimed: U10 (a mod-4 lever - both
+  candidates still open), U14 (the 3n-integer streaming phase-order enumerator),
+  U15 (the two-way interaction sweep for item 61's mechanism, after three dead
+  main effects), U16 (F_3 at m23).
+NEW:
+U17. IS Ghat COMPUTABLE BELOW A SCAN? Item 75 reduces the ENTIRE walk - and
+     therefore the anchor-235 floor as posed in 9g - to one object, the
+     gap-weighted opening transform Ghat(m) = sum_o g(o) e(-mo/P). Its
+     mean-field part is closed form and carries 69-77% of the energy; the
+     residual is depth-1 adjacency. The sharp question is now "is there a
+     closed form, or a sub-scan algorithm, for Ghat?", and it is the same
+     question as item 27's depth-1 term. Named, not built.
+U18. DOES THE FAMILY-WIDE RECORD LAW SURVIVE THE ASYMMETRIC FAMILY? Item 69
+     holds over the MIRROR-SYMMETRIC counterfactuals (teeth at +-v_q). The
+     attainment proof uses CRT and the tooth structure but not, obviously,
+     symmetry. Enumerating asymmetric two-tooth sievings (teeth at arbitrary
+     {t_q, t'_q}) is a bigger family - prod q(q-1)/2 - and would say whether
+     the record law needs the mirror at all. That would sharpen exactly which
+     hypothesis the derivation may assume. Named, not built; cheap at m11/m13.
+U19. WHERE DOES DEPTH 6 COME FROM? Item 71 found 8 counterfactual members of
+     V(19) whose violating window has J = 6, i.e. kill arity 5, where the real
+     m19 has J_max = 4. Those 8 tooth vectors are a tiny exhibited set; what
+     distinguishes them is a finite question and the first handle anyone has on
+     "what makes A_kill large", which the project has only ever measured.
+
+### Needs / handoffs
+
+(1) CONSTRUCTOR - three things, one of them a correction of a shape you are
+    testing.
+    (a) YOUR ATTAINMENT THEOREM IS FAMILY-WIDE: max(F_2, max_J Q*_J) = F(M+q')
+        at all 27,570 counterfactual machines (item 69). Read against round
+        28's counterfactual constraint, that says the constraint bites on the
+        SIZE of Q*_J and not on the record law - a strictly smaller target.
+    (b) THE CONGRUENCE SHAPE YOU ARE TESTING IS NOT THE RESIDUAL SET.
+        "F(M) not congruent to a tooth difference mod q'" has sensitivity 34.0%
+        at 17->19 and 5.6% at 19->23, and the attaining middle IS F(M) in 0.0%
+        of 19->23 violators. What the residual set needs is a DEPTH-4 word-legal
+        window (70% of 19->23 violators are invisible at depth 3) plus a FLANK
+        condition (min flank > s_min, which is your own peel bound read
+        backwards). Items 70, 71.
+    (c) YOUR SPECTRUM-PLUS-DEPTH CERTIFICATE PRICED ON THE FAMILY: sound at
+        J_max = 5, and it certifies 0.3-1.2% of the family where word-legality
+        certifies 96-100%. That is the size of the arithmetic content, measured
+        (item 72). Note SPEC_3 and SPEC_4 are UNSOUND on the family - the depth
+        range genuinely has to reach J_max.
+(2) FORMALIST - the mirror lever's remaining hypothesis is discharged by
+    ARITHMETIC at every depth >= 3, on the word-legal family: the self-mirror
+    window's central middle is the antipodal gap (= 1) at odd J and a repeated
+    d_0 at even J >= 4, and neither is word-legal (item 73). So
+    `Mirror.none_of_at_most_one` needs `hexc` only at J = 2, where round 28
+    already gave you `d_0 != F`. If you want it in the kernel, the odd-J branch
+    is `3 != +-1 mod q'` (you already have `antipode_open`, which is the same
+    computation) and the even-J branch is `T3` plus `0 < d_0 < q'`.
+(3) MANAGER - the round-28 headline "no structural-only proof can work" needs
+    one qualification, and it is favourable: the RECORD LAW is structural (item
+    69, 27,570 machines). The counterfactual obstruction applies to bounding
+    Q*_J, not to the identity that produces it.
+(4) ANY LANE citing my item 29(a)'s machine-DFT formula: it is
+    prod_q hat_q(m c_q) with c_q = (P/q)^{-1} mod q, not hat_q(m mod q)
+    (Refuted 55). Conclusions unaffected; the per-frequency formula was wrong.
+(5) EVERY LANE - AN OPERATIONAL CORRECTION TO MY OWN ROUND-28 RULE. Round 28 I
+    reported that detached python hangs at startup (11 MB working set, zero CPU,
+    no error) "when the system COMMIT charge is near its limit" and recommended
+    watching commit rather than free RAM. THAT DIAGNOSIS IS INCOMPLETE. This
+    round the identical signature appeared TWICE at 34.6 of 63.6 GB commit
+    (54%), on jobs launched detached from the agent's shell; a `nohup ... &`
+    launch additionally left 15 multiprocessing.Pool workers orphaned and idle
+    when its parent went away. Both times the SAME script ran to completion in
+    the foreground. So: the 11 MB / zero-CPU signature is NOT diagnostic of
+    commit pressure - it is diagnostic of a detached launch - and the safe rule
+    is to run multi-worker python in the FOREGROUND with an explicit timeout, or
+    to make the orchestrator resume from shards so a lost parent costs nothing.
+
+### Reproduction pointers
+
+Round 29: research/tooth_resid_r29.py ("--steps small --workers 3", 21 gates;
+"--steps 19_23 --workers 3", 9 gates; logs data/r29/tooth_resid_small.log,
+tooth_resid_1923.log; tables data/r29/resid_*.npy);
+research/evenj_reversal_r29.py ("--upto 23 --maxj 7", 185 gates, log
+data/r29/evenj_reversal.log); research/walk_fourier_r29.py ("--upto 19
+--closed-upto 23", 55 gates, log data/r29/walk_fourier.log). Predictions in
+data/r29_lateral_predictions.txt; persistent results in
+research/lateral_r29_results.txt. Inputs: research/data/r28/tooth_m23_pinned.npy
+(round 28's gated 19->23 table - F(m19) and F_2(m19) re-derived here from
+scratch and asserted equal at all 12,960 members, F(m23) re-derived at 400
+random members). Novel-register docs: docs/novel/walk-transform-pole-identity.md
+(new), docs/novel/mirror-parity-laws.md section 9 (new),
+docs/novel/tooth-counterfactual-percentile.md section 5B (new), plus three
+README index entries.

@@ -1,4 +1,8 @@
+-- CaseCert37 (root) is deliberately NOT imported here: see lakefile.toml at its lib entry.
 import Increment
+import AnchorChain
+import AnchorRecord17
+import AlternationOrder
 import MirrorM11
 import CaseCert31
 import CaseCert23
@@ -482,3 +486,31 @@ open BlockedSlots
 #print axioms Increment.increment_23_29
 #print axioms Increment.increment_29_31
 #print axioms Increment.increment_law_literal_steps
+
+#print axioms AnchorChain.teeth_eq_phase
+#print axioms AnchorChain.chain_law
+#print axioms AnchorChain.copy_phase
+#print axioms AnchorChain.phase_bijective
+#print axioms AnchorChain.no_two_up
+#print axioms AnchorChain.no_two_down
+#print axioms AnchorChain.neighbour_of_hit
+#print axioms AnchorChain.hop_zero
+#print axioms AnchorChain.hop_iter
+#print axioms AnchorChain.hop_one
+#print axioms AnchorRecord17.mg2
+#print axioms AnchorRecord17.record_max
+#print axioms AnchorRecord17.shift_res
+#print axioms AnchorRecord17.surv_shift
+#print axioms AnchorRecord17.openT17_iff
+#print axioms AnchorRecord17.phase_is_machine
+#print axioms AnchorRecord17.gap18_realized
+#print axioms AnchorRecord17.F17_eq_18
+#print axioms AlternationOrder.surv_downward
+#print axioms AlternationOrder.ps_min_le_five
+#print axioms AlternationOrder.ps_min_five_iff
+#print axioms AlternationOrder.ps_min_four_iff
+#print axioms AlternationOrder.ps_min_counts
+#print axioms AlternationOrder.ps_max_eq_capC
+#print axioms AlternationOrder.ps_max_le_six
+#print axioms AlternationOrder.arelax_le_five
+#print axioms AlternationOrder.arelax_le_four

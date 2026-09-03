@@ -93,6 +93,101 @@ Lateral's mirror theorem.
 
 ---
 
+## 1.3 THE TENTH RUNG - 43 -> 47 (round 29), AND WHAT IT DOES *NOT* PROVE
+
+Mechanic's round-28 shopping-list delivery makes the tenth rung immediate:
+
+    F_2(43) = 116   EXACT, unconditional      (Mechanic r28)
+    F_3(43) = 125   EXACT, unconditional      (the known value, reproduced)
+    F_4(43) = 132   EXACT, unconditional      (Mechanic r28, new)
+    J_max(43) = 4                              (A_kill(43 -> 47) = 3)
+
+    =>  F(47)  <=  max(116, 125, 132) = 132  <  150 = F(43) + 47.
+
+**(D) AT 43 -> 47 IS CERTIFIED, MARGIN +18** (`research/rung10_r29.py`, clean process, log
+`research/data/r29/rung10_sweep.log`).  The gate re-asserts each recorded `F_J(43)` against
+its own deletion-ladder cap before using it, re-derives `F` and `F_2` at m11..m19 from the
+period, and checks the arithmetic.
+
+**THE HYPOTHESIS LEDGER, in full.**  H1 merge law + T2/T3; H2 the attainment theorem; H3
+`Q*_J <= F_J`; H4 upward-closed emptiness; plus the three `F_J(43)` values and
+`A_kill(43 -> 47) = 3`.  And one more, which round 28 did not write down:
+
+> **THE DELETION-LADDER CAP** (proved, three lines).  If `x_0 < ... < x_j` are consecutive
+> openings of `M` and `q'_1..q'_{j-1}` are the next `j-1` primes, then by CRT some translate
+> `x + t.P(M)` has `x_i + t.P(M) = c_i` mod `q'_i` for every interior `i` at once, so every
+> interior opening is killed and `F_j(M) <= F(M + {the next j-1 primes})`.
+> At m43: `F_2 <= F(47) = 118`, `F_3 <= F(53) = 145`, `F_4 <= F(59) = 161`.
+
+Mechanic's three values are exhaustive *because of that cap* (their search ran to span 180).
+The cap for `j = 2` is `F(47)`, and `F(47) <= 150` is what the rung asserts.  **So rung ten
+is not a logically independent bound on `F(47)`** - and neither is any rung below m59, since
+the corpus knows `F` outright there.  What a rung establishes is that the certificate's
+obligation at that step is a *bounded, finite, old-machine-only* computation; rung ten
+ratifies that and nothing more.  Recording this is the round's correction to the round-28
+framing, which did not separate the two claims.
+
+**THE PRICE OF THE INDEPENDENT VERSION, measured.**  Dropping the deletion cap leaves only
+the machine-43-internal caps `F_j <= j.F(43)`, and the obligation "no word-legal `J`-window
+of span in `[151, j.103]`" for `J = 2, 3, 4` is
+
+    J = 2 :     812 candidates,    614 survive phase saturation
+    J = 3 :  18,068 candidates,  7,948 survive
+    J = 4 : 130,983 candidates, 29,510 survive
+    TOTAL                       38,072 exact CRT decisions
+
+at a measured 30-46 s per instance at a 300,000-node budget, at which budget only about a
+quarter are decided at all.  That is the number, and it is why the independent version was
+not bought this round.
+
+## 1.4 THE ELEVENTH RUNG FAILS, AND THE FAILURE IS A_kill's (Mechanic, round 29)
+
+`47 -> 53` does NOT certify.  `A_kill(47 -> 53) = 5` EXACT (the project's only 5-chain), so
+`J_max(47) = 6`, and
+
+    F_6(47) = 177   EXACT and unconditional   vs   budget F(47) + 53 = 171    FAILS by 6
+
+`F_6(47) = 177` is a first computation: the floor-1 lap-phase transfer from machine 23 with
+six new gears, seeded at 174 and capped at 290 = `2 F_3(47)`, which is at or above the
+SUBADDITIVITY ceiling of every depth in range (`F_{a+b} <= F_a + F_b`), over 100% of machine
+23's period (64 of 64 shards).  The maximiser is exhibited as a SLOT, not a phase vector:
+machine 47, `k = 46,615,676,895,423,125`, seven consecutive openings at offsets
+`[0, 42, 70, 103, 107, 115, 177]`, gap word `[42, 28, 33, 4, 8, 62]`, all 171 other slots of
+the span blocked, re-checked at machine 47 from the definition.
+
+**AND THE PATTERN IS NOT ABOUT THE MACHINE - IT IS ABOUT `A_kill`.**  Since `F_J` is
+non-decreasing in `J`, the criterion's margin at a step is exactly
+
+    margin(M -> q')  =  F(M) + q'  -  F_{A_kill(M -> q') + 1}(M),
+
+so section 1.2's table sorts by `A_kill`, not by `M`:
+
+    A_kill = 2 :  margins  +5, +9, +13
+    A_kill = 3 :  margins  +10, +16, +18, +24
+    A_kill = 4 :  margins  -11 (29 -> 31),  +3 (31 -> 37)
+    A_kill = 5 :  margin   -6  (47 -> 53)
+
+EVERY `A_kill <= 3` STEP CERTIFIES; both failures and the single `+3` squeaker are the
+`A_kill >= 4` steps.  The mechanism is arithmetic, not statistical: one extra unit of
+`A_kill` admits one more level of the `F` ladder, which costs 7-16 units (measured
+increments `F_{J+1} - F_J`: m37 `[2,7,8,8,7]`, m41 `[12,7,8,10]`, m43 `[13,9,7]`,
+m47 `[16,11]`), while the budget gains only `q' - q'_prev`, which is 4 to 6 at this end of
+the ladder.  So the honest scope of the criterion is **"it certifies exactly the steps whose
+fuel census is shallow"**, and since `A_kill` is arithmetic-selected and not monotone (C10),
+it will fail again at the next `A_kill >= 4` step.  This is a scope statement, not a
+refutation: section 1.2's "8 of 9, one exception" reads as an exception because eight of the
+nine steps happen to have `A_kill <= 3` or a large `q'`.
+
+What still closes `47 -> 53` is the word-legal half: R68's attainment theorem plus the corpus
+value `F(53) = 145` gives `max_J Q*_J(47) = 145 <= 171`, margin 26 - i.e. word-legality is
+doing 32 units of work at this step, the same role it plays at `29 -> 31` (30 units).
+Cheapest next test of the reading: `53 -> 59`, where `A_kill = 4`, `J_max(53) = 5`, budget
+`F(53) + 59 = 204`, and `F_4(53)`, `F_5(53)` are not on record.
+
+Gate: `uv run python research/gate_mechanic_r29.py` (sections D and E);
+table: `research/criterion_margin_r29.py`; witness: `research/witness47_r29.py`.
+Status: **script-verified, exact integers, exhibited witness** (no float anywhere).
+
 ## 2. WHY IT MIGHT BE NOVEL
 
 The criterion replaces the whole word/flank apparatus by "spectrum, over a capped depth
