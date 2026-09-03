@@ -1,0 +1,42 @@
+
+5+7+11: record F = 6, stretch starts at slot 151 (mod 385)
+  layer 11 (u=2, d=4): survivors at [1] teeth - diffs [] classes []
+  layer  7 (u=6, d=5): survivors at [1, 2, 4] teeth ?+- diffs [1, 2] classes ['?1', '-d']
+  gear 11: P(open) = 0.3506; P(x+1 open | x g-hit) = 0.4286; P(x+1 open | x blocked) = 0.4560; P(x+1 open | x open) = 0.1556
+  gear  7: P(open) = 0.3506; P(x+1 open | x g-hit) = 0.4909; P(x+1 open | x blocked) = 0.4560; P(x+1 open | x open) = 0.1556
+  gear  7: P(open) = 0.3506; P(x+1 open | x g-hit) = 0.4909; P(x+1 open | x blocked) = 0.4560; P(x+1 open | x open) = 0.1556
+
+5+7+11+13: record F = 10, stretch starts at slot 123 (mod 5005)
+  layer 13 (u=11, d=9): survivors at [5] teeth + diffs [] classes []
+  layer 11 (u=2, d=4): survivors at [0, 5, 7] teeth +?- diffs [5, 2] classes ['?5', '?2']
+  layer  7 (u=6, d=5): survivors at [0, 2, 4, 5, 7, 9] teeth ?+-??+ diffs [2, 2, 1, 2, 2] classes ['-d', '-d', '?1', '-d', '-d']
+  gear 13: P(open) = 0.2967; P(x+1 open | x g-hit) = 0.3506; P(x+1 open | x blocked) = 0.3682; P(x+1 open | x open) = 0.1273
+  gear 11: P(open) = 0.2967; P(x+1 open | x g-hit) = 0.3626; P(x+1 open | x blocked) = 0.3682; P(x+1 open | x open) = 0.1273
+  gear  7: P(open) = 0.2967; P(x+1 open | x g-hit) = 0.4154; P(x+1 open | x blocked) = 0.3682; P(x+1 open | x open) = 0.1273
+
+5+7+11+13+17: record F = 17, stretch starts at slot 118 (mod 85085)
+  layer 17 (u=3, d=6): survivors at [4, 15] teeth +- diffs [11] classes ['-d']
+  layer 13 (u=11, d=9): survivors at [4, 10, 15] teeth ?+? diffs [6, 5] classes ['?6', '?5']
+  layer 11 (u=2, d=4): survivors at [4, 5, 10, 12, 15] teeth ?+?-? diffs [1, 5, 2, 3] classes ['?1', '?5', '?2', '?3']
+  layer  7 (u=6, d=5): survivors at [0, 2, 4, 5, 7, 9, 10, 12, 14, 15] teeth +-??+-??+? diffs [2, 2, 1, 2, 2, 1, 2, 2, 1] classes ['-d', '-d', '?1', '-d', '-d', '?1', '-d', '-d', '?1']
+  gear 17: P(open) = 0.2618; P(x+1 open | x g-hit) = 0.2967; P(x+1 open | x blocked) = 0.3155; P(x+1 open | x open) = 0.1103
+  gear 13: P(open) = 0.2618; P(x+1 open | x g-hit) = 0.3094; P(x+1 open | x blocked) = 0.3155; P(x+1 open | x open) = 0.1103
+  gear  7: P(open) = 0.2618; P(x+1 open | x g-hit) = 0.3665; P(x+1 open | x blocked) = 0.3155; P(x+1 open | x open) = 0.1103
+
+5+7+11+13+17+19: record F = 24, stretch starts at slot 111 (mod 1616615)
+  layer 19 (u=16, d=13): survivors at [6] teeth - diffs [] classes []
+  layer 17 (u=3, d=6): survivors at [6, 11, 22] teeth ?+- diffs [5, 11] classes ['?5', '-d']
+  layer 13 (u=11, d=9): survivors at [4, 6, 11, 17, 22] teeth +??+? diffs [2, 5, 6, 5] classes ['?2', '?5', '?6', '?5']
+  layer 11 (u=2, d=4): survivors at [1, 4, 6, 11, 12, 17, 19, 22] teeth +???+?-? diffs [3, 2, 5, 1, 5, 2, 3] classes ['?3', '?2', '?5', '?1', '?5', '?2', '?3']
+  gear 19: P(open) = 0.2342; P(x+1 open | x g-hit) = 0.2618; P(x+1 open | x blocked) = 0.2761; P(x+1 open | x open) = 0.0973
+  gear 17: P(open) = 0.2342; P(x+1 open | x g-hit) = 0.2655; P(x+1 open | x blocked) = 0.2761; P(x+1 open | x open) = 0.0973
+  gear  7: P(open) = 0.2342; P(x+1 open | x g-hit) = 0.3279; P(x+1 open | x blocked) = 0.2761; P(x+1 open | x open) = 0.0973
+
+5+7+11+13+17+19+23: record F = 33, stretch starts at slot 12694429 (mod 37182145)
+  layer 23 (u=4, d=8): survivors at [3, 11, 26] teeth -+- diffs [8, 15] classes ['+d', '-d']
+  layer 19 (u=16, d=13): survivors at [3, 6, 11, 19, 26] teeth ?-?+? diffs [3, 5, 8, 7] classes ['?3', '?5', '?8', '?7']
+  layer 17 (u=3, d=6): survivors at [1, 3, 6, 11, 18, 19, 26, 29] teeth +???+??- diffs [2, 3, 5, 7, 1, 7, 3] classes ['?2', '?3', '?5', '?7', '?1', '?7', '?3']
+  layer 13 (u=11, d=9): survivors at [1, 3, 4, 6, 8, 11, 18, 19, 26, 29] teeth ??+?-????? diffs [2, 1, 2, 2, 3, 7, 1, 7, 3] classes ['?2', '?1', '?2', '?2', '?3', '?7', '?1', '?7', '?3']
+  gear 23: P(open) = 0.2139; P(x+1 open | x g-hit) = 0.2342; P(x+1 open | x blocked) = 0.2481; P(x+1 open | x open) = 0.0881
+  gear 19: P(open) = 0.2139; P(x+1 open | x g-hit) = 0.2390; P(x+1 open | x blocked) = 0.2481; P(x+1 open | x open) = 0.0881
+  gear  7: P(open) = 0.2139; P(x+1 open | x g-hit) = 0.2994; P(x+1 open | x blocked) = 0.2481; P(x+1 open | x open) = 0.0881

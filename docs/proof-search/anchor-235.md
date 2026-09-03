@@ -413,6 +413,34 @@ ordinary lower stretch whose last few survivors sit exactly on the teeth of the 
 gears - the alignment the record law (docs/proof-search) describes from above, seen here
 from below.
 
+### 9e. The residues at the top of a record, and either side of a hit (record_residues.py; results/record_residues.txt)
+
+Top layer of each record stretch (survivors of the lower gears inside the stretch, all
+necessarily on the top gear's teeth, differences as classes mod g):
+
+  {5..11}: 1 survivor;  {5..13}: 1;  {5..17}: 2 at 4, 15 (teeth +, -; difference 11 = -d);
+  {5..19}: 1;  {5..23}: 3 at 3, 11, 26 (teeth -, +, -; differences 8 = +d, 15 = -d).
+
+One layer down the survivors are 3, 3, 3, 3, 5 and only some sit on that gear's teeth
+(the rest are killed above). The pattern does not repeat from rung to rung in any form
+found here; what repeats is the shape of section 9d: an ordinary lower stretch, one to
+three survivors at the top all on the teeth, differences in the chain classes. The
+records of {5..13} through {5..19} start at slots 123, 118, 111 (numbers about 670-740),
+i.e. right after 19^2 the periodic word already shows its record.
+
+Either side of a hit (the human's question): the neighbour of a g-hit is g-free (the two
+teeth are d_g apart and d_g is never 1), and the other gears do not see g at all, so
+exactly
+
+    P(x + 1 open | x is a g-hit) = P(open) x g / (g - 2),
+
+measured 0.2342 = 0.2139 x 23/21 at {5..23} for g = 23, 0.2390 for g = 19 (23/21 -> 19/17),
+0.2994 for g = 7 (x 7/5), all exact to four places. Knowing one gear's hit buys the factor
+g/(g - 2) and nothing else; the neighbour of a hit is open less often than the neighbour of
+a random blocked slot (0.2481) and much more often than the neighbour of an opening
+(0.0881: openings repel, since k and k + 1 must both miss every gear's tooth pair). So "one
+side of a hit is open" is true for that gear only; it is not a way to find openings.
+
 ## 10. Corrections on record
 
   - First anchor pass appended "the real machine grows, untouched happens exactly once" - the
