@@ -1,84 +1,78 @@
 # human.md - the state of the hunt, in plain language
 
-(Manager-rewritten after round 29, 2026-09-03. Current-state snapshot; history in git and
+(Manager-rewritten after round 30, 2026-09-04. Current-state snapshot; history in git and
 docs/proof-search/archive/.)
 
 ## The five-minute version
 
 We model twin primes as a machine: one gear per prime, each blocking positions on a fixed
 schedule; twins are the positions every gear misses. The target: prove that adding a gear
-never stretches the record blocked-run past its budget, for ALL machines at once.
+never stretches the record blocked-run past the budget (old record plus the new prime), for
+ALL machines at once. That inequality is the target, measured true at every computable step;
+it is not a law.
 
-ROUND 29 IN FOUR RESULTS:
+ROUND 30 IN FOUR RESULTS:
 
-1. THE TENTH LADDER STEP FELL, AND THE ELEVENTH SHOWED THE TOOL'S CEILING. The three-line
-   criterion from last round closed step ten with room to spare (132 against a budget of
-   150). At step eleven it fails: the old machine's deepest spectrum value is 177 against
-   a budget of 171, on an actual exhibited position. The reason is clean. Each extra unit of
-   a quantity called A_kill (the kill index) buys a whole new spectrum level (7 to 16 units) while
-   the budget only grows by 4 to 6. Every step with A_kill at most 3 certifies; both
-   failures are the steps where it reaches 4 or 5. The finer word-based tool still has 26
-   units of room at step eleven, so the ladder is not stuck, but the cheap criterion is done.
+1. THE ELEVENTH STEP FELL, TWICE, BY ROUTES THAT NEVER LOOK AT THE QUANTITY THAT BROKE THE
+   CHEAP TOOL. Step ten's shortcut fails at step eleven because a depth number grew. This
+   round two other tools closed step eleven anyway: an exact linear-programming certificate
+   (8,077 pieces, every one checked in exact arithmetic, covering every case of the machine
+   exactly once) and the finer word-based bound (145 against a budget of 171, computed on a
+   machine ten trillion times smaller and needing nothing about the new machine). So the
+   finite rungs of the ladder do not depend on that depth number at all. Only the uniform
+   proof does.
 
-2. THE HARD PART OF THE PROOF SPLIT INTO TWO NAMED PIECES. Last round's "one constant"
-   (the excess the derivation must control) now obeys an exact recursion: each depth's
-   excess is the previous depth's excess minus a per-letter residual. So the uniform bound
-   we need is equivalent to two things: the residual is bounded per letter (measured, never
-   above 4), and the longest legal word L is bounded across machines. That second piece is
-   the crux, because A_kill is exactly L + 1 (a theorem this round): L grew to 4 at machine
-   47, a new maximum, and that growth is exactly what broke the cheap criterion. Nothing we
-   have says L is bounded; nothing says it is not. That is now the sharpest open question.
-   One caution: these two pieces settle the depth part of the obligation. The depth-2 part,
-   that the budget exceeds the depth-2 spectrum value by a margin that keeps growing, is a
-   separate uniform statement that is measured (margin 9 at machine 11, 37 at machine 47)
-   and not proved.
+2. THE CRUX IS NOW PINNED TO ITS ARITHMETIC. The open question is whether the longest "legal
+   word" L stays bounded across all machines. The control group settled what kind of fact that
+   is: on machines with the same structure but moved teeth, L reaches 5 where the real machine
+   has 2. So no proof from structure alone can bound L; the real teeth must enter. Where they
+   enter is located too: through machine 29 the small value of L is decided by gears 5 and 7
+   alone, through a finite check; beyond that, gears 5 and 7 provably cannot do it, and every
+   word that dies dies because no slot of the old machine blocks its interior, never because
+   of a large gear. One more thing fell out: the length of L is what a random model with the
+   machine's own gap histogram predicts, to within one unit; only its last unit is arithmetic.
+   The manager's earlier "random model predicts 18" was wrong (the exact figure is 12, and
+   with the real histogram it is within a factor of two of the truth).
 
-3. THE FORMULA IS STRUCTURAL; ONLY ITS SIZE DEPENDS ON THE TEETH. The identity that computes
-   the new record from the old machine's spectrum holds at every one of 27,570 counterfactual
-   machines with the teeth moved, even though the budget law fails at 13 to 22 percent of
-   them. So last round's warning ("no proof from structure alone") narrows to one place: the
-   arithmetic of the teeth enters only through how large the spectrum values get. A Fourier
-   route to the same quantity was tested and closed: the walk has no spectral content of its
-   own, and the natural character-sum mass is identical across all counterfactuals while the
-   record varies by a factor of 2.5, so no such bound can see the record.
+3. THE HARDEST KERNEL BUILD IS DONE, AND THE CRASH IS EXPLAINED. The 385-case proof of step
+   31 to 37 that took the machine down last round is now checked by the proof kernel, built
+   in 35 tiers at 4 GB. The 54 GB was not the 385 imports (1.4 GB) but eleven "bridge" proof
+   steps written in a style that costs 0.4 GB each; rewritten, a tier costs 2.8 GB. The
+   round-29 theorem "kill index = longest legal word + 1" is also in the kernel now, over an
+   abstract machine.
 
-4. ARITHMETIC KEPT PAYING, AND ONE LANE PAID FOR A BAD PRICE. An LP lane closed a seventh
-   increment step at a machine no scan reaches, with 493 exact certificates, and proved its
-   31-to-37 certificate uses the smallest possible case split. A lane that had priced its
-   own programme at "1 to 100 core-hours" measured the truth at up to 15,000 times more,
-   found its previous round's headline value was only a lower bound because its parallel
-   search protocol was invalid, re-proved the value two independent ways (one by a SAT
-   solver in 14 minutes on one core), and took its programme off the top of its list. The
-   model question that programme was built to decide came out exactly as predicted, to the
-   unit: 1398.
+4. THE RECORDS' FAMILY TREE. Tracing every exact record back through the machines below it:
+   the record at one machine is built from a runner-up of the machine below, not from its
+   record, two to five generations deep. And the one place the increment inequality strains
+   (three rows at machine 31) is now a single event: the old machine's depth-3 maximiser has a
+   padded middle letter, and nowhere else in the corpus does that happen.
 
-Also: the round's opening re-verification passed (the record extension F(61) >= 173 is now
-manager-checked by an independent path); the small-machine laws found in the "anchor 2,3,5"
-line are now kernel theorems for every gear at once, including the attainment of F(17) = 18 with
-its witness (the value was known by scan; the kernel had only the upper bound); and two invariants found five rounds apart (phase saturation and the literal
-cap) were proved identical at all 48 residue classes in the kernel.
+Also: the exact word census that Constructor asked for three rounds ago was delivered (its
+top value matches a count Mechanic found in round 26 by another route); the mirror is now a
+theorem with a companion translation lemma that explains a round-29 puzzle to the number; the
+"anchor 2, 3, 5" laws have their own novel-findings document with the prior-art verdict "none
+found" for the two-class versions; and the one published paper closest to this work (Holt and
+Rudd 2014) turns out to stop exactly where the project's depth quantity starts to matter.
 
 ## Honest ledger
 
-The machine crashed once. A kernel build that assembles 385 case proofs into one root file
-reached 54 GB of virtual memory on a 16 GB box, exhausted the pagefile, and took Windows
-down; the manager had relaunched that build after its first attempt killed the editor, so
-the crash is the manager's error. All 385 case proofs are checked; the root that joins them
-is not, and stays out of the default build until it is split into tiers. The Formalist's
-report was written by the manager from the lane's own document. Every other lane filed with
-gates that the manager re-ran green from clean processes after the reboot. Three lanes
-retracted or corrected their own earlier numbers (a 15,000x price, an invalid search
-protocol, a 3.2x optimistic kernel price), and one lane's pre-registered scorecard was its
-worst yet (6 of 17 refuted) and is recorded as such.
+The round ran through an Anthropic API incident. Every lane was cut off repeatedly, and the
+manager's habit of resuming them on each failure burned the session budget, so the round
+finished the next morning. No data was lost: every lane writes results from the worker, and all
+six filed with gates the manager re-ran green from clean processes afterwards. Three lanes
+refuted their own pre-registered predictions in part (Constructor's eps mechanism, Mechanic's
+"length is cover" reading, Formalist's memory price for the old bridge), and the manager's own
+null estimate for L was wrong by a factor of 1.5 and is recorded as such. The interactive
+visualisation built during the outage was judged not valuable and set aside. Next round the
+lanes run on Opus 5, and during any outage they wait rather than retry.
 
 ## The map
 
 Route: twins infinite <=> no machine ever covers a window (kernel-checked iff).
-(A), (B), (C): closed. (D): true at every computable step and beyond the corpus; ten
-certified rungs; increment law kernel-grade at six steps and certified by exact LP
-certificates (not yet in the kernel) at a seventh; the depth part of the uniform obligation
-now equals two statements - a per-letter residual is bounded (measured) and the longest
-legal word is bounded (open, and the crux) - and the depth-2 part (the old record plus the
-new prime must exceed the depth-2 spectrum value by a margin that stays large) remains a
-separate, unproved uniform statement. Next: the tiered kernel root, rung eleven by the finer
-tool, the padded-gap census that would decide the three open rows, and any handle on L.
+(A), (B), (C): closed. (D): true at every computable step and beyond the corpus; eleven
+certified rungs, the last two by tools that never see the depth number; the 31 to 37 case-split
+proof in the kernel. The uniform obligation: a per-letter residual bounded on literal letters
+(measured, at most 4), one padded exception located and explained, the depth-2 slack (measured
+9 to 49, unproved), and L bounded, which is the crux, is arithmetic not structural, and now has
+a named route: bound the legal alphabet's class densities, then close the last unit by the
+cover half.

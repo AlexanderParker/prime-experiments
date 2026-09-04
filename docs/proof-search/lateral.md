@@ -2521,3 +2521,239 @@ random members). Novel-register docs: docs/novel/walk-transform-pole-identity.md
 (new), docs/novel/mirror-parity-laws.md section 9 (new),
 docs/novel/tooth-counterfactual-percentile.md section 5B (new), plus three
 README index entries.
+
+## Round 30 (2026-09-03) - L on the counterfactual family, the depth-2 slack's
+## one failure, and the mirror gated on every record
+
+CHOSE, in brief order: (a) L(M) - the longest realised legal word, = D_g - 1 =
+A_kill - 1 - computed in the residue-run form on every member of the
+tooth-counterfactual family at 7->11 .. 19->23 (exhaustive; the FULL 19->23
+family, all eleven v_23, for the first time: 142,560 rows) and on a 601-member
+sample of V(23) at 23->29; (b) the depth-2 slack F + q' - F_2 on the same
+family; (c) the mirror as an exact symmetry, stated and gated on all 24 exact
+record windows on file plus its transfer-coordinate form.  The manager's
+addendum (residue-run L; record-law F(M+q') from one lower period) is what the
+vehicle does.
+
+GATES, all run from clean processes at round close, all exit 0:
+  uv run python research/tooth_L_r30.py --report        -> 33 gates
+      (after --steps small; --steps 19_23 x3; --steps 23_29 x2; chunk files
+       written from the child and resumed from disk; logs data/r30/)
+  uv run python research/mirror_records_r30.py          -> 150 gates
+  uv run python research/d0_family_r30.py               -> 13 gates
+Predictions A1-A8, B1-B5, C1-C4 pre-registered in
+research/data/r30_lateral_predictions.txt before any round-30 code existed.
+Persistent results: research/lateral_r30_results.txt.  Every job launched
+this round has finished; nothing is left running.
+
+### Established results (continuing the numbering; do not renumber 1-77)
+
+78. L IS NOT CAPPED ON THE FAMILY BY THE REAL MACHINE'S CONSTANT (r30; brief
+    item (a)).  Max L over the FULL family is 1, 3, 3, 3, 5 at 7->11 .. 19->23
+    against the real machine's 0, 1, 1, 1, 2; pinned-family maxima 1, 2, 1, 3,
+    4; the 23->29 sample (8,414 rows) reaches 3 against the real 1.  The L = 5
+    member (J_max = 7, A_kill = 6, beyond anything the corpus shows below m47)
+    is V(19)'s (1,2,5,2,1,5) with v_23 = 9 (letters 18, 5): word
+    [5,18,5,18,5] at openings 808282..808333, residues mod 23 alternating
+    16, 21.  The real machine is at or below the family median at every step
+    and in the bottom 1.2% of the sampled pinned family at 23->29 (7 of 601
+    have L = 1).  Every deepest word at every step is LITERAL (0 padded
+    letters).  CONSEQUENCE: (B) "L(M) bounded" does not follow from the
+    structural theorems alone - CRT, the mirror, T2/T3, R89/R90 and the record
+    law hold at every member, and the family's L is 1.5-2.5x the real value
+    and grows with the step.  Any proof of (B) must use the teeth.
+
+79. WHERE THE TEETH ENTER L, EXACTLY: MOD-{5,7} ADMISSIBILITY OF THE BARE
+    ALTERNATION (r30).  Call (a,b,a) admissible if some residue mod 5 (and
+    mod 7) carries the partial sums r, r+a, r+a+b, r+2a+b outside the gear's
+    tooth pair.  On the family P(L >= 3 | admissible) = 0.006 / 0.101 / 0.272 /
+    0.320 and P(L >= 3 | not admissible) = 0.0000 / 0.0000 / 0.0001 / 0.0000
+    at 13->17 / 17->19 / 19->23 / 23->29(S); every L >= 3 word built from the
+    bare letters a, b is admissible (0 exceptions in 21,357 rows; the 15
+    non-bare rows at 19->23 use a + q').  The real machine's alternation is
+    NOT admissible at 13->17 (6,11,6), 17->19 (6,13,6) and 23->29 (10,19,10) -
+    its L <= 2 there is decided by gears 5 and 7 alone, R74's mechanism - and
+    IS admissible at 19->23 (8,15,8).  This is also why gear 5's tooth carries
+    eta^2 = 0.173 of L at 17->19 (all 22 pinned L = 3 rows have v_5 = 2) while
+    every old gear above 7 explains < 1% at every step; the incoming tooth
+    (which letters are legal) is the largest factor elsewhere (0.07 / 0.22 /
+    0.27).  Deep words need one SMALL common letter (b = 3 or 5 maximises the
+    mean L at every step from 13->17); the twin tooth is never the argmin,
+    and at 23->29 its letter class has the third-highest mean L while the real
+    old teeth sit at the bottom of it - the low-outlier-inside-the-high-class
+    pattern of rounds 27-28.  Letter COUNTS predict L weakly (spearman 0.2-0.4
+    pinned); the remainder is adjacency, the depth-1 object of item 75.
+
+80. THE DEPTH-2 SLACK IS ORDINARY FOR THE REAL MACHINE AND FAILS EXACTLY ONCE
+    ON THE FAMILY (r30; brief item (b)).  slack = F + q' - F_2 over V(y):
+    min 7 / 6 / 6 / 5 / -1 / 9(S); real machine at the 50.0-83.3 / 26.7-50.0 /
+    35.6-61.1 / 23.7-34.9 / 41.5-54.8 / 72.2-86.5 percentile (<, <=) at 7->11
+    .. 23->29.  Not extreme; below the median at 17->19.  max(F_2 - F) = 4, 7,
+    11, 14, 24, strictly increasing.  The tail reaches zero at exactly ONE of
+    14,616 exhaustively enumerated old machines: V(19)'s (1,1,4,3,5,2) with
+    F = 26, F_2 = 50 - a machine where the depth-2 half of (D) fails.
+    F(M+23) = 50 = F_2 there for 10 of its 11 new-tooth values (attainment at
+    depth 2), 53 = Q*_5 at v_23 = 1.
+
+81. THAT FAILURE IS THE SELF-MIRROR 2-WINDOW, AND F_2 >= 2 d_0 IS A THEOREM
+    (r30).  By mirror symmetry the two gaps around slot 0 are (d_0, d_0), so
+    F_2 >= 2 d_0 at every symmetric two-tooth sieve (gated at 15,217 old
+    machines), and the depth-2 half can fail by this window alone whenever
+    2 d_0 > F + q'.  The failing member has d_0 = 25 against F = 26 (its
+    largest pair away from 0 is 32).  Excluding wrap-pair members the minimum
+    slack is 8 / 6 / 6 / 5 / 4 / 9 - POSITIVE at every step; F_2 is attained by
+    the wrap pair at 16.7 / 13.3 / 2.8 / 0.49 / 0.08 / 0.0% of members; the
+    real machine's d_0 = 2, 3, 3, 5, 5, 5 (a closed form, Mechanic r25) sits at
+    the 16-40 percentile of the family's d_0, whose maximum is 4 / 7 / 10 / 15
+    / 25 / 20(S).  So the only depth-2 failure mode found on the family is the
+    ONE depth at which the mirror lever needs a hypothesis (J = 2, item 73:
+    d_0 != F), and that hypothesis is a closed form on the real machine.
+
+82. (D) IS NEARLY GENERIC ON THE FAMILY; THE INCREMENT LAW IS NOT (r30; a
+    correction to the round-29 SUMMARY's "(D) and the increment law fail at
+    13-22%").  With F(M+q') direct at 27,570 rows and from the record law at
+    the rest: (D) fails at 0 / 1 / 1 / 36 / 203 rows of 30 / 180 / 1,440 /
+    12,960 / 142,560 (0.00-0.56%) and at 1 of 8,414 sampled rows at 23->29;
+    the increment law fails at 13.3 / 13.9 / 14.5 / 21.7 / 22.3%.  The
+    depth-2 half carries 0 / 0 / 0 / 0 / 11 of the (D) failures (the eleven
+    rows are item 80's member).  On this null family the deep half
+    (max_J Delta_J) is what fails, and rarely.
+
+83. THE MIRROR IS AN EXACT SYMMETRY OF EVERY RECORD ON FILE, AND OF THE
+    TRANSFER SEARCH (r30; brief item (c); docs/novel/mirror-parity-laws.md
+    section 10).  THEOREM: for a window (address k, span s, interior offsets
+    o_i) of machine y, k' = P - k - s (mod P) is an opening whose interior
+    offsets are the reversed s - o_i, whose flanks are the reversed flanks,
+    whose residues mod any q'' not dividing P map r -> P - r, and
+    k + k' + s = P.  Gated at 24 records - the four CRT slots, the seven
+    round-28 witnesses, the LP F_2(37) >= 90 phases (slot 90816580900),
+    F_6(47) = 177 (slot 46615676895423125) and the eleven chain_31/37/41 rows
+    - 150 assertions, partner always a distinct slot.  F_2(59) B is A's mirror;
+    the F_5(41) pair is a mirror pair in machine-41 coordinates.  IN TRANSFER
+    COORDINATES (start k in [0, P0), phases c_q): (k, c_q) -> (P0 - k - s,
+    P0 - c_q mod q), gated on F_6(47) (K = 26216680 -> 10965288, phases
+    (3,21,29,26,26,27) -> (23,8,3,20,29,9)), the F_5(41) pair and the F_2(59)
+    pair from machine 23.  WHAT IT BUYS: a factor 2 on every transfer sweep
+    (one representative per orbit, verdict copied), and the parity constraint
+    (maximisers of Q*_J at J >= 3, and of F_J wherever span_self != F_J, come
+    in pairs, so a search that has found one is provably incomplete and the
+    partner's address is known).  No inequality (item 74).
+
+### Refuted angles (continuing)
+
+56. MY OWN A1's NUMERIC ROW - "max L = 2, 3, 3, 4, 4".  It is 1, 3, 3, 3, 5.
+    The direction (larger than the real machine at every step) holds.
+57. MY OWN A2's SAMPLE CLAUSE - "a 600-member sample of V(23) contains
+    L >= 4".  Max L = 3 in 8,414 rows.  (An L = 4 row is 0.017% of the 19->23
+    family, so 8,414 rows expected about one; none seen.)
+58. MY OWN A4's OLD-GEAR CLAUSE - "no old gear's eta^2 exceeds 0.10".  Gear 5
+    carries 0.173 at 17->19, more than the incoming tooth (0.125) - and item
+    79 says why.
+59. MY OWN A5 - "spearman(L, min(n_a, n_b)) >= 0.5 at 17->19 and 19->23, and
+    the real machine's min(n_a, n_b) is below the pinned median at both".
+    0.401 and 0.214; the real value is at the 63.4 percentile at 19->23.
+    Letter counts are not the mechanism; admissibility and adjacency are.
+60. MY OWN A7's SHAPE - "the argmin of mean L over v_q' is an extreme tooth".
+    Extreme at 13->17 and 17->19, BALANCED (a ~ b ~ q'/2) at 11->13, 19->23
+    and 23->29.  The clause "never the twin" holds.
+61. MY OWN B1 - "the real machine's depth-2 slack percentile is >= 60% at
+    13->17, 17->19, 19->23".  61.1 (<=) / 34.9 / 54.8.  Ordinary, not
+    favourable.
+62. MY OWN B2's 17->19 CLAUSE - "some member of V(17) has F_2 - F >= 19".
+    Max 14.  The zero is reached only at 19->23, once.
+
+### Prediction scorecard, round 30 (pre-registered in data/r30_lateral_predictions.txt)
+
+  A1  L larger on the family at every step; max row 2,3,3,4,4   HALF (direction
+      CONFIRMED at all five steps; row REFUTED: 1,3,3,3,5)
+  A2  max L non-decreasing; P(L>=3) grows; sample has L>=4     HALF (2 of 3)
+  A3  real L at or below the family median at every step       CONFIRMED (6/6)
+  A4  incoming tooth's eta^2 largest; old gears < 0.10          HALF (3 of 4
+      steps; gear 5 = 0.173 at 17->19)
+  A5  spearman(L, min(n_a,n_b)) >= 0.5; real below median       REFUTED
+  A6  every L = 4 word at 19->23 pinned is literal              CONFIRMED (8/8,
+      and every max-L word at every step)
+  A7  argmin of mean L is an extreme tooth, never the twin      HALF
+  A8  (B) is not structural                                      CONFIRMED
+  B1  real slack percentile >= 60% and < 95%                     REFUTED (34.9,
+      54.8)
+  B2  floor at three small steps; zero reached at 17->19, 19->23 HALF (17->19
+      min 5; 19->23 min -1, exhibited)
+  B3  slack <= 0 below 1%                                        CONFIRMED (0.008%)
+  B4  max(F_2 - F) strictly increasing                           CONFIRMED
+  B5  attainment at depth 2 at slack <= 0 members                CONFIRMED (10/11)
+  C1  every record passes the mirror statement                   CONFIRMED (24/24)
+  C2  F_2(59) B = mirror of A; F_5(41) pair in m41 coordinates   CONFIRMED
+  C3  transfer-coordinate map (P0 - k - s, P0 - c)               CONFIRMED (3/3)
+  C4  buys a factor 2 and parity, no inequality                  JUDGMENT (not
+      scored); one new consequence found (item 81)
+
+  TOTAL: 9 confirmed, 5 half, 2 refuted, 1 judgment.  The informative misses
+  are A5 (the mechanism is not letter frequency) and B1 (the real machine's
+  depth-2 slack is ordinary, which is the honest answer to the brief).  Items
+  79, 81 and 82 were not predicted at all.
+
+### Backlog changes
+
+CLOSED: U19 ("where does depth 6 come from?") - item 79: mod-{5,7}
+  admissibility of the bare alternation plus adjacency; the eight V(19)
+  members with J = 6 are the pinned L = 4 members, words [8,15,8,15] /
+  [15,8,15,8], all literal.
+ADVANCED: the mirror thread - the record gate and the transfer-coordinate map
+  (item 83) are its operational form; nothing remains for this lane there.
+STILL UNTOUCHED, carried verbatim: U10, U14, U15, U16, U17, U18.
+NEW:
+U20. IS d_0 THE WHOLE DEPTH-2 STORY?  On the family the only depth-2 failure
+     is the wrap pair (item 81) and the minimum slack excluding wrap-pair
+     members is positive at every step.  The sharp question: is
+     F_2 <= max(2 d_0, F + c) for a small c on the family, i.e. is the non-wrap
+     depth-2 slack bounded below uniformly?  Measured min 4-9.  Cheap to
+     extend to the pinned family at 23->29 in full (142,560 sieves, ~6
+     core-hours).
+U21. THE {5,7} ADMISSIBILITY CAP AT THE CORPUS RUNGS.  Item 79 decides L <= 2
+     at three of four steps from gears 5 and 7 alone.  R75 says the cap is
+     infinite from 53 -> 59.  The table of which corpus steps the twin
+     alternation (a, b, a, b, ...) is {5,7}-admissible to length k, against
+     the measured L = 1,1,1,2,1,3,3,2,2,2,4,3, would say at which rung the
+     higher gears take over - a one-page computation.
+
+### Needs / handoffs
+
+(1) MANAGER - three things.  (a) (B) is NOT structural: the family's L
+    reaches 5 at 19->23 (item 78).  (b) The round-29 SUMMARY's "(D) and the
+    increment law fail at 13-22%" should read "the INCREMENT LAW fails at
+    13-22%; (D) fails at 0.0-0.6%" (item 82).  (c) The depth-2 half's one
+    family failure is the self-mirror 2-window with d_0 = 25 (item 81) - the
+    J = 2 hypothesis d_0 != F of the mirror lever is the depth-2 half's
+    arithmetic input, and d_0 is a closed form on the real machine.
+(2) CONSTRUCTOR - the teeth enter L through the {5,7} admissibility of the
+    bare alternation (a,b,a) (item 79); the real machine's L <= 2 at 13->17,
+    17->19 and 23->29 is decided by gears 5 and 7 alone; at 19->23 it is not.
+    That is R74's proxy doing real work on a null family, and R75's point
+    (the proxy stops at 53 -> 59) says where the higher gears must take over.
+(3) MECHANIC - every transfer sweep can halve: (k, c_q) -> (P0 - k - s,
+    P0 - c_q mod q) is the mirror in your coordinates (item 83, gated on your
+    F_6(47) witness and both pairs).  A sweep that finds one maximiser at
+    J >= 3 has a second at P - k - s.
+(4) FORMALIST - F_2 >= 2 d_0 is a one-line theorem (the gaps around slot 0
+    are (d_0, d_0) by the mirror); the record-mirror statement of item 83 is
+    `Mirror.mirror_gear` applied to a window, and k + k' + s = P is its
+    address form.
+(5) LP THREAD - your "value classes coarser than mirror orbits" was not looked
+    at (no time); unclaimed.
+
+### Reproduction pointers
+
+Round 30: research/tooth_L_r30.py (--steps small; --steps 19_23 --workers 4
+--max-chunks 72 three times; --steps 23_29 --workers 4 --sample 600
+--max-chunks 40 twice; --report, 33 gates; chunk files and logs in
+data/r30/); research/mirror_records_r30.py (150 gates, log
+data/r30/mirror_records.log); research/d0_family_r30.py (13 gates, log
+data/r30/d0_family.log); follow-ups data/r30/tooth_L_followup.log and
+gear5_admissible.log.  Predictions data/r30_lateral_predictions.txt; results
+research/lateral_r30_results.txt.  Inputs: data/r29/resid_*.npy (cross-vehicle
+gate on F, F_2, Q*_3, max Q*_J at all 27,570 shared rows), data/r28/
+tooth_m23_pinned.npy (F(m23) at the pinned rows), data/r29/chain_*.json and
+witness_inc_37_41.json (records).  Novel-register docs: docs/novel/
+tooth-counterfactual-percentile.md section 5C, mirror-parity-laws.md section
+10, plus two README index entries.

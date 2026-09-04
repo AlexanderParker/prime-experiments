@@ -3351,3 +3351,301 @@ the kernel and 0/1 roots.
 VERDICT 45 (manager). A ROOT'S MEMORY SCALES WITH ITS IMPORT COUNT, AND THE ONLY TRACE IS
 IN THE SYSTEM LOG. Price a many-case root before launching it, watch commit charge while it
 runs, and never assemble more than ~35 cases in one process on this box.
+
+
+## Round 30 append (2026-09-03/04)
+
+GATES / BUILD (the audit lines are in R30.5, filled at close; every build below was ONE
+PowerShell command `Set-Location C:\dev\primes\proofs; & lake.exe build <target>` wrapped in
+the commit watch, and every job the round launched finished or is recorded as killed):
+  lake build CaseCert37T<j>, j = 0..34   -> 35/35 rc=0, peak lean commit 2.78-2.81 GB solo
+  lake build CaseCert37                  -> rc=0, 83 s, peak lean commit 4.01 GB
+  lake build (default, 671 targets)      -> see R30.5
+  lake env lean AxiomCheck.lean          -> see R30.5
+  research/gen_case_lean.py 31_37 r29 --tiered  -> 35 tiers + root; the flat path reproduces
+      the round-29 CaseCert37*.lean byte for byte (regression-checked before the rewrite)
+  research/crt_slots_r29.py re-run (python3) -> the four slots, their flank openings and
+      P(41), P(53), P(59) reproduced; used as the transcription source for CrtSlots.lean
+
+THE ROUND'S ONE-LINE SUMMARY: the 31 -> 37 case-split root is in the kernel (tiered, 4 GB
+where the flat root crashed the machine at 53.7 GB - and the crash was the BRIDGE PROOF
+TERMS, not the imports); R89 and R90 are hypothesis-free kernel theorems over an abstract
+machine, instantiated at machine 11 (L(11) = 1, J_max = 3, A_kill = 2); Mechanic's four CRT
+slots plus the LP thread's m37 witness are kernel realisers of F_2 lower bounds at 37, 41, 53
+and 59, with the F_2(59) upper half deliberately NOT stated.
+
+### R30.0 ITEM (a) - THE TIERED ROOT, AND WHAT THE 53.7 GB ACTUALLY WAS
+
+MEASURED FIRST, BUILT SECOND. Before regenerating anything I ran four import-only probes
+(`_ImpOnly<n>.lean`: n case modules imported, one `#check`) and the CaseCert31 root as
+calibration, all under a watcher that samples every lean.exe once a second (private commit =
+`PagedMemorySize64`, working set, virtual size, the system commit charge), raises lean to
+High priority (verdict 35) and kills every lean.exe at 12 GB of summed lean commit or at
+50 GB of system commit (limit 59.6 GB; other lanes held 28-35 GB all round):
+
+    probe / target                    lean commit   wall     note
+    imports only, 0 case modules        2.22 GB     25 s     Mathlib + CaseSplit + Machine31
+    imports only, 11 case modules       2.21 GB     37 s
+    imports only, 35 case modules       2.36 GB     40 s
+    imports only, ALL 385 case modules  3.63 GB     47 s     <- the imports were never the cost
+    CaseCert31 root (35 bridges, r27)   2.79 GB    135 s     calibration, rebuilt from scratch
+    CaseCert37T0, round-29 bridge       6.58 GB    157 s     11 bridges of the 31->37 family
+    CaseCert37T1, round-30 bridge       2.78 GB     82 s     same 11-case shape, new bridge
+
+So importing the 385 case oleans (1.5 GB on disk, 3.9 MB each) costs 1.4 GB, and a tier of
+eleven round-29-style `nocase` bridges costs 4.4 GB above the import baseline - 0.4 GB per
+bridge, which at 385 bridges is ~150 GB: the flat root was killed by commit exhaustion at
+53.7 GB long before it finished. THE MECHANISM IS THE BRIDGE PROOF TERM. The round-29 bridge
+closed with `simp only [pfree.., Bool.false_or] at h3; simpa only [c<ci>_0, ..] using h3` and
+seven `omega` calls for the residue bounds; each bridge elaborated at ~100 s and ~0.4 GB.
+The round-30 bridge (`gen_case_lean.py`, `nocase_lines`) is
+
+    refine nocov<ci> (r0 := p % 13) ... (Nat.mod_lt _ (by norm_num)) x7 ?_
+    intro t ht
+    have h3 := hall (q<ci> t) (plt<ci> t ht)
+    rw [e5, e7, e11, pfree<ci>_5 t ht, pfree<ci>_7 t ht, pfree<ci>_11 t ht] at h3
+    exact h3
+
+- the held gears rewrite to `false`, and `false || ..` and the indicator definitions
+`c<ci>_a r t := gb<q> r (q<ci> t)` are DEFINITIONAL, so the bridge is the hypothesis itself.
+Per tier: 6.58 -> 2.78 GB, 157 -> 82 s, olean 1.49 MB -> 0.58 MB. Manager's verdict 45
+("a root's memory scales with its import count") is therefore corrected: it scales with the
+number of BRIDGES ELABORATED IN ONE PROCESS times the size of their proof terms; the imports
+are 1.4 GB for all 385.
+
+THE TIERS, ALL 35, AND THE ROOT. `gen_case_lean.py --tiered` writes `CaseCert37T<j>` for the
+35 residue tuples of the held gears {5, 7} (each importing its 11 cases, proving their
+bridges and `nopair<j>` by an 11-way `rcases` over gear 11) and the root `CaseCert37.lean`
+importing the 35 tiers with a 35-way `rcases` in the CaseCert31 shape (`blocked`, `no_run`,
+`F_le`, `D_31_37_case`). The 385 case oleans and `CaseCert37B` were reused as built; the
+flat generator path is untouched (regression: the round-29 CaseCert37.lean, B and C0/C25/C384
+regenerate byte-identical; CaseCert31's C modules differ only by the round-29 `set_option`
+placement fix, as recorded in R29.0). Built one tier at a time by a single resumable driver
+(`tierbuild.ps1`: skip-if-built, rc per module, the commit watch built in; one lake.exe per
+tier, one lean.exe per lake):
+
+    tier(s)             wall        peak lean commit     peak system commit
+    T1, T2, T4, T5,     25-71 s     2.78-3.13 GB         33-39 GB
+    T7 .. T34 (32 rows)             (mean 2.80 GB)
+    T0 (rebuilt), T3,   58-64 s     5.31 / 4.74 / 5.06   40.3 / 40.5 / 40.7 GB - SUMMED with a
+    T6                              GB                   concurrent `lake env lean` probe of
+                                                         mine (MachineUp / CrtSlots /
+                                                         WordLegal11), ~2.2 GB each; the tier
+                                                         alone is the 2.8 GB row
+    CaseCert37 (root)   83 s        4.01 GB              28.6 GB
+    total               2,293 s of tier wall (35 tiers), 62 min of driver time
+
+PRE-REGISTRATION, SCORED. (i) "a tier stays under 12 GB, expected 2.5-4 GB" - REFUTED at T0
+with the round-29 bridge (6.58 GB, though under the kill line), CONFIRMED after the bridge
+was rewritten (2.78-3.13 GB at 34 of 35 tiers solo). (ii) "T1 with the new bridge <= 3 GB and
+<= 90 s" - CONFIRMED (2.78 GB, 82 s). (iii) "the root <= 6 GB" - CONFIRMED (4.01 GB: the
+3.6 GB import baseline plus `blocked` and one 35-way `rcases`). Nothing was killed; the kill
+line was never approached (max summed lean commit 6.58 GB; max system commit 47.1 GB at T0).
+
+    theorem CaseCert37.F_le (n : N) : Machine37.g37 n <= 95
+    theorem CaseCert37.D_31_37_case (n : N) : Machine37.g37 n <= 58 + 37
+
+hypothesis-free and scan-free, the second kernel proof of the 31 -> 37 rung (R25.6 got it
+from the qualifying dictionary under `Census31`; this one consumes the primes up to 37 and
+385 exact certificates). The root, the 35 tiers and the four new modules below are
+registered and in `defaultTargets`; AxiomCheck imports the root again with eight `#print`
+lines (R30.5).
+
+### R30.1 ITEM (b) - R89 AND R90 AS KERNEL THEOREMS (`proofs/WordLegal.lean`)
+
+The file header quotes R81, R89 and R90 verbatim and maps each phrase to a definition. The
+objects, all over `ZMod q` for an arbitrary modulus `q` and an arbitrary `c` (Constructor's
+`c = u' = 6^{-1} mod q'`; NO primality and NO `6c = 1` is assumed unless named):
+
+    Cls = {pad, up, down}         Cls.val c : 0, 2c, -2c        (T2, the legal letters)
+    Alt t w                       T3 alternation read with the current tooth t
+    Legal w := exists t, Alt t w  ; legal_iff_noRepeat : Legal w <-> NoRepeat none w
+                                  (Constructor's "nonzero classes strictly alternate");
+                                  alt_iff_prefixSum (Mechanic's "prefix sums of range <= 1")
+    KilledAt c r x := x - r = c or -c   (= AnchorChain.OnTeeth c (x - r), killedAt_iff_onTeeth)
+    gapRes op n := op (n+1) - op n in ZMod q ; WordAt c op i w ; RealisedWord c op m ;
+    WindowLegal c op i J (the J-2 middles at i+1..i+J-2 form a legal word) ;
+    QstarNonempty c op J := exists i, WindowLegal c op i J     ("Q*_J > -inf") ;
+    Chain c op k n := exists r, the k openings op n .. op (n+k-1) are all KilledAt c r
+
+KERNEL THEOREMS (footprints in R30.5):
+    killable_iff       (exists r, every point of x is KilledAt c r) <-> (exists legal w,
+                       diffs x = w.map (val c))       - "legality = a tooth assignment" (R68)
+    chain_iff_word     Chain c op (k+1) n <-> exists w, |w| = k, Legal w, WordAt c op n w
+    word_of_window     Q*_J > -inf -> RealisedWord (J-2)                       [hyp-free]
+    window_of_word     a realised word at i >= 1 gives a window at i-1         [hyp-free]
+    qstar_iff_word     Q*_J > -inf <-> RealisedWord (J-2)     [hper : gapRes periodic, N > 0]
+    realisedWord_mono  a realised word of length m gives one of every length <= m
+    jmax               RealisedWord L and not RealisedWord (L+1) ->
+                         (Q*_J > -inf <-> J <= L + 2)                     [hper]   = R89
+    akill              same two facts -> (exists n, Chain k n <-> k <= L + 1), 1 <= k  = R89
+    sum_eq_tooth_sub   Alt t w -> sum of letters = tooth(end) - tooth(start)   [hyp-free]
+    endTooth_eq_iff    Alt t w -> (end tooth = start tooth <-> Even (nonpad w))  [hyp-free]
+    same_tooth         Alt t w -> (sum of letters = 0 <-> Even (nonpad w))     [2c != 0] = R90
+    middle_span        WordAt c op i w -> op (i + |w|) - op i = sum of letters (telescoping)
+    same_tooth_window  the middle span of a word-legal window is 0 mod q <-> even number of
+                       non-padded middles                                    [2c != 0] = R90
+    literal_even_span  R90's literal even-J case: middle span 0 mod q
+    two_mul_ne_zero    6c = 1 and 1 < q  ->  2c != 0   (so [2c != 0] is discharged at every
+                       real gear); four_mul_ne_zero; val_injective (6c = 1, 2 < q): the
+                       three letters are distinct residues, so the class is well defined
+
+WHAT IS AND IS NOT A HYPOTHESIS. The only hypothesis in R89 is `hper` (the gap residues are
+periodic), used ONLY to give a realised word that starts at index 0 a gap before it - the
+"plus the gaps immediately before" of Constructor's own proof; every machine in the ledger
+supplies it (`Machine11.g11_shift`, `Periodic.op_shift`). The `A_kill` half needs no
+periodicity at all. R90 needs `2c != 0`, discharged from `6c = 1`. Mechanic's part (C) - the
+joint realisability of a chain at the CRT slot of M + q' - is R68's step and is NOT needed
+for anything here: `Chain` is parts (A)+(B), M-openings on the teeth of one phase. Nothing
+in the file mentions M + q', a period, a census or a specific machine.
+
+R89 AT A MACHINE (`proofs/WordLegal11.lean`). Machine 11 with gear 13 (`c = 11`, `6 * 11 =
+1` in ZMod 13, letters 0, 9, 4): every gap is in [1, 7] (`Machine11.spectrum_one`), so the
+only legal letter is the gap 4 (class `down`), two `down`s never alternate, and the gap 4 at
+index 12 (`g11 12 = 4`, `decide +kernel` through `g11_eq_ow`) is a realised 1-word:
+
+    theorem WordLegal11.L11     : RealisedWord 11 opSeq 1 and not RealisedWord 11 opSeq 2
+    theorem WordLegal11.jmax11  : QstarNonempty 11 opSeq J <-> J <= 3      -- J_max(11) = 3
+    theorem WordLegal11.akill11 : (exists n, Chain 11 opSeq k n) <-> k <= 2  (1 <= k)
+                                                                        -- A_kill(11->13) = 2
+
+R81's first table row (m11: J_max 3, A_kill + 1 = 3) is a kernel fact. The other rows need
+each machine's realised word dictionary at length L+1 (`L = 1,1,1,2,1,3,3,2` at m11..m37); at
+m13/m17 the same "gaps too small for any letter but one" argument may work (letters
+{0, 6, 11} at 17 against gaps <= 11; {0, 6, 13} at 19 against gaps <= 18) and was not run.
+
+### R30.2 ITEM (c) - THE CRT SLOTS (`proofs/MachineUp.lean`, `proofs/CrtSlots.lean`)
+
+`MachineUp.lean` carries the corpus's machine chain five gears further in exactly the
+`Machine37` shape (`Exposed41 k := Exposed37 k and not 41 | 6k-1 and not 41 | 6k+1`, ...,
+`Exposed59`; teeth {7,34}, {36,7}, {8,39}, {9,44}, {10,49}), plus the residue tests
+`Open37/41/53/59` (`Machine19.expT` for the six smallest gears, `Killed_p` for the rest) with
+`exposed_q_iff : 1 <= k -> (Exposed_q k <-> Open_q k)` - ten `omega`s, one per gear, in the
+style of `Machine19.exposed19_iff`. Only the opening predicates are built (no `opSeq` for
+41..59), which is all a realiser needs.
+
+`CrtSlots.lean`: for each of Mechanic's four slots and the LP thread's m37 phase vector
+(CRT'd to the slot y = 90816580900 by the emission's own recipe), the FIVE consecutive
+openings - the pair's endpoints, its one interior opening and the previous/next opening
+outside it - as `Consec E [..]` (each open, nothing open strictly between), every slot fact a
+`decide +kernel` on the residue test over the offsets (`open_w`, `blocked_w`: bignum `%` in
+the kernel, no `native_decide`) transported through `exposed_q_iff` by one generic lemma
+`blocked_of_ball`. The `AdjPair` corollaries are the round-28 F_2 lower-bound shape:
+
+    CrtSlots.f2_37   : AdjPair Machine37.Exposed37 90816580900 90816580902 90816580990
+                       F_2(37) >= 90, word [5, 2, 88, 2]   (five_37)
+    CrtSlots.f2_41   : AdjPair Exposed41 21157523372970 21157523372998 21157523373073
+                       F_2(41) >= 103, word [7, 28, 75, 4]  (five_41)
+    CrtSlots.f2_53   : AdjPair Exposed53 327666424664536738 327666424664536815 327666424664536897
+                       F_2(53) >= 159, word [6, 77, 82, 3]  (five_53)
+    CrtSlots.f2_59_A : AdjPair Exposed59 307199471342884027665 307199471342884027765
+                       307199471342884027838     F_2(59) >= 173, word [13, 100, 73, 4]
+    CrtSlots.f2_59_B : AdjPair Exposed59 13260587016151412007 13260587016151412080
+                       13260587016151412180      F_2(59) >= 173, word [4, 73, 100, 13]
+    CrtSlots.mirror_59 : y_A + y_B + 173 = [5, 7, .., 59].prod ;  period_59 = P(59)
+
+SCOPE, carried in the file header and NOT in any theorem: F_2(41) = 103 and F_2(53) = 159
+are exact both ways (upper halves from the deletion-ladder caps F(43) = 103, F(59) = 161);
+F_2(59) >= 173 is unconditional and is all the kernel states - `F_2(59) <= 173` carries
+Mechanic's span condition "no 2-window of machine 59 has span in (173, 220]" until F(61) is
+a number. Elaboration: the whole file in 30 s (the 15-gear residue test on 2e20-size numerals
+costs nothing in the kernel). NOT DONE: `f2_37_sharp` (`not SpectrumBound g37 2 89`, the
+m37 analogue of round 28's `f2_29_sharp`) needs `Machine37.opSeq37_surj`, which the ledger
+does not have (Machine31 has it); one afternoon of `opSeq_reach` boilerplate, not started.
+
+### R30.3 NEGATIVES, CONTROLS AND PROCESS
+
+- THE FLAT ROOT'S DIAGNOSIS IN R29.5 / VERDICT 45 WAS WRONG IN MECHANISM (imports) AND RIGHT
+  IN PRESCRIPTION (tier it). Measured: 385 imports = 1.4 GB above baseline; eleven round-29
+  bridges = 4.4 GB. The tiering would have worked with the old bridge too (6.6 GB per tier,
+  root ~4 GB), but at 157 s per tier and 1.5 MB oleans; the bridge fix is what made it a
+  62-minute job.
+- DETACHED LAUNCHES DIE UNDER THE AGENT TOOL. `Start-Process -WindowStyle Hidden` (Lateral's
+  round-28 recipe) returned a PID that was dead before the next tool call, twice, with no log
+  line; the same script through the tool's own `run_in_background` ran 30 minutes and
+  finished. A wrapper written with `WriteAllLines` from inside a tool command was flattened
+  to one line and failed to parse - write scripts with the Write tool. Neither cost a build.
+- `lake build` (default, 671 targets) REPLAYS 117,000 cached warning lines from the 385 case
+  modules (`linter.unusedVariables` on the generated `nocov` binders) and was killed by the
+  tool's 10-minute limit at job 2117/2616 with NOTHING rebuilt (checked by olean mtimes) - the
+  root build itself replays 1485 jobs in 83 s. Re-run in the background; see R30.5.
+- `lake build -j 6` is not accepted by this lake ("unknown short option '-j'"); the new
+  modules were built without a job limit (four light modules, nothing else to compile).
+- The coordinator's resume messages ("nothing of yours is on disk yet", "WordLegal.lean was
+  elaborating at 21:12") were stale relative to the transcript; every resume was answered by
+  checking the process list and the oleans before relaunching anything, per the brief.
+- NEGATIVE CONTROLS on the new kernel computations: the m11 gap-4 index was read off `gw11`
+  (index 13) and shifted by one to the enumeration's index 12 (Gen11Sound `gAt_succ`: the
+  word's base is one opening earlier), and the kernel decided `g11 12 = 4`; `CrtSlots` was
+  first written with `interval_cases` over the interior and rewritten to the
+  `decide +kernel`-over-offsets form before any run, because `interval_cases` on 2e20
+  bounds was judged fragile (JUDGMENT, NOT RESULT - it was not measured).
+- WordLegal.lean elaborates in 35 s, MachineUp.lean in 42 s, CrtSlots.lean in 30 s,
+  WordLegal11.lean in 23 s (each `lake env lean`, solo).
+
+### R30.4 NEW VERDICTS
+
+46. A ROOT'S MEMORY IS THE PROOF TERMS OF THE BRIDGES IT ELABORATES, NOT ITS IMPORTS.
+    385 imported case oleans cost 1.4 GB; eleven round-29 bridges cost 4.4 GB. Measure the
+    import cost with a `#check`-only probe before blaming it. (Corrects verdict 45's
+    mechanism; its prescription - tier the assembly - stands.)
+47. A BRIDGE PROOF SHOULD BE `rw ... at h; exact h`, NEVER `simp ... ; simpa`. When the
+    residue rewrites make the hypothesis definitionally the goal, spelling that out costs
+    nothing and a `simp`-built term costs 0.4 GB and 100 s per bridge at this rung.
+48. PRE-REGISTER THE NUMBER, THEN THE MECHANISM. The tier prediction (2.5-4 GB) was refuted
+    at 6.6 GB; the refutation located the cost in one tactic line and the second prediction
+    (<= 3 GB, <= 90 s) was confirmed at 2.78 GB and 82 s.
+49. THE COMMIT WATCH IS A DRIVER FEATURE, NOT A SEPARATE PROCESS. Sampling lean.exe from the
+    same script that launched lake gives per-target peaks for free and a kill line that
+    cannot be forgotten; a detached watcher is exactly the process that silently dies.
+50. A HYPOTHESIS-EXPLICIT ABSTRACT THEOREM PLUS ONE INSTANTIATION BEATS EITHER ALONE.
+    R89's `hper` is a hypothesis in `WordLegal.lean` and a theorem at machine 11; the pair
+    says exactly what any further machine owes (its period and its realised words of length
+    L+1) and nothing else.
+51. THE F_2(59) UPPER HALF IS A SPAN CONDITION AND STAYS OUT OF THE KERNEL. The realiser is
+    `>= 173`; the `<= 173` half is stated only in the file header with its condition, so
+    nobody can `#print` an equality that does not exist.
+52. `Start-Process -WindowStyle Hidden` IS NOT A BACKGROUND JOB IN AN AGENT THREAD; the tool's
+    `run_in_background` is. Confirm a launch from the process list and the log's first line
+    before assuming it runs (round-27 verdict 30, again, from the other side).
+
+### R30.5 BUILD AND AUDIT LINES AT CLOSE (2026-09-04, 05:11)
+
+    Set-Location C:\dev\primes\proofs; & lake.exe build WordLegal MachineUp CrtSlots WordLegal11
+        -> Build completed successfully (1430 jobs); MachineUp 16 s, WordLegal 17 s,
+           WordLegal11 12 s, CrtSlots 16 s
+    Set-Location C:\dev\primes\proofs; & lake.exe build
+        -> Build completed successfully (2616 jobs), 33 s, exit 0     (2536 -> 2616: the
+           35 tiers, the root, and the four new modules; 671 default targets)
+    Set-Location C:\dev\primes\proofs; & lake.exe env lean AxiomCheck.lean
+        -> 468 declarations: 335 [propext, Classical.choice, Quot.sound], 69 [propext,
+           Quot.sound], 17 [propext], 47 with NO axioms; sorryAx 0; native_decide /
+           ofReduceBool 0; errors 0; 27 s
+        'CaseCert37.F_le'          depends on axioms: [propext, Classical.choice, Quot.sound]
+        'CaseCert37.D_31_37_case'  depends on axioms: [propext, Classical.choice, Quot.sound]
+        'CaseCert37.nocov0' / 'nocov384' / 'nopair0' / 'nopair34' / 'blocked' / 'no_run'
+                                   : the same three
+        'WordLegal.legal_iff_noRepeat'  [propext]
+        'WordLegal.killable_iff', 'chain_iff_word', 'qstar_iff_word', 'jmax', 'akill',
+        'middle_span'                   [propext, Quot.sound]
+        'WordLegal.same_tooth', 'same_tooth_window', 'literal_even_span', 'two_mul_ne_zero',
+        'val_injective', 'alt_iff_prefixSum'   [propext, Classical.choice, Quot.sound]
+        'WordLegal11.L11', 'jmax11', 'akill11'  [propext, Classical.choice, Quot.sound]
+        'MachineUp.exposed59_iff', 'CrtSlots.f2_37', 'five_37', 'f2_41', 'five_41', 'f2_53',
+        'five_53', 'f2_59_A', 'five_59_A', 'f2_59_B', 'five_59_B'
+                                   [propext, Classical.choice, Quot.sound]
+        'CrtSlots.mirror_59'       [propext]
+
+Zero sorries in every registered file. Scratch files (`_ImpOnly*.lean`, the probe outputs,
+the drivers) live in the session scratchpad, not in `proofs/`; nothing scratch is registered.
+Every job the round launched is finished: the 35-tier driver (DRIVER DONE 21:47:14), the root
+build (23:16:41), the background build + audit (05:11). No lean.exe or lake.exe is running.
+
+FILES. New: proofs/CaseCert37T0.lean .. CaseCert37T34.lean (generated), proofs/CaseCert37.lean
+(regenerated, tiered), proofs/WordLegal.lean, proofs/WordLegal11.lean, proofs/MachineUp.lean,
+proofs/CrtSlots.lean. Edited: research/gen_case_lean.py (`--tiered`, the round-30 bridge, the
+root/tier generators factored out; the flat path byte-identical on the round-29 files),
+proofs/lakefile.toml (35 tier libs + 4 new libs registered; the root, the tiers and the four
+modules added to defaultTargets; the CaseCert37 comment updated), proofs/AxiomCheck.lean (the
+root's import restored, 36 new `#print axioms` lines), docs/proof-search/formalist.md (this
+append), docs/proof-search/agents-shared.md (the round-30 block). Not committed, per the brief.

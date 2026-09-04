@@ -652,3 +652,75 @@ script-verification.  PRIOR-ART CHECK: **not yet checked**.  Terms beyond
 sections 6 and 8.8: "fixed-point-free involution on admissible gap words",
 "palindromic constraint alternating residue classes sieve", "antipodal gap
 reduced residue system parity".
+
+## 10. ROUND-30 EXTENSION: THE MIRROR GATED ON EVERY RECORD, AND IN TRANSFER COORDINATES
+
+Lateral, round 30 (2026-09-03).  Script `research/mirror_records_r30.py` (150
+assertion gates, exit 0, log `research/data/r30/mirror_records.log`).
+Status: PROVED (one line) + SCRIPT-VERIFIED on all 24 exact record windows
+on file.
+
+### 10.1 THE STATEMENT
+
+For a window of machine `y` (address `k` an opening, span `s`, interior
+offsets `0 < o_1 < ... < o_{J-1} < s` the openings strictly inside, every
+other slot of the span blocked):
+
+>   `k' = (P - k - s) mod P` is an opening; the openings in `[k', k'+s]` are
+>   exactly the reversed offsets `s - o_{J-1} < ... < s - o_1`; the flanks
+>   reverse (gap below `k'` = gap above `k+s`, gap above `k'+s` = gap below
+>   `k`); for any gear `q''` not dividing `P` the residue of an interior
+>   opening maps `r -> (P - r) mod q''`; and `k + k' + s = P` when both
+>   addresses are taken in `[0, P)`.
+
+*Proof.*  `k + t` is blocked by `q` iff `k + t = +-u_q (mod q)`; the tooth pair
+is closed under negation and `q | P`, so `k + t` is open iff `P - k - t` is
+open.  []
+
+Gated at their own machines from the definition, partner always a DIFFERENT
+slot: `F_2(41) = 103`, `F_2(53) = 159`, `F_2(59) = 173` A and B (B IS A's
+mirror: `k_B = P(59) - k_A - 173`), `F(59) >= 161` (an m53 3-window),
+`F_2(43) = 116`, `F_3(43) = 125`, `F_4(43) = 132`, the `F_5(41) = 128` pair (a
+mirror pair in MACHINE-41 coordinates, not only in machine-23 ones),
+`F_3(47) = 145`, the LP thread's `F_2(37) >= 90` phases (slot 90816580900),
+Mechanic's `F_6(47) = 177` (slot 46615676895423125) and the eleven record-law
+rows of `chain_31/37/41.json` (`F(31) = 58`, `F(37) = 88`, `F(41) = 91` among
+them).
+
+### 10.2 THE MIRROR IN TRANSFER COORDINATES
+
+A transfer search lifts a window of machine `y0` (period `P0`, start `k`) by
+phases `c_q` of the new gears: `x = k + j P0` with `c_q = -j P0 (mod q)`.  The
+mirror `x -> P - x - s` has `k' = P0 - k - s` and `j' = P/P0 - 1 - j`, hence
+
+>   `(k, c_q)  ->  (P0 - k - s,  (P0 - c_q) mod q)`,   marks reversed.
+
+Gated on `F_6(47)` (`K = 26216680`, phases `(3,21,29,26,26,27)` ->
+`K' = 10965288`, `(23,8,3,20,29,9)`, lifting to exactly `P(47) - x - 177`), on
+the `F_5(41)` pair (machine-23 starts 4,834,937 / 32,347,080, phases mirrored)
+and on the `F_2(59)` pair from machine 23 with eight new gears.  Every transfer
+sweep can therefore decide one representative per orbit and copy the verdict.
+
+### 10.3 WHAT IT BUYS, AND ONE NEW CONSEQUENCE
+
+Exactly two things: the factor 2 on every reversal-invariant search, and the
+parity constraint - maximisers of `Q*_J` at `J >= 3` (section 9) and of `F_J`
+wherever `span_self(J) != F_J` (section 8) come in pairs, so a search that
+has found ONE maximiser is provably incomplete and the partner's address is
+`P - k - s`.  No inequality on `Q*_J` or `F_J` (section 9.4; JUDGMENT, NOT
+RESULT for "no argument of any kind").
+
+The new consequence is at the one depth the lever does not cover.  The
+self-mirror 2-window is `(d_0, d_0)` (8.3), so `F_2 >= 2 d_0` at every
+symmetric two-tooth sieve, and on the tooth-counterfactual family the ONLY
+member (of 14,616 exhaustively enumerated) at which the depth-2 half of (D),
+`F_2 <= F + q'`, fails is one where `F_2 = 2 d_0` with `d_0 = 25`, `F = 26`
+(tooth-counterfactual-percentile.md 5C.3; `research/d0_family_r30.py`, 13
+gates).  Excluding wrap-pair members the family's depth-2 slack is positive at
+every step.  So the hypothesis `d_0 != F` that the lever needs at `J = 2` is
+also the depth-2 half's arithmetic input, and on the real machine `d_0` is a
+closed form.
+
+Prior-art check: **not yet checked**; terms beyond 8.8 and 9.5: "reflection
+symmetry of covering-system search space", "symmetric residue system window
+pairing", "CRT lift of a mirrored window".

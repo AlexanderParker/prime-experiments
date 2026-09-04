@@ -2609,3 +2609,542 @@ H7 (F(2,53) and the percentile band) - **CONFIRMED**, scored in 13e.
   incl. section 2's ILP), arXiv:2007.01808 (full text), FKMPT "Long gaps in
   sieved sets" (full text), arXiv:2507.23041 (the AN2 passage and its reference
   list). NOT obtained: Hagedorn, Math. Comp. 78 (2009) - two 403s.
+
+## 14. ROUND 30 (2026-09-03) - HALF LANE: LITERATURE AND HYGIENE
+
+Brief: (a) prior-art check on the round-29 objects, one adjacency table each;
+(b) fix the stalled gate; (c) the F(2,y) / F_2(M) collision audit; (d) launch
+nothing. No computation beyond the gate re-run; no pre-registration (nothing
+here has an outcome a prediction could score - the one falsifiable item was
+"does section [D] complete on the reduced engine", and it did, twice - 84 s
+and 180 s wall in two clean runs, the second with the negative controls added;
+wall times are a sanity column only, per the benchmark protocol).
+
+TERMINOLOGY (manager-validated, used verbatim below): `L(M)` = longest REALISED
+legal word of `M`; `A_kill = L + 1`; `J_max = L + 2` (R89, Constructor);
+`D_g = A_kill`; `Delta_J = Q*_J - F_2(M)`; `Delta_J = Delta_{J-1} - eps` (R91).
+This lane's `F(2,y) = 3F(y)` (fixed-twin member of the per-difference family, in
+MEMBER units) is NOT `F_2(M)` (the DEPTH-2 spectrum value of machine `M`, the
+maximum sum of two consecutive gaps); wherever both appear below, both are
+written with their definitions.
+
+### 14a. (b) THE STALLED GATE IS FIXED AND GREEN
+
+    uv run python research/jk_cover.py
+        -> jk_cover: ALL ASSERTIONS GREEN   (see log for the wall time)   exit 0
+        log: research/data/r30/jk_cover_gate.log
+
+Section [D] ("witnesses re-verified by independent code") ran the UNREDUCED
+pure-Python DFS at `(k, z) = (2, 17)`, which carries the `(2n-4)!/2^(n-2)`
+permutation redundancy the canonical-form rule removes, and stalled for 73
+CPU-minutes in round 29. It now takes its witnesses from the REDUCED engine
+(`jkcov6.exe`, non-quiet mode, parsed by the new `rust_witness`), LIFTS each
+reduced witness to the unreduced covering restatement by CRT in plain Python
+(`lift_reduced_witness`: `D = prod_{p <= k+1} p`, survivors of the small primes in
+the class `c = 1 mod D`, reduced position `x <-> n = c + Dx`, so the covered run
+is `n = c+1 .. c+D(m+1)-1`, of length `L = D(m+1) - 1 = j_k - 1`; small primes
+get every class but `c`, large primes get `{c + Dr : r in S_p}`), and re-checks
+every position of the run with `verify_solution`, which shares no code with
+either engine. Four cells `(1,19), (2,17), (3,7), (3,11)`: every lifted witness
+VERIFIES, every `L + 1` equals the published or round-28 value
+(34, 192, 78, 180), every run EXACT. The `(3,7)` cell is ALSO run through the
+old unreduced DFS as a control (same `L = 77`). And the checker is audited
+with NEGATIVE CONTROLS in the gate itself: the `(2,17)` witness with one class
+dropped is REJECTED, and the same witness claimed for `L + 1` is REJECTED -
+Formalist's round-26 lesson ("an audit without positive controls is not an
+audit") applied in both directions. Sections [A]-[C2] are unchanged and green
+(12 + 15 + 5 + 27 cells). The fix is `rust_witness` + `lift_reduced_witness`
+(~40 lines), not the one line I priced in round 29; the extra lines are the
+lift, which is what makes the re-verification INDEPENDENT rather than the rust
+binary re-checking itself.
+
+### 14b. (a) PRIOR-ART CHECK ON THE ROUND-29 OBJECTS
+
+Sources READ FIRST-HAND on 2026-09-03: Holt & Rudd, *Eratosthenes sieve and the
+gaps between primes*, arXiv:1408.6002 (full text, extracted with pypdf in the
+scratchpad; Lemma 2.1, remarks (v)/(vi), Theorem 2.3, Cor. 2.4, Lemma 3.1,
+Cor. 3.2 quoted below); Holt, *Combinatorics of the gaps between primes*,
+arXiv:1510.00743 (full text; the same recursion as its Lemmas 2.1/2.2 and
+Theorem 3.2; the p. 44 record-gap remark); Ziller, arXiv:2007.01808 (the
+round-29 extract on disk: Prop. 2.7 with its proof, and the reference list);
+Banks-Freiberg-Turnage-Butterbaugh arXiv:1311.7003 and Lemke Oliver-
+Soundararajan arXiv:1603.03720 (abstracts). SECONDARY (bibliographic data
+only): Shiu 2000, Maynard 2016 (Compositio 152), Erdos-Turan 1948, Erdos 1962
+(Math. Scand. 10), Hooley 1962/63 (Acta Arith. 8), Montgomery-Vaughan 1986
+(Ann. Math. 123, 311-333), de Polignac 1849 (via Ziller's reference [3]; the
+NUMDAM scan is image-only). NOT OBTAINED: Hagedorn 2009 (the author's TCNJ copy
+returns HTTP 403 to a direct fetch, as AMS did in round 29; recorded with the
+method per lesson 9; no cookie-bearing browser session attempted this round).
+
+**(1) The word reduction `J_max = L + 2`, `A_kill = L + 1` - is "longest run of
+consecutive sieve gaps in a bounded set of residue classes mod the next prime"
+a studied object?  NO, as far as searched.**
+
+| item | exact statement | source | relation |
+|---|---|---|---|
+| Holt-Rudd remark (vi) | "If `m+1` consecutive gaps have the same value ... then `g = 0 mod p` for all primes `p <= m+2`" | 1408.6002 p. 7, READ | the ONE-class shadow of a run constraint on consecutive gaps (a run of equal gaps forces divisibility); T3 is the two-class analogue; no run-length quantity defined |
+| Holt-Rudd Lemma 3.1 | constellation of length `j`, sum `g < 2p_{k+1}`: "the `j+1` closures in step R3 occur in distinct copies" | 1408.6002 p. 11, READ | one-class `A_kill = 1` below span `2p_{k+1}`; above it nothing is said |
+| Ziller 2020 `D(k)`, Prop. 2.7, `N_min(k)` | which single gaps occur; `m in D(k) => m in D(k+1)`; smallest absent even gap to `k = 44` | 2007.01808, READ | the one-class dictionary at WORD LENGTH ONE; no words formed |
+| Shiu 2000 | arbitrarily long strings of consecutive primes `= a mod q` | JLMS 61 (2000) 359-373, SECONDARY | prime-side, one class, EXISTENCE - the opposite shape |
+| Banks-Freiberg-Turnage-Butterbaugh | Maynard-Tao weights: `m` consecutive primes in a tuple; "arbitrarily long strings of consecutive primes with bounded gaps in the congruence class `a mod D`"; monotone gap runs (Erdos-Turan answered) | 1311.7003, abstract READ | the "Maynard-type sieve weights" item: long runs of consecutive PRIMES, unbounded; not sieve survivors |
+| Maynard 2016 | lower bounds of the right order for strings of `m` congruent consecutive primes | Compositio 152 (2016) 1517-1554, SECONDARY | same family |
+| Erdos-Turan 1948 / Erdos 1955 | `d_{n+1} - d_n` changes sign i.o.; `liminf d_{n+1}/d_n < 1 < limsup`; conjectures 0 / infinity | Bull. AMS 54 (1948) 371-378, SECONDARY | the "Erdos-type consecutive gaps" item: prime-side, two consecutive gaps, no residue classes |
+| Lemke Oliver-Soundararajan | biases of PAIRS of consecutive primes among residue classes mod `q` | PNAS 2016, abstract READ | consecutive-gap residue patterns, prime side, length 2 |
+| Hagedorn 2009 | one-class backtracking | NOT OBTAINED | - |
+
+Verdict: the theme has a literature but it is prime-side EXISTENCE (long runs
+exist, by Maynard-Tao weights) or one-class at run length ONE (Ziller); no
+published object bounds the longest run of consecutive sieve gaps whose residues
+mod the next prime lie in a two-class set, and no identity of the form
+`J_max = L + 2` was found. NOVEL AS FAR AS SEARCHED.
+
+**(2) The par-trading residual `eps` and `Delta_J = Delta_{J-1} - eps`.** No
+search term returns anything ("flank envelope", "per-word flank residual",
+"Jacobsthal depth of merge" - zero relevant hits). The nearest published SHAPE
+is Holt-Rudd Lemma 3.1's "the two exterior closures increase the sum of the
+resulting constellation" (p. 11): an exterior closure adds a flank, which is
+the event `Phi(v)` and `eps(v)` quantify - but Holt-Rudd never define a flank
+sum, never maximise it over occurrences, and state nothing about how much the
+sum increases. NONE FOUND; NOVEL AS FAR AS SEARCHED.
+
+**(3) The walk-transform pole identity and L1 teeth-independence - a known
+Fourier fact about "distance to next element of a periodic set"?  The
+MECHANISMS are textbook; the identity as stated is not in print.**
+
+| identity | classical mechanism (KNOWN) | what is not in the literature |
+|---|---|---|
+| 1, `What(m)(1 - e(m/P)) = -e(m/P) Ghat(m)` | transform of a first difference = multiplication by `1 - e(m/P)` (discrete Abel summation); `W` is a sum of ramps and a ramp's DFT is a geometric sum over `1 - e(m/P)` - the discrete sawtooth coefficient `i/(2 pi k)`; the sawtooth/Dedekind-sum transform over reduced residues is the object of arXiv:1709.06168 (SECONDARY) | nobody found writes the distance-to-next-survivor function of a sieve this way or isolates `Ghat` |
+| 2, `Shat = prod_q hat_q(m c_q)` | CRT multiplicativity of exponential sums over congruence-defined sets: the one-class `Shat` IS the Ramanujan sum `c_P(m)`, multiplicative (Kluyver 1906 / Ramanujan 1918, classical) | the two-class factor `-2cos(2 pi j v_q/q)` is the immediate analogue; not claimed new |
+| 3, L1 mass independent of the teeth | dilation invariance of the L1 norm of a DFT (`k -> k v_q` permutes `Z_q`) | the USE against the tooth-counterfactual null family (identical bound, `F` spreads 1.8-2.5x) NONE FOUND |
+| background | Erdos 1962, Hooley 1962/63, Montgomery-Vaughan 1986: MOMENTS of gaps between reduced residues by exponential sums (SECONDARY) | one-class, moments not maxima - exactly the L2 route the doc measures as vacuous by 16x-4500x |
+
+Verdict: KNOWN in mechanism; the first-passage identity for a two-residue sieve
+and the L1-blindness obstruction NOVEL AS FAR AS SEARCHED, with the label that
+Identity 1 must be presented as elementary.
+
+**(4) The spectrum-plus-depth certificate and its `A_kill` scope.**
+
+| item | exact statement | source | relation |
+|---|---|---|---|
+| Holt-Rudd Lemma 2.1 | "R2. Concatenate `p_{k+1}` copies of `G(p_k#)`. R3. Add adjacent gaps as indicated by the elementwise product `p_{k+1} * G(p_k#)`" | 1408.6002 p. 5, READ (= Holt 1510.00743 Lemma 2.1) | the one-class merge law; source of `Q*_J <= F_J` there |
+| Holt-Rudd Theorem 2.3 | "Each possible closure of adjacent gaps in the cycle `G(p_k#)` occurs exactly once in the recursive construction of `G(p_{k+1}#)`" (CRT) | p. 8, READ | the CRT step of the DELETION-LADDER CAP `F_j(M) <= F(M + next j-1 primes)` in one-class form; the corollary is not drawn |
+| Holt-Rudd Lemma 3.1 / Cor. 3.2 | below span `2p_{k+1}`, closures in distinct copies; survival count `p_{k+1} - j - 1` | pp. 11-12, READ | the one-class `A_kill = 1` regime; the certificate's whole content is what replaces that hypothesis above the threshold (`J_max = L + 2`) |
+| Holt 2015 p. 44 | "Initially the largest gap in `G(13#)` is `g = 22`; the gap `g = 52` is first created in closures by `p = 73`" | 1510.00743, READ | an empirical record-gap remark; no bound |
+| Ziller 2020 Prop. 2.7 | `m in D(k) => m in D(k+1)` | READ | converse direction to the cap at arity 1 |
+| Hagedorn 2009; Costello-Watts 2015; Iwaniec 1978 | one-class computation / explicit / asymptotic bounds | lane record | no spectrum-over-depth criterion anywhere |
+
+Verdict: PARTIAL OVERLAP in the one-class shadow (recursion + CRT step);
+the certificate `F(M+q') <= max_{2<=J<=J_max} F_J(M)` with a finite depth cap
+from a dictionary fact, and its `A_kill` scope, NOVEL AS FAR AS SEARCHED.
+
+**(5) Ziller 2020 Prop. 2.7 into Mechanic's depth-0 lemma doc: DONE.**
+`docs/novel/dictionary-monotonicity-onset.md` section 6 now carries the exact
+statement ("Proposition 2.7. Propagation of coverings. Let `m, k` be natural
+numbers. Then `m in D(k) => m in D(k+1)`", p. 7), his proof step ("select
+`a_{k+1} in {1, ..., p_{k+1}-1}` such that `a_{k+1}` is not `= m mod p_{k+1}`,
+because `p_{k+1} >= 3`" - the free-phase count at `m = 1`), his own attribution
+of the framing to de Polignac 1849 ("An analogous statement has already been
+proven by de Polignac [3]"), `N_min(k)` and Conjecture 4.1, and the three
+deltas (arity `m`, two classes, the sharp hypothesis `q' > 2(m+1)`). Verdict
+recorded as PARTIAL OVERLAP for (a), NOVEL AS FAR AS SEARCHED for (b).
+
+Docs updated (prior-art sections + README index): even-j-mechanism.md,
+walk-transform-pole-identity.md, spectrum-depth-certificate.md,
+per-j-window-analogues.md, dictionary-monotonicity-onset.md, README.md (five
+index lines). No lane doc other than this one was edited.
+
+### 14c. (c) THE NOTATION-COLLISION AUDIT
+
+Grep over `docs/proof-search/*.md` (archive/ excluded) and `docs/novel/*.md`:
+`F(2,` occurs in 5 + 8 files; `F_2(` in 9 + 15 files. EVERY `F(2,y)` in the
+corpus means this lane's fixed-twin member-unit ladder `F(2,y) = 3F(y)`;
+EVERY `F_2(M)` means the depth-2 spectrum value. A THIRD form exists:
+`F2_k(2,y)` (constructor.md:1113). The misreadable places are where the two
+strings sit within a dozen lines of each other WITHOUT a definition on the page:
+
+    file:line(s)                              which is meant / hazard
+    agents-shared.md:121-122                   SUMMARY: both, defined there - OK
+    agents-shared.md:2422-2427 (Mechanic r26)  F_2(53)=159 (depth-2) then
+                                               "F(2,59) >= 477 ... F(2,53) = 435"
+                                               (member units) - UNDEFINED on page
+    agents-shared.md:3338-3349 (Mechanic r27)  "corpus F(2,y) ladder" (member) vs
+                                               "F(59) >= F_2(53) = 159" (depth-2),
+                                               both in one paragraph, undefined
+    agents-shared.md:4625, 4874 (Mechanic r28) "F(59) = 161 and F(2,59) = 483"
+                                               (member) beside F_2(53) - undefined
+    agents-shared.md:6137-6237 (Harvester r29) both, DEFINED at 6143-6145 - OK
+    constructor.md:26                          F(2,y) defined as adjacent-frame
+                                               chain value - OK
+    constructor.md:1113-1114                   "F2_k(2,y) = 33, 48, ..." (member,
+                                               a THIRD spelling) next to
+                                               "F_2(M+q') chain 16/25/..." (depth-2)
+                                               - the worst single line in the corpus
+    constructor.md:140-158, 988                F(2,y) (member), no F_2( nearby - OK
+    harvester.md:24, 399-463, 604, 899         F(2,y) (member), defined at 24 - OK
+    harvester.md:2422-2442                     both, DEFINED - OK
+    mechanic.md:356                            "F(2,q')/3" (member, argument q')
+                                               - reads oddly but unambiguous
+    mechanic.md:429-434                        F_2(37)=90 (depth-2) five lines above
+                                               "F(2,53) <= 513 ... F(2,53) = 435"
+                                               (member) - undefined on page
+    mechanic.md:691-712                        the F(2,y) TABLE (member) with the
+                                               frame identity stated at 691 - OK,
+                                               but 699-701 "F(59) >= F_2(53) = 159"
+                                               (depth-2) sits inside it - hazard
+    mechanic.md:1613-1614, 1668-1671           F_2(47)=134 / F_2(41) descent
+                                               (depth-2) beside "both F(2,y) rest
+                                               on..." / "F(2,47) = 354" (member)
+    mechanic.md:2050-2059, 2356-2358           "F(59) >= F_2(53) = 159,
+                                               equivalently F(2,59) >= 477" - the
+                                               two forms in ONE equation, undefined
+    mechanic.md:3002-3005, 3059-3069           same pattern (r28 F(59) block)
+    attempts-map.md:434-436, 499               F(2,53), F(2,59) (member); no F_2(
+                                               in the file - OK
+    novel/cov-sat-exact-spectra.md:43-49,86-98 F_2(37)=90 (depth-2) six lines above
+                                               "F(2,53) = 435" (member) - undefined
+    novel/old-machine-spectrum.md:439-443      "published F(2,y) corpus" (member)
+                                               around "F(59) >= F_2(53)" (depth-2)
+    novel/merge-law.md:134                     "F(2,y) ladder" (member); F_2( at
+                                               three other places, far away - OK
+    novel/merge-law-h2-test.md (11 lines)      F(2,y) (member) only; the file
+                                               itself warns "this is NOT h_2" - OK
+    novel/paired-hlb-cycles.md:264-266,
+    novel/paired-jacobsthal-values.md (11),
+    novel/twin-percentile.md:109               F(2,y) (member) only - OK
+    novel/README.md:67, 633                    member; F_2( ten times elsewhere,
+                                               not adjacent - OK
+
+Recommendation to the manager (not applied - other lanes' docs): the
+member-unit ladder should be written `F_tw(y)` or `3F(y)` in every new block,
+and the one-equation form `F(59) >= F_2(53) = 159, equivalently F(2,59) >= 477`
+should be retired; the corpus needs no edit of history if the SUMMARY keeps its
+definition line, which it does.
+
+### 14d. Negatives, costs and residual risks
+
+* Hagedorn 2009 is still unread (403 on the TCNJ copy; the method was a direct
+  WebFetch, no browser session). Its characterisation stays SECONDARY.
+* de Polignac 1849 is SECONDARY via Ziller; the NUMDAM scan is an image PDF.
+* Montgomery-Vaughan 1986, Hooley 1963, Erdos 1962, Shiu 2000, Maynard 2016,
+  Erdos-Turan 1948 are cited from bibliographic data, not from the texts.
+* No pre-registration this round; nothing here had an unknown outcome except
+  the gate, and I did not write "it will complete" down before running it. A
+  miss, small.
+* The gate's fix was ~40 lines, not the "one line" priced in round 29; the
+  extra lines are the lift, which is what makes the check independent.
+* (d) NOTHING LAUNCHED. `j_3(P(29))` by SAT (~17 core-hours single-threaded)
+  stays the named next target and must be launched at a round's START.
+
+### 14e. Additions to the standing citation-hygiene lesson (7d)
+
+15. **A "ONE-LINE FIX" TO A GATE IS A CLAIM LIKE ANY OTHER.** The fix was one
+    line to point at the engine and forty to keep the check independent of it;
+    the forty are the gate. Price the independence, not the redirection.
+16. **A PDF THAT WILL NOT SUMMARISE IS NOT A PDF THAT CANNOT BE READ.** The
+    fetch tool returned "compressed streams, cannot extract" for both Holt
+    papers; `pypdf` extracted 70k and 98k characters in one call each. Extract
+    locally before recording a text as unreadable (lesson 9, one level down).
+
+### 14f. Ranking changes
+
+None. N4 unchanged (writing item, human's decision). (P6) unchanged. The
+k-axis stays OFF the top of the list; `j_3(P(29))` by SAT is the one
+purchasable item and is a start-of-round launch, not a target for a half lane.
+
+### 14g. Reproduction (round 30)
+
+* `research/jk_cover.py` - section [D] rewritten (`rust_witness`,
+  `lift_reduced_witness`, negative controls); gate log
+  `research/data/r30/jk_cover_gate.log`.
+* Sources read first-hand 2026-09-03: arXiv:1408.6002 and arXiv:1510.00743
+  (full text via pypdf), arXiv:2007.01808 (round-29 extract), arXiv:1311.7003
+  and arXiv:1603.03720 (abstracts). Fetch attempts that failed: Hagedorn TCNJ
+  PDF (403), NUMDAM NAM_1849_1_8__423_1.pdf (image-only).
+* Docs: five `docs/novel/*.md` prior-art sections and five README index lines
+  (listed in 14b).
+
+### Follow-on: Holt-Rudd in two classes
+
+Manager's follow-on (same round): does Holt-Rudd's Theorem 2.3 / Lemma 3.1
+argument (arXiv:1408.6002) extend to the two-class gear machine, and does its
+counting bound runs of k consecutive hits, i.e. `L(M)`?  Small exact check:
+`uv run python research/hr_twoclass_r30.py 11 13 17 19 23` ->
+`hr_twoclass_r30: ALL ASSERTIONS GREEN` (single process, ~2 min, log
+`research/data/r30/hr_twoclass_r30.log`).  anchor-235.md 9d/9f/9g read as
+instructed; the mapping below uses their objects.
+
+**(1) Their argument in the project's terms.**  Lower machine `M` (gears
+`5..y`), period `P_M`, `N` cyclic openings `O`.  New gear `q'`, teeth
+`T = {u', -u'}`, `u' = 6^{-1} mod q'`, `s = 2u' mod q'` (= anchor-235's `d_g`).
+Holt-Rudd step R2 "concatenate `p_{k+1}` copies of `G(p_k#)`" is the `q'`
+copies of the lower period; copy `i` holds the openings `o + iP_M`, and in copy
+`i` the opening `o` is HIT iff `o + iP_M in T`, i.e. copy `i` IS the deletion
+phase `r_i = iP_M mod q'` - a bijection because `P_M` is a unit mod `q'`
+(anchor-235 9f: "copy `j` has phase `-jP_M mod g`", sign convention aside;
+kernel-checked as `phase_bijective`).  Their R3 "closure of adjacent gaps" is
+one hit of the new gear on a lower opening (two lower gaps merge).  Then:
+
+  * THEOREM 2.3 ("each possible closure occurs exactly once", by CRT) becomes:
+    **each lower opening is hit in EXACTLY TWO copies**, one per tooth
+    (`r in {u' - o, -u' - o}`).  Checked A: 2N hits at every machine m11..m23.
+  * LEMMA 3.1 ("for span `g < 2p_{k+1}` the `j+1` closures occur in distinct
+    copies") becomes, with the coincidences made explicit: a window of `j+1`
+    consecutive lower openings with offsets `X` is SPARED in exactly
+    `q' - |X u (X+s)|` copies (mod `q'`), and **if its span is `< s_min(q') =
+    min(s, q'-s)` then `|X u (X+s)| = 2(j+1)` - all `2(j+1)` hitting copies are
+    distinct.**  Checked B (exhaustive at m11/13/17: 945 / 10,395 / 155,925
+    windows, `j <= 7`; 140,000 sampled at m19 and m23) and C (2,067 / 26,871 /
+    30,794 / 34,305 windows below the threshold).  THE THRESHOLD IS SHARP: the
+    smallest span at which two points of one window are hit in one copy is
+    4, 6, 6, 8, 10 at m11..m23 = the smallest realised legal letter each time.
+  * COROLLARY 3.2 (survival factor `p_{k+1} - j - 1`) becomes the factor
+    `q' - 2(j+1)` below the threshold - which IS the project's paired-Holt
+    recursion (`paired-holt-recursion.md`, round 20/21: word survival
+    "generically `q' - 2(j+1)`", `coef(w)` the general case) - and Mechanic's
+    depth-0 lemma is its "at least one sparing copy" clause, `q' > 2(m+1)`,
+    which needs NO span hypothesis because coincidences only shrink the
+    forbidden set.
+
+So the argument EXTENDS verbatim as a counting statement, with three
+replacements: "exactly once" -> "exactly twice"; "distinct copies" -> "distinct
+below span `s_min`, otherwise `q' - |X u (X+s)|`"; `p - j - 1` -> `q' - 2j - 2`.
+
+**(2) What replaces "distinct copies", and whether the count bounds `L`.**  A
+coincidence - two points of one window hit in the SAME copy - is exactly
+"their distance is `= 0` or `+-s mod q'`", i.e. a LEGAL LETTER (T2); a run of
+`k` consecutive hits in one copy is exactly a run of `k` consecutive lower
+openings in one two-class set `{r, r+s}` (anchor-235 9d's chain law, 9f's
+`D_g`), i.e. a realised legal word of length `k-1` with T3 alternation, and
+`L(M) = D_{q'} - 1 = A_kill - 1`.  The counting statement that survives above
+the threshold is this:
+
+> **PROPOSITION (multiplicity of a chain).**  The number of copies in which a
+> given run of `k >= 2` consecutive lower openings is hit ENTIRELY equals
+> `|intersection over the run of {u' - x_t, -u' - x_t} mod q'|`, which is
+> **0** if the gap word is illegal, **1** if it is legal and contains a
+> literal letter, **2** if it is legal and every letter is padded (both tooth
+> assignments work).  Proof: a copy kills the whole run iff its phase lies in
+> every point's two-element set; a literal letter forces one tooth pattern,
+> a padded letter allows both.  []
+
+Checked D on every maximal run of `>= 2` hits in the `q'`-copy concatenation:
+m11 8 runs, m13 72, m17 1,088, m19 11,722 (86 of them all-padded, letter 23,
+multiplicity 2; 62 of length 3), m23 243,816 (6 all-padded, letter 29) - every
+run carries multiplicity exactly 1 or 2 as predicted.  And E: the longest run
+in the concatenation is 2, 2, 2, 3, 2 at m11..m23 = the recorded
+`A_kill = L + 1` (even-j-mechanism.md 1.4(a)), so the concatenation picture
+reproduces `D_{q'}` directly.
+
+**Does this give an inequality on the number of copies carrying a run of
+length `k`, hence on `L`?  NO - and provably not from the count alone.**  What
+the count says about a `k`-run is that it occurs in **at most 2 copies, and
+exactly 1 unless all its letters are `= 0 mod q'`**, WHATEVER `k` IS.  The
+multiplicity does not decrease with `k`, so no inequality of the form "a
+`k`-run can occupy at most `f(k)` copies with `f(k) < 1` for large `k`" exists;
+the count converts "`M` realises this word" into "it dies in 1 or 2 copies"
+and NEVER decides realisation, which is where `L(M)` lives.  The only global
+inequality counting gives is `sum over runs of k * (multiplicity) <= 2N` (total
+hits), which bounds the NUMBER of `k`-runs per new period by `2N/k`, not their
+existence.  **The term that breaks the one-class argument is the minimal
+in-copy hit distance.**  Holt-Rudd's "distinct copies" rests on that distance
+being `2p_{k+1}` (the closures are `p_{k+1} x` generators, generators `>= 2`
+apart) and exceeding the constellation's span; in two classes it is
+`s_min(q') = min(2u' mod q', q' - 2u')` - about `q'/3` at best, 4, 6, 6, 8, 10
+here - and every window that matters has span above it (`F(M) = 7, 11, 18, 25,
+34 >= s_min` at m11..m23, and `F/q'` grows to 2.5 by 53 -> 59).  Above the
+threshold their lemma is silent by construction.  Note also that the
+survival count `q' - 2(j+1)` (Cor. 3.2, the depth-0 lemma) is an inequality
+in the OTHER direction - it guarantees copies in which a window is NOT
+touched - and says nothing against long chains.
+
+**(3) Test against the exact word counts.**  The E row reproduces `A_kill`
+(hence `L`) at all five machines from the concatenation with no dictionary;
+the D histograms are the exact realised-legal-word counts by length and
+padding class at m11..m23 (length-2 words realised only at m19 - the 62 runs
+of 3 hits - consistent with `L = 1, 1, 1, 2, 1`).  Nothing in the counting
+predicted those rows; they are read off the same object.
+
+**(4) Labels.**  Two-class Theorem 2.3, the sparing-count formula
+`q' - |X u (X+s)|`, the `s_min` threshold with its sharpness, and the
+multiplicity proposition: **PROPOSITION** (three-line CRT arguments,
+script-verified exactly at m11..m23).  Their identification with the paired-
+Holt recursion and the depth-0 lemma: **OBSERVATION** (two project results
+are the two-class Cor. 3.2 and its `>= 1` clause; recorded, no new content).
+A bound on `L(M)` from Holt-Rudd's counting: **NONE FOUND**, with the reason
+above - the count is agnostic to chain length by construction once the span
+exceeds `s_min`, and `L(M)` is a dictionary fact the count takes as input.
+
+### Follow-on: the null model for L, done exactly
+
+Manager's follow-on (1).  Pre-registration written FIRST:
+`research/data/r30/prereg_harvester_r30_null_L.txt` (H1-H5, scored below).
+Scripts (single process, no worker pools): `research/null_L_r30.py` (exact
+finite-automaton matrix power over N steps, the order-1 Markov null, the
+decomposition; log `research/data/r30/null_L_r30.log`) and
+`research/null_L_fast_r30.py` (the same expectations via the exact mean waiting
+time `E[T_k]` and `P(L < k) = exp(-N/E[T_k])`, needed once `N * eps ~ 1`; log
+`research/data/r30/null_L_fast_r30.log`).  The two routes agree to three
+decimals at m11..m37 and diverge at m41 (0.06, the predicted `N * eps`
+rounding loss); a first run of the matrix-power route printed 28.6 at m47 - a
+rounding artefact (`lambda^N` with `N = 1.6e16 > 1/eps`), caught by the
+cross-check and replaced, recorded here rather than dropped.
+
+**The null.**  N = prod(q-2) gaps per period.  `I-eq`: i.i.d. gaps, each of the
+three classes `{0, +s, -s} mod q'` with probability `1/q'`, a run "legal" iff
+every gap is in a class (the manager's estimate, made exact).  `I-eqA`: the
+same with T3 alternation.  `I-act`: i.i.d. gaps from the machine's EXACT
+full-period gap histogram (direct sieve m11..m23, the r26 `ghist_*.csv` at
+m29/31/37 - asserted to sum to N and, where both exist, equal), classes read
+off the actual gap values.  `I-actA`: the same with alternation - the null
+`N0` the brief asked for.  `M1-A`: order-1 Markov chain on the gap classes,
+transition matrix measured on the period (m11..m23).  `E[L]` = the exact
+expected longest legal run over N steps.
+
+    y   q'   N (gaps)         logN   3/q'    pL(act)  p0      p+      p-     | ER      mgr    | I-eq   I-eqA  I-act  I-actA  M1-A | L   N0/L
+    11  13   135               4.9  0.2308  0.0444  0       0       0.0444 |  3.35    8.87  |  3.06   2.65   1.23   1.00   1.00 | 1   1.00
+    13  17   1485              7.3  0.1765  0.0485  0       0.0404  0.0081 |  4.21    9.80  |  3.93   3.42   2.12   1.64   1.00 | 1   1.64
+    17  19   22275            10.0  0.1579  0.0488  0       0.0030  0.0459 |  5.42   10.29  |  5.15   4.44   3.04   2.13   1.00 | 1   2.13
+    19  23   378675           12.8  0.1304  0.0311  0.0002  0.0276  0.0033 |  6.31   11.29  |  6.02   5.24   3.30   2.67   2.58 | 2   1.34
+    23  29   7952175          15.9  0.1034  0.0307  0       0.0306  0.0001 |  7.00   12.78  |  6.69   5.90   4.19   2.34   1.00 | 1   2.34
+    29  31   214708725        19.2  0.0968  0.0374  0       0.0010  0.0364 |  8.21   13.27  |  7.92   6.96   5.45   3.42    -   | 3   1.14
+    31  37   6226553025       22.6  0.0811  0.0184  0       0.0008  0.0176 |  8.98   14.73  |  8.65   7.62   5.22   3.94    -   | 3   1.31
+    37  41   2.18e11          26.1  0.0732  0.0077  0       0.0074  0.0003 |  9.98   15.68  |  9.66   8.50   5.04   3.91    -   | 2   1.96
+    41  43   8.50e12          29.8  0.0698   (no full histogram on disk)      | 11.18   16.15  | 10.89   9.58    -      -      -   | 2   (4.8 proxy)
+    43  47   3.48e14          33.5  0.0638   (none)                           | 12.17   17.08  | 11.85  10.43    -      -      -   | 2   (5.2 proxy)
+    47  53   1.57e16          37.3  0.0566   (none)                           | 12.99   18.46  | 12.41  10.92    -      -      -   | 4   (2.7 proxy)
+
+`ER` = Erdos-Renyi `log N / log(q'/3)`; `mgr` = the manager's `q'/log(q'/3)`;
+`N0/L` = `I-actA / L` (proxy column = `I-eqA / L`).
+
+**Where the suppression is (multiplicative factors on E[L], exact histogram rows):**
+
+    y    I-eq -> I-eqA      I-eqA -> I-actA        I-actA -> L          I-actA -> M1-A
+         (alternation)      (class probability)    (dependence, all)    (order-1 dependence)
+    11      0.866               0.376                 1.00                 1.00
+    13      0.870               0.478                 0.61                 0.61
+    17      0.862               0.481                 0.47                 0.47
+    19      0.870               0.510                 0.75                 0.97
+    23      0.881               0.396                 0.43                 0.43
+    29      0.878               0.491                 0.88                  -
+    31      0.880               0.517                 0.76                  -
+    37      0.881               0.460                 0.51                  -
+
+1. **The manager's 18 at q' = 53 is an artefact of `log N ~ theta(q) ~ q'`.**
+   `log N = sum log(q-2) = 37.3` at m47, not 53, so the Bernoulli estimate is
+   `log N / log(q'/3) = 13.0`, and the exact equidistributed null is 12.4
+   (10.9 with alternation).
+2. **The class probability is the largest single suppression, and it is
+   not "3/q'".**  The legal-class probability `pL = p0 + p+ + p-` under the
+   machine's own gap distribution is 0.19, 0.27, 0.31, 0.24, 0.30, 0.39, 0.23,
+   0.105 of `3/q'` at m11..m37 - a factor 2.5 to 9.5 BELOW equidistribution -
+   because the gap values pile up below the smallest legal letter
+   `s_min(q')` (the classes `+-s` need a gap of size `a`, `q'-a`, `q'+a`, ...,
+   and the padded class needs a gap `>= q'`; `p0 = 0` at seven of eight
+   machines) and, above `s_min`, sit on the "wrong" values (at m37 the class
+   `-s` carries 0.0003 against 0.0074 for `+s`).  On `E[L]` (which is
+   logarithmic in the probability) that is a factor 0.38-0.52.
+3. **Alternation costs 12-14%** (factor 0.86-0.88), uniformly: padded letters
+   are transparent and, where both literal classes are populated, a T3
+   violation merely restarts the run.
+4. **Dependence between consecutive gaps is the residue**, factor 0.43-1.00,
+   and it is NOT monotone in the machine: 1.00 at m11, 0.88 at m29, 0.51 at
+   m37.  At the three machines where `L = 1` and the period is scannable
+   (m13, m17, m23) the ORDER-1 Markov null already gives `E[L] = 1.00` exactly
+   - the alternating literal pair `(+s, -s)` simply never occurs as adjacent
+   gaps, so the whole "dependence" there is a lag-1 exclusion.  At m19
+   (`L = 2`) the order-1 null moves only 3% of the way (2.67 -> 2.58 against
+   the measured 2): the dependence that limits `L` there is beyond lag 1.
+5. **Along the ladder, the corrected null tracks `L` closely**: `N0/L` =
+   1.14, 1.31, 1.96 at m29, m31, m37 against 4.3-5.2 for the equidistributed
+   proxy.  At m41..m47 no full-period histogram exists (the m41 census is a
+   multi-round object; m43/m47 have none), so only the proxy is exact there;
+   JUDGMENT, NOT RESULT: carrying the m29..m37 ratio `pL / (3/q')` ~ 0.1-0.4
+   forward puts `I-actA(47)` near 4-5, i.e. within ~1.2x of `L(47) = 4`.  The
+   "18 against 4" gap is mostly the estimate, not the machine.
+
+**Pre-registration scored (H1-H5).**  H1 SPLIT: "overstates" CONFIRMED (18.5
+vs 12.4), "I-actA(37) in [5, 9]" REFUTED (3.91 - I over-predicted the null
+even after correcting it), "eq no-alternation at q' = 53 under 12" REFUTED by
+0.4 (12.41).  H2 CONFIRMED and far stronger than written (2.5-9.5x below
+`3/q'`, not 15%; direction below at EVERY machine, not only the large ones).
+H3 CONFIRMED (0.86-0.88).  H4 REFUTED at m29 and m31 (ratios 1.14, 1.31 < 1.5)
+and confirmed at m37 (1.96): after the marginal corrections most of the
+suppression at m29/m31 is ALREADY accounted for - the class probability, not
+dependence, is the main effect there.  H5 CONFIRMED at m13/m17/m23 (all the
+way), REFUTED at m19 (3% of the way).  Scorecard 3 confirmed, 1 split, 2
+refuted; the refutations are the informative ones (the true null is LOWER
+than I predicted, and the residual dependence is smaller than I predicted at
+the larger machines).
+
+**Labels.**  The table: SCRIPT-VERIFIED, exact (finite automaton, N-step
+expectations; two independent routes agreeing to 3 decimals where both are
+valid; histograms asserted against N and against the r26 CSVs).  The
+decomposition: MEASURED (a product of exact factors, but the attribution
+"class probability / alternation / dependence" is a decomposition of one
+number, not a mechanism).  The m41..m47 rows: PROXY, labelled.
+**The literature half: why "runs of consecutive primes in one class are
+unbounded" does not transfer to the fixed machine.**
+
+| result | exact statement | source / label | transfer to `{5..y}` at `q'` over one period |
+|---|---|---|---|
+| Shiu 2000 | for coprime `a, q` there are arbitrarily long strings of consecutive primes `p_n, ..., p_{n+m}` all `= a (mod q)` | J. London Math. Soc. (2) 61 (2000) 359-373 - SECONDARY (title/venue from the search; Wiley DOI page returns 403; the theorem statement is quoted as it appears in BFT-B's abstract and in the secondary sources) | NO. (i) Object: PRIMES, an infinite sequence with density `1/log x -> 0`, and the string is found at some scale `x` that grows with `m`; the fixed machine is ONE finite period with fixed density `prod(1 - 2/q)`.  (ii) Modulus: their `q` is FIXED while the sieve grows; here the modulus `q'` is the next prime, larger than every sieving prime, and grows with the machine.  (iii) Classes: one class; the machine's run lives in a TWO-class set with T3 alternation.  (iv) Quantifier: existence at some scale, not a bound within one period. |
+| Banks-Freiberg-Turnage-Butterbaugh 2015 | Maynard-Tao weights give `m` consecutive primes inside an admissible tuple `{gn + h_j}` for infinitely many `n`; "for any coprime integers `a` and `D` we find arbitrarily long strings of consecutive primes with bounded gaps in the congruence class `a mod D`"; also monotone gap runs `delta_1 < ... < delta_m` (answering Erdos-Turan) | arXiv:1311.7003 (abstract READ first-hand) | NO, same four reasons; and the mechanism is the Maynard-Tao sieve WEIGHT, which selects `n` at scale `x -> infinity` with `x` a power of the modulus - the fixed machine has no `x` to send to infinity. What DOES survive as an analogy: their "consecutive primes all `= a mod D`" is, in the finite sieve, a run of consecutive openings all on ONE tooth of `q'`, i.e. an all-PADDED word (letters `= 0 mod q'`); the machine realises those at length 1 (86 runs at m19, 6 at m23 - `hr_twoclass_r30.py`), never longer below m47. |
+| Maynard 2016 | lower bounds of the correct order of magnitude for the number of strings of `m` congruent primes with `p_{n+m} - p_n <= eps log x` | Compositio Math. 152 (2016) 1517-1554; arXiv:1405.2593 (abstract READ first-hand) | NO, as above; a COUNT of strings at scale `x`, not a bound on run length inside a period. |
+| Erdos-Turan 1948 / Erdos 1955 | `d_{n+1} - d_n` changes sign infinitely often; `liminf d_{n+1}/d_n < 1 < limsup`; conjectured `0` and `infinity` | Bull. AMS 54 (1948) 371-378 - SECONDARY | NO: prime-side ratio statements, no residue classes. |
+| Holt-Rudd remark (vi) | "If `m+1` consecutive gaps have the same value `g` then `g = 0 mod p` for all primes `p <= m+2`" | arXiv:1408.6002 p. 7 (READ) | the ONLY published statement about runs of consecutive gaps of a FINITE sieve in residue classes, and it runs the other way: a run of equal gaps constrains the gap modulo the SMALL primes (those already sieved), not modulo the next prime. |
+| Ziller 2020 | `D(k)`, `N_min(k)`: which single even numbers occur as gaps between consecutive coprimes to `p_k#` | arXiv:2007.01808 (READ) | the finite-sieve gap object at RUN LENGTH ONE and with no modulus; nothing on runs. |
+
+Verdict: NONE FOUND - no published result addresses runs of consecutive gaps of a
+finite sieve `{5..y}` in residue classes modulo a prime larger than every sieving
+prime. The prime-side results are existence theorems at a growing scale for a fixed
+modulus and one class; the object here is a bound inside one period for the next
+prime and two alternating classes. They do not transfer, and the null computation
+above shows that even the i.i.d. heuristic they would suggest (`log N / log(1/p)`)
+over-predicts `L` once the true class probabilities are used.
+
+### Follow-on: the anchor-2,3,5 laws in docs/novel/
+
+Manager's follow-on (2).  `docs/novel/README.md` had NO entry for the anchor-2,3,5
+layer laws (grep for "anchor", "chain law", "neighbour", "phase-reduction", "D_g":
+only the anchor-235 floor verdict in the walk-transform entry and two unrelated
+uses of "anchor").  Written: **`docs/novel/anchor-235-layer-laws.md`** (template
+sections 1-6) and its index line.  Contents, with the status per item as it stands
+on the ledger:
+
+  (L1) CHAIN LAW - two slots lie in a common two-class set {r, r+d} iff their
+       difference is 0 or +-d mod g; two consecutive lower openings are both
+       deleted by gear g iff their gap is 0 or +-d_g mod g; T3 half (no two
+       steps the same way).  KERNEL-CHECKED for every g (AnchorChain.chain_law,
+       teeth_eq_phase, no_two_up, no_two_down); the admissible-gap realisation
+       table SCRIPT-VERIFIED on full periods {5..23} (anchor-235.md 9d).
+  (L2) NEIGHBOUR-OF-HIT - x a hit => x+1 not a hit, every g >= 5, from 6u = 1
+       alone (d = 3^{-1} is never +-1).  KERNEL-CHECKED (neighbour_of_hit).
+  (L3) PHASE-REDUCTION RECORD LAW - the g copies of the lower period realise
+       every deletion phase once (copy_phase + phase_bijective, KERNEL-CHECKED,
+       machine-free); F_bc(M+g) + 1 = max over two-class runs of gap-before +
+       run-span + gap-after on ONE lower period, F_bc the blocked count (corpus
+       max-gap F = F_bc + 1).  SCRIPT-VERIFIED exact at {5..7}..{5..29} (anchor
+       ladder 4..42 = corpus 5..43) and at 31/37/41 (58, 88, 91; Mechanic C50,
+       the 41 row a deliberate 36.9% sweep whose two answers are still exact);
+       KERNEL-CHECKED at machine 17 AT BOTH ENDS (AnchorRecord17.record_max,
+       surv_shift / phase_is_machine, gap18_realized, F17_eq_18 - the
+       attainment at 17 is new to the corpus), NOT derived one end from the
+       other; the nested formula's recursion is a theorem (hop_iter).
+  (L4) D_g = A_kill(M -> g), 7 for 7 (Mechanic C49), hence D_g = L(M) + 1 (R89).
+       SCRIPT-VERIFIED; my hr_twoclass_r30.py E reproduces A_kill = 2,2,2,3,2 at
+       m11..m23 from the q'-copy concatenation.  D_g bounded: OPEN (Formalist's
+       honest boundary in the AnchorChain.lean header).
+
+PRIOR ART (section 6 of the doc, verdict PARTIAL OVERLAP): the copies-and-phases
+picture is Holt-Rudd's one-class recursion - Lemma 2.1 (concatenate p_{k+1}
+copies, close at the multiples), Theorem 2.3 (each closure exactly once, CRT =
+the one-class phase_bijective), Lemma 3.1 (distinct copies below span 2p_{k+1});
+remark (vi) is a residue constraint on runs by the SMALL primes.  The residue-
+per-prime Jacobsthal computations (Hagedorn - NOT OBTAINED; Ziller-Morack GPA/RPA
+arXiv:1611.03310; Ziller 2020) cover a window by class choices and never walk the
+lower gap sequence by phase.  NONE FOUND for the two-class chain law, for the
+neighbour-of-hit identity as a theorem for every gear, for the record law as a
+computation of the maximal gap, or for the chain-depth = kill-arity identity.
+The convention trap is written into the doc: the anchor doc's F is the BLOCKED
+COUNT (17 at machine 17), the corpus F is the max gap (18); the record law reads
+"max over phases = F_bc + 1 = corpus F".

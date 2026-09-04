@@ -2879,3 +2879,315 @@ deliberately, and both endings are recorded).**
   NOTHING FILED DEPENDS ON THE BAND: rung ten is closed by PART A, and PART B was
   always the independence question, which R93 answers with a price rather than a
   proof.
+
+---
+
+## Round 30
+
+Brief: (a) the implication chain (A)+(B) => Delta_J = O(1) written with constants and
+tabulated against the depth-2 slack, so that nobody mistakes Delta_J = O(1) for (D);
+(b) the L question from the cover half - bound the number of realised legal words of
+length m by R43's counter or a sharper construct and test it; (c) the eps mechanism,
+pre-registered and tested on all 30 exact cells.  Mid-round addendum (manager): state the
+counter in the residue-run form of anchor-235 section 9f, where L(M) = D_{q'} - 1.
+
+Scripts and gates (all run from clean processes; logs and results in `research/data/r30/`):
+
+    research/occ_census_r30.py <y>   -> the COUNTED word census, full cyclic period,
+                                        streamed; gates: cyclic close (count = prod(q-2),
+                                        weighted sum = P, max = F, max pair = F_2), the
+                                        mirror law on every table, equality with an
+                                        in-memory scan at m11..m23, equality with the
+                                        recorded exact ghist rows at m11..m37, and
+                                        Phi(w) equal to evenj_r29's flank table at every
+                                        word both see.  Run at m11..m37; "all assertions
+                                        passed" at each; results occ_<y>.txt (committed)
+    research/word_count_r30.py       -> the ladder A_m >= S_m >= S_m^(2) >= S_m^(4) >= D_m
+                                        at m11..m53; gates: the closed form A_m vs
+                                        enumeration, R75's CORRCAP row reproduced at all
+                                        nine cells by an automaton, the sub-machine lemma
+                                        asserted at every cell; "all assertions passed"
+    research/eps_chain_r30.py        -> item (a)'s table and item (c)'s 30-cell
+                                        decomposition; gates: R91's telescoping identity
+                                        and R68's attainment at every chain, the C0 lemma
+                                        (d >= 0, d - g_out = eps) at all 30 cells, Phi from
+                                        the counted census equal to the distinct census
+    research/f3_middles_r30.py       -> C6: the F_3 maximiser's middle at m11..m37 and the
+                                        padded letter's envelope against the F_3 wall
+
+Pre-registration: `research/data/r30/constructor_prereg_r30.txt` (A1-A4, B0-B6, C0-C5
+written before any round-30 script existed; C6-C7 added mid-round, dated, before the
+triple tables were inspected).
+
+**R99 (THE IMPLICATION CHAIN WITH CONSTANTS - a theorem with every hypothesis named, and
+the table that shows which hypothesis is open).**
+
+    THEOREM.  Fix a step M -> q'.  Let Q*_J be the word-legal J-window maximum over ALL
+    word-legal windows (padded middles included), Delta_J = Q*_J - F_2(M), and along the
+    maximising chain Delta_J = Delta_{J-1} - eps_J with Delta_2 = 0 (R91).  Hypotheses:
+      (H0)  the attainment theorem F(M+q') = max_J Q*_J (R68, proved) and the word
+            reduction J_max = L(M) + 2 (R89, proved);
+      (A)   |eps_J| <= c_A for every 3 <= J <= L(M) + 2 along the maximising chain;
+      (B)   L(M) <= c_B.
+    Then   max_J Delta_J = max_J sum_{3<=j<=J} (-eps_j) <= sum_j max(0, -eps_j) <= c_A c_B,
+    hence  F(M+q') <= F_2(M) + c_A c_B.
+    (D) at the step, F(M+q') <= F(M) + q', follows IF ALSO
+      (D2)  the DEPTH-2 HALF:  S_2(M) := F(M) + q' - F_2(M)  >=  c_A c_B
+    (or, sharper, >= max_J Delta_J).  Proof: telescoping; nothing else.  []
+
+So (A) and (B) together give "Delta_J = O(1)", i.e. F(M+q') <= F_2(M) + C; that is NOT (D).
+(D) is that statement PLUS the depth-2 half F_2(M) + C <= F(M) + q', and the depth-2 half is
+R55's 2F wall: no rearrangement invariant supplies it (X35), and its slack is measured.  The
+three numbers, at every machine where F_2 is exact (`eps_chain_r30.py`; n/r = not on
+record, never filled in):
+
+    M    q'  s_min   F   F_2   L | S_2  eps_lit  eps_all  max_J Delta_J | c_A*L (lit / all)
+    m11  13    4     7    11   1 |   9     3        3          -3        |   3  /  3
+    m13  17    6    11    16   1 |  12     2        2           2        |   2  /  2
+    m17  19    6    18    25   1 |  12     0        0           0        |   0  /  0
+    m19  23    8    25    31   2 |  17     2        2           3        |   4  /  4
+    m23  29   10    34    39   1 |  24     4        4           4        |   4  /  4
+    m29  31   10    43    55   3 |  19     3        3           3        |   9  /  9
+    m31  37   12    58    68   3 |  27     2       17          20        |   6  / 51  <- product bound LOSSY
+    m37  41   14    88    90   2 |  39     0        1           1        |   0  /  2
+    m41  43   14    91   103   2 |  31    n/r      n/r          0        |  n/r
+    m43  47   16   103   116   2 |  34    n/r      n/r          2        |  n/r
+    m47  53   18   118   134   4 |  37    n/r      n/r         11        |  n/r
+    m53  59   20   145   159   3 |  45    n/r      n/r          2        |  n/r
+    m59  61   20   161   173   ? |  49    n/r      n/r          ?        |  n/r   (F_2(59) <= 173 is
+                                                                                span-conditional, r29)
+
+eps_lit = max |eps| along the LITERAL maximising chain (R91's number); eps_all = along the
+OVERALL chain, padded letters included; max_J Delta_J = F(M+q') - F_2(M) by R68.  The
+chains: m31 overall Delta = (0, 17, 20), eps = (-17, -3) - the padded first letter 37 buys
+17 more than par (Phi(37) = 48 against F_2 - 37 = 31); literal Delta = (0, 2, 3).  At m41..m53
+the per-letter eps is not on record, but the chain's TOTAL is exact from the record:
+sum eps = F_2 - F(M+q') = 0, -2, -11, -2, so the m47 chain (L = 4) carries a letter with
+|eps| >= 3.
+
+WHICH OF THE THREE IS THE GENUINELY OPEN UNIFORM STATEMENT.  (B), L(M) bounded, and only
+(B) is a statement whose failure breaks both routes: L = 1,1,1,2,1,3,3,2,2,2,4,3 at m11..m53
+is non-monotone with a new maximum at m47 and nothing found says it is bounded - and R100
+below shows the cover half is the only place a bound can come from.  (A) is bounded by 4
+at every LITERAL cell of the corpus, but as a statement over ALL letters it is already
+refuted at the constant 4: the padded letter at m31 has eps = -17, and the product bound
+c_A c_B = 51 there exceeds the slack 27 while (D) holds (max Delta = 20).  So (A) needs
+its padded half stated separately (R101 says what that half is), and "|eps| = O(1)" is a
+literal-letter law with a padded exception at exactly one corpus machine.  The depth-2
+half S_2 = 9..49 is MEASURED, not proved, grows roughly with q' (it is q' - (F_2 - F), and
+F_2 - F is 4..16 over the corpus while q' runs 13..61), and is the 2F wall: it has room, and
+no instrument on record supplies it.  Predictions A1 (the S_2 row) CONFIRMED, A2 (max|eps|
+literal x L <= S_2/2) CONFIRMED at 8/8, A4 (S_2 >= q' - 20 at m19..m59) CONFIRMED 10/10;
+A3 (m47) not testable this round.
+
+**R100 (THE L QUESTION FROM THE COVER HALF - the counter cannot bound L, and the term
+that grows is named).**  Doc: `docs/novel/cover-half-counter-ladder.md`.  For a word length
+m: A_m = abstract T3-legal words over the alphabet (closed form, asserted vs enumeration);
+S_m = those surviving phase saturation at EVERY gear of M, which by CRT is exactly "some
+slot has all m+1 prefix-sum points open" = "the depth-0 term E_0(w) = prod_g c_g(X) of
+R43's counter is >= 1" (the EXPOSURE half); S_m^(s) = those whose depth-s Bonferroni upper
+bound E_s(w) is still >= 1; D_m = realised words (the COVER half), D_m > 0 iff L >= m.
+EXPCAP(M) = max{m : S_m > 0}.  In the residue-run form of anchor-235 9f (manager's
+addendum): S_m counts the length-(m+1) residue-run PATTERNS (consecutive differences 0 or
++-d mod q', alternating) that have a slot with all points open; D_m counts those realised
+as runs of CONSECUTIVE openings; L = D_{q'} - 1 is the largest m with D_m > 0.
+
+  THEOREM (exposure is decided by the small gears): a length-m word survives phase
+  saturation at M iff it survives at {g in M : g <= 2m+2} (a gear above 2(m+1) always has
+  a free translate).  Asserted at every cell.  So S_m and EXPCAP depend on M only through
+  the gears below 2m+3 and the alphabet.
+
+    M     L   CORRCAP(5,7)  EXPCAP(all)   EXPCAP-L   S_m, m = 1..            D_m
+    m11   1       1             1            0       1                       1
+    m13   1       1             1            0       2                       2
+    m17   1       1             1            0       2                       2
+    m19   2       4             4            2       3,7,9,2                 3,2,0,0
+    m23   1       2             2            1       3,4                     3,0
+    m29   3       3             3            0       4,4,1                   3,2,1
+    m31   3       5             5            2       4,9,12,6,1              4,6,2,0,0
+    m37   2      25            18 (12*)    16 (10)   6,21,52,97,182,...,2    5,4,0       (* realised alphabet)
+    m41   2      25            13           11       6,19,39,54,73,104,131,130,101,70,38,12,2   6,5,0 (R85)
+    m43   2      11            10            8       6,19,41,70,108,154,185,144,56,8      n/r
+    m47   4       5             5            1       6,15,14,6,1             n/r (L = 4, R98)
+    m53   3     INF            21           18       7,29,77,...,1512,1500,...,2          n/r
+
+  The gate: R75's CORRCAP row (4,2,3,5,25,25,11,5,INF at 19->23..53->59) is reproduced
+  exactly by an automaton on the 35 x 3 corridor states.  D_m from the counted census at
+  m11..m37 (R102) and R85's CRT rows at m41.
+
+  * FIXED-DEPTH BONFERRONI KILLS NOTHING.  At every exposure survivor of every length at
+    m19..m31 (and m <= 3 at m37) E_2(w) >= 1 and E_4(w) >= 1: S^(2) = S^(4) = S at all 21
+    cells (prediction B3 CONFIRMED).  The exact N(w) meanwhile sits far below E_0(w): min
+    E_0/N over realised words is 6..16 at m = 1, 845..10,742 at m = 2, 145,158 (m29) and
+    312,151 (m31) at m = 3, 4,344,055 at m37 m = 2 - the over-count grows in m and in M.
+  * EXPCAP - L IS UNBOUNDED ALONG THE LADDER: 0..2 at m11..m31, then 16, 11, 8, 18 at
+    m37, m41, m43, m53 (prediction B2 CONFIRMED; B1's specific values were WRONG at m19
+    (4, not 2), m23 (2, not 1) and m31 (5, not 4) - I under-estimated the exposure cap at
+    the small machines, where the higher gears do not cut what gears 5 and 7 leave).
+    At m53 the corridor cap is infinite and gears 11 and above still cap exposure, at 21
+    (B2's "S_12(53) > 0" CONFIRMED, and the cap is finite).
+  * THE FIRST-MOMENT THRESHOLD (observation, B5): the m at which N f_legal^m < 1 is
+    4, 5, 6, 6, 6 at m19..m37 (L = 2, 1, 3, 3, 2).
+
+  VERDICT (pre-registered B6, now gated): no fixed-depth truncation of R43's counter, and
+  no exposure-only argument, bounds L uniformly in M.  The term that grows is the depth-0
+  count E_0(w) - a P-scale number (>= prod_{g > 2m+2}(g - 2m - 2) for every survivor) of
+  which the depth-s terms are bounded-ratio corrections, so E_s < 1 needs E_0 = O(1),
+  i.e. the exposure half must already have killed the word.  The exposure half's own cap
+  is finite at every machine reached but is EXPCAP, 16-18 above L at m37 and m53.  A
+  uniform L bound therefore needs the cover half at FULL depth (2^|Y| per word) on a
+  candidate set S_m that is itself unbounded in M.  "No counter of any kind" is
+  JUDGMENT, NOT RESULT; the fixed-depth statement is the result.  This is R75's "the order
+  lives in the cover half" made quantitative.
+
+**R101 (THE eps MECHANISM - the decomposition is a lemma, the order-statistic mechanism
+is REFUTED at the padded cells, and the padded failure is the F_3 wall).**
+
+  LEMMA C0 (proved).  For v = u.x, at any Phi(v)-maximising occurrence (g_kept, u, x,
+  g_out) - kept flank on the non-extension side, outer flank on the extension side -
+      eps(v) = d - g_out,   d = Phi(u) - x - g_kept >= 0,
+  since (g_kept, u, x) is an occurrence of u.  "Which flank pays": the extension-side
+  flank of u's maximiser is replaced by the letter, and the v-maximiser is in general a
+  DIFFERENT occurrence (d > 0 at every one of the 30 cells; d >= 2).  Asserted 30/30.
+
+  C1 CONFIRMED: eps = O(1) is a CANCELLATION, not a smallness - at four literal cells both
+  d and g_out exceed s_min (m29 (10,21)/(21,10): d = 18, g_out = 22, eps = -4; m31
+  (12,25)/(25,12): d = 27, g_out = 28, eps = -1).  No per-term bound of the form
+  d <= s_min exists.
+
+  MECH-A (pre-registered): Phi is an extreme value over occ(w) draws, so Phi(u) - Phi(v)
+  ~ lambda ln(occ(u)/occ(v)) and eps tracks the deviation of the letter's conditional
+  frequency f(x|u) from the exponential tail.  Tested on the counted census (R102), all 30 cells:
+    C2a  (Phi_u - Phi_v)/ln(occ_u/occ_v) in [1.5, 4.5] at literal cells: 12/14 - REFUTED
+         (the (10,21,10) cells give 1.35); the literal band is [1.35, 3.38].
+    C2b  association r(x|u) = f(x|u)/f(x) in [1/10, 10] at literal cells: 12/14 - REFUTED
+         ((10,21,10): r = 0.017, the letter 10 is 60x rarer after (10,21) than baseline,
+         yet eps = 0 there).
+    C2c  the padded failures split by association - REFUTED, 4 of 6 AGAINST (the two m37
+         (27,41) cells, eps = +15, do have r = 0.05 as predicted; the four m31 cells do
+         not): the eps = -20
+         cells (12 -> (12,37)) have r = 0.32 (37 is RARER after 12 than baseline, not
+         commoner), the eps = +13 cells ((37) -> (25,37)) have r = 0.86.  And the letter
+         frequency is exactly on the exponential tail there: ln(occ(12)/occ(12,37)) = 13.5
+         against 37/2.77 = 13.4.  So the padded failures are NOT a frequency effect at all.
+    C2d  occ(25,37; m31) = 18, not <= 4 - REFUTED at m31; occ(27,41; m37) = 1 - CONFIRMED
+         at m37 (a single mirror pair of occurrences carries Phi = 7).
+    C3   max |eps| over literal cells = 4 <= 6 - CONFIRMED; it does not scale with s_min.
+    C4   occ(37; m31) = 26,366 (< 1e5), 4.23e-6 per gap (in [1e-6, 3e-5]), Phi(37)/ln occ
+         = 4.72 (> 4) - CONFIRMED all three; R96's "abundance" reading of Phi(37) = 48 is
+         REFUTED by the count.
+  Where the anomaly actually is: Phi(12,37) = 39 on 150 occurrences (Phi/ln occ = 7.8)
+  and Phi(37) = 48 on 26,366 (4.72), against 2.2-3.7 for every literal word with occ >= 10
+  at m11..m31 (at m37 the padded letter has Phi(41)/ln occ = 3.81, just above that band
+  and far below m31's).  The words containing the padded letter at m31 have flank envelopes far above
+  what their counts permit under any order-statistic law - and the reason is structural:
+
+  C6 (pre-registered mid-round, CONFIRMED, `f3_middles_r30.py`): Phi(q') + q' <= F_3(M)
+  trivially, and at m31 it is EQUALITY - the F_3(31) = 85 maximisers are exactly
+  (18,37,30) and (30,37,18), a 3-window whose MIDDLE IS THE PADDED LETTER.  At every other
+  machine m11..m29 the F_3 maximiser's middle is not a legal letter of any class (6, 5,
+  {5,7,18}, {2,7,10}, 4, {3,20}) and the padded envelope sits strictly below the F_3 wall
+  (slack 4, 10, 16 at m19, m23, m29, and 14 at m37, whose nine F_3 = 97 maximisers -
+  (37,23,37) among them - all have non-legal middles 3, 5, 10, 21, 23).  The excess
+  F_3 - (F_2 + s_min) is +1, +1, -3, -4, +1, 0, +5, -7 at m11..m37: the depth-3 spectrum exceeds the increment budget at four
+  machines, and only at m31 is the exceeding window word-legal, because its middle
+  happens to be 37 = q'.  The counted flank distributions (R102) say the same thing from
+  below: Phi(12,37) = 39 and Phi(37) = 48 each rest on ONE occurrence (mirror pair), the
+  next-largest flank sums being 16 and 40.  THE PADDED FAILURE OF THE INCREMENT LAW IS THE EVENT "the old
+  machine's F_3 maximiser has a padded middle", which happened once in the corpus.  This is
+  the separator R95/R96 could not find: it is not a residue condition on F(M) (H1) but on
+  the MIDDLE OF THE F_3 MAXIMISER.  Its base rate is the same 3/q' as H1's, so it will
+  recur, and when it does the increment law fails at that step by F_3 - F_2 - s_min.
+
+**R102 (THE COUNTED WORD CENSUS - R96's named construct, delivered at m11..m37 by a
+streamed full-period vehicle).**  `research/occ_census_r30.py` streams the whole cyclic
+period of M in 5e7-slot chunks (no array beyond one chunk; 6 workers, one .npz per worker,
+merged) and records the single-gap histogram, the full lag-1 pair table, the full triple
+table, and for every run of legal letters of length <= 4 its occurrence count occ(w), its
+flank envelope Phi(w) with the argmax pair, and (length <= 3) the whole flank-sum
+distribution.  Gates at every machine: count = prod(q-2), weighted sum = P, max = F, max
+pair = F_2; every table mirror-symmetric (Lateral's theorem, exact); equality with an
+in-memory scan at m11..m23; equality with the recorded exact cyclic ghist rows at m11..m37;
+Phi equal to evenj_r29's distinct-census flank table at every word both vehicles see.
+Cost: m31 (3.3e10 slots) 162 s wall on 6 workers; m37 (1.24e12 slots) 4,954 s wall on 6
+workers (~0.9 GB commit each), all five gates green after one parser fix (my reader of
+Mechanic's `y,gap,count` file took the wrong columns; the data matched exactly, 75 values).
+
+  THE COUNTED PADDED-GAP CENSUS (R96's ask):
+    occ(23; m19) = 86        2.3e-4 per gap   Phi = 8
+    occ(29; m23) = 6         7.5e-7           Phi = 11
+    occ(31; m29) = 2,090     9.7e-6           Phi = 18
+    occ(37; m31) = 26,366    4.2e-6           Phi = 48   <- the anomaly, and R101/C6 says why
+    occ(41; m37) = 61,460    2.8e-7           Phi = 42   = Mechanic's r26 padding-supply count 61,460 EXACTLY
+    (m37 also: occ(14,41) = occ(41,14) = 1,525 with Phi 36; occ(27,41) = occ(41,27) = 1, a
+    single mirror pair, Phi 7; occ(55) = 9,910, occ(68) = 60; the hole 82 confirmed absent)
+  Two-letter words at m31: (12,25)/(25,12) 35,314 each, (12,37)/(37,12) 150, (25,37)/(37,25)
+  18; three-letter (12,25,12) 188 and (25,12,25) 28 - reproducing R39's chain inventory
+  (188 + 28) exactly by a different vehicle; the non-T3 runs (12,12,25) 139 and (12,25,25) 7
+  reproduce R43's partial run3(31) tuple for tuple.  Literal letters: occ(12; m31) = 1.10e8,
+  occ(25) = 4.94e6, occ(49) = 46 (Phi 14).  Flank-sum distributions (m29): (10) mean 8.87
+  over 7.8e6 occurrences with max 48 (four occurrences at 48); (10,21) mean 6.15 over 6,500,
+  max 24 (one occurrence); (10,21,10) four occurrences with flank sums 11, 11, 14, 14.
+  AND THE m31 FLANK DISTRIBUTIONS DECIDE HOW THE PADDED ENVELOPES ARE MADE: (12,37) has
+  150 occurrences with flank sums 9 (25 of them), 10, 11, 12, 13, 14 (13), 16 (4) - and ONE
+  at 39; (37) has 26,366 with tail 34 (2), 40 (2), 48 (2) - the 48 is a single mirror pair.
+  Phi(12,37) = 39 and Phi(37) = 48 are SINGLETON outliers; with the one occurrence removed
+  Phi(12,37) = 16 and eps(12 -> (12,37)) = 56 - 37 - 16 = +3, i.e. par trading holds at the
+  padded letter too EXCEPT at one window of the period, and that window is the F_3
+  maximiser's neighbourhood (C6).  The literal words behave the opposite way: (12) has 224
+  occurrences at flank sum 48 and 6 at its maximum 56; (12,25) has 14 at 33 and 2 at 34.
+
+**NEGATIVES AND SELF-CORRECTIONS (round 30).**
+* MECH-A, my pre-registered mechanism for eps, is REFUTED at every padded failure cell it
+  was built to explain (C2c 0/4), and REFUTED at the margin at two literal cells (C2a, C2b).
+  The association ratio does not track eps.  What replaced it (C6) was found by looking at
+  the F_3 maximisers AFTER MECH-A failed, and is pre-registered as such (dated, mid-round).
+* B1's exposure-cap values were wrong at three of the eight machines I predicted exactly.
+  I extrapolated "the higher gears cut the corridor cap" from m29 (where they do not need
+  to) to m19, m23 and m31 (where they do not).  Direction right, numbers wrong.
+* C2d ("the tiny-Phi padded words are near-singletons") was wrong: (25,37) has 18
+  occurrences and a flank envelope of 10 - the envelope is small because the flanks around
+  a padded letter next to a 25 are small, not because the word is a singleton.
+* The counted census was run once at m37 WITHOUT flank-sum tables (that field was added
+  after the m37 launch); the flank distributions at m37 are therefore not on disk, and the
+  m37 rows of R102 carry occ and Phi only.  The m37 merge first failed on gate 3b because my
+  reader of Mechanic's r26 `ghist_37.csv` took columns (y, gap) as (gap, count); fixed, the
+  75-value row matches exactly.  The session was also cut twice by server-side outages
+  while the census ran; the workers wrote their own files and nothing was lost.
+* Stale per-worker files from a 3-worker run made a 2-worker merge fail its file-count
+  assertion; the launcher now deletes them.  Caught by the assertion, cost one minute.
+* The r30 data directory is shared with three other lanes this round; every file this lane
+  wrote is named after the script that wrote it.
+
+**PREDICTION SCORECARD** (`research/data/r30/constructor_prereg_r30.txt`).
+* A1 CONFIRMED (the S_2 row 9,12,12,17,24,19,27,39,31,34,37,45,49, non-monotone).
+* A2 CONFIRMED 8/8 (max|eps_lit| x L <= S_2/2).  A3 NOT TESTABLE this round.  A4 CONFIRMED.
+* B0 CONFIRMED (asserted at every cell).  B1 REFUTED in value at m19, m23, m31; CONFIRMED at
+  m11, m13, m17, m29 and the three lower bounds at m37, m41, m43; m47 exact (5).
+* B2 CONFIRMED (16, 11, 8, 18; EXPCAP(53) = 21, finite).  B3 CONFIRMED (0 kills at depth 2
+  and 4, 21 cells).  B4 CONFIRMED (asserted).  B5 CONFIRMED at m19..m37 (4, 5, 6, 6, 6 vs L
+  = 2, 1, 3, 3, 2; >= 2L at m29, m31, m37 as predicted).
+  B6 the verdict, filed as gated for fixed depth.
+* C0 CONFIRMED (lemma, 30/30).  C1 CONFIRMED (4 cells).  C2a REFUTED (12/14).  C2b REFUTED
+  (12/14).  C2c REFUTED (2 of 6 as predicted, all four m31 cells against).  C2d HALF (m37
+  yes, m31 no).  C3 CONFIRMED.  C4 CONFIRMED (three
+  clauses).  C5 asserted (mirror, every table).  C6 CONFIRMED (added mid-round).  C7
+  CONFIRMED at m31 (7.8 and 4.72 against a literal band 2.2-3.7); at m37 Phi(41)/ln occ =
+  3.81 sits just above the band, not inside it as predicted - HALF.
+
+**NEEDS / NEXT CONSTRUCTS.**
+* FOR THE MANAGER: the split target now reads (A-lit) |eps| <= 4 per literal letter
+  (measured 14/14, chain max 4), (A-pad) the padded letter's residual is the F_3-wall event
+  of C6 (one machine in the corpus, base rate 3/q'), (B) L bounded - OPEN, and the cover
+  half is the only supplier (R100) - and (D2) the depth-2 half, measured slack 9..49, the
+  2F wall.  (B) and (D2) are the two hard entries; (A) is data-bounded but not proved.
+* FOR MECHANIC: the residue-run statistic you are measuring is D_m; the exposure survivors
+  S_m of R100 are its candidate patterns, and the two meet in the middle as D_g and A_kill
+  did.  The counted census at m37 is on disk (occ_37.txt); the same vehicle at m41 is
+  ~40x m37 and is not a one-round job on this box.
+* FOR FORMALIST: the sub-machine lemma of R100 is a one-line finite statement per (M, m)
+  and the closed form for A_m is elementary; C0 is a two-line lemma about maxima.
+* THE F_3-WALL SEPARATOR should be tested at m41..m53 as the F_3 maximisers land: the
+  prediction is that the increment law fails at a step iff F_3(M) > F_2(M) + s_min(q') AND
+  some F_3 maximiser has a padded middle (F_3(37)'s (37,23,37), F_3(43)'s (67,28,30) and
+  F_3(47)'s (28,33,84) all have non-legal middles, consistent with the law holding there).

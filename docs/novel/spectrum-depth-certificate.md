@@ -242,6 +242,27 @@ two-dimensional sieve; project items O7 (closed) and O2.
 
 ## 6. PRIOR-ART CHECK
 
-**Not yet checked.**  Search terms for the manager: "Jacobsthal function spectrum consecutive
-gaps upper bound adding a prime", "maximal gap growth sieve of Eratosthenes one more prime",
-"Holt Rudd cycle recursion maximal gap bound".
+**Checked 2026-09-03 (harvester, round 30).  Verdict: PARTIAL OVERLAP in the one-class
+shadow - the two ingredients "a new gap is a sum of consecutive old gaps whose interiors are
+removed" and "the CRT step that kills any prescribed interior" are Holt-Rudd's recursion and
+their Theorem 2.3 - and NOVEL AS FAR AS SEARCHED for the certificate itself:
+`F(M+q') <= max_{2 <= J <= J_max} F_J(M)` with a FINITE depth cap supplied by a
+combinatorial fact about the added gear, and the `A_kill` scope statement (section 1.4).**
+
+| item | exact statement | source | relation |
+|---|---|---|---|
+| Holt-Rudd Lemma 2.1 (the cycle-of-gaps recursion) | "The cycle of gaps `G(p_{k+1}#)` is derived recursively from `G(p_k#)`. ... R2. Concatenate `p_{k+1}` copies of `G(p_k#)`. R3. Add adjacent gaps as indicated by the elementwise product `p_{k+1} * G(p_k#)`" | arXiv:1408.6002, p. 5 (READ); same as Lemma 2.1 of Holt arXiv:1510.00743 (READ) | the ONE-class merge law: every gap of the next stage is a sum of consecutive gaps of the current stage.  It is the source of `Q*_J <= F_J` in that setting.  Two classes per prime are not treated. |
+| Holt-Rudd Theorem 2.3 | "Each possible closure of adjacent gaps in the cycle `G(p_k#)` occurs exactly once in the recursive construction of `G(p_{k+1}#)`" (proof: CRT - "Exactly one of these [`p_{k+1}` copies] has residue 0 mod `p_{k+1}`") | arXiv:1408.6002, p. 8 (READ) | the CRT step of the DELETION-LADDER CAP (section 1.3) and of the attainment theorem, in one-class form.  Iterating it over the next `j-1` primes is exactly `F_j(M) <= F(M + next j-1 primes)`; Holt-Rudd do not draw that corollary. |
+| Holt-Rudd Lemma 3.1 / Cor. 3.2 | for a constellation of length `j` and sum `g < 2p_{k+1}`, the `j+1` closures "occur in distinct copies", so each instance yields `p_{k+1} - j - 1` intact copies, `j-1` interior closures of length `j-1`, and two exterior closures that "increase the sum" | arXiv:1408.6002, pp. 11-12 (READ) | the threshold `g < 2p_{k+1}` is precisely the regime where no two interior points are removed in one copy - the one-class `A_kill = 1` regime.  Above it Holt-Rudd give no depth statement.  The certificate lives above it (spans `F_J(M) > 2q'` routinely) and its depth cap `J_max = L + 2` is what replaces their hypothesis. |
+| Holt 2015, section 7.2 remark | "Initially the largest gap in `G(13#)` is `g = 22`; the gap `g = 52` is first created in closures by `p = 73` and this continues to be the largest gap through the rest of this process" | arXiv:1510.00743, p. 44 (READ) | an EMPIRICAL record-gap remark about the survival process of one cycle; no bound. |
+| Ziller 2020 Prop. 2.7 | `m in D(k) => m in D(k+1)` | arXiv:2007.01808, p. 7 (READ) | the CONVERSE direction to the deletion cap at arity 1: old gaps persist.  See `dictionary-monotonicity-onset.md` section 6. |
+| Hagedorn 2009 | `h(n)` for `n < 50` by backtracking with an a-priori capacity bound | Math. Comp. 78 (2009) - NOT OBTAINED (two HTTP 403s, re-tried 2026-09-03) | one-class computation; SECONDARY. |
+| Costello-Watts 2015; Iwaniec 1978 | explicit / asymptotic upper bounds on `j(n)` at dimension 1 | Math. Comp. 84 (2015) 1389-1399; Demonstratio Math. 11 (1978) 225-232 (lane record) | bounds on the ONE-class function, none by a spectrum-over-depth criterion. |
+
+NONE FOUND: any published inequality bounding the maximal gap after adding a prime by the
+`j`-consecutive-gap spectrum of the previous stage over a bounded depth range; any statement
+that the depth of a merge is capped by a dictionary quantity of the old sieve.  Searches
+run: "Jacobsthal function spectrum consecutive gaps upper bound adding a prime"; "Jacobsthal
+function upper bound adding a prime recursion g(p_{k+1}#) g(p_k#) Hagedorn Holt maximal gap
+sum of consecutive gaps"; "maximal gap growth sieve of Eratosthenes one more prime"; "Holt
+Rudd cycle recursion Jacobsthal maximal gap next prime".

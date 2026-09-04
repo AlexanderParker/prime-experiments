@@ -384,3 +384,99 @@ maximise the longest uncovered run", which IS studied (Erdos-Rankin,
 Ford-Green-Konyagin-Tao style constructions). The DELTA to check is the
 DISTRIBUTION over all choices and the LOCATION of the arithmetically-forced
 choice inside it, which is a different question from the extremum.
+
+## 5C. ROUND-30 EXTENSION: L(M) AND THE DEPTH-2 SLACK ON THE FAMILY
+
+Lateral, round 30 (2026-09-03).  Status: SCRIPT-VERIFIED, exhaustive and exact
+at 7->11 .. 19->23 (the full 19->23 family, 142,560 rows, for the first time);
+a 601-member SAMPLE of V(23) at 23->29.  `research/tooth_L_r30.py --report`
+(33 gates), `research/d0_family_r30.py` (13 gates); logs `research/data/r30/`;
+tables `research/lateral_r30_results.txt` blocks A and B.
+
+### 5C.1 THE DEPTH CAP IS NOT STRUCTURAL
+
+`L(M; q')` = the longest run of consecutive gaps of `M` with residues mod `q'`
+in `{0, +d, -d}` (`d = 2v_q'`) whose nonzero classes strictly alternate
+= `D_g - 1 = A_kill - 1 = J_max - 2` (R89; the run's `L+1` openings were
+asserted to lie in one two-class set mod `q'` at every row).
+
+    step     rows      max L full  max L pinned  REAL L   real L's pinned percentile (<, <=)
+    7->11        30       1           1            0       0.0   16.7
+    11->13      180       3           2            1       3.3   90.0
+    13->17    1,440       3           1            1       0.0  100.0
+    17->19   12,960       3           3            1       0.0   51.3
+    19->23  142,560       5           4            2       2.0   95.4
+    23->29    8,414 (S)   3           3            1       0.0    1.2
+
+**The family's `L` is not capped by the real machine's constant**: it exceeds
+the real value at every step, reaches 5 at 19->23 (`J_max = 7`, `A_kill = 6`;
+member `(1,2,5,2,1,5)`, `v_23 = 9`, word `[5,18,5,18,5]`), and its maximum is
+non-decreasing in the step.  Every deepest word at every step is literal.  So
+"`L(M)` bounded" - half of the derivation target - does not follow from the
+structural theorems (CRT, the mirror, T2/T3, R89/R90, the record law), all of
+which hold at every member.  It needs the teeth.
+
+### 5C.2 WHERE THE TEETH ENTER: MOD-{5,7} ADMISSIBILITY OF THE BARE ALTERNATION
+
+Call `(a,b,a)` admissible if some residue mod 5 (and mod 7) carries the partial
+sums `r, r+a, r+a+b, r+2a+b` outside the gear's tooth pair.
+
+    step         P(L>=3 | admissible)   P(L>=3 | not)   bare-letter L>=3 words not admissible
+    13->17        0.0061                 0.0000          0 of 4
+    17->19        0.1008                 0.0000          0 of 605
+    19->23        0.2724                 0.0001          0 of 19,408 (15 more use a+q')
+    23->29 (S)    0.3196                 0.0000          0 of 1,340
+
+The real machine's alternation is NOT admissible at 13->17 `(6,11,6)`, 17->19
+`(6,13,6)` and 23->29 `(10,19,10)` - its `L <= 2` there is decided by gears 5
+and 7 alone (R74's proxy doing real work) - and IS admissible at 19->23
+`(8,15,8)`.  This is also why gear 5's tooth explains 17.3% of `L`'s variance
+at 17->19 (more than the incoming tooth's 12.5%; all 22 pinned `L = 3` rows
+have `v_5 = 2`) while every old gear above 7 explains under 1% at every step.
+Deep words need one SMALL common letter (`b = 3` or `5` maximises the mean `L`
+at every step from 13->17); the twin tooth is never the minimiser; at 23->29
+its letter class has the third-highest mean `L` while the real old teeth sit
+at the bottom of it (percentile 1.2%) - the low-outlier-inside-the-high-class
+pattern of 5A.3 again.  Letter counts predict `L` weakly (spearman 0.2-0.4);
+the remainder is adjacency.
+
+### 5C.3 THE DEPTH-2 SLACK, AND ITS ONE FAILURE
+
+`slack = F(M) + q' - F_2(M)` over `V(y)`:
+
+    step    |V|      min  median  max  max(F_2-F)  slack<=0   REAL (pct <, <=)
+    7->11      6       7    8.5    10     4          0         9  (50.0, 83.3)
+    11->13    30       6    9.5    12     7          0         9  (26.7, 50.0)
+    13->17   180       6   12.0    16    11          0        12  (35.6, 61.1)
+    17->19 1,440       5   14.0    18    14          0        12  (23.7, 34.9)
+    19->23 12,960     -1   17.0    22    24          1        17  (41.5, 54.8)
+    23->29   601 (S)   9   22.0    28    20          0        24  (72.2, 86.5)
+
+The real machine's slack is ORDINARY (35-61 percentile at 13->17 .. 19->23),
+and the tail reaches zero exactly once in 14,616 exhaustively enumerated old
+machines: `V(19)`'s `(1,1,4,3,5,2)`, `F = 26`, `F_2 = 50`.
+
+**That failure is the self-mirror 2-window.**  By the mirror the gaps around
+slot 0 are `(d_0, d_0)`, so `F_2 >= 2 d_0` at every member (gated, 15,217
+machines), and the depth-2 half can fail by that window alone when
+`2 d_0 > F + q'`; the failing member has `d_0 = 25` against `F = 26`.
+Excluding wrap-pair members the minimum slack is 8 / 6 / 6 / 5 / 4 / 9 -
+positive at every step.  The real machine's `d_0 = 2,3,3,5,5,5` is a closed
+form (Mechanic's wrap-gap identity, r25).  So on this family the only depth-2
+failure mode is the one depth at which the mirror lever needs its hypothesis
+`d_0 != F` (mirror-parity-laws.md 9.2).
+
+Separately, `(D)` itself fails at only 0.0-0.6% of the family (0 / 1 / 1 / 36 /
+203 rows at the five steps, `F(M+q')` direct at 27,570 rows and from the record
+law elsewhere), while the increment law fails at 13-22%: the round-29
+statement "(D) and the increment law fail at 13-22%" should be read as the
+increment law only.
+
+### 5C.4 STATUS AND PRIOR ART
+
+Exact enumerations; the 23->29 rows are a sample and are labelled so.  The
+`{5,7}` admissibility statement is a measured near-perfect necessary condition
+(one exception class, the shifted letter), not a theorem.  Prior-art check:
+**not yet checked**; terms beyond section 6: "longest run of consecutive gaps
+in two residue classes, sieve", "alternating residue word admissibility small
+primes", "Jacobsthal-type depth of a two-class covering".

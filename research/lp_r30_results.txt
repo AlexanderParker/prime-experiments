@@ -1,0 +1,89 @@
+==============================================================================
+LP-DUALITY ROUND 30 - RESULTS FROM DISK
+==============================================================================
+
+1. THE 47 -> 53 TREE AT W_inc = F(47) + 53 = 171  (machine 53, W = 171)
+
+   k  reps   on disk  CERTIFIED  it=0   base-cut  NOCERT/other  ops (sum)     mean ops  secs (sum)  margin min / max
+   3  193    1        0          0      0         1             0             -         1066        - / -
+      iteration histogram: {}
+      non-certified verdicts: {'NOCERT-SPLIT': 1}
+        cell_m53_w171_k3_h0_0_0          plain=STUCK its=9 traj 64.336 -> 64.223 vs |pos| 60
+   4  2503   2503     2407       2398   2398      96            187193969     77771     45713       1/16384 / 3
+      iteration histogram: {0: 2398, 2: 5, 3: 3, 4: 1}
+      non-certified verdicts: {'NOCERT-SPLIT': 96}
+        cell_m53_w171_k4_h0_0_10_4       plain=STUCK its=4 traj 48.870 -> 48.742 vs |pos| 48
+        cell_m53_w171_k4_h0_0_10_8       plain=STUCK its=4 traj 49.404 -> 49.357 vs |pos| 48
+        cell_m53_w171_k4_h0_0_2_12       plain=STUCK its=12 traj 47.960 -> 47.403 vs |pos| 47
+        cell_m53_w171_k4_h0_0_6_11       plain=STUCK its=4 traj 46.809 -> 46.643 vs |pos| 46
+        cell_m53_w171_k4_h0_0_6_12       plain=STUCK its=4 traj 47.270 -> 47.220 vs |pos| 47
+        cell_m53_w171_k4_h0_0_6_2        plain=STUCK its=12 traj 47.314 -> 46.644 vs |pos| 46
+        cell_m53_w171_k4_h0_0_6_3        plain=STUCK its=12 traj 48.905 -> 48.351 vs |pos| 48
+        cell_m53_w171_k4_h0_0_6_4        plain=STUCK its=12 traj 49.774 -> 49.614 vs |pos| 48
+        cell_m53_w171_k4_h0_0_6_8        plain=STUCK its=4 traj 47.452 -> 47.327 vs |pos| 47
+        cell_m53_w171_k4_h0_0_6_9        plain=STUCK its=4 traj 47.333 -> 47.183 vs |pos| 46
+        cell_m53_w171_k4_h0_0_8_4        plain=STUCK its=4 traj 48.926 -> 48.860 vs |pos| 48
+        cell_m53_w171_k4_h0_1_1_10       plain=STUCK its=4 traj 50.531 -> 50.401 vs |pos| 50
+   5  42543  1632     1632       1632   1632      0             115934896     71039     13567       1/11 / 3
+      iteration histogram: {0: 1632}
+
+   certified fraction at the first affordable level (k = 4): 2407 / 2503 representatives = 0.9616  (37 -> 41 at k = 3 was 376/385 = 0.9766)
+   k = 4 margin histogram (representatives): 1/16384 x4, 787/5000000 x1, 33/65536 x1, 27/50000 x1, 3/4096 x1, 61/65536 x1, 1/512 x2, 227/100000 x1, 2567/1000000 x1, 3/1024 x1, 1/256 x2, 131/32768 x1, 81/16384 x1, 341/65536 x1, 3/512 x1, 1/128 x7, 1/96 x7, 3/256 x2, 7/512 x1, 1/64 x10, 1/59 x1, 1/56 x1, 1/53 x1, 1/48 x3, 1/44 x1, 3/128 x4, 1/42 x2, 1/40 x1, 1/39 x1, 5/192 x2, 1/37 x4, 1/35 x1, 1/33 x7, 1/32 x7, 1/31 x3, 1/30 x3, 1/29 x6, 1/28 x7, 2/55 x1, 1/27 x4, 1/26 x3, 1/25 x1, 1/24 x5, 11/256 x1, 1/23 x4, 1/22 x3, 2/43 x1, 3/64 x1, 1/21 x8, 1/20 x3, 1/19 x9, 2/37 x1, 1/18 x8, 2/35 x2, 1/17 x16, 2/33 x1, 1/16 x22, 2/31 x1, 1/15 x20, 13/192 x1, 2/29 x4, 1/14 x27, 7/96 x1, 1/13 x30, 2/25 x2, 1/12 x35, 1/11 x37, 2/21 x7, 1/10 x44, 3/29 x2, 2/19 x3, 3/28 x1, 1/9 x50, 2/17 x8, 5/41 x1, 1/8 x74, 3/23 x1, 2/15 x14, 3/22 x1, 1/7 x102, 4/27 x1, 3/20 x2, 2/13 x20, 3/19 x5, 4/25 x1, 1/6 x132, 3/17 x3, 2/11 x24, 3/16 x6, 1/5 x124, 4/19 x1, 3/14 x6, 2/9 x37, 5/22 x1, 3/13 x11, 4/17 x1, 1/4 x182, 4/15 x1, 3/11 x18, 2/7 x73, 5/17 x1, 3/10 x17, 4/13 x5, 5/16 x2, 1/3 x149, 6/17 x1, 5/14 x1, 4/11 x16, 3/8 x51, 2/5 x120, 5/12 x3, 3/7 x36, 4/9 x21, 5/11 x4, 1/2 x203, 6/11 x2, 5/9 x6, 4/7 x20, 7/12 x1, 3/5 x72, 5/8 x9, 2/3 x60, 7/10 x3, 5/7 x17, 3/4 x53, 7/9 x1, 4/5 x38, 5/6 x22, 6/7 x4, 7/8 x1, 1 x88, 8/7 x1, 7/6 x2, 6/5 x11, 5/4 x9, 4/3 x7, 7/5 x4, 3/2 x13, 8/5 x1, 5/3 x3, 7/4 x1, 2 x12, 7/3 x2, 5/2 x1, 3 x2
+
+   STEP MANIFEST: 8077 cases over k=4 4813 + k=5 3264; leaves by level {'4': 81821, '5': 3264}; margin min 1/16384 max 3; 606183237 exact ops; PARTITION ASSERTED = True
+
+2. THE k = 3 PROBE at machine 53, W = 171, case (0,0,0), n = 11
+   |pos| = 60, cols 56124, links 3530; plain loop: STUCK after 9 passes, 1066 s; LP max 64.3359 -> 64.2230 against 60
+   (the lifted LP is out of reach at n = 11; at k = 4 the SAME phases (0,0,0,0) give a base-cut polytope that is EMPTY at iteration zero in ~20 s)
+
+3. E14 - W_c(y, 3) = min{W : G < 0} at the all-zero case
+
+   y    W_c   F(y)   W_c / F(y)    source
+   23   13    34     0.3824       r29
+   29   31    43     0.7209       r29
+   31   46    58     0.7931       r29
+   37   66    88     0.7500       r29
+   41   81    91     0.8901       r29
+   43   106   103    1.0291       r30
+   m43 bisection widths: {'84': 3.1389, '100': 2.6345, '103': 1.6343, '104': 1.3414, '105': 1.3414, '106': None, '107': None, '108': None, '109': None, '117': None}
+   E14 (W_c(43,3) >= 92, ratio > 0.89): CONFIRMED - W_c(43,3) = 106, ratio 1.029; AND THE RATIO HAS CROSSED 1: the case-0 cell at k = 3 is NOT certifiable at the truth F(43) = 103, nor at 104 or 105
+
+4. E15 - machine 41, W = 104, k = 2: (V*, |pos|) classes vs mirror orbits
+   case (0, 0)   |pos|=45  V*=50.166742
+   case (0, 1)   |pos|=45  V*=49.36518
+   case (0, 2)   |pos|=45  V*=50.964917
+   case (0, 3)   |pos|=45  V*=50.799994
+   case (0, 4)   |pos|=45  V*=50.27326
+   case (0, 5)   |pos|=45  V*=50.383425
+   case (0, 6)   |pos|=45  V*=49.36518
+   case (1, 0)   |pos|=45  V*=49.36518
+   case (1, 1)   |pos|=44  V*=49.123153
+   case (1, 3)   |pos|=44  V*=50.03481
+   case (1, 4)   |pos|=44  V*=49.841528
+   case (3, 0)   |pos|=45  V*=50.799994
+   case (3, 1)   |pos|=44  V*=49.937554
+   case (3, 2)   |pos|=45  V*=49.36518
+   case (3, 3)   |pos|=44  V*=49.219114
+   case (3, 4)   |pos|=44  V*=48.729009
+   case (3, 5)   |pos|=44  V*=49.510071
+   case (3, 6)   |pos|=44  V*=49.083255
+   18 of 18 orbits decided by the lifted route; 14 distinct (V*, |pos|) classes
+   E15 (classes STRICTLY FEWER than orbits): CONFIRMED
+
+5. E16 - 41 -> 43 AT THE INCREMENT WIDTH F_2(41) + s_min(43) = 103 + 14 = 117  (machine 43, W = 117)
+
+   k  reps   on disk  CERTIFIED  it=0   base-cut  NOCERT/other  ops (sum)     mean ops  secs (sum)  margin min / max
+
+7. THE CASE SPLIT'S SYMMETRY CLASSES: mirror, and boundary-blocked
+   translation (lp_mirror_r30 translation lemma) - arithmetic only
+
+   sweep             cases  mirror orbits  mirror+translation classes  measured value classes
+   m37  W=95   k=2     35      18             11                     11
+   m41  W=104  k=2     35      18             14                     14
+   m37  W=95   k=3    385     193            100                     -
+   m41  W=104  k=3    385     193            125                     -
+   m43  W=134  k=3    385     193            125                     -
+   m47  W=132  k=4   5005    2503           1243                     -
+   m53  W=171  k=4   5005    2503           1391                     -
+   m53  W=171  k=3    385     193            125                     -
+   m41 W=104 k=2: 14 exact-translate pairs among the 35 cases, equal V* at 14/14  (ASSERTED)

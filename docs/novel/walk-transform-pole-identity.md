@@ -166,12 +166,30 @@ that they are weak, it is that what they vary with is not `F`.
 
 ## 6. PRIOR-ART CHECK
 
-**Not yet checked** (this lane has no web access).  Terms for the manager:
-"first passage function of a periodic sieve Fourier transform";
-"distance to next survivor exponential sum covering system";
-"Jacobsthal function large sieve exponential sum lower bound obstruction";
-"gap-weighted exponential sum reduced residue system";
-"discrete renewal generating function 1/(1 - e(theta)) sieve".
+**Checked 2026-09-03 (harvester, round 30).  Verdict: the MECHANISMS of all three
+identities are classical (KNOWN); the identities AS STATED for the first-passage
+function of a two-residue sieve, and the L1-blindness obstruction measured
+against a null family, are NOVEL AS FAR AS SEARCHED - with the honest label that
+Identity 1 is an elementary consequence of textbook facts and should be
+presented as such.**
+
+| identity | classical mechanism (KNOWN) | source | what is not in the literature |
+|---|---|---|---|
+| 1 (pole identity) `What(m)(1 - e(m/P)) = -e(m/P) Ghat(m)` | the transform of a first difference is multiplication by `1 - e(m/P)` (discrete partial / Abel summation); the walk `W` is a sum of linear ramps and the DFT of a ramp is a geometric sum over `1 - e(m/P)` - the discrete analogue of the sawtooth's Fourier coefficient `psi-hat(k) = i/(2 pi k)` | any Fourier-series text; the discrete transform of a sawtooth/Dedekind sum over reduced residues, `s-hat_q(t) = (1/q) sum_a s_q(a) e(at/q)`, is the object of arXiv:1709.06168 ("The distribution of consecutive prime biases and sums of sawtooth random variables"; SECONDARY - definitions seen via search, authors not verified) | no paper found that writes the DISTANCE-TO-NEXT-SURVIVOR function of a sieve in this form or names `Ghat` (the gap-weighted opening transform) as the irreducible object.  NONE FOUND for the search terms below. |
+| 2 (`Shat = prod_q hat_q(m c_q)`) | multiplicativity of exponential sums over sets defined by congruence conditions, by CRT: for the ONE-class sieve `Shat` IS the Ramanujan sum `c_P(m) = sum_{(a,P)=1} e(am/P)`, multiplicative in `P` (classical - Kluyver 1906 / Ramanujan 1918; textbook fact, not re-fetched) | classical; the CRT frequency `m c_q` is the standard change of variable in that factorisation | the two-class factor `hat_q(j) = -2 cos(2 pi j v_q / q)` is the immediate two-residue analogue; not claimed new. |
+| 3 (L1 mass teeth-independent) | dilation invariance of the L1 norm of a DFT: `k -> k v_q` is a permutation of `Z_q` for `v_q` invertible, so `sum_j |hat_q(j)|` does not depend on `v_q`; the product form is Identity 2 | textbook | the USE - that the large-sieve-shaped L1 bound is IDENTICAL across the tooth-counterfactual family while `F` spreads 1.8-2.5x, so it cannot see `F` - is a statement about the project's null family and was not found anywhere. |
+| the moment/large-sieve background | Erdos 1962 (Math. Scand. 10, 163-170) and Hooley 1962/63 (Acta Arith. 8, 343-347) on moments of gaps between reduced residues; Montgomery-Vaughan, *On the distribution of reduced residues*, Ann. of Math. 123 (1986) 311-333, proving Erdos's conjecture on those moments by exponential sums over the reduced residues | SECONDARY (bibliographic data from the search; texts not fetched) | these bound MOMENTS of the one-class gap distribution, exactly the L2/Chebyshev route section 4 measures as vacuous by 16x-4500x here; none treats a two-class sieve or the maximal gap. |
+
+Searches run (2026-09-03): "first passage function periodic sieve Fourier
+transform"; "distance to next survivor exponential sum covering system";
+"Fourier transform distance to the nearest element periodic set sawtooth
+reduced residues gap function"; "sawtooth OR distance to the next Fourier
+reduced residues partial summation 1-e identity"; "Montgomery Vaughan
+distribution of reduced residues 1986 exponential sums"; "Hooley on the
+difference of consecutive numbers prime to n".  None returned a first-passage
+identity for a sieve.  A related project entry, `depth-sum-identity.md`, was
+found in round 22 to be Holt's Corollary 1 (arXiv:2502.20470) - that is the
+depth-SUM side, not the depth-1 object `Ghat` isolated here.
 The nearest relatives inside the project are `golden-spectral-gap.md` (the
 machine DFT, whose statement this file corrects with the CRT frequency `c_q`),
 `pole-phase-law.md` (now a corollary), `depth-sum-identity.md` (the same

@@ -287,13 +287,18 @@ J2_REF = dict(zip(PRIMES30, A288815))
 J3_REF = {3: 6, 5: 24, 7: 78, 11: 180, 13: 306, 17: 612, 19: 972}
 
 
-def rust_value(k, z, secs=None):
-    """Run the fast engine and return (j_k, exact?) or None if unavailable."""
+def _rust_exe():
     import os
-    import subprocess
     exe = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                        "rust2", "target", "release", "jkcov6.exe")
-    if not os.path.exists(exe):
+    return exe if os.path.exists(exe) else None
+
+
+def rust_value(k, z, secs=None):
+    """Run the fast engine and return (j_k, exact?) or None if unavailable."""
+    import subprocess
+    exe = _rust_exe()
+    if exe is None:
         return None
     cmd = [exe, str(k), str(z), "--quiet"]
     if secs:
@@ -303,6 +308,60 @@ def rust_value(k, z, secs=None):
         return None
     f = p.stdout.split()
     return int(f[2]), f[6] == "EXACT", f[7] == "true"
+
+
+def rust_witness(k, z):
+    """Run the REDUCED engine (non-quiet) and return (j_k, m, exact, {p: [r..]})
+    -- the witness in reduced-lattice coordinates: for each prime p > k+1 the
+    NONZERO classes r mod p chosen, covering positions 1..m."""
+    import re
+    import subprocess
+    exe = _rust_exe()
+    if exe is None:
+        return None
+    p = subprocess.run([exe, str(k), str(z)], capture_output=True, text=True)
+    if p.returncode != 0:
+        return None
+    lines = p.stdout.splitlines()
+    jk = int(re.search(r"j_k\(P\(z\)\) = (\d+)", lines[0]).group(1))
+    m = int(re.search(r"m = (\d+)\s*$", lines[0]).group(1))
+    exact = "EXACT" in lines[1]
+    wl = next(l for l in lines if l.startswith("witness"))
+    sol = {}
+    for pr, body in re.findall(r"(\d+):\[([^\]]*)\]", wl):
+        sol[int(pr)] = [int(x) for x in body.split(",") if x.strip()]
+    return jk, m, exact, sol
+
+
+def lift_reduced_witness(k, z, m, sol):
+    """Lift a reduced-lattice witness to the UNREDUCED covering restatement.
+
+    Reduced picture (jkcov6.rs header): D = prod of primes p <= k+1; the
+    survivors of those small primes lie in ONE class c mod D (take c = 1, which
+    is coprime to D); reduced position x <-> integer n = c + D x; the reduced
+    window is x = 1..m, i.e. integers n = c+1 .. c+D(m+1)-1, which is
+    L = D(m+1) - 1 = j_k - 1 consecutive integers with no survivor.  In offset
+    coordinates j = n - (c+1) = 0..L-1 the covering sets are
+        p <= k+1 :  every class except c        (size p-1 = min(k, p-1))
+        p >  k+1 :  {c + D r : r in S_p}        (size |S_p| <= k)
+    shifted by -(c+1) so that `verify_solution` can test `j mod p in S`.
+    Returns (L, sol_list) in `verify_solution`'s format."""
+    ps, caps = caps_for(k, z)
+    D = 1
+    for p in ps:
+        if p <= k + 1:
+            D *= p
+    c = 1
+    L = D * (m + 1) - 1
+    out = []
+    for p in ps:
+        if p <= k + 1:
+            S = [s for s in range(p) if s != c % p]
+        else:
+            S = sorted(set((c + D * r) % p for r in sol.get(p, [])))
+            assert all(r % p != 0 for r in sol.get(p, [])), "class 0 in reduced witness"
+        out.append(sorted(set((s - c - 1) % p for s in S)))
+    return L, out
 
 
 def _gate():
@@ -381,13 +440,48 @@ def _gate():
                   f"{'OK' if v == ref and exact else 'MISMATCH'}")
             assert v == ref and exact, (k, z, v, ref)
 
-    # D. solutions verify independently
+    # D. solutions verify independently.
+    #    ROUND 30 FIX: the witnesses come from the REDUCED engine (jkcov6, canonical
+    #    form), NOT from the unreduced pure-Python DFS -- at k=2 z=17 that DFS
+    #    carries the (2n-4)!/2^(n-2) permutation redundancy the canonical rule
+    #    removes and stalled this section for 73 CPU-minutes in round 29.  The
+    #    reduced witness is LIFTED to the unreduced covering restatement by CRT
+    #    (`lift_reduced_witness`, plain Python) and re-checked position by
+    #    position by `verify_solution`, which shares no code with the engine.
+    #    The small (3,7) case is ALSO run through the python DFS so the lift is
+    #    checked against an unreduced witness of the same length.
     print("\n[D] witnesses re-verified by independent code")
-    for k, z in ((1, 19), (2, 17), (3, 7)):
-        L, sol, _ = dfs_maxrun(k, z, 200)
-        ok = verify_solution(k, z, L, sol)
-        print(f"    k={k} z={z:2d}   L={L:4d}   witness {'VERIFIES' if ok else 'BAD'}")
-        assert ok
+    print("    (reduced-engine witness, lifted to the unreduced covering by CRT,")
+    print("     re-checked position by position in plain python)")
+    if _rust_exe() is None:
+        print("    jkcov6.exe not built -- SKIPPED")
+    else:
+        for k, z in ((1, 19), (2, 17), (3, 7), (3, 11)):
+            jk, m, exact, sol = rust_witness(k, z)
+            L, lifted = lift_reduced_witness(k, z, m, sol)
+            ok = verify_solution(k, z, L, lifted)
+            tag = "A048670" if k == 1 else ("A288815" if k == 2 else "round 28")
+            ref = {1: J1_REF, 2: J2_REF, 3: J3_REF}[k][z]
+            print(f"    k={k} z={z:2d}   m={m:4d}   L={L:4d} = j_k-1   ({tag}: {ref})"
+                  f"   exact={exact}   lifted witness {'VERIFIES' if ok else 'BAD'}")
+            assert exact and L + 1 == jk == ref, (k, z, jk, ref, exact)
+            assert ok
+        L0, sol0, _ = dfs_maxrun(3, 7, 200)
+        assert verify_solution(3, 7, L0, sol0) and L0 + 1 == J3_REF[7]
+        print(f"    k=3 z= 7   unreduced python DFS witness L={L0} VERIFIES too "
+              f"(same L as the lifted reduced witness)")
+        # NEGATIVE CONTROLS (an audit without positive AND negative controls is
+        # not an audit): the checker must REJECT a damaged witness.
+        jk, m, exact, sol = rust_witness(2, 17)
+        L, lifted = lift_reduced_witness(2, 17, m, sol)
+        bad = {p: list(v) for p, v in sol.items()}
+        pbig = max(bad)
+        bad[pbig] = bad[pbig][:-1]                   # drop one class
+        Lb, liftedb = lift_reduced_witness(2, 17, m, bad)
+        assert not verify_solution(2, 17, Lb, liftedb), "checker accepted a damaged witness"
+        assert not verify_solution(2, 17, L + 1, lifted), "checker accepted L+1"
+        print("    negative controls: a witness with one class dropped is REJECTED; "
+              "the same witness claimed for L+1 is REJECTED")
 
     print(f"\njk_cover: ALL ASSERTIONS GREEN   ({time.time()-t0:.1f} s)")
 

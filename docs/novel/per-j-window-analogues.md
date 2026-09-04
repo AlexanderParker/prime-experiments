@@ -248,11 +248,35 @@ the gear list with no period - reproduces `Q*_4(19) = 34`, `Q*_4(29) = 55`, `Q*_
 
 ## 6. PRIOR-ART CHECK
 
-**Not yet checked** (this lane has no web access).  Suggested search terms for the manager:
-"Jacobsthal function consecutive gaps alternating residue constraint",
-"maximal gap after adding a prime to a sieve, chain of deleted elements",
-"palindromic extremal configurations in sieve gap words",
-"Holt Rudd cycle recursion deleted run length".
+**Checked 2026-09-03 (harvester, round 30).  Verdict: NOVEL AS FAR AS SEARCHED for the
+family `Q*_J`, the middle-sum lemma, the J-parity of palindromes, the peel bound and the
+bounded-`Delta_J` table; PARTIAL OVERLAP for the underlying "window merges when its
+interiors die" mechanism, which in the one-class sieve is Holt-Rudd's recursion.**
+
+The full adjacency tables are in the two companion notes and are not duplicated here:
+`even-j-mechanism.md` section 6 (the depth quantifier `J_max = L + 2` and the run-of-gaps
+literature: Holt-Rudd remark (vi), Ziller 2020 `D(k)`, Shiu, Banks-Freiberg-
+Turnage-Butterbaugh, Maynard, Erdos-Turan, Lemke Oliver-Soundararajan - all either
+prime-side existence results or one-class at word length one) and
+`spectrum-depth-certificate.md` section 6 (Holt-Rudd Lemma 2.1 / Theorem 2.3 / Lemma 3.1,
+Holt 2015, Ziller Prop. 2.7, Hagedorn, Costello-Watts).  Specific to this note:
+
+- Holt-Rudd Lemma 3.1 (arXiv:1408.6002, p. 11, READ) is the closest published shape to
+  the peel bound (Theorem D): its "two exterior closures" are exactly the flank deletions
+  that peel a window, and its condition `g < 2p_{k+1}` is the one-class range on which
+  every closure is a DEPTH-ONE event.  There is no analogue of the middle-sum lemma
+  because the one-class sieve has no alternation - all removed points are `= 0 mod
+  p_{k+1}`, so the middles of a killed run are all `= 0`, the "padded" case only.
+- Holt-Rudd remark (v), "Except for the final 2, the cycle of differences is symmetric:
+  `g_{k,j} = g_{k,phi(p_k#)-j}`" (p. 7, READ), is the one-class mirror symmetry; Lateral's
+  mirror theorem (round 25) is its two-class form and Proposition C rests on it.  The
+  J-parity of palindromes (Theorem B) has no one-class analogue for the same reason as
+  above (no alternating class word).
+- NONE FOUND: "Jacobsthal function consecutive gaps alternating residue constraint";
+  "palindromic extremal configurations in sieve gap words"; "maximal gap after adding a
+  prime to a sieve chain of deleted elements"; "Holt Rudd cycle recursion deleted run
+  length" - the last returns only the Holt-Rudd papers already tabulated.
+
 The nearest known relatives inside the project are the merge law (PARTIAL OVERLAP with
 Holt-Rudd) and the two-teeth kill spacing law T1-T5 (`docs/novel/two-teeth-kill-spacing.md`),
 on which Theorems A and B rest.

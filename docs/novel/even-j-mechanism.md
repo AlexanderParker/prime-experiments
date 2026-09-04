@@ -273,10 +273,113 @@ which is open in general; Jacobsthal-type extremal problems for the two-dimensio
 
 ## 6. PRIOR-ART CHECK
 
-**Not yet checked** (this lane has no web access).  Search terms for the manager:
-"longest run of consecutive gaps in a prescribed residue class, sieve of Eratosthenes",
-"maximal deleted chain when a prime is added to a sieve, alternating residue constraint",
-"flank envelope of a pattern of consecutive gaps", "Jacobsthal function depth of merge".
-Nearest relatives inside the project: `two-teeth-kill-spacing.md` (T1-T5, on which both
-theorems rest), `per-j-window-analogues.md` (the family this note's even half completes),
+**Checked 2026-09-03 (harvester, round 30).  Verdict: NOVEL AS FAR AS SEARCHED for all
+three objects - the word reduction (`J_max = L + 2`, `A_kill = L + 1`), the same-tooth
+lemma, and the par-trading residual `eps` with `Delta_J = Delta_{J-1} - eps`.  The
+THEME "runs of consecutive gaps in prescribed residue classes" has a literature, but it
+is a prime-side EXISTENCE literature (arbitrarily long runs exist) or a one-class sieve
+literature at run length ONE; no published object bounds the longest run of consecutive
+sieve gaps whose residues mod the next prime lie in a two-class set.**
+
+Adjacency table (one row per nearest item; "READ" = full text or the quoted passage read
+first-hand on 2026-09-03; "SECONDARY" = bibliographic data only):
+
+| item | exact statement | source | relation to `L(M)` / `eps` |
+|---|---|---|---|
+| Holt-Rudd, remark (vi) on `G(p_k#)` | "If `m+1` consecutive gaps have the same value, `g_{k,j} = ... = g_{k,j+m} = g`, then `g = 0 mod p` for all primes `p <= m+2`." | arXiv:1408.6002, p. 7 (READ) | the ONE-class shadow of a run constraint on consecutive gaps: a run of equal gaps forces divisibility.  Our T3 alternation (`0, +s, -s` classes, nonzero classes alternating) is the two-class analogue, and `L(M)` is the length the analogue can reach.  No run-length quantity is defined there. |
+| Holt-Rudd Lemma 3.1 / Cor. 3.2 | for a constellation of length `j` and sum `g < 2p_{k+1}`, "the `j+1` closures in step R3 occur in distinct copies"; the interior closures give length-`j-1` constellations of the same sum, "the two exterior closures increase the sum" | arXiv:1408.6002, pp. 11-12 (READ) | the one-class merge at DEPTH ONE: below span `2p_{k+1}` no two interior points die in one copy, so the one-class `A_kill` is 1 on that range.  The "exterior closure increases the sum" is the flank being added - the phenomenon `Phi(v)` and `eps(v)` quantify - but no flank-sum quantity is defined and nothing is measured. |
+| Ziller 2020, `D(k)` and `N_min(k)` | `D(k)` = set of differences between consecutive coprimes to `p_k#`; Prop. 2.7 `m in D(k) => m in D(k+1)`; `N_min(k)` computed to `k = 44` | arXiv:2007.01808 (READ) | the one-class dictionary at WORD LENGTH ONE (which single gaps occur).  `L(M)` asks which words of legal letters occur; Ziller never forms words. |
+| Shiu 2000 | for coprime `a, q` there are arbitrarily long strings of consecutive primes all `= a mod q` | J. London Math. Soc. 61 (2000) 359-373 (SECONDARY) | PRIME-side, ONE class, EXISTENCE of long runs; the opposite shape to `L(M)` bounded. |
+| Banks-Freiberg-Turnage-Butterbaugh 2015 | Maynard-Tao weights give `m` consecutive primes in an admissible tuple; "For any coprime integers `a` and `D` we find arbitrarily long strings of consecutive primes with bounded gaps in the congruence class `a mod D`"; also monotone gap runs (answering Erdos-Turan) | arXiv:1311.7003 (abstract READ) | the "Maynard-type sieve weights" item of the brief: they produce long runs of consecutive PRIMES in one class; nothing about sieve survivors, nothing bounded. |
+| Maynard 2016 | lower bounds of the right order for the number of strings of `m` congruent consecutive primes | Compositio Math. 152 (2016) 1517-1554 (SECONDARY) | same family as the row above. |
+| Erdos-Turan 1948; Erdos 1955 | `d_{n+1} - d_n` changes sign infinitely often; `liminf d_{n+1}/d_n < 1 < limsup`; conjectures `0` and `infinity` | Bull. AMS 54 (1948) 371-378 (SECONDARY) | the "Erdos-type consecutive gaps" item of the brief: prime-side ratio/sign statements about two consecutive gaps; no residue classes, no sieve. |
+| Lemke Oliver-Soundararajan 2016 | biases in the distribution of PAIRS of consecutive primes among reduced residue classes mod `q` | PNAS 113 (2016), arXiv:1603.03720 (abstract READ) | consecutive-gap residue patterns, prime side, length 2, statistical. |
+| Hagedorn 2009 | backtracking computation of `h(n)`, `n < 50` | Math. Comp. 78 (2009) 1073-1087 - NOT OBTAINED (two HTTP 403s, re-tried 2026-09-03) | one class; SECONDARY. |
+
+NONE FOUND, after the searches below: any definition of the longest realised word of legal
+letters `L(M)`; any identity of the form `J_max = L + 2`; any per-word flank residual; any
+recursion `Delta_J = Delta_{J-1} - eps`.  Searches run: "longest run of consecutive gaps in a
+prescribed residue class sieve of Eratosthenes"; "consecutive gaps between reduced residues
+modulo primorial residue class next prime run length"; "Shiu strings of congruent primes
+Maynard dense clusters"; "Erdos Turan 1948 consecutive differences monotone runs";
+"Holt Rudd cycle recursion Jacobsthal maximal gap next prime"; "flank envelope pattern of
+consecutive gaps" (no hits).  Nearest relatives inside the project:
+`two-teeth-kill-spacing.md` (T1-T5, on which both theorems rest),
+`per-j-window-analogues.md` (the family this note's even half completes),
 `kleene-generator.md` (`Q*_J` is layer `J-2` of the star).
+
+---
+
+## 7. ROUND-30 ADDENDUM - the eps decomposition, the order-statistic mechanism refuted, and the F_3 wall
+
+Constructor, round 30 (`research/eps_chain_r30.py`, `research/f3_middles_r30.py`,
+`research/occ_census_r30.py`; pre-registration `research/data/r30/constructor_prereg_r30.txt`).
+
+**7.1 LEMMA (the decomposition) - PROVED, asserted 30/30.**  For `v = u.x`, at any
+`Phi(v)`-maximising occurrence `(g_kept, u, x, g_out)` (kept flank on the non-extension
+side, outer flank on the extension side),
+
+    eps(v) = d - g_out,      d = Phi(u) - x - g_kept >= 0,
+
+because `(g_kept, u, x)` is an occurrence of `u` with flank sum `g_kept + x <= Phi(u)`.
+The flank that "pays" is the extension-side flank of `u`'s maximiser (replaced by the
+letter); the `v`-maximiser is a DIFFERENT occurrence at every one of the 30 cells
+(`d >= 2` everywhere).  **`eps = O(1)` is a cancellation, not a smallness:** at four literal
+cells both terms exceed `s_min` (m29 `(10,21)`: `d = 18`, `g_out = 22`, `eps = -4`; m31
+`(12,25)`: `d = 27`, `g_out = 28`, `eps = -1`).
+
+**7.2 THE ORDER-STATISTIC MECHANISM IS REFUTED AT THE PADDED CELLS.**  The pre-registered
+mechanism (R33's `Phi ~ 2.77 ln occ` read per letter: `eps ~ lambda ln(occ(u)/occ(v)) - x`,
+so `eps` should track the letter's conditional frequency after `u`) was tested on the
+COUNTED census (section 7.4).  At the literal cells the ratio `(Phi_u - Phi_v)/ln(occ_u/occ_v)`
+lies in `[1.35, 3.38]` and the letter frequency sits on the exponential tail (e.g. m31
+`ln(occ(12)/occ(12,25)) = 8.0` against `25/2.77 = 9.0`) - consistent with the mechanism,
+though two cells fall outside the pre-registered bands.  At the padded failure cells it
+is wrong in every one: the `eps = -20` cells (`12 -> (12,37)`) have association ratio
+`f(37|12)/f(37) = 0.32` (37 is RARER after a 12, not commoner) and their letter frequency is
+exactly on the tail (`ln(occ(12)/occ(12,37)) = 13.5` against `37/2.77 = 13.4`), so the
+frequency half of the mechanism is intact and the FLANK half is what breaks:
+`Phi(12,37) = 39` on 150 occurrences (`Phi/ln occ = 7.8`) and `Phi(37) = 48` on 26,366
+(`4.72`), against `2.2-3.7` for every literal word with `occ >= 10` at m11..m31.  Scored:
+C2a REFUTED (12/14), C2b REFUTED (12/14), C2c REFUTED (4 of 6 against; the two m37
+`(27,41)` cells, `eps = +15` on a single occurrence pair, do have the predicted
+anti-association 0.05), C2d half (`occ(25,37; m31) = 18`, `occ(27,41; m37) = 1`); C1, C3,
+C4 CONFIRMED.
+
+**7.3 THE PADDED FAILURE IS THE F_3 WALL - PRE-REGISTERED MID-ROUND, CONFIRMED.**
+`Phi(q') + q' <= F_3(M)` trivially (a window `(g, q', g')` is a 3-window).  At m31 it is
+EQUALITY: the `F_3(31) = 85` maximisers are exactly `(18,37,30)` and `(30,37,18)` - the
+old machine's depth-3 record has the PADDED LETTER AS ITS MIDDLE.  At every other machine
+m11..m29 the `F_3` maximiser's middle is not a legal letter of any class (`6`; `5`;
+`{5,7,18}`; `{2,7,10}`; `4`; `{3,20}`) and the padded envelope sits strictly below the wall
+(slack 4, 10, 16 at m19, m23, m29; at m37 the nine `F_3 = 97` maximisers, `(37,23,37)`
+among them, have middles `3, 5, 10, 21, 23`, none legal, slack 14).  The excess
+`F_3 - (F_2 + s_min)` is `+1, +1, -3, -4, +1, 0, +5, -7` at m11..m37: the depth-3 spectrum exceeds the increment budget at FOUR
+machines, and only at m31 is the exceeding window word-legal, because its middle happens
+to be `q'`.  So the three failing rows of R83, the six `eps` failures of R91 and R96's
+unexplained `Phi(37)/F_2 = 0.706` are one event: **the old machine's `F_3` maximiser has a
+padded middle.**  It is a residue event on the middle of the `F_3` maximiser - not on
+`F(M)` (H1, killed in round 29) - with the same base rate `3/q'`, so it will recur; when it
+does, the increment law fails at that step by `F_3 - F_2 - s_min`.  The counted flank
+distributions say the same from below: `Phi(12,37) = 39` and `Phi(37) = 48` each rest on a
+SINGLE occurrence (one mirror pair; the next-largest flank sums are 16 and 40), so with that
+one window removed par trading holds at the padded letter too (`eps = +3`).  Prediction for the
+machines above (falsifiable as the `F_3` maximisers land): `F_3(37)`'s `(37,23,37)`,
+`F_3(43)`'s `(67,28,30)` and `F_3(47)`'s `(28,33,84)` all have non-legal middles, and the
+law holds at those steps.
+
+**7.4 THE COUNTED CENSUS.**  `occ(w)`, `Phi(w)` and the flank-sum distribution of every
+legal word, over the full cyclic period, streamed (no array beyond one 5e7-slot chunk),
+gated by the cyclic close, the mirror law, an in-memory scan at m11..m23, the recorded
+ghist rows at m11..m37 and the distinct-census flank table.  The counted padded-gap census
+R96 asked for: `occ(23; m19) = 86`, `occ(29; m23) = 6`, `occ(31; m29) = 2,090`,
+`occ(37; m31) = 26,366` (4.2e-6 per gap; the abundance reading of `Phi(37) = 48` is
+REFUTED - the letter is rare and its envelope is at the `F_3` wall), `occ(41; m37) = 61,460`
+(Mechanic's r26 padding-supply count, reproduced exactly by a different vehicle).
+
+| statement | status | pointer |
+|---|---|---|
+| the decomposition lemma | **PROVED**, asserted 30/30 | 7.1, `eps_chain_r30.py` |
+| MECH-A at padded cells | **REFUTED** (4/4 against) | 7.2 |
+| the `F_3` wall at m31, non-legal middles elsewhere | **SCRIPT-VERIFIED**, exact, gated | 7.3, `f3_middles_r30.py` |
+| the counted census | **SCRIPT-VERIFIED**, exact, five gates | 7.4, `occ_census_r30.py` |

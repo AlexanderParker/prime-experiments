@@ -287,10 +287,79 @@ which asserts at every step that no realised tuple is removed.
 
 ## 6. PRIOR-ART CHECK
 
-NOT YET CHECKED (mechanic has no web access). Suggested search terms for the
-manager: "gap pattern dictionary primorial sieve monotone"; "consecutive gaps
-of the k-th primorial sieve, admissible patterns"; "Hagedorn / Holt-Rudd gap
-sequences of Z/p# survivors"; "order-m closure of a sofic shift, exactness
-threshold"; the transfer's object is a sofic-shift approximation, so
-symbolic-dynamics literature on "follower-set / order-m Markov approximations
-of sofic shifts" is the closest external frame.
+**Checked 2026-09-03 (harvester, round 30).  Verdict for (a): PARTIAL OVERLAP -
+the arity-1 ("gap survives") one-class case is a published 2020 proposition and
+the framing is de Polignac's (1849); the arity-m two-class statement with its
+sharp hypothesis `q' > 2(m+1)` is NOVEL AS FAR AS SEARCHED.  Verdict for (b):
+NOVEL AS FAR AS SEARCHED (no published statement about the exactness threshold of
+a closure/transfer between consecutive primorial sieves was found).**
+
+**Prior art for the depth-0 lemma, to be cited.**  Mario Ziller, *On differences
+between consecutive numbers coprime to primorials*, arXiv:2007.01808 (2020), read
+in full text (extract on disk: `research/data/r29/ziller2020.extract.log`).  With
+`C(k)` the ordered coprimes to `p_k#` and `D(k)` the set of differences between
+consecutive elements of `C(k)` (his Definition 1.1), his
+
+> **Proposition 2.7 (Propagation of coverings).**  Let `m, k` be natural
+> numbers.  Then `m in D(k)  =>  m in D(k+1)`.
+
+is exactly the statement `D_1(M) subset D_1(M + q')` of the ONE-class sieve
+(one killed residue per prime, `q' = p_{k+1}`), and his proof is the same
+argument as section 3(a) at arity 1: by his Corollary 2.5 `m in D(k)` iff there
+is a *restricted covering* `{a_i mod p_i}` of the interior `1..m-1` with
+`a_i in {1..p_i - 1}` and `m` not `= a_i mod p_i`; one then "select[s]
+`a_{k+1} in {1, ..., p_{k+1} - 1}` such that `a_{k+1}` is not `= m mod p_{k+1}`,
+because `p_{k+1} >= 3`" - i.e. the new prime has a free phase that spares the
+two endpoints, which is the `2(m+1) < q'` count at `m = 1` with room to spare.
+Ziller adds, immediately before the proposition: "An analogous statement has
+already been proven by de Polignac [3]" - A. de Polignac, *Six propositions
+arithmologiques deduites du crible d'Eratosthene*, Nouvelles annales de
+mathematiques s1-8 (1849), 423-429 (SECONDARY: cited from Ziller's reference
+list; the NUMDAM scan `NAM_1849_1_8__423_1.pdf` is image-only and was not read).
+The same paper's `N_min(k)` - the smallest even number NOT occurring in `D(k)`,
+computed exhaustively to `k = 44` (`p_44 = 193`) - is the one-class twin of this
+project's "smallest absent gap" (hole-list) question, with his Conjecture 4.1
+`h(k-1) <= N_min(k)` attached.
+
+**What is new relative to Ziller.**  (i) ARITY: Ziller's object is a single gap
+(`m = 1` here); the lemma is about `m`-tuples of consecutive gaps, i.e. the
+survival of a whole finite configuration, and the count `2(m+1)` of forbidden
+phases is what makes the hypothesis `q' > 2(m+1)` appear - it has no analogue at
+arity 1, where `p_{k+1} >= 3` always suffices.  (ii) CLASSES: two killed residues
+per prime (`+-u'`), so the forbidden set is `(X mod q') u ((X + s) mod q')`
+rather than `X mod q'`.  (iii) SHARPNESS: the failure table of section 3(a)
+(first failing `m` = 6, 7, 8, 9 at `q' = 11, 13, 17, 19`) shows the hypothesis is
+tight at two of four steps; Ziller's statement has no hypothesis to be sharp
+about.  Neither statement implies the other (his is one-class at arity 1; ours is
+two-class at arity `m`), but the name "propagation" and the framing are his and
+should be cited whenever the lemma is quoted.
+
+**Other adjacent items, all read first-hand unless marked.**
+- F. B. Holt and H. Rudd, *Eratosthenes sieve and the gaps between primes*,
+  arXiv:1408.6002 (2014), and F. B. Holt, *Combinatorics of the gaps between
+  primes*, arXiv:1510.00743 (2015): the one-class cycle-of-gaps recursion
+  (Lemma 2.1: concatenate `p_{k+1}` copies of `G(p_k#)`, close gaps at the
+  multiples of `p_{k+1}`) and Theorem 2.3 / Lemma 2.2 ("each possible closure of
+  adjacent gaps in the cycle `G(p_k#)` occurs exactly once in the recursive
+  construction of `G(p_{k+1}#)`", by CRT).  Their Lemma 3.1 / Corollary 3.2 is
+  the arity-`j` one-class SURVIVAL COUNT: a constellation `s` of length `j` and
+  sum `g < 2p_{k+1}` has `p_{k+1} - j - 1` intact copies in `G(p_{k+1}#)` - which
+  is the one-class depth-0 lemma WITH multiplicity, under the extra hypothesis
+  `g < 2p_{k+1}` that the two-class lemma does not need (ours needs only
+  `q' > 2(m+1)`, a bound on the LENGTH of the pattern, not on its SPAN).  Holt
+  and Rudd do not state monotonicity as such and treat one class per prime only.
+- T. R. Hagedorn, *Computation of Jacobsthal's function h(n) for n < 50*, Math.
+  Comp. 78 (2009) 1073-1087 - NOT OBTAINED (AMS and the author's TCNJ copy both
+  return HTTP 403 to a direct fetch, re-tried 2026-09-03; no cookie-bearing
+  browser session was attempted).  Its algorithm is characterised only through
+  Ziller-Morack and is SECONDARY here.
+- Symbolic dynamics ("order-m Markov / follower-set approximations of sofic
+  shifts"): the closest external FRAME for (b), but no paper was found that
+  states an exactness threshold for such an approximation to a sieve's gap
+  language, and none is claimed to exist.
+
+Searches run (2026-09-03): "propagation of coverings Jacobsthal primorial";
+"Ziller 2007.01808 Proposition 2.7"; "Holt Rudd cycle recursion Jacobsthal
+maximal gap next prime"; "consecutive gaps between reduced residues modulo
+primorial residue class next prime run length"; "de Polignac 1849 Six
+propositions arithmologiques crible d'Eratosthene".

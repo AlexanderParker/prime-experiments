@@ -8,6 +8,18 @@ The Lean side is generated, not hand-typed, because the only hand work worth
 doing is the SOUNDNESS (in `proofs/CaseSplit.lean` and in the proof skeleton
 below); the certificate itself is ~1,100 small integers per case and copying
 those by hand is how transcription bugs happen.
+
+ROUND 30 - THE TIERED ROOT.  `--tiered` writes the rung's root as TIERS instead
+of one module: one sub-root `CaseCert<y>T<j>` per residue tuple of the held
+gears EXCEPT the last (for held {5,7,11}: 35 sub-roots, one per (r5, r7)), each
+importing only its own cases (all residues of the last held gear, 11 of them)
+and proving the `nocase` bridges plus an 11-way `rcases`; then a root importing
+the 35 sub-roots with a 35-way `rcases` in the CaseCert31 shape.  The case
+modules and the gear-base module are NOT rewritten in that mode (their
+`.olean`s are reused as they stand).  The reason: on 2026-09-03 the flat
+385-import root reached 53.7 GB in one lean process and crashed the machine
+(formalist.md R29.5, verdict 45).  Without `--tiered` the generator behaves
+exactly as in rounds 27-29.
 """
 import json
 import os
@@ -20,6 +32,9 @@ PROOFS = os.path.join(os.path.dirname(HERE), 'proofs')
 TEETH = {5: (1, 4), 7: (6, 1), 11: (2, 9), 13: (11, 2), 17: (3, 14),
          19: (16, 3), 23: (4, 19), 29: (24, 5), 31: (26, 5), 37: (6, 31),
          41: (7, 34), 43: (36, 7)}
+
+# (previous machine, its F) per rung machine - the (D) statement's constants
+PREVF = {23: (19, 25), 29: (23, 34), 31: (29, 43), 37: (31, 58)}
 
 
 def zl(v):
@@ -299,15 +314,337 @@ def gen_case(D, ci):
     return L
 
 
+# ----------------------------------------------------------------- the roots
+
+def orall_of(D):
+    allg = sorted(set(D['held'] + D['free']))
+    return ' || '.join('gb%d (p %% %d) i' % (q, q) for q in allg)
+
+
+def nocase_lines(D, ci):
+    """The per-case bridge `nocase<ci>`: from the held residues and the
+    all-blocked hypothesis on the window to the case's `nocov<ci>`."""
+    held, free, W = D['held'], D['free'], D['W']
+    C = D['cases'][ci]
+    orall = orall_of(D)
+    R = []
+    eqs = ' '.join('(e%d : p %% %d = %d)' % (q, q, C['ws'][hi])
+                   for hi, q in enumerate(held))
+    R.append('theorem nocase%d {p : ℕ} %s' % (ci, eqs))
+    R.append('    (hall : ∀ i, i < %d → (%s) = true) : False := by'
+             % (W, orall))
+    args = ' '.join('(r%d := p %% %d)' % (a, free[a])
+                    for a in range(len(free)))
+    # ROUND 30: the bridge is written to produce a SMALL proof term.  The
+    # rounds 27-29 form (`simp only [...] at h3; simpa only [c..] using h3`
+    # and seven `omega` calls) elaborated at ~0.4 GB and ~100 s per bridge at
+    # the 31->37 rung (tier T0: 11 bridges, 6.6 GB, 157 s), which is what made
+    # the flat 385-bridge root reach 53.7 GB.  The residue bounds are
+    # `Nat.mod_lt`, the held gears are rewritten to `false` by `rw`, and the
+    # remaining `false || ...` prefix and the `c<ci>_<a>` indicators are
+    # definitional, so the bridge is `exact h3`.
+    R.append('  refine nocov%d %s %s ?_'
+             % (ci, args,
+                ' '.join('(Nat.mod_lt _ (by norm_num))' for _ in free)))
+    R.append('  intro t ht')
+    R.append('  have h3 := hall (q%d t) (plt%d t ht)' % (ci, ci))
+    R.append('  rw [%s, %s] at h3'
+             % (', '.join('e%d' % q for q in held),
+                ', '.join('pfree%d_%d t ht' % (ci, q) for q in held)))
+    R.append('  exact h3')
+    R.append('')
+    return R
+
+
+def blocked_lines(D):
+    """`blocked`: a non-opening of machine y is blocked by some gear, in the
+    certificate's (phase, offset) coordinates."""
+    y = D['y']
+    allg = sorted(set(D['held'] + D['free']))
+    orall = orall_of(D)
+    R = []
+    R.append('/-- A slot that is not an opening of machine %d is blocked by one'
+             % y)
+    R.append('of its gears, in the certificate\'s (phase, offset) '
+             'coordinates. -/')
+    R.append('theorem blocked {p i : ℕ} (hp : 1 ≤ p) '
+             '(h : ¬ Machine%d.Exposed%d (p + i)) :' % (y, y))
+    R.append('    (%s) = true := by' % orall)
+    for q in allg:
+        R.append('  have e%d : (p %% %d + i) %% %d = (p + i) %% %d := by omega'
+                 % (q, q, q, q))
+    R.append('  simp only [%s, %s, Bool.or_eq_true, beq_iff_eq]'
+             % (', '.join('gb%d' % q for q in allg),
+                ', '.join('e%d' % q for q in allg)))
+    R.append('  by_contra hcon')
+    R.append('  push Not at hcon')
+    R.append('  apply h')
+    # the machines above 19 are defined by successive gear additions; 19 is
+    # the one with a CRT-tuple characterisation.
+    chain = [q for q in allg if q > 19]
+    expr = '?_'
+    for q in chain:
+        expr = ('Machine%d.exposed%d_of (show 1 ≤ p + i by omega) (%s) ?_'
+                % (q, q, expr))
+    R.append('  refine %s' % expr)
+    R.append('  · rw [Machine19.exposed19_iff (show 1 ≤ p + i by omega)]')
+    R.append('    simp only [Machine19.expT, Bool.and_eq_true, bne_iff_ne, '
+             'ne_eq, and_assoc]')
+    R.append('    tauto')
+    for q in chain:
+        R.append('  · unfold Machine%d.Killed%d' % (q, q))
+        R.append('    omega')
+    R.append('')
+    return R
+
+
+def tail_lines(D, ncase_desc):
+    """`F_le` and `D_<prev>_<y>_case` from `no_run`."""
+    y, W = D['y'], D['W']
+    R = []
+    R.append('theorem F_le (n : ℕ) : Machine%d.g%d n ≤ %d := by' % (y, y, W))
+    R.append('  by_contra hcon')
+    R.append('  obtain ⟨i, hi, hE⟩ := no_run (p := Machine%d.opSeq%d n + 1)'
+             % (y, y))
+    R.append('    (by have := Machine%d.opSeq%d_pos n; omega)' % (y, y))
+    R.append('  have hgap : Machine%d.g%d n = Machine%d.opSeq%d (n + 1) '
+             '- Machine%d.opSeq%d n := rfl' % (y, y, y, y, y, y))
+    R.append('  have hlt := Machine%d.opSeq%d_lt_succ n' % (y, y))
+    R.append('  exact Machine%d.opSeq%d_gap_empty n '
+             '(Machine%d.opSeq%d n + 1 + i)' % (y, y, y, y))
+    R.append('    (by omega) (by omega) hE')
+    R.append('')
+    prevF = PREVF[y]
+    R.append('/-- **(D) at alpha = 3 at the %d->%d step, BY CASE-SPLIT LP'
+             % (prevF[0], y))
+    R.append('DUALITY**: every gap of machine %d is at most `F(%d) + %d = %d`.'
+             % (y, prevF[0], y, W))
+    R.append('No census hypothesis, no period scan - only the primes up to %d'
+             % y)
+    R.append('and the %s. -/' % ncase_desc)
+    R.append('theorem D_%d_%d_case (n : ℕ) : Machine%d.g%d n ≤ %d + %d :='
+             % (prevF[0], y, y, y, prevF[1], y))
+    R.append('  F_le n')
+    R.append('')
+    return R
+
+
+def gen_flat_root(D, tag):
+    """The rounds 27-29 root: every case imported into ONE module."""
+    y, W, held, free = D['y'], D['W'], D['held'], D['free']
+    ncase = len(D['cases'])
+    orall = orall_of(D)
+    R = ['/-',
+         'THE %s RUNG BY CASE-SPLIT LP DUALITY (GENERATED root).'
+         % tag.replace('_', '->'),
+         '',
+         'Every configuration of machine %d has its held gears %s at exactly'
+         % (y, held),
+         'one of the %d phase tuples, and each of those cases carries an exact'
+         % ncase,
+         'dual certificate of the restricted level-2 covering relaxation.  So',
+         'no window of %d consecutive slots of machine %d is fully blocked.'
+         % (W, y),
+         '',
+         'NO CENSUS HYPOTHESIS, NO PERIOD SCAN: the only inputs are the primes',
+         'up to %d and %d integers per case.'
+         % (y, len(D['cases'][0]['y']) + len(D['cases'][0]['nu']) + 1),
+         '-/']
+    for ci in range(ncase):
+        R.append('import CaseCert%dC%d' % (y, ci))
+    R += ['import Machine%d' % y, '', 'namespace CaseCert%d' % y, '']
+    R.append('set_option maxHeartbeats 4000000')
+    R.append('')
+    R += blocked_lines(D)
+    for ci in range(ncase):
+        R += nocase_lines(D, ci)
+    # exhaustiveness
+    R.append('/-- **`F(%d) <= %d` by the case split**: every window of %d'
+             % (y, W, W))
+    R.append('consecutive slots contains an opening of machine %d. -/' % y)
+    R.append('theorem no_run {p : ℕ} (hp : 1 ≤ p) :')
+    R.append('    ∃ i < %d, Machine%d.Exposed%d (p + i) := by' % (W, y, y))
+    R.append('  by_contra hc')
+    R.append('  push Not at hc')
+    R.append('  have hall : ∀ i, i < %d → (%s) = true :=' % (W, orall))
+    R.append('    fun i hi => blocked hp (hc i hi)')
+    for q in held:
+        R.append('  have d%d : %s := by omega'
+                 % (q, ' ∨ '.join('p %% %d = %d' % (q, v) for v in range(q))))
+    lines = []
+
+    def rec(hi, indent, ws):
+        q = held[hi]
+        lines.append(indent + 'rcases d%d with %s'
+                     % (q, ' | '.join('e%d' % q for _ in range(q))))
+        for v in range(q):
+            if hi + 1 == len(held):
+                ci = [k for k, C in enumerate(D['cases'])
+                      if C['ws'] == ws + [v]][0]
+                lines.append(indent + '· exact nocase%d %s hall'
+                             % (ci, ' '.join('e%d' % qq for qq in held)))
+            else:
+                lines.append(indent + '· skip')
+                rec(hi + 1, indent + '  ', ws + [v])
+    rec(0, '  ', [])
+    R += lines
+    R.append('')
+    R += tail_lines(D, '%d case certificates' % ncase)
+    R.append('end CaseCert%d' % y)
+    R.append('')
+    return R
+
+
+def gen_tiered(D, tag):
+    """ROUND 30.  Sub-roots `CaseCert<y>T<j>` (one per residue tuple of the
+    held gears except the last; each imports its own cases and proves the
+    bridge `nopair<j>` by an rcases over the last held gear), then a root of
+    the sub-roots.  Returns the list of module names written."""
+    y, W, held, free = D['y'], D['W'], D['held'], D['free']
+    outer, last = held[:-1], held[-1]
+    orall = orall_of(D)
+    names = []
+    # the outer residue tuples in lexicographic order (= the case order)
+    tuples = [[]]
+    for q in outer:
+        tuples = [t + [v] for t in tuples for v in range(q)]
+    for j, ws in enumerate(tuples):
+        cases = sorted([k for k, C in enumerate(D['cases'])
+                        if C['ws'][:-1] == ws],
+                       key=lambda k: D['cases'][k]['ws'][-1])
+        assert [D['cases'][k]['ws'][-1] for k in cases] == list(range(last))
+        T = ['/-',
+             'THE %s RUNG BY CASE-SPLIT LP DUALITY - TIER %d of %d (GENERATED).'
+             % (tag.replace('_', '->'), j, len(tuples)),
+             '',
+             'Held gears %s at residues %s; this tier imports the %d cases'
+             % (outer, ws, last),
+             'with gear %d at every residue and proves that no window of %d'
+             % (last, W),
+             'consecutive slots is fully blocked when the held residues are',
+             'these.  Tiered because the flat %d-import root of this rung'
+             % len(D['cases']),
+             'exhausted the machine\'s commit charge (formalist.md R29.5).',
+             '-/']
+        for k in cases:
+            T.append('import CaseCert%dC%d' % (y, k))
+        T += ['', 'namespace CaseCert%d' % y, '',
+              'set_option maxHeartbeats 4000000', '']
+        for k in cases:
+            T += nocase_lines(D, k)
+        eqs = ' '.join('(e%d : p %% %d = %d)' % (q, q, ws[hi])
+                       for hi, q in enumerate(outer))
+        T.append('/-- Tier %d: the %d residues of gear %d, each closed by its '
+                 'case. -/' % (j, last, last))
+        T.append('theorem nopair%d {p : ℕ} %s' % (j, eqs))
+        T.append('    (hall : ∀ i, i < %d → (%s) = true) : False := by'
+                 % (W, orall))
+        T.append('  have d%d : %s := by omega'
+                 % (last, ' ∨ '.join('p %% %d = %d' % (last, v)
+                                     for v in range(last))))
+        T.append('  rcases d%d with %s'
+                 % (last, ' | '.join('e%d' % last for _ in range(last))))
+        for v, k in zip(range(last), cases):
+            T.append('  · exact nocase%d %s hall'
+                     % (k, ' '.join('e%d' % q for q in held)))
+        T += ['', 'end CaseCert%d' % y, '']
+        name = 'CaseCert%dT%d' % (y, j)
+        with open(os.path.join(PROOFS, name + '.lean'), 'w',
+                  encoding='utf-8') as f:
+            f.write('\n'.join(T))
+        names.append(name)
+        print('wrote proofs/%s.lean (%d lines, cases %s)'
+              % (name, len(T), cases))
+    # ----------------------------------------------------------- the root
+    ntier = len(tuples)
+    R = ['/-',
+         'THE %s RUNG BY CASE-SPLIT LP DUALITY (GENERATED TIERED root).'
+         % tag.replace('_', '->'),
+         '',
+         'Every configuration of machine %d has its held gears %s at exactly'
+         % (y, held),
+         'one of the %d phase tuples, and each of those cases carries an exact'
+         % len(D['cases']),
+         'dual certificate of the restricted level-2 covering relaxation.  So',
+         'no window of %d consecutive slots of machine %d is fully blocked.'
+         % (W, y),
+         '',
+         'NO CENSUS HYPOTHESIS, NO PERIOD SCAN: the only inputs are the primes',
+         'up to %d and %d integers per case.'
+         % (y, len(D['cases'][0]['y']) + len(D['cases'][0]['nu']) + 1),
+         '',
+         'TIERED (round 30): the %d cases are assembled through %d sub-roots'
+         % (len(D['cases']), ntier),
+         'CaseCert%dT0 .. T%d, one per residue tuple of the held gears %s,'
+         % (y, ntier - 1, outer),
+         'so that no single lean process elaborates more than %d case bridges'
+         % last,
+         '(the flat root reached 53.7 GB and crashed the machine, R29.5).',
+         '-/']
+    for j in range(ntier):
+        R.append('import CaseCert%dT%d' % (y, j))
+    R += ['import Machine%d' % y, '', 'namespace CaseCert%d' % y, '']
+    R.append('set_option maxHeartbeats 4000000')
+    R.append('')
+    R += blocked_lines(D)
+    R.append('/-- **`F(%d) <= %d` by the case split**: every window of %d'
+             % (y, W, W))
+    R.append('consecutive slots contains an opening of machine %d. -/' % y)
+    R.append('theorem no_run {p : ℕ} (hp : 1 ≤ p) :')
+    R.append('    ∃ i < %d, Machine%d.Exposed%d (p + i) := by' % (W, y, y))
+    R.append('  by_contra hc')
+    R.append('  push Not at hc')
+    R.append('  have hall : ∀ i, i < %d → (%s) = true :=' % (W, orall))
+    R.append('    fun i hi => blocked hp (hc i hi)')
+    for q in outer:
+        R.append('  have d%d : %s := by omega'
+                 % (q, ' ∨ '.join('p %% %d = %d' % (q, v) for v in range(q))))
+    lines = []
+
+    def rec(hi, indent, ws):
+        q = outer[hi]
+        lines.append(indent + 'rcases d%d with %s'
+                     % (q, ' | '.join('e%d' % q for _ in range(q))))
+        for v in range(q):
+            if hi + 1 == len(outer):
+                j = tuples.index(ws + [v])
+                lines.append(indent + '· exact nopair%d %s hall'
+                             % (j, ' '.join('e%d' % qq for qq in outer)))
+            else:
+                lines.append(indent + '· skip')
+                rec(hi + 1, indent + '  ', ws + [v])
+    rec(0, '  ', [])
+    R += lines
+    R.append('')
+    R += tail_lines(D, '%d case certificates (via %d tiers)'
+                    % (len(D['cases']), ntier))
+    R.append('end CaseCert%d' % y)
+    R.append('')
+    with open(os.path.join(PROOFS, 'CaseCert%d.lean' % y), 'w',
+              encoding='utf-8') as f:
+        f.write('\n'.join(R))
+    names.append('CaseCert%d' % y)
+    print('wrote proofs/CaseCert%d.lean (tiered root, %d tiers)' % (y, ntier))
+    return names
+
+
 def main():
-    tag = sys.argv[1] if len(sys.argv) > 1 else '19_23'
+    argv = [a for a in sys.argv[1:] if a != '--tiered']
+    tiered = '--tiered' in sys.argv[1:]
+    tag = argv[0] if len(argv) > 0 else '19_23'
     # round 29: the transcription may live in another round's data directory
-    datadir = os.path.join(HERE, 'data', sys.argv[2]) if len(sys.argv) > 2 \
-        else R27
+    datadir = os.path.join(HERE, 'data', argv[1]) if len(argv) > 1 else R27
     with open(os.path.join(datadir, 'cert_%s.json' % tag)) as f:
         D = json.load(f)
     y, W, held, free = D['y'], D['W'], D['held'], D['free']
     ncase = len(D['cases'])
+    if tiered:
+        # ROUND 30: only the tiers and the root; the case modules and the
+        # gear base are left exactly as built.
+        names = gen_tiered(D, tag)
+        print('cases:', ncase)
+        print('lakefile targets:', ', '.join('"%s"' % n for n in names))
+        return
     names = []
     B = ['/-',
          'CASE-SPLIT CERTIFICATES, rung %s: the gears as blocking predicates'
@@ -352,140 +689,7 @@ def main():
             f.write('\n'.join(L))
         names.append(name)
         print('wrote proofs/%s.lean (%d lines)' % (name, len(L)))
-    # ------------------------------------------------------------- the root
-    allg = sorted(set(D['held'] + free))
-    held = D['held']
-    orall = ' || '.join('gb%d (p %% %d) i' % (q, q) for q in allg)
-    R = ['/-',
-         'THE %s RUNG BY CASE-SPLIT LP DUALITY (GENERATED root).'
-         % tag.replace('_', '->'),
-         '',
-         'Every configuration of machine %d has its held gears %s at exactly'
-         % (y, held),
-         'one of the %d phase tuples, and each of those cases carries an exact'
-         % ncase,
-         'dual certificate of the restricted level-2 covering relaxation.  So',
-         'no window of %d consecutive slots of machine %d is fully blocked.'
-         % (W, y),
-         '',
-         'NO CENSUS HYPOTHESIS, NO PERIOD SCAN: the only inputs are the primes',
-         'up to %d and %d integers per case.'
-         % (y, len(D['cases'][0]['y']) + len(D['cases'][0]['nu']) + 1),
-         '-/']
-    for ci in range(ncase):
-        R.append('import CaseCert%dC%d' % (y, ci))
-    R += ['import Machine%d' % y, '', 'namespace CaseCert%d' % y, '']
-    R.append('set_option maxHeartbeats 4000000')
-    R.append('')
-    R.append('/-- A slot that is not an opening of machine %d is blocked by one'
-             % y)
-    R.append('of its gears, in the certificate\'s (phase, offset) '
-             'coordinates. -/')
-    R.append('theorem blocked {p i : ℕ} (hp : 1 ≤ p) '
-             '(h : ¬ Machine%d.Exposed%d (p + i)) :' % (y, y))
-    R.append('    (%s) = true := by' % orall)
-    for q in allg:
-        R.append('  have e%d : (p %% %d + i) %% %d = (p + i) %% %d := by omega'
-                 % (q, q, q, q))
-    R.append('  simp only [%s, %s, Bool.or_eq_true, beq_iff_eq]'
-             % (', '.join('gb%d' % q for q in allg),
-                ', '.join('e%d' % q for q in allg)))
-    R.append('  by_contra hcon')
-    R.append('  push Not at hcon')
-    R.append('  apply h')
-    # the machines above 19 are defined by successive gear additions; 19 is
-    # the one with a CRT-tuple characterisation.
-    chain = [q for q in allg if q > 19]
-    expr = '?_'
-    for q in chain:
-        expr = ('Machine%d.exposed%d_of (show 1 ≤ p + i by omega) (%s) ?_'
-                % (q, q, expr))
-    R.append('  refine %s' % expr)
-    R.append('  · rw [Machine19.exposed19_iff (show 1 ≤ p + i by omega)]')
-    R.append('    simp only [Machine19.expT, Bool.and_eq_true, bne_iff_ne, '
-             'ne_eq, and_assoc]')
-    R.append('    tauto')
-    for q in chain:
-        R.append('  · unfold Machine%d.Killed%d' % (q, q))
-        R.append('    omega')
-    R.append('')
-    # per-case bridge
-    for ci in range(ncase):
-        C = D['cases'][ci]
-        eqs = ' '.join('(e%d : p %% %d = %d)' % (q, q, C['ws'][hi])
-                       for hi, q in enumerate(held))
-        R.append('theorem nocase%d {p : ℕ} %s' % (ci, eqs))
-        R.append('    (hall : ∀ i, i < %d → (%s) = true) : False := by'
-                 % (W, orall))
-        args = ' '.join('(r%d := p %% %d)' % (a, free[a])
-                        for a in range(len(free)))
-        R.append('  refine nocov%d %s %s ?_'
-                 % (ci, args, ' '.join('(by omega)' for _ in free)))
-        R.append('  intro t ht')
-        R.append('  have h3 := hall (q%d t) (plt%d t ht)' % (ci, ci))
-        R.append('  rw [%s] at h3' % ', '.join('e%d' % q for q in held))
-        R.append('  simp only [%s, Bool.false_or] at h3'
-                 % ', '.join('pfree%d_%d t ht' % (ci, q) for q in held))
-        R.append('  simpa only [%s] using h3'
-                 % ', '.join('c%d_%d' % (ci, a) for a in range(len(free))))
-        R.append('')
-    # exhaustiveness
-    R.append('/-- **`F(%d) <= %d` by the case split**: every window of %d'
-             % (y, W, W))
-    R.append('consecutive slots contains an opening of machine %d. -/' % y)
-    R.append('theorem no_run {p : ℕ} (hp : 1 ≤ p) :')
-    R.append('    ∃ i < %d, Machine%d.Exposed%d (p + i) := by' % (W, y, y))
-    R.append('  by_contra hc')
-    R.append('  push Not at hc')
-    R.append('  have hall : ∀ i, i < %d → (%s) = true :=' % (W, orall))
-    R.append('    fun i hi => blocked hp (hc i hi)')
-    for q in held:
-        R.append('  have d%d : %s := by omega'
-                 % (q, ' ∨ '.join('p %% %d = %d' % (q, v) for v in range(q))))
-    lines = []
-
-    def rec(hi, indent, ws):
-        q = held[hi]
-        lines.append(indent + 'rcases d%d with %s'
-                     % (q, ' | '.join('e%d' % q for _ in range(q))))
-        for v in range(q):
-            if hi + 1 == len(held):
-                ci = [k for k, C in enumerate(D['cases'])
-                      if C['ws'] == ws + [v]][0]
-                lines.append(indent + '· exact nocase%d %s hall'
-                             % (ci, ' '.join('e%d' % qq for qq in held)))
-            else:
-                lines.append(indent + '· skip')
-                rec(hi + 1, indent + '  ', ws + [v])
-    rec(0, '  ', [])
-    R += lines
-    R.append('')
-    R.append('theorem F_le (n : ℕ) : Machine%d.g%d n ≤ %d := by' % (y, y, W))
-    R.append('  by_contra hcon')
-    R.append('  obtain ⟨i, hi, hE⟩ := no_run (p := Machine%d.opSeq%d n + 1)'
-             % (y, y))
-    R.append('    (by have := Machine%d.opSeq%d_pos n; omega)' % (y, y))
-    R.append('  have hgap : Machine%d.g%d n = Machine%d.opSeq%d (n + 1) '
-             '- Machine%d.opSeq%d n := rfl' % (y, y, y, y, y, y))
-    R.append('  have hlt := Machine%d.opSeq%d_lt_succ n' % (y, y))
-    R.append('  exact Machine%d.opSeq%d_gap_empty n '
-             '(Machine%d.opSeq%d n + 1 + i)' % (y, y, y, y))
-    R.append('    (by omega) (by omega) hE')
-    R.append('')
-    prevF = {23: (19, 25), 29: (23, 34), 31: (29, 43), 37: (31, 58)}[y]
-    R.append('/-- **(D) at alpha = 3 at the %d->%d step, BY CASE-SPLIT LP'
-             % (prevF[0], y))
-    R.append('DUALITY**: every gap of machine %d is at most `F(%d) + %d = %d`.'
-             % (y, prevF[0], y, W))
-    R.append('No census hypothesis, no period scan - only the primes up to %d'
-             % y)
-    R.append('and the %d case certificates. -/' % ncase)
-    R.append('theorem D_%d_%d_case (n : ℕ) : Machine%d.g%d n ≤ %d + %d :='
-             % (prevF[0], y, y, y, prevF[1], y))
-    R.append('  F_le n')
-    R.append('')
-    R.append('end CaseCert%d' % y)
-    R.append('')
+    R = gen_flat_root(D, tag)
     with open(os.path.join(PROOFS, 'CaseCert%d.lean' % y), 'w',
               encoding='utf-8') as f:
         f.write('\n'.join(R))

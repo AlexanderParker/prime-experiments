@@ -1,5 +1,5 @@
 name = "primes"
-defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37", "Periodic", "Machine11Per", "Machine13Per", "Gen11Sound", "Machine29Cen", "Machine31Cen", "LadderPeriod", "Mirror", "CaseSplit", "CaseCert23B", "CaseCert23C0", "CaseCert23C1", "CaseCert23C2", "CaseCert23C3", "CaseCert23C4", "CaseCert23", "CaseCert31B", "CaseCert31C0", "CaseCert31C1", "CaseCert31C2", "CaseCert31C3", "CaseCert31C4", "CaseCert31C5", "CaseCert31C6", "CaseCert31C7", "CaseCert31C8", "CaseCert31C9", "CaseCert31C10", "CaseCert31C11", "CaseCert31C12", "CaseCert31C13", "CaseCert31C14", "CaseCert31C15", "CaseCert31C16", "CaseCert31C17", "CaseCert31C18", "CaseCert31C19", "CaseCert31C20", "CaseCert31C21", "CaseCert31C22", "CaseCert31C23", "CaseCert31C24", "CaseCert31C25", "CaseCert31C26", "CaseCert31C27", "CaseCert31C28", "CaseCert31C29", "CaseCert31C30", "CaseCert31C31", "CaseCert31C32", "CaseCert31C33", "CaseCert31C34", "CaseCert31", "CaseSplit5", "IncCert23B", "IncCert23C0", "IncCert23C1", "IncCert23C2", "IncCert23C3", "IncCert23C4", "IncCert23C5", "IncCert23C6", "IncCert23C7", "IncCert23C8", "IncCert23C9", "IncCert23C10", "IncCert23C11", "IncCert23C12", "IncCert23C13", "IncCert23C14", "IncCert23C15", "IncCert23C16", "IncCert23C17", "IncCert23C18", "IncCert23C19", "IncCert23C20", "IncCert23C21", "IncCert23C22", "IncCert23C23", "IncCert23C24", "IncCert23C25", "IncCert23C26", "IncCert23C27", "IncCert23C28", "IncCert23C29", "IncCert23C30", "IncCert23C31", "IncCert23C32", "IncCert23C33", "IncCert23C34", "IncCert23", "IncCert29B", "IncCert29C0", "IncCert29C1", "IncCert29C2", "IncCert29C3", "IncCert29C4", "IncCert29C5", "IncCert29C6", "IncCert29C7", "IncCert29C8", "IncCert29C9", "IncCert29C10", "IncCert29C11", "IncCert29C12", "IncCert29C13", "IncCert29C14", "IncCert29C15", "IncCert29C16", "IncCert29C17", "IncCert29C18", "IncCert29C19", "IncCert29C20", "IncCert29C21", "IncCert29C22", "IncCert29C23", "IncCert29C24", "IncCert29C25", "IncCert29C26", "IncCert29C27", "IncCert29C28", "IncCert29C29", "IncCert29C30", "IncCert29C31", "IncCert29C32", "IncCert29C33", "IncCert29C34", "IncCert29", "IncCert31B", "IncCert31C0", "IncCert31C1", "IncCert31C2", "IncCert31C3", "IncCert31C4", "IncCert31C5", "IncCert31C6", "IncCert31C7", "IncCert31C8", "IncCert31C9", "IncCert31C10", "IncCert31C11", "IncCert31C12", "IncCert31C13", "IncCert31C14", "IncCert31C15", "IncCert31C16", "IncCert31C17", "IncCert31C18", "IncCert31C19", "IncCert31C20", "IncCert31C21", "IncCert31C22", "IncCert31C23", "IncCert31C24", "IncCert31C25", "IncCert31C26", "IncCert31C27", "IncCert31C28", "IncCert31C29", "IncCert31C30", "IncCert31C31", "IncCert31C32", "IncCert31C33", "IncCert31C34", "IncCert31", "MirrorM11", "Increment", "AnchorChain", "AnchorRecord17Core", "AnchorRecord17", "AlternationOrder", "CaseCert37B", "CaseCert37C0", "CaseCert37C1", "CaseCert37C2", "CaseCert37C3", "CaseCert37C4", "CaseCert37C5", "CaseCert37C6", "CaseCert37C7", "CaseCert37C8", "CaseCert37C9", "CaseCert37C10", "CaseCert37C11", "CaseCert37C12", "CaseCert37C13", "CaseCert37C14", "CaseCert37C15", "CaseCert37C16", "CaseCert37C17", "CaseCert37C18", "CaseCert37C19", "CaseCert37C20", "CaseCert37C21", "CaseCert37C22", "CaseCert37C23", "CaseCert37C24", "CaseCert37C25", "CaseCert37C26", "CaseCert37C27", "CaseCert37C28", "CaseCert37C29", "CaseCert37C30", "CaseCert37C31", "CaseCert37C32", "CaseCert37C33", "CaseCert37C34", "CaseCert37C35", "CaseCert37C36", "CaseCert37C37", "CaseCert37C38", "CaseCert37C39", "CaseCert37C40", "CaseCert37C41", "CaseCert37C42", "CaseCert37C43", "CaseCert37C44", "CaseCert37C45", "CaseCert37C46", "CaseCert37C47", "CaseCert37C48", "CaseCert37C49", "CaseCert37C50", "CaseCert37C51", "CaseCert37C52", "CaseCert37C53", "CaseCert37C54", "CaseCert37C55", "CaseCert37C56", "CaseCert37C57", "CaseCert37C58", "CaseCert37C59", "CaseCert37C60", "CaseCert37C61", "CaseCert37C62", "CaseCert37C63", "CaseCert37C64", "CaseCert37C65", "CaseCert37C66", "CaseCert37C67", "CaseCert37C68", "CaseCert37C69", "CaseCert37C70", "CaseCert37C71", "CaseCert37C72", "CaseCert37C73", "CaseCert37C74", "CaseCert37C75", "CaseCert37C76", "CaseCert37C77", "CaseCert37C78", "CaseCert37C79", "CaseCert37C80", "CaseCert37C81", "CaseCert37C82", "CaseCert37C83", "CaseCert37C84", "CaseCert37C85", "CaseCert37C86", "CaseCert37C87", "CaseCert37C88", "CaseCert37C89", "CaseCert37C90", "CaseCert37C91", "CaseCert37C92", "CaseCert37C93", "CaseCert37C94", "CaseCert37C95", "CaseCert37C96", "CaseCert37C97", "CaseCert37C98", "CaseCert37C99", "CaseCert37C100", "CaseCert37C101", "CaseCert37C102", "CaseCert37C103", "CaseCert37C104", "CaseCert37C105", "CaseCert37C106", "CaseCert37C107", "CaseCert37C108", "CaseCert37C109", "CaseCert37C110", "CaseCert37C111", "CaseCert37C112", "CaseCert37C113", "CaseCert37C114", "CaseCert37C115", "CaseCert37C116", "CaseCert37C117", "CaseCert37C118", "CaseCert37C119", "CaseCert37C120", "CaseCert37C121", "CaseCert37C122", "CaseCert37C123", "CaseCert37C124", "CaseCert37C125", "CaseCert37C126", "CaseCert37C127", "CaseCert37C128", "CaseCert37C129", "CaseCert37C130", "CaseCert37C131", "CaseCert37C132", "CaseCert37C133", "CaseCert37C134", "CaseCert37C135", "CaseCert37C136", "CaseCert37C137", "CaseCert37C138", "CaseCert37C139", "CaseCert37C140", "CaseCert37C141", "CaseCert37C142", "CaseCert37C143", "CaseCert37C144", "CaseCert37C145", "CaseCert37C146", "CaseCert37C147", "CaseCert37C148", "CaseCert37C149", "CaseCert37C150", "CaseCert37C151", "CaseCert37C152", "CaseCert37C153", "CaseCert37C154", "CaseCert37C155", "CaseCert37C156", "CaseCert37C157", "CaseCert37C158", "CaseCert37C159", "CaseCert37C160", "CaseCert37C161", "CaseCert37C162", "CaseCert37C163", "CaseCert37C164", "CaseCert37C165", "CaseCert37C166", "CaseCert37C167", "CaseCert37C168", "CaseCert37C169", "CaseCert37C170", "CaseCert37C171", "CaseCert37C172", "CaseCert37C173", "CaseCert37C174", "CaseCert37C175", "CaseCert37C176", "CaseCert37C177", "CaseCert37C178", "CaseCert37C179", "CaseCert37C180", "CaseCert37C181", "CaseCert37C182", "CaseCert37C183", "CaseCert37C184", "CaseCert37C185", "CaseCert37C186", "CaseCert37C187", "CaseCert37C188", "CaseCert37C189", "CaseCert37C190", "CaseCert37C191", "CaseCert37C192", "CaseCert37C193", "CaseCert37C194", "CaseCert37C195", "CaseCert37C196", "CaseCert37C197", "CaseCert37C198", "CaseCert37C199", "CaseCert37C200", "CaseCert37C201", "CaseCert37C202", "CaseCert37C203", "CaseCert37C204", "CaseCert37C205", "CaseCert37C206", "CaseCert37C207", "CaseCert37C208", "CaseCert37C209", "CaseCert37C210", "CaseCert37C211", "CaseCert37C212", "CaseCert37C213", "CaseCert37C214", "CaseCert37C215", "CaseCert37C216", "CaseCert37C217", "CaseCert37C218", "CaseCert37C219", "CaseCert37C220", "CaseCert37C221", "CaseCert37C222", "CaseCert37C223", "CaseCert37C224", "CaseCert37C225", "CaseCert37C226", "CaseCert37C227", "CaseCert37C228", "CaseCert37C229", "CaseCert37C230", "CaseCert37C231", "CaseCert37C232", "CaseCert37C233", "CaseCert37C234", "CaseCert37C235", "CaseCert37C236", "CaseCert37C237", "CaseCert37C238", "CaseCert37C239", "CaseCert37C240", "CaseCert37C241", "CaseCert37C242", "CaseCert37C243", "CaseCert37C244", "CaseCert37C245", "CaseCert37C246", "CaseCert37C247", "CaseCert37C248", "CaseCert37C249", "CaseCert37C250", "CaseCert37C251", "CaseCert37C252", "CaseCert37C253", "CaseCert37C254", "CaseCert37C255", "CaseCert37C256", "CaseCert37C257", "CaseCert37C258", "CaseCert37C259", "CaseCert37C260", "CaseCert37C261", "CaseCert37C262", "CaseCert37C263", "CaseCert37C264", "CaseCert37C265", "CaseCert37C266", "CaseCert37C267", "CaseCert37C268", "CaseCert37C269", "CaseCert37C270", "CaseCert37C271", "CaseCert37C272", "CaseCert37C273", "CaseCert37C274", "CaseCert37C275", "CaseCert37C276", "CaseCert37C277", "CaseCert37C278", "CaseCert37C279", "CaseCert37C280", "CaseCert37C281", "CaseCert37C282", "CaseCert37C283", "CaseCert37C284", "CaseCert37C285", "CaseCert37C286", "CaseCert37C287", "CaseCert37C288", "CaseCert37C289", "CaseCert37C290", "CaseCert37C291", "CaseCert37C292", "CaseCert37C293", "CaseCert37C294", "CaseCert37C295", "CaseCert37C296", "CaseCert37C297", "CaseCert37C298", "CaseCert37C299", "CaseCert37C300", "CaseCert37C301", "CaseCert37C302", "CaseCert37C303", "CaseCert37C304", "CaseCert37C305", "CaseCert37C306", "CaseCert37C307", "CaseCert37C308", "CaseCert37C309", "CaseCert37C310", "CaseCert37C311", "CaseCert37C312", "CaseCert37C313", "CaseCert37C314", "CaseCert37C315", "CaseCert37C316", "CaseCert37C317", "CaseCert37C318", "CaseCert37C319", "CaseCert37C320", "CaseCert37C321", "CaseCert37C322", "CaseCert37C323", "CaseCert37C324", "CaseCert37C325", "CaseCert37C326", "CaseCert37C327", "CaseCert37C328", "CaseCert37C329", "CaseCert37C330", "CaseCert37C331", "CaseCert37C332", "CaseCert37C333", "CaseCert37C334", "CaseCert37C335", "CaseCert37C336", "CaseCert37C337", "CaseCert37C338", "CaseCert37C339", "CaseCert37C340", "CaseCert37C341", "CaseCert37C342", "CaseCert37C343", "CaseCert37C344", "CaseCert37C345", "CaseCert37C346", "CaseCert37C347", "CaseCert37C348", "CaseCert37C349", "CaseCert37C350", "CaseCert37C351", "CaseCert37C352", "CaseCert37C353", "CaseCert37C354", "CaseCert37C355", "CaseCert37C356", "CaseCert37C357", "CaseCert37C358", "CaseCert37C359", "CaseCert37C360", "CaseCert37C361", "CaseCert37C362", "CaseCert37C363", "CaseCert37C364", "CaseCert37C365", "CaseCert37C366", "CaseCert37C367", "CaseCert37C368", "CaseCert37C369", "CaseCert37C370", "CaseCert37C371", "CaseCert37C372", "CaseCert37C373", "CaseCert37C374", "CaseCert37C375", "CaseCert37C376", "CaseCert37C377", "CaseCert37C378", "CaseCert37C379", "CaseCert37C380", "CaseCert37C381", "CaseCert37C382", "CaseCert37C383", "CaseCert37C384"]
+defaultTargets = ["BlockedSlots", "Horizon", "Layer", "Supply", "Census", "Polignac", "Bridge", "Gear", "Placement", "Corridor", "Machine13", "MaxGap", "LiteralCap", "LiteralCapTable", "Machine17", "TierA", "PolignacCap", "Spectrum", "Machine19", "MergeLaw", "TwoTeeth", "Machine19Q", "Machine23", "Machine11", "Machine13Q", "Machine17Q", "Ladder", "DepthSum", "Potential", "Potential19", "Machine23QCore", "Machine23Q", "Machine29", "CoveringCert", "PotentialLadder", "CoveringCert2", "Machine23Idx", "Machine23IdxS0", "Machine23IdxS1", "Machine23IdxS2", "Machine23IdxS3", "Machine23IdxS4", "Machine23IdxS5", "Machine23IdxS6", "Machine23IdxS7", "Machine23IdxS8", "Machine23IdxS9", "Machine23IdxS10", "Machine23IdxS11", "Machine23IdxS12", "Machine23IdxS13", "Machine23IdxS14", "Machine23IdxS15", "Machine23IdxS16", "Machine23Scan", "Machine29Q", "Machine29D2", "Machine29D3", "Machine29D4", "Machine29D5", "Machine29D6", "Machine29D7", "Machine29Dict", "Machine31", "Gen11", "Machine31Q", "Machine31D2", "Machine31D3", "Machine31D4", "Machine31D5", "Machine31D6", "Machine31D7", "Machine31Dict", "Machine37", "Periodic", "Machine11Per", "Machine13Per", "Gen11Sound", "Machine29Cen", "Machine31Cen", "LadderPeriod", "Mirror", "CaseSplit", "CaseCert23B", "CaseCert23C0", "CaseCert23C1", "CaseCert23C2", "CaseCert23C3", "CaseCert23C4", "CaseCert23", "CaseCert31B", "CaseCert31C0", "CaseCert31C1", "CaseCert31C2", "CaseCert31C3", "CaseCert31C4", "CaseCert31C5", "CaseCert31C6", "CaseCert31C7", "CaseCert31C8", "CaseCert31C9", "CaseCert31C10", "CaseCert31C11", "CaseCert31C12", "CaseCert31C13", "CaseCert31C14", "CaseCert31C15", "CaseCert31C16", "CaseCert31C17", "CaseCert31C18", "CaseCert31C19", "CaseCert31C20", "CaseCert31C21", "CaseCert31C22", "CaseCert31C23", "CaseCert31C24", "CaseCert31C25", "CaseCert31C26", "CaseCert31C27", "CaseCert31C28", "CaseCert31C29", "CaseCert31C30", "CaseCert31C31", "CaseCert31C32", "CaseCert31C33", "CaseCert31C34", "CaseCert31", "CaseSplit5", "IncCert23B", "IncCert23C0", "IncCert23C1", "IncCert23C2", "IncCert23C3", "IncCert23C4", "IncCert23C5", "IncCert23C6", "IncCert23C7", "IncCert23C8", "IncCert23C9", "IncCert23C10", "IncCert23C11", "IncCert23C12", "IncCert23C13", "IncCert23C14", "IncCert23C15", "IncCert23C16", "IncCert23C17", "IncCert23C18", "IncCert23C19", "IncCert23C20", "IncCert23C21", "IncCert23C22", "IncCert23C23", "IncCert23C24", "IncCert23C25", "IncCert23C26", "IncCert23C27", "IncCert23C28", "IncCert23C29", "IncCert23C30", "IncCert23C31", "IncCert23C32", "IncCert23C33", "IncCert23C34", "IncCert23", "IncCert29B", "IncCert29C0", "IncCert29C1", "IncCert29C2", "IncCert29C3", "IncCert29C4", "IncCert29C5", "IncCert29C6", "IncCert29C7", "IncCert29C8", "IncCert29C9", "IncCert29C10", "IncCert29C11", "IncCert29C12", "IncCert29C13", "IncCert29C14", "IncCert29C15", "IncCert29C16", "IncCert29C17", "IncCert29C18", "IncCert29C19", "IncCert29C20", "IncCert29C21", "IncCert29C22", "IncCert29C23", "IncCert29C24", "IncCert29C25", "IncCert29C26", "IncCert29C27", "IncCert29C28", "IncCert29C29", "IncCert29C30", "IncCert29C31", "IncCert29C32", "IncCert29C33", "IncCert29C34", "IncCert29", "IncCert31B", "IncCert31C0", "IncCert31C1", "IncCert31C2", "IncCert31C3", "IncCert31C4", "IncCert31C5", "IncCert31C6", "IncCert31C7", "IncCert31C8", "IncCert31C9", "IncCert31C10", "IncCert31C11", "IncCert31C12", "IncCert31C13", "IncCert31C14", "IncCert31C15", "IncCert31C16", "IncCert31C17", "IncCert31C18", "IncCert31C19", "IncCert31C20", "IncCert31C21", "IncCert31C22", "IncCert31C23", "IncCert31C24", "IncCert31C25", "IncCert31C26", "IncCert31C27", "IncCert31C28", "IncCert31C29", "IncCert31C30", "IncCert31C31", "IncCert31C32", "IncCert31C33", "IncCert31C34", "IncCert31", "MirrorM11", "Increment", "AnchorChain", "AnchorRecord17Core", "AnchorRecord17", "AlternationOrder", "CaseCert37B", "CaseCert37C0", "CaseCert37C1", "CaseCert37C2", "CaseCert37C3", "CaseCert37C4", "CaseCert37C5", "CaseCert37C6", "CaseCert37C7", "CaseCert37C8", "CaseCert37C9", "CaseCert37C10", "CaseCert37C11", "CaseCert37C12", "CaseCert37C13", "CaseCert37C14", "CaseCert37C15", "CaseCert37C16", "CaseCert37C17", "CaseCert37C18", "CaseCert37C19", "CaseCert37C20", "CaseCert37C21", "CaseCert37C22", "CaseCert37C23", "CaseCert37C24", "CaseCert37C25", "CaseCert37C26", "CaseCert37C27", "CaseCert37C28", "CaseCert37C29", "CaseCert37C30", "CaseCert37C31", "CaseCert37C32", "CaseCert37C33", "CaseCert37C34", "CaseCert37C35", "CaseCert37C36", "CaseCert37C37", "CaseCert37C38", "CaseCert37C39", "CaseCert37C40", "CaseCert37C41", "CaseCert37C42", "CaseCert37C43", "CaseCert37C44", "CaseCert37C45", "CaseCert37C46", "CaseCert37C47", "CaseCert37C48", "CaseCert37C49", "CaseCert37C50", "CaseCert37C51", "CaseCert37C52", "CaseCert37C53", "CaseCert37C54", "CaseCert37C55", "CaseCert37C56", "CaseCert37C57", "CaseCert37C58", "CaseCert37C59", "CaseCert37C60", "CaseCert37C61", "CaseCert37C62", "CaseCert37C63", "CaseCert37C64", "CaseCert37C65", "CaseCert37C66", "CaseCert37C67", "CaseCert37C68", "CaseCert37C69", "CaseCert37C70", "CaseCert37C71", "CaseCert37C72", "CaseCert37C73", "CaseCert37C74", "CaseCert37C75", "CaseCert37C76", "CaseCert37C77", "CaseCert37C78", "CaseCert37C79", "CaseCert37C80", "CaseCert37C81", "CaseCert37C82", "CaseCert37C83", "CaseCert37C84", "CaseCert37C85", "CaseCert37C86", "CaseCert37C87", "CaseCert37C88", "CaseCert37C89", "CaseCert37C90", "CaseCert37C91", "CaseCert37C92", "CaseCert37C93", "CaseCert37C94", "CaseCert37C95", "CaseCert37C96", "CaseCert37C97", "CaseCert37C98", "CaseCert37C99", "CaseCert37C100", "CaseCert37C101", "CaseCert37C102", "CaseCert37C103", "CaseCert37C104", "CaseCert37C105", "CaseCert37C106", "CaseCert37C107", "CaseCert37C108", "CaseCert37C109", "CaseCert37C110", "CaseCert37C111", "CaseCert37C112", "CaseCert37C113", "CaseCert37C114", "CaseCert37C115", "CaseCert37C116", "CaseCert37C117", "CaseCert37C118", "CaseCert37C119", "CaseCert37C120", "CaseCert37C121", "CaseCert37C122", "CaseCert37C123", "CaseCert37C124", "CaseCert37C125", "CaseCert37C126", "CaseCert37C127", "CaseCert37C128", "CaseCert37C129", "CaseCert37C130", "CaseCert37C131", "CaseCert37C132", "CaseCert37C133", "CaseCert37C134", "CaseCert37C135", "CaseCert37C136", "CaseCert37C137", "CaseCert37C138", "CaseCert37C139", "CaseCert37C140", "CaseCert37C141", "CaseCert37C142", "CaseCert37C143", "CaseCert37C144", "CaseCert37C145", "CaseCert37C146", "CaseCert37C147", "CaseCert37C148", "CaseCert37C149", "CaseCert37C150", "CaseCert37C151", "CaseCert37C152", "CaseCert37C153", "CaseCert37C154", "CaseCert37C155", "CaseCert37C156", "CaseCert37C157", "CaseCert37C158", "CaseCert37C159", "CaseCert37C160", "CaseCert37C161", "CaseCert37C162", "CaseCert37C163", "CaseCert37C164", "CaseCert37C165", "CaseCert37C166", "CaseCert37C167", "CaseCert37C168", "CaseCert37C169", "CaseCert37C170", "CaseCert37C171", "CaseCert37C172", "CaseCert37C173", "CaseCert37C174", "CaseCert37C175", "CaseCert37C176", "CaseCert37C177", "CaseCert37C178", "CaseCert37C179", "CaseCert37C180", "CaseCert37C181", "CaseCert37C182", "CaseCert37C183", "CaseCert37C184", "CaseCert37C185", "CaseCert37C186", "CaseCert37C187", "CaseCert37C188", "CaseCert37C189", "CaseCert37C190", "CaseCert37C191", "CaseCert37C192", "CaseCert37C193", "CaseCert37C194", "CaseCert37C195", "CaseCert37C196", "CaseCert37C197", "CaseCert37C198", "CaseCert37C199", "CaseCert37C200", "CaseCert37C201", "CaseCert37C202", "CaseCert37C203", "CaseCert37C204", "CaseCert37C205", "CaseCert37C206", "CaseCert37C207", "CaseCert37C208", "CaseCert37C209", "CaseCert37C210", "CaseCert37C211", "CaseCert37C212", "CaseCert37C213", "CaseCert37C214", "CaseCert37C215", "CaseCert37C216", "CaseCert37C217", "CaseCert37C218", "CaseCert37C219", "CaseCert37C220", "CaseCert37C221", "CaseCert37C222", "CaseCert37C223", "CaseCert37C224", "CaseCert37C225", "CaseCert37C226", "CaseCert37C227", "CaseCert37C228", "CaseCert37C229", "CaseCert37C230", "CaseCert37C231", "CaseCert37C232", "CaseCert37C233", "CaseCert37C234", "CaseCert37C235", "CaseCert37C236", "CaseCert37C237", "CaseCert37C238", "CaseCert37C239", "CaseCert37C240", "CaseCert37C241", "CaseCert37C242", "CaseCert37C243", "CaseCert37C244", "CaseCert37C245", "CaseCert37C246", "CaseCert37C247", "CaseCert37C248", "CaseCert37C249", "CaseCert37C250", "CaseCert37C251", "CaseCert37C252", "CaseCert37C253", "CaseCert37C254", "CaseCert37C255", "CaseCert37C256", "CaseCert37C257", "CaseCert37C258", "CaseCert37C259", "CaseCert37C260", "CaseCert37C261", "CaseCert37C262", "CaseCert37C263", "CaseCert37C264", "CaseCert37C265", "CaseCert37C266", "CaseCert37C267", "CaseCert37C268", "CaseCert37C269", "CaseCert37C270", "CaseCert37C271", "CaseCert37C272", "CaseCert37C273", "CaseCert37C274", "CaseCert37C275", "CaseCert37C276", "CaseCert37C277", "CaseCert37C278", "CaseCert37C279", "CaseCert37C280", "CaseCert37C281", "CaseCert37C282", "CaseCert37C283", "CaseCert37C284", "CaseCert37C285", "CaseCert37C286", "CaseCert37C287", "CaseCert37C288", "CaseCert37C289", "CaseCert37C290", "CaseCert37C291", "CaseCert37C292", "CaseCert37C293", "CaseCert37C294", "CaseCert37C295", "CaseCert37C296", "CaseCert37C297", "CaseCert37C298", "CaseCert37C299", "CaseCert37C300", "CaseCert37C301", "CaseCert37C302", "CaseCert37C303", "CaseCert37C304", "CaseCert37C305", "CaseCert37C306", "CaseCert37C307", "CaseCert37C308", "CaseCert37C309", "CaseCert37C310", "CaseCert37C311", "CaseCert37C312", "CaseCert37C313", "CaseCert37C314", "CaseCert37C315", "CaseCert37C316", "CaseCert37C317", "CaseCert37C318", "CaseCert37C319", "CaseCert37C320", "CaseCert37C321", "CaseCert37C322", "CaseCert37C323", "CaseCert37C324", "CaseCert37C325", "CaseCert37C326", "CaseCert37C327", "CaseCert37C328", "CaseCert37C329", "CaseCert37C330", "CaseCert37C331", "CaseCert37C332", "CaseCert37C333", "CaseCert37C334", "CaseCert37C335", "CaseCert37C336", "CaseCert37C337", "CaseCert37C338", "CaseCert37C339", "CaseCert37C340", "CaseCert37C341", "CaseCert37C342", "CaseCert37C343", "CaseCert37C344", "CaseCert37C345", "CaseCert37C346", "CaseCert37C347", "CaseCert37C348", "CaseCert37C349", "CaseCert37C350", "CaseCert37C351", "CaseCert37C352", "CaseCert37C353", "CaseCert37C354", "CaseCert37C355", "CaseCert37C356", "CaseCert37C357", "CaseCert37C358", "CaseCert37C359", "CaseCert37C360", "CaseCert37C361", "CaseCert37C362", "CaseCert37C363", "CaseCert37C364", "CaseCert37C365", "CaseCert37C366", "CaseCert37C367", "CaseCert37C368", "CaseCert37C369", "CaseCert37C370", "CaseCert37C371", "CaseCert37C372", "CaseCert37C373", "CaseCert37C374", "CaseCert37C375", "CaseCert37C376", "CaseCert37C377", "CaseCert37C378", "CaseCert37C379", "CaseCert37C380", "CaseCert37C381", "CaseCert37C382", "CaseCert37C383", "CaseCert37C384", "CaseCert37T0", "CaseCert37T1", "CaseCert37T2", "CaseCert37T3", "CaseCert37T4", "CaseCert37T5", "CaseCert37T6", "CaseCert37T7", "CaseCert37T8", "CaseCert37T9", "CaseCert37T10", "CaseCert37T11", "CaseCert37T12", "CaseCert37T13", "CaseCert37T14", "CaseCert37T15", "CaseCert37T16", "CaseCert37T17", "CaseCert37T18", "CaseCert37T19", "CaseCert37T20", "CaseCert37T21", "CaseCert37T22", "CaseCert37T23", "CaseCert37T24", "CaseCert37T25", "CaseCert37T26", "CaseCert37T27", "CaseCert37T28", "CaseCert37T29", "CaseCert37T30", "CaseCert37T31", "CaseCert37T32", "CaseCert37T33", "CaseCert37T34", "CaseCert37", "WordLegal", "MachineUp", "CrtSlots", "WordLegal11"]
 
 [[require]]
 name = "mathlib"
@@ -2055,7 +2055,125 @@ name = "CaseCert37C383"
 name = "CaseCert37C384"
 
 [[lean_lib]]
-# CaseCert37 (the 385-way root of the 31->37 rung) is registered but NOT a default target:
-# elaborating the root in one lean process reached 53.7 GB virtual memory on 2026-09-03 and
-# crashed Windows (bugcheck 0xEF). Build it only via a tiered assembly (see formalist.md R29.5).
+name = "CaseCert37T0"
+
+[[lean_lib]]
+name = "CaseCert37T1"
+
+[[lean_lib]]
+name = "CaseCert37T2"
+
+[[lean_lib]]
+name = "CaseCert37T3"
+
+[[lean_lib]]
+name = "CaseCert37T4"
+
+[[lean_lib]]
+name = "CaseCert37T5"
+
+[[lean_lib]]
+name = "CaseCert37T6"
+
+[[lean_lib]]
+name = "CaseCert37T7"
+
+[[lean_lib]]
+name = "CaseCert37T8"
+
+[[lean_lib]]
+name = "CaseCert37T9"
+
+[[lean_lib]]
+name = "CaseCert37T10"
+
+[[lean_lib]]
+name = "CaseCert37T11"
+
+[[lean_lib]]
+name = "CaseCert37T12"
+
+[[lean_lib]]
+name = "CaseCert37T13"
+
+[[lean_lib]]
+name = "CaseCert37T14"
+
+[[lean_lib]]
+name = "CaseCert37T15"
+
+[[lean_lib]]
+name = "CaseCert37T16"
+
+[[lean_lib]]
+name = "CaseCert37T17"
+
+[[lean_lib]]
+name = "CaseCert37T18"
+
+[[lean_lib]]
+name = "CaseCert37T19"
+
+[[lean_lib]]
+name = "CaseCert37T20"
+
+[[lean_lib]]
+name = "CaseCert37T21"
+
+[[lean_lib]]
+name = "CaseCert37T22"
+
+[[lean_lib]]
+name = "CaseCert37T23"
+
+[[lean_lib]]
+name = "CaseCert37T24"
+
+[[lean_lib]]
+name = "CaseCert37T25"
+
+[[lean_lib]]
+name = "CaseCert37T26"
+
+[[lean_lib]]
+name = "CaseCert37T27"
+
+[[lean_lib]]
+name = "CaseCert37T28"
+
+[[lean_lib]]
+name = "CaseCert37T29"
+
+[[lean_lib]]
+name = "CaseCert37T30"
+
+[[lean_lib]]
+name = "CaseCert37T31"
+
+[[lean_lib]]
+name = "CaseCert37T32"
+
+[[lean_lib]]
+name = "CaseCert37T33"
+
+[[lean_lib]]
+name = "CaseCert37T34"
+
+[[lean_lib]]
+# CaseCert37 (the root of the 31->37 rung) is now TIERED (round 30): it imports the 35
+# sub-roots CaseCert37T0..T34 (11 cases each) and elaborates at ~4 GB commit; each tier at
+# ~2.8 GB.  The flat 385-import root of round 29 reached 53.7 GB in one lean process and
+# crashed Windows (bugcheck 0xEF) - never regenerate it flat (gen_case_lean.py --tiered).
 name = "CaseCert37"
+
+[[lean_lib]]
+name = "WordLegal"
+
+[[lean_lib]]
+name = "MachineUp"
+
+[[lean_lib]]
+name = "CrtSlots"
+
+[[lean_lib]]
+name = "WordLegal11"

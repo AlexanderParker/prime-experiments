@@ -383,6 +383,7 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   certificate max(F_2..F_5) <= F_2 + s_min is sound but certifies only 0.3-1.2%
   of the family against word-legality's 96-100% - the arithmetic is worth ~100x
   in coverage
+  ROUND-30 EXTENSION (section 5C): L(M) (the depth cap, = A_kill - 1) on the family - max L is 1,3,3,3,5 at 7->11..19->23 against the real 0,1,1,1,2 (the FULL 142,560-row 19->23 family for the first time), so 'L bounded' is NOT structural; the teeth enter through the mod-{5,7} ADMISSIBILITY of the bare alternation (a,b,a) - P(L>=3 | not admissible) = 0.0000 at every step, and the real machine's alternation is inadmissible at 13->17, 17->19, 23->29; the depth-2 slack F + q' - F_2 is ORDINARY for the real machine (35-61 percentile) and fails at exactly ONE of 14,616 old machines, which is the self-mirror 2-window (d_0, d_0) with d_0 = 25 (F_2 >= 2 d_0 is a theorem) - SCRIPT-VERIFIED (exhaustive to 19->23; a 601-member sample at 23->29) - not yet checked
 
 - walk-transform-pole-identity - the distance-to-next-opening function W has
   What(m)(1 - e(m/P)) = -e(m/P) Ghat(m) at every nonzero frequency, where Ghat is
@@ -401,7 +402,21 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   Verdict on the anchor-235 floor: the character form is THE SCAN IN DISGUISE
   (scan 2 pi(q)(F+1) tests beats P coefficients and 2^(F+1) inclusion-exclusion
   terms at every machine) but it NAMES the irreducible object - PROVED (identities)
-  + SCRIPT-VERIFIED to 5e-16 at m11..m19 - not yet checked (round 29)
+  + SCRIPT-VERIFIED to 5e-16 at m11..m19 - CHECKED 2026-09-03 (harvester r30):
+  mechanisms KNOWN (discrete partial summation / sawtooth transform; Ramanujan-sum
+  multiplicativity by CRT; dilation invariance of the L1 norm), the first-passage
+  identity for a two-residue sieve and the L1-blindness obstruction against the null
+  family NOVEL AS FAR AS SEARCHED; Identity 1 to be presented as elementary
+
+- legal-word-length-mechanism - ROUND 30 (mechanic): the length L_g(M) of the longest
+  realised legal word (= A_kill - 1) is predicted to within one unit by an independent-
+  letter model with the REAL class densities of the legal alphabet in M's gap histogram
+  (3.7/3, 4.0/3, 4.0/2 at m29/31/37 against the naive 8/9/10), while the COUNT of legal
+  windows tracks the model at short lengths and collapses at the top (4 vs 279 at m29,
+  216 vs 1,610 then 0 vs 2.5 at m31, 27 vs 10,500 at length 2 on m37); every one-letter
+  extension of a longest word at m19..m37 is refuted by the cover half alone (no slot of
+  M blocks the punctured interior) except the pure alternation, killed by gears 5 and 7
+  jointly - MEASURED - not yet checked
 
 ## Seeding backlog - COMPLETE 2026-08-23 (all 10 written up and checked; kept for provenance)
 
@@ -724,6 +739,7 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   span-preserving, all it adds is the quotient by an involution, i.e. the SAME
   one unit ("fewer than two proves none") that section 7.1 already proved is
   the ceiling. What changes is the PRICE of that unit, not its size
+  ROUND-30 EXTENSION (section 10): the mirror k' = P - k - s gated on all 24 exact record windows on file (150 assertions; F_2(59) B is A's mirror, the F_5(41) pair is a mirror pair in machine-41 coordinates), its TRANSFER-COORDINATE form (k, c_q) -> (P0 - k - s, P0 - c_q mod q) gated on the F_6(47), F_5(41) and F_2(59) witnesses (a factor 2 on every transfer sweep), and the one new consequence: the J = 2 self-mirror window (d_0, d_0) is the counterfactual family's only depth-2 failure - PROVED + SCRIPT-VERIFIED - not yet checked
 
 - gear-cell-decomposition - the frequency-1/p Fourier coefficient of the gap
   histogram is a function of only (p-2)(p-3)/2 integers, for EVERY machine (three at
@@ -878,7 +894,10 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   "extremal implies palindromic" step is TRUE at J = 5 (2 of 2, unique self-reverse
   maximisers) and FALSE at J = 3, 4 (15 cells, none) - Theorem B explains the even-J half -
   PROVED (Theorems A-D) + SCRIPT-VERIFIED (exact, gated against R68's independent Q* table
-  and reproduced by a second scan-free CRT vehicle) - not yet checked (round 28)
+  and reproduced by a second scan-free CRT vehicle) - CHECKED 2026-09-03 (harvester r30):
+  NOVEL AS FAR AS SEARCHED for Q*_J, Theorems A, B, D and the Delta_J table; PARTIAL
+  OVERLAP for the merge mechanism (Holt-Rudd arXiv:1408.6002 Lemma 2.1 / Lemma 3.1, one
+  class, no alternation); the one-class mirror is Holt-Rudd remark (v)
   ROUND 29 (Constructor): the family's DEPTH quantifier is closed - J_max(M) = L(M) + 2 with
   L the longest realised legal letter word (see even-j-mechanism), so "J_max = A_kill + 1"
   is proved rather than measured and every EMPTY cell of the Delta table is free.  The
@@ -894,7 +913,11 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   is genuine, not a restatement: it certifies 8 of the 9 steps whose spectrum is complete and
   FAILS at 29 -> 31, where the new exact value F_5(29) = 85 is 11 over budget while
   Q*_5(29) = 55 - PROVED + SCRIPT-VERIFIED (every input asserted against the corpus; the one
-  new input re-derived from scratch with 0 undecided) - not yet checked (round 28)
+  new input re-derived from scratch with 0 undecided) - CHECKED 2026-09-03 (harvester r30):
+  PARTIAL OVERLAP in the one-class shadow (Holt-Rudd arXiv:1408.6002 Lemma 2.1 = the
+  one-class merge, Theorem 2.3 = the CRT step of the deletion-ladder cap, Lemma 3.1's
+  g < 2p threshold = the one-class A_kill = 1 regime); the certificate with a finite depth
+  cap and its A_kill scope NOVEL AS FAR AS SEARCHED
   ROUND 29 (Constructor): THE TENTH RUNG, 43 -> 47, RATIFIED - max_J F_J(43) = 132 <= 150 =
   F(43) + 47, MARGIN +18, from Mechanic's exact unconditional F_2(43)=116, F_3(43)=125,
   F_4(43)=132 and J_max(43) = 4; every input re-asserted against its own deletion-ladder cap
@@ -916,14 +939,25 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   dictionary (8 and 4 CRT calls, 0 undecided, no census and no period), re-deriving
   A_kill(43 -> 47) = 3 and INDEPENDENTLY CONFIRMING the round-25 value A_kill(47 -> 53) = 5;
   the realised word (18,35,18,35) at m47 is the first legal 4-word recorded in the project.
+  ROUND-30 ADDENDUM (section 7): eps(v) = d - g_out is a LEMMA (kept-flank deficit minus
+  new outer flank, asserted 30/30, both terms > s_min at four literal cells - a
+  cancellation, not a smallness); the pre-registered order-statistic mechanism is REFUTED
+  at every padded failure cell by the COUNTED census; the padded failure is the F_3 WALL -
+  at m31 the F_3 maximisers are (18,37,30)/(30,37,18), the old machine's depth-3 record with
+  the PADDED LETTER as its middle, Phi(37) + 37 = F_3(31) exactly, and at no other machine
+  m11..m29 does the F_3 maximiser have a legal middle (gated).
   THE NEW OBJECT is
   the PAR-TRADING RESIDUAL eps(v) = Phi(u) - Phi(v) - x, the failure of the flank envelope to
   pay for one added letter: Delta_J = Delta_{J-1} - eps, so "Delta_J = O(1) uniformly in J"
   splits into "eps = O(1) per letter" and "L(M) bounded".  MEASURED: |eps| <= s_min at 14 of
   14 LITERAL cells and 10 of 16 PADDED cells (all six failures carry the letter q'), and
   max |eps| = 4 along the maximising chains, against s_min 4..14 - PROVED (two theorems) +
-  SCRIPT-VERIFIED (21 of 22 recorded Q*_J cells reproduced, 0 mismatches) - not yet checked
-  (round 29)
+  SCRIPT-VERIFIED (21 of 22 recorded Q*_J cells reproduced, 0 mismatches) - CHECKED
+  2026-09-03 (harvester r30): NOVEL AS FAR AS SEARCHED for the word reduction, the
+  same-tooth lemma and eps; the "runs of consecutive gaps in residue classes" theme is a
+  prime-side EXISTENCE literature (Shiu 2000; Banks-Freiberg-Turnage-Butterbaugh
+  arXiv:1311.7003 via Maynard-Tao; Maynard 2016) or one-class at run length ONE (Ziller
+  2020 D(k)); Holt-Rudd remark (vi) is the one-class run constraint
 - dictionary-monotonicity-onset - TWO findings.  (a) THE DEPTH-0 LEMMA: the realised gap
   m-tuple dictionary is MONOTONE along the machine ladder, D_m(M) subset D_m(M+q') for
   every q' > 2(m+1) - a new gear destroys openings and merges gaps, yet every old
@@ -957,7 +991,12 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   4-tuple dictionary matching the round-25 full-period census cell for cell.  Also proves the WALK SCREEN
   (screen the transfer's walk, not its emission - sound, strictly stronger, subsumes the
   round-26 screen, 2.4-11.7% tighter supersets) - (a) PROVED + SCRIPT-VERIFIED,
-  (b) MEASURED 6/6 - not yet checked (round 28)
+  (b) MEASURED 6/6 - CHECKED 2026-09-03 (harvester r30): (a) PARTIAL OVERLAP - the
+  arity-1 one-class case IS Ziller, arXiv:2007.01808, Proposition 2.7 "Propagation of
+  coverings" (m in D(k) => m in D(k+1)), framing credited by Ziller to de Polignac 1849;
+  the arity-m two-class lemma with its sharp hypothesis q' > 2(m+1) NOVEL AS FAR AS
+  SEARCHED (Holt-Rudd Lemma 3.1 is the one-class survival COUNT under g < 2p); (b) NOVEL
+  AS FAR AS SEARCHED; citation paragraph written into the doc's section 6
 - jk-growth-discriminator - THE k-AXIS REPLACES THE z-AXIS.  (i) THE FIRST EXACT VALUES OF
   j_k FOR k >= 3: j_3(P(z)) = 180, 306, 612, 972 at z = 11, 13, 17, 19 (round 27 had only
   6, 24, 78 at z = 3, 5, 7 and recorded that z = 11 "needs a real algorithm"), plus
@@ -1000,3 +1039,38 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   Also prices brief item (a) with a measured cost curve: z = 37 is the next
   purchasable rung (~15 h at 16 cores), z = 41 is 51 days - SCRIPT-VERIFIED (values) +
   MEASURED (statistics) - prior art checked first-hand 2026-08-29, NOVEL AS FAR AS SEARCHED
+- anchor-235-layer-laws - the anchor-2,3,5 line's per-layer laws as one register entry
+  (written by the harvester, round 30, from anchor-235.md 9d-9g, Formalist r29 and
+  Mechanic r29): (L1) THE CHAIN LAW - two slots lie in a common two-class set {r, r+d}
+  iff their difference is 0 or +-d mod g, so two consecutive lower openings are both
+  deleted by gear g iff their gap is 0 or +-d_g mod g, with the T3 half (no two steps the
+  same way) - KERNEL-CHECKED for every g (AnchorChain.chain_law, no_two_up/down);
+  (L2) NEIGHBOUR-OF-HIT - the neighbour of a hit is never a hit for every g >= 5, from
+  6u = 1 alone (d = 3^{-1} is never +-1) - KERNEL-CHECKED (neighbour_of_hit);
+  (L3) THE PHASE-REDUCTION RECORD LAW - the g copies of the lower period realise every
+  deletion phase exactly once (copy_phase + phase_bijective, KERNEL-CHECKED), so the
+  next record is max over phases of gap-before + run-span + gap-after over two-class runs
+  on ONE lower period: F_bc = 4,6,10,17,24,33,42 (corpus 5..43) at {5..7}..{5..29} and
+  58, 88, 91 at 31/37/41 SCRIPT-VERIFIED exact, and at machine 17 KERNEL-CHECKED at both
+  ends (AnchorRecord17.record_max, phase_is_machine, F17_eq_18 - the attainment at 17 is
+  new) with the nested formula's recursion a theorem (hop_iter); (L4) D_g = A_kill(M -> g),
+  7 for 7 (Mechanic C49), so D_g = L(M) + 1 - SCRIPT-VERIFIED; D_g bounded OPEN - CHECKED
+  2026-09-03: PARTIAL OVERLAP (the copies-and-phases picture is Holt-Rudd arXiv:1408.6002
+  Lemma 2.1 / Theorem 2.3, one class); the two-class chain law, neighbour-of-hit as a
+  theorem for every gear, the record law as a computation of the maximal gap, and
+  D_g = A_kill NOVEL AS FAR AS SEARCHED
+- cover-half-counter-ladder - (constructor, round 30) THE EXPOSURE CAP AND THE COUNTER
+  LADDER: for a word length m, A_m (abstract T3-legal words, closed form) >= S_m (the
+  exposure half: words whose prefix-sum set has a slot with all points open, = R43's
+  depth-0 term >= 1, = phase saturation at every gear) >= S_m^(2) >= S_m^(4) >= D_m (the
+  cover half: realised words; D_m > 0 iff L(M) >= m).  THEOREM: exposure at length m is
+  decided by the gears <= 2m+2 alone.  MEASURED, exact, m11..m53: EXPCAP(M) = max{m :
+  S_m > 0} = 1,1,1,4,2,3,5,18,13,10,5,21 against L = 1,1,1,2,1,3,3,2,2,2,4,3, so EXPCAP - L
+  is unbounded along the ladder (16, 11, 8, 18 at m37, m41, m43, m53); fixed-depth
+  Bonferroni (depth 2 and 4) kills NOTHING among the exposure survivors at 21 cells while
+  the exact count sits 1e2..4e6 below the depth-0 term.  VERDICT (gated for fixed depth):
+  no fixed-depth truncation of the inclusion-exclusion counter and no exposure-only
+  argument bounds L uniformly; the term that grows is the P-scale depth-0 count, and a
+  uniform bound on L needs the cover half at full depth on a candidate set that is itself
+  unbounded.  R75's CORRCAP row is reproduced exactly as the gate - SCRIPT-VERIFIED (exact
+  integers) - prior art not yet checked

@@ -1,4 +1,10 @@
--- CaseCert37 (root) is deliberately NOT imported here: see lakefile.toml at its lib entry.
+-- Round 30: the CaseCert37 root is back (built TIERED, 35 sub-roots of 11 cases; see
+-- lakefile.toml at its lib entry and formalist.md R30).
+import CaseCert37
+import WordLegal
+import WordLegal11
+import MachineUp
+import CrtSlots
 import Increment
 import AnchorChain
 import AnchorRecord17
@@ -514,3 +520,45 @@ open BlockedSlots
 #print axioms AlternationOrder.ps_max_le_six
 #print axioms AlternationOrder.arelax_le_five
 #print axioms AlternationOrder.arelax_le_four
+
+-- Round 30: the 31->37 case-split root, assembled through 35 tiers
+#print axioms CaseCert37.nocov0
+#print axioms CaseCert37.nocov384
+#print axioms CaseCert37.nopair0
+#print axioms CaseCert37.nopair34
+#print axioms CaseCert37.blocked
+#print axioms CaseCert37.no_run
+#print axioms CaseCert37.F_le
+#print axioms CaseCert37.D_31_37_case
+
+-- Round 30: R89 (word reduction) and R90 (same-tooth lemma), abstract and at machine 11
+#print axioms WordLegal.legal_iff_noRepeat
+#print axioms WordLegal.alt_iff_prefixSum
+#print axioms WordLegal.killable_iff
+#print axioms WordLegal.same_tooth
+#print axioms WordLegal.two_mul_ne_zero
+#print axioms WordLegal.val_injective
+#print axioms WordLegal.chain_iff_word
+#print axioms WordLegal.qstar_iff_word
+#print axioms WordLegal.jmax
+#print axioms WordLegal.akill
+#print axioms WordLegal.middle_span
+#print axioms WordLegal.same_tooth_window
+#print axioms WordLegal.literal_even_span
+#print axioms WordLegal11.L11
+#print axioms WordLegal11.jmax11
+#print axioms WordLegal11.akill11
+
+-- Round 30: the CRT slots (F_2 lower halves at 37, 41, 53, 59)
+#print axioms MachineUp.exposed59_iff
+#print axioms CrtSlots.f2_37
+#print axioms CrtSlots.five_37
+#print axioms CrtSlots.f2_41
+#print axioms CrtSlots.five_41
+#print axioms CrtSlots.f2_53
+#print axioms CrtSlots.five_53
+#print axioms CrtSlots.f2_59_A
+#print axioms CrtSlots.five_59_A
+#print axioms CrtSlots.f2_59_B
+#print axioms CrtSlots.five_59_B
+#print axioms CrtSlots.mirror_59

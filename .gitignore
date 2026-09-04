@@ -89,3 +89,7 @@ research/max_gap_state_*.json
 
 # Crash dumps
 *.stackdump
+# round-30 bulk emission (269 MB of certificate JSON, 126 MB of solver pickles, chunk arrays): kept on disk, not in git; manifests and gate lines are committed
+research/data/r30/cert_*.json
+research/data/r30/*.pkl
+research/data/r30/*.npy

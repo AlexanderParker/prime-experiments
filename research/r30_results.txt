@@ -1,0 +1,84 @@
+MECHANIC ROUND 30 - persisted results (exact integers unless labelled model)
+=========================================================================
+Gate: uv run python research/gate_mechanic_r30.py -> ALL ASSERTIONS PASSED
+Pre-registration: research/data/r30/prereg_mechanic_r30.md (written first).
+
+(d) THE INDEPENDENT max_J Q*_J(47; legal for 53)  [research/qstar47_r30.py]
+  seed 144, cap 290, JMAX 6, floor 18, word-legal; 64 shards tiling all
+  7,952,175 start openings of machine 23's period; 7,709 shard-seconds =
+  2.14 core-hours at High priority (round-29 price was 3.5).
+    Q*_2(47) <= 144   Q*_3(47) <= 144   Q*_4(47) = 145   Q*_5(47) <= 144   Q*_6(47) <= 144
+    max_J Q*_J(47) = 145 <= 171 = F(47) + 53   -> RUNG ELEVEN CLOSED, F(53) never consulted
+  witness (shard 14): machine-23 start 8,413,890, phases (27,4,16,24,4,24),
+  marks (4,7,12) -> machine-47 slot 82,799,441,296,736,535 (= the round-26
+  anchor slot exactly), openings [0,70,105,123,145], word [70,35,18,22],
+  middles (35,18) = classes (-,+) mod 53; lifted to machine 53: slot
+  4,182,064,658,553,345,935 is a gap of exactly 145 (F(53) >= 145 exhibited).
+
+(c) RECORD GENEALOGY  [research/genealogy_r30.py; log data/r30/genealogy.log]
+  step     record  ancestor window of M   status vs F_J(M)   largest gap  generations
+  23->29    43     [10,10,23]  J=3        runner-up by 7      23 INHERITED    1
+  29->31    58     [18,10,30]  J=3        runner-up by 7      30 merged       5
+  31->37    88     [28,37,12,11] J=4      runner-up by 2      37 merged       4
+  37->41    91     [15,41,14,21] J=4      runner-up by 14     41 merged       2
+  41->43   103     [28,75]     J=2        RECORD (F_2(41))    75 merged       3
+  43->47   118     [85,31,2]   J=3        runner-up by 7      85 merged       4
+  47->53   145     [70,35,18,22] J=4      F_4(47) not known   70 merged       2
+  53->59   161     [10,118,33] J=3        F_3(53) not known  118 merged       3
+  ancestor rank among M's own J-windows by span (#above, #equal):
+    m13 J=3 s=18: 12, 60 | m17 J=2 s=25: 0, 4 | m17 J=3 s=25: 60, 52 |
+    m19 J=4 s=34: 218, 98 | m23 J=3 s=43: 8, 10 | m29 J=3 s=58: 18, 92
+  F_J records: largest gap merged at the machine below in 12 of 12.
+  lifted record slots (verified): m43 426824541409250 (103), m47
+  34905861380755417 (118), m53 4182064658553345935 (145), m59
+  73115517300464200662 (161).
+
+(a) RESIDUE RUNS at the next prime  [research/resrun_r30.py; data/r30/resrun_m*.json]
+  M  q' |Lam|     N        modelU  modelD-raw  modelD-T3  V1raw  V2=L   occ_1..occ_L measured / model, then occ_{L+1}
+  11 13   1        135      3.3      1.6        0.0        1      1     6/6 ; -
+  13 17   2      1,485      4.2      2.4        1.8        1      1     72/72 ; -
+  17 19   2     22,275      5.4      3.3        2.2        1      1     1088/1088 ; -
+  19 23   3    378,675      6.3      3.7        2.8        2      2     11784/11784, 62/73.6 ; 0/1.1
+  23 29   3  7,952,175      7.0      4.6        2.4        2      1     243816/243816 ; 0/27.3
+  29 31   4  214,708,725    8.2      5.8        3.7        3      3     8022924/8.02e6, 13000/15100, 4/279 ; 0/0.53
+  31 37   4  6.23e9         9.0      5.6        4.0        3      3     1.148e8/1.15e8, 70964/175000, 216/1610 ; 0/2.47   (full lower period, 6,412 s)
+  37 41   6  2.18e11       10.0      5.4        4.0        2*     2     1.77e7/1.77e7, 27/10500 ; 0/40.8  (1.05% sweep, 12/1147 chunks; full-period model occ_3 = 3.9e3 vs 0)
+    m31 other gears (full period, g: V1/V2, occ_2 measured/model): 41: 2/2, 2/14000 | 43: 1/1 | 47: 1/1 | 53: 2/2, 224/1020 | 59: 3/1 | 61: 3/1 | 79: 1/1
+    m37 other gears (1% sweep): 43: 2/2, 19/2350 | 47: 2/2, 2/1870 | 53: 2/2, 427/1330 | 59: 3/1 | 61: 3/1 | 79: 1/1
+    m31 q'=37 RAW slot 115,954,443 [25,12,12]; T3 slot 143,358,780 [25,12,25]
+    m37 q'=41 RAW = T3 slot 109,580,398 [14,41]
+  attaining runs (slot of the opening before the run; gaps; residues mod q'):
+    m19 q'=23 RAW slot 1297 [8,8] (8,8); T3 slot 9382 [8,15] (8,15)
+    m23 q'=29 RAW slot 16363 [10,10] (10,10); T3 slot 77 [10]
+    m29 q'=31 RAW = T3: slot 220,171,102 [10,21,10] residues (10,21,10) classes (-,+,-)
+  V4 (word vehicle + CRT) = V2 at every next-prime cell m19..m37 (2,1,3,3,2) and at
+  every other g measured by both (m29: g=37 2/2, g=53 1/1; m19 g=31 2/2).
+  L_g(M) by CRT for every prime g up to 130 (g:V3/V4):
+    m19 23:3/2 29:1/1 31:2/2 37..67: 1/1
+    m23 29:2/1 31:3/2 37:3/1 41..103: 1/1
+    m29 31:3/3 37:3/2 41:1/1 43:1/1 47:1/1 53:2/1 59..113: 1/1
+    m31 37:5/3 41:3/2 43:2/1 47:2/1 53:3/2 59:2/1 61:3/1 67:2/1 71..127: 1/1
+    m37 41:3/2 43:2/2 47:2/2 53:3/3 59:2/2 61:3/2 67:2/2 71:1/1 73:1/1 79:1/1 83:2/1 89:2/1 97..127: 1/1
+  V3 only (no CRT) at m41: 43:3 47:3 53:5 59:2 61:3;  m43: 47:3 53:5 59:2 61:3 67:3;
+    m47: 53:5 59:3 61:3 67:3 71:3 73:2 79:2 83:4 89:3 97:2
+
+(b) KILLER PROFILES  [research/wordkill_r30.py kill; data/r30/killer_m*.json]
+  SAT = gears whose single-gear free set is empty; y* = smallest prefix {5..y'} whose OPEN
+  constraints alone (all other phases free) make the CSP infeasible; y* = 0 = R(empty)
+  infeasible (no slot of M blocks the punctured interior).  Every extension refuted, 0 undecided.
+  m19->23 L=2 words (8,15)(15,8): [8,15,8] 0 | [8,15,23] 0 | [15,8,15] 0 | [15,8,23] 0
+  m23->29 L=1 words (10)(19)(29): [10,29] 0 | [19,29] 0 sat{5} | [29,29] 0 sat{5} | [10,19] 7
+  m29->31 L=3 word (10,21,10): [10,21,10,21] 0 sat{5} | [10,21,10,31] 0 sat{5,7}
+  m31->37 L=3 words (12,25,12)(25,12,25): [12,25,12,37] 0 sat{5} | [25,12,25,37] 0 |
+     [25,12,25,49] 0 sat{5} | [12,25,12,25] 7
+  m37->41 L=2 words (14,41)(27,41)(41,14)(41,27), 15 classes:
+     y*=0: [14,41,82] [14,41,68]s5 [27,41,82] [27,41,55] [41,14,68] [41,14,82]s5 [41,27,82] [41,27,55]
+     y*=5 (sat{5}): [14,27,41] [27,14,41] [14,41,41] [27,41,41] [41,27,41]
+     bracket: [14,41,27] R(empty) feasible, R({5}) feasible, R({5,7}) undecided -> y* in [7,37];
+              [41,14,41] R(empty) undecided -> unattributed
+  m41->43 L=2 words (14,43)(29,43)(43,14)(43,29)(43,43), 19 classes:
+     y*=5 (sat{5}): [14,29,43] [14,43,29] [29,14,43] [14,43,86] [29,43,86] [43,14,72] [43,29,57] [43,43,43] [43,43,86]
+     unattributed (refuted; R(empty) undecided at 10M nodes): [14,43,43] [29,43,43] [14,43,72]
+       [43,14,43] [29,43,57] [43,29,43] [43,14,86] [43,29,86] [43,43,57] [43,43,72]
+  pooled: 48 classes; 28 not single-gear saturated; decided joint kills: y* = 0 (20) or y* = 7 (2);
+  none attributed to a gear above 7; m43/m47 not attempted.

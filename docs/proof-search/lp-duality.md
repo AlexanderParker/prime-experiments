@@ -436,3 +436,393 @@ E16  EVERY CASE THAT FAILS AT k CLOSES AT k+1 IN THIS FAMILY: over the
      than ONE further gear. (This is what makes the refinement move a method
      rather than a lucky break, and it is NOT automatic - the child LPs are
      different LPs, not refinements of one.)
+
+---
+
+## Round 30
+
+BRIEF: (a) price, then certify, the 47 -> 53 step at the manager's
+W_inc = F(47) + 53 = 171 - the (D) rung the spectrum-plus-depth criterion
+cannot certify (F_6(47) = 177 > 171); (b) the mirror halving as a theorem and
+a script; (c) score E13-E16 and pre-register two new predictions about (a).
+
+TERMINOLOGY, and a note on my own earlier usage: this round's W_inc is the
+manager's F(M) + q' = 171.  Rounds 27-29 wrote "W_inc" for the STRICTER
+increment-law width F_2(M) + s_min(q') = 134 + 18 = 152 at this step; that
+width is not the target here and the two are kept apart below.
+
+Pre-registration, written before any machine-53 LP was solved:
+`research/data/r30/lp_prereg_r30.txt` (P1-P6, and the plan for E13-E16).
+Scored in section 6.
+
+### 0. THE PRICE TABLE (arithmetic only, before any solve)
+
+    level  held           cases   mirror   self-mirror   |pos|          free  cols    links
+                                  orbits   case          min/max/mean   n
+    k = 3  (5,7,11)         385     193    (0,6,3)       55/63/59.96    11    56,124  3,530
+    k = 4  (5,7,11,13)    5,005   2,503    (0,6,3,6)     45/55/50.74    10    51,691  3,060
+    k = 5  (5,7,11,13,17) 85,085  42,543   (0,6,3,6,0)   37/51/44.77     9    46,183  2,584
+
+Every level has exactly ONE self-mirror case (each q is odd, so
+2w = 1 - W mod q has one solution), so the mirror halves every level to
+(cases + 1)/2 orbits.  Predicted price (P4): 100-300 k exact ops per k = 3
+case, 30-120 s a cell; the plan was a mixed-k tree rooted at k = 3.
+
+### 1. THE ROOT MOVED FROM k = 3 TO k = 4, AND THE REASON IS THE FINDING
+
+THE k = 3 PROBE.  Case (0,0,0) at k = 3 (n = 11 free gears, |pos| = 60): the
+plain cut loop's LP maximum sits at 64.336 against the 60 it must fall below
+and creeps 64.336 -> 64.223 over NINE passes and 1,066 s (STUCK at the budget).
+The lifted LP - the instrument that would say whether that is convergence or an
+asymptote - does not scale to n = 11.  So the k = 3 level is NOT affordable:
+193 orbits at >= 1,000 s each with no decision at the end.
+
+ONE GEAR DEEPER THE PICTURE INVERTS.  At k = 4 the SAME phases (0,0,0,0) give
+a base-cut polytope that is INFEASIBLE at iteration zero - HiGHS returns
+status 2 on the very first LP, the level-1 coverage rows plus block sums plus
+consistency links exclude a fully blocked window of width 171 before the
+recursion row or any degree-2 cut is consulted - and the common-slack LP's
+duals close an exact certificate in ~20 s (LP 10.8 s, build 1.3 s, certificate
+~5 s; 73-83 k exact ops; peak working set 192 MB).  Round 28 saw the same
+inversion at machine 37 width 88 (k = 2 asymptote, k = 3 empty); here it is
+between k = 3 "+4.3 and crawling" and k = 4 "empty before the recursion row".
+
+So the tree is rooted at k = 4: 2,503 orbit representatives on four workers
+at High priority, plain loop capped at 4 passes / 120 s, every refusal split
+on gear 17 into 17 children at k = 5 (n = 9, where the lifted LP decides
+exactly).
+
+### 2. THE TREE AT 47 -> 53 - THE k = 4 LEVEL, AND THE k = 5 REFINEMENT
+
+THE k = 4 LEVEL (`lp_tree_r30.py LEVEL 53 171 4 4 120`; log
+`research/data/r30/lp_level53_k4.log`; 10,324 s wall on four workers after
+the priority fix below, 45,713 s of summed cell time = 12.7 core-hours):
+
+    representatives decided      2,503  (one per mirror orbit of 5,005 cases)
+    CERTIFIED                    2,407  = 4,813 of 5,005 cases  (96.16%)
+      at ITERATION ZERO, every row the base cut     2,398
+      after 2 / 3 / 4 cut passes (seeded rows)      5 / 3 / 1
+      exact ops per certificate   mean 77,771, min 70,199, max 160,651
+      total exact ops             187,193,969 (representatives)
+      wall per certified cell     14.9 s mean at High priority
+      margin column               min 1/16384, max 3; 27 cases under 1/100
+      the self-mirror case (0,6,3,6): CERTIFIED, margin 1
+    REFUSED (NOCERT-SPLIT)          96  = 192 cases  (3.84%)
+
+EVERY ONE OF THE 96 REFUSALS IS THE SAME OBJECT: the plain loop STUCK with
+the LP maximum of the RECURSION ROW between 0.05 and 2.2 ABOVE |pos| at the
+first solve and creeping down by 0.01-0.4 per pass (e.g. case (0,0,2,12):
+47.960 -> 47.403 against 47 over twelve passes and 611 s; case (1,6,1,2):
+45.836 -> 45.626 against 45 over four passes).  No refusal is a coverage cut
+and none is an in-polytope refutation - the lifted LP that would decide
+"asymptote or slow convergence" is out of reach at n = 10 - so the tight row
+of every refusal is the recursion row, exactly as pre-registered (P3), and
+the level-2 cuts are exhausted pass by pass without closing it.  A refusal
+cost 103 s on average (max 742 s from the first driver's 12-pass budget).
+And the refusals repeat VALUES across cases that are not mirror images: the
+first-solve maximum 48.184 at (0,6,2,3), (1,0,3,4), (1,0,5,10), (2,1,4,5);
+50.531 at five cases; 49.549, 47.314 and 47.960 at four and three each - the
+same value-class coarsening round 29 saw at m37 and section 5 measures at
+m41.
+
+THE k = 5 REFINEMENT (children of the refusals on gear 17, canonicalised
+under the mirror; none of the 96 refused representatives is self-mirror, so
+96 x 17 = 1,632 children).  PRICED FIRST on a four-orbit sample: 68 children,
+68/68 CERTIFIED at iteration zero, 7-10 s each, 66-82 k ops, margins 1/5 to
+8/3, 143 s on four workers - so the whole refinement prices at ~57 minutes,
+inside the manager's one-hour cap, and was run.  RESULT (log
+`lp_refine53_k5.log`, 3,261 s wall for the remaining 1,564 cells on four
+workers - 57 minutes in all, the price to the minute):
+
+    k = 5 children decided        1,632  (96 refused orbits x 17 phases of gear 17)
+    CERTIFIED                     1,632 / 1,632
+      at ITERATION ZERO, every row the base cut      1,632
+      exact ops per certificate   66,083 - 82,211 (mean ~71,000)
+      total exact ops             115,934,896
+      margin column               min 1/11, max 3
+    REFUSED                           0
+
+EVERY CHILD OF EVERY REFUSAL CERTIFIES, AND AT ITERATION ZERO.  So the
+96 recursion-row refusals at k = 4 are all closed by one more held gear, and
+not marginally: no child needed a cut pass, none reached the lifted LP, and
+the k = 5 margins (min 1/11) are wider than the k = 4 level's (min 1/16384).
+The tree is complete: 2,407 certified k = 4 representatives plus 1,632
+certified k = 5 children, mirror-expanded, partition prod(Z_5 x Z_7 x Z_11
+x Z_13 x Z_17) - asserted by the step manifest of section 2b - and
+
+    F(53) <= 171 = F(47) + 53    (D) AT 47 -> 53, HYPOTHESIS-FREE, BY 8,077
+    EXACT RATIONAL DUAL CERTIFICATES OVER THE PRIMES 5..53 (4,039 decided,
+    4,038 mirror-transcribed) - THE RUNG THE SPECTRUM-PLUS-DEPTH CRITERION
+    CANNOT CERTIFY, CLOSED BY LP DUALITY WITH NO A_kill ANYWHERE IN IT.
+
+Total exact certificate ops over the tree: 303,128,865 on the decided
+representatives (the transcribed half costs no ops).  Summed cell time
+45,713 + 13,567 = 59,280 s = 16.5 core-hours; wall 2.9 h + 0.95 h on four
+workers.
+
+### 2b. THE STEP, EMITTED (`research/lp_emit_r30.py`; files in `research/data/r30/`)
+
+    layout_47_53_k4.json / layout_47_53_k5.json     the two case-independent layouts
+    cert_47_53_k4_h<w5>_<w7>_<w11>_<w13>.json       4,813 files (2,407 decided + 2,406 mirrored; (0,6,3,6) is its own mirror)
+    cert_47_53_k5_h<w5>_..._<w17>.json              3,264 files (1,632 decided + 1,632 mirrored)
+    manifest_47_53_k4.json / manifest_47_53_k5.json the levels, each with its MARGIN COLUMN
+    manifest_47_53.json                             THE STEP MANIFEST - the partition, asserted
+    research/lp_rungs_r30.txt                       the margin columns, human-readable
+
+FORMAT LINE: one JSON per case, INTEGERS ONLY, schema lp-case-split-
+certificate/2 = round 29's schema 1 made SPARSE (`frow_nz` and `nu_nz` list
+the nonzero recursion-row coefficients and link weights by index into the
+layout; `rows_base_cut_positions` + `base_cut` stand for the rows when every
+row is the base cut; `expand_v1` in the emitter recovers schema 1 exactly and
+the round-27 reference checker verifies the expansion unchanged), carrying
+`pos`, `y`, `yff`, `frhs`, `lhs`, `rhs`, `margin` = rhs - lhs, `ops`,
+`iterations`, and `mirror_of` on a transcribed file.  A dense schema-1 file
+at n = 10 would be ~1 MB; the sparse one is ~33 KB.
+GATE LINES: section 2c.
+
+### 2c. GATES (all from clean processes)
+
+    uv run python research/lp_emit_r30.py GATE 4 0.02
+        k=4: PARTIAL SPLIT - 4813 of prod(5, 7, 11, 13) = 5005 tuples (the step manifest
+             states the partition); 4813/4813 cases re-verified from JSON, lhs < rhs in
+             EVERY case (2406 of them mirror-transcribed); margin column min 1/16384
+             max 3; all rows base cut = False; reference checker agreed on 105 files GREEN
+        k=5: PARTIAL SPLIT - 3264 of prod(5, 7, 11, 13, 17) = 85085 tuples; 3264/3264
+             cases re-verified from JSON, lhs < rhs in EVERY case (1632 of them
+             mirror-transcribed); margin column min 1/11 max 3; all rows base cut =
+             True; reference checker agreed on 67 files GREEN
+        STEP MANIFEST manifest_47_53.json: 4813 + 3264 cases, PARTITION ASSERTED over
+             85085 leaves ({4: 81821, 5: 3264}); margin min 1/16384 max 3; 606,183,237
+             exact ops (decided + transcribed)
+        ALL ASSERTIONS GREEN [2556 s]
+        (schema 2 expanded to schema 1; relaxation rebuilt from the primes at each
+        file's OWN held phases; every cut row re-checked by the exact zeta transform;
+        lhs / rhs / margin recomputed from the file's own integers; the round-27
+        reference checker check_case_json re-run unchanged on every self-mirror case
+        and a 2% random sample - 172 files)
+    uv run python research/lp_mirror_r30.py GATE29 2      ALL ASSERTIONS GREEN [164 s]  (section 3)
+    uv run python research/lp_mirror_r30.py GATE29T 1     ALL ASSERTIONS GREEN [142 s]  (section 3b)
+    uv run python research/lp_score_r30.py                -> research/lp_r30_results.txt
+    uv run python research/lp_emit_r30.py TXT             -> research/lp_rungs_r30.txt
+
+Emission size: 152.5 MB at k = 4 (32.4 KB a file) + 83.2 MB at k = 5 (26.1 KB); the
+manager decides what is committed.  Every job this round launched has finished or
+been killed and recorded; nothing is left running.
+
+A PROCESS FINDING WORTH EVERY LANE'S ATTENTION.  The first hour of the sweep
+ran at ~2 cells a minute against the ~10 a minute the workers' own 20 s
+cells allow.  The workers were at High priority; the DRIVER was not, and on a
+box at 100% CPU (34 python processes of five lanes on 20 cores) the
+Normal-priority parent could not dispatch tasks fast enough - the four
+High-priority workers sat idle waiting for it.  Raising the driver (psutil,
+from outside) took the rate to 11 cells a minute at once.  Round 28/29's
+"raise the WORKERS to High" is only half the lever; the pool's parent must go
+with them, and `lp_tree_r30.drive` now does it.  Also: my first driver was
+killed and relaunched once (to cut the refusal budget from 12 passes to 4)
+after confirming from the process list that every worker had exited; the
+85 cells on disk were kept, the relaunch skipped them, and no two drivers
+ever shared the directory.
+
+### 3. THE MIRROR, MADE EXACT - THEOREM AND SCRIPT (`research/lp_mirror_r30.py`)
+
+    THEOREM (mirror transcription).  Let the case-split relaxation at held
+    phases ws have position set pos, columns (S, r), links, cut rows (i, lam),
+    recursion row frow and rhs |pos|.  Define
+        m_q(r) = (1 - W - r) mod q,   rho(i) = W - 1 - i,
+        MIRROR(ws) = (m_q(w_q))_q,     pi(S, r) = (S, (m_q(r_q))_{q in S}),
+    and pi on links by parent column (children permuted by v -> m(v), which
+    the link sum does not see).  Then, with the round-29 lemma
+    rho(hits(q, r, W)) = hits(q, m_q(r), W) applied gear by gear:
+      (1) pos(MIRROR ws) = rho(pos(ws));
+      (2) O_{pi(j)} = rho(O_j), so |O| is preserved;
+      (3) frow(MIRROR ws)[pi(j)] = frow(ws)[j] - for pairs, max-cover over
+          the lower gears is a function of the family of hit-restricted
+          subsets of P, which rho maps bijectively;
+      (4) cut validity is a condition on lam alone, so (rho(i), lam) is valid;
+      (5) TRANSCRIPTION: rows' = [(rho(i), lam)], y' = y, yff' = yff,
+          nu'[pi(t)] = nu[t] gives a'_{pi(j)} = a_j for every column, pi
+          preserves blocks, so lhs' = lhs, rhs' = rhs, margin' = margin: an
+          exact dual certificate of MIRROR(ws) with the same op count.  []
+
+    COROLLARY.  Decide one representative per mirror orbit; transcribe the
+    other member.  The self-mirror case is its own representative.
+
+THE GATE, on the round-29 31 -> 37 rung (385 cases, k = 3, W = 95):
+    uv run python research/lp_mirror_r30.py GATE29 2
+    -> 385/385 transcribed certificates RE-VERIFIED from JSON alone
+       (relaxation rebuilt from the primes AT THE MIRRORED CASE by the
+       round-27 reference checker `check_case_json`, every cut row
+       re-checked, lhs/rhs/margin recomputed); self-mirror case (3, 2, 8);
+       ALL ASSERTIONS GREEN [164 s].
+AND A FACT THE GATE TURNED UP: against the certificate the round-29 sweep
+found INDEPENDENTLY for the mirrored case, the transcription has EQUAL margin
+in only 261 of 385 cases, an equal op count in 1 of 385, and the identical
+dual in 0 of 385.  The theorem says the mirrored case ADMITS a certificate of
+the same margin; the float solver, run on the isomorphic LP, found a
+DIFFERENT dual 124 times (the rounding grid in `certificate_star` is
+path-dependent).  So the mirror is not "the solver would have found the same
+thing" - it is a genuine second certificate, and a cheaper one.
+
+### 3b. AND THE COARSENING ROUND 29 COULD NOT NAME IS A SECOND TRANSCRIPTION -
+### THE TRANSLATION LEMMA
+
+Round 29 measured the (V*, |pos|) classes of a sweep COARSER than its mirror
+orbits (11 classes over 35 cases at m37 W = 95 k = 2) and wrote "it is not a
+translation - no ws -> ws + t preserves V* except t = 0, tested at all 35".
+This round's E15 data reproduced the shape (14 classes over 18 orbits at
+m41 W = 104 k = 2) and the position sets of the eight-case class turned out
+to be EXACT TRANSLATES of one another - as subsets of [0, W), not modulo
+anything.  IT IS A TRANSLATION, with a boundary condition a test of "every
+case" cannot see:
+
+    THEOREM (translation transcription).  If pos(ws + t) = pos(ws) - t as
+    subsets of [0, W) - i.e. the held gears block [0, t) at ws and
+    [W - t, W) at ws + t (t > 0; symmetrically for t < 0) - then with
+    rho(i) = i - t and m_q(r) = (r + t) mod q the five claims of the mirror
+    theorem hold verbatim, and (rows - t, y, nu o pi_t^-1, yff) is an exact
+    dual certificate of ws + t with the same lhs, rhs, margin and op count.
+    (i in hits(q, r, W) iff i - t in hits(q, r + t, W) for i in pos, both
+    endpoints inside the window; the lower gears' hit-restricted subsets of
+    a pair overlap are mapped bijectively; cut validity is a condition on
+    lam alone.)  []
+
+GATED ON ROUND-29 DATA (`lp_mirror_r30.py GATE29T`): 484 translation
+transcriptions from 330 of the 385 certificates of 31 -> 37 onto their
+translate cases (shifts -3..3: 11, 44, 187, 187, 44, 11), EVERY ONE
+RE-VERIFIED from JSON alone by the round-27 reference checker, with lhs, rhs
+and margin equal to the source's.  ALL ASSERTIONS GREEN [142 s].
+
+AND IT ACCOUNTS FOR THE COARSENING EXACTLY.  Classes of the case split under
+the group generated by the mirror and the boundary-blocked translations
+(arithmetic only, `research/lp_r30_results.txt`):
+
+    sweep              cases   mirror orbits   mirror+translation classes   measured value classes
+    m37 W=95   k=2       35        18                 11                      11  (round 29)
+    m41 W=104  k=2       35        18                 14                      14  (E15, this round)
+    m37 W=95   k=3      385       193                100                       -
+    m41 W=104  k=3      385       193                125                       -
+    m43 W=134  k=3      385       193                125                       -
+    m47 W=132  k=4    5,005     2,503              1,243                       -
+    m53 W=171  k=4    5,005     2,503              1,391                       -
+    m53 W=171  k=3      385       193                125                       -
+
+At both sweeps where the value classes were measured the count MATCHES the
+mirror+translation class count, and at m41 W = 104 k = 2 every one of the 14
+exact-translate pairs has equal V* (14/14) while the 19 non-translate
+"phase exchanges" of E20 fail.  Round 29's open item is closed: the value
+classes ARE the orbits of {mirror, boundary-blocked translation}.  THE
+SAVING NOBODY USED THIS ROUND: at m53 W = 171 k = 4 the classes number
+1,391 against the 2,503 orbits that were decided - a further 1.8x (3.6x
+over the 5,005 cases), free for every future sweep of this species and
+gated here on 484 certificates.  It goes into the tree driver next round;
+this round's sweep was already running when the lemma was found.
+
+### 4. E14, SCORED EARLY - AND THE PER-CASE FRONTIER HAS CROSSED THE TRUTH
+
+W_c(43, 3) by the round-29 bisection (`research/lp_side_r30.py E14`, lifted
+LPs at n = 9, 146-195 s each at High priority; sign pattern asserted width by
+width at 103..109):
+
+    y            23     29     31     37     41     43
+    W_c(y, 3)    13     31     46     66     81    106
+    F(y)         34     43     58     88     91    103
+    W_c / F     0.382  0.721  0.793  0.750  0.890  1.029
+
+E14 (W_c(43,3) >= 92) CONFIRMED - and by more than it asked: THE RATIO HAS
+CROSSED 1.  At machine 43 the case-0 cell with three held gears is certifiable
+only from width 106 on, i.e. NOT at the truth F(43) = 103, nor at 104 or 105
+(G = +1.634, +1.341, +1.341 there; EMPTY from 106).  Round 28's "the per-case
+reach is right at the truth at three held gears" was a machine-41 statement;
+at machine 43 the k = 3 per-case frontier is three above F.  (Rung 41 -> 43
+at W = 134 is unaffected - 134 is far above 106.)
+
+### 5. E13, E15, E16 - TWO SCORED, ONE RUN FOR TEN MINUTES AND DROPPED, ONE NOT RUN
+
+E15 (m41, W = 104, k = 2: strictly fewer (V*, |pos|) classes than mirror
+orbits) - CONFIRMED.  All 18 orbit representatives decided by the lifted
+route (`lp_side_r30.py E15`, 133-230 s each at n = 9; V* is a float reading
+of the lifted optimum, the cells' verdicts are round 29's):
+
+    (0,0) 50.166742   (0,1) 49.365180   (0,2) 50.964917   (0,3) 50.799994
+    (0,4) 50.273260   (0,5) 50.383425   (0,6) 49.365180   (1,0) 49.365180
+    (1,1) 49.123153*  (1,3) 50.034810*  (1,4) 49.841528*  (3,0) 50.799994
+    (3,1) 49.937554*  (3,2) 49.365180   (3,3) 49.219114*  (3,4) 48.729009*
+    (3,5) 49.510071*  (3,6) 49.083255*            (* = |pos| 44, else 45)
+
+14 distinct (V*, |pos|) classes over 18 orbits (35 cases).  The coarsening
+is again a class of FOUR orbits - (0,1), (0,6), (1,0), (3,2), i.e. the eight
+cases {(0,1),(2,1),(0,6),(2,3),(1,0),(1,2),(3,2),(4,0)} - plus one pair of
+orbits, (0,3) and (3,0).  Note the shape: (0,1) with (1,0), (0,3) with (3,0)
+- the two held phases EXCHANGED - which is not a translation and not the
+mirror.  For LATERAL, as last round: one machine, one width, a symmetry the
+mirror does not generate.
+
+E13 (43 -> 47 at W = 132 certifies at k = 4 with < 250 refinements) - NOT
+RUN.  The 2,503-orbit sweep at m47 (n = 8) prices at ~10-14 core-hours
+against a round already carrying the 13-core-hour k = 4 level above; not
+started (job-completion rule).  Unscored, carried.
+
+E16 (no case refuted at k needs more than one further gear, over the
+increment widths of 37 -> 41 and 41 -> 43) - HALF ON RECORD, HALF DROPPED.
+37 -> 41: on record (9 refusals at k = 3, all 117 children certified).
+41 -> 43 at W = 117: a k = 3 tree driver (`LEVEL 43 117 3`) ran for ten
+minutes on one Normal-priority worker, landed NO cell on the saturated box,
+and was killed at the manager's commit cap; dropped for the round.  PRICE:
+193 orbits at n = 9, ~15-30 s a certified cell by the fast path and ~150-200 s
+a lifted decision on a refusal, plus the k = 4 children of the refusals -
+2-4 core-hours; the same driver resumes it.  NAMED NEXT TARGET, and it is
+also the eighth increment step by certificate if it closes.
+
+### 6. MY OWN ROUND-30 PRE-REGISTRATION, SCORED (`research/data/r30/lp_prereg_r30.txt`)
+
+  P1  (certified fraction at the FIRST k, i.e. k = 3, ABOVE 376/385 = 0.9766)
+      REFUTED IN ITS PREMISE, AND BELOW IN ITS ANALOGUE.  The k = 3 level was
+      not affordable at all (case 0: 1,066 s, STUCK, no decision) - so "the
+      first k" became k = 4, and there the fraction is 4,813/5,005 = 0.9616,
+      BELOW 0.9766.  The manager's second question is answered: BELOW.
+  P2  (every k = 3 refusal closes at k = 4)  NOT TESTED as posed; the k = 4
+      -> k = 5 analogue is CONFIRMED OUTRIGHT: 96 of 96 refusals close one
+      gear deeper, 1,632 of 1,632 children, no k = 6 cell needed - E16's
+      shape at the eleventh rung.
+  P3  (the tight row at a refusal is the RECURSION ROW, and the smallest
+      free gear carries it - at most 3 of 17 children refuse)  CONFIRMED on
+      both clauses: 96/96 refusals are a stuck recursion row with the
+      level-2 cuts exhausted, and 0 of 17 children refuse at every one of
+      the 96 (the bound "at most 3" was loose by three).
+  P4  (price)  a: 100-300 k ops per k = 3 case - NOT MEASURED (no k = 3
+      certificate exists); at k = 4 it is 70-161 k, mean 78 k.  c: "30-120 s
+      a k = 3 cell" - REFUTED (> 1,000 s and no decision).  d: "a k = 4 child
+      costs 40-90 s; the whole tree < 10 core-hours" - the per-cell price was
+      OVER-estimated (14.9 s certified) and the tree UNDER-estimated: 12.7
+      core-hours for the k = 4 level alone plus ~4 for the k = 5 refinement,
+      ~17 in all, because the root moved from 193 to 2,503 orbits.  REFUTED.
+  P5  (>= 90% of certified cases at iteration zero with base cuts)
+      CONFIRMED: 2,398 of 2,407 = 99.6%.
+  P6  (margin min < 1/10, max >= 2)  CONFIRMED: 1/16384 and 3.
+  (b) (every transcribed certificate re-verifies, equal margin and ops)
+      CONFIRMED 385/385 at 31 -> 37 and on every emitted case of 47 -> 53.
+
+### 7. PRE-REGISTERED PREDICTIONS FOR ROUND 31 (score them next round)
+
+E17  53 -> 59 AT ITS (D) WIDTH 204 (machine 59, 15 gears): the k = 4 level
+     (n = 11 free gears) is NOT affordable by the plain loop - fewer than
+     half of a 50-cell probe certify at iteration zero - and the affordable
+     root is k = 5 (85,085 cases, 42,543 orbits, n = 10).
+E18  THE INCREMENT-LAW WIDTH AT 47 -> 53, F_2(47) + s_min(53) = 152, is a
+     genuinely harder object than 171: at k = 4 the certified fraction of a
+     100-orbit sample is BELOW 80%.
+E19  W_c(47, 3)/F(47) > 1.03 - the k = 3 per-case frontier stays above the
+     truth once it has crossed (43: 1.029).
+E20  (written, then TESTED THE SAME HOUR on the 18 values already on disk,
+     and REFUTED - recorded here rather than carried): "the value-class
+     coarsening is the phase exchange V*(w5, w7) = V*(w7 mod 5, w5 mod 7)".
+     It holds at 16 of 35 cases and fails at 19 - e.g. (0,4) = 50.273 against
+     (4,0) = 49.365 - so the exchanges (0,1)~(1,0) and (0,3)~(3,0) are inside
+     the coincidence, not its law.  The eight-case class is
+     {(0,1),(0,6),(1,0),(1,2),(2,1),(2,3),(3,2),(4,0)}; no map of the held
+     phases I can name generates it.  Replaced by:
+E20' THE EIGHT-CASE CLASS IS NOT A COINCIDENCE OF THE FLOAT: rebuilding the
+     four representatives' lifted LPs in exact rationals (one exact solve
+     each) gives four EQUAL optima, and the |pos| = 45 position sets of the
+     eight cases are pairwise DIFFERENT as subsets of [0, 104) (so the
+     equality is not an isomorphism of position sets).

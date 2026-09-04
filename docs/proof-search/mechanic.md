@@ -3744,3 +3744,324 @@ R32. SCORING THE ROUND-29 PRE-REGISTRATION (research/data/r29/prereg_mechanic_r2
   gives J_max(53) = 5, and F_4(53), F_5(53) are not on record, so the 53 -> 59
   row cannot be filled.  It is the cheapest test of the "A_kill >= 4 fails"
   reading, and its budget is F(53) + 59 = 204 against F_5(53).
+
+## Round 30
+
+GATE (one command, clean process, imports nothing from the tools that produced
+the numbers):
+    uv run python research/gate_mechanic_r30.py     -> ALL ASSERTIONS PASSED
+       A the 64-shard tiling of the seed-144 word-legal run, its per-J maxima,
+         the J = 4 witness lifted to a machine-47 slot and then to a machine-53
+         slot;  B every killer-profile extension re-checked (legal extension,
+         SAT set recomputed, refuted; cover-only verdicts re-derived by a direct
+         period scan at m19/m23);  C V2 = A_kill - 1 at every scanned machine
+         and both attaining runs re-checked as consecutive openings;  D the
+         four lifted record slots.
+    uv run python research/resrun_r30.py gate       -> ALL ASSERTIONS PASSED
+         (V2 = D_g - 1 against anchor235/chain_depth.py at g = 7..29)
+Pre-registration: research/data/r30/prereg_mechanic_r30.md, written before
+any round-30 script existed (A1-A6, B1-B5, C1-C6, D1-D3; scored in R33).
+Persistent results: research/r30_results.txt.  Logs research/data/r30/*.log.
+New files: research/qstar47_r30.py, resrun_r30.py, wordkill_r30.py,
+genealogy_r30.py, gate_mechanic_r30.py.
+THE BRIEF THIS ROUND WAS MECHANISM PROBES, NOT BIGGER MACHINES: three probes
+of hidden structure and one fetch.  Every probe below is an exact event on a
+named object with the object exhibited; the only rates are the MODEL columns,
+and they are labelled model.
+
+### C51. THE INDEPENDENT max_J Q*_J(47; legal for 53) = 145 - RUNG ELEVEN
+### CLOSED WITH MACHINE 53 NEVER CONSULTED (r30, brief item d)
+
+Repro: research/qstar47_r30.py run 6 64 (logs research/data/r30/q47_s144/,
+driver log q47_driver.log); gate section A.  Round 29 closed 47 -> 53 only by
+R68 plus the corpus F(53) = 145 - a control.  This is the decision: the
+word-legal spectrum of machine 47 for gear 53, computed on MACHINE 23's period
+by the six-gear lap-phase transfer (j5_multi.py, mode legal), seeded at 144 -
+ONE BELOW the value the attainment theorem predicts, so the run is two-sided
+(rule 41: raise the seed to the question) - with span cap 290 (at or above the
+subadditivity ceiling of every depth <= 6, so nothing is span-conditional)
+and depth cap 6 = J_max(47) = L(47) + 2 (R89, L(47) = 4 exact).
+
+    Q*_2(47) <= 144   Q*_3(47) <= 144   Q*_4(47) = 145   Q*_5(47) <= 144   Q*_6(47) <= 144
+    max_J Q*_J(47; legal for 53) = 145  <=  171 = F(47) + 53     margin 26
+
+64 of 64 shards tile the 7,952,175 start openings exactly (asserted).  The
+values reported "<= 144" are AT THE SEED and are brackets, not values.  THE
+WITNESS, from shard 14: machine-23 start 8,413,890, phases (27,4,16,24,4,24)
+for gears (29,31,37,41,43,47), marks (4,7,12); CRT lifts it to
+
+    MACHINE 47, slot 82,799,441,296,736,535: openings [0, 70, 105, 123, 145],
+    gap word [70, 35, 18, 22], middles (35, 18) = classes (-, +) mod 53 - legal
+    and alternating - 141 other slots blocked;
+
+which is EXACTLY the round-26 anchor slot (C27) found by a different seed and
+a different worker set.  Lifted once more with the phase of 53 that deletes
+the three interiors: MACHINE 53, slot 4,182,064,658,553,345,935 is a gap of
+exactly 145.  So F(53) >= 145 is exhibited and F(53) <= 145 follows from the
+run plus the attainment theorem - F(53) = 145 re-derived from machine 23's
+period (ratio 1.5e11) with machine 53 never built.  STATUS: EXACT-
+UNCONDITIONAL.  COST: 7,709 shard-seconds = 2.14 core-hours at High
+priority against the round-29 price of 3.5 (pre-registered D3 <= 5 core-hours).
+
+### C52. L AS A RESIDUE-RUN STATISTIC: THE LENGTH IS A DENSITY EFFECT, THE
+### LAST UNIT IS ARITHMETIC (r30, probe a)
+
+Repro: research/resrun_r30.py scan M | report | models; wordkill_r30.py words
+M --crt; data research/data/r30/resrun_m*.json, words_m*_crt.json, log
+models_31_37.log.  Definitions (fixed in the pre-registration): for a prime
+g > M, d = 2*6^{-1} mod g; V1 RAW = longest run of consecutive gaps of M with
+residues in {0, +d, -d}; V2 T3 = V1 with strict alternation of the nonzero
+classes = L_g(M) = D_g - 1; occ_L = the number of length-L windows of
+consecutive gaps that are legal alternating words; MODEL-U = ln N / ln(g/3)
+(the brief's uniform-residue count); MODEL-D = independent letters with the
+REAL class densities p0, p+, p- of M's exact cyclic gap histogram - longest
+run ln N / ln(1/lam) with lam = p0 + p+ + p- (raw) or p0 + sqrt(p+ p-) (T3,
+the transfer-matrix rate), and E[occ_L] = N times the total weight of legal
+class words of length L (3-state DP).  V3 = the word vehicle's ceiling
+(alphabet + spectrum caps + phase saturation, no cover decision); V4 = V3 +
+CRT realisability.  Scanned: m11..m23 full periods, m29 the memory-mapped
+opening list, m31 the full lower period streamed in 31 chunks (2.8 h at one
+core under a 100%-loaded box), m37 a DELIBERATE PARTIAL sweep of 12 of 1147
+chunks (support stated in the JSON).
+
+    M  q' |Lam|      N       modelU  D-raw  D-T3  V1  V2=L   occ_1..occ_L (measured / model) ; occ_{L+1}
+    11 13   1        135      3.3    1.6   0.0    1    1    6/6
+    13 17   2      1,485      4.2    2.4   1.8    1    1    72/72
+    17 19   2     22,275      5.4    3.3   2.2    1    1    1088/1088
+    19 23   3    378,675      6.3    3.7   2.8    2    2    11784/11784  62/73.6 ; 0/1.1
+    23 29   3  7,952,175      7.0    4.6   2.4    2    1    243816/243816 ; 0/27.3
+    29 31   4  214,708,725    8.2    5.8   3.7    3    3    8.02e6/8.02e6  13000/15100  4/279 ; 0/0.53
+    31 37   4  6.23e9         9.0    5.6   4.0    3    3    1.148e8/1.15e8  70964/175000  216/1610 ; 0/2.47
+    37 41   6  2.18e11       10.0    5.4   4.0    2*   2    [1.05% sweep] 1.77e7/1.77e7  27/10500 ; 0/40.8   (full period: occ_3 = 0 vs 3.9e3, L = 2 exact, C10)
+    (* partial-sweep lower bound over 2,279,993,244 gaps = 12 of 1147 chunks; L(37) = 2 is exact from A_kill(37->41) = 3)
+
+FOUR THINGS THE TABLE DECIDES:
+1. THE VARIANT THAT SUPPRESSES THE LENGTH IS THE ALPHABET, NOT THE COVER.
+   Along the ladder MODEL-U -> MODEL-D(raw) -> MODEL-D(T3) -> measured V2 the
+   drops at the next prime are 2.4/2.1/0.7 (m29), 3.4/1.6/1.0 (m31),
+   4.6/1.4/2.0 (m37): the largest single drop is ALWAYS the first one - the
+   legal letters are a 3-6 value alphabet whose frequencies in the gap
+   histogram are far below 3/g.  Pre-registered A5 (largest drop last) is
+   REFUTED.  With the real densities the independent-letter model predicts
+   the longest run to within one unit at every scanned machine (3.7 vs 3, 4.0
+   vs 3, 4.0 vs 2, 2.8 vs 2, 2.4 vs 1) - the run LENGTH is a density
+   statistic.
+2. THE OCCURRENCE COUNT AT THE TOP LENGTH IS WHERE THE ARITHMETIC SHOWS.  At
+   m29 the model predicts 279 legal 3-windows for gear 31; the period carries
+   4 - two mirror pairs of (10,21,10), the m29 Q*-maximiser's middle word -
+   while the 2-windows are 13,000 against 15,100 (0.86) and the 1-windows
+   exact by construction.  At m31 (full lower period, 6.2e9 gaps) the ratios
+   for gear 37 are 1.00, 0.41, 0.13, 0 (216 realised 3-windows against 1,610;
+   0 against 2.5 at length 4).  At m23 the model predicts 27 legal 2-windows
+   for gear 29; there are 0.  At m37 it predicts 3,900 legal 3-windows for
+   gear 41; there are 0 (L(37) = 2, exact) - and already at length 2 the 1%
+   sweep finds 27 against a model 10,500 (0.0026), because every realised
+   2-word of m37 for gear 41 carries the padded letter 41 and the pure
+   alternation (14,27) is unrealised.  So the deficit is not a smooth
+   correction: the count tracks independence to within 15% at length 1-2 at
+   the small machines and collapses by 8x, 70x, 400x, infinity at the top
+   lengths.  This is Constructor's eps/Phi object and this lane's C13
+   "occurrence count governs" seen at the letter level: the last unit or two
+   of L are decided by the cover half, everything before by the histogram.
+3. THE SUPPRESSION AT THE TOP IS NOT ALTERNATION: V1 - V2 is 0 at every
+   next-prime cell except m23 (2 vs 1, the raw run (10,10) is two + letters).
+   A2 confirmed.
+4. THE NEXT PRIME IS USUALLY BUT NOT ALWAYS THE MAXIMISING GEAR.  L_g(M) by
+   CRT for every prime g <= 130 (words_m*_crt.json, V4 = V2 wherever both
+   exist, 8 of 8 cells): m29 has L_31 = 3 > L_37 = 2 > 1; m31 has L_37 = 3 >
+   L_41 = L_53 = 2; but m23 has L_31 = 2 > L_29 = 1 and m37 has L_53 = 3 >
+   L_41 = 2 (letters {18,35,53,71,88}).  A4 as worded ("not the maximum at
+   >= 5 of 8") is REFUTED - the next prime is the maximum at 3 of 5 scanned
+   machines - but it is not special either: what sets L_g is the alphabet
+   size |Lambda_g(M)|, which the next prime usually maximises.
+THE WORD VEHICLE'S CEILING IS ONE ABOVE THE TRUTH: V3 = V4 + 1 at 7 of the 8
+next-prime cells (m19 3/2, m23 2/1, m31 5/3, m37 3/2, m41 3/2, m43 3/2, m47
+5/4; m29 3/3) - the arithmetic screens (alphabet, spectrum caps, phase
+saturation at every gear) leave exactly ONE length that only the cover
+decision removes.  A6 confirmed.  At m47 the one survivor is the pure
+alternation (35,18,35,18,35), Constructor's refuted length-5 word.
+ATTAINING RUNS (section view; slot = the opening before the run):
+    m19 q'=23  RAW slot 1,297 [8,8] residues (8,8) classes (+,+);  T3 slot 9,382 [8,15] (+,-)
+    m23 q'=29  RAW slot 16,363 [10,10] (+,+);  T3 slot 77 [10]
+    m29 q'=31  RAW = T3 slot 220,171,102 [10,21,10] residues (10,21,10) classes (-,+,-)
+    m31 q'=37  RAW slot 115,954,443 [25,12,12] (+,-,-);  T3 slot 143,358,780 [25,12,25] (+,-,+)
+    m37 q'=41  RAW = T3 (1% sweep) slot 109,580,398 [14,41] residues (14,0) classes (+,0)
+    Other gears at m31 (full period): g=41 L=2 with occ_2 = 2 against a model
+    14,000; g=53 L=2 with 224 against 1,020; g=59, 61 RAW 3 but T3 1 (the raw
+    runs are (d,d,d) repeats that alternation forbids).
+
+### C53. THE KILLER PROFILE OF WORD EXTENSIONS: THE EXTENSIONS DIE OF THE
+### COVER HALF, MOSTLY WITH NO OPEN CONSTRAINT AT ALL (r30, probe b)
+
+Repro: research/wordkill_r30.py kill M; data research/data/r30/killer_m*.json;
+gate section B.  For every realised legal word of length L(M) (grown level by
+level by the overlap lemma with CRT decisions; at m47 taken from
+Constructor's round-29 exhaustive decision) and every T3-legal one-letter
+extension at either end (letters = all class values <= F(M), holes included),
+two exact attributions: SAT = the gears whose single-gear free set is empty
+(the r26 screen; a theorem confines it to g < 2|X|), and y* = the OPEN-
+CONSTRAINT KILLER PREFIX: R(S) is the realisability CSP with the open
+constraint imposed only on the gears of S and every other gear's phase FREE
+(it still helps cover); R only gets harder as S grows, so y* = min{y' :
+R({g <= y'}) infeasible} is found by bisection.  y* = 0 means R(empty) is
+already infeasible: NO SLOT OF M BLOCKS THE PUNCTURED INTERIOR - the word
+dies of the cover half alone, with no tooth position of any open point
+needed.  y* = M means the top gear's open constraint is needed.
+
+    M -> q'  L  realised length-L words        ext. classes  y* = 0   y* = 5   y* = 7   bracket   SAT non-empty
+    19 -> 23  2  (8,15) (15,8)                        4         4        -        -        -          0
+    23 -> 29  1  (10) (19) (29)                       4         3        -        1        -          2 ({5})
+    29 -> 31  3  (10,21,10)                           2         2        -        -        -          2 ({5},{5,7})
+    31 -> 37  3  (12,25,12) (25,12,25)                4         3        -        1        -          2 ({5})
+    37 -> 41  2  (14,41) (27,41) (41,14) (41,27)     15         8        5        -        2          7 (all {5})
+    41 -> 43  2  (14,43) (29,43) (43,14) (43,29) (43,43)  19    -        9        -       10          9 (all {5})
+    (every extension REFUTED at the full machine, 0 undecided, 0 realised;
+     y* = 5 means gear 5's open constraint alone excludes the L+3 open points;
+     "bracket" = R(empty) or R({5,7}) undecided at the relaxed budget)
+
+The corridor kills are exactly the words with two literal letters in a row of
+the same class through a padded letter or the pure alternation: (10,19) at
+m23 and (12,25,12,25) at m31 die at y* = 7 with SAT empty - gears 5 and 7
+JOINTLY, their blocked pattern occurring in M (R(empty) feasible, re-derived
+by the gate at m23) - the corridor mod 35 exactly; at m37 and m41 the
+literal-letter extensions (14,27,41), (27,14,41), (14,29,43), (14,43,29),
+(29,14,43) and every (.,41,41)/(.,43,43)-type word are saturated by GEAR 5
+ALONE (five open points leave gear 5 no phase).  The kills by a LARGE letter
+(55, 68, 82 at m37) are cover-only: no slot of machine 37 blocks the punctured
+interior.  At m41 the relaxed instances R(empty) did not decide at 10M nodes
+for 10 of 19 classes, so the m41 profile is "9 gear-5 saturations + 10
+refuted-unattributed"; NO extension anywhere was attributed to the open
+constraint of a gear above 7.  B1 confirmed (SAT only at 5 and 7, and only at
+5 from m37 on); B2 confirmed (28 of 48 classes pooled are not single-gear
+saturated); B3 REFUTED in the opposite direction (the joint kills need NO
+open constraint, y* = 0, or the corridor's, y* = 7; none at y* >= 13); B4
+UNRESOLVED at m41 (9 of 19 corridor kills decided, 10 unattributed) and not
+attempted at m43/m47; B5 confirmed (0 realised, 0 undecided full decisions).
+COST: m37 15 classes at 0-894 s each on 4 workers (High); m41 19 classes at
+0-2,173 s each - the relaxed R(empty) instance at m41 is the expensive
+object, not the full decision (which is 0 s when gear 5 saturates).
+
+### C54. RECORD GENEALOGY: RECORDS DO NOT RECRUIT RECORDS - THEY RECRUIT
+### RUNNER-UPS WHOSE LARGEST GAP WAS ITSELF MERGED (r30, probe c)
+
+Repro: research/genealogy_r30.py [--rank]; logs research/data/r30/genealogy.log,
+genealogy_rank.log; gate section D.  For a record window of y = M + q' at
+slot k, the M-openings inside (k, k+F) are the deleted chain and the ancestor
+is the (L+1)-gap window of M they cut; each gap of that window is in turn a
+merged window of the machine below.  The whole tree is computed by residue
+arithmetic on the slot (no scan); the F(43), F(47), F(53), F(59) record slots
+are obtained by LIFTING the recorded word-legal windows with the phase that
+deletes their interiors and are verified at the target (426824541409250,
+34905861380755417, 4182064658553345935, 73115517300464200662).
+
+    step    record  ancestor (window of M, J)  deleted teeth  vs F_J(M)          largest gap   generations
+    23->29    43    [10,10,23] J=3   phase 14  '-+'          runner-up by 7      23 INHERITED     1
+    29->31    58    [18,10,30] J=3   phase  8  '+-'          runner-up by 7      30 merged        5
+    31->37    88    [28,37,12,11] J=4 phase 3  '++-'         runner-up by 2      37 merged        4
+    37->41    91    [15,41,14,21] J=4 phase 19 '--+'         runner-up by 14     41 merged        2
+    41->43   103    [28,75] J=2      phase 22  '-'           RECORD = F_2(41)    75 merged        3
+    43->47   118    [85,31,2] J=3    phase 17  '+-'          runner-up by 7      85 merged        4
+    47->53   145    [70,35,18,22] J=4 phase 45 '+-+'         F_4(47) not on record  70 merged     2
+    53->59   161    [10,118,33] J=3  phase 39  '--'          F_3(53) not on record 118 merged     3
+
+(phase = slot mod q'; teeth = which tooth each deleted opening sits on, in
+order; generations = consecutive levels down the largest gap at which that gap
+is merged, i.e. has a deleted opening of the machine below inside it.)
+Scores: C1 RR-SPECTRUM (ancestor is the F_J(M) maximiser) 1 of 8 - CONFIRMED
+FALSE as a law; C2 RR-DEPTH (largest gap merged below) 7 of 8 - CONFIRMED;
+C3 generations >= 2 at all 7 steps from 29->31 on and >= 3 at 5 - CONFIRMED;
+C4 (a top-3 gap value of M inside the ancestor) 0 of 8 - CONFIRMED; C5 (F_J
+records' largest gap merged below) 12 of 12 (F_2/4/5(41), F_2/3/4(43),
+F_2/3/6(47), F_2(53), F_2(59) x2) - CONFIRMED; C6 ancestor RANK among M's own
+J-windows by span (#strictly above): m13 12, m17 60 (J=3) / 0 (J=2), m19
+218, m23 8, m29 18 - above 10 at 4 of 6 measured, CONFIRMED.
+THE M31 RECORD'S FULL TREE, as the example: 58 <- m29 [18,10,30] <- 30 = m23
+[7,23] <- 23 = m19 [5,15,3] <- 15 = m17 [2,6,7] <- 6 = m13 [5,1], 7 = m13
+[5,2]: FIVE generations, every one a runner-up (deficits 7, 9, 12, 13, 10, 9
+against the F_J of its machine).  A record is an ordinary window whose gaps
+were each made one level down by an ordinary merge, sitting at the top on the
+teeth of the last gear - anchor-235 9d's "ordinary lower stretch, record made
+at the top three or four layers", now with the addresses.
+WHAT F(M+q') COULD BE COMPUTED FROM: not the top-k J-windows of M by span
+(the ancestor's rank is 9-219), and not M's spectrum records.  By the
+attainment theorem it is max over the realised legal words w (1-4 per
+machine) of max over the OCCURRENCES of w of (gap before + span + gap after).
+For the long words the occurrences are few (4 for (10,21,10) at m29, 2 mirror
+pairs) and each is a CRT solution that crt_dict.count_solutions can
+enumerate scan-free; for the short words (the L = 1 and L = 2 rows, 8e6 and
+1.3e4 occurrences at m29) the flank order statistic Phi(w) is exactly what a
+scan supplies and no enumeration reaches.  So the record is scan-free
+precisely when it is carried at depth L >= 3, and that is the regime the
+ladder is entering (k_win = 3 at 31->37 and 37->41; 47->53 and 53->59 are
+carried at J = 4 and J = 3).  Named, not built: the count of occurrences of
+each realised legal word by CRT enumeration at m41..m47, with the flank sum
+read off each solution - the counted census Constructor asked for (occ(q';M)),
+delivered as a list of slots instead of a number.
+
+### C11-UPDATE. THE F_j SPECTRA AFTER ROUND 30
+    machine   Q*_2  Q*_3  Q*_4  Q*_5  Q*_6   (word-legal for 53, machine 47)
+    47        134  <=144   145  <=144 <=144   max 145 = F(53), two-sided
+(F_2 = Q*_2 by definition; the F_J row of C11 is unchanged.)
+
+## Standing rules (round-30 additions)
+
+42. SEED ONE BELOW THE PREDICTED ANSWER WHEN A THEOREM PREDICTS IT.  A run
+    seeded at 144 for a quantity R68 said was 145 is two-sided (it must find
+    the value AND find nothing above) and costs 1.2x the seed-145 run; it
+    turned a control into a decision with a witness.
+43. A KILL HAS TWO HALVES AND THEY MUST BE ATTRIBUTED SEPARATELY.  The
+    realisability CSP has open constraints (teeth of the open points) and
+    cover constraints (the blocked interior); "which gear kills it" is
+    meaningless for the cover half (fewer gears cover less) and is answered
+    for the open half by relaxing all other gears' open constraints.  Test
+    R(empty) FIRST - most refutations this round needed no open constraint,
+    and a bisection that assumes R(empty) feasible reports a wrong gear (it
+    did, once, before the gate caught it at m19).
+44. THE MODEL COLUMN IS THE INSTRUMENT, NOT THE RESULT.  The independent-
+    letter model with the real class densities is what turned "L is small"
+    into "the run length is a histogram statistic and the count at the top
+    length is not" - two different mechanisms that the length alone cannot
+    separate.  Report occ_L / E[occ_L] at every L, not the maximum.
+
+## Retracted / corrected (round-30 additions)
+
+R33. SCORING THE ROUND-30 PRE-REGISTRATION (research/data/r30/prereg_mechanic_r30.md)
+    A1 V1 <= 0.7 modelU at m19..m37 (q')     CONFIRMED (0.32, 0.29, 0.37, 0.33, <= 0.7)
+    A2 V1 - V2 <= 2 at q'                   CONFIRMED (0,0,0,0,1,0)
+    A3 modelD-T3 / V2 >= 1.5 at m19..m37     REFUTED - 1.4, 2.4, 1.23, 1.33, 2.0: the
+       length model is right to within a unit; the deficit is in occ_L (70x, oo)
+    A4 next prime not the max at >= 5 of 8   REFUTED as worded (not the max at 2 of 5
+       scanned: m23 g=31, m37 g=53)
+    A5 largest drop is model -> measured     REFUTED - it is modelU -> modelD (the
+       alphabet's density) at every scanned machine
+    A6 V3 >= V4 + 1 at >= 5 of 8             CONFIRMED (7 of 8)
+    B1 SAT killers only at g <= 13           CONFIRMED (5 and 7 only)
+    B2 >= 50% not single-gear saturated      CONFIRMED (28 of 48 pooled classes)
+    B3 joint kills have y* >= 13 half the time, y* = M once per machine
+                                             REFUTED the other way: every decided joint
+       kill is y* = 0 (no open constraint needed) or y* = 7 (the corridor); none >= 13
+    B4 corridor {5,7,11} kills < 50% at m41..m47   UNRESOLVED (m41: 9 of 19 decided as
+       gear-5 kills, 10 refuted but unattributed; m43/m47 not attempted)
+    B5 zero realised, <= 2 undecided         CONFIRMED (0 realised, 0 undecided at the
+       full machine, every machine m19..m41)
+    C1-C6                                    CONFIRMED (1/8, 7/8, 7/7 and 5/8, 0/8,
+                                             12/12, 4/6)
+    D1 max = 145 at J = 4, nothing above     CONFIRMED, witness = the r26 anchor slot
+    D2 Q*_3, Q*_5, Q*_6 <= 144               CONFIRMED
+    D3 <= 5 core-hours                       CONFIRMED (2.14)
+R34. THE RESUME MESSAGE THIS SESSION RECEIVED ("nothing of yours is on disk")
+    WAS STALE: the session was never cut, and every file above was already on
+    disk when it arrived.  Recorded so the manager's log and the lane's agree.
+
+## Open watches and checkpointed jobs (round-30 additions)
+
+- The m37 residue-run scan is a 12-of-1147-chunk partial (research/data/r30/
+  resrun_m37_c12.json); the full sweep at ~20 primes is ~90 core-hours on
+  this loaded box.  The m31 scan is complete (resrun_m31.json).
+- Killer profiles at m43 and m47 NOT attempted (the m43 realised 2-words need
+  ~8 arity-2 decisions at m43; the m47 extensions of (18,35,18,35) are 9
+  reverse classes of 6-point patterns).  The 10 unattributed m41 classes and
+  the 2 m37 brackets need R(empty)/R({5,7}) at a larger relaxed budget.  The
+  vehicle is research/wordkill_r30.py kill M --workers 4 --nodes N.
+- The counted occurrence census of realised legal words by CRT enumeration
+  (C54, named) is not built.
