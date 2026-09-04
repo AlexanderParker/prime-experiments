@@ -128,3 +128,6 @@ research/data/**/*.png
 
 # The whole data folders stay out of the repo (owner direction 2026-09-05)
 research/data/
+
+# Research result outputs stay local; the documents carry the numbers
+research/**/results/

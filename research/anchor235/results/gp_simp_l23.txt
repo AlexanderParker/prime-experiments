@@ -1,4 +1,0 @@
-layer 23: 124641 fitness slots; seed exact 124641/124641, cost 41, seed used yes
-  gen    0: exact 124641/124641 cost 41 nodes 11: mul(hit0, add(L1, mul(hit1, add(L2, mul(hit2, L3)))))
-final: exact 124641/124641 cost 41 nodes 11: mul(hit0, add(L1, mul(hit1, add(L2, mul(hit2, L3)))))
-full-period check: 37182145/37182145 exact; lower gaps used ['L1', 'L2', 'L3']

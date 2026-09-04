@@ -141,22 +141,50 @@ the log at the bottom is chronology only.
         the rate-to-maximum step, the same step every branch meets. Structural (95% of family
         members) but at column 0 the correlation is +1, so not the route. STRONG pattern, closed
         as a branch; child 2g above.
-      - 5d. Every gear is needed for the record, and record phases are fixed at the anchor, gear
-        7 and the top gear with the middle gears free (7d, 2026-09-05, research/proof/
-        anchor_runs_zero.md). Exact to m23: F(M minus g) < F(M) for every g; at m19 all 20 record
-        stretches share one phase mod 35; at m17 ten non-mirror pairs agree at (5, 7, 11, 17) and
-        differ only at 13. FACT, new at record scale. CANDIDATE OBJECT: what the top gear and gear
-        7 do to each other at a record is the one place the record is made. OPEN, next to test.
-        - 5d.i. The record as a frame of three gears. Spawned by 5d's observation that the
-          record set shares the (5, 7, top) phase with the middle gears free. Theory: the frame
-          decides where a record can sit, the middle gears' filling decides whether it does; the
-          window contains every frame, so what stops the filling there, and is it systematic.
-          OPEN, prover running 2026-09-05 (research/proof/record_frame.md).
-        - 5d.ii. What each gear holds up, in the period and in the window. Spawned by 5d's
-          observation that every gear is needed for the record. Theory: the deletion profile
-          F(M) - F(M minus g) over g, taken on the period record and on the window's own longest
-          stretch, differ systematically; gears that never hold up a window stretch would be a
-          named object. OPEN, prover running 2026-09-05 (research/proof/deletion_profile.md).
+      - 5d. Every gear is needed for the record, and the record set is pinned (7d, then 5d.i and
+        5d.ii, 2026-09-05). Exact: F(M minus g) < F(M) for every g at m7..m23, and the minimum
+        blocking set of the period record is the whole machine (set cover, m7..m23). The record
+        set: 2, 4, 12, 20, 20, 4, 2, 4 stretches at m7..m31; at m29 one mirror pair (every gear
+        pinned), at m31 four stretches with every gear but 29 and 31 pinned. CORRECTION: the
+        first reading "anchor + 7 + top gear fixed, middle gears free" was an m19/m23 artefact; at
+        m31 the free gears are the top two. From m23 the record is one residue class mod the
+        period up to mirror. FACT. The candidate object reading is withdrawn: pinning says where
+        the record is, not that an opening is forced into the window.
+        - 5d.i. The record as a frame of three gears (research/proof/record_frame.md). Spawned by
+          5d's first reading. Theory: frame (5, 7, top) decides where, the middle gears' filling
+          decides whether. DEAD as a route: the record set collapses (above), so there is no
+          frame/filling split; the window holds q/210 frame columns (0 or 1 at every rung), so the
+          briefed window test is vacuous; the non-vacuous version (longest blocked run starting in
+          the window, L*) is 24 columns from q = 23 to 43 and 27 from 47 while F - 1 climbs 33 to
+          144, max L*/(F-1) = 0.727 at m23 falling to 0.19 at m53, and it is the largest twin gap
+          below q'^2, which is what the root needs and what nothing here bounds. FACTs kept:
+          (i) completions of a record frame are 2 / 1 / 1 at m23 / m29 / m31 against a proper
+          independence baseline that makes them 0.0087 as likely at m31 (a factor of two rarer per
+          rung); (ii) coverage-maximality split: gear 5 sits at its coverage-maximal phase in every
+          record of every machine m13..m31, gears 7 and 11 from m19 on, and the top one or two
+          gears never do (the sole-striker requirement L4 in coverage units; a mechanism for 5e).
+          Refuted: one top-gear corridor and one word per machine (true only at m23 and m29 where
+          the record set is one pair); break offsets concentrated mod 35 (1.65x, not 3x) or near a
+          gear square (0.8%).
+        - 5d.ii. What each gear holds up, in the period and in the window
+          (research/proof/deletion_profile.md). Spawned by 5d's "every gear needed". WEAK, closed
+          as a route: the contrast is exact and describable, every window-side quantity is
+          contingent on the primes, no forced object. FACTs: (i) the period record needs every
+          gear (minimum blocking set = whole machine, m7..m23) while the window's longest stretch
+          needs a chosen fifth (32 of 166 gears at rung 997; smallest initial segment {5..877});
+          (ii) the period deletion profile falls with g and gear 5 tops it (drops 3, 3, 5, 9, 13,
+          17 at m7..m23; the top gear near the minimum), refuting "largest at the top gears";
+          (iii) the window profile is ordered by column position, not gear size: most holders own
+          one sole column, a central one halves the stretch, an end one does nothing; (iv) zero-
+          drop gears are individually redundant but jointly essential (removing all of them
+          destroys the window stretch at 157 of 165 rungs); the only provably droppable set is the
+          square gate g^2 > 6 top + 1, exact at all 165 rungs but explaining 11 of 143 zero drops;
+          (v) nested-decreasing holder law, one-line proof: for a fixed stretch the set of gears
+          holding it up can only shrink as the machine grows (a sole column can gain a striker,
+          never lose one); (vi) gear 5 holds every window record at 164 of 165 rungs and is the
+          largest drop at 151; no gear is never needed. Stop lines: F_W is the largest twin gap in
+          (q, q'^2) (7d's identity); F_W <= F(effective machine) at the window's top is R2 one
+          level up with fixed point 1/6, not iterable.
       - 5e. Where a record gap can start: the slot F mod 5 dictates (7a, 2026-09-05,
         research/proof/anchor_cycles.md). F = 1 mod 5 starts on 11|13, F = 4 on 17|19, F = 2 or 3
         on a mirror pair of slots, F = 0 on any; exact at all eight full periods to m31. FACT, new,
@@ -396,3 +424,12 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   the record's phase structure (anchor + gear 7 + top gear fixed, middle gears free; every gear needed), the slot rule
   for where a record can start (F mod 5), the anchor's in-window rigidity (exhausted at the first gear).
 - 2026-09-05, manager: opened 5d.i (record frame of three gears) and 5d.ii (deletion profile, period versus window) under 5d, the STRONG node with a CANDIDATE OBJECT; two provers under the theory-tree skill.
+- 2026-09-05, provers 5d.i and 5d.ii (record_frame.md, deletion_profile.md). Both DEAD/WEAK as routes; node
+  5d corrected: the record set collapses to one mirror pair at m29 and four stretches at m31 with only the top two
+  gears free, so "middle gears free" was an m19/m23 artefact and the frame/filling theory has no object. New exact
+  facts: record-frame completions 2/1/1 at m23/m29/m31, 115x rarer than independence at m31; coverage-maximality
+  split (gear 5 always at its coverage-maximal phase in a record, top gears never); period record needs every gear,
+  window record a chosen fifth; period deletion profile falls with g with gear 5 on top; window holders ordered by
+  column position; zero-drop gears jointly essential; square gate exact but weak; nested-decreasing holder law
+  (proved). Neither branch bounds the largest twin gap below q'^2, which is the root. Next: the only STRONG parent
+  left under R3 is 5 itself; the tree needs a new observation, not a new sibling.
