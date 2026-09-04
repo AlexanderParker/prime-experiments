@@ -139,6 +139,16 @@ the log at the bottom is chronology only.
       12 digits) has no rule, as pre-registered. Root reading: the walk is decided by the old
       gears (gear 5 makes 40% of 18,743 hops, gears above sqrt(q) 15%); W1 and W2 rest on L < d,
       a twin-Bertrand-strength statement at scale q/3. Position objects, no size lever.
+      - R2.a.i. The path taken apart (the owner's direction, 2026-09-05: "the walk leads
+        somewhere, a walk has a path; decompose the path, pull it apart, run various analyses,
+        try transformations"). Spawned by W1: the walk from q^2 starts on the top gear's tooth
+        and lands before its next tooth at every prime 59..4999. Two provers: W.a arithmetic and
+        structure (blocker sequence, bucket vector, sensitivity to q's residues, layer nest, the
+        landing, the path on the torus; research/proof/walk_path.md) and W.t transformations
+        (representations, run-length, autocorrelation and spectrum, word transitions, depth
+        profile, scaling, mirror walk, comparisons with random and other-tooth starts, chains
+        across levels; research/proof/walk_transforms.md). OPEN, running.
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -532,3 +542,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   formulation tried (per-step, whole-window, record structure, anchor frame, walk frame) yields exact position
   and mechanism facts and stops at the same length statement; the tree needs a formulation in which length is
   the primary object, or a new observation.
+- 2026-09-05, manager: opened R2.a.i (the path taken apart) at the owner's direction; two provers, breadth of analysis on the walk from q^2.
