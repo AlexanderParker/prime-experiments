@@ -1,18 +1,36 @@
-# Theory tree toward the proof (manager, started 2026-09-04; restructured as a tree 2026-09-05)
+# Theory tree toward the proof (started 2026-09-04; nested 2026-09-05; method: .claude/skills/theory-tree)
 
-Method (the human's): construct a theory, test it, observe, interpret the patterns, describe them,
-make a theory about the patterns, repeat. Each repeat is a child branch, and a child records which
-observation of its parent spawned it. Dead end: step back to the parent and branch again; step back
-further if needed. Depth when a theory is strong, breadth when building the base. Statuses: STRONG
-(tested, holds, mechanism visible), OPEN (untested or partly tested), WEAK (holds, no mechanism),
-DEAD (refuted or proved unable), FACT (exact, kept, not a route), with the pointer to the evidence.
-Vocabulary: docs/proof-search/alignment-rules.md section 0 and the README glossary. The method as a
-skill: .claude/skills/theory-tree/SKILL.md. The chronological log is at the bottom; the tree here
-carries the verdicts.
+## Project profile (read by the theory-tree skill; everything project-specific lives here)
 
-Target (the human's words, 2026-09-05): a known object we can point at and say "this will always
-be in the window, because the machine works this way, and nothing the machine does can prevent
-it." Candidates so far are marked CANDIDATE OBJECT below; none is yet shown forced.
+- **Tree file:** this file. Branch documents in research/proof/<branch>.md; scripts in
+  research/<line>/r<round>/ with results in .../results/ (large generated data untracked).
+- **Root question:** for every machine {5..y} an opening lands inside the window, i.e. the longest
+  opening-free stretch stays below the window's growth, F(y) < W(y) - y/6. Accepted as true; the
+  work is the proof. The answer must be, in the human's words (2026-09-05), a known object we can
+  point at and say "this will always be in the window, because the machine works this way, and
+  nothing the machine does can prevent it." Candidates are marked CANDIDATE OBJECT below.
+- **Vocabulary** (docs/proof-search/alignment-rules.md section 0; README glossary): column k =
+  (6k-1, 6k+1); gear g strikes k iff k = +-6^-1 (mod g); opening = column no gear strikes; machine
+  {5..y}; anchor = 2, 3, 5 as one object (cycle 30); window = the certified range (y, y^2], never a
+  sliding run; section = the window's new part (p^2, q^2); stretch = a sliding run; record F(M) =
+  longest opening-free stretch; the budget inequality F(M+q') <= F(M) + q' is a target, never a
+  law. Think in openings, not kills.
+- **Evidence standards:** kernel (Lean, `cd proofs; lake env lean AxiomCheck.lean` with no
+  sorryAx), exact (full periods, phase reduction, SAT or LP certificates), measured, open. Pattern
+  checks on the section; mechanism at the extremes, never averages alone.
+- **Compute:** at most 4 cores and 3 GB per lane, 16 GB total; the 385-import Lean root crashed
+  Windows once (tiered roots only).
+- **Prior results index:** docs/novel/README.md (read before opening any branch; two 2026-09-04
+  branches were rediscoveries), docs/proof-search/alignment-rules.md, docs/proofs/.
+- **Standing directions (the human's):** use the machine to find NEW rules and relationships; note
+  known results in a line, never rewrite them into machine analogy unless it seeds a machine-driven
+  investigation and is labelled as such; describe a mechanism before naming a theorem it resembles
+  ("explained by CRT" is a description, not a proof the object persists); no attribution trailers
+  on commits; round summaries plain-language first.
+
+Statuses: STRONG (tested, holds, mechanism visible), OPEN, WEAK (holds, no mechanism), DEAD
+(refuted or proved unable), FACT (exact, kept, not a route). The tree below carries the verdicts;
+the log at the bottom is chronology only.
 
 ## The tree
 
