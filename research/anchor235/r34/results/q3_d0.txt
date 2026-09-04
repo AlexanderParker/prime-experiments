@@ -1,0 +1,42 @@
+Q3: d_0(M) for M = {5..q}: first opening past 0; mirror gives the pair (d_0, d_0) at column 0, so F_2(M) >= 2 d_0 and F(M+q') >= F_2(M) >= 2 d_0.
+     q q_next   d_0  2d_0     F   F_2         W d_0<=q_n  d_0<=W    6d_0-1,6d_0+1 first twin > q same?  2d_0/F   2d_0/W
+     5      7     2     4  None  None         8     True    True         (11, 13)       (11, 13)  True     nan   0.5000
+     7     11     2     4     5  None        20     True    True         (11, 13)       (11, 13)  True   0.800   0.2000
+    11     13     3     6     7    11        28     True    True         (17, 19)       (17, 19)  True   0.857   0.2143
+    13     17     3     6    11    16        48     True    True         (17, 19)       (17, 19)  True   0.545   0.1250
+    17     19     5    10    18    25        60     True    True         (29, 31)       (29, 31)  True   0.556   0.1667
+    19     23     5    10    25    31        88     True    True         (29, 31)       (29, 31)  True   0.400   0.1136
+    23     29     5    10    34    39       140     True    True         (29, 31)       (29, 31)  True   0.294   0.0714
+    29     31     7    14    43    55       160     True    True         (41, 43)       (41, 43)  True   0.326   0.0875
+    31     37     7    14    58    68       228     True    True         (41, 43)       (41, 43)  True   0.241   0.0614
+    37     41     7    14    88    90       280     True    True         (41, 43)       (41, 43)  True   0.159   0.0500
+    41     43    10    20    91   103       308     True    True         (59, 61)       (59, 61)  True   0.220   0.0649
+    43     47    10    20   103   116       368     True    True         (59, 61)       (59, 61)  True   0.194   0.0543
+    47     53    10    20   118  None       468     True    True         (59, 61)       (59, 61)  True   0.169   0.0427
+    53     59    10    20   145   159       580     True    True         (59, 61)       (59, 61)  True   0.138   0.0345
+    59     61    12    24   161  None       620     True    True         (71, 73)       (71, 73)  True   0.149   0.0387
+
+Exactly when d_0 is in the window: d_0 in (q/6, W] iff 6 d_0 + 1 < q_next^2 iff the first pair of q-rough numbers 6k+-1 above q is below q_next^2,
+i.e. iff there is a twin prime pair in (q, q_next^2). Conversely every twin pair above q is an M-opening, so d_0 <= (first twin above q); equality iff that twin is < q_next^2.
+The lower edge d_0 > (q-1)/6 is forced: every column k <= (q-1)/6 has 6k+1 <= q, so its numbers are gears or gear-multiples (the shield).
+
+Extended gate over all primes 5 <= q <= 33317:
+  primes checked 3564; d_0 <= q_next fails 0 times; max d_0/q_next = 0.2857 at q = 5; d_0 > W (no opening in the window) 0 times
+  (matches research/proof/pair_statement.md gate d0: d_0 <= q' for every prime to 10^6, max ratio 0.2857 at p = 5)
+
+Slack of the theorem F_2(M) >= 2 d_0 and of F(M) >= d_0 (trivial: the gap 0 -> d_0 is a gap of M):
+  q=5: d_0=2, F=None (F/d_0 = nan), F_2=None (F_2/2d_0 = nan), W=8 (W/d_0 = 4.0)
+  q=7: d_0=2, F=5 (F/d_0 = 2.50), F_2=None (F_2/2d_0 = nan), W=20 (W/d_0 = 10.0)
+  q=11: d_0=3, F=7 (F/d_0 = 2.33), F_2=11 (F_2/2d_0 = 1.83), W=28 (W/d_0 = 9.3)
+  q=13: d_0=3, F=11 (F/d_0 = 3.67), F_2=16 (F_2/2d_0 = 2.67), W=48 (W/d_0 = 16.0)
+  q=17: d_0=5, F=18 (F/d_0 = 3.60), F_2=25 (F_2/2d_0 = 2.50), W=60 (W/d_0 = 12.0)
+  q=19: d_0=5, F=25 (F/d_0 = 5.00), F_2=31 (F_2/2d_0 = 3.10), W=88 (W/d_0 = 17.6)
+  q=23: d_0=5, F=34 (F/d_0 = 6.80), F_2=39 (F_2/2d_0 = 3.90), W=140 (W/d_0 = 28.0)
+  q=29: d_0=7, F=43 (F/d_0 = 6.14), F_2=55 (F_2/2d_0 = 3.93), W=160 (W/d_0 = 22.9)
+  q=31: d_0=7, F=58 (F/d_0 = 8.29), F_2=68 (F_2/2d_0 = 4.86), W=228 (W/d_0 = 32.6)
+  q=37: d_0=7, F=88 (F/d_0 = 12.57), F_2=90 (F_2/2d_0 = 6.43), W=280 (W/d_0 = 40.0)
+  q=41: d_0=10, F=91 (F/d_0 = 9.10), F_2=103 (F_2/2d_0 = 5.15), W=308 (W/d_0 = 30.8)
+  q=43: d_0=10, F=103 (F/d_0 = 10.30), F_2=116 (F_2/2d_0 = 5.80), W=368 (W/d_0 = 36.8)
+  q=47: d_0=10, F=118 (F/d_0 = 11.80), F_2=None (F_2/2d_0 = nan), W=468 (W/d_0 = 46.8)
+  q=53: d_0=10, F=145 (F/d_0 = 14.50), F_2=159 (F_2/2d_0 = 7.95), W=580 (W/d_0 = 58.0)
+  q=59: d_0=12, F=161 (F/d_0 = 13.42), F_2=None (F_2/2d_0 = nan), W=620 (W/d_0 = 51.7)

@@ -1,0 +1,106 @@
+Q4: openings in (0, W] against the period mean and against typical stretches of length W.
+cols: Q Q' W | open(0,W] twins(Q,Q'^2] | mean=W*prod(1-2/g) ratio | shield=(Q-1)//6 blocked cols | typical stretch: mean, min, max, percentile of the zero stretch | eff-machine prediction
+eff-machine prediction = sum over k in (0,W] of prod_{5<=g<=sqrt(6k+1)}(1-2/g): the density if the gears above sqrt(6k+1) are silent at k.
+Q=   7 Q'=  11 W=     20 | open      8 twins      8 OK | mean       8.6 ratio 0.933 | shield   1 | typical      8.6 [6, 11] pct< 0.314 pct<= 0.429 (full) | eff     11.0 ratio 0.729
+Q=  11 Q'=  13 W=     28 | open     10 twins     10 OK | mean       9.8 ratio 1.019 | shield   1 | typical      9.8 [7, 12] pct< 0.319 pct<= 0.688 (full) | eff     13.7 ratio 0.730
+Q=  13 Q'=  17 W=     48 | open     16 twins     16 OK | mean      14.2 ratio 1.123 | shield   2 | typical     14.2 [10, 19] pct< 0.782 pct<= 0.931 (full) | eff     19.6 ratio 0.817
+Q=  17 Q'=  19 W=     60 | open     18 twins     18 OK | mean      15.7 ratio 1.146 | shield   2 | typical     15.7 [9, 22] pct< 0.860 pct<= 0.959 (full) | eff     22.7 ratio 0.793
+Q=  19 Q'=  23 W=     88 | open     21 twins     21 OK | mean      20.6 ratio 1.019 | shield   3 | typical     20.6 [12, 29] pct< 0.478 pct<= 0.672 (full) | eff     29.2 ratio 0.719
+Q=  23 Q'=  29 W=    140 | open     30 twins     30 OK | mean      29.9 ratio 1.002 | shield   3 | typical     29.9 [18, 41] pct< 0.421 pct<= 0.597 (full) | eff     40.3 ratio 0.744
+Q=  29 Q'=  31 W=    160 | open     30 twins     30 OK | mean      31.9 ratio 0.942 | shield   4 | typical     31.9 [23, 41] pct< 0.174 pct<= 0.295 (mc4000) | eff     44.3 ratio 0.677
+Q=  31 Q'=  37 W=    228 | open     42 twins     42 OK | mean      42.5 ratio 0.989 | shield   5 | typical     42.5 [32, 52] pct< 0.361 pct<= 0.508 (mc4000) | eff     56.9 ratio 0.738
+Q=  37 Q'=  41 W=    280 | open     48 twins     48 OK | mean      49.3 ratio 0.973 | shield   6 | typical     49.3 [38, 60] pct< 0.279 pct<= 0.392 (mc4000) | eff     66.1 ratio 0.726
+Q=  41 Q'=  43 W=    308 | open     51 twins     51 OK | mean      51.6 ratio 0.988 | shield   6 | typical     51.6 [40, 63] pct< 0.369 pct<= 0.491 (mc4000) | eff     70.8 ratio 0.721
+Q=  43 Q'=  47 W=    368 | open     62 twins     62 OK | mean      58.8 ratio 1.054 | shield   7 | typical     58.9 [46, 71] pct< 0.767 pct<= 0.851 (mc4000) | eff     80.4 ratio 0.772
+Q=  47 Q'=  53 W=    468 | open     74 twins     74 OK | mean      71.6 ratio 1.033 | shield   7 | typical     71.7 [55, 87] pct< 0.677 pct<= 0.766 (mc4000) | eff     95.7 ratio 0.774
+Q=  53 Q'=  59 W=    580 | open     87 twins     87 OK | mean      85.4 ratio 1.019 | shield   8 | typical     85.4 [70, 100] pct< 0.598 pct<= 0.681 (mc4000) | eff    112.1 ratio 0.776
+Q=  59 Q'=  61 W=    620 | open     92 twins     92 OK | mean      88.2 ratio 1.043 | shield   9 | typical     88.3 [72, 104] pct< 0.760 pct<= 0.822 (mc4000) | eff    117.8 ratio 0.781
+Q=  61 Q'=  67 W=    748 | open    110 twins    110 OK | mean     102.9 ratio 1.069 | shield  10 | typical    102.9 [87, 118] pct< 0.921 pct<= 0.951 (mc4000) | eff    135.4 ratio 0.812
+Q=  71 Q'=  73 W=    888 | open    123 twins    123 OK | mean     115.2 ratio 1.068 | shield  11 | typical    115.1 [96, 138] pct< 0.919 pct<= 0.947 (mc4000) | eff    153.9 ratio 0.799
+Q= 101 Q'= 103 W=   1768 | open    209 twins    209 OK | mean     199.1 ratio 1.050 | shield  16 | typical    199.2 [173, 224] pct< 0.899 pct<= 0.921 (mc4000) | eff    258.9 ratio 0.807
+Q= 173 Q'= 179 W=   5340 | open    480 twins    480 OK | mean     487.0 ratio 0.986 | shield  28 | typical    487.1 [451, 525] pct< 0.250 pct<= 0.277 (mc4000) | eff    611.1 ratio 0.785
+Q= 199 Q'= 211 W=   7420 | open    627 twins    627 OK | mean     635.0 ratio 0.987 | shield  33 | typical    635.0 [587, 685] pct< 0.256 pct<= 0.280 (mc4000) | eff    792.8 ratio 0.791
+Q= 251 Q'= 257 W=  11008 | open    852 twins    852 OK | mean     878.7 ratio 0.970 | shield  41 | typical    878.2 [825, 932] pct< 0.035 pct<= 0.040 (mc1000) | eff   1087.8 ratio 0.783
+Q= 307 Q'= 311 W=  16120 | open   1166 twins   1166 OK | mean    1205.6 ratio 0.967 | shield  51 | typical   1205.1 [1150, 1263] pct< 0.016 pct<= 0.019 (mc1000) | eff   1479.2 ratio 0.788
+Q= 401 Q'= 409 W=  27880 | open   1843 twins   1843 OK | mean    1904.6 ratio 0.968 | shield  66 | typical   1903.9 [1826, 1976] pct< 0.003 pct<= 0.004 (mc1000) | eff   2314.0 ratio 0.796
+Q= 499 Q'= 503 W=  42168 | open   2585 twins   2585 OK | mean    2683.1 ratio 0.963 | shield  83 | typical   2683.1 [2588, 2766] pct< 0.000 pct<= 0.000 (mc1000) | eff   3251.8 ratio 0.795
+Q= 601 Q'= 607 W=  61408 | open   3539 twins   3539 OK | mean    3701.6 ratio 0.956 | shield 100 | typical   3701.0 [3600, 3822] pct< 0.000 pct<= 0.000 (mc1000) | eff   4442.9 ratio 0.797
+Q= 701 Q'= 709 W=  83780 | open   4552 twins   4552 OK | mean    4807.2 ratio 0.947 | shield 116 | typical   4805.1 [4704, 4917] pct< 0.000 pct<= 0.000 (mc1000) | eff   5752.7 ratio 0.791
+Q= 797 Q'= 809 W= 109080 | open   5714 twins   5714 OK | mean    6045.4 ratio 0.945 | shield 132 | typical   6047.1 [5896, 6169] pct< 0.000 pct<= 0.000 (mc1000) | eff   7174.7 ratio 0.796
+Q= 907 Q'= 911 W= 138320 | open   6941 twins   6941 OK | mean    7382.6 ratio 0.940 | shield 151 | typical   7383.1 [7238, 7541] pct< 0.000 pct<= 0.000 (mc1000) | eff   8759.0 ratio 0.792
+Q= 997 Q'=1009 W= 169680 | open   8278 twins   8278 OK | mean    8812.8 ratio 0.939 | shield 166 | typical   8816.9 [8630, 9019] pct< 0.000 pct<= 0.000 (mc1000) | eff  10407.4 ratio 0.795
+
+elapsed 10.3s
+
+Ratio open(0,W]/mean by band of Q (mean over primes in the band), and the limiting value 1/(2 e^-gamma)^2 = 0.7931:
+  Q in [7,30): n=7 ratio mean 1.026 min 0.933 max 1.146 | vs eff-machine prediction mean 0.744
+  Q in [30,60): n=7 ratio mean 1.014 min 0.973 max 1.054 | vs eff-machine prediction mean 0.755
+  Q in [60,120): n=13 ratio mean 1.047 min 0.986 max 1.088 | vs eff-machine prediction mean 0.801
+  Q in [120,250): n=23 ratio mean 0.991 min 0.968 max 1.014 | vs eff-machine prediction mean 0.790
+  Q in [250,500): n=42 ratio mean 0.968 min 0.957 max 0.976 | vs eff-machine prediction mean 0.793
+  Q in [500,1000): n=73 ratio mean 0.948 min 0.938 max 0.963 | vs eff-machine prediction mean 0.794
+Count of levels where the zero stretch has MORE openings than the period mean: 26 of 165; fewer: 139
+At the 28 sampled levels, the zero stretch's count is below the typical-stretch MEDIAN (pct<= below 0.5) at 15, above at 9
+
+Mechanism at Q = 59, 173, 499, 997: gears whose first exclusive kill lies at or above column (g^2-1)/6 (their square), share of each gear's strikes in (0,W] that are wasted (land on a column another gear also strikes),
+and the band-by-band local density of openings against the full-machine mean density and the effective-machine density.
+
+  Q=59: W=620, shield columns 1..9 blocked: yes; first opening d_0 = 12
+    gears whose first exclusive kill is BELOW their square column (g^2-1)/6: [(59, 10, 580)]  (expected: only self-pairs at the bottom edge)
+    gears whose first exclusive kill is exactly their square column (g^2-2, g^2) with g^2-2 prime: 6 of 15; gears with no exclusive kill in (0,W]: [53]
+    g, first excl col, square col, strikes in (0,W], exclusive: 5:21/4/248/68; 7:78/8/177/37; 11:112/20/113/22; 13:28/28/95/15; 17:173/48/73/12; 19:60/60/65/8; 23:257/88/54/6; 29:140/140/43/5 ... 37:228/228/33/3; 41:417/280/30/3; 43:308/308/29/5; 47:368/368/27/2; 53:None/468/23/0; 59:10/580/21/1
+    band (cols)            open   full-mean   ratio   eff-mean   ratio   gears silent (g^2 > 6k+1 at band top)
+          1..12             1        1.7   0.586        7.5   0.133   13
+         13..31             5        2.7   1.850        7.0   0.715   11
+         32..62             8        4.4   1.814        8.6   0.931   9
+         63..124            9        8.8   1.020       13.8   0.654   8
+        125..217           15       13.2   1.134       18.0   0.834   6
+        218..310           11       13.2   0.831       16.2   0.679   3
+        311..434           18       17.6   1.020       19.4   0.930   2
+        435..527            9       13.2   0.680       13.9   0.648   1
+        528..620           16       13.2   1.209       13.5   1.186   0
+
+  Q=173: W=5340, shield columns 1..28 blocked: yes; first opening d_0 = 30
+    gears whose first exclusive kill is BELOW their square column (g^2-1)/6: []  (expected: only self-pairs at the bottom edge)
+    gears whose first exclusive kill is exactly their square column (g^2-2, g^2) with g^2-2 prime: 14 of 38; gears with no exclusive kill in (0,W]: [167]
+    g, first excl col, square col, strikes in (0,W], exclusive: 5:151/4/2136/368; 7:230/8/1526/208; 11:332/20/971/124; 13:392/28/821/98; 17:507/48/628/67; 19:60/60/562/72; 23:732/88/465/52; 29:140/140/368/47 ... 149:4445/3700/72/2; 151:4505/3800/71/5; 157:4998/4108/68/2; 163:4863/4428/65/2; 167:None/4648/64/0; 173:4988/4988/62/1
+    band (cols)            open   full-mean   ratio   eff-mean   ratio   gears silent (g^2 > 6k+1 at band top)
+          1..106           16        9.7   1.655       33.0   0.484   31
+        107..267           22       14.7   1.498       30.8   0.715   28
+        268..534           34       24.3   1.396       41.6   0.818   24
+        535..1068          65       48.7   1.335       71.2   0.913   18
+       1069..1868          77       73.0   1.055       93.4   0.824   13
+       1869..2670          58       73.1   0.793       84.6   0.686   10
+       2671..3737          95       97.3   0.976      106.7   0.890   5
+       3738..4539          54       73.1   0.738       76.2   0.708   2
+       4540..5340          59       73.0   0.808       73.6   0.801   0
+
+  Q=499: W=42168, shield columns 1..83 blocked: yes; first opening d_0 = 87
+    gears whose first exclusive kill is BELOW their square column (g^2-1)/6: []  (expected: only self-pairs at the bottom edge)
+    gears whose first exclusive kill is exactly their square column (g^2-2, g^2) with g^2-2 prime: 28 of 93; gears with no exclusive kill in (0,W]: [487, 499]
+    g, first excl col, square col, strikes in (0,W], exclusive: 5:424/4/16867/2005; 7:400/8/12048/1189; 11:922/20/7667/680; 13:1103/28/6487/568; 17:1482/48/4961/427; 19:1143/60/4439/375; 23:1997/88/3667/290; 29:140/140/2908/232 ... 463:38815/35728/182/2; 467:36348/36348/181/3; 479:40635/38240/176/1; 487:None/39528/173/0; 491:40180/40180/172/2; 499:None/41500/169/0
+    band (cols)            open   full-mean   ratio   eff-mean   ratio   gears silent (g^2 > 6k+1 at band top)
+          1..843          104       53.6   1.939      148.1   0.702   75
+        844..2108         116       80.5   1.441      147.7   0.785   66
+       2109..4216         166      134.1   1.238      211.3   0.786   58
+       4217..8433         302      268.3   1.125      371.5   0.813   47
+       8434..14758        390      402.5   0.969      498.3   0.783   33
+      14759..21084        381      402.5   0.947      463.9   0.821   24
+      21085..29517        464      536.6   0.865      584.5   0.794   14
+      29518..35842        340      402.5   0.845      419.8   0.810   5
+      35843..42168        322      402.5   0.800      406.9   0.791   0
+
+  Q=997: W=169680, shield columns 1..166 blocked: yes; first opening d_0 = 170
+    gears whose first exclusive kill is BELOW their square column (g^2-1)/6: []  (expected: only self-pairs at the bottom edge)
+    gears whose first exclusive kill is exactly their square column (g^2-2, g^2) with g^2-2 prime: 45 of 166; gears with no exclusive kill in (0,W]: []
+    g, first excl col, square col, strikes in (0,W], exclusive: 5:851/4/67872/6447; 7:400/8/48480/3921; 11:1993/20/30851/2256; 13:2195/28/26105/1848; 17:2887/48/19963/1384; 19:1143/60/17861/1205; 23:3868/88/14755/969; 29:4065/140/11702/733 ... 967:162617/155848/351/3; 971:168145/157140/349/1; 977:168207/159088/347/1; 983:168912/161048/345/1; 991:166653/163680/343/1; 997:167662/165668/341/2
+    band (cols)            open   full-mean   ratio   eff-mean   ratio   gears silent (g^2 > 6k+1 at band top)
+          1..3393         311      176.2   1.765      427.5   0.728   134
+       3394..8484         367      264.4   1.388      455.4   0.806   120
+       8485..16968        525      440.6   1.191      659.0   0.797   102
+      16969..33936        951      881.3   1.079     1178.2   0.807   81
+      33937..59387       1284     1321.9   0.971     1600.9   0.802   60
+      59388..84840       1156     1322.0   0.874     1492.5   0.775   41
+      84841..118775      1528     1762.5   0.867     1893.0   0.807   22
+     118776..144228      1064     1322.0   0.805     1366.8   0.778   10
+     144229..169680      1092     1321.9   0.826     1334.2   0.818   0

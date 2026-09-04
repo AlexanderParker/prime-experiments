@@ -1,0 +1,287 @@
+machine {5..13} = M + 13, M = {5..11}; u' = 11, 2u' = 9, q'-2u' = 4; F_c = 1 at 76 runs; F = 11
+
+run of 1 dead cycles j = 22..22 (columns 112..115, numbers 671..691)
+  j=22 (j mod 7 = 1): 671:11  673:-  677:-  679:7  689:13  691:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=22 e=29 col=115 m=53
+
+run of 1 dead cycles j = 25..25 (columns 127..130, numbers 761..781)
+  j=25 (j mod 7 = 4): 761:-  763:7  767:13  769:-  779:-  781:11   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=25 e=17 col=128 m=59
+
+run of 1 dead cycles j = 30..30 (columns 152..155, numbers 911..931)
+  j=30 (j mod 7 = 2): 911:-  913:11  917:7  919:-  929:-  931:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 44..44 (columns 222..225, numbers 1331..1351)
+  j=44 (j mod 7 = 2): 1331:11  1333:-  1337:7  1339:13  1349:-  1351:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 0
+  q'=13 sole kills: j=44 e=19 col=223 m=103
+
+run of 1 dead cycles j = 54..54 (columns 272..275, numbers 1631..1651)
+  j=54 (j mod 7 = 5): 1631:7  1633:-  1637:-  1639:11  1649:-  1651:13   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=54 e=31 col=275 m=127
+
+run of 1 dead cycles j = 65..65 (columns 327..330, numbers 1961..1981)
+  j=65 (j mod 7 = 2): 1961:-  1963:13  1967:7  1969:11  1979:-  1981:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=65 e=13 col=327 m=151
+
+run of 1 dead cycles j = 72..72 (columns 362..365, numbers 2171..2191)
+  j=72 (j mod 7 = 2): 2171:13  2173:-  2177:7  2179:-  2189:11  2191:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=72 e=11 col=362 m=167
+
+run of 1 dead cycles j = 107..107 (columns 537..540, numbers 3221..3241)
+  j=107 (j mod 7 = 2): 3221:-  3223:11  3227:7  3229:-  3239:-  3241:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 116..116 (columns 582..585, numbers 3491..3511)
+  j=116 (j mod 7 = 4): 3491:-  3493:7  3497:13  3499:-  3509:11  3511:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=116 e=17 col=583 m=269
+
+run of 1 dead cycles j = 121..121 (columns 607..610, numbers 3641..3661)
+  j=121 (j mod 7 = 2): 3641:11  3643:-  3647:7  3649:-  3659:-  3661:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 129..129 (columns 647..650, numbers 3881..3901)
+  j=129 (j mod 7 = 3): 3881:-  3883:11  3887:13  3889:-  3899:7  3901:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=129 e=17 col=648 m=299
+
+run of 1 dead cycles j = 145..145 (columns 727..730, numbers 4361..4381)
+  j=145 (j mod 7 = 5): 4361:7  4363:-  4367:11  4369:-  4379:-  4381:13   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=145 e=31 col=730 m=337
+
+run of 1 dead cycles j = 156..156 (columns 782..785, numbers 4691..4711)
+  j=156 (j mod 7 = 2): 4691:-  4693:13  4697:7/11  4699:-  4709:-  4711:7   | gears [7, 11, 13] (3 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=156 e=13 col=782 m=361
+
+run of 1 dead cycles j = 163..163 (columns 817..820, numbers 4901..4921)
+  j=163 (j mod 7 = 2): 4901:13  4903:-  4907:7  4909:-  4919:-  4921:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=163 e=11 col=817 m=377
+
+run of 1 dead cycles j = 184..184 (columns 922..925, numbers 5531..5551)
+  j=184 (j mod 7 = 2): 5531:-  5533:11  5537:7  5539:-  5549:-  5551:7/13   | gears [7, 11, 13] (3 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 198..198 (columns 992..995, numbers 5951..5971)
+  j=198 (j mod 7 = 2): 5951:11  5953:-  5957:7  5959:-  5969:-  5971:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 220..220 (columns 1102..1105, numbers 6611..6631)
+  j=220 (j mod 7 = 3): 6611:11  6613:-  6617:13  6619:-  6629:7  6631:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=220 e=17 col=1103 m=509
+
+run of 1 dead cycles j = 241..241 (columns 1207..1210, numbers 7241..7261)
+  j=241 (j mod 7 = 3): 7241:13  7243:-  7247:-  7249:11  7259:7  7261:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=241 e=11 col=1207 m=557
+
+run of 1 dead cycles j = 247..247 (columns 1237..1240, numbers 7421..7441)
+  j=247 (j mod 7 = 2): 7421:-  7423:13  7427:7  7429:-  7439:-  7441:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=247 e=13 col=1237 m=571
+
+run of 1 dead cycles j = 254..254 (columns 1272..1275, numbers 7631..7651)
+  j=254 (j mod 7 = 2): 7631:13  7633:-  7637:7  7639:-  7649:-  7651:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=254 e=11 col=1272 m=587
+
+run of 1 dead cycles j = 261..261 (columns 1307..1310, numbers 7841..7861)
+  j=261 (j mod 7 = 2): 7841:-  7843:11  7847:7  7849:-  7859:-  7861:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 267..267 (columns 1337..1340, numbers 8021..8041)
+  j=267 (j mod 7 = 1): 8021:13  8023:-  8027:-  8029:7  8039:-  8041:11   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=267 e=11 col=1337 m=617
+
+run of 1 dead cycles j = 275..275 (columns 1377..1380, numbers 8261..8281)
+  j=275 (j mod 7 = 2): 8261:11  8263:-  8267:7  8269:-  8279:-  8281:7/13   | gears [7, 11, 13] (3 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 278..278 (columns 1392..1395, numbers 8351..8371)
+  j=278 (j mod 7 = 5): 8351:7  8353:-  8357:-  8359:13  8369:-  8371:11   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=278 e=19 col=1393 m=643
+
+run of 1 dead cycles j = 332..332 (columns 1662..1665, numbers 9971..9991)
+  j=332 (j mod 7 = 3): 9971:13  9973:-  9977:11  9979:-  9989:7  9991:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=332 e=11 col=1662 m=767
+
+run of 1 dead cycles j = 338..338 (columns 1692..1695, numbers 10151..10171)
+  j=338 (j mod 7 = 2): 10151:-  10153:11/13  10157:7  10159:-  10169:-  10171:7   | gears [7, 11, 13] (3 distinct; forced [7]); M-open slots here: 0
+
+run of 1 dead cycles j = 340..340 (columns 1702..1705, numbers 10211..10231)
+  j=340 (j mod 7 = 4): 10211:-  10213:7  10217:-  10219:11  10229:-  10231:13   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=340 e=31 col=1705 m=787
+
+run of 1 dead cycles j = 345..345 (columns 1727..1730, numbers 10361..10381)
+  j=345 (j mod 7 = 2): 10361:13  10363:-  10367:7  10369:-  10379:-  10381:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=345 e=11 col=1727 m=797
+
+run of 1 dead cycles j = 352..352 (columns 1762..1765, numbers 10571..10591)
+  j=352 (j mod 7 = 2): 10571:11  10573:-  10577:7  10579:-  10589:-  10591:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 358..358 (columns 1792..1795, numbers 10751..10771)
+  j=358 (j mod 7 = 1): 10751:13  10753:-  10757:-  10759:7  10769:11  10771:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=358 e=11 col=1792 m=827
+
+run of 1 dead cycles j = 369..369 (columns 1847..1850, numbers 11081..11101)
+  j=369 (j mod 7 = 5): 11081:7  11083:-  11087:-  11089:13  11099:11  11101:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=369 e=19 col=1848 m=853
+
+run of 1 dead cycles j = 415..415 (columns 2077..2080, numbers 12461..12481)
+  j=415 (j mod 7 = 2): 12461:-  12463:11  12467:7/13  12469:-  12479:-  12481:7   | gears [7, 11, 13] (3 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 429..429 (columns 2147..2150, numbers 12881..12901)
+  j=429 (j mod 7 = 2): 12881:11  12883:13  12887:7  12889:-  12899:-  12901:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 0
+  q'=13 sole kills: j=429 e=13 col=2147 m=991
+
+run of 1 dead cycles j = 431..431 (columns 2157..2160, numbers 12941..12961)
+  j=431 (j mod 7 = 4): 12941:-  12943:7  12947:11  12949:-  12959:-  12961:13   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=431 e=31 col=2160 m=997
+
+run of 1 dead cycles j = 436..436 (columns 2182..2185, numbers 13091..13111)
+  j=436 (j mod 7 = 2): 13091:13  13093:-  13097:7  13099:-  13109:-  13111:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=436 e=11 col=2182 m=1007
+
+run of 1 dead cycles j = 470..470 (columns 2352..2355, numbers 14111..14131)
+  j=470 (j mod 7 = 1): 14111:-  14113:11  14117:-  14119:7  14129:-  14131:13   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=470 e=31 col=2355 m=1087
+
+run of 1 dead cycles j = 492..492 (columns 2462..2465, numbers 14771..14791)
+  j=492 (j mod 7 = 2): 14771:-  14773:11  14777:7  14779:-  14789:-  14791:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 506..506 (columns 2532..2535, numbers 15191..15211)
+  j=506 (j mod 7 = 2): 15191:11  15193:-  15197:7/13  15199:-  15209:-  15211:7   | gears [7, 11, 13] (3 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 516..516 (columns 2582..2585, numbers 15491..15511)
+  j=516 (j mod 7 = 5): 15491:7  15493:-  15497:-  15499:11  15509:13  15511:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=516 e=29 col=2585 m=1193
+
+run of 1 dead cycles j = 520..520 (columns 2602..2605, numbers 15611..15631)
+  j=520 (j mod 7 = 2): 15611:-  15613:13  15617:7  15619:-  15629:-  15631:7/11   | gears [7, 11, 13] (3 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=520 e=13 col=2602 m=1201
+
+run of 1 dead cycles j = 527..527 (columns 2637..2640, numbers 15821..15841)
+  j=527 (j mod 7 = 2): 15821:13  15823:-  15827:7  15829:11  15839:-  15841:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=527 e=11 col=2637 m=1217
+
+run of 1 dead cycles j = 561..561 (columns 2807..2810, numbers 16841..16861)
+  j=561 (j mod 7 = 1): 16841:11  16843:-  16847:-  16849:7  16859:-  16861:13   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=561 e=31 col=2810 m=1297
+
+run of 1 dead cycles j = 564..564 (columns 2822..2825, numbers 16931..16951)
+  j=564 (j mod 7 = 4): 16931:-  16933:7  16937:-  16939:13  16949:-  16951:11   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=564 e=19 col=2823 m=1303
+
+run of 1 dead cycles j = 569..569 (columns 2847..2850, numbers 17081..17101)
+  j=569 (j mod 7 = 2): 17081:-  17083:11  17087:7  17089:-  17099:-  17101:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 583..583 (columns 2917..2920, numbers 17501..17521)
+  j=583 (j mod 7 = 2): 17501:11  17503:-  17507:7  17509:-  17519:-  17521:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 607..607 (columns 3037..3040, numbers 18221..18241)
+  j=607 (j mod 7 = 5): 18221:7  18223:-  18227:11  18229:-  18239:13  18241:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=607 e=29 col=3040 m=1403
+
+run of 1 dead cycles j = 611..611 (columns 3057..3060, numbers 18341..18361)
+  j=611 (j mod 7 = 2): 18341:-  18343:13  18347:7  18349:-  18359:11  18361:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=611 e=13 col=3057 m=1411
+
+run of 1 dead cycles j = 618..618 (columns 3092..3095, numbers 18551..18571)
+  j=618 (j mod 7 = 2): 18551:13  18553:-  18557:7/11  18559:-  18569:-  18571:7   | gears [7, 11, 13] (3 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=618 e=11 col=3092 m=1427
+
+run of 1 dead cycles j = 646..646 (columns 3232..3235, numbers 19391..19411)
+  j=646 (j mod 7 = 2): 19391:-  19393:11  19397:7  19399:-  19409:13  19411:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 0
+  q'=13 sole kills: j=646 e=29 col=3235 m=1493
+
+run of 1 dead cycles j = 655..655 (columns 3277..3280, numbers 19661..19681)
+  j=655 (j mod 7 = 4): 19661:-  19663:7  19667:-  19669:13  19679:11  19681:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=655 e=19 col=3278 m=1513
+
+run of 1 dead cycles j = 660..660 (columns 3302..3305, numbers 19811..19831)
+  j=660 (j mod 7 = 2): 19811:11  19813:-  19817:7  19819:-  19829:-  19831:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 668..668 (columns 3342..3345, numbers 20051..20071)
+  j=668 (j mod 7 = 3): 20051:-  20053:11  20057:-  20059:13  20069:7  20071:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=668 e=19 col=3343 m=1543
+
+run of 1 dead cycles j = 702..702 (columns 3512..3515, numbers 21071..21091)
+  j=702 (j mod 7 = 2): 21071:-  21073:13  21077:7  21079:-  21089:-  21091:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=702 e=13 col=3512 m=1621
+
+run of 1 dead cycles j = 709..709 (columns 3547..3550, numbers 21281..21301)
+  j=709 (j mod 7 = 2): 21281:13  21283:-  21287:7  21289:-  21299:-  21301:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=709 e=11 col=3547 m=1637
+
+run of 1 dead cycles j = 723..723 (columns 3617..3620, numbers 21701..21721)
+  j=723 (j mod 7 = 2): 21701:-  21703:11  21707:7  21709:-  21719:-  21721:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 737..737 (columns 3687..3690, numbers 22121..22141)
+  j=737 (j mod 7 = 2): 22121:11  22123:-  22127:7  22129:-  22139:13  22141:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 0
+  q'=13 sole kills: j=737 e=29 col=3690 m=1703
+
+run of 1 dead cycles j = 740..740 (columns 3702..3705, numbers 22211..22231)
+  j=740 (j mod 7 = 5): 22211:7  22213:-  22217:13  22219:-  22229:-  22231:11   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=740 e=17 col=3703 m=1709
+
+run of 1 dead cycles j = 759..759 (columns 3797..3800, numbers 22781..22801)
+  j=759 (j mod 7 = 3): 22781:11  22783:-  22787:-  22789:13  22799:7  22801:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=759 e=19 col=3798 m=1753
+
+run of 1 dead cycles j = 780..780 (columns 3902..3905, numbers 23411..23431)
+  j=780 (j mod 7 = 3): 23411:-  23413:13  23417:-  23419:11  23429:7  23431:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=780 e=13 col=3902 m=1801
+
+run of 1 dead cycles j = 793..793 (columns 3967..3970, numbers 23801..23821)
+  j=793 (j mod 7 = 2): 23801:-  23803:13  23807:7  23809:-  23819:-  23821:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=793 e=13 col=3967 m=1831
+
+run of 1 dead cycles j = 800..800 (columns 4002..4005, numbers 24011..24031)
+  j=800 (j mod 7 = 2): 24011:13  24013:11  24017:7  24019:-  24029:-  24031:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 0
+  q'=13 sole kills: j=800 e=11 col=4002 m=1847
+
+run of 1 dead cycles j = 802..802 (columns 4012..4015, numbers 24071..24091)
+  j=802 (j mod 7 = 4): 24071:-  24073:7  24077:-  24079:11  24089:13  24091:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=802 e=29 col=4015 m=1853
+
+run of 1 dead cycles j = 806..806 (columns 4032..4035, numbers 24191..24211)
+  j=806 (j mod 7 = 1): 24191:-  24193:13  24197:-  24199:7  24209:-  24211:11   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=806 e=13 col=4032 m=1861
+
+run of 1 dead cycles j = 814..814 (columns 4072..4075, numbers 24431..24451)
+  j=814 (j mod 7 = 2): 24431:11  24433:-  24437:7  24439:-  24449:-  24451:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 831..831 (columns 4157..4160, numbers 24941..24961)
+  j=831 (j mod 7 = 5): 24941:7  24943:-  24947:13  24949:-  24959:11  24961:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=831 e=17 col=4158 m=1919
+
+run of 1 dead cycles j = 871..871 (columns 4357..4360, numbers 26141..26161)
+  j=871 (j mod 7 = 3): 26141:-  26143:13  26147:11  26149:-  26159:7  26161:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=871 e=13 col=4357 m=2011
+
+run of 1 dead cycles j = 877..877 (columns 4387..4390, numbers 26321..26341)
+  j=877 (j mod 7 = 2): 26321:-  26323:11  26327:7  26329:-  26339:-  26341:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 884..884 (columns 4422..4425, numbers 26531..26551)
+  j=884 (j mod 7 = 2): 26531:-  26533:13  26537:7  26539:-  26549:-  26551:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=884 e=13 col=4422 m=2041
+
+run of 1 dead cycles j = 891..891 (columns 4457..4460, numbers 26741..26761)
+  j=891 (j mod 7 = 2): 26741:11/13  26743:-  26747:7  26749:-  26759:-  26761:7   | gears [7, 11, 13] (3 distinct; forced [7]); M-open slots here: 0
+
+run of 1 dead cycles j = 893..893 (columns 4467..4470, numbers 26801..26821)
+  j=893 (j mod 7 = 4): 26801:-  26803:7  26807:11  26809:-  26819:13  26821:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=893 e=29 col=4470 m=2063
+
+run of 1 dead cycles j = 897..897 (columns 4487..4490, numbers 26921..26941)
+  j=897 (j mod 7 = 1): 26921:-  26923:13  26927:-  26929:7  26939:11  26941:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=897 e=13 col=4487 m=2071
+
+run of 1 dead cycles j = 932..932 (columns 4662..4665, numbers 27971..27991)
+  j=932 (j mod 7 = 1): 27971:-  27973:11  27977:-  27979:7  27989:13  27991:-   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 1
+  q'=13 sole kills: j=932 e=29 col=4665 m=2153
+
+run of 1 dead cycles j = 954..954 (columns 4772..4775, numbers 28631..28651)
+  j=954 (j mod 7 = 2): 28631:-  28633:11  28637:7  28639:13  28649:-  28651:7   | gears [7, 11, 13] (3 distinct; forced [7, 11, 13]); M-open slots here: 0
+  q'=13 sole kills: j=954 e=19 col=4773 m=2203
+
+run of 1 dead cycles j = 968..968 (columns 4842..4845, numbers 29051..29071)
+  j=968 (j mod 7 = 2): 29051:11  29053:-  29057:7  29059:-  29069:-  29071:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 0
+
+run of 1 dead cycles j = 975..975 (columns 4877..4880, numbers 29261..29281)
+  j=975 (j mod 7 = 2): 29261:-  29263:13  29267:7  29269:-  29279:-  29281:7   | gears [7, 13] (2 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=975 e=13 col=4877 m=2251
+
+run of 1 dead cycles j = 982..982 (columns 4912..4915, numbers 29471..29491)
+  j=982 (j mod 7 = 2): 29471:13  29473:-  29477:7  29479:-  29489:-  29491:7/11   | gears [7, 11, 13] (3 distinct; forced [7, 13]); M-open slots here: 1
+  q'=13 sole kills: j=982 e=11 col=4912 m=2267
+
+SUMMARY {5..13}: q'-sole kills per record run [1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1]; consecutive-kill classes {}; multiplier differences {}; lattice identity 0/0; distinct killing gears per dead cycle {2: 24, 3: 52}

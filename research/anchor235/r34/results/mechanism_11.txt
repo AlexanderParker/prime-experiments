@@ -1,0 +1,11 @@
+machine {5..11} = M + 11, M = {5..7}; u' = 2, 2u' = 4, q'-2u' = 7; F_c = 1 at 2 runs; F = 7
+
+run of 1 dead cycles j = 30..30 (columns 152..155, numbers 911..931)
+  j=30 (j mod 7 = 2): 911:-  913:11  917:7  919:-  929:-  931:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 1
+  q'=11 sole kills: j=30 e=13 col=152 m=83
+
+run of 1 dead cycles j = 44..44 (columns 222..225, numbers 1331..1351)
+  j=44 (j mod 7 = 2): 1331:11  1333:-  1337:7  1339:-  1349:-  1351:7   | gears [7, 11] (2 distinct; forced [7, 11]); M-open slots here: 1
+  q'=11 sole kills: j=44 e=11 col=222 m=121
+
+SUMMARY {5..11}: q'-sole kills per record run [1, 1]; consecutive-kill classes {}; multiplier differences {}; lattice identity 0/0; distinct killing gears per dead cycle {2: 2}

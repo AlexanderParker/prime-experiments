@@ -1,0 +1,324 @@
+Q2: record stretches, their position as a fraction of the period, and their relation to every gear's clean end zone.
+Convention: F = max gap between consecutive openings; stretch = blocked columns x+1..x+F-1; fraction = (x+1)/P.
+zone(g) = columns within +-h_g of a multiple of 5g (h_g = distance to g's first anchor-open strike); 'in' = stretch inside zone, 'x' = intersects, '.' = disjoint.
+
+M = {5..7}, P = 35, openings 15, F = 5, d_0 = 2, F_2 = 7
+  zone half-widths h_g: {7: 8};  F(M minus g): {7: 2}  (F(M)=5; a stretch inside g's zone is a stretch of M minus g, so it needs F(M-g) >= F)
+  gap 5 (F): 2 stretches
+    mirror-closed: 2 of 2 have their partner P-x-L in the set; self-mirror: []
+    x=       12 cols 13..16 frac 0.3714 | dist to 5g-multiple [13] | zone ['.']
+    x=       18 cols 19..22 frac 0.5429 | dist to 5g-multiple [13] | zone ['.']
+    fractions: min 0.3714 max 0.5429; within 0.3..0.7: 2 of 2; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 0, disjoint 2 of 2  [F(M-7) = 2 < 5: inside impossible by theorem]
+  gap 4 (F-1): none realised
+  gap 3 (F-2): 2 stretches
+    mirror-closed: 2 of 2 have their partner P-x-L in the set; self-mirror: []
+    x=        7 cols 8..9 frac 0.2286 | dist to 5g-multiple [8] | zone ['.']
+    x=       25 cols 26..27 frac 0.7429 | dist to 5g-multiple [8] | zone ['.']
+    fractions: min 0.2286 max 0.7429; within 0.3..0.7: 0 of 2; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 0, disjoint 2 of 2  [F(M-7) = 2 < 3: inside impossible by theorem]
+  base rate: fraction of columns inside zone(g) = (2h_g-1)/(5g): 7: 0.429
+  elapsed 0.0s
+
+M = {5..11}, P = 385, openings 135, F = 7, d_0 = 3, F_2 = 11
+  zone half-widths h_g: {7: 8, 11: 2};  F(M minus g): {7: 4, 11: 5}  (F(M)=7; a stretch inside g's zone is a stretch of M minus g, so it needs F(M-g) >= F)
+  gap 7 (F): 4 stretches
+    mirror-closed: 4 of 4 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 2 start differences divisible by 5*7: [70, 70]
+    x=      150 cols 151..156 frac 0.3922 | dist to 5g-multiple [11, 9] | zone ['.', '.']
+    x=      158 cols 159..164 frac 0.4130 | dist to 5g-multiple [11, 1] | zone ['.', 'x']
+    x=      220 cols 221..226 frac 0.5740 | dist to 5g-multiple [11, 1] | zone ['.', 'x']
+    x=      228 cols 229..234 frac 0.5948 | dist to 5g-multiple [11, 9] | zone ['.', '.']
+    fractions: min 0.3922 max 0.5948; within 0.3..0.7: 4 of 4; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 0, disjoint 4 of 4  [F(M-7) = 4 < 7: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 2, disjoint 2 of 4  [F(M-11) = 5 < 7: inside impossible by theorem]
+  gap 6 (F-1): 4 stretches
+    mirror-closed: 4 of 4 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 2 start differences divisible by 5*7: [70, 70]
+    NOTE: 1 start differences divisible by 5*11: [275]
+    x=       52 cols 53..57 frac 0.1377 | dist to 5g-multiple [13, 0] | zone ['.', 'x']
+    x=      122 cols 123..127 frac 0.3195 | dist to 5g-multiple [13, 13] | zone ['.', '.']
+    x=      257 cols 258..262 frac 0.6701 | dist to 5g-multiple [13, 13] | zone ['.', '.']
+    x=      327 cols 328..332 frac 0.8519 | dist to 5g-multiple [13, 0] | zone ['.', 'x']
+    fractions: min 0.1377 max 0.8519; within 0.3..0.7: 2 of 4; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 0, disjoint 4 of 4  [F(M-7) = 4 < 6: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 2, disjoint 2 of 4  [F(M-11) = 5 < 6: inside impossible by theorem]
+  gap 5 (F-2): 22 stretches
+    mirror-closed: 22 of 22 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 46 start differences divisible by 5*7: [35, 70, 105, 175, 280]
+    NOTE: 4 start differences divisible by 5*11: [110, 110, 110, 110]
+    x=       12 cols 13..16 frac 0.0338 | dist to 5g-multiple [13, 13] | zone ['.', '.']
+    x=       18 cols 19..22 frac 0.0494 | dist to 5g-multiple [13, 19] | zone ['.', '.']
+    x=       40 cols 41..44 frac 0.1065 | dist to 5g-multiple [6, 11] | zone ['x', '.']
+    x=       47 cols 48..51 frac 0.1247 | dist to 5g-multiple [13, 4] | zone ['.', '.']
+    x=       82 cols 83..86 frac 0.2156 | dist to 5g-multiple [13, 24] | zone ['.', '.']
+    x=       88 cols 89..92 frac 0.2312 | dist to 5g-multiple [13, 18] | zone ['.', '.']
+    x=      110 cols 111..114 frac 0.2883 | dist to 5g-multiple [6, 1] | zone ['x', 'x']
+    x=      117 cols 118..121 frac 0.3065 | dist to 5g-multiple [13, 8] | zone ['.', '.']
+    x=      128 cols 129..132 frac 0.3351 | dist to 5g-multiple [8, 19] | zone ['.', '.']
+    x=      182 cols 183..186 frac 0.4753 | dist to 5g-multiple [8, 18] | zone ['.', '.']
+    x=      187 cols 188..191 frac 0.4883 | dist to 5g-multiple [13, 23] | zone ['.', '.']
+    x=      193 cols 194..197 frac 0.5039 | dist to 5g-multiple [13, 23] | zone ['.', '.']
+    x=      198 cols 199..202 frac 0.5169 | dist to 5g-multiple [8, 18] | zone ['.', '.']
+    x=      252 cols 253..256 frac 0.6571 | dist to 5g-multiple [8, 19] | zone ['.', '.']
+    x=      263 cols 264..267 frac 0.6857 | dist to 5g-multiple [13, 8] | zone ['.', '.']
+    x=      270 cols 271..274 frac 0.7039 | dist to 5g-multiple [6, 1] | zone ['x', 'x']
+    x=      292 cols 293..296 frac 0.7610 | dist to 5g-multiple [13, 18] | zone ['.', '.']
+    x=      298 cols 299..302 frac 0.7766 | dist to 5g-multiple [13, 24] | zone ['.', '.']
+    x=      333 cols 334..337 frac 0.8675 | dist to 5g-multiple [13, 4] | zone ['.', '.']
+    x=      340 cols 341..344 frac 0.8857 | dist to 5g-multiple [6, 11] | zone ['x', '.']
+    x=      362 cols 363..366 frac 0.9429 | dist to 5g-multiple [13, 19] | zone ['.', '.']
+    x=      368 cols 369..372 frac 0.9584 | dist to 5g-multiple [13, 13] | zone ['.', '.']
+    fractions: min 0.0338 max 0.9584; within 0.3..0.7: 8 of 22; below 0.05 or above 0.95: 3
+    gear 7: zone half-width 8, stretches inside 0, intersecting 4, disjoint 18 of 22  [F(M-7) = 4 < 5: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 2, disjoint 20 of 22  [F(M-11) = 5 >= 5: inside not excluded by the theorem]
+  base rate: fraction of columns inside zone(g) = (2h_g-1)/(5g): 7: 0.429, 11: 0.055
+  elapsed 0.0s
+
+M = {5..13}, P = 5005, openings 1485, F = 11, d_0 = 3, F_2 = 16
+  zone half-widths h_g: {7: 8, 11: 2, 13: 2};  F(M minus g): {7: 6, 11: 7, 13: 7}  (F(M)=11; a stretch inside g's zone is a stretch of M minus g, so it needs F(M-g) >= F)
+  gap 11 (F): 12 stretches
+    mirror-closed: 12 of 12 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 30 start differences divisible by 5*7: [2695, 455, 560, 1015, 2695]
+    NOTE: 6 start differences divisible by 5*11: [2695, 2695, 2695, 2695, 2695]
+    NOTE: 12 start differences divisible by 5*13: [520, 975, 455, 455, 975]
+    x=      122 cols 123..132 frac 0.0246 | dist to 5g-multiple [8, 13, 0] | zone ['.', '.', 'x']
+    x=      642 cols 643..652 frac 0.1285 | dist to 5g-multiple [13, 8, 0] | zone ['.', '.', 'x']
+    x=     1097 cols 1098..1107 frac 0.2194 | dist to 5g-multiple [13, 0, 0] | zone ['.', 'x', 'x']
+    x=     1202 cols 1203..1212 frac 0.2404 | dist to 5g-multiple [13, 0, 23] | zone ['.', 'x', '.']
+    x=     1657 cols 1658..1667 frac 0.3313 | dist to 5g-multiple [13, 8, 23] | zone ['.', '.', '.']
+    x=     2177 cols 2178..2187 frac 0.4352 | dist to 5g-multiple [8, 13, 23] | zone ['.', '.', '.']
+    x=     2817 cols 2818..2827 frac 0.5630 | dist to 5g-multiple [8, 13, 23] | zone ['.', '.', '.']
+    x=     3337 cols 3338..3347 frac 0.6669 | dist to 5g-multiple [13, 8, 23] | zone ['.', '.', '.']
+    x=     3792 cols 3793..3802 frac 0.7578 | dist to 5g-multiple [13, 0, 23] | zone ['.', 'x', '.']
+    x=     3897 cols 3898..3907 frac 0.7788 | dist to 5g-multiple [13, 0, 0] | zone ['.', 'x', 'x']
+    x=     4352 cols 4353..4362 frac 0.8697 | dist to 5g-multiple [13, 8, 0] | zone ['.', '.', 'x']
+    x=     4872 cols 4873..4882 frac 0.9736 | dist to 5g-multiple [8, 13, 0] | zone ['.', '.', 'x']
+    fractions: min 0.0246 max 0.9736; within 0.3..0.7: 4 of 12; below 0.05 or above 0.95: 2
+    gear 7: zone half-width 8, stretches inside 0, intersecting 0, disjoint 12 of 12  [F(M-7) = 6 < 11: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 4, disjoint 8 of 12  [F(M-11) = 7 < 11: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 6, disjoint 6 of 12  [F(M-13) = 7 < 11: inside impossible by theorem]
+  gap 10 (F-1): 12 stretches
+    mirror-closed: 12 of 12 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 30 start differences divisible by 5*7: [455, 1190, 2310, 2765, 3885]
+    NOTE: 6 start differences divisible by 5*11: [2310, 2695, 2310, 2310, 2695]
+    NOTE: 4 start differences divisible by 5*13: [455, 455, 455, 455]
+    x=      532 cols 533..541 frac 0.1065 | dist to 5g-multiple [8, 9, 13] | zone ['.', '.', '.']
+    x=      578 cols 579..587 frac 0.1157 | dist to 5g-multiple [8, 18, 0] | zone ['.', '.', 'x']
+    x=      987 cols 988..996 frac 0.1974 | dist to 5g-multiple [8, 0, 13] | zone ['.', 'x', '.']
+    x=     1698 cols 1699..1707 frac 0.3395 | dist to 5g-multiple [8, 0, 9] | zone ['.', 'x', '.']
+    x=     1722 cols 1723..1731 frac 0.3443 | dist to 5g-multiple [8, 18, 24] | zone ['.', '.', '.']
+    x=     2153 cols 2154..2162 frac 0.4304 | dist to 5g-multiple [8, 9, 9] | zone ['.', '.', '.']
+    x=     2842 cols 2843..2851 frac 0.5680 | dist to 5g-multiple [8, 9, 9] | zone ['.', '.', '.']
+    x=     3273 cols 3274..3282 frac 0.6541 | dist to 5g-multiple [8, 18, 24] | zone ['.', '.', '.']
+    x=     3297 cols 3298..3306 frac 0.6589 | dist to 5g-multiple [8, 0, 9] | zone ['.', 'x', '.']
+    x=     4008 cols 4009..4017 frac 0.8010 | dist to 5g-multiple [8, 0, 13] | zone ['.', 'x', '.']
+    x=     4417 cols 4418..4426 frac 0.8827 | dist to 5g-multiple [8, 18, 0] | zone ['.', '.', 'x']
+    x=     4463 cols 4464..4472 frac 0.8919 | dist to 5g-multiple [8, 9, 13] | zone ['.', '.', '.']
+    fractions: min 0.1065 max 0.8919; within 0.3..0.7: 6 of 12; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 0, disjoint 12 of 12  [F(M-7) = 6 < 10: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 4, disjoint 8 of 12  [F(M-11) = 7 < 10: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 2, disjoint 10 of 12  [F(M-13) = 7 < 10: inside impossible by theorem]
+  gap 9 (F-2): none realised
+  base rate: fraction of columns inside zone(g) = (2h_g-1)/(5g): 7: 0.429, 11: 0.055, 13: 0.046
+  elapsed 0.0s
+
+M = {5..17}, P = 85085, openings 22275, F = 18, d_0 = 5, F_2 = 25
+  zone half-widths h_g: {7: 8, 11: 2, 13: 2, 17: 3};  F(M minus g): {7: 10, 11: 13, 13: 16, 17: 11}  (F(M)=18; a stretch inside g's zone is a stretch of M minus g, so it needs F(M-g) >= F)
+  gap 18 (F): 20 stretches
+    mirror-closed: 20 of 20 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 42 start differences divisible by 5*7: [385, 32725, 33110, 32340, 32725]
+    NOTE: 26 start differences divisible by 5*11: [385, 32725, 33110, 32340, 32725]
+    NOTE: 16 start differences divisible by 5*13: [5525, 5525, 20995, 15470, 15470]
+    NOTE: 42 start differences divisible by 5*17: [5525, 32725, 38250, 5525, 20995]
+    x=      117 cols 118..134 frac 0.0014 | dist to 5g-multiple [6, 8, 0, 33] | zone ['x', '.', 'x', '.']
+    x=      502 cols 503..519 frac 0.0059 | dist to 5g-multiple [6, 8, 1, 0] | zone ['x', '.', 'x', 'x']
+    x=     5642 cols 5643..5659 frac 0.0663 | dist to 5g-multiple [8, 6, 0, 33] | zone ['.', '.', 'x', '.']
+    x=     6027 cols 6028..6044 frac 0.0708 | dist to 5g-multiple [8, 6, 1, 0] | zone ['.', '.', 'x', 'x']
+    x=    21497 cols 21498..21514 frac 0.2527 | dist to 5g-multiple [8, 0, 1, 0] | zone ['.', 'x', 'x', 'x']
+    x=    30845 cols 30846..30862 frac 0.3625 | dist to 5g-multiple [8, 0, 13, 0] | zone ['.', 'x', '.', 'x']
+    x=    32842 cols 32843..32859 frac 0.3860 | dist to 5g-multiple [6, 8, 18, 33] | zone ['x', '.', '.', '.']
+    x=    33227 cols 33228..33244 frac 0.3905 | dist to 5g-multiple [6, 8, 13, 0] | zone ['x', '.', '.', 'x']
+    x=    38367 cols 38368..38384 frac 0.4509 | dist to 5g-multiple [8, 6, 18, 33] | zone ['.', '.', '.', '.']
+    x=    38752 cols 38753..38769 frac 0.4555 | dist to 5g-multiple [8, 6, 13, 0] | zone ['.', '.', '.', 'x']
+    x=    46315 cols 46316..46332 frac 0.5443 | dist to 5g-multiple [8, 6, 13, 0] | zone ['.', '.', '.', 'x']
+    x=    46700 cols 46701..46717 frac 0.5489 | dist to 5g-multiple [8, 6, 18, 33] | zone ['.', '.', '.', '.']
+    x=    51840 cols 51841..51857 frac 0.6093 | dist to 5g-multiple [6, 8, 13, 0] | zone ['x', '.', '.', 'x']
+    x=    52225 cols 52226..52242 frac 0.6138 | dist to 5g-multiple [6, 8, 18, 33] | zone ['x', '.', '.', '.']
+    x=    54222 cols 54223..54239 frac 0.6373 | dist to 5g-multiple [8, 0, 13, 0] | zone ['.', 'x', '.', 'x']
+    x=    63570 cols 63571..63587 frac 0.7471 | dist to 5g-multiple [8, 0, 1, 0] | zone ['.', 'x', 'x', 'x']
+    x=    79040 cols 79041..79057 frac 0.9290 | dist to 5g-multiple [8, 6, 1, 0] | zone ['.', '.', 'x', 'x']
+    x=    79425 cols 79426..79442 frac 0.9335 | dist to 5g-multiple [8, 6, 0, 33] | zone ['.', '.', 'x', '.']
+    x=    84565 cols 84566..84582 frac 0.9939 | dist to 5g-multiple [6, 8, 1, 0] | zone ['x', '.', 'x', 'x']
+    x=    84950 cols 84951..84967 frac 0.9984 | dist to 5g-multiple [6, 8, 0, 33] | zone ['x', '.', 'x', '.']
+    fractions: min 0.0014 max 0.9984; within 0.3..0.7: 10 of 20; below 0.05 or above 0.95: 4
+    gear 7: zone half-width 8, stretches inside 0, intersecting 8, disjoint 12 of 20  [F(M-7) = 10 < 18: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 4, disjoint 16 of 20  [F(M-11) = 13 < 18: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 10, disjoint 10 of 20  [F(M-13) = 16 < 18: inside impossible by theorem]
+    gear 17: zone half-width 3, stretches inside 0, intersecting 12, disjoint 8 of 20  [F(M-17) = 11 < 18: inside impossible by theorem]
+  gap 17 (F-1): none realised
+  gap 16 (F-2): 22 stretches
+    mirror-closed: 22 of 22 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 110 start differences divisible by 5*7: [4165, 10710, 17255, 23800, 36890]
+    NOTE: 74 start differences divisible by 5*11: [52360, 6545, 13090, 19635, 32725]
+    NOTE: 18 start differences divisible by 5*13: [69615, 75140, 5525, 75140, 69615]
+    NOTE: 231 start differences divisible by 5*17: [4165, 9690, 10710, 16235, 17255]
+    x=     2882 cols 2883..2897 frac 0.0339 | dist to 5g-multiple [8, 18, 23, 0] | zone ['.', '.', '.', 'x']
+    x=     7047 cols 7048..7062 frac 0.0828 | dist to 5g-multiple [8, 8, 23, 0] | zone ['.', '.', '.', 'x']
+    x=    12572 cols 12573..12587 frac 0.1478 | dist to 5g-multiple [8, 8, 23, 0] | zone ['.', '.', '.', 'x']
+    x=    13592 cols 13593..13607 frac 0.1598 | dist to 5g-multiple [8, 8, 8, 0] | zone ['.', '.', '.', 'x']
+    x=    19117 cols 19118..19132 frac 0.2247 | dist to 5g-multiple [8, 8, 8, 0] | zone ['.', '.', '.', 'x']
+    x=    20137 cols 20138..20152 frac 0.2367 | dist to 5g-multiple [8, 8, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    25662 cols 25663..25677 frac 0.3016 | dist to 5g-multiple [8, 8, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    26682 cols 26683..26697 frac 0.3136 | dist to 5g-multiple [8, 8, 18, 0] | zone ['.', '.', '.', 'x']
+    x=    29827 cols 29828..29842 frac 0.3506 | dist to 5g-multiple [8, 18, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    32207 cols 32208..32222 frac 0.3785 | dist to 5g-multiple [8, 8, 18, 0] | zone ['.', '.', '.', 'x']
+    x=    39772 cols 39773..39787 frac 0.4675 | dist to 5g-multiple [8, 8, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    45297 cols 45298..45312 frac 0.5324 | dist to 5g-multiple [8, 8, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    52862 cols 52863..52877 frac 0.6213 | dist to 5g-multiple [8, 8, 18, 0] | zone ['.', '.', '.', 'x']
+    x=    55242 cols 55243..55257 frac 0.6493 | dist to 5g-multiple [8, 18, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    58387 cols 58388..58402 frac 0.6862 | dist to 5g-multiple [8, 8, 18, 0] | zone ['.', '.', '.', 'x']
+    x=    59407 cols 59408..59422 frac 0.6982 | dist to 5g-multiple [8, 8, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    64932 cols 64933..64947 frac 0.7632 | dist to 5g-multiple [8, 8, 0, 0] | zone ['.', '.', 'x', 'x']
+    x=    65952 cols 65953..65967 frac 0.7751 | dist to 5g-multiple [8, 8, 8, 0] | zone ['.', '.', '.', 'x']
+    x=    71477 cols 71478..71492 frac 0.8401 | dist to 5g-multiple [8, 8, 8, 0] | zone ['.', '.', '.', 'x']
+    x=    72497 cols 72498..72512 frac 0.8521 | dist to 5g-multiple [8, 8, 23, 0] | zone ['.', '.', '.', 'x']
+    x=    78022 cols 78023..78037 frac 0.9170 | dist to 5g-multiple [8, 8, 23, 0] | zone ['.', '.', '.', 'x']
+    x=    82187 cols 82188..82202 frac 0.9660 | dist to 5g-multiple [8, 18, 23, 0] | zone ['.', '.', '.', 'x']
+    fractions: min 0.0339 max 0.9660; within 0.3..0.7: 10 of 22; below 0.05 or above 0.95: 2
+    gear 7: zone half-width 8, stretches inside 0, intersecting 0, disjoint 22 of 22  [F(M-7) = 10 < 16: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 0, disjoint 22 of 22  [F(M-11) = 13 < 16: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 8, disjoint 14 of 22  [F(M-13) = 16 >= 16: inside not excluded by the theorem]
+    gear 17: zone half-width 3, stretches inside 0, intersecting 22, disjoint 0 of 22  [F(M-17) = 11 < 16: inside impossible by theorem]
+  base rate: fraction of columns inside zone(g) = (2h_g-1)/(5g): 7: 0.429, 11: 0.055, 13: 0.046, 17: 0.059
+  elapsed 0.0s
+
+M = {5..19}, P = 1616615, openings 378675, F = 25, d_0 = 5, F_2 = 31
+  zone half-widths h_g: {7: 8, 11: 2, 13: 2, 17: 3, 19: 3};  F(M minus g): {7: 13, 11: 18, 13: 21, 17: 18, 19: 18}  (F(M)=25; a stretch inside g's zone is a stretch of M minus g, so it needs F(M-g) >= F)
+  gap 25 (F): 20 stretches
+    mirror-closed: 20 of 20 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 190 start differences divisible by 5*7: [25935, 67585, 169925, 202895, 373065]
+    NOTE: 42 start differences divisible by 5*11: [202895, 373065, 1217370, 1446445, 1590435]
+    NOTE: 40 start differences divisible by 5*13: [25935, 466830, 1175720, 1446445, 440895]
+    NOTE: 90 start differences divisible by 5*17: [202895, 373065, 776475, 1149540, 1175720]
+    NOTE: 58 start differences divisible by 5*19: [25935, 373065, 399000, 466830, 839895]
+    x=      110 cols 111..134 frac 0.0001 | dist to 5g-multiple [6, 1, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    x=    26045 cols 26046..26069 frac 0.0161 | dist to 5g-multiple [6, 1, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    x=    67695 cols 67696..67719 frac 0.0419 | dist to 5g-multiple [6, 0, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=   170035 cols 170036..170059 frac 0.1052 | dist to 5g-multiple [6, 1, 0, 26, 0] | zone ['x', 'x', 'x', '.', 'x']
+    x=   203005 cols 203006..203029 frac 0.1256 | dist to 5g-multiple [6, 1, 11, 26, 0] | zone ['x', 'x', '.', '.', 'x']
+    x=   373175 cols 373176..373199 frac 0.2308 | dist to 5g-multiple [6, 1, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=   399110 cols 399111..399134 frac 0.2469 | dist to 5g-multiple [6, 1, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=   440760 cols 440761..440784 frac 0.2726 | dist to 5g-multiple [6, 0, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    x=   466940 cols 466941..466964 frac 0.2888 | dist to 5g-multiple [6, 0, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    x=   776585 cols 776586..776609 frac 0.4804 | dist to 5g-multiple [6, 0, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=   840005 cols 840006..840029 frac 0.5196 | dist to 5g-multiple [6, 0, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=  1149650 cols 1149651..1149674 frac 0.7111 | dist to 5g-multiple [6, 0, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    x=  1175830 cols 1175831..1175854 frac 0.7273 | dist to 5g-multiple [6, 0, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    x=  1217480 cols 1217481..1217504 frac 0.7531 | dist to 5g-multiple [6, 1, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=  1243415 cols 1243416..1243439 frac 0.7691 | dist to 5g-multiple [6, 1, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=  1413585 cols 1413586..1413609 frac 0.8744 | dist to 5g-multiple [6, 1, 11, 26, 0] | zone ['x', 'x', '.', '.', 'x']
+    x=  1446555 cols 1446556..1446579 frac 0.8948 | dist to 5g-multiple [6, 1, 0, 26, 0] | zone ['x', 'x', 'x', '.', 'x']
+    x=  1548895 cols 1548896..1548919 frac 0.9581 | dist to 5g-multiple [6, 0, 11, 26, 16] | zone ['x', 'x', '.', '.', '.']
+    x=  1590545 cols 1590546..1590569 frac 0.9839 | dist to 5g-multiple [6, 1, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    x=  1616480 cols 1616481..1616504 frac 0.9999 | dist to 5g-multiple [6, 1, 0, 26, 16] | zone ['x', 'x', 'x', '.', '.']
+    fractions: min 0.0001 max 0.9999; within 0.3..0.7: 2 of 20; below 0.05 or above 0.95: 6
+    gear 7: zone half-width 8, stretches inside 0, intersecting 20, disjoint 0 of 20  [F(M-7) = 13 < 25: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 20, disjoint 0 of 20  [F(M-11) = 18 < 25: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 10, disjoint 10 of 20  [F(M-13) = 21 < 25: inside impossible by theorem]
+    gear 17: zone half-width 3, stretches inside 0, intersecting 0, disjoint 20 of 20  [F(M-17) = 18 < 25: inside impossible by theorem]
+    gear 19: zone half-width 3, stretches inside 0, intersecting 4, disjoint 16 of 20  [F(M-19) = 18 < 25: inside impossible by theorem]
+  gap 24 (F-1): none realised
+  gap 23 (F-2): 86 stretches
+    mirror-closed: 86 of 86 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 1722 start differences divisible by 5*7: [91245, 103950, 202895, 244545, 264810]
+    NOTE: 770 start differences divisible by 5*11: [91245, 103950, 202895, 274120, 294140]
+    NOTE: 258 start differences divisible by 5*13: [264810, 270725, 420420, 440895, 610610]
+    NOTE: 382 start differences divisible by 5*17: [202895, 244545, 270725, 373065, 440895]
+    NOTE: 370 start differences divisible by 5*19: [373065, 440895, 680295, 813960, 1053360]
+    x=     6027 cols 6028..6049 frac 0.0037 | dist to 5g-multiple [6, 1, 0, 0, 31] | zone ['x', 'x', 'x', 'x', '.']
+    x=    20130 cols 20131..20152 frac 0.0125 | dist to 5g-multiple [6, 1, 0, 0, 0] | zone ['x', 'x', 'x', 'x', 'x']
+    x=    36370 cols 36371..36392 frac 0.0225 | dist to 5g-multiple [6, 16, 8, 0, 0] | zone ['x', '.', '.', 'x', 'x']
+    x=    72875 cols 72876..72897 frac 0.0451 | dist to 5g-multiple [6, 1, 11, 31, 11] | zone ['x', 'x', '.', '.', '.']
+    x=    92895 cols 92896..92917 frac 0.0575 | dist to 5g-multiple [6, 1, 11, 0, 0] | zone ['x', 'x', '.', 'x', 'x']
+    x=    97272 cols 97273..97294 frac 0.0602 | dist to 5g-multiple [6, 1, 11, 31, 0] | zone ['x', 'x', '.', '.', 'x']
+    x=   109977 cols 109978..109999 frac 0.0680 | dist to 5g-multiple [6, 1, 0, 0, 11] | zone ['x', 'x', 'x', 'x', '.']
+    x=   122470 cols 122471..122492 frac 0.0758 | dist to 5g-multiple [6, 0, 11, 0, 16] | zone ['x', 'x', '.', 'x', '.']
+    x=   164120 cols 164121..164142 frac 0.1015 | dist to 5g-multiple [6, 1, 0, 0, 18] | zone ['x', 'x', 'x', 'x', '.']
+    x=   185995 cols 185996..186017 frac 0.1151 | dist to 5g-multiple [6, 0, 13, 16, 0] | zone ['x', 'x', '.', '.', 'x']
+    x=   190300 cols 190301..190322 frac 0.1177 | dist to 5g-multiple [6, 1, 0, 0, 16] | zone ['x', 'x', 'x', 'x', '.']
+    x=   208922 cols 208923..208944 frac 0.1292 | dist to 5g-multiple [6, 1, 13, 0, 18] | zone ['x', 'x', '.', 'x', '.']
+    x=  1407670 cols 1407671..1407692 frac 0.8708 | dist to 5g-multiple [6, 1, 13, 0, 18] | zone ['x', 'x', '.', 'x', '.']
+    x=  1426292 cols 1426293..1426314 frac 0.8823 | dist to 5g-multiple [6, 1, 0, 0, 16] | zone ['x', 'x', 'x', 'x', '.']
+    x=  1430597 cols 1430598..1430619 frac 0.8849 | dist to 5g-multiple [6, 0, 13, 16, 0] | zone ['x', 'x', '.', '.', 'x']
+    x=  1452472 cols 1452473..1452494 frac 0.8985 | dist to 5g-multiple [6, 1, 0, 0, 18] | zone ['x', 'x', 'x', 'x', '.']
+    x=  1494122 cols 1494123..1494144 frac 0.9242 | dist to 5g-multiple [6, 0, 11, 0, 16] | zone ['x', 'x', '.', 'x', '.']
+    x=  1506615 cols 1506616..1506637 frac 0.9320 | dist to 5g-multiple [6, 1, 0, 0, 11] | zone ['x', 'x', 'x', 'x', '.']
+    x=  1519320 cols 1519321..1519342 frac 0.9398 | dist to 5g-multiple [6, 1, 11, 31, 0] | zone ['x', 'x', '.', '.', 'x']
+    x=  1523697 cols 1523698..1523719 frac 0.9425 | dist to 5g-multiple [6, 1, 11, 0, 0] | zone ['x', 'x', '.', 'x', 'x']
+    x=  1543717 cols 1543718..1543739 frac 0.9549 | dist to 5g-multiple [6, 1, 11, 31, 11] | zone ['x', 'x', '.', '.', '.']
+    x=  1580222 cols 1580223..1580244 frac 0.9775 | dist to 5g-multiple [6, 16, 8, 0, 0] | zone ['x', '.', '.', 'x', 'x']
+    x=  1596462 cols 1596463..1596484 frac 0.9875 | dist to 5g-multiple [6, 1, 0, 0, 0] | zone ['x', 'x', 'x', 'x', 'x']
+    x=  1610565 cols 1610566..1610587 frac 0.9963 | dist to 5g-multiple [6, 1, 0, 0, 31] | zone ['x', 'x', 'x', 'x', '.']
+    fractions: min 0.0037 max 0.9963; within 0.3..0.7: 30 of 86; below 0.05 or above 0.95: 8
+    gear 7: zone half-width 8, stretches inside 0, intersecting 86, disjoint 0 of 86  [F(M-7) = 13 < 23: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 72, disjoint 14 of 86  [F(M-11) = 18 < 23: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 44, disjoint 42 of 86  [F(M-13) = 21 < 23: inside impossible by theorem]
+    gear 17: zone half-width 3, stretches inside 0, intersecting 48, disjoint 38 of 86  [F(M-17) = 18 < 23: inside impossible by theorem]
+    gear 19: zone half-width 3, stretches inside 0, intersecting 40, disjoint 46 of 86  [F(M-19) = 18 < 23: inside impossible by theorem]
+  base rate: fraction of columns inside zone(g) = (2h_g-1)/(5g): 7: 0.429, 11: 0.055, 13: 0.046, 17: 0.059, 19: 0.053
+  elapsed 0.0s
+
+M = {5..23}, P = 37182145, openings 7952175, F = 34, d_0 = 5, F_2 = 39
+  zone half-widths h_g: {7: 8, 11: 2, 13: 2, 17: 3, 19: 3, 23: 27};  F(M minus g): {7: 17, 11: 23, 13: 25, 17: 23, 19: 25, 23: 25}  (F(M)=34; a stretch inside g's zone is a stretch of M minus g, so it needs F(M-g) >= F)
+  gap 34 (F): 4 stretches
+    mirror-closed: 4 of 4 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 2 start differences divisible by 5*7: [5470780, 5470780]
+    NOTE: 1 start differences divisible by 5*13: [851695]
+    NOTE: 2 start differences divisible by 5*23: [5470780, 5470780]
+    x= 12694428 cols 12694429..12694461 frac 0.3414 | dist to 5g-multiple [0, 0, 0, 19, 9, 39] | zone ['x', 'x', 'x', '.', '.', '.']
+    x= 18165208 cols 18165209..18165241 frac 0.4885 | dist to 5g-multiple [0, 0, 0, 24, 0, 39] | zone ['x', 'x', 'x', '.', 'x', '.']
+    x= 19016903 cols 19016904..19016936 frac 0.5115 | dist to 5g-multiple [0, 0, 0, 24, 0, 39] | zone ['x', 'x', 'x', '.', 'x', '.']
+    x= 24487683 cols 24487684..24487716 frac 0.6586 | dist to 5g-multiple [0, 0, 0, 19, 9, 39] | zone ['x', 'x', 'x', '.', '.', '.']
+    fractions: min 0.3414 max 0.6586; within 0.3..0.7: 4 of 4; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 4, disjoint 0 of 4  [F(M-7) = 17 < 34: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 4, disjoint 0 of 4  [F(M-11) = 23 < 34: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 4, disjoint 0 of 4  [F(M-13) = 25 < 34: inside impossible by theorem]
+    gear 17: zone half-width 3, stretches inside 0, intersecting 0, disjoint 4 of 4  [F(M-17) = 23 < 34: inside impossible by theorem]
+    gear 19: zone half-width 3, stretches inside 0, intersecting 2, disjoint 2 of 4  [F(M-19) = 25 < 34: inside impossible by theorem]
+    gear 23: zone half-width 27, stretches inside 0, intersecting 0, disjoint 4 of 4  [F(M-23) = 25 < 34: inside impossible by theorem]
+  gap 33 (F-1): 2 stretches
+    mirror-closed: 2 of 2 have their partner P-x-L in the set; self-mirror: []
+    x=  5606402 cols 5606403..5606434 frac 0.1508 | dist to 5g-multiple [0, 0, 11, 0, 0, 38] | zone ['x', 'x', '.', 'x', 'x', '.']
+    x= 31575710 cols 31575711..31575742 frac 0.8492 | dist to 5g-multiple [0, 0, 11, 0, 0, 38] | zone ['x', 'x', '.', 'x', 'x', '.']
+    fractions: min 0.1508 max 0.8492; within 0.3..0.7: 0 of 2; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 2, disjoint 0 of 2  [F(M-7) = 17 < 33: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 2, disjoint 0 of 2  [F(M-11) = 23 < 33: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 0, disjoint 2 of 2  [F(M-13) = 25 < 33: inside impossible by theorem]
+    gear 17: zone half-width 3, stretches inside 0, intersecting 2, disjoint 0 of 2  [F(M-17) = 23 < 33: inside impossible by theorem]
+    gear 19: zone half-width 3, stretches inside 0, intersecting 2, disjoint 0 of 2  [F(M-19) = 25 < 33: inside impossible by theorem]
+    gear 23: zone half-width 27, stretches inside 0, intersecting 0, disjoint 2 of 2  [F(M-23) = 25 < 33: inside impossible by theorem]
+  gap 32 (F-2): 8 stretches
+    mirror-closed: 8 of 8 have their partner P-x-L in the set; self-mirror: []
+    NOTE: 6 start differences divisible by 5*7: [10965465, 19569550, 8604085, 8604085, 19569550]
+    NOTE: 2 start differences divisible by 5*11: [19569550, 19569550]
+    NOTE: 2 start differences divisible by 5*13: [19569550, 19569550]
+    NOTE: 2 start differences divisible by 5*17: [19569550, 19569550]
+    NOTE: 2 start differences divisible by 5*23: [19569550, 19569550]
+    x=  2553843 cols 2553844..2553874 frac 0.0687 | dist to 5g-multiple [0, 0, 0, 19, 11, 39] | zone ['x', 'x', 'x', '.', '.', '.']
+    x= 13519308 cols 13519309..13519339 frac 0.3636 | dist to 5g-multiple [0, 0, 11, 0, 16, 24] | zone ['x', 'x', '.', 'x', '.', 'x']
+    x= 15058720 cols 15058721..15058751 frac 0.4050 | dist to 5g-multiple [0, 0, 0, 19, 0, 39] | zone ['x', 'x', 'x', '.', 'x', '.']
+    x= 16156738 cols 16156739..16156769 frac 0.4345 | dist to 5g-multiple [1, 0, 14, 24, 0, 41] | zone ['x', 'x', '.', '.', 'x', '.']
+    x= 21025375 cols 21025376..21025406 frac 0.5655 | dist to 5g-multiple [1, 0, 14, 24, 0, 41] | zone ['x', 'x', '.', '.', 'x', '.']
+    x= 22123393 cols 22123394..22123424 frac 0.5950 | dist to 5g-multiple [0, 0, 0, 19, 0, 39] | zone ['x', 'x', 'x', '.', 'x', '.']
+    x= 23662805 cols 23662806..23662836 frac 0.6364 | dist to 5g-multiple [0, 0, 11, 0, 16, 24] | zone ['x', 'x', '.', 'x', '.', 'x']
+    x= 34628270 cols 34628271..34628301 frac 0.9313 | dist to 5g-multiple [0, 0, 0, 19, 11, 39] | zone ['x', 'x', 'x', '.', '.', '.']
+    fractions: min 0.0687 max 0.9313; within 0.3..0.7: 6 of 8; below 0.05 or above 0.95: 0
+    gear 7: zone half-width 8, stretches inside 0, intersecting 8, disjoint 0 of 8  [F(M-7) = 17 < 32: inside impossible by theorem]
+    gear 11: zone half-width 2, stretches inside 0, intersecting 8, disjoint 0 of 8  [F(M-11) = 23 < 32: inside impossible by theorem]
+    gear 13: zone half-width 2, stretches inside 0, intersecting 4, disjoint 4 of 8  [F(M-13) = 25 < 32: inside impossible by theorem]
+    gear 17: zone half-width 3, stretches inside 0, intersecting 2, disjoint 6 of 8  [F(M-17) = 23 < 32: inside impossible by theorem]
+    gear 19: zone half-width 3, stretches inside 0, intersecting 4, disjoint 4 of 8  [F(M-19) = 25 < 32: inside impossible by theorem]
+    gear 23: zone half-width 27, stretches inside 0, intersecting 2, disjoint 6 of 8  [F(M-23) = 25 < 32: inside impossible by theorem]
+  base rate: fraction of columns inside zone(g) = (2h_g-1)/(5g): 7: 0.429, 11: 0.055, 13: 0.046, 17: 0.059, 19: 0.053, 23: 0.461
+  elapsed 0.2s

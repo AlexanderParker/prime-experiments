@@ -1,0 +1,15 @@
+machine {5..29} = M + 29, M = {5..23}; u' = 5, 2u' = 10, q'-2u' = 19; F_c = 8 at 1 runs; F = 43
+
+run of 8 dead cycles j = 40181237..40181244 (columns 200906187..200906225, numbers 1205437121..1205437351)
+  j=40181237 (j mod 7 = 5): 1205437121:7/19  1205437123:11  1205437127:-  1205437129:13  1205437139:17  1205437141:-   | gears [7, 11, 13, 17, 19] (5 distinct; forced [11, 13, 17]); M-open slots here: 0
+  j=40181238 (j mod 7 = 6): 1205437151:-  1205437153:23  1205437157:-  1205437159:19  1205437169:-  1205437171:29   | gears [19, 23, 29] (3 distinct; forced [19, 23, 29]); M-open slots here: 1
+  j=40181239 (j mod 7 = 0): 1205437181:13  1205437183:-  1205437187:-  1205437189:11  1205437199:23  1205437201:-   | gears [11, 13, 23] (3 distinct; forced [11, 13, 23]); M-open slots here: 0
+  j=40181240 (j mod 7 = 1): 1205437211:11  1205437213:-  1205437217:-  1205437219:7  1205437229:29  1205437231:-   | gears [7, 11, 29] (3 distinct; forced [7, 11, 29]); M-open slots here: 1
+  j=40181241 (j mod 7 = 2): 1205437241:17  1205437243:-  1205437247:7  1205437249:-  1205437259:13  1205437261:7   | gears [7, 13, 17] (3 distinct; forced [7, 13, 17]); M-open slots here: 0
+  j=40181242 (j mod 7 = 3): 1205437271:-  1205437273:19  1205437277:11  1205437279:-  1205437289:7  1205437291:23   | gears [7, 11, 19, 23] (4 distinct; forced [7, 11, 19, 23]); M-open slots here: 0
+  j=40181243 (j mod 7 = 4): 1205437301:-  1205437303:7  1205437307:-  1205437309:17  1205437319:-  1205437321:11   | gears [7, 11, 17] (3 distinct; forced [7, 11, 17]); M-open slots here: 0
+  j=40181244 (j mod 7 = 5): 1205437331:7  1205437333:-  1205437337:13/23  1205437339:-  1205437349:19  1205437351:-   | gears [7, 13, 19, 23] (4 distinct; forced [7, 19]); M-open slots here: 0
+  q'=29 sole kills: j=40181238 e=31 col=200906195 m=41566799, j=40181240 e=29 col=200906205 m=41566801
+    consecutive kills: columns 200906195->200906205 (diff 10 = +2u' mod q'), cycles 40181238->40181240 (diff 2), multipliers 41566799->41566801 (diff 2); identity 30*dj + de = q'*dm: 58 = 58
+
+SUMMARY {5..29}: q'-sole kills per record run [2]; consecutive-kill classes {"+2u'": 1}; multiplier differences {2: 1}; lattice identity 1/1; distinct killing gears per dead cycle {3: 5, 4: 2, 5: 1}

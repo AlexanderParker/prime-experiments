@@ -1,0 +1,14 @@
+primes and twins ready in 0.3s; kmax = 4171668
+delta table ready in 1.4s
+anchor 13: 663 levels, correctness failures 0, 236.9s
+  Q=   17 a= 13 W=      56 N_A=      17 twins=    17 R=1.133 maxDf=    -2.0@g=   17(Ncur=17,fresh=0) maxDr=    -2.0@17 sec:maxDf=  -0.2@17 R_sec=1.133 E=0.000 E_sec=0.000 room=2.71 top_max=2.0 pct=0.938 | live: maxDl=-0.2@17(Nlive=2) pct_live=0.375 E_live=0.000
+  Q=   59 a= 13 W=     609 N_A=     177 twins=    91 R=1.072 maxDf=    -3.4@g=   53(Ncur=91,fresh=0) maxDr=     2.5@47 sec:maxDf=   0.7@43 R_sec=1.159 E=0.052 E_sec=0.196 room=4.44 top_max=3.4 pct=0.609 | live: maxDl=4.6@43(Nlive=51) pct_live=0.631 E_live=0.232
+  Q=  173 a= 13 W=    5310 N_A=    1575 twins=   480 R=0.992 maxDf=     8.0@g=   67(Ncur=705,fresh=29) maxDr=    -5.6@29 sec:maxDf=   2.7@47 R_sec=0.775 E=0.090 E_sec=0.438 room=6.18 top_max=5.8 pct=0.700 | live: maxDl=11.1@67(Nlive=600) pct_live=0.770 E_live=0.385
+  Q=  499 a= 13 W=   42084 N_A=   12486 twins=  2585 R=0.965 maxDf=    20.1@g=   73(Ncur=5472,fresh=170) maxDr=    -5.4@211 sec:maxDf=   4.0@43 R_sec=0.656 E=0.108 E_sec=0.757 room=7.89 top_max=10.4 pct=0.779 | live: maxDl=23.0@73(Nlive=5365) pct_live=0.879 E_live=0.360
+  Q=  997 a= 13 W=  169513 N_A=   50294 twins=  8278 R=0.940 maxDf=    42.6@g=  227(Ncur=13898,fresh=165) maxDr=    -5.6@29 sec:maxDf=  -6.3@29 R_sec=0.921 E=0.123 E_sec=0.322 room=9.08 top_max=19.9 pct=0.853 | live: maxDl=48.6@227(Nlive=13210) pct_live=0.910 E_live=0.349
+  Q= 1499 a= 13 W=  380269 N_A=  112826 twins= 16595 R=0.943 maxDf=    58.7@g=  211(Ncur=32522,fresh=367) maxDr=     6.0@1297 sec:maxDf=   7.0@53 R_sec=0.804 E=0.124 E_sec=0.426 room=9.78 top_max=24.5 pct=0.855 | live: maxDl=64.3@211(Nlive=31931) pct_live=0.911 E_live=0.326
+  Q= 2999 a= 13 W= 1500499 N_A=  445199 twins= 53804 R=0.925 maxDf=   104.8@g=  587(Ncur=88992,fresh=408) maxDr=    -6.5@1583 sec:maxDf=  -5.5@17 R_sec=0.699 E=0.137 E_sec=0.918 room=10.97 top_max=36.9 pct=0.896 | live: maxDl=116.0@587(Nlive=85693) pct_live=0.943 E_live=0.320
+  Q= 4999 a= 13 W= 4170834 N_A= 1237501 twins=130543 R=0.912 maxDf=  -186.3@g=  197(Ncur=366054,fresh=3530) maxDr=    10.6@257 sec:maxDf=   6.2@229 R_sec=0.874 E=0.147 E_sec=0.611 room=11.87 top_max=53.6 pct=0.918 | live: maxDl=187.0@577(Nlive=251853) pct_live=0.965 E_live=0.335
+  extreme window |D_fresh|: Q=4951 g=197 D=-187.4 Ncur=359372 fresh=3461
+  extreme section |D_fresh|: Q=4919 g=59 D=18.6 Ncur=2904 fresh=117
+  R range 0.911..1.133; R_sec range 0.457..1.316; E_win max 0.148; E_sec max 1.120; top_max max 53.6

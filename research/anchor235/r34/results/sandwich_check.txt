@@ -1,0 +1,84 @@
+== 1. The sandwich F_c = floor((F-2)/5), exact full periods ==
+  {5..7}: F = 5 (F mod 5 = 0), F_c = 0, floor((F-2)/5) = 0  OK; runs attaining: 0, record gaps by phase {'0': 0, '2': 1, '3': 1}, dead cycles 0 of 7 (0.0000; CRT -0.0000)
+  {5..11}: F = 7 (F mod 5 = 2), F_c = 1, floor((F-2)/5) = 1  OK; runs attaining: 2, record gaps by phase {'0': 2, '2': 0, '3': 2}, dead cycles 2 of 77 (0.0260; CRT 0.0260)
+  {5..13}: F = 11 (F mod 5 = 1), F_c = 1, floor((F-2)/5) = 1  OK; runs attaining: 76, record gaps by phase {'0': 0, '2': 12, '3': 0}, dead cycles 76 of 1001 (0.0759; CRT 0.0759)
+  {5..17}: F = 18 (F mod 5 = 3), F_c = 3, floor((F-2)/5) = 3  OK; runs attaining: 10, record gaps by phase {'0': 10, '2': 10, '3': 0}, dead cycles 2162 of 17017 (0.1270; CRT 0.1270)
+  {5..19}: F = 25 (F mod 5 = 0), F_c = 4, floor((F-2)/5) = 4  OK; runs attaining: 76, record gaps by phase {'0': 20, '2': 0, '3': 0}, dead cycles 57488 of 323323 (0.1778; CRT 0.1778)
+  {5..23}: F = 34 (F mod 5 = 4), F_c = 6, floor((F-2)/5) = 6  OK; runs attaining: 9, record gaps by phase {'0': 0, '2': 0, '3': 4}, dead cycles 1648234 of 7436429 (0.2216; CRT 0.2216)
+  {5..29}: F = 43 (F mod 5 = 3), F_c = 8, floor((F-2)/5) = 8  OK; runs attaining: 1, record gaps by phase {'0': 1, '2': 1, '3': 0}, dead cycles 55387556 of 215656441 (0.2568; CRT 0.2568)
+  {5..31}: F = 58 (F mod 5 = 3), F_c = 11, floor((F-2)/5) = 11  OK; runs attaining: 2, record gaps by phase {'0': 2, '2': 2, '3': 0}, dead cycles 1936500146 of 6685349671 (0.2897; CRT 0.2897)
+  sandwich holds at every computed machine: True
+
+== 2. Whole dead cycles inside each record gap, by start phase (formula: phase 0 -> floor((F-1)/5), 2 -> floor((F-4)/5), 3 -> floor((F-3)/5)) ==
+  {5..7}: F = 5: (phase, whole cycles) counts {(2, 0): 1, (3, 0): 1}; max over record gaps = 0 = F_c 0: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 0: [0, 2, 3]
+  {5..11}: F = 7: (phase, whole cycles) counts {(0, 1): 2, (3, 0): 2}; max over record gaps = 1 = F_c 1: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 2: [0, 3]
+  {5..13}: F = 11: (phase, whole cycles) counts {(2, 1): 12}; max over record gaps = 1 = F_c 1: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 1: [2]
+  {5..17}: F = 18: (phase, whole cycles) counts {(2, 2): 10, (0, 3): 10}; max over record gaps = 3 = F_c 3: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 3: [0, 2]
+  {5..19}: F = 25: (phase, whole cycles) counts {(0, 4): 20}; max over record gaps = 4 = F_c 4: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 0: [0, 2, 3]
+  {5..23}: F = 34: (phase, whole cycles) counts {(3, 6): 4}; max over record gaps = 6 = F_c 6: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 4: [3]
+  {5..29}: F = 43: (phase, whole cycles) counts {(0, 8): 1, (2, 7): 1}; max over record gaps = 8 = F_c 8: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 3: [0, 2]
+  {5..31}: F = 58: (phase, whole cycles) counts {(2, 10): 2, (0, 11): 2}; max over record gaps = 11 = F_c 11: True; every record gap's mirror is a record gap: True; allowed phases for F mod 5 = 3: [0, 2]
+
+== 3. Increment scorecard (F_c computed where a json exists, else floor((F-2)/5) from the corpus ladder) ==
+  rung        F->F'   F'-F   F_c->F_c'  dF_c   q'/5   q'/15  dF_c<=q'/5  dF_c<=q'/15  dF_c/q'  class q' mod 30  source
+   7->11     5->7      2    0->1       1     2.20   0.73   True        False       0.091     +11          exact
+  11->13     7->11     4    1->1       0     2.60   0.87   True        True        0.000     +13          exact
+  13->17    11->18     7    1->3       2     3.40   1.13   True        False       0.118     -13          exact
+  17->19    18->25     7    3->4       1     3.80   1.27   True        True        0.053     -11          exact
+  19->23    25->34     9    4->6       2     4.60   1.53   True        False       0.087     -7          exact
+  23->29    34->43     9    6->8       2     5.80   1.93   True        False       0.069     -1          exact
+  29->31    43->58    15    8->11      3     6.20   2.07   True        False       0.097     +1          exact
+  31->37    58->88    30   11->17      6     7.40   2.47   True        False       0.162     +7          ladder
+  37->41    88->91     3   17->17      0     8.20   2.73   True        True        0.000     +11          ladder
+  41->43    91->103   12   17->20      3     8.60   2.87   True        False       0.070     +13          ladder
+  43->47   103->118   15   20->23      3     9.40   3.13   True        True        0.064     -13          ladder
+  47->53   118->145   27   23->28      5    10.60   3.53   True        False       0.094     -7          ladder
+  53->59   145->161   16   28->31      3    11.80   3.93   True        True        0.051     -1          ladder
+  largest dF_c/q' on the record: 0.162 (c = 1/5 holds everywhere; the best c on record is 0.162)
+  sandwich bound on the increment: dF_c <= (F'-F+3)/5 + 1 always; with the budget F'-F <= q' this is q'/5 + 1.6, so the q'/5 line is the budget divided by 5
+
+== 4. The wall bound H_1(M) (longest run of cycles with <= 1 open slot) against F_c(M) + q'/5 ==
+  M = {5..7}, q' = 11: H_1 = 1 at [[2, 1]]; F_c(M) + q'/5 = 2.2; F_c(M+q') = 1; H_1 certifies the rung iff H_1 <= F_c + q'/5: True
+  M = {5..11}, q' = 13: H_1 = 4 at [[22, 4]]; F_c(M) + q'/5 = 3.6; F_c(M+q') = 1; H_1 certifies the rung iff H_1 <= F_c + q'/5: False
+  M = {5..13}, q' = 17: H_1 = 6 at [[98, 6], [637, 6]]; F_c(M) + q'/5 = 4.4; F_c(M+q') = 3; H_1 certifies the rung iff H_1 <= F_c + q'/5: False
+  M = {5..17}, q' = 19: H_1 = 8 at [[10929, 8]]; F_c(M) + q'/5 = 6.8; F_c(M+q') = 4; H_1 certifies the rung iff H_1 <= F_c + q'/5: False
+  M = {5..19}, q' = 23: H_1 = 17 at [[154791, 17]]; F_c(M) + q'/5 = 8.6; F_c(M+q') = 6; H_1 certifies the rung iff H_1 <= F_c + q'/5: False
+  M = {5..23}, q' = 29: H_1 = 35 at [[1943115, 35]]; F_c(M) + q'/5 = 11.8; F_c(M+q') = 8; H_1 certifies the rung iff H_1 <= F_c + q'/5: False
+  M = {5..29}, q' = 31: H_1 = 48 at [[16017702, 48]]; F_c(M) + q'/5 = 14.2; F_c(M+q') = 11; H_1 certifies the rung iff H_1 <= F_c + q'/5: False
+  M = {5..31}, q' = 37: H_1 = 61 at [[5008353323, 61]]; F_c(M) + q'/5 = 18.4; F_c(M+q') = 17; H_1 certifies the rung iff H_1 <= F_c + q'/5: False
+
+== 5. Closed form of the kill residues: R_q = -30^{-1} E (mod q) equals ((q m - 11) div 30) mod q over the six open m ==
+  primes 7..2000: 300 checked, 0 mismatches; open multipliers by class: {-13: [1, 7, 13, 17, 23, 29], -11: [1, 7, 11, 19, 23, 29], -7: [7, 11, 13, 17, 19, 23], -1: [1, 11, 13, 17, 19, 29], 1: [1, 11, 13, 17, 19, 29], 7: [7, 11, 13, 17, 19, 23], 11: [1, 7, 11, 19, 23, 29], 13: [1, 7, 13, 17, 23, 29]}
+  (cycle j holds a multiple of q at offset e iff 30j + e = 0 mod q iff j = -e/30 mod q; the class fixes which m gives which e, not the set)
+    q = 7: j-residue per offset e: {11: 5, 13: 4, 17: 2, 19: 1, 29: 3, 31: 2}  -> R_q = [1, 2, 3, 4, 5]
+    q = 11: j-residue per offset e: {11: 0, 13: 8, 17: 2, 19: 10, 29: 6, 31: 3}  -> R_q = [0, 2, 3, 6, 8, 10]
+    q = 13: j-residue per offset e: {11: 7, 13: 0, 17: 12, 19: 5, 29: 9, 31: 2}  -> R_q = [0, 2, 5, 7, 9, 12]
+    q = 17: j-residue per offset e: {11: 7, 13: 16, 17: 0, 19: 9, 29: 3, 31: 12}  -> R_q = [0, 3, 7, 9, 12, 16]
+    q = 19: j-residue per offset e: {11: 18, 13: 4, 17: 14, 19: 0, 29: 6, 31: 11}  -> R_q = [0, 4, 6, 11, 14, 18]
+    q = 23: j-residue per offset e: {11: 5, 13: 8, 17: 14, 19: 17, 29: 9, 31: 12}  -> R_q = [5, 8, 9, 12, 14, 17]
+    q = 29: j-residue per offset e: {11: 18, 13: 16, 17: 12, 19: 10, 29: 0, 31: 27}  -> R_q = [0, 10, 12, 16, 18, 27]
+    q = 31: j-residue per offset e: {11: 11, 13: 13, 17: 17, 19: 19, 29: 29, 31: 0}  -> R_q = [0, 11, 13, 17, 19, 29]
+
+== 6. The chain law in cycle index alone: admissible residues of j2 - j1 (mod q') for two kills of q' in unknown slots ==
+  q' = 11: 11 of 11 residues admissible (1.00); column chain law: 3 of 11 (0, +-2u')
+  q' = 13: 13 of 13 residues admissible (1.00); column chain law: 3 of 13 (0, +-2u')
+  q' = 17: 17 of 17 residues admissible (1.00); column chain law: 3 of 17 (0, +-2u')
+  q' = 19: 19 of 19 residues admissible (1.00); column chain law: 3 of 19 (0, +-2u')
+  q' = 23: 21 of 23 residues admissible (0.91); column chain law: 3 of 23 (0, +-2u')
+  q' = 29: 21 of 29 residues admissible (0.72); column chain law: 3 of 29 (0, +-2u')
+  q' = 31: 21 of 31 residues admissible (0.68); column chain law: 3 of 31 (0, +-2u')
+  q' = 37: 21 of 37 residues admissible (0.57); column chain law: 3 of 37 (0, +-2u')
+  q' = 41: 21 of 41 residues admissible (0.51); column chain law: 3 of 41 (0, +-2u')
+  q' = 43: 21 of 43 residues admissible (0.49); column chain law: 3 of 43 (0, +-2u')
+  q' = 47: 21 of 47 residues admissible (0.45); column chain law: 3 of 47 (0, +-2u')
+  q' = 53: 21 of 53 residues admissible (0.40); column chain law: 3 of 53 (0, +-2u')
+  q' = 59: 21 of 59 residues admissible (0.36); column chain law: 3 of 59 (0, +-2u')
+  E - E = [-20, -18, -16, -14, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20] (21 values)
+
+== 7. Gear q kills at most one number per cycle for q >= 11; gear 7 double-kills at j = 2 mod 7 ==
+  q = 7: residues with two kills: {2: [17, 31]}
+  q = 11: residues with two kills: {}
+  q = 13: residues with two kills: {}
+  q = 17: residues with two kills: {}
+  q = 19: residues with two kills: {}
+  q = 23: residues with two kills: {}

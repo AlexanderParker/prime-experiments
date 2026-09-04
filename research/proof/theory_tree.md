@@ -58,6 +58,23 @@ the record stretch of M+q' is a record-class stretch of M plus one or two kills 
 cost is the length of the M-stretch adjacent to a record-class stretch. Why adjacent stretches
 are ordinary is the unexplained rule (record 9.3 item 15).
 
+## Branch 7. The anchor 2,3,5 as the unit: cycles, the anchor pattern in the window, runs and the zero mirror
+
+Opened 2026-09-05 at the human's direction (the anchor line of round 29 gave a broader view; the
+proof shape asked for: a pattern that repeats, lands in the window at a higher level than needed,
+whose survivors carry twin slots). Three provers, pre-registered, docs research/proof/anchor_cycles.md,
+anchor_window.md, anchor_runs_zero.md; scripts research/anchor235/r34/.
+
+- 7a cycles as the unit: DEAD as a route. Two exact facts kept (see log).
+- 7b the anchor pattern inside the window, measured literally to Q = 5000: DEAD as a route from the
+  second gear on; one exact fact kept (the anchor's in-window rigidity).
+- 7d runs as the unit, the zero mirror: DEAD as a route. Two record-scale facts kept, filed under branch 5.
+
+Standing direction from the human (2026-09-05): the exercise is to use the machine to find NEW rules
+and relationships; known results are noted and mapped in a line, never rewritten; the target is a
+known object that is always in the window because the machine works this way and nothing the
+machine does can prevent it.
+
 ## Dead ends on record (do not re-enter; alignment-rules.md section 6 and 8)
 Residue arithmetic at any bounded modulus (escape distance 1); gears 5,7 capping the padded depth
 past 53->59 (CORRCAP infinite); fixed-depth counting (kills nothing); pairwise convexity / SDP
@@ -209,3 +226,49 @@ driver of L (refuted on the family); congruence-class potentials (certify nothin
   not derived (09); (5) the Polignac cap's reduction to 8 representatives is a written step (13); (6) the
   alignment law now has a full CRT proof (04) where the record had a check on 103 gear sets; (7) the mod-35
   completeness lemma holds for n <= 5 by the q <= 2n bound (14), resolving the harvest disagreement.
+- 2026-09-05, prover (branch 7d, research/proof/anchor_runs_zero.md): RUNS AS THE UNIT / ZERO MIRROR - no lever
+  on existence. (1) Every gear makes an exclusive kill in the window at Q = 997 (one or two top gears make none at
+  Q = 59, 173, 499, decided by g^2-2 and gQ'+-2 primality: the square gate), so no proper subset of gears determines
+  the window's openings. (2) The record stretch is never inside any gear's clean end zone because every gear is
+  needed for the record (F(M minus g) < F(M) for every g, m7..m23) - a theorem with no position in it; the record SET
+  has, beyond the mirror, a middle-gear degeneracy: same anchor+7 phase and same top-gear phase, middle gears complete
+  the stretch in several ways (m17: 10 non-mirror pairs agree at (5,7,11,17); m19: all 20 records share one phase mod
+  35; m23: the two non-mirror pairs agree at (5,7,23)) - branch 5 / corridor law at the record. (3) d_0 = column of
+  the first twin above q at every level to 33,317, d_0 <= q'; the mirror forces F_2 >= 2 d_0 only, slack growing to 8x
+  at m53. (4) The stretch (0,W] has FEWER openings than a random stretch of its length (ratio to the period mean 0.94
+  at Q = 997 -> 0.79; below all 1,000 random stretches from Q = 401): exclusive kills start at g^2, so the effective
+  machine at column k is {5..sqrt(6k+1)} and the count is 0.79 x the effective product at every Q >= 100 (Mertens
+  bias). (5) DEAD: any statement about (0,W] provable from tooth positions is a statement about twins below Q'^2, and
+  the one forcing an opening in (q/6, W] is twin-Bertrand at scale Q'^2. Scripts research/anchor235/r34/.
+
+- 2026-09-05, prover 7a (cycles as the unit), research/proof/anchor_cycles.md. NEW, exact: (N1) a record gap can start
+  only on the twin slot that F mod 5 dictates (F = 1 mod 5: slot 11|13; F = 4: 17|19; F = 2, 3: mirror pairs on
+  {29|31, 17|19} and {29|31, 11|13}; F = 0: any), exact at all eight full periods {5..7}..{5..31}; position content only.
+  (N2) the dead-cycle record is F_c(M) = floor((F(M) - 2)/5) exactly, proved from gear 5's teeth, the mirror and 5 | P,
+  exact to {5..31} (6.7e9 cycles). Consequence: the cycle frame is F/5 in disguise, so no cycle increment bound below
+  q'/5 exists that is not a sharpened budget inequality (best on record 0.162 at 31->37). Mechanism at the record
+  {5..29}: an 8-run of cycles, live cycles each with one open slot 29|31, gear 29 taking consecutive entries of its
+  open-multiplier list (2u' apart), 79/79 glue kills literal at all machines. Dead cycles need three distinct gears
+  except j = 2 mod 7 where gear 7 takes two slots (persists at every machine). REFUTED: q'/15 as increment bound
+  (8 of 13 rungs), the wall bound H_1 as a certificate, any class q' mod 30 dependence (the six-residue hit set is
+  R_g = -30^-1 x {11,13,17,19,29,31} mod g, class-free). Branch 7a DEAD as a route.
+- 2026-09-05, prover 7b (the anchor pattern in the window, measured literally at every prime level 17..5000, three
+  anchors), research/proof/anchor_window.md. Gate held at all 400,000 gear-rows: survivors = twins in every window and
+  section; gear g strikes no survivor below column (g^2-1)/6. NEW, exact: the anchor is rigid inside the window - the
+  openings of {5..13} sorted modulo any higher gear deviate from their fair share by less than 30 in every window (proved
+  from the interval discrepancy of the 180 re-toothed anchors; real teeth 7.54, worst 14.09; measured <= 11.4 at
+  W = 4.2e6 columns). That rigidity is exhausted at the first gear above the anchor: after it the survivors are the lower
+  machine's pattern, not the anchor's. What each later gear removes follows a curve in t = ln g / ln Q' alone (1.000 of
+  fair share for t < 0.55, 0.957 at t = 0.62, 1.87 as t -> 1), same for every anchor; mechanism: where the multiplier
+  columns m = (6k -+ 1)/g sit relative to g^2 (primes near g dense, thin near g^2). The residual after that curve is
+  white (z mean 0.02, sd 1.004, max 4.02 over 105,919 gear-rows). The real tooth pair is the most-struck of all (g-1)/2
+  pairs for 99.9% of gears in (Q/4, Q/2], the unfavourable direction. No mod-30, anchor-class or mirror structure in
+  the discrepancies. STOP LINE: from the second gear on the branch re-derives a known one-prime identity gear by gear;
+  stopped there per the human's direction. Branch 7b DEAD as a route.
+- 2026-09-05, manager, on branch 7 as a whole. The human's proof shape has three parts: the pattern repeats (exact),
+  its survivors in the window are twins (kernel), it lands in the window (open). The anchor frame does not change the
+  third part: the cycle record is F/5, the anchor's openings are rigid in the window but the gears above the anchor
+  take their share from the lower machine's pattern, not the anchor's, and the region past zero is thinner than the
+  period mean, not richer. Candidate objects for "always in the window" produced this round, none yet shown forced:
+  the record's phase structure (anchor + gear 7 + top gear fixed, middle gears free; every gear needed), the slot rule
+  for where a record can start (F mod 5), the anchor's in-window rigidity (exhausted at the first gear).
