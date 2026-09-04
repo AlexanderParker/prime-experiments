@@ -21,41 +21,48 @@ A repository about prime gaps and prime structure. It holds several lines of wor
 ## What the machine is
 
 Picture an actual machine. A long track runs off in both directions, marked in evenly spaced
-slots; above it sits a row of toothed gears, one gear per prime, each a different size. As the
-track runs the gears turn, and every so often a gear's tooth dips down and stamps a slot, marking
-it struck. A bigger gear turns more slowly and stamps more rarely; a smaller gear stamps often. A
-slot that no gear ever stamps is an opening, and the openings are what the machine is built to
-find. That is the whole picture: a rack of turning gears stamping a number line, and we watch for
-the slots that survive.
+slots; above it sits a row of toothed gears, one gear for every prime, 2, 3, 5, 7, 11, ..., each a
+different size. As the track runs the gears turn, and every so often a gear's tooth dips down and
+stamps a slot: the tooth of the gear for the prime g lands on every multiple of g. A bigger gear
+turns more slowly and stamps more rarely; a smaller gear stamps often. A slot that no gear ever
+stamps is an opening, and the openings are what the machine is built to find. That is the whole
+picture: a rack of turning gears stamping a number line, and we watch for the slots that survive.
 
-Now the exact construction. The slots are columns: column k stands for the pair of numbers
-(6k-1, 6k+1). Every prime pair after (3, 5) has this shape, because the primes 2 and 3 already
-strike everything else, so the columns are what survives the first two primes and each column is a
-candidate twin. The gears are the primes from 5 up. A gear for the prime g turns once every g
-columns and carries a single tooth, striking the column that holds a multiple of g; seen through
-the columns that one tooth lands on two positions, k = +-6^-1 (mod g), because a multiple of g can
-be either member of a pair. A column that no gear strikes is an opening: both of its numbers dodge
-every prime in the machine, a twin prime candidate. The machine {5..y} is all the gears for the
-primes 5 up to y, turning together; its pattern of openings repeats with a period equal to the
-product of its primes. Adding the next prime is adding one more gear, which strikes some of the
-openings and leaves the rest, so the machine is built by stacking layers, and everything the
-project studies is what one more gear does to the openings beneath it.
+The real machine is infinite: there is a gear for every prime, and the twin prime conjecture is a
+statement about the completed rack of all of them at once. We can only ever build and analyse a
+finite prefix, one gear at a time, and reason about what the next gear must do. Run the whole
+infinite machine and every gear's phase eventually comes round together, so somewhere every
+residue aligns; the trouble is that "somewhere" is once per the product of all the primes,
+unimaginably far out, while the twins we need sit near the start. There is exactly one place on
+the number line where every gear's tooth is known to land at once: zero, which is a multiple of
+every prime. From there the machine is a perfect mirror: whatever it does at k it does in reverse
+at -k, so the pattern on the positive side is matched slot for slot on the negative side, folded
+about that one point where all the residues align.
 
-The catch is that the real machine is infinite: there is a gear for every prime, so no finite
-picture is the whole thing, and the twin prime conjecture is a statement about the completed rack
-of all of them at once. We can only ever build and analyse a finite prefix, one gear at a time,
-and reason about what the next gear must do. Run the whole infinite machine and every gear's phase
-eventually comes round together, so somewhere every residue aligns and an opening is forced; the
-trouble is that "somewhere" is unimaginably far out, once per the product of all the primes,
-while the twins we need sit near the start. There is exactly one place on the number line where
-all the residues are known to align for certain: zero. Every gear strikes multiples of its prime,
-and zero is a multiple of every prime, so column 0 is where all the teeth meet, and it is an
-opening by the way the columns are built (the pair at 0 is (-1, 1), divisible by nothing). From
-there the machine is a perfect mirror: whatever it does at column k it does in reverse at column
--k, so the openings on the positive side are matched one for one on the negative side, folded
-about that single aligned point at the origin. The proof search is, in the end, the attempt to
-show that this alignment does not only happen at zero and at the far primorial horizon, but keeps
-happening close enough to the start, inside every machine's window, forever.
+There are two ways of looking at the same machine, and the project uses the second.
+
+**The plain view.** All the gears from 2 up stamp the plain integer line. Gear 2 stamps every
+second slot, gear 3 every third, and between them they already strike everything except the
+numbers of the form 6k-1 and 6k+1; a twin prime pair is two survivors two apart.
+
+**The anchored view.** Lock the first gears as an anchor and stamp everything relative to them.
+Locking 2 and 3 turns the line into columns: column k stands for the pair (6k-1, 6k+1), the only
+two numbers in each run of six that those two gears leave, so every column is a twin candidate
+and the two locked gears no longer turn - they are the coordinate. Gear 5 is then the first gear
+that turns: it strikes columns k = 1 and k = 4 of every five, leaving three, and it is kept with
+2 and 3 as the anchor because the anchor 30 = 2 x 3 x 5 is the one that has structure: six open
+numbers per cycle of thirty, and every later gear q leaves q - 6 of those cycles untouched per run
+of 30q, from the very next gear 7 on. The anchor cannot be pushed further: with 2, 3, 5, 7 locked
+(cycle 210, 48 open numbers) a gear strikes every cycle and nothing is untouched until q > 48, and
+with 2, 3 alone the cycles are single slots with no structure to see. So the machine {5..y} of the
+rest of this document is the anchored view: the columns are the coordinate, the gears are the
+primes 5 up to y turning over them, a gear for the prime g turns once every g columns and its one
+tooth lands on the two column positions k = +-6^-1 (mod g) (a multiple of g can be either member
+of a pair), a column no gear strikes is an opening, the pattern repeats with period equal to the
+product of the gears, and adding the next prime is adding one more gear that strikes some of the
+openings and leaves the rest. In this coordinate the aligned point zero is column 0, the pair
+(-1, 1): no turning gear strikes it, so it is always an opening, the mirror's centre, with equal
+gaps on either side of it.
 
 ## The conjecture, in the machine
 
