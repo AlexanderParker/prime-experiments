@@ -1158,3 +1158,4 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   SCRIPT-VERIFIED (research/anchor235/r38/pt_path.py, pt_qr.py, pt_spectrum.py, pt_levels.py) -
   prior art NOT YET CHECKED
 - walk-path-parts - the path from q^2 taken apart: anchor pinned by q mod 30, gear-5 offsets {1,4}/{1,3} mod 5, L never 1 mod 5, 15-class law mod 35, top gear inert beyond offset 0, offset character law (mean depth a fixed function of the offset), re-phasing shortens only for sole strikers - EXACT to q = 19,997 - prior art NOT YET CHECKED (research/proof/walk_path.md)
+- reachability-landscape - the q-free set of gears that can reach each offset past q^2 (bar size closed form, islands = CRT classes, doubling law, large gears strike islands at exactly 2/g); the island witness: for every prime 1489..19997 an offset in {5,10,12,17} mod 35 below the top gear's next tooth is struck by no gear - EXACT - prior art NOT YET CHECKED (research/proof/reachability.md)

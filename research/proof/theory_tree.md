@@ -177,11 +177,46 @@ the log at the bottom is chronology only.
         (minimum blocking set median 9, max 43; 88% of paths contain a column blocked only by a
         gear above sqrt q). CANDIDATE OBJECT: the reachability landscape (the q-free set of gears
         that can reach each offset) with the landing preferring its low points; child opened.
-        - R2.a.i.a. The reachability landscape. Spawned by the quadratic-residue bar and the
-          landing's preference for low-depth offsets. Theory: the offsets form a q-free landscape
-          of reachable gear sets; islands (offsets unreachable by every small gear) exist at a
-          q-free spacing; the walk lands on an island; the interaction to prove is between the
-          islands in [1, d) and the large gears that can reach them. OPEN, prover running.
+        - R2.a.i.a. The reachability landscape (research/proof/reachability.md; register entry
+          docs/novel/reachability-landscape.md, prior art not yet checked). Spawned by the
+          quadratic-residue bar. STRONG, exact, and it names a CANDIDATE OBJECT. Parts, all
+          proven: (i) bar size in closed form, |Bar(g)| = (g + 1 - chi_g(2) - chi_g(-2))/4, so no
+          gear reaches every offset (gear 5 reaches offsets 1, 3, 4 mod 5 only; gear 7 reaches
+          0, 1, 2, 4, 6 mod 7); (ii) the islands for bound B (offsets no gear <= B can reach) are
+          exactly prod |Bar(g)| classes mod P_B by CRT: 4 classes mod 35 for B = 7, namely
+          {5, 10, 12, 17} mod 35; 12 mod 385; 48; 192; 960; 5,760 at B = 11..23; (iii) the
+          doubling: gear g strikes offset i for exactly 2 chi_g(i) residue classes of q mod g,
+          never an odd number, so its mean rate over offsets is exactly 2/g and exactly 0 on a
+          quarter of them - the bar concentrates strikes, it does not reduce them (0 of 21,531
+          cells); (iv) large gears strike islands at exactly the machine's rate 2/g (0.9956 of
+          predicted over 103,899 sightings), so the counting margin through islands is identical
+          to the unrestricted problem (strikes per island = sum 2/g, 2.70 at B = 7) and crosses 1
+          at q = 53: no counting proof through islands at any B. THE OBJECT (N-R4, 0 exceptions
+          in 2,026 primes): for every prime q in (1487, 20000] some offset i = 5, 10, 12 or 17
+          (mod 35) with 1 <= i < d = 2u_q is struck by no gear at all; the minimum number of such
+          open islands per q grows (0, 0, 0, 4, 12 by band), and 17 primes below 1487 fail (the
+          landing is then on a non-island). So "L < d" is witnessed on a FIXED, q-free set of
+          offsets of density 4/35 past the square, with growing slack. The landing is an island
+          for B = 7 in 32% of walks (not the pre-registered 90%; the four smallest islands 5, 10,
+          12, 17 are the four commonest landings, 21% of all), and its island preference is
+          exactly order one against a per-gear independent null (0.99, 0.93, 0.88, 0.92 of
+          prediction at B = 7..17): 87% of the variance of the depth function is gears 5, 7, 11,
+          13, so "the landing avoids deep offsets" IS "the landing prefers islands". Landscape
+          mirror: i -> d_g - i preserves the bar iff g = 1 mod 4 and maps it into the reachable
+          set iff g = 3 mod 4, so the island set has no reflection symmetry from B = 7 on. THE
+          INTERACTION TO PROVE, in the machine's terms: for every prime q there is an offset
+          i = 5, 10, 12, 17 (mod 35) with 1 <= i < d such that q is not congruent to +-s modulo
+          any gear g in (7, q] for any root s of -6i or 2 - 6i. The sifted variable is q itself
+          against a fixed target set; what the landscape does not give is a count. What would
+          have to happen for the object to fail: every one of the ~d/9 islands in the top gear's
+          arc struck by some gear in (7, q]; not seen above 1487.
+          - R2.a.i.a.1. The island witness under pressure. Spawned by N-R4 and its 17 failures.
+            Questions: does the witness hold for every integer q (not only primes), which would
+            make it a statement about the polynomials q^2 + 6i alone; the mechanism of each of
+            the 17 failures (which gears cover which islands, and how many gears the cover
+            needs); the minimum blocking set of the islands in [1, d) as a function of q and
+            whether it grows; the slack law (open islands per q); the same object at B = 11
+            and 13. OPEN, prover running.
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -586,3 +621,9 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   per-offset mean depth a fixed function of the offset; landing avoids high-depth offsets. First unproven
   interaction: the length (unbounded-order covering). Register entries walk-path-parts.md, walk-path-transforms.md.
   Opened R2.a.i.a (the reachability landscape), one prover.
+- 2026-09-06, prover L (reachability.md): the landscape closed in form; CANDIDATE OBJECT named - for every prime
+  q from 1489 to 19,997 some offset in the fixed set {5, 10, 12, 17} mod 35 past the square, below the top gear's
+  next tooth, is struck by no gear (0 exceptions above 1487; 17 failures below; slack growing). Islands are exact
+  CRT classes; large gears strike them at exactly 2/g so counting through islands gives nothing new; the
+  interaction to prove is stated with q as the sifted variable. Opened R2.a.i.a.1 (the witness under pressure),
+  one prover.
