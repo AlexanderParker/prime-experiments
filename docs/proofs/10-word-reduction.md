@@ -119,6 +119,28 @@ Verified computationally: `J_max` and `A_kill` rows reproduced 16/16 at m11..m41
 (`research/perj_window.py`, `research/perj_scanfree.py`); `D_g = A_kill` at seven gears by two
 vehicles; the same-tooth lemma on all 38 realised legal words with an exact source.
 
+## Prior art, and what is new
+
+**Leverages.**  File 05's legality criterion and the periodicity of the gap sequence; nothing
+external.  Nearest published items, read first-hand in the round-30 check
+(`docs/novel/even-j-mechanism.md` section 6): Holt-Rudd remark (vi) (a run of equal gaps forces
+divisibility by the small primes), Ziller 2020 (arXiv:2007.01808) `D(k)`, the one-class
+dictionary at word length one, and on the prime side Shiu 2000, Banks-Freiberg-
+Turnage-Butterbaugh (arXiv:1311.7003) and Maynard 2016 -- all existence results for long runs,
+the opposite shape to a cap.
+
+**New.**  The identity `J_max = L + 2`, `A_kill = L + 1`: the merge depth is not a new quantity
+but the longest realised legal word of the old machine's gap letters, so every empty cell of the
+per-`J` table becomes a dictionary fact instead of a search, and the open question "is the
+alignment depth bounded" becomes "is `L` bounded" without a change of content.  The converse
+half is the new one; the same-tooth lemma (the middle span is `0 mod q'` iff the number of
+non-padded middles is even) is likewise recorded NOVEL AS FAR AS SEARCHED.
+
+**Not new.**  Theorem 1 (chain iff word) is file 05's legality criterion re-read over an opening
+enumeration, and the forward half of the reduction is Mechanic's round-28 index observation on
+the record.  Ziller 2020's `D(k)` is the one-class case of "which words occur" at length one,
+and Holt-Rudd remark (vi) is a one-class run constraint in gear language.
+
 ## Relationship to the conjecture
 
 Exact bookkeeping: it identifies the alignment depth `A_kill` with the word length `L(M) + 1`,

@@ -109,6 +109,26 @@ two out-of-scan confirmations `Q*_max(43; 47) = 118 = F(47)` and `Q*_max(47; 53)
 `F(59) = 161` computed on machine 23's period by the same vehicle; 27,570 tooth-counterfactual
 machines with zero exceptions.
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT) and the grammar of file 05.  The one-class shadow of the merge
+half is Holt & Rudd, arXiv:1408.6002, Lemma 2.1 (every gap of the next stage is a sum of
+consecutive gaps of the current one) with Theorem 2.3 as its CRT converse, both read first-hand
+in the round-30 check (`docs/novel/spectrum-depth-certificate.md` section 6).
+
+**New.**  The equality.  `F(M + q')` is exactly the largest span of a word-legal `J`-run of the
+old machine, so the next record is computed on the old machine without building the new one, and
+the criterion that makes it exact is word-legality (a residue condition on the middles), not a
+size threshold as in the saturated regime of file 06.  The register's checks found no published
+inequality of this shape, let alone an identity, in either class count.
+
+**Not new.**  The `<=` half is Holt-Rudd's merge in gear language at two classes, and the `>=`
+half is the CRT translation of file 07; `docs/novel/merge-law.md` records PARTIAL OVERLAP on
+precisely that split (the one-class cycle recursion known, the no-reconstruction maximal-gap
+formula not found).  And the identity carries no slack, which the file's own negative rider
+states: certifying `max_J Q*_J` against the budget is the budget inequality in another
+representation, not a weaker statement.
+
 ## Relationship to the conjecture
 
 Exact machinery: the record of the next machine computed on the old one.  It is the frame in

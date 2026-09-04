@@ -129,6 +129,27 @@ Steps 1-3 and 7-8 are written here.
 Verified computationally: every gear `5..199` and to `q = 100000`
 (`research/check_two_teeth.py`); twin pairs to 3000 (60 pairs to 2000, 81 to 3000).
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT) and the invertibility of 6 modulo `q`; nothing deeper.  Part (e)
+uses the textbook fact that the four square roots of 1 modulo a semiprime `p(p+2)` are `+-1` and
+`+-(p+1)`, and the twin-product modulus `p(p+2)` is Clement's 1949 modulus
+(`docs/novel/tooth-sharing-pinning.md`, prior-art check 2026-08-23).
+
+**New.**  The tooth pair written as `+-6^{-1} mod q` with its arcs, its alternating spacings
+`2u_q` and `q - 2u_q`, and the shield at `0`: these are the letters `a`, `b` and the
+never-adjacent fact every later file consumes, so having them exactly, per gear, is what makes
+the merge grammar of file 05 statable.  Part (e) -- twin gears share the tooth `(p+1)/6`, the
+four double-strike classes in closed form, and the gap-two corollary -- was not located in print:
+the register's check found the shared-tooth fact and the product-slot identity nowhere in the
+`6k +- 1` frame.
+
+**Not new.**  The residue arithmetic is a one-line CRT computation and nobody claims it: the
+semiprime square-root core of (e) is standard, Clement 1949 supplies the modulus, and "teeth are
+never adjacent" is just `3^{-1} != +-1 (mod q)`.  This file is the two-class form of the
+elementary "each prime removes two residues from the twin candidates" that all admissible-tuple
+counting already uses.
+
 ## Relationship to the conjecture
 
 Bookkeeping (exact machinery): a complete description of one gear.  It supplies the letters

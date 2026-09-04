@@ -120,6 +120,24 @@ the `PSORD` distribution and the table from an independent implementation (6 gat
 m11..m53, `L_bare <= PSORD` everywhere, tight at m29 and m37/m41/m43; three vehicles sharing no
 code agree element for element.
 
+## Prior art, and what is new
+
+**Leverages.**  The anchor's gears 5 and 7 through the corridor of file 14, the alternation T3
+of file 05, and standard congruence bookkeeping modulo 210.  No published result is used.
+
+**New.**  A uniform, non-growing cap on part of the alignment depth: `L_bare(M) <= PSORD(q' mod
+210) <= 5` for every machine and at every scale, with the exact per-class table (the values 1, 2,
+3 and 5, never 4) and the 28-class set `S` where the cap is 2.  Its use to the route is the
+decomposition `L = max(L_bare, L_pad)`: with the bare half capped forever, the open requirement
+is exactly "`L_pad` bounded", which is a smaller statement than the one it replaces.
+
+**Not new.**  The ambient arithmetic is standard: gears 5 and 7 leave 15 residues of 35 open,
+which is `(5-2)(7-2)`, the ordinary two-class local count, and "a realised word's offsets are
+openings" is the definition of an opening.  Prior art is not checked --
+`docs/novel/bare-word-uniform-cap.md` section 6 records "not yet checked" and lists the search
+terms -- and the file's own boundary is that the cap says nothing about `L_pad`, which carries
+the record at m37, m41, m43 and m53.
+
 ## Relationship to the conjecture
 
 The first uniform, non-growing cap on part of the alignment depth: the bare half.  It does not

@@ -180,6 +180,29 @@ construction at four extensions and `F = 18, 25, 34, 43, 58, 88` at the six step
 31->37; the two recorded failure modes (literal-only merge condition undershoots at 31->37,
 non-alternating condition overshoots at 23->29) are why T2 and T3 are both needed.
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT) throughout.  The one-class ancestor is Holt & Rudd,
+arXiv:1408.6002, read first-hand in the register's checks: Lemma 2.1 (concatenate `p_{k+1}`
+copies of the cycle of gaps and close adjacent gaps by the elementwise product) is the copies
+picture (A); Theorem 2.3 (each closure occurs exactly once, by CRT) is the phase bijection; and
+Lemma 3.1 (closures at least `2 p_{k+1}` apart) is the one-class spacing lemma behind T4.
+
+**New.**  Everything that two classes add.  Each opening is struck in exactly two copies rather
+than one; the chain law says two openings are struck together in one copy iff their difference
+is `0` or `+-d (mod g)`; and the grammar T1-T5 with letters `a = 2u_g`, `b = g - 2u_g`,
+`a + b = g` gives strict alternation, which has no one-class counterpart at all (there every
+removed point is `= 0` mod the new prime).  The legality criterion of (F), "killable iff no two
+consecutive nonzero letters agree", is what converts a merge question into a word question, and
+files 08, 10, 11 and 16 all consume it in that form.
+
+**Not new.**  The copies-and-phases picture is Holt-Rudd's cycle recursion in gear language, the
+merge law (D) is their closure step at two classes, and the CRT copy count is their Theorem 2.3;
+`docs/novel/merge-law.md` and `docs/novel/deletion-spacing.md` both record PARTIAL OVERLAP on
+exactly those points.  The spacing and alternation package is recorded as "not found in two
+classes" rather than exhaustively searched: `docs/novel/two-teeth-kill-spacing.md` section 6
+still says prior art not checked for T1-T5 beyond that adjacency.
+
 ## Relationship to the conjecture
 
 Exact machinery: the complete local grammar of one step, used by every certificate and every

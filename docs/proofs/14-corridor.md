@@ -186,6 +186,27 @@ Recorded limitation: corridor arithmetic constrains WHERE configurations sit, ne
 are -- every pair of gap residues mod 35 is within distance 1 of an allowed pair, and lifting
 the modulus adds no exclusion tier A did not already give.
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT) and finite residue evaluation.  The counting the file rests on is
+marked KNOWN on the record: the `c_q` family is the Hardy-Littlewood prime-quadruplet local
+factor (`docs/proof-search/alignment-rules-index.md` H2), and the completeness lemma's threshold
+`q > 2n` is that factor being positive.
+
+**New.**  The exact classifications, each finite and permanent: the 294 forbidden adjacent
+gap-residue pairs, the six complete forbidden classes of the mod-5 adjacent-gap exclusion, the
+12 of 24 invertible classes that forbid two equal padded links together with the dichotomy
+against the unequal shapes, the 32-cap on prime-adjacent stretches, and the completeness lemma
+pinning the mod-35 test as the entire obstruction up to five openings.  The register's check
+(2026-08-23, `docs/novel/corridor-law.md`) records the classification and its role as NOVEL AS
+FAR AS SEARCHED; what it buys the ladder is pruning that costs no period scan.
+
+**Not new.**  The method is standard -- CRT plus a finite residue check for tuple admissibility
+-- and read as "certain three-term patterns are inadmissible mod 35" the bare fact is a routine
+admissibility computation, as the same check says.  The AP lemma is the usual pigeonhole on
+residues.  And the recorded limitation is what keeps this file out of the size question:
+corridor arithmetic constrains where configurations sit, never how big they are.
+
 ## Relationship to the conjecture
 
 Residue facts from two gears, exact and permanent, but by the recorded escape-distance-1

@@ -163,6 +163,26 @@ Verified computationally: the per-class caps against a 140-step maximal-run comp
 `research/data/fuel_census.csv` respects its class cap, saturating it at `q' = 19` and `31`;
 the eight Polignac spectra reproduced row for row.
 
+## Prior art, and what is new
+
+**Leverages.**  Standard congruence bookkeeping modulo 210 and modulo 105, CRT, and the corridor
+of file 14.  One counting ingredient is conceded KNOWN on the record: the product
+`|E_e| = prod_{q in {3,5,7}} (q - r_q)` is the Hardy-Littlewood local factor, used here only as
+a cross-check (`docs/novel/polignac-cap.md` section 6).
+
+**New.**  The caps themselves.  A run of a gear's tightest alternating strikes inside the
+anchor's corridor has at most six members, with the exact maximum per class of `q' mod 210` and
+no class of cap 5; and over all even gaps the same object is capped by `cap(gcd(e, 105))`, with
+12 the ceiling for every gear and every even gap.  Both are recorded NOVEL AS FAR AS SEARCHED
+(2026-08-23), and their value to the route is that the word list of the word-indexed identity
+depends on `q' mod 210` alone -- a finite dictionary rather than a per-machine search.
+
+**Not new.**  The admissible-residue arithmetic is standard (`nu(q) = q - 2` for `q >= 5`; the
+15 residues mod 35), and the `|E_e|` product is the classical local factor.  Nothing in the
+Zhang-Maynard-Polymath line is prior art here: those are infinitude statements and this is a
+finite structural cap, a delta the register states explicitly.  The scope limit is the file's
+own: literal chains only, padded runs escape, and "killed runs are bounded by 6" is false.
+
 ## Relationship to the conjecture
 
 The same object as file 12 from the gear's side, plus the all-gaps ceiling 12.  It bounds only

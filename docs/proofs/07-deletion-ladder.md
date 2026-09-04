@@ -66,6 +66,27 @@ equality `F_2(17) = 25 = F(19)` and tightest non-equality `F_2(37) = 90` against
 (`alignment-rules.md` 3.4).  Free caps past the scan wall: `F_2(41) <= 103`, `F_2(43) <= 118`,
 `F_3(43) <= 145`, `F_4(43) <= 161`, `F_2(53) <= 161`.
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT), and nothing else.  In one class the same step is in print:
+Holt & Rudd, arXiv:1408.6002, Theorem 2.3 -- each closure of adjacent gaps occurs exactly once
+in the recursion, by CRT -- read first-hand in the round-30 check
+(`docs/novel/spectrum-depth-certificate.md` section 6), which records that iterating it over the
+next `j - 1` primes is exactly this file's inequality and that Holt-Rudd do not draw the
+corollary.
+
+**New.**  The `r`-gear form `F_{r+1}(M) <= F(M + r new gears)` in the two-class frame, with one
+new gear assigned per interior opening by CRT.  What it lets the ladder do is cap the old
+machine's spectrum from a record above the step -- the input the spectrum-plus-depth certificate
+needs -- and it supplies the `r = 1` case that the attainment identity of file 08 reuses as its
+lower half.
+
+**Not new.**  The mechanism is Holt-Rudd's CRT closure argument in gear language; the `r = 1`
+statement is credited on the record to Mechanic and is three lines.  Prior art for the `r`-gear
+generalisation itself is not checked beyond that adjacency, and the file's own remark is the
+real limit: as an induction step it is circular, since it prices `F_2(M)` by the very record the
+next rung must certify.
+
 ## Relationship to the conjecture
 
 A lower bound on the record of the bigger machine, the direction opposite to the budget

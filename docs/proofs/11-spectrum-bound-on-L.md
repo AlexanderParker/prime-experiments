@@ -89,6 +89,24 @@ where (PARITY) equals 5 exactly (`research/lateral_r31.py corpus`, `family`).  C
 (PARITY) `1, 1, 2, 3, 3, 3, 5, 4, 5, 5, 5, 5` against `L = 1, 1, 1, 2, 1, 3, 3, 2, 2, 2, 4, 3`;
 tight at m11, m13, m29.
 
+## Prior art, and what is new
+
+**Leverages.**  Two results of this corpus and elementary arithmetic: the attainment half of
+file 08 for the cap on a realised word's span, the alternation T3 of file 05 for the pairing of
+nonzero letters, and the class minima with `a + b = q'` exactly.  No published result is used.
+
+**New.**  The statement itself: the only bound on record that constrains the alignment depth `L`
+by anything at all, and the only one that covers padded words as well as bare ones, with the
+letter-aware and parity refinements sharpening it.  It is what retired the project's requirement
+(B) as posed -- "`L` bounded by an absolute constant" is replaced by a bound linear in
+`F(M+q')/q'` -- so the remaining obligation is named precisely rather than assumed.
+
+**Not new.**  The pairing of alternating letters into full gears is T3 counted, and the span cap
+is file 08 applied; neither is claimed here.  Prior art is not checked:
+`docs/novel/spectrum-bound-on-L.md` records the check as not yet run.  The consequence stated
+with it is honest about its input -- the substituted increment chain is conditional on the open
+padded case.
+
 ## Relationship to the conjecture
 
 The one theorem on record that bounds the alignment depth `L` by anything, but by `2F(M+q')/q'

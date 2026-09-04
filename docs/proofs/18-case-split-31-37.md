@@ -144,6 +144,29 @@ are the same construction at 19->23 (5 cases) and 29->31 (35 cases).
 Verified computationally: the 385 certificates with margins `1/5 .. 3` (`manifest_31_37.json`,
 `research/lp_rungs_r29.txt`); `F(37) = 88` exactly by scan, so the width 95 has slack 7.
 
+## Prior art, and what is new
+
+**Leverages.**  Ordinary LP duality (an exact rational Farkas certificate per case), and the
+Bonferroni family the record names for the pair terms: Kounias (1968), Hunter (1976), Worsley
+(1982) and Prekopa, whose degree-2 bound is the shape of the recursion row -- the record notes
+that the row is numerically almost entirely a Kounias row at the smallest free gear.  The case
+split over held phases is one level of the Sherali-Adams / Lovasz-Schrijver / Lasserre
+consistency hierarchies, cited as machinery in `docs/novel/consistency-over-degree.md`.
+
+**New.**  The rung itself: `F(37) <= 95` in the kernel, hypothesis-free, with no census and no
+period scan.  And the composition -- hold three gears' phases (385 cases) and discharge each by
+an exact integer dual certificate, with the `u`-vector decoupling that turns a seven-phase
+covering into per-gear and per-pair block maxima -- is what makes a rung checkable by arithmetic
+alone, the provenance of the numbers being irrelevant to the check.
+
+**Not new.**  The dual certificate is ordinary LP duality and the pair bound is the classical
+degree-2 Bonferroni inequality in the machine's coordinates; the consistency machinery is
+Sherali-Adams.  What the register's own check found unpublished is the application: no
+measurement of consistency against degree on a Jacobsthal-type covering problem, and no use of
+either to certify a step (`docs/novel/consistency-over-degree.md`, PARTIAL OVERLAP, 2026-08-25).
+Prior art for the case-split strengthening specifically is not checked --
+`docs/novel/restricted-covering-certificates.md` section 7 records it as not yet run.
+
 ## Relationship to the conjecture
 
 A rung of the budget inequality in the kernel, hypothesis-free: progress on the certified

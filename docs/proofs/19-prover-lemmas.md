@@ -147,6 +147,27 @@ What is NOT proved, stated so it is not read into this file: PS itself (its colu
 and is open); the chain statement (Prover C: no proof from (T) + (L), and a family member with
 `Q*_4 = F + q'` exactly, so any proof must be exact); `d_0 <= q'` for all `p`.
 
+## Prior art, and what is new
+
+**Leverages.**  Results of this corpus and standard (CRT): the mirror of file 03 and the horizon
+lemma of file 01 for L3, the deletion ladder of file 07 and the attainment identity of file 08
+for L1, and a CRT translation for L4.  The classical object the pair statement is about is
+Ziller & Morack's paired Jacobsthal function; no published theorem is used in any of the four
+proofs.
+
+**New.**  L3 is the one that carries weight: the column-0 instance of the pair statement is
+exactly `2 d_0 <= F(M) + q'`, with `d_0` the column of the least twin pair above the machine's
+top prime -- so the pair statement contains a twin-existence statement at every prime, which the
+theory tree names the twin-Bertrand obstruction.  L4's re-phasing and its sole-striker corollary
+are the only mechanism on record that converts a two-flank statement into a gap of `M`, and
+Prover C's Lemma 1 pins what the two family facts (T) and (L) actually say -- no gear has letter
+1, and the incoming letter is `(q' -+ 1)/3`.
+
+**Not new.**  L2 is two applications of "each flank is at most the record"; L1 is the attainment
+identity read at `J = 2` against `J >= 3`.  Prior art is not checked for any of the four lemmas:
+none is carried as an entry in `docs/novel`, and the literature sweep did not locate the
+twin-Bertrand statement L3 reduces to.
+
 ## Relationship to the conjecture
 
 Bookkeeping around the open pair and chain statements.  L3 locates where the real teeth enter

@@ -98,6 +98,24 @@ Verified computationally: the nine layers 13->17 .. 43->47; seven of nine owe no
 beyond `y^2`, the exceptions being `221 = 13 x 17` beside the prime 223 and `437 = 19 x 23`
 beside the prime 439 (`alignment-rules.md` 2.9).
 
+## Prior art, and what is new
+
+**Leverages.**  Standard throughout: the least prime factor of a composite `m` satisfies
+`r^2 <= m` (the Eratosthenes/Legendre bound, which is file 01's Theorem 4), and step 6 uses
+Bertrand's postulate for `y' < 2y` -- the kernel avoids even that by carrying `y'^2 <= y^3` as a
+hypothesis.
+
+**New.**  Nothing here is offered as new mathematics.  What it adds to the route is exact
+bookkeeping: the novel workload of a section is precisely `{y^2}` together with `{y c : c
+prime}`, a gear's ledger line opens at `q^2`, and one line counts partner primes exactly below
+`q^3`.  That is what licenses grading a window's certificate by section without loss, and it
+locates the difficulty in the number of sections rather than inside any one of them.
+
+**Not new.**  All four statements are the standard least-prime-factor argument in the project's
+vocabulary; the layer law is "a composite below the next square is caught by a prime below the
+current one", i.e. the sieve of Eratosthenes read one section at a time.  Prior art for the
+ledger-line form is not checked -- the result is not carried as an entry in `docs/novel`.
+
 ## Relationship to the conjecture
 
 Bookkeeping about which gear does the work in each layer (equivalently, that graded sieving

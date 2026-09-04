@@ -120,6 +120,27 @@ Verified computationally: all `92,400` affine maps at m11 and all `2,880` units 
 `2P` rotations and reflections at m11 and m13; `W_j` parities against full-period censuses
 m11..m29 for every `j <= 12`.
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT), and the elementary counting of a fixed-point-free involution.
+The one-class shadow of the mirror is in print: Holt & Rudd, arXiv:1408.6002, remark (v),
+"Except for the final 2, the cycle of differences is symmetric", read first-hand in the
+round-30 prior-art check (`docs/novel/per-j-window-analogues.md` section 6).
+
+**New.**  The two-class form and what it buys: the mirror `k -> -k` with column 0 and the
+antipode as its always-open anchors, the determination of the full affine symmetry group (`+-1`
+at every gear, and only `+-1 mod P` preserves adjacency), and the parity corollary that every
+gap length `>= 2` occurs an even number of times, so the record occurs at least twice per
+period.  The corollary is the endpoint lever the search uses -- a configuration counted at most
+once, and not carried by the self-mirror gap, does not occur -- which the symmetry alone does
+not give, and the symmetry-group computation is what prices that lever at exactly a factor two.
+
+**Not new.**  The reversal symmetry itself is Holt-Rudd remark (v) in gear language, at one
+class; "column 0 is open" is the statement that `+-1` have no prime factors.  Prior art for the
+parity corollary and for the symmetry-group determination is not checked --
+`docs/novel/mirror-parity-laws.md` section 6 records the check as not yet run and names the
+terms.
+
 ## Relationship to the conjecture
 
 Bookkeeping plus one structural fact (the record occurs at least twice per period).  It

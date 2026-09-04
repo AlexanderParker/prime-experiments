@@ -73,6 +73,29 @@ Verified computationally: 48 `(M, q)` pairs with zero violations (`docs/gear-rec
 4b, `research/gear_recursion.py`); `{5, 7}` plus any of `q = 11, 13, 17, 19, 23, 29, 37, 41, 53`
 gives `F = 7` in column units (`21` in the adjacent frame), an increment of 2 (`6`) every time.
 
+## Prior art, and what is new
+
+**Leverages.**  File 05's spacing bound T4 and its CRT copy count, and nothing else.  The object
+being evaluated is the paired Jacobsthal function of Ziller & Morack (`h_2`, arXiv:1706.00317
+and arXiv:1706.03668) in column units; the only exact "add one prime" relations in print are
+Hagedorn 2009 Proposition 2.8 (`h(n+1) = 2 w(n) + 2`) and Hajdu & Saradha 2012 Lemma 2.2
+(`j(2m) = 2 j(m)` for odd `m`), and neither is of this shape.
+
+**New.**  An exact evaluation of the next record from the old machine under one threshold:
+`F(M) < 2u_q` gives `F(M+q) = F_2(M)`, not an inequality and not an asymptotic.  The prior-art
+check (2026-08-23, `docs/novel/saturation-theorem.md`) found nothing in print that evaluates a
+Jacobsthal-type function of `P q` exactly from `P`-level data under a threshold on `q`, in
+either class count; the remark that the real hypothesis is a residue condition, not a size one,
+is what file 08 then makes exact.
+
+**Not new.**  The lower half `F(M+q) >= F_2(M)` is elementary and implicit in any gap-merging
+picture -- it is file 07 at `r = 1`, and Holt-Rudd's recursion gives it in one class -- and the
+same check concedes that in the one-class frame the whole statement looks derivable from their
+machinery: it is the statement, not the depth, that was not found.  The regime boundary is
+likewise the two-class shadow of a published one-class crossover: Ziller 2020 (arXiv:2007.01808)
+records `2 p_{k-1} < h(k-1)` for `k > 18`, the same place where the next prime stops being large
+against the record.
+
 ## Relationship to the conjecture
 
 Exact and closed, but in a regime provably disjoint from the rungs the conjecture needs: from

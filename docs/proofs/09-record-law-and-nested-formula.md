@@ -152,6 +152,27 @@ from full lower periods, at 31 and 37, and at 41 on a partial sweep (`F = 42` fo
 from 7,952,175 lower openings instead of a `6.5e9`-column period); the nested formula equals the
 walk at every column on the full periods `{5, 7} .. {5..19}` (`research/anchor235/`).
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT) and file 05 (A).  One-class prior art, read first-hand in the
+round-30 check of `docs/novel/anchor-235-layer-laws.md`: Holt & Rudd, arXiv:1408.6002, Lemma 2.1
+(the concatenated copies, whose elementwise product is the phase walk) and Theorem 2.3 (each
+closure exactly once, by CRT, which is the phase bijection here).
+
+**New.**  Phase reduction read as a computation of the record: the maximum over `g` phases of
+largest gaps taken on ONE period of the lower machine, with the two-class set `{r, r + d}` where
+the one-class picture has a single class.  That is what makes records cheap enough to reach
+machines no scan reaches, and machine 17 is certified in the kernel at both ends.  The check
+found none of four items in print -- the two-class chain law, neighbour-of-hit as a theorem for
+every gear, the record as a maximum over phases, and `D_g = A_kill` -- and the nested
+next-opening formula with its iterate is the walk's closed form.
+
+**Not new.**  The copies-and-phases picture is Holt-Rudd's one-class recursion in gear language;
+the register's recorded verdict for this entry is PARTIAL OVERLAP on exactly that.  The honest
+scope is in the file itself: the kernel computes the seventeen phase maxima and separately
+proves `F(17) = 18`, rather than deriving one from the other, and the chain depth `D_g` that
+caps the nested formula is measured, not proved.
+
 ## Relationship to the conjecture
 
 Computational machinery: it makes records cheap to compute (this is how `F(59) = 161` was

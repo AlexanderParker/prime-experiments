@@ -94,6 +94,26 @@ sets (`alignment-rules.md` 1.5).
 Limitation recorded with the law: it says "somewhere in the period"; the period is the primorial
 while the window of `{5..y}` is the first `~y^2/6` columns.
 
+## Prior art, and what is new
+
+**Leverages.**  Standard (CRT) and the arcs of file 02.  The domino count `prod (q-4)` is the
+classical local-factor count for a prime quadruplet; the record marks that family KNOWN
+(`docs/proof-search/alignment-rules-index.md` H2, `c_q(g) = q - nu_q({0,2,6g,6g+2})`, the
+Hardy-Littlewood local factor; `docs/novel/matrix-formulation.md` records Schemmel 1869 for the
+same values).
+
+**New.**  The exact evaluation of the longest run of consecutive openings as the long arc of the
+smallest gear, uniform in every other gear, together with the strictly-increasing-arc lemma that
+makes adding gears harmless; and the consequences (ii)-(iv), that with the anchor's gear 5
+present the opening set is exactly isolated points and dominoes, and that isolated openings
+always exist.  What it is useful for is negative and load-bearing: it is the strongest positive
+alignment statement the corpus has, and it is about the primorial period, not the window.
+
+**Not new.**  The counting corollaries are the standard local-factor counts in gear language,
+and the argument is the usual "CRT realises every relative phase somewhere in the period", as
+the file's own source note says.  Prior art for the run-length statement itself is not checked;
+it is not carried as an entry in `docs/novel`.
+
 ## Relationship to the conjecture
 
 A positive alignment statement, but about runs of consecutive openings somewhere in the

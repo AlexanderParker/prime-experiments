@@ -125,6 +125,28 @@ What is NOT proved and must not be read into this file: `Delta_J <= s_min(q')` (
 increment inequality) and `Delta_J = O(1)` are measured statements; `Delta_3` measured
 `-3, 2, 0, 2, 4, 3, 2, 0` at m11..m37.
 
+## Prior art, and what is new
+
+**Leverages.**  The alternation T3 of file 05 (with `a + b = q'`) and the attainment half of
+file 08.  Nearest published shape, read first-hand in the round-30 check
+(`docs/novel/per-j-window-analogues.md` section 6): Holt & Rudd, arXiv:1408.6002, Lemma 3.1 and
+Corollary 3.2, whose "two exterior closures" are exactly the flank deletions that peel a run,
+and whose range `g < 2 p_{k+1}` is the one-class regime in which every closure is a depth-one
+event.
+
+**New.**  All four statements are recorded NOVEL AS FAR AS SEARCHED for the `Q*_J` family: the
+peel bound, the hypothesis-free triple inequality, the middle-sum lemma with its `k q'` floor,
+and the even-`J` parity of palindromes.  The check also says why the one-class sieve has no
+analogue of the last two -- there every removed point is `= 0` mod the new prime, so all middles
+are padded and there is no alternating class word to reverse.  What they buy is the discharge of
+the depth-3 obligation except at triples with both flanks above `s_min`, and a flank envelope
+that shrinks by `q'` every two levels relative to `Q*_J`.
+
+**Not new.**  The peel bound's mechanism is Holt-Rudd's flank closures in gear language, and the
+triple inequality is two applications of the definition of `F_2`.  The recorded consequence
+`Phi_J <= F_2 + s_min - m_min` is not proved here: it assumes the per-`J` increment inequality,
+which is measured, and the file flags that explicitly.
+
 ## Relationship to the conjecture
 
 Exact reductions inside the per-`J` family: they discharge the depth-3 obligation except at

@@ -104,6 +104,29 @@ steps, failing only at 31->37 by +8; confirmed out of sample at 53->59 (`F(59) =
 `0, 2, 0, 3, 4, 3, 20, 1, 0` at 11->13 .. 41->43; the 37->41 step certified by the LP thread
 at the increment width (round 29, mixed split) but not kernelised.
 
+## Prior art, and what is new
+
+**Leverages.**  The letters of file 05, the frame of file 08, and the exact rational LP-duality
+certificates whose mechanism is written out in file 18.  The literature sweep
+(`research/proof/literature_increment.md`) fixes the status of the statement being certified:
+the additive increment is not in print in either class count -- not as theorem, conjecture or
+computation -- and the nearest published items are of a different shape, the multiplicative
+Hajdu & Saradha 2012 Lemma 2.3 with its "very much likely" extension, promoted by Ziller 2019
+Conjecture 3.2 to `H(k) < 2 H(k-1)`, and Hagedorn 2009 Proposition 2.8 (`h(n+1) = 2 w(n) + 2`),
+which converts the increment away rather than bounding it.
+
+**New.**  The six certified instances, and the width they are certified at: `v + s_min(q')`, the
+increment width, strictly tighter than the budget width `F(M) + q'`, with the realiser and the
+covering bound both kernel facts and sharpness of `F_2` at three of the machines.  Equally new
+and load-bearing is the negative: the statement fails at 31 -> 37 by +8, so it is not offered as
+a general theorem here.
+
+**Not new.**  None of the six instances restates a published result.  The register does supply an
+independent published witness for the negative: the increment fails for the published two-class
+maximum at the step `{5,7,11} -> {5,7,11,13}` (A072753 jumps `10 -> 24`, i.e. `14 > 13`), so no
+proof can pass through "any two classes per prime" and must use the real teeth -- the same
+conclusion the tooth-counterfactual family reaches from inside the project.
+
 ## Relationship to the conjecture
 
 Kernel base cases of a statement that is not a theorem and is false at 31->37.  They certify

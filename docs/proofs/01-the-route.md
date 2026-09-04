@@ -102,6 +102,32 @@ Kernel: `BlockedSlots.survivor_iff_twin`, `BlockedSlots.twin_of_survivor`,
 Verified computationally: the openings of `{5..y}` inside the window and the twin pairs there
 coincide for `y = 11..1009` (`alignment-rules.md` 4.1).
 
+## Prior art, and what is new
+
+**Leverages.**  Standard sieve arithmetic only: the Chinese remainder theorem, and the
+Eratosthenes/Legendre fact that a composite below `y^2` has a prime factor below `y`, which is
+Theorem 4 here.  The window statement is in print: Ziller & Morack 2017 (arXiv:1706.00317)
+Theorem 4.1 proves that their Conjecture 6, `h_2(n) < p_n^2 - p_n`, implies Goldbach and the
+infinitude of prime pairs for every even difference, and their Conjecture 5 is the same
+`(y, y^2]` window; the one-class analogue is Mercer 2018 Theorem 1, whose Lemma 2 is Theorem 1
+of this file verbatim.  The two-class object those statements are about is Ziller & Morack's
+paired Jacobsthal function `h_2`, of which the record `F` here is the realised (real-teeth)
+version.
+
+**New.**  The biconditional and its mechanisation: the literature carries the sufficiency
+(Ziller-Morack Theorem 4.1, Mercer Lemma 2), not the equivalence, and not a kernel-checked one.
+The gap form (Theorem 3) is what makes the record `F(M)` the object the ladder certifies, since
+it converts "find a twin" into "bound a stretch"; the column translation with the anchor
+factored out is the frame every later file computes in.
+
+**Not new.**  The forward implication is Ziller-Morack 2017 Theorem 4.1 in gear language, and
+the horizon lemma is the standard least-prime-factor bound; the project's target `F(y) < y^2/6`
+is their Conjecture 6 up to the linear term, stated for the realised teeth rather than the
+maximum over class assignments.  The record also fixes why no class-count-only route closes it:
+the window sits at sieve dimension two, below the Diamond-Halberstam-Richert sifting limit
+`beta_2 = 4.2664` (`research/proof/iwaniec_two_class.md`), which is where the parity barrier
+shows up on this side.
+
 ## Relationship to the conjecture
 
 This is the route itself: it converts the conjecture into "every window holds an opening" and
