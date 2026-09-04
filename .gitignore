@@ -125,3 +125,6 @@ research/data/odc6_scans/
 research/data/**/*.pdf
 research/data/**/*.png
 /Screenshot*.png
+
+# The whole data folders stay out of the repo (owner direction 2026-09-05)
+research/data/
