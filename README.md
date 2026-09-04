@@ -20,19 +20,42 @@ A repository about prime gaps and prime structure. It holds several lines of wor
 
 ## What the machine is
 
-The machine is a model of how the primes sieve the number line for twin primes, built one prime
-at a time. Lay the integers out and group them into columns: column k is the pair (6k-1, 6k+1).
-Every prime pair after (3, 5) has this shape, because 2 and 3 already remove everything else, so
-the columns are what survives the first two primes and each column is a candidate twin. Now bring
-in the primes from 5 up, one at a time, as gears. A gear for the prime g turns once every g columns
-and has a single tooth: it strikes the column that contains a multiple of g. Seen through the
-columns that one tooth lands on two positions, k = +-6^-1 (mod g), because a multiple of g can be
-either member of a pair. A column that no gear strikes is an opening: both of its numbers dodge
-every prime in the machine, so it is a twin prime candidate. The machine {5..y} is all the gears
-for the primes 5 up to y, turning together; its pattern of openings repeats with a period equal to
-the product of its primes. Adding the next prime is adding one more gear, which strikes some of the
-openings and leaves the rest: the machine is constructed by stacking these layers, and everything
-the project studies is what one more gear does to the openings below it.
+Picture an actual machine. A long track runs off in both directions, marked in evenly spaced
+slots; above it sits a row of toothed gears, one gear per prime, each a different size. As the
+track runs the gears turn, and every so often a gear's tooth dips down and stamps a slot, marking
+it struck. A bigger gear turns more slowly and stamps more rarely; a smaller gear stamps often. A
+slot that no gear ever stamps is an opening, and the openings are what the machine is built to
+find. That is the whole picture: a rack of turning gears stamping a number line, and we watch for
+the slots that survive.
+
+Now the exact construction. The slots are columns: column k stands for the pair of numbers
+(6k-1, 6k+1). Every prime pair after (3, 5) has this shape, because the primes 2 and 3 already
+strike everything else, so the columns are what survives the first two primes and each column is a
+candidate twin. The gears are the primes from 5 up. A gear for the prime g turns once every g
+columns and carries a single tooth, striking the column that holds a multiple of g; seen through
+the columns that one tooth lands on two positions, k = +-6^-1 (mod g), because a multiple of g can
+be either member of a pair. A column that no gear strikes is an opening: both of its numbers dodge
+every prime in the machine, a twin prime candidate. The machine {5..y} is all the gears for the
+primes 5 up to y, turning together; its pattern of openings repeats with a period equal to the
+product of its primes. Adding the next prime is adding one more gear, which strikes some of the
+openings and leaves the rest, so the machine is built by stacking layers, and everything the
+project studies is what one more gear does to the openings beneath it.
+
+The catch is that the real machine is infinite: there is a gear for every prime, so no finite
+picture is the whole thing, and the twin prime conjecture is a statement about the completed rack
+of all of them at once. We can only ever build and analyse a finite prefix, one gear at a time,
+and reason about what the next gear must do. Run the whole infinite machine and every gear's phase
+eventually comes round together, so somewhere every residue aligns and an opening is forced; the
+trouble is that "somewhere" is unimaginably far out, once per the product of all the primes,
+while the twins we need sit near the start. There is exactly one place on the number line where
+all the residues are known to align for certain: zero. Every gear strikes multiples of its prime,
+and zero is a multiple of every prime, so column 0 is where all the teeth meet, and it is an
+opening by the way the columns are built (the pair at 0 is (-1, 1), divisible by nothing). From
+there the machine is a perfect mirror: whatever it does at column k it does in reverse at column
+-k, so the openings on the positive side are matched one for one on the negative side, folded
+about that single aligned point at the origin. The proof search is, in the end, the attempt to
+show that this alignment does not only happen at zero and at the far primorial horizon, but keeps
+happening close enough to the start, inside every machine's window, forever.
 
 ## The conjecture, in the machine
 
