@@ -242,13 +242,44 @@ the log at the bottom is chronology only.
             a bounded adversarial cover. THE INTERACTION TO PROVE, sharpened: no integer q
             coprime to 30 can lie in a covering residue class of K(d) or more gears in (7, q]
             with d = 2u_q; the growth of K(d) is the quantity to understand.
-            - R2.a.i.a.1.a. The cover number K(d). Spawned by (vi). Questions: the growth law
-              of K(d) (is it the record ladder of the adversarial family restricted to islands,
-              i.e. the smallest K whose best K-gear machine has an island-free run of d/35
-              islands; if so say so and use the counterfactual family's known bounds); the
-              first-moment count of failing q against the data (heuristic, stated as such);
-              whether any structural reason bounds the number of covering classes modulo the
-              product. OPEN, prover running.
+            - R2.a.i.a.1.a. The cover number K(d) (research/proof/cover_number.md). Spawned by
+              the growth of the adversarial cover. FACT, exact, and it names the obstruction.
+              K(d) exact at 23 arcs to d = 1,330, every value ILP-certified: 3, 4, 5, 6, 7, 8,
+              9, 10, 11, 12, 13, 14, 14, 15, 16, 17, 18, 19, 19, 20, 21, 22, 22 at d = 35 ..
+              1330, against a counting requirement 2..11 that stalls; growth d/(ln d)^3 with
+              K (ln d)^3 / d = 6.15 +- 0.20 over sixteen consecutive arcs (not pi(c sqrt d);
+              the sqrt fit under-predicts from d = 1,190). NOT the counterfactual family's
+              ladder: with a free tooth separation the optimal cover is a perfect partition of
+              the islands equal to counting (4 arcs, 0 exceptions), so the family's row is the
+              easy one; the machine's fixed separation 2 x 6^-1 mod g costs a factor 1.5 and
+              the one-phase-per-gear rule the larger half (at d = 1,120: counting 10, rule
+              dropped 12, real 20); the strike budget contributes nothing. K depends on the
+              island count and the cheapest gear the bar leaves, not on the arc (K_7, K_11,
+              K_13 agree within 1 at equal island count, 11 comparisons). PROVED, no counting:
+              a cover with phases is realised by exactly 2^K residue classes of q modulo the
+              product of its gears (doubling law once per gear; 324 million residues checked,
+              0 exceptions), and that product exceeds q^2 at every d >= 70 (21 of 22 covers),
+              so a failure is not a density event: the residue vector determines q^2 as an
+              integer and at most one q realises a given (cover, phase) pair. Optimal covers
+              contain all of 11, 13, 17, 19, 23, 29, 31 from d = 385 and every gear takes at
+              least two islands from d = 70 (0 exceptions); the optimal gear set is far from
+              unique. The real machine's minimum cover exceeds K(d) at all 197 recorded
+              failures (ratio 1.0 - 2.6, not monotone). First moment with exact rates:
+              expected failures above 2,849 = 0.0012 (and it under-predicts the band [1000,
+              3000) by 14x, an honest miss); the cover-side moment is the depth function's
+              product, the parent's counting wall, stopped. WHY IT DOES NOT CLOSE, exactly: the
+              class count per cover is exact and tiny (2^K over a product above q^2), but the
+              number of covers is about 2.7^m, 10^54 at d = 1,120, against a class density of
+              10^-30: vacuous by 10^24. Dead: pi(c sqrt d); the family identification; counting
+              as the cause; the cover-side moment; the compulsory-prefix lever (failures sit at
+              the 61st percentile of the small gears' own coverage). NEXT INTERACTION named by
+              the prover: bound the number of covers a real machine can produce. MANAGER'S NOTE
+              (2026-09-06): over q that count is the number of failing q itself, so as posed it
+              is circular; the honest form of the open interaction is "why does the real
+              phase vector (q^2 mod g, all squares) never realise one of the 10^54 covers", and
+              nothing on the tree yet distinguishes the square vector from a random one in
+              length (R2.a.i, percentile 0.53). Background ILP at d = 2,240 (bounds 22..32)
+              still running when the branch closed; its result cannot change any statement.
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -665,3 +696,10 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   the free island sits inside 0.152 d and its absolute offset never exceeds 2,392. Cover number K(d) = 3, 4, 6, 9,
   14, 20 at d = 35..1120 (ILP-certified) grows while the counting requirement stays bounded. Opened
   R2.a.i.a.1.a (the cover number), one prover.
+- 2026-09-06, prover K (cover_number.md): K(d) exact at 23 arcs to 1,330, growth d/(ln d)^3, not the counterfactual
+  family's ladder (free separation gives a perfect partition equal to counting); growth bought by one phase per
+  gear and the fixed separation, not by the strike budget. Proved: a cover is realised by exactly 2^K classes
+  modulo a product above q^2 (a failure pins q^2 as an integer). Obstruction named exactly: 2.7^m covers against
+  a 2^K class density, vacuous by 10^24 at d = 1,120. The night's line: R2.a.i -> R2.a.i.a -> R2.a.i.a.1 ->
+  R2.a.i.a.1.a, all exact, one candidate object with 0 exceptions to 200,000 and its proof obstruction stated in
+  the machine's terms. Paused for the owner's direction: the next interaction as posed is circular.
