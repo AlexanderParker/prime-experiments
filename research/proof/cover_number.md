@@ -168,7 +168,7 @@ construction, or to the Jacobsthal function is named in one line as classical an
 
 | # | prediction | verdict and evidence |
 |---|---|---|
-| C1 | `K ≍ d/(ln d)^3`, `K(2240) = 30 +- 1`, `K(4480) = 47 +- 4`; `pi(c sqrt d)` wrong | **CONFIRMED on the exact ladder; the point values not settled**: `K (ln d)^3/d = 6.15 +- 0.20` over 16 consecutive arcs `d = 315..1330`, no drift; the `sqrt` fit falls behind by 1 at `d = 1,190` and 2 at `d = 1,260`. Achieved covers `K(2240) <= 32`, `K(3360) <= 40` against the two forms' 30/39 and 26/32 - evidence, not proof, since these are upper bounds (2.1, 2.2, 2.2a) |
+| C1 | `K ≍ d/(ln d)^3`, `K(2240) = 30 +- 1`, `K(4480) = 47 +- 4`; `pi(c sqrt d)` wrong | **CONFIRMED on the exact ladder; the point values not settled**: `K (ln d)^3/d = 6.15 +- 0.20` over 16 consecutive arcs `d = 315..1330`, no drift; the `sqrt` fit falls behind by 1 at `d = 1,190` and 2 at `d = 1,260`. Achieved covers `K(2240) <= 32`, `K(3360) <= 40`, `K(4480) <= 46` against the two forms' 30/39/46 and 26/32/37 - the pre-registered `K(4480) = 47 +- 4` brackets the achieved 46; evidence, not proof, since these are upper bounds (2.1, 2.2, 2.2a) |
 | C2 | not the counterfactual family's ladder; `K_free < K` from `d = 280` | **CONFIRMED, and the family is the wrong object**: `K_free = 2, 3, 4, 6, 9` against `K = 3, 4, 6, 9, 14`; ratio 0.67 (I said 0.7-0.9, so the numeric range is **refuted**, the direction and the identification are not) (2.3) |
 | C3 | counting bound `<= 13` throughout | **CONFIRMED**: the counting requirement is 2..11 over every arc to 1,400 and was stuck at 10 from `d = 770` to `d = 1,330` (2.1) |
 | C4 | prefix `11..G`, `G ≈ 1.8 sqrt d`, prefix >= 70% of the cover | **SPLIT**: `G ≈ 1.7 sqrt d` confirmed; "70% of the cover" **REFUTED** (47-73%, mean 0.62). Replaced by the sharper N-C3 (3.1) |
@@ -266,7 +266,7 @@ predicts. Extrapolated: `K(2240) = 30.0`, `K(4480) = 46.4`, against the `sqrt` f
 ### 2.2a Beyond the exact ladder: bounds
 
 The ILP closes at `d = 1,330` and stops closing at `d = 1,400` (incumbent 23, dual bound 21 after
-900 s). Beyond that the table carries what is proved: an achieved cover (a genuine upper bound, from
+900 s) and `d = 1,470` (24 against 20). That is the exactness frontier of this instrument. Beyond that the table carries what is proved: an achieved cover (a genuine upper bound, from
 a randomised greedy over the same complete candidate list, `cn_heur.py`, 500 restarts) and HiGHS's
 dual bound where one is available. The heuristic is calibrated: it returns 14 at `d = 560`
 (exact 14) and 21 at `d = 1,120` (exact 20), i.e. it is 0 to +1 on the arcs where the truth is
@@ -276,9 +276,16 @@ known.
 |---|---|---|---|---|---|
 | 1,120 | 128 | **20** | 21 | 20 | 20 |
 | 1,400 | 160 | 21 .. 23 | - | 22 | 21 |
+| 1,470 | 168 | 20 .. 24 | - | 23 | 22 |
 | 1,750 | 200 | - | **<= 26** | 26 | 25 |
 | 2,240 | 256 | - | **<= 32** | 30 | 26 |
 | 3,360 | 384 | - | **<= 40** | 39 | 32 |
+| 4,480 | 512 | - | **<= 46** | 46 | 37 |
+
+The same constant runs through both halves of the table: `K (ln d)^3 / d` at the achieved covers is
+**6.19, 6.56, 6.37, 6.10** at `d = 1,750, 2,240, 3,360, 4,480`, against `6.15 +- 0.20` on the exact
+ladder - the upper bounds sit on the exact ladder's own constant, four arcs beyond it and at four
+times its length.
 
 (A 3-hour exact ILP at `d = 2,240` was still running when this document was closed; its incumbent
 can only be `<= 32` and its dual bound `>= 22` by monotonicity from `K(1330) = 22`, so it cannot
@@ -286,13 +293,13 @@ change any statement below. `d = 4,480` was left to the heuristic for the same r
 
 **What this does and does not settle.** An achieved cover is an upper bound, so 32 at `d = 2,240`
 does not by itself contradict a prediction of 26 - the refutation of the `sqrt` form rests on the
-**exact** ladder, where it under-predicts by 1 at `d = 1,190` and by 2 at `d = 1,260` and `d = 1,400`
-(exact lower bound 21 against its 21, and 22 exact against its 21 at `d = 1,330`) after being fitted
-to be exact at `d = 70, 560, 1,120`. The large-`d` covers add calibrated evidence rather than proof:
+**exact** ladder, where it under-predicts by 1 at `d = 1,190` (21 against 20), by 2 at `d = 1,260`
+(22 against 20) and by 1 at `d = 1,330` (22 against 21) - after being fitted to be exact at
+`d = 70, 560, 1,120`. The large-`d` covers add calibrated evidence rather than proof:
 the greedy is 0 or +1 above the optimum at every arc where the optimum is known, so for the `sqrt`
-form to be right at `d = 3,360` the same greedy would have to be **8** above optimal there. The
-`d/(ln d)^3` form predicts 30 and 39 at `d = 2,240` and `3,360`, one or two below the achieved 32
-and 40, exactly the gap the greedy shows elsewhere. Verdict on the pre-registered discriminator:
+form to be right the same greedy would have to be **8** above optimal at `d = 3,360` and **9** at
+`d = 4,480`. The `d/(ln d)^3` form predicts 30, 39 and 46 at `d = 2,240, 3,360, 4,480`, zero to two
+below the achieved 32, 40 and 46 - exactly the gap the greedy shows elsewhere. Verdict on the pre-registered discriminator:
 **`K ~ pi(c sqrt d)` is refuted on the exact ladder and badly out of line at the large arcs;
 `K ≍ d/(ln d)^3` survives every arc computed.**
 
@@ -801,9 +808,10 @@ two classes sit at the fixed separation `d_g = 2 x 6^{-1} (mod g)` and only the 
   failure condition is therefore not a density condition but "a prescribed CRT lift is a perfect
   square". New, and it is the branch's contribution toward the root.
 * **N-C8 (the growth law, measured).** `K(d)` exact at 23 arcs to `d = 1,330`; `K (ln d)^3/d` flat
-  at `6.15 +- 0.20` from `d = 315` on, with the mechanism (prefix plus one gear per leftover) that
-  produces the form; a `pi(c sqrt d)` fit tracks the ladder to `d = 1,120` and then falls behind by
-  1 and 2. One extra gear buys the adversary ten more islands at `d ~ 1,000` and 6.4 at `d ~ 300`.
+  at `6.15 +- 0.20` from `d = 315` on, and the achieved covers four arcs further out sit on the same
+  constant (6.19, 6.56, 6.37, 6.10 at `d = 1,750 .. 4,480`), with the mechanism (prefix plus one
+  gear per leftover) that produces the form; a `pi(c sqrt d)` fit tracks the ladder to `d = 1,120`
+  and then falls behind by 1 and 2, and would need the greedy to be 9 above optimal at `d = 4,480`. One extra gear buys the adversary ten more islands at `d ~ 1,000` and 6.4 at `d ~ 300`.
   New as exact data and as a form.
 * Filed, not claimed: the real machine is a factor 1.00-2.64 off the adversary at all 197 recorded
   failures, median 1.50 (`B = 7`) and 1.60 (`B = 11`), not monotone in `q`; the per-island first
@@ -820,7 +828,8 @@ The cover number was the parent's one growing quantity and this branch takes it 
 `K(d) = 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 15, 16, 17, 18, 19, 19, 20, 21, 22, 22` over
 23 exactly-solved arcs from 35 to 1,330, every one HiGHS-certified optimal, against a counting
 requirement that goes 2 .. 10 and stops. The growth is `d/(ln d)^3` to the accuracy the data can
-see (`K (ln d)^3/d = 6.15 +- 0.20` over sixteen consecutive arcs), not `pi(c sqrt d)`.
+see (`K (ln d)^3/d = 6.15 +- 0.20` over sixteen consecutive arcs, and 6.10-6.56 at the achieved
+covers out to `d = 4,480`), not `pi(c sqrt d)`.
 
 The cause is now isolated and is not what the parent's phrasing suggested. It is not the strike
 budget: dropping the rule that a gear has one phase brings `K(1120)` from 20 down to 12, within two
@@ -859,8 +868,8 @@ where the remaining `10^24` has to come from, and nothing here bounds it.
 
 * **`K ~ pi(c sqrt d)`** (the brief's suggested form). The fit that is exact at `d = 70, 560, 1,120`
   falls behind by 1 at `d = 1,190` and by 2 at `d = 1,260`, while `K (ln d)^3/d` stays flat over
-  sixteen arcs; and at `d = 3,360` it would need the greedy that is 0-1 above optimal everywhere
-  else to be 8 above optimal. The ladder's local exponent is 0.54-0.58 because `1 - 3/ln d` is, not because the
+  sixteen arcs; and it would need the greedy that is 0-1 above optimal everywhere else to be 8
+  above optimal at `d = 3,360` and 9 at `d = 4,480`. The ladder's local exponent is 0.54-0.58 because `1 - 3/ln d` is, not because the
   growth is a square root.
 * **`K(d)` as the tooth-counterfactual family's record ladder restricted to islands.** False by
   construction and by measurement: the family's separation is free, and with a free separation the
