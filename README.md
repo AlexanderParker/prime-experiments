@@ -4,8 +4,8 @@ A repository about prime gaps and prime structure. It holds several lines of wor
 
 - **Next prime by blocked gaps** (the origin, kept at the bottom of this file): an algorithm that
   finds the next prime after any n from the residues of the small primes, with a written proof;
-  notebooks in notebooks/ (test11.ipynb is the working version), a Python package in src/, Rust
-  ports in rust/, rust2/, rust3/, and a prime-gaps worksheet. Its proofs were corrected in place on
+  notebooks in notebooks/ (test11.ipynb is the original working version), a Python package in
+  src/, Rust ports in rust/, rust2/ (the current version), rust3/, and a prime-gaps worksheet. Its proofs were corrected in place on
   5 September 2026 (divisor bound and search range).
 - **Mersenne primes**: main.py and notebooks/mersenne_analysis.ipynb, a toolkit for exploring
   Mersenne numbers, with data under data/mersenne/.
@@ -336,59 +336,77 @@ the proof-search programme above grew out of that. The write-up below is the ori
 proofs corrected on 5 September 2026 (the trial-divisor bound and the gap-search range were wrong
 as first written; the corrected algorithm was checked against every prime below 200,000).
 
-## Current Algorithm
+## Current algorithm: the next gap, not a sieve
 
-The main work is in **[test11.ipynb](notebooks/test11.ipynb)** - an algorithm that finds the next
-prime after any given number using modular arithmetic patterns.
+The current version is the Rust program in **rust2/src/main.rs** (crate `prime_finder`, big
+integers via `malachite`). The notebook [test11.ipynb](notebooks/test11.ipynb) is the original
+Python working version and the write-up below follows it; the Rust program is the same algorithm
+made to run on numbers of any size (rust2/m136279841.txt holds the digits of the Mersenne number
+2^136279841 - 1 as an input, 41.8 MB of them). The other binaries in rust2/src/bin/ belong to the
+twin-sieve line above (maxgap, maxgap_pruned, holegap, jkcover, jkcov6, coverbound: the exact
+maximal-gap and covering searches behind the ladder).
 
-### How It Works
+### What it computes
 
-The algorithm uses modular arithmetic to calculate the next prime after any given number by finding
-"blocked slots" where primes cannot exist.
+It answers one question: given a number, where is the next prime? The output is the gap, and the
+prime is the number plus the gap. It does not produce the primes in a range, and it does not test
+the candidate for primality at the end: the candidate is prime because no divisor blocked it.
 
-**Core Algorithm (for finding the next prime after a known prime):**
-1. For a given prime p, take as trial divisors all primes q with q^2 <= p + g for the candidate gap
-   g under test (in practice: all primes up to sqrt(p + G) for the largest gap G you are prepared
-   to search; for p below 200,000 no next-prime gap exceeds 86)
-2. Calculate `-p % q` for each trial divisor - this gives the distance to the next multiple of q
-3. These distances represent "blocked slots" where the next prime cannot be located
-4. Cycle each trial divisor through multiple iterations to find all blocked slots up to G
-5. Search for the first even number (starting from 2) that is not in the blocked set
-6. That unblocked position is the gap to the next prime: `next_prime = p + gap`
+### How it works
 
-**Example with p = 97:**
-- Trial divisors: [2, 3, 5, 7] (the primes with q^2 <= 97 + g for every gap g up to 24)
-- `-97 % 2 = 1` -> blocks gaps {1, 3, 5, 7, 9, ...}
-- `-97 % 3 = 2` -> blocks gaps {2, 5, 8, ...}
-- `-97 % 5 = 3` -> blocks gaps {3, 8, ...}
-- `-97 % 7 = 1` -> blocks gaps {1, 8, ...}
-- Combined blocked gaps: {1, 2, 3, 5, 7, 8, 9, ...}
-- First unblocked even gap: 4 -> `97 + 4 = 101`
+For a known prime p (or any number n), the trial divisors are the primes q up to the square root
+of the start. For each divisor the program keeps one counter, its **bucket**: the distance from p
+to the next multiple of q, which is `-p mod q`. The buckets are gear q's phase at p: how far its
+tooth is from landing. Then it walks the candidate gaps g = 2, 4, 6, ... and for each one asks
+every divisor in turn whether its bucket, advanced by q as often as needed, lands exactly on g. A
+divisor whose bucket lands on g blocks that gap and the walk moves to the next g without asking the
+remaining divisors; a gap that every divisor steps over is the answer.
 
-**Why the divisor bound must grow with the candidate.** With divisors below sqrt(p) only, p + g can
-be the square of, or a product of, two primes just above sqrt(p) and escape every block: that rule
-reports 9 after 7, 25 after 23, 49 after 47, 121 after 113, 169 after 167, 289 after 283 (85 wrong
-answers below 200,000). And the search cannot be capped at sqrt(p): the next prime after 13 is 17
-(gap 4 > 3.6) and after 31 is 37 (gap 6 > 5.6). "The next gap is at most sqrt(p)" is an unproved
-conjecture of Andrica type, so the search continues until an unblocked gap appears.
+**Example with p = 97.** Divisors 2, 3, 5, 7, buckets `-97 mod q` = 1, 2, 3, 1. The walk steps
+by 2 from an odd start, so divisor 2 never lands on a candidate and is skipped. Gap 2: divisor 3's
+bucket is already 2, so 2 is blocked (99 = 9 x 11). Gap 4: divisor 3 advances 2 -> 5, divisor 5
+advances 3 -> 8, divisor 7 advances 1 -> 8; none lands on 4. Answer 4, next prime 101.
 
-**Generalised Version (for any number n):**
-The same process from any starting number n: know all primes q with q^2 <= n + g, then search from
-the appropriate starting position (1 if n is even, 2 if n is odd), stepping by 2.
+**Divisor bound.** rust2 takes the divisors up to the ceiling of the square root of the start.
+That is enough whenever the next gap is below 2 sqrt(p) + 1, which is true of every prime gap ever
+computed but not proved (it is a statement of Andrica type). The notebook write-up, corrected on
+5 September 2026, uses the safe rule instead: a divisor q is needed as soon as q^2 <= p + g for the
+gap g being tested, because a composite p + g always has a prime factor at most its square root.
+Divisors strictly below sqrt(p) are not enough: that rule reports 9 after 7, 25 after 23, 49 after
+47, 121 after 113 (85 wrong answers below 200,000). And the search cannot be capped at sqrt(p):
+the next prime after 13 is 17 (gap 4 > 3.6) and after 31 is 37 (gap 6 > 5.6), so the walk
+continues until an unblocked gap appears; for p below 200,000 no gap exceeds 86.
 
-**Example with n = 100:**
-- Trial divisors: [2, 3, 5, 7] (the primes with q^2 <= 100 + g for the gaps tested)
-- `-100 % 2 = 0` -> blocks gaps {0, 2, 4, 6, 8, ...}
-- `-100 % 3 = 2` -> blocks gaps {2, 5, 8, ...}
-- `-100 % 5 = 0` -> blocks gaps {0, 5, ...}
-- `-100 % 7 = 5` -> blocks gaps {5, ...}
-- Combined blocked gaps: {0, 2, 4, 5, 6, 8, ...}
-- First unblocked gap starting from 1: 1 -> `100 + 1 = 101`
+**Any starting number.** From an arbitrary n the same walk starts at gap 1 if n is even and 2 if
+n is odd, stepping by 2. Example n = 100: buckets `-100 mod q` = 0, 2, 0, 5 for 2, 3, 5, 7; gap 1
+is blocked by nothing (the even buckets sit on 0, 2, 4, ...), answer 101.
 
-**Mathematical Foundation:**
-Any composite number m has a prime factor at most sqrt(m). Using all primes q with q^2 <= m as
-trial divisors and cycling their modular patterns identifies every position where a composite must
-occur. The first candidate that no pattern blocks is prime.
+### How this differs from a sieve
+
+A sieve (Eratosthenes, or any segmented sieve) takes a range, marks every multiple of every small
+prime across the whole range, and then reads off what survived. Its cost and its memory are the
+length of the range, and it answers "which of these numbers are prime". The next-gap walk answers
+"where is the next one", and four things are different:
+
+- **No range and no array.** The state is one counter per divisor, the bucket. Nothing is marked
+  ahead of the walk; a divisor's bucket advances only when the walk has reached it.
+- **Cost is the gap, not the range.** The walk stops at the first unblocked gap. The work is
+  roughly the gap times the number of divisors that had to be consulted, and most candidates are
+  rejected by the first small divisor asked (2 rejects every odd gap, 3 rejects a third of the
+  rest), so the big divisors are rarely reached at all.
+- **It carries its phase.** After a prime is found the buckets are already positioned for the next
+  walk (`get_next_prime` in rust2 does exactly this), so consecutive primes cost only their gaps.
+  A sieve has no such state between calls.
+- **It is the machine's walk.** In the gear picture the buckets are the gears' tooth positions
+  relative to p, advancing the buckets is turning the gears, and the first unblocked gap is the
+  first opening after p. The proof-search line above studies the same walk from the square of the
+  top gear to the next opening (the layered walk, the nested next-opening formula); the origin
+  algorithm is that walk on the plain number line with every prime up to the square root as a
+  gear.
+
+What is the same: both rest on one fact, that a composite number has a prime factor at most its
+square root, so the small primes decide everything below the square of the next one. The sieve
+uses it over a range; the walk uses it one candidate at a time.
 
 ## Proof: Deriving next_prime(p) from p
 
