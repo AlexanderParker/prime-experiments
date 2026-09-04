@@ -147,6 +147,16 @@ the log at the bottom is chronology only.
         stretches share one phase mod 35; at m17 ten non-mirror pairs agree at (5, 7, 11, 17) and
         differ only at 13. FACT, new at record scale. CANDIDATE OBJECT: what the top gear and gear
         7 do to each other at a record is the one place the record is made. OPEN, next to test.
+        - 5d.i. The record as a frame of three gears. Spawned by 5d's observation that the
+          record set shares the (5, 7, top) phase with the middle gears free. Theory: the frame
+          decides where a record can sit, the middle gears' filling decides whether it does; the
+          window contains every frame, so what stops the filling there, and is it systematic.
+          OPEN, prover running 2026-09-05 (research/proof/record_frame.md).
+        - 5d.ii. What each gear holds up, in the period and in the window. Spawned by 5d's
+          observation that every gear is needed for the record. Theory: the deletion profile
+          F(M) - F(M minus g) over g, taken on the period record and on the window's own longest
+          stretch, differ systematically; gears that never hold up a window stretch would be a
+          named object. OPEN, prover running 2026-09-05 (research/proof/deletion_profile.md).
       - 5e. Where a record gap can start: the slot F mod 5 dictates (7a, 2026-09-05,
         research/proof/anchor_cycles.md). F = 1 mod 5 starts on 11|13, F = 4 on 17|19, F = 2 or 3
         on a mirror pair of slots, F = 0 on any; exact at all eight full periods to m31. FACT, new,
@@ -385,3 +395,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   period mean, not richer. Candidate objects for "always in the window" produced this round, none yet shown forced:
   the record's phase structure (anchor + gear 7 + top gear fixed, middle gears free; every gear needed), the slot rule
   for where a record can start (F mod 5), the anchor's in-window rigidity (exhausted at the first gear).
+- 2026-09-05, manager: opened 5d.i (record frame of three gears) and 5d.ii (deletion profile, period versus window) under 5d, the STRONG node with a CANDIDATE OBJECT; two provers under the theory-tree skill.
