@@ -85,6 +85,41 @@ that translation; the gears are how the statements were found.
   must enter, and no instrument on record turns them into a size bound. See
   research/proof/theory_tree.md for the live branch tree.
 
+## Where mathematics stands on small prime gaps
+
+The twin prime conjecture is the statement that the gap 2 between consecutive primes occurs
+infinitely often: the smallest gap that keeps recurring all the way to infinity is 2. What is
+proved, in order:
+
+| year | result | smallest gap known to recur infinitely often |
+|---|---|---|
+| 1919 | Brun: the sum of reciprocals of the twin primes converges (twins are sparse; finitely or infinitely many is left open) | - |
+| 1973 | Chen: infinitely many primes p with p + 2 prime or a product of two primes | - |
+| 2005 | Goldston, Pintz, Yildirim: gaps arbitrarily small relative to the average gap log p (liminf of gap / log p is 0) | - |
+| 2013 | Zhang: some gap below 70,000,000 recurs infinitely often | 70,000,000 |
+| 2013 | Polymath 8a: the same with Zhang's method sharpened | 4,680 |
+| 2013 | Maynard (and Tao): a simpler sieve, also giving m primes in bounded intervals | 600 |
+| 2014 | Polymath 8b: Maynard's method optimised | 246 |
+| 2014 | conditional on the Elliott-Halberstam conjecture: 12; on its generalised form: 6 | 12 / 6 |
+| 2026 | two claims below 246 (240; 186) are on record as unverified and not peer reviewed at the time of writing | 246 stands |
+
+So the established unconditional bound is 246: infinitely many pairs of primes differ by at most
+246. Nobody has proved any gap below that recurs infinitely often, and no method known reaches 2,
+or even 6 unconditionally: the sieve methods behind every row from 2005 on run into the parity
+barrier (a sieve cannot distinguish numbers with an even number of prime factors from those with an
+odd number), which is why the conditional bound stalls at 6 rather than 2. The largest known twin
+pair has 388,342 digits (2016); there are 808,675,888,577,436 twin pairs below 10^18.
+
+Where this project sits. The table is a benchmark, not a direction: the project does not follow
+the Maynard-Tao line and does not chase the number 246. Its route is a covering bound:
+show that the two-class sieve never blocks a whole window, which by the kernel-checked equivalence
+gives infinitely many twins directly, with gap exactly 2 and no intermediate bound. The same parity
+barrier appears on this side as the dimension-2 sieve limit (docs/novel/j2-upper-bound.md, and
+research/proof/iwaniec_two_class.md): any class-count-only bound sharp enough to close the window
+would itself be the conjecture, so a proof has to use the specific residues the primes strike, not
+just how many. Eleven steps of the ladder are certified exactly, the record is a quarter of the
+window at every computed machine, and the uniform statement is open.
+
 ## Map of the repository
 
 - docs/proofs/: the proved theorems as written proofs, one file each, with a plain-words opening,
