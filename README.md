@@ -18,19 +18,34 @@ A repository about prime gaps and prime structure. It holds several lines of wor
   the primes modelled as gears, the conjecture reduced to one statement about openings inside a
   window, a Lean kernel corpus, and a multi-lane proof search. The rest of this section is about it.
 
-## The machine, in one paragraph
+## What the machine is
 
-Column k stands for the pair (6k-1, 6k+1), which is what survives the primes 2 and 3. Every prime g
-from 5 up is a gear: it turns once every g columns and its one tooth strikes the column holding a
-multiple of g, which through the columns lands on two residues, k = +-6^-1 (mod g). A column no
-gear strikes is an opening. The window of the machine {5..y} is the certified range, the columns
-whose numbers lie below the square of the next prime; an opening inside the window is a twin prime
-pair, and that equivalence is checked by the Lean kernel (proofs/BlockedSlots.lean,
-`twins_infinite_iff_survivor_in_window`). So the conjecture is: openings always land inside the
-window, for every machine. The record F(M) is the longest stretch of consecutive columns with no
-opening; the target inequality is that the record stays below the window's growth, and its per-step
-form, F(M+q') <= F(M) + q' (the budget inequality), is what the search has been certifying rung by
-rung. It is a target, measured true at every computable step, never a law.
+The machine is a model of how the primes sieve the number line for twin primes, built one prime
+at a time. Lay the integers out and group them into columns: column k is the pair (6k-1, 6k+1).
+Every prime pair after (3, 5) has this shape, because 2 and 3 already remove everything else, so
+the columns are what survives the first two primes and each column is a candidate twin. Now bring
+in the primes from 5 up, one at a time, as gears. A gear for the prime g turns once every g columns
+and has a single tooth: it strikes the column that contains a multiple of g. Seen through the
+columns that one tooth lands on two positions, k = +-6^-1 (mod g), because a multiple of g can be
+either member of a pair. A column that no gear strikes is an opening: both of its numbers dodge
+every prime in the machine, so it is a twin prime candidate. The machine {5..y} is all the gears
+for the primes 5 up to y, turning together; its pattern of openings repeats with a period equal to
+the product of its primes. Adding the next prime is adding one more gear, which strikes some of the
+openings and leaves the rest: the machine is constructed by stacking these layers, and everything
+the project studies is what one more gear does to the openings below it.
+
+## The conjecture, in the machine
+
+The window of the machine {5..y} is its certified range: the columns whose numbers lie below the
+square of the next prime. Inside the window an opening is not just a candidate but an actual twin
+prime pair, because any composite below that square is already caught by a gear in the machine;
+that equivalence is checked by the Lean kernel (proofs/BlockedSlots.lean,
+`twins_infinite_iff_survivor_in_window`). So the twin prime conjecture becomes: for every machine,
+an opening lands inside the window. The record F(M) is the longest stretch of consecutive columns
+with no opening. If the record stays below the window's growth, an opening is forced inside every
+window, and twins are infinite. The per-step form of that, F(M+q') <= F(M) + q' (the budget
+inequality), is what the search certifies rung by rung. It is a target, measured true at every
+computed step, never a law.
 
 ## Why gears, and not just modular arithmetic
 
