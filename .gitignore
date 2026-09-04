@@ -100,3 +100,13 @@ research/proof/chain_teeth_r33_fam_m17.json
 research/proof/chain_teeth_r33_fam_m19.json
 research/proof/chain_teeth_r33_sub_m23.json
 research/proof/__pycache__/
+
+# Large generated data (regenerable; keep out of the public repo)
+*.npz
+*.npy
+*.pdb
+research/**/results/*.npz
+research/data/**/gap_tuples_*.csv
+research/data/**/bool_lag16_*.csv
+# Mersenne digits: regenerate with  uv run python -c "print(2**136279841-1)" > m136279841.txt
+**/m136279841.txt
