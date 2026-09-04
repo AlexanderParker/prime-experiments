@@ -210,13 +210,45 @@ the log at the bottom is chronology only.
           against a fixed target set; what the landscape does not give is a count. What would
           have to happen for the object to fail: every one of the ~d/9 islands in the top gear's
           arc struck by some gear in (7, q]; not seen above 1487.
-          - R2.a.i.a.1. The island witness under pressure. Spawned by N-R4 and its 17 failures.
-            Questions: does the witness hold for every integer q (not only primes), which would
-            make it a statement about the polynomials q^2 + 6i alone; the mechanism of each of
-            the 17 failures (which gears cover which islands, and how many gears the cover
-            needs); the minimum blocking set of the islands in [1, d) as a function of q and
-            whether it grows; the slack law (open islands per q); the same object at B = 11
-            and 13. OPEN, prover running.
+          - R2.a.i.a.1. The island witness under pressure (research/proof/island_witness.md;
+            register entry docs/novel/island-witness-integers.md, prior art not yet checked).
+            Spawned by N-R4 and its 17 failures. STRONG. THE OBJECT SHARPENED: (i) it is about
+            integers, not primes: for every integer q coprime to 30 above 2849 (52,574 of them
+            to 200,000) some island in [1, d) is open; composites behave exactly like primes;
+            every multiple of 5 fails (13,333 of 13,333), by a proved law: a gear dividing q
+            relocates its strikes onto the classes i = 0 and i = 2 x 6^-1 mod g, which for
+            gear 5 are exactly {0, 2} mod 5, where all four islands lie; powers of 5, 49 and 121
+            are the only prime-power failures; (ii) 0 exceptions in 17,748 primes in (1487,
+            200000], minimum open islands per band 2, 4, 12, 21, 57, 107, strictly increasing;
+            (iii) ONE CLASS SUFFICES: i = 12 mod 35 alone witnesses from q = 5477 (0 of 17,261),
+            each of the four classes separately from 13,001; (iv) THE ARC SHRINKS: a free island
+            sits inside [1, 0.152 d) for every prime in (20000, 200000] (0 of 15,722), and its
+            absolute offset never exceeds 2,392 anywhere to 200,000. So: for every integer q
+            coprime to 30 from 2849 on, the column of q^2 + 6i with i = 12 mod 35 and i < 2,392
+            is open for some i, i.e. q^2 + 6i - 2 and q^2 + 6i are a twin prime pair. (v) the 17
+            prime failures: 16 in the short arc (q = 73 the exception), no residue coincidence,
+            exact minimum covers up to 24 gears (0.42 of the islands, most gears taking one
+            island each), 20 of 21 failures fragile (deleting one gear frees an island). (vi) THE
+            COVER NUMBER K(d), the branch's contribution toward the root: with every gear free
+            to choose any reachable phase, used once, the exact minimum number of gears that
+            strike every island of [1, d) is K = 3, 4, 6, 9, 14, 20 at d = 35 .. 1120 (ILP,
+            certified optimal), against a bounded counting requirement 2, 4, 5, 7, 9, 10:
+            counting stalls, covering grows. A failure at q pins q modulo a product of at least
+            K(d) gears, 1.1e32 at d = 1120 where q is about 3,000. Inside the real machine the
+            minimum blocking set of the struck islands grows linearly (5 to 220 gears from
+            q = 127 to 19,699). (vii) B = 11 and 13: witness thresholds 9,281 and 33,623; the
+            failure sets nest the other way from the brief's guess (islands nest downward, so
+            failures nest upward, 0 exceptions in 17,982). Refuted: covers of at most 6 gears;
+            a bounded adversarial cover. THE INTERACTION TO PROVE, sharpened: no integer q
+            coprime to 30 can lie in a covering residue class of K(d) or more gears in (7, q]
+            with d = 2u_q; the growth of K(d) is the quantity to understand.
+            - R2.a.i.a.1.a. The cover number K(d). Spawned by (vi). Questions: the growth law
+              of K(d) (is it the record ladder of the adversarial family restricted to islands,
+              i.e. the smallest K whose best K-gear machine has an island-free run of d/35
+              islands; if so say so and use the counterfactual family's known bounds); the
+              first-moment count of failing q against the data (heuristic, stated as such);
+              whether any structural reason bounds the number of covering classes modulo the
+              product. OPEN, prover running.
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -627,3 +659,9 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   CRT classes; large gears strike them at exactly 2/g so counting through islands gives nothing new; the
   interaction to prove is stated with q as the sifted variable. Opened R2.a.i.a.1 (the witness under pressure),
   one prover.
+- 2026-09-06, prover I (island_witness.md): the witness is about integers coprime to 30, not primes (0 failures
+  in 52,574 above 2849; every multiple of 5 fails by a proved relocation law); 0 exceptions in 17,748 primes to
+  200,000 with the minimum open-island count strictly increasing; one class i = 12 mod 35 suffices from 5477;
+  the free island sits inside 0.152 d and its absolute offset never exceeds 2,392. Cover number K(d) = 3, 4, 6, 9,
+  14, 20 at d = 35..1120 (ILP-certified) grows while the counting requirement stays bounded. Opened
+  R2.a.i.a.1.a (the cover number), one prover.
