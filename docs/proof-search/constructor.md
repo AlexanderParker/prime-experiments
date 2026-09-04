@@ -3191,3 +3191,282 @@ Mechanic's `y,gap,count` file took the wrong columns; the data matched exactly, 
   prediction is that the increment law fails at a step iff F_3(M) > F_2(M) + s_min(q') AND
   some F_3 maximiser has a padded middle (F_3(37)'s (37,23,37), F_3(43)'s (67,28,30) and
   F_3(47)'s (28,33,84) all have non-legal middles, consistent with the law holding there).
+
+## Round 31
+
+Brief: ONE LEMMA.  (a) state and prove the bare-alternation admissibility lemma that
+Lateral round 30 observed on the counterfactual family, compute its inadmissible set `S`
+as residue classes mod 210, and gate it at every corpus machine; (b) the honest boundary -
+the attaining words classified bare / padded / shifted, the decomposition theorem, and what
+`L_pad` would have to satisfy to close (B); (c) the complement - the strongest provable
+statement about `L` from gears 5 and 7.  Manager corrections received mid-round: a padded
+letter is NOT free mod 35 (it has a definite residue at 5 and at 7), and Lateral is
+supplying a spectrum bound `L <= F(M+q')/a`, to be taken as given here.
+
+Scripts and gates (clean processes; logs and results in `research/data/r31/`):
+
+    research/bare_lemma_r31.py [--crt]  -> the lemma, S mod 210, the corpus gate,
+        the corridor automaton and the R99 chain under Lateral's c_B.  GATES A1-A6,
+        B1-B5, and "all assertions passed".
+    research/lpad47_r31.py              -> the 7 mirror representatives of the 12
+        non-bare length-3 survivors at m47, by crt_dict.decide_cover.
+
+Pre-registration `research/data/r31/constructor_prereg_r31.txt` (P1-P7), written before
+any round-31 script existed.  Every job this round launched has finished.
+
+**R103 (THE BARE-ALTERNATION ADMISSIBILITY LEMMA, AND THE FIRST UNIFORM CAP ON HALF OF
+`L`).**  Doc: `docs/novel/bare-word-uniform-cap.md`.
+
+  DEFINITIONS.  `u' = round(q'/6)` (the smaller tooth), `d' = 2u'`, BARE letters
+  `a = d'`, `b = q' - a`; exactly `a = (q'-1)/3` if `q' = 1 mod 3` and `(q'+1)/3` if
+  `q' = 2 mod 3` (GATE A1, 2,258 primes).  `E_g = Z_g` minus `{+-6^{-1} mod g}`;
+  `E_35 = {r : r mod 5 in E_5, r mod 7 in E_7}`, `|E_35| = 15`.  `X(w)` = the prefix-sum
+  offset set.  `X` is ADMISSIBLE AT {5,7} if a translate fits in `E_5` and a translate fits
+  in `E_7` - equivalently (CRT, GATE A3 on 4,186 instances) a translate fits in `E_35`.
+  `PSORD(c)` = the largest `m` such that SOME bare alternation of length `m` (either phase)
+  is admissible at {5,7}, for `q' = c mod 210`.  `S = {c : PSORD(c) <= 2}`.
+  `L_bare(M)` = the longest realised legal word all of whose letters are bare.
+
+  LEMMA.  If neither `X_A = {0, a, q', q'+a}` nor `X_B = {0, b, q', q'+b}` is admissible at
+  {5,7}, then `M` has no realised bare legal word of length 3, so `L_bare(M) <= 2`.
+  PROOF, two lines.  (i) By T3, and because neither `a` nor `b` is `0 mod q'` (no bare
+  letter is transparent), a bare word of length 3 is `(a,b,a)` or `(b,a,b)`; those are the
+  only two.  (ii) If such a word occurs at the opening `k` then `k, k+a, k+q', k+q'+a` are
+  all openings of `M`, hence avoid the teeth of EVERY gear of `M`, hence `k + X` is inside
+  `E_5` mod 5 and inside `E_7` mod 7 - `X` is admissible.  Contrapositive.  []
+
+  THEOREM (the general form).  For every machine `M` containing 5 and 7,
+      `L_bare(M) <= PSORD(q' mod 210) <= 5`.
+  Over the 48 invertible classes mod 210, `PSORD` takes the values
+
+      PSORD = 1 : 24 classes  11,13,17,19,41,43,47,71,73,79,101,103,107,109,131,137,
+                              139,163,167,169,191,193,197,199
+      PSORD = 2 :  4 classes  29,59,151,181
+      PSORD = 3 : 14 classes  1,23,31,61,67,89,97,113,121,143,149,179,187,209
+      PSORD = 4 :  0 classes  (EMPTY - a class admitting a 4-letter bare alternation
+                               admits a 5-letter one)
+      PSORD = 5 :  6 classes  37,53,83,127,157,173      <- R74's six exceptional classes
+
+  so `|S| = 28` (density `7/12` of the primes by Dirichlet) and the complement has 20
+  classes: `1,23,31,37,53,61,67,83,89,97,113,121,127,143,149,157,173,179,187,209`.
+
+  THE QUANTIFIER, AND WHY THIS IS NOT R74.  R74's `A_relax` is the same walk with the OTHER
+  quantifier and the other unit: it asks for a CYCLE, so it MINIMISES over the two starting
+  letters ("one broken window kills the cycle"), and it counts POINTS (deleted openings)
+  rather than letters.  The word question asks whether SOME bare `m`-word exists, so it
+  MAXIMISES and counts letters.  In R74's own convention the distribution is `24/16/2/6` at
+  orders `2/3/4/5` with order 5 exactly on `{37,53,83,127,157,173}` and order 4 exactly on
+  `{23,187}` - reproduced exactly (GATE A4) - and it is a DIFFERENT set: `S` has 28 classes,
+  R74's order-2 set has 24.  R74 caps a proxy that need not be realised anywhere; `S` caps
+  `L_bare`, a quantity that appears in the derivation.
+
+  THE CORPUS GATE (`L` from the r30 counted census at m11..m37, from R97/R98 at m43/m47,
+  from Mechanic's r30 killer table at m41; `L_bare` from the census and from
+  `crt_dict.realised` at m41..m47, node budget 4e7):
+
+      M     q'   a   b  q'%210  in S?  ord(a..) ord(b..) PSORD  R74  L  L_bare (a,b,a)? (b,a,b)?
+      m11   13   4   9    13    IN S      1        1       1     2   1    1      no       no
+      m13   17   6  11    17    IN S      1        1       1     2   1    1      no       no
+      m17   19   6  13    19    IN S      1        1       1     2   1    1      no       no
+      m19   23   8  15    23    no        3        3       3     4   2    2      no       no
+      m23   29  10  19    29    IN S      2        2       2     3   1    1      no       no
+      m29   31  10  21    31    no        3        2       3     3   3    3     YES       no
+      m31   37  12  25    37    no        4        5       5     5   3    3     YES      YES
+      m37   41  14  27    41    IN S      1        1       1     2   2    1      no       no
+      m41   43  14  29    43    IN S      1        1       1     2   2    1      no       no
+      m43   47  16  31    47    IN S      1        1       1     2   2    1      no       no
+      m47   53  18  35    53    no        4        5       5     5   4    4     YES      YES
+
+  GATE B1 `L_bare <= 2` at all 7 corpus machines with `q'` in `S`, and neither `(a,b,a)` nor
+  `(b,a,b)` is realised at any of them - and in fact `L_bare <= 1` at six of the seven,
+  because `PSORD = 1` there (gear 5 alone refutes the two-letter bare alternation).
+  GATE B2 `L_bare <= PSORD <= 5` at all 11 machines, TIGHT at m29 (3 = 3) and at
+  m37/m41/m43 (1 = 1), slack 1 at m19 and m47, slack 2 at m31.
+  GATE B3 every one of the 40 realised LEGAL words on record at m11..m37 is admissible at
+  {5,7} - the proof step, checked against the data rather than assumed.
+  GATE B4 `L` from the counted census reproduces the recorded row `1,1,1,2,1,3,3,2`.
+  At m41 and m43 the CRT decisions were all FREE: `PSORD(43) = PSORD(47) = 1`, so
+  `(14,29)`, `(29,14)`, `(14,29,14)`, `(29,14,29)` and `(16,31)`, `(31,16)`, `(16,31,16)`,
+  `(31,16,31)` are refuted by phase saturation at gears 5 and 7 with no search at all.
+  At m47 the six bare words `(18,35)`, `(35,18)`, `(18,35,18)`, `(35,18,35)`,
+  `(18,35,18,35)`, `(35,18,35,18)` are all REALISED (each under 1 s), `(18,35,18,35,18)` is
+  refuted for free by phase saturation and `(35,18,35,18,35)` by `decide_cover` in 42 s -
+  R98's `L(47) = 4` re-derived with both length-5 phases decided, not one.
+  SCORES: P1 REFUTED (`|S| = 28`, not 24 - I mapped R74's convention onto the wrong
+  quantifier and the wrong unit); P1b REFUTED in the same way (the true distribution is
+  24/4/14/0/6 at PSORD 1/2/3/4/5), though its `PSORD = 5` clause is exactly right; P1c
+  half (the complement has 20 classes, not 24; max PSORD = 5 CONFIRMED); P2 CONFIRMED
+  exactly (7 in `S`: 13,17,19,29,41,43,47; 4 out: 23,31,37,53); P3 CONFIRMED (0
+  exceptions); P5 CONFIRMED.
+
+**R104 (THE HONEST BOUNDARY: THE ATTAINING WORDS, AND THE DECOMPOSITION THEOREM).**
+
+  THE ATTAINING WORDS, CLASSIFIED (bare = `a` or `b`; padded = `0 mod q'`; shifted =
+  `a + kq'` or `b + kq'`, `k >= 1`).  From the counted census at m11..m37, from Mechanic's
+  round-30 killer table at m41, from R97/R98 at m43/m47:
+
+      M    q'  L  attaining words                          classification
+      m11  13  1  (4)                                      bare
+      m13  17  1  (6) (11)                                 bare
+      m17  19  1  (6) (13)                                 bare
+      m19  23  2  (8,15) (15,8)                            bare bare
+      m23  29  1  (10) (19) (29)                           bare, bare, PADDED
+      m29  31  3  (10,21,10)                               bare bare bare
+      m31  37  3  (12,25,12) (25,12,25)                    bare bare bare
+      m37  41  2  (14,41) (41,14) (27,41) (41,27)          bare PADDED / PADDED bare
+      m41  43  2  (14,43) (43,14) (29,43) (43,29) (43,43)  every one carries the padded 43
+      m43  47  2  (not enumerated; L = 2 by R97)           L_bare = 1, so non-bare
+      m47  53  4  (18,35,18,35)                            bare bare bare bare
+
+  THE ANSWER THE BRIEF ASKED FOR, pre-registered as P4 and CONFIRMED: **NO.  `L(M) >= 3`
+  never happens through a bare word at a machine with `q'` in `S`.**  The three machines
+  with `L >= 3` are m29, m31 and m47, all three attained by PURE BARE ALTERNATIONS, and all
+  three have `q'` OUTSIDE `S` (`PSORD(31) = 3`, `PSORD(37) = PSORD(53) = 5`).  In the
+  corpus no `S`-machine even reaches `L_bare = 2`.  The lemma is not dead.
+  THE BOUNDARY IS THREE MACHINES INSIDE THE CENSUS (four with m53, below): `L - L_bare = 1` at m37, m41 and m43 and `0`
+  everywhere else; those three are precisely the `S`-machines whose `L` is carried by a
+  word containing the padded letter `q'`.  So the lemma bounds `L_bare` and says nothing
+  about `L` there - it is honest, and it is one half of a decomposition, not a bound on
+  the crux.
+
+  DECOMPOSITION THEOREM (trivial, and that is the point).  Let `L_pad(M)` be the length of
+  the longest realised legal word using at least one NON-BARE letter (padded or shifted).
+  Every realised legal word is bare or not, so
+      `L(M) = max( L_bare(M), L_pad(M) )`,
+  and with `L_bare(M) <= PSORD(q' mod 210) <= 5` PROVED (R103), requirement (B) - `L(M)`
+  bounded - is EXACTLY the statement `L_pad(M) <= c_pad` uniformly in `M`.  The crux has
+  shrunk from "all legal words" to "the words that use a letter of size at least `q'`".
+  The measured row (census at m11..m37; Mechanic r30 at m41; `L` minus `L_bare` at m43;
+  `research/lpad47_r31.py` at m47):
+
+      M         11 13 17 19 23 29 31 37 41 43 47 53
+      L          1  1  1  2  1  3  3  2  2  2  4  3
+      L_bare     1  1  1  2  1  3  3  1  1  1  4 <=2
+      L_pad      0  0  0  1  1  1  2  2  2  2  3  3
+      |alphabet| 1  2  2  3  3  4  4  6  6  6  6  7    (3F/q' = 1.6..7.4)
+
+  THE m53 ROW IS A CONSEQUENCE, NOT A MEASUREMENT.  `q' = 59`, `59 mod 210 = 59`,
+  `PSORD(59) = 2`, so `59` is IN `S` and the LEMMA gives `L_bare(53) <= 2` outright;
+  `L(53) = 3` is on record (`A_kill(53 -> 59) = 4` via R89); by the decomposition theorem
+  **`L_pad(53) = 3` exactly** - a value derived from the theorem plus a recorded number, at
+  a machine no census reaches.  Together with the MEASURED `L_pad(47) = 3` this settles the
+  shape of the non-bare half: `L_pad` is 0,0,0,1,1,1,2,2,2,2,3,3 at m11..m53, it takes
+  every value from 0 to 3, and it grows.  `L > L_bare` at FOUR machines (m37, m41, m43,
+  m53).  Any hope that `L_pad` is a small constant because "one padded letter is all you
+  ever get" is dead INSIDE the corpus, not merely beyond it.
+
+  P6 REFUTED on both clauses.  The decomposition IDENTITY is right, but the predicted
+  `L_pad` row `0,0,0,0,0,0,0,2,2,?,?` is wrong twice over: non-bare words are realised
+  from m19 on (the padded letter `23` occurs 86 times at m19), not from m37 on; and the
+  "never reaches length 3 in the corpus" clause is FALSE - `L_pad(47) = 3`, realised by
+  `(18,35,53)`, `(18,53,35)`, `(35,18,53)` and their mirrors (`research/lpad47_r31.py`,
+  three CRT decisions in 0-4 s each; the three refutations cost 722, 980 and 1,252 s and
+  one word, `(35,71,35)`, is UNDECIDED at 6e7 nodes after 2,482 s - it cannot change the
+  value, since three length-3 words are already realised and R98 refutes every non-bare
+  length-4 word, so `L_pad(47) = 3` EXACTLY).  `L_pad(53) = 3` independently, by theorem.
+  THE HONEST SHAPE OF `L_pad`: `0,0,0,1,1,1,2,2,2,2,3,3` at m11..m53 - it has taken every
+  value from 0 to 3 and it grows.  Nothing in this round bounds it.
+
+**R105 (WHAT BOUNDS `L_pad`: THE ALPHABET IS THE TERM, AND IT IS THE COVER HALF).**
+
+  THE MANAGER'S CORRECTION, TAKEN AND MEASURED.  A padded letter is NOT free mod 35: its
+  value `q'` has a definite residue mod 5 and mod 7, so gears 5 and 7 see a padded word
+  exactly as they see a bare one.  The count, exact, of the T3-legal NON-BARE 2-words over
+  each machine's alphabet that gears {5,7} alone refute:
+
+      M                  19  23  29  31  37  41  43  47
+      non-bare 2-words    5   5   9   9  26  26  26  26
+      refuted by {5,7}    0   3   7   2   5   7   7  13
+
+  So the corridor is not blind to the padded letters; it refutes half of them at m47.
+  WHAT IT CANNOT DO IS BOUND THE LENGTH.  `CORRCAP(M)` - the longest T3-legal word over the
+  FULL legal alphabet (values `<= F(M)`) whose prefix-sum walk stays inside `E_35` - is
+  computed here by an explicit automaton on the `35 x 3` corridor states with cycle
+  detection, reproducing R75's row exactly (GATE B5):
+
+      M           11 13 17 19 23 29 31 37 41 43 47 53
+      |alphabet|   1  2  2  3  3  4  4  6  6  6  6  7
+      3F/q'       1.6 1.9 2.8 3.3 3.5 4.2 4.7 6.4 6.3 6.6 6.7 7.4
+      CORRCAP      1  1  1  4  2  3  5 25 25 11  5  INFINITE
+      R75          -  -  -  4  2  3  5 25 25 11  5  INF
+      L            1  1  1  2  1  3  3  2  2  2  4  3
+
+  and the witness at m37 is `(82,27,41,14,41,82,68,14,...)` - a mixed word, not a padded
+  run.  THE TERM THAT MAKES `L_pad` THE COVER HALF IS THE ALPHABET SIZE.  The bare alphabet
+  has exactly TWO letters at every machine, forever, which is why `PSORD <= 5` is uniform.
+  The full legal alphabet has `|Lambda(M)| = #{v <= F(M) : v = 0, +-d' mod q'}` about
+  `3F(M)/q'` letters, and `F/q'` grows without bound along the ladder (1.1, 1.2, 1.4, 1.6,
+  2.1, 2.1, 2.2, 2.2, 2.5 at 19->23 .. 53->59); once the alphabet is rich enough the
+  `35 x 3` corridor graph acquires a cycle and `CORRCAP` is INFINITE - first at `53 -> 59`.
+  From that step on gears 5 and 7 refute individual non-bare words but cap no length at all,
+  and the only instrument left that refutes a non-bare word is Mechanic's `y* = 0` verdict,
+  "no window of `M` blocks this punctured interior" - a statement about `M`'s blocked runs,
+  i.e. an `F_J`-type statement, i.e. the COVER half.  So `L_pad` IS the cover half in
+  disguise, and the term that makes it so is `3F(M)/q'`.
+
+  THE SAME NUMBER APPEARS ON THE SPECTRUM SIDE (Lateral round 31 item 84, taken as given).
+  An `m`-letter legal word is the middle of a window of consecutive openings whose span is
+  `<= max_J Q*_J = F(M+q') =: G` (R68), and T3 makes two CONSECUTIVE nonzero letters sum to
+  `>= a + b = q'`, so with `T = floor((G-2)/q')`
+      `L(M) <= max( 2T, 2*floor((G-2-a)/q') + 1 )`,  about `2 G / q'`.
+  That is (up to the pairing factor) the SAME quantity as the legal alphabet's size
+  `~ 3F/q'` which makes `CORRCAP` infinite: the alphabet size and the spectrum bound on `L`
+  are one number.  What it does to R99's chain with `c_A = 4` (the literal bound), in two
+  versions - NAIVE `c_B = floor(G/a)` (every letter is `>= a`, no alternation) and PARITY
+  (Lateral's, the correct one):
+
+      M     q'   a    F   F_2    G   S_2  cB_naive 4cB<=S2  cB_parity 4cB<=S2   L
+      m11   13   4    7    11    11    9      2      YES        1       YES     1
+      m13   17   6   11    16    18   12      3      YES        1       YES     1
+      m17   19   6   18    25    25   12      4      NO         2       YES     1
+      m19   23   8   25    31    34   17      4      YES        3       YES     2
+      m23   29  10   34    39    43   24      4      YES        3       YES     1
+      m29   31  10   43    55    58   19      5      NO         3       YES     3
+      m31   37  12   58    68    88   27      7      NO         5       YES     3
+      m37   41  14   88    90    91   39      6      YES        4       YES     2
+      m41   43  14   91   103   103   31      7      YES        5       YES     2
+      m43   47  16  103   116   118   34      7      YES        5       YES     2
+      m47   53  18  118   134   145   37      8      YES        5       YES     4
+      m53   59  20  145   159   161   45      8      YES        5       YES     ?
+
+  (the PARITY column reproduces Lateral's row `1,1,2,3,3,3,5,4,5,5,5,5` exactly.)
+  VERDICT.  With the alternation accounted for the R99 product `c_A c_B <= S_2` SURVIVES at
+  all twelve corpus steps; with the naive per-letter bound it FAILS at three (m17, m29,
+  m31).  The whole difference is T3 - the factor is `2F/q'`, not `3F/q'` - worth recording
+  because the naive form is the one that suggests itself first.  But `c_B` is not a constant
+  either way: R99's conclusion becomes `F(M+q') <= F_2 + 8F(M+q')/q'`, a self-referential
+  inequality that closes only under a Jacobsthal-square condition on `F` (Lateral item 85,
+  which is the authority; not duplicated here, and its own caveat is that `c_A = 4` is a
+  LITERAL-letter constant - i.e. it is conditional on exactly this lane's open (A-pad), the
+  m31 padded `eps = -17` of R101/C6).
+  WHAT THIS LANE ADDS TO IT: `L_bare <= 5` is a CONSTANT, so all of the growth that forces a
+  `q'`-dependent `c_B` lives in `L_pad` - the non-bare words - and nowhere else.  (B) as
+  Lateral re-poses it and (B) as this lane splits it agree: the bare half is finished.
+
+**WHAT REMAINS OPEN, precisely.**  `L_pad(M) <= c_pad` uniformly.  The bare half is closed
+(R103).  Gears 5 and 7 cannot supply the padded half past `53 -> 59` (R75, re-gated here).
+No fixed-depth counter can supply it (R100).  The exposure half over-caps by 16-18 (R100).
+The spectrum supplies `L <= 2F(M+q')/q' + 1` (Lateral item 84), which grows and which
+closes R99's chain only under a Jacobsthal-square condition.  What is left is the cover half at
+full depth on the NON-BARE words only - a smaller target than round 30's, by exactly the
+two-letter sub-alphabet.
+
+**NEEDS / NEXT CONSTRUCTS.**
+* FOR THE MANAGER: (B) now reads `L_pad(M)` bounded.  `L_bare` is capped at 5 uniformly and
+  the cap is a residue condition on `q' mod 210` alone.  The `S`-machines m37/m41/m43 are
+  where `L > L_bare`, and all three excesses are the single padded letter `q'`.
+* FOR MECHANIC: the non-bare word census is the object - `occ(q'; M)` and the realised
+  non-bare words of length 2 and 3 at m41..m47.  The `y* = 0` killer profile you measured
+  IS the `L_pad` instrument; the bare extensions are now settled by two gears.
+* FOR FORMALIST: R103 is finite and small - the two-word list (T3), the openings-avoid-teeth
+  step, and a 48-class enumeration - AND IT IS ALREADY IN THE KERNEL.  Round 31's
+  `proofs/BareAlternation.lean` defines the same `S` (28 classes, element for element) and
+  proves `bareAlt_inadmissible_iff`, `S_card = 28`, `bareAdm_downward`, `psord_le_five`,
+  `psord_ne_four` by `decide`, with `no_bare_run` / `no_bare_run_ge` over an abstract
+  machine and instantiations at m19/m23/m37/m41/m43 in `BareAltInst.lean`.  Two lanes
+  reached the same 28-element set by different vehicles in the same round.  The remaining
+  kernel-shaped items are `psord_eq_three_iff` (so item (c)'s complement bound is a kernel
+  fact) and the one-line `L_pad(53) = 3` corollary.
+* FOR LATERAL: `PSORD` on the counterfactual family, where the teeth of gears 5 and 7 are
+  the family parameters: your 21,357-word observation should become `L_bare <= PSORD` with
+  `PSORD` computed from the family member's own teeth.

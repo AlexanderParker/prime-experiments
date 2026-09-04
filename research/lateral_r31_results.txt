@@ -1,0 +1,202 @@
+LATERAL round 31 - PERSISTED RESULTS
+====================================
+Vehicle: research/lateral_r31.py (corpus | family).  Logs research/data/r31/
+corpus.log, family.log, why_amin.log.  Pre-registration
+research/data/r31_lateral_predictions.txt.  173 + 22 assertion gates, all green.
+
+Brief (manager redirect 2026-09-04): (1) the spectrum bound on L as a theorem
+and a table; (2) re-pose (B); (3) one lateral framing tested on the family -
+is L just the size of the letters?
+
+
+(1) THE THEOREM
+---------------
+Let M be a machine, q' = nextprime(y), u = 6^{-1} mod q' taken as the SMALL
+representative, d' = 2u, a = d', b = q' - a, a_min = min(a,b), G = F(M + q').
+
+  (i)   the smallest positive gap value in class +d' is a, in class -d' is b,
+        in the padded class 0 mod q' it is q'          [gated, 12 machines]
+  (ii)  T3 makes the nonzero-class letters strictly alternate, so any two
+        CONSECUTIVE nonzero letters of a legal word sum to >= a + b = q'
+  (iii) a realised legal word of m letters is the middle of a window
+        x_0 < ... < x_{m+2} of consecutive openings of M whose m middle gaps
+        are legal, so R68's ATTAINMENT THEOREM (PROVED - Constructor R68/R46:
+        "if consecutive openings x_0..x_J of M have a legal middle-gap word
+        then x_J - x_0 <= F(M+q')") gives span + before + after <= G, and
+        before, after >= 1 (distinct openings).
+
+With p padded letters, n = m - p nonzero ones,
+    span >= p q' + floor(n/2) q' + [n odd] a_min,
+so with T = floor((G - 2)/q'):
+
+    (SIMPLE)  L(M) <= 2T + 1,     and sharper L(M) <= 2T + 1 - p
+    (PARITY)  L(M) <= max( 2T, 2*floor((G - 2 - a_min)/q') + 1 )
+
+    i.e.  L(M) <= 2 F(M+q')/q' + 1.
+
+STATUS: UNCONDITIONAL given R68 (proved) and T3 (R89's word reduction).
+L is O(F/q'), not O(1).
+
+
+THE CORPUS TABLE (all gates green)
+   M     q'   G=F(M+q')  a_min  T   SIMPLE  PARITY  L   EXPCAP  G/a_min
+   m11   13   11         4      0   1       1       1   1       2
+   m13   17   18         6      0   1       1       1   1       3
+   m17   19   25         6      1   3       2       1   1       4
+   m19   23   34         8      1   3       3       2   4       4
+   m23   29   43         10     1   3       3       1   2       4
+   m29   31   58         10     1   3       3       3   3       5
+   m31   37   88         12     2   5       5       3   5       7
+   m37   41   91         14     2   5       4       2   18      6
+   m41   43   103        14     2   5       5       2   13      7
+   m43   47   118        16     2   5       5       2   10      7
+   m47   53   145        18     2   5       5       4   5       8
+   m53   59   161        20     2   5       5       3   21      8
+
+   SIMPLE  1 1 3 3 3 3 5 5 5 5 5 5
+   PARITY  1 1 2 3 3 3 5 4 5 5 5 5
+   L       1 1 1 2 1 3 3 2 2 2 4 3
+   EXPCAP  1 1 1 4 2 3 5 18 13 10 5 21
+   G/a_min 2 3 4 4 4 5 7 6 7 7 8 8      (the a_min form: weaker at all 12)
+
+   TIGHT (bound = L) at m11, m13, m29 (3 of 12).
+   PARITY strictly better than SIMPLE at m17 and m37 only.
+   SIMPLE vs EXPCAP: beats at m19, m37, m41, m43, m53; ties at m11, m13, m29,
+   m31, m47; loses at m17 and m23.  Pointwise min: 1 1 1 3 2 3 5 5 5 5 5 5.
+
+DIRECT SPAN ACCOUNTING on every realised word on record (m19..m37 Mechanic V4,
+m47 Constructor's exhaustive round-29 decision): span >= the letter-class lower
+bound and span + 2 <= G, at 14 of 14 words.  Examples: m29 (10,21,10) span 41 =
+lower bound 41, +2 = 43 <= 58;  m47 (18,35,18,35) span 106 = lower bound 106,
++2 = 108 <= 145;  m37 (14,41) span 55 = lower bound 55 (p = 1 padded letter).
+
+
+(2) RE-POSING (B)
+-----------------
+c_A = 4 (literal, R99), c_B = the spectrum bound:
+
+   M     q'   F    F_2  eps  S_2  c_B(S) 4c_B  c_B(P) 4c_B  S?   P?
+   m11   13   7    11   4    9    1      4     1      4     OK   OK
+   m13   17   11   16   5    12   1      4     1      4     OK   OK
+   m17   19   18   25   7    12   3      12    2      8     OK   OK   (= at S)
+   m19   23   25   31   6    17   3      12    3      12    OK   OK
+   m23   29   34   39   5    24   3      12    3      12    OK   OK
+   m29   31   43   55   12   19   3      12    3      12    OK   OK
+   m31   37   58   68   10   27   5      20    5      20    OK   OK
+   m37   41   88   90   2    39   5      20    4      16    OK   OK
+   m41   43   91   103  12   31   5      20    5      20    OK   OK
+   m43   47   103  116  13   34   5      20    5      20    OK   OK
+   m47   53   118  134  16   37   5      20    5      20    OK   OK
+   m53   59   145  159  14   45   5      20    5      20    OK   OK
+
+R99's product c_A c_B <= S_2 HOLDS AT ALL TWELVE CORPUS STEPS, with equality
+once (m17, SIMPLE) and never with PARITY.  So with the spectrum bound in place
+of a hypothetical constant, R99's product bound is under the depth-2 slack
+everywhere the corpus reaches.
+
+THE SELF-REFERENTIAL CLOSURE.  G <= F_2 + c_A L and L <= 2(G-2)/q' + 1 give,
+for q' > 2 c_A,
+        G <= ( q'(F_2 + c_A) - 4 c_A ) / ( q' - 2 c_A ),
+and (D) G <= F + q' follows whenever (c_A = 4, eps = F_2 - F)
+        8 F <= q'^2 - (eps + 12) q' + 16.
+
+   M     q'   F    eps  closure-G  F+q'  (D)?  RHS/8   F/RHS  F/q'^2  F/q'
+   m11   13   7    4    35.8       20    no    -2.9    n/a    0.0414  0.538
+   m13   17   11   5    36.0       28    no    2.0     5.50   0.0381  0.647
+   m17   19   18   7    48.6       37    no    2.0     9.00   0.0499  0.947
+   m19   23   25   6    52.6       48    no    16.4    1.53   0.0473  1.087
+   m23   29   34   5    58.6       63    OK    45.5    0.75   0.0404  1.172
+   m29   31   43   12   78.8       74    no    29.1    1.48   0.0447  1.387
+   m31   37   58   10   91.3       95    OK    71.4    0.81   0.0424  1.568
+   m37   41   88   2    116.3      129   OK    140.4   0.63   0.0523  2.146
+   m41   43   91   12   131.0      134   OK    104.1   0.87   0.0492  2.116
+   m43   47   103  13   144.2      150   OK    131.2   0.78   0.0466  2.191
+   m47   53   118  16   162.2      171   OK    167.6   0.70   0.0420  2.226
+   m53   59   145  14   188.3      204   OK    245.4   0.59   0.0417  2.458
+   m59   61   161  12   203.4      222   OK    284.1   0.57   0.0433  2.639
+
+The closure bound G <= (q'(F_2+4)-16)/(q'-8) is TRUE at all 12 machines where
+G is on record.  The closure DELIVERS (D) at 8 of 13 steps (m23, m31, m37,
+m41, m43, m47, m53, m59) and fails only at the five small ones (m11, m13, m17,
+m19, m29), where q' is too close to 2 c_A = 8 for the denominator to help.
+F/RHS falls along the top of the corpus: 0.87 (m41) -> 0.57 (m59).
+F/q'^2 sits in 0.038 .. 0.052 at every step, a factor 2.4-3.3 inside the 1/8
+the closure needs.
+
+
+(3) THE FAMILY: IS L JUST THE SIZE OF THE LETTERS?  NO.
+-------------------------------------------------------
+Round 30's chunk data, 165,584 rows over six steps (19->23 full 142,560;
+23->29 a 601-member sample).  G taken direct where round 30 has it, else the
+record law max(F_2, max_J Q*_J) (record law == direct at every direct row,
+re-gated here).
+
+GATE: (SIMPLE), (PARITY) and the padded-aware L <= 2T+1-p hold at EVERY ONE of
+the 165,584 rows - 0 violations, including the family's L = 5 member, where
+PARITY = 5 exactly.  The theorem is not a corpus coincidence.
+
+   step      rows     TIGHT(S)  TIGHT(P)  P better  mean(P - L)  max L
+   7->11        30    86.7%     86.7%     0.0%      0.13         1
+   11->13      180    84.4%     87.8%     12.8%     0.13         3
+   13->17    1,440    31.7%     33.5%     52.6%     0.81         3
+   17->19   12,960     4.8%     16.1%     27.2%     1.24         3
+   19->23  142,560    13.3%     16.5%      7.8%     1.01         5
+   23->29    8,414    15.7%     16.6%      2.4%     0.97         3
+
+L IS NOT GOVERNED BY a_min.  spearman(L, a_min) = -0.277, +0.006, +0.065,
++0.088, -0.159, -0.245 across the six steps - never below -0.28, POSITIVE at
+three steps.  a_min = min(2v, q'-2v) is a BIJECTIVE relabelling of v_q' on
+1..(q'-1)/2, so eta^2(L | a_min) = eta^2(L | v_q') exactly (ratio 1.000 at all
+six steps): a_min carries the incoming tooth's information, no more and no
+less, but the ORDER of L in a_min is not monotone.
+
+19->23, max L by a_min (a_min = 1 .. 11):  2 3 4 3 5 3 3 4 2 4 3
+        P(L>=3):  0.0000 0.3008 0.2478 0.0002 0.5823 0.0005 0.1552 0.0464
+                  0.0000 0.1275 0.0381
+THE SMALLEST LETTER IS THE WORST: a_min = 1 (letters 22, 1) has max L = 2 and
+P(L >= 3) = 0 over 12,960 rows, while a_min = 5 (letters 18, 5) reaches L = 5
+with P(L >= 3) = 0.58.  "Small letters = long imitations" is REFUTED.
+
+WHY (mechanism, why_amin.log): the binding quantity is the SUPPLY of the rarer
+letter class, and it is the small letter's PARTNER that is rare.  At 19->23 the
+mean min(n_a, n_b) over 378,675 gaps runs 42, 48, 164, 142, 267, 223, 314,
+1131, 1956, 2977, 1452 as a_min goes 1..11 - spearman(a_min, min(n_a,n_b)) =
++0.816.  But L does NOT track supply either: spearman(L, min(n_a,n_b)) =
++0.081.  The best single correlate found is the PADDED-letter supply,
+spearman(L, n_0) = +0.311.
+
+SIZE vs ARITHMETIC, the two channels are nearly ORTHOGONAL:
+   step      eta^2(L | a_min)  eta^2(L | {5,7}-adm)  eta^2(L | both)
+   7->11         0.135              0.089                0.279
+   11->13        0.037              0.001                0.088
+   13->17        0.070              0.016                0.072
+   17->19        0.125              0.135                0.244
+   19->23        0.223              0.135                0.361
+   23->29        0.273              0.156                0.415
+At 19->23 and 23->29 the joint eta^2 is within 1% of the SUM of the two, so
+letter size and corridor admissibility explain nearly disjoint parts of L -
+and together only 36-42% of its variance.  max L: admissible 5, not admissible
+3 at 19->23.  P(L>=3 | adm) / P(L>=3 | not adm) = 0.275 / 0.076 there.
+
+REAL MACHINE inside the family: a_min/q' = 0.364, 0.308, 0.353, 0.316, 0.348,
+0.345 - always near 1/3, never extreme; 50-64% of family rows have a SMALLER
+a_min than the real machine and their mean L is at or above the real value at
+every step.  So the real machine's letters are ordinary in size; what is not
+ordinary is the corridor.
+
+VERDICT on the framing: the "arithmetic of the teeth" in (B) is NOT the size of
+the letters.  It is one line only in the sense that the SIZE half is now a
+theorem (the spectrum bound); the residue half is not, and the two are
+orthogonal on the family.
+
+
+FILES
+-----
+research/lateral_r31.py                        the vehicle (corpus | family)
+research/data/r31_lateral_predictions.txt      pre-registration
+research/data/r31/corpus.log                   173 gates
+research/data/r31/family.log                    22 gates
+research/data/r31/why_amin.log                  the supply mechanism
+research/data/r31/bound_*.npy                  per-row bounds (gitignored)
+research/data/r31/corpus_bound.json            the corpus table
+docs/novel/spectrum-bound-on-L.md              the novel-register document

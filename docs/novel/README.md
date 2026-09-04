@@ -1074,3 +1074,43 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   uniform bound on L needs the cover half at full depth on a candidate set that is itself
   unbounded.  R75's CORRCAP row is reproduced exactly as the gate - SCRIPT-VERIFIED (exact
   integers) - prior art not yet checked
+- bare-word-uniform-cap - (constructor, round 31) THE FIRST UNIFORM CAP ON HALF OF L:
+  with a, b the two BARE letters (the smallest positive values in the two nonzero legal
+  classes, a + b = q', 3a = q' -+ 1), a bare legal word is forced by T3 to be one of the
+  two alternations abab.. / baba.., and a realised word's prefix-sum offsets must fit
+  inside the exposed sets of EVERY gear of M - in particular gears 5 and 7.  Hence
+  L_bare(M) <= PSORD(q' mod 210) <= 5 for every machine, where PSORD(c) is the longest
+  bare alternation (max over the two phases, counted in letters) admissible at {5,7}.
+  PSORD takes the values 1 (24 classes), 2 (4), 3 (14), 5 (6, exactly R74's
+  {37,53,83,127,157,173}); PSORD = 4 is EMPTY.  S = {PSORD <= 2} has 28 classes (density
+  7/12 of the primes), and on S the LEMMA reads L_bare(M) <= 2.  Corpus gate m11..m47:
+  L_bare = 1,1,1,2,1,3,3,1,1,1,4 against L = 1,1,1,2,1,3,3,2,2,2,4, so L_bare <= PSORD
+  everywhere (tight at m29 and at m37/m41/m43) and <= 2 at all seven S-machines.  This is
+  NOT R74's A_relax: R74 minimises over the two phases and counts points (it asks for a
+  cycle), this maximises and counts letters (it asks for existence); R74's own 24/16/2/6
+  distribution is reproduced in R74's convention as the gate.  CONSEQUENCE: with
+  L = max(L_bare, L_pad), requirement (B) is now exactly "L_pad bounded" - the words that
+  use a letter of size >= q'.  Immediate new value: at m53, PSORD(59) = 2 gives
+  L_bare(53) <= 2 and the recorded L(53) = 3 forces L_pad(53) = 3 exactly; and L_pad(47) =
+  3 measured (three non-bare 3-words realised by CRT, every non-bare 4-word refuted by
+  R98), so L_pad = 0,0,0,1,1,1,2,2,2,2,3,3 at m11..m53 and GROWS while L_bare is capped
+  forever.  KERNEL-CONFIRMED the same round: Formalist's proofs/BareAlternation.lean
+  defines the identical 28-class S and proves S_card, psord_le_five, psord_ne_four by
+  decide - PROVED (the cap) + KERNEL-CHECKED (S, PSORD <= 5) + SCRIPT-VERIFIED (the
+  tables) - prior art not yet checked
+- spectrum-bound-on-L - (lateral, round 31) THE OTHER HALF, AND IT COVERS PADDED WORDS:
+  every legal letter is >= a or >= b in its nonzero class and >= q' if padded, T3 makes
+  the nonzero classes strictly alternate, and a + b = q' exactly - so a realised legal
+  word of m letters, p of them padded, has span >= (p + floor((m-p)/2)) q'.  R68's
+  attainment theorem (proved) caps that span by F(M+q') - 2.  Hence, with
+  T = floor((F(M+q') - 2)/q'),  L(M) <= 2T + 1 - p, and unconditionally
+  L(M) <= 2 F(M+q')/q' + 1: L is O(F/q'), NOT O(1), and hypothesis (B) as posed is
+  probably false in the limit and is not needed.  Corpus bound row 1,1,3,3,3,3,5,5,5,5,5,5
+  (parity-refined 1,1,2,3,3,3,5,4,5,5,5,5) against L = 1,1,1,2,1,3,3,2,2,2,4,3 - TIGHT at
+  m11, m13, m29; beats Constructor's EXPCAP at five of twelve steps (5 vs 18 at m37, 5 vs
+  21 at m53).  Substituted back into R99 without circularity it gives
+  F(M+q') <= (q'(F_2 + c_A) - 4 c_A)/(q' - 2 c_A) and hence (D) whenever
+  8 F <= q'^2 - (F_2 - F + 12) q' + 16 - true at 8 of 13 corpus steps, margin growing
+  (F/RHS 0.87 at m41 -> 0.57 at m59), F/q'^2 = 0.038..0.052 throughout.  Gated at all
+  165,584 rows of the tooth-counterfactual family, 0 violations - PROVED (paper) +
+  SCRIPT-VERIFIED - prior art not yet checked

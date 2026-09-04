@@ -1,0 +1,267 @@
+C:\dev\primes\research\bare_lemma_r31.py:23: SyntaxWarning: invalid escape sequence '\ '
+  Teeth of gear g: {+-6^{-1} mod g}.  Exposed set E_g = Z_g \ teeth.
+==============================================================================
+(A)  THE INADMISSIBLE SET S, AS RESIDUE CLASSES MOD 210
+==============================================================================
+teeth(5) = [1, 4]  E_5 = [0, 2, 3]
+teeth(7) = [1, 6]  E_7 = [0, 2, 3, 4, 5]
+|E_35| = 15 (corridor)
+
+GATE A1  a = 2*round(q'/6) and 3a = q' -+ 1 at all 2258 primes 11..20000: OK
+GATE A2  PSORD constant on each of the 48 classes mod 210 and equal in both vehicles (mod-210 arithmetic vs 2258 exact primes): OK
+GATE A3  {5}-fit AND {7}-fit == corridor-mod-35 fit on 4186 (prime, length, phase) instances: OK
+GATE A4  R74's PS-order (MIN over the two phases, counted in POINTS = letters + 1): distribution 24/16/2/6 at orders 2/3/4/5, order 5 exactly on {37,53,83,127,157,173}, order 4 exactly on {23,187} - R74's enumeration reproduced exactly: OK
+
+PSORD (MAX over the two phases, counted in LETTERS - the quantifier
+the word-existence question needs) over the 48 invertible classes mod 210:
+   PSORD = 1 : 24 classes  [11, 13, 17, 19, 41, 43, 47, 71, 73, 79, 101, 103, 107, 109, 131, 137, 139, 163, 167, 169, 191, 193, 197, 199]
+   PSORD = 2 :  4 classes  [29, 59, 151, 181]
+   PSORD = 3 : 14 classes  [1, 23, 31, 61, 67, 89, 97, 113, 121, 143, 149, 179, 187, 209]
+   PSORD = 5 :  6 classes  [37, 53, 83, 127, 157, 173]
+
+|S| = 28   S = {c : PSORD(c) <= 2} =
+   [11, 13, 17, 19, 29, 41, 43, 47, 59, 71, 73, 79, 101, 103, 107, 109, 131, 137, 139, 151, 163, 167, 169, 181, 191, 193, 197, 199]
+
+|complement| = 20   comp = {c : PSORD(c) >= 3} =
+   [1, 23, 31, 37, 53, 61, 67, 83, 89, 97, 113, 121, 127, 143, 149, 157, 173, 179, 187, 209]
+
+GATE A5  max PSORD over all 48 classes = 5: the bound L_bare(M) <= PSORD(q' mod 210) <= 5 is UNIFORM in M: OK
+GATE A6  the 6-letter bare alternation is INADMISSIBLE at {5,7} in both phases at
+         all 48 classes (96 checks) - the finite statement behind L_bare <= 5: OK
+
+FORWARD TABLE - the bare cap at the next steps beyond the corpus
+  (a prediction on record: L_bare(M) <= PSORD at each of these)
+   step        q'   a    b   q' mod 210  PSORD  in S?
+    53 -> 59     59   20   39       59        2   IN S
+    59 -> 61     61   20   41       61        3   no
+    61 -> 67     67   22   45       67        3   no
+    67 -> 71     71   24   47       71        1   IN S
+    71 -> 73     73   24   49       73        1   IN S
+    73 -> 79     79   26   53       79        1   IN S
+    79 -> 83     83   28   55       83        5   no
+    83 -> 89     89   30   59       89        3   no
+    89 -> 97     97   32   65       97        3   no
+    97 -> 101   101   34   67      101        1   IN S
+   101 -> 103   103   34   69      103        1   IN S
+   103 -> 107   107   36   71      107        1   IN S
+   107 -> 109   109   36   73      109        1   IN S
+   109 -> 113   113   38   75      113        3   no
+   113 -> 127   127   42   85      127        5   no
+   127 -> 131   131   44   87      131        1   IN S
+
+==============================================================================
+(B)  THE CORPUS GATE  m11 .. m47
+==============================================================================
+
+CRT decisions at m41/m43/m47 (node budget 40000000):
+   m41  (14,)                  REALISED  decide_cover  0 s
+   m41  (29,)                  REALISED  decide_cover  0 s
+   m41  (14, 29)               refuted   by phase saturation (free)
+   m41  (29, 14)               refuted   by phase saturation (free)
+   m41  (14, 29, 14)           refuted   by phase saturation (free)
+   m41  (29, 14, 29)           refuted   by phase saturation (free)
+   m43  (16,)                  REALISED  decide_cover  0 s
+   m43  (31,)                  REALISED  decide_cover  0 s
+   m43  (16, 31)               refuted   by phase saturation (free)
+   m43  (31, 16)               refuted   by phase saturation (free)
+   m43  (16, 31, 16)           refuted   by phase saturation (free)
+   m43  (31, 16, 31)           refuted   by phase saturation (free)
+   m47  (18,)                  REALISED  decide_cover  0 s
+   m47  (35,)                  REALISED  decide_cover  0 s
+   m47  (18, 35)               REALISED  decide_cover  0 s
+   m47  (35, 18)               REALISED  decide_cover  0 s
+   m47  (18, 35, 18)           REALISED  decide_cover  0 s
+   m47  (35, 18, 35)           REALISED  decide_cover  0 s
+   m47  (18, 35, 18, 35)       REALISED  decide_cover  0 s
+   m47  (35, 18, 35, 18)       REALISED  decide_cover  0 s
+   m47  (18, 35, 18, 35, 18)   refuted   by phase saturation (free)
+   m47  (35, 18, 35, 18, 35)   refuted   decide_cover  42 s
+
+   M    q'    a   b  q'%210 in S?  ord(a..) ord(b..) PSORD  R74   L  L_bare  (a,b,a)?  (b,a,b)?
+  m11    13    4   9     13  IN S       1        1      1    2   1     1   no       no      
+  m13    17    6  11     17  IN S       1        1      1    2   1     1   no       no      
+  m17    19    6  13     19  IN S       1        1      1    2   1     1   no       no      
+  m19    23    8  15     23  no         3        3      3    4   2     2   no       no      
+  m23    29   10  19     29  IN S       2        2      2    3   1     1   no       no      
+  m29    31   10  21     31  no         3        2      3    3   3     3   YES      no      
+  m31    37   12  25     37  no         4        5      5    5   3     3   YES      YES     
+  m37    41   14  27     41  IN S       1        1      1    2   2     1   no       no      
+  m41    43   14  29     43  IN S       1        1      1    2   2     1   no       no      
+  m43    47   16  31     47  IN S       1        1      1    2   2     1   no       no      
+  m47    53   18  35     53  no         4        5      5    5   4     4   YES      YES     
+
+GATE B1  L_bare(M) <= 2 at all 7 corpus machines with q' mod 210 in S, and neither (a,b,a) nor (b,a,b) is realised at any of them: OK
+GATE B2  L_bare(M) <= PSORD(q' mod 210) <= 5 at all 11 corpus machines: OK
+GATE B3  every one of the 40 realised LEGAL words on record at m11..m37 is admissible at {5,7} (the proof step, on data): OK
+GATE B4  L from the counted census reproduces the recorded row 1,1,1,2,1,3,3,2 at m11..m37: OK
+
+==============================================================================
+(B2)  THE ATTAINING WORDS, CLASSIFIED
+==============================================================================
+  m11  q'=13  L=1  bare letters (a,b) = (4,9)
+        (4,)                    bare
+  m13  q'=17  L=1  bare letters (a,b) = (6,11)
+        (6,)                    bare
+        (11,)                   bare
+  m17  q'=19  L=1  bare letters (a,b) = (6,13)
+        (6,)                    bare
+        (13,)                   bare
+  m19  q'=23  L=2  bare letters (a,b) = (8,15)
+        (8, 15)                 bare bare
+        (15, 8)                 bare bare
+  m23  q'=29  L=1  bare letters (a,b) = (10,19)
+        (10,)                   bare
+        (19,)                   bare
+        (29,)                   padded
+  m29  q'=31  L=3  bare letters (a,b) = (10,21)
+        (10, 21, 10)            bare bare bare
+  m31  q'=37  L=3  bare letters (a,b) = (12,25)
+        (12, 25, 12)            bare bare bare
+        (25, 12, 25)            bare bare bare
+  m37  q'=41  L=2  bare letters (a,b) = (14,27)
+        (14, 41)                bare padded
+        (27, 41)                bare padded
+        (41, 14)                padded bare
+        (41, 27)                padded bare
+  m41  q'=43  L=2  attaining words on record (Mechanic r30): (14,43) (43,14) (29,43) (43,29) (43,43)
+        every one carries the padded letter 43
+  m43  q'=47  L=2  (R97: all eight length-3 survivors refuted)
+  m47  q'=53  L=4  (18,35,18,35)  bare bare bare bare   (R98)
+
+==============================================================================
+(B3)  L_pad - THE NON-BARE HALF - AND WHAT GEARS 5 AND 7 DO TO IT
+==============================================================================
+  L_pad(M) = longest realised legal word using at least one NON-BARE letter
+  (padded = 0 mod q'; shifted = a + kq' or b + kq', k >= 1).  From the counted
+  census at m11..m37; m41 from R85/Mechanic r30; m43 from L and L_bare; m47
+  from research/lpad47_r31.py.
+
+   M   q'  alphabet: bare | padded | shifted          L  L_bare  L_pad  attaining non-bare word
+  m11   13  4,9          | -         | -              1     1      0   -
+  m13   17  6,11         | -         | -              1     1      0   -
+  m17   19  6,13         | -         | -              1     1      0   -
+  m19   23  8,15         | 23        | -              2     2      1   (23,)
+  m23   29  10,19        | 29        | -              1     1      1   (29,)
+  m29   31  10,21        | 31        | 41             3     3      1   (31,)
+  m31   37  12,25        | 37        | 49             3     3      2   (12, 37)
+  m37   41  14,27        | 41,82     | 55,68          2     1      2   (14, 41)
+  m41   43  14,29        | 43,86     | 57,72          2     1      2   (14,43)   [Mechanic r30 killer table: every attaining word carries 43]
+  m43   47  16,31        | 47,94     | 63,78          2     1      2   (?, ?)   [L = 2 (R97) with L_bare = 1 (this round)]
+  m47   53  18,35        | 53,106    | 71,88          4     4      3   (18,35,53)   [lpad47_r31.py: 3 realised, R98 refutes every non-bare 4-word]
+
+  THE CORRECTION (manager, round 31): a padded letter is NOT free mod 35.
+  Its value q' has a definite residue mod 5 and mod 7, so gears 5 and 7 see a
+  padded word exactly as they see a bare one.  The check, on the corpus:
+     m11  q'=13  : of   0 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   0
+     m13  q'=17  : of   0 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   0
+     m17  q'=19  : of   0 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   0
+     m19  q'=23  : of   5 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   0
+     m23  q'=29  : of   5 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   3
+     m29  q'=31  : of   9 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   7
+     m31  q'=37  : of   9 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   2
+     m37  q'=41  : of  26 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   5
+     m41  q'=43  : of  26 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   7
+     m43  q'=47  : of  26 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute   7
+     m47  q'=53  : of  26 T3-legal NON-BARE 2-words over the alphabet, gears
+              {5,7} alone refute  13
+
+  So the corridor is not blind to padded letters.  R75's CORRCAP goes INFINITE
+  at 53 -> 59 because the ALPHABET (about 3F/q' legal values <= F) becomes rich
+  enough to carry a T3-legal cycle through the 35 x 3 corridor states - not
+  because any letter is invisible.  The alphabet sizes and CORRCAP:
+
+   M    q'   F   |alphabet|  3F/q'  CORRCAP (automaton)  R75  witness word (first 8 letters)
+  m11    13    7        1      1.6              1        -   (4,)
+  m13    17   11        2      1.9              1        -   (11,)
+  m17    19   18        2      2.8              1        -   (13,)
+  m19    23   25        3      3.3              4        4   (15, 8, 15, 23)
+  m23    29   34        3      3.5              2        2   (29, 10)
+  m29    31   43        4      4.2              3        3   (10, 21, 10)
+  m31    37   58        4      4.7              5        5   (25, 12, 25, 12, 25)
+  m37    41   88        6      6.4             25       25   (82, 27, 41, 14, 41, 82, 68, 14)
+  m41    43   91        6      6.3             25       25   (72, 43, 43, 14, 43, 72, 86, 14)
+  m43    47  103        6      6.6             11       11   (47, 47, 16, 47, 47, 78, 47, 16)
+  m47    53  118        6      6.7              5        5   (35, 18, 35, 18, 35)
+  m53    59  145        7      7.4       INFINITE      INF   ()
+
+GATE B5  the corridor automaton reproduces R75's CORRCAP row 4,2,3,5,25,25,11,5,INF
+         at 19->23 .. 53->59: OK
+
+==============================================================================
+(D)  THE FIRST L_pad = 3, AND IT IS THE NEXT MACHINE (m53)
+==============================================================================
+  m53 -> q' = 59, bare letters (a,b) = (20,39), q' mod 210 = 59,
+  PSORD(59) = 2, so 59 is IN S and the LEMMA applies:
+      L_bare(53) <= 2                      [THEOREM, this round]
+      L(53) = 3                            [recorded: A_kill(53->59) = 4, R89]
+      => L_pad(53) = 3                     [decomposition theorem]
+
+  So the padded half ALREADY exceeds 2 at the very next machine, and it does so
+  at an S-machine where the bare half is capped at 2 by two gears.  The row is
+      M      11 13 17 19 23 29 31 37 41 43 47 53
+      L       1  1  1  2  1  3  3  2  2  2  4  3
+      L_bare  1  1  1  2  1  3  3  1  1  1  4 <=2
+      L_pad   0  0  0  1  1  1  2  2  2  2  3  3
+  and L > L_bare at FOUR machines: m37, m41, m43, m53.
+  L_pad is NOT a small constant: it is 0,0,0,1,1,1,2,2,2,2,3,3 - it has taken the
+  values 0, 1, 2 and 3, and it grows.  The bare half is capped at 5 forever; the
+  non-bare half is the whole of (B).
+
+==============================================================================
+(C)  THE SPECTRUM c_B IN THE R99 CHAIN  (c_A = 4, the literal bound)
+==============================================================================
+  Two versions of c_B.  NAIVE = floor(F(M+q')/a) - every letter is >= a.
+  PARITY = Lateral round 31 item 84 - T3 makes two CONSECUTIVE nonzero letters sum
+  to >= a + b = q', so L <= max(2T, 2*floor((G-2-a)/q') + 1) with T = floor((G-2)/q').
+  PARITY is the one to use; the NAIVE column is kept only to show the cost of
+  ignoring the alternation.
+
+   M    q'   a   F(M) F_2(M)   G=F(M+q')  S_2  cB_naive 4cB<=S2?  cB_parity 4cB<=S2?  L
+  m11    13   4     7     11        11      9       2   YES            1   YES        1
+  m13    17   6    11     16        18     12       3   YES            1   YES        1
+  m17    19   6    18     25        25     12       4   NO             2   YES        1
+  m19    23   8    25     31        34     17       4   YES            3   YES        2
+  m23    29  10    34     39        43     24       4   YES            3   YES        1
+  m29    31  10    43     55        58     19       5   NO             3   YES        3
+  m31    37  12    58     68        88     27       7   NO             5   YES        3
+  m37    41  14    88     90        91     39       6   YES            4   YES        2
+  m41    43  14    91    103       103     31       7   YES            5   YES        2
+  m43    47  16   103    116       118     34       7   YES            5   YES        2
+  m47    53  18   118    134       145     37       8   YES            5   YES        4
+  m53    59  20   145    159       161     45       8   YES            5   YES        ?
+
+  NAIVE  c_B ~ 3F/q' : 4 c_B <= S_2 at 9 of 12 steps; fails at [17, 29, 31]
+  PARITY c_B ~ 2F/q' : 4 c_B <= S_2 at 12 of 12 steps - ALL TWELVE
+
+  VERDICT.  With the alternation accounted for (PARITY) the R99 chain SURVIVES at
+  every corpus step; with the naive per-letter bound it does not (m17, m29, m31).
+  The difference is exactly T3: the factor is 2F/q', not 3F/q'.  But c_B is NOT a
+  constant either way - R99's conclusion becomes F(M+q') <= F_2 + 8F(M+q')/q', a
+  self-referential inequality that closes only under a Jacobsthal-square condition
+  on F (Lateral item 85, whose closure is the authority here; not duplicated).
+  WHAT THIS LANE ADDS: L_bare <= 5 is a CONSTANT, so all of the growth that forces
+  the q'-dependent c_B lives in L_pad - the non-bare words - and nowhere else.
+
+[43 s]  all assertions passed
+machine 47 -> q' = 53: deciding the 7 mirror representatives of the 12 non-bare
+length-3 survivors, node budget 60000000, 4 workers
+  (18, 35, 53)     REALISED   4 s   (mirror (53, 35, 18))
+  (18, 53, 35)     REALISED   1 s   (mirror (35, 53, 18))
+  (35, 18, 53)     REALISED   0 s   (mirror (53, 18, 35))
+  (35, 18, 88)     refuted    722 s   (mirror (88, 18, 35))
+  (35, 53, 53)     refuted    980 s   (mirror (53, 53, 35))
+  (35, 71, 35)     UNDECIDED  2482 s   (mirror (35, 71, 35))
+  (53, 35, 53)     refuted    1252 s   (mirror (53, 35, 53))
+
+==> L_pad(47) >= 3, realised by (18, 35, 53) (and its mirror)
+[2486 s]

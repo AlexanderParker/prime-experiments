@@ -93,3 +93,5 @@ research/max_gap_state_*.json
 research/data/r30/cert_*.json
 research/data/r30/*.pkl
 research/data/r30/*.npy
+
+research/data/r31/*.npy

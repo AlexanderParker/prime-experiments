@@ -1,6 +1,10 @@
 -- Round 30: the CaseCert37 root is back (built TIERED, 35 sub-roots of 11 cases; see
 -- lakefile.toml at its lib entry and formalist.md R30).
 import CaseCert37
+import BareAlternation
+import BareAltInst
+import WordLegal13
+import WordLegal17
 import WordLegal
 import WordLegal11
 import MachineUp
@@ -562,3 +566,45 @@ open BlockedSlots
 #print axioms CrtSlots.f2_59_B
 #print axioms CrtSlots.five_59_B
 #print axioms CrtSlots.mirror_59
+
+-- Round 31: the bare-alternation necessary condition and the inadmissible set S
+#print axioms BareAlt.fitsB_of_open
+#print axioms BareAlt.not_open_of_not_fits
+#print axioms BareAlt.open_of_gapWord
+#print axioms BareAlt.no_gapWord
+#print axioms BareAlt.no_bare_run
+#print axioms BareAlt.no_bare_run_ge
+#print axioms BareAlt.bareAlt_inadmissible_iff
+#print axioms BareAlt.bareAdm_downward
+#print axioms BareAlt.psord_le_five
+#print axioms BareAlt.psord_ne_four
+#print axioms BareAlt.psord_eq_one_iff
+#print axioms BareAlt.psord_eq_two_iff
+#print axioms BareAlt.psord_eq_five_iff
+#print axioms BareAlt.S_iff_psord
+#print axioms BareAlt.psord_succ_eq_psMax
+#print axioms BareAlt.S_card
+#print axioms BareAlt.S_mirror
+#print axioms BareAlt.bareFits_eq_fits
+#print axioms BareAlt.bareAdm_eq_survMax
+#print axioms BareAlt.inadmissible_iff_psMax
+#print axioms BareAlt.inadmissible_iff_capC
+#print axioms BareAlt.no_bare3_of_class_mem
+#print axioms BareAltInst.blocks19_five
+#print axioms BareAltInst.blocks19_seven
+#print axioms BareAltInst.m23_no_bare3
+#print axioms BareAltInst.m23_no_bare_ge
+#print axioms BareAltInst.m37_no_bare2
+#print axioms BareAltInst.m37_no_bare_ge
+#print axioms BareAltInst.m41_no_bare_offsets
+#print axioms BareAltInst.m41_no_bare_offsets_B
+#print axioms BareAltInst.m43_no_bare_offsets
+#print axioms BareAltInst.m43_no_bare_offsets_B
+#print axioms WordLegal13.L13
+#print axioms WordLegal13.jmax13
+#print axioms WordLegal13.akill13
+#print axioms WordLegal13.letter13
+#print axioms WordLegal17.L17
+#print axioms WordLegal17.akill17
+#print axioms WordLegal17.letter17
+#print axioms WordLegal17.opSeq_eq_ow17

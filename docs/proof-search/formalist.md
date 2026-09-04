@@ -3649,3 +3649,301 @@ proofs/lakefile.toml (35 tier libs + 4 new libs registered; the root, the tiers 
 modules added to defaultTargets; the CaseCert37 comment updated), proofs/AxiomCheck.lean (the
 root's import restored, 36 new `#print axioms` lines), docs/proof-search/formalist.md (this
 append), docs/proof-search/agents-shared.md (the round-30 block). Not committed, per the brief.
+
+## Round 31 append (2026-09-04)
+
+GATES / BUILD (every Lean command was ONE PowerShell command
+`Set-Location C:\dev\primes\proofs; & lake.exe <...>`; the audit lines are in R31.7):
+  lake build BareAlternation      -> rc=0, 14 s (105 s after the PSORD tables were added)
+  lake build BareAltInst          -> rc=0, 8.7 s
+  lake build WordLegal13          -> rc=0, 9.3 s
+  lake build WordLegal17          -> rc=0, 9.8 s
+  lake build (default, 674 targets) -> Build completed successfully (2624 jobs), rc=0, 68 s
+  lake env lean AxiomCheck.lean   -> 508 declarations, sorryAx 0, native_decide /
+      ofReduceBool 0, errors 0, 19 s
+  uv run python research/bare_alt_r31.py -> 7 assertion gates, ALL ASSERTIONS PASSED, exit 0
+
+THE ROUND'S ONE-LINE SUMMARY: round 31's ONE LEMMA is in the kernel in two halves - the
+NECESSARY CONDITION over an abstract machine (a realised word puts its prefix-sum offsets
+on open slots, so its offset set must fit inside every gear's exposed set) and the
+INADMISSIBLE SET S by `decide` over the 48 classes mod 210 (28 classes, agreeing element
+for element with Constructor's independently computed S and with round 29's
+`AlternationOrder`) - and it CLOSES TWO MORE ROWS OF R81's TABLE: `L(13) = 1`,
+`A_kill(13 -> 17) = 2`, `J_max(13) = 3` and `L(17) = 1`, `A_kill(17 -> 19) = 2`, decided by
+gears 5 and 7 alone. The honest boundary: the lemma bounds `L_bare`, not `L`, and at four
+of the twelve corpus machines `L` strictly exceeds the kernel-checked bare cap.
+
+### R31.0 ITEM (a) - THE NECESSARY CONDITION AS A THEOREM (`proofs/BareAlternation.lean`)
+
+Stated over an ABSTRACT machine, hypothesis-explicit, and - the one design decision that
+paid - over the OPENING PREDICATE rather than the enumeration:
+
+    Blocks E g u    := for all k, E k -> k % g != u and k % g != g - u
+                       (gear `g` with teeth `{u, g-u}` blocks the openings `E`;
+                        for the real machine `u = 6^{-1} mod g`, so gear 5 has teeth
+                        `{1,4}` and gear 7 has `{6,1}` - `Machine11.expT`)
+    fitsB g u offs  := (List.range g).any fun t => offs.all fun o =>
+                         (t+o) % g != u and (t+o) % g != g - u          (a Bool)
+    offsets gs      := the prefix sums of the value word `gs`, `|gs| + 1` points
+    GapWordAt op i gs := op (i+1) = op i + gs_1, ... - a REALISED word in gap VALUES
+
+    theorem fitsB_of_open  (0 < g) (Blocks E g u) (every o in offs has E (k + o))
+                             -> fitsB g u offs = true
+    theorem open_of_gapWord (every n has E (op n)) : GapWordAt op i gs
+                             -> every o in offsets gs has E (op i + o)
+    theorem no_gapWord      (every n has E (op n)) (0 < g) (Blocks E g u)
+                             (fitsB g u (offsets gs) = false) : for every i, not GapWordAt op i gs
+
+The whole content of `fitsB_of_open` is the witness `t = k % g` and `Nat.mod_add_mod`;
+`open_of_gapWord` is one induction over the word. CONSECUTIVENESS IS NEVER USED - the
+conclusion only needs the offsets to be open - so the theorem is strictly stronger than
+"no realised word" and can be instantiated at machines with no opening enumeration in the
+ledger (m41, m43 below). This is `AlternationOrder.fitsAt` in machine coordinates: there
+the offsets are built from the class `c = q' mod 210` through `aMod`/`inv3`, here from the
+actual gap values, and `bareFits_eq_fits` proves the two agree at all 48 classes.
+
+The bare alternation: `altWord a b m` (`altWord a b 3 = [a,b,a]`),
+`bareFits a b m` = fits at gear 5 AND gear 7, `bareAdmAB a b m = bareFits a b m ||
+bareFits b a m` (a realised bare word is one of the two rotations, so the disjunction).
+
+    theorem no_bare_run     (hE) (Blocks E 5 1) (Blocks E 7 6) (bareAdmAB a b m = false)
+                            : no index carries altWord a b m or altWord b a m
+    theorem no_bare_run_ge  ... and hence none of any length >= m
+                            (`gapWordAt_take` + `altWord_take`)
+
+### R31.1 ITEM (b) - THE SET S BY `decide`
+
+The bare letters of the class `c = q' mod 210`:
+
+    aOfClass c = (c - 1)/3  if c % 6 = 1,  (c + 1)/3 otherwise      (`3a = q' -+ 1`)
+    bOfClass c = c - aOfClass c                                      (`b = q' - a`)
+
+B'S FORMULA AND WHAT IS CLASS-DETERMINED (the brief's question). `b = q' - a` and
+`a = (q' -+ 1)/3` are functions of `q'`, NOT of `c` - both grow with the machine. But
+`fitsB` sees the offsets only mod 5 and mod 7, and 5 and 7 divide 210, so `a % 5`,
+`a % 7`, `b % 5`, `b % 7` ARE class-determined:
+
+    theorem aOfClass_mod_five (3a + 1 = q or 3a = q + 1) : a % 5 = aOfClass (q % 210) % 5
+    theorem aOfClass_mod_seven / bOfClass_mod_five / bOfClass_mod_seven  (each `split <;> omega`)
+    theorem fitsB_map_mod / fitsB_congr / fitsB_bare3_congr / bareAdmAB_congr
+                                       (`fitsB` depends on `offs` only through `offs.map (. % g)`)
+
+so the formalised version is the class-determined one and the bridge is four `omega` lines.
+
+    S = [11, 13, 17, 19, 29, 41, 43, 47, 59, 71, 73, 79, 101, 103, 107, 109, 131, 137,
+         139, 151, 163, 167, 169, 181, 191, 193, 197, 199]                     (28 of 48)
+
+    theorem bareAlt_inadmissible_iff : for all c < 210 with gcd c 210 = 1,
+                                        (bareAdm c 3 = false <-> c in S)       -- by decide
+    theorem S_card : S.length = 28
+    theorem S_mirror     : inadmissibility is invariant under c -> 210 - c
+    theorem S_half_mirror: so is each start letter's half, with the SAME start letter
+                           (`c -> 210 - c` sends `a -> 70 - a`, `b -> 140 - b`, so both
+                            offset sets negate mod 35 and each tooth pair is closed
+                            under negation; |S_A| = 32, |S_B| = 36, S = S_A cap S_B)
+
+CROSS-CHECKS, ALL IN THE KERNEL (three vehicles that share no code):
+
+    bareFits_eq_fits      bareFits (aOfClass c) (bOfClass c) 3 = AlternationOrder.fits c 4 true
+                          and the same for the other start letter          (round 29's vehicle)
+    bareAdm_eq_survMax    bareAdm c 3 = AlternationOrder.survMax c 4
+    inadmissible_iff_psMax  bareAdm c 3 = false <-> AlternationOrder.psMax c <= 3
+    inadmissible_iff_capC   ... <-> LiteralCapTable.capC c <= 3  (through R74's ps_max_eq_capC)
+                          -- S IS EXACTLY THE SET OF CLASSES WHOSE LITERAL CAP IS <= 3
+
+and Constructor's PSORD table (`docs/novel/bare-word-uniform-cap.md` 1.3), decided here:
+
+    psord c = the longest admissible bare alternation in LETTERS (a count over 1..9,
+              a maximum by `bareAdm_downward`)
+    psord_le_five      psord <= 5 at every class
+    psord_ne_four      PSORD = 4 IS EMPTY
+    psord_eq_one_iff   the 24 classes with no bare PAIR at all
+    psord_eq_two_iff   {29, 59, 151, 181}
+    psord_eq_five_iff  {37, 53, 83, 127, 157, 173}          (R74's exceptional six again)
+    S_iff_psord        c in S <-> psord c <= 2              (Constructor's definition of S)
+    psord_succ_eq_psMax  psord c + 1 = AlternationOrder.psMax c
+
+THE THREE-WAY AGREEMENT ON S: my kernel list, Constructor's Python (their novel doc's
+section 1.3, computed independently and posted before I read it) and round 29's
+`AlternationOrder` all give the same 28 classes and the same 24/4/14/0/6 PSORD split.
+Lateral did NOT compute S this round - the manager redirected its brief mid-round to the
+spectrum bound - so there is no third field entry to compare.
+
+### R31.2 ITEM (c) - ASSEMBLED, AND INSTANTIATED (`proofs/BareAltInst.lean`)
+
+    theorem no_bare3_of_class_mem (hE) (h5 : Blocks E 5 1) (h7 : Blocks E 7 6)
+        (ha : 3a + 1 = q or 3a = q + 1) (hab : a + b = q) (hS : q % 210 in S) (i) :
+        no index carries altWord a b 3 or altWord b a 3
+
+"`q' mod 210` in S implies M has no realised bare word of length 3", uniform in the machine,
+no gear list. Gears 5 and 7 block every machine of the corpus by a projection of its own
+`Exposed` conjunction plus `omega` (`blocks19_five/seven`, transported down by
+`blocks_mono` to `Exposed23`, `Exposed37`, `Exposed41`, `Exposed43`):
+
+    machine  q'   a   b   what is kernel-checked
+    m23      29  10  19   letters29 (aOfClass 29 = 10), mem29 (29 in S), m23_no_bare3:
+                          no index of `Machine23.opSeq23` carries (10,19,10) or (19,10,19);
+                          m23_no_bare_ge: none of any length >= 3 -> L_bare(23) <= 2
+    m37      41  14  27   m37_no_bare2: NO BARE PAIR AT ALL (`bareAdmAB 14 27 2 = false`)
+                          -> L_bare(37) <= 1, against the corpus's L(37) = 2
+    m41      43  14  29   m41_no_bare_offsets(_B): no slot `k` has `k`, `k+14`, `k+43`
+                          all open, nor `k`, `k+29`, `k+43`
+    m43      47  16  31   m43_no_bare_offsets(_B): the same at (16,47) and (31,47)
+
+The last two use no opening enumeration (`MachineUp` has none above 37); gear 5 alone
+kills all three pair sets, gear 7 alone kills the m23 `(a,b,a)`.
+
+ELABORATION COST, AS OP-COUNT PROXIES (kernel Bool tests; `any`/`all` short-circuit, so
+these are upper bounds):
+
+    theorem / group                    classes x starts x gears x translates x points   file time
+    bareAlt_inadmissible_iff            48 x 2 x (5x4 + 7x4)      =    4,608             ~14 s
+    the six psord tables + downward     48 x 2 x 12 x sum(m+1), m=1..9, x 7  ~= 4.4e5     +91 s
+    m23 / m37 / m41 / m43 numerals      1 x 2 x (5x4 + 7x4) each  =       96 each        < 1 s
+
+so the whole length-3 table is under 5,000 kernel tests and the length-9 PSORD tables are
+two orders of magnitude more - decide the length you need (verdict 55).
+
+### R31.3 R89 AT MACHINES 13 AND 17 (`proofs/WordLegal13.lean`, `proofs/WordLegal17.lean`)
+
+R81's table rows 2 and 3, and the round-30 backlog item ("at m13/m17 the same argument may
+repeat and is untested") - answered: the m11 argument does NOT repeat, and the round-31
+lemma is what closes them.
+
+    machine  q'  tooth u'  letters (mod q')  max gap  legal letters realisable
+    m11      13    11      0, 9, 4              7     ONLY the gap 4  (round 30: degenerate)
+    m13      17     3      0, 6, 11            11     the gaps 6 AND 11 (60 and 12 per period)
+    m17      19    16      0, 13, 6            18     the gaps 13 AND 6
+
+At m13 and m17 both literal letters are realisable, so "two of the only letter never
+alternate" is unavailable. What closes them: every gap is smaller than `q'`, so the padded
+letter (a gap of exactly `q'`) and every non-bare literal (`a + q'`, `b + q'`, ...) are out
+of range - EVERY LEGAL LETTER IS BARE (`letter13`, `letter17`) - and 17, 19 are in S with
+PSORD = 1, so `bareAdmAB 6 11 2 = false` and `bareAdmAB 6 13 2 = false` kill the 2-word.
+
+    WordLegal13.L13     : RealisedWord 3 opSeq 1 and not RealisedWord 3 opSeq 2   -- L(13) = 1
+    WordLegal13.jmax13  : QstarNonempty 3 opSeq J <-> J <= 3                      -- J_max = 3
+    WordLegal13.akill13 : (exists n, Chain 3 opSeq k n) <-> k <= 2  (1 <= k) -- A_kill(13->17) = 2
+    WordLegal17.L17     : RealisedWord 16 opSeq 1 and not RealisedWord 16 opSeq 2 -- L(17) = 1
+    WordLegal17.akill17 : (exists n, Chain 16 opSeq k n) <-> k <= 2 (1 <= k) -- A_kill(17->19) = 2
+
+Realisers: `g13 16 = 6` (openings 52, 58) through `Machine13Per.ow13`; at m17 the ledger
+has no opening walk, so `WordLegal17` builds one (`ow17`, `opSeq_zero : opSeq 0 = 5`,
+`opSeq_eq_ow17` by induction on `Machine17.seek_next`) and decides `g17 15 = 6`
+(openings 52, 58 again). `jmax17` is NOT proved: `WordLegal.jmax` needs `hper`, machine 17
+has no period module (85,085 slots / 19,305 openings, so the `ow` base case is a
+19,305-step `decide +kernel`), and `akill` needs no periodicity at all.
+
+WHERE THIS STOPS, EXACTLY: `F(M) < q'` is what makes "every legal letter is bare" true, and
+it holds at m11 (7 < 13), m13 (11 < 17), m17 (18 < 19) and FAILS at m19 (25 > 23). So R81's
+rows 4 onward cannot be closed this way; at m23 the lemma gives only `L_bare(23) <= 2` while
+`L(23) = 1` needs the padded letter handled.
+
+### R31.4 THE HONEST BOUNDARY: L_bare IS NOT L, AND AT FOUR MACHINES IT IS STRICTLY LESS
+
+    M          11 13 17 19 23 29 31 37 41 43 47 53
+    q'         13 17 19 23 29 31 37 41 43 47 53 59
+    q' in S     y  y  y  n  y  n  n  y  y  y  n  y
+    PSORD       1  1  1  3  2  3  5  1  1  1  5  2      (= the kernel's `psord`)
+    L           1  1  1  2  1  3  3  2  2  2  4  3
+    L > PSORD   -  -  -  -  -  -  -  Y  Y  Y  -  Y
+
+At m37, m41, m43 and m53 the machine's realised `L` EXCEEDS the kernel-checked bare cap, so
+the deep words there are provably NOT bare - a prediction the round can already score:
+Lateral's round-31 item 84 lists m37's realised depth-2 word as `(14, 41)`, span 55, with
+`p = 1` padded letter. `14` is the bare letter `a` and `41` is the padded `q'`. CONFIRMED
+by another lane's independent record, in the same round.
+
+Nothing in this file bounds `L`. What it bounds is `L_bare`, and the complement is exactly
+Lateral's `L_pad <= 2T` (item 84) - the two halves meet at `L = max(L_bare, L_pad)`.
+
+### R31.5 NEGATIVES, CONTROLS AND PROCESS
+
+- PRE-REGISTRATION WAS NOT WRITTEN TO A FILE THIS ROUND (a process negative, verdict 58).
+  The four predictions I formed before the corresponding builds, scored honestly:
+  (i) "the abstract necessary condition elaborates in one pass, no tactic search" -
+  CONFIRMED (`BareAlternation.lean` compiled with no errors on the first `lake env lean`);
+  (ii) "the class-to-machine bridge `a % 5 = aOfClass (q % 210) % 5` is within `omega`'s
+  reach even with `/3`, `%6`, `%210`, `%5` in one goal" - CONFIRMED (`split <;> omega`,
+  four times); (iii) "S will be the classes with `capC <= 3`" - CONFIRMED
+  (`inadmissible_iff_capC`); (iv) "m23 will not give `L(23) <= 1`" - CONFIRMED, and the
+  reason is `F(23) = 34 > 29` (the padded letter is in range).
+- THE COMMIT WATCH WAS NOT RUN. No module added this round imports more than three others;
+  the only heavy elaboration is `AxiomCheck` (whose root was measured at 4.01 GB in round
+  30) and it completed in 19 s. Reported as not measured, not as measured-and-small.
+- `fitsB_congr` WITH A VARIABLE MODULUS: first attempted as `simp` + `omega` on the four
+  offset components - `omega` cannot do that (it needs literal moduli), and the fix was
+  `Nat.add_mod` rewriting under `conv`. Two failed rewrites, both because `rw` rewrites ALL
+  occurrences of `a % g` at once.
+- NEGATIVE CONTROL on the round's headline claim: the gate script recomputes S with a
+  different data structure (set complement + `itertools.accumulate` instead of the Lean
+  vehicle's `List.range` scan and recursive prefix map) and asserts it against the kernel's
+  own emitted list, plus the PSORD split, the mirror closure, round 29's psMin
+  distribution, the four instantiated numerals and the `L > PSORD` row. 7 gates, exit 0.
+- I did NOT pick up Lateral's item 84 (the spectrum bound `L <= 2 F(M+q')/q' + 1`) for the
+  kernel; it arrived in its round-31 block after this round's plan was set. It is
+  kernel-shaped (R68 attainment as a hypothesis, T3 alternation from `WordLegal.Alt`, plus
+  "the class minimum of a nonzero letter is `a` or `b` and of a padded letter is `q'`"),
+  and the class-minimum step is the same "gap value from gap residue" arithmetic that
+  `letter13`/`letter17` do at one machine. NAMED NEXT CONSTRUCT, not attempted.
+- SCRATCH: none. The only Python written this round is the registered gate
+  `research/bare_alt_r31.py`; no scratch `.lean` was created in `proofs/`.
+
+### R31.6 NEW VERDICTS
+
+53. STATE A NECESSARY CONDITION OVER THE OPENING PREDICATE, NOT THE ENUMERATION.
+    `no_gapWord` needs only "these offsets are all open"; consecutiveness is never used.
+    The stronger form instantiates at machines with no `opSeq` in the ledger (m41, m43)
+    and costs nothing.
+54. DECIDE THE TABLE IN THE MACHINE'S UNITS AND BRIDGE THE CLASS, NOT THE OTHER WAY.
+    `fitsB` takes actual gap values; the class arithmetic (`3a = q' -+ 1`, `b = q' - a`)
+    enters through four `omega` lemmas and one `Nat.add_mod` congruence. The concrete
+    machines then need only numerals, and the general theorem is instantiable at a numeral.
+55. `decide` COST IS CLASSES x LENGTH, AND IT BITES AT LENGTH 9. The 48-class length-3
+    table is ~4.6e3 kernel Bool tests and 14 s; the six PSORD tables (lengths 1..9) are
+    ~4.4e5 and take the file to 105 s. Decide the length the theorem needs.
+56. A BARE-LETTER THEOREM BOUNDS `L_bare`, AND AT FOUR OF TWELVE CORPUS MACHINES THAT IS
+    STRICTLY LESS THAN `L`. Kernel: bare cap 1 at m37/m41/m43 against L = 2, and 2 at m53
+    against L = 3. Say `L_bare` in the theorem name and in every sentence about it.
+57. `F(M) < q'` IS THE EXACT CONDITION UNDER WHICH THE BARE CAP IS A CAP ON `L`.
+    m11 (7 < 13), m13 (11 < 17), m17 (18 < 19); m19 (25 > 23) ends it. That is why R81's
+    rows 2 and 3 closed this round and row 4 did not - and it is checkable before writing
+    any Lean.
+58. PRE-REGISTER TO A FILE, NOT TO THE APPEND. Four predictions were formed before their
+    builds and all four are scored above, but nothing was written before the code, so the
+    scoring is on my word rather than on a timestamp. Round 32: write the file first.
+
+### R31.7 BUILD AND AUDIT LINES AT CLOSE
+
+    Set-Location C:\dev\primes\proofs; & lake.exe build
+        -> Build completed successfully (2624 jobs), rc=0, 68 s
+           (2616 -> 2624: BareAlternation, BareAltInst, WordLegal13, WordLegal17)
+    Set-Location C:\dev\primes\proofs; & lake.exe env lean AxiomCheck.lean
+        -> 508 declarations; sorryAx 0; native_decide / ofReduceBool 0; errors 0; 19 s
+        'BareAlt.fitsB_of_open' / 'not_open_of_not_fits' / 'open_of_gapWord' / 'no_gapWord'
+        / 'bareAlt_inadmissible_iff' / 'inadmissible_iff_capC' / 'psord_eq_one_iff' /
+        'psord_eq_two_iff' / 'psord_eq_five_iff' / 'S_iff_psord'   [propext, Quot.sound]
+        'BareAlt.S_card' / 'S_mirror' / 'bareFits_eq_fits' / 'bareAdm_eq_survMax' /
+        'inadmissible_iff_psMax' / 'bareAdm_downward' / 'psord_le_five' / 'psord_ne_four' /
+        'psord_succ_eq_psMax'                                      NO AXIOMS
+        'BareAlt.no_bare_run' / 'no_bare_run_ge' / 'no_bare3_of_class_mem',
+        'BareAltInst.m23_no_bare3' / 'm23_no_bare_ge' / 'm37_no_bare2' / 'm37_no_bare_ge' /
+        'm41_no_bare_offsets' / '_B' / 'm43_no_bare_offsets' / '_B',
+        'WordLegal13.L13' / 'jmax13' / 'akill13' / 'letter13',
+        'WordLegal17.L17' / 'akill17' / 'letter17' / 'opSeq_eq_ow17'
+                                             [propext, Classical.choice, Quot.sound]
+        'BareAltInst.blocks19_five' / 'blocks19_seven'             [propext, Quot.sound]
+    uv run python research/bare_alt_r31.py -> 7 gates, ALL ASSERTIONS PASSED, exit 0
+
+Zero sorries in every registered file. Every job this round launched is finished; no
+lean.exe or lake.exe is running at close.
+
+FILES. New: proofs/BareAlternation.lean, proofs/BareAltInst.lean, proofs/WordLegal13.lean,
+proofs/WordLegal17.lean, research/bare_alt_r31.py. Edited: proofs/lakefile.toml (four new
+libs, all four added to defaultTargets), proofs/AxiomCheck.lean (four new imports, 44 new
+`#print axioms` lines), docs/proof-search/formalist.md (this append),
+docs/proof-search/agents-shared.md (the round-31 block), docs/novel/bare-word-uniform-cap.md
+(Constructor's doc: its "KERNEL CONFIRMATION" paragraph corrected - the instantiations are
+m23/m37/m41/m43, not m19 - and extended with the PSORD theorems, the abstract necessary
+condition, the class bridge and the `capC <= 3` identity; docs/novel/ is writable by every
+agent by the standing novel-findings rule). Not committed, per the brief.

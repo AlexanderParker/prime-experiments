@@ -2757,3 +2757,251 @@ tooth_m23_pinned.npy (F(m23) at the pinned rows), data/r29/chain_*.json and
 witness_inc_37_41.json (records).  Novel-register docs: docs/novel/
 tooth-counterfactual-percentile.md section 5C, mirror-parity-laws.md section
 10, plus two README index entries.
+
+## Round 31 (2026-09-04) - the spectrum bound on L (a theorem), (B) re-posed,
+## and the family's answer to "is L just the size of the letters?" (no)
+
+BRIEF CHANGED MID-ROUND.  The round opened as a kill attempt on round 30's
+mod-{5,7} admissibility lemma (item 79).  The manager redirected on the
+human's call ("testing the bare-alternation lemma is Constructor's gate, not
+lateral work") to three new items: (1) the spectrum bound on L as a theorem
+and a table; (2) re-pose (B); (3) one lateral framing tested on the family.
+The original pre-registration (A1-A5, B1-B5, C1-C6, D1-D3) was written but
+NOTHING from it was computed; it is recorded as superseded in
+research/data/r31_lateral_predictions.txt and is not scored.  Two hand
+results from that reading survive as inputs and are re-gated: the bare
+3-alternation is {5,7}-admissible at q' = 31 and inadmissible at q' = 59.
+
+GATES, from clean processes, both exit 0:
+  uv run python research/lateral_r31.py corpus   -> ALL 173 ASSERTION GATES PASSED
+  uv run python research/lateral_r31.py family   -> ALL 22 ASSERTION GATES PASSED
+  (follow-up research/data/r31/why_amin.log, the letter-supply mechanism)
+Pre-registration research/data/r31_lateral_predictions.txt (E1-E7 and F1-F7),
+written before any round-31 code.  Persistent results
+research/lateral_r31_results.txt.  Novel register
+docs/novel/spectrum-bound-on-L.md plus a README index entry.  Every job this
+round has finished; nothing is left running.  Compute: single process, seconds.
+
+### Established results (continuing the numbering; do not renumber 1-83)
+
+84. THE SPECTRUM BOUND ON L - A THEOREM, AND L IS O(F/q') NOT O(1) (r31; brief
+    item (1); docs/novel/spectrum-bound-on-L.md).  Let a, b be the two BARE
+    letters (a = d' = 2*6^{-1} mod q' with the small representative,
+    b = q' - a, so a + b = q' and 3a = q' -+ 1), a_min = min(a,b) = a, and
+    G = F(M + q').  Three facts: (i) the smallest positive value in class +d'
+    is a, in class -d' is b, in the padded class is q' (gated, 12 machines);
+    (ii) T3 makes the nonzero classes strictly alternate, so any two
+    CONSECUTIVE nonzero letters sum to at least a + b = q'; (iii) a realised
+    legal word of m letters is the middle of a window x_0 < ... < x_{m+2} of
+    consecutive openings whose m middle gaps are legal, so R68's ATTAINMENT
+    THEOREM (proved) gives span + before + after <= G with before, after >= 1.
+    With p padded letters and n = m - p nonzero ones,
+        span >= p q' + floor(n/2) q' + [n odd] a_min,
+    hence with T = floor((G - 2)/q'):
+        (SIMPLE)  L(M) <= 2T + 1,  and letter-aware  L(M) <= 2T + 1 - p
+        (PARITY)  L(M) <= max(2T, 2*floor((G - 2 - a_min)/q') + 1)
+    i.e. L(M) <= 2 F(M+q')/q' + 1.  UNCONDITIONAL given R68 and T3; no cover
+    half, no phase saturation, no property of M's gears beyond distinctness of
+    openings.  Corpus table:
+        M       m11 m13 m17 m19 m23 m29 m31 m37 m41 m43 m47 m53
+        SIMPLE    1   1   3   3   3   3   5   5   5   5   5   5
+        PARITY    1   1   2   3   3   3   5   4   5   5   5   5
+        L         1   1   1   2   1   3   3   2   2   2   4   3
+        EXPCAP    1   1   1   4   2   3   5  18  13  10   5  21
+        G/a_min   2   3   4   4   4   5   7   6   7   7   8   8
+    TIGHT at m11, m13, m29.  Beats EXPCAP at m19, m37, m41, m43, m53; ties at
+    five; loses at m17 and m23 only - so the pointwise minimum of the two caps
+    is 1,1,1,3,2,3,5,5,5,5,5,5 and the spectrum bound is the binding one at
+    five of twelve steps.  The manager's own G/a_min form is weaker at all
+    twelve.  The span accounting is checked DIRECTLY on all 14 realised words
+    on record: m29 (10,21,10) span 41 = its lower bound exactly, +2 = 43 <= 58;
+    m47 (18,35,18,35) span 106 = its lower bound exactly, +2 = 108 <= 145;
+    m37 (14,41) span 55 = lower bound 55 with p = 1.
+    COMPLEMENTARY TO CONSTRUCTOR'S ROUND-31 BARE CAP: theirs caps L_bare by
+    PSORD(q' mod 210) <= 5 and leaves L_pad open; item 84 caps the padded
+    words directly - a word with p padded letters has L <= 2T + 1 - p, so
+    L_pad(M) <= 2T.  Between them the two halves of L are both capped.
+
+85. (B) RE-POSED: THE PRODUCT FITS THE SLACK AT EVERY CORPUS STEP, AND THE
+    CHAIN CLOSES ON ITSELF (r31; brief item (2)).  With c_A = 4 (literal,
+    R99) and c_B = item 84's bound, R99's product c_A c_B <= S_2 = F + q' - F_2
+    HOLDS AT ALL TWELVE CORPUS STEPS - 4,4,12,12,12,12,20,20,20,20,20,20
+    (SIMPLE) against S_2 = 9,12,12,17,24,19,27,39,31,34,37,45 - with equality
+    once (m17, SIMPLE) and never with PARITY.  Better: because the bound is
+    LINEAR in G, substituting it into R99 removes (B) altogether without
+    circularity.  From G <= F_2 + c_A L and L <= 2(G-2)/q' + 1, for q' > 2c_A,
+        G <= ( q'(F_2 + c_A) - 4 c_A ) / ( q' - 2 c_A ),
+    and (D) follows whenever, with eps = F_2 - F and c_A = 4,
+        8 F  <=  q'^2 - (eps + 12) q' + 16.
+    The closure bound is TRUE at all 12 machines where G is on record (gated).
+    The CONDITION holds at 8 of 13 steps m11..m59 - m23, m31, m37, m41, m43,
+    m47, m53, m59 - and fails only at the five small ones (m11, m13, m17, m19,
+    m29), where q' is too close to 2c_A = 8 for the denominator to help.  The
+    margin GROWS: F / RHS falls 0.87 (m41) -> 0.78 -> 0.70 -> 0.59 -> 0.57
+    (m59), and F/q'^2 sits in 0.038..0.052 at every step, a factor 2.4-3.3
+    inside the 1/8 the closure needs.  SO: (B) as posed - "L bounded by an
+    absolute constant" - is probably false in the limit (F/q' is measured
+    growing, 0.54 .. 2.64) and is NOT NEEDED.  The sharpest replacement the
+    corpus supports and the chain accepts is
+        (B')  L(M) <= 2 F(M+q')/q' + 1              [THEOREM, item 84]
+    plus the JACOBSTHAL-SQUARE condition 8 F(M) <= q'^2 - (eps+12) q' + 16.
+    WHAT WOULD PROVE IT: an explicit quadratic upper bound on the Jacobsthal
+    function of the primorial with constant below 1/8, together with a bound
+    on the depth-2 excess eps = F_2 - F (measured 2..16, no trend).  THE
+    CAVEAT THAT MUST TRAVEL WITH IT: c_A = 4 is a LITERAL-letter constant;
+    the padded letter at m31 has eps = -17 (Constructor R101/C6), and with
+    c_A = 17 the closure needs q' > 34 and is vacuous where it applies.  So
+    the closure is conditional on exactly Constructor's open (A-pad).
+
+86. THE FAMILY SAYS L IS NOT THE SIZE OF THE LETTERS (r31; brief item (3), a
+    NEGATIVE with its measurement).  On round 30's tooth-counterfactual data
+    (165,584 rows, six steps; 19->23 full, 23->29 a 601-member sample) the
+    incoming tooth's letter size is a_min = min(2v, q'-2v), which sweeps
+    1..(q'-1)/2 while the real machine is pinned at a_min/q' = 0.308..0.364.
+    (a) THE BOUND HOLDS AT EVERY ROW - (SIMPLE), (PARITY) and the padded-aware
+    L <= 2T+1-p, 0 violations in 165,584, including the family's L = 5 member
+    where (PARITY) = 5 exactly.  Tightness by step: 86.7 / 84.4 / 31.7 / 4.8 /
+    13.3 / 15.7% (SIMPLE) and 86.7 / 87.8 / 33.5 / 16.1 / 16.5 / 16.6%
+    (PARITY); mean slack (PARITY - L) 0.13 / 0.13 / 0.81 / 1.24 / 1.01 / 0.97.
+    (b) L IS NOT MONOTONE IN a_min: spearman(L, a_min) = -0.277, +0.006,
+    +0.065, +0.088, -0.159, -0.245 - POSITIVE at three of six steps.  a_min is
+    a BIJECTIVE relabelling of v_q' on 1..(q'-1)/2, so eta^2(L | a_min) =
+    eta^2(L | v_q') exactly (ratio 1.000 at all six steps): letter size
+    carries the incoming tooth's information, no more and no less, and the
+    content is not its order.  (c) THE SMALLEST LETTER IS THE WORST.  At
+    19->23, max L by a_min = 1..11 is 2,3,4,3,5,3,3,4,2,4,3 and P(L>=3) is
+    0.0000, 0.3008, 0.2478, 0.0002, 0.5823, 0.0005, 0.1552, 0.0464, 0.0000,
+    0.1275, 0.0381: a_min = 1 (letters 22, 1) never reaches L = 3 in 12,960
+    rows, while a_min = 5 (letters 18, 5) reaches L = 5 with P(L>=3) = 0.58.
+    (d) THE MECHANISM, and it is not supply either.  The binding quantity is
+    the supply of the RARER class, and it is the small letter's PARTNER that
+    is rare: mean min(n_a, n_b) over 378,675 gaps runs 42, 48, 164, 142, 267,
+    223, 314, 1131, 1956, 2977, 1452 as a_min goes 1..11
+    (spearman(a_min, min(n_a,n_b)) = +0.816) - but spearman(L, min(n_a,n_b))
+    = +0.081.  The best single correlate found is the PADDED supply,
+    spearman(L, n_0) = +0.311.  (e) TWO ORTHOGONAL CHANNELS.  eta^2(L | a_min)
+    / eta^2(L | {5,7}-admissible) / eta^2(L | both) = 0.135/0.089/0.279,
+    0.037/0.001/0.088, 0.070/0.016/0.072, 0.125/0.135/0.244,
+    0.223/0.135/0.361, 0.273/0.156/0.415 at the six steps: at the two largest
+    the joint value is within 1% of the SUM, so size and corridor
+    admissibility explain nearly disjoint parts of L, and together only
+    36-42% of its variance.  max L is 5 for admissible members and 3 for
+    inadmissible ones at 19->23.  VERDICT: the "arithmetic of the teeth" in
+    (B) is not one line.  Its SIZE half is now a theorem (item 84); its
+    residue half is Constructor's corridor; the two are orthogonal, and
+    neither alone predicts L.
+
+### Refuted angles (continuing)
+
+63. THE FRAMING "SMALL LETTERS = LONG IMITATIONS" (the manager's item (3), and
+    my own F2/F4).  spearman(L, a_min) is never below -0.28 and is positive at
+    three of six family steps; max L by a_min is not monotone; the SMALLEST
+    a_min gives the SHORTEST words (P(L>=3) = 0 at a_min = 1 over 12,960 rows
+    at 19->23).  Item 86.
+64. MY OWN F6 - "the PARITY bound is strictly better than SIMPLE at >= 30% of
+    19->23 rows".  7.8%.  (It is 52.6% at 13->17 and 27.2% at 17->19, and
+    falls as the step grows.)
+65. MY OWN F7 - "the bound is TIGHT at >= 25% of 19->23 rows".  13.3% (SIMPLE)
+    / 16.5% (PARITY).  Tightness is 84-88% at the two smallest steps and falls
+    with the step - the opposite direction from the corpus, where it is tight
+    at the smallest machines too.
+66. MY OWN E4's LOSS CLAUSE - "SIMPLE loses to EXPCAP at m23 only".  It loses
+    at m17 as well (3 against 1).
+
+### Prediction scorecard, round 31 (pre-registered in data/r31_lateral_predictions.txt)
+
+  Superseded block (A1-A5, B1-B5, C1-C6, D1-D3): NOT SCORED - the brief was
+  redirected before any of it was computed.
+
+  E1  SIMPLE holds at all 12 steps, row 1,1,3,3,3,3,5,5,5,5,5,5   CONFIRMED
+  E2  TIGHT at exactly m11, m13, m29; not tight at m47             CONFIRMED
+  E3  PARITY row, improves at exactly m17 and m37                  CONFIRMED
+  E4  beats EXPCAP at m19,m37,m41,m43,m53; loses at m23 only       HALF (the
+      win/tie lists are exact; it also loses at m17)
+  E5  G/a_min strictly weaker at all 12 steps                      CONFIRMED
+  E6  c_A c_B <= S_2 at all 12, one equality (m17, SIMPLE), none
+      with PARITY                                                  CONFIRMED
+  E7  closure holds at 8 of 13, fails only at the five small ones;
+      F/RHS falls 0.87 -> 0.57; F/q'^2 in 0.03..0.06               CONFIRMED
+  F1  both bounds hold at every family row                         CONFIRMED
+      (165,584 rows, 0 violations)
+  F2  spearman(L, a_min) <= -0.40 at every step from 13->17        REFUTED
+  F3  eta^2(L|a_min) recovers >= 90% of eta^2(L|v_q')              CONFIRMED
+      but VACUOUS - it is 100% because a_min is a relabelling of v_q'
+  F4  max L by a_min non-increasing; family max at a_min <= 5      HALF (the
+      max is at a_min = 5, but the function is not monotone)
+  F5  a_min necessary but not sufficient, spread >= 3 at the
+      maximising a_min                                             CONFIRMED
+      (spread 4 at 19->23)
+  F6  PARITY better than SIMPLE at >= 30% of 19->23 rows           REFUTED
+  F7  bound tight at >= 25% of 19->23 rows                         REFUTED
+
+  TOTAL: 8 confirmed (one vacuously), 2 half, 3 refuted.  The informative
+  misses are all in the family block: the manager's letter-size framing does
+  not survive contact with the data, and the bound is tighter on the CORPUS
+  and on the small family steps than on the large ones.
+
+### Backlog changes
+
+CLOSED: nothing from the old list; U21 (the {5,7} admissibility cap at the
+  corpus rungs) was taken by Constructor this round as its bare-word cap.
+NEW:
+U22. THE eps CONSTANT OVER PADDED LETTERS.  Item 85's closure is conditional
+     on c_A over the WHOLE chain, and c_A = 4 is literal-only.  What is the
+     smallest c_A that survives the padded letters?  If c_A <= 7 the closure
+     still bites from q' = 17 upward; at c_A = 17 it is vacuous.  This is
+     Constructor's (A-pad) restated as a number the closure needs.
+U23. IS THE SPECTRUM BOUND TIGHT INFINITELY OFTEN?  It is tight at m11, m13,
+     m29 and at 13-88% of family rows.  If L = 2F/q' + 1 - o(1) along the
+     corpus then (B) is definitively false and item 85's condition is the only
+     route; if L stalls, the bound is loose and a better one exists.  Cheap
+     test: extend the family to the full 23->29 (142,560 members).
+U24. THE PADDED SUPPLY n_0.  spearman(L, n_0) = +0.311 at 19->23 beats both
+     a_min and min(n_a,n_b) as a predictor of L.  Since n_0 does not depend on
+     v_q' at all, this is a statement about the OLD machine's gap histogram at
+     multiples of q'.  Unclaimed.
+STILL UNTOUCHED, carried verbatim: U10, U14, U15, U16, U17, U18, U20.
+
+### Needs / handoffs
+
+(1) CONSTRUCTOR - item 84 caps the half your round-31 bare cap leaves open: a
+    word with p padded letters has L <= 2T + 1 - p with
+    T = floor((F(M+q')-2)/q'), so L_pad(M) <= 2T (= 2 at m19..m29, 4 at
+    m31..m53).  Together with L_bare <= PSORD <= 5 that is a complete cap on
+    L, and item 85 shows the product c_A c_B then fits S_2 at all twelve
+    corpus steps.  Your R99 can be restated without (B) at all - see the
+    closure inequality.
+(2) MANAGER - (B) should be retired as posed and replaced by (B') plus the
+    Jacobsthal-square condition (item 85).  The obligation list becomes
+    (A-lit), (A-pad), (B') PROVED, and the ratio condition
+    8F <= q'^2 - (eps+12)q' + 16, true at 8 of 13 corpus steps with a growing
+    margin.
+(3) MECHANIC - your V3 (alphabet + spectrum + phase saturation, no cover) is
+    V4 + 1 at 7 of 8 next-prime cells; item 84's bound is a THIRD screen that
+    is cheaper than either and beats EXPCAP at five steps.  Worth adding to
+    the word vehicle as a length cap before enumeration: 2T+1-p prunes the
+    padded candidates hardest, which is where your m41/m43 budgets went.
+(4) FORMALIST - item 84 is kernel-shaped and short: it needs only R68's
+    attainment statement (already prose-proved), T3 alternation (in
+    WordLegal.lean), and the two arithmetic facts a + b = q' and "the padded
+    class minimum is q'".  The conclusion L <= 2*floor((F(M+q')-2)/q') + 1 is
+    a finite inequality per machine and a general lemma over an abstract
+    machine.
+(5) HARVESTER - the prior-art check for docs/novel/spectrum-bound-on-L.md, and
+    the specific literature question item 85 raises: is there an explicit
+    quadratic upper bound on the Jacobsthal function of a primorial with a
+    constant below 1/8 (in slot units, F <= q'^2/8)?
+
+### Reproduction pointers
+
+Round 31: research/lateral_r31.py (corpus -> 173 gates; family -> 22 gates),
+logs research/data/r31/corpus.log, family.log; the letter-supply follow-up
+research/data/r31/why_amin.log.  Predictions
+research/data/r31_lateral_predictions.txt; results
+research/lateral_r31_results.txt; per-row bounds
+research/data/r31/bound_*.npy (gitignored) and research/data/r31/
+corpus_bound.json.  Inputs: round 30's family chunks research/data/r30/
+L_*.npy; the corpus F, F_2, S_2, L rows from Constructor R99 and the EXPCAP
+row from R100; the realised word lists from research/data/r30/words_m*_crt.json
+(Mechanic V4) and wordkill_r30.GIVEN_WORDS (m47).  Novel register
+docs/novel/spectrum-bound-on-L.md plus a README index entry.

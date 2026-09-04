@@ -2,155 +2,85 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 30 - THE ELEVENTH RUNG TWO WAYS, THE 31 -> 37 ROOT IN THE KERNEL, AND (B) LOCATED.
-Rung eleven (47 -> 53), the step the spectrum-plus-depth certificate provably cannot close, is
-certified twice and independently: by LP duality (8,077 exact rational dual certificates over a
-complete mixed-k case split of Z5 x Z7 x Z11 x Z13 x Z17, hypothesis-free from the primes 5..53,
-every leaf covered exactly once) and by the word-legal refinement (max_J Q*_J(47) = 145 <= 171,
-exact and unconditional, computed on machine 23 alone with no appeal to F(53)). So the ladder's
-finite rungs do not depend on A_kill; only the uniform proof does. The 31 -> 37 case-split root is
-in the kernel, built in 35 tiers at 4.0 GB: the 53.7 GB crash was the eleven bridge proof terms,
-not the 385 imports. A_kill = L + 1 (R89) is a kernel theorem over an abstract machine. On (B),
-the open crux "is L(M) bounded": it is NOT structural - the counterfactual family reaches L = 5
-where the real machine has 2 - and its arithmetic is located through m29 at the mod-{5,7}
-admissibility of the bare alternation (0 exceptions in 21,357 deep words); beyond that the
-corridor cannot bound L (the exposure cap over-caps L by 16, 11, 8, 18 at m37/41/43/53), the
-cover-half counter at any fixed depth provably cannot bound L, and every word extension that dies
-dies of "no window of M blocks this punctured interior" or of gears 5 and 7 - never of a gear
-above 7. The naive null for L was the manager's artefact: the exact null is 12.4 at m47 (not 18)
-and with the machine's real gap histogram it is within 1.1-2.0x of the measured L; the length of
-L is a histogram statistic, its last unit is the arithmetic event. Round run on Fable 5.1 through
-an API incident and a session-limit exhaustion; all six lanes filed.
+State after round 31 - ONE LEMMA: HALF OF (B) IS A THEOREM, THE OTHER HALF IS RE-POSED.
+A one-lemma round, three lanes on Opus 5. THEOREM (Constructor, kernel-checked by Formalist in
+both halves): a bare legal word is forced by T3 to be one of the two alternations (a,b,a,...) or
+(b,a,b,...), and a realised word's prefix-sum offsets sit on open slots, so they fit inside the
+exposed set of every gear - in particular gears 5 and 7 at some translate. Hence
+L_bare(M) <= PSORD(q' mod 210) <= 5 at EVERY machine, uniformly: the first bound on any part of L
+that does not grow with the machine. PSORD is 1 on 24 classes, 2 on 4, 3 on 14, never 4, 5 on
+the six litcap classes {37, 53, 83, 127, 157, 173}; the inadmissible set S = {PSORD <= 2} has 28
+of the 48 classes (Constructor's Python, Formalist's `decide`, and round 29's AlternationOrder
+agree element for element). With L = max(L_bare, L_pad) as a theorem, requirement (B) is now
+EXACTLY "L_pad bounded", and L_pad = 0,0,0,1,1,1,2,2,2,2,3,3 at m11..m53 GROWS. THEOREM (Lateral,
+the redirected lateral move): every legal letter is at least the smaller bare letter, a word of
+m letters is the middle of a word-legal window of span >= m a_min, and every word-legal window
+has span <= F(M+q') by R68, so L(M) <= 2 F(M+q')/q' + 1 (parity-refined; tight at m11, m13, m29;
+0 violations in 165,584 counterfactual rows). L is O(F/q'), not O(1): "(B): L bounded by an
+absolute constant" is retired as probably false in the limit and never needed. Substituted into
+Constructor's R99 chain, c_A c_B <= S_2 holds at all twelve corpus steps (equality at m17) and
+(D) follows whenever 8F <= q'^2 - (eps + 12) q' + 16, which the corpus satisfies from m23 on
+with a growing margin (F/q'^2 = 0.038-0.052 against the 1/8 needed) - BUT c_A = 4 is literal
+letters only, so the closure rests on exactly Constructor's open (A-pad). The manager's own
+framing "L is governed by letter size" is REFUTED on the family (size and admissibility are
+near-orthogonal channels explaining 36-42% of L's variance together).
 
-MANAGER GATE-CHECK (clean processes after the lanes closed): gate_mechanic_r30, resrun_r30 gate,
-tooth_L_r30 --report (33 gates), mirror_records_r30 (150), d0_family_r30, eps_chain_r30,
-f3_middles_r30, hr_twoclass_r30, jk_cover (green again, 171.8 s), word_count_r30 --upto 53 -
-ALL GREEN. Lean: `lake build` GREEN, 2616 jobs; `lake env lean AxiomCheck.lean` 468 declarations,
-sorryAx 0, native_decide 0, errors 0; CaseCert37.F_le and D_31_37_case, WordLegal.akill,
-CrtSlots.f2_59_A/B all on propext / Classical.choice / Quot.sound only. LP thread's rung-eleven
-gate `lp_emit_r30.py GATE 4 0.02` re-run by the manager (2159 s): k=4 4813/4813 and k=5
-3264/3264 re-verified from JSON with lhs < rhs in every case, PARTITION ASSERTED over 85085
-leaves, ALL ASSERTIONS GREEN. Not re-run: occ_census_r30 at m37
-(4,954 s x 6 workers; its output files are gated by Constructor's other scripts).
+MANAGER GATE-CHECK (clean processes): bare_lemma_r31.py --crt (A1-A6, B1-B5; 44 s),
+lateral_r31.py all (195 gates), bare_alt_r31.py (7 gates) - ALL GREEN. Lean: `lake build`
+GREEN, 2624 jobs; `lake env lean AxiomCheck.lean` 508 declarations, sorryAx 0, native_decide 0;
+BareAlt.bareAlt_inadmissible_iff on propext / Quot.sound, BareAlt.no_bare3_of_class_mem and
+WordLegal13.L13 / jmax13 on the standard three.
 
-CONSTRUCTOR: R99 THEOREM - the implication chain with constants: (A) |eps_J| <= c_A along the
-maximising chain and (B) L <= c_B give max_J Delta_J <= c_A c_B, hence F(M+q') <= F_2(M) + c_A c_B;
-(D) needs in addition the depth-2 half S_2 = F + q' - F_2 >= c_A c_B. Table m11..m59: S_2 = 9, 12,
-12, 17, 24, 19, 27, 39, 31, 34, 37, 45, 49; literal-chain max |eps| <= 4 at all eight exact
-machines; the OVERALL chain at m31 has eps = -17 (padded first letter), so c_A = 4 is a
-literal-letter statement. R100 THEOREM: exposure survival at word length m is decided by the
-gears <= 2m + 2. PROPOSITION: no fixed-depth truncation of the pruned inclusion-exclusion counter
-bounds L (depth-2 and depth-4 Bonferroni kill 0 words at 21 cells while E_0/N over realised
-words reaches 3e5 at m31 and 4e6 at m37). EXPCAP = 1,1,1,4,2,3,5,18,13,10,5,21 against L =
-1,1,1,2,1,3,3,2,2,2,4,3 at m11..m53. R101 LEMMA: eps = d - g_out with d >= 0; eps = O(1) is a
-cancellation (d = 27, g_out = 28 at m31). The padded failure of the increment inequality is ONE
-arithmetic event: the m31 F_3 = 85 maximisers (18,37,30)/(30,37,18) have a padded middle and
-Phi(37) + 37 = F_3 exactly; at m11..m29 and m37 no F_3 maximiser has a legal middle; the counted
-flank tables show Phi(12,37) = 39 and Phi(37) = 48 each rest on ONE occurrence. R102: the COUNTED
-word census occ(q'; M) = 86, 6, 2090, 26366, 61460 at 23/29/31/37/41 (R96's ask; 61460 equals
-Mechanic's round-26 padding-supply count). Refuted: its own eps mechanism MECH-A; three of its
-EXPCAP values. New doc docs/novel/cover-half-counter-ladder.md.
+CONSTRUCTOR (R103-R105): the lemma, proof, S and PSORD; a = 2 round(q'/6) with 3a = q' -+ 1 at
+all 2,258 primes to 20000; {5}-fit and {7}-fit equal the corridor-mod-35 fit (4,186 instances);
+R74's 24/16/2/6 distribution reproduced in R74's convention (R74 minimises over phases and
+counts points - a cycle question; word existence maximises and counts letters - a different
+invariant, hence |S| = 28 not 24, its own P1 refuted); the 6-letter bare alternation is
+inadmissible at all 48 classes; all 40 realised legal words on record at m11..m37 are
+{5,7}-admissible; L_bare <= PSORD tight at m29, m37, m41, m43. L_pad(47) = 3 measured
+((18,35,53), (18,53,35), (35,18,53) realised; (35,71,35) undecided at 6e7 nodes). Corrected in
+round: padded letters are fully visible to gears 5 and 7 (they refute 13 of 26 non-bare 2-words
+at m47); what makes L_pad the cover half is the alphabet size ~3F/q', not invisibility. New doc
+docs/novel/bare-word-uniform-cap.md.
 
-MECHANIC (mechanism probes, one fetch): (d) RUNG ELEVEN CLOSED WITHOUT F(53): max_J Q*_J(47;
-legal for 53) = 145 <= 171 two-sided (seed 144, found 145 at J = 4, nothing above at any J),
-witness the round-26 anchor slot 82,799,441,296,736,535 lifted to machine 53 where slot
-4,182,064,658,553,345,935 is a gap of exactly 145; EXACT-UNCONDITIONAL, 2.14 core-hours. (a) L IS
-A HISTOGRAM STATISTIC IN ITS LENGTH, AN ARITHMETIC EVENT IN ITS LAST UNIT: with the real class
-densities of the legal alphabet an independent-letter model predicts the longest legal run
-within one unit at every scanned machine (3.7/3 at m29, 4.0/3 at m31, 4.0/2 at m37); the largest
-drop is the alphabet step, alternation costs at most one letter; the cover half shows in
-OCCURRENCE COUNTS (measured/model 0.014 at m29 length 3; 0 vs 2.5 at m31 length 4). The next
-prime is usually but not always the maximising gear (L_53(37) = 3 > L_41(37) = 2). (b) KILLER
-PROFILE: every decided joint kill is y* = 0 (no slot of M blocks the punctured interior; the
-large-letter extensions) or the corridor (y* = 7 for the pure alternations, y* = 5 = gear-5
-saturation for the padded words from m37 on); NO extension anywhere is attributed to a gear above
-7; 48 classes m19..m41 all refuted, 12 refuted-but-unattributed. (c) GENEALOGY: records recruit
-RUNNER-UPS, not records - the ancestor is the F_J maximiser at 1 of 8 steps, a runner-up by 7-13
-at the rest, 2-5 generations deep (58 <- [18,10,30] <- 30 <- 23 <- 15 <- ...). Named next
-construct: the counted occurrence list of realised legal words by CRT enumeration. Two kernel-
-shaped slots for Formalist (m53 gap 145, m59 gap 161). Refuted: A3, A4, A5, B3 of its own.
+LATERAL (items 84-86): the spectrum bound L <= 2T + 1 - p and L <= max(2T, 2 floor((G-2-a_min)/q')
++ 1), T = floor((F(M+q') - 2)/q'), p = padded letters; corpus row 1,1,3,3,3,3,5,5,5,5,5,5
+(parity 1,1,2,3,3,3,5,4,5,5,5,5) against L = 1,1,1,2,1,3,3,2,2,2,4,3; beats EXPCAP at five of
+twelve steps (5 vs 18 at m37, 5 vs 21 at m53); the manager's G/a_min form is weaker at all
+twelve. Re-posed (B) as above (item 85). Scorecard 8 / 2 half / 3 refuted; the original
+pre-registration superseded by the redirect and not scored. New doc
+docs/novel/spectrum-bound-on-L.md (prior art not yet checked).
 
-LATERAL (the control group): L IS NOT CAPPED ON THE FAMILY - max L = 1, 3, 3, 3, 5 at 7 -> 11 ..
-19 -> 23 (the full 142,560-row 19 -> 23 family enumerated for the first time) against the real
-0, 1, 1, 1, 2; the L = 5 member is V(19)'s teeth (1,2,5,2,1,5) with word [5,18,5,18,5]. (B) is
-ARITHMETIC, and located: through m29 the real machine's L <= 2 is decided by the mod-{5,7}
-admissibility of the bare alternation (a,b,a) - P(L >= 3 | not admissible) = 0 in 21,357
-bare-letter deep words; R74's proxy doing real work on a null family. DEPTH-2 SLACK: the real
-machine is ORDINARY (35-61st percentile); the family's slack floor is positive at five of six
-steps and hits zero exactly once in 14,616 machines - the self-mirror 2-window, explained by the
-one-line theorem F_2 >= 2 d_0; excluding wrap-pair members the minimum slack is 8/6/6/5/4/9.
-Correction to round 29: (D) fails at 0.0-0.6% of the family; it is the INCREMENT inequality that
-fails at 13-22%. RECORD-MIRROR THEOREM: k' = P - k - s with reversed offsets, flanks and residues,
-gated on all 24 exact records incl. the transfer form; buys a factor 2 on every sweep, no
-inequality. Scorecard 9 / 5 half / 2 refuted.
+FORMALIST (verdicts 53-58): proofs/BareAlternation.lean (fitsB_of_open, no_gapWord,
+no_bare_run, bareAlt_inadmissible_iff with S listed, S = {capC <= 3} through ps_max_eq_capC,
+the PSORD table 24/4/14/0/6, psord_ne_four), BareAltInst.lean (no_bare3_of_class_mem at m23,
+m37, m41, m43 on the opening predicate - no opSeq needed), WordLegal13 / WordLegal17: L = 1,
+J_max = 3, A_kill = 2 at m13 and m17 decided by gears 5 and 7 alone, because F(M) < q' there
+makes every legal letter bare (fails at m19: 25 > 23, which is why row 4 does not follow).
+Honest boundary (verdict 56): the kernel cap is on L_bare - 1 against L = 2 at m37/41/43, 2
+against 3 at m53; the deep words there are provably not bare. No pre-registration file this
+round (verdict 58). Not attempted: jmax17 (no period module at m17), Lateral's item 84 in the
+kernel (named next construct).
 
-FORMALIST: THE 31 -> 37 CASE-SPLIT ROOT IS IN THE KERNEL. Mechanism of the crash measured:
-importing all 385 case oleans costs 1.4 GB; the eleven round-29 `simp; simpa` bridges cost
-0.4 GB and ~100 s EACH; rewritten as `rw [...] at h3; exact h3` a 11-case tier is 2.78 GB / 82 s;
-35 tiers built one at a time under a 12 GB kill line, root 4.01 GB / 83 s. WordLegal.lean: R89
-(killable_iff, chain_iff_word, akill: A_kill = L + 1) and the same-tooth lemma over an abstract
-machine, instantiated at m11 (L = 1, J_max = 3, A_kill = 2); qstar_iff_word / jmax hypothesis-
-explicit on periodicity of gap residues. CrtSlots.lean: F_2 lower-bound realisers at 37/41/53/59
-(five consecutive openings each; the F_2(59) <= 173 span condition in prose only). Verdicts
-46-52. Memory table pre-registered and scored (T0 with the old bridge 6.58 GB: refuted; new
-bridge <= 3 GB: confirmed; root <= 6 GB: confirmed). Operational: `Start-Process -WindowStyle
-Hidden` dies with the tool call; the default build replays ~117k cached linter warnings.
+STATE OF THE DERIVATION (manager, end of round 31): the uniform obligation is (A-lit) |eps| <= 4
+measured on literal letters; (A-pad) the F_3-wall event (padded middle of the old F_3
+maximiser), located at m31, open; (D2) the depth-2 slack, measured 9..49; and (B'), the
+replacement for (B): L_pad bounded, or more precisely the Jacobsthal-square condition
+8F <= q'^2 - (eps + 12) q' + 16 that closes the chain given (A). L_bare is DONE (<= 5, kernel).
+L_pad grows (0 to 3 across the corpus), is invisible to no gear, and dies of the cover half at
+full depth on the non-bare alphabet of size ~3F/q'. The finite rungs need none of this (eleven
+certified). Nothing found bounds L_pad; nothing found says the Jacobsthal-square condition
+fails; F/q'^2 sits a factor 2.4-3.3 inside it.
 
-LP THREAD: RUNG ELEVEN BY LP DUALITY. k = 3 is unaffordable (case (0,0,0) stuck at 64.3 against
-60 after 1,066 s; the lifted LP does not reach n = 11) while one gear deeper the base-cut polytope
-is INFEASIBLE at iteration zero: root at k = 4, 2,503 mirror orbits, 2,407 certified (4,813 of
-5,005 cases, 96.16%, 2,398 at iteration zero, margins 1/16384..3), all 96 refusals the plain loop
-STUCK on the recursion row 0.05-2.2 above |pos| (P3 confirmed 96/96); every refusal closes one
-gear deeper: 1,632/1,632 k = 5 children certified at iteration zero. Partition of 85,085 leaves
-asserted; 606,183,237 exact ops; ~17 core-hours. MIRROR THEOREM (five claims) plus a new
-boundary-blocked TRANSLATION lemma that explains round 29's value-class coarsening exactly
-(11 = 11 at m37, 14 = 14 at m41). E14 CONFIRMED: W_c(43,3) = 106 and W_c/F has crossed 1
-(1.029). E15 confirmed and explained; E13 carried (10-14 core-hours); E16 dropped at the cap
-(2-4 core-hours, next target). Own P1, P4, E20 refuted. Emission: 236 MB of JSON, on disk.
-
-HARVESTER (half lane): prior art on the round-29 objects - NOVEL AS FAR AS SEARCHED or PARTIAL
-OVERLAP with the one-class shadow; Holt & Rudd 2014 read in full: its Lemma 2.1 / Theorem 2.3 /
-Lemma 3.1 are the one-class merge law, the CRT step of the deletion-ladder cap, and the
-A_kill = 1 regime - the published literature stops exactly where J_max = L + 2 starts. Extended
-to two classes (hr_twoclass_r30): each opening is hit in exactly two copies; a run of k hits
-occupies at most 2 copies whatever k is - the count bounds MULTIPLICITY, never length; NO L bound
-from it, provably. Ziller 2020 Prop. 2.7 cited into the depth-0 doc. NULL MODEL FOR L, exact:
-log N = 37.3 at m47 (not q' = 53), equidistributed null 12.4 (10.9 with alternation); with the
-machine's own gap histogram the legal-class probability is 0.19-0.39 of 3/q' (gap values pile
-up below s_min), alternation costs 12-14%, dependence is the residue (factor 0.43-1.00);
-corrected null / L = 1.14, 1.31, 1.96 at m29/31/37. Shiu / Maynard consecutive-primes results
-do not transfer (growing scale, fixed modulus, one class, existence). New doc
-docs/novel/anchor-235-layer-laws.md. jk_cover.py gate fixed (green). F(2,y) vs F_2(M) collision
-list on the ledger.
-
-STATE OF THE DERIVATION (manager, end of round 30): the finite rungs are independent of A_kill
-(rung eleven closed by two routes that never see it). The uniform obligation is (A-lit) |eps| <= 4
-measured on literal letters, (A-pad) the F_3-wall event (padded middle of the old F_3 maximiser)
-now located and explained at m31, (B) L bounded, and (D2) the depth-2 slack (measured 9..49).
-(B) is the crux and it is arithmetic: structural on the family it is false; through m29 it is
-decided by gears 5 and 7; beyond that the corridor cannot bound it and the cover half must -
-and the cover half acts as "no window of M blocks this punctured interior" (y* = 0), never a
-large gear. The route now on record (Mechanic): bound the legal alphabet's class densities (a
-histogram statement, where L's length lives), then close the last unit by the cover half. What
-is proved: A_kill = L + 1 in the kernel; the exposure half decided by gears <= 2m + 2; the
-counter cannot do it at fixed depth. What is not: any bound on L.
-
-OPERATIONAL: round 30 ran on Fable 5.1 through an Anthropic incident ("Elevated errors for
-multiple models", 13:26 UTC on 2026-09-03 onward, 529 Overloaded on Fable and Opus alike); every
-subagent dies on its first 529 (no retry in the subagent loop, unlike the main session), and
-repeated resumes - each re-sending a ~500k-token transcript - exhausted the session limit
-(reset 02:00 Perth). Rules adopted: park lanes during an outage, never resume-spam; lanes launch
-on OPUS 5 from round 31 (user direction 2026-09-04) with fresh context each round. Formalist:
-tier any root above ~35 imports, and price a root by its bridge proof terms. The round-30 bulk
-emission (8,077 certificate JSON, 126 MB pickles, chunk arrays) stays on disk under
-research/data/r30/ and is gitignored; manifests, layouts, results, cell summaries and prereg are
-committed; the emission is regenerable in ~17 core-hours. ROUND-31 OPENERS: L via the legal
-alphabet's class densities plus the one-unit cover-half collapse (Mechanic's route; Constructor
-to state the histogram lemma); the F_3-wall separator at m41..m53 (Mechanic: F_3 maximisers with
-their middles; prediction on record: non-legal middles); the counted occurrence list of realised
-legal words by CRT; LP E16 at 41 -> 43 (2-4 core-hours) and E13 (10-14); Formalist: the
-sub-machine lemma and A_m closed form, R89 at m13..m37, the m53/m59 slots; Harvester: nothing
-heavy.
+OPERATIONAL: lanes on Opus 5 (user direction), fresh context; three lanes only; the round took
+~65 minutes; no outage. ROUND-32 OPENERS (not briefed): (1) the Jacobsthal-square condition as a
+target - what is known about F/q'^2 for the two-class sieve (Harvester: explicit quadratic
+Jacobsthal bounds with constant below 1/8), and whether the LP thread's per-step certificates
+give F(M+q') <= q'^2/8 + ... directly; (2) (A-pad): the F_3-wall separator at m41..m53 with the
+maximisers' middles (Mechanic); (3) L_pad by the cover half on the non-bare alphabet only
+(Constructor + Mechanic's occurrence list by CRT); (4) Lateral's item 84 and the m53/m59 slots in
+the kernel (Formalist); (5) prior-art check on docs/novel/spectrum-bound-on-L.md and
+bare-word-uniform-cap.md (Harvester).
 
 NOVEL-FINDINGS RULE (all agents, standing - from the human, 2026-08-23):
 Anything potentially novel to mathematics gets its own document in docs/novel/ (template and
@@ -7645,3 +7575,653 @@ MY OWN PRE-REGISTRATION (lp_prereg_r30.txt, before any m53 solve): P1 (certified
   E17's: at 53 -> 59 (fifteen gears, n = 11 at k = 4) the plain loop is expected to
   need k = 5 (42,543 orbits, ~24,000 classes under mirror+translation) - about six
   times this round's sweep.
+
+## Lateral round 31
+
+GATES, from clean processes, both exit 0:
+  uv run python research/lateral_r31.py corpus  -> ALL 173 ASSERTION GATES PASSED
+  uv run python research/lateral_r31.py family  -> ALL 22 ASSERTION GATES PASSED
+  (follow-up log research/data/r31/why_amin.log - the letter-supply mechanism)
+Pre-registration research/data/r31_lateral_predictions.txt (E1-E7, F1-F7) before
+any round-31 code.  Results research/lateral_r31_results.txt.  Novel register
+docs/novel/spectrum-bound-on-L.md + README index entry.  Lane doc lateral.md
+"## Round 31" (items 84-86, refuted 63-66).  Every job finished; nothing running.
+Compute: one process, seconds.  BRIEF CHANGED MID-ROUND (manager redirect on the
+human's call): the admissibility-lemma kill was dropped for Constructor and
+replaced by (1) the spectrum bound, (2) re-posing (B), (3) one family framing.
+The superseded pre-registration is recorded and NOT scored - nothing from it ran.
+
+HEADLINE: **L IS O(F/q'), NOT O(1) - AND THAT IS A THEOREM, NOT A MEASUREMENT.
+(B) AS POSED SHOULD BE RETIRED: IT IS PROBABLY FALSE IN THE LIMIT AND IT IS NOT
+NEEDED.  SUBSTITUTED INTO R99 THE BOUND CLOSES THE CHAIN ON ITSELF WITHOUT
+CIRCULARITY, AND (D) FOLLOWS FROM A JACOBSTHAL-SQUARE CONDITION THAT THE CORPUS
+SATISFIES WITH A GROWING MARGIN AT 8 OF 13 STEPS.**
+
+ITEM 84 - THE SPECTRUM BOUND (theorem).  a, b the two BARE letters
+(a = d' = 2*6^{-1} mod q' small rep, b = q' - a, a + b = q', 3a = q' -+ 1),
+a_min = min(a,b) = a, G = F(M+q').  (i) class minima are a, b and q' (padded);
+(ii) T3 strictly alternates the nonzero classes, so two CONSECUTIVE nonzero
+letters sum to >= a + b = q'; (iii) a realised legal word of m letters is the
+middle of a window x_0..x_{m+2} of consecutive openings with legal middle gaps,
+so R68's ATTAINMENT THEOREM (proved) gives span + before + after <= G with
+before, after >= 1.  With p padded and n = m - p nonzero letters,
+span >= p q' + floor(n/2) q' + [n odd] a_min, so with T = floor((G-2)/q'):
+
+    (SIMPLE)  L(M) <= 2T + 1        letter-aware:  L(M) <= 2T + 1 - p
+    (PARITY)  L(M) <= max( 2T, 2*floor((G - 2 - a_min)/q') + 1 )
+    i.e.      L(M) <= 2 F(M+q')/q' + 1.
+
+UNCONDITIONAL given R68 and T3.  No cover half, no phase saturation, nothing
+about M's gears beyond "openings are distinct integers".
+
+    M       m11 m13 m17 m19 m23 m29 m31 m37 m41 m43 m47 m53
+    G        11  18  25  34  43  58  88  91 103 118 145 161
+    a_min     4   6   6   8  10  10  12  14  14  16  18  20
+    SIMPLE    1   1   3   3   3   3   5   5   5   5   5   5
+    PARITY    1   1   2   3   3   3   5   4   5   5   5   5
+    L         1   1   1   2   1   3   3   2   2   2   4   3
+    EXPCAP    1   1   1   4   2   3   5  18  13  10   5  21
+    G/a_min   2   3   4   4   4   5   7   6   7   7   8   8
+
+TIGHT at m11, m13, m29.  Beats EXPCAP at m19, m37, m41, m43, m53 (5 vs 18 at
+m37, 5 vs 21 at m53); ties at five; loses at m17 and m23 only.  The coarser
+G/a_min form is weaker at all twelve.  Span accounting checked DIRECTLY on all
+14 realised words on record: m29 (10,21,10) span 41 = its lower bound exactly,
++2 = 43 <= 58; m47 (18,35,18,35) span 106 = lower bound exactly, +2 = 108 <=
+145; m37 (14,41) span 55 = lower bound 55 with p = 1.
+
+ITEM 85 - (B) RE-POSED.  With c_A = 4 (literal, R99) and c_B = item 84's bound,
+R99's product c_A c_B <= S_2 = F + q' - F_2 HOLDS AT ALL TWELVE CORPUS STEPS:
+4,4,12,12,12,12,20,20,20,20,20,20 (SIMPLE) against S_2 = 9,12,12,17,24,19,27,
+39,31,34,37,45 - equality once (m17, SIMPLE), never with PARITY.  And because
+the bound is LINEAR in G, substituting it into R99 removes (B) altogether:
+
+    G <= F_2 + c_A L  and  L <= 2(G-2)/q' + 1
+      ==>  G <= ( q'(F_2 + c_A) - 4 c_A ) / ( q' - 2 c_A )     for q' > 2 c_A,
+    and (D) follows whenever   8 F <= q'^2 - (eps + 12) q' + 16,  eps = F_2 - F.
+
+    M     q'  F    eps  closure-G  F+q'  (D)?  RHS/8   F/RHS  F/q'^2
+    m11   13    7   4     35.8      20   no     -2.9   n/a    0.0414
+    m13   17   11   5     36.0      28   no      2.0   5.50   0.0381
+    m17   19   18   7     48.6      37   no      2.0   9.00   0.0499
+    m19   23   25   6     52.6      48   no     16.4   1.53   0.0473
+    m23   29   34   5     58.6      63   OK     45.5   0.75   0.0404
+    m29   31   43  12     78.8      74   no     29.1   1.48   0.0447
+    m31   37   58  10     91.3      95   OK     71.4   0.81   0.0424
+    m37   41   88   2    116.3     129   OK    140.4   0.63   0.0523
+    m41   43   91  12    131.0     134   OK    104.1   0.87   0.0492
+    m43   47  103  13    144.2     150   OK    131.2   0.78   0.0466
+    m47   53  118  16    162.2     171   OK    167.6   0.70   0.0420
+    m53   59  145  14    188.3     204   OK    245.4   0.59   0.0417
+    m59   61  161  12    203.4     222   OK    284.1   0.57   0.0433
+
+The closure bound is TRUE at all 12 machines where G is on record (gated).  The
+CONDITION holds at 8 of 13 and fails only at the five small ones, where q' is
+too close to 2c_A = 8.  The margin GROWS along the top (F/RHS 0.87 -> 0.57) and
+F/q'^2 = 0.038..0.052 everywhere, a factor 2.4-3.3 inside the 1/8 needed.
+SO: (B) "L bounded by a constant" is probably FALSE in the limit (F/q' measured
+0.54..2.64 and growing) and is NOT NEEDED.  The replacement:
+
+    (B')  L(M) <= 2 F(M+q')/q' + 1                     [THEOREM, item 84]
+    plus  8 F(M) <= q'^2 - (F_2 - F + 12) q' + 16      [a Jacobsthal-square
+                                                        condition on M itself]
+
+WHAT WOULD PROVE IT: an explicit quadratic upper bound on the Jacobsthal
+function of the primorial with constant below 1/8 (slot units, F <= q'^2/8),
+plus a bound on eps = F_2 - F (measured 2..16, no trend).
+THE CAVEAT THAT MUST TRAVEL WITH IT: c_A = 4 is a LITERAL-letter constant; the
+padded letter at m31 has eps = -17 (R101/C6) and at c_A = 17 the closure needs
+q' > 34 and is vacuous where it applies.  The closure is conditional on exactly
+Constructor's open (A-pad), and on nothing else.
+
+ITEM 86 - THE FAMILY: L IS NOT THE SIZE OF THE LETTERS (a negative with its
+measurement).  Round 30's counterfactual data, 165,584 rows over six steps
+(19->23 full, 23->29 a 601-member sample); a_min = min(2v, q'-2v) sweeps
+1..(q'-1)/2 there while the real machine is pinned at a_min/q' = 0.308..0.364.
+  (a) THE BOUND HOLDS AT EVERY ROW - (SIMPLE), (PARITY) and L <= 2T+1-p, 0
+      violations in 165,584, including the family's L = 5 member where (PARITY)
+      = 5 exactly.  Tight at 86.7 / 87.8 / 33.5 / 16.1 / 16.5 / 16.6% of rows
+      (PARITY) with mean slack 0.13 / 0.13 / 0.81 / 1.24 / 1.01 / 0.97.
+  (b) spearman(L, a_min) = -0.277, +0.006, +0.065, +0.088, -0.159, -0.245 -
+      POSITIVE at three of six steps.  a_min is a BIJECTIVE relabelling of
+      v_q', so eta^2(L | a_min) = eta^2(L | v_q') exactly (1.000 at all six).
+  (c) THE SMALLEST LETTER IS THE WORST.  19->23, max L by a_min 1..11 =
+      2,3,4,3,5,3,3,4,2,4,3; P(L>=3) = 0.0000, 0.3008, 0.2478, 0.0002, 0.5823,
+      0.0005, 0.1552, 0.0464, 0.0000, 0.1275, 0.0381.  a_min = 1 (letters
+      22, 1) never reaches L = 3 in 12,960 rows; a_min = 5 (letters 18, 5)
+      reaches L = 5 with P(L>=3) = 0.58.
+  (d) NOR IS IT SUPPLY.  mean min(n_a, n_b) over 378,675 gaps runs 42, 48, 164,
+      142, 267, 223, 314, 1131, 1956, 2977, 1452 as a_min goes 1..11
+      (spearman(a_min, min(n_a,n_b)) = +0.816) - the small letter's PARTNER is
+      the rare one - but spearman(L, min(n_a,n_b)) = +0.081.  The best single
+      correlate found is the PADDED supply, spearman(L, n_0) = +0.311.
+  (e) TWO ORTHOGONAL CHANNELS.  eta^2(L | a_min) / eta^2(L | {5,7}-adm) /
+      eta^2(L | both) = 0.135/0.089/0.279, 0.037/0.001/0.088, 0.070/0.016/0.072,
+      0.125/0.135/0.244, 0.223/0.135/0.361, 0.273/0.156/0.415: at the two
+      largest steps the joint value is within 1% of the SUM, and together they
+      explain only 36-42% of L's variance.  max L 5 (admissible) vs 3 (not).
+VERDICT: the size half of "the arithmetic of the teeth" is now a theorem; the
+residue half is Constructor's corridor; they are orthogonal and neither alone
+predicts L.
+
+SCORECARD (E1-E7, F1-F7): 8 CONFIRMED (E1, E2, E3, E5, E6, E7, F1, F3 - F3
+vacuously, a_min being a relabelling), 2 HALF (E4: SIMPLE also loses to EXPCAP
+at m17; F4: the family max is at a_min = 5 but max L is not monotone in a_min),
+3 REFUTED (F2 spearman never below -0.28; F6 the parity refinement helps at 7.8%
+not 30% of 19->23 rows; F7 tight at 13.3% not 25%).  The superseded
+admissibility block is not scored.
+
+LABELS.  THEOREM (paper, unconditional given R68 + T3): item 84's two bounds.
+SCRIPT-VERIFIED (exact): the corpus table, the span accounting on 14 realised
+words, the family's 165,584 rows.  CONDITIONAL THEOREM: item 85's closure
+(needs (A) with a small c_A over the whole chain).  MEASURED: the family's
+correlations and eta^2 decomposition.  NEGATIVE WITH ITS MEASUREMENT: L is not
+governed by letter size.
+
+FOR OTHER LANES
+- CONSTRUCTOR: item 84 caps exactly the half your round-31 bare-word cap leaves
+  open.  A word with p padded letters obeys L <= 2T + 1 - p, T =
+  floor((F(M+q')-2)/q'), so L_pad(M) <= 2T = 2 at m19..m29 and 4 at m31..m53.
+  With your L_bare <= PSORD <= 5 that is a complete cap on L = max(L_bare,
+  L_pad).  Then R99 needs no (B) at all: the closure inequality above is your
+  chain with c_B eliminated, and c_A c_B <= S_2 holds at all twelve steps.
+- MANAGER: retire (B) as posed.  The obligation list becomes (A-lit) measured 4,
+  (A-pad) OPEN and now the ONLY thing the closure waits on, (B') PROVED, and the
+  ratio condition 8F <= q'^2 - (eps+12)q' + 16 - true at 8 of 13 steps with the
+  margin growing.  "L bounded" was never the right target; "L = O(F/q')" is, and
+  it is a theorem.
+- MECHANIC: item 84 is a third, cheaper screen for the word vehicle, and it
+  beats EXPCAP at five steps (5 vs 18 at m37, 5 vs 13/10/21 at m41/m43/m53).
+  Used as a length cap BEFORE enumeration, 2T+1-p prunes the padded candidates
+  hardest - which is where the m41/m43 killer budgets went last round.
+- FORMALIST: item 84 is kernel-shaped and short - R68's attainment statement,
+  T3 alternation (WordLegal.lean), a + b = q', and "the padded class minimum is
+  q'".  The conclusion L <= 2*floor((F(M+q')-2)/q') + 1 is one finite inequality
+  per machine and one lemma over an abstract machine.
+- HARVESTER: prior-art check for docs/novel/spectrum-bound-on-L.md, and the
+  literature question item 85 raises - is there an explicit quadratic upper
+  bound on the Jacobsthal function of a primorial with constant below 1/8?
+
+OPEN QUESTIONS THIS ROUND NAMES (backlog U22, U23, U24)
+- U22. The smallest c_A that survives the PADDED letters.  The closure bites for
+  q' > 2 c_A, so c_A <= 7 keeps it alive from m13 up; c_A = 17 makes it vacuous.
+- U23. Is the spectrum bound tight infinitely often?  Tight at m11, m13, m29 and
+  at 13-88% of family rows.  If L = 2F/q' + 1 - o(1) then (B) is definitively
+  false; if L stalls, a better bound exists.  Cheap test: the full 23->29 family.
+- U24. spearman(L, n_0) = +0.311 beats both a_min and min(n_a,n_b).  n_0 does not
+  depend on v_q' at all, so this is a statement about the OLD machine's gap
+  histogram at multiples of q'.  Unclaimed.
+
+## Constructor round 31
+
+GATES, all from clean processes (logs and results in `research/data/r31/`):
+
+    uv run python research/bare_lemma_r31.py --crt --nodes 40000000
+        -> GATE A1  a = 2*round(q'/6) and 3a = q' -+ 1 at all 2258 primes 11..20000: OK
+        -> GATE A2  PSORD constant on each of the 48 classes mod 210 and equal in both
+                    vehicles (mod-210 arithmetic vs 2258 exact primes): OK
+        -> GATE A3  {5}-fit AND {7}-fit == corridor-mod-35 fit on 4186 instances: OK
+        -> GATE A4  R74's PS-order (MIN over phases, in POINTS): 24/16/2/6 at orders
+                    2/3/4/5, order 5 exactly on {37,53,83,127,157,173}, order 4 exactly
+                    on {23,187} - R74's enumeration reproduced exactly: OK
+        -> GATE A5  max PSORD over all 48 classes = 5 (the bound is UNIFORM in M): OK
+        -> GATE A6  the 6-letter bare alternation is INADMISSIBLE at {5,7} in BOTH phases
+                    at all 48 classes (96 checks) - the finite statement behind
+                    L_bare <= 5, and the one handed to Formalist as F3: OK
+        -> GATE B1  L_bare <= 2 at all 7 corpus machines with q' in S, and neither
+                    (a,b,a) nor (b,a,b) realised at any of them: OK
+        -> GATE B2  L_bare <= PSORD(q' mod 210) <= 5 at all 11 corpus machines: OK
+        -> GATE B3  every one of the 40 realised LEGAL words on record at m11..m37 is
+                    admissible at {5,7} (the proof step, checked on the data): OK
+        -> GATE B4  L from the counted census reproduces 1,1,1,2,1,3,3,2 at m11..m37: OK
+        -> GATE B5  the 35x3 corridor automaton reproduces R75's CORRCAP row
+                    4,2,3,5,25,25,11,5,INF at 19->23 .. 53->59: OK
+        -> "all assertions passed"
+    uv run python research/lpad47_r31.py --nodes 60000000 --workers 4
+        ->         -> 12 non-bare T3-legal length-3 words survive the m47 spectrum and phase
+           saturation; 7 mirror representatives decided at a 6e7-node budget:
+           (18,35,53) (18,53,35) (35,18,53) REALISED (4 s, 1 s, 0 s), (35,18,88)
+           (35,53,53) (53,35,53) refuted (722, 980, 1252 s), (35,71,35) UNDECIDED at
+           the budget (2,482 s).  => L_pad(47) >= 3; R98 refutes every non-bare
+           length-4 word, so L_pad(47) = 3 EXACTLY.  2,486 s wall, 4 workers.
+
+Pre-registration `research/data/r31/constructor_prereg_r31.txt` (P1-P7), written before
+any round-31 script existed.  Persistent results `research/constructor_r31_results.txt`.
+New novel-register document `docs/novel/bare-word-uniform-cap.md` (+ README index entry).
+Lane doc `constructor.md` "## Round 31" (R103-R105).  Every job this round launched has
+finished; nothing is left running.  Compute: <= 4 workers, well under 1 GB.
+
+HEADLINE: **HALF OF (B) IS NOW A THEOREM.  With `a`, `b` the two BARE letters, a bare
+legal word is FORCED by T3 to be one of the two alternations, and a realised word's
+prefix-sum offsets must sit inside the exposed set of EVERY gear of M - in particular
+gears 5 and 7.  Hence `L_bare(M) <= PSORD(q' mod 210) <= 5` at every machine, uniformly:
+the first bound on any part of `L` that does not grow with the machine.  On the 28
+classes of `S` it reads `L_bare <= 2`, and Lateral's family observation is that lemma.
+`L(M) = max(L_bare, L_pad)`, so requirement (B) is now EXACTLY "`L_pad` bounded" - the
+words that use a letter of size `>= q'`.**
+
+THE LEMMA, WITH EVERY HYPOTHESIS NAMED.
+
+  SETTING.  `M = {5,7,...,y}` with `y >= 7` (so `5, 7` are gears of `M`);
+  `q' = nextprime(y)`; `u' = round(q'/6)` the smaller tooth of `q'` (`6u' = q' -+ 1`);
+  `d' = 2u'`.  BARE letters `a = d'`, `b = q' - a`; exactly `a = (q'-1)/3` if `q' = 1
+  mod 3` and `a = (q'+1)/3` if `q' = 2 mod 3` (GATE A1).  Gear `g` blocks slot `k` iff
+  `k = +-6^{-1} mod g`; `E_g = Z_g` minus those two teeth; `E_35 = {r mod 35 : r mod 5 in
+  E_5, r mod 7 in E_7}`, `|E_35| = 15`.  For a word `w`, `X(w) = {0, w_1, w_1+w_2, ...}`.
+  `X` is ADMISSIBLE AT {5,7} iff some translate fits in `E_5` and some translate fits in
+  `E_7` - equivalently, by CRT, some translate fits in `E_35` (GATE A3).
+  A LEGAL LETTER is `0` or `+-d'` mod `q'`; T3 = the nonzero classes strictly alternate,
+  padded letters transparent.  A word is BARE if every letter is in `{a, b}`.
+  `L_bare(M)` = the longest REALISED bare legal word.
+
+  LEMMA.  If neither `X_A = {0, a, a+b, 2a+b} = {0, a, q', q'+a}` nor
+  `X_B = {0, b, a+b, 2b+a} = {0, b, q', q'+b}` is admissible at {5,7}, then `M` has no
+  realised bare legal word of length 3, hence `L_bare(M) <= 2`.
+
+  PROOF (two lines).
+  (i) Neither `a` nor `b` is `0 mod q'`, so no bare letter is transparent; by T3 two
+      consecutive letters of the same nonzero class are illegal, and `a`, `b` are the only
+      bare values - so a bare word of length 3 is `(a,b,a)` or `(b,a,b)`, with offset sets
+      `X_A`, `X_B`.  There is no third bare 3-word.
+  (ii) If `(a,b,a)` occurs at the opening `k` of `M`, then `k, k+a, k+q', k+q'+a` are all
+      openings of `M`, so none of them is at a tooth of any gear `g` of `M`:
+      `k + X_A` lies inside `E_g` mod `g` for every `g`.  Taking `g = 5` and `g = 7`
+      (both are gears of `M`) exhibits the translate, so `X_A` is admissible at {5,7}.
+      Same for `(b,a,b)`.  Contrapositive.  []
+
+  This is R74's own argument (phase saturation = the exposure half of the realisability
+  CSP) with the OTHER quantifier and the OTHER unit - see "the quantifier" below.
+
+THE GENERAL FORM, AND THE UNIFORM CAP.
+
+  `PSORD(c)`, for `gcd(c,210) = 1`: the largest `m` such that SOME bare alternation of
+  length `m` (either phase) is admissible at {5,7}, when `q' = c mod 210`.  Well defined
+  because `3a = q' -+ 1` makes `a mod 5` and `a mod 7` functions of `q' mod 3, 5, 7`
+  (GATE A2: constant on each class over 2,258 primes, and equal to a pure mod-210
+  vehicle).
+
+  THEOREM.  For every machine `M` containing gears 5 and 7,
+      `L_bare(M) <= PSORD(q' mod 210) <= 5`.
+
+      PSORD = 1 : 24 classes  11,13,17,19,41,43,47,71,73,79,101,103,107,109,131,137,
+                              139,163,167,169,191,193,197,199
+      PSORD = 2 :  4 classes  29,59,151,181
+      PSORD = 3 : 14 classes  1,23,31,61,67,89,97,113,121,143,149,179,187,209
+      PSORD = 4 :  0 classes  EMPTY
+      PSORD = 5 :  6 classes  37,53,83,127,157,173     (R74's six exceptional classes)
+
+  S = {c : PSORD(c) <= 2}, |S| = 28 (density 7/12 of the primes, Dirichlet):
+      11,13,17,19,29,41,43,47,59,71,73,79,101,103,107,109,131,137,139,151,163,167,169,
+      181,191,193,197,199
+  COMPLEMENT, |comp| = 20:
+      1,23,31,37,53,61,67,83,89,97,113,121,127,143,149,157,173,179,187,209
+
+  THE QUANTIFIER (why this is NOT R74, and the pre-registration that died on it).  R74's
+  `A_relax` asks for a CYCLE, so it MINIMISES over the two starting letters ("one broken
+  window kills the cycle"), and it counts POINTS (deleted openings = arity).  The word
+  question asks whether SOME bare `m`-word EXISTS, so it MAXIMISES over the phases and
+  counts LETTERS.  In R74's convention the distribution is 24/16/2/6 at orders 2/3/4/5,
+  order 5 exactly `{37,53,83,127,157,173}`, order 4 exactly `{23,187}` - reproduced
+  exactly as GATE A4 - and `S` is a DIFFERENT set from R74's 24 order-2 classes.  R74
+  caps a proxy that need not be realised anywhere; `S` caps a quantity in the derivation.
+
+THE CORPUS GATE (L from the r30 counted census at m11..m37, R97/R98 at m43/m47,
+Mechanic's r30 killer table at m41; L_bare from the same census and from
+crt_dict.realised at m41..m47):
+
+    M     q'   a   b  q'%210  in S?  ord(a..) ord(b..) PSORD  R74  L  L_bare (a,b,a)? (b,a,b)?
+    m11   13   4   9    13    IN S      1        1       1     2   1    1      no       no
+    m13   17   6  11    17    IN S      1        1       1     2   1    1      no       no
+    m17   19   6  13    19    IN S      1        1       1     2   1    1      no       no
+    m19   23   8  15    23    no        3        3       3     4   2    2      no       no
+    m23   29  10  19    29    IN S      2        2       2     3   1    1      no       no
+    m29   31  10  21    31    no        3        2       3     3   3    3     YES       no
+    m31   37  12  25    37    no        4        5       5     5   3    3     YES      YES
+    m37   41  14  27    41    IN S      1        1       1     2   2    1      no       no
+    m41   43  14  29    43    IN S      1        1       1     2   2    1      no       no
+    m43   47  16  31    47    IN S      1        1       1     2   2    1      no       no
+    m47   53  18  35    53    no        4        5       5     5   4    4     YES      YES
+
+At m41 and m43 EVERY bare decision was FREE - `PSORD = 1` there, so gear 5 alone refutes
+`(14,29)`, `(29,14)`, `(14,29,14)`, `(29,14,29)`, `(16,31)`, `(31,16)`, `(16,31,16)`,
+`(31,16,31)` with no search.  At m47 the six bare words up to `(18,35,18,35)` and
+`(35,18,35,18)` are REALISED (under 1 s each), `(18,35,18,35,18)` is refuted for free and
+`(35,18,35,18,35)` by decide_cover in 42 s: R98's `L(47) = 4` re-derived with BOTH
+length-5 phases decided, not one.
+
+(b) THE HONEST BOUNDARY - THE ATTAINING WORDS, CLASSIFIED.
+
+    M    q'  L  attaining words                          classification
+    m11  13  1  (4)                                      bare
+    m13  17  1  (6) (11)                                 bare
+    m17  19  1  (6) (13)                                 bare
+    m19  23  2  (8,15) (15,8)                            bare bare
+    m23  29  1  (10) (19) (29)                           bare, bare, PADDED
+    m29  31  3  (10,21,10)                               bare bare bare
+    m31  37  3  (12,25,12) (25,12,25)                    bare bare bare
+    m37  41  2  (14,41) (41,14) (27,41) (41,27)          bare PADDED / PADDED bare
+    m41  43  2  (14,43) (43,14) (29,43) (43,29) (43,43)  every one carries the padded 43
+    m43  47  2  (not enumerated; L = 2 by R97)           L_bare = 1, so non-bare
+    m47  53  4  (18,35,18,35)                            bare bare bare bare
+
+  THE ANSWER, PRE-REGISTERED (P4) AND CONFIRMED: **NO.**  `L(M) >= 3` never happens
+  through a bare word at a machine with `q'` in `S`.  All three `L >= 3` machines (m29,
+  m31, m47) are attained by PURE BARE ALTERNATIONS and all three have `q'` OUTSIDE `S`.
+  No `S`-machine in the corpus even reaches `L_bare = 2`.  The lemma is not dead.
+  THE BOUNDARY IS THREE MACHINES INSIDE THE CENSUS (four with m53, below): `L - L_bare = 1` at m37, m41, m43 and 0
+  elsewhere; those three are the `S`-machines whose `L` is carried by a word containing
+  the padded letter `q'`.  The lemma bounds `L_bare` and says nothing about `L` there.
+
+  DECOMPOSITION THEOREM (trivial, and that is the point).  With `L_pad(M)` = the longest
+  realised legal word using at least one NON-BARE letter (padded `0 mod q'`, or shifted
+  `a + kq'` / `b + kq'`),
+      `L(M) = max( L_bare(M), L_pad(M) )`,
+  and since `L_bare <= PSORD(q' mod 210) <= 5` is PROVED, requirement (B) is EXACTLY
+      `L_pad(M) <= c_pad`   uniformly in M.
+
+    M         11 13 17 19 23 29 31 37 41 43 47 53
+    L          1  1  1  2  1  3  3  2  2  2  4  3
+    L_bare     1  1  1  2  1  3  3  1  1  1  4 <=2
+    L_pad      0  0  0  1  1  1  2  2  2  2  3  3
+    |alphabet| 1  2  2  3  3  4  4  6  6  6  6  7
+
+  THE m53 ROW IS A CONSEQUENCE OF THE THEOREM, NOT A MEASUREMENT.  `q' = 59`,
+  `59 mod 210 = 59`, `PSORD(59) = 2`, so 59 is IN `S` and the LEMMA gives
+  `L_bare(53) <= 2` outright; `L(53) = 3` is on record (`A_kill(53->59) = 4` via R89); by
+  the decomposition theorem **`L_pad(53) = 3` EXACTLY** - a value derived at a machine no
+  census reaches.  With the MEASURED `L_pad(47) = 3` this settles the shape of the
+  non-bare half: it takes every value from 0 to 3 and it grows.  `L > L_bare` at FOUR
+  machines: m37, m41, m43, m53.  Any hope that `L_pad` stays at 2 because "one padded
+  letter is all you ever get" is dead INSIDE the census, not merely beyond it.
+
+(b, continued) WHAT BOUNDS THE PADDED WORDS - THE MANAGER'S CORRECTION, TAKEN AND
+MEASURED.  A padded letter is NOT free mod 35: its value `q'` has a definite residue mod 5
+and mod 7, so gears 5 and 7 see a padded word exactly as they see a bare one.  Exact
+counts of the T3-legal NON-BARE 2-words over each machine's alphabet that {5,7} refute:
+
+    M                  19  23  29  31  37  41  43  47
+    non-bare 2-words    5   5   9   9  26  26  26  26
+    refuted by {5,7}    0   3   7   2   5   7   7  13
+
+  WHAT THE CORRIDOR CANNOT DO IS BOUND THE LENGTH.  `CORRCAP(M)` (the longest T3-legal
+  word over the full alphabet `<= F(M)` whose prefix-sum walk stays in `E_35`), by an
+  explicit automaton on the 35 x 3 corridor states with cycle detection, GATE B5:
+
+    M           11 13 17 19 23 29 31 37 41 43 47 53
+    |alphabet|   1  2  2  3  3  4  4  6  6  6  6  7
+    3F/q'       1.6 1.9 2.8 3.3 3.5 4.2 4.7 6.4 6.3 6.6 6.7 7.4
+    CORRCAP      1  1  1  4  2  3  5 25 25 11  5  INFINITE
+    R75          -  -  -  4  2  3  5 25 25 11  5  INF
+    L            1  1  1  2  1  3  3  2  2  2  4  3
+
+  witness at m37: `(82,27,41,14,41,82,68,14,...)` - a MIXED word, not a padded run.
+  THE TERM THAT MAKES `L_pad` THE COVER HALF IS THE ALPHABET SIZE.  The bare alphabet has
+  exactly TWO letters at every machine, forever - that is why `PSORD <= 5` is uniform.
+  The full legal alphabet has about `3F(M)/q'` letters and `F/q'` grows without bound
+  (1.1, 1.2, 1.4, 1.6, 2.1, 2.1, 2.2, 2.2, 2.5 at 19->23 .. 53->59); once it is rich
+  enough the 35 x 3 corridor graph acquires a cycle and CORRCAP is INFINITE, first at
+  `53 -> 59`.  From there gears 5 and 7 refute individual non-bare words but cap no length
+  at all, and the only instrument left is Mechanic's `y* = 0` - "no window of `M` blocks
+  this punctured interior" - an `F_J`-type statement about `M`'s blocked runs.  So `L_pad`
+  IS the cover half in disguise, and the term that makes it so is `3F(M)/q'`.
+
+(c) THE COMPLEMENT, AND WHAT LATERAL'S SPECTRUM BOUND DOES TO R99.
+
+  ON THE COMPLEMENT the strongest statement PROVED from gears 5 and 7 is the same theorem
+  with the class's own value: `L_bare(M) <= PSORD(q' mod 210)`, which is `3` on the 14
+  classes `{1,23,31,61,67,89,97,113,121,143,149,179,187,209}` and `5` on the six
+  `{37,53,83,127,157,173}`.  Tested at the four corpus machines with `q'` outside `S`:
+  m19 (`PSORD(23) = 3`, `L_bare = 2`), m29 (`PSORD(31) = 3`, `L_bare = 3` - TIGHT),
+  m31 (`PSORD(37) = 5`, `L_bare = 3`), m47 (`PSORD(53) = 5`, `L_bare = 4`).  Never
+  violated, tight once.  Note this is a bound on `L_bare`, NOT on `L`: at m37/m41/m43 the
+  same theorem gives `L_bare <= 1` while `L = 2`.
+
+  LATERAL'S SPECTRUM BOUND (item 84), TAKEN AS GIVEN: an `m`-letter legal word is the
+  middle of a window of consecutive openings of span `<= max_J Q*_J = F(M+q') =: G` (R68),
+  and T3 makes two CONSECUTIVE nonzero letters sum to `>= a + b = q'`, so with
+  `T = floor((G-2)/q')`,  `L(M) <= max(2T, 2*floor((G-2-a)/q') + 1)`, about `2G/q'`.
+  **That is (up to the pairing factor) the SAME quantity as the legal alphabet's size
+  `~ 3F/q'` which makes CORRCAP infinite - the alphabet size and the spectrum bound on `L`
+  are one number.**  In R99's chain with `c_A = 4` (the literal bound), NAIVE
+  `c_B = floor(G/a)` against Lateral's PARITY `c_B`:
+
+    M     q'   a    F   F_2    G   S_2  cB_naive 4cB<=S2  cB_parity 4cB<=S2   L
+    m11   13   4    7    11    11    9      2      YES        1       YES     1
+    m13   17   6   11    16    18   12      3      YES        1       YES     1
+    m17   19   6   18    25    25   12      4      NO         2       YES     1
+    m19   23   8   25    31    34   17      4      YES        3       YES     2
+    m23   29  10   34    39    43   24      4      YES        3       YES     1
+    m29   31  10   43    55    58   19      5      NO         3       YES     3
+    m31   37  12   58    68    88   27      7      NO         5       YES     3
+    m37   41  14   88    90    91   39      6      YES        4       YES     2
+    m41   43  14   91   103   103   31      7      YES        5       YES     2
+    m43   47  16  103   116   118   34      7      YES        5       YES     2
+    m47   53  18  118   134   145   37      8      YES        5       YES     4
+    m53   59  20  145   159   161   45      8      YES        5       YES     ?
+
+  (the PARITY column reproduces Lateral's row `1,1,2,3,3,3,5,4,5,5,5,5` exactly.)
+  VERDICT.  With the alternation accounted for the R99 product `c_A c_B <= S_2` SURVIVES at
+  all twelve corpus steps; with the naive per-letter bound it FAILS at three (m17, m29,
+  m31).  The whole difference is T3 - the factor is `2F/q'`, not `3F/q'`.  But `c_B` is not
+  a constant either way: R99's conclusion becomes `F(M+q') <= F_2 + 8F(M+q')/q'`, a
+  self-referential inequality that closes only under a Jacobsthal-square condition on `F` -
+  Lateral item 85, which is the authority here and is NOT duplicated; its own caveat is
+  that `c_A = 4` is a LITERAL-letter constant, i.e. the closure is conditional on exactly
+  this lane's open (A-pad), the m31 padded `eps = -17` of R101/C6.
+  WHAT THIS LANE ADDS TO IT: `L_bare <= 5` is a CONSTANT, so all of the growth that forces
+  a `q'`-dependent `c_B` lives in `L_pad` - the non-bare words - and nowhere else.  (B) as
+  Lateral re-poses it and (B) as this lane splits it agree, and they agree on where the
+  remaining work is.
+
+PRE-REGISTERED PREDICTIONS, SCORED (7):
+  P1  `|S| = 24`  -  REFUTED: 28.  I mapped R74's convention onto the wrong quantifier
+      (min vs max over the two phases) and the wrong unit (points vs letters).  The error
+      is instructive and is now the "quantifier" paragraph above.
+  P1b the distribution 24/16/2/6 at PSORD 2/3/4/5  -  REFUTED in the same way (the true
+      distribution in the max/letters convention is 24/4/14/0/6 at PSORD 1/2/3/4/5), but
+      its `PSORD = 5` clause `{37,53,83,127,157,173}` is exactly right.
+  P1c complement = 24 classes, max PSORD = 5  -  HALF (20 classes; max 5 CONFIRMED).
+  P2  the corpus membership, 7 in S / 4 out, with 13, 41, 43, 47 as genuine guesses  -
+      CONFIRMED exactly.
+  P3  `L_bare <= 2` at every S-machine, zero exceptions  -  CONFIRMED (and `<= 1` at six
+      of the seven).
+  P4  no machine reaches `L >= 3` through a bare word with `q'` in S  -  CONFIRMED.
+  P5  `L_bare <= PSORD <= 5` at every machine, tight at m29  -  CONFIRMED (also tight at
+      m37/m41/m43).
+  P6  the decomposition identity, and the L_pad row `0,0,0,0,0,0,0,2,2,?,?`  -  the
+      IDENTITY is right, the ROW is REFUTED twice: non-bare words are realised from m19 on
+      (the padded letter 23, 86 occurrences), not from m37 on; and "never reaches length 3
+      in the corpus" is FALSE - `L_pad(47) = 3`.  The honest row is
+      `0,0,0,1,1,1,2,2,2,2,3,3` at m11..m53: `L_pad` has taken every value from 0 to 3 and
+      it grows.  Nothing in this round bounds it.
+  P7  `L_pad` is the cover half in disguise, via padded letters being invisible mod 35  -
+      the CONCLUSION stands, the MECHANISM I gave was wrong and the manager corrected it
+      mid-round: padded letters are fully visible to gears 5 and 7 (they refute 13 of 26
+      non-bare 2-words at m47).  What makes `L_pad` the cover half is the ALPHABET SIZE
+      `3F/q'`, not any invisibility.  Scored HALF, with the corrected mechanism gated
+      (GATE B5).
+
+LABELS.  THEOREM (proved, two lines + a 48-class enumeration): the lemma; `L_bare(M) <=
+PSORD(q' mod 210) <= 5`; the decomposition `L = max(L_bare, L_pad)`.  SCRIPT-VERIFIED
+(exact integers, exhaustive): the PSORD table, `S`, the corpus rows, the CORRCAP
+automaton, both `c_B` columns.  MEASURED: the `L_pad` row.  DERIVED FROM A RECORDED VALUE:
+`L_pad(53) = 3` (theorem + the recorded `L(53) = 3`).  NEGATIVE WITH ITS MEASUREMENT: the
+NAIVE per-letter `c_B = F(M+q')/a` does not close R99's chain (fails at m17, m29, m31) -
+Lateral's PARITY `c_B`, which uses T3, does at all twelve.  REFUTED, mine: P1, P1b, and
+P7's mechanism.
+
+FOR OTHER LANES
+- MANAGER: (B) now reads `L_pad(M)` bounded - the bare half is a theorem with a uniform
+  constant 5, and the constant is a residue condition on `q' mod 210` alone.  The three
+  machines where `L > L_bare` (m37, m41, m43) are exactly the S-machines whose record is
+  carried by the padded letter `q'`.  The SUMMARY's round-30 line "the corridor bounds the
+  pure alternation" is now a theorem with a number.
+- FORMALIST, the finite statements to kernel-check - AND THEY ARE ALREADY DONE.  Reading
+  `proofs/BareAlternation.lean` at round close: `S` is defined there as the SAME 28
+  classes, element for element, and `bareAlt_inadmissible_iff`, `S_card = 28`,
+  `bareAdm_downward`, `psord_le_five` and `psord_ne_four` are all `by decide`, with the
+  machine side (`Blocks`, `open_of_gapWord`, `no_bare_run`, `no_bare_run_ge`) proved over
+  an abstract machine and instantiated at m19/m23/m37/m41/m43 in `BareAltInst.lean`.  Two
+  lanes reached the same 28-element set by different vehicles in the same round; that is
+  the strongest gate this result has.  What is STILL open on the kernel side, in this
+  lane's ordering:
+  (F1) the corpus row of `L_bare` itself (the census/CRT side) - not kernel-shaped;
+  (F2) `psord_eq_three_iff` for the 14 classes, so that item (c)'s complement statement
+       (`L_bare <= 3` off the six exceptional classes) is a kernel fact too;
+  (F3) `L_pad(53) = 3` needs only `L(53) = 3` as a hypothesis plus `29 ... 59 in S` and
+       the decomposition - it is a one-line corollary once `L(53)` is available as a
+       recorded constant.
+- LATERAL, the predictions to test on the counterfactual family:
+  (T1) On the family, with the member's OWN teeth for gears 5 and 7 (not the real
+       `{+-6^{-1}}`), define PSORD from those teeth.  PREDICTION: `L_bare <= PSORD` at
+       EVERY family member, 0 exceptions - your 21,357-word observation is this theorem,
+       and it should hold with no exception class at all once the quantifier is MAX over
+       the two phases (your "15 more use a+q'" exceptions at 19->23 are non-bare words and
+       are outside the statement).
+  (T2) PREDICTION: on the family, `L > L_bare` exactly when the member's alphabet contains
+       a realised padded value, and the excess is at most... (unpredicted; measure it).
+       The real machine's excess is exactly 1 at three machines and 0 at eight.
+  (T3) PREDICTION: the family's `max L = 1,3,3,3,5` rows are carried by BARE alternations
+       (you reported "every deepest word at every step is LITERAL, 0 padded letters in
+       2,000 max-L rows"), so the family's `L` should be `<= PSORD` computed from the
+       member's teeth at EVERY step, with the `L = 5` member at 19->23 having PSORD `>= 5`.
+- MECHANIC: the object is now the NON-BARE word census - `occ` and the realised non-bare
+  words of length 2 and 3 at m41..m47.  Your `y* = 0` killer profile IS the `L_pad`
+  instrument; the bare extensions are settled by two gears and need no CSP.
+- LP THREAD: `L_bare <= 5` uniformly means the word-legal per-J family's BARE part
+  terminates at `J <= 7` at every machine, forever - a depth bound that does not need
+  `A_kill`.
+
+OPEN QUESTIONS THIS ROUND NAMES
+- U22.  Is `L_pad(M)` bounded?  This is (B), and it is now the whole of (B).
+- U23.  CLOSED THIS ROUND, NEGATIVELY: `L_pad <= 2` does NOT persist - `L_pad(47) = 3`
+  MEASURED (three non-bare 3-words realised by CRT), and `L_pad(53) = 3`
+  follows from the theorem plus the recorded `L(53) = 3`.  The live form is: does `L_pad`
+  grow, and at what rate?  It is 0,0,0,1,1,1,2,2,2,2,3,3 at m11..m53.
+- U24.  Is there a class `c` with `PSORD(c) = 5` at which `L_bare` actually reaches 5?
+  The corpus maximum is 4 (m47, `PSORD(53) = 5`).  The next `PSORD = 5` steps are
+  `q' = 83, 127, 157, 173, 247(=37+210), 263(=53+210), ...`.
+
+## Formalist round 31
+
+HEADLINE: **ROUND 31's ONE LEMMA IS IN THE KERNEL - THE NECESSARY CONDITION OVER AN
+ABSTRACT MACHINE, AND THE INADMISSIBLE SET S BY `decide` (28 of the 48 classes mod 210,
+element for element the same as Constructor's independently computed S) - AND IT CLOSES
+TWO MORE ROWS OF R81's TABLE: `L(13) = 1`, `J_max(13) = 3`, `A_kill(13 -> 17) = 2` AND
+`L(17) = 1`, `A_kill(17 -> 19) = 2`, DECIDED BY GEARS 5 AND 7 ALONE.** The honest
+boundary travels with it: the lemma bounds `L_bare`, NOT `L`, and at four of the twelve
+corpus machines the machine's `L` strictly exceeds the kernel-checked bare cap (m37, m41,
+m43 have cap 1 against L = 2; m53 has cap 2 against L = 3) - so the deep words there are
+provably not bare. Lateral's own item 84 confirms it in the same round: m37's realised
+depth-2 word is `(14, 41)`, one bare letter and one padded.
+
+BUILD / AUDIT LINES (each ONE PowerShell command from `proofs/`):
+    lake build BareAlternation / BareAltInst / WordLegal13 / WordLegal17
+        -> rc=0; 14 s (105 s once the PSORD tables were added) / 8.7 / 9.3 / 9.8 s
+    lake build (default, 674 targets)
+        -> Build completed successfully (2624 jobs), rc=0, 68 s   (2616 -> 2624)
+    lake env lean AxiomCheck.lean
+        -> 508 declarations; sorryAx 0; native_decide / ofReduceBool 0; errors 0; 19 s
+    uv run python research/bare_alt_r31.py
+        -> 7 assertion gates, ALL ASSERTIONS PASSED, exit 0
+Nothing is running at close; no scratch file was left in `proofs/`.
+
+THE KERNEL-CHECKED S (`BareAlt.bareAlt_inadmissible_iff`, `by decide` over the 48 classes
+`c` mod 210 coprime to 210, with the bare letters `a = (c -+ 1)/3`, `b = c - a`):
+
+    S = 11, 13, 17, 19, 29, 41, 43, 47, 59, 71, 73, 79, 101, 103, 107, 109, 131, 137,
+        139, 151, 163, 167, 169, 181, 191, 193, 197, 199                      (28 of 48)
+
+    `c in S`  <->  NEITHER `(a,b,a)` NOR `(b,a,b)` has a translate of its 4-point offset
+    set inside the exposed sets of gears 5 and 7  <->  `AlternationOrder.psMax c <= 3`
+    <->  `LiteralCapTable.capC c <= 3`  <->  Constructor's `PSORD c <= 2`.
+
+CROSS-CHECK, THREE VEHICLES, NO SHARED CODE: (1) this file's `fitsB` on actual gap values;
+(2) round 29's `AlternationOrder.fitsAt`, built from `aMod`/`3^{-1} mod g` (kernel identity
+`bareFits_eq_fits`, `bareAdm_eq_survMax`, all 48 classes); (3) Constructor's Python in
+`docs/novel/bare-word-uniform-cap.md` 1.3, posted before I read it - SAME 28 CLASSES, and
+the same PSORD split 24 / 4 / 14 / 0 / 6 at orders 1 / 2 / 3 / 4 / 5, `PSORD = 4` empty,
+order-5 exactly R74's six `{37,53,83,127,157,173}` (`psord_eq_one_iff`, `psord_eq_two_iff`,
+`psord_eq_five_iff`, `psord_ne_four`, `S_iff_psord`). Lateral did not compute S this round
+(brief redirected mid-round), so there is no fourth entry to compare.
+
+VERDICT TABLE
+    kernel-checked, axiom-clean (`propext, Quot.sound` or the standard three; no sorryAx,
+    no native_decide):
+      BareAlt (the abstract lemma): `Blocks`, `fitsB`, `offsets`, `GapWordAt`;
+        `fitsB_of_open` (open offsets force a fit - the necessary condition),
+        `not_open_of_not_fits`, `open_of_gapWord` (a realised word's prefix sums are
+        openings), `no_gapWord` (no fit -> the value word occurs at NO index),
+        `no_bare_run`, `no_bare_run_ge` (+ `gapWordAt_take`, `altWord_take`).
+      BareAlt (the class table): `bareAlt_inadmissible_iff`, `S_card`, `S_mirror`,
+        `S_half_mirror`, `bareFits_eq_fits`, `bareAdm_eq_survMax`,
+        `inadmissible_iff_psMax`, `inadmissible_iff_capC`, `bareAdm_downward`,
+        `psord_le_five`, `psord_ne_four`, `psord_eq_one_iff/_two_iff/_five_iff`,
+        `S_iff_psord`, `psord_succ_eq_psMax`.
+      BareAlt (the class-to-machine bridge): `aOfClass_mod_five/_seven`,
+        `bOfClass_mod_five/_seven` (each `split <;> omega` from `3a + 1 = q'` or
+        `3a = q' + 1`), `fitsB_map_mod`, `fitsB_congr`, `fitsB_bare3_congr`,
+        `bareAdmAB_congr`, and the assembled `no_bare3_of_class_mem`.
+      BareAltInst: `blocks19_five/_seven` and `blocks_mono` (gears 5 and 7 block every
+        corpus machine, by a projection of its own `Exposed` conjunction plus `omega`);
+        `m23_no_bare3`, `m23_no_bare_ge` (L_bare(23) <= 2), `m37_no_bare2`,
+        `m37_no_bare_ge` (L_bare(37) <= 1 - NO BARE PAIR AT ALL),
+        `m41_no_bare_offsets`/`_B`, `m43_no_bare_offsets`/`_B` (both rotations, stated on
+        the opening predicate; no `opSeq` needed).
+      WordLegal13: `letter13` (every legal letter of m13 is bare), `L13`, `jmax13`,
+        `akill13`.  WordLegal17: `opSeq_zero`, `ow17`, `opSeq_eq_ow17`, `letter17`, `L17`,
+        `akill17`.
+    hypothesis-explicit (registered, axiom-clean, hypotheses named in the statement):
+      `no_gapWord` / `no_bare_run` / `no_bare3_of_class_mem` [hE: `op` enumerates openings
+        of `E`; h5, h7: gears 5 and 7 block `E` at teeth `{1,4}` and `{6,1}` - both
+        discharged at every corpus machine by `blocks_mono`];
+      `no_bare3_of_class_mem` also [ha: `3a = q' -+ 1`; hab: `a + b = q'`] - the definition
+        of the bare letters, and the only place the class arithmetic enters.
+    not attempted / not done:
+      `jmax17` (needs `hper` and machine 17 has no period module; its `ow` base case is a
+        19,305-step `decide +kernel`);
+      R81's rows from m19 on - `F(M) < q'` fails from m19 (25 > 23), so the padded letter
+        is in range and "every legal letter is bare" is false;
+      Lateral's item 84 (the spectrum bound `L <= 2 F(M+q')/q' + 1`) in the kernel - it
+        landed after this round's plan was set; NAMED, not attempted.
+
+FOR OTHER LANES
+- CONSTRUCTOR: your S is my S, all 28 classes, and your PSORD table 24/4/14/0/6 with
+  `PSORD = 4` empty is now a kernel theorem (`psord_eq_one_iff` etc.). Two things the
+  kernel adds that your doc does not claim: (i) `S = {c : LiteralCapTable.capC c <= 3}`,
+  so round 29's literal cap and round 31's bare cap are ONE object at every class -
+  `inadmissible_iff_capC`, through R74's `ps_max_eq_capC`; (ii) the necessary condition is
+  stated on the OPENING PREDICATE, not on consecutive gaps, so it also forbids the offsets
+  being open at all - strictly stronger than "no realised word", and it is what let me
+  instantiate at m41 and m43 where no opening enumeration exists. One correction to guard:
+  `L_bare(M) <= PSORD` is NOT a bound on `L(M)`; at m37, m41, m43 PSORD = 1 while L = 2,
+  and at m53 PSORD = 2 while L = 3.
+- LATERAL: your item 84 is exactly the missing half and I have not formalised it - it is
+  kernel-shaped and I have named it as the next construct. The one piece already in the
+  kernel that it needs is the "gap value from gap residue" step (`WordLegal13.letter13`,
+  `WordLegal17.letter17`): a legal letter whose gap is below `q'` IS its class minimum.
+  Also: your m37 word `(14, 41)` with `p = 1` CONFIRMS my prediction that m37's depth-2
+  word cannot be bare - `m37_no_bare2` says no `(14,27)` or `(27,14)` occurs anywhere.
+- MECHANIC: two counted predictions from the kernel, cheap to check against your census -
+  occ(14,27; 37) = occ(27,14; 37) = 0, occ(14,29; 41) = occ(29,14; 41) = 0 and
+  occ(16,31; 43) = occ(31,16; 43) = 0 (no bare pair at m37, m41, m43 - gear 5 alone),
+  and at m13/m17 the full period has zero adjacent (6,11)/(11,6) and (6,13)/(13,6)
+  (verified by a direct period scan before formalising: m13's 1,485 gaps over 5,005 slots
+  carry 60 sixes and 12 elevens with no adjacency; m17's 22,283 gaps over 85,085 slots
+  carry 1,022 sixes and 66 thirteens with no adjacency).
+- MANAGER: `lake build` is green at 2624 jobs and AxiomCheck is 506 declarations, clean.
+  R81's table now has rows 1-3 in the kernel (m11 round 30, m13 and m17 this round) and
+  the exact reason row 4 cannot follow: `F(M) < q'` holds at m11, m13, m17 and fails at
+  m19. Process negative: I did not write a pre-registration FILE this round (four
+  predictions are scored in the append, but on my word rather than a timestamp).
+- EVERYONE, OPERATIONAL: a `decide` over the 48 classes costs classes x starts x gears x
+  translates x points. The length-3 table is ~4.6e3 kernel Bool tests and 14 s; adding the
+  length-1..9 PSORD tables is ~4.4e5 and takes the same file to 105 s. Decide the length
+  the theorem needs, not the longest one you can imagine wanting.
+
+FILES. New: proofs/BareAlternation.lean, proofs/BareAltInst.lean, proofs/WordLegal13.lean,
+proofs/WordLegal17.lean, research/bare_alt_r31.py. Edited: proofs/lakefile.toml,
+proofs/AxiomCheck.lean, docs/proof-search/formalist.md (the round-31 append),
+docs/novel/bare-word-uniform-cap.md (Constructor's doc - its "KERNEL CONFIRMATION"
+paragraph corrected: the instantiations are m23/m37/m41/m43, not m19; and extended with
+the PSORD theorems and the `capC <= 3` identity). Not committed, per the brief.
