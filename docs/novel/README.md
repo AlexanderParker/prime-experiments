@@ -1128,3 +1128,33 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   {7, 17, 31}, confirmed by census (3,093 carry-overs of 50,906, no other gear) - PROVED
   (elementary) + SCRIPT-VERIFIED (research/anchor235/r37/sf_walks.py, sf_birth.py) - prior art
   NOT YET CHECKED
+
+- walk-path-transforms - (W.t, round 38) WHAT BUILDS THE PATH OF THE WALK FROM q^2, by order of
+  interaction, every prime gear q = 5..19,997 (2,260 walks). ORDER 0 (the anchor): q^2 = 1 or 19
+  mod 30, so the walk STARTS ON THE 29|31 SLOT when q = +-1, +-11 mod 30 and on 17|19 when
+  q = +-7, +-13 mod 30, NEVER on 11|13 (0 of 2,260); hence gear 5 never strikes the first column,
+  ALWAYS strikes offset 1 (so L >= 2 at every q > 5), and its whole contribution is fixed in
+  advance at the offsets 1, 4 or 1, 3 mod 5 - exactly 2/5 of the path (0.4025 of 88,677 columns),
+  with P(next letter = 5 | this letter not 5) = 2/3 by residues. ORDER 1 (one gear): gear g
+  strikes OFFSET i iff i = (2-q^2)6^-1 or -q^2 6^-1 mod g - two progressions of difference g
+  separated by d_g, phase a function of q^2 mod g (0 disagreements in 493,101,490 checks), whence
+  (i) THE QUADRATIC-RESIDUE BAR - g can reach offset i only if 2-6i or -6i is a nonzero QR mod g,
+  so 3/4 of the machine at a generic offset (median 0.7473), ALL of it at i = -6t^2, and EXACTLY
+  the gears g = +-1 mod 8 at i = 0 (0 of 3,212 first-column strikers outside that class), and
+  (ii) THE SQUARE PHASE VECTOR - the phase vector of the walk is a square in every coordinate, one
+  part in 2^pi(q) of the phase space; (iii) the q^2 tooth is the UNIQUE SOLE-STRIKER TOOTH of the
+  top gear in its own window (0 of 337,011), so the walk starts at the shallowest tooth (depth
+  2.4212 vs 3.2692) and the square gate is a half-machine event; (iv) ONE TOOTH PER RUN, two-sided
+  (L < d and L^- < q-d): 2 exceptions in 2,260, q = 53 forward and q = 31 backward, each in the
+  SHORT arc of its own class (max path/arc 1.50 short vs 0.77 long). ORDER 2, needed exactly once:
+  the depth profile's dip-plateau-spike (2.42 / 3.27 / 3.77) against the machine's own values
+  sum 2/g = 3.1805 and sum 2/(g-2) = 3.7007, the spike being neighbour-of-hit gear by gear. The
+  per-offset mean depth is a function of the offset alone (root counts of -6i and 2-6i,
+  correlation 0.9694, range 2.05 to 5.82) and the columns k_0 - 6t^2 are blocked at every q while
+  no such column lies within the forward arc. NULLS: no spectral or local-density distinction of
+  the position of q^2 (percentiles 0.37-0.50), L typical (percentile 0.5270 among random blocked
+  columns; 47.3% of the other teeth's walks longer), nothing crosses chain levels except the frame
+  (49 levels). LOWEST-ORDER UNEXPLAINED FEATURE: the length L itself - PROVED (elementary) +
+  SCRIPT-VERIFIED (research/anchor235/r38/pt_path.py, pt_qr.py, pt_spectrum.py, pt_levels.py) -
+  prior art NOT YET CHECKED
+- walk-path-parts - the path from q^2 taken apart: anchor pinned by q mod 30, gear-5 offsets {1,4}/{1,3} mod 5, L never 1 mod 5, 15-class law mod 35, top gear inert beyond offset 0, offset character law (mean depth a fixed function of the offset), re-phasing shortens only for sole strikers - EXACT to q = 19,997 - prior art NOT YET CHECKED (research/proof/walk_path.md)

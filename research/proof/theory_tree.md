@@ -139,15 +139,49 @@ the log at the bottom is chronology only.
       12 digits) has no rule, as pre-registered. Root reading: the walk is decided by the old
       gears (gear 5 makes 40% of 18,743 hops, gears above sqrt(q) 15%); W1 and W2 rest on L < d,
       a twin-Bertrand-strength statement at scale q/3. Position objects, no size lever.
-      - R2.a.i. The path taken apart (the owner's direction, 2026-09-05: "the walk leads
-        somewhere, a walk has a path; decompose the path, pull it apart, run various analyses,
-        try transformations"). Spawned by W1: the walk from q^2 starts on the top gear's tooth
-        and lands before its next tooth at every prime 59..4999. Two provers: W.a arithmetic and
-        structure (blocker sequence, bucket vector, sensitivity to q's residues, layer nest, the
-        landing, the path on the torus; research/proof/walk_path.md) and W.t transformations
-        (representations, run-length, autocorrelation and spectrum, word transitions, depth
-        profile, scaling, mirror walk, comparisons with random and other-tooth starts, chains
-        across levels; research/proof/walk_transforms.md). OPEN, running.
+      - R2.a.i. The path taken apart (the owner's direction, 2026-09-05; research/proof/
+        walk_path.md and walk_transforms.md; register entries docs/novel/walk-path-parts.md and
+        walk-path-transforms.md, prior art not yet checked). Spawned by W1. STRONG as a
+        description, exact, 2,260 walks q = 5..19,997. How the machine builds the path, in the
+        owner's frame. PARTS, all proven or one-line: (i) the anchor: q^2 = 1 or 19 mod 30, so
+        the walk starts on slot 29|31 (q = +-1, +-11 mod 30) or 17|19 (q = +-7, +-13), never
+        11|13, gear 5 never strikes the first column and always strikes offset 1, and takes
+        offsets {1, 4} or {1, 3} mod 5 by q's class (so L >= 2, L is never 1 mod 5, and L mod 35
+        lies in a 15-element set fixed by q^2 mod 35, 0 exceptions); (ii) each gear g: two
+        progressions in the offset i, difference g, separation d_g, phase a function of q^2 mod g
+        (tooth rule, docs/proofs/02; 493 million checks); (iii) the QUADRATIC-RESIDUE BAR (new):
+        gear g can strike offset i at all only if 2 - 6i or -6i is a square mod g, so which gears
+        can reach an offset is q-free (3/4 of the machine generically, all of it at i = -6t^2,
+        exactly the gears = +-1 mod 8 at i = 0), and the walk's phase vector is a square in every
+        coordinate (density 2^-pi(q) of phase space) while L does not notice it (percentile 0.53
+        among tooth starts); (iv) the top gear is INERT on its own walk: it is the smallest striker
+        of no path column but offset 0 (0 exceptions, q = 53 included; stronger than W1), and the
+        q^2 column is the unique tooth of q in its window where q is the sole striker of its
+        member (0 of 337,011 teeth), so the walk starts at the shallowest tooth. INTERACTIONS: the
+        proven order-two laws (chain, merge, neighbour-of-hit, tooth sharing, gear-5 lock) are all
+        the path uses, thinly: a median of 8 gears strike twice, the walk's stretch is a two-piece
+        fusion at 2,234 of 2,259 paths, three at 25, never four; the depth profile is dip -
+        plateau - spike (2.42 / 3.24-3.39 / 3.77 against sum 2/g = 3.18 and sum 2/(g-2) = 3.70),
+        the spike being neighbour-of-hit; per-offset mean depth is a fixed arithmetic function of
+        the offset alone (root counts, correlation 0.97-0.998), and the landing avoids the
+        high-depth offsets (0 landings on the 8 highest against 500 of 2,260 on the 8 lowest).
+        Two-sided tooth law (2 exceptions, q = 31 backward and q = 53 forward, both in the short
+        arc): L < d and L^- < q - d, i.e. the blocked run through the q^2 tooth is shorter than q.
+        Re-phasing a gear shortens L only if it is a sole striker (0 of 13,861 counterexamples).
+        The square start is a long start (mean L 24.8 against 20.0 over 57,125 tooth starts) and
+        the square sub-torus costs 13% of the reachable maximum. Nulls: the section spectrum is
+        the gear lines; k_0 is not distinguished by local density; nothing crosses chain levels
+        but the frame; L is the twin-gap null to 2% from q = 200 (a rate, stopped). THE FIRST
+        UNPROVEN INTERACTION, named by both provers: the length itself - that the 2 pi(q)
+        progressions do not cover the d = 2u_q offsets from offset 1 - of unbounded order
+        (minimum blocking set median 9, max 43; 88% of paths contain a column blocked only by a
+        gear above sqrt q). CANDIDATE OBJECT: the reachability landscape (the q-free set of gears
+        that can reach each offset) with the landing preferring its low points; child opened.
+        - R2.a.i.a. The reachability landscape. Spawned by the quadratic-residue bar and the
+          landing's preference for low-depth offsets. Theory: the offsets form a q-free landscape
+          of reachable gear sets; islands (offsets unreachable by every small gear) exist at a
+          q-free spacing; the walk lands on an island; the interaction to prove is between the
+          islands in [1, d) and the large gears that can reach them. OPEN, prover running.
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -543,3 +577,12 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   and mechanism facts and stops at the same length statement; the tree needs a formulation in which length is
   the primary object, or a new observation.
 - 2026-09-05, manager: opened R2.a.i (the path taken apart) at the owner's direction; two provers, breadth of analysis on the walk from q^2.
+- 2026-09-05/06, provers W.a and W.t (walk_path.md, walk_transforms.md): the path from q^2 taken apart in the
+  owner's frame. Parts proven: anchor slot and gear-5 offsets pinned by q mod 30 (never slot 11|13; offset 1
+  always struck; L never 1 mod 5; 15-class law mod 35), each gear two progressions with square phase, the
+  quadratic-residue bar (which gears can reach an offset is q-free; at i = 0 exactly gears = +-1 mod 8), the top
+  gear inert beyond offset 0, q^2 the unique sole-striker tooth of q in its window. Interactions: the path uses
+  only proven order-two laws, thinly (two-piece fusion at 2,234 of 2,259). Depth profile dip-plateau-spike with
+  per-offset mean depth a fixed function of the offset; landing avoids high-depth offsets. First unproven
+  interaction: the length (unbounded-order covering). Register entries walk-path-parts.md, walk-path-transforms.md.
+  Opened R2.a.i.a (the reachability landscape), one prover.
