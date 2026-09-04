@@ -47,6 +47,21 @@ window, and twins are infinite. The per-step form of that, F(M+q') <= F(M) + q' 
 inequality), is what the search certifies rung by rung. It is a target, measured true at every
 computed step, never a law.
 
+This is why the machine, and not the standard sieve language. The bounded-gap results (Zhang,
+Maynard, Polymath) prove that *some* gap below a bound recurs and push the bound down, but they
+cannot reach 2: the parity barrier stops that method at 6 even under the strongest conjectures.
+This route never proves an intermediate gap. It aims straight at "an opening lands in every
+window", which by the kernel equivalence is gap 2, infinitely often, with nothing in between, so
+the number 246 and the whole descent are beside the point. The route does not escape parity, it
+relocates it: the window statement sits below the dimension-2 sieve limit, so no counting or
+density argument reaches it, and a proof must use *where* the primes strike, not how many times.
+Teeth and openings are that "where", read two ways - the openings are exactly the columns the
+teeth miss - and a class-count method is blind precisely because it sees only the count of teeth,
+which is symmetric between the two and says nothing about position. The teeth are where the
+mechanism is defined; the openings are where the answer lives and where the alignment must happen.
+That is the bet: swap a barrier this method cannot cross for one it might, by insisting on the
+teeth and the openings rather than their count.
+
 ## Why gears, and not just modular arithmetic
 
 Everything here could be written in the standard language: residues, congruences, covering
