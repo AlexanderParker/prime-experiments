@@ -1,86 +1,181 @@
-# Theory tree toward the proof (manager, started 2026-09-04)
+# Theory tree toward the proof (manager, started 2026-09-04; restructured as a tree 2026-09-05)
 
 Method (the human's): construct a theory, test it, observe, interpret the patterns, describe them,
-make a theory about the patterns, repeat. Each repeat is a branch. Dead end: step back, try
-another theory; step back further if needed and revisit earlier branches. Depth when a theory is
-strong, breadth when building the base. Statuses: STRONG (tested, holds, mechanism visible),
-OPEN (untested or partly tested), WEAK (holds but no mechanism), DEAD (refuted or proved unable),
-with the pointer to the evidence. Vocabulary: docs/proof-search/alignment-rules.md section 0.
+make a theory about the patterns, repeat. Each repeat is a child branch, and a child records which
+observation of its parent spawned it. Dead end: step back to the parent and branch again; step back
+further if needed. Depth when a theory is strong, breadth when building the base. Statuses: STRONG
+(tested, holds, mechanism visible), OPEN (untested or partly tested), WEAK (holds, no mechanism),
+DEAD (refuted or proved unable), FACT (exact, kept, not a route), with the pointer to the evidence.
+Vocabulary: docs/proof-search/alignment-rules.md section 0 and the README glossary. The method as a
+skill: .claude/skills/theory-tree/SKILL.md. The chronological log is at the bottom; the tree here
+carries the verdicts.
 
-ROOT. Openings always align inside the window: for every machine {5..y} the longest opening-free
-stretch stays below the window's growth, F(y) < W(y) - y/6. Accepted as true; the work is the proof.
-Equivalent per-step form (theorem): the budget inequality F(M+q') <= F(M) + q' at every step.
-Reduction (theorem, attainment identity): budget = PAIR statement AND CHAIN statement.
+Target (the human's words, 2026-09-05): a known object we can point at and say "this will always
+be in the window, because the machine works this way, and nothing the machine does can prevent
+it." Candidates so far are marked CANDIDATE OBJECT below; none is yet shown forced.
 
-## Branch 1. The pair statement: F_2(M) <= F(M) + q'  [join cost <= long arc]
-Status OPEN. Free while F(M) < q' (through m17). Content from m19. Measured slack 5..25, widening.
-- 1a. Phase-shift / sole-coverer mechanism (manager_notes 3-4). Record stretches are near-perfect
-  tilings; every gear is a sole coverer somewhere; the top gear alone covers 1-2 columns. Shifting
-  one gear's phase moves the hole onto that gear's sole columns. OPEN: gives structure, no bound yet.
-  Test next: does the top gear's sole count stay <= 2 in every record and one-hole record to m31?
-  If yes, F_2(M) <= F_3(M^-) always (descent), and the question becomes hole costs one level down.
-- 1b. Descent through the survivor generator (record 3.9): F_2 at M is layer 0 of the algebra one
-  gear down. OPEN: recursion with no base; hole costs not monotone in J (m29: 12,10,5,15,5).
-- 1c. One-class transfer (manager_notes 2): one-hole(P_k) = j(P_{k+1}) through k = 18, so the
-  one-class pair statement IS the one-class increment statement, satisfied by Hagedorn's table with
-  increments 0.1-0.3 p. OPEN: literature lane checking whether it is known or conjectured. If a
-  one-class proof exists it should transfer; if it is open there, that is the classification.
-- 1d. Data past the scan wall: coverability spectrum by SAT (instrument lane). Extends F, F_2 to
-  m61..m97 to see whether the slack keeps widening. OPEN (building).
-- 1e. Mirror / d_0: F_2 >= 2 d_0 with d_0 the first twin above p. Lower bound only; the family's
-  one failure is this wrap pair. WEAK as an upper-bound tool.
+## The tree
 
-## Branch 2. The chain statement: Q*_J(M) <= F(M) + q'  [extra kills <= short arc]
-Status OPEN. Kernel at six literal steps as the increment form; padded case open (m31 event).
-- 2a. Par trading as a theorem: each added letter is paid by the flank envelope; Delta_J measured
-  in [-3, +4]. OPEN (prover B).
-- 2b. Literal case from the middle-sum lemma + pair statement as black box. OPEN (prover B).
-- 2c. Padded case by the record law one level down (a padded middle is an old gap >= q', itself a
-  merge). OPEN (prover B).
-- 2d. Survivor-algebra contraction across layers. OPEN (prover B).
-- 2e. Spectrum-plus-depth (F_J only, no legality): DEAD as a uniform tool - fails at 29->31 and
-  47->53 (A_kill >= 4). Legality must be used.
+- **ROOT. An opening always lands in the window.** For every machine {5..y} the longest
+  opening-free stretch stays below the window's growth, F(y) < W(y) - y/6. Accepted as true; the
+  work is the proof. Three formulations hang off the root: per step, whole window, and the
+  structure of the record itself.
 
-## Branch 3. The whole-window route directly: F(y) < y^2/6 by a covering bound
-Status OPEN, likely DEAD by constant: Iwaniec 1978 gives the right order y^2 with a large constant;
-an explicit constant below 1/6 in two classes would be a major theorem. Literature lane checking.
+  - **R1. Per-step formulation (the ladder).** The budget inequality F(M+q') <= F(M) + q' at every
+    step; summed, it keeps F below W. Theorem (attainment identity): budget = PAIR statement and
+    CHAIN statement. Eleven rungs certified. STRATEGIC VERDICT (2026-09-04, from 1e below):
+    F(M+q') >= F_2(M) >= 2 d_0(M) is a theorem and d_0 is the column of the first twin pair above
+    the top gear, so ANY per-step bound implies a twin-Bertrand postulate; the per-step form asks
+    for more than the kernel route needs. Status OPEN, and at least as hard as twin-Bertrand.
 
-## Branch 4. Top-down: records recruit runner-ups (genealogy)
-Status WEAK: exact at 8 steps (ancestor a runner-up by 2-14, largest gap merged one level down 7 of
-8, 1-5 generations), no rule stated. Theory to build: the record at M+q' is assembled from a
-bounded number of near-record pieces of M, each assembled the same way; if the assembly has a
-bounded branching, the growth per step is bounded by the pieces' growth. Untested as a theory.
+    - **1. Pair statement F_2(M) <= F(M) + q'.** Free while F(M) < q' (through m17); content from
+      m19; slack 5..25 widening. OPEN.
+      - 1a. Phase-shift / sole-coverer descent: "the record of M is a one-hole stretch of M minus
+        its top gear, so F(M) <= F_2(M^-)". Spawned by the tiling observation (records are near-
+        perfect tilings, every gear a sole coverer somewhere). DEAD 2026-09-04: fails at m17
+        (18 > 16) and m23 (34 > 31); the top gear makes 2-3 kills in the record, so the descent
+        is the spectrum-plus-depth bound already known to fail (2e). What survived: the tiling
+        observation itself, which became branch 5.
+      - 1b. Descent through the survivor generator (F_2 at M is layer 0 of the algebra one gear
+        down). DEAD: recursion with no base, hole costs not monotone in J (m29: 12, 10, 5, 15, 5);
+        same verdict as 2d.
+      - 1c. One-class transfer: one-hole(P_k) = j(P_{k+1}) through k = 18, so the one-class pair
+        statement is the one-class increment statement. Literature (2026-09-04): unasked in print
+        in either class count; the published two-class maximum over class assignments violates the
+        increment once (A072753, 10 -> 24 at 13), so the real teeth are needed. CLOSED as a
+        transfer; kept as the classification "needs the teeth".
+      - 1d. Data past the scan wall by SAT (coverability spectrum). INSTRUMENT: lower bounds only
+        beyond m41 (F(61) >= 171, F(67) >= 175, F(71) >= 185); no upper bound, so F_2(59) <= 173
+        stays conditional and the pair statement is untested past m31.
+      - 1e. Mirror at column 0: F_2 >= 2 d_0. Spawned by the always-open column 0 and the mirror.
+        Became the OBSTRUCTION (prover A, research/proof/pair_statement.md): the pair statement at
+        column 0 reads 2 d_0 <= F + q', the window's first opening within half the budget; every
+        route to it is twin-Bertrand (d_0 <= q') or a Rankin-type lower bound on F against a bound
+        on the first twin. Lemmas proved there: L2 (F_2 <= F + min flank, free through m31), L3
+        (column-0 equivalence), L4 (every gear is a sole striker in any above-record stretch),
+        L5, L6 (left tiling = negated right tiling, equal iff g | x).
+        - 1e.i. d_0 measured to level 33,317 (7d, 2026-09-05): d_0 is the column of the first twin
+          pair above q at every level, d_0 <= q', inside the window by 10-58x; the mirror forces
+          F_2 >= 2 d_0 and nothing more, slack growing to 8x at m53. FACT; confirms the floor only.
 
-## Branch 5. "Made at the top": the near-perfect tiling
-Status STRONG as an observation (manager_notes 3): overlap in a record stretch is tiny, the top
-three or four gears do the work, the top gear alone covers one or two columns. Theory to build:
-the record stretch of M+q' is a record-class stretch of M plus one or two kills by q'; the join
-cost is the length of the M-stretch adjacent to a record-class stretch. Why adjacent stretches
-are ordinary is the unexplained rule (record 9.3 item 15).
+    - **2. Chain statement Q*_J(M) <= F(M) + q' for J >= 3.** Kernel at six literal steps as the
+      increment form; padded case open (m31 event). OPEN.
+      - 2a. Par trading as a theorem (each added letter paid by the flank envelope; Delta_J measured
+        in [-3, +4]). DEAD (prover B): eps in [-21, +15] on the family against s_min 8.
+      - 2b. Literal case from the middle-sum lemma with the pair statement as black box. Reduced to
+        the literal flank envelope; OPEN, and the envelope's per-J form assumes a measured
+        inequality (docs/proofs/16).
+      - 2c. Padded case by the record law one level down. DEAD: no base, q' > F(M^-) fails from m29.
+      - 2d. Survivor-algebra contraction across layers. DEAD: layers non-monotone.
+      - 2e. Spectrum-plus-depth (F_J only, no legality). DEAD as a uniform tool: fails at 29->31 and
+        47->53 (A_kill >= 4). Legality must be used.
+      - 2f. Adjacent-teeth sub-family. Spawned by prover B's observation that every pinned chain
+        violator on the family has a gear with adjacent teeth (impossible for real gears,
+        AnchorChain.neighbour_of_hit) and the sub-family with no adjacent teeth and 3a = q' -+ 1 had
+        zero violators in 2,568 rows to m19. STRONG, then REFUTED (prover C, 23->29 sweep): member
+        teeth (1,1,4,2,7,1,5), gears 5 and 7 real, no adjacent teeth, incoming tooth pinned, gives
+        F(M + 29) >= 62 > budget 61. Verdict: no ingredient set short of the real higher gears'
+        teeth has zero counterexamples.
+      - 2g. Three-gap repulsion (from 5b below, feeds the chain): every 3-run whose middle gap is
+        >= q' stays within F + q' at P_5..P_8 and m11..m19; the 3-run record always has a tiny
+        middle between two big flanks; prover C's padded statement P (flanks of a gap j q' sum to
+        <= F - (j-1) q', 0 failures in ~130k family rows, margin 0 once) is its exact-multiple case.
+        STRONG as a pattern, no mechanism, unproved.
 
-## Branch 7. The anchor 2,3,5 as the unit: cycles, the anchor pattern in the window, runs and the zero mirror
+  - **R2. Whole-window formulation.** F(y) < y^2/6 directly, by a bound that uses the teeth. The
+    least demanding formulation (it localises the next twin only below y^2). In print as a
+    conjecture (Ziller-Morack 2017 Conjecture 6 at the real teeth); no two-class upper bound of any
+    kind in print. OPEN.
+    - 3a. Explicit-constant Iwaniec-type bound for the two-class sieve. DEAD (prover D,
+      research/proof/iwaniec_two_class.md): the engine becomes a dimension-2 sieve whose lower
+      function vanishes for s <= 4.27 while the window sits at s = 2; finite certificates 1.7x ->
+      35x over budget, growing as z^3.68; a class-count bound with constant below 1/6 is the
+      conjecture itself. Rediscovery of docs/novel/j2-upper-bound.md (rounds 22-25). Any count-only
+      route is closed; R2 survives only through the specific teeth.
+    - 7b. The anchor pattern inside the window, measured literally (2026-09-05,
+      research/proof/anchor_window.md). Spawned by the human's proof shape (a pattern that repeats,
+      lands in the window at a higher level than needed, whose survivors carry twins). FACT, new:
+      the anchor {5..13} is rigid in every window to Q = 5000 (openings sorted modulo any higher
+      gear miss their fair share by fewer than 30, proved from the interval discrepancy of the 180
+      re-toothed anchors). CANDIDATE OBJECT, but exhausted at the first gear above the anchor:
+      after it the survivors are the lower machine's pattern, each later gear's take follows one
+      curve in ln g / ln Q' with white residual, and from the second gear on the branch re-derives a
+      known one-prime identity. DEAD as a route.
 
-Opened 2026-09-05 at the human's direction (the anchor line of round 29 gave a broader view; the
-proof shape asked for: a pattern that repeats, lands in the window at a higher level than needed,
-whose survivors carry twin slots). Three provers, pre-registered, docs research/proof/anchor_cycles.md,
-anchor_window.md, anchor_runs_zero.md; scripts research/anchor235/r34/.
-
-- 7a cycles as the unit: DEAD as a route. Two exact facts kept (see log).
-- 7b the anchor pattern inside the window, measured literally to Q = 5000: DEAD as a route from the
-  second gear on; one exact fact kept (the anchor's in-window rigidity).
-- 7d runs as the unit, the zero mirror: DEAD as a route. Two record-scale facts kept, filed under branch 5.
-
-Standing direction from the human (2026-09-05): the exercise is to use the machine to find NEW rules
-and relationships; known results are noted and mapped in a line, never rewritten; the target is a
-known object that is always in the window because the machine works this way and nothing the
-machine does can prevent it.
+  - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
+    understood, the object that survives it may be nameable. Spawned by the tiling observation
+    (out of 1a).
+    - **4. Genealogy (records recruit runner-ups).** WEAK: exact at 8 steps (ancestor a runner-up
+      by 2-14, largest gap merged one level down 7 of 8, 1-5 generations), no rule stated; the
+      theory "bounded branching bounds growth" is untested.
+    - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
+      stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
+      two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
+      is the pair (30, 25), neither a record gap), so "join cost = record + ordinary neighbour" is
+      too narrow.
+      - 5b. Adjacency repulsion: gaps next to a large gap are shorter than independence gives.
+        Spawned by the data F_2 - F = 1.1-1.8 typical gaps, below the ln ln N of independent gaps.
+        TESTED, holds and grows (F_2 actual 11..39 against shuffled 12..55; gap after a gap >= 0.7F
+        below the mean at every machine). Mechanism hypothesis: the left tiling at an opening is
+        the negated right tiling gear by gear, and a good tiling is generically not self-dual
+        (proved as L6; the size consequence is not). Then found to be the round-19 SUPPRESSION LAW
+        with the RENEWAL LADDER as its rigorous side (docs/novel); what stays heuristic there is
+        the rate-to-maximum step, the same step every branch meets. Structural (95% of family
+        members) but at column 0 the correlation is +1, so not the route. STRONG pattern, closed
+        as a branch; child 2g above.
+      - 5d. Every gear is needed for the record, and record phases are fixed at the anchor, gear
+        7 and the top gear with the middle gears free (7d, 2026-09-05, research/proof/
+        anchor_runs_zero.md). Exact to m23: F(M minus g) < F(M) for every g; at m19 all 20 record
+        stretches share one phase mod 35; at m17 ten non-mirror pairs agree at (5, 7, 11, 17) and
+        differ only at 13. FACT, new at record scale. CANDIDATE OBJECT: what the top gear and gear
+        7 do to each other at a record is the one place the record is made. OPEN, next to test.
+      - 5e. Where a record gap can start: the slot F mod 5 dictates (7a, 2026-09-05,
+        research/proof/anchor_cycles.md). F = 1 mod 5 starts on 11|13, F = 4 on 17|19, F = 2 or 3
+        on a mirror pair of slots, F = 0 on any; exact at all eight full periods to m31. FACT, new,
+        position only.
+      - 5f. Position facts kept as breadth, not opened (docs/novel): corridor resonance (big gaps
+        recur at slot separations 35, 70, 105, left endpoints pinned to residues {10, 12, 18} mod
+        35), the golden spectral gap (gear 5's local frequency mode is phi, phi/3 a machine-
+        independent spectral gap). Both subject to the escape-distance-1 ceiling; a spectral
+        large-sieve route would give count bounds and meet the rate-to-maximum step.
+    - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
+      makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
+      have the same F distribution as random symmetric vectors at m13 and m17; the real machine
+      sits at the 14th and 22nd percentile; coherence explains nothing. The outlier's mechanism
+      stays open.
+    - **7a. Cycles as the unit** (the anchor 2,3,5 line, 2026-09-05, research/proof/
+      anchor_cycles.md). Theory: the dead-cycle record has its own, smaller increment. Identity
+      proved: F_c(M) = floor((F(M) - 2)/5) exactly (gear 5's teeth, the mirror, 5 | P; checked to
+      m31, 6.7e9 cycles), so the cycle frame is the column frame divided by five and no cycle
+      increment below q'/5 exists that is not the budget inequality sharpened. Mechanism at the
+      record: live cycles each with one open slot 29|31, the new gear taking consecutive entries of
+      its open-multiplier list (79/79 literal); dead cycles need three gears except j = 2 mod 7.
+      REFUTED: q'/15, class q' mod 30 dependence (the hit set is class-free), the wall bound as a
+      certificate. DEAD as a route; 5e kept.
+    - **7d. Runs as the unit and the zero mirror** (2026-09-05, anchor_runs_zero.md). Theory: the
+      region just past zero, where every gear's tooth has just landed, is rich in openings. DEAD:
+      it is thinner than the period mean (0.94 at Q = 997 falling to 0.79, below all 1,000 random
+      stretches from Q = 401) because exclusive kills start at g^2 so the effective machine at
+      column k is {5..sqrt(6k+1)}; every gear makes an exclusive kill in the window at Q = 997 so
+      no proper subset of gears determines it; any statement about (0, W] provable from tooth
+      positions is a statement about the twins below Q'^2. 5d kept.
 
 ## Dead ends on record (do not re-enter; alignment-rules.md section 6 and 8)
 Residue arithmetic at any bounded modulus (escape distance 1); gears 5,7 capping the padded depth
 past 53->59 (CORRCAP infinite); fixed-depth counting (kills nothing); pairwise convexity / SDP
 (stops at m19); capacity and overlap counting (nearly achievable, no slack); transfer matrices over
 the gap word (refuted twice); symmetry levers beyond the mirror (group is Z/2); letter size as the
-driver of L (refuted on the family); congruence-class potentials (certify nothing).
+driver of L (refuted on the family); congruence-class potentials (certify nothing); class-count-only
+sieve bounds at the window's scale (dimension-2 limit); coherent spacings; the cycle frame as a
+route; the region past zero as a source of openings.
+
+## Standing directions (the human's)
+Read docs/novel/README.md before opening any branch (two 2026-09-04 branches were rediscoveries).
+Use the machine to find NEW rules and relationships; note known results in a line, never rewrite
+them into machine analogy unless it seeds a machine-driven investigation and is labelled as such.
+Describe a mechanism before naming a theorem it resembles; "explained by CRT" is a description,
+not a proof the object persists. Every branch is judged by whether it moves toward the target
+object. Window = certified range; stretch = sliding run; the budget inequality is a target, not a law.
 
 ## Log
 - 2026-09-04: tree opened. Lanes running: prover A (branch 1), prover B (branch 2), SAT instrument

@@ -46,14 +46,39 @@ the window, because the machine works this way, and nothing the machine does can
    would remove it from the window, and why can the machine not do that? If it cannot answer
    either, it is a position or identity fact, not a lever; say which.
 
+## The tree is a tree, not a list
+
+The file research/proof/theory_tree.md has two parts: the tree (nested, carries the verdicts) and
+the log (chronological, append-only). A branch is a node in the tree; it is not "another item
+under the root".
+
+- **Nesting is by descent.** A child branch is the theory made from a pattern observed while
+  testing its parent. It sits nested under the parent (one more level of indentation) and its
+  first sentence says what it was spawned by: "Spawned by the observation that ...". A branch
+  with no parent observation is a formulation of the root (there are three: per step, whole
+  window, structure of the record) and hangs directly off the root. Nothing else does.
+- **The verdict lives on the node**, not in the log: STRONG, OPEN, WEAK, DEAD, FACT (exact,
+  kept, not a route), with the pointer to the evidence. When a branch dies, say what survived it
+  and where that went ("what survived: the tiling observation, which became branch 5"). When a
+  branch is found to be a rediscovery, say which docs/novel entry and close it.
+- **Candidates for the target object** are marked CANDIDATE OBJECT on the node, with what would
+  have to remove the object from the window and why the machine cannot, or "not yet shown".
+- **Facts that are not routes** (an exact identity, a position rule) are kept as FACT nodes under
+  the parent whose question they answer, not dropped and not promoted.
+- **Numbering follows the nesting** (1, 1a, 1e.i; 5, 5b, 5d). A branch opened under a different
+  parent than it was first filed under is moved, with a one-line note in the log.
+- **Depth over breadth when a node is STRONG**: open its children before opening a new sibling.
+  Breadth (new siblings) is for building the base when nothing is strong.
+
 ## Closing the branch
 
 9. Branch document (research/proof/<branch>.md): Pre-registered with scorecard, Setup with exact
    ranges, Results as tables, Mechanism in machine terms, What is new (no located prior art, and
    its use to the route), Verdict, Dead ends with the refuting instance.
-10. Log entry in research/proof/theory_tree.md: date, lane, one paragraph, new facts first, then
-    refuted predictions, then the stop line and the verdict (DEAD as a route / OPEN / PROVED, with
-    kernel names where they exist). Add the branch to the branch list at the top.
+10. Update the node in the tree (status, verdict, what survived, children opened) and append one
+    log entry: date, lane, one paragraph, new facts first, then refuted predictions, then the stop
+    line and the verdict, with kernel names where they exist. The log never replaces the node
+    update.
 11. Housekeeping: scripts under research/<line>/r<round>/, results under .../results/; large
     generated data (npz, npy, big csv) stays untracked (.gitignore); no local paths or personal
     details in committed files; no attribution trailers on commits.
