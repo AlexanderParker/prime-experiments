@@ -55,6 +55,27 @@ If the project has no tree file yet, create one with that header and an empty tr
    would break it, and why can the system not do that? If neither can be answered, it is a fact
    (an identity, a position rule), not a route; say which.
 
+## Parts, then interactions
+
+When a branch has found an object that behaves (a path, a pattern, a record), work it the way
+the owner set out: How does the system build it? Which parts of the system contribute to its
+shape? Is each part measured individually, understood, and proven? If the parts are proven, the
+work is to prove how their interactions produce the shape.
+
+- Inventory the parts, each with its status: proven (cite the proof), measured, or new.
+- List the interactions already proven (pairwise laws), count which of them the object actually
+  uses, and name the lowest-order interaction that is not yet proven on the way from the parts
+  to the shape. That interaction is the next child branch.
+- Rank observed features of the shape by the order of interaction needed to explain them.
+
+## Follow the clue
+
+If a report says "the closest thing to the target", "the only candidate", or "the strongest
+fact", that object is the next branch, opened at once with breadth of analysis (decompose it,
+transform it, compare it across levels and starting points) before any request for direction.
+Do not price a lead by how hard the literature says it is; observe it. Understating the best
+lead and closing on it is the failure mode this rule exists for.
+
 ## The tree is a tree, not a list
 
 The tree file has two parts: the tree (nested, carries the verdicts) and the log (chronological,
