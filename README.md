@@ -197,8 +197,11 @@ window at every computed machine, and the uniform statement is open.
 - docs/novel/: one document per finding that may be new to mathematics, with prior-art status.
 - proofs/: the Lean 4 corpus (729 files; `lake build` from that directory; the axiom audit is
   `lake env lean AxiomCheck.lean` and must report no sorryAx).
-- research/: the scripts (486) and their persisted results; research/data/rNN/ holds each round's
-  emissions and logs (logs and bulk certificates are gitignored).
+- research/: the scripts (486) and the small text results the documents cite. The data folders
+  (data/, research/data/) are local only: gitignored, and purged from the repository's history on
+  5 September 2026. A document that points at research/data/... points at a file on the author's
+  machine; the numbers it reports are in the document itself. .githooks/pre-commit refuses files
+  over 1 MB and anything under a data folder (enable with `git config core.hooksPath .githooks`).
 - notebooks/, src/, rust*/, ga*/: the origin algorithm, its ports and experiments.
 
 ## Running things

@@ -1,0 +1,16 @@
+#!/bin/sh
+# Refuse to commit any file over 1 MB or any file under a data folder.
+# Enable once per clone:  git config core.hooksPath .githooks
+limit=1048576
+fail=0
+for f in $(git diff --cached --name-only --diff-filter=AM); do
+  case "$f" in
+    data/*|research/data/*|*/data/*) echo "pre-commit: data folder file staged: $f"; fail=1; continue;;
+  esac
+  size=$(git cat-file -s ":$f" 2>/dev/null || echo 0)
+  if [ "$size" -gt "$limit" ]; then
+    echo "pre-commit: $f is $size bytes (limit $limit); keep generated data out of the repo"
+    fail=1
+  fi
+done
+exit $fail
