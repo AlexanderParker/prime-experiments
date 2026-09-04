@@ -194,6 +194,13 @@ the log at the bottom is chronology only.
         35), the golden spectral gap (gear 5's local frequency mode is phi, phi/3 a machine-
         independent spectral gap). Both subject to the escape-distance-1 ceiling; a spectral
         large-sieve route would give count bounds and meet the rate-to-maximum step.
+      - 5g. The coverage profile and the hinge. Spawned by 5d.i's coverage-maximality split
+        (gear 5 at its coverage-maximal phase in every record, top gears never) and 5d.ii's hinge
+        column (the window's longest stretch at rung 997 hangs on one column struck only by gear
+        877). Theory A: at an extremal stretch each gear's coverage relative to its maximum is a
+        fixed profile, greedy from the bottom. Theory B: every longest window stretch contains a
+        column struck by exactly one large gear, and the stretch's length obeys a rule in that
+        gear's teeth. OPEN, prover running 2026-09-05 (research/proof/gear5_lock.md).
     - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
       makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
       have the same F distribution as random symmetric vectors at m13 and m17; the real machine
@@ -433,3 +440,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   column position; zero-drop gears jointly essential; square gate exact but weak; nested-decreasing holder law
   (proved). Neither branch bounds the largest twin gap below q'^2, which is the root. Next: the only STRONG parent
   left under R3 is 5 itself; the tree needs a new observation, not a new sibling.
+- 2026-09-05, manager: opened 5g (coverage profile, hinge column) under 5; one prover under the skill. Result outputs from now on live in research/<line>/r<round>/results/ untracked.
