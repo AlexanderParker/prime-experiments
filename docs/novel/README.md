@@ -1114,3 +1114,17 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
   (F/RHS 0.87 at m41 -> 0.57 at m59), F/q'^2 = 0.038..0.052 throughout.  Gated at all
   165,584 rows of the tooth-counterfactual family, 0 violations - PROVED (paper) +
   SCRIPT-VERIFIED - prior art not yet checked
+- walk-tooth-frame - (R2.a, round 37) the walk from q^2 under {5..q} STARTS ON A TOOTH of the
+  top gear (6 k_0 = q^2 - 1 = -1 mod q), so the top gear's next strike is d = 2c mod q columns
+  on (2 u_q if q = 5 mod 6, q - 2 u_q if q = 1 mod 6) and it strikes the whole walk exactly
+  once, at the first column - one exception in 667 walks (q = 53); the deepest layer of the
+  walk is the top gear itself IFF q^2 - 2 is prime (the square gate), ZERO exceptions in 667
+  walks (153 open, 514 shut); the pair born at the landing strikes the next level's walk once
+  each at distance 2k = (g+1)/3, its own twin-product column, 0 failures at 667 landings; and
+  a LEVEL-FREE TRANSFER RULE - a gear striking the column j away from a birth column strikes
+  the column i steps into that pair's own walk iff it divides (6j)^2 + 6i - 2 or (6j)^2 + 6i
+  (lower-member flank) or (6j+2)^2 + 6i - 2 or (6j+2)^2 + 6i (upper), with neither k nor g in
+  the condition: 832,915 checks, 0 mismatches, and the j = +-1, i = 0 set is exactly
+  {7, 17, 31}, confirmed by census (3,093 carry-overs of 50,906, no other gear) - PROVED
+  (elementary) + SCRIPT-VERIFIED (research/anchor235/r37/sf_walks.py, sf_birth.py) - prior art
+  NOT YET CHECKED

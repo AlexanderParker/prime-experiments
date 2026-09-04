@@ -120,14 +120,25 @@ the log at the bottom is chronology only.
       curve in ln g / ln Q' with white residual, and from the second gear on the branch re-derives a
       known one-prime identity. DEAD as a route.
 
-    - R2.a. The machine feeds on itself. Spawned by the kernel identity read across levels: the
-      gears of {5..q} are primes, a twin gear pair (g, g+2) is an opening of a lower machine
-      inside its window, so "an opening in every window" is "a twin gear pair at every scale" and
-      each level's openings are the next level's gears. Observation-first: twin-gear content per
-      machine and what the pairs do in the window above (beyond the known two coincidences), the
-      chain of landings q -> first twin above q^2 -> ..., where an opening is born against what
-      it does as a gear. OPEN, prover running 2026-09-05 (research/proof/self_feeding.md).
-
+    - R2.a. The machine feeds on itself (research/proof/self_feeding.md; register entry
+      docs/novel/walk-tooth-frame.md, prior art not yet checked). Spawned by the kernel identity
+      read across levels (a twin gear pair is an opening of a lower machine in its window).
+      FACT, not a route; 13 of 13 pre-registered items resolved, none refuted. Exact, zero
+      exceptions unless stated, q = 5..4999 (667 walks): (W1) the walk from q^2 starts ON a tooth
+      of the top gear (6 k_0 = q^2 - 1, so k_0 = -6^-1 mod q) and the top gear strikes the whole
+      walk exactly once, at its first column; its next strike is d = 2c mod q columns on (2u_q or
+      q - 2u_q by q mod 6), and the walk length L stays below d at every q above 53 (one
+      exception, q = 53; worst L/d = 0.52 at q = 137, median 0.02). (W2) the deepest layer that
+      hops is the top gear iff q^2 - 2 is prime (the square gate): 153 open, all top; 514 shut,
+      none. (W3) level-free transfer rule, 832,915 checks: a gear striking column k + j beside a
+      birth column strikes column i of that pair's own walk iff it divides (6j)^2 + 6i - 2,
+      (6j)^2 + 6i, (6j+2)^2 + 6i - 2 or (6j+2)^2 + 6i; at j = +-1, i = 0 the admissible gears are
+      exactly {7, 17, 31} (3,093 carry-overs of 50,906, no other gear). (W4) the next level's walk
+      starts at 6k^2 - 2k, exactly 2k below the pair's twin-product column, and both newest gears
+      strike it once at distance 2k = (g+1)/3. The chain of landings (97 levels, 46 starts, to
+      12 digits) has no rule, as pre-registered. Root reading: the walk is decided by the old
+      gears (gear 5 makes 40% of 18,743 hops, gears above sqrt(q) 15%); W1 and W2 rest on L < d,
+      a twin-Bertrand-strength statement at scale q/3. Position objects, no size lever.
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -234,14 +245,28 @@ the log at the bottom is chronology only.
         - Small facts: the record is isolated by 3 in the gap spectrum at m29 and m31 (no 41, 42
           below 43; no 56, 57 below 58); the 295 rungs to 1999 carry only 11 distinct window
           stretches (the maximal twin gaps), so per-rung counts are not independent samples.
-    - **R3.h. Ends or middles** (the human's question of 2026-09-04, answered on the exact
-      records). Spawned by the exact, near-unique record stretches at m29 and m31 (5d.i) and 9d's
-      layer table (ordinary at the bottom, made at the top three or four). Decompose each record
-      layer by layer: where its end openings become ends, which layers remove the interior
-      survivors and on which teeth, how much of the length is a lower machine's own longest gap
-      versus top gears fusing ordinary lower gaps; then the same decomposition on the window's
-      longest stretch at rungs 23..997. OPEN, prover running 2026-09-05
-      (research/proof/ends_or_middles.md).
+    - **R3.h. Ends or middles** (research/proof/ends_or_middles.md). The human's question of
+      2026-09-04, answered on the exact records. ANSWER: it is the ends. A record is a row of
+      ORDINARY lower gaps whose junctions the top three gears strike: m29's 43 = 10 + 10 + 23 as
+      gaps of {5..23} (whose own record is 34); m31's 58 = 23 + 10 + 25 as gaps of {5..29}
+      (record 43); m23's 34 = 4 + 8 + 15 + 7 as gaps of {5..19} (record 25). Through {5..17} the
+      record is an ordinary stretch (largest piece 30% of it at m29, 31% at m31) and its seven or
+      eight junctions are closed by exactly three gears (19 + 23 + 29 taking 3 + 2 + 2 at m29;
+      23 + 29 + 31 taking 3 + 2 + 2 at m31), each on its own teeth. No lower machine's record sits
+      inside a record at the top three layers at m23/m29/m31 (lower records do sit inside at
+      gears 5 and 7 always, and at 13 and 17 at m31). A record is never corridor-extremal (0 of
+      44) and its mod-35 phase has no consistent direction (escape distance 1 again). F = flank +
+      letters of the top gear + flank with only the two flanks free, which restates the budget
+      inequality as a flank condition (2-fusion: the pair statement; deeper fusion demands
+      strictly shorter flanks; slacks 20, 16, 14, 12 at m29, m31, m23, m19), a reformulation of
+      the merge grammar, labelled as such, landing on node 2g. Window contrast over 1.3 million
+      stretches at 160 rungs: the top gear never removes a survivor from the window's longest
+      stretch (0 of 160); that stretch is a two-piece fusion at every rung; a fusion of four or
+      more by one gear occurs nowhere in any window while the m23 record is one; a three-fusion
+      occurs everywhere but only on stretches of median 0.34 F_W. The asked-for statement ("a
+      four-piece fusion never occurs inside a window") is true as measured and does not bound
+      F_W: a two-piece fusion of two long pieces is long, and that is how the window builds them
+      (203 + 39 at q = 997). FACT, exact, not a route.
     - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
       makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
       have the same F distribution as random symmetric vectors at m13 and m17; the real machine
@@ -493,3 +518,17 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   R3: the structure-of-the-record line yields forced POSITION objects (lock, corridor, slot rule) and no
   length lever; three rounds of depth under node 5 confirm it. Next: change formulation, not sibling.
 - 2026-09-05, manager: R3 line verdict recorded (position objects, no length lever); opened R2.a (the machine feeds on itself, observation-first) and R3.h (ends or middles, the human's question on the exact records). Two provers.
+- 2026-09-05, provers R2.a (self_feeding.md) and R3.h (ends_or_middles.md). R2.a: four exact walk-frame rules
+  W1-W4 (the walk from q^2 starts on the top gear's tooth and is struck by it once; deepest hopping layer is the
+  top gear iff q^2 - 2 is prime; a level-free transfer rule for which gears carry over from a birth column into
+  the pair's own walk, admissible set {7, 17, 31} at the nearest offset; the next level's walk starts at
+  6k^2 - 2k), zero exceptions in 667 walks and 832,915 checks; chain of landings has no rule; register entry
+  docs/novel/walk-tooth-frame.md; FACT, not a route (the walk is made by the old gears; L < d is twin-Bertrand at
+  scale q/3). R3.h: the human's question answered - the record is made of the ENDS: ordinary lower gaps fused at
+  their junctions by exactly three top gears (m29: 10 + 10 + 23 of {5..23}; m31: 23 + 10 + 25 of {5..29}), no
+  lower record inside at the top three layers, never corridor-extremal; in the window the longest stretch is a
+  two-piece fusion at every rung and the top gear never removes a survivor from it; a four-piece fusion never
+  occurs in any window but that does not bound F_W. Both FACT. Standing verdict after this round: every
+  formulation tried (per-step, whole-window, record structure, anchor frame, walk frame) yields exact position
+  and mechanism facts and stops at the same length statement; the tree needs a formulation in which length is
+  the primary object, or a new observation.
