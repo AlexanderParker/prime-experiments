@@ -120,6 +120,14 @@ the log at the bottom is chronology only.
       curve in ln g / ln Q' with white residual, and from the second gear on the branch re-derives a
       known one-prime identity. DEAD as a route.
 
+    - R2.a. The machine feeds on itself. Spawned by the kernel identity read across levels: the
+      gears of {5..q} are primes, a twin gear pair (g, g+2) is an opening of a lower machine
+      inside its window, so "an opening in every window" is "a twin gear pair at every scale" and
+      each level's openings are the next level's gears. Observation-first: twin-gear content per
+      machine and what the pairs do in the window above (beyond the known two coincidences), the
+      chain of landings q -> first twin above q^2 -> ..., where an opening is born against what
+      it does as a gear. OPEN, prover running 2026-09-05 (research/proof/self_feeding.md).
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -226,6 +234,14 @@ the log at the bottom is chronology only.
         - Small facts: the record is isolated by 3 in the gap spectrum at m29 and m31 (no 41, 42
           below 43; no 56, 57 below 58); the 295 rungs to 1999 carry only 11 distinct window
           stretches (the maximal twin gaps), so per-rung counts are not independent samples.
+    - **R3.h. Ends or middles** (the human's question of 2026-09-04, answered on the exact
+      records). Spawned by the exact, near-unique record stretches at m29 and m31 (5d.i) and 9d's
+      layer table (ordinary at the bottom, made at the top three or four). Decompose each record
+      layer by layer: where its end openings become ends, which layers remove the interior
+      survivors and on which teeth, how much of the length is a lower machine's own longest gap
+      versus top gears fusing ordinary lower gaps; then the same decomposition on the window's
+      longest stretch at rungs 23..997. OPEN, prover running 2026-09-05
+      (research/proof/ends_or_middles.md).
     - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
       makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
       have the same F distribution as random symmetric vectors at m13 and m17; the real machine
@@ -476,3 +492,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   length lever, with a reason that closes the family (hinge gear falls as q grows at fixed L). Verdict for
   R3: the structure-of-the-record line yields forced POSITION objects (lock, corridor, slot rule) and no
   length lever; three rounds of depth under node 5 confirm it. Next: change formulation, not sibling.
+- 2026-09-05, manager: R3 line verdict recorded (position objects, no length lever); opened R2.a (the machine feeds on itself, observation-first) and R3.h (ends or middles, the human's question on the exact records). Two provers.
