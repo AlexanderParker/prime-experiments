@@ -71,7 +71,7 @@ The theorem is six conjunctions, each with two halves.
    `F(M + q') <= v + s_min` (`39`, `49`, `65`) is a case-split LP-duality certificate at the
    increment width `W_inc = v + s_min`, strictly smaller than the budget width `F(M) + q'`
    (`48`, `63`, `74`): the two smallest gears' phases are held (35 cases), and in every case an
-   exact rational dual certificate shows that no window of width `W_inc` is fully blocked
+   exact rational dual certificate shows that no stretch of width `W_inc` is fully blocked
    (`IncCert23.F_le`, `IncCert29.F_le`, `IncCert31.F_le`; the mechanism is the one written out
    in file 18 for 31->37).
 3. **Assembly.**  From `F_2(M) >= v` and `F(M+q') <= v + s_min`,

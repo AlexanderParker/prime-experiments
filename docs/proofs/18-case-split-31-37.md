@@ -15,9 +15,9 @@ Column `k` is the pair `(6k-1, 6k+1)`; machine 37 is `{5, 7, 11, 13, 17, 19, 23,
 column `k` is an opening iff no gear strikes it, gear `q` striking `k` iff `k = +-u_q (mod q)`
 with teeth `(1,4), (6,1), (2,9), (11,2), (3,14), (16,3), (4,19), (24,5), (26,5), (6,31)` for the
 ten gears (file 02).  `F(37)` is the largest gap between consecutive openings; `F(31) = 58`.
-A **window** of width `W` at column `p >= 1` is `{p, p+1, ..., p + W - 1}`; it is **fully
+A **stretch** of width `W` at column `p >= 1` (any run of `W` consecutive columns; the round notes call it a window, which in this series means only the certified range) is `{p, p+1, ..., p + W - 1}`; it is **fully
 blocked** if it contains no opening.  In **(phase, offset) coordinates** gear `q` blocks offset
-`i` of the window at `p` iff `(p mod q + i) mod q` is a tooth of `q`; so whether a window is
+`i` of the stretch at `p` iff `(p mod q + i) mod q` is a tooth of `q`; so whether a stretch is
 fully blocked depends only on the **phase vector** `(p mod 5, ..., p mod 37)`.
 
 Classical translation: `F(37) <= 95` says that among any 95 consecutive columns there is a pair
@@ -26,7 +26,7 @@ Classical translation: `F(37) <= 95` says that among any 95 consecutive columns 
 
 ## Statement
 
-**Theorem.**  Every window of 95 consecutive columns (from column 1 on) contains an opening of
+**Theorem.**  Every stretch of 95 consecutive columns (from column 1 on) contains an opening of
 machine 37.  Hence every gap of machine 37 is at most `95 = 58 + 37`: the budget inequality
 holds at the step 31 -> 37.
 
@@ -37,7 +37,7 @@ period scan enter.
 
 **A. The case split (why 385 cases are exhaustive).**
 
-1. Suppose the window at `p` is fully blocked.  Then for every offset `i < 95` some gear
+1. Suppose the stretch at `p` is fully blocked.  Then for every offset `i < 95` some gear
    blocks `i` in (phase, offset) coordinates (`CaseCert37.blocked`: a non-opening is struck by
    one of the ten gears, unfolded gear by gear from machine 37's opening predicate).
 2. The **held gears** are 5, 7, 11.  Their phases `(p mod 5, p mod 7, p mod 11)` take exactly
@@ -48,11 +48,11 @@ period scan enter.
 3. In leaf `c` with held phases `(h_5, h_7, h_11)`, let `Pos_c` be the list of offsets
    `i < 95` blocked by none of the held gears at those phases (the kernel checks
    `plt_c`: every listed offset is `< 95`, and `pfree_c`: the held gears block none of them;
-   `n_c := |Pos_c|`, e.g. 34 in case 0).  Since the window is fully blocked, every `t in Pos_c`
+   `n_c := |Pos_c|`, e.g. 34 in case 0).  Since the stretch is fully blocked, every `t in Pos_c`
    is blocked by one of the seven **free gears** `13, 17, 19, 23, 29, 31, 37` at their phases
    `r_0, ..., r_6` (`r_a = p mod q_a`).  The leaf theorem `nocov_c` derives `False` from that
    covering hypothesis for every phase tuple `(r_0, ..., r_6)`.  So no `p` has a fully blocked
-   window of width 95.
+   stretch of width 95.
 
 **B. What one leaf certificate is.**  Fix a case `c`; write `c_a(r, t) in {0, 1}` for "free
 gear `a` at phase `r` blocks position `t in Pos_c`" and `D(t) := sum_a c_a(r_a, t)` for the
@@ -110,10 +110,10 @@ the numbers below computed from them.
    covers `Pos_c`.  The leaf proof `nocov_c` is exactly the chain 4-9 discharged by `linarith`
    from the named facts.
 
-**C. From windows to gaps.**
+**C. From stretches to gaps.**
 
 10. `CaseCert37.F_le`: if consecutive openings `o_n < o_{n+1}` of machine 37 had
-    `o_{n+1} - o_n > 95`, the window of width 95 at `o_n + 1` would contain no opening
+    `o_{n+1} - o_n > 95`, the stretch of width 95 at `o_n + 1` would contain no opening
     (`Machine37.opSeq37_gap_empty`), contradicting `no_run`.  So every gap `g37 n <= 95`, and
     `CaseCert37.D_31_37_case` restates it as `g37 n <= 58 + 37`.
 

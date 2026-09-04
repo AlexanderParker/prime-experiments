@@ -217,7 +217,10 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
 - **Column k.** The pair of numbers (6k-1, 6k+1). Every prime above 3 lives in some column, so the
   columns are what survives the primes 2 and 3. A twin prime pair is a column whose two numbers
   are both prime.
-- **Gear g.** A prime g >= 5, turning once every g columns.
+- **Gear g.** A prime, turning once every g slots of the track and stamping every multiple of g.
+  The machine has a gear for every prime from 2 up. In the anchored view used throughout, 2 and 3
+  are folded into the column coordinate and 5 is the first turning gear, so "gear g" in the rest of
+  the glossary means a prime g >= 5 turning once every g columns.
 - **Tooth.** The single point of gear g that lands on a multiple of g. Seen through the columns it
   strikes two residues, k = +-6^-1 (mod g); their distance apart is d_g = 3^-1 (mod g), the
   "tooth spacing", the same rational one third for every gear (kernel).
@@ -227,18 +230,36 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   blocked.
 - **Opening.** A column no gear of the machine strikes: both numbers escape every prime in the
   machine. Openings are 3 of 5 columns for gear 5 alone, and prod(g-2) per period overall.
-- **Machine {5..y}.** The gears 5 up to the prime y, together. Its period is the product of its
-  gears; its opening pattern repeats with that period.
-- **Anchor.** The three primes 2, 3, 5 as one object: 2 and 3 are built into the columns, 5 is the
-  first gear.
+- **Machine {5..y}.** The anchored view with the gears 5 up to the prime y turning. Its period is
+  the product of its gears; its opening pattern repeats with that period.
+- **Two views.** The plain view: every gear from 2 up stamps the integer line. The anchored view:
+  lock the first gears as an anchor and stamp everything relative to it. There are more views than
+  these (the walk, the residue vector, the gap word, the covering LP); these two are the ones the
+  text needs.
+- **Anchor.** The primes 2, 3, 5 locked as one object, cycle 30: six open numbers per cycle (1, 11,
+  13, 17, 19, 29 mod 30) making three twin slots, and every later gear q leaves q - 6 cycles
+  untouched per run of 30q, from gear 7 on. Locking 2, 3, 5, 7 (cycle 210, 48 open numbers) loses
+  that: nothing is untouched until q > 48. Locking 2, 3 alone gives single-slot cycles with no
+  structure. So the anchor is 2, 3, 5 and stops there (docs/proof-search/anchor-235.md).
+- **Cycle.** One turn of the anchor: the numbers 30j + 11, 13, 17, 19, 29, 31, i.e. the three twin
+  slots at columns 5j + 2, 5j + 3, 5j + 5. A gear q >= 11 stamps at most one number per cycle, so a
+  cycle with all three slots blocked needs three gears.
+- **Slot / twin slot.** A column, seen from the anchor: the pair (6k-1, 6k+1). Anchor-open slots
+  are k mod 5 in {0, 2, 3}, three of every five.
+- **Run (of a gear).** One turn of gear q over the anchor: 30q numbers, q cycles, six hits at fixed
+  fractions m/30 of the run, one m-set per class q mod 30.
 - **Window.** The certified range of the machine {5..y}: the columns whose numbers lie below the
   square of the next prime. Inside it the machine's openings are exactly the twin prime pairs
   (kernel: BlockedSlots.twins_infinite_iff_survivor_in_window).
 - **Section.** The new part of the window when the machine grows from p to q: the columns with
   p^2 < 6k+1 < q^2. Inside a section the previous machine is exact and the new gear is silent
   (kernel: the layer law).
-- **Stretch.** Any run of consecutive columns anywhere in the period. (Older documents call this
-  a "window"; the picture document translates.)
+- **Stretch.** Any run of consecutive columns anywhere in the period. Never a window: older
+  documents and some Lean names say "window" for this; the written proofs and the picture
+  document translate.
+- **Alignment.** Where and when the openings of a new gear line up with the openings of the
+  machine below it inside the window. "Does an opening always land inside the window" is the open
+  half of the route; the rules found so far are collected in docs/proof-search/alignment-rules.md.
 - **Gap.** The distance between two consecutive openings; a gap of w means w-1 blocked columns.
 - **Record F(M).** The widest gap of the machine over its whole period: the longest empty stretch.
   Corpus values 5, 7, 11, 18, 25, 34, 43, 58, 88, 91, 103, 118, 145, 161 at y = 7..59 (exact). The
@@ -283,8 +304,9 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   48 classes at 2 (kernel).
 - **Mirror.** The symmetry k -> -k of the opening set; column 0 and the antipode are always open;
   records come in mirror pairs; the symmetry group is exactly Z/2 (kernel).
-- **d_0.** The first opening after column 0, which on the real machine is the column of the first
-  twin prime pair above p. F_2 >= 2 d_0 always, so the budget inequality at column 0 asks the next
+- **d_0.** The first opening after column 0: the first column whose two numbers have no prime
+  factor in the machine. It lies above the top gear y, and when it lies inside the window it is the
+  first twin prime pair above y. F_2 >= 2 d_0 always, so the budget inequality at column 0 asks the next
   twin pair to sit within half the budget (a twin-Bertrand statement, open).
 - **Counterfactual family.** All machines with the same gears and the real gears' symmetric
   two-tooth shape but the teeth moved. What holds on every member is structural; what fails on

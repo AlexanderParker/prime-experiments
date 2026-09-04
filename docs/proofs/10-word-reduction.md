@@ -133,6 +133,6 @@ certificate `J_max = A_kill + 1`; the spectrum bound on `L` (file 11) and the ba
 
 ## Source
 
-Mechanic round 28 (the `=>` half, "a word-legal window of `J` gaps is a kill chain of arity
+Mechanic round 28 (the `=>` half, "a word-legal J-run (the round notes say window) of `J` gaps is a kill chain of arity
 `J - 1`"); Constructor round 29, R89 and R90 (`docs/novel/even-j-mechanism.md` 1.1-1.2);
 Formalist round 30 (`proofs/WordLegal.lean`); `docs/proof-search/alignment-rules.md` 3.6.

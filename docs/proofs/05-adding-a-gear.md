@@ -47,7 +47,7 @@ copy iff all its pairwise differences are `0` or `+-d (mod g)`.
 **(D) Merge law.**  Let `y < z` be consecutive openings of `M'`.  Then `y, z` are openings of
 `M`, every opening of `M` strictly between them is struck by `g`, and `z - y` is the sum of the
 consecutive gaps of `M` from `y` to `z`.  Every gap of `M'` is therefore a gap of `M` or a
-**merged window**: a sum of `J >= 2` consecutive gaps of `M` whose `J - 1` interior openings are
+**merged J-run** (Lean: `MergedWindow`; a run of gaps, not the certified window): a sum of `J >= 2` consecutive gaps of `M` whose `J - 1` interior openings are
 all struck by `g`.
 
 **(E) Grammar of a struck run.**  Let `x_0 < x_1 < ... < x_k` be consecutive openings of `M`,
