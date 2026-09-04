@@ -194,13 +194,38 @@ the log at the bottom is chronology only.
         35), the golden spectral gap (gear 5's local frequency mode is phi, phi/3 a machine-
         independent spectral gap). Both subject to the escape-distance-1 ceiling; a spectral
         large-sieve route would give count bounds and meet the rate-to-maximum step.
-      - 5g. The coverage profile and the hinge. Spawned by 5d.i's coverage-maximality split
-        (gear 5 at its coverage-maximal phase in every record, top gears never) and 5d.ii's hinge
-        column (the window's longest stretch at rung 997 hangs on one column struck only by gear
-        877). Theory A: at an extremal stretch each gear's coverage relative to its maximum is a
-        fixed profile, greedy from the bottom. Theory B: every longest window stretch contains a
-        column struck by exactly one large gear, and the stretch's length obeys a rule in that
-        gear's teeth. OPEN, prover running 2026-09-05 (research/proof/gear5_lock.md).
+      - 5g. The coverage profile and the hinge (research/proof/gear5_lock.md, 2026-09-05).
+        Spawned by 5d.i's coverage-maximality split and 5d.ii's hinge column. PROVED, position
+        only: THE GEAR-5 LOCK. Every maximal blocked stretch of every machine, at every length
+        (record, runner-up, window stretch, anywhere) has gear 5 at its coverage-maximal phase.
+        Proof in five cases from gear 5's teeth {+-1} mod 5 and the two flanking openings being
+        non-teeth; exhaustive to L = 2000; gated at all 62 records of m13..m31 and at every
+        maximal blocked stretch of every window at 295 rungs (1.7 million stretches). Node 5e
+        (the F mod 5 slot rule) is this theorem read at the stretch's start, now uniform in the
+        machine and the length. Residual: a maximal stretch of length L leaves gears 7..q exactly
+        floor(3L/5) columns in gear 5's two-and-one pattern (iterating is 7a, dead). Forced object,
+        nothing the machine does prevents it, but it pins a phase, not a length.
+        - Allocation law at records (correction to 5d.i): every gear of a record is at its
+          coverage maximum SUBJECT TO keeping the columns only it strikes, 340 of 348 gear-cells
+          over all 62 records (exceptions: gear 13 at four m17 records, gear 19 at four m19);
+          the gears below maximum are middle ones (17 at m19/m29; 13 and 23 at m23/m31), and the
+          top gear is at maximum in every record at m13 and m17, so "top gears never" was a
+          reading of m23/m29. FACT.
+        - Two laws, not one: period records have 78% of gear-cells at maximum and 2.3% free
+          deficits; window longest stretches 30% and 63% (292 of 295 rungs carry a free deficit);
+          only the gear-5 lock is shared. FACT.
+        - Theory A's counting half stopped as pre-registered: capacity is 54% loose and
+          loosening (sum of maxima over L = 1.20 .. 1.54 at m13..m31); the missing quantity is a
+          lower bound on overlap (1, 5, 9, 13, 19, 28), the dead overlap count.
+        - Theory B (hinge) DEAD: hinges always exist (295/295; they are the pseudo-twins of
+          alignment-rules 4.1), but the hinge gear exceeds q/2 at 57% only, is central at 31%
+          (below uniform), and every length rule fails (L <= g_h at 8 rungs, e.g. q = 421, L = 104,
+          g_h = 97). No rule of that family can exist: by the nested-decreasing holder law the
+          hinge gear falls as q grows at fixed L (877 -> 409 for the 241-column stretch over
+          q = 919 .. 1669).
+        - Small facts: the record is isolated by 3 in the gap spectrum at m29 and m31 (no 41, 42
+          below 43; no 56, 57 below 58); the 295 rungs to 1999 carry only 11 distinct window
+          stretches (the maximal twin gaps), so per-rung counts are not independent samples.
     - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
       makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
       have the same F distribution as random symmetric vectors at m13 and m17; the real machine
@@ -441,3 +466,13 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   (proved). Neither branch bounds the largest twin gap below q'^2, which is the root. Next: the only STRONG parent
   left under R3 is 5 itself; the tree needs a new observation, not a new sibling.
 - 2026-09-05, manager: opened 5g (coverage profile, hinge column) under 5; one prover under the skill. Result outputs from now on live in research/<line>/r<round>/results/ untracked.
+- 2026-09-05, prover 5g (gear5_lock.md): THE GEAR-5 LOCK PROVED - every maximal blocked stretch of every
+  machine at every length has gear 5 at its coverage-maximal phase (five-case proof from the teeth {+-1} mod 5
+  and the flanking openings; exhaustive to L = 2000; 1.7 million window stretches, no exception); 5e is the same
+  theorem read at the start. Records: every gear at its coverage maximum subject to keeping its sole columns
+  (340/348); the gears below maximum are middle ones, and the top gear is at maximum at m13 and m17 (5d.i's
+  "top never" corrected). Period and window stretches obey two different allocation laws sharing only the
+  lock. Counting half stopped (capacity 54% loose, overlap lower bound is the dead end). Hinge DEAD as a
+  length lever, with a reason that closes the family (hinge gear falls as q grows at fixed L). Verdict for
+  R3: the structure-of-the-record line yields forced POSITION objects (lock, corridor, slot rule) and no
+  length lever; three rounds of depth under node 5 confirm it. Next: change formulation, not sibling.
