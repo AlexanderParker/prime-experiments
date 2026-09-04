@@ -1,0 +1,27 @@
+{
+ "pmax": 13,
+ "qn": 17,
+ "members": 180,
+ "wrap_violations": [],
+ "nonwrap_violations": [],
+ "nonwrap_slack_min": [
+  6,
+  [
+   1,
+   1,
+   1,
+   1
+  ],
+  14,
+  25,
+  682
+ ],
+ "F2_equals_2d0": 5,
+ "tight_nonwrap": [],
+ "cert_pairs": 6364,
+ "cert1_ok": 6362,
+ "members_with_uncertified_pair": 1,
+ "lag1_effect_present": 165,
+ "F2_below_shuffle": 134,
+ "seconds": 0.2
+}

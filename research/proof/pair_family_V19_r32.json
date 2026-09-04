@@ -1,0 +1,43 @@
+{
+ "pmax": 19,
+ "qn": 23,
+ "members": 12960,
+ "wrap_violations": [
+  {
+   "v": [
+    1,
+    1,
+    4,
+    3,
+    5,
+    2
+   ],
+   "F": 26,
+   "F2": 50,
+   "d0": 25
+  }
+ ],
+ "nonwrap_violations": [],
+ "nonwrap_slack_min": [
+  4,
+  [
+   2,
+   2,
+   5,
+   3,
+   7,
+   3
+  ],
+  20,
+  39,
+  90584
+ ],
+ "F2_equals_2d0": 11,
+ "tight_nonwrap": [],
+ "cert_pairs": 346090,
+ "cert1_ok": 345330,
+ "members_with_uncertified_pair": 332,
+ "lag1_effect_present": 12501,
+ "F2_below_shuffle": 12320,
+ "seconds": 687.0
+}

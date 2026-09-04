@@ -700,7 +700,8 @@ maximisers `(12,37)` at m31 and `(41,14)` at m37 have middle sums `12 mod 37` an
 
 - **`F_j` (the spectrum).**  Full-period spectra on record: machine 13 `11 16 23 26 28 31`;
   17 `18 25 28 33 35 40`; 19 `25 31 35 38 47 50`; 23 `34 39 50 58 65 77`; 29 `43 55 65 70 85 90`;
-  31 `58 68 85 90 92 97`; 41 (prefix, lower bounds) `110 112 118 123 130 138`.
+  31 `58 68 85 90 92 97`; 41 (prefix, lower bounds, indexed j = 3..8, NOT j = 1..6: F(41) = 91,
+  F_2(41) = 103) `110 112 118 123 130 138`.
   `[exact: full period m13..m31; m37/m41 rows are prefix LOWER bounds]`
 - **`Q_j` (the word-free / qualifying spectrum).**  `Q_j(M; a)` = max sum of `j` consecutive gaps
   whose `j-2` middles are all `>= a = 2u'`.  Every qualifying merged stretch is such a sum, so
@@ -746,8 +747,10 @@ maximisers `(12,37)` at m31 and `(41,14)` at m37 have middle sums `12 mod 37` an
   (`J` even) or `>= k q' + a` (`J` odd).  Hence `Phi_J <= F_2(M) + s_min(q') - m_min(J)`: at
   `J = 5` the two flanks may sum to at most `F_2 - q'`, at `J = 6` to at most `F_2 + a - 2q'`.
   **The flank envelope collapses at rate `q'` per two levels -- which is why the deep layers are
-  the cheap ones.**  `[exact: proved from T1-T3]`; measured `Phi_J <= F_2 - b` at every non-empty
-  literal even-`J` cell, margins +5 (m19), +10 (m29), +9 (m31).  Literal middles only.
+  the cheap ones.**  `[CORRECTION 2026-09-05, docs/proofs/16: the envelope form silently assumes the MEASURED
+  Delta_J <= s_min; what T1-T3 prove is Phi_J <= Q*_J - m_min(J) <= F(M+q') - m_min(J)]`; measured
+  `Phi_J <= F_2 - b` at every non-empty literal even-`J` cell, margins +5 (m19), +10 (m29), +9 (m31).
+  Literal middles only.
 - **`Delta_J` and par trading.**  `Delta_J = Q*_J - F_2(M)`: every LITERAL cell lies in `[-3, +4]`
   at m11..m41, and the excess SHRINKS with depth (`Delta_5 = 0` exactly at both machines where
   `J = 5` exists); confirmed out of sample at machine 53 (every `Delta_J` is `+2`).
@@ -1461,7 +1464,10 @@ further slack.
   WITHOUT SCANNING THE PERIOD, so it reaches machines 37, 41, 43, 53 whose periods (1.2e12, 5.1e13,
   2.2e15) are beyond any scan -- and it therefore yields **the UPPER bounds on `F` and on the `F_j`
   that every prefix row lacks**, which is the single missing input for the qualifying-spectrum
-  criterion at those steps.  `[named construct; NOT BUILT]`
+  criterion at those steps.  `[BUILT in round 20: research/cov_sat.py, mechanic.md K1 - exact spectra with
+  complete hole lists at m11..m37, m41 complete; the harvest's NOT BUILT tag was stale. Round 32:
+  research/cov_sat_r32.py adds F(61) >= 171, F(67) >= 175, F(71) >= 185 as verified lower bounds; UNSAT
+  cost grows 6-11x per rung, so no upper bound past m41.]`
 - **The renewal factor.**  The multi-lag exposure bound is the only step in the whole route with no
   heuristic: "gap `= v`" is (both endpoints exposed) AND (no opening strictly between); dropping the
   second only increases the probability, and exposure is a CONJUNCTION so it factorises by CRT,

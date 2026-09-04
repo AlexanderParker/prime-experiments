@@ -8225,3 +8225,519 @@ proofs/AxiomCheck.lean, docs/proof-search/formalist.md (the round-31 append),
 docs/novel/bare-word-uniform-cap.md (Constructor's doc - its "KERNEL CONFIRMATION"
 paragraph corrected: the instantiations are m23/m37/m41/m43, not m19; and extended with
 the PSORD theorems and the `capC <= 3` identity). Not committed, per the brief.
+
+---
+
+## Literature: increment statement
+
+LITERATURE lane, round 33.  Full entry-by-entry file with verbatim statements, verification
+levels and sources: `research/proof/literature_increment.md`.  Not committed.  This block is the
+summary; it goes past the Harvester r29 adjacency table and does not repeat it.
+
+**THE ANSWER, PLAINLY: the increment statement is nowhere in print, in either class count -- not
+as a theorem, and not as a named conjecture.**  Neither `j(P_{k+1}) <= j(P_k) + p_{k+1}` nor any
+`h_2` analogue appears in Jacobsthal's problem, Erdos's list (#687, #688, #689, #970 -- all about
+the SIZE of `h`, never its increments), Hagedorn 2009, Hajdu-Saradha 2012, Ziller-Morack 2016 or
+2017, Mercer 2018, Ziller 2019 or 2020, or any OEIS comment on
+A048669/A048670/A058989/A072752/A072753/A288815.  The additive-increment question is unasked, not
+hard.
+
+**(a) THE ROUTE IS ALREADY PUBLISHED, AND IT IS ONE LINE STRONGER THAN OURS.  CITE IT.**
+Ziller & Morack 2017, arXiv:1706.00317 (READ FULL TEXT).  **Conjecture 6**, verbatim:
+*"Let `n in N >= 3`.  Then `h_2(n) < p_n^2 - p_n`."*  **Theorem 4.1**, verbatim: *"The conjectured
+upper bound of the primorial paired Jacobsthal function is sufficient for the truth of the Goldbach
+conjecture and of the infinitude of prime pairs for every even difference."*  Their Conjecture 5
+is our window: *"for every `n` and every prime `p > 2n` there exist primes `q_1, q_2` with
+`p < q_1 < p^2` and `q_2 - q_1 = 2n`."*  In column units `h_2 ~ 6F`, so Conjecture 6 IS
+`F(y) < y^2/6` (alignment-rules 4.2, 7) up to the linear term -- and it is stated for the MAXIMUM
+over class assignments, so it is strictly stronger than what the project needs.  The one-class
+counterpart is **Mercer 2018** (INTEGERS 18 #A26, arXiv:1708.05415, READ): Theorem 1, *"if there is
+`k` with `(p_{k+1}^2 - 2)/(h(k)+1) >= d` then every eligible AP `a + dZ` contains a prime"*;
+Corollary 1 gives all `d <= 76` from `h(54) = 742`; Corollary 2 gives an ELEMENTARY DIRICHLET from
+`h(n) = o(p_{n+1}^2)`; and his Lemma 2 is our kernel route verbatim (`n < p_{k+1}^2` and coprime to
+`p_k#` implies `n` prime).  Mercer credits to Kanold (*Uber Primzahlen in arithmetischen Folgen*)
+that `h(n) <= C p_n^{2-eps}` for all `n` would give short proofs of Linnik AND Dirichlet
+(SECONDARY, unverified).
+
+**(b) THE INCREMENT INEQUALITY IS FALSE FOR THE PUBLISHED TWO-CLASS MAXIMUM, AT ONE SMALL STEP.**
+Arithmetic on OEIS A072753 (= the two-class record in column units, `A288815 = 6 A072753 + 6 = h_2`;
+values Ziller/Morack/Resta 2002-2017):
+
+    added prime  -    7   11   13   17   19   23   29   31   37 ...  73
+    A072753      2    4   10   24   31   42   60   74   94  117 ... 436
+    increment    -    2    6  *14*   7   11   18   14   20   23 ...  27
+
+`24 - 10 = 14 > 13`.  **`{5,7,11} -> {5,7,11,13}` violates `F(M+q') <= F(M) + q'` by exactly 1**;
+all 17 other computable steps to `p = 73` satisfy it.  This is NOT a counterexample to our budget
+inequality -- `h_2` maximises over class assignments while our `F` is the realised twin machine,
+and `F_bc <= A072753` pointwise (`6,10,17,24,33,42,57,87` against `10,24,31,42,60,74,94,117` at
+`y = 11..37`).  What it IS: an independent published witness that **no proof of the budget
+inequality can go through "two classes per prime" -- it must use the actual teeth**, which is
+exactly what alignment-rules 3.10 and section 5 already say from the counterfactual family
+(13-22% violate).  Anyone writing the conjecture down should carry this witness with it.
+
+**(c) THE NEAREST PUBLISHED INCREMENT STATEMENT IS MULTIPLICATIVE AND MUCH WEAKER.**
+Hajdu-Saradha 2012 **Lemma 2.3** (THEOREM): `H(r) = max(H*(r), 2 H*(r-1))`, with the remark
+*"for all the r values occurring in the present paper ... `H(r) = 2 H*(r-1)`.  It is very much
+likely that this equality is valid for all `r > 1`."*  Ziller 2019 (arXiv:1903.11973) promotes it
+to **Conjecture 3.2**: *"`H(k) < 2 H(k-1)` for all `k >= 3`"*, equivalent to
+`Omega(k) <= 2 Omega(k-1) + 1`, credited to Hajdu-Saradha, verified `k <= 43`.  That permits an
+increment of size `H(k-1) ~ k^2` where we ask for `p_k ~ k log k`.  Also there: Conjecture 3.1
+(`H(k) > h(k)` for all `k >= 33`) and Conjecture 3.3 (`H(k) < k^2`).  And the one exact "add a
+prime" law in the literature is **Hajdu-Saradha Lemma 2.2: `j(2m) = 2 j(m)` for odd `m`** -- adding
+the prime 2 increases `j` by `j(m)`, i.e. unboundedly more than the prime.  **So any additive
+increment conjecture must be stated for the primorial ladder from below, never for an arbitrary
+added prime.  Nobody states that caveat; we should, when we write ours down.**
+
+**(d) THE ONE-HOLE FUNCTION: THE MECHANISM IS IN PRINT, THE IDENTITY IS NOT.**  (Manager's
+addendum: one-hole stretch for `P_k` = `j(P_{k+1})`, two-hole = `j(P_{k+2})`, by parity, valid
+while `j(P_k) < 2 p_{k+1}`, i.e. through `k = 18`.)  **Hagedorn 2009 Definition 2.2** defines an
+`(S,k)`-killing sieve -- `r-k` of the `r` primes covering all of `[1,z]` except `k` holes -- which
+IS the `k`-hole object; **Proposition 2.5**, verbatim: *"There is an `S`-killing sieve of length `z`
+if and only if there is an `(S,k)`-killing sieve of length `z` for some `k` in `[0,r]`"*, proved by
+assigning the `k` unused primes one hole each.  He credits the `k=1` case to **J. Haugland, private
+correspondence, July 2005** (his ref [4] -- NOT a publication).  **Hajdu-Saradha 2012 s.2.3(b.1)**
+restates it in general and attributes it to "the following ideas of Hagedorn".  The parity half is
+Hagedorn's **Proposition 2.8** (`h(n+1) = 2 w(n) + 2`, `w` over the first `n` ODD primes; OEIS
+`A048670(n) = 2 A072752(n) + 2`).  And the validity threshold is published from the other side:
+**Ziller 2020** closes with *"for all known values ... `2 p_{k-1} < h(k-1)` for `k > 18`, i.e.
+`h(k) > 2 p_k` for `k > 17`."*  What is NOT in print: the hole-count function as a named function
+with computed values, in any paper or in OEIS ("killing sieve" returns nothing; no hole variant on
+A072752/A072753/A288815).  **So: attribute the mechanism to Hagedorn 2009 Prop. 2.5 (idea:
+Haugland 2005) plus the standard parity argument; do not claim the identity as new, and do not
+claim it as published either.**
+
+**(e) EXPLICIT CONSTANTS, AND THE HONEST ANSWER ON `1/6`.**  One-class explicit bounds: Kanold
+`h(n) <= 2^n` and `2^sqrt(n)` for `n >= e^50`; Stevens 1977 `h(n) <= 2 n^{2+2e log n}` (`n >= 15`);
+Costello-Watts `h(n) <= 0.27749612254 n^2 log n` **but only for `50 <= n <= 10,000`** -- that
+range restriction is the whole difficulty, since for all `n` it would already give Mercer's
+Corollary 2 and an elementary Dirichlet.  **Iwaniec's 1978 implied constant in `h(n) << (n log n)^2`
+has never been made explicit by anyone in fifty years** (three independent secondary readings:
+Hagedorn s.1, Mercer s.1, Costello-Watts, each writing "for an unknown constant `C`").  Two-class:
+**there is NO published upper bound on `h_2` of any kind -- not explicit, not ineffective, not
+asymptotic.**  So, plainly: **an explicit constant below `1/6` in the two-class setting is NOT
+known to be out of reach, and nobody says it is; it is unattempted.**  The structural reason none
+follows from Iwaniec is that his engine is the LINEAR (dimension-one) sieve while two classes per
+prime is dimension two -- **that inference is MINE and I found no author who states it; it is
+flagged unverified in the file.**  Adjacent, and not the same object: **Erdos problem #689** (OPEN,
+Erdos 1979/80, also Green's problem 45) asks whether for large `n` one class per prime `p <= n` can
+cover every integer of `[1,n]` at least TWICE -- multiplicity two, not two classes.  **Erdos #687**
+(the $1000 problem, `Y(x) = o(x^2)?`) is our one-class object, still capped only by Iwaniec's
+`Y(x) << x^2`.
+
+**(f) TESTED-TO, one-class, arithmetic on the published table only.**  From the OEIS A048670 b-file
+(64 terms: Hagedorn 1-49, Ziller-Morack 50-54, Gerbicz 55-57, Bozek 2021 58-64):
+`h(k+1) - h(k) <= p_{k+1}` holds at **all 63 computable steps with no exception**.  The ratio
+`(h(k+1)-h(k))/p_{k+1}` is `0.667` at `k=1`, `0.615` at `k=5`, then falls to `0.13` and `0.039` at
+`k = 62, 63`; the largest increment anywhere is `40` against `p_63 = 307`.  So the statement is
+true with a factor 8-25 of room at the top of the table and has simply never been written down.
+
+**(g) WHAT ELSE IS AND IS NOT THERE.**  `j(mn) <= j(m) j(n)`: **NOT FOUND in any source** -- treat
+as folklore unless someone produces the citation.  What is in print is only monotonicity:
+Ziller-Morack 2016 **Remark 1.1**, `j(n_1 n_2) >= j(n_1)`, strict for coprime `n_1, n_2 > 1`; plus
+`j(n) = j(rad n)` everywhere.  "Adding one prime raises the maximal gap by at most a bounded
+multiple of that prime": **NONE FOUND, any class count, any form.**  Two-class work after 2017:
+**NONE** -- the arXiv abstract index for "Jacobsthal" 2017-2026 contains no successor to
+Ziller-Morack; the field is empty, not merely silent.  One lead not chased: **Volfson 2022**
+(arXiv:2211.13255, unrefereed, single author, treat as low weight) defines the WINDOWED one-class
+record `d(p_r^2-1)` on `[p_{r+1}, p_r^2-1]` -- the one-class analogue of our "record below the
+window" -- conjectures `d(p_r^2-1) <= 2 p_r + 1`, derives Legendre from it, and claims values to
+`4561#`.  **I did not verify his values.**  If anyone wants windowed-record data from outside the
+project, that is the only place I found it.
+
+## Prover B (chain statement)
+
+Round 32, 2026-09-04.  Target: `Q*_J(M) <= F(M) + q'` for every `M`, every `J >= 3`.  Full
+report `research/proof/chain_statement.md`; vehicle `research/proof/chain_family_r32.py`
+(+ `chain_viol_classify_r32.py`, `chain_slack_r32.py`).  Pre-registered before computing
+(eight predictions, scored in the report: 6 confirmed, 1 refuted, 1 half).
+
+STATUS: NO PROOF.  The obstruction is exact and now has a sharp boundary.
+
+PROVED / RESTATED.  Lemma 1: the chain statement at `(M, q')` is EXACTLY
+`Phi(w) <= F + q' - span(w)` for every realised legal word `w` (word reduction + attainment),
+equivalently "every gap of `M+q'` made by >= 2 deletions is `<= F + q'`".  Lemma 3: the
+family-invariant ingredients `I` (gaps `<= F`, adjacent pairs `<= F_2`, T1-T3, class minima,
+peel, middle-sum, same-tooth, mirror, attainment, CSP) give only `Q*_3 <= F_2 + min flank`,
+`Q*_J <= (J/2) F_2` (`J` even), `((J-1)/2) F_2 + F` (`J` odd) - the 2F wall - and cannot give
+more, because:
+
+EXACT (Lemma 4, exhaustive on the tooth-counterfactual family, every ingredient of `I` holding
+at every member; attainment gated by direct sieve of `M+q'` at 1,620 rows, 0 mismatches):
+chain violators 1/180, 1/1440, 36/12960, 193/142560 at m11..m19 with the incoming tooth free;
+0/30, 0/180, 3/1440, 46/12960 with it PINNED to `round(q'/6)`.  The pair statement HOLDS at
+every violator but one (m19 free, the wrap-pair member), so "pair => chain" has no proof from
+`I`.  Violators are literal (`J = 3..7`, the deepest `(a,b,a,b,a)`) and padded (`J = 4..6`);
+max excess 1, 1, 6, 11 free / 0, 0, 3, 9 pinned, growing.  Routes scored: (i) par trading -
+`eps` ranges `[-21, +15]` at m19 on the family against `s_min = 8`, so it is the statement
+itself per letter, not a consequence of `I`; (ii) literal case + pair black box - the pair
+statement adds nothing beyond "gaps `<= F`" once `F > q'`, what must be added is the flank
+envelope of the literal words; (iii) padded case by descent - no base (`q' > F(M^-)` fails
+from m29) and it bounds the wrong side; (iv) survivor-algebra contraction - the layers are not
+monotone (real: 33,34 / 58,55,55 / 85,88,68; family steps `[-21,+15]`).
+
+THE SHARP BOUNDARY (new, measured).  Call an old gear degenerate if `v_q = (q-1)/2` (adjacent
+teeth - excluded for real teeth by `neighbour_of_hit`).  EVERY pinned violator (3/3 at m17,
+46/46 at m19) has a degenerate gear; free non-degenerate violators exist (1, 3, 50 at
+m13/m17/m19, e.g. `(1,1,1,2,1,5)`, `v' = 5`: `(5)+(13,10,13,10)+(2) = 53 > 50`).  The
+sub-family with NO adjacent teeth AND `3a = q' -+ 1` has ZERO chain violators in 2,568 rows to
+m19 (8 / 40 / 280 / 2240) and in a 600-member fixed-seed sample at m23 (min margin 2, so
+not comfortable).  The pair statement fails at one such member.  So
+the smallest ingredient set with no known counterexample is `I + {2u_q != +-1 (every gear)} +
+{3a = q' -+ 1}`, both consequences of `6u = +-1` and both in the kernel; a proof must use them
+TOGETHER, and nothing on record combines them.  Rider (P6 refuted): the REAL old gears satisfy
+the chain statement for EVERY incoming tooth at m11..m23 (worst margin 4) - at these levels the
+old teeth carry it, the opposite of the increment law's finding.
+
+THE REAL MACHINE (exact; recorded `Q*_J` table reproduced 5/5, attainment 4/4 by direct
+sieve).  Per-word slack `F + q' - span - Phi` on the r30 counted census, m11..m37: minimum 7
+at the padded `(12,37)` of m31, literal cells never below 10; the binding word is always of
+length 1 or 2 - the letter `a` at m11..m29 (`Phi(a) = 4,12,17,25,33,48` against `F + b`), the
+padded `(q')` and `(a, q')` at m31/m37.  SMALLEST UNPROVED STATEMENT: for every `M`, the flanks
+of an occurrence of `a` sum to `<= F + b`; of `q'` to `<= F`; of `(a,b)` to `<= F`.  Each is a
+flank order statistic of one gap value; each fails on a counterfactual satisfying `I`.
+
+FILES TOUCHED: `research/proof/chain_statement.md` (new), `research/proof/chain_family_r32.py`,
+`chain_viol_classify_r32.py`, `chain_slack_r32.py` (new), logs and violator JSONs in
+`research/proof/`, this block.  Compute: <= 4 cores, largest array 223M bool (m23), 23 min for
+the m19 family.  Not committed.
+
+## Prover A (pair statement) -- round 32
+
+**Target.** PS: `F_2(M) <= F(M) + q'`.  By the attainment identity `F(M+q') = max(F_2(M),
+max_{J>=3} Q*_J)` the budget inequality is exactly PS (the `J = 2` layer) plus the chain
+statement; by the deletion ladder PS is implied by the budget inequality at the same rung.
+Full write-up: `research/proof/pair_statement.md`; gates `research/proof/pair_statement_r32.py`
+(`real`, `family`, `famfail`, `exhibit`, `oneclass`, `d0`) with logs/JSON beside it.
+
+**Status: NOT PROVED; obstruction named.**  The smallest statement I could not prove is the
+column-0 instance.  By the mirror the pair at column 0 is `(d_0, d_0)`, so PS at 0 is
+`F(M) >= 2 d_0 - q'`, and on the real machine `d_0` is the column of the FIRST TWIN PRIME PAIR
+ABOVE `p` (`6d_0 -+ 1` are `p`-rough, hence prime while `< q'^2`).  Every route to it for all
+`p` is one of: `d_0 <= q'` (a twin pair in `(p, 12p+1]` -- a twin-Bertrand postulate, open);
+a lower bound `F >= 2d_0 - q'` from the blocked run `1..d_0-1` (FALSE teeth-free: family member
+`V(19) (1,1,4,3,5,2)`, `F = 26, d_0 = 25, q' = 23`, exhibit gate; and the only teeth-specific
+information about `(0, d_0)` is "no `p`-rough twin below `6d_0 - 1`", the same statement); or a
+Rankin-type lower bound on `F` (`~ p log p loglog p`, literature) against a twin-Cramer bound on
+`d_0`.  So the real teeth enter PS at column 0 as twin EXISTENCE -- the conclusion of the
+programme, not a tool.  Joined to any upper bound `F <= B(p)` PS at 0 places a `p`-rough twin
+pair at column `<= (B(p)+q')/2`; with an Iwaniec-type `B` that is below the dimension-2 sieving
+limit (`beta_2 ~ 4.27`; literature, unverified here).  Numerically the instance is trivial:
+`d_0 <= q'` at all 78,496 primes `p <= 10^6` (max `d_0/q' = 0.29`).
+
+**Lemmas proved.**
+- L2 (trivial discharge): `g_L + g_R <= F + min(g_L, g_R)`; PS holds wherever the smaller flank
+  is `<= q'`, hence at every machine with `F_2 <= 2q'+1` -- FREE THROUGH m31 (recorded spectra),
+  content from m37 (`90 > 83`); at m47 the maximiser `[54,80]` has both flanks `> 53`.
+- L3: the column-0 equivalence above.
+- L4 (re-phasing / sole-striker, from the manager's one-class argument, teeth-free, both worlds):
+  moving a set of gears to translates of their tooth sets is a translate of the machine, so any
+  gap it exhibits is a gap of `M`.  Corollaries: if `g_L + g_R > F` every gear is the sole striker
+  of some column of the stretch (holds at every `F_2` maximiser checked, m11..m23 and P_5..P_9);
+  and re-phasing one gear onto `x` yields an exact certificate gap `cert(x)`, PS at `x` following
+  when `cert >= g_L + g_R - q'`.  For real teeth the `+u` sole class is re-covered iff
+  `x = 3u = 2^{-1} (mod q0)`, the `-u` class iff `x = -3u`, else none.
+- L5: the one-class world has no counterfactual family (one residue per prime is a CRT translate),
+  so a teeth-free proof of the two-class generic instances would prove the Jacobsthal increment
+  `j(P_{k+1}) - j(P_k) <= p_{k+1}` through `k = 18` (manager's fact confirmed: one-hole
+  `= 22,26,34,40,46 = j(P_6..P_10)` at P_5..P_9).  What two-class has and one-class lacks: the
+  mirror fixed point is OPEN (the shield forces `(d_0, d_0)`; one-class has `(2, q'-1)` at 1) and
+  the letters `a, b ~ q'/3` (two kills need a gap `>= 2p` one-class, `>= a` two-class -- why PS
+  decouples from the increment at m19).
+- L6 residue fact: right/left offset sets at an opening are `R_g` and `-R_g`, equal iff
+  `g | x`, disjoint otherwise; at `x = 0` all gears reflect identically (`W^- = W^+`).
+
+**Measured (exact, full periods).**  Single-gear certificate certifies every pair above the
+record at m11..m23 (20/88/124/400/130) and every pair above `j` at P_5..P_9 (22/22/94/70/286);
+the top prime alone is NOT enough (its loss 22, 24, 30 exceeds `q' = 19, 23, 29`), the best
+prime's loss is `<= 8,10,12,16,18`.  Family m11..m19 (14,610 members): single-gear misses
+0 / 2 / 10 / 760 pairs, ALL L2-free (smaller flank `<= q'`) except the wrap pair of the failing
+member; two gears certify all but 4 (the wrap pair and three L2-free ones).  So L2 + one-gear
+re-phasing covers the whole family except the single pair that is actually false.  Non-wrap slack
+min 6/6/5/4 (record confirmed), no non-wrap pair within 3 of the budget anywhere, `F_2 = 2d_0` at
+4/5/7/11 members.  Lag-1 effect (manager branch 5b): reproduced exactly at m11..m23; present at
+27/30, 165/180, 1301/1440, 12501/12960 family members -- structural in ~95%, absent in the rest;
+NOT a route: PS is extremal and the failing member's extremal pair is at `x = 0` where the
+correlation is `+1`.
+
+**Classification.**  PS is not a constant-factor Iwaniec question: Iwaniec-type bounds are
+absolute upper bounds, PS is relative (`F_2 - F <= q'`) and at column 0 needs a LOWER bound on
+`F` relative to `d_0`.  The mirror creates the hard instance, the shield makes it unmergeable in
+place, the survivor generator restates PS as "a far gear costs `<= q'`" with no slack, and the
+only working structure (re-phasing) is one-class too.  Nothing says PS is false (corpus slack
+`>= 9`, heuristic margin polylog-vs-linear); it says PS cannot be settled ahead of the twin
+conclusion.  Kernel-cheap: L2, L3, the L4 translation lemma, the L6 residue fact.
+
+---
+
+## Coverability spectrum (SAT)
+
+INSTRUMENT BUILDER lane. Full write-up and every witness:
+**`research/proof/cov_spectrum.md`**. Instrument: **`research/cov_sat_r32.py`**
+(`gate` mode reproduces item (a)). Per-run results: one JSON per
+`(M, L, J, flanks)` in `research/data/proof/`; logs there too (gitignored).
+Pre-registration for the beyond-the-wall section:
+`research/data/proof/prereg_c.txt`, written before any `m61+` instance was
+built. Solver: **CaDiCaL 1.9.5** via python-sat in `.venv-sat`. NOT COMMITTED.
+
+**FIRST, THE CORRECTION THAT MATTERS MOST: `COV(M)` WAS ALREADY BUILT, IN
+ROUND 20.** My brief said it was "the one size instrument the record names and
+never built", quoting `alignment-rules.md` 6.5's `[named construct; NOT BUILT]`.
+**That sentence is stale.** `research/cov_sat.py`, committed at `fe4c390`
+("round 20 ... COV-SAT reaches machine 41 complete"), IS `COV(M)`, same
+CRT-phase-vector mechanism, mechanic lane. `mechanic.md` K1 records exact gap
+spectra with COMPLETE HOLE LISTS at m11..m37 (m37's 13 holes in 123 s of SAT
+against an 11,829 s scan), machine 41 complete, `F_j` at m23/m29/m31 -- and the
+same wall I hit: "BOUNDARY-REFUTATION CLIFF at m43 tails, m47 `v >= 119`".
+**PROCESS FAILURE, MINE:** I wrote my build to `research/cov_sat.py` and
+overwrote round 20's file; I caught it from `git status` showing the file
+MODIFIED rather than new, and **restored it byte-for-byte** (`git diff` empty).
+My build now lives at `research/cov_sat_r32.py`. Nothing of round 20 is lost.
+**ACTION FOR THE MANAGER: `alignment-rules.md` 6.5 should be corrected --
+`COV(M)` is BUILT, `research/cov_sat.py`, round 20, and 6.5 should point at
+`mechanic.md` K1.** Check the other `[NOT BUILT]` tags in 6.5 and 9 for the
+same staleness before briefing anyone else to build one.
+
+**THE MECHANISM (both builds).** A phase vector IS a column (CRT), so the whole
+spectrum is a covering CSP with no period: `y_{q,s}` one-hot per gear, flank
+offsets delete up to four phases per gear as unit clauses, and each interior
+column is one clause `OR_q (y_{q,t-u_q} v y_{q,t+u_q})`. No auxiliary variables
+at `J = 1`; ~1,100 variables at m97. Section 2.8's realisability CSP handed to
+a solver.
+
+**WHAT THE SECOND BUILD ADDS, HONESTLY.** (1) It reproduces round 20
+independently -- different author, different cardinality encoding, different
+CaDiCaL -- and agrees at every machine. (2) `Q*_J`, the WORD-LEGAL spectrum, is
+genuinely NEW: round 20 built `Q_j`, the word-FREE one with the size shadow
+`middles >= a`; `Q*_J` uses the sharp predicate. (3) The left-flank monotone
+form. (4) Three rows past the wall, `F(m61/67/71)`, lower bounds only.
+
+**GATE (a), ALL GREEN.** `cov_sat_r32.py gate`: `F` and `F_2` at m11..m23, ten
+two-sided decisions, every one equal to the scanned corpus. Extended through
+(b): **fifteen `(M, J)` values decided exactly by SAT, all fifteen equal to the
+corpus** -- `F` at m11..m37 and `F_2` at m11..m31. `F(m37) = 88` is decided
+against a period of 1.2e12 columns without touching it. Ten further one-sided
+lower bounds, each a re-verified witness, all matching the corpus:
+`F_2(37) >= 90`, `F(41) >= 91`, `F_2(41) >= 103`, `F(43) >= 103`,
+`F_2(43) >= 116`, `F(47) >= 118`, `F_2(47) >= 134`.
+
+**PAST THE WALL (c), one direction only:** `F(m61) >= 171`, `F(m67) >= 175`,
+`F(m71) >= 185`, each a both-flanks SAT witness re-verified by residue
+arithmetic and given an address -- the m71 witness sits at column 1.699e25 in a
+26-digit period. These beat the free monotone bound (`F` non-decreasing in the
+machine, because adding a gear only strikes more columns) by 10, 4 and 10.
+
+**A SOUNDNESS FIX MADE IN ROUND, worth repeating to anyone who builds on this.**
+Climbing `L` in the both-flanks form and stopping at the first UNSAT is
+**WRONG**: "both flanks spared" is not downward closed in `L` -- round 20's own
+hole lists prove it, m37 missing `v = 73..87` and then realising 88, so the
+climb would return 72. Round 20 avoids this by scanning the WHOLE spectrum;
+this build avoids it with one monotone decision. The monotone
+predicate is the LEFT-FLANK-ONLY one, `C_J(L)` = "some run of `L` columns with
+at most `J-1` of them open has an open column immediately to its left", with
+`max{L : C_J(L)} = F_J(M) - 1`; every upper bound must be taken there. The
+correction costs **6-20x** in conflicts (m31 `F`: 33,553 -> 664,600). The first
+version of this build was unsound in exactly this way and its numbers were
+re-run. **But the left-flank form is NOT simply better**: at m37 it paid
+3,990,129 conflicts / 276 s for one UNSAT, while round 20's whole-spectrum scan
+got `F` AND the complete hole list in 123 s. Its real value is that it licenses
+BISECTION, which matters only when the range is wide and unknown -- past the
+wall.
+
+**Q\*_J GATED (item d, partially).** The word-legal predicate is encoded at its
+source, not through T2/T3: a point set has legal middles and T3-alternates iff
+all its points lie on ONE PHASE of `q'`, so `q'` is one more phase variable
+required to strike every spared interior. `verify_witness` checks both
+formulations and asserts they agree, on every witness. Gate
+`max_J Q*_J(M;q') = F(M+q')` holds at m23 (43 = `F(29)`) and m29 (58 = `F(31)`).
+Two free confirmations: `Q*_2 = F_2` at both machines; and the `Q*_5(m29)`
+witness has spared interiors `[7,17,38,48]` in `L = 54`, i.e. the gap word
+**(7,10,21,10,7)** -- exactly the self-reverse `J = 5` maximiser 3.7 records at
+m29, found here by a different vehicle. Also `Q*_3(m23) = 43`'s phase vector is
+a PREFIX of the `F(m29) = 43` witness: the m29 record stretch is the m23
+word-legal depth-3 run with gear 29 slotted in to kill both of its interior
+openings -- the merge law happening in front of the solver.
+
+**A DEFECT IN alignment-rules.md 3.7, please fix.** The list of full-period
+spectra reads `... 31 "58 68 85 90 92 97"; 41 (prefix, lower bounds) "110 112
+118 123 130 138"`. Its neighbours in that list are `F_1..F_6`, so the m41 row
+reads as `F(41) >= 110`, contradicting `F(41) = 91` and the verified SAT
+witness at `L = 90`. `mechanic.md:620` carries the same row as **`j = 3..8`**.
+The row is mislabelled, not wrong. Recommend 3.7 write
+`41 (prefix, lower bounds, j = 3..8)`.
+
+**WHAT DID NOT FINISH, WITH ITS PRICE.** UNSAT cost grows **6-11x per rung**
+(m29 57,705 -> m31 664,600 -> m37 3,990,129 conflicts), so `F(m41) <= 91` is a
+~4e7-conflict decision and `F(m43) <= 103` a ~4e8 one. Killed after 25-85
+minutes each, none finished: `F(41)`, `F_2(37)`, `F_2(41)`, `F(43)`, `F_2(43)`.
+**The two-sided ladder stops at m37 for `F` and m31 for `F_2`.**
+
+- **The budget inequality past the wall was the plan and it did not buy.** The
+  idea was a left-flank UNSAT at `L = F(M) + q'` -- far ABOVE the true `F`,
+  which is the cheap end of the UNSAT direction. At m61, `L = 222`, it did not
+  finish in ~50 min and was abandoned. And there is **no counting fallback: the
+  pigeonhole bound is vacuous from m37 up**, since a window of `L` columns
+  admits up to `2 ceil(L/q)` strikes from gear `q` and `sum_{q=5}^{37} 2/q =
+  1.518 > 1`. Every upper bound on `F` past m37 has to be bought from a solver.
+- **The pair-excess column past the wall is EMPTY, and that is the honest
+  result.** No `F_2` at m61+ was found (two starts, `L = 180` then `L = 176`,
+  neither produced a witness in its budget), and an excess needs both bounds.
+  **The pair statement has NOT been tested past the wall.** Where SAT decided
+  both members -- the seven machines m11..m31 -- `F_2 - F <= b` holds at all
+  seven (excesses 4,5,7,6,5,12,10 against `b` = 9,11,13,15,19,21,25; margins
+  5,6,6,9,14,9,15). That is the corpus's own margin re-derived without a
+  period, not new evidence about the inequality.
+- `F_3` at m47..m61 and `Q*_J` at m59/m61: **not attempted**; the `J = 2` rungs
+  did not finish, so `J = 3` was never reached. `F_2(59) <= 173` is **still
+  conditional on record**; nothing here made it unconditional.
+- The SAT (lower-bound) side saturates too: m71 at `L = 176` cost 164,825
+  conflicts (2.9 s), at `L = 180` cost 13,334,483 (1167 s) -- 81x for four
+  columns. Whether that means the pre-registered `F` estimates are too high, or
+  merely that CDCL struggles in the last stretch, is **not decided by anything
+  measured here**.
+- Round 29's k-axis lesson reproduced from scratch: **the dear instance is the
+  TIGHT one, not the large one.** m41 (`dF = 3` against `q' = 41`) is the
+  tightest corpus step and by far the dearest rung -- `F(41) >= 91`'s SAT
+  direction alone cost 2,218,737 conflicts against m43's 861,101 for a LONGER
+  stretch.
+- **No DRAT proof was checked.** Every UNSAT here is solver-certified, not
+  proved: CaDiCaL 1.9.5, encoding `research/cov_sat_r32.py:build`, left-flank form.
+  The claim made is always "no covering has been found", never "none exists".
+
+**PRE-REGISTRATION SCORE.** P1 (the `F` bands at m61..m97) is **undecided** --
+only lower bounds were purchased, and a lower bound cannot fall inside or
+outside a band; it stays on the record as an open bet for the next run at this.
+P5 (cost) scored **half**: it predicted the instrument would reach m53 and
+stall at or before m67 on the UNSAT side; it reached **m37** and stalled at
+**m41**, three rungs worse, because P5 was written against the both-flanks
+UNSAT cost and the sound left-flank form costs 6-20x more. It was right that
+the report past the stall would be lower bounds with verified witnesses.
+
+**VERDICT ON 6.5's OWN CLAIM.** 6.5 says `COV(M)` "reaches machines 37, 41, 43,
+53 whose periods are beyond any scan" and therefore yields the missing upper
+bounds on `F` and the `F_j`. **Half confirmed -- and round 20 had already
+confirmed the same half**: m37 and m41 yes (round 20 got both, m41 complete
+with its hole list); m43 and m53 no, from either build. The construct is the
+right one -- it is exact, it needs no period, and it agrees with the period at
+every machine that has one -- but a plain CDCL encoding of it is not enough for
+the direction 6.5 wanted it for.
+Untried next moves, in order of promise: **cube-and-conquer** on the small
+gears' phases (gears 5, 7, 11 have tiny domains once the flank units are in;
+5x7x11 = 385 cubes would parallelise the UNSAT side across cores, instead of
+one solver per machine as here); a DRAT-checked UNSAT so the upper bounds stop
+resting on the solver's word; and reflection symmetry breaking
+(`s_q -> L+1-s_q` is a global involution, worth ~2x, which is one rung of
+nothing).
+
+## Prover C (chain from the teeth)
+
+Round 33, 2026-09-04.  Branch 2f: prove the chain statement `Q*_J(M) <= F(M) + q'` from prover B's
+invariant ingredients `I` plus (T) "no gear has adjacent teeth" and (L) "3a = q' -+ 1", or find the
+exact obstruction.  Full report `research/proof/chain_from_teeth.md`; vehicle
+`research/proof/chain_teeth_r33.py` (+ `_analyze`, `_stretch`, `_bare`, `_depth`).  Pre-registered
+(eight predictions, scored in the report).
+
+STATUS: NO PROOF.  The claim survives every row computed and has ZERO slack.
+
+PROVED (bookkeeping).  In the mirror family (L) is exactly "incoming tooth pinned" (parity); (T) at a
+gear is "its own letter is not 1"; at gear 5 (T) FORCES the real tooth `v_5 = 1`, at gear 7 it allows
+`v_7 in {1, 2}`.  The padded depth-3 cells mention only `M` and `q'`, so (L) cannot enter them.  CRT
+recombination lemma: a split of the gears `A | B (| C)` covering the two flanks separately gives
+`g_L + g_R <= F_2` (`<= F`); MEASURED: no such split exists at any binding occurrence (real m13..m23,
+the pinned violators, the equality member) - both flanks carry sole coverers of the same gears.
+
+EXACT (exhaustive; m19 family recomputed 193 / 46 / 0 as B; m23 sweep below).
+- WHERE (T) ACTS: at gears 5 and 7 only.  Every pinned violator at m17 (3) and m19 (46) has `v_5 = 2`
+  or `v_7 = 3` (gear 7 in 45 of 46).  "(T) at 5, 7 only" + (L): 0 violators in 10 / 60 / 480 / 4,320
+  rows at m11..m19; "(T) at every gear >= 11 only" + (L): 0 / 0 / 3 / 25.  Separation at the higher
+  gears is not the carrier (violators at `min_{q>=11} sep = 1, 2, 3, 4`, all with a degenerate 5 or 7).
+- WHERE (L) ACTS: the letter table at m19 ((T) rows, 2,240 per letter): violators
+  2, 3, 12, 2, 7, 1, 6, 0, 2, 12, 5 at `a = 1..11`; the pinned `a = 8` is the unique zero and the
+  unique non-negative minimum margin (0); its neighbours 7 and 9 carry 6 and 2 - (L) is needed as the
+  exact identity.  The letter dependence is NOT the round-31 depth table (`a = 4, 9` have literal
+  depth 1 at gears 5,7 and still violate).
+- THE FLANK STATEMENTS at m19 (142,560 rows): padded `Phi(q') <= F` and every padded depth-3 cell
+  hold on the WHOLE family (0 fails / 125,928 evaluated, min margin 0) - they need neither fact and
+  follow from nothing on record.  Literal: `Phi(a) <= F + b` fails 3 (2 with (T), 1 degenerate),
+  `Phi(b) <= F + a` fails 11, `Phi(a,b) <= F` fails 71 (21 with (T), 12 pinned, 0 with both).  On the
+  (T)+(L) sub-family the minima are 1, 4, 4, 0 and the tight cell per row is S1 884 / S1b 497 /
+  S2 443 / S3 416 of 2,240 (S1b = the letter-b flank, the binding cell at m17, added to B's list).
+- ZERO SLACK: sub-family min chain margin 6, 4, 4, 0 at m11..m19.  The m19 EQUALITY MEMBER teeth
+  `(1,1,4,5,1,2)`, `q' = 23`: `F = 25`, `Q*_4 = (18) + [8, 15] + (7) = 48 = F + q'`, `Phi(a,b) = F`;
+  no degenerate gear, every ingredient holds.  Any proof from `I + (T) + (L)` must be exact there.
+- m23 (T)+(L) sub-family, full 22,400-member sweep: [SWEEP PENDING - line to be replaced]
+
+MECHANISM (routes of the brief).  (i) "no adjacent strikes caps the flank": DEAD - a tautology on the
+data (46/46) and no capacity lever ((T) machines reach `F = 32` at m17 vs real 18).  (ii) what
+`3a = q' -+ 1` forces: with (T) fixing gears 5 and 7, it is the round-31 bare-alternation class table
+(`BareAlternation.lean`; literal depth admitted by gear 5 alone is 1 / 3 / 5+ by `q' mod 30`), which
+explains the DEEP violators (57 of 59 pinned cells are depth 4-6: degenerate gear 7 opens a run of 5
+consecutive open residues through which `a = b = 1 mod 7` walks) and NOT the depth-3 flank cells nor
+the letter table.  (iii) padded flank by CRT: DEAD (no gear split at any binding occurrence; and the
+padded cells hold family-wide, so a proof would use no tooth fact).  (iv) the one extra fact needed
+is named: (T) at gears 5 and 7, nothing above; tested with / without (0 / 4,320 vs 25 / 6,720 at m19).
+
+SMALLEST STATEMENTS THAT DO NOT FOLLOW from `I + (T) + (L)` (each a flank order statistic, each
+measured only): P: flanks of a gap `j q'` sum to `<= F - (j-1) q'` (true on the entire family, margin
+0); L1: `Phi(a) <= F + b`; L1b: `Phi(b) <= F + a`; L2: `Phi(a,b) <= F` (equality at m19).  All
+are the isolation of large gaps (branch 5b) at one gap value; every derivable bound from the routes
+on record is B's Lemma 3 bound (short by `F_2 - q' + min flank`) or a depth cap.
+
+FILES TOUCHED: `research/proof/chain_from_teeth.md` (new), `chain_teeth_r33*.py` (new), rows
+`chain_teeth_r33_fam_m{11,13,17,19}.json`, `chain_teeth_r33_sub_m23.json`, logs
+`chain_teeth_r33_*.log`, this block.  Compute: 4 processes, largest array 37M bool, m19 family 47 min,
+m23 sweep ~3 h.  Not committed.
+
+## Prover D (explicit Iwaniec, two classes)
+
+**Target.** Branch 3a: an explicit-constant Jacobsthal-type bound for the two-class sieve aimed at
+`F(y) < y^2/6`.  Full write-up `research/proof/iwaniec_two_class.md` (sources, the argument with
+every constant, pre-registration, computations, scores).
+
+**Status: DEAD as a sieve route.  `C_2` does not exist; the loss is an exponent, not a constant.**
+
+**What Iwaniec 1978 is** (full text read, De Gruyter open access): two pieces.  (a) NEW in 1978, the
+*shifted sieve* (Lemma 1): lower-bound sieve weights built for the first `r` primes `P` are
+transported to any `r` primes `Q`; the main term for `Q` is at least the main term for `P` times
+`prod(1-1/q)/prod(1-1/p) >= 1`.  Proof needs only `sum_{n|m} lambda_n <= [m=1]` and `p_i <= q_i`;
+it discards WHICH class is removed at its first line.  Lossless.  (b) The ENGINE, quoted from
+Iwaniec 1971 (*On the error term in the linear sieve*, Acta Arith. 19; scan read pp. 1-5): Rosser's
+linear sieve with remainder `sum |lambda_n| << y/log^2 y` (his (5)) and main term
+`V(z){2 e^gamma log(s-1)/s + O(1/log y)}` (his (6)); Selberg's remainder `y/log y` is explicitly too
+weak.  Not the large sieve, not Selberg, not Montgomery.  Assembly: `y = C z^2`, `z = p_r`,
+`X = y/(V_Q log z)`, giving `S > y/log^2 z >= r` for `C` large, `X <= e^gamma C (r log r)^2 (1+o(1))`.
+The constant is `e^gamma exp((c_1/2 + c_2/4 + 1) e^{-gamma})` with `c_1` = Iwaniec 1971 Cor. (1.4)'s
+absolute constant -- NEVER numerical anywhere, confirmed at the source -- and `c_2` the constant of
+(5), measured 1.1-1.2 at `s ~ 2.25` (exact support counts, `z <= 400`).  A fully explicit finite
+version (Rosser weights checked to satisfy the sieve condition on all 32,767 divisors of `P(50)`,
+`|rho_d| < 1`) certifies `j(P(z)) <= 0.67 .. 0.19 p^2` at `p = 11 .. 941`, 6-19x above the true `h(k)`.
+
+**Two classes.**  Lemma 1 transfers verbatim with `f(d) = d/2^{omega(d)}` (columns are a sieve on
+`Z` removing 2 classes per gear `>= 5`; no factor-6 conversion needed).  Lemma 2 does not: the main
+term is a DIMENSION-2 sieve, whose lower-bound function `f_2(s)` is identically 0 for
+`s <= beta_2 = 4.2664` (Diamond-Halberstam-Richert; value via Kao 2016).  The window sits at
+`s = log(y^2)/log y = 2`.  The transfer yields `F <= C y^{4.27+eps}` (constant not explicit) --
+apparently unwritten anywhere, and useless here.  PRE-REGISTERED before the run (P1-P4, all
+CONFIRMED): the rigorous finite two-class certificate (Rosser truncation parameter `beta` and level
+`z^s` optimised, `|rho_d| < 2^{omega(d)}`) gives, at `z = 8, 12, 20, 30, 42, 54, 72`:
+`X0_2 = 16, 45, 354, 957, 3201, 9900, 29519` columns against budgets `(z^2-z)/6 = 9, 22, 63, 145, 287,
+477, 852` -- ratio 1.7x rising to 35x, `X0_2 ~ z^{3.68}` (fit on `[24, 72]`), while the one-class
+control's `X0_1/z^2` FALLS 0.67 -> 0.19 on the same certificate.  Real machine:
+`F/((y^2-y)/6) = 0.28-0.44` at `y = 11..59`; ZM's maximum A072753 sits at 0.48-0.60 of the budget
+from `p = 29` (near-miss 0.923 at `p = 13`), all 21 values under it.
+
+**Lossiest step:** the sieve lower bound -- its sieving limit, not its constant.  Shifted sieve and
+sieve-to-covering are lossless; the remainder is carried exactly in the finite certificate.
+Known improvements cannot help: the large sieve bounds survivors from ABOVE (wrong direction);
+Selberg's `Lambda^2 Lambda^-` in dimension 2 has no better limit than DHR (Franze 2010: superior
+only for `kappa >= 3`); second-moment tools attack a remainder that is already exact.  Structural
+reason (mine, theorem-level): every such tool is class-count-only, hence bounds `h_2`; a bound
+`h_2 <= 6 C_2 y^2` with `C_2 < 1/6` applied to the real teeth gives `F(y) < (y^2-y)/6` and, by the
+kernel route (= ZM 2017 Thm 4.1), infinitely many twin primes.  So "a constant below 1/6" is not a
+sieve improvement away; it IS the twin prime conjecture.  The manager's caveat (window below the
+dimension-2 limit) is confirmed and sharpened: the window's `s = 2` vs `beta_2 = 4.27`.
+
+**For the tree.**  3a DEAD (sieve-only, with the mechanism recorded).  Branch 3 remains open only as
+"use the teeth"; any route must certify an opening in `(y, y^2]` at every `y` and cannot pass
+through a statement about two classes per prime.  Nothing here touches branches 1, 2, 4, 5.
+Files: `research/proof/iwaniec_two_class.md` (new); this block.  No commits.

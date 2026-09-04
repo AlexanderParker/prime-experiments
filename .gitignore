@@ -95,3 +95,8 @@ research/data/r30/*.pkl
 research/data/r30/*.npy
 
 research/data/r31/*.npy
+# prover row dumps (55 MB, regenerable by research/proof/chain_teeth_r33.py)
+research/proof/chain_teeth_r33_fam_m17.json
+research/proof/chain_teeth_r33_fam_m19.json
+research/proof/chain_teeth_r33_sub_m23.json
+research/proof/__pycache__/
