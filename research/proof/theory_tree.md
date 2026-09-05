@@ -101,6 +101,32 @@ the log at the bottom is chronology only.
         <= F - (j-1) q', 0 failures in ~130k family rows, margin 0 once) is its exact-multiple case.
         STRONG as a pattern, no mechanism, unproved.
 
+      - 2g.i. The neighbour-sum profile (the manager's scan, research/anchor235/r45/, then
+        research/proof/neighbour_profile.md, 2026-09-06). Spawned by the observation that the
+        records at m23, m29, m31 are 3-runs of the machine below with a letter as the middle
+        and N(letter) = F +- 1. The F + 1 law is DEAD, killed at m29 by 4 at the letter itself
+        (N(10) = 48 against F + 1 = 44, run (18, 10, 30)); thresholds v_0 = 7, 6, 8, 8, 6, 21, 8
+        at m11..m31 against letters 4, 6, 6, 8, 10, 10, 12; no constant-c version survives
+        (max N(v) - F over v >= 6 is 3, 1, 3, 3, 1, 12, 8). WHAT REPLACES IT, exceptionless on
+        full periods to m31 (6.4 billion gaps): N(v) <= F_2(M) for every realised v >= 6, tight
+        once (N(7) = 55 = F_2 at m29); spikes only at v <= 5. MECHANISM, PROVED (the glue lemma):
+        re-phasing the right flank by CRT under any two-colouring of the gears makes the glued
+        middle column an opening (it equals x_1 modulo every left gear and x_2 modulo every
+        right gear), so the glued object is an adjacent PAIR, bounded by F_2 and never by F;
+        this is why no argument of that shape could prove the F + 1 form. The F_2 glue succeeds
+        at 426 of 446 attaining 3-runs with v >= 6 at m13..m23 and 66 of 68 at the letters. On
+        200 family members the F + 1 form holds at 43-61% (false, not real-teeth); the F_2 form
+        at 94-98% (near-structural). L6 across a gap (new, 0 violations in 2.39 million pairs):
+        p_g + q_g = -v or -v +- d_g (mod g), a translation only. Why it does not close the chain:
+        the F_2 cap gives Q*_3 <= F_2 + b, so the budget needs F_2 - F <= a, and F_2 - F =
+        4, 5, 7, 6, 5, 12, 10 against a = 4, 6, 6, 8, 10, 10, 12 fails at m17 and m29. FACT about
+        M. Instrument gate: F({5..37}) = 88 produced from m31's period alone (Q*_4, word
+        (28, 37, 12, 11)). CHILD NAMED: for every 3-run with v >= 6 there is a two-colouring of
+        the gears whose CRT re-phasing blocks the glued target; finite, covering-theoretic, no
+        density, no transfer, modulus grows with the machine (the wall's shape); residue 20 runs
+        at v in {6, 7, 8, 11}.
+        - 2g.i.a. The glue as a covering statement. OPEN, prover running.
+
   - **R2. Whole-window formulation.** F(y) < y^2/6 directly, by a bound that uses the teeth. The
     least demanding formulation (it localises the next twin only below y^2). In print as a
     conjecture (Ziller-Morack 2017 Conjecture 6 at the real teeth); no two-class upper bound of any
@@ -823,3 +849,8 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   most two junctions (the column of q' and the column of q'^2), with the bottom flank equal to d_0 and the top
   flanks equal to the walk from q'^2; the brick recurses; the inverse-shape bucket bound refuted. W5 closed: the
   flank brick is the pair statement itself. Every weak point on the wall is now tested.
+- 2026-09-06, manager scan then prover N (neighbour_profile.md): the neighbour-sum profile. F + 1 law dead at m29
+  by 4 at the letter; replaced by N(v) <= F_2(M) for v >= 6, exceptionless to m31, with a PROVED mechanism (the glue
+  lemma: CRT re-phasing under a two-colouring glues the two flanks into an adjacent pair, so F_2 is the natural cap).
+  The F_2 cap cannot close the chain statement (needs F_2 - F <= a, fails at m17, m29). Child: the glue as a finite
+  covering statement. Dead-branches file written (dead_branches_reopened.md) with five recurring thin places.
