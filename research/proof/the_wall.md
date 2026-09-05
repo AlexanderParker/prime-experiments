@@ -331,8 +331,11 @@ sum 4/g^2 < 0.365 that never saturates; localised to an interval it dies by the 
 (fibres of one column once the modulus exceeds the interval) and needs a level of distribution
 at dimension 2 to survive: the parity barrier reached from the covering side. So face A now has
 two faces of its own: sieve (dimension 2, exponent 4.27) and covering (collapse; shortest
-addressable interval exp(theta(q^0.73))). One positive: the localised budget proves the
-adversarial lemma for K <= 10. One crack named: a second moment over arithmetic blocks instead
+addressable interval exp(theta(q^0.73))). The claimed positive (the localised budget proves the
+adversarial lemma for K <= 10) was FALSE: the localised inequality fails at {5, 7, 11, 17}
+(covers 15 columns at eta = 0.693) and the tabulated budget is the union bound. The lemma for
+K <= 10 is now PROVED another way (docs/proofs/20): certified infeasibility of an exact 0/1
+program, with the span lemma and the head collision as new reasoning tools. One crack named: a second moment over arithmetic blocks instead
 of congruence fibres. The half-column map added three theorems (fibre, fixed point = twin
 column, uncoupled distances = twice the twin columns above the machine) and no lever: coupling
 constrains strikes, a gap's endpoints are openings.

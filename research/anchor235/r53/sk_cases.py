@@ -135,17 +135,23 @@ def analyse(K, L, cap=8_000_000, show=True):
             for g in S:
                 prod *= g
             if prod > cap:
-                rows.append((S, K - m, capacity, prod, None, None))
+                rows.append((S, K - m, capacity, (prod, 0), None, None))
                 continue
             total_phases += prod
             best = (10 ** 9, None)
+            suf = [0] * (len(S) + 1)
+            for i in range(len(S) - 1, -1, -1):
+                suf[i] = suf[i + 1] + maxstrike(S[i], L)
+            nodes = [0]
 
             def rec(i, cov):
                 nonlocal best
+                nodes[0] += 1
+                un = L - bin(cov).count("1")
+                if un - suf[i] > 2 * (K - m):
+                    return
                 if i == len(S):
                     H = [j for j in range(L) if not (cov >> j & 1)]
-                    if len(H) > 2 * (K - m):
-                        return
                     need = len(H) - max_pairs(H, supply)
                     if need < best[0]:
                         best = (need, tuple(H))
@@ -155,7 +161,8 @@ def analyse(K, L, cap=8_000_000, show=True):
                     rec(i + 1, cov | strike_mask(g, ph, L))
 
             rec(0, 0)
-            rows.append((S, K - m, capacity, prod, best[0], best[1]))
+            rows.append((S, K - m, capacity, (prod, nodes[0]), best[0], best[1]))
+            continue
     return T, supply, rows, total_phases
 
 
@@ -179,19 +186,21 @@ def main():
             f"{ {g: ds for g, ds in supply.items()} }")
         say(f"  cases surviving the counting filter: {len(rows)}"
             f"   (total phase vectors enumerated: {tot})")
-        say(f"    {'S = chosen gears below L':>30} {'aux':>4} {'cap':>4} {'phases':>9} "
-            f"{'aux needed':>10} {'verdict':>10}")
+        say(f"    {'S = chosen gears below L':>30} {'aux':>4} {'cap':>4} {'phases':>10} "
+            f"{'nodes':>8} {'aux needed':>10} {'verdict':>10}")
         allclosed = True
         for S, naux, capacity, prod, need, H in rows:
+            pr, nd = prod
             if need is None:
-                say(f"    {str(list(S)):>30} {naux:>4} {capacity:>4} {prod:>9} "
-                    f"{'not run':>10} {'SKIPPED':>10}")
+                say(f"    {str(list(S)):>30} {naux:>4} {capacity:>4} {pr:>10} "
+                    f"{nd:>8} {'not run':>10} {'SKIPPED':>10}")
                 allclosed = False
                 continue
             ok = need > naux
             allclosed &= ok
-            say(f"    {str(list(S)):>30} {naux:>4} {capacity:>4} {prod:>9} "
-                f"{need:>10} {'no cover' if ok else 'COVER':>10}"
+            nt = ">2*aux" if need >= 10 ** 9 else str(need)
+            say(f"    {str(list(S)):>30} {naux:>4} {capacity:>4} {pr:>10} "
+                f"{nd:>8} {nt:>10} {'no cover' if ok else 'COVER':>10}"
                 f"   best holes {list(H) if H else '-'}")
         say(f"  ==> {'every case closed: A(%d) <= %d' % (K, L) if allclosed else 'NOT CLOSED'}")
         say()

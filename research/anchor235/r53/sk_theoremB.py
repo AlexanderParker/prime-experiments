@@ -298,9 +298,10 @@ def main():
 
     say("=" * 92)
     say("4.  THE SPLIT CERTIFICATE: every K-subset of the small pool, at L = A(K)")
-    say("     (complete: any K-set's small part sits inside one of these)")
+    say("     (complete: any K-set's small part sits inside one of these).  K <= 5 here;")
+    say("     K = 6 is covered by sk_cases.py, whose split is finer and much cheaper.")
     say("=" * 92)
-    for K in range(1, 7):
+    for K in range(1, 6):
         L = A_K[K]
         n, covers, pool = split_certificate(K, L)
         say(f"  K = {K}, L = {L}: {n} subsets of Sm(L) (|Sm| = {len(pool)}), "
@@ -310,7 +311,7 @@ def main():
     say()
 
     say("     and the same one level down, at L = A(K) - 1 (a cover must exist there):")
-    for K in range(2, 7):
+    for K in range(2, 6):
         L = A_K[K] - 1
         n, covers, pool = split_certificate(K, L)
         say(f"  K = {K}, L = {L}: {len(covers)} of {n} subsets cover"

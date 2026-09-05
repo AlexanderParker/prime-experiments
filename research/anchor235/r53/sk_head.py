@@ -92,6 +92,19 @@ def main():
         ds = sorted({H[j] - H[i] for i in range(len(H)) for j in range(i + 1, len(H))})
         say(f"    phase {p5}: strikes {[i for i in range(L) if cov >> i & 1]}, "
             f"holes {H}, pair distances {ds}")
+    say()
+    say("=" * 88)
+    say("MINIMUM HOLES of the five surviving small parts at K = 4, L = 16")
+    say("=" * 88)
+    for S in ([5, 7], [5, 7, 11], [5, 7, 13], [5, 11, 13], [5, 7, 11, 13]):
+        u, arg = best_union(S, 16)
+        say(f"  S = {str(S):>18}: best union {u:>2} of 16 columns, so at least "
+            f"{16-u:>2} holes, phases {arg}")
+    say()
+    say("  and the two-hole minima that make the K = 4 cover work at L = 15:")
+    for S in ([5, 7, 11],):
+        u, arg = best_union(S, 15)
+        say(f"  S = {str(S):>18}, L = 15: best union {u} of 15, so at least {15-u} holes")
     with open(os.path.join(RESULTS, "sk_head.txt"), "w") as f:
         f.write("\n".join(LINES) + "\n")
 

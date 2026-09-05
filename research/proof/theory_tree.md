@@ -528,8 +528,9 @@ the log at the bottom is chronology only.
       collapse from the fifth or sixth gear; the shortest interval it can address is
       exp(theta(q^0.73)), worse than the sieve's q^4.27. What it needs to survive is a level-
       of-distribution input at dimension 2: the parity barrier from the covering side. THE
-      POSITIVE: on the adversarial ladder the localised budget PROVES A(K) < (p_{K+1}^2 - 1)/6
-      for every K <= 10, failing from K = 11 (633 against 308). Localising with average first
+      CLAIMED POSITIVE (withdrawn by R2.d): the localised budget was said to prove A(K) <
+      (p_{K+1}^2 - 1)/6 for K <= 10; the localised inequality is false ({5, 7, 11, 17} covers 15
+      columns with eta = 0.693) and the tabulated eta_max is the union bound, vacuous from K = 4. Localising with average first
       moments is false, not weak (it would give A(7) <= 9.3 against the certified 37): any
       covering-side attempt must carry phase-adversarial first moments. Prior art: no theorem
       in the covering corpus has an interval in its conclusion; the fixed separation appears
@@ -570,6 +571,31 @@ the log at the bottom is chronology only.
         single weighted inequality. Child named: the shape of the rho_g profile (head, middle
         band, top gears), the three-band shape of the flank decomposition.
 
+    - R2.d. The small-K theorem (docs/proofs/20-adversarial-lemma-small-K.md; working in
+      research/proof/small_K_theorem.md). PROVED, new mathematics, bounded. THEOREM A: for every
+      K <= 10, no K primes above 3, each striking two residue classes at its own separation
+      3^-1 mod g with any phase, cover W(K) = (p_{K+1}^2 - 1)/6 consecutive columns (W = 8, 20,
+      28, 48, 60, 88, 140, 160, 228, 280); certified at L = W(K) directly by infeasibility of an
+      exact 0/1 program over the type-reduced item list (HiGHS; 53 to 34,099 binaries; 27 s in
+      all), corroborated by a solver-free exhaustive search at K <= 6, a third search at K <= 5,
+      agreement with round 50, and reproduction of the certified F ladder. THEOREM B: A(K) = 2,
+      5, 7, 16, 22, 28 at K = 1..6 exactly, by reasoning (four lemmas: the arc law, the capacity
+      bound, the SPAN LEMMA - a pair at distance t inside a run shorter than the gear forces
+      g = 3t -+ 1 for even t and g = (3t -+ 1)/2 for odd t, so a distance names at most two
+      primes - and the type lemma; A(1), A(2) pure reasoning; A(3) reasoning plus a hand table
+      with the recorded one-paragraph proof's three gaps filled) down to a proved-complete
+      finite case list and exhaustive enumeration at K = 4, 5, 6 (5, 18, 53 cases). New tool:
+      the HEAD COLLISION (gears 5 and 7 cannot be simultaneously maximal and disjoint; deficit
+      1, 1, 2 at L = 16, 22, 28), which kills the counting-tight case at every K >= 4.
+      CORRECTIONS TO THE RECORD: the distortion lane's "positive" (its localised budget proves
+      the lemma for K <= 10) is FALSE, not merely unproved: {5, 7, 11, 17} covers 15 columns
+      with localised eta = 0.693, eight such instances at K = 2..9; the tabulated eta_max is
+      not an upper bound on the localised second moment (the step alpha <= 2/m fails once a
+      fibre is longer than the gear, and the code patched that regime with a lower bound);
+      what eta_max is is the union bound on the collapsed gears, vacuous at every K >= 4. The
+      K = 5 optimum is {5, 7, 11, 23, 29} (F = 22), not {5, 7, 11, 13, 17} (F = 18). Not
+      proved: any induction step; these are the finite base of the open lemma, stronger than
+      the root; the residual (a lower bound on the tiler function h_S(L)) is unchanged.
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -1137,3 +1163,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   lead and child run; the wall's statement stands in its sharpest form.
 - 2026-09-06, manager's second check on R2.c.i: the one-block inequality is trivially valid (each term is alpha_g^2) and its content is the survivor lower bound itself; the 'factor 3.7' assumed the fair share in the denominator and is withdrawn. Wall 5g rewritten.
 - 2026-09-06, prover SR (spectrum_sum_rule.md): sum rule DEAD (identities cannot force depletion); the spectrum recursion made exact to m31 with A(v) = prod c_q(v) explaining most of the depletion; every hole is a phase hole. Opened R2.c.ii (fibres of a sub-machine).
+- 2026-09-06, lane T (docs/proofs/20, small_K_theorem.md): THEOREM A proved (no K <= 10 primes with fixed-separation pairs cover the next prime's window; certified 0/1 infeasibility, corroborated four ways) and THEOREM B proved (A(K) exact to K = 6 by reasoning and proved-complete case lists); the span lemma and the head collision are new tools; the distortion lane's positive withdrawn (its localised inequality is false); K = 5 optimum corrected to {5,7,11,23,29}.
