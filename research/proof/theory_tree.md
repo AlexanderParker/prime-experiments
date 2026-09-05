@@ -125,7 +125,50 @@ the log at the bottom is chronology only.
         the gears whose CRT re-phasing blocks the glued target; finite, covering-theoretic, no
         density, no transfer, modulus grows with the machine (the wall's shape); residue 20 runs
         at v in {6, 7, 8, 11}.
-        - 2g.i.a. The glue as a covering statement. OPEN, prover running.
+        - 2g.i.a. The glue as a covering statement (research/proof/glue_covering.md). DEAD as
+          a route: the covering statement is false exactly where it matters. Of 862 attaining
+          3-runs with v >= 6 at m13..m31, 756 have v >= min(L, R) where the constant colouring
+          is the peel bound; the glue's own rate on the rest is 30 of 106, falling 50%, 62%,
+          40%, 0 of 22, 23% at m17..m31, and over all 3-runs with L + R > F it is 4% at m31.
+          PROVED, new: the SHADOW LEMMA (the covering instance has exactly two single-sided
+          columns, x_1 - v and x_2 + v; the all-left colouring is the run itself and misses only
+          the shadow, so the glue's whole content is buying one column; min miss 1 at 178 of 178
+          failures) and the MOVE LEMMA (recolouring a gear translates its strikes by v, so a
+          strike survives iff v = 0 or +-d_g mod g: padded gears move free and never cover the
+          shadow, letter gears keep one tooth, all others lose everything; with L4 every move
+          is paid for and the payment cascades). The case that resists every construction is
+          the m29 run (18, 10, 30) at x_0 = 278,620,515, the one that killed the F + 1 law.
+          NEW EXCEPTIONLESS LAW (the J-run outer law): for J consecutive gaps with every middle
+          >= 6, g_1 + g_J <= F_2, 0 exceptions in 3,278,972 runs, J = 3..8, m13..m23, maximum
+          falling with J; drop the middle condition and it breaks at once. THE FIRST FACE-C
+          EXCEPTION: the real teeth are atypical in gluability, 62.5% against a pooled 9.4%,
+          the 99.6th percentile of 223 comparable m19 members, not explained by the count of
+          letter gears (exactly the family mean). Toward the root: Q*_3 <= F_2 + b needs
+          F_2 - F <= a (fails m17, m29); the level-4 glue gives Q*_4 <= F_2 + q', needing
+          F_2 <= F, false at every rung; the deficit F_2 - F is depth-independent because the
+          glue forces the hole at every depth. N(v) <= F_2 for v >= 6 survives with no
+          constructive route.
+      - 2f.i. Separation compatibility as the chain statement's ingredient (research/proof/
+        compatibility_chain.md; thin place 4 of the wall). DEAD: three recorded budget
+        violators are FULLY compatible (every gear on one rational): m17 (1,3,4,4,4) with
+        rational 8/1, F(M + 19) = 40 > 38; m17 (2,3,3,3,3) with 6/1, 38 > 37; m11 (1,1,5)
+        with 29/18, 25 > 24, all re-verified by direct sieve. Compatibility is a LIABILITY:
+        coherent members at m17 violate at 8.0% (B = 10) and 2.1% (B = 30) against a family
+        rate of 0.28%; neutral at m19. One incompatible gear does not protect (2,627 members
+        exhaustive at 23 -> 29: 1 chain violator (2,2,1,2,8,7,5) with Q*_4 = 65 > 63, against 0
+        in a matched random control). The 2f refuting member is incompatible as predicted (22
+        of 28 pairs, every one containing a moved gear). Mechanism: two gears strike a
+        rectangle mod gh with two diagonals; coherence fixes only one (d+ = c r^-1), the other
+        is arbitrary, and the real m23 record itself double-strikes at distances 2, 5, 7 at
+        the pair (5, 7), the same configuration a violating stretch uses. The tail-gear tooth
+        distance is refuted as the alternative (m19 (1,2,2,2,6,3) has every separation above
+        the real minimum and F(M + 23) = 52 > 48). New exception-free facts: admissible
+        rationals must be coprime to every gear, so they are the 3-smooth ones plus those with
+        all prime factors above q (counts 203, 155, 125, 97, 71, 47 at m11..m31; one third is
+        available only because 3 is anchor, not gear); the (T) + (L) sub-family at m23 has 4
+        budget violators, not 2. Methodological: the family cannot decide these questions by
+        frequency (every protective region holds a few hundred members with expected violators
+        below one); only a construction can.
 
   - **R2. Whole-window formulation.** F(y) < y^2/6 directly, by a bound that uses the teeth. The
     least demanding formulation (it localises the next twin only below y^2). In print as a
@@ -854,3 +897,9 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   lemma: CRT re-phasing under a two-colouring glues the two flanks into an adjacent pair, so F_2 is the natural cap).
   The F_2 cap cannot close the chain statement (needs F_2 - F <= a, fails at m17, m29). Child: the glue as a finite
   covering statement. Dead-branches file written (dead_branches_reopened.md) with five recurring thin places.
+- 2026-09-06, provers G and C2 (glue_covering.md, compatibility_chain.md). Both DEAD as routes: the glue covering
+  statement is false where it matters (the glue buys one column, the shadow; the m29 run (18,10,30) resists every
+  construction); separation compatibility is a liability, not a protection (fully compatible members violate the
+  budget at m11, m17). Kept: the shadow lemma and the move lemma (proved), the J-run outer law g_1 + g_J <= F_2 for
+  runs with middles >= 6 (3.3 million runs, 0 exceptions), and the first face-C exception: the real teeth are
+  atypical in gluability (99.6th percentile). Thin places 2 and 4 of the wall are now measured closed; 1, 3, 5 open.

@@ -259,6 +259,25 @@ per gear at the fixed separation, which is F(y) < y^2/6 itself; the one fact tha
 the real teeth in any adversarial measure is the tail gears' tooth distance (0.69 of the arc,
 outside the random range), and it is too small to move a cover number.
 
+## 5c. Update after the unstick round (2026-09-06)
+
+Thin place 2 (the level-3 dictionary, via the glue): the neighbour profile gave N(v) <= F_2(M)
+for every gap size v >= 6, exceptionless to m31, with the glue lemma proved as mechanism; but
+the glue as a covering statement is false where it matters (the m29 run (18, 10, 30) resists
+every construction; the glue's whole content is one column, the shadow), and the F_2 cap cannot
+close the chain statement (needs F_2 - F <= a, false at m17 and m29). Kept: the J-run outer law
+(g_1 + g_J <= F_2 whenever every middle is >= 6, 3.3 million runs) and the shadow and move
+lemmas. Thin place 4 (separation compatibility): dead; fully compatible members violate the
+budget, and coherence raises the violation rate. Face C acquires its first exception: the real
+teeth are atypical in gluability (99.6th percentile of the family). Face C should now read:
+typical in every symmetry, spacing and squareness measure, atypical in how separably its flanks
+are struck (left flank by one set of gears, right by another). That is a which-residues
+property, allowed by face A, and it has not been followed.
+
+Open thin places: 1 (count gears, not columns: the forced-striker set grows with the span),
+3 (the record class as a formula), 5 (moments over q for the island witness), and the new one,
+6 (separability of flanks by gear: why the real machine's records are glueable).
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real
