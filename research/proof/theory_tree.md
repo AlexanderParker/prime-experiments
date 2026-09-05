@@ -281,6 +281,18 @@ the log at the bottom is chronology only.
               length (R2.a.i, percentile 0.53). Background ILP at d = 2,240 (bounds 22..32)
               still running when the branch closed; its result cannot change any statement.
 
+            - R2.a.i.a.1.b. Squares are even (the owner's suggestion, 2026-09-06). Spawned by
+              the obstruction at R2.a.i.a.1.a and P7 (the phase vector is a square at every
+              gear). Three readings tested by one experiment: the island witness on real
+              vectors q^2 mod g, on locally-square vectors (a random square at each gear, not
+              one integer's square), and on fully random vectors, same gears and arc. Outcomes
+              pre-registered: real = locally square < random means evenness is the mechanism;
+              real < locally square = random means the global integer is; all equal means the
+              square structure is irrelevant and covers are rare among all vectors. Then the
+              global-square test on failing locally-square vectors: is the cover's combined
+              residue a square modulo every gear outside the cover too. OPEN, prover running
+              (research/proof/square_vector.md).
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -703,3 +715,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   a 2^K class density, vacuous by 10^24 at d = 1,120. The night's line: R2.a.i -> R2.a.i.a -> R2.a.i.a.1 ->
   R2.a.i.a.1.a, all exact, one candidate object with 0 exceptions to 200,000 and its proof obstruction stated in
   the machine's terms. Paused for the owner's direction: the next interaction as posed is circular.
+- 2026-09-06, manager: opened R2.a.i.a.1.b (squares are even) at the owner's suggestion; one prover, the three-vector experiment.
