@@ -22,6 +22,7 @@
   Windows once (tiered roots only).
 - **Prior results index:** docs/novel/README.md (read before opening any branch; two 2026-09-04
   branches were rediscoveries), docs/proof-search/alignment-rules.md, docs/proofs/.
+- **Unstick file:** research/proof/dead_branches_reopened.md (the skill's protocol: for every dead branch the object, the attack vectors, the reason for failure, two or more ideas through, two or more realisations each). Rerun whenever no STRONG node is left.
 - **Standing directions (the human's):** use the machine to find NEW rules and relationships; note
   known results in a line, never rewrite them into machine analogy unless it seeds a machine-driven
   investigation and is labelled as such; describe a mechanism before naming a theorem it resembles

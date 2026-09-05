@@ -98,6 +98,29 @@ append-only). A branch is a node; it is not "another item under the root".
 - **Depth over breadth when a node is STRONG**: open its children before a new sibling. Breadth is
   for building the base when nothing is strong.
 
+## When stuck: reopen every dead branch (the unstick protocol)
+
+A dead branch is a brick, not an ending: it measured one face of the wall. Whenever the tree
+has no STRONG node left, or a round ends with "we do not know why but we are stuck", run this
+protocol over EVERY branch marked DEAD, closed, or FACT-not-a-route, and write the result to a
+file beside the tree (the project profile names it). For each such branch:
+
+1. **The object we were attacking.** One sentence, the object itself, not the branch name.
+2. **The attack vectors.** What was actually tried, each in a line, with what it measured.
+3. **The reason for failure.** The precise thing the measurement showed cannot work, and the
+   thing it left untouched.
+4. **Two or more creative ideas to get through it.** Not variations of the failed vector: a
+   different object, a different coordinate, an inverse or complement of the object, a
+   different quantifier (all phases instead of real ones, integers instead of primes), a
+   different scale, a composition with another brick.
+5. **For each idea, two or more ways to realise it.** Concrete: the computation, the
+   construction, the lemma to attempt, the literature technique to import, the counterfactual
+   to build; each with the machine it runs on and what result would count.
+
+Then read the file as a whole: ideas that recur across branches are the weak points of the
+wall; open the one that most branches point at. The dead branches are also new bricks: what
+each showed is now a constraint every new idea must respect, so list it beside the idea.
+
 ## Closing the branch
 
 9. Branch document: Pre-registered with scorecard, Setup with exact ranges, Results as tables,
