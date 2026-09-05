@@ -117,6 +117,16 @@ file beside the tree (the project profile names it). For each such branch:
    construction, the lemma to attempt, the literature technique to import, the counterfactual
    to build; each with the machine it runs on and what result would count.
 
+A toolbox of coordinate changes to reach for when generating the ideas in step 4 (the owner's
+list, to be extended as tools are tried): set theory (the objects as sets and their algebra:
+unions, complements, products, fibres, quotients); bitwise operations, on the numbers themselves
+and on the sieve and gap structures (blocked patterns as bit strings, strikes as masks, AND/OR/
+XOR of gears' patterns, shifts as re-phasings, popcounts as coverage); linear algebra (incidence
+and transfer matrices, ranks, kernels, eigenstructure of the gears' actions); complex numbers
+and characters (roots of unity, Fourier and pole-phase views); and any other method with a
+different native object (order theory, topology of the torus, formal languages for gap words,
+generating functions). A tool already refuted on one object is still untried on another.
+
 Then read the file as a whole: ideas that recur across branches are the weak points of the
 wall; open the one that most branches point at. The dead branches are also new bricks: what
 each showed is now a constraint every new idea must respect, so list it beside the idea.
