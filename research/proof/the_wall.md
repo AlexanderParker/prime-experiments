@@ -274,9 +274,15 @@ typical in every symmetry, spacing and squareness measure, atypical in how separ
 are struck (left flank by one set of gears, right by another). That is a which-residues
 property, allowed by face A, and it has not been followed.
 
-Open thin places: 1 (count gears, not columns: the forced-striker set grows with the span),
-3 (the record class as a formula), 5 (moments over q for the island witness), and the new one,
-6 (separability of flanks by gear: why the real machine's records are glueable).
+Thin place 6 measured (separability.md): dead; gluability is not separability, the shared gears
+are 5 and 7 (the top gears are the free ones), the one-third separation maximises sharing, and the
+face-C exception shrinks to a factor 2.4 at matched cells. Two exact facts kept: the letter gears
+of a middle gap v are the prime factors of 3v - 1 and 3v + 1; and the run that resists every local
+certificate at m29 is the m31 record class itself.
+
+Open thin places: 1 (count gears, not columns: the forced-striker set grows with the span; now
+also pointed at by separability: how many gears carry no sharing obligation), 3 (the record class
+as a formula), 5 (moments over q for the island witness).
 
 ## 6. What the wall says is NOT worth another branch
 

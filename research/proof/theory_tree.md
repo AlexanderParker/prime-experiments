@@ -148,6 +148,34 @@ the log at the bottom is chronology only.
           F_2 <= F, false at every rung; the deficit F_2 - F is depth-independent because the
           glue forces the hole at every depth. N(v) <= F_2 for v >= 6 survives with no
           constructive route.
+          - 2g.i.a.i. Separability of flanks by gear (thin place 6; research/proof/
+            separability.md). DEAD as a route; the clue deflates and reverses. Gluability is
+            not separability: 0 of 106 hard attaining 3-runs (real, m13..m31) and 0 of 2,832
+            family hard runs have disjoint flank covers; the reason is counting (two disjoint
+            covers need sum of 2/g >= 2, first reached at y = 109), a face-A obstruction that
+            cannot carry face C's exception. The shared gears are the BOTTOM, not the top: one of
+            gears 5, 7 is in every minimum shared set (106 of 106); the top gear is forced at
+            0 of 16 (m19), 2 of 44 (m31); at 10 of 10 record stretches m17..m31 the layer's own
+            top gear is NOT in the minimum shared set (shared {5, 13, 17, 19} at m29,
+            {5, 7, 13, 17} at m31): "made at the top" and "separable at the top" are the same
+            fact with the sign reversed, the mortar gears are the free ones. The shared gears
+            are exactly the ones the move lemma cannot move (0 of 106 all-movable). THE
+            ONE-THIRD SEPARATION MAXIMISES SHARING: d_g = (g +- 1)/3 is two thirds of the way to
+            the widest admissible separation, so wide teeth straddle both flanks; real P(strike
+            both) is at least the mean over separations at 256 of 256 cells; exact arc
+            condition verified 2,702 of 2,702. NEW EXACT ARITHMETIC: for the real teeth
+            3 d_g = 1 (mod g), so the letter gears of a middle gap v are Leg(v) = {g : g divides
+            3v - 1 or 3v + 1}, verified 400 of 400 (v = 6 gives {17, 19}, v = 10 gives {29, 31},
+            v = 7 gives {5, 11}). NEW CONNECTION: the m31 record class, read at layer 29 as the
+            word (18, 10, 30), IS the resistant m29 run of 2g.i.a at x_0 = 278,620,515: the run
+            no local certificate can prove is the one the next gear fuses into the record.
+            Bounded-loss glue is false and useless (loss up to 24 at m31; any c > 0 worsens
+            F_2 - F <= a). The clue itself, re-measured at matched (v, slack) cells: the real
+            machine's hard runs occupy 1, 3, 5 shapes up to mirror; family glues at 25-30% at
+            the matched cell, real 5 of 7 mirror classes (P = 0.029); face C's exception
+            survives in direction and shrinks from a factor 6.6 to about 2.4. What goes forward:
+            the divisor form of Leg and the count of gears carrying no sharing obligation, a
+            gear-counting question (thin place 1).
       - 2f.i. Separation compatibility as the chain statement's ingredient (research/proof/
         compatibility_chain.md; thin place 4 of the wall). DEAD: three recorded budget
         violators are FULLY compatible (every gear on one rational): m17 (1,3,4,4,4) with
@@ -903,3 +931,7 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   budget at m11, m17). Kept: the shadow lemma and the move lemma (proved), the J-run outer law g_1 + g_J <= F_2 for
   runs with middles >= 6 (3.3 million runs, 0 exceptions), and the first face-C exception: the real teeth are
   atypical in gluability (99.6th percentile). Thin places 2 and 4 of the wall are now measured closed; 1, 3, 5 open.
+- 2026-09-06, prover S6 (separability.md): thin place 6 DEAD; gluability is not separability (counting forbids
+  disjoint flank covers below y = 109); shared gears are 5 and 7, the top gears are the free ones; the one-third
+  separation maximises sharing; Leg(v) = {g | 3v +- 1} exact; the resistant m29 run is the m31 record class; face
+  C's exception shrinks to a factor 2.4 at matched cells. Next: thin place 1 (count gears, not columns).
