@@ -596,6 +596,27 @@ the log at the bottom is chronology only.
       K = 5 optimum is {5, 7, 11, 23, 29} (F = 22), not {5, 7, 11, 13, 17} (F = 18). Not
       proved: any induction step; these are the finite base of the open lemma, stronger than
       the root; the residual (a lower bound on the tiler function h_S(L)) is unchanged.
+    - R2.c.ii. Fibres of a sub-machine (research/proof/submachine_fibres.md). DEAD as a route,
+      with one unconditional theorem. The exact budget is monotone increasing in the cut at all
+      27 cells (0.3655 at Q_s = 1 up to 1.686 at Q_s = 85,085 and 1.848 fully refined, q = 997),
+      reproducing the block budget at one end and the fibre budget at the other. The per-fibre
+      first moment is exact iff Q_s g <= L, so the admissible cut is tiny (Q_s = 5 from q = 23,
+      35 from 199, 385 from 2297) and the freeze buys exactly one gear (proved). NEW THEOREM
+      (SF-CAP): head gears kill whole fibres, so the survivor count inside a live fibre starts
+      at the fibre length; thresholds 1.3e2, 4.2e4, 1.7e6, 1.7e10, 1e17, 1e25, 1e39 at q = 17 ..
+      1999, better than the full refinement by 3 to 801 orders and than the one block (never
+      finite), still exp(theta(q^0.60)), vacuous at every real window (closest q = 37 at
+      1.0033). Cross-fibre obstruction named: the L2 discrepancy of a gear's strikes across the
+      Q_s classes, exactly 0 over a period, 0.0002-0.0078 on the window; a single-phase
+      adversary cannot be bad in all fibres at once (worst-phase budget 0.41 falling to 0.367);
+      the gap to the input-free bound is 4.7x to 9.0x and growing. 7b's rigidity does not close
+      it: it bounds a signed aggregate, the budget needs a mean square per class. Adversarial
+      gate passed (validity at all 9 MILP witnesses), reach only K = 1. Correction to R2.c: its
+      reach to K = 10 used the uniform-measure first moment, exceeded 1.8-3.6x on the covered
+      witnesses; conditional on an equidistribution step. RESIDUAL, EXACTLY: periodic-set-in-a-
+      short-interval (7b's kind, proved) for the 3-5 head gears with Q_{<g} g <= W; level of
+      distribution for everything above, modulus Q_s g up to about W^{1/2}, every modulus and
+      every class, sifted set, dimension 2.
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -1164,3 +1185,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, manager's second check on R2.c.i: the one-block inequality is trivially valid (each term is alpha_g^2) and its content is the survivor lower bound itself; the 'factor 3.7' assumed the fair share in the denominator and is withdrawn. Wall 5g rewritten.
 - 2026-09-06, prover SR (spectrum_sum_rule.md): sum rule DEAD (identities cannot force depletion); the spectrum recursion made exact to m31 with A(v) = prod c_q(v) explaining most of the depletion; every hole is a phase hole. Opened R2.c.ii (fibres of a sub-machine).
 - 2026-09-06, lane T (docs/proofs/20, small_K_theorem.md): THEOREM A proved (no K <= 10 primes with fixed-separation pairs cover the next prime's window; certified 0/1 infeasibility, corroborated four ways) and THEOREM B proved (A(K) exact to K = 6 by reasoning and proved-complete case lists); the span lemma and the head collision are new tools; the distortion lane's positive withdrawn (its localised inequality is false); K = 5 optimum corrected to {5,7,11,23,29}.
+- 2026-09-06, prover FS (submachine_fibres.md): sub-machine fibres DEAD as a route (the exact budget is monotone in the cut; the admissible cut buys one gear); SF-CAP theorem (thresholds better by 3-801 orders, still exp(q^0.6)); the residual is level of distribution 1/2 at every modulus and class in dimension 2. Manager note (bitwise toolbox): the XOR of the gears' masks is the parity of the striker count, and in the window that is the Liouville function of 36k^2 - 1 (Omega(N_k) = 2 + depth(k) for squarefree columns), so the machine's parity bit is a Chowla-type object; recorded, not opened. Next: pairwise collision laws (the head collision generalised to twin gear pairs).
