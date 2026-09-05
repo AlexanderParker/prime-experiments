@@ -439,6 +439,38 @@ the log at the bottom is chronology only.
               equidistribution of q^2 modulo products far above q^2, with the count of covers
               10^24 beyond the class density.
 
+    - R2.b. Count gears, not columns (thin place 1; research/proof/gear_count.md). DEAD in its
+      proven form, not a restatement, and it corrects the wall. THE INVERSION IS NOT THE F LADDER
+      READ BACKWARDS: the best 4-gear sub-machine is {5, 7, 11, 17}, blocking span 16, against
+      {5, 7, 11, 13}'s 11; 22 against 18 at K = 5; 28 against 25 at K = 6, exhaustive over every
+      K-subset of the primes 5..149 (1.1 million subsets at K = 6); ratios 1.45, 1.22, 1.12,
+      falling. So the adversarial covering statement quantifies over gear SETS as well as phases
+      and is strictly stronger than F < y^2/6 (the wall's 5a corrected). MECHANISM, THE ARC: with
+      {5, 7, 11} fixed, F({5, 7, 11, g}) = 11 for every prime g from 13 to 103 except g = 17, 19
+      (short arc 6), where it is 16; the holes 5, 7, 11 leave are 6 apart and only a gear with
+      arc 6 has that domino. PROVED, the complement of the umbrella bound: a gear with long arc
+      >= S + 2 contributes to a stretch of span S at most two columns at distance exactly a_g, a
+      bare domino whose size is invisible; with 3 a_g = g -+ 1, two gears share an arc iff they
+      are a twin prime pair, so {5..q} carries only pi(q) - 2 - pi_2(q) distinct arcs and must
+      buy both members of every twin pair: the machine's own twin gears make it a worse coverer
+      than an adversary with the same number of gears (the exact minimum cover of the real
+      window stretch is 1.5-2.1 times the free minimum for the same span; the adversary eats
+      about a quarter of the slack: A(4, 5, 6) = 16, 22, 28 against windows 48, 60, 88, margin
+      3.0, 2.7, 3.1 in span against the real machine's 4.4, 3.3, 3.5). The proven gear count
+      saturates: the forced set is the whole machine for every span above about 2q/3
+      (saturation spans 4, 6, ..., 20 at m7..m31 and 664 at q = 997 against windows to
+      169,680, short by a factor q/4); forced is not needed (from span 10 at m17 on, the forced
+      set exceeds the minimum cover; at m31 span 20 is covered by 5 gears while all 9 are
+      forced). h(F) = n at all eight machines; the first sparable span below F is F - 3, -2, -4,
+      -2, -4, -9, -8, -13 (m31, the gear spared is 23). The gear-count inequality
+      S - 1 <= sum over forced gears of 2 ceil(S/g) + 2(n - f) is genuine and never binding
+      (94 against 57 at the m31 record) because its first term is the counting bound. WHAT
+      SURVIVES: one clean open lemma, A(K) < (p_{K+1}^2 - 1)/6 where A(K) is the longest span any
+      K-gear sub-machine can block, with nothing on the tree bounding A(K) above; and one new
+      handle, the ARC MULTISET, a which-residues property face A permits, in which the real
+      machine is measurably worse than the adversary. Gates: the F ladder 2, 5, 7, 11, 18, 25,
+      34, 43, 58 and 5d.ii's window covers reproduced exactly.
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -935,3 +967,8 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   disjoint flank covers below y = 109); shared gears are 5 and 7, the top gears are the free ones; the one-third
   separation maximises sharing; Leg(v) = {g | 3v +- 1} exact; the resistant m29 run is the m31 record class; face
   C's exception shrinks to a factor 2.4 at matched cells. Next: thin place 1 (count gears, not columns).
+- 2026-09-06, prover H (gear_count.md): thin place 1 dead in its proven form (forced gears saturate at 2q/3; forced
+  is not needed), but the branch corrects the wall: the adversarial covering with free gear SETS is strictly
+  stronger than the root (best 4 gears block 16, not 11), the mechanism is the arc (a gear beyond its umbrella is a
+  bare domino of size a_g; twin gears share arcs, so the real machine must buy both members of every twin pair),
+  and A(K) < (p_{K+1}^2 - 1)/6 is the clean open lemma. Wall 5a corrected; the arc multiset added as a handle.

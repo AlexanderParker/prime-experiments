@@ -284,6 +284,27 @@ Open thin places: 1 (count gears, not columns: the forced-striker set grows with
 also pointed at by separability: how many gears carry no sharing obligation), 3 (the record class
 as a formula), 5 (moments over q for the island witness).
 
+## 5d. Correction after gear_count.md (2026-09-06)
+
+Section 5a said the whole-column adversary with one phase per gear over all primes to q is the
+real machine over its period, so the covering statement is the root. That is true only when the
+gear SET is fixed to {5..q}. The adversary that also chooses the gears is strictly stronger:
+the best 4-gear machine blocks a span of 16 ({5, 7, 11, 17}) where {5, 7, 11, 13} blocks 11,
+because the mechanism is the arc, not the size (a gear beyond its umbrella contributes only a
+bare domino of length a_g = 2u_g, its size invisible). The real machine is a WORSE coverer than
+an adversary with the same number of gears, by a factor that falls with K (1.45, 1.22, 1.12,
+...), because 3 a_g = g -+ 1 makes twin gears share an arc, so {5..q} carries only
+pi(q) - 2 - pi_2(q) distinct arcs and must buy both members of every twin pair. Two consequences
+for the wall: (i) the arc multiset is a which-residues handle where the real machine is
+measurably on the good side, the only such handle found; (ii) the proven gear count (forced
+strikers) saturates at spans of about 2q/3 and is useless against the window, so thin place 1
+is dead in its proven form; what remains of it is the open lemma A(K) < (p_{K+1}^2 - 1)/6 (the
+longest span any K-gear machine can block stays below the next prime's window), which is
+stronger than the root and has no upper bound on the tree. Open thin places: 3 (the record
+class as a formula), 5 (moments over q), and the arc multiset (why sharing an arc costs the
+real machine, quantified: the real minimum cover of a window stretch is 1.5-2.1 times the free
+minimum for the same span).
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real
