@@ -354,6 +354,19 @@ block form of the distortion engine is the trivial criterion; only the fibre for
 and it collapses on an interval. Face A stands with both its sides (sieve and covering) and
 nothing in this round has moved it.
 
+## 5h. The order of interaction (2026-09-06)
+
+The collision laws (R2.d.i) give the wall a third precise form beside the sieve dimension and
+the transfer: the least order of gear interaction whose joint maximum falls below the window
+grows like K - 3 (1, 2, 2, 3, 4, 5, 6, 7, 8, 8 at K = 3..12). Pairwise laws prove the
+adversarial lemma at K = 4, four-gear blocks at K = 5 and 6, and no bounded order reaches all
+K; a new gear's net contribution to coverage turns negative once the small gears' strike sum
+passes one half, which is why the pairwise form is invalid from K = 9. Any proof by
+interactions must therefore be an induction whose order grows with the machine, and the
+tree has no such object. What is proved on this side: the adversarial lemma to K = 10 by
+certificate (docs/proofs/20), the shared-arc law (twin gears collide at (g + 4)/3), the arc
+floor, the linear deficit law with slope 4/(gh).
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real

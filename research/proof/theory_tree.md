@@ -617,6 +617,29 @@ the log at the bottom is chronology only.
       short-interval (7b's kind, proved) for the 3-5 head gears with Q_{<g} g <= W; level of
       distribution for everything above, modulus Q_s g up to about W^{1/2}, every modulus and
       every class, sifted set, dimension 2.
+    - R2.d.i. Collision laws for gear pairs (research/proof/collision_laws.md). PROVED in its
+      parts, DEAD as an induction. Exact, 0 exceptions: the collision deficit is linear with
+      slope 4/(gh), c(g, h; L + gh) = c(g, h; L) + 4 for every pair and every separation
+      (248,334 real and 67,400 random instances; one-line proof); the SHARED-ARC LAW: gears with
+      the same short arc a collide from L = a + 1 (14,340 configurations), so every twin pair
+      collides at L = (g + 4)/3, the earliest possible (onsets 3, 5, 7, 11, 15, 21, 25 at (5, 7)
+      .. (71, 73); below g at 7 of 7 twin pairs against 0 of 246 non-twin); the ARC FLOOR for the
+      real separation: c = 0 for L up to max(a_g, a_h) (253 of 253 pairs; fails on 134 of 759
+      random draws); the head collision is the a = 2 instance and c(5, 7; L) > 0 for every
+      L >= 21. Real against random is signed and split: twin pairs at the earliest possible
+      onset, non-twin pairs at 3.1 times the random median; the real separation is extreme in
+      both directions. Triples: increment 4(g + h + k) - 8 per period, sub-additive by exactly
+      8/(ghk) in rate. The record is maximal gear by gear (M = 0, 1, 0, 1, 2 at m11..m23); its
+      whole price is overlap. The all-pairs bound is FALSE (refuted at K = 9, 10 by recorded
+      covers); the valid form is a partition into blocks, L <= sum over blocks of the block's
+      joint maximum. NEW POSITIVE, by reasoning: the block-2 (matching) bound proves the
+      adversarial lemma at K = 4 (46 < 48 over all 1,093 four-sets, where counting gives 51),
+      block-4 proves K = 5 (55 < 60) and K = 6 (87 < 88); block-4 fails from K = 7. NEW
+      OBSTRUCTION, exact: the least block size whose joint maximum falls below the window is
+      1, 2, 2, 3, 4, 5, 6, 7, 8, 8 at K = 3..12, about K - 3: no interaction law of bounded
+      order reaches the lemma for all K; a new gear's net contribution (2/q')(1 - 2 sum 1/g)
+      turns negative from {5, 7, 11, 13} on, which is exactly why the all-pairs form is
+      invalid. The induction step being sought is not a pairwise law and cannot be made one.
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -1186,3 +1209,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover SR (spectrum_sum_rule.md): sum rule DEAD (identities cannot force depletion); the spectrum recursion made exact to m31 with A(v) = prod c_q(v) explaining most of the depletion; every hole is a phase hole. Opened R2.c.ii (fibres of a sub-machine).
 - 2026-09-06, lane T (docs/proofs/20, small_K_theorem.md): THEOREM A proved (no K <= 10 primes with fixed-separation pairs cover the next prime's window; certified 0/1 infeasibility, corroborated four ways) and THEOREM B proved (A(K) exact to K = 6 by reasoning and proved-complete case lists); the span lemma and the head collision are new tools; the distortion lane's positive withdrawn (its localised inequality is false); K = 5 optimum corrected to {5,7,11,23,29}.
 - 2026-09-06, prover FS (submachine_fibres.md): sub-machine fibres DEAD as a route (the exact budget is monotone in the cut; the admissible cut buys one gear); SF-CAP theorem (thresholds better by 3-801 orders, still exp(q^0.6)); the residual is level of distribution 1/2 at every modulus and class in dimension 2. Manager note (bitwise toolbox): the XOR of the gears' masks is the parity of the striker count, and in the window that is the Liouville function of 36k^2 - 1 (Omega(N_k) = 2 + depth(k) for squarefree columns), so the machine's parity bit is a Chowla-type object; recorded, not opened. Next: pairwise collision laws (the head collision generalised to twin gear pairs).
+- 2026-09-06, prover HC2 (collision_laws.md): shared-arc law and arc floor proved; twin pairs collide earliest; the block-matching bound proves the adversarial lemma by reasoning at K = 4, 5, 6; the required interaction order grows like K - 3, so no bounded-order law reaches all K. The wall's sharpest structural statement so far.
