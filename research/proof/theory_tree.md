@@ -513,6 +513,33 @@ the log at the bottom is chronology only.
       exceptions in 30,955 machines above); the s = 2 handicap 4 e^-2 gamma confirmed to 2%
       on 33,868 machines; twin-prime products are not bad machines.
 
+    - R2.c. The distortion method on the machine's covering problem (literature and
+      construction; research/proof/distortion_method.md). OUTCOME (c) with one positive
+      result. The method's engine (BBMST Theorem 3.1) carries no minimum-modulus hypothesis
+      and applies to the machine unchanged; its core inequality reduces at the optimal
+      parameter to a budget eta = sum of E[alpha_i^2] < 1, which over the period is
+      sum 4/g^2 < 0.36455 for every set of primes >= 5, a covering budget that never
+      saturates (unlike the capacity sum 2/g). But its conclusion is density only, and the
+      exact CRT density beats its bound by 10^4 to 10^6 at q = 59..499. Localised to an
+      interval it dies by the COLLAPSE LEMMA (one line, phase-free): once the product of the
+      gears used exceeds the interval, each fibre holds one column, alpha is 0/1-valued, and
+      the second moment collapses to the union bound; on the real window the localised budget
+      is 1.07, 1.22, 1.47, 1.71 at q = 59..499, above 1 and diverging like 2 log log q, with
+      collapse from the fifth or sixth gear; the shortest interval it can address is
+      exp(theta(q^0.73)), worse than the sieve's q^4.27. What it needs to survive is a level-
+      of-distribution input at dimension 2: the parity barrier from the covering side. THE
+      POSITIVE: on the adversarial ladder the localised budget PROVES A(K) < (p_{K+1}^2 - 1)/6
+      for every K <= 10, failing from K = 11 (633 against 308). Localising with average first
+      moments is false, not weak (it would give A(7) <= 9.3 against the certified 37): any
+      covering-side attempt must carry phase-adversarial first moments. Prior art: no theorem
+      in the covering corpus has an interval in its conclusion; the fixed separation appears
+      once (FKMPT Remark 7) as an aside; Stevens' H(r) <= 2 r^{2 + 2e log r} is the only printed
+      interval bound of this shape and is 10 to 10^15 times the truth. Children named: gear
+      ordering to minimise collapse; a second moment over ARITHMETIC BLOCKS instead of
+      congruence fibres (the one crack in the collapse); the budget sum 4/g^2 < 0.36455 as a
+      machine-free quantity to test against the tree's other reductions.
+      - R2.c.i. The second moment over arithmetic blocks. OPEN, prover running.
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -681,6 +708,35 @@ the log at the bottom is chronology only.
         shield) but its CRT translate is, with the same flanks (d_0, d_0), realised at 15,107
         m23 junctions, so the obstruction is not evaded. Corrections: neighbour-of-hit acts on
         M + q', not on the old walks.
+    - **R3.i. The half-column map** (the manager's reading of Leg(v) and the coupling law;
+      research/proof/half_column.md). DEAD as a route, with five identities and three theorems.
+      Identities (0 exceptions): both letters of a gear point at its home column (1,228 gears to
+      10,007); for even v, Leg(v) = the prime factors of the members of column v/2; for odd v,
+      exactly one of (3v -+ 1)/2 is a member of the quarter column (v -+ 1)/4; island coupling
+      at separation delta = Pad union Leg. THE FIBRE THEOREM: exactly three distances have
+      half-column c, namely 2c, 4c - 1, 4c + 1, and they are exactly the short letter of both
+      members and the long letter of each: the fibre of the map over a column is the alphabet
+      of that column's gears (2,000 columns, 0 exceptions); this is why twin gears share an
+      arc. THE FIXED-POINT THEOREM (proved): a column is a fixed point of the halving descent
+      iff it is a twin column (a proper factor of a member has a strictly smaller home
+      column); the m29 and m31 record trees close on 6 and 8 columns with terminals {1, 2, 3, 5}
+      = the twin columns of the closure. THE UNCOUPLED CLASSIFICATION: for v < y^2/3, v is
+      uncoupled in {5..y} iff v is y-rough and its half-column is a twin column above y
+      (5,505 of 5,505 cells, y prime 5..199): the even distances a machine cannot couple are
+      exactly twice the twin columns above it, the short letters of the twin gears it does not
+      yet own. The spectrum rule is dead both ways (uncoupled sizes are realised: 24 occurs
+      1,180 times at m29), but the graded form is exceptionless: an uncoupled size is depleted
+      by a factor 12 to 128 against its coupled neighbours (10 of 10), a step at zero coupling
+      gears, and the flip is exact (v = 41 absent at m29, realised 134 times when 31 arrives,
+      41 = a_31 + 31). Records in column coordinates: m29's 10 + 10 + 23 and m31's 23 + 10 + 25
+      live in columns 5 and 6 only (10 = 2 x 5 is the shared short letter of column 5 = (29,
+      31), which holds both top gears; 23 and 25 = 4 x 6 -+ 1 are the two long letters of
+      column 6); every record letter lands on the new gear's home column, 11 of 11. m31 also
+      lacks gap size 54. The window: the stretch's half-column lands in the frame (below q/6)
+      at 142 of 160 rungs, not in the window. Why it does not bound F: coupling constrains
+      strikes while a gap's endpoints are openings; the map grades the spectrum and cannot cap
+      the record. Residual (HC-R): prove the depletion factor, which needs merge-history
+      counting, thin place 1 again.
     - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
       makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
       have the same F distribution as random symmetric vectors at m13 and m17; the real machine
@@ -1022,3 +1078,9 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   is the conjecture). Every thin place of the wall has now been tested; every one reduces to face A (capacity with a
   gear count) or face D/E. Kept: the type lemma, the MILP certificate tool, the coupling-gear divisor law, the
   sub-Poisson count with its mechanism.
+- 2026-09-06, lane D and prover HC (distortion_method.md, half_column.md). Distortion: outcome (c) by the collapse
+  lemma; the engine applies to the machine with budget sum 4/g^2 < 0.365; localised it proves A(K) < window for
+  K <= 10 and fails from 11; the crack is a second moment over arithmetic blocks (child opened). Half-column map:
+  the fibre theorem, the fixed-point theorem (fixed points are twin columns), the uncoupled classification (the
+  even distances a machine cannot couple are twice the twin columns above it), records in columns 5 and 6;
+  dead as a route (coupling constrains strikes, endpoints are openings).

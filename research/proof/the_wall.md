@@ -324,6 +324,19 @@ twin-gear duplication, separability) has been measured not to shorten either. Th
 untried technique named in the record is the distortion method of covering systems (W1 of the
 first map), a literature-and-construction lane.
 
+## 5f. The covering side, measured (2026-09-06)
+
+The distortion method (the untried technique) applies to the machine unchanged, with a budget
+sum 4/g^2 < 0.365 that never saturates; localised to an interval it dies by the collapse lemma
+(fibres of one column once the modulus exceeds the interval) and needs a level of distribution
+at dimension 2 to survive: the parity barrier reached from the covering side. So face A now has
+two faces of its own: sieve (dimension 2, exponent 4.27) and covering (collapse; shortest
+addressable interval exp(theta(q^0.73))). One positive: the localised budget proves the
+adversarial lemma for K <= 10. One crack named: a second moment over arithmetic blocks instead
+of congruence fibres. The half-column map added three theorems (fibre, fixed point = twin
+column, uncoupled distances = twice the twin columns above the machine) and no lever: coupling
+constrains strikes, a gap's endpoints are openings.
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real
