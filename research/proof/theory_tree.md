@@ -281,6 +281,28 @@ the log at the bottom is chronology only.
               length (R2.a.i, percentile 0.53). Background ILP at d = 2,240 (bounds 22..32)
               still running when the branch closed; its result cannot change any statement.
 
+            - R2.a.i.a.1.a.i. Does the real separation drive K(d)? (weak point W3 of the wall;
+              research/proof/separation_drives_K.md). FACT; answer: no, and the island target
+              has no slack. K_real = 6, 9, 14, 17, 20, 22 at d = 140 .. 1330 is the MODE of the
+              random-separation distribution at all six arcs (189 draws, 239 ILP rows all
+              certified; percentiles 0.50, 0.46, 0.75, 0.48, 0.50, 0.63); coherent separations
+              c/r for r = 3, 5, 7 give the same K as the real one at every arc (all 20 at
+              d = 1120). Mechanism, exact: two gears' four struck residues are a translate of
+              {0, S_g, S_h, S_g + S_h} mod gh, so the mean pairwise overlap is exactly 4m/(gh)
+              for every separation (72 checks, 0 exceptions); coherence is closed under CRT
+              (r (S_g + S_h) = c mod gh, 32,490 checks, 0 exceptions) and bites only on the tail
+              gears (real tooth distance 0.69 of the arc against 0.50 random, outside the whole
+              random range, 180 draws), too few to move K. Toward the root: the island target
+              K(d) > pi(sqrt(6d)) - 3 is met by exactly ONE gear at d = 560, 840, 1120, 1330
+              and with EQUALITY at d = 140, 280 (measured c = 3.8, 4.9, 6.2, 6.0, 6.2, 7.1
+              against 6 required); the cheapest pi(sqrt(6d)) - 3 gears leave 0, 2, 3, 3, 4, 4
+              islands open. The pairwise overlap route is vacuous (needs 0.20-0.31 islands of
+              overlap per pair against a CRT mean of 0.22-0.53, ratio flat 0.59-0.60, and the
+              conversion to K loses a factor 1.5-2). VERDICT: W1 (overlap on islands) is DEAD
+              for lack of slack; W3 is answered (typical); the live statement is W2, whole
+              columns, which has the factor four - and for whole columns the adversary with one
+              phase per gear over all primes to q IS the real machine's period, so W2 is the
+              root F(y) < y^2/6 itself in covering language, not an easier statement.
             - R2.a.i.a.1.b. Squares are even (the owner's suggestion, 2026-09-06;
               research/proof/square_vector.md). Spawned by the obstruction at R2.a.i.a.1.a and
               P7. FACT; the reading is decided: OUTCOME C, the square structure is irrelevant.
@@ -749,3 +771,8 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   against 17 observed). Random vectors stop failing at the same arcs as real ones (3.3e-7 at d = 1100). 82 failing
   locally-square vectors, 0 with a square CRT lift; the square condition is implied by the range condition.
   Dead end: the phase vector being a square. The obstruction is transfer, not structure.
+- 2026-09-06, prover W3 (separation_drives_K.md): the real separation does not drive the adversarial cover
+  (K_real is the mode of the random distribution at every arc); the island target has zero to one gear of
+  slack; W1 dead, W3 answered, W2 is the root in covering language. The wall document updated. Next brick (the
+  owner's bricks-and-mortar reading of R3.h): the two flanks of a record are walks from a top-gear tooth in the
+  machine below; open as R3.h.i.

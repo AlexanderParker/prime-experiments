@@ -220,6 +220,26 @@ W4. The slack itself. Every measured statement holds by a margin that grows with
     ladder). The shape says: aim at the weakest true statement, "some island in the whole
     window is open", not at the arc, not at the section, not at the step.
 
+## 5a. Update after W3 (2026-09-06)
+
+W3 answered: the real separation does not drive K (it is the mode of the random distribution at
+every arc; coherent separations give the same K). W1 is dead for lack of slack: on islands the
+target K(d) > pi(sqrt(6d)) - 3 is met by one gear at d >= 560 and with equality at 140 and 280.
+W2 stands, with a correction: for whole columns the adversary with one phase per gear over all
+primes up to q is exactly the real machine over its period (every phase combination occurs once
+per period), so K_columns(W(q)) > pi(q) - 3 IS F(y) < y^2/6, the root, in covering language. It
+is not easier; it is the same wall seen as a covering problem, which is the one framing face A's
+sieve "no" does not cover.
+
+W5. The unfitted brick (the owner's reading of R3.h). A record is ordinary lower gaps (bricks)
+glued at junctions by the top gears' teeth (mortar). Bricks and mortar are proven objects (the
+merge grammar, the chain law, the bare-word cap of six). The unbounded part is the two flanks,
+and a flank is a walk: from a column where a top gear's tooth lands on an old opening, walk in
+the old machine to the next old opening on each side. Proven about that two-sided walk: the
+left tiling is the right tiling negated gear by gear (L6). Measured: the flanks sum to less
+than the budget at every rung; the suppression law. Never decomposed the way the path from q^2
+was. That is the next brick to pull apart.
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real
