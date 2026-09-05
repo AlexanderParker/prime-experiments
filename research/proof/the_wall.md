@@ -240,6 +240,25 @@ left tiling is the right tiling negated gear by gear (L6). Measured: the flanks 
 than the budget at every rung; the suppression law. Never decomposed the way the path from q^2
 was. That is the next brick to pull apart.
 
+## 5b. Update after W5 (2026-09-06)
+
+W5 closed by a theorem: junctions are ordinary openings (the junction condition is a congruence
+mod q' and the old machine is periodic mod P coprime to q'), so the flank brick is F_2(M) itself
+and cannot be fitted by structure at the junction. What the flank decomposition gave, exact: the
+window has at most two junctions, the column of q' and the column of q'^2, and their flanks are
+d_0 (the twin-Bertrand quantity) and the walk from q'^2 (the square-gate walk); the length of a
+flank is decided in the middle band of gears, which strike at a constant rate 0.796; the flanks
+are coupled by the anchor's residue classes, not by the negation lemma; and no bound in terms of
+the buckets at the junction holds (the only exceptionless rule uses the gears the walk misses).
+
+The wall after all five weak points: W1 dead (no slack on islands), W2 is the root in covering
+language, W3 answered (the real teeth are typical), W4 stands (the slack is a factor of four on
+whole columns and every margin grows), W5 closed (the brick is the pair statement). The one
+framing the sieve "no" does not cover is the covering problem on whole columns with one phase
+per gear at the fixed separation, which is F(y) < y^2/6 itself; the one fact that distinguishes
+the real teeth in any adversarial measure is the tail gears' tooth distance (0.69 of the arc,
+outside the random range), and it is too small to move a cover number.
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real

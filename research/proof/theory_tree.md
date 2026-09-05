@@ -469,6 +469,46 @@ the log at the bottom is chronology only.
       four-piece fusion never occurs inside a window") is true as measured and does not bound
       F_W: a two-piece fusion of two long pieces is long, and that is how the window builds them
       (203 + 39 at q = 997). FACT, exact, not a route.
+      - R3.h.i. The flank brick: the two-sided walk from a tooth (weak point W5;
+        research/proof/flank_walk.md). Spawned by the owner's bricks-and-mortar reading of
+        R3.h. FACT, with one theorem that closes a route. THE JUNCTION THEOREM (proved): the
+        junction condition is a congruence mod q' and the old machine is periodic mod P with
+        gcd(P, q') = 1, so over the period of M + q' the flank pairs at junctions are exactly the
+        flank pairs at all old openings, each twice; a junction is an ordinary opening and the
+        maximum flank sum at junctions IS F_2(M). The flank brick cannot be fitted by structure
+        at the junction. Measured: 0 violations of the pair statement at 583,881 period
+        junctions (slack 9, 12, 12, 17, 26 at m11..m23) and 70 window junctions; max over
+        window openings within F_W + q' at 152 of 152 rungs. L6 MADE EXACT: b_g^+ + b_g^- is a_g
+        or g - a_g at every opening and gear (0 exceptions in 10.3 million pairs), which forces
+        exactly two things: a gear acts on both flanks only if a_g <= S - 2, and a gear that
+        misses the stretch has g - a_g >= S + 2 (tight at slack 2 everywhere); nothing joint
+        about the two lengths. THREE GEAR BANDS: gears with g - a_g < S + 2 strike at 100.00%
+        (2.28 million cells); the middle band strikes at 0.796 +- 0.004, constant over
+        q = 59..997; the top band falls 0.36 -> 0.18; the length is decided in the middle band.
+        THE FLANKS ARE COUPLED BY THE ANCHOR, not by L6 (0 exceptions in 8.8 million openings):
+        L^+ = 1 mod 5 forces L^- in {0, 2, 4}, L^+ = 4 forces {0, 1, 3}, L^+ = 2 forbids 4,
+        L^+ = 3 forbids 1; with gear 7, 931 of 1,225 pair classes mod 35 are admissible. The
+        anti-correlation of the flanks is not a residue artefact (conditioning mod 35 doubles
+        it, -0.045 -> -0.089 at m23); in the window the raw correlation is +0.048 from the
+        twin-density trend and -0.023 detrended. THE WINDOW HAS AT MOST TWO JUNCTIONS, and we
+        know which (0 mismatches, 152 rungs): the column of q' (iff q' is a twin member, 28
+        rungs) and the column of q'^2 (iff q'^2 - 2 is prime, W.a's square gate, 42 rungs). At
+        the top junction the flanks under {5..q} are the two-sided walk from q'^2 under
+        {5..q'} (0 mismatches of 42); at the bottom junction L^- = round(q'/6) = d_0(M) at all
+        28: the twin-Bertrand quantity is literally one flank of the window's own bottom
+        junction. THE BRICK IS NOT AN ATOM: 20 of 20 flanks at the ten longest m23 junctions
+        are themselves 2- or 3-piece fusions closed by 17, 19 or 23; F = flank + letters +
+        flank recurses; at all five period maxima the outermost blocked column of each flank
+        is held by a gear <= 13. INVERSE SHAPE REFUTED: no fixed number of buckets bounds the
+        walk (L^+ <= b_(1) + b_(2) fails at 62% of m23 junctions; at 705 junctions the sum of
+        every bucket is below L^+); the only exceptionless rule is the umbrella bound, which
+        uses the gears the walk MISSES: a two-sided stretch of span S is struck by every gear
+        with long arc below S + 2. Toward the root: the pair statement follows from (H) "the
+        smallest gear missing a two-sided stretch at a junction is at most (3/2)(F + q')", the
+        two-sided form of W.a's L < d, of unbounded order; column 0 is never a junction (the
+        shield) but its CRT translate is, with the same flanks (d_0, d_0), realised at 15,107
+        m23 junctions, so the obstruction is not evaded. Corrections: neighbour-of-hit acts on
+        M + q', not on the old walks.
     - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
       makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
       have the same F distribution as random symmetric vectors at m13 and m17; the real machine
@@ -776,3 +816,9 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   slack; W1 dead, W3 answered, W2 is the root in covering language. The wall document updated. Next brick (the
   owner's bricks-and-mortar reading of R3.h): the two flanks of a record are walks from a top-gear tooth in the
   machine below; open as R3.h.i.
+- 2026-09-06, prover F (flank_walk.md): the junction theorem (junctions are ordinary openings; the flank brick
+  IS F_2(M)); L6 exact at 10.3 million pairs with its two forced consequences; three gear bands, the length decided
+  in the middle band at a constant strike rate 0.796; flanks coupled by the anchor mod 5 and 35; the window has at
+  most two junctions (the column of q' and the column of q'^2), with the bottom flank equal to d_0 and the top
+  flanks equal to the walk from q'^2; the brick recurses; the inverse-shape bucket bound refuted. W5 closed: the
+  flank brick is the pair statement itself. Every weak point on the wall is now tested.
