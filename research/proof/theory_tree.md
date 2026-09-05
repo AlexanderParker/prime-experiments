@@ -767,6 +767,21 @@ the log at the bottom is chronology only.
       strikes while a gap's endpoints are openings; the map grades the spectrum and cannot cap
       the record. Residual (HC-R): prove the depletion factor, which needs merge-history
       counting, thin place 1 again.
+    - R3.i.a. The spectrum's depletion as a sum rule (research/proof/spectrum_sum_rule.md).
+      DEAD as a route: the identities force nothing (the LP interval for m(24) at m29 under
+      every identity is [0, 15.8 million] against the truth 1,180; zero is feasible at every
+      uncoupled size at m19..m31), because coupling enters every identity only through
+      c_q(v) in {q - 4, q - 3, q - 2}, minimal for uncoupled v: the identities can certify
+      depletion, never force it. KEPT, exact: the recursion m_{M+q'}(v) = c_{q'}(v) m_M(v) +
+      Merge(v), survival exact at 137 of 137 cells, reproducing the m31 spectrum in 30 s (prior
+      art: the paired-Holt recursion's first coefficient, cited and stopped); the identity
+      A(v) = prod c_q(v) >= prod(q - 4) with equality iff v is uncoupled, and A(1) = m(1) so
+      rho(1) = rho(2) = 1 exactly; dividing out A(v) deflates the recorded depletion 4-5x, most
+      uncoupled cells then inside the ordinary scatter; every spectrum hole is a phase hole,
+      never a span hole (7 of 7); no size is ever lost and every size is born a merge (137/137,
+      55/55). The self-reference is exact (an uncoupled even size below y^2/3 exists iff a
+      twin column with a y-rough index sits in the window, 2,260 of 2,260 rungs) and points
+      the wrong way: it is the root's covering problem one class higher.
     - **6. Coherent spacings.** Theory: the real teeth's one rational spacing (d_g = 3^-1 mod g)
       makes the real machine an outlier with small F. DEAD 2026-09-04: coherent spacing vectors
       have the same F distribution as random symmetric vectors at m13 and m17; the real machine
@@ -1121,3 +1136,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   unconditional bound on the tree, and the unproven part is 7b's equidistribution curve. Round closed; every named
   lead and child run; the wall's statement stands in its sharpest form.
 - 2026-09-06, manager's second check on R2.c.i: the one-block inequality is trivially valid (each term is alpha_g^2) and its content is the survivor lower bound itself; the 'factor 3.7' assumed the fair share in the denominator and is withdrawn. Wall 5g rewritten.
+- 2026-09-06, prover SR (spectrum_sum_rule.md): sum rule DEAD (identities cannot force depletion); the spectrum recursion made exact to m31 with A(v) = prod c_q(v) explaining most of the depletion; every hole is a phase hole. Opened R2.c.ii (fibres of a sub-machine).
