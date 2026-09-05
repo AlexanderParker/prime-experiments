@@ -1120,3 +1120,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   rate excess on survivors), exact head 0.31-0.36, trivial tail short by a factor 2 to 3.7: the smallest miss of any
   unconditional bound on the tree, and the unproven part is 7b's equidistribution curve. Round closed; every named
   lead and child run; the wall's statement stands in its sharpest form.
+- 2026-09-06, manager's second check on R2.c.i: the one-block inequality is trivially valid (each term is alpha_g^2) and its content is the survivor lower bound itself; the 'factor 3.7' assumed the fair share in the denominator and is withdrawn. Wall 5g rewritten.
