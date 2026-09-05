@@ -305,6 +305,25 @@ class as a formula), 5 (moments over q), and the arc multiset (why sharing an ar
 real machine, quantified: the real minimum cover of a window stretch is 1.5-2.1 times the free
 minimum for the same span).
 
+## 5e. After the second unstick round (2026-09-06)
+
+All thin places tested. 1 dead (forced gears saturate); 2 dead (the glue buys one column); 3
+dead in its sharp reading (the record is not at the alignment points); 4 dead and reversed
+(coherence is a liability); 5 dead by proof (a bound below 1 on the failing fraction is the
+conjecture); 6 dead (gluability is not separability); the arc multiset dead and reversed (twin
+gears are the cheapest small gears; which arcs is worth nothing). The adversarial lemma
+A(K) < (p_{K+1}^2 - 1)/6 is exact to K = 12 with margin 2.7-3.8, flat, and its residual is the
+capacity statement h_S(L) with a gear count: face A.
+
+What the wall now says, in one sentence: every route that starts from the machine's structure
+ends at one of two statements, "the primes up to q cannot cover q^2/6 consecutive columns"
+(a Jacobsthal-type covering bound at exponent 2, which no sieve reaches and no covering method
+has been tried on) or "rare among all phase vectors transfers to never for real q" (beyond
+equidistribution), and the machine's structure (positions, arcs, phases, symmetries,
+twin-gear duplication, separability) has been measured not to shorten either. The one
+untried technique named in the record is the distortion method of covering systems (W1 of the
+first map), a literature-and-construction lane.
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real

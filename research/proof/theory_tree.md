@@ -471,6 +471,48 @@ the log at the bottom is chronology only.
       machine is measurably worse than the adversary. Gates: the F ladder 2, 5, 7, 11, 18, 25,
       34, 43, 58 and 5d.ii's window covers reproduced exactly.
 
+    - R2.b.i. The arc multiset (research/proof/arc_multiset.md). DEAD as a handle, with the
+      reading reversed. A(K) exact over ALL primes: 2, 5, 7, 16, 22, 28, 37, 45, 68, 88, 101, 115
+      at K = 1..12 (A(9) = 68 is 10 above the recorded bound), A(13) >= 137; the open lemma
+      A(K) < (p_{K+1}^2 - 1)/6 holds at every K <= 12 with margin 2.7-3.8 and A/W flat
+      (0.26-0.37): the adversarial form has nearly the root's own slack. A/F({5..p_K}) = 1.45,
+      1.22, 1.12, 1.09, 1.05, 1.17, 1.00, 1.11, 1.12: at K = 10 the real machine {5..37} is an
+      optimal blocker. Every optimum from K = 2 contains the twin pair 5, 7; the K = 7 optimum
+      has three duplicated arcs; the optimum takes the smallest gears, never the smallest
+      distinct arcs. DE-TWINNING LOWERS THE RECORD at every rung (F_real / F_detwinned = 1.10,
+      1.29, 1.47, 1.70, 1.48, 1.66 at m13..m31) and mean F at fixed gear count is monotone
+      INCREASING in the number of duplicated arcs (5,383 sets, no exception): a twin pair is the
+      cheapest pair of small gears, so arc duplication helps blocking. Which arcs is worth
+      nothing: relaxing every big gear to any two columns anywhere raises A(K) by 0 to 5
+      columns (1.00-1.11). The domino-matching identity is exact (223 instances, 0
+      disagreements); new proved tool, the type lemma (a gear with long arc >= L realises
+      exactly {}, {i, i + a}, {i} for i < a or i >= L - a), and a MILP whose infeasibility
+      certificate replaces a 40-minute search with half a second. Short-arc multiset fixes F at
+      K = 3 (146 of 146) and fails from K = 4. The hole-distance mechanism is real one level
+      up ({5..17} at L = 27 leaves two holes only at distances 5, 7 or 18; 18 is realised only
+      by 53, and {5, 7, 11, 13, 17, 53} blocks 28 = A(6) while every other sixth gear gives 25
+      or 26; A(3) = 7 has a one-paragraph proof of this shape). Record words at every rung
+      reproduce the wall's B3; every letter is a_q' or b_q'; twin rungs are not special
+      (increments inside the non-twin range). Residual, restated: bound h_S(L), the least holes
+      k primes leave in a run of L; it alone fixes A(K) to 11%; a capacity statement with a
+      gear count, face A's A2 again.
+    - R2.a.i.a.1.c. The second moment over q (research/proof/second_moment.md; thin place 5).
+      DEAD by proof: any bound strictly below 1 on the fraction of failing q for the certified
+      object implies the twin prime conjecture (N-M6), and the first moment is a twin count in
+      (q^2, (q + 1)^2) at s = 2, a lower-bound sieve, so the chain never starts. Measured
+      B(X) = 11.4 (ln X)^2 / X, flat to 6% over a 64-fold range (0.51 .. 0.023 at X = 1k .. 64k):
+      it vanishes as a measurement. Raw Chebyshev cannot work (Var / E^2 -> 0.145; 85% of the
+      variance is the systematic run of the mean across a band). KEPT, exact: the gears
+      coupling two islands at separation delta are exactly the prime factors above 7 of delta,
+      3 delta - 1 and 3 delta + 1, overlap in {0, 2, 4} never odd (0 exceptions in 359,712,683
+      cells; the same divisor form as Leg(v)); the joint density formula matches brute force
+      to 1e-16 and the derived variance to 5e-12; the count of open islands is SUB-POISSON,
+      variance over mean in [0.76, 0.81] at all 42 exactly computed q, with an exact mechanism
+      (a generic gear costs -4/g^2, repaid 89-94% while g < m, exactly 50% at g = m); the
+      one-class witness's last failure is q = 11,921 over all integers coprime to 30 (0
+      exceptions in 30,955 machines above); the s = 2 handicap 4 e^-2 gamma confirmed to 2%
+      on 33,868 machines; twin-prime products are not bad machines.
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -973,3 +1015,10 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   bare domino of size a_g; twin gears share arcs, so the real machine must buy both members of every twin pair),
   and A(K) < (p_{K+1}^2 - 1)/6 is the clean open lemma. Wall 5a corrected; the arc multiset added as a handle.
 - 2026-09-06, manager scan (research/anchor235/r49/allteeth_record.py): thin place 3's sharp reading is DEAD - the distance from every record and near-record stretch to the nearest all-teeth column (a column struck by every gear, 2^m per period) is random (median equal to the random expectation at m11..m23), so the record is not anchored at the machine's alignment points. By-product, provable in a line: the blocked run through an all-teeth column is always exactly 1 (both neighbours open, since 6(k +- 1) = +-1 +- 6 mod g vanishes only if g divides 4 or 8). Opened: the arc multiset (R2.b.i) and the second moment over q (R2.a.i.a.1.c).
+- 2026-09-06, provers ARC and MOM (arc_multiset.md, second_moment.md). Arc multiset DEAD as a handle and the
+  reading reversed (twins are the cheapest small gears; de-twinning LOWERS the record; which arcs is worth
+  nothing, the count everything; the real machine is an optimal 10-gear blocker); A(K) exact to K = 12 with the
+  open lemma holding at margin 2.7-3.8 flat. Second moment DEAD by proof (a bound below 1 on the failing fraction
+  is the conjecture). Every thin place of the wall has now been tested; every one reduces to face A (capacity with a
+  gear count) or face D/E. Kept: the type lemma, the MILP certificate tool, the coupling-gear divisor law, the
+  sub-Poisson count with its mechanism.
