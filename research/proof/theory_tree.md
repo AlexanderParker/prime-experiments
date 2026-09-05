@@ -281,17 +281,43 @@ the log at the bottom is chronology only.
               length (R2.a.i, percentile 0.53). Background ILP at d = 2,240 (bounds 22..32)
               still running when the branch closed; its result cannot change any statement.
 
-            - R2.a.i.a.1.b. Squares are even (the owner's suggestion, 2026-09-06). Spawned by
-              the obstruction at R2.a.i.a.1.a and P7 (the phase vector is a square at every
-              gear). Three readings tested by one experiment: the island witness on real
-              vectors q^2 mod g, on locally-square vectors (a random square at each gear, not
-              one integer's square), and on fully random vectors, same gears and arc. Outcomes
-              pre-registered: real = locally square < random means evenness is the mechanism;
-              real < locally square = random means the global integer is; all equal means the
-              square structure is irrelevant and covers are rare among all vectors. Then the
-              global-square test on failing locally-square vectors: is the cover's combined
-              residue a square modulo every gear outside the cover too. OPEN, prover running
-              (research/proof/square_vector.md).
+            - R2.a.i.a.1.b. Squares are even (the owner's suggestion, 2026-09-06;
+              research/proof/square_vector.md). Spawned by the obstruction at R2.a.i.a.1.a and
+              P7. FACT; the reading is decided: OUTCOME C, the square structure is irrelevant.
+              Real vectors q^2 mod g and independent locally-square vectors fail the island
+              witness at 0.029653 against 0.029700 over 6.3 million vectors of each kind on 30
+              machines (ratio 0.9984 +- 0.0033), and every derived statistic agrees to within
+              3% (open-island mean and minimum, per-offset opening profile, walk length 14.562
+              against 14.561, minimum blocking set within 0.4 gears). Index parity is worth 1.1%
+              pooled with an arc-dependent sign; one gear made square moves the rate 5-25% with
+              signs that differ by gear and arc; squareness does not accumulate. Reading (b),
+              reachability as a residue condition on g modulo 24 i, is exact (moduli 280,
+              39480, 4920 at i = 12, 47, 82; exactly a quarter barred; 0 disagreements to
+              200,000) and already spent: it defines the island set and does nothing more. The
+              one global-integer effect is the sifting level, not the squares: the exact
+              phase-vector model reproduces a real integer's opening count to 0.03% at s = 3.2
+              but is 26% high at s = 2, the object's own configuration, and there the open
+              islands are the twin pairs above q^2 (Hardy-Littlewood over real 1.0021 at
+              q = 50,000; model over real 1.2628 against the classical 4 e^-2 gamma = 1.2619).
+              That correction repairs the parent's first-moment miss: 9.90 predicted failures
+              below q = 6000 against 17 observed becomes 16.51 against 17; the parent's blame on
+              island correlation was wrong in sign (correlation makes the model over-predict).
+              And it points the wrong way for a proof: the real machine has a fifth fewer
+              openings than any phase-vector model. Random vectors also stop failing: failure
+              rate 1.3e-1, 5.4e-2, 2.4e-2, 4.0e-3, 7.5e-4, 1.2e-4, 3.7e-5, 1.3e-5, 3.3e-7 at
+              d = 60 .. 1100; at d = 954 (one arc past the last real failure) free 1.47e-5,
+              locally square 1.27e-5, real 1.06e-5. The owner's sharp test, run to the end: 82
+              explicit failing locally-square vectors at d = 954 (covers of 33-49 gears, moduli
+              10^66 - 10^100 times q^2), 0 of 82 with a perfect-square CRT lift, the QR screen
+              over outside gears decaying as 2^-t; control: 21 of 21 real failures have R = q^2
+              exactly. It adds no factor: the QR screen is implied by the square condition,
+              which is weaker than the range condition already used. VERDICT: the witness holds
+              because covers are rare among ALL phase vectors at these arcs, and the real
+              vectors are typical; nothing the phase vector is, as a square, prevents a cover.
+              DEAD END recorded: the phase vector being a square. The proof obstruction is now
+              purely: transfer from "rare among all vectors" to "never for real q", i.e.
+              equidistribution of q^2 modulo products far above q^2, with the count of covers
+              10^24 beyond the class density.
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -450,7 +476,7 @@ past 53->59 (CORRCAP infinite); fixed-depth counting (kills nothing); pairwise c
 the gap word (refuted twice); symmetry levers beyond the mirror (group is Z/2); letter size as the
 driver of L (refuted on the family); congruence-class potentials (certify nothing); class-count-only
 sieve bounds at the window's scale (dimension-2 limit); coherent spacings; the cycle frame as a
-route; the region past zero as a source of openings.
+route; the region past zero as a source of openings; the phase vector being a square (real vectors fail the island witness exactly as often as locally-square and random ones).
 
 ## Standing directions (the human's)
 Read docs/novel/README.md before opening any branch (two 2026-09-04 branches were rediscoveries).
@@ -716,3 +742,10 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   R2.a.i.a.1.a, all exact, one candidate object with 0 exceptions to 200,000 and its proof obstruction stated in
   the machine's terms. Paused for the owner's direction: the next interaction as posed is circular.
 - 2026-09-06, manager: opened R2.a.i.a.1.b (squares are even) at the owner's suggestion; one prover, the three-vector experiment.
+- 2026-09-06, prover S (square_vector.md): "squares are even" decided - OUTCOME C. Real, locally-square and random
+  phase vectors fail the island witness at the same rate (0.9984 +- 0.0033 over 6.3 million vectors each); index
+  parity worth 1%; reachability mod 24 i exact and spent. The only global effect is the sifting level s = 2,
+  where the classical 4 e^-2 gamma over-count appears and repairs the first moment (16.51 predicted failures
+  against 17 observed). Random vectors stop failing at the same arcs as real ones (3.3e-7 at d = 1100). 82 failing
+  locally-square vectors, 0 with a square CRT lift; the square condition is implied by the range condition.
+  Dead end: the phase vector being a square. The obstruction is transfer, not structure.
