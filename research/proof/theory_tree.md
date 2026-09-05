@@ -646,6 +646,12 @@ the log at the bottom is chronology only.
     - **4. Genealogy (records recruit runner-ups).** WEAK: exact at 8 steps (ancestor a runner-up
       by 2-14, largest gap merged one level down 7 of 8, 1-5 generations), no rule stated; the
       theory "bounded branching bounds growth" is untested.
+      - 4.i. The merge forest, exact (the toolbox pass: set theory and order theory; spawned by
+        the exact spectrum recursion and the facts that no size is ever lost and every size is
+        born a merge). Theory: the gaps of the ladder form a rooted forest under merging; the
+        record's lineage, the branching (orders) and the recruitment depth are exact objects;
+        node 4's untested "bounded branching bounds growth" gets its test. OPEN, prover running
+        2026-09-06 (research/proof/merge_forest.md).
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1210,3 +1216,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, lane T (docs/proofs/20, small_K_theorem.md): THEOREM A proved (no K <= 10 primes with fixed-separation pairs cover the next prime's window; certified 0/1 infeasibility, corroborated four ways) and THEOREM B proved (A(K) exact to K = 6 by reasoning and proved-complete case lists); the span lemma and the head collision are new tools; the distortion lane's positive withdrawn (its localised inequality is false); K = 5 optimum corrected to {5,7,11,23,29}.
 - 2026-09-06, prover FS (submachine_fibres.md): sub-machine fibres DEAD as a route (the exact budget is monotone in the cut; the admissible cut buys one gear); SF-CAP theorem (thresholds better by 3-801 orders, still exp(q^0.6)); the residual is level of distribution 1/2 at every modulus and class in dimension 2. Manager note (bitwise toolbox): the XOR of the gears' masks is the parity of the striker count, and in the window that is the Liouville function of 36k^2 - 1 (Omega(N_k) = 2 + depth(k) for squarefree columns), so the machine's parity bit is a Chowla-type object; recorded, not opened. Next: pairwise collision laws (the head collision generalised to twin gear pairs).
 - 2026-09-06, prover HC2 (collision_laws.md): shared-arc law and arc floor proved; twin pairs collide earliest; the block-matching bound proves the adversarial lemma by reasoning at K = 4, 5, 6; the required interaction order grows like K - 3, so no bounded-order law reaches all K. The wall's sharpest structural statement so far.
+- 2026-09-06, manager, toolbox pass (option 2 chosen by the owner): bitwise lands on Liouville of 36k^2 - 1 (Chowla) and the bucket vector; inclusion-exclusion is Brun; the merge recursion as an operator is the renewal ladder; characters give the pole-phase law (real teeth: each gear's Fourier coefficient at a is nearly a function of a mod 6). The one object the tools reach that is unexploited: the merge forest (node 4 WEAK, untested). Opened 4.i, one prover.
