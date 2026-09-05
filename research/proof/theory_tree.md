@@ -646,12 +646,33 @@ the log at the bottom is chronology only.
     - **4. Genealogy (records recruit runner-ups).** WEAK: exact at 8 steps (ancestor a runner-up
       by 2-14, largest gap merged one level down 7 of 8, 1-5 generations), no rule stated; the
       theory "bounded branching bounds growth" is untested.
-      - 4.i. The merge forest, exact (the toolbox pass: set theory and order theory; spawned by
-        the exact spectrum recursion and the facts that no size is ever lost and every size is
-        born a merge). Theory: the gaps of the ladder form a rooted forest under merging; the
-        record's lineage, the branching (orders) and the recruitment depth are exact objects;
-        node 4's untested "bounded branching bounds growth" gets its test. OPEN, prover running
-        2026-09-06 (research/proof/merge_forest.md).
+      - 4.i. The merge forest, exact (research/proof/merge_forest.md; the toolbox pass). FACT,
+        exact, with one new identity and one new object; not a route. BRANCHING IDENTITY
+        (proved, 8 rungs, 0 exceptions): the order distribution of a rung is the second
+        difference of its chain-count sequence, n_J = C_{J-1} - 2 C_J + C_{J+1}, with C_0 = q' N,
+        C_1 = 2N, C_2 = 2 A_0 + A_d a closed form in the old spectrum by residue class; at
+        rung 31 the order distribution of 6.2 billion gaps (5,805,160,589 / 413,380,422 /
+        7,999,018 / 12,992 / 4) comes out of five numbers; max order = 1 + D_q' at 8 of 8. The
+        mean order is teeth-free, exactly q'/(q' - 2) at 8 real rungs and 21 of 21 family
+        members; only the tail depends on the teeth, and the real machine makes a third as
+        many triple fusions as typical (percentile 0.20) because its letters are never common
+        gap sizes. NODE 4 REFUTED: branching is bounded and bounds nothing (J_max x max piece
+        fraction = 2.4, 2.0, 3.5 at m23, m29, m31). NEW OBJECT, THE FRONTIER: F(M + q') =
+        max over old sizes a of (a + Rest(a)) exactly, where Rest(a) is the most a gap of size
+        a gains by fusion; the record is made at an interior a / F_old = 0.60, 0.68, 0.58-0.70
+        at the top three rungs, and Rest(F_old) = 3, 2, 3, 7, 7, 5, 5, 2 (falling): a gap that
+        swallows the old record whole gains at most 2 columns at m31. The strengthening
+        Rest(a) <= q' would give the budget inequality in one line; it holds at rungs 7..29
+        and FAILS at 29 -> 31 (max rest 34 > 31). Record lineages: orders 3, 2, 2, 3, 2, 4, 3,
+        3; the largest piece has depth 0 at 7 of 8 rungs, is a record of its own rung at 7,
+        11, 17, 19 and not from 23 on, mass rank above 0.99 from rung 17 (ordinary in size,
+        extreme in rarity); the top is not closed (big gaps built from the old top third fall
+        0.89 -> 0.33); 1,336 distinct full lineages at m23, the record's one of 59,940.
+        Order theory: ancestors at every layer are a contiguous run, so the ladder is the
+        laminar family of column intervals (the exact m31 forest in 33 s). CHILD NAMED: why
+        Rest(a) collapses as a -> F(M): 5b's repulsion at the top of the spectrum with the
+        chain law attached.
+        - 4.i.a. The frontier's collapse at the top. OPEN, prover running.
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1217,3 +1238,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover FS (submachine_fibres.md): sub-machine fibres DEAD as a route (the exact budget is monotone in the cut; the admissible cut buys one gear); SF-CAP theorem (thresholds better by 3-801 orders, still exp(q^0.6)); the residual is level of distribution 1/2 at every modulus and class in dimension 2. Manager note (bitwise toolbox): the XOR of the gears' masks is the parity of the striker count, and in the window that is the Liouville function of 36k^2 - 1 (Omega(N_k) = 2 + depth(k) for squarefree columns), so the machine's parity bit is a Chowla-type object; recorded, not opened. Next: pairwise collision laws (the head collision generalised to twin gear pairs).
 - 2026-09-06, prover HC2 (collision_laws.md): shared-arc law and arc floor proved; twin pairs collide earliest; the block-matching bound proves the adversarial lemma by reasoning at K = 4, 5, 6; the required interaction order grows like K - 3, so no bounded-order law reaches all K. The wall's sharpest structural statement so far.
 - 2026-09-06, manager, toolbox pass (option 2 chosen by the owner): bitwise lands on Liouville of 36k^2 - 1 (Chowla) and the bucket vector; inclusion-exclusion is Brun; the merge recursion as an operator is the renewal ladder; characters give the pole-phase law (real teeth: each gear's Fourier coefficient at a is nearly a function of a mod 6). The one object the tools reach that is unexploited: the merge forest (node 4 WEAK, untested). Opened 4.i, one prover.
+- 2026-09-06, prover GF (merge_forest.md): branching identity proved (orders = second difference of chain counts; mean order q'/(q'-2) teeth-free); node 4 refuted; the frontier F(M+q') = max_a (a + Rest(a)) with Rest collapsing at the top (Rest(F_old) <= 7; rest <= q' fails only at 29->31). Opened 4.i.a.
