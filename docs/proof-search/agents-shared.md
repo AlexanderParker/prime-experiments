@@ -2,294 +2,57 @@
 
 ## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
 
-State after round 31 - ONE LEMMA: HALF OF (B) IS A THEOREM, THE OTHER HALF IS RE-POSED.
-A one-lemma round, three lanes on Opus 5. THEOREM (Constructor, kernel-checked by Formalist in
-both halves): a bare legal word is forced by T3 to be one of the two alternations (a,b,a,...) or
-(b,a,b,...), and a realised word's prefix-sum offsets sit on open slots, so they fit inside the
-exposed set of every gear - in particular gears 5 and 7 at some translate. Hence
-L_bare(M) <= PSORD(q' mod 210) <= 5 at EVERY machine, uniformly: the first bound on any part of L
-that does not grow with the machine. PSORD is 1 on 24 classes, 2 on 4, 3 on 14, never 4, 5 on
-the six litcap classes {37, 53, 83, 127, 157, 173}; the inadmissible set S = {PSORD <= 2} has 28
-of the 48 classes (Constructor's Python, Formalist's `decide`, and round 29's AlternationOrder
-agree element for element). With L = max(L_bare, L_pad) as a theorem, requirement (B) is now
-EXACTLY "L_pad bounded", and L_pad = 0,0,0,1,1,1,2,2,2,2,3,3 at m11..m53 GROWS. THEOREM (Lateral,
-the redirected lateral move): every legal letter is at least the smaller bare letter, a word of
-m letters is the middle of a word-legal window of span >= m a_min, and every word-legal window
-has span <= F(M+q') by R68, so L(M) <= 2 F(M+q')/q' + 1 (parity-refined; tight at m11, m13, m29;
-0 violations in 165,584 counterfactual rows). L is O(F/q'), not O(1): "(B): L bounded by an
-absolute constant" is retired as probably false in the limit and never needed. Substituted into
-Constructor's R99 chain, c_A c_B <= S_2 holds at all twelve corpus steps (equality at m17) and
-(D) follows whenever 8F <= q'^2 - (eps + 12) q' + 16, which the corpus satisfies from m23 on
-with a growing margin (F/q'^2 = 0.038-0.052 against the 1/8 needed) - BUT c_A = 4 is literal
-letters only, so the closure rests on exactly Constructor's open (A-pad). The manager's own
-framing "L is governed by letter size" is REFUTED on the family (size and admissibility are
-near-orthogonal channels explaining 36-42% of L's variance together).
+State after the proof-hunt rounds 32-55 (2026-09-04 to 2026-09-06), manager-led, one to two
+provers at a time under the theory-tree skill (.claude/skills/theory-tree/SKILL.md). The tree is
+research/proof/theory_tree.md (nested by descent, verdicts on nodes); the wall is
+research/proof/the_wall.md (every blocker, precisely). Vocabulary: window = certified range
+(y, y^2]; section = its new part; stretch = a sliding run; the budget inequality is a target.
 
-MANAGER GATE-CHECK (clean processes): bare_lemma_r31.py --crt (A1-A6, B1-B5; 44 s),
-lateral_r31.py all (195 gates), bare_alt_r31.py (7 gates) - ALL GREEN. Lean: `lake build`
-GREEN, 2624 jobs; `lake env lean AxiomCheck.lean` 508 declarations, sorryAx 0, native_decide 0;
-BareAlt.bareAlt_inadmissible_iff on propext / Quot.sound, BareAlt.no_bare3_of_class_mem and
-WordLegal13.L13 / jmax13 on the standard three.
+PROVED THIS FORTNIGHT (written proofs docs/proofs/20 and 21, plus lemmas in branch documents):
+the adversarial lemma for K <= 10 (no K primes above 3 with fixed-separation pairs cover the next
+prime's window; certified 0/1 infeasibility at the window, corroborated four ways) and the exact
+adversarial ladder A(K) = 2, 5, 7, 16, 22, 28 at K <= 6 by reasoning (span lemma, type lemma,
+head collision); the collision laws (linear deficit slope 4/(gh); shared-arc law, so twin gears
+collide at (g + 4)/3; arc floor for the real teeth; block bound proved, all-pairs form refuted;
+matching bound proves the lemma at K = 4 by reasoning, block-4 at K = 5, 6); the gear-5 lock
+(every maximal blocked stretch has gear 5 at its coverage-maximal phase; 1.7 million window
+stretches); the junction theorem (junctions of M + q' are ordinary openings of M; the flank
+brick is F_2(M)); the shadow and move lemmas; the fibre theorem and the fixed-point theorem of
+the half-column map (fixed points are twin columns); Leg(v) = prime factors of 3v +- 1; the
+coupling-gear divisor law; the type lemma; the exact spectrum recursion to m31.
 
-CONSTRUCTOR (R103-R105): the lemma, proof, S and PSORD; a = 2 round(q'/6) with 3a = q' -+ 1 at
-all 2,258 primes to 20000; {5}-fit and {7}-fit equal the corridor-mod-35 fit (4,186 instances);
-R74's 24/16/2/6 distribution reproduced in R74's convention (R74 minimises over phases and
-counts points - a cycle question; word existence maximises and counts letters - a different
-invariant, hence |S| = 28 not 24, its own P1 refuted); the 6-letter bare alternation is
-inadmissible at all 48 classes; all 40 realised legal words on record at m11..m37 are
-{5,7}-admissible; L_bare <= PSORD tight at m29, m37, m41, m43. L_pad(47) = 3 measured
-((18,35,53), (18,53,35), (35,18,53) realised; (35,71,35) undecided at 6e7 nodes). Corrected in
-round: padded letters are fully visible to gears 5 and 7 (they refute 13 of 26 non-bare 2-words
-at m47); what makes L_pad the cover half is the alphabet size ~3F/q', not invisibility. New doc
-docs/novel/bare-word-uniform-cap.md.
+THE CANDIDATE OBJECT (measured, 0 exceptions): for every integer q coprime to 30 above 2849,
+some offset i = 12 (mod 35) past q^2, within 0.152 of the top gear's arc and never above 2,392,
+is open under {5..q}, i.e. q^2 + 6i - 2 and q^2 + 6i are a twin pair; 17,748 primes to 200,000,
+minimum open-island count strictly increasing. Its cover number K(d) is exact to d = 1330 and
+grows; each cover pins q^2 as an integer (proved); the obstruction is 10^54 covers against a
+class density of 10^-30, and any bound below 1 on the failing fraction is the conjecture.
 
-LATERAL (items 84-86): the spectrum bound L <= 2T + 1 - p and L <= max(2T, 2 floor((G-2-a_min)/q')
-+ 1), T = floor((F(M+q') - 2)/q'), p = padded letters; corpus row 1,1,3,3,3,3,5,5,5,5,5,5
-(parity 1,1,2,3,3,3,5,4,5,5,5,5) against L = 1,1,1,2,1,3,3,2,2,2,4,3; beats EXPCAP at five of
-twelve steps (5 vs 18 at m37, 5 vs 21 at m53); the manager's G/a_min form is weaker at all
-twelve. Re-posed (B) as above (item 85). Scorecard 8 / 2 half / 3 refuted; the original
-pre-registration superseded by the redirect and not scored. New doc
-docs/novel/spectrum-bound-on-L.md (prior art not yet checked).
+THE WALL, IN THREE PRECISE FORMS: (A) counting cannot reach the window (dimension-2 sieve
+limit 4.27 against s = 2; the distortion method's engine applies to the machine with budget
+sum 4/g^2 < 0.365 but collapses on an interval, its localised "positive" was false, and the
+one-block form is trivial); (D) rare-among-all-phase-vectors does not transfer to real q
+(real, locally-square and random vectors fail the island witness at the same rate to 0.2%);
+(O) the interaction order needed to cut coverage below the window grows like K - 3, so no
+bounded-order law reaches all K. Position facts never see length (B); the real machine is
+typical in every symmetry, spacing and squareness measure (C), with one measured exception
+(gluability, a factor 2.4 at matched cells) that turned out to be counting.
 
-FORMALIST (verdicts 53-58): proofs/BareAlternation.lean (fitsB_of_open, no_gapWord,
-no_bare_run, bareAlt_inadmissible_iff with S listed, S = {capC <= 3} through ps_max_eq_capC,
-the PSORD table 24/4/14/0/6, psord_ne_four), BareAltInst.lean (no_bare3_of_class_mem at m23,
-m37, m41, m43 on the opening predicate - no opSeq needed), WordLegal13 / WordLegal17: L = 1,
-J_max = 3, A_kill = 2 at m13 and m17 decided by gears 5 and 7 alone, because F(M) < q' there
-makes every legal letter bare (fails at m19: 25 > 23, which is why row 4 does not follow).
-Honest boundary (verdict 56): the kernel cap is on L_bare - 1 against L = 2 at m37/41/43, 2
-against 3 at m53; the deep words there are provably not bare. No pre-registration file this
-round (verdict 58). Not attempted: jmax17 (no period module at m17), Lateral's item 84 in the
-kernel (named next construct).
+REFUTED, WORTH KNOWING: coherence of separations is a liability (fully compatible members
+violate the budget); twin gears are the cheapest small gears (de-twinning LOWERS the record;
+which arcs is worth nothing, the count everything; the real machine is an optimal 10-gear
+blocker); the flank brick is the pair statement itself; the F + 1 neighbour law dies at m29
+(replaced by N(v) <= F_2 for v >= 6, exceptionless to m31, with the glue lemma as mechanism);
+the sum rule cannot force depletion; separability is not the real teeth's advantage; the record
+is not anchored at the all-teeth columns.
 
-STATE OF THE DERIVATION (manager, end of round 31): the uniform obligation is (A-lit) |eps| <= 4
-measured on literal letters; (A-pad) the F_3-wall event (padded middle of the old F_3
-maximiser), located at m31, open; (D2) the depth-2 slack, measured 9..49; and (B'), the
-replacement for (B): L_pad bounded, or more precisely the Jacobsthal-square condition
-8F <= q'^2 - (eps + 12) q' + 16 that closes the chain given (A). L_bare is DONE (<= 5, kernel).
-L_pad grows (0 to 3 across the corpus), is invisible to no gear, and dies of the cover half at
-full depth on the non-bare alphabet of size ~3F/q'. The finite rungs need none of this (eleven
-certified). Nothing found bounds L_pad; nothing found says the Jacobsthal-square condition
-fails; F/q'^2 sits a factor 2.4-3.3 inside it.
+STANDING DIRECTIONS (the human's): find NEW mathematics with the machine, never translate
+known results; describe the mechanism before naming a theorem; follow the clue named as
+"closest to the target" at once; when stuck, reopen every dead branch (object, vectors, failure,
+two ideas, two realisations each) and try the toolbox (set theory, bitwise operations on numbers
+and on sieve/gap structures, linear algebra, complex numbers); put the findings in the chat,
+not only in files; data folders are local only; no attribution trailers.
 
-OPERATIONAL: lanes on Opus 5 (user direction), fresh context; three lanes only; the round took
-~65 minutes; no outage. ROUND-32 OPENERS (not briefed): (1) the Jacobsthal-square condition as a
-target - what is known about F/q'^2 for the two-class sieve (Harvester: explicit quadratic
-Jacobsthal bounds with constant below 1/8), and whether the LP thread's per-step certificates
-give F(M+q') <= q'^2/8 + ... directly; (2) (A-pad): the F_3-wall separator at m41..m53 with the
-maximisers' middles (Mechanic); (3) L_pad by the cover half on the non-bare alphabet only
-(Constructor + Mechanic's occurrence list by CRT); (4) Lateral's item 84 and the m53/m59 slots in
-the kernel (Formalist); (5) prior-art check on docs/novel/spectrum-bound-on-L.md and
-bare-word-uniform-cap.md (Harvester).
-
-NOVEL-FINDINGS RULE (all agents, standing - from the human, 2026-08-23):
-Anything potentially novel to mathematics gets its own document in docs/novel/ (template and
-rules in docs/novel/README.md) IN THE SAME ROUND it is established: what it is, why it might be
-novel, proof or proof pointer with honest status (kernel-checked / script-verified / measured /
-conjectured), implications, unsolved questions or conjectures it touches, and a prior-art check
-(agents without web access write "not yet checked"; the manager runs the check and records the
-verdict). Over-inclusion is fine - the check sorts it out. Update docs/novel/README.md's index.
-This is an exception to the scope rule: docs/novel/ is writable by every agent.
-
-CLEAN-CONTEXT RULE (from the human, 2026-08-23): round-20 agents start with CLEAN context.
-Read the compacted workstream docs (this file's SUMMARY + rules, your own doc, and any doc your
-brief names) - do NOT read docs/proof-search/archive/ except to verify one specific claim whose
-compacted statement you need at full detail. The archives are verbatim rounds 1-19 logs kept so
-nothing is lost; they are not round-20 reading.
-
-HUMAN DIRECTIVE (2026-08-23) - TWO NEW FRAMES, work them into the round:
-
-1. MATRIX / LINEAR ALGEBRA. Express the machine's discovered structure in matrix form and see
-   what routes open. Entry points (suggestions, not limits): gear blocking as circulant /
-   permutation matrices over Z_q; the merge transform as a linear operator on gap words; the
-   corridor mod 35 as a 35x35 operator whose powers generate exposure; TRANSFER MATRICES for
-   the gap-word grammar - p_j (the joint distribution of qualifying gaps at separations 1..j)
-   as a product of transfer matrices, so the measured anti-correlation deficit (x26, x6.7,
-   x1400) becomes a SPECTRAL statement (spectral gap / Perron-Frobenius bound) instead of a
-   census; chain and literal caps as nilpotency / spectral-radius facts.
-2. COMPLEX NUMBERS. The blocking indicator is exactly a sum of q-th roots of unity
-   (1_{q blocks k} = (1/q) sum_j e^{2 pi i j (k -+ u')/q}), so every census the project has
-   taken has an exponential-sum form. Gear alignment is a PHASE relation. Take the DFT of the
-   corridor, of gap spectra, of the joint gap-pair distribution; the earlier frequency-space /
-   phase look was abandoned early - re-enter it now WITH the round-19 objects in hand
-   (suppression law, p_j, flank shapes), not the round-1 ones.
-
-Lane assignment (consistent with the mandate rule - each frame lands in the lane it serves):
-  CONSTRUCTOR - transfer-matrix formulation of p_j; this is the live route's own target
-                restated, not a re-tasking.
-  LATERAL     - the complex/Fourier frame is its native lane (reframings); also any matrix
-                form the other lanes cannot reach.
-  MECHANIC    - measure what the new frames predict as exact events: eigenvalues, spectral
-                gaps, character/exponential sums against their census values. Events, not fits.
-  HARVESTER   - literature adjacency on its own mandate: exponential sums over sieve residues,
-                transfer-matrix sieves, where the named functions it tracks meet these frames.
-  FORMALIST   - unchanged mandate; pick up any matrix identity that becomes exact and finite
-                (a finite matrix product equalling a census number is kernel-checkable).
-
-ROUND-20 BRIEFS (historical - all five filed 2026-08-24; see round-20 appends below):
-CONSTRUCTOR -> the anti-correlation law: a formula for p_j, the joint distribution of
-qualifying-size gaps at separations 1..j. That deficit (x26, x6.7, x1400) is what would make the
-suppression law rigorous, and it is now the whole of (D). Mechanic owes you the joint gap-pair
-census at separations 1-5; Lateral's c_q(g1,g2) is the same object from the corridor side -
-three workstreams converging on one construct, so state precisely what you need from each.
-MECHANIC -> (a) the joint gap-pair census at separations 1-5 over whole periods, for
-Constructor's p_j; (b) the COVERABILITY SPECTRUM COV(M) you named - CRT arithmetic, no period
-scan, reaching machines 37/41/43/53, giving the UPPER bounds every prefix row lacks; (c) the
-k_win >= 4 falsification watch at 31/37/41. Your Q_j margin collapse (0.45q' -> 0.10q') is the
-counterweight to watch - if it keeps falling, say so early.
-LATERAL -> c_q(g1,g2), the gear x lag-pair autocorrelation: your own named next construct, and
-independently the natural object for (D) since a flank sum IS a two-lag quantity. Also the
-autocorrelation at the padded lag q'. Note the interior condition is a disjunction and does not
-factorise - that obstruction is the interesting part, not a reason to stop.
-FORMALIST -> (A)'s remaining gap (the word-list ENUMERATION, the only part of (A) not checked),
-then the suppression-corrected flatness statement as a hypothesis-explicit theorem so the
-censuses can discharge it. Your tier-C re-attack stands: machine 19 at ~20 min is now worth
-doing.
-HARVESTER -> "why is 13 extremal?" - your own sharp question, on your own mandate: the h_2
-margin dips to 3.8% at y = 13 and recovers. That is a named-function anomaly with a literature
-attached. Also worth stating for publication: twins are the 13.3rd percentile of their own
-family, which reframes what Reduction A is.
-
-JOB-COMPLETION RULE (all agents, standing - from the human, 2026-08-18):
-A round is NOT finished while any job it launched is still running. Do not file a round report
-on partial coverage and do not promise to "fold results when they land" - WAIT for your own
-detached jobs to finish, then report once with complete data.
-
-Consequences, all intended:
-- Launch jobs EARLY in the round, not at the end. A job started in your last few actions will
-  hold the whole round open.
-- Size jobs to the round. If a census would take many hours, either narrow it so it completes,
-  or split it so the part that completes this round is self-contained and the rest is a
-  deliberately-scoped next-round job - do not start an open-ended run and report around it.
-- If a job is genuinely stuck or dead, that is a finding: say so, with what you did to establish
-  it, rather than treating it as still-pending.
-- At the end of the round every process the round started is finished, so the round's data is
-  complete when the write-up happens and nothing arrives afterwards to invalidate it.
-
-(The manager gave the opposite latitude in round 20 - "report without them rather than blocking"
-- and that was wrong. This rule supersedes it.)
-
-MODEL POLICY (standing - from the human, 2026-08-28, for round 25 on):
-Lane agents run on OPUS; the manager (round write-ups, cross-lane routing, mandate audits,
-novelty verdicts, round briefs) runs on FABLE. Rationale, from the rounds-23/24 experiment: lane
-work is build-and-test, where the assertion gates and the Lean kernel do the guaranteeing - a
-gated claim cannot drift silently. The compensating rules are therefore LOAD-BEARING, not
-etiquette:
-- Every claim must pass an assertion gate, the kernel, or an exact census before it enters the
-  record. Ungated prose is not a result.
-- Every NEGATIVE ("this route won't work", "not worth pursuing", "will not close") must carry a
-  proof, an exact measurement, or the explicit label "JUDGMENT, NOT RESULT". Negatives are the
-  one claim type with no gate to fail - label them or gate them.
-- Pre-register predictions where possible; score them in the round report.
-- MANAGER GATE-CHECK (new, standing): before each round write-up the manager re-runs every
-  lane's headline assertion gate from a clean process and reports the result in the SUMMARY.
-- ESCALATION VALVE (new, standing): if a lane hits an item where the REASONING ITSELF is the
-  deliverable - e.g. the two-gap mechanism derivation beginning to crack - that item is pulled
-  up to the manager (Fable) rather than finished in-lane. The finish-line derivation is not
-  attempted on the budget model.
-
-COMPUTE POLICY (all agents, standing - from the human, 2026-08-28):
-The box has 20 CPU cores and ~16 GB RAM. Scripts SHOULD run multi-core where it makes sense and
-is safe - but leave headroom: keep the TOTAL load across all lanes at <= 16 cores so the Windows
-UI and VS Code stay responsive. Practical defaults: a lane doing heavy compute takes up to 8
-workers when the box is quiet, 3-4 when other lanes are active; check before launching
-(Get-Process count / CPU load), don't assume. MEMORY IS THE BINDING CONSTRAINT, not cores - the
-project has now hit fork-table exhaustion once and pagefile/commit exhaustion twice (WinError
-1455). Cap concurrent child processes (pool <= 3 for memory-heavy work), stagger launches, retry
-Popen failures, and make every orchestrator resume from its own log. Use whatever tools fit the
-job best; invoke interpreters by absolute path (venv activation does not persist across shells).
-
-BENCHMARK PROTOCOL (all agents, standing - from the human, 2026-08-23):
-Performance comparisons COUNT OPERATIONS, not wall time - instrument both code paths with
-explicit counters (letters scanned, deletions applied, strikes sieved, or a closed-form op
-count when a run is infeasible) so results are decoupled from the machine. Report ops per step
-and the ratio. At most one wall-time column as a secondary sanity check, and it must come from
-runs executed ALONE - never run compared computations side by side (CPU/cache contention
-invalidates the timings; this ruined a benchmark once already).
-
-MEASUREMENT DIRECTIVE (all agents, standing - from the human, 2026-08-18, and it overrides the
-default habit of this search):
-
-"'Measured everything measurable' is obviously not true - if we had, we'd have solved the
-conjecture. Focus on finding NEW measurements, by exploring new machine constructs derived from
-RELATIONSHIPS BETWEEN ITS PARTS. When the analysis points at complexity - that's not a wall,
-that's the solution space we need to push into."
-
-What this changes, concretely:
-- Every measurement so far was taken on an object we already knew to name: gears, teeth, slots,
-  gaps, words, chains, flanks, spectra. The unmeasured space is the RELATIONSHIPS between those
-  objects, and constructs built out of those relationships. Build the new object first, then
-  measure it - do not re-measure known objects at larger scale and call it progress.
-- "Still Wall V", "extreme-value control", "arithmetic luck not structure", "no smooth law, only
-  the histogram" - these have been the terminal verdicts of many rounds. They are NOT stopping
-  points. Each one names a region we have declined to enter because it looked complex. Enter it.
-  If a quantity is erratic and arithmetically selected, that erraticity is itself an object with
-  structure - measure THAT (its own histogram, its correlations, its generating relation), rather
-  than reporting that no smooth law exists.
-- A report that ends "this is the limiting event, still open" is incomplete unless it also names
-  the construct that would have to be built to go further, and why it was not built this round.
-
-MANDATE RULE (all agents, standing - added after a manager error, 2026-08-18):
-Each workstream works ITS OWN MANDATE. The manager does not re-task a workstream to whatever the
-live route needs that round; that is what happened over rounds 3-17 and it left two mandates
-unserved while five agents crowded one inequality.
-
-  MECHANIC   - empirical censuses at scale on the machine's real structure; EVENTS with exact
-               counts, never fitted trends. Standing rule earned the hard way, three times:
-               never extrapolate a per-step share - look it up.
-  CONSTRUCTOR- build the proof; attack the target directly. Owns the live route.
-  FORMALIST  - kernel-checked Lean, zero sorries, honest reporting of what will not close.
-  LATERAL    - unorthodox angles, reframings, self-reference; the directions the other four
-               cannot reach. NOT a second analyst on the live route.
-  HARVESTER  - side theorems and ADJACENT CONJECTURES, per its own round-1 ranking. NOT
-               twin-route support (formal work goes to Formalist, censuses to Mechanic).
-
-If a brief from the manager reads as another workstream's lane, the agent should push back and
-cite this rule. Drift is a coordination failure, not an agent failure.
-
-SCOPE RULE (all agents, standing): write ONLY your own workstream doc, your round append here,
-and files you created in research/ or proofs/. The SUMMARY, human.md, other workstreams' logs,
-and all corpus docs (docs/*.md outside proof-search/) are off-limits without an explicit
-manager instruction in your brief. (Rounds 9-10 compliance: all five agents clean.)
-
-SUPERSEDED-ROUND-14: Lateral -> BOUND THE PADDED RUNS (their own next target, and now the route's live
-question): how often can gaps of exactly q' chain? Each padded link needs a top-gap of M, so
-this is the rounds 9-10 adjacency machinery aimed at a new object. Constructor -> the padding
-question from the tolerance side: with tier A size-blind and tier B dead, what does a padded-run
-bound have to look like to give phi, and is the near-max non-clustering statement (Wall V,
-bounded complexity) genuinely the only supplier? Mechanic -> the padding census: how many gaps
-of exactly q' does each machine carry, and how do they chain (the empirical side of lateral's
-target); continue the k=5 hunt at any step Constructor nominates. Harvester -> the d-specific
-firing restatement for 3 | e (four-letter cycle, short letter), and whether padding transfers to
-general d. Formalist -> (when the in-flight work lands) the 48-class cap via CRT tuples, then
-tier A's machine-free exclusion as a kernel theorem - per Constructor, tier A is the only
-scalable piece and now has an exact statement: (q' mod 210, w, F mod 35) decides it.
-
-SUPERSEDED-ROUND-13: Constructor -> the (l+2)-point correlation: transfer the A/B/C tier machinery to
-FS_max(w) <= F + 2.5q'/3 - span(w). Tier A first (machine-free forbidden configurations around a
-word occurrence - the generalisation of no_11_11_chain), then what the per-machine check costs
-at each of the six steps. This is now the single missing bound of the whole tolerance route.
-Lateral -> the excess share vs fuel population: does it saturate or climb (the 0.811 at 31->37
-is the warning shape)? Needs machine 37/41 spectra - coordinate with Mechanic. Also: with
-firing settled as density-not-count, restate the graded tolerance cleanly. Mechanic -> land
-machine-37 fuel (the k=5 falsification test) and machine-31/37 spectra; then the excess-share
-census Lateral needs. Formalist -> the 48-class literal cap via the CRT-tuple recipe (Constructor
-23.2), then machine 17 (period 85085) where tiers B/C first genuinely separate from the scan.
-Harvester -> the d != 0 mod 6 restriction: what does the mod-105 walk give for d = 6, 12, 18
-(the densest gaps)? Plus: does the word identity itself transfer to general d?
-
-SUPERSEDED-ROUND-12: Constructor -> the WORD-INDEXED TOLERANCE THEOREM: assemble the certified per-step
-ceiling from the literal cap (<= 6 words/step) + flanks + pinned addresses, and test it against
-every measured step - state exactly which flank-sum bound closes the route and what it costs.
-Lateral -> the FIRING RATIO: fuel sites x phase alignment across all censused steps (mechanic's
-216-site N4 at 31->37 is the sample); quantify double rarity and what it does to the graded
-constant. Mechanic -> fold machine-37/spectrum-31 results when they land; verdicts on
-Constructor's five falsification criteria; k=5 watch at 37->41. Formalist -> finish Machine13
-certificate (in flight); then the literal cap's 48-class check and F(2,y) = 0 mod 3 as kernel
-targets. Harvester -> monitor the pruned run; formalize its two pruning theorems' number-theory
-cores (mod-3 endpoint, left-taut equivalence) or hand them to Formalist with exact statements;
-resume related-conjecture harvesting with the new fuel machinery (Polignac per-d: does the
-literal cap transfer to d != 2?).
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)
 - research/slip_path.py: state_walk (per-slot gear states + kill attribution), mex_jump,
