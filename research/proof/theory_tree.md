@@ -538,7 +538,37 @@ the log at the bottom is chronology only.
       ordering to minimise collapse; a second moment over ARITHMETIC BLOCKS instead of
       congruence fibres (the one crack in the collapse); the budget sum 4/g^2 < 0.36455 as a
       machine-free quantity to test against the tree's other reductions.
-      - R2.c.i. The second moment over arithmetic blocks. OPEN, prover running.
+      - R2.c.i. The second moment over arithmetic blocks (research/proof/block_moment.md).
+        DEAD as a route, with the sharpest single inequality on the tree left behind. The whole
+        per-part algebra of the distortion engine is partition-agnostic; the fibre structure
+        is used only to evaluate alpha = 2/g by CRT. With the whole window as one block and
+        the real teeth the exact budget is eta_B = 0.358, 0.359, 0.365, 0.366, 0.365 at
+        q = 59..997 (below 1 at all 107 machines to 599, max 0.367) against the fibre budget
+        1.07..1.91: the collapse lemma is an artefact of the partition. But the a priori
+        (phase-adversarial) block budget busts at the SIXTH GEAR (cumulative 0.16, 0.39, 0.57,
+        0.76, 0.92, 1.08 at g = 5..19, independent of block length, interval and q), and the
+        rescuing hypothesis "every block holds its fair share of survivors" is FALSE (it gives
+        0.944 < 1 for {5, 7} on 4 columns, which the machine covers). The ceiling error is
+        free; the conditioning costs a factor 7-8.5, and that is the whole mechanism. Blocks
+        are worse than fibres from g = 13 for 86 consecutive primes; block thresholds are 3-13
+        orders worse than fibre thresholds; ordering is an exponent for fibres and a constant
+        for blocks. Unconditional reach: three to five gears, 0% of the window. WHAT SURVIVES:
+        the budget in one coordinate, eta = sum over gears of (4/g^2) rho_g^2 with rho_g the
+        strike-rate excess of g on the current survivors (the same quantity as 7b's curve),
+        and the root's covering half follows if the weighted L2 mean of rho stays below 1.663;
+        measured max 1.35 (q = 199), 1.52 (q = 997); rho = 1.000 to three decimals through
+        g = 23 at q = 997, far past the provable g = 17. MANAGER'S CHECK (research/anchor235/
+        r52/bm_trivial_tail.py): the head is exact (rho = 1) only for gears whose lower period
+        times g fits the window (to 17 at q = 997), plus one gear with rho <= 2; the tail under
+        the TRIVIAL bound rho_g <= 1 / delta_{<g} (every strike lands on a survivor) is 2.53
+        against room 0.69 from g = 19 (ratio 3.7), 2.23 against 0.67 from g = 29 (3.3), 1.29
+        against 0.64 from g = 97 (2.0): the trivial bound misses by a factor 2 to 3.7, the
+        smallest miss of any unconditional bound on the tree, and the head cannot be extended
+        because the lower period grows by a factor g per gear. The unproven part is exactly
+        the in-window equidistribution of the lower machine's survivors modulo the middle
+        gears (7b's curve, rho = 1 for ln g / ln Q' < 0.55, measured white), face A4 and D in a
+        single weighted inequality. Child named: the shape of the rho_g profile (head, middle
+        band, top gears), the three-band shape of the flank decomposition.
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -1084,3 +1114,9 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
   the fibre theorem, the fixed-point theorem (fixed points are twin columns), the uncoupled classification (the
   even distances a machine cannot couple are twice the twin columns above it), records in columns 5 and 6;
   dead as a route (coupling constrains strikes, endpoints are openings).
+- 2026-09-06, prover B (block_moment.md) and manager check: the block second moment is partition-agnostic and the
+  exact budget on the real window is 0.36, but the a priori budget busts at the sixth gear and the fair-share
+  hypothesis is false; what survives is the single inequality sum (4/g^2) rho_g^2 < 1 (rho the in-window strike-
+  rate excess on survivors), exact head 0.31-0.36, trivial tail short by a factor 2 to 3.7: the smallest miss of any
+  unconditional bound on the tree, and the unproven part is 7b's equidistribution curve. Round closed; every named
+  lead and child run; the wall's statement stands in its sharpest form.

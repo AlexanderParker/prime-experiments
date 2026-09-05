@@ -337,6 +337,22 @@ of congruence fibres. The half-column map added three theorems (fibre, fixed poi
 column, uncoupled distances = twice the twin columns above the machine) and no lever: coupling
 constrains strikes, a gap's endpoints are openings.
 
+## 5g. The wall in one inequality (2026-09-06)
+
+The covering side, run through blocks instead of fibres, leaves the root's covering half as one
+weighted inequality: sum over gears of (4/g^2) rho_g^2 < 1, where rho_g is the fraction of the
+current survivors in the window that gear g strikes, relative to its fair share 2/g. The head
+(gears whose lower period times g fits the window, to 17 at q = 997) is exact, rho = 1, worth
+0.31; the measured total is 0.36; the room is 0.69. The trivial bound on the tail (every strike
+of g lands on a survivor, rho <= 1/delta) gives 2.5, short by a factor 3.7 from g = 19 and 2.0
+from g = 97. Nothing unconditional on the tree has come closer. The unproven part is the
+in-window equidistribution of the lower machine's survivors modulo the middle gears (7b: rho =
+1.000 for ln g / ln Q' < 0.55, white residual), which is face A4 (rate to maximum) and face D
+(transfer) in a single number per gear. A proof needs rho_g <= about 3.6 on the weighted L2
+average over g >= 19; the sieve's upper-bound side gives constants of that order only for gears
+below q^{1/2} with the level of distribution in hand, and nothing for the gears above q^{2/3},
+whose trivial contribution alone is 2 to 50 at the computed q and vanishes only past q ~ 10^8.
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real
