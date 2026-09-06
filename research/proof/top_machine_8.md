@@ -1,5 +1,7 @@
 # The wheels' last open laws (branch R8)
 
+> **Numbering note (harvester, 2026-09-06).** Law numbers W86-W93 in the original text were renumbered W95-W102 on 2026-09-06 to leave room for document 7 (`top_machine_7.md` L67-L75 = register W86-W94). The map: W86->W95 (non-cancellation), W87->W96 (minimum-cover count), W88->W97 (cover polynomial), W89->W98 (census as a cover sum), W90->W99 (bijection), W91->W100 (second moment), W92->W101 (half-turn law), W93->W102 (parity-refined capacity bound). Document-local citations L67-L75 below are register W86-W94 in that order. Future documents number from W103.
+
 Parent: `top_machine_7.md` (branch R7), whose ledger entry (section 6(d)) leaves four items
 genuinely open on the wheels alone: (1) the cost of the core minimisation in L69, (2) the
 non-cancellation of the top moment `M_{r(d)}(d)` (L75, measured 0 exceptions of 24, unproved),
@@ -15,10 +17,11 @@ present; core gears `<= L + 1`, tail gears the rest; the domino cost `D(U)` of a
 the sum over its maximal step-2 runs per parity class of `ceil(run/2)`. Nothing about the motor,
 no clutch.
 
-**Numbering.** Laws here are numbered from **W86** in the project register
+**Numbering.** Laws here are numbered from **W95** in the project register
 (`research/proof/law_register.md`; W1-W85 taken). Document-local laws of `top_machine_7.md` are
-cited as L67-L75 (the register has not yet assigned them W-numbers; when it does, the harvester
-should reconcile). Each law below says which document law it extends.
+cited as L67-L75; the register assigned them W86-W94 on 2026-09-07 (L67 = W86, ..., L75 = W94)
+and this document's own laws are W95-W102 there, as the numbering note above says. Each law
+below says which document law it extends.
 
 **Vocabulary introduced here** (names chosen not to collide with existing objects):
 *pieces* of length `d` = the family `J_p = {p-2, p} n [1, d-1]`, `p in [1, d+1]`, `p != 2, d`
@@ -453,12 +456,12 @@ odd) is what makes the run parity cost a half-piece per interior run (3.5, the r
 
 ## 5. Laws
 
-Numbered from **W86** in the project register. Setting as in `top_machine_7.md` section 4:
+Numbered from **W95** in the project register. Setting as in `top_machine_7.md` section 4:
 pairwise coprime odd gears `g >= 3`, teeth `0` and `-2`, `m = |G|`; pieces, covers, `C_t(d)`,
 `r(d)` as in the vocabulary above; `P_G(e) = prod_{g in G} (g - e)`; `Delta` the forward
 difference in `e`.
 
-**W86 (THE NON-CANCELLATION, WITH THE SIGN - closes `top_machine_7.md` L75).** For every
+**W95 (THE NON-CANCELLATION, WITH THE SIGN - closes `top_machine_7.md` L75).** For every
 `d >= 2`, in the universal regime,
 
         M_{r(d)}(d) = (-1)^{r(d)} r(d)! C_{r(d)}(d) ,
@@ -477,7 +480,7 @@ no repetition, and then `mu(P) = (-1)^r`; there are `r!` such sequences per mini
 *Evidence.* `d = 2..26`, **0 mismatches of 25**; the 34 minimum covers of `d <= 14` each have
 `mu = (-1)^r` by direct summation, **0 exceptions**.
 
-**W87 (THE MINIMUM-COVER COUNT AND THE UNIVERSAL RECORD MULTIPLICITY IN CLOSED FORM - extends
+**W96 (THE MINIMUM-COVER COUNT AND THE UNIVERSAL RECORD MULTIPLICITY IN CLOSED FORM - extends
 `top_machine_1.md` L18 and `top_machine_2.md` L25).**
 
         C_{r(d)}(d) = d/4 - 1  (d = 0 mod 4),   1  (d = 1 mod 4),
@@ -493,13 +496,13 @@ class has `floor(n/2)` cells and the singleton `{n}` if `n` is even. A step-2 ru
 length `2a + 1` is covered by `a + 1` pieces either with exactly one doubly-covered cell - which
 must be at an even offset from the run's start, `a` choices - or with one end singleton and the
 tiling of the rest. Multiply, and read off the four residues of `d` mod 4. The multiplicity
-statement is W86 with L25 (`N_d = (-1)^m M_m(d)` when `r(d) = m`), or directly by W90. QED
+statement is W95 with L25 (`N_d = (-1)^m M_m(d)` when `r(d) = m`), or directly by W99. QED
 
 *Evidence.* counted against the closed form `d = 2..26`, **0 mismatches**; the eight published
 multiplicities, **0 mismatches of 8**; the census by scan on 5 wheels and by L22 on a sixth,
 **0 mismatches of 8**.
 
-**W88 (THE UNIVERSAL SIGNATURE IS THE COVER POLYNOMIAL - extends `top_machine_2.md` L23 and
+**W97 (THE UNIVERSAL SIGNATURE IS THE COVER POLYNOMIAL - extends `top_machine_2.md` L23 and
 `top_machine_7.md` L73).**
 
         sum_e c_e(d) z^e = sum_t C_t(d) (1 - z)^t z^{d + 3 - t} .
@@ -511,14 +514,14 @@ multiplicities, **0 mismatches of 8**; the census by scan on 5 wheels and by L22
 
 *Corollaries, each in one line.* `M_k(d) = [(z d/dz)^k c](1)` vanishes for `k < r(d)` because
 `(1-z)^t` vanishes to order `t >= r(d)` at `z = 1` (L73); at `k = r(d)` only the `t = r` term
-survives and gives `(-1)^r r! C_r` (W86); `r(d) = D(d-1)` because the pieces are the dominoes of
+survives and gives `(-1)^r r! C_r` (W95); `r(d) = D(d-1)` because the pieces are the dominoes of
 `[1, d-1]` plus two singletons (L74); `d = 4` has `C_t = 0` for all `t` (L4); L24's gap-3 / gap-5
 coincidence is `(z + (1 - z))^2 = 1`.
 
 *Evidence.* every coefficient, `d = 2..26`, **0 mismatches**; `M_{r+1}` from the same expansion,
-`d = 3..26`, **0 mismatches** (W91).
+`d = 3..26`, **0 mismatches** (W100).
 
-**W89 (THE UNIVERSAL CENSUS AS A COVER SUM, AND ITS COST - extends `top_machine_2.md` L22, L23,
+**W98 (THE UNIVERSAL CENSUS AS A COVER SUM, AND ITS COST - extends `top_machine_2.md` L22, L23,
 L25).** For every gear set with all `g > d + 2`,
 
         N_d(G) = sum_{t = r(d)}^{m} C_t(d) (-1)^t (Delta^t P_G)(d + 3 - t) ,
@@ -528,7 +531,7 @@ coefficients of a product of two path cover polynomials, computable by a two-sta
 matrix in `O(d^2)`. Hence the universal signature `c_e(d)` and the universal census cost
 polynomial time in `d`, not `2^{d-1}`.
 
-*Proof.* Apply the functional `z^e -> P_G(e)` to W88; `sum_j binom(t,j) (-1)^j P(a + j) =
+*Proof.* Apply the functional `z^e -> P_G(e)` to W97; `sum_j binom(t,j) (-1)^j P(a + j) =
 (-1)^t Delta^t P(a)`; `Delta^t P = 0` for `t > deg P = m`. The transfer matrix: a run of `ell`
 cells is covered by a subfamily of its adjacent pairs and end singletons iff, scanning left to
 right, every cell is met by the pair ending at it, the pair starting at it, or its singleton; the
@@ -537,7 +540,7 @@ state is "the pair ending here was taken". QED
 *Evidence.* 27 universal `(d, G)` cases against L22 and scans, **0 mismatches**; transfer matrix
 against brute force `d = 2..22`, **0 mismatches**; signatures tabulated to `d = 60`.
 
-**W90 (THE BIJECTION BEHIND THE UNIVERSAL RECORD MULTIPLICITY - extends `top_machine_1.md`
+**W99 (THE BIJECTION BEHIND THE UNIVERSAL RECORD MULTIPLICITY - extends `top_machine_1.md`
 L18).** In a wheel of `m = r(d)` gears all above `d + 2`, the map
 `(minimum cover P, bijection G -> P) -> n mod W` given by CRT from "gear `g` has tooth 0 at
 `n + p` for its piece `J_p`" is a bijection onto the gaps of length `d`. Hence
@@ -552,15 +555,15 @@ phase vector, realised by exactly one `n` mod `W`. QED
 
 *Evidence.* the 8 scan/L22 cases of 3.3, **0 mismatches**.
 
-**W91 (THE SECOND MOMENT - extends L25).** For `d >= 3`, `d != 4`, with `r = r(d)`,
+**W100 (THE SECOND MOMENT - extends L25).** For `d >= 3`, `d != 4`, with `r = r(d)`,
 `M_{r+1}(d) = (-1)^r (r+1)!/2 [C_r(d) (2d + 6 - r) - 2 C_{r+1}(d)]`. *Proof:* the sequences of
-length `r + 1` in W86's expansion are: one `4` and a minimum cover (`(r+1)!` per cover, weight
+length `r + 1` in W95's expansion are: one `4` and a minimum cover (`(r+1)!` per cover, weight
 `4`), a minimum cover with one piece repeated (`r (r+1)!/2` per cover), or `r + 1` distinct
 pieces forming a cover (`(r+1)!` per cover, `mu = (-1)^{r+1} + (-1)^r #(minimum covers inside)`),
 and `sum_P #(minimum covers inside P) = C_r (d - 1 - r)`. QED *Evidence.* `d = 3..26`,
 **0 mismatches**.
 
-**W92 (THE HALF-TURN LAW - the two parity classes are two windows of the adjacent-teeth core
+**W101 (THE HALF-TURN LAW - the two parity classes are two windows of the adjacent-teeth core
 wheel; extends `top_machine_7.md` L69).** Let `Q` be the struck set of the core gears with
 teeth `{0, -1}` at phases `u_g = 2^{-1} a_g mod g` (`a_g` the pair-coordinate phase), a subset
 of `Z_{W_core}`, and let `c_ell(x)` be the domino cost (pieces = adjacent pairs and singletons)
@@ -584,7 +587,7 @@ sets, all sets with four or more core gears; (ii) the run structure is not reduc
 1,875 sets; (iii) anchoring at the ends fails on exactly the 210 sets `{7} u {four gears > 13}`
 at `F = 12`, by the unique-phase mechanism of 3.5.
 
-**W93 (THE PARITY-REFINED CAPACITY BOUND - extends `top_machine_7.md` L70).** With `A_g(L)` the
+**W102 (THE PARITY-REFINED CAPACITY BOUND - extends `top_machine_7.md` L70).** With `A_g(L)` the
 set of achievable `(#even cells, #odd cells)` of gear `g`'s trace in `[0, L)`,
 
         F_top(G) <= Lcap2(G) = max { L : min over (a_g, b_g) in A_g(L) of
@@ -600,7 +603,7 @@ class (L67); minimise over the splits the core can actually show. The comparison
 *Evidence.* 6,659 sets, **0 violations** of either inequality; exact on all 1,653 free sets and
 on every set with core density `rho < 0.376` (3,184 with `rho < 0.3`, 3,349 of 3,350 with
 `rho < 0.4`); never exact above `rho = 0.7`; vacuous at `rho >= 1`. L70 is exact on 1,349 of the
-3,184 low-density sets; W93 on all of them.
+3,184 low-density sets; W102 on all of them.
 
 ---
 
@@ -610,17 +613,17 @@ R7's four genuinely open items, after this branch:
 
 | R7 item | status now |
 |---|---|
-| 1. the cost of `min_U D_L(U)` | **reduced and reclassified.** Every structural ingredient is now proved: the cost is additive over two windows of one pattern (W92), the windows are locked by the half-turn, the decision is a scan of `W_core` (the tail's period drops out; the median gain on the family is 29,939x, and nothing when the tail is empty, which is the in-use regime). No polynomial algorithm is found or claimed, and the classes provably cannot be decoupled (3,611 refutations) - the coupling is the problem. What remains is a **complexity question**, not a structural one: the one-class Jacobsthal function is computed by exhaustive search in the literature too. Ledger class **(b)** |
-| 2. `M_{r(d)}(d) != 0` | **closed**: W86, proved, with sign and count; W87 gives the count in closed form |
-| 3. L22 in the kernel | the Formalist's; W88-W90 hand it a shorter route - `N_d` is a `Finset` sum over covers with a closed-form count, no `Finset.powerset` inclusion-exclusion needed in the universal regime |
-| 4. a parity-refined capacity bound | **closed**: W93, proved, with its regime measured - exact below core density 0.376, a density bound above |
+| 1. the cost of `min_U D_L(U)` | **reduced and reclassified.** Every structural ingredient is now proved: the cost is additive over two windows of one pattern (W101), the windows are locked by the half-turn, the decision is a scan of `W_core` (the tail's period drops out; the median gain on the family is 29,939x, and nothing when the tail is empty, which is the in-use regime). No polynomial algorithm is found or claimed, and the classes provably cannot be decoupled (3,611 refutations) - the coupling is the problem. What remains is a **complexity question**, not a structural one: the one-class Jacobsthal function is computed by exhaustive search in the literature too. Ledger class **(b)** |
+| 2. `M_{r(d)}(d) != 0` | **closed**: W95, proved, with sign and count; W96 gives the count in closed form |
+| 3. L22 in the kernel | the Formalist's; W97-W99 hand it a shorter route - `N_d` is a `Finset` sum over covers with a closed-form count, no `Finset.powerset` inclusion-exclusion needed in the universal regime |
+| 4. a parity-refined capacity bound | **closed**: W102, proved, with its regime measured - exact below core density 0.376, a density bound above |
 
 Items added by this branch: none structural. Two measurements with a mechanism attached: the
-exactness threshold of W93 (why the first loose set is `{9,13}` at `rho = 0.376`) and the
+exactness threshold of W102 (why the first loose set is `{9,13}` at `rho = 0.376`) and the
 anchoring exceptions (explained). One computational: the `W_core` scan.
 
 **Plainly: on paper, the wheels now have no open structural item.** What is open is (i) kernel
-coverage (the Formalist's lane; L67-L69 in progress, W86-W93 written in `Finset` shape), and
+coverage (the Formalist's lane; L67-L69 in progress, W95-W102 written in `Finset` shape), and
 (ii) the complexity of the core minimisation, which is a question about algorithms.
 
 *The capacity route and the in-use machine, in one line.* Both capacity bounds are density
@@ -752,5 +755,5 @@ against the twin conjecture.
 - **A capacity bound with small slack everywhere.** Both bounds are density bounds; slack of
   order `1/(1 - rho)`, vacuous at `rho >= 1`. The pre-registered "max slack 4" and the two hand
   values (9, 20; actual 10, 22) were wrong.
-- **A polynomial algorithm for the minimisation.** Not found; the structural reductions (W92) are
+- **A polynomial algorithm for the minimisation.** Not found; the structural reductions (W101) are
   exact, and the remaining question is algorithmic. Not re-entered.

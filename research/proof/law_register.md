@@ -21,9 +21,26 @@ citation like "L53" was ambiguous.  The W-numbers below are unambiguous and perm
 | `top_machine_5.md` | L50-L59 | **W66-W75** |
 | `top_machine_6.md` | L57-L66 | **W76-W85** |
 | `docs/proofs/23-stack-and-exhaust.md` | S1(a-d), S2, S3, S4(a-b) | **X1-X8**, unchanged |
+| `top_machine_7.md` (branch R7) | L67-L75 | **W86-W94** (added 2026-09-07) |
+| `top_machine_8.md` (branch R8) | written as W86-W93, renumbered in place 2026-09-06 | **W95-W102** |
+| `exhaust_1.md` (branch R4.b.viii.a) | X9-X24 | **X9-X24**, unchanged |
 
-**Future documents number from W86.**  `top_machine_7.md` (branch R7) is a pre-registration at
-the time of writing and carries no laws yet; when it lands it numbers from W86.
+**Future documents number from W103, and from X25.**  (The earlier line "future documents
+number from W86" is discharged: `top_machine_7.md` landed and took W86-W94; `top_machine_8.md`
+had taken W86-W93 for its own laws before document 7 was numbered, and was renumbered to
+W95-W102 - its text now says W95-W102 throughout, and its old numbers survive only in its own
+numbering note, in `theory_tree.md` lines 1194 and 1222, and in `objects_ledger.md` lines
+624-627, none of which this lane edits.  Read "W86" and "W93" in those two files as W95 and
+W102.)
+
+**Vocabulary since 2026-09-07 (the owner's, canonical).**  ENGINE = the primes up to `q`;
+MANIFOLD = the primes in `(q, q#]` as a machine on the raw line (teeth `0` and `-2`, dominoes
+`{x, x + 2}`; the object this file called "the wheels" / "the top machine"; the Lean namespace
+stays `TopMachine`); VALVES = the engine acting inside the manifold's open set (formerly "the
+clutch"); EXHAUST = every tier above the manifold.  A *free* manifold has every gear above `2m`;
+a *loaded* one has small gears; *core* gears are those `<= L + 1`, *tail* gears the rest; `D(U)`
+is the domino cost.  Rows W86 onward use these words; rows W1-W85 keep the words they were
+written in.
 
 **One warning about names.**  `top_machine_1.md` section 4 ends with two unmechanised facts it
 calls **"W1"** and **"W2"**.  Those are *not* register entries W1 and W2.  They are closed at
@@ -48,8 +65,10 @@ register **W24** (the gap-3 / gap-5 identity) and **W32** (the range record; and
 - **STANDARD TOOL** - the proof is a routine application of a named tool and the statement is not
   itself a result.
 
-Prior art checked **2026-09-06**, by five parallel literature sweeps (search terms in section 3).
-A result found known is not a loss: an independent exact replication validates the machine.
+Prior art checked **2026-09-06**, by five parallel literature sweeps (search terms in section 3);
+rows **W86-W102 and X9-X24 checked 2026-09-07** by one harvester pass whose searches and
+coverage limits are in section 3.  A result found known is not a loss: an independent exact
+replication validates the machine.
 
 ---
 
@@ -170,6 +189,42 @@ A result found known is not a loss: an independent exact replication validates t
 | **W84** | d6 L65 | **NO UPPER BOUND ON THE ZONE RECORD IS AVAILABLE, AND THE EXACT REASON**: an upper bound needs a lower bound on the density of open pairs in a short interval above `Q`, which is a linear twin-prime problem.  Bounded below by ordinary prime gaps, unbounded above | **ROOT** - the conjecture in disguise, and the record says so exactly | **KNOWN as an obstruction** - it is the parity problem (Selberg 1949; Tao, *Open question: the parity problem in sieve theory*, 2007), and a **strictly stronger** statement than the project's target is already a published conjecture: **Ziller-Morack arXiv:1706.00317 Theorem 4.1 / Conjecture 6**, `h_2(n) < p_n^2 - p_n` for `n >= 3`, which they prove implies both Goldbach and the infinitude of prime pairs at every even difference, verified to `p = 73`.  **Correction 2026-09-06**: Conjecture 6 is the *adversarial* window statement - `h_2` frees the two residue classes, the project's `F` fixes them at `D = 2` - so it **implies** the project's window statement and is not the same statement (verdict 1).  **CORRECTION from the sweep**: "exactly as hard as bounding the gaps of the family `(1,1)`" over-states it - an upper bound needs an open pair from *any one* of W79's families, i.e. a **finite disjunction** of binary prime problems, which is weaker than the twin problem itself.  Still parity-blocked, so the reading survives; the sharp phrasing does not | this is the root.  The useful content is the correction: W79 + W84 say the target is a disjunction, not the twin problem |
 | **W85** | d6 L66 | **W4 and W24 survive onto the range**: no distance-4 gap in the zone (0 in 49,433,381 gaps); the distance-3 / distance-5 counts agree to 0.02% exactly when 7 is not a gear | PROOF (W4 inherited, the argument is local) + MEASURED (the near-equality) | **KNOWN VARIANT** - inherits W4 (NEW) and W24 (KNOWN VARIANT of Brown / Holt-Rudd) | the wheel laws that are local survive the loss of periodicity - a small but real transfer |
 
+## W86-W94 - `top_machine_7.md` (branch R7, closing the manifold's open laws)
+
+Setting: a free or loaded manifold `G` of pairwise coprime odd gears, `m = |G|`, window `[0, L)`,
+`core(L) = {g <= L + 1}`, `t(L) = #{g > L + 1}` the tail count, `D(U)` the domino cost.  Lean
+names are rounds 36-37 of `top_machine_lean.md`, namespace `TopMachine`.
+
+| # | source | statement | status | prior art (2026-09-07) | use toward the root |
+|---|---|---|---|---|---|
+| **W86** | d7 L67 | **THE PIECE LAW**: in a window of length `L` a tail gear (`g > L + 1`) shows a subset of one distance-2 domino, inside one parity class; a gear can join the two ends of the window **iff** `g <= L + 1` (`g = L + 1` the end pair `{0, L-1}`, `g = L` the wrap pairs), and those ends-joining pieces are the only parity-crossing pieces in the manifold | KERNEL `trace_subset_domino`, `trace_card_le_two`, `trace_one_parity`, `ends_join_iff` (sharper: the end pair occurs at `g = L + 1` exactly), `trace_crosses_parity_iff` | **STANDARD TOOL** - a residue class meets a window shorter than its modulus at most once; the one-class form ("a prime `p > m` has at most one multiple in `m` consecutive integers") is Lemma 2.2 of Ziller-Morack, *Algorithmic concepts for the computation of Jacobsthal's function*, arXiv:1611.03310 (2016), and X1.  The ends-joining / parity-crossing reading is new wording of the same fact; it is what makes the two-class tail begin at `L + 1` rather than at `L` | fixes the core/tail boundary; the reason W88 is an iff and W62 was a sketch |
+| **W87** | d7 L68 | **THE MATCHING LEMMA**: a cell set `U` is covered by `k` pieces (distance-2 dominoes or singletons) iff `k >= D(U)`, `D(U) = sum over maximal step-2 runs per parity class of ceil(run/2)` | KERNEL `domCost_union_parity`, `domCost_run`, `piece_one_parity`, `card_le_two_mul_of_coveredBy`; exhaustive `2^L` subsets, `L <= 14`, 32,766 sets, 0 mismatches | **KNOWN** - it is Gallai's identity (T. Gallai, *Uber extreme Punkt- und Kantenmengen*, Ann. Univ. Sci. Budapest. Eotvos Sect. Math. 2 (1959) 133-138: minimum edge cover `=` vertices `-` maximum matching) on a disjoint union of paths, where a path on `j` vertices has matching number `floor(j/2)`.  No delta beyond the singleton convention | the exact price of a set; every later cost statement (W88-W91, W96, W101, W102) is priced by it |
+| **W88** | d7 L69 | **THE LOADED RECORD RULE, PROVED**: `[0, L)` is coverable iff `min over core phase vectors of D(U) <= t(L)`, both directions, no hypothesis beyond pairwise coprimality; hence `F_top(G) = max{L : min_U D_L(U) <= t(L)}`.  Closes W31 (tabulated) and W62 (sketch) | KERNEL `cost_le_tail_of_coverable` (no hypothesis), `coverable_of_cost_le_tail` (pairwise coprime), `loaded_record_rule`, `record_set_eq`, `record_isGreatest_iff`, `coverable_mono`; 6,659 gear sets (5,006 loaded) against full-period scans, 13 known records, 8,855 triples/quadruples, 0 mismatches | **KNOWN VARIANT** - the necessity half is the standard rejection criterion of every one-class Jacobsthal computation: Ziller-Morack arXiv:1611.03310 **Corollary 2.3** (the positions still uncovered after the small primes must not exceed what the remaining primes can cover, each covering at most `1 + floor((m-1)/p)` positions), Hagedorn, *Computation of Jacobsthal's function `h(n)` for `n < 50`*, Math. Comp. 78 (2009) 1073-1087 (killing sieves over the odd primes, `h(n+1) = 2w(n) + 2`), Costello-Watts arXiv:1208.5342 (2012).  **Delta, and it is the whole of the two-class content**: (i) in one class the criterion is a count and is only a bound; here the tail's pieces are *dominoes*, the exact price is the run-parity cost `D(U)` (W87), not a count, and the rule is an **iff** (sufficiency by assigning one piece per tail gear and CRT); (ii) the boundary is `g > L + 1`, not `g > L`, because of W86's ends-joining pieces - moving one gear across it breaks the rule at 605 of 6,659 sets; (iii) it is a theorem about a fixed gear set, not an algorithmic aid.  Ziller-Morack arXiv:1706.03668 compute the *free-class* `h_2` by adapting the same algorithms (details in their ancillary file, not read); nothing in print states the `D = 2` rule | the manifold record has a formula.  It is exponential in the core, so it decides records, not the window; W101-W102 are what the formula buys |
+| **W89** | d7 L70 | **THE CAPACITY BOUND**: `F_top <= max{L : L <= 2t(L) + sum over core of 2 ceil(L/g)}`, no search | PROOF (one line from W86); 37 sets, 0 violations, equality at all 10 free sets | **KNOWN VARIANT** - the one-class bound "each prime removes at most `ceil(m/p)` integers, so an interval of length `m` survives if `m` exceeds the total" is the mechanism of Costello-Watts arXiv:1208.5342 (their `phi_min` lower bound, `h(k) <= 0.2775 k^2 log k` for `50 <= k <= 10,000`) and of Ziller-Morack Lemma 2.2; the asymptotic bounds - Kanold, Math. Ann. 170 (1967) 314-326 (`g(n) <= 2^k`; `g(n) <= k^2` for `k^{0.6} < p_1`), Stevens, Math. Ann. 226 (1977) 95-97 (`g(n) <= 2k^{2 + 2e log k}`), Iwaniec, Demonstratio Math. 11 (1978) 225-231 (`j(n) << k^2 log^2 k`, large sieve) - are of a different kind: uniform in `n`, not per gear set.  Delta: two teeth, so `2 ceil(L/g)` per core gear and `2` per tail gear | superseded by W102 |
+| **W90** | d7 L71 | **THE PARITY LAW, DERIVED**: with an empty core `D([0, L)) = 2 floor(L/4) + min(L mod 4, 2)`, so `max{L : D(L) <= m} = 2m - (m mod 2)` and the free manifold's record is a corollary of W88; the defect is the one cell with no partner in its own parity class | KERNEL `boundary_cost`, `boundary_greatest`, `parity_law_of_rule`, `rule_gives_parity_law`, `parity_law_agrees` - a second, independent proof of W17 using neither W16 nor W29 | **NEW** (as W17: the size-independence half is Erdos, Math. Scand. 10 (1962) 163-170 in one class; the parity defect has no analogue in print, since the one-class tail piece is a point and has no parity) | the parity law now has two kernel proofs; W29's collision law is no longer load-bearing for it |
+| **W91** | d7 L72 | **THE SHARP THRESHOLD, DERIVED**: at `q' = 2m + 1` the single core gear offers one ends-joining piece; even `m` leaves runs of `m` and `m - 1` (cost `m > t`), odd `m` leaves two runs of `m - 1`, even, cost `m - 1 = t`.  Hence `q' >= 2m + 1` (even `m`) / `2m + 3` (odd `m`) - W71's threshold as a corollary, and the `+2` at odd `m` is one parity bit | PROOF; 8 values of `m`, 3 of `q'` each, 0 mismatches; 7 boundary pairs of W71 reproduced | **NEW** (as W71; the one-class threshold `q_1 > k` is sufficient only and has no parity split) | closes the "free tiling iff `q' > F + 1`" guess refuted in d5 |
+| **W92** | d7 L73 | **THE MOMENT VANISHING, PROVED**: in the universal regime (`g > d + 2`) `M_k(d) = sum_S (-1)^{|S|} e(S)^k = 0` for every `k < r(d)`, `r(d)` the least number of pieces `J_p = {p-2, p} n [1, d-1]` (`p != 2, d`) covering `[1, d-1]`; closes O-W1 and W25's unproved hypothesis | PROOF (Boolean-cube expansion of `f^k`); `d = 2..26` exact | **NEW for the statement, STANDARD TOOL for the mechanism** - "an alternating sum over `{0,1}^n` is the top multilinear coefficient, which a function missing a variable cannot have" is Mobius inversion on the Boolean lattice (Rota, Z. Wahrscheinlichkeitstheorie 2 (1964) 340-368).  Nearest published neighbour of the *object*: Brown arXiv:2311.06873 Lemma 3.1 has the threshold universality of the one-class signature but no moments and no vanishing order; Holt-Rudd have recursions, no polynomial | the census signature's vanishing order is a covering number - the lever named at W25 is now a theorem |
+| **W93** | d7 L74 | **`r(d) = D(d - 1)`**: the census's covering number is the record's own cost function at `d - 1`; `d = 4` is the degenerate case (`r = infinity`, `N_4 = 0` identically), so W4 is no longer an exception to W26 | PROOF (W87 + the pieces are the dominoes of `[1, d-1]` plus singletons); `d = 2..26`, 0 mismatches | **NEW** (an identity between two of the project's own objects; nothing to compare it with in print) | the census (W22) and the record (W16/W88) are the same covering problem - the closest thing to a unification the manifold has |
+| **W94** | d7 L75 | **the degree law's converse, measured**: `M_{r(d)}(d) != 0` at `d = 2..26`, `d != 4`; `deg N_d = m - r(d)` exact; the eight universal multiplicities reproduced | MEASURED (24 of 24); **PROVED at W95** | **NEW** (as W95) | superseded |
+
+## W95-W102 - `top_machine_8.md` (branch R8: the census as a cover polynomial, the record as two windows)
+
+Setting as W86-W94.  *Pieces* of length `d` are the `J_p` of W92; a *cover* is a subfamily whose
+union is `[1, d-1]`; `C_t(d)` the number of covers with `t` pieces; `P_G(e) = prod (g - e)`;
+`Delta` the forward difference.  None of these rows is in the kernel yet; all are written in
+`Finset` shape.
+
+| # | source | statement | status | prior art (2026-09-07) | use toward the root |
+|---|---|---|---|---|---|
+| **W95** | d8 W95 (was W86) | **THE NON-CANCELLATION, WITH THE SIGN**: `M_{r(d)}(d) = (-1)^{r(d)} r(d)! C_{r(d)}(d)`, `C >= 1` when `r` is finite; so `M_{r(d)}(d) != 0` for every `d != 4`, and W25's degree law is a theorem | PROOF (the alternating sum over hitting sets of a family is `mu(P) = sum over covering subfamilies of (-1)^{|T|}`, and a minimum cover has exactly one); `d = 2..26`, 0 mismatches; 34 minimum covers each with `mu = (-1)^r` | **NEW for the statement, STANDARD TOOL for the mechanism** - the hitting-set / cover duality and the fact that a minimal cover's only covering subfamily is itself are Mobius inversion (Rota 1964); the "sign uniformity of minimum covers" is that one line, not a theorem in its own right.  Nothing located treats the top moment of a gap-count signature | closes L75; the universal record multiplicity has a proof |
+| **W96** | d8 W96 (was W87) | **THE MINIMUM-COVER COUNT IN CLOSED FORM**: `C_{r(d)}(d) = d/4 - 1, 1, (d+6)/4, ((d+1)/4)^2` for `d = 0, 1, 2, 3 mod 4`; a manifold of exactly `r(d)` gears above `d + 2` has exactly `r! C_r(d)` gaps of length `d` per period (18, 96, 24, 24, 480, 6480, 1440, 720 at `d = 6..13`) | PROOF (product over the two parity classes; an even run tiles uniquely, an odd run of `2a + 1` has `a` interior double-covers plus one per end singleton); `d = 2..26`, 0 mismatches; 8 of 8 published multiplicities | **NEW** for the multiplicity formula (it extends W18, NEW); **STANDARD TOOL** for the ingredient (minimum edge covers of a path - Gallai 1959 - counted by hand) | W18's "pure function of `m`" is now `r! C_r(d)` explicitly |
+| **W97** | d8 W97 (was W88) | **THE UNIVERSAL SIGNATURE IS A COVER POLYNOMIAL**: `sum_e c_e(d) z^e = sum_t C_t(d) (1 - z)^t z^{d + 3 - t}`; W92, W95, W93, W4 and W24's gap-3/gap-5 coincidence (`(z + (1-z))^2 = 1`) are each one line from it | PROOF; every coefficient `d = 2..26`, 0 mismatches | **NEW as an identity; the polynomial itself is KNOWN** - `sum_t C_t(d) x^t` is the **edge cover polynomial** of a path with two pendant singletons (S. Akbari and M. R. Oboudi, *On the edge cover polynomial of a graph*, European J. Combin. 34 (2013) 297-321), a Fibonacci-type transfer-matrix object.  **Do not confuse with the Chung-Graham cover polynomial** (J. Combin. Theory Ser. B 65 (1995) 273-290), which counts path-cycle covers of digraphs and is a different object.  Nothing located identifies a sieve gap-count signature with an edge cover polynomial | the whole universal counting theory of W22-W26 is properties of one polynomial |
+| **W98** | d8 W98 (was W89) | **THE UNIVERSAL CENSUS AS A COVER SUM**: for all `g > d + 2`, `N_d(G) = sum_{t = r(d)}^{m} C_t(d) (-1)^t (Delta^t P_G)(d + 3 - t)`, `m - r + 1` terms; `C_t(d)` by a two-state transfer matrix in `O(d^2)`, so the universal census costs polynomial time in `d`, not `2^{d-1}` | PROOF (apply `z^e -> P_G(e)` to W97); 27 universal `(d, G)` cases, 0 mismatches; transfer matrix to `d = 22` against brute force | **KNOWN VARIANT** - Brown arXiv:2311.06873 **Theorem 3.2 / eq. (15)** is the same census as a signed sum over interior subsets with the product `prod (q - k)`, one class, and his coefficients `c(a, k-2, P, T)` are the one-class signature; he has no generating polynomial, no finite-difference form and no covering interpretation, and his sum is exponential in `d`.  **Delta**: two classes, the cover polynomial, the `Delta^t` form, and polynomial cost | the census beyond `d = 20` is closed for the universal regime |
+| **W99** | d8 W99 (was W90) | **THE BIJECTION**: in a manifold of `m = r(d)` gears above `d + 2`, `(minimum cover, bijection G -> pieces) -> n mod W` is a bijection onto the gaps of length `d`; `N_d = r! C_r(d)` with no inclusion-exclusion | PROOF; 8 scan/W22 cases, 0 mismatches | **NEW** - Holt-Rudd arXiv:1408.6002 / arXiv:1503.00231 count constellations per period by recursion, one class, and Brown by inclusion-exclusion; no labelled-tiling bijection for a gap count was located | the universal record multiplicity is a count of labelled tilings, which is the shape a density estimate can be attached to |
+| **W100** | d8 W100 (was W91) | **THE SECOND MOMENT**: `M_{r+1}(d) = (-1)^r (r+1)!/2 [C_r (2d + 6 - r) - 2 C_{r+1}]`, `d >= 3`, `d != 4` | PROOF; `d = 3..26`, 0 mismatches | **NEW** (a corollary of W97; nothing to compare) | bookkeeping |
+| **W101** | d8 W101 (was W92) | **THE HALF-TURN LAW**: multiplying by `2^{-1} mod W_core` conjugates teeth `{0, -2}` to `{0, -1}`; the even cells of `[0, L)` become the window `[0, ceil(L/2))` and the odd cells the window `[H, H + floor(L/2))` at `H = (W_core + 1)/2`, of **one** adjacent-teeth core manifold, and `F_top = max{L : min_x c_{ceil(L/2)}(x) + c_{floor(L/2)}(x + H) <= t(L)}`.  Measured with it: the two windows do not minimise independently (3,611 of 5,006 loaded sets, all with four or more core gears), counts alone do not decide (1,875 sets), and anchoring at the ends fails on exactly the 210 sets `{7} u {four gears > 13}` at `F = 12` | PROOF (CRT) + MEASURED, 19,896 phase vectors, 0 mismatches; 6,659 records re-decided | **NEW for the two-window form and its coupling; STANDARD TOOL for the map** - the conjugacy is the affine change of coordinates the project already uses at W19 (`6^{-1}`) and the one-class literature uses to normalise a paired progression `<a, b>_m` to `<0, D>` (Ziller-Morack arXiv:1706.00317).  The coupled two-window form of the record and the non-decoupling census have no located analogue - in one class there is one window and nothing to decouple | the minimisation is reduced to a scan of `W_core` and its structure is exhausted; what is left is a complexity question, class (b) |
+| **W102** | d8 W102 (was W93) | **THE PARITY-REFINED CAPACITY BOUND**: with `A_g(L)` the achievable `(#even, #odd)` of gear `g`'s trace, `F_top <= Lcap2 = max{L : min over splits of ceil((ceil(L/2) - sum a_g)^+/2) + ceil((floor(L/2) - sum b_g)^+/2) <= t(L)}`, `Lcap2 <= Lcap` (W89); DP over the core.  **Regime**: exact on all 1,653 free sets and on every set with core density `rho = sum_{g <= F+2} 2/g < 0.376` (3,184 of 3,184 below 0.3), never exact above `rho = 0.7`, vacuous at `rho >= 1`; the first loose set is `{9,13,17,19,23,25}` | PROOF + MEASURED, 6,659 sets, 0 violations | **KNOWN VARIANT** - the counting bound is Costello-Watts arXiv:1208.5342 / Ziller-Morack arXiv:1611.03310 Cor. 2.3 / Hagedorn 2009 in one class (see W89).  **Delta**: the count is taken per parity class and the tail piece serves one class, which is why it is exact at low core density where W89 is not (1,349 of 3,184); the regime statement - a capacity bound is a density bound with slack of order `1/(1 - rho)`, and the in-use manifold sits at `rho > 1` - has no located analogue and is the useful part.  Iwaniec 1978's bound is asymptotic and uniform in `n`; it does not see a fixed gear set | says exactly where capacity counting stops working: **before** the window regime.  A wall-map entry, not a lever |
+
 ---
 
 # 2. The exhaust
@@ -196,6 +251,32 @@ ingredient**, and organisational only.  One correction from the sweep: `q <= q#`
 (`q` divides `q#`); **Bertrand is what is actually needed for tier non-emptiness**, and the file
 should say so.  The degeneration at `q = 3` (cuts `3, 6, 5, 1, ...`) was independently confirmed.
 
+## X9-X24 - `exhaust_1.md` (branch R4.b.viii.a, the exhaust as an investigated object)
+
+The exhaust is every tier above the manifold; a *tier* is the primes in `(cut_{k-1}, cut_k]` with
+`cut_k` the product of tier `k`'s primes; a *raised split* reads the manifold's laws at a tier
+above the first.  `Q` is the largest gear used, `N` the top of a range.  Kernel names are round
+36 of `top_machine_lean.md`, file `proofs/MachineStack.lean`.
+
+| # | source | statement | status | prior art (2026-09-07) | use toward the root |
+|---|---|---|---|---|---|
+| **X9** | e1 X9 | **self-similarity, measured**: every manifold law of `top_machine_1.md` (W1-W7, W9, W10, W15) holds verbatim for a tier-3 manifold with its own `(q', m)` | MEASURED, 4 tiers, 18,095,756 residues, 15 checks each, 0 exceptions; PROOF in one line (each proof mentions only `q'` and `m`) | **STANDARD TOOL** - a law proved for an arbitrary pairwise-coprime odd gear set holds for any instance; the check is a re-instantiation, not a result | converts X1 from reasoning to measurement; nothing more |
+| **X10** | e1 X10 | **the run-start count has exactly one exception**: `#{x : x, ..., x+L-1 open} = prod(g - 2 - L)` for `2 <= L <= q' - 3` and **fails at `L = 1`** (the count is `prod(g - 2)`, W5, not `prod(g - 3)`); the step-2 chain count `prod(g - 1 - L)` has none.  Corrects W10's count column | PROOF (the shield `-1` is the only open residue outside the long arc; the step-2 order has one arc) + MEASURED, 4 tiers, every `L`, 0 exceptions | **STANDARD TOOL** - both counts are the CRT / Schemmel local factor `prod (g - |pattern mod g|)` (Schemmel 1869; Brown arXiv:2311.06873 Thm 3.1), and the `L = 1` defect is the pattern `{0, -2}` having 2 residues where `{-2, ..., L-1}` has `L + 2`; a bookkeeping correction | W10's statement should carry `L >= 2`; the kernel's `run_attained` is unaffected |
+| **X11** | e1 X11 | **the zone laws at a raised split**: W55, W76, W77, W4 and W10's ceilings hold with the cut `C = q#` in place of `q` | MEASURED, 4 machines, 21,669,556 cells, 0 exceptions | **KNOWN** - as W76/W77: Legendre-Meissel-Lehmer `phi(x, a) = pi(x) - a + 1` for `x < p_{a+1}^2`, with the cut as the sieving limit | scaffolding |
+| **X12** | e1 X12 | **`CutMono` IS A THEOREM FROM `q = 5`**: `cut_{k+1} > 4 cut_k` for every prime `q >= 5` and `k >= 1`; with `cut_0 <= cut_1` (Bertrand) the kernel hypothesis holds for every `k`, and `stack_eq_primesLE`, `exhaust_gear_gt_cut`, `exhaust_silent`, `stack_open_iff_twin` are unconditional at `q >= 5`.  Closes O-X1 | KERNEL `four_mul_lt_prod_gearsIoc`, `cut_two_gt_four_mul`, `cut_succ_gt_four_mul`, `cutMono_of_five_le` (strong induction with a halving step; no logarithm; base `7 * 11 * 13 > 120` by `interval_cases`) | **STANDARD TOOL** - Bertrand's postulate applied once per dyadic interval (mathlib `Nat.exists_prime_lt_and_le_two_mul`); the classical form is Chebyshev's `theta(b) - theta(a) >> b - a` for `b >= 2a`, far stronger than needed.  The lemma "the product of the primes in `(a, b]` exceeds `4b` once `b >= 8a`, `a >= 5`" was not located as a stated lemma, but it is a two-line corollary and is not claimed as a result | removes the one carried hypothesis of `MachineStack.lean`; the stack is unconditional |
+| **X13** | e1 X13 | **the exact cause of the degeneracy**: the stack is monotone from its first step iff `prod_{p <= q} p >= 4q`, i.e. (prime `q`) iff the primes below `q` multiply to at least 4; fails exactly at `q = 2, 3` (and `q = 4`), holds from `q = 5`.  Mechanism: below the threshold `(cut_0, cut_1]` holds at most one dyadic interval, so Bertrand supplies one prime, and one prime `<= b` never exceeds `b` | PROOF; `q = 2, 3, 4` fail, `q = 5..13` hold | **NEW as a stated threshold, mathematically trivial** (as X5); not to be presented as a theorem | explains why the kernel's `CutMono` was false at `q = 2, 3`; organisational |
+| **X14** | e1 X14 | **the three gear zones of a range, exact counts**: on `[1, N]` the incidences split as `sum_{g <= sqrt N} floor(N/g)` (repeating) `+ sum_{sqrt N < g <= N/2} floor(N/g)` (non-repeating) `+ (pi(N) - pi(N/2))` (silent); only `pi(sqrt N)` gears repeat (446 of 664,579 at `N = 10^7`) | PROOF (counting multiples) + MEASURED, 4 ranges, identity exact | **STANDARD TOOL** - `sum_{p <= N} floor(N/p)` is Legendre's count of prime-multiples; the zone boundaries `sqrt N` and `N/2` are the sieve of Eratosthenes' own | bookkeeping for X15-X16 |
+| **X15** | e1 X15 | **THE REDUNDANCY LEMMA, RANGE FORM**: any integer `g` with `g^2 > N` strikes on `[1, N]` only its own number and echoes of strictly smaller gears; **no primality of `g` used**; the window form X6 is the case `N = C^2`, `g > C`.  Closes O-X2's first half | PROOF (`n = gm <= N < g^2` forces `m < g`, whose least prime factor is a smaller gear); 7,357,725 strikes at `N = 10^5..10^7`, 0 exceptions; ready for the Formalist | **KNOWN** - "a composite `n <= N` has a prime factor `<= sqrt N`" is the sieve of Eratosthenes (Nicomachus; Legendre ~1808; Pomerance, *The Sieve of Eratosthenes and Rough Numbers*), and the "no primality of `g`" clause is the least-prime-factor form of the same sentence.  The stack framing is Holt arXiv:2603.25915 as at X6 | the exhaust's whole action on a range is duplication plus one home strike per gear; a statement about *what cannot happen*, so a wall-map entry |
+| **X16** | e1 X16 | **silent gears in pair coordinates**: a gear `g > N/2` touches exactly the two pair positions `g` and `g - 2` of `[1, N]`, both containing the number `g`.  Closes O-X2's second half | PROOF (one line) + MEASURED, 5,019 silent gears, 0 exceptions | **STANDARD TOOL** - "a prime above `N/2` has no proper multiple in `[1, N]`" is segmented-sieve folklore (Sorenson arXiv:1712.09130); the two-tooth reading is X2 | bookkeeping |
+| **X17** | e1 X17 | **the exhaust's action on the window is two home strikes per open pair**: on `(Q, Q^2]` every pair the primes `<= Q` leave open receives exactly two exhaust strikes, both home, from the gears `n` and `n + 2` themselves; every other exhaust incidence there is home or echo | PROOF (X6 plus both members prime) + MEASURED, 57,344 incidences, 2.000 per open pair, 0 neither | **KNOWN** - a restatement of X6, the sieve to the square root | none beyond X6; handle with the same care |
+| **X18** | e1 X18 | **the first non-redundant height and the exhaust's depth**: the first number on which an exhaust gear does work no lower gear does is `p_1^2`, `p_1 = nextprime(Q)`; a number carrying `j` exhaust gears is `>= p_1^j`, so the depth at height `x` is at most `floor(log_{p_1} x)`; X5 is the depth-1 rung of a ladder | PROOF + MEASURED (961 at `q = 5`, 44,521 at `q = 7`, 0 earlier) | **KNOWN** - "crossing off starts at `p^2`" is the sieve of Eratosthenes as taught; the depth bound is `Omega(x) <= log x / log p_1`, trivial | grades the exhaust by depth; nothing located uses the grading, and nothing here does either |
+| **X19** | e1 X19 | **the exhaust's share above the window**: the fraction of the machine's open pairs above `Q` that are not twin primes is 0 on `(Q, Q^2]`, then 36.9, 62.8, 75.0, 82.0, 86.6% over the next five decades at `q = 5`; 31.0, 54.0, 66.1% over three at `q = 7` | MEASURED, exact counts to `10^8` at both bases | **KNOWN VARIANT** - the count of `Q`-rough pairs `(n, n+2)` up to `x` against the twin primes up to `x` is a two-class Buchstab count (Buchstab 1937; Pomerance, rough numbers), whose ratio tends to 1 as `x` grows at fixed `Q` by any sieve upper bound for twins.  The numbers are new to the object; the phenomenon is not | says how fast the window's certainty decays above `Q^2`: a wall-map entry |
+| **X20** | e1 X20 | **the tier's record migrates into its smooth zone, and the split sets the crossover**: `F_range = max(F_smooth, F_quiet)` exactly (9 of 9 machines); the smooth-zone record is eventually `Q - 2 - s` with `s` the last smooth pair (slope 1 in `Q`), so the smooth zone wins above a crossover that a raised split pushes up (`Q ~ 2 x 10^3` at `q = 5` tier 3, above `10^4` at `q = 7`); the 30-smooth list saturates at 423 pairs below `10^13`, last member 354,365,440 | MEASURED, 9 machines, winner predicted at all 9 | **KNOWN VARIANT** - as W56/W64/W65: the finiteness and the slope-1 tail are Stormer 1897 / Lehmer, Illinois J. Math. 8 (1964) 57-69 (the last {2,3,5}-smooth pair `160, 162` at tier 2; 354,365,440 at the 30-smooth list is a Lehmer-table entry, OEIS A002072), and `max` of two zone records is the zone split itself.  Delta: the crossover's dependence on the split, measured; no located paper compares the two zones | the record a bound must attack changes zone with height; W65 at the exhaust's rungs |
+| **X21** | e1 X21 | **THE EXHAUST'S OWN RECORD IS ROOT**: by W78 the bottom stratum `(Q, 2Q]` of a tier's quiet zone holds only primes and cut-smooth numbers, so its open pairs are the tier's family `(1,1)` - twin primes above `Q` - plus pairs with a smooth member; the record is bounded below by prime gaps free of smooth numbers (W82, ratios 7.18-13.00) and an upper bound is a lower bound on twin density in a short interval above `Q` | **ROOT**; W78 with 0 exceptions at 4 machines | **KNOWN as an obstruction** - as W84: the parity problem (Selberg 1949; Tao 2007); the same missing instrument at every rung, as X7 said.  W84's correction applies: the upper bound needs an open pair from *any one* of W79's families, a finite disjunction | the root, at the exhaust's rung.  Not a gate item |
+| **X22** | e1 X22 | **the U-profile is not universal - it belongs to the split, not the zone**: W83's "the bottom stratum makes the record" holds at `q = 5` tier 3 (122 against 74, 75, 64, ...) and **fails** at `q = 7` tier 3 (23 against a maximum of 35 in the sixth stratum); mechanism: the bottom stratum is family-starved only while the smooth list is thin (123 against 1,052 open pairs with a smooth member) | MEASURED, 4 machines, full strata tables | **NEW** (measured); it **corrects W83**, which now reads "a U at a thin smooth list", split-dependent | tells you W83 is not a law of the zone; the mechanism (family starvation) is W79's, and is the honest reading |
+| **X23** | e1 X23 | **W24 transfers exactly, and its exception is exactly gear 7**: gap-3 and gap-5 counts are equal at every tier-3 manifold (12,986 / 1,292 / 2 pairs at `q = 5, 7, 11`) and unequal on the tier-2 control `{7, 11, 13}` (32 against 34) | MEASURED, 4 manifolds, 0 exceptions | **KNOWN VARIANT** - as W24: Brown arXiv:2311.06873 eqs (16)-(17) `K(2,P) = K(4,P)` and Holt-Rudd arXiv:1510.00743, one class, for a different reason; the failure at exactly gear 7 is the project's (W24, NEW half).  Three more confirming instances of a proved identity, not new evidence | none beyond W24 |
+| **X24** | e1 X24 | **a tier's family `(1,1)` does not depend on the split**: the twin-prime count of `(Q, 2Q]` is identical at `q = 5` and `q = 7` for the same `Q` (25 at `Q = 997`, 64 at `3,137`) while the count of open pairs with a smooth member is not (86 against 528; 123 against 1,052) | MEASURED, 2 values of `Q`, 2 splits | **NEW as stated** - it is W80's `q`-independence (NEW) read in the exhaust's coordinate, and is **not independent evidence** for it; the family that carries the obstruction is the one the split never touches | the statement that makes W79's decomposition a reduction, seen from above; the same clue as W79/W84 |
+
 ---
 
 # 3. Verdict counts and the searches
@@ -206,21 +287,60 @@ One primary verdict per row.  Where a row carries a split reading ("KNOWN VARIAN
 phenomenon, NEW for the mechanism"), it is counted under the first, and the split is stated in
 the cell.
 
-| verdict | wheels (W1-W85) | exhaust (X1-X8) | total |
+| verdict | manifold (W1-W102) | exhaust (X1-X24) | total |
 |---|---|---|---|
-| **KNOWN** | 11 | 3 | **14** |
-| **KNOWN VARIANT** | 18 | 0 | **18** |
-| **NEW** | 37 | 1 | **38** |
-| **STANDARD TOOL** | 18 | 4 | **22** |
+| **KNOWN** | 12 | 8 | **20** |
+| **KNOWN VARIANT** | 22 | 3 | **25** |
+| **NEW** | 48 | 4 | **52** |
+| **STANDARD TOOL** | 19 | 9 | **28** |
 | **REFUTED** (W9) | 1 | 0 | **1** |
-| total rows | 85 | 8 | **93** |
+| total rows | 102 | 24 | **126** |
 
 By document: d1 (W1-W21) 3 KNOWN / 5 KNOWN VARIANT / 6 NEW / 6 STANDARD / 1 REFUTED;
 d2 (W22-W38) 1 / 7 / 6 / 3; d3 (W39-W54) 2 / 1 / 9 / 4; d4 (W55-W65) 2 / 2 / 5 / 2;
-d5 (W66-W75) 0 / 1 / 7 / 2; d6 (W76-W85) 3 / 2 / 4 / 1.
+d5 (W66-W75) 0 / 1 / 7 / 2; d6 (W76-W85) 3 / 2 / 4 / 1; **d7 (W86-W94) 1 / 2 / 5 / 1;
+d8 (W95-W102) 0 / 2 / 6 / 0; e1 (X9-X24) 5 / 3 / 3 / 5** (added 2026-09-07; the earlier totals
+were 14 / 18 / 38 / 22 / 1 over 93 rows).
 
 W84 is counted under KNOWN (the obstruction is the parity problem and the target statement is
-Ziller-Morack's published conjecture) and is additionally flagged **ROOT**.
+Ziller-Morack's published conjecture) and is additionally flagged **ROOT**; **X21** is the same
+obstruction at the exhaust's rung and is counted and flagged the same way.  W94 is counted NEW
+as the measured form of W95.
+
+## The verdicts of the 2026-09-07 pass that matter
+
+1. **The loaded record rule (W88) is the two-class form of the standard Jacobsthal rejection
+   criterion, and the two-class content is exactly what makes it an iff.**  Ziller-Morack
+   arXiv:1611.03310 Corollary 2.3, Hagedorn Math. Comp. 78 (2009) and Costello-Watts
+   arXiv:1208.5342 all sieve the small primes exhaustively and let the large primes enter as a
+   count, one position each - a *bound*, used to prune a search.  With two teeth the large gear's
+   piece is a domino, the exact price is the run-parity cost `D(U)` (Gallai's identity, W87), and
+   the rule closes in both directions; the boundary `g > L + 1` (W86) has no one-class analogue
+   because a point has no parity.  So: KNOWN VARIANT for the principle, and the iff, the cost and
+   the boundary are the delta.  State it that way.
+2. **The universal census is the edge cover polynomial of a path (W97-W98), and Brown 2024
+   already has the one-class signed sum.**  Brown arXiv:2311.06873 Theorem 3.2 / eq. (15) is
+   `N_d` as a signed sum over interior subsets with the product `prod (q - k)`, one class,
+   exponential in `d`.  The register's delta is the generating polynomial
+   `sum_t C_t(d) (1-z)^t z^{d+3-t}`, whose `C_t` is the edge cover polynomial of a path with two
+   pendant singletons (Akbari-Oboudi, European J. Combin. 34 (2013)), the finite-difference form,
+   and the `O(d^2)` cost.  The "sign uniformity of minimum covers" (W95) is one line of Mobius
+   inversion (Rota 1964) and is not a theorem in its own right; the non-cancellation *statement*
+   is new because nobody has the moments.  Do not cite Chung-Graham's cover polynomial; it is a
+   different object.
+3. **The parity-refined capacity bound (W102) is the same counting as Costello-Watts and
+   Ziller-Morack, per parity class; its regime statement is the useful part.**  Exact below core
+   density `0.376`, never above `0.7`, vacuous at `rho >= 1` - and the in-use manifold sits above
+   1.  Iwaniec 1978, Stevens 1977 and Kanold 1967 bound `j(n)` uniformly in `n` and are not
+   comparable to a per-gear-set count.  This is a wall-map entry: capacity counting stops working
+   *before* the window regime begins.
+4. **The exhaust's first pass adds no new mathematics and says so.**  X12 (`CutMono`) is
+   Bertrand iterated dyadically, now in the kernel unconditionally at `q >= 5`; X15/X16 are the
+   sieve of Eratosthenes to the square root in range form; X17/X18 restate X6; X19 is a
+   two-class Buchstab count measured; X20/X23 are W65/W24 at a raised split.  The three NEW rows
+   are a trivial threshold (X13), a correction to W83 (X22) and W80's `q`-independence seen from
+   above (X24).  X21 is the root at the exhaust's rung.  O-X1, O-X2, O-X4 are closed; nothing
+   here is a lever.
 
 ## The five verdicts that matter most
 
@@ -351,12 +471,43 @@ Several arXiv PDFs (1706.00317, 1706.03668, 2107.06950,
 1909.02205) would not text-extract and were read via ar5iv HTML, reliable on definitions and
 theorem statements but possibly missing remarks buried in proofs.
 
+## Searches run (2026-09-07), for W86-W102 and X9-X24
+
+One harvester pass.  **The session's web-search budget was already exhausted when this pass
+began**, so no general web search was run; the pass used the arXiv API (queries: `jacobsthal
+function`, `jacobsthal AND (upper bound OR sieve)`, `"edge cover polynomial"`, `au:Holt_Fred OR
+"cycle of gaps"`, `au:Oboudi AND "edge cover"`), ar5iv full text of arXiv:1611.03310 (Ziller-
+Morack, algorithmic concepts - Lemma 2.2, Corollary 2.3, Lemma 1.1 read), arXiv:1208.5342
+(Costello-Watts - Theorems 3.4 and 4.4 and the `phi_min` argument read), arXiv:2311.06873 (Brown
+- Theorem 3.2, eq. (15), Prop. 3.2 read), arXiv:1306.1064 (Costello-Watts, the explicit bound),
+arXiv:2007.01808 (Ziller, Def. 2.4, Prop. 1.8), arXiv:1706.03668 (Ziller-Morack, paired
+computation - abstract and Table 1 only), and the zbMATH Open API for the bibliographic records
+and reviews of Hagedorn 2009, Iwaniec 1978, Stevens 1977, Kanold 1967/1975/1977 and
+Akbari-Oboudi 2013.
+
+**Coverage limits, stated honestly.**  (i) Hagedorn 2009 was read as its zbMATH review only
+(killing sieves, `h(n+1) = 2w(n) + 2`); the AMS page returned 403; the core/tail counting lemma
+is attributed to it on the strength of the review and of the 2026-09-06 note, not of the text.
+(ii) Iwaniec 1978 has no abstract in zbMATH; the bound is cited from the standard secondary
+sources (Granville arXiv:2010.01211 names it).  (iii) Akbari-Oboudi 2013's text is licence-
+blocked in zbMATH; that the edge cover polynomial of a path is a Fibonacci-type transfer-matrix
+object is from the definition, not from a quoted theorem.  (iv) Ziller-Morack's paired-progression
+algorithm is in an ancillary file (`full_details.pdf`) that was not read; whether they normalise
+by `2^{-1}` (W101's map) is therefore not known.  (v) OEIS was not reachable (403); the counts of
+minimum edge covers of paths (W96's ingredient) were not checked against a sequence page.
+(vi) No search was run for the difference-formula shape of W98 outside Brown and Holt; a
+finite-difference form of an inclusion-exclusion over a product is elementary enough that a
+textbook occurrence would not be surprising, and the verdict KNOWN VARIANT already allows for it.
+(vii) Nothing was searched for X19's Buchstab framing beyond the 2026-09-06 sweep's smooth-number
+group; the verdict rests on the classical sieve upper bound for twin primes.
+
 ---
 
 # 4. Where this goes
 
 - `docs/novel/README.md` carries an index entry per NEW and KNOWN VARIANT cluster, dated
-  2026-09-06, pointing back here.
+  2026-09-06, pointing back here; the W86-W102 / X9-X24 clusters are entered there dated
+  2026-09-07.
 - `docs/proofs/22-top-machine-laws.md` and `docs/proofs/23-stack-and-exhaust.md` have their
   "Prior art, and what is new" sections updated with the verdicts; `22`'s "prior art not checked
   for the machine as an object" is discharged.

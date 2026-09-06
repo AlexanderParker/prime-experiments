@@ -643,6 +643,17 @@ artefact of stopping at `N = 10^7` -- register W32 reaches it at 0.005% to 10.9%
 `K(2,P) = K(4,P)` is in Steven Brown, arXiv:2311.06873 / *Notes on Number Theory and Discrete
 Math.* **30**(1) (2024) 81-99, for a different reason (parity annihilation, not equal class
 counts).  The old paragraphs below are kept as written, and are correct as far as they go.
+**Added 2026-09-07** (harvester, register rows W86-W102 and X9-X24): the loaded record rule
+that closes this file's L16/L17 in both directions (register W88, kernel `loaded_record_rule`) is
+the two-class form of the standard Jacobsthal rejection criterion - small primes sieved
+exhaustively, large primes entering as a count, Ziller-Morack arXiv:1611.03310 Cor. 2.3,
+Hagedorn Math. Comp. 78 (2009), Costello-Watts arXiv:1208.5342 - with the delta that the large
+gear's piece is a domino, the exact price is Gallai's edge-cover identity on the parity runs
+(W87), and the rule is an iff with the boundary at `g > L + 1`; L17's parity law now has a second
+kernel proof from that rule (W90, `parity_law_of_rule`); and the universal census of L18/L22 is
+the edge cover polynomial of a path (Akbari-Oboudi, European J. Combin. 34 (2013)) evaluated at
+`prod (g - e)` (W97-W98), the two-class form of Brown's Theorem 3.2, with the record multiplicity
+in closed form `r! C_r(d)` (W96).
 
 **Standard, and used as bookkeeping.**  The wheel count `prod (g - 2)` and the start counts
 `prod (g - 2 - L)`, `prod (g - 3)`, `prod (g - 4)` are the ordinary Hardy-Littlewood / Schemmel

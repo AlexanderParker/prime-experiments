@@ -1,5 +1,7 @@
 # Closing the wheels' open laws (branch R7)
 
+> **Numbering note (harvester, 2026-09-06).** This document's L67-L75 are register numbers **W86-W94** in document order (L67 = W86 the piece law, L68 = W87 the matching lemma, L69 = W88 the loaded record rule, L70 = W89 the capacity bound, L71 = W90 the parity law derived, L72 = W91 the sharp threshold derived, L73 = W92 the moment vanishing, L74 = W93 r(d) = D(d-1), L75 = W94 non-cancellation measured). `top_machine_8.md`'s laws, originally numbered W86-W93, were renumbered **W95-W102** on 2026-09-06 to make room; cite the register numbers. Future documents number from W103.
+
 Parent: `top_machine_4.md` (branch R4.b.iii.a), whose L53 states the core/tail rule for the wheel
 record as an *observation* - "0 mismatches on 13 known records, 89 sets decided" - with a
 sketch and no proof; and `top_machine_2.md`, whose L25 leaves `M_k(d) = 0` for `k < r(d)` as an

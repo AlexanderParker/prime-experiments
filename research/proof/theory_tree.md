@@ -1192,7 +1192,7 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       genuinely open on the wheels alone). Non-cancellation of the top moment M_{r(d)} (W-law
       to prove), the structure and complexity of the core minimisation in the record formula,
       the parity-refined capacity bound. STRONG, closed (research/proof/top_machine_8.md, laws
-      W86-W93; scripts research/topmachine/r8/). NON-CANCELLATION PROVED (W86): M_{r(d)}(d) =
+      W95-W102 (written as W86-W93, renumbered); scripts research/topmachine/r8/). NON-CANCELLATION PROVED (W95): M_{r(d)}(d) =
       (-1)^r r! C_r(d), every minimum cover carries the same sign (-1)^r because its only
       covering subfamily is itself, so cancellation is impossible; exact at every d = 2..26
       including d = 4 (C = 0); all 34 minimum covers of d <= 14 have mu = (-1)^r by direct
@@ -1220,13 +1220,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       2 phasings in 3,172,455 at {5, 9, 11, 13, 17, 29}; full enumeration re-decides all 6,659
       records with 0 mismatches; NO polynomial algorithm found or claimed (the item is
       reclassified as a complexity question, every structural ingredient proved). THE BOUND
-      (W93): the parity-refined Lcap2 proved, F <= Lcap2 <= Lcap, 0 violations on 6,659; exact
+      (W102): the parity-refined Lcap2 proved, F <= Lcap2 <= Lcap, 0 violations on 6,659; exact
       on all 1,653 free sets and on every set with core density rho < 0.376 (3,349 of 3,350
       below 0.4), never above 0.7, vacuous at rho >= 1: both capacity bounds are density
       bounds with slack ~ 1/(1 - rho); in use rho > 1 once Q > q^1.65. The slack is the
       run-parity kind 1,875 times and the overlap kind 702 times ("loose iff overlap"
       REFUTED); P16 half-refuted (48% of loaded sets exact, not a majority). LEDGER LINE: of
-      the four items, non-cancellation and the bound are closed, the minimisation is reduced
+      the four items, non-cancellation (W95) and the bound (W102) are closed, the minimisation is reduced
       to a W_core scan with every structural ingredient proved (a complexity question, not a
       structural one), L22 is in the kernel (round 37): ON PAPER THE WHEELS HAVE NO OPEN
       STRUCTURAL ITEM. Register note: document 7's L67-L75 still lack W-numbers.
@@ -2232,3 +2232,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, Formalist round 37 (proofs/TopMachineCensus.lean): the gap census law W22 is a theorem with gears positive and coprime only; general inclusion-exclusion and multi-forbidden-set CRT lemmas added; the forbidden gap 4 derived from the formula's algebra. Green at 2248 jobs, standard axioms, zero sorries; 310 declarations.
 - 2026-09-06, prover TM8 on Fable (top_machine_8.md): the wheels' last open laws. Non-cancellation proved (every minimum cover has sign (-1)^r; M_{r(d)} = (-1)^r r! C_r with C_r closed-form by d mod 4, the eight multiplicities 8 of 8); the cover polynomial gives the whole universal signature and N_d as a t-th difference formula (0 mismatches, 27 cases); the core minimisation reduced to two windows of one core wheel, classes provably not decouplable, no polynomial algorithm claimed; the parity-refined capacity bound proved, exact below core density 0.376. The wheels have no open structural item on paper.
 - 2026-09-07, manager (manifold_census_large.md, overnight runs): the manifold census at Q = 10^5 and 3 x 10^5. The quiet-zone record at Q = 10^5 is the same gap at the same place for q = 5, 7, 11, 13 (924 after 187,907, a twin-prime gap in the bottom stratum): the manifold's record is a twin gap, the ROOT verdict at scale; family (1, 1) identical across engines (27,411,455; 203,707,420); at Q = 3 x 10^5 the record differs between q = 5 and 7 by one pure-air pair (850,500 = 2^2 3^5 5^3 7 open for q = 7 only) splitting the twin gap 1,452 into 151 + 1,301; gap 4 absent in billions; gap 3 = gap 5 approximately whenever 7 is not a gear. Back-pressure correction applied. Two lanes relaunched from disk (register on Fable, engine's monotone functional on Opus).
+- 2026-09-07, Harvester (law_register.md): rows W86-W102 and X9-X24 registered (126 rows in all; the new rows 6 known, 7 known variant, 14 new, 6 standard tool). Verdicts that matter: the loaded record rule W88 is a KNOWN VARIANT of Ziller-Morack's one-class rejection criterion (arXiv:1611.03310 Cor. 2.3) with the two-class delta as the content (the tail piece is a domino, the price is Gallai's edge-cover identity W87 KNOWN, the boundary g > L + 1 because a point has no parity); the cover polynomial W97 is the edge cover polynomial of a path with two pendant singletons (Akbari-Oboudi 2013) and the difference formula W98 is NEW as an identity (Brown 2024 has the signed subset sum, no generating polynomial); the exhaust's first pass adds no new mathematics (Bertrand iterated, Eratosthenes to the root in range form). Web-search budget exhausted mid-pass: Hagedorn, Iwaniec, Akbari-Oboudi texts and OEIS not read this round; listed in the register.
