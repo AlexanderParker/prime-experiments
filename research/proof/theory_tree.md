@@ -957,6 +957,34 @@ the log at the bottom is chronology only.
                   (both closed routes compared two covering optima that grow by different
                   mechanisms: F jumps 43 -> 58 -> 88 by a J = 4 fusion while a_L + r(a_L) goes
                   45 -> 58 -> 77).
+                  - 4.i.a.i.a.1.a.i. The record gap as a 2-run (research/proof/record_2run.md).
+                    FACT, no candidate. n1(v), the largest single neighbour of a gap of size v,
+                    computed for the first time (6.23 billion gaps at m31; the whole top band of
+                    m37 scan-free). The top is pinned to F_2, not F: the least valid c in
+                    v + n1(v) <= F + c on v >= 0.8 F is 4, 5, 7, 6, 5, 12, 7, and D_top = F_2 -
+                    max_{v >= 0.8F} (v + n1(v)) = 0 at six machines and 3 at m31, where the
+                    unique F_2 pair is (35, 33) with larger member 0.60 F: the pair statement is
+                    almost a top-of-spectrum statement and stops being one at the deepest
+                    machine. RECORD SATURATION (new, exhaustive, 68 of 68 record occurrences of
+                    eight machines): every gear of M is the sole striker of a column INSIDE the
+                    record gap itself, stronger than the spare-gear lemma; the configuration is
+                    frozen, so n1(F) is a max over 2 m(F) determined numbers (m(F) = 4, 12, 20,
+                    20, 4, 2, 4, 2). Suppression is real beyond rarity (n1 below the rarity
+                    null at 34 of 35 top-band cells, deficit growing to 8.4). Gear 5 buys the
+                    record's ends (strikes the first column outside at 124 of 130 ends). Out of
+                    sample at m37: m(88) = 2, n1(88) = 2, N(88) = 4, the two fusion words
+                    (28, 37, 12, 11) and its mirror, 89 and 90 certified empty, top band 88, 85,
+                    77, 72, 71 with 13 certified holes, the record isolated by 3 for the third
+                    machine running. THE SWITCH at rung 19 -> 23, sharp: from there the record is
+                    built from ordinary sizes fused at a letter (largest-piece rank fraction
+                    0.35, 0.30, 0.27, 0.33; no top-3 piece at 4 of 4 rungs; same for F_2). THE
+                    RECORD AS A 2-RUN IS NOT WHERE THE DIFFICULTY LIVES: budget slack at its own
+                    2-run 10, 10, 12, 18, 24, 29, 32, 39 at rungs 13 -> 41, non-decreasing; the
+                    tightness is carried by 3- and 4-runs of ordinary sizes (rank 0.27-0.83)
+                    with a letter middle. The holes 41, 42 at m29 have a larger capacity margin
+                    than the record and no local certificate: the same wall as the letter's row.
+                    Instrument: the configuration enumerator reproduces 24 of 24 sieved cells.
+                    Child named: the letter's N(l) as a 3-run and what the padded middle buys.
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1532,3 +1560,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover SL (short_letter_row.md): the gate's residual PROVED scan-free by LP duality at m19, m23, m29; the pinned letter F <= a_L + r(a_L) <= F + 3 at 8 of 8 rungs and confirmed out of sample at 31 -> 37 (r(12) = 46, a_L + r = 58 = F exactly); the pair filter and the closer law proved; the row's emptiness is a per-machine covering fact. Opened the pinned letter.
 - 2026-09-06, prover PL (pinned_letter.md): the pinned letter is a real-teeth law (family violates the constant), unproved; the glue route dead; the spare-gear lemma proved; every gear is a sole striker at the attaining 2-run of every realised size. Opened the arithmetic child.
 - 2026-09-06, prover PA (pinned_arithmetic.md): the pinned letter's lower half REFUTED out of sample at 37 -> 41 (77 against 88); the upper half survives with growing slack; the real-teeth input is the single coordinate n = 6k with teeth at +-1; four exceptionless laws; the CRT row search reaches one machine beyond every scan. Named next: the record gap as a 2-run.
+- 2026-09-06, prover RG (record_2run.md): record saturation (every gear a sole striker inside the record gap, 68 of 68); the top of the spectrum is pinned to F_2 not F; the switch to ordinary pieces is sharp at 19 -> 23; the record as a 2-run is not where the difficulty lives (slack non-decreasing 10 -> 39); the tightness sits in 3- and 4-runs of ordinary sizes with a letter middle; m37 top band certified scan-free.
