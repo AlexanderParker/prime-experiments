@@ -130,6 +130,8 @@ the valves, and tower or third machine for the exhaust. The Lean namespace stays
 
 ## Honest ledger
 
+- The kernel in numbers (counted 2026-09-07 by declaration keywords): the manifold-and-exhaust library 310 declarations in 7 files; the engine's corpus 307 files and about 24,900 declarations, most of them generated case certificates (increment and word certificates); the CaseCert37 root 422 files and about 71,000 generated declarations, excluded from the default build. Zero sorries throughout, standard axioms.
+
 - The conjecture is accepted as true and every measurement agrees with slack: the record is a
   quarter of the window at every computed engine (F/W = 0.25, flat to q = 53); the walk from
   q^2 lands on a twin within 2 to 79 columns at every prime to 100,003; d_0 sits inside the
