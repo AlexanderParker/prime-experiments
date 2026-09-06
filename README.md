@@ -390,6 +390,13 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   top machine (wheels) is the primes above q up to the motor's period q#, built on the raw line
   on its own terms (teeth at 0 and -2, dominoes {x, x+2}); the clutch is their interaction. The
   conjugacy n -> 6^-1 (n+1) maps the wheels onto the anchored column coordinate exactly.
+- **Valve train, byproducts, valves, manifold.** The clutch's mechanism (owner, 2026-09-06): the
+  motor is the engine, its pistons driving the prime gaps on an infinite camshaft; its combustion
+  byproducts are the squares and compounds of its own primes (the q-smooth numbers); the clutch is
+  the valve train that vents byproducts off the engine through the wheels' manifold into the
+  exhaust. In the quiet zone every wheels-open number is byproduct times one wheel prime, each
+  family (s, s') of smooth cofactors is a valve, the motor striking the cofactor vents every
+  family but (1, 1), and the manifold's outlet is p_1^2, the first square of a wheel prime.
 - **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the motor, tier 2 the
   wheels, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period (cut_0 = q,
   cut_1 = q#, cut_2 = the wheels' period). Not "rung", which is one step q -> q' of the ladder.

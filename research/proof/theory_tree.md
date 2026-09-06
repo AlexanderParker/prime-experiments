@@ -1167,7 +1167,18 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
       motor's coordinate; then reconcile (both = solid; scratch-only = new; review-only =
       suspect until reproduced; disagreements = predictions on record and the separating
       test). Each interface object is its own node with a definition, a law with proof, and
-      a closed form where one exists; PARTIAL interfaces are kept.
+      a closed form where one exists; PARTIAL interfaces are kept. OWNER'S MECHANISM FOR THE
+      CLUTCH (2026-09-06): the motor is the engine, pistons driving the prime gaps on an
+      infinite camshaft (exact: the pattern repeats every q# columns and inside the window the
+      gaps are the engine's alone, theorem (E)); the clutch is a VALVE TRAIN that takes the
+      engine's combustion byproducts (squares and compounds of the engine's primes = the
+      q-smooth numbers) off the engine, exiting through the wheels' manifold into the exhaust.
+      Mapped exactly: in the quiet zone every wheels-open number is byproduct x one wheel
+      prime, s P; each family (s, s') is a valve; the motor striking the cofactor s vents every
+      family with s > 1; the family (1, 1), the only one with no byproduct, is what stays (the
+      twin primes); the manifold's outlet is p_1^2, the exhaust's first non-redundant strike.
+      Caution kept: the engine makes the byproducts and also does the venting (the motor
+      acting inside the wheels' open set), not a separate mechanism.
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
