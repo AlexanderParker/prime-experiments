@@ -144,3 +144,19 @@ each showed is now a constraint every new idea must respect, so list it beside t
     project owner set them.
 12. Summary for the owner: plain-language first, then what is new, then what died and why, then
     the candidates with what would have to break them.
+
+## Parts, interfaces, shadows (added 2026-09-06)
+
+When the question splits into interacting parts, do not open the interaction until every part is
+understood on its own: keep a parts ledger (per part: what is proved, what is measured, what is
+open) and open the interaction only when no part has an open structural item. Hidden complexity in
+a part surfaces inside the interaction as an unexplained blocker.
+
+Build the interaction piecewise: each interface between two parts is an object in its own right,
+opened as its own node, with a definition, a proof of its law and a closed form where one exists.
+An interface that explains only some behaviour is kept as PARTIAL, never filed dead for
+incompleteness; partial interfaces compose.
+
+When an interaction node dies, the unstick protocol gains one step: what object is the blocker the
+shadow of? Define candidates for that object creatively, and allow the answer to reopen
+construction of any part, not only the interaction.
