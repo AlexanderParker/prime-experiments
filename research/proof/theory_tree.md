@@ -657,6 +657,15 @@ the log at the bottom is chronology only.
     separation 2 g^-1 mod h at every gear h <= q (W3's family c/r with r = g), each with
     exactly prod(h - 2) openings per period; the second machine's action decomposes into
     coherent copies of the first machine, one per later gear. OPEN.
+    REFINEMENT (owner, 2026-09-06): the TOP machine is independent of the bottom - the primes
+    above q up to the range's edge, teeth +-6^-1, every gear starting at column 0, no exemption,
+    its own openings, kills and runs (its period is far beyond the range, so its in-range
+    pattern is not periodic: identify and formalise it first). THE CLUTCH is the interaction
+    layer: every column classified by (bottom state, top state) - both open = twin; bottom open
+    and top closed = a candidate killed by a top prime (own prime on its home column, or a proper
+    factor); bottom closed and top open; both closed = mixed composites. The clutch's own
+    patterns (joint runs, correlations, what the shared origin at column 0 forces) are where the
+    owner expects the solution space to live.
     - R4.a. Build the second machine exactly at q = 13..23; verify the twisted-copy identity;
       measure the survivor curve against the sieve's lower-bound function; locate where joint
       moments stop being exact. OPEN, prover running.
