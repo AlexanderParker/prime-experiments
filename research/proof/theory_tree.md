@@ -896,7 +896,44 @@ the log at the bottom is chronology only.
     - R4.b.v. Sliding the split down (owner: which top-machine laws survive with gears 2, 3, 5,
       7, 11 present; the smallest top machine that retains the simplicity; by the conjugacy a
       top machine starting at 5 IS the bottom machine {5..q}, so this measures what transfers).
-      OPEN, prover running (research/proof/top_machine_5.md).
+      DONE (research/proof/top_machine_5.md, laws L50-L59; scripts research/topmachine/r5/).
+      THE SMALLEST SIMPLE MACHINE IS q' = 5, for everything structural and for the conjugacy
+      at once: gear 5 is the first gapped domino and the first gear set where 6 is
+      invertible, so "the domino machine begins" and "this is the bottom machine {5..q}" are
+      the same event. Thresholds, exact: (a) the mex closed form's true hypothesis is
+      F_top(G) < q', not q' > 2m (L50, one-line proof; {6, 11, 13} separates them: q' = 2m = 6,
+      F = 5, 0 failures in 858 positions); failure rate as q' crosses: 30-70% at q' = 2,
+      23-45% at 3, 2.9-6.3% at 5, 0-0.65% at 7, 0 from 11. (b) the parity law's sharp
+      threshold is q' >= 2m + 1 for even m and q' >= 2m + 3 for odd m (7 boundary pairs,
+      m = 2..8, 0 exceptions, probed with coprime composites 9, 15, 21, 25); document 1's
+      q' > 2m + 1 is not necessary at even m. (c) record = free-domino tiling is exactly
+      equivalent to (b) (28 of 28; pre-registered q' > F + 1 REFUTED). (d) the symmetry group
+      is absolute from q' >= 3, order 2^(number of odd gears); gear 2 costs one factor of 2
+      because +1 = -1 mod 2. (e) L31 (the record depends on m and the gears <= F + 1 only)
+      is ABSOLUTE, holding at every q' >= 2 (27 families, 117 gear sets, 0 disagreements, down
+      to {2, 3, 5}): the one record law that survives all the way down. TRANSITIONS: gear 3
+      gives teeth {0, 1}, a solid domino crossing parity, no two open pairs adjacent, the line
+      folded mod 3, the twin-candidate view empty, gap 4 still forbidden; gear 2 gives one
+      tooth, two mirror fixed points, the group halved; 2 and 3 together leave exactly n = 5
+      mod 6 open: the anchor recovered as a two-gear top machine. TRANSFERS TO {5..q}
+      UNCHANGED: wheel count, mirror, group, the census law L22, the degree law, the joint
+      census, the correlation product, the C-identities, full spectral support, the covering
+      record, the sub-threshold reduction. TRANSFERS MODIFIED (2 becomes 2 u_g): arcs
+      (g - 2u_g - 1, 2u_g - 1), letters {2u_g, g - 2u_g}, the run ceiling = gear 5's long arc
+      = 2 for every {5..q}, the correlation coefficient at +-2u_g, the hop collapse (chain
+      still <= 2; the double-hop rule becomes "lower gap = forward letter of the landing's
+      tooth", 10,860 hits, 0 exceptions). FAIL WITH NO ANALOGUE: the partner law, the
+      forbidden gap 4 ({5, 7} still forbids it; {5, 7, 11} has no hole at all), the origin
+      clump, the parity law and L26 / L29, the gear zone. Two exact statements about the
+      bottom: L56 the anchor rescaling F(G u {2, 3}) = 6 F_col(G) + 5, F(G u {3}) = 3 F_3 + 2,
+      F(G u {2}) = 2 F_2 + 1 (30 of 30; manager's note: this is the fold as a coordinate
+      identity, a run of F columns is 6F + 5 raw pairs between openings at n = 5 mod 6, so it
+      is exact and known, kept as FACT); L57 the bottom machine's next-opening formula
+      M_B(x) = mex of the union over gears of {(+-u_g - x) mod g + kg <= B}, self-certified
+      exact whenever M_B <= B (890,501 certified walks, 0 mismatches, {5..q}, q <= 31, 4-70
+      numbers per call; the uncorrected two-per-gear form is wrong at 12% of positions for
+      {5..31}; manager's note: exact, but a bounded scan of the residue progressions in
+      disguise; its content beyond the sieve is the certificate).
     - R4.b.vii. The zone of tranquillity (owner: past Q - sqrt Q, or the first gear whose
       square exceeds Q, a zone that should be completely knowable, where the top machine's gap
       alignments can be located and sized; manager's reading to test: in (Q, Q^2] a number is
@@ -1877,3 +1914,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover TM3 (top_machine_3.md): the owner's deliverable found. The next open pair after x is x + mex{(-x) mod g, (-x-2) mod g} when every gear exceeds 2m (proved, sharp, 0 mismatches in 1.45 million positions); the next twin candidate (run of three) is x + mex over three residues when every gear exceeds 3m, with record exactly 3m; the layered walk collapses to hop chains of length at most 2; the walk distribution is the dual of the run spectrum; the spectrum cannot decide the record; XOR bounds the record from below, tight. In use the mex form is exact but its proved bound is vacuous past 10^6: the in-use bound is the open item. Next: Formalist on the mex laws.
 - 2026-09-06, Formalist round 34 (proofs/TopMachineWalk.lean): the owner's closed form is a theorem. mex_form (the next open pair after x is x + mex of the two residues per gear, gears above 2m), triple_mex_form and triple_law (the run-of-three record is exactly 3m; attainment needs no size hypothesis), no_start_gap, pair_corr. Green at 1394 jobs, standard axioms, zero sorries; 158 declarations in the top-machine library.
 - 2026-09-06, prover TM4 (top_machine_4.md): the in-use record is the largest gap of the q-smooth-pair list below Q (zone law, proved, exact in value and position), so it is linear in the largest gear and no bound in (q', m) exists; in use the tail is empty and the parity apparatus is about tail gears only; union bounds provably cannot reach the truth; above the zone the record is a different, small object (24-419) with no proved bound. The wheel record's exact core/tail rule found (domino cost). The next-opening deliverable stands as: proved closed form for gears above 2m; exact zone law in use; open above the zone.
+- 2026-09-06, prover TM5 (top_machine_5.md): the split slid down. The smallest simple machine is q' = 5 (domino machine and bottom machine {5..q} begin together); the mex form's true hypothesis is F_top < q'; the parity threshold is 2m + 1 (even m) / 2m + 3 (odd m); the symmetry group is absolute from 3; the record's dependence on m and the gears below F + 1 is absolute down to {2, 3, 5}. Transfers to the bottom listed unchanged / modified / none; the bottom's next-opening formula as a self-certified mex over truncated progressions (exact, 890,501 walks). The anchor rescaling law is the fold as a coordinate identity.
