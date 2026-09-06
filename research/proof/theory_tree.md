@@ -33,6 +33,10 @@ Statuses: STRONG (tested, holds, mechanism visible), OPEN, WEAK (holds, no mecha
 (refuted or proved unable), FACT (exact, kept, not a route). The tree below carries the verdicts;
 the log at the bottom is chronology only.
 
+The view: docs/theory_tree.html is generated from this file by `uv run python
+research/tools/tree_view.py` (collapsible tree, verdict chips, search, unexhausted-only filter,
+radial map, log). Regenerate and commit it after every branch; this file stays the source.
+
 ## The tree
 
 - **ROOT. An opening always lands in the window.** For every machine {5..y} the longest
