@@ -636,12 +636,18 @@ measurement and no branch document of its own.
 
 1. ~~Slot A landing~~ CLEARED 2026-09-06: `proofs/MachineStack.lean` gated, X3-X6 and the zone
    laws are KERNEL.
-2. `CutMono` unconditional from `q = 5` (O-X1) - without it the stack is a stack only under a
-   hypothesis.
-3. The zones and the redundancy lemma stated and proved in the stack's own coordinate (O-X2).
-4. The tower's own record stated (O-X4), so that nobody rediscovers that it is the conjecture.
-5. One measurement pass of any kind. Section 3 above is empty, and an object with an empty
-   MEASURED section has not been looked at.
+2. ~~`CutMono` unconditional from `q = 5` (O-X1)~~ CLOSED by exhaust_1.md X12/X13 (written proof
+   from dyadic Bertrand: cut_{k+1} > 4 cut_k for prime q >= 5; the base step fails at q = 2, 3, 4);
+   kernel transcription pending.
+3. ~~The zones and the redundancy lemma (O-X2)~~ CLOSED by exhaust_1.md X14-X16 (range form: any g
+   with g^2 > N, every multiple in [1, N] is g or has a prime factor below g; 0 exceptions in
+   7,357,725 strikes).
+4. ~~The tower's own record stated (O-X4)~~ CLOSED as ROOT by exhaust_1.md (family (1, 1) of a
+   tier is the twin primes above its top gear; X24 the twin counts are identical across splits).
+5. ~~One measurement pass of any kind~~ DONE: exhaust_1.md (X9-X24; 18,095,756 residues, 0
+   exceptions on the self-similarity; the home/echo census; the regime law X20). Remaining on the
+   exhaust: CutMono into the kernel; prior art for X10 and X13 (O-X5); the crossover height of
+   X20 (O-X6, needs an upper bound on a prime gap, a known theorem).
 
 **Gate verdict: the gate is NOT open.** The motor is close (three items, all instrumented); the
 wheels are close in metric and short in counting (four items, one of them a live lane); the

@@ -1077,10 +1077,62 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
       against the wheels' laws in its own parameters; CutMono's exact elementary form and
       written proof from Bertrand; the zones and the redundancy lemma on a range; the
       exhaust's own record (expected ROOT); the exhaust's action below and above the window
-      (home / echo census, the first strike that is neither). OPEN, prover running
-      (research/proof/exhaust_1.md). In parallel a Harvester builds the law register
-      (research/proof/law_register.md, W-numbers) and checks prior art for every wheels law,
-      registering the new ones in docs/novel/README.md.
+      (home / echo census, the first strike that is neither). STRONG (research/proof/
+      exhaust_1.md, laws X9-X24; scripts research/exhaust/r1/): the exhaust is now a measured
+      object. SELF-SIMILARITY MEASURED: four tier wheels (q = 5: {31, 37, 41, 43}; q = 7:
+      {211, 223, 227}; q = 11: {2311, 2333}; control tier 2 {7, 11, 13}), full periods,
+      18,095,756 residues, 15 wheel-law checks each, 0 exceptions; on ranges the zone laws with
+      "smooth" = q#-smooth verified cell by cell over 21,669,556 cells, 0 exceptions; p_1 = the
+      first prime above Q is the first admissible non-smooth number every time. Sharpening
+      X10: the run-start count prod(g - 2 - L) is FALSE at L = 1 (the count is prod(g - 2)) and
+      true for all L >= 2; the chain count prod(g - 1 - L) has no exception (the shield is a
+      singleton arc for runs but merges with the other tooth in the step-2 order). X23: the
+      gap-3 = gap-5 identity transfers verbatim to tier 3 and fails only on the control wheel
+      with gear 7. CUTMONO IS A THEOREM (O-X1 closed): Lemma A (dyadic Bertrand) for a >= 1 and
+      2^t a <= b the product of the primes in (a, b] exceeds a^t 2^(t(t-1)/2); Lemma B for
+      a >= 5, b >= 4a the product exceeds b (and 4b if a >= 16 or b >= 8a); X12 for every prime
+      q >= 5 and every k >= 1, cut_{k+1} > 4 cut_k, so CutMono holds for all k unconditionally;
+      X13 the degeneracy's exact cause: the base step is the product of the primes up to q
+      being >= 4q, which fails at q = 2, 3 AND 4 (not recorded before) and holds from 5; below
+      the threshold one dyadic interval fits, Bertrand supplies one prime, and one prime <= b
+      never exceeds b (cut_2 = 5 < 6 at q = 3). Written for transcription (needs only
+      Nat.exists_prime_lt_and_le_two_mul). Cut scale: cut_2 = 215,656,441 at q = 5 (80 digits
+      at 7, 973 at 11, 12,930 at 13); theta(cut_2) = 215,639,987.078 by segmented sieve, so
+      cut_3 at q = 5 has 93,651,247 digits; tier 3 at q >= 7 is worked as the loaded exhaust
+      on a range, losing nothing since every law is in intrinsic parameters. THE REDUNDANCY
+      LEMMA, RANGE FORM (O-X2 closed), stronger than the kernel's window form: for ANY integer g
+      with g^2 > N, every multiple of g in [1, N] is g itself or has a prime factor strictly
+      below g (one inequality, no primality, the whole range); silent gears (g > N/2) touch
+      exactly the two pair positions g and g - 2; 7,357,725 strikes and 5,019 silent gears, 0
+      exceptions. Zone census at N = 10^7: 664,579 gears, only 446 repeat; the rest give one
+      home strike each plus 5,973,710 echoes; the echo share of the work above sqrt N climbs
+      80.8, 85.2, 88.1, 90.0% across four decades. THE EXHAUST'S RECORD IS ROOT (O-X4 closed
+      as a statement): the bottom stratum (Q, 2Q] holds only primes and cut-smooth numbers, so
+      a tier's family (1, 1) is the twin primes above Q; the prime-gap floor holds at four
+      machines (ratios 7.18, 9.43, 7.67, 13.00); X24 the twin counts are IDENTICAL across
+      splits at equal Q (25 at Q = 997, 64 at Q = 3137) while the smooth-member counts differ
+      (86 vs 528): the family carrying the obstruction is the one the split cannot touch. The
+      owner's O2 REFUTED as stated and replaced by the regime law X20: F_range = max(F_smooth,
+      F_quiet) exactly at all 9 machines; at q = 5 tier 3 the record crosses into the smooth
+      zone between N = 10^6 and 10^7 (34 to 210 against 66 to 122), at q = 7 tier 3 not by
+      10^8 (40 against 55); mechanism: raising the split densifies the q#-smooth-pair list and
+      shrinks its gaps; the q = 5 list saturates at 423 pairs (largest 354,365,440, Stormer)
+      so F_smooth tends to Q - 2 - s with slope 1, while at q = 7 the list is still growing at
+      10^11; X22 the U-profile fails at q = 7 tier 3 (strata 23, 20, 21, 27, 30, 35, ...). WHAT
+      THE EXHAUST DOES: on [1, q#] no strike at all; on the windows (30, 900] and (210, 44100]
+      all 57,344 incidences are home or echo, 0 neither, and every open pair receives exactly
+      2.000 exhaust strikes, both home (X17); above the window the first non-redundant strike
+      is exactly p_1^2 (961 = 31^2 at Q^2 + 61; 44,521 = 211^2 at Q^2 + 421; X18, depth
+      floor(log_{p_1} x)); the exhaust's share of the open pairs is 0.000% on (Q, Q^2], then
+      36.9, 62.8, 75.0, 82.0, 86.6% over the next five decades at q = 5 (X19): the cap is
+      exactly zero on one stretch and the exhaust is the majority partner one decade later.
+      NEW OPEN ITEM O-X6: the crossover height Q*(C) of X20 is the one place in the exhaust
+      where the missing instrument is an UPPER bound on a prime gap (a known theorem), not the
+      conjecture. O-X3 stands as the root question named; O-X5 (prior art) stands, X10 and X13
+      the two items most likely new. Instrument error recorded: step-2 chains on an odd period
+      must be counted on the single doubling cycle, not per parity class (the wrong version
+      manufactured q' - 3 false exceptions at every wheel including the control). The
+      Harvester's law register and prior-art pass (research/proof/law_register.md) is running.
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
@@ -2056,3 +2108,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, owner's standing order: no clutch until motor, wheels and exhaust are fully understood (objects ledger as the gate); the clutch to be built piecewise as interface objects, each with a proof and ideally a closed form; when stuck, find the shadow of the object the blocker traces and reopen construction of any part; partial interfaces kept, never dismissed. Skill and memory updated (clutch-strategy).
 - 2026-09-06, Formalist round 35 (proofs/MachineStack.lean, docs/proofs/23): the stack and the exhaust kernel-checked: stride containment two tiers down, non-containment one tier down, the exhaust cap (home strike or echo on (C, C^2], primality of the exhaust gear not needed), open iff twin prime on the window, the smooth and quiet zone laws. Gap stated: CutMono is a prime-density hypothesis, false at q = 2, 3, proved only for the first step (Bertrand).
 - 2026-09-06, prover TM7 (top_machine_7.md): the wheels' open laws closed. The loaded record rule proved both ways (F_top = max{L : min_U D_L(U) <= #{g > L + 1}}, 0 mismatches on 6,659 gear sets), the parity law and its sharp threshold derived as corollaries (one parity bit is the whole + 2), the moment vanishing proved with r(d) = D(d - 1) and the forbidden gap 4 absorbed as the degenerate case, the census law in kernel shape. Four items genuinely open on the wheels alone; two are the conjecture in a range coordinate.
+- 2026-09-06, prover EX1 (exhaust_1.md): the exhaust measured for the first time. Self-similarity of tier 3 confirmed on full periods (0 exceptions in 18 million residues) with one sharpening (the run-start count at L = 1); CutMono is a theorem from q = 5 (cut_{k+1} > 4 cut_k, dyadic Bertrand; the base step fails at q = 2, 3, 4 exactly); the redundancy lemma in range form needs no primality; the exhaust makes no strike below q#, only home strikes and echoes on the window (57,344 of 57,344), its first non-redundant strike is exactly p_1^2, and it is the majority partner one decade above the window; its own record is ROOT; the owner's saturation prediction refuted into the regime law F_range = max(F_smooth, F_quiet).
