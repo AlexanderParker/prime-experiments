@@ -1,6 +1,8 @@
 -- Round 30: the CaseCert37 root is back (built TIERED, 35 sub-roots of 11 cases; see
 -- lakefile.toml at its lib entry and formalist.md R30).
 import CaseCert37
+import TopMachine
+import TopMachineWheel
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -608,3 +610,31 @@ open BlockedSlots
 #print axioms WordLegal17.akill17
 #print axioms WordLegal17.letter17
 #print axioms WordLegal17.opSeq_eq_ow17
+
+-- Round 32: the top machine on the raw line (research/proof/top_machine_1.md,
+-- section 4).  Laws L1-L4, L6-L8, L10, L12, L13, L17 (upper bound), L5, L19.
+#print axioms TopMachine.card_open_residues
+#print axioms TopMachine.open_residues
+#print axioms TopMachine.partner
+#print axioms TopMachine.strikes_iff_domino
+#print axioms TopMachine.open_of_open_add_four
+#print axioms TopMachine.no_gap_four
+#print axioms TopMachine.shield_open
+#print axioms TopMachine.two_open
+#print axioms TopMachine.neg_four_open
+#print axioms TopMachine.clump_open
+#print axioms TopMachine.origin_clump
+#print axioms TopMachine.open_mirror
+#print axioms TopMachine.open_affine
+#print axioms TopMachine.affine_teeth
+#print axioms TopMachine.run_lt
+#print axioms TopMachine.run_attained
+#print axioms TopMachine.chain2_lt
+#print axioms TopMachine.chain2_attained
+#print axioms TopMachine.chain_law
+#print axioms TopMachine.merge_law
+#print axioms TopMachine.parity_upper
+#print axioms TopMachine.wheel_count
+#print axioms TopMachine.conjugacy
+#print axioms TopMachine.exists_column
+#print axioms TopMachine.conjugacy_census

@@ -749,6 +749,24 @@ the log at the bottom is chronology only.
       it is the least open); the budget holds with vast slack (max increment 7 over 69 exact
       ladder steps to gear 97). Open coincidence: the counts of gap 3 and gap 5 are equal in
       every wheel whose gears all exceed 7 (9 wheels), unequal iff 7 is a gear.
+    - R4.b.i. The top machine's laws in Lean (proofs/TopMachine.lean, proofs/TopMachineWheel.lean;
+      ledger research/proof/top_machine_lean.md). KERNEL: 59 declarations, zero sorries, no
+      native_decide, standard axioms or fewer (manager gate: lake build TopMachine
+      TopMachineWheel green at 1001 jobs; audit of no_gap_four, parity_upper, conjugacy,
+      wheel_count, merge_law, chain_law: propext, Classical.choice, Quot.sound or less).
+      PROVED: L1 (teeth and count), L2 (arcs and the shield), L3 (the partner law and the
+      domino form, no hypothesis), L4 (the forbidden gap, in the stronger form: n and n + 4
+      open implies n + 2 open), L5 (the wheel count by CRT), L6 (shield, antipodes, the origin
+      clump), L7 (mirror and its fixed point), L8 (sufficiency, per-gear necessity, adjacency),
+      L10 (run bound and attainment; step-2 chain bound and attainment), L12 (chain law, iff,
+      no hypothesis), L13 (merge law, no hypothesis), L17 upper bound (L + (m mod 2) <= 2m
+      for odd gears above 2m + 1), L19 (the conjugacy to the column coordinate, with existence
+      and the Census form). WILL NOT CLOSE this round, with reasons: L8 that the group is
+      exactly (Z/2)^m, and L17's attainment (both need a Finset-indexed CRT and, for L17, the
+      explicit domino assignment). Nothing assumes primality, only size, oddness and
+      coprimality. The existing MergeLaw / TwoTeeth infrastructure did not transfer with
+      d = 2 (teeth symmetric about 0 there, the offset pair {0, -2} here); L12 and L13 were
+      proved directly.
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -1683,3 +1701,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover SF (structured_families.md): structured families DEAD by identity (a family defined mod the lower machine's period cancels its own saving; every family carries twins at the window's own rate; the islands indistinguishable from ordinary corridor columns, 1.006 +- 0.005); gear 7 barred at the column-0 offset iff q = +-2 mod 7.
 - 2026-09-06, prover PF (position_frontier.md): theorem (E) proved (the effective machine at a column is exact); R_min(L) >= 3.25 L for L >= d_0 and = 1 below, 0 exceptions; from q = 1427 the longest run of the prefix is the initial run; the window statement reduces exactly to d_0 <= W, the initial run of the bottom machine's diagonal, with all of [q/6, W] provably safe. Location pinpointed: the bottom. The round did not close it; per the owner, the top machine is next.
 - 2026-09-06, prover TM (top_machine_1.md): the top machine on its own terms is a domino machine (partner law), with the forbidden gap 4, the parity law F_top = 2m - (m mod 2), the tiling characterisation, universal record multiplicity, the spectrum as a second difference, and the conjugacy n -> 6^-1(n+1) onto the bottom's coordinate (counting and symmetry laws common, metric laws its own). The wheels have their rules; the clutch is next.
+- 2026-09-06, Formalist (top_machine_lean.md): the top machine's laws L1-L8, L10, L12, L13, L17 (upper bound), L19 kernel-checked in two new libraries, 59 declarations, zero sorries, standard axioms; L8's exact group and L17's attainment will not close this round. Manager gate green.
