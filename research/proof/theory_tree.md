@@ -675,6 +675,21 @@ the log at the bottom is chronology only.
     anchor rigidity of 7b generalised), the top (q, y] has level 1 on the bottom's openings, and
     what remains is the sifting range s = 2 (face A in two-machine language). First things to
     formalise when the line opens: the redundancy lemma and the rigidity generalisation.
+    CONSTRUCTION RULE FOR THE TOP MACHINE (owner, 2026-09-06): study it on its own, not in
+    relation to the bottom's kills (a clutch interaction) and not in the bottom's coordinate.
+    The column (6k - 1, 6k + 1) is the bottom's anchor folded into the ruler, so the top machine
+    is written on the RAW LINE: gears = primes in (q, Q], each striking its multiples; its twin
+    object is a pair (n, n + 2), so in pair coordinates each gear has teeth at 0 and -2 mod g,
+    separation 2 (the bottom's "one third" is this separation seen through the 6-fold: a
+    clutch fact). Its own anchor is the wheel of its smallest gears q' q'' q''' with
+    (q' - 2)(q'' - 2)(q''' - 2) twin slots per turn; the pair (-1, +1) straddling every wheel
+    multiple is open for every gear (its column 0); the reflection n -> -n - 2 is its mirror.
+    Its interaction laws for pairs and n-tuples of gears carry the chain and merge laws with
+    letters {2, g - 2}. Whether a set of its lowest gears structures left/right slots as 2, 3,
+    5 do is to be asked of the wheel in its own residues. Only afterwards the clutch: the
+    6-fold map of the top's raw-line pattern into columns, and the bottom's kills of the top's
+    openings. Do not poison the construction by comparing with the bottom; take inspiration
+    only.
     OPENING TASK when this line starts (owner, 2026-09-06: the coupling will draw off previous
     findings; the framework shapes the research): re-file the record by object. Motor facts
     (records, spectrum, chain and merge laws, the gear-5 lock, the corridor); wheel facts (the
