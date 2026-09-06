@@ -385,6 +385,21 @@ Bonferroni bound; switching is an identity. And the placement residue law names 
 the machine's own terms: a top gear's placement on the track is a dimension-1 event, a double
 placement (a twin) is dimension 2.
 
+## 5j. The window line at the end of its leads (2026-09-06)
+
+Measured from five sides (the pair statement, the neighbour profile, the gate and its row, the
+pinned letter, the record as a 2-run), the budget's tightness inside the window is carried by
+3- and 4-runs of ORDINARY old gaps (rank 0.27-0.83 of the spectrum) with a letter in the
+middle, in the band [15, 36] at 29 -> 31, and no local certificate exists for that band. What
+the line produced: the gate closes at the certified row top (proved scan-free by LP duality at
+m19, m23, m29; by CRT search one machine beyond every scan); the record is saturated (every gear
+a sole striker inside it); the top of the spectrum is pinned to F_2; the exact ladder now
+reaches F(37) = 88 and F(41) = 91 from m23's period alone, with the budget slack 14, 20, 16, 7,
+38 along it; the pinned letter is refuted at 37 -> 41. Instruments in hand: the closure step
+with the span-threshold prune, the CRT row search, the configuration enumerator. The one
+object still open inside the window: the chain statement at depths 3 and 4 on the band. Per
+the owner, this is the point to open the top machine on its own terms (R4).
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real

@@ -54,6 +54,17 @@ WHAT THE LAST TWO WEEKS FOUND, IN ORDER OF STRENGTH:
    the number of gears (block size about K - 3), so no fixed-order law reaches all machines.
    Position facts (corridors, locks, pinning) never see length.
 
+5. THE LADDER NOW REACHES PAST THE SCAN WALL. The way a machine's gap spectrum turns into the
+   next machine's is a closed-form recursion (proved), and run as an instrument it produced the
+   exact records F(37) = 88 and F(41) = 91 from a machine with a 37-million-column period, with
+   every check exact; m41 has 8.5 trillion gaps and its record is one of only 3,052 fourfold
+   fusions among them. The budget's slack along the extended ladder is 14, 20, 16, 7, 38.
+
+6. WHERE THE DIFFICULTY SITS INSIDE THE WINDOW, MEASURED FROM FIVE SIDES: in three- and four-
+   piece fusions of ordinary old gaps with a letter in the middle, in a band of old sizes 15 to
+   36 at the 29 -> 31 rung, with no local certificate. The record itself, the letter, and the
+   top of the spectrum are all exactly understood and are not where the tightness lives.
+
 ## Honest ledger
 
 - The conjecture is accepted as true and every measurement agrees with slack: the record
