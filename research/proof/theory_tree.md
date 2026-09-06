@@ -1033,6 +1033,16 @@ the log at the bottom is chronology only.
       ATTEMPTED: the in-use mex with truncated progressions, the harmonic bound, the C(j)
       distribution and hop laws, spectral and bitwise (no DFT in the files), the gap census
       law L22.
+    - R4.c. THE CLUTCH (closed until the objects ledger clears; owner's rule 2026-09-06).
+      First step when opened, owner's hybrid: a scratch lane with clean context (the three
+      objects' definitions, the glossary, the ledger's proved laws; no clutch facts, no wall)
+      defining interface objects on the wheels' coordinate and the motor's; a review lane
+      sorting the 36 refiled clutch facts, the wall, theorem (E), the conjugacy and the
+      family decomposition into interface objects, flagging every fact measured in the
+      motor's coordinate; then reconcile (both = solid; scratch-only = new; review-only =
+      suspect until reproduced; disagreements = predictions on record and the separating
+      test). Each interface object is its own node with a definition, a law with proof, and
+      a closed form where one exists; PARTIAL interfaces are kept.
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
