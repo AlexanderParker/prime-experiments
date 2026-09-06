@@ -579,12 +579,27 @@ residue characterisation and no mechanism, and is not induced by any shift or re
 **Prior-art status: CHECKED 2026-09-06** (harvester, five parallel literature sweeps; full
 per-law verdicts in `research/proof/law_register.md`, where this file's L1-L21 are W1-W21).  The
 line that used to stand here -- "no literature search has been run for the top machine as an
-object" -- is discharged.  What the check found, in one paragraph.  **The object has a published
-name**: `F_top(G) + 1` is Ziller and Morack's *paired Jacobsthal function* `j_2(W)`
-(arXiv:1706.00317 Definition 2.1; `h_2` at primorials, arXiv:1706.03668 Table 1, OEIS A288815),
-and their Conjecture 6, `h_2(n) < p_n^2 - p_n`, **is** the window statement this project is
-after -- already in print, with a proved Goldbach and prime-pair payoff (their Theorem 4.1) and
-values to `p = 73`.  Of the 21 laws here, 3 are KNOWN (L5, L15, L21), 5 are KNOWN VARIANT
+object" -- is discharged.  What the check found, in one paragraph.  **A strictly stronger,
+adversarial window statement is in print, and this project's is its real-teeth specialisation.**
+*(Corrected 2026-09-06 by the harvester's own computation,
+`research/harvest/r1/jacobsthal_check.md`.  The sentence that stood here first said `F_top + 1`
+**is** Ziller-Morack's `h_2` and that their Conjecture 6 **is** this project's window statement.
+Both are false beyond the second gear set.)*  Ziller and Morack's `j_2` (arXiv:1706.00317
+Definition 2.1-2.2) quantifies **over** the even difference `D = b - a` of the paired
+progression; by CRT a free `D` and a free phase give **two arbitrary residue classes at every
+prime, independently**.  So `h_2` at primorials is the **free-residue two-class covering record**
+-- `A288815 = 6 A072753 + 6`, A072753 being Resta's cover of `1..m` by an arbitrary pair mod each
+prime -- which is the adversary of `research/proof/the_wall.md` face 5a, not the real teeth.
+`F_top` is the single instance `D = 2`, and `F(M) - 1 <= A072753` is a theorem (`D = 2` is one
+competitor in the maximum): 1, 4, 6, 10, 17 against 2, 4, 10, 24, 31 at `{5}, {5,7}, ...,
+{5..17}`, **equal at `{5,7}` alone**.  Their **Conjecture 6, `h_2(n) < p_n^2 - p_n`, is therefore
+the adversarial window statement, strictly stronger than this project's**: it gives
+`F(M) <= A072753 + 1 < (p_n^2 - p_n)/6 < (p_{n+1}^2 - 1)/6`, so it **implies** the project's
+window statement and, by their Theorem 4.1, Goldbach and the infinitude of prime pairs at every
+even difference; the converse fails.  It is verified to `p = 73`.  The external check that does
+exist for this file's records is `6 F(M)` against the **real** twin-candidate max cyclic gap at
+`p_n#` -- 12, 30, 42, 66, 108, 150, 204 at `n = 3..9`, 7 of 7 exact by direct sieve -- **not**
+against arXiv:1706.03668 Table 1, which measures the other object.  Of the 21 laws here, 3 are KNOWN (L5, L15, L21), 5 are KNOWN VARIANT
 (L6, L7, L10, L13, L16), 6 are NEW as far as searched (L3, L4, L8, L11, L17, L18), 6 are
 STANDARD TOOL (L1, L2, L12, L14, L19, L20), and **L9 is REFUTED** -- "every gap length has an
 even count except length 1" is false as soon as `N_1 = 0`; the true statement, needing no

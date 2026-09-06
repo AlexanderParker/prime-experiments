@@ -131,3 +131,4 @@ research/data/
 
 # Research result outputs stay local; the documents carry the numbers
 research/**/results/
+research/harvest/**/results/

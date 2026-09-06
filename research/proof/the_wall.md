@@ -231,6 +231,18 @@ per period), so K_columns(W(q)) > pi(q) - 3 IS F(y) < y^2/6, the root, in coveri
 is not easier; it is the same wall seen as a covering problem, which is the one framing face A's
 sieve "no" does not cover.
 
+The free-residue adversary of face A has a PUBLISHED TABLE (added 2026-09-06, harvester r1).
+Face A's strictly stronger adversary - two ARBITRARY classes per gear instead of the real teeth
+at separation 3^{-1} (mod g) - is exactly Ziller-Morack's h_2, and its record is OEIS A072753,
+19 terms (gear sets {5} to {5..73}): 2, 4, 10, 24, 31, 42, 60, 74, 94, 117, 148, 173, 213, 236,
+275, 316, 364, 409, 436, with A288815 = 6 A072753 + 6 the integer form. Against the real
+machine's F(M) - 1 = 1, 4, 6, 10, 17, 24, 33, 42, 57, 87 on the same sets: equal at {5,7} alone,
+the free adversary winning by a widening margin thereafter. So face A's "the free-residue
+adversary is strictly stronger than the root" is not only true, it is tabulated, and its window
+statement h_2(n) < p_n^2 - p_n is a named open conjecture (Ziller-Morack Conjecture 6) that
+implies the project's window statement and, by their Theorem 4.1, Goldbach. Verification:
+research/harvest/r1/jacobsthal_check.md.
+
 W5. The unfitted brick (the owner's reading of R3.h). A record is ordinary lower gaps (bricks)
 glued at junctions by the top gears' teeth (mortar). Bricks and mortar are proven objects (the
 merge grammar, the chain law, the bare-word cap of six). The unbounded part is the two flanks,

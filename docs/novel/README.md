@@ -1169,11 +1169,26 @@ dominoes {x, x+2}); the exhaust is every tier above them.  Their 85 + 8 laws now
 project-wide numbering, W1-W85 and X1-X8, in **research/proof/law_register.md**, which holds the
 statement, status and prior-art verdict of every one.  Counts: 14 KNOWN, 18 KNOWN VARIANT,
 38 NEW, 22 STANDARD TOOL, 1 REFUTED.  This discharges objects_ledger O-W7 and O-X5 and the
-"prior art not checked for the machine as an object" line in docs/proofs/22.  ONE NAME TO ADOPT:
-`F_top + 1` IS Ziller-Morack's **paired Jacobsthal function** `j_2` (arXiv:1706.00317 Def 2.1),
-and their Conjecture 6 `h_2(n) < p_n^2 - p_n` IS this project's window target, already in print
-with a proved Goldbach/twin payoff and values to p = 73.  Entries below name every NEW and
-KNOWN VARIANT law; STANDARD TOOL and KNOWN rows are in the register only.
+"prior art not checked for the machine as an object" line in docs/proofs/22.  Entries below name
+every NEW and KNOWN VARIANT law; STANDARD TOOL and KNOWN rows are in the register only.
+
+  **CORRECTION 2026-09-06 (harvester r1, by computation - research/harvest/r1/jacobsthal_check.md).**
+  This entry first read "ONE NAME TO ADOPT: `F_top + 1` IS Ziller-Morack's paired Jacobsthal
+  function `j_2`, and their Conjecture 6 IS this project's window target".  **Both halves are
+  false.**  `j_2` (arXiv:1706.00317 Def 2.1-2.2) quantifies OVER the even difference `D = b - a`
+  of the paired progression, which by CRT is two ARBITRARY residue classes per prime; so `h_2` at
+  primorials is the FREE-RESIDUE two-class covering record, `A288815 = 6 A072753 + 6` (A072753 =
+  Resta's cover of `1..m` by arbitrary pairs mod each prime) - the adversary of the_wall.md face
+  5a, not the real teeth.  The project's `F(M)` is the single instance `D = 2`.  Verified
+  exhaustively: `F(M) - 1` = 1, 4, 6, 10, 17 against A072753 = 2, 4, 10, 24, 31 at
+  `{5}, {5,7}, ..., {5..17}` - **equal at `{5,7}` alone, strictly below everywhere else**, and
+  `F(M) - 1 <= A072753` is a theorem, `D = 2` being one competitor in the maximum.  Hence
+  **Ziller-Morack's Conjecture 6 is the ADVERSARIAL window statement, strictly stronger than the
+  project's**: `F(M) <= A072753 + 1 < (p_n^2 - p_n)/6 < (p_{n+1}^2 - 1)/6` means Conjecture 6
+  IMPLIES the project's window statement (and, by their Theorem 4.1, Goldbach and prime pairs at
+  every even difference), while the converse fails.  The project's window statement is Conjecture
+  6's real-teeth specialisation.  The correct name for `F_top` is the **real-teeth record**, not
+  the paired Jacobsthal function; jk-growth-discriminator.md below already had this right.
 
 - wheels-domino-form - W3 the partner law (every strike has a partner exactly 2 away, so a gear's
   struck set is a disjoint union of dominoes {x, x+2}), W4 the forbidden gap 4 (n, n+4 open
@@ -1303,8 +1318,14 @@ KNOWN VARIANT law; STANDARD TOOL and KNOWN rows are in the register only.
   and the composed 6F + 5 is the record-level form of the 6k +- 1 folklore; Ziller-Morack could
   not have reached p = 73 without collapsing 2 and 3 somehow, so read it as USED BUT UNSTATED.
   Delta: the exact identity with the sub-lattice coordinate, an equality not an inequality.
-  **ACTION AVAILABLE**: rescale this project's F by 6F + 5 and compare against Ziller-Morack
-  arXiv:1706.03668 Table 1 / OEIS A288815 - a free external validation of the whole machine
+  **ACTION DISCHARGED AND CORRECTED 2026-09-06** (harvester r1): the earlier action - "rescale F
+  by 6F + 5 and compare against arXiv:1706.03668 Table 1 / OEIS A288815" - is the WRONG
+  comparison, because A288815 is the free-class record and F is the D = 2 record (see the header
+  correction above); run as written it would have reported a machine-wide failure (A288815 = 18,
+  66, 150, 192, 258, 366 at n = 3, 5..9 against 6F = 12, 42, 66, 108, 150, 204).  The validation
+  that DOES exist, and now run: 6 F(M) against the REAL twin-candidate max cyclic gap at p_n#
+  (direct sieve of {k : gcd(k(k+2), p_n#) = 1}), **7 of 7 exact** at n = 3..9 - 12, 30, 42, 66,
+  108, 150, 204 - up to p_9# = 223,092,870
 - wheels-smooth-zone - W55 the gear-zone identity (for n <= Q - 2 the pair n is open iff n and
   n+2 are both q-smooth), W56 the in-use record is the largest gap of that FINITE list (value AND
   position), W57 the proved lower bound F_range >= sqrt(N) - s(q) - 2 with no sieve estimate, W58

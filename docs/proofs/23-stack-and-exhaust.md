@@ -275,7 +275,17 @@ multiples in an interval and comparing a product with its factors.
 
 **Prior-art status: CHECKED 2026-09-06** (harvester; per-fact verdicts in
 `research/proof/law_register.md` as X1-X8, where S1(a-d) = X1-X4, S2 = X5, S3 = X6,
-S4(a-b) = X7-X8; index entry `exhaust-stack` in `docs/novel/README.md`).  In one paragraph.
+S4(a-b) = X7-X8; index entry `exhaust-stack` in `docs/novel/README.md`).  **One correction to
+that pass, 2026-09-06, affecting how this file's cap is positioned**: the register's verdict 1,
+"the project's window target is already in print as Ziller-Morack's Conjecture 6", was wrong and
+is corrected (`research/harvest/r1/jacobsthal_check.md`).  Their `h_2` maximises over the paired
+progression's even difference `D`, i.e. over two *arbitrary* residue classes per prime
+(`A288815 = 6 A072753 + 6`); this project's record is the single instance `D = 2`, equal to
+`h_2` at `{5,7}` alone and strictly below it thereafter.  Conjecture 6 is therefore the
+*adversarial* window statement: it **implies** the project's, and is not the same statement.
+The parity obstruction this file's cap runs into is unchanged by that; what changes is that
+"already in print" understates the distance -- the printed conjecture is the harder one.
+In one paragraph.
 Of the eight facts, **three are KNOWN** (S3, and S4's two halves), **four are STANDARD TOOL**
 (all of S1), and **one is NEW as stated but mathematically trivial** (S2).  S3, the exhaust cap,
 is the sieve of Eratosthenes to the square root (Legendre; Pomerance, *The Sieve of Eratosthenes

@@ -392,6 +392,28 @@ and the finite item list come from; the recorded values `A(K)` for `K = 1..12` f
   -- and the arithmetic says the fixed separation costs more than the free choice of primes
   buys at every `K` except `K = 2`, where both are 4.  Their Conjecture 6, `h_2(n) < p_n^2 - p_n`, is the same shape as
   the open lemma `A(K) < W(K)` but about their object.
+
+  **Added 2026-09-06 (harvester r1, `research/harvest/r1/jacobsthal_check.md`), correcting
+  `research/proof/law_register.md` verdict 1.**  A072753 **is** the published table - to 19
+  gears - of the record of the *free-residue* adversary, the one `the_wall.md` face 5a names as
+  strictly stronger than the root.  The mechanism, which the register missed: `j_2` quantifies
+  over the even difference `D = b - a` of the paired progression, and by CRT a free `D` and a
+  free phase give **two arbitrary classes at every prime independently**.  So `h_2` frees the
+  classes and keeps the initial segment; this file's `A(K)` frees the primes and keeps `D = 2`.
+  The project's own `F(M)` is the `D = 2` instance on the initial segment, and
+  `F(M) - 1 <= A072753` is therefore a theorem, verified: 1, 4, 6, 10, 17, 24, 33, 42, 57, 87
+  against 2, 4, 10, 24, 31, 42, 60, 74, 94, 117 at `{5}` to `{5..37}`, equal at `{5,7}` alone.
+  **Theorem A is not a partial result toward Conjecture 6 and must not be recorded as one**:
+  neither statement implies the other (they strengthen the project's window statement along
+  different axes), Conjecture 6's adversary is the larger at every `K = 1..10` except `K = 2`
+  and its window the smaller (`(37^2 - 37)/6 = 222` columns at `K = 10` against `W(10) = 280`),
+  and every instance of Conjecture 6 in this range is already verified by Ziller-Morack's own
+  computation to `p_21 = 73`.  What Conjecture 6 **is**, and the register now says so, is the
+  *adversarial* form of the project's window statement: it implies the project's statement
+  (`F(M) <= A072753 + 1 < (p_n^2 - p_n)/6 < (p_{n+1}^2 - 1)/6`), and by their Theorem 4.1 it
+  implies Goldbach.  The `A(K)` values `2, 5, 7, 16, 22` at `K = 1..5` were independently
+  re-derived in that harvest pass by a separately written search, and the A072753 column units
+  transcribed above were checked exhaustively at `K = 1..5`; both agree.
 * **Stevens**, Math. Ann. 226 (1977) 95-97, via Hajdu-Saradha (1.1): `H(r) <= 2 r^{2 + 2e log r}`
   for the longest interval `r` arbitrary primes can block with **one** class each -- the only
   printed upper bound of this shape.  At `r = 4` it gives `1.10e6` against the value 16 proved
