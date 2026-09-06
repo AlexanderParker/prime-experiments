@@ -1035,8 +1035,43 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
       objects_ledger.md is the gate). The loaded record rule (core/tail domino cost) to be
       proved, the free/loaded boundary as its corollary, the moment vanishing of L25, the
       kernel shape of the census law L22, and the complete list of the wheels' open items.
-      OPEN, prover running (research/proof/top_machine_7.md); the Harvester compiles the
-      ledger in parallel.
+      STRONG, all four items closed (research/proof/top_machine_7.md, laws L67-L75; scripts
+      research/topmachine/r7/). THE LOADED RECORD RULE, PROVED both directions with no side
+      hypothesis (L69): [0, L) is coverable iff some phasing of the gears <= L + 1 leaves a
+      residue set of domino cost <= t(L) = #{g > L + 1}, so F_top(G) = max{L : min over U of
+      D_L(U) <= t(L)}: the record's dependence on m and the gears below F + 1 (document 2's
+      L31) is now a formula. Rests on the piece law L67 (a gear can join the two ends of the
+      window iff g <= L + 1, which is exactly why the tail is g > L + 1) and the matching
+      lemma L68 (the domino cost is the exact minimum number of pieces; dominoes never cross
+      parity). 0 mismatches against full-period scans on 6,659 pairwise-coprime odd gear sets
+      (5,006 loaded), 0 of 13 known records, 0 of 8,855 triples and quadruples; the wrong
+      boundary core = {g <= L} fails at 605 sets, always by exactly 1 cell. THE BOUNDARY IS A
+      COROLLARY: empty core gives D(L) = 2 floor(L/4) + min(L mod 4, 2) and max{L : D(L) <= m}
+      = 2m - (m mod 2), the parity law derived (0 mismatches, m = 1..200); the sharp threshold
+      2m + 1 (even m) / 2m + 3 (odd m): at q' = 2m + 1 the one core gear offers one
+      ends-joining piece, at even m leaving runs of m and m - 1 (cost m > t), at odd m two
+      runs of m - 1, even, tiling exactly (cost m - 1 = t): one parity bit is the whole + 2.
+      The record cover is a free tiling iff D(F) <= m iff the parity law holds (settles the
+      refuted guess q' > F + 1). L70 a closed-form upper bound F_top <= Lcap, 0 violations,
+      exact on all free wheels tested. THE MOMENT VANISHING, PROVED (L73): M_k(d) is
+      (-1)^(d-1) times the top multilinear coefficient of f^k, and a term of f^k touches all
+      d - 1 variables only if k pieces {p - 2, p} cover [1, d - 1]; below the covering number
+      every term misses a variable. L74: the covering number is the record's own cost
+      function, r(d) = D(d - 1) (the two excluded pieces are singletons and singletons never
+      help); verified exactly to d = 26, 0 failures, the eight published multiplicities (18;
+      96, 24, 24; 480; 6480, 1440, 720) reproduced. d = 4 is no longer an exception: the only
+      two pieces covering interior position 2 are the two the census excludes, so r(4) is
+      infinite and M_k(4) = 0 for every k: the forbidden gap is the degenerate case of the
+      same covering statement. L22's kernel shape written as three separable lemmas (local
+      characterisation; inclusion-exclusion over interior positions; CRT product per subset),
+      each verified alone on 5 wheels (0, 0, 0) and assembled (0). LEDGER ENTRY: 6 closed
+      (L31 as a formula, the vanishing moments, r(d) closed form, the d = 4 exception, L18's
+      multiplicities, the free-tiling guess); 5 measurements or compute cutoffs; 2 the twin
+      conjecture in a range coordinate (not the wheels' business); 4 GENUINELY OPEN on the
+      wheels alone: the complexity of min_U D_L(U) (the natural child), non-cancellation of
+      M_{r(d)} (L75, 0 exceptions of 24), L22 in the kernel, a parity-refined capacity
+      bound. Scorecard: 12 of 12 held in substance (P3's named instances refuted; P4's scan
+      cap lowered to 2.4 x 10^7).
     - R4.b.x. The exhaust, first pass (spawned by the objects ledger: the exhaust is the only
       object with no measurement and no branch document). Self-similarity of tier 3 measured
       against the wheels' laws in its own parameters; CutMono's exact elementary form and
@@ -2020,3 +2055,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover TM6 (top_machine_6.md): the quiet zone. The rule n = smooth times at most one prime above Q holds on all of [1, Q^2] (0 exceptions, 45 machines); the owner's g_0^2 is the true lower edge of the zone's record region, Q - sqrt Q is not; complete knowledge four ways including a q-independent family decomposition and the walk as a smooth-times-nextprime minimum; alignments always occur with a proved prime-gap floor; the record (183-419 at Q = 10^4, sitting at 1.35-2.63 Q) is R4.b.iv's A(q, N); no upper bound because the bottom stratum is the twin primes above Q themselves (L65).
 - 2026-09-06, owner's standing order: no clutch until motor, wheels and exhaust are fully understood (objects ledger as the gate); the clutch to be built piecewise as interface objects, each with a proof and ideally a closed form; when stuck, find the shadow of the object the blocker traces and reopen construction of any part; partial interfaces kept, never dismissed. Skill and memory updated (clutch-strategy).
 - 2026-09-06, Formalist round 35 (proofs/MachineStack.lean, docs/proofs/23): the stack and the exhaust kernel-checked: stride containment two tiers down, non-containment one tier down, the exhaust cap (home strike or echo on (C, C^2], primality of the exhaust gear not needed), open iff twin prime on the window, the smooth and quiet zone laws. Gap stated: CutMono is a prime-density hypothesis, false at q = 2, 3, proved only for the first step (Bertrand).
+- 2026-09-06, prover TM7 (top_machine_7.md): the wheels' open laws closed. The loaded record rule proved both ways (F_top = max{L : min_U D_L(U) <= #{g > L + 1}}, 0 mismatches on 6,659 gear sets), the parity law and its sharp threshold derived as corollaries (one parity bit is the whole + 2), the moment vanishing proved with r(d) = D(d - 1) and the forbidden gap 4 absorbed as the degenerate case, the census law in kernel shape. Four items genuinely open on the wheels alone; two are the conjecture in a range coordinate.
