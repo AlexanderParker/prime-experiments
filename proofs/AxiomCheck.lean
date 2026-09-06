@@ -4,6 +4,7 @@ import CaseCert37
 import TopMachine
 import TopMachineWheel
 import TopMachineCrt
+import TopMachineWalk
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -666,3 +667,76 @@ open BlockedSlots
 #print axioms TopMachine.sign_count
 #print axioms TopMachine.signR_iff_dvd
 #print axioms TopMachine.exists_symmetry
+
+-- Round 34: the walk of the top machine (research/proof/top_machine_3.md,
+-- section 4).  Laws L30, L31, L34, L35, L44, L45 (proofs/TopMachineWalk.lean).
+#print axioms TopMachine.off
+#print axioms TopMachine.off_lt
+#print axioms TopMachine.off_cast
+#print axioms TopMachine.dvd_add_off
+#print axioms TopMachine.off_eq_of_dvd
+#print axioms TopMachine.off_eq_iff
+#print axioms TopMachine.off_zero
+#print axioms TopMachine.off_two
+#print axioms TopMachine.exists_not_mem_nat
+#print axioms TopMachine.Res
+#print axioms TopMachine.mexS
+#print axioms TopMachine.mexS_not_mem
+#print axioms TopMachine.mem_of_lt_mexS
+#print axioms TopMachine.res_card_le
+#print axioms TopMachine.mexS_le
+#print axioms TopMachine.not_open_of_lt_mexS
+#print axioms TopMachine.open_mexS
+#print axioms TopMachine.mex_form
+#print axioms TopMachine.mexS_le_parity
+#print axioms TopMachine.StrikesN
+#print axioms TopMachine.OpenNum
+#print axioms TopMachine.IsStart
+#print axioms TopMachine.Res3
+#print axioms TopMachine.mexT
+#print axioms TopMachine.mexT_not_mem
+#print axioms TopMachine.mem_of_lt_mexT
+#print axioms TopMachine.res3_card_le
+#print axioms TopMachine.mexT_le
+#print axioms TopMachine.not_start_of_mem_res3
+#print axioms TopMachine.start_of_not_mem_res3
+#print axioms TopMachine.triple_mex_form
+#print axioms TopMachine.triple_upper
+#print axioms TopMachine.triple_attained
+#print axioms TopMachine.triple_law
+#print axioms TopMachine.start_of_start_add_two
+#print axioms TopMachine.start_of_start_add_three
+#print axioms TopMachine.no_start_gap_two_three
+#print axioms TopMachine.no_start_gap
+#print axioms TopMachine.no_pair_gap_four
+#print axioms TopMachine.BothR
+#print axioms TopMachine.BothN
+#print axioms TopMachine.decBothR
+#print axioms TopMachine.decBothN
+#print axioms TopMachine.bothN_iff
+#print axioms TopMachine.bothR_congr
+#print axioms TopMachine.bothN_congr
+#print axioms TopMachine.bothN_insert
+#print axioms TopMachine.corr_prod
+#print axioms TopMachine.dvd_iff_off_eq
+#print axioms TopMachine.CorrTeeth
+#print axioms TopMachine.corrTeeth_subset
+#print axioms TopMachine.bothR_iff_not_teeth
+#print axioms TopMachine.both_residues
+#print axioms TopMachine.card_both_residues
+#print axioms TopMachine.not_dvd_two
+#print axioms TopMachine.not_dvd_four
+#print axioms TopMachine.off_ne_of_not_dvd
+#print axioms TopMachine.off_zero_ne_off_two
+#print axioms TopMachine.off_d_ne_off_d_two
+#print axioms TopMachine.off_zero_ne_off_d
+#print axioms TopMachine.off_zero_ne_off_d_two
+#print axioms TopMachine.off_two_ne_off_d_two
+#print axioms TopMachine.off_two_ne_off_d
+#print axioms TopMachine.corrTeeth_card_of_dvd
+#print axioms TopMachine.corrTeeth_card_of_dvd_add
+#print axioms TopMachine.corrTeeth_card_of_dvd_sub
+#print axioms TopMachine.corrTeeth_card_generic
+#print axioms TopMachine.corrCoeff
+#print axioms TopMachine.card_both_residues_eval
+#print axioms TopMachine.pair_corr

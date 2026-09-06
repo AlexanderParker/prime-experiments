@@ -385,3 +385,291 @@ Both round-32 "will not close" verdicts are discharged:
 |---|---|---|
 | L8 group is exactly `(Z/2)^m` | `symm_not_dvd_mul`, `isolate`, `affine_gear`, `affine_group_of_unit`, `affine_group`, `affine_group_form`, `exists_symmetry`, `sign_count` | proved (necessity unconditional for prime gears; general form under invertibility) |
 | L17 parity, attainment | `parity_attained`, and the equality `parity_law` | proved |
+
+---
+
+# Round 34: the walk - the next open pair, the next twin candidate, the holes
+
+New file: `proofs/TopMachineWalk.lean` (imports `TopMachineCrt`), registered as a
+`lean_lib` in `proofs/lakefile.toml`, in `defaultTargets`, and audited from
+`proofs/AxiomCheck.lean`.  Branch document: `research/proof/top_machine_3.md`,
+section 4, laws **L30, L31, L34, L35, L44, L45**.  **70 new declarations, zero
+sorries, no `native_decide`, no `decide`, no `Lean.ofReduceBool`.**
+
+## The one new primitive: the forward offset
+
+```lean
+def off (g : ℕ) (y : ℤ) : ℕ := ((-y) % (g : ℤ)).toNat
+```
+
+`off g y` is the least `j >= 0` with `g | y + j`, i.e. `(-y) mod g`.  Every
+residue in the branch's closed forms is one of these, which is what makes the
+pair machine and the triple machine share one set of lemmas:
+
+| lemma | statement | hypothesis |
+|---|---|---|
+| `off_lt` | `off g y < g` | `0 < g` |
+| `dvd_add_off` | `g` divides `y + off g y` | `0 < g` |
+| `off_eq_of_dvd` | `j < g` and `g` divides `y + j` imply `off g y = j` | `0 < g` |
+| `off_eq_iff` | `off g y = off g z` iff `g` divides `y - z` | `0 < g` |
+| `off_zero`, `off_two` | `off g 0 = 0`, `off g 2 = g - 2` | `0 < g` / `3 <= g` |
+
+In this vocabulary gear `g` strikes the pair `x + j` (for `j < g`) iff
+`j = off g x` or `j = off g (x+2)` - the branch's `a_g`, `b_g` - and strikes the
+NUMBER `x + j` iff `j = off g x`.
+
+## L30/L31 - THE NEXT OPEN PAIR
+
+```lean
+def Res (G : Finset ℕ) (x : ℤ) : Finset ℕ :=
+  G.biUnion (fun g => ({off g x, off g (x + 2)} : Finset ℕ))
+def mexS (G : Finset ℕ) (x : ℤ) : ℕ := Nat.find (exists_not_mem_nat (Res G x))
+
+theorem mex_form {G : Finset ℕ} (hbig : ∀ g ∈ G, 2 * G.card < g) (x : ℤ) :
+    IsLeast {j : ℕ | IsOpen G (x + (j : ℤ))} (mexS G x)
+```
+
+`mex_form` is L30 in full: **the next open pair at or after `x` is exactly
+`x + mexS G x`**, `mexS` being the mex of the `2m` listed residues.  It is an
+`IsLeast`, so both halves are in the kernel:
+
+- `not_open_of_lt_mexS` (every `j < mexS` is struck) - hypothesis `0 < g` only;
+- `open_mexS` (the mex position is open) - **this is the half that needs
+  `2m < g`**, exactly as the branch's proof says: `mexS_le` gives `mexS <= 2m`
+  (a set of `2m` numbers cannot contain all of `0..2m`, by
+  `res_card_le : (Res G x).card <= 2 * G.card` against
+  `Finset.range (2m+1) ⊆ Res G x`), so the mex is below every gear, and for
+  `r < g` the only strikes of `g` in `[x, x+g)` are its two listed residues.
+
+Sharpness is NOT claimed in Lean (the branch's evidence for it is the 36
+mismatches at `{7,11,13,17}`, a computation, not a theorem).
+
+```lean
+theorem mexS_le (G : Finset ℕ) (x : ℤ) : mexS G x ≤ 2 * G.card
+theorem mexS_le_parity {G : Finset ℕ} (hodd : ∀ g ∈ G, g % 2 = 1)
+    (hbig : ∀ g ∈ G, 2 * G.card + 1 < g) (x : ℤ) :
+    mexS G x ≤ 2 * G.card - G.card % 2
+```
+
+`mexS_le` is the plain `2m` bound.  `mexS_le_parity` is **L31 in its sharp
+form**, and it is proved by REUSE, not by redoing the covering count: every
+position below the mex is struck, so `mexS` is a run of consecutive struck
+pairs, and round 32's `parity_upper` (L17) bounds such a run by
+`2m - (m mod 2)`.  The branch's own argument (the listed numbers inside
+`[0, 2m]` form at most `m` same-parity pairs `{a, a-2}`) is the same content
+already in the kernel as `parity_core`.
+
+## L34/L35 - THE NEXT TWIN CANDIDATE, and the record `3m`
+
+The single-number view is new in this file:
+
+```lean
+def StrikesN (g : ℕ) (n : ℤ) : Prop := (g : ℤ) ∣ n
+def OpenNum (G : Finset ℕ) (n : ℤ) : Prop := ∀ g ∈ G, ¬ StrikesN g n
+def IsStart (G : Finset ℕ) (n : ℤ) : Prop :=
+  OpenNum G n ∧ OpenNum G (n + 1) ∧ OpenNum G (n + 2)
+def Res3 (G : Finset ℕ) (x : ℤ) : Finset ℕ :=
+  G.biUnion (fun g => ({off g x, off g (x+1), off g (x+2)} : Finset ℕ))
+def mexT (G : Finset ℕ) (x : ℤ) : ℕ := Nat.find (exists_not_mem_nat (Res3 G x))
+
+theorem triple_mex_form {G : Finset ℕ} (hbig : ∀ g ∈ G, 3 * G.card < g) (x : ℤ) :
+    IsLeast {j : ℕ | IsStart G (x + (j : ℤ))} (mexT G x)
+theorem mexT_le (G : Finset ℕ) (x : ℤ) : mexT G x ≤ 3 * G.card
+```
+
+Same three lemmas as the pair case with three teeth (`not_start_of_mem_res3`,
+`start_of_not_mem_res3`, `res3_card_le`); the location bound is `3m`.
+
+**The record, as an equality:**
+
+```lean
+theorem triple_upper {G : Finset ℕ} (hbig : ∀ g ∈ G, 3 * G.card < g) {n : ℤ} {L : ℕ}
+    (hL : ∀ i : ℕ, i < L → ¬ IsStart G (n + (i : ℤ))) : L ≤ 3 * G.card
+
+theorem triple_attained {G : Finset ℕ}
+    (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) :
+    ∃ n : ℤ, ∀ i : ℕ, i < 3 * G.card → ¬ IsStart G (n + (i : ℤ))
+
+theorem triple_law {G : Finset ℕ} (hbig : ∀ g ∈ G, 3 * G.card + 3 ≤ g)
+    (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) :
+    IsGreatest {L : ℕ | ∃ n : ℤ, ∀ i : ℕ, i < L → ¬ IsStart G (n + (i : ℤ))}
+      (3 * G.card)
+```
+
+`triple_law` is **L35 in full: `F_3(G) = 3m` exactly**, stated as an
+`IsGreatest` in the shape of `parity_law`.
+
+Two things to note about the proof, because they differ from the branch's
+write-up in a way that is worth recording.
+
+1. The **upper bound falls straight out of the mex form** - `triple_upper` is
+   three lines: if `3m` consecutive positions were all non-starts, the mex at
+   the first of them would exceed `3m`, contradicting `mexT_le`.  The branch's
+   window argument ("the trace is a solid interval of at most 3 cells, so
+   `L <= 3m`") is the same fact, and the mex route needs only `3m < g`, one
+   notch weaker than the branch's `3m + 3 <= g`.  `triple_law` is nevertheless
+   stated with `3m + 3 <= g` to keep the branch's hypothesis.
+2. The **attainment needs no size hypothesis at all**, exactly as in
+   `parity_attained`: the anchor is the solid triomino `[3j, 3j+3)`, gear `j`
+   is asked by `exists_crt` to divide `n + 3j + 2`, and that single multiple
+   kills all three starts `3j`, `3j+1`, `3j+2` (the multiple sits at offset
+   `2`, `1`, `0` from the start).  The covering step that in `anchor_covers`
+   needed a parity split here is just `j = i / 3`.
+
+**The contrast is the branch's point, and it is now visible in the two Lean
+files side by side.**  `parity_attained` tiles with the GAPPED domino
+`{x, x+2}`, which lives in one parity class, so `anchor` must split the gears
+into an even pool and an odd pool and one cell is lost when `m` is odd
+(`parity_law` = `2m - (m mod 2)`).  `triple_attained` tiles with the SOLID
+triomino, which needs no split and loses nothing (`triple_law` = `3m`).  The
+parity defect is a property of the separation, not of the tooth count.
+
+## L45 - the holes of the consecutive census
+
+```lean
+theorem start_of_start_add_two  (h0 : IsStart G x) (h2 : IsStart G (x+2)) : IsStart G (x+1)
+theorem start_of_start_add_three (h0 : IsStart G x) (h3 : IsStart G (x+3)) : IsStart G (x+1)
+
+theorem no_start_gap_two_three {G : Finset ℕ} {x d : ℤ} (hd : d = 2 ∨ d = 3)
+    (h0 : IsStart G x) (hdd : IsStart G (x + d)) :
+    ∃ y : ℤ, x < y ∧ y < x + d ∧ IsStart G y
+theorem no_start_gap ... (hmid : ∀ z, x < z → z < x + d → ¬ IsStart G z) : False
+```
+
+**No hypothesis whatever** - not even `0 < g`.  If `x` and `x + d` are both
+run-of-three starts with `d` in `{2, 3}`, the three unstruck numbers of each
+overlap enough to make `x + 1` a start as well, so the two are never
+CONSECUTIVE: the twin-candidate gap census has holes exactly at 2 and 3.  This
+is a shorter proof than the branch's (which argues through the gear at
+`x = -3 (mod g)`); the branch's version is the stronger statement that the next
+candidate is at `x+1` or at `x+4` or beyond, and the overlap argument gives the
+hole directly.
+
+`no_pair_gap_four` restates round 32's `open_of_open_add_four` (L4) in the same
+"a pair lies strictly between" shape, so the two views' holes read alike.
+
+## L44 - the correlation is a true product
+
+```lean
+def BothR (g d r : ℕ) : Prop := ¬ StrikesR g r ∧ ¬ StrikesR g (r + d)
+def BothN (G : Finset ℕ) (d n : ℕ) : Prop := ∀ g ∈ G, BothR g d n
+
+theorem corr_prod : ∀ (G : Finset ℕ), (∀ g ∈ G, 0 < g) → (hcop) → ∀ d : ℕ,
+    ((Finset.range (∏ g ∈ G, g)).filter (fun n => BothN G d n)).card
+      = ∏ g ∈ G, ((Finset.range g).filter (fun r => BothR g d r)).card
+```
+
+The product form runs on the **same CRT counting engine as `wheel_count`**
+(`card_filter_crt`, with `bothR_congr` / `bothN_congr` for residue invariance
+and `bothN_insert` for the induction step): "both open" is a per-gear
+condition, so it factors.
+
+The per-gear factor is `g` minus the number of DISTINCT forbidden offsets, and
+the forbidden set is written in the `off` vocabulary as the branch writes it,
+`{0, -2} u {-d, -d-2}`:
+
+```lean
+def CorrTeeth (g d : ℕ) : Finset ℕ := {off g 0, off g 2, off g (d:ℤ), off g ((d:ℤ)+2)}
+theorem card_both_residues {g d : ℕ} (hg : 0 < g) :
+    ((Finset.range g).filter (fun r => BothR g d r)).card = g - (CorrTeeth g d).card
+```
+
+The four coincidence lemmas are exactly the branch's case list, each an
+`off_eq_iff` away from a divisibility (`off_zero_ne_off_d`,
+`off_zero_ne_off_d_two`, `off_two_ne_off_d`, `off_two_ne_off_d_two`, plus
+`off_zero_ne_off_two` and `off_d_ne_off_d_two`, which are `g` not dividing 2):
+
+| case | collisions | `(CorrTeeth g d).card` | factor | Lean name |
+|---|---|---|---|---|
+| `g` divides `d` | both pairs merge | 2 | `g - 2` | `corrTeeth_card_of_dvd` (`3 <= g`) |
+| `g` divides `d + 2` | `0` with `-d-2` | 3 | `g - 3` | `corrTeeth_card_of_dvd_add` (`5 <= g`) |
+| `g` divides `d - 2` | `-2` with `-d` | 3 | `g - 3` | `corrTeeth_card_of_dvd_sub` (`5 <= g`) |
+| otherwise | none | 4 | `g - 4` | `corrTeeth_card_generic` (`5 <= g`) |
+
+`5 <= g` is used in exactly one place: the cases `g | d +- 2` need `g` not to
+divide 4, to rule out the SECOND collision (`g | d+2` together with `g | 2-d`
+gives `g | 4`).
+
+```lean
+def corrCoeff (g d : ℕ) : ℕ :=
+  if d % g = 0 then g - 2
+  else if (d + 2) % g = 0 ∨ (d + g - 2) % g = 0 then g - 3
+  else g - 4
+
+theorem pair_corr {G : Finset ℕ} (h5 : ∀ g ∈ G, 5 ≤ g)
+    (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) (d : ℕ) :
+    ((Finset.range (∏ g ∈ G, g)).filter
+        (fun n => OpenN G n ∧ OpenN G (n + d))).card = ∏ g ∈ G, corrCoeff g d
+```
+
+`pair_corr` is L44 in full, stated directly on `OpenN` (the bridge is
+`bothN_iff`).  `corrCoeff` is written with `%` rather than integer
+divisibility so that it is computable; `card_both_residues_eval` carries the
+three bridges (`d % g = 0` iff `g | d` over the integers, and likewise for
+`d + 2` and for `d + g - 2`, which is `d - 2` modulo `g`).
+
+## Verification before formalising
+
+Scratch script (brute force over full wheel periods), mirroring
+`research/topmachine/r3/core.py` / `walk.py`:
+
+- **pair mex form**: `{11,13,17}`, `{13,17,19}`, `{17,19,23}` - every position
+  of every period, **0 mismatches**; max walk 5 in all three, `= 2m - (m mod 2)`;
+- **triple mex form**: `{13,17,19}`, `{17,19,23}` - **0 mismatches**; max walk
+  **9 = 3m** in both, and the number of run-of-three starts is `2240` and
+  `4480`, both `= prod (g - 3)` (the branch's table);
+- **correlation**: `{11,13,17}`, `{13,17,19}`, `d = 0..39` - `B(d)` against
+  `prod corrCoeff g d`, **0 mismatches** (including `B(1) = prod(g-4)` and
+  `B(2) = prod(g-3)`, the L15 special cases).
+
+## Build and audit
+
+```
+cd C:/dev/primes/proofs
+~/.elan/bin/lake.exe build TopMachine TopMachineWheel TopMachineCrt TopMachineWalk
+```
+
+Result: **green**, 1394 jobs, no warnings, no errors.
+
+| target | build time |
+|---|---|
+| `TopMachineWalk` | 7.5 s cold (10.1 s wall for the four targets) |
+| `TopMachine`, `TopMachineWheel`, `TopMachineCrt` | unchanged, cached |
+
+Ordinary elaboration throughout - no kernel scan, no `decide` - so peak memory
+is a normal `lean.exe`, well under 1 GB; no babysitter needed.
+
+Axiom audit over **all 70 new declarations** (`lake env lean` on a local
+`#print axioms` file, and the same block appended to `proofs/AxiomCheck.lean`
+behind `import TopMachineWalk`):
+
+- every declaration is `[propext, Classical.choice, Quot.sound]` or smaller;
+- `off`, `StrikesN`, `BothR`, `decBothR`, `corrCoeff` depend on no axioms;
+  `bothR_congr` on `[propext]` only; `CorrTeeth` on `[propext, Quot.sound]`;
+- **no `sorryAx`, no `Lean.ofReduceBool`, no `Lean.trustCompiler`.**
+
+Choice is used essentially only in `triple_attained` (`choose` picks each
+gear's anchor residue, as in `parity_attained`); elsewhere it is inherited
+from mathlib's `Finset` / `Nat.find` plumbing.
+
+## What the ledger now says
+
+| law | Lean name (namespace `TopMachine`) | status | hypothesis |
+|---|---|---|---|
+| L30 mex form | `mex_form` (`IsLeast`), `mexS_le` | proved | `2m < g` (openness half only) |
+| L31 location bound | `mexS_le_parity` | proved | gears odd, `2m + 1 < g` |
+| L34 triple mex form | `triple_mex_form` (`IsLeast`), `mexT_le` | proved | `3m < g` |
+| L35 triple record `= 3m` | `triple_upper`, `triple_attained`, `triple_law` (`IsGreatest`) | proved | `3m + 3 <= g`, pairwise coprime |
+| L44 correlation product | `corr_prod`, `card_both_residues_eval`, `pair_corr` | proved | `5 <= g`, pairwise coprime |
+| L45 triple holes `d = 2, 3` | `start_of_start_add_two/three`, `no_start_gap_two_three`, `no_start_gap` | proved | none |
+| L45 pair hole `d = 4` | `no_pair_gap_four` (restating `open_of_open_add_four`) | proved | none |
+
+**Not attempted this round**, and named here so the gap is a first-class
+output rather than a silence: L32 (the general mex form for gear sets with
+small gears - it needs the mex over the truncated union
+`{a_g, b_g} + g Z_{>=0}`, a different `Finset` construction, not a
+strengthening of `Res`), L33 (the counting bound, which needs the harmonic sum
+`H_S` and so rationals), L36-L39 (the walk distribution `C(j)`, its closed
+form, the hop law and the nested form), L40-L43 (everything spectral and
+bitwise - they need roots of unity and a DFT, which nothing in these four
+files has), and the L22 gap census of `top_machine_2.md`.

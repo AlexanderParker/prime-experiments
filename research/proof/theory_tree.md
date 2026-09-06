@@ -866,9 +866,27 @@ the log at the bottom is chronology only.
     - R4.b.v. Sliding the split down (owner: which top-machine laws survive with gears 2, 3, 5,
       7, 11 present; the smallest top machine that retains the simplicity; by the conjugacy a
       top machine starting at 5 IS the bottom machine {5..q}, so this measures what transfers).
-      OPEN, prover running (research/proof/top_machine_5.md). In parallel the Formalist puts
-      the mex closed forms, the triple record 3m, the census holes and the correlation product
-      into Lean (round 34).
+      OPEN, prover running (research/proof/top_machine_5.md).
+    - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
+      ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
+      is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
+      used (openness of x + mex; struckness below the mex needs only g > 0); mexS_le (<= 2m) and
+      mexS_le_parity (<= 2m - (m mod 2) for odd gears above 2m + 1, by reuse of parity_upper: the
+      walk below the mex IS a run of struck pairs). triple_mex_form and triple_law: the record
+      of the run-of-three machine is exactly 3m as IsGreatest; the upper bound needs only
+      3m < g (one notch weaker than the branch's 3m + 3), and triple_attained needs NO size
+      hypothesis at all (one multiple per gear kills all three starts of its block), which
+      shows in the kernel that the parity defect comes from the domino's gap, not the tooth
+      count. no_start_gap: two run-of-three starts at distance 2 or 3 are never consecutive,
+      with no hypothesis at all. pair_corr: the pair-correlation count is prod corrCoeff(g, d)
+      (g - 2, g - 3, g - 4 by d = 0, +-2, else) for gears >= 5. One primitive unified the
+      three laws: off g y = least j with g | y + j. Manager gate: lake build TopMachine
+      TopMachineWheel TopMachineCrt TopMachineWalk green at 1394 jobs; audit of mex_form,
+      mexS_le_parity, triple_mex_form, triple_law, no_start_gap, pair_corr: propext,
+      Classical.choice, Quot.sound; zero sorries. 158 declarations in the library. NOT
+      ATTEMPTED: the in-use mex with truncated progressions, the harmonic bound, the C(j)
+      distribution and hop laws, spectral and bitwise (no DFT in the files), the gap census
+      law L22.
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -1807,3 +1825,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, Formalist round 33 (top_machine_lean.md, proofs/TopMachineCrt.lean): the two holes closed. exists_crt (Finset CRT), parity_attained and parity_law (F_top = 2m - (m mod 2) as an equality), affine_group / exists_symmetry / sign_count (the symmetry group is exactly (Z/2)^m). Build green at 1392 jobs, standard axioms, zero sorries. Of the 21 laws, the statements about gear sets are now kernel-checked except L16 (tiling characterisation, written proof), L18 (multiplicity, measured) and the counting laws by CRT.
 - 2026-09-06, prover TM2 (top_machine_2.md): the wheels' second pass. The gap census law L22 (exact inclusion-exclusion product, 0 mismatches to the full period), W1 closed (gaps 3 and 5 share a polynomial; 7 is the unique separating gear), L18 derived from the census (L25), the forbidden gap 4 explained as the one place closed and free boundary covers differ (L26), the origin as the unique total collision with the clump its shadow (L29), the record of small wheels decided by whether 7 is a gear (L30, exhaustive), F_top depends on m and the gears below F_top + 1 only (L31), W2 replaced (the wheel record is reached, at a computable fraction of the period, L32), no top anchor exists and why (L34-L36), the removal law (L37/L38). Next: the walk lane (R4.b.iii), then L22 into the kernel.
 - 2026-09-06, prover TM3 (top_machine_3.md): the owner's deliverable found. The next open pair after x is x + mex{(-x) mod g, (-x-2) mod g} when every gear exceeds 2m (proved, sharp, 0 mismatches in 1.45 million positions); the next twin candidate (run of three) is x + mex over three residues when every gear exceeds 3m, with record exactly 3m; the layered walk collapses to hop chains of length at most 2; the walk distribution is the dual of the run spectrum; the spectrum cannot decide the record; XOR bounds the record from below, tight. In use the mex form is exact but its proved bound is vacuous past 10^6: the in-use bound is the open item. Next: Formalist on the mex laws.
+- 2026-09-06, Formalist round 34 (proofs/TopMachineWalk.lean): the owner's closed form is a theorem. mex_form (the next open pair after x is x + mex of the two residues per gear, gears above 2m), triple_mex_form and triple_law (the run-of-three record is exactly 3m; attainment needs no size hypothesis), no_start_gap, pair_corr. Green at 1394 jobs, standard axioms, zero sorries; 158 declarations in the top-machine library.

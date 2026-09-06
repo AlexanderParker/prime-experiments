@@ -548,6 +548,14 @@ CRT counts); L21's smoothness half; the reading of L19 in item 24.
 * **L17, attainment**: `TopMachine.parity_attained` (the explicit tiling assignment `anchor`),
   and the equality `TopMachine.parity_law` as an `IsGreatest` statement.
 
+**Round 34 (`proofs/TopMachineWalk.lean`, 70 declarations)** added the walk laws of
+`research/proof/top_machine_3.md`: `TopMachine.mex_form` (the next open pair after `x` is
+`x + mex{off g x, off g (x+2)}` when every gear exceeds `2m`, as `IsLeast`), `mexS_le_parity`
+(the location bound `2m - (m mod 2)` from `parity_upper`), `triple_mex_form` and `triple_law`
+(the run-of-three record is exactly `3m`; attainment with no size hypothesis), `no_start_gap`
+(no hypothesis), `pair_corr` (the pair-correlation product, gears `>= 5`).  Build with
+`TopMachineWalk` added: green at 1394 jobs; audit of those six: standard axioms; zero sorries.
+
 Build: `lake build TopMachine TopMachineWheel TopMachineCrt`, green at 1392 jobs; manager audit
 of `exists_crt`, `crt_unique`, `parity_attained`, `parity_law`, `affine_group`,
 `exists_symmetry`, `sign_count`: `[propext, Classical.choice, Quot.sound]` each; zero sorries,
