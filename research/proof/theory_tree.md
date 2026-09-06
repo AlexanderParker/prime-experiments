@@ -813,8 +813,29 @@ the log at the bottom is chronology only.
           F(59), each a new test of the budget), and the search for a monotone or contracting
           functional of the recursion (legal-word density per opening by depth, all-pad
           density, the order variance), the place a bound on the extremes would live.
-          - 4.i.b.i. The ladder past the wall by the closure. OPEN, prover running
-            (research/proof/ladder_closure.md).
+          - 4.i.b.i. The ladder past the wall by the closure (research/proof/ladder_closure.md).
+            INSTRUMENT, exact, reaching two rungs no scan can: F(37) = 88 and F(41) = 91 from
+            m23's period alone (the ladder m23 -> m29 -> m31 -> m37 in 195 s from a 3.9-million-
+            row dictionary; m41 by a span-threshold prune in 1,992 s and 2.4 GB), with every
+            gate exact (F_j rows, F_2(37) = 90, F_3(37) = 97, opening counts and periods,
+            multiplicities, m37's thirteen spectral holes, n_J and Q*_J digit for digit, L and
+            L_pad). New numbers: n_J(31 -> 37) = 205,591,124,261 / 12,223,428,142 / 114,732,724
+            / 70,532 / 216 and Q*_J = 58, 68, 85, 88, 68; n_J(37 -> 41) = 8,065,074,943,615 /
+            432,481,162,322 / 1,688,770,136 / 3,052 / 0 and Q*_J = 88, 90, 90, 91: only 3,052 of
+            m41's 8.5 trillion gaps are fourfold fusions and the record is one of them
+            (confirmed twice). The record's composition at every rung: flank + alternating
+            legal word + flank (witnesses (23, 10, 10), (18, 10, 30), (11, 12, 37, 28)).
+            K_m tracks J_max, not the rung, over machines from 7.9 million to 8.5 trillion gaps;
+            the refined depth bound K_m - m <= 2(J_max - 1) fails at 23 -> 29. NEW TOOL WITH A
+            LEMMA: the span-threshold prune (a window spanning less than theta has no sub-run
+            spanning theta; theta = F(M) + 1 is free since F(M + q') >= F_2(M)); at m41 the
+            pruned dictionary is 186 windows on 2,656 openings and holds the record. THE WALL,
+            measured: a rung spends 2 to 6 depth and returns 3 to 5; F(43) needs a depth-18
+            dictionary of about 10^8 rows (stopped at 3 GB). BUDGET SLACK along the extended
+            ladder: 14, 20, 16, 7, 38 at 23 -> 29 .. 37 -> 41, not monotone; the narrow rung
+            37 -> 41 (slack 7) is where the record's depth climbs from 3 to 4. Truncation is a
+            lower-bound instrument only (depth-3 floor 90 against 91). Child named: the Q*_J
+            peak sits at J <= 4 at all five rungs, including both where J_max = 5.
           - 4.i.b.ii. Monotone functionals of the recursion. OPEN, to run after 4.i.b.i.
         - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
           FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
@@ -1561,3 +1582,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover PL (pinned_letter.md): the pinned letter is a real-teeth law (family violates the constant), unproved; the glue route dead; the spare-gear lemma proved; every gear is a sole striker at the attaining 2-run of every realised size. Opened the arithmetic child.
 - 2026-09-06, prover PA (pinned_arithmetic.md): the pinned letter's lower half REFUTED out of sample at 37 -> 41 (77 against 88); the upper half survives with growing slack; the real-teeth input is the single coordinate n = 6k with teeth at +-1; four exceptionless laws; the CRT row search reaches one machine beyond every scan. Named next: the record gap as a 2-run.
 - 2026-09-06, prover RG (record_2run.md): record saturation (every gear a sole striker inside the record gap, 68 of 68); the top of the spectrum is pinned to F_2 not F; the switch to ordinary pieces is sharp at 19 -> 23; the record as a 2-run is not where the difficulty lives (slack non-decreasing 10 -> 39); the tightness sits in 3- and 4-runs of ordinary sizes with a letter middle; m37 top band certified scan-free.
+- 2026-09-06, prover LD (ladder_closure.md): the closure as an instrument reaches F(37) = 88 and F(41) = 91 exactly from m23's period alone with every gate exact; m41's record is one of 3,052 fourfold fusions among 8.5 trillion gaps; the span-threshold prune (lemma) is the tool; budget slack 14, 20, 16, 7, 38 along the extended ladder; F(43) needs about 10^8 dictionary rows. The window's leads are now run to their verdicts.
