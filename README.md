@@ -325,6 +325,29 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
 - **Repulsion.** Big blocked stretches have short neighbours; the one-hole record sits below what
   independent gaps would give (measured; the suppression law and the renewal ladder are the
   measured and the rigorous sides of it).
+- **Two machines: motor, wheels, clutch.** The bottom machine (motor) is the gears up to q; the
+  top machine (wheels) is the primes above q up to the motor's period q#, built on the raw line
+  on its own terms (teeth at 0 and -2, dominoes {x, x+2}); the clutch is their interaction. The
+  conjugacy n -> 6^-1 (n+1) maps the wheels onto the anchored column coordinate exactly.
+- **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the motor, tier 2 the
+  wheels, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period (cut_0 = q,
+  cut_1 = q#, cut_2 = the wheels' period). Not "rung", which is one step q -> q' of the ladder.
+- **Exhaust.** Every tier above the wheels, taken together (the smoke stack: produced by the tiers
+  below, rising away, never back into the engine). Inside the window (cut_k, cut_k^2] every
+  exhaust strike is a home strike or an echo, so the exhaust has no bearing on motor, wheels or
+  clutch there (kernel: docs/proofs/23).
+- **Home strike, echo.** A home strike is a gear striking its own number. An echo is a strike on a
+  number a lower tier already strikes. Not "shadow", which the motor's shadow lemma owns.
+- **Span.** A gear spans a machine when its stride (g) is at least that machine's period. Every
+  gear of tier k+2 spans tier k; no gear of tier k+1 spans tier k, except at its silent top.
+- **Smooth zone, quiet zone.** For the wheels (q, Q] on a range: the smooth zone [1, Q], where a
+  pair is open iff both members are q-smooth; the quiet zone (Q, Q^2], where a number is open iff
+  it is q-smooth times at most one prime above Q, and the exhaust is silent or echoing. The quiet
+  zone is the window of the machine {2..Q} seen from the stack.
+- **Free wheels, loaded wheels, core, tail.** Free wheels: every gear above 2m (the record is a
+  tiling by free dominoes, the parity law and the mex closed form hold). Loaded wheels: small
+  gears present; the core gears (those at most F+1) decide the record by their arcs, the tail
+  gears enter by their count only.
 - **Lane, round, kernel audit.** The proof search runs in rounds of parallel AI lanes (Constructor,
   Mechanic, Lateral, Formalist, Harvester, LP-duality); every claim carries its gate command and
   output line; `cd proofs; lake env lean AxiomCheck.lean` must report no sorryAx.
