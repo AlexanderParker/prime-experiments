@@ -745,6 +745,19 @@ the log at the bottom is chronology only.
       proved equivalent to the twin prime conjecture and is weaker than the window statement.
 
 
+    - R2.e. Location inside the window, lower machine only (the owner's round, 2026-09-06: one
+      more round to pinpoint location; if it does not close, construct the top machine).
+      - R2.e.i. The position-length frontier: R_min(L), the earliest column at which a blocked
+        stretch of length L can begin, on full periods and in every window; the window
+        statement in location form is R_min(W) > 0 with the constant c in R_min(L) >= c L;
+        the induction through the effective machine at the position. OPEN, prover running
+        (research/proof/position_frontier.md).
+      - R2.e.ii. Structured families of slots: explicit CRT families open for the small gears
+        by construction (primorial multiples, all-teeth neighbours, corridor classes, island
+        classes, the anchor's openings), their survival against fair rates, the thickness
+        trade-off, cross-family correlations. OPEN, prover running
+        (research/proof/structured_families.md).
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -1583,3 +1596,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover PA (pinned_arithmetic.md): the pinned letter's lower half REFUTED out of sample at 37 -> 41 (77 against 88); the upper half survives with growing slack; the real-teeth input is the single coordinate n = 6k with teeth at +-1; four exceptionless laws; the CRT row search reaches one machine beyond every scan. Named next: the record gap as a 2-run.
 - 2026-09-06, prover RG (record_2run.md): record saturation (every gear a sole striker inside the record gap, 68 of 68); the top of the spectrum is pinned to F_2 not F; the switch to ordinary pieces is sharp at 19 -> 23; the record as a 2-run is not where the difficulty lives (slack non-decreasing 10 -> 39); the tightness sits in 3- and 4-runs of ordinary sizes with a letter middle; m37 top band certified scan-free.
 - 2026-09-06, prover LD (ladder_closure.md): the closure as an instrument reaches F(37) = 88 and F(41) = 91 exactly from m23's period alone with every gate exact; m41's record is one of 3,052 fourfold fusions among 8.5 trillion gaps; the span-threshold prune (lemma) is the tool; budget slack 14, 20, 16, 7, 38 along the extended ladder; F(43) needs about 10^8 dictionary rows. The window's leads are now run to their verdicts.
+- 2026-09-06, owner: one more round on location inside the window with the lower machine only; opened R2.e.i (the position-length frontier) and R2.e.ii (structured families); if neither closes, the top machine is next.
