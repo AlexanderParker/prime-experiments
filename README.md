@@ -386,7 +386,16 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
 - **Repulsion.** Big blocked stretches have short neighbours; the one-hole record sits below what
   independent gaps would give (measured; the suppression law and the renewal ladder are the
   measured and the rigorous sides of it).
-- **Two machines: motor, wheels, clutch.** The bottom machine (motor) is the gears up to q; the
+- **One word per object (canonical, 2026-09-06).** engine = the primes up to q (retired: motor,
+  bottom machine, lower machine); wheels = the primes in (q, q#] on the raw line (retired: top
+  machine, upper machine; Lean names keep `TopMachine`); clutch = the engine acting inside the
+  wheels' open set, its mechanism the valve train (retired: interaction layer); manifold = the
+  wheels' quiet zone (Q, Q^2], where the charges s x P exit (retired: zone of tranquillity);
+  exhaust = every tier above the wheels (retired: third machine, tower). The loaded record rule,
+  the census, the cover polynomial and the parity coupling are wheels; the smooth zone and the
+  manifold are regions of the wheels; family (1, 1) and the pure charge are manifold objects; the
+  stack's cap is exhaust.
+- **Two machines: motor, wheels, clutch.** (older entry; "motor" is now "engine") The bottom machine (motor) is the gears up to q; the
   top machine (wheels) is the primes above q up to the motor's period q#, built on the raw line
   on its own terms (teeth at 0 and -2, dominoes {x, x+2}); the clutch is their interaction. The
   conjugacy n -> 6^-1 (n+1) maps the wheels onto the anchored column coordinate exactly.
