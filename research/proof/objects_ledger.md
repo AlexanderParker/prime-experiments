@@ -41,12 +41,15 @@ anywhere in this ledger.** Marked slots:
 > theorems belong in EXHAUST section 2 (structure and location) and in WHEELS section 2
 > (counting: the zone laws), and the EXHAUST gate list shortens by its first item.
 
-> ### SLOT B - PENDING: the wheels' open laws (prover lane)
-> `research/proof/top_machine_7.md`. Aimed at the items listed in WHEELS section 4 - in
-> particular the vanishing moments `M_k(d) = 0` for `k < r(d)` (document 2 L25), `L31` as a
-> formula, and the census beyond `d = 20`. **Not yet on the record; nothing is entered from it.**
-> When it lands, its results move items out of WHEELS section 4 and change the WHEELS gate
-> verdict.
+> ### SLOT B - LANDED 2026-09-06: the wheels' open laws (research/proof/top_machine_7.md, L67-L75)
+> The loaded record rule PROVED both directions with no side hypothesis (L69: F_top = max{L :
+> min over core phasings of the domino cost <= #{g > L + 1}}; 0 mismatches on 6,659 gear sets),
+> so `L31` is a formula (O-W2 closed); the parity law and its sharp threshold derived as
+> corollaries; the moment vanishing PROVED (L73) with r(d) = D(d - 1) (L74) and the d = 4
+> exception absorbed (O-W1 closed); L18's multiplicities reproduced; the census law written in
+> kernel shape (three lemmas, each verified). Remaining on the wheels alone: the complexity of
+> min_U D_L(U); non-cancellation of M_{r(d)} (L75, 0 exceptions of 24, unproved); L22 in the
+> kernel (Formalist round 36 running, with L67-L69); a parity-refined capacity bound.
 
 ---
 
@@ -616,11 +619,10 @@ stronger than the root (`A(K)`), and none of those can be gate items.
 
 ### WHEELS - **NO**, and the gaps are in the counting theory, not the metric one.
 
-1. The vanishing moments `M_k(d) = 0` for `k < r(d)` (O-W1). Load-bearing: the degree law, the
-   universal record multiplicity and the census route to the parity law are all MEASURED only
-   because of it. **Slot B's first target.**
-2. `L31` as a formula (O-W2). The record is currently computable per gear set and not known as a
-   function of the split.
+1. ~~The vanishing moments (O-W1)~~ CLOSED by top_machine_7.md L73/L74 (proved; verified to d = 26).
+2. ~~`L31` as a formula (O-W2)~~ CLOSED by top_machine_7.md L69 (the loaded record rule, proved both
+   directions). Open beneath it: the complexity of the core minimisation, and the non-cancellation
+   of the top moment M_{r(d)} (L75, measured 0 of 24).
 3. The kernel gap for the in-use theory and the counting theory (O-W5) - or an explicit decision
    that written proofs suffice for the clutch, recorded as such.
 4. Prior art for the machine as an object, and register entries for documents 1-6 (O-W7).
