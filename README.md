@@ -127,23 +127,32 @@ sieve by all primes up to y on the two linear forms 6k +- 1; its record is the t
 function of that sieve. Every proof in docs/proofs/ and every kernel theorem in proofs/ is stated in
 that translation; the gears are how the statements were found.
 
-## Where things stand (5 September 2026)
+## Where things stand (7 September 2026)
 
 - The route is kernel-checked and loses nothing: twins infinite if and only if the window always
-  holds an opening.
-- Eleven rungs of the budget inequality are certified exactly (machines up to 59, records
-  5, 7, 11, 18, 25, 34, 43, 58, 88, 91, 103, 118, 145, 161 at q = 7..59), the last two by tools that
-  never see the quantity that broke the cheap certificate; the 31 -> 37 case-split proof is in the
-  kernel (385 case modules and a tiered root).
-- The exact machinery is complete: the record of the bigger machine is computed from the smaller one
-  three ways that agree (record law, attainment identity, exact record algorithm), all structural,
-  and the grammar of what can merge (hit law, chain law, alternation) is kernel-checked for every
-  gear at once. The bare half of the alignment depth is capped at 5 forever (kernel).
-- What remains is one size statement, and it has been traced to its barriers: the per-step form
-  contains a twin-Bertrand postulate at column 0; the direct window form sits below the
-  dimension-2 sieve limit; every class-count-only method is provably insufficient; the real teeth
-  must enter, and no instrument on record turns them into a size bound. See
-  research/proof/theory_tree.md for the live branch tree.
+  holds an opening. The machine is worked as four parts with one word each: the ENGINE (the
+  primes up to q), the MANIFOLD (the primes in (q, q#] as a machine of its own), the VALVES (the
+  engine acting inside the manifold's open set) and the EXHAUST (every tier above).
+- The engine: eleven rungs of the budget inequality certified (records 5, 7, 11, 18, 25, 34,
+  43, 58, 88, 91, 103, 118, 145, 161 at q = 7..59; 31 -> 37 in the kernel), the exact record
+  machinery complete, and the window pinpointed: by theorem (E) the effective engine at every
+  column is exact, from q = 1427 the longest blocked run of the prefix is the initial run, and
+  the window statement is exactly d_0 <= W, the first twin above q inside the window (measured
+  by 10-58x to level 33,317). Three structural items stay open (L(M) bounded; the chain
+  statement on the band; a monotone functional of the merge closure).
+- The manifold: a domino machine (teeth at 0 and -2), with the parity law, the loaded record
+  rule, the gap census law, the next-opening closed form and the smooth and quiet zone laws all
+  in the kernel; the cover polynomial closes its counting theory on paper; its record in the
+  quiet zone is a twin-prime gap at scale (924 after 187,907 at Q = 10^5 for every engine
+  q = 5..13), and family (1, 1), the twin primes, is the one family the split cannot touch.
+- The exhaust: the stack of tiers and cuts, the cap (open iff twin prime on every window) and
+  CutMono (unconditional from q = 5) are in the kernel; measured once with 0 exceptions; its
+  first strike that is neither home nor echo is exactly p_1^2.
+- The valves are closed by rule until the parts ledger (research/proof/objects_ledger.md) has no
+  open structural item. The wall has three precise faces: counting (dimension-2 sieve limit
+  4.27 against s = 2), transfer (rare among phase vectors is not never for real q), and order
+  (the interaction order needed grows like K - 3). See research/proof/theory_tree.md for the
+  live branch tree and docs/proof-search/human.md for the plain-language snapshot.
 
 ## Where mathematics stands on small prime gaps
 
@@ -214,10 +223,10 @@ and 16 GB; commit charge, not core count, is the binding limit.
 ## Provenance and citation
 
 The gear-machine framing is this project's own: the primes as gears with teeth striking a track;
-the anchor 2, 3, 5 as one object; window, section and stretch as distinct things; the two-machine
-split into a motor and wheels with a clutch between them, the wheels built on the raw line as a
-domino machine; the stack of tiers with cuts, and the exhaust proved to have no bearing on the
-window. The vocabulary and the decomposition were introduced by Alexander Parker in this
+the anchor 2, 3, 5 as one object; window, section and stretch as distinct things; the split
+into an engine and a manifold with valves between them (first named motor, wheels and clutch),
+the manifold built on the raw line as a domino machine; the stack of tiers with cuts, and the
+exhaust proved to have no bearing on the window. The vocabulary and the decomposition were introduced by Alexander Parker in this
 repository (first commit 31 August 2025; the two-machine split and the stack, September 2026),
 with AI assistants running the lanes. The closest prior objects are named in each proof
 document's "Prior art, and what is new" section and in `docs/novel/README.md`; wheel sieves,
@@ -262,8 +271,8 @@ principal-investigator skill) and the project's own files; the short form:
   traces, two or more ideas through and two or more ways to realise each; reach for the toolbox
   (set theory, bitwise operations on numbers and on structures, linear algebra, complex numbers
   and characters, the walk); allow the answer to reopen construction of any part.
-- **Vocabulary.** Well-defined objects with names that cannot be confused (motor, wheels,
-  clutch, exhaust; window, section, stretch; smooth zone, quiet zone); a glossary kept current;
+- **Vocabulary.** Well-defined objects with names that cannot be confused (engine, valves,
+  manifold, exhaust; window, section, stretch; smooth zone, quiet zone); a glossary kept current;
   a project-wide law register with unique numbers.
 - **Reporting.** Findings first, in the chat, with their numbers; plain English before detail;
   say where the difficulty moved, not only what was gained; "not a route" is a bold claim;
@@ -404,7 +413,8 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   top machine (wheels) is the primes above q up to the motor's period q#, built on the raw line
   on its own terms (teeth at 0 and -2, dominoes {x, x+2}); the clutch is their interaction. The
   conjugacy n -> 6^-1 (n+1) maps the wheels onto the anchored column coordinate exactly.
-- **Valve train, byproducts, valves, manifold.** The clutch's mechanism (owner, 2026-09-06): the
+- **Valve train, byproducts, valves, manifold.** The valves' mechanism (owner, 2026-09-06, kept
+  in the words of that day, motor and wheels for engine and manifold): the
   motor is the engine, its pistons driving the prime gaps on an infinite camshaft; its combustion
   byproducts are the squares and compounds of its own primes (the q-smooth numbers); the clutch is
   the valve train that vents byproducts off the engine through the wheels' manifold into the
@@ -416,34 +426,37 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   open set. Back pressure: the manifold's strikes (the owner's correction of 2026-09-06; the
   manager had written the exhaust's non-echo strikes, which remain a separate object, zero inside
   the window and first at p_1^2). Valve timing: the phase
-  relation between the motor's open residues and the wheels' families (the clutch's placement
-  residue law).
-- **Fuel, air, charge, knocking.** In the quiet zone every wheels-open number is s x P, a smooth
-  cofactor times a wheel prime. Fuel is the wheel prime P; air is the smooth cofactor s; their
-  mixture s x P is the charge, and a charge burns when the motor strikes its air (any family with
-  s > 1). Family (1, 1) is the pure charge, fuel with no air, the only one that never burns: the
-  twin primes. Knocking is a symptom with no settled timing cause; the standing knock is the
-  gluability anomaly (the real teeth glue about 2.4 times more than the counterfactual family in
-  exactly that one measure, unexplained), and a knock is retired when its cause is a law.
-- **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the motor, tier 2 the
-  wheels, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period (cut_0 = q,
-  cut_1 = q#, cut_2 = the wheels' period). Not "rung", which is one step q -> q' of the ladder.
-- **Exhaust.** Every tier above the wheels, taken together (the smoke stack: produced by the tiers
-  below, rising away, never back into the engine). Inside the window (cut_k, cut_k^2] every
-  exhaust strike is a home strike or an echo, so the exhaust has no bearing on motor, wheels or
-  clutch there (kernel: docs/proofs/23).
+  relation between the engine's open residues and the manifold's families (the valves'
+  placement residue law).
+- **Fuel, air, charge, knocking.** In the quiet zone every manifold-open number is s x P, a
+  smooth cofactor times a manifold prime. Fuel is the manifold prime P; air is the smooth
+  cofactor s; their mixture s x P is the charge, and a charge burns when the engine strikes its
+  air (any family with s > 1). Family (1, 1) is the pure charge, fuel with no air, the only one
+  that never burns: the twin primes. Knocking is a symptom with no settled timing cause; the
+  standing knock is the gluability anomaly (the real teeth glue about 2.4 times more than the
+  counterfactual family in exactly that one measure, unexplained), and a knock is retired when
+  its cause is a law.
+- **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the engine, tier 2
+  the manifold, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period
+  (cut_0 = q, cut_1 = q#, cut_2 = the manifold's period). Not "rung", which is one step q -> q'
+  of the ladder.
+- **Exhaust.** Every tier above the manifold, taken together (the smoke stack: produced by the
+  tiers below, rising away, never back into the engine). Inside the window (cut_k, cut_k^2]
+  every exhaust strike is a home strike or an echo, so the exhaust has no bearing on engine,
+  manifold or valves there (kernel: docs/proofs/23; CutMono unconditional from q = 5, so this
+  holds at every cut).
 - **Home strike, echo.** A home strike is a gear striking its own number. An echo is a strike on a
-  number a lower tier already strikes. Not "shadow", which the motor's shadow lemma owns.
+  number a lower tier already strikes. Not "shadow", which the engine's shadow lemma owns.
 - **Span.** A gear spans a machine when its stride (g) is at least that machine's period. Every
   gear of tier k+2 spans tier k; no gear of tier k+1 spans tier k, except at its silent top.
-- **Smooth zone, quiet zone.** For the wheels (q, Q] on a range: the smooth zone [1, Q], where a
-  pair is open iff both members are q-smooth; the quiet zone (Q, Q^2], where a number is open iff
-  it is q-smooth times at most one prime above Q, and the exhaust is silent or echoing. The quiet
-  zone is the window of the machine {2..Q} seen from the stack.
-- **Free wheels, loaded wheels, core, tail.** Free wheels: every gear above 2m (the record is a
-  tiling by free dominoes, the parity law and the mex closed form hold). Loaded wheels: small
-  gears present; the core gears (those at most F+1) decide the record by their arcs, the tail
-  gears enter by their count only.
+- **Smooth zone, quiet zone.** For the manifold (q, Q] on a range: the smooth zone [1, Q], where
+  a pair is open iff both members are q-smooth; the quiet zone (Q, Q^2], where a number is open
+  iff it is q-smooth times at most one prime above Q, and the exhaust is silent or echoing. The
+  quiet zone is the window of the machine {2..Q} seen from the stack.
+- **Free manifold, loaded manifold, core, tail.** (older documents: free wheels, loaded wheels.)
+  Free: every gear above 2m (the record is a tiling by free dominoes, the parity law and the mex
+  closed form hold). Loaded: small gears present; the core gears (those at most F+1) decide the
+  record by their arcs, the tail gears enter by their count only (the loaded record rule).
 - **Lane, round, kernel audit.** The proof search runs in rounds of parallel AI lanes (Constructor,
   Mechanic, Lateral, Formalist, Harvester, LP-duality); every claim carries its gate command and
   output line; `cd proofs; lake env lean AxiomCheck.lean` must report no sorryAx.
@@ -622,9 +635,9 @@ every one an old opening (exact, full periods to 23; [3.11], research/proof/mana
 
 **Self-similarity.** The record of one machine is built from a near-record piece of the machine
 below, which was built the same way one level further down: the ancestor is a runner-up of the
-lower machine (not its record) in 7 of 8 steps, and the chain goes one to five generations deep
+machine below (not its record) in 7 of 8 steps, and the chain goes one to five generations deep
 ([3.11], "records recruit runner-ups"). The nested next-opening formula computes the enlarged
-machine's walk from the lower machine's walk plus the new gear's hits, layer by layer (kernel,
+machine's walk from the walk of the machine below plus the new gear's hits, layer by layer (kernel,
 [3.1]); the walk from q^2 lands on a twin pair within 2 to 79 columns at every prime to 100,003
 ([4.7]). Inside the section the machine below is exact and the new gear is silent: its whole new
 workload is its square and its products with the primes up to the horizon, one to three columns

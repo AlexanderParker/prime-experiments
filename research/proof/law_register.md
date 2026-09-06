@@ -1,4 +1,4 @@
-# The law register: the wheels and the exhaust
+# The law register: the manifold (formerly the wheels) and the exhaust
 
 One project-wide numbering for the laws of the **wheels** (the top machine, the primes in
 `(q, q#]` on the raw line, teeth at `0` and `-2`, dominoes `{x, x + 2}`) and of the **exhaust**

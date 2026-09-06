@@ -1,5 +1,11 @@
 # Written proofs
 
+Words (canonical since 2026-09-06; the proof files below keep the words they were written in):
+motor / bottom machine / lower machine = the ENGINE (the primes up to q); wheels / top machine
+/ upper machine = the MANIFOLD (the primes in (q, q#]; the Lean namespace stays `TopMachine`);
+clutch / interaction layer = the VALVES (the engine acting inside the manifold's open set);
+third machine / tower = the EXHAUST (every tier above the manifold).
+
 One file per theorem, in the order the machine is built: the route, one gear, one machine,
 adding a gear, the record of the bigger machine from the smaller, bounds on the alignment
 depth, the corridor, the layer, and the rung-level certificates.  Each file opens with a

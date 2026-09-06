@@ -1,57 +1,108 @@
 # agents-shared.md - findings exchange for the proof-search team
 
-## SUMMARY (manager-rewritten each round - read this first; details below and in workstream docs)
+## SUMMARY (rewritten each round - read this first; details below and in workstream docs)
 
-State after the proof-hunt rounds 32-55 (2026-09-04 to 2026-09-06), manager-led, one to two
-provers at a time under the theory-tree skill (.claude/skills/theory-tree/SKILL.md). The tree is
-research/proof/theory_tree.md (nested by descent, verdicts on nodes); the wall is
-research/proof/the_wall.md (every blocker, precisely). Vocabulary: window = certified range
-(y, y^2]; section = its new part; stretch = a sliding run; the budget inequality is a target.
+Snapshot 2026-09-07 (Harvester cleanup, canonical words). State after the proof-hunt rounds
+32-55 on the window and the parts rounds R4.b (manifold), R4.b.x (exhaust) and Lean rounds
+32-37, manager-led, one to two lanes at a time under the theory-tree skill
+(.claude/skills/theory-tree/SKILL.md). The tree is research/proof/theory_tree.md (nested by
+descent, verdicts on nodes; the R4 subtree is the parts); the wall is research/proof/the_wall.md
+(every blocker, precisely; 5l maps the faces onto the parts); the gate is
+research/proof/objects_ledger.md; the plain-language snapshot is docs/proof-search/human.md.
 
-PROVED THIS FORTNIGHT (written proofs docs/proofs/20 and 21, plus lemmas in branch documents):
-the adversarial lemma for K <= 10 (no K primes above 3 with fixed-separation pairs cover the next
-prime's window; certified 0/1 infeasibility at the window, corroborated four ways) and the exact
-adversarial ladder A(K) = 2, 5, 7, 16, 22, 28 at K <= 6 by reasoning (span lemma, type lemma,
-head collision); the collision laws (linear deficit slope 4/(gh); shared-arc law, so twin gears
-collide at (g + 4)/3; arc floor for the real teeth; block bound proved, all-pairs form refuted;
-matching bound proves the lemma at K = 4 by reasoning, block-4 at K = 5, 6); the gear-5 lock
-(every maximal blocked stretch has gear 5 at its coverage-maximal phase; 1.7 million window
-stretches); the junction theorem (junctions of M + q' are ordinary openings of M; the flank
-brick is F_2(M)); the shadow and move lemmas; the fibre theorem and the fixed-point theorem of
-the half-column map (fixed points are twin columns); Leg(v) = prime factors of 3v +- 1; the
-coupling-gear divisor law; the type lemma; the exact spectrum recursion to m31.
+THE OBJECTS, ONE WORD EACH (owner, 2026-09-06; the line engine -> valves -> manifold ->
+exhaust). ENGINE = the primes up to q (retired: motor, bottom machine, lower machine).
+MANIFOLD = the primes in (q, q#] as a machine on the raw line with its own laws; regions the
+smooth zone [1, Q] and the quiet zone (Q, Q^2] (retired: wheels, top machine, upper machine;
+the Lean namespace stays TopMachine). VALVES = the engine acting inside the manifold's open set;
+each family (s, s') of smooth cofactors in the quiet zone is one valve; valve timing = the
+placement residue law (retired: clutch, interaction layer). EXHAUST = every tier above the
+manifold (retired: third machine, tower). Engine terms: combustion = a strike; byproducts = the
+engine's q-smooth compounds; fuel = a manifold prime P; air = a smooth cofactor s; charge =
+s x P, burning when a valve strikes the air; the pure charge = family (1, 1), the twin primes,
+never burns; back pressure = the manifold's strikes (the exhaust's non-echo strikes are a
+separate object, first at p_1^2); knocking = an unexplained symptom, the standing knock the
+gluability anomaly (2.4x at matched cells). Fixed older words stay: window (y, y^2], section,
+stretch, record F(M), anchor 2, 3, 5, budget inequality (a target, never a law), the ladder,
+d_0, stack / tier / cut, home strike / echo, span.
 
-THE CANDIDATE OBJECT (measured, 0 exceptions): for every integer q coprime to 30 above 2849,
-some offset i = 12 (mod 35) past q^2, within 0.152 of the top gear's arc and never above 2,392,
-is open under {5..q}, i.e. q^2 + 6i - 2 and q^2 + 6i are a twin pair; 17,748 primes to 200,000,
-minimum open-island count strictly increasing. Its cover number K(d) is exact to d = 1330 and
-grows; each cover pins q^2 as an integer (proved); the obstruction is 10^54 covers against a
-class density of 10^-30, and any bound below 1 on the failing fraction is the conjecture.
+WHERE EACH LAW LIVES. Engine: objects_ledger.md section ENGINE (M-numbers), docs/proofs/01-21,
+proofs/BlockedSlots, TwoTeeth, AnchorChain, MergeLaw, WordLegal, BareAlt, LiteralCap, Corridor,
+Layer, Increment, IncCert*, CaseCert37*. Manifold: law_register.md W1-W93 (top_machine_1-8.md;
+document 7's L67-L75 still lack W-numbers), docs/proofs/22, proofs/TopMachine*.lean. Exhaust:
+law_register.md X1-X8 plus exhaust_1.md X9-X24, docs/proofs/23, proofs/MachineStack.lean.
+Valves: closed; the 36 interaction facts are named in objects_ledger.md "Interface objects".
+
+THE ENGINE (gate: not yet; three structural items). Theorem (E): a column above q is blocked
+under {5..q} iff under {5..floor(sqrt(6k+1))}. From q = 1427 the longest blocked run of the
+prefix is the initial run (q/6 against a window q^2/6), so the window statement is exactly
+d_0 <= W; d_0 inside the window by 10-58x to level 33,317. Ladder: records exact to q = 59
+(5, 7, 11, 18, 25, 34, 43, 58, 88, 91, 103, 118, 145, 161), eleven budget rungs certified,
+31 -> 37 in the kernel; the spectrum recursion reproduces F(37) = 88 and F(41) = 91 from
+m23's period alone, slack 14, 20, 16, 7, 38. Adversarial side: docs/proofs/20 (K <= 10),
+docs/proofs/21 (collision laws), A(K) = 2, 5, 7, 16, 22, 28 at K <= 6 by reasoning, exact to
+K = 12. Open structural items: L(M) bounded (O-M1); the chain statement at J = 3, 4 on the band
+[15, 36] (O-M2); a monotone functional of the merge closure (O-M3, one lane running).
+
+THE MANIFOLD (gate: yes on paper). Domino machine (partner law, no hypothesis); no gap of 4;
+parity law F_top = 2m - (m mod 2) as an equality; loaded record rule proved both ways (0
+mismatches on 6,659 gear sets) and in the kernel with coprimality alone; gap census law W22 in
+the kernel with gears positive and coprime only; cover polynomial (W86-W93: non-cancellation,
+the eight multiplicities 8 of 8, c_e(d) to d = 60, the parity-refined capacity bound); next
+open pair = x + mex{(-x), (-x-2) mod g} (kernel for gears > 2m; exact iff F_top < q'); smooth
+zone [1, Q] (open iff both members q-smooth) and quiet zone (Q, Q^2] (open iff q-smooth times at
+most one prime above Q), both in the kernel; family decomposition (s, s') with counts
+independent of q; the record is a twin gap at scale: 924 after 187,907 for q = 5, 7, 11, 13 at
+Q = 10^5, family (1, 1) = 27,411,455 for every q (manifold_census_large.md). Remaining,
+non-structural: the moment vanishing L73/L74 into the kernel; W-numbers for L67-L75; prior art
+for W86-W93.
+
+THE EXHAUST (gate: CutMono in the kernel, measured once, no open structural item). Stack: tier
+k + 1 = the primes in (cut_{k-1}, cut_k]. Kernel: stride containment two tiers down; the cap
+(home strike or echo on (C, C^2], so open iff twin prime on every window); CutMono unconditional
+for prime q >= 5 (cut_{k+1} > 4 cut_k). Measured (exhaust_1.md): self-similarity on 18,095,756
+residues, 0 exceptions; 57,344 window incidences all home or echo, exactly 2.000 home strikes
+per open pair; first non-redundant strike exactly p_1^2; exhaust share 0.0% on the window then
+36.9, 62.8, 75.0, 82.0, 86.6% by decade; regime law F_range = max(F_smooth, F_quiet); its own
+record is ROOT (family (1, 1)). Remaining: prior art for X10, X13; the crossover height (O-X6,
+needs an upper bound on a prime gap, a known theorem); the range-form redundancy lemma into the
+kernel.
+
+THE VALVES (closed until the ledger clears). First step when opened, the owner's hybrid: a
+scratch lane with clean context (the three definitions, the glossary, the proved laws; no
+interaction facts, no wall) defines interface objects on both coordinates; a review lane sorts
+the 36 refiled facts, the wall, theorem (E), the conjugacy and the family decomposition into
+interface objects, flagging every fact measured in the engine's coordinate; then reconcile
+(both = solid; scratch-only = new; review-only = suspect; disagreements = predictions on record).
+Every interface object: definition, law with proof, closed form where one exists; partial
+interfaces kept. Already visible: family (1, 1) is untouched by the split; a valve law must say
+why it is never empty in (Q, Q^2].
 
 THE WALL, IN THREE PRECISE FORMS: (A) counting cannot reach the window (dimension-2 sieve
-limit 4.27 against s = 2; the distortion method's engine applies to the machine with budget
-sum 4/g^2 < 0.365 but collapses on an interval, its localised "positive" was false, and the
-one-block form is trivial); (D) rare-among-all-phase-vectors does not transfer to real q
-(real, locally-square and random vectors fail the island witness at the same rate to 0.2%);
-(O) the interaction order needed to cut coverage below the window grows like K - 3, so no
-bounded-order law reaches all K. Position facts never see length (B); the real machine is
-typical in every symmetry, spacing and squareness measure (C), with one measured exception
-(gluability, a factor 2.4 at matched cells) that turned out to be counting.
+limit 4.27 against s = 2; the distortion method collapses on an interval; the one-block form is
+trivial); (D) rare-among-all-phase-vectors does not transfer to real q (real, locally-square and
+random vectors fail the island witness at the same rate, 0.9984 +- 0.0033; 10^54 covers against
+a class density of 10^-30); (O) the interaction order needed to cut coverage below the window
+grows like K - 3 (1, 2, 2, 3, 4, 5, 6, 7, 8, 8 at K = 3..12), so no bounded-order law reaches
+all K. Position facts never see length (B); the real teeth are typical in every symmetry,
+spacing and squareness measure (C), with the gluability knock the one exception.
 
-REFUTED, WORTH KNOWING: coherence of separations is a liability (fully compatible members
-violate the budget); twin gears are the cheapest small gears (de-twinning LOWERS the record;
-which arcs is worth nothing, the count everything; the real machine is an optimal 10-gear
-blocker); the flank brick is the pair statement itself; the F + 1 neighbour law dies at m29
-(replaced by N(v) <= F_2 for v >= 6, exceptionless to m31, with the glue lemma as mechanism);
-the sum rule cannot force depletion; separability is not the real teeth's advantage; the record
-is not anchored at the all-teeth columns.
+THE KERNEL: the manifold-and-exhaust library is 310 declarations across seven files
+(TopMachine, TopMachineWheel, TopMachineCrt, TopMachineWalk, MachineStack, TopMachineRecord,
+TopMachineCensus), zero sorries, no native_decide, standard axioms, build green at 2,248 jobs.
+The engine's corpus is separate (no single total on record). Audit: cd proofs; lake env lean
+AxiomCheck.lean, no sorryAx.
 
-STANDING DIRECTIONS (the human's): find NEW mathematics with the machine, never translate
-known results; describe the mechanism before naming a theorem; follow the clue named as
-"closest to the target" at once; when stuck, reopen every dead branch (object, vectors, failure,
-two ideas, two realisations each) and try the toolbox (set theory, bitwise operations on numbers
-and on sieve/gap structures, linear algebra, complex numbers); put the findings in the chat,
-not only in files; data folders are local only; no attribution trailers.
+THE RULES. One word per object (the canonical list above; older words only in sentences about
+the past, with a note). Every law stated in the part's intrinsic parameters (smallest gear,
+gear count, split, cut) so it holds for every copy of the part. Formalise in the same round;
+read the hypotheses the proof needed as findings; the manager re-runs the build and the audit
+before a kernel verdict. Register numbers: every law gets a permanent M-, W- or X-number in the
+round it lands, with a dated prior-art check in docs/novel/README.md before anything is called
+new. The gate: no valve work while any part has an open structural item; the conjecture in
+disguise (d_0 <= W, the pair statement, the quiet-zone record's upper bound) is never a gate
+item. Pattern checks on the section; mechanism at the extremes, never averages; findings in the
+chat with their numbers; data folders local only; no attribution trailers.
 
 ## Toolbelt inventory (all verified this session)
 - research/umbrella_tools.py: closed-form umbrella membership/edges for any gear set (min-rooms)

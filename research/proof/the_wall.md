@@ -410,24 +410,62 @@ reaches F(37) = 88 and F(41) = 91 from m23's period alone, with the budget slack
 38 along it; the pinned letter is refuted at 37 -> 41. Instruments in hand: the closure step
 with the span-threshold prune, the CRT row search, the configuration enumerator. The one
 object still open inside the window: the chain statement at depths 3 and 4 on the band. Per
-the owner, this is the point to open the top machine on its own terms (R4).
+the owner, this is the point to open the manifold (then called the top machine) on its own
+terms (R4).
 
 ## 5k. Location pinpointed (2026-09-06)
 
-The owner's last window round asked where in the window the twin slot is, with the lower
-machine only. Answer, proved and measured: the window can be emptied only from the bottom.
+The owner's last window round asked where in the window the twin slot is, with the engine
+(then called the lower machine) only. Answer, proved and measured: the window can be emptied
+only from the bottom.
 Theorem (E): a column above q is blocked under {5..q} iff blocked under {5..sqrt(6k + 1)}, so
 the effective machine at every column is exact and no blocked stretch of length L can begin
 before 1.25 L (unconditional to 59^2, conditional on the ladder beyond); measured 3.25 L with
 no exception. From q = 1427 the longest blocked run of the whole prefix is the initial run
 from column 1, of length q/6 (the first twin above q), while the window is q^2/6. So the window
-statement is exactly d_0 <= W, the diagonal walk of the bottom machine, the first twin above
+statement is exactly d_0 <= W, the diagonal walk of the engine, the first twin above
 q; every structured family of candidates carries twins at the window's own rate by an identity
-(a rule written in the lower machine's residues cancels its own saving); the top machine is
+(a rule written in the engine's residues cancels its own saving); the manifold is
 irrelevant inside the window. The location is the bottom; the mechanism there is the primes
 themselves (twin gear pairs striking their home columns, then composites of small factors),
-which is twin-Bertrand at scale q. The lower machine alone has said everything it can about
-where; per the owner, the top machine is next.
+which is twin-Bertrand at scale q. The engine alone has said everything it can about
+where; per the owner, the manifold (then called the top machine) is next.
+
+## 5l. The wall in the canonical words (harvester, 2026-09-07)
+
+No new claims; the faces A-E and the updates 5a-5k mapped onto the four parts (engine = the
+primes up to q; manifold = the primes in (q, q#] on the raw line; valves = the engine acting
+inside the manifold's open set; exhaust = every tier above the manifold). Older sections above
+say motor, wheels, top machine, bottom machine, lower machine and clutch for these.
+
+- Face A (counting) belongs to the METHOD, not to a part: any argument whose only input is how
+  many classes each gear removes is a dimension-2 sieve at s = 2, and 5i shows it standing alone
+  once the engine's openings are taken over one full period (level of distribution 1). A4, the
+  rate-to-maximum step, is the same face wherever a rate of any part is proved exact.
+- Face B (position cannot see length) belongs to the ENGINE: the corridor, the gear-5 lock, the
+  slot rule, the record's phase pinning and the hinge (5g) are all engine facts at a bounded
+  modulus. 5k is the engine's last word on position: the window statement is d_0 <= W.
+- Face C (the real machine is typical) belongs to the ENGINE: symmetry (the mirror), spacing,
+  squareness and the cover number are engine measurements; the one exception, the gluability
+  knock (5c, 5e), is an engine fact about which residues its teeth strike.
+- Face D (transfer) belongs to the VALVES: the island witness, the cover number and the second
+  moment (5e) are statements about the engine's openings just past q^2 under gears above q,
+  i.e. the engine acting in the manifold's range; 5i says the transfer face disappears at the
+  period scale, where the valves' coupling is exact.
+- Face E (every local formulation over-asks) belongs to the VALVES: the twin-Bertrand quantity
+  d_0 (E1), the section statement (E3) and the walk frame (E4) are all about a twin appearing
+  where engine and manifold meet; the chain statement (E2) is the engine's own.
+- The covering side (5a, 5d, 5f, 5g, 5h): the adversarial covering number, the free-gear
+  adversary A(K), the distortion method and the collision laws are statements about the FAMILY
+  the engine belongs to, worked in the engine's coordinate; the order obstruction (5h) is the
+  wall's third face, (O), and it is an engine-family statement.
+- 5j (the window line at the end of its leads) and 5k (location pinpointed) are the engine
+  alone; 5k's closing sentence, "the top machine is next", opened the manifold.
+- The MANIFOLD and the EXHAUST have no face of their own on this wall: their records are the
+  root in their own coordinates (the quiet-zone record is a twin gap; the exhaust's record is
+  family (1, 1)), and nothing in either part bounds a twin-free run. That is a fact about where
+  the difficulty sits, not a fifth face: the wall stands at the valves, and it is face A when
+  seen from the period scale.
 
 ## 6. What the wall says is NOT worth another branch
 

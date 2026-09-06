@@ -1,16 +1,21 @@
-# The objects ledger (harvester, 2026-09-06)
+# The objects ledger (harvester, 2026-09-06; folded to one current verdict per object 2026-09-07)
 
-The owner's rule of 2026-09-06: no clutch work until the motor, the wheels and the exhaust are
+The owner's rule of 2026-09-06: no valve work until the engine, the manifold and the exhaust are
 fully understood, and this ledger is the gate. Nothing here is new computation. Every line is a
 fact already on the record, moved under the object it is about and cited by document; where a
 document's own words state the law, those words are used.
 
-**The three objects, in the owner's vocabulary.** The MOTOR is the bottom machine `{2..q}`, or
-the anchored `{5..q}`: columns, gears, teeth, period, record. The WHEELS are the top machine,
-the primes in `(q, q#]` on the raw line, written in their own pair coordinate and never in the
-motor's. The EXHAUST is every tier above the wheels together: the stack, tier `k + 1` being the
-primes from the top of tier `k` to tier `k`'s period, and the boundaries between them the CUTS.
-The CLUTCH is the interaction of motor and wheels, and it is not worked here.
+**The three objects, in the canonical words (owner, 2026-09-06).** The ENGINE is the primes up
+to `q`, worked as the anchored machine `{5..q}`: columns, gears, teeth, period, record. The
+MANIFOLD is the primes in `(q, q#]` as a machine of its own on the raw line, written in its own
+pair coordinate and never in the engine's; its regions are the smooth zone `[1, Q]` and the
+quiet zone `(Q, Q^2]`. The EXHAUST is every tier above the manifold together: the stack, tier
+`k + 1` being the primes from the top of tier `k` to tier `k`'s period, and the boundaries
+between them the CUTS. The VALVES are the engine acting inside the manifold's open set, one valve
+per family `(s, s')` of the quiet zone, and they are not worked here. Older documents (and the
+cited branch files) say motor, bottom machine or lower machine for the engine; wheels, top
+machine or upper machine for the manifold; clutch for the valves; tower or third machine for the
+exhaust. The Lean namespace stays `TopMachine`.
 
 **Status vocabulary** (the tree's evidence standards). `KERNEL` = a Lean theorem in `proofs/`,
 zero sorries, standard axioms, with its hypothesis stated. `PROOF` = a written proof in
@@ -24,42 +29,31 @@ proved.
 `docs/proofs/README.md` (22 written proofs); `docs/novel/README.md`; `refiled_by_object.md`
 (the earlier refiling, 74 / 12 / 36); `position_frontier.md`; `anchor_window.md`.
 
-**A numbering warning, carried from the record.** The top-machine documents restart their law
+**A numbering warning, carried from the record.** The manifold documents (top_machine_1-6.md) restart their law
 numbering: document 1 reaches L21, document 2 runs L22-L38, **document 3 runs L30-L45 and
 therefore clashes with document 2 at L30-L38**, document 4 runs L46-L56, document 5 opens again
 at L50 and runs to L59, document 6 runs L57-L66. Every citation below names the document.
 
-**Two lanes are running as this is written. Their results are pending and are not counted
-anywhere in this ledger.** Marked slots:
-
-> ### SLOT A - PENDING: the exhaust in the kernel (Formalist lane)
-> `proofs/MachineStack.lean` and `docs/proofs/23`. The file exists and carries declarations for
-> tiers and cuts, stride containment, non-containment, the exhaust cap (home strike or echo),
-> the quiet-zone clutch statement, the stack prefix as the primes up to a cut, and the wheels'
-> smooth-zone and quiet-zone laws. **No lane report, no build gate and no axiom audit has been
-> filed, so nothing from that file is entered as KERNEL below.** When the lane lands, its
-> theorems belong in EXHAUST section 2 (structure and location) and in WHEELS section 2
-> (counting: the zone laws), and the EXHAUST gate list shortens by its first item.
-
-> ### SLOT B - LANDED 2026-09-06: the wheels' open laws (research/proof/top_machine_7.md, L67-L75)
-> The loaded record rule PROVED both directions with no side hypothesis (L69: F_top = max{L :
-> min over core phasings of the domino cost <= #{g > L + 1}}; 0 mismatches on 6,659 gear sets),
-> so `L31` is a formula (O-W2 closed); the parity law and its sharp threshold derived as
-> corollaries; the moment vanishing PROVED (L73) with r(d) = D(d - 1) (L74) and the d = 4
-> exception absorbed (O-W1 closed); L18's multiplicities reproduced; the census law written in
-> kernel shape (three lemmas, each verified). Remaining on the wheels alone: the complexity of
-> min_U D_L(U); non-cancellation of M_{r(d)} (L75, 0 exceptions of 24, unproved); L22 in the
-> kernel (round 36 did L67-L69 and the boundary corollary: proofs/TopMachineRecord.lean; round 37
-> did L22 / W22: proofs/TopMachineCensus.lean, gears positive and coprime only; L70 and L73/L74 not
-> attempted); a parity-refined capacity bound.
+**Lanes that landed since the first version, all folded into the sections below (2026-09-07):**
+the exhaust in the kernel (Formalist round 35, `proofs/MachineStack.lean`, docs/proofs/23); the
+manifold's open laws (top_machine_7.md L67-L75 and top_machine_8.md W86-W93); the loaded record
+rule and `CutMono` in the kernel (round 36, `proofs/TopMachineRecord.lean`, MachineStack
+addendum); the gap census law in the kernel (round 37, `proofs/TopMachineCensus.lean`); the
+exhaust's first measurement (exhaust_1.md X9-X24); the law register (law_register.md, W1-W85,
+X1-X8); the manifold census at large `Q` (manifold_census_large.md). **Running as this is
+written, not counted:** the engine's monotone functional (O-M3, research/proof/
+monotone_functional.md); the register's W86-W93 rows and docs/novel entries.
 
 ---
 
-# MOTOR - the bottom machine `{5..q}` alone
+# ENGINE - the primes up to `q`, the anchored machine `{5..q}` alone
+
+(Older documents, and the branch files cited below, call this object the motor, the bottom
+machine or the lower machine.)
 
 ## 1. DEFINITION
 
-The motor is the machine on COLUMNS. Column `k` is the pair `(6k - 1, 6k + 1)`; the anchor 2, 3,
+The engine is the machine on COLUMNS. Column `k` is the pair `(6k - 1, 6k + 1)`; the anchor 2, 3,
 5 is one object of cycle 30 folded into the six-fold ruler, and gear 5 is the first gear that
 turns. A gear is a prime `5 <= g <= q`; it has two TEETH, striking column `k` iff
 `k = +-6^{-1} (mod g)`, so its struck residues are two classes at separation
@@ -76,7 +70,7 @@ L56) putting it back multiplies a record by 6 and adds 5: `F(G + {2,3}) = 6 F_co
 WINDOW is the certified range `(y, y^2]`, never a sliding run; its new part is the SECTION
 `(p^2, q^2)`; a sliding run is a STRETCH. The LADDER is the certified sequence of records
 `F = 2, 5, 7, 11, 18, 25, 34, 43, 58` and, past the scan wall, `F(37) = 88`, `F(41) = 91`. Inside
-the window the motor is EFFECTIVE only up to the square root: by theorem (E) a column with
+the window the engine is EFFECTIVE only up to the square root: by theorem (E) a column with
 `6k - 1 > q` is blocked under `{5..q}` iff blocked under `{5..floor(sqrt(6k + 1))}`.
 
 ## 2. PROVED
@@ -98,7 +92,7 @@ the window the motor is EFFECTIVE only up to the square root: by theorem (E) a c
 | M18 deletion spacing | merge deletions are `>= q - 1` apart, and tight | PROOF | docs/novel/deletion-spacing |
 | M19 the letters | an added gear's kill spacings are `{2u', q' - 2u'}` with exact `q'` padding, strictly alternating, minimum `2u'` | KERNEL (T1-T5) | `proofs/TwoTeeth.lean`, `MergeLaw.lean`; docs/proofs/02 |
 | M6 theorem (E) | for `6k - 1 > q`: blocked under `{5..q}` iff blocked under `{5..floor(sqrt(6k+1))}`; the exception set is exactly the twin gear pairs on their own home columns, all below `(q+1)/6` | PROOF (one line) + EXACT (7 of 7 count matches) | position_frontier.md |
-| M7 the square gate, motor half | a gear exposes nothing below its own square | KERNEL | `Gear.R_eq_zero_of_below_sq`, `Layer.slot_cap`; docs/proofs/15 |
+| M7 the square gate, engine half | a gear exposes nothing below its own square | KERNEL | `Gear.R_eq_zero_of_below_sq`, `Layer.slot_cap`; docs/proofs/15 |
 
 ### Counting (wheel counts, census, correlation)
 
@@ -192,8 +186,8 @@ Each holds with 0 exceptions over the stated range unless the count says otherwi
 
 ## 4. OPEN
 
-Structural questions about the motor alone that are neither proved nor the conjecture in
-disguise. For each: the statement, what an attack looks like, and whether it blocks the clutch.
+Structural questions about the engine alone that are neither proved nor the conjecture in
+disguise. For each: the statement, what an attack looks like, and whether it blocks the valves.
 
 **O-M1. `L(M)` bounded, and `L_pad(M)` bounded.** `L(M)` is the length of the longest legal word;
 `J_max = L + 2` and `A_kill = L + 1`, so every depth statement is a statement about `L`. The bare
@@ -203,8 +197,8 @@ untouched and grows (0,0,0,1,1,1,2,2,2,2,3,3 at m11..m53). The only bound is
 *Attack.* A uniform cap on `L_pad` of the shape of the bare cap - a residue obstruction on the
 padded alternation - or a direct bound on the padded alphabet from the corridor's padding laws
 (docs/proofs/14).
-*Blocks the clutch?* **Yes, as understanding.** `L` is the only unbounded ingredient of the
-motor's own grammar; every finite-depth statement about the motor (the closure, the dictionary
+*Blocks the valves?* **Yes, as understanding.** `L` is the only unbounded ingredient of the
+engine's own grammar; every finite-depth statement about the engine (the closure, the dictionary
 hierarchy, `J_max`) is conditional on it. It is a statement about `M` alone. Note the honest
 counter-datum: `L` bounded is not structural on the family (max `L` on the family 1, 3, 3, 3, 5
 against the real 0, 1, 1, 1, 2), so a proof must use the teeth.
@@ -216,7 +210,7 @@ local certificate for that band. The gate now closes at the certified row top (1
 46).
 *Attack.* Extend the CRT row search / LP-duality certificate scheme from the short-letter row to
 the whole band; or find the missing inequality on the extremes of the merge closure (O-M3).
-*Blocks the clutch?* **Yes, as understanding.** It is the one object still open INSIDE the
+*Blocks the valves?* **Yes, as understanding.** It is the one object still open INSIDE the
 window and it is a statement about `M` alone. Its ingredient list is known to require the real
 higher gears' teeth (2f refuted at 23->29 by 62 > 61), so it is not soluble by any teeth-free
 argument.
@@ -228,8 +222,8 @@ extremes are the records. Nothing on the tree bounds a dictionary's extremes by 
 predecessor's.
 *Attack.* The candidates are named and never run (node 4.i.b.ii): legal-word density per opening
 by depth, all-pad density, the order variance.
-*Blocks the clutch?* **Yes, as understanding.** The owner's own correction stands: "nothing here
-bounds it" is a brick, not a verdict. This is the single named unrun item on the motor.
+*Blocks the valves?* **Yes, as understanding.** The owner's own correction stands: "nothing here
+bounds it" is a brick, not a verdict. This is the single named unrun item on the engine.
 
 **O-M4. The pinned letter as a law.** `a_L + r(a_L) <= F(M) + 3` at 9 of 9 rungs; the constant 3
 is real-teeth and a proof must use `u_g = 6^{-1} mod g` and `3 a_L = q' -+ 1`.
@@ -237,25 +231,25 @@ is real-teeth and a proof must use `u_g = 6^{-1} mod g` and `3 a_L = q' -+ 1`.
 twin-partner law and D3 are proved, and the residue obstruction explains 0, 1, 0, 3, 0, 0, 0, 1
 of a deficit running 0, 3, 3, 3, 3, 4, 8, 9 and growing - so a per-letter CRT enumeration cannot
 close it and the certificates are the answer.
-*Blocks the clutch?* **No.** It is a sharpening of O-M2's certificate, not an independent
+*Blocks the valves?* **No.** It is a sharpening of O-M2's certificate, not an independent
 mechanism; the band is already a certified object without it.
 
 **O-M5. The adversarial lemma `A(K) < (p_{K+1}^2 - 1)/6` for all `K`.** Proved for `K <= 10` by
 certificate and `A(K)` exact to `K = 12`; margin 2.7-3.8, flat; no induction step exists.
 *Attack.* The residual is a lower bound on the tiler function `h_S(L)`, the least holes `k`
 primes leave in a run of `L` - a capacity statement with a gear count.
-*Blocks the clutch?* **No, and it cannot be a gate item**: it is strictly STRONGER than the root
-(it quantifies over gear sets as well as phases), so it is a statement about a family the motor
-belongs to, not about the motor. The record says so at gear_count.md and arc_multiset.md.
+*Blocks the valves?* **No, and it cannot be a gate item**: it is strictly STRONGER than the root
+(it quantifies over gear sets as well as phases), so it is a statement about a family the engine
+belongs to, not about the engine. The record says so at gear_count.md and arc_multiset.md.
 
 **O-M6. `D_g = A_kill` bounded, and `Delta_J <= s_min` / `Delta_J = O(1)`.** Named in
 docs/proofs/README "Not proved, and said so" and never closed; `Delta_J` measured in `[-3, +4]`
 on the real machine and `eps in [-21, +15]` on the family, which killed par trading (2a).
 *Attack.* None on the tree. The family measurement is the obstruction.
-*Blocks the clutch?* **No.** These are ingredients of the per-step formulations, and the per-step
+*Blocks the valves?* **No.** These are ingredients of the per-step formulations, and the per-step
 formulation is known to over-ask (face E1).
 
-**Explicitly NOT open items of the motor, because they are the conjecture in disguise:** the
+**Explicitly NOT open items of the engine, because they are the conjecture in disguise:** the
 budget inequality `F(M+q') <= F(M) + q'` (TARGET, certified rung by rung, never a law); the pair
 statement `F_2(M) <= F(M) + q'` (at column 0 it reads `2 d_0 <= F + q'`, and every route to it is
 twin-Bertrand); `d_0 <= W`; the window statement `F(y) < y^2/6`; `K_columns(W(q)) > pi(q) - 3`
@@ -263,11 +257,16 @@ twin-Bertrand); `d_0 <= W`; the window statement `F(y) < y^2/6`; `K_columns(W(q)
 
 ---
 
-# WHEELS - the top machine alone, on the raw line
+# MANIFOLD - the primes in `(q, q#]` alone, on the raw line
+
+(Older documents, the branch files top_machine_1-8.md and the law register call this object the
+wheels or the manifold; the Lean namespace stays `TopMachine`. A WHEEL below, singular, is
+the period `W = prod g` of one gear set, and "15 wheels" means fifteen gear sets scanned over
+their periods; that word is not retired.)
 
 ## 1. DEFINITION
 
-The wheels are written on the RAW LINE - the integers unfolded, no anchor, no six-fold, no
+The manifold is written on the RAW LINE - the integers unfolded, no anchor, no six-fold, no
 columns. The gears are the primes in `(q, Q]`, each striking its multiples. The object is a PAIR
 `n = (n, n + 2)`, indexed by its lower member, so the pair coordinate IS the raw line, and gear
 `g` strikes the pair `n` iff `g | n` or `g | n + 2`: **two TEETH, at `0` and `-2`, of separation
@@ -277,23 +276,23 @@ block of consecutive open pairs; the RECORD `F_top` is the longest block of cons
 no open pair; a GAP is the difference of consecutive open pairs; the LETTERS are `{2, g - 2}`; a
 DOMINO is two adjacent open pairs. The MIRROR is `n -> -n - 2`, whose unique fixed point is the
 shield. The ORIGIN CLUMP is the `2(q' - 3) + 1` forced slots around 0. The one-sentence identity:
-**a strike never comes alone - its partner is exactly 2 away - so the wheels are a DOMINO
+**a strike never comes alone - its partner is exactly 2 away - so the manifold is a DOMINO
 MACHINE**, and everything metric follows from that.
 
 **Regimes.**
-*Free wheels* - every gear above `2m`. Then the walk is the mex of `2m` residues, the record is
+*Free manifold* - every gear above `2m`. Then the walk is the mex of `2m` residues, the record is
 `F_top = 2m - (m mod 2)`, decided by the parity of the gear COUNT and not by the gears' sizes at
 all, and removing a gear costs the same whichever gear leaves. The sharp threshold is
 `q' >= 2m + 1` for even `m` and `q' >= 2m + 3` for odd `m` (document 5 L55); the sharp mex
 criterion is `F_top(G) < q'` (document 5 L50).
-*Loaded wheels* - small gears present. The CORE is `{g in G : g <= F_top + 1}` and the TAIL is
+*Loaded manifold* - small gears present. The CORE is `{g in G : g <= F_top + 1}` and the TAIL is
 the rest; the record is a function of `m` and the core alone, the tail entering only by its
 number `t` (documents 2 L31, 4 L53). In use the tail is EMPTY.
 *On a range* the machine splits by height. The SMOOTH ZONE is `[1, Q]`: a pair `n <= Q - 2` is
 open iff `n` and `n + 2` are both `q`-smooth, a finite Stormer list. The QUIET ZONE is
 `(Q, Q^2]`: `n` is open iff `n = s P` with `s` `q`-smooth and `P` either 1 or a single prime
 above `Q`; its lower edge in the machine's own vocabulary is `g_0^2`, the square of the first
-gear whose square exceeds `Q`, and the rule dies at `p_1^2`, not `Q^2`. The wheels have NO
+gear whose square exceeds `Q`, and the rule dies at `p_1^2`, not `Q^2`. The manifold has NO
 ANCHOR: folding needs a gear leaving at most two slots, i.e. `g <= 4`; what the smallest gear
 fixes instead is the metric (run `q' - 3`, chain `q' - 2`, clump `2(q'-3)+1`) and what the gear
 count fixes is the record, and neither fixes the other.
@@ -315,7 +314,7 @@ count fixes is the record, and neither fixes the other.
 | d1 L13 the merge law | every gap of `M + g` is a gap of `M` or a merge of consecutive gaps of `M` whose interior openings `g` strikes | KERNEL, **no hypothesis** | `merge_law`; 34,646 gaps |
 | d3 L45 the holes | in the pair view the only gap hole below the record is `d = 4`; in the triple (twin-candidate) view the holes are exactly `d = 2` and `d = 3` | KERNEL, **no hypothesis** | `start_of_start_add_two/three`, `no_start_gap_two_three`, `no_start_gap`, `no_pair_gap_four` |
 | d5 L59 the anchoring dichotomy | a gear folds the line iff `g - t_g = 1`, i.e. `g = 3` (two adjacent teeth) or `g = 2` (one tooth); an exact list of what each destroys and what survives | PROOF + EXACT (23 wheels) | top_machine_5.md |
-| d2 L34 no top-machine anchor | an anchoring gear needs `g - 2 <= 2`, i.e. `g <= 4`; top gears leave `g - 2 >= 5`, so the smallest gears give a corridor of density `>= 0.58`, uniformly filled | PROOF (a count, not an accident) + EXACT (7 small wheels; uniform descent 5 of 5) | top_machine_2.md |
+| d2 L34 no manifold anchor | an anchoring gear needs `g - 2 <= 2`, i.e. `g <= 4`; top gears leave `g - 2 >= 5`, so the smallest gears give a corridor of density `>= 0.58`, uniformly filled | PROOF (a count, not an accident) + EXACT (7 small wheels; uniform descent 5 of 5) | top_machine_2.md |
 
 ### Counting (wheel counts, census, correlation)
 
@@ -323,7 +322,7 @@ count fixes is the record, and neither fixes the other.
 |---|---|---|---|
 | d1 L5 the wheel count | `prod (g - 2)` open pairs per wheel | KERNEL | `wheel_count`, engine `card_filter_crt`; gears `>= 3`, pairwise coprime; verified over a full `6.7e9` period |
 | d3 L44 the correlation product | `B(d) = prod c_g(d)` with `c_g = g-2, g-3, g-4` for `d = 0, +-2, else`; hence `B(1) = prod(g-4)` and `B(2) = prod(g-3)` (document 1 L15) | KERNEL | `corr_prod`, `card_both_residues_eval`, `pair_corr`; `5 <= g`, pairwise coprime; 400 values, 0 mismatches |
-| d2 L22 the gap census law | `N_d(G) = sum_{S subset [1,d-1]} (-1)^{|S|} prod_g (g - |E_g(S)|)`, `E_g(S) = ({0,-2,-d,-d-2} u {-j,-(j+2) : j in S}) mod g` | PROOF (CRT + inclusion-exclusion); **not in the kernel** | 15 wheels every gap length, and the full period of the eight-gear wheel to `d = 16`: 0 mismatches |
+| d2 L22 the gap census law | `N_d(G) = sum_{S subset [1,d-1]} (-1)^{|S|} prod_g (g - |E_g(S)|)`, `E_g(S) = ({0,-2,-d,-d-2} u {-j,-(j+2) : j in S}) mod g` | KERNEL (round 37, `TopMachine.gap_census`, gears positive and pairwise coprime only; register W22; the `d = 4` hole derived from the formula) | 15 wheels every gap length, and the full period of the eight-gear wheel to `d = 16`: 0 mismatches |
 | d2 L24 W1 closed | `N_3` and `N_5` share the universal signature `prod(g-4) - 2prod(g-5) + prod(g-6)`; the gap-3 classes collapse only for `g | 3` or `5`, never a gear, the gap-5 classes for `g = 7`; so the counts are equal iff every gear exceeds 7, and `(3,5)` is the only coincident pair for `d <= 16` | PROOF | 16 wheels including the `6.7e9` full period |
 | d2 L27 the odd census length | every gear is odd, so `N_d` is odd iff a signature sum over even `e` is odd, which happens only at `d = 1` | PROOF (second, independent proof of document 1 L9) | `d = 1..16` |
 | d5 L51 the odd length, corrected | exactly one gap length has an odd count and it is the mirror-self-paired gap (`2a + d + 2 = 0 mod W`) | PROOF (from the mirror) + EXACT, 15 wheels | document 1's L9 is false as soon as `N_1 = 0`; L51 needs no hypothesis |
@@ -379,7 +378,7 @@ count fixes is the record, and neither fixes the other.
 
 | law | statement | status | evidence |
 |---|---|---|---|
-| d3 L40 the per-gear transform | `u_g^(0) = (g-2)/g`, `u_g^(a) = -(1 + omega^{2a})/g`, which in the SHIELD coordinate `n+1` is the real `-(2/g) cos(2 pi a/g)`: the top machine is the `u = 1` machine and the bottom's fold is replaced by one translation | PROOF + EXACT DFT | 5 wheels, 32,077 frequencies, max error 1.1e-16 |
+| d3 L40 the per-gear transform | `u_g^(0) = (g-2)/g`, `u_g^(a) = -(1 + omega^{2a})/g`, which in the SHIELD coordinate `n+1` is the real `-(2/g) cos(2 pi a/g)`: the manifold is the `u = 1` machine and the engine's fold is replaced by one translation | PROOF + EXACT DFT | 5 wheels, 32,077 frequencies, max error 1.1e-16 |
 | d3 L41 full spectral support | `O^(a) != 0` for every `a` (`cos = 0` needs `4a = g mod 2g`, impossible for odd `g`); the same for every nonempty run indicator; so the spectrum decides the run record and CANNOT decide `F_top`, whose positivity is that of an alternating sum | PROOF | minima 3.3e-07 to 3.1e-05, never 0 |
 | d3 L42 the parity bias | the striker-parity XOR has `#even - #odd = prod(g - 4)` exactly - the same polynomial as the domino count | PROOF (one character sum per gear) | 10 wheels, exact |
 | d3 L36 the C-identities | `#{L = j} = C(j) - C(j+1)`; `N_d = C(d-1) - 2C(d) + C(d+1)`; `F_top = max{j : C(j) > 0}`; `sum_x L(x) = sum_j C(j)` - the gap census is the second difference of the all-struck count, dual to L11's run spectrum | PROOF | all five identities, 10 wheels, 0 mismatches |
@@ -390,10 +389,10 @@ count fixes is the record, and neither fixes the other.
 
 | # | statement | range and count | reading |
 |---|---|---|---|
-| 1 | d2 L25 the degree law: `N_d` has degree `m - r(d)` in the gears and is gear-independent exactly when `r(d) = m`, value `(-1)^m M_m(d)` | 0 mismatches over `m = 3,4,5`, `d = 1..14`, three disjoint gear sets each | rests on the **unproved** vanishing of `M_k(d)` for `k < r(d)`, verified only to `d = 16` (see OPEN W-1) |
-| 2 | d1 L18 universal record multiplicity 18, 24, 480, 720 for `m = 3,4,5,6` | 14 large-gear wheels, 0 exceptions | derived from L25, hence conditional on the same unproved vanishing |
-| 3 | d2 L26 `r(d)` is the parity covering number, hence `F_top(m) = max{d : r(d) <= m} - 1` reproduces the parity law, and `d = 4` is the unique place the gap's closed-boundary cover differs from the record's free-boundary cover | `d = 1..16`, `d != 4`; census record = cover record 15 of 15 | verified, not proved in general |
-| 4 | d2 L31 the sub-threshold reduction: `F_top` is a function of `m` and of `{g <= F_top + 1}` alone | 90 comparable cases, `m = 3..8`, 0 exceptions | now has a formula in document 4 L53 (PROVED); L31 itself is the measured statement it generalises. Pre-registered threshold `2m + 3` REFUTED (12 of 70) |
+| 1 | d2 L25 the degree law: `N_d` has degree `m - r(d)` in the gears and is gear-independent exactly when `r(d) = m`, value `(-1)^m M_m(d)` | 0 mismatches over `m = 3,4,5`, `d = 1..14`, three disjoint gear sets each | rested on the vanishing of `M_k(d)` for `k < r(d)`, verified to `d = 16` when first entered; that vanishing is now PROVED (top_machine_7.md L73, verified to `d = 26`) and the top moment's non-cancellation PROVED (top_machine_8.md W86), so the degree law is PROOF on paper; not in the kernel |
+| 2 | d1 L18 universal record multiplicity 18, 24, 480, 720 for `m = 3,4,5,6` | 14 large-gear wheels, 0 exceptions | derived from L25; now PROOF via L73/L74 and W86 (`N_d = r! C_r(d)`, the eight multiplicities 8 of 8) |
+| 3 | d2 L26 `r(d)` is the parity covering number, hence `F_top(m) = max{d : r(d) <= m} - 1` reproduces the parity law, and `d = 4` is the unique place the gap's closed-boundary cover differs from the record's free-boundary cover | `d = 1..16`, `d != 4`; census record = cover record 15 of 15 | now PROVED as `r(d) = D(d - 1)` (top_machine_7.md L74), with `d = 4` absorbed (`r(4)` infinite, `M_k(4) = 0` for every `k`) |
+| 4 | d2 L31 the sub-threshold reduction: `F_top` is a function of `m` and of `{g <= F_top + 1}` alone | 90 comparable cases, `m = 3..8`, 0 exceptions | now a formula: the loaded record rule L69 (top_machine_7.md, 0 mismatches on 6,659 gear sets), PROVED both ways and KERNEL (round 36, `TopMachine.loaded_record_rule`, coprimality alone). Pre-registered threshold `2m + 3` REFUTED (12 of 70) |
 | 5 | d2 L30 the record of a triple or quadruple takes exactly two values, decided by one bit - is 7 a gear | exhaustive: 1,540 triples (1,330 / 210) and 7,315 quadruples (5,985 / 1,330), 0 exceptions | EXACT over a finite family, with the mechanism stated (only the odd long letter crosses parity); not a general theorem |
 | 6 | d2 L32 the range record is a first hit on the wheel's census: `F_range(N) = max{d : W/c(d) <= N} - 1` | within one unit at 19 of 21 checkpoints, within two at the other two; first-occurrence positions within a factor ~3 of `W/c(d)` | the wheel record IS reached, at 0.005% to 10.9% of the period |
 | 7 | d2 L33 the record blocks are pinned modulo the small gears | full period of `{7..31}`: 8 blocks in four mirror pairs summing to `W - 33`, two residues mod 1001, one mod 11, one mod 17 | measured on one wheel |
@@ -411,53 +410,74 @@ count fixes is the record, and neither fixes the other.
 
 ## 4. OPEN
 
-**O-W1. The vanishing moments: `M_k(d) = 0` for `k < r(d)`.** Verified to `d = 16`, unproved.
+**O-W1. The vanishing moments: `M_k(d) = 0` for `k < r(d)`.** CLOSED 2026-09-06: PROVED in
+top_machine_7.md (L73; `M_k(d)` is `(-1)^{d-1}` times the top multilinear coefficient of `f^k`,
+and a term of `f^k` touches all `d - 1` variables only if `k` pieces cover `[1, d - 1]`), with
+`r(d) = D(d - 1)` (L74), verified exactly to `d = 26`; the non-cancellation of the top moment
+PROVED in top_machine_8.md (W86, every minimum cover has sign `(-1)^r`). Not yet in the kernel
+(round 37: not attempted; needs a Boolean-cube Mobius inversion). As first written: verified to
+`d = 16`, unproved.
 *Attack.* A direct evaluation of the census signature `c_e(d)` as a moment sequence; the branch
 says a proof "would probably also give `r(d)` in closed form and hence a second proof of the
 parity law".
-*Blocks the clutch?* **Yes, as understanding.** It is the single load-bearing gap in the wheels'
+*Blocks the valves?* **Yes, as understanding.** It is the single load-bearing gap in the manifold's
 counting theory: the degree law (d2 L25), the universal record multiplicity (d1 L18) and the
 census route to the parity law (d2 L26) all rest on it, and all three are currently MEASURED for
-that reason. It is a statement about the wheels alone. **This is Slot B's first target.**
+that reason. It is a statement about the manifold alone. **This is Slot B's first target.**
 
-**O-W2. `L31` as a formula.** The record is a function of `m` and of the gears `<= F_top + 1`;
+**O-W2. `L31` as a formula.** CLOSED 2026-09-06: the loaded record rule L69 (top_machine_7.md),
+`F_top = max{L : min over core phasings of the domino cost <= #{g > L + 1}}`, PROVED both ways
+(0 mismatches on 6,659 gear sets) and KERNEL in round 36 (`TopMachine.loaded_record_rule`,
+necessity with no hypothesis, sufficiency with coprimality alone); the parity law and its sharp
+threshold fall out as corollaries. What remains beneath it is the complexity of `min_U D_L(U)`,
+reduced in top_machine_8.md to a scan of two windows of one core wheel with every structural
+ingredient proved (the classes cannot be decoupled on 3,611 of 5,006 loaded sets): a complexity
+question, not a structural one. As first written: the record is a function of `m` and of the gears `<= F_top + 1`;
 document 4 L53 turns that into an exact inequality (the core/tail rule with the domino cost), but
 the function itself is still tabulated per core, not derived.
 *Attack.* Named in document 2: a parity-refined covering bound per small gear, following the
 mechanism that only the odd long letter `g - 2` crosses parity. Never attempted.
-*Blocks the clutch?* **Yes, as understanding.** Without it the wheels' record is computed, not
+*Blocks the valves?* **Yes, as understanding.** Without it the manifold's record is computed, not
 known: we can decide any given gear set and cannot say what the record is as a function of the
 split.
 
-**O-W3. The census beyond `d = 20`.** Both known routes (inclusion-exclusion over uncovered
+**O-W3. The census beyond `d = 20`.** CLOSED for the universal regime (top_machine_8.md): the
+cover polynomial `sum_e c_e(d) z^e = sum_t C_t(d) (1 - z)^t z^{d + 3 - t}` gives every universal
+coefficient, and `c_e(d)` is `O(d^2)` by a transfer matrix, tabulated to `d = 60`; the loaded
+regime (gears `<= d + 2`) still needs the period scan. As first written: both known routes (inclusion-exclusion over uncovered
 interior positions, and a transfer matrix over "which interior positions are covered") are
 exponential in `d`, so the long tail of a wheel's census is obtainable only by scanning the
 period.
 *Attack.* None on the record.
-*Blocks the clutch?* **No.** It is a computational reach limit, not a structural gap; the record
+*Blocks the valves?* **No.** It is a computational reach limit, not a structural gap; the record
 itself and its multiplicity live in the gear-independent regime, which the closed form reaches.
 
 **O-W4. The in-use / above-zone record `A(q, N)`, as anything but a first-hit fit.** Document 4
 left it open; document 6 gave it a mechanism (it IS the quiet-zone record, 8 of 8 by value and
 position) and proved a floor made of prime gaps (L63) - but no upper bound.
 *Attack.* None that is not the conjecture: L65 proves an upper bound is a twin-gap bound.
-*Blocks the clutch?* **No, and it must not be a gate item.** By the owner's criterion this is not
+*Blocks the valves?* **No, and it must not be a gate item.** By the owner's criterion this is not
 hidden complexity we failed to understand; it is the target itself, named exactly, in the
-wheels' own coordinate.
+manifold's own coordinate.
 
-**O-W5. The kernel gap.** Formalised: L1-L8, L10, L12, L13, L17, L19 (documents 1, 2 as far as
-the conjugacy), plus L30, L31, L34, L35, L44, L45 of document 3 - 158 declarations, zero sorries,
-no `native_decide`, standard axioms. **Not attempted**, and named as such in the ledger: the L22
-gap census; the general (in-use) mex `L32` with truncated progressions; the harmonic bound `L33`;
-the distribution `C(j)`, its closed form, the hop law and the nested form (`L36-L39`); everything
-spectral and bitwise (`L40-L43`), which needs a DFT nothing in the files has; and every law of
-documents 4, 5, 6 (the zone laws, the core/tail rule, the anchor rescaling, the certified column
-mex).
+**O-W5. The kernel gap.** Formalised (310 declarations across seven libraries after rounds
+32-37, zero sorries, no `native_decide`, standard axioms; build green at 2,248 jobs): L1-L8, L10,
+L12, L13, L17, L19 (documents 1, 2 as far as the conjugacy), L30, L31, L34, L35, L44, L45 of
+document 3 (158 declarations at round 34), the zone laws L46 and the quiet-zone rule
+(`smooth_zone`, `quiet_zone`, round 35), the piece law, the matching lemma, the loaded record
+rule L67-L69 and the boundary corollary (round 36, `TopMachineRecord`), and the gap census law
+L22 / W22 with K1-K3 (round 37, `TopMachineCensus`). **Not attempted**, and named as such in
+the Lean ledger: L70 (the capacity bound); L73/L74 (the moment vanishing, needs a Boolean-cube
+Mobius inversion); the general (in-use) mex `L32` with truncated progressions; the harmonic bound
+`L33`; the distribution `C(j)`, its closed form, the hop law and the nested form (`L36-L39`);
+everything spectral and bitwise (`L40-L43`), which needs a DFT nothing in the files has; the
+core/tail rule's complexity, the anchor rescaling and the certified column mex of documents 4,
+5, 6; W86-W93 of document 8.
 *Attack.* The cheapest are already named in order in document 3 and the Lean ledger.
-*Blocks the clutch?* **Partly.** The kernel is the project's strictest evidence standard, and the
-wheels' metric core is in it; what is not in it is the counting theory beyond the wheel count and
-the correlation, and all of the in-use theory. A clutch built on the zone laws would rest on
-written proofs, not kernel ones.
+*Blocks the valves?* **No longer.** The kernel is the project's strictest evidence standard, and
+the manifold's metric core, its record rule, its census law and its zone laws are in it; what is
+not in it is the moment vanishing and the in-use walk. Valves built on the zone laws now rest on
+kernel theorems.
 
 **O-W6. The small-`q'` regime of documents 1 and 2 is untested.** Document 5's own dead-end note:
 document 2's L32 (the range record as a first hit) and L33 (the pinning of record blocks) and
@@ -466,32 +486,40 @@ scans of wheels containing 2 and 3. "Left open, and noted as the only rows of th
 no measurement."
 *Attack.* Whole-period scans of the small-`q'` wheels; the branch says they are as large as the
 large-gear wheels already scanned and were out of budget.
-*Blocks the clutch?* **No.** The clutch's wheels are the primes above `q`, so `q' >= 7` always;
-the small-`q'` rows matter only for the conjugacy reading (the wheels at `q' = 5` ARE the motor).
+*Blocks the valves?* **No.** The valves' manifold is the primes above `q`, so `q' >= 7` always;
+the small-`q'` rows matter only for the conjugacy reading (the manifold at `q' = 5` IS the engine).
 
-**O-W7. Prior art for the wheels as an object.** Every top-machine document stops its own prior
+**O-W7. Prior art for the manifold as an object.** DISCHARGED 2026-09-06 by
+research/proof/law_register.md (W1-W85 and X1-X8 with dated prior-art verdicts: 14 known, 18
+known variant, 38 new, 22 standard tool, 1 refuted, W9 failing once `N_1 = 0` with W67 the true
+form; the strongest novelty cluster is the collision law W29 with W17, W44, W71); the W86-W93
+rows, W-numbers for document 7's L67-L75 and the docs/novel entries are the register lane's
+current work. As first written: every manifold document (top_machine_1-6.md) stops its own prior
 art in a line - Jacobsthal 1961 / Iwaniec 1978 for the two-class Jacobsthal function; Schemmel /
 Hardy-Littlewood for `prod(g-2)`, `prod(g-3)`, `prod(g-4)`; Stormer 1897 / Lehmer 1964 for the
 smooth-pair finiteness; Bach-Peralta 1996 for semismooth numbers; Mertens for `L*(q)` - and
 `docs/proofs/22` records "**Prior art not checked for the machine as an object**".
-**There is no entry in `docs/novel/README.md` for any of the wheels' laws.** By the register's own
+**There is no entry in `docs/novel/README.md` for any of the manifold's laws.** By the register's own
 rule ("nothing here is announced as new until section 6 has a dated check"), every law of
 documents 1-6 is UNCONFIRMED as novel.
 *Attack.* A harvester prior-art pass and register entries.
-*Blocks the clutch?* **No** for correctness; **yes** for the record's honesty, and it is cheap.
+*Blocks the valves?* **No** for correctness; **yes** for the record's honesty, and it is cheap.
 
 ---
 
-# EXHAUST - the stack above the wheels
+# EXHAUST - the stack above the manifold
+
+(Older documents call this object the third machine or the tower; "the stack" stays as the
+name of the whole sequence of tiers.)
 
 ## 1. DEFINITION
 
-The exhaust is everything above the wheels, and it is a STACK. Tier 1 is the motor, the primes up
-to `q`; its period is `cut q 1 = q#`. Tier 2 is the wheels, the primes in `(q, q#]`; its period
+The exhaust is everything above the manifold, and it is a STACK. Tier 1 is the engine, the primes
+up to `q`; its period is `cut q 1 = q#`. Tier 2 is the manifold, the primes in `(q, q#]`; its period
 is `cut q 2`. In general **tier `k + 1` is the primes in `(cut q (k-1), cut q k]`**, so the CUTS
 are `cut q 0 = q`, `cut q 1 = q#`, and `cut q k` = tier `k`'s period = the lower edge of tier
 `k + 2`. Every tier is a machine of the same construction - gears striking their multiples, the
-pair `(n, n+2)` as the object, teeth `0` and `-2`, no anchor - so every top-machine law, being
+pair `(n, n+2)` as the object, teeth `0` and `-2`, no anchor - so every manifold law, being
 stated in `(smallest gear, gear count)` only, applies to it verbatim at its own split.
 
 **Regimes.** On the QUIET ZONE `(C, C^2]` above a cut `C`, a strike by an exhaust gear `p > C` on
@@ -500,53 +528,70 @@ number is prime), or `n` has a prime factor `<= C`, an **ECHO** of a gear at or 
 SPAN is the stride relation: a gear SPANS a machine when its stride is at least that machine's
 period, so it has at most one multiple - hence at most two struck pair positions - inside any
 window of that period, while the machine's own pattern repeats in full there. STRIDE CONTAINMENT
-is the tower's shape: every gear of tier `k + 2` exceeds tier `k`'s period, so it spans tier `k`;
+is the stack's shape: every gear of tier `k + 2` exceeds tier `k`'s period, so it spans tier `k`;
 and only two tiers down is there room - a gear never spans its own tier, and a gear of tier
-`k + 2` never spans tier `k + 1`. The tower therefore turns the root into a LADDER OF WINDOWS at
+`k + 2` never spans tier `k + 1`. The stack therefore turns the root into a LADDER OF WINDOWS at
 the primorial rungs `q, q#, (q#)#, ...`, each rung asking "machines `1..k+1` leave an open pair
 in `(P_k, P_k^2]`", with the same missing instrument at every rung.
 
 ## 2. PROVED
 
-Everything in this section is on the record as FACT at tree node R4.b.viii, established by
-reasoning from the tiers' definition and from the wheels' laws. **No branch document has been
-written for the exhaust, and no computation has been run on it.** The kernel work is Slot A and
-is not counted here.
+Everything in this section was first entered as FACT at tree node R4.b.viii, by reasoning from
+the tiers' definition and from the manifold's laws. Since then the kernel (rounds 35-36, the
+block below) has made X3-X6 and the zone laws KERNEL, and the first measurement pass
+(exhaust_1.md, section 3 below) has made X1 MEASURED with 0 exceptions and added X9-X24.
 
 | # | statement | status | evidence |
 |---|---|---|---|
-| X1 self-similarity | every top-machine law is stated in `(smallest gear, gear count)` only, so tier `k+1` is the top machine at split `(cut q (k-1), cut q k]` and obeys the same laws: the zone law below its top gear, smooth-times-one-prime on its quiet zone, and the mex and parity laws only where its smallest gear exceeds `2 m_k` (which fails from tier 3 on) | FACT (reasoning) | theory_tree.md R4.b.viii |
+| X1 self-similarity | every manifold law is stated in `(smallest gear, gear count)` only, so tier `k+1` is the manifold at split `(cut q (k-1), cut q k]` and obeys the same laws: the zone law below its top gear, smooth-times-one-prime on its quiet zone, and the mex and parity laws only where its smallest gear exceeds `2 m_k` (which fails from tier 3 on) | FACT (reasoning), MEASURED exhaust_1.md X9 (0 exceptions in 18,095,756 residues) | theory_tree.md R4.b.viii, R4.b.x |
 | X2 the removal law is the self-similarity, one gear at a time | document 2's L37/L38 (raising the split divides `W` by `q'`, the open count by `q'-2`, the dominoes by `q'-4`, and drops `F_top` by 3 or 1) is the stack's self-similarity read gear by gear | FACT | R4.b.viii, top_machine_2.md |
-| X3 stride containment, the bottom half | every third-tier gear exceeds the motor's period `P`, so it strikes at most 2 positions per bottom period and the bottom's full twin-slot pattern sits inside every stride | FACT (one line) | R4.b.viii |
-| X4 stride containment fails for the middle | the wheels' period `prod (q, Q]` is far above `Q`, so only third-tier gears above THAT period contain a full wheels period, and those are silent on ranges below it | FACT | R4.b.viii |
-| X5 THE EXHAUST CAP (the owner's cap) | in `(Q, Q^2]` every third-gear strike is a home strike (`n = P`, a prime above `Q`) or a duplicate of a bottom or middle strike (`n = sP` with `s > 1` having a factor `<= Q`); **so an open pair of bottom + middle there is a twin prime, for every `q`, to infinity** - nothing above `Q` touches the window `(Q, Q^2]` | PROOF (the sieve-to-the-square-root fact in machine form) | R4.b.viii; it is the wheels' L57 seen from above |
-| X6 the tower | with machine `k+1` = the gears from the top of machine `k` to machine `k`'s period, the lower cut of machine `k+2` IS machine `k`'s period, so every gear of machine `k+2` strides a full period of machine `k`, for every `k`, and machine `k+1` never fits except at its silent top; the redundancy cap repeats at every level | FACT | R4.b.viii |
-| X7 no new interactions up the ladder | theorem (E) already says the effective machine at a column is exact, so the tower's shape is fixed - known machines + one in-use machine (smallest gear = the previous period) + clutch, on a zone of tranquillity - and the missing instrument is the same at every rung | FACT | R4.b.viii, position_frontier.md |
+| X3 stride containment, the engine half | every third-tier gear exceeds the engine's period `P`, so it strikes at most 2 positions per engine period and the engine's full twin-slot pattern sits inside every stride | FACT (one line) | R4.b.viii |
+| X4 stride containment fails for the middle | the manifold's period `prod (q, Q]` is far above `Q`, so only third-tier gears above THAT period contain a full manifold period, and those are silent on ranges below it | FACT | R4.b.viii |
+| X5 THE EXHAUST CAP (the owner's cap) | in `(Q, Q^2]` every third-gear strike is a home strike (`n = P`, a prime above `Q`) or a duplicate of a bottom or middle strike (`n = sP` with `s > 1` having a factor `<= Q`); **so an open pair of bottom + middle there is a twin prime, for every `q`, to infinity** - nothing above `Q` touches the window `(Q, Q^2]` | PROOF (the sieve-to-the-square-root fact in machine form) | R4.b.viii; it is the manifold's L57 seen from above |
+| X6 the stack | with machine `k+1` = the gears from the top of machine `k` to machine `k`'s period, the lower cut of machine `k+2` IS machine `k`'s period, so every gear of machine `k+2` strides a full period of machine `k`, for every `k`, and machine `k+1` never fits except at its silent top; the redundancy cap repeats at every level | FACT | R4.b.viii |
+| X7 no new interactions up the ladder | theorem (E) already says the effective machine at a column is exact, so the stack's shape is fixed - known machines + one in-use machine (smallest gear = the previous period) + valves, on a zone of tranquillity - and the missing instrument is the same at every rung | FACT | R4.b.viii, position_frontier.md |
 | X8 the stronger reading is settled negatively | "a bottom period with no third-gear strikes at all" exists by CRT only at heights where gears beyond the avoided set are active; exposure there is not twin-ness | FACT | R4.b.viii |
 
-> ### SLOT A: the exhaust in the kernel - LANDED (round 35, manager-gated 2026-09-06)
+> ### Kernel status (round 35, manager-gated 2026-09-06; `CutMono` added in round 36)
 > `proofs/MachineStack.lean`, 48 declarations, docs/proofs/23-stack-and-exhaust.md. Build of the
-> five top-machine targets green at 2244 jobs; manager audit of `stride_containment`,
+> five `TopMachine` build targets green at 2244 jobs; manager audit of `stride_containment`,
 > `not_spans_below`, `exhaust_home_or_echo`, `open_iff_twin`, `wheels_open_iff_twin`,
 > `stack_open_iff_twin`, `smooth_zone`, `quiet_zone`: propext, Classical.choice, Quot.sound;
 > zero sorries. So X3 (`stride_containment`, `card_strikes_window_le_two`,
 > `tier_pattern_repeats`), X4 (`not_spans_below`), X5 (`exhaust_home_or_echo`, `open_iff_twin`,
 > `wheels_open_iff_twin` unconditional for `2 <= q`), X6 (`stack_eq_primesLE`,
-> `stack_open_iff_twin`, under `CutMono`) and the wheels' zone laws (`smooth_zone`, `quiet_zone`)
-> are KERNEL. Kernel finding: primality of the exhaust gear is never used in the cap. Gate item 1
-> cleared; O-X1 (`CutMono`) stands exactly as written: proved for the first step only.
+> `stack_open_iff_twin`, under `CutMono`) and the manifold's zone laws (`smooth_zone`, `quiet_zone`)
+> are KERNEL. Kernel finding: primality of the exhaust gear is never used in the cap. Round 36
+> (`cut_succ_gt_four_mul`, `cutMono_of_five_le`, 14 declarations, manager-gated at 2,246 jobs):
+> `CutMono` is a theorem for every prime `q >= 5` (`4 cut_k < cut_{k+1}` by a halving induction
+> on Bertrand), so `stack_eq_primesLE`, `exhaust_silent` and `stack_open_iff_twin` are
+> unconditional for every prime base `q >= 5`; O-X1 closed.
 
 ## 3. MEASURED, NO PROOF
 
-**Nothing.** The exhaust has no measurement of its own on the record: no branch document, no
-script directory, no exceptionless count. Every number ever quoted about a tier above the wheels
-is a top-machine number read at a raised split (documents 1-6), and every statement in section 2
-is reasoning from the tiers' definition. This is the honest state of the object and it is the
-main reason for its gate verdict below.
+Measured once, in exhaust_1.md (branch R4.b.x, scripts research/exhaust/r1/), 2026-09-06. When
+this ledger was first written the exhaust had no measurement of its own; it now has these.
+
+| # | statement | range and count | reading |
+|---|---|---|---|
+| 1 | X9 self-similarity: tier 3 obeys the manifold's wheel laws at its own split | four tier wheels (`q = 5`: {31, 37, 41, 43}; `q = 7`: {211, 223, 227}; `q = 11`: {2311, 2333}; control tier 2 {7, 11, 13}), full periods, 18,095,756 residues, 15 checks each, 0 exceptions | X1 upgraded from reasoning to measurement |
+| 2 | X10 the run-start count `prod(g - 2 - L)` is false at `L = 1` (the count is `prod(g - 2)`) and true for `L >= 2`; the chain count `prod(g - 1 - L)` has no exception | the same four wheels | a sharpening of the manifold's own register, found at a raised split |
+| 3 | X11 the zone laws on ranges with "smooth" = `q#`-smooth; `p_1 = nextprime(Q)` is the first admissible non-smooth number every time | 21,669,556 cells, 0 exceptions | the manifold's L57/L58 at the raised split |
+| 4 | X15 the redundancy lemma in range form: for any `g` with `g^2 > N`, every multiple of `g` in `[1, N]` is `g` or has a prime factor below `g`; silent gears (`g > N/2`) touch exactly the pair positions `g` and `g - 2` | 7,357,725 strikes, 5,019 silent gears, 0 exceptions; at `N = 10^7`, 664,579 gears of which 446 repeat, 5,973,710 echoes, echo share 80.8, 85.2, 88.1, 90.0% across four decades | PROOF (one inequality, no primality); the range form is stronger than the kernel's window form |
+| 5 | X17 the exhaust's action on an open pair of the window is exactly two home strikes | windows (30, 900] and (210, 44,100]: 57,344 incidences, all home or echo, 0 neither; 2.000 strikes per open pair (60 on 30, 1,242 on 621) | the cap says the exhaust does no harm; this says what it does instead |
+| 6 | X18 the first strike that is neither home nor echo is exactly `p_1^2` | 961 = 31^2 at `Q^2 + 61`; 44,521 = 211^2 at `Q^2 + 421`; depth at height `x` is `floor(log_{p_1} x)` | the cap is the depth-1 statement |
+| 7 | X19 the exhaust's share of the open pairs above `Q` | 0.000% on `(Q, Q^2]`, then 36.9, 62.8, 75.0, 82.0, 86.6% by decade at `q = 5` (31.0, 54.0, 66.1 at `q = 7`) | exactly zero on one stretch, the majority partner one decade later |
+| 8 | X20 the regime law `F_range = max(F_smooth, F_quiet)`; the owner's saturation prediction O2 refuted as stated | 9 of 9 machines; at `q = 5` tier 3 the record crosses into the smooth zone between `N = 10^6` and `10^7` (34 to 210 against 66 to 122), at `q = 7` not by `10^8` (40 against 55); the `q = 5` list saturates at 423 pairs (largest 354,365,440) | the split, not the zone, decides where a tier's record lives; the crossover height is O-X6 |
+| 9 | X21 / X24 the exhaust's own record is ROOT: the bottom stratum holds primes and cut-smooth numbers only, so a tier's family `(1, 1)` is the twin primes above `Q`; twin counts identical across splits at equal `Q` | prime-gap floor ratios 7.18, 9.43, 7.67, 13.00 at four machines; 25 twins at `Q = 997`, 64 at `Q = 3137` for every split, smooth members 86 vs 528 | the family carrying the obstruction is the one the split cannot touch |
+| 10 | X22 the U-profile fails at `q = 7` tier 3; X23 the gap-3 = gap-5 identity transfers verbatim and fails only with gear 7 | strata 23, 20, 21, 27, 30, 35, ...; three new instances | no new mechanism |
+| 11 | scale: `cut_2 = 215,656,441` at `q = 5` (80 digits at 7, 973 at 11, 12,930 at 13); `theta(cut_2) = 215,639,987.078`, so `cut_3` at `q = 5` has 93,651,247 digits | segmented sieve | the object's size, not its shape; tier 3 at `q >= 7` is worked as the loaded exhaust on a range |
 
 ## 4. OPEN
 
-**O-X1. `CutMono`: is the cut sequence monotone?** `cut q k <= cut q (k+1)` for all `k`. The
+**O-X1. `CutMono`: is the cut sequence monotone?** CLOSED 2026-09-06: PROVED in exhaust_1.md
+(X12, `cut_{k+1} > 4 cut_k` for every prime `q >= 5` and `k >= 1`, from dyadic Bertrand; X13,
+the base step `prod_{p <= q} p >= 4q` fails at `q = 2, 3, 4` exactly and holds from 5) and KERNEL
+in round 36 (`cutMono_of_five_le`). As first written: `cut q k <= cut q (k+1)` for all `k`. The
 first step is Bertrand (`cut q 0 <= cut q 1`, the primorial is at least its argument), and it is
 **false at `q = 2, 3`** (`cut 3 2 = 6` while `cut 3 3 = 5`; the stack degenerates there). From
 there on it is a statement about the density of primes in `(cut q k, cut q (k+1)]`, and the
@@ -554,11 +599,14 @@ kernel work carries it as an explicit hypothesis exactly where it is used.
 *Attack.* From `q = 5` on the intervals are enormous (`cut q 1 = q#`), so the statement is far
 weaker than any prime-gap result in print; the attack is to find the right elementary form (the
 product of the primes in a huge interval exceeds its top) rather than to cite a gap theorem.
-*Blocks the clutch?* **Yes, as understanding.** Without it, "the union of tiers `1..k+1` is
+*Blocks the valves?* **Yes, as understanding.** Without it, "the union of tiers `1..k+1` is
 exactly the primes up to `cut q k`" - the statement that makes the stack a stack - is
 conditional, and everything above tier 2 is stated under a hypothesis.
 
-**O-X2. The zones and the redundancy lemma are named and not formalised.** The tree states them
+**O-X2. The zones and the redundancy lemma are named and not formalised.** CLOSED 2026-09-06 on
+paper: exhaust_1.md X14-X16 state and prove them in the stack's own coordinate in range form
+(any `g` with `g^2 > N`; no primality), 0 exceptions in 7,357,725 strikes; the kernel holds the
+window form (`exhaust_home_or_echo`), the range form is not yet transcribed. As first written: the tree states them
 (W11, W12 of the refiling): on a range of `K` columns, REPEATING gears `g <= sqrt(6K)` turn past
 their own square and have exclusive kills; NON-REPEATING gears `sqrt(6K) < g <= 6K/q'` kill only
 at members `gm` with `m < g`, and every such kill coincides with a smaller gear's (the redundancy
@@ -566,37 +614,51 @@ lemma, one line: the smallest prime factor of `m` is a smaller gear striking the
 SILENT gears `g > 6K/q'` strike only their own home column. The tree names the redundancy lemma
 and the rigidity generalisation as "the first things to formalise when the line opens".
 *Attack.* Both are one-line arguments; the work is stating them in the stack's own coordinate
-rather than against bottom-open columns (the non-repeating clause as recorded is a clutch
+rather than against engine-open columns (the non-repeating clause as recorded is a valve
 statement, per the refiling's own note).
-*Blocks the clutch?* **Yes, as understanding.** The zones are what say which gears of a tier do
+*Blocks the valves?* **Yes, as understanding.** The zones are what say which gears of a tier do
 any work at all on a given range; without them the exhaust is described only by its cap.
 
-**O-X3. The exhaust has no in-use theory, because the wheels have none.** The tree's own words:
+**O-X3. The exhaust has no in-use theory, because the manifold has none.** The tree's own words:
 "the missing instrument is the same at every rung, an in-use bound, found once and carried up".
 Every tier above the first is used far below its period, so tier `k`'s behaviour on a range is
-governed by the wheels' in-use laws - the gear zone, the quiet zone, the first-hit record above
+governed by the manifold's in-use laws - the gear zone, the quiet zone, the first-hit record above
 it - and the one thing those do not give is an upper bound.
 *Attack.* Inherited from O-W4, and by L65 an upper bound there is the twin-gap problem.
-*Blocks the clutch?* **No, and it must not be a gate item**, for the same reason as O-W4: it is
+*Blocks the valves?* **No, and it must not be a gate item**, for the same reason as O-W4: it is
 the target, named, not hidden complexity.
 
-**O-X4. The tower's own record is undefined.** Three objects already share the word "record"
-(the motor's `F`, the wheels' longest closed run above the placement prefix, the clutch's
+**O-X4. The stack's own record is undefined.** CLOSED 2026-09-06 as ROOT: exhaust_1.md X21
+states it (the longest twin-free run left by tiers `1..k+1` on `(P_k, P_k^2]`) and shows it is
+the twin gap there, because a tier's family `(1, 1)` is the twin primes above its top gear; X24
+the twin counts are identical across splits. As first written: three objects already share the word "record"
+(the engine's `F`, the manifold's longest closed run above the placement prefix, the valves'
 twin-free run - Appendix B.5 of the refiling). A fourth is implied by the stack and has never
 been stated: the longest twin-free run left by tiers `1..k+1` on the quiet zone `(P_k, P_k^2]`.
 *Attack.* State it; by X5 it is exactly the twin gap there, so the honest outcome is likely that
 it is the conjecture at a sparse set of rungs - which should be recorded rather than discovered
 twice.
-*Blocks the clutch?* **No**, but leaving it unstated invites a rediscovery, which the record has
+*Blocks the valves?* **No**, but leaving it unstated invites a rediscovery, which the record has
 already suffered twice (docs/novel/README.md, the two 2026-09-04 branches).
 
-**O-X5. Prior art: not checked, and no register entry.** As with the wheels, there is no
+**O-X5. Prior art: not checked, and no register entry.** As with the manifold, there is no
 `docs/novel/README.md` entry for the stack, the cuts, the exhaust cap or stride containment. The
 nearest classical objects named anywhere on the record are Eratosthenes/Legendre (sieving
 `[1, z^2]` by the primes up to `z` leaves the primes) - which the exhaust cap IS, in machine form
 - and the primorial ladder.
-*Blocks the clutch?* **No** for correctness; the cap should be recorded as the known fact it is,
-so that nothing downstream treats it as new.
+*Blocks the valves?* **No** for correctness; the cap should be recorded as the known fact it is,
+so that nothing downstream treats it as new. Status 2026-09-07: law_register.md carries X1-X8
+with verdicts (the cap as Eratosthenes/Legendre in machine form); X10 and X13 are named the two
+items most likely new and the cheapest to check, prior art not yet run for them.
+
+**O-X6. The crossover height of the regime law (new, exhaust_1.md).** X20 says a tier's record
+becomes the smooth-zone record above a crossover `Q*(C)` set by the tier's `C`-smooth-pair list;
+the exact crossover is not in closed form. The left side is computable from the finite list; the
+right side is the quiet-zone record, a prime-gap quantity; but an UPPER bound for `Q*` needs only
+an upper bound on a prime gap, which is in the literature.
+*Attack.* Cite a prime-gap upper bound and compute the list; no new mechanism needed.
+*Blocks the valves?* **No.** It is the one item on the whole ledger where the missing
+instrument is a known theorem rather than the conjecture.
 
 ---
 
@@ -605,79 +667,80 @@ so that nothing downstream treats it as new.
 The owner's criterion for "fully understood": no hidden complexity from some aspect we did not
 properly understand. Read strictly, and separating structural gaps from the conjecture itself.
 
-### MOTOR - **NO**, but by a short list, and every item is a statement about `M` alone.
+One current verdict per object (2026-09-07; the earlier verdict blocks of 2026-09-06 are folded
+in, their closures recorded against the O-items above).
 
-1. `L(M)` bounded, and with it `L_pad` (O-M1). The only unbounded ingredient of the motor's own
-   grammar; every finite-depth statement about the motor is conditional on it.
+### ENGINE - **NOT YET**, by a short list of three, every item a statement about `M` alone.
+
+1. `L(M)` bounded, and with it `L_pad` (O-M1). The only unbounded ingredient of the engine's own
+   grammar; every finite-depth statement about the engine is conditional on it.
 2. The chain statement at `J = 3, 4` on the band `[15, 36]` (O-M2). The one object still open
    inside the window; the instruments (the CRT row search, the LP-duality closure, the
    configuration enumerator) exist and the band is already a certified object.
-3. A monotone or contracting functional of the merge closure (O-M3). Named at node 4.i.b.ii and
-   never run - the single unrun item on the motor.
+3. A monotone or contracting functional of the merge closure (O-M3). Named at node 4.i.b.ii;
+   **one lane is running on it now** (research/proof/monotone_functional.md), its result not
+   counted here.
 
-Everything else open about the motor is the conjecture in disguise (the budget inequality, the
+Everything else open about the engine is the conjecture in disguise (the budget inequality, the
 pair statement, `d_0 <= W`, the window statement, the adversarial covering number) or strictly
 stronger than the root (`A(K)`), and none of those can be gate items.
 
-### WHEELS - **YES on paper** (2026-09-06, after top_machine_7.md, top_machine_8.md and Lean
-rounds 36-37): no open structural item. The four items of top_machine_7.md's ledger entry:
-non-cancellation PROVED (W86, the cover polynomial), the capacity bound PROVED (W93), the core
-minimisation reduced to a scan of one core wheel with every structural ingredient proved (a
-complexity question, not structural), L22 KERNEL (round 37). Remaining and not structural: the
-moment vanishing into the kernel (written proof exists); prior art for W86-W93 (register rows to
-add; document 7's L67-L75 still need W-numbers). Earlier verdict kept below for the record.
+### MANIFOLD - **YES on paper**: no open structural item (2026-09-06, after top_machine_7.md,
+top_machine_8.md and Lean rounds 36-37).
 
-### WHEELS (earlier verdict, 2026-09-06 morning) - NO, and the gaps are in the counting theory, not the metric one.
+Closed, in order: the vanishing moments (O-W1, L73/L74, PROVED, verified to `d = 26`); `L31` as
+a formula (O-W2, the loaded record rule L69, PROVED both ways, KERNEL round 36); the
+non-cancellation of the top moment (W86, PROVED, the cover polynomial); the parity-refined
+capacity bound (W93, PROVED, exact below core density 0.376); the core minimisation reduced to
+a scan of one core wheel with every structural ingredient proved (a complexity question, not a
+structural one); the census beyond `d = 20` in the universal regime (O-W3, transfer matrix to
+`d = 60`); the gap census law in the kernel (L22 / W22, round 37); prior art and register
+numbers (O-W7, law_register.md W1-W85).
 
-1. ~~The vanishing moments (O-W1)~~ CLOSED by top_machine_7.md L73/L74 (proved; verified to d = 26).
-2. ~~`L31` as a formula (O-W2)~~ CLOSED by top_machine_7.md L69 (the loaded record rule, proved both
-   directions). Open beneath it: the complexity of the core minimisation, and the non-cancellation
-   of the top moment M_{r(d)} (L75, measured 0 of 24).
-3. The kernel gap for the in-use theory and the counting theory (O-W5) - or an explicit decision
-   that written proofs suffice for the clutch, recorded as such.
-4. Prior art for the machine as an object, and register entries for documents 1-6 (O-W7).
+Remaining and NOT structural: the moment vanishing L73/L74 into the kernel (written proof
+exists; needs a Boolean-cube Mobius inversion); L70 into the kernel; W-numbers for document 7's
+L67-L75 and register rows with prior art for W86-W93 (the register lane's current work); the
+small-`q'` rows of documents 1-2 (O-W6, matter only for the conjugacy reading).
 
-NOT on the list, deliberately: an upper bound on the quiet-zone record. L65 proves it is the
-twin-gap problem; it is the target, in the wheels' coordinate, and calling it a gate item would
-put the conjecture inside the gate.
+NOT on the list, deliberately: an upper bound on the quiet-zone record (O-W4). L65 proves it is
+the twin-gap problem; it is the target, in the manifold's coordinate, and calling it a gate item
+would put the conjecture inside the gate.
 
-### EXHAUST - **NO**, and it is much the furthest behind: it is the only object with no
-measurement and no branch document of its own.
+### EXHAUST - **CutMono in the kernel, measured once, no open structural item.**
 
-1. ~~Slot A landing~~ CLEARED 2026-09-06: `proofs/MachineStack.lean` gated, X3-X6 and the zone
-   laws are KERNEL.
-2. ~~`CutMono` unconditional from `q = 5` (O-X1)~~ CLOSED by exhaust_1.md X12/X13 (written proof
-   from dyadic Bertrand: cut_{k+1} > 4 cut_k for prime q >= 5; the base step fails at q = 2, 3, 4);
-   kernel transcription DONE round 36: `cut_succ_gt_four_mul`, `cutMono_of_five_le`
-   (proofs/MachineStack.lean); `stack_open_iff_twin` unconditional for prime `q >= 5`.
-3. ~~The zones and the redundancy lemma (O-X2)~~ CLOSED by exhaust_1.md X14-X16 (range form: any g
-   with g^2 > N, every multiple in [1, N] is g or has a prime factor below g; 0 exceptions in
-   7,357,725 strikes).
-4. ~~The tower's own record stated (O-X4)~~ CLOSED as ROOT by exhaust_1.md (family (1, 1) of a
-   tier is the twin primes above its top gear; X24 the twin counts are identical across splits).
-5. ~~One measurement pass of any kind~~ DONE: exhaust_1.md (X9-X24; 18,095,756 residues, 0
-   exceptions on the self-similarity; the home/echo census; the regime law X20). Remaining on the
-   exhaust: CutMono into the kernel; prior art for X10 and X13 (O-X5); the crossover height of
-   X20 (O-X6, needs an upper bound on a prime gap, a known theorem).
+Exactly: X3-X6 and the zone laws KERNEL (round 35, `proofs/MachineStack.lean`, 48 declarations);
+`CutMono` PROVED (exhaust_1.md X12/X13) and KERNEL (round 36, `cutMono_of_five_le`), so the cap
+holds unconditionally for every prime base `q >= 5`; measured once (exhaust_1.md X9-X24:
+18,095,756 residues with 0 exceptions on the self-similarity, 57,344 window incidences all home
+or echo, the first non-redundant strike exactly `p_1^2`, the regime law `F_range =
+max(F_smooth, F_quiet)` at 9 of 9); the zones and the redundancy lemma PROVED in range form
+(O-X2); its own record stated and classified ROOT (O-X4, family `(1, 1)`).
 
-**Gate verdict: the gate is NOT open.** The motor is close (three items, all instrumented); the
-wheels are close in metric and short in counting (four items, one of them a live lane); the
-exhaust is not yet an investigated object.
+Remaining, none structural: prior art for X10 and X13 (O-X5, the two items most likely new);
+the crossover height `Q*(C)` of the regime law (O-X6, the one item on the ledger whose missing
+instrument is a known theorem, an upper bound on a prime gap); the range form of the redundancy
+lemma into the kernel (the window form is there). O-X3 (no in-use theory) is the root question
+named, not a gate item.
+
+**Gate verdict: the gate is NOT open, on the engine alone.** The manifold and the exhaust have
+no open structural item; the engine has three, all instrumented, one with a lane running. When
+the engine's three close (or are recorded as the conjecture in disguise with a reason), the
+valves open with the hybrid first step of theory_tree.md R4.c.
 
 ---
 
 # INTERFACE OBJECTS ALREADY VISIBLE
 
-For the future clutch, not to be worked now. Named only, with one line each.
+For the future valves, not to be worked now. Named only, with one line each.
 
 **The named interfaces.**
 
 - **The conjugacy `n -> 6^{-1}(n + 1)`** (document 1 L19, KERNEL `conjugacy`, `exists_column`,
-  `conjugacy_census`): carries the wheels' open-pair set exactly onto the same gears' opening set
-  in the motor's column coordinate, so every counting and symmetry law is common property and
-  every metric law is the wheels' own.
+  `conjugacy_census`): carries the manifold's open-pair set exactly onto the same gears' opening set
+  in the engine's column coordinate, so every counting and symmetry law is common property and
+  every metric law is the manifold's own.
 - **The family decomposition `(s, s')` of the quiet zone** (document 6 L60): every open pair of
-  `(Q, Q^2]` carries a label of smooth cofactors with `gcd | 2`, and the motor - whose gears are
+  `(Q, Q^2]` carries a label of smooth cofactors with `gcd | 2`, and the engine - whose gears are
   exactly the primes `<= q` - strikes every family but `(1, 1)`, which is the twin primes above
   `Q`.
 - **The echo set**: on `(C, C^2]`, the numbers an exhaust gear strikes that a gear at or below the
@@ -686,22 +749,22 @@ For the future clutch, not to be worked now. Named only, with one line each.
   is not a kill (the member is the prime `g` itself); doubly occupied placements number the twin
   pairs in `(q, Z]`, and "twins = both-open + home-only" is exact.
 - **The corridor** (docs/proofs/14, `Corridor.*`): the 15 residues `E_35` with its endpoint,
-  adjacency and padding laws - the motor's positional interface, which constrains where and never
+  adjacency and padding laws - the engine's positional interface, which constrains where and never
   how big.
 - **The effective-machine theorem (E)** (position_frontier.md): a column above `q` is blocked
   under `{5..q}` iff blocked under `{5..floor(sqrt(6k+1))}`, with the exception set exactly the
   twin gear pairs on their home columns.
 
-**The 36 clutch facts of `refiled_by_object.md`, by name.**
+**The 36 valve facts of `refiled_by_object.md` (its "clutch facts"), by name.**
 
 | # | name | one line |
 |---|---|---|
 | C1 | the route | twins infinite iff for every bound some `{5..y}` has an opening in `(y, y^2]`; inside the window an opening IS a twin pair |
-| C2 | the window is the clutch's zero-interaction region | a top gear's proper strike on a bottom-open column has a member above `q^2`, so the top machine cannot kill anything in the window |
+| C2 | the window is the valves' zero-interaction region | a manifold gear's proper strike on an engine-open column has a member above `q^2`, so the manifold cannot kill anything in the window |
 | C3 | twins = both-open + home-only | exact over 38,889,216 columns; the home-only cell IS the doubly occupied placements |
 | C4 | the four cells | at `q = 23`: 895,791 / 7,056,384 / 4,150,311 / 25,079,659, with all the coupling in the both-open cell (0.83-1.02 of independence) |
 | C5 | runs inside the cells | both cells needing the bottom open have longest run exactly 2 (gear 5 alone); the both-closed cell reaches the bottom record to `q = 19` and falls short at 23 |
-| C6 | the twisted copies | the top machine's action on the bottom's openings is a union of coherent twisted copies of the bottom at separation `2/g` |
+| C6 | the twisted copies | the manifold's action on the engine's openings is a union of coherent twisted copies of the engine at separation `2/g` |
 | C7 | level of distribution 1, exactly | `|X_g - 2N/g| < 2·3^m` at 2,338 cells, pairs and triples the same; true growth `2^m` |
 | C8 | the survivor curve | 1.0000 at `s >= 4.27`, minimum 0.8603 at `s = 2.09`, `0.79305(1 + c/ln Z)` at `s = 2` |
 | C9 | the placement residue law | home columns meet each non-tooth class of a bottom gear twice and each tooth class once, so placement is dimension 1 and double occupancy dimension 2 - the parity barrier, named |
@@ -710,7 +773,7 @@ For the future clutch, not to be worked now. Named only, with one line each.
 | C12 | the twin-free record is a joint object | 24, 82, 153, 254, 501 columns, 1.85-3.66 times the sum of the two machines' own closed records |
 | C13 | nothing at the period scale gives the window | twin-free stretches of 502 columns exist inside the period against a window of 83 |
 | C14 | the bilinear `g-m` switching | `E = 2D + Q` exactly at all five `q`: switching gives an identity, not an inequality |
-| C15 | Brun on the clutch | the order-2 truncation error equals the order-3 term; exactness buys nothing |
+| C15 | Brun on the valves | the order-2 truncation error equals the order-3 term; exactness buys nothing |
 | C16 | the layer law | a composite in `(y^2, y'^2)` has a prime factor below `y` or is `y c` with `c` prime |
 | C17 | the square gate | the deepest hopping layer of the walk from `q^2` is the top gear iff `q^2 - 2` is prime (153 open, 514 shut) |
 | C18 | the walk from `q^2` and the top gear's single strike | the walk starts on a tooth of the top gear, which strikes it exactly once and is inert on it thereafter |
@@ -722,13 +785,13 @@ For the future clutch, not to be worked now. Named only, with one line each.
 | C24 | the square phase vector is irrelevant | real, locally-square and random vectors fail the island witness at the same rate (0.9984 ± 0.0033) |
 | C25 | each gear's in-window take is one curve | the take follows a curve in `ln g / ln Q'` alone, with white residual, and belongs to the range, not to any family |
 | C26 | the anchor's rigidity in the window | `{5..13}`'s openings miss their fair share modulo any higher gear by fewer than 30 in every window to `Q = 5000` - and it is exhausted at the first gear above the anchor |
-| C27 | the structured-families identity | every located family carries twins at the window's own rate; a rule written in the lower machine's residues cancels its own saving |
-| C28 | the frontier reduces the window statement to `d_0 <= W` | from `q = 1427` the longest blocked run of `[1, W]` is the initial run, and by (E) the top machine is irrelevant inside the window |
+| C27 | the structured-families identity | every located family carries twins at the window's own rate; a rule written in the engine's residues cancels its own saving |
+| C28 | the frontier reduces the window statement to `d_0 <= W` | from `q = 1427` the longest blocked run of `[1, W]` is the initial run, and by (E) the manifold is irrelevant inside the window |
 | C29 | the window has at most two junctions | the column of `q'` (iff `q'` is a twin member) and the column of `q'^2` (iff `q'^2 - 2` is prime), 0 mismatches at 152 rungs |
 | C30 | `d_0` | the column of the first twin pair above the top gear at every level to 33,317, `d_0 <= q'`, inside the window by 10-58x |
 | C31 | the machine feeds on itself | the next level's walk starts at `6k^2 - 2k`; the level-free transfer rule names the admissible gears with neither `k` nor `g` in the condition |
 | C32 | what holds up a window stretch against a period record | the period record needs every gear; the window's longest stretch needs a chosen fifth, ordered by position not size |
 | C33 | `F_W` is the largest twin gap in `(q, q'^2)` | the window's longest stretch is a twin-gap statement, not a machine statement |
 | C34 | first and second moment for the island witness | the `s = 2` correction repairs the first moment (16.51 against 17); the second is dead by proof - a bound below 1 on the failing fraction is the conjecture |
-| C35 | the faces of the wall, sorted by object | A and A4 belong to the method, B and C to the motor, D and E to the clutch |
-| C36 | what the sorted faces leave | the adversarial covering number, a motor-family statement, is what the transfer and over-asking faces do not need |
+| C35 | the faces of the wall, sorted by object | A and A4 belong to the method, B and C to the engine, D and E to the valves |
+| C36 | what the sorted faces leave | the adversarial covering number, an engine-family statement, is what the transfer and over-asking faces do not need |
