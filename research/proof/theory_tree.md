@@ -1133,6 +1133,11 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
       must be counted on the single doubling cycle, not per parity class (the wrong version
       manufactured q' - 3 false exceptions at every wheel including the control). The
       Harvester's law register and prior-art pass (research/proof/law_register.md) is running.
+    - R4.b.xi. The wheels' last open laws (spawned by R4.b.ix's ledger entry: four items
+      genuinely open on the wheels alone). Non-cancellation of the top moment M_{r(d)} (W-law
+      to prove), the structure and complexity of the core minimisation in the record formula,
+      the parity-refined capacity bound. OPEN, prover running on Fable (research/proof/
+      top_machine_8.md).
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
@@ -1346,7 +1351,11 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
             37 -> 41 (slack 7) is where the record's depth climbs from 3 to 4. Truncation is a
             lower-bound instrument only (depth-3 floor 90 against 91). Child named: the Q*_J
             peak sits at J <= 4 at all five rungs, including both where J_max = 5.
-          - 4.i.b.ii. Monotone functionals of the recursion. OPEN, to run after 4.i.b.i.
+          - 4.i.b.ii. Monotone functionals of the recursion. OPEN, prover running
+            (research/proof/monotone_functional.md; the motor's gate item 3, opened 2026-09-06
+            under the owner's rule that the motor's gate items are worked before the clutch;
+            also carries gate item 1, L(M) bounded, and gate item 2, the chain statement on
+            the band 15..36 at 29 -> 31, as exact finite checks from the closure).
         - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
           FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
           F_old = 0 or +-d (mod q'), else n1(F_old), the old record's largest single neighbour;
