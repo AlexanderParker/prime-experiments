@@ -761,18 +761,25 @@ the log at the bottom is chronology only.
       L10 (run bound and attainment; step-2 chain bound and attainment), L12 (chain law, iff,
       no hypothesis), L13 (merge law, no hypothesis), L17 upper bound (L + (m mod 2) <= 2m
       for odd gears above 2m + 1), L19 (the conjugacy to the column coordinate, with existence
-      and the Census form). WILL NOT CLOSE this round, with reasons: L8 that the group is
-      exactly (Z/2)^m, and L17's attainment (both need a Finset-indexed CRT and, for L17, the
-      explicit domino assignment). Nothing assumes primality, only size, oddness and
-      coprimality. The existing MergeLaw / TwoTeeth infrastructure did not transfer with
+      and the Census form). CLOSED IN ROUND 33 (proofs/TopMachineCrt.lean, 29 declarations):
+      the Finset-indexed CRT lemma exists_crt / crt_unique (Finset induction and Bezout); L17's
+      attainment parity_attained by the explicit tiling (ceil(m/2) gears on the even dominoes,
+      floor(m/2) on the odd), hence the equality parity_law as IsGreatest; L8 the exact group:
+      affine_group (necessity, gears prime and >= 5, the only use of primality in the library),
+      exists_symmetry (every sign vector realised), sign_count (exactly 2^m residues mod W).
+      Manager gate: lake build TopMachine TopMachineWheel TopMachineCrt green at 1392 jobs;
+      audit of the seven theorems: propext, Classical.choice, Quot.sound; zero sorries. 88
+      declarations in all. Before round 33 nothing assumed primality, only size, oddness and
+      coprimality; affine_group now does, for composite gears sharing a factor with c. The existing MergeLaw / TwoTeeth infrastructure did not transfer with
       d = 2 (teeth symmetric about 0 there, the offset pair {0, -2} here); L12 and L13 were
       proved directly.
     - R4.b.ii. The wheels, second pass (owner: understand the wheels fully before the clutch):
       tuples of top gears, the gap-3 / gap-5 coincidence, the in-use machine's approach to the
       wheel record, the smallest gears as the top machine's anchor, the removal law
       (self-similarity under a larger split). OPEN, prover running (research/proof/
-      top_machine_2.md). In parallel the Formalist closes the two Lean holes (the Finset CRT
-      lemma, the parity law's attainment, the exact symmetry group).
+      top_machine_2.md). R4.b.iii the walk and the transforms of the top machine (owner: closed
+      forms and proofs for locating the next opening): OPEN, prover running
+      (research/proof/top_machine_3.md).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -1708,3 +1715,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover PF (position_frontier.md): theorem (E) proved (the effective machine at a column is exact); R_min(L) >= 3.25 L for L >= d_0 and = 1 below, 0 exceptions; from q = 1427 the longest run of the prefix is the initial run; the window statement reduces exactly to d_0 <= W, the initial run of the bottom machine's diagonal, with all of [q/6, W] provably safe. Location pinpointed: the bottom. The round did not close it; per the owner, the top machine is next.
 - 2026-09-06, prover TM (top_machine_1.md): the top machine on its own terms is a domino machine (partner law), with the forbidden gap 4, the parity law F_top = 2m - (m mod 2), the tiling characterisation, universal record multiplicity, the spectrum as a second difference, and the conjugacy n -> 6^-1(n+1) onto the bottom's coordinate (counting and symmetry laws common, metric laws its own). The wheels have their rules; the clutch is next.
 - 2026-09-06, Formalist (top_machine_lean.md): the top machine's laws L1-L8, L10, L12, L13, L17 (upper bound), L19 kernel-checked in two new libraries, 59 declarations, zero sorries, standard axioms; L8's exact group and L17's attainment will not close this round. Manager gate green.
+- 2026-09-06, Formalist round 33 (top_machine_lean.md, proofs/TopMachineCrt.lean): the two holes closed. exists_crt (Finset CRT), parity_attained and parity_law (F_top = 2m - (m mod 2) as an equality), affine_group / exists_symmetry / sign_count (the symmetry group is exactly (Z/2)^m). Build green at 1392 jobs, standard axioms, zero sorries. Of the 21 laws, the statements about gear sets are now kernel-checked except L16 (tiling characterisation, written proof), L18 (multiplicity, measured) and the counting laws by CRT.

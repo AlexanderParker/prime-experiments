@@ -3,6 +3,7 @@
 import CaseCert37
 import TopMachine
 import TopMachineWheel
+import TopMachineCrt
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -638,3 +639,30 @@ open BlockedSlots
 #print axioms TopMachine.conjugacy
 #print axioms TopMachine.exists_column
 #print axioms TopMachine.conjugacy_census
+
+-- Round 33: the Finset-indexed CRT and the two laws it unblocks
+-- (proofs/TopMachineCrt.lean).
+#print axioms TopMachine.exists_crt
+#print axioms TopMachine.crt_unique
+#print axioms TopMachine.exists_inv_of_coprime
+#print axioms TopMachine.exists_inv_of_isCoprime
+#print axioms TopMachine.exists_avoiding
+#print axioms TopMachine.card_le_four
+#print axioms TopMachine.anchor_covers
+#print axioms TopMachine.parity_attained
+#print axioms TopMachine.parity_law
+#print axioms TopMachine.strikes_congr
+#print axioms TopMachine.symm_not_dvd_mul
+#print axioms TopMachine.isolate
+#print axioms TopMachine.affine_gear
+#print axioms TopMachine.affine_group_of_unit
+#print axioms TopMachine.affine_group
+#print axioms TopMachine.affine_group_form
+#print axioms TopMachine.signR_congr
+#print axioms TopMachine.signsN_congr
+#print axioms TopMachine.signsN_insert
+#print axioms TopMachine.sign_residues
+#print axioms TopMachine.card_sign_residues
+#print axioms TopMachine.sign_count
+#print axioms TopMachine.signR_iff_dvd
+#print axioms TopMachine.exists_symmetry

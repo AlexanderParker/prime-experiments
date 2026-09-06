@@ -69,7 +69,7 @@ Every statement was reproduced first on a brute-force model of the machine
 | L8 sufficiency | `strikes_affine`, `open_affine` | proved | `c = ±1` mod each gear |
 | L8 necessity, one gear | `affine_teeth` | proved | `g` odd, `g ∤ c` |
 | L8 adjacency | `affine_step` (+ `affine_one`, `affine_neg_one`) | proved | none |
-| L8 group is exactly `(Z/2)^m` | - | **will not close** (see below) | - |
+| L8 group is exactly `(Z/2)^m` | - | R32: **will not close**; **closed in R33**, see the R33 section | - |
 | L10 run `< q' - 2` | `no_long_run`, `run_lt` | proved | `5 ≤ q'`, `q' ∈ G` |
 | L10 run `q' - 3` attained | `run_attained` | proved | gears `≥ q' ≥ 3` |
 | L10 chain `< q' - 1` | `no_long_chain2`, `chain2_lt` | proved | `q'` odd, `3 ≤ q'`, `q' ∈ G` |
@@ -77,7 +77,7 @@ Every statement was reproduced first on a brute-force model of the machine
 | L12 chain law | `chain_law` | proved | none |
 | L13 merge law | `merge_law` | proved | none |
 | L17 parity, upper bound | `parity_core`, `parity_upper` | proved | gears odd and `> 2m + 1` |
-| L17 parity, attainment | - | **will not close** (see below) | - |
+| L17 parity, attainment | - | R32: **will not close**; **closed in R33**, see the R33 section | - |
 | L19 conjugacy | `strikes_iff_col`, `conjugacy` | proved | `6k ≡ n+1` mod each gear |
 | L19 the column exists | `exists_column` | proved | `gcd(6, W) = 1`, gears `∣ W` |
 | L19 against `Census.lo/hi` | `conjugacy_census` | proved | `1 ≤ k` |
@@ -169,3 +169,219 @@ TopMachineWheel`):
 Only `parity_core` uses choice essentially (`choose` picks a striker per
 position); everything else inherits `Classical.choice` from mathlib's
 `Finset`/`omega` plumbing.
+
+---
+
+# Round 33: the Finset-indexed CRT, and the two laws it closes
+
+New file: `proofs/TopMachineCrt.lean` (imports `TopMachineWheel`), registered as
+a `lean_lib` in `proofs/lakefile.toml`, in `defaultTargets`, and audited from
+`proofs/AxiomCheck.lean`.  **29 new declarations, zero sorries, no
+`native_decide`, no `decide`, no `Lean.ofReduceBool`.**
+
+## The lemma that was missing
+
+```lean
+theorem exists_crt : ∀ (G : Finset ℕ),
+    (∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) → ∀ (r : ℕ → ℤ),
+    ∃ n : ℤ, ∀ g ∈ G, (g : ℤ) ∣ n - r g
+
+theorem crt_unique : ∀ (G : Finset ℕ),
+    (∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) → ∀ n n' : ℤ,
+    (∀ g ∈ G, (g : ℤ) ∣ n - n') → ((∏ g ∈ G, g : ℕ) : ℤ) ∣ n - n'
+```
+
+Existence by induction on the `Finset`: the new modulus is coprime to the
+product of the old ones, so the old solution is corrected by a multiple of that
+product; the correction factor is Bezout (`exists_inv_of_coprime`, from
+`Nat.gcd_eq_gcd_ab`).  Uniqueness by the same induction with
+`IsCoprime.mul_dvd`.  Mathlib's `ZMod.chineseRemainder` and
+`Nat.chineseRemainderOfList` were not used: the first is a ring equivalence that
+would have to be transported back to `ℤ`-divisibility at every use, the second
+is a list, not a `Finset`, statement.  The direct induction is twenty lines and
+states exactly what the two laws need.
+
+Supporting lemma - the per-gear choice that makes CRT useful for L8:
+
+```lean
+theorem exists_avoiding (g : ℕ) (V : Finset ℤ) (hV : V.card < g) :
+    ∃ x : ℤ, ∀ v ∈ V, ¬ (g : ℤ) ∣ x - v
+```
+
+(pigeonhole of `Finset.range g` against the image of `V` in residues).
+
+## L17, attainment - and the parity law as an EQUALITY
+
+The construction, checked against `research/topmachine/r1/cover.py`'s pool
+pieces `{x, x + 2}` and its `minpieces` count (`ceil(len/2)` per parity chain)
+before formalising: give gear `j` the domino anchor
+
+```lean
+def anchor (m j : ℕ) : ℕ :=
+  if j < (m + 1) / 2 then 4 * j else 4 * (j - (m + 1) / 2) + 1
+```
+
+- the first `ceil(m/2)` gears tile the EVEN positions of `[0, L)` with the
+  dominoes `{0,2}, {4,6}, ...`;
+- the remaining `floor(m/2)` gears tile the ODD positions with `{1,3}, {5,7},
+  ...`;
+- `anchor_covers` proves the tiling covers `[0, 2m - (m mod 2))` exactly (`omega`
+  after the case split on the parity of the position).
+
+Setting each gear's residue by CRT to `-(anchor + 2)` puts its two teeth on its
+own domino:
+
+```lean
+theorem parity_attained {G : Finset ℕ}
+    (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) :
+    ∃ n : ℤ, ∀ i : ℕ, i < 2 * G.card - G.card % 2 → ¬ IsOpen G (n + (i : ℤ))
+
+theorem parity_law {G : Finset ℕ} (hodd : ∀ g ∈ G, g % 2 = 1)
+    (hbig : ∀ g ∈ G, 2 * G.card + 1 < g)
+    (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) :
+    IsGreatest {L : ℕ | ∃ n : ℤ, ∀ i : ℕ, i < L → ¬ IsOpen G (n + (i : ℤ))}
+      (2 * G.card - G.card % 2)
+```
+
+`parity_law` is L17 in full: the longest run of consecutive struck pairs is
+EXACTLY `2m - (m mod 2)`.  Upper bound `parity_upper` (round 32), lower bound
+`parity_attained`.  The lower bound needs NO size and NO oddness hypothesis - a
+gear always strikes both ends of the domino its residue names - so oddness and
+`g > 2m + 1` are used only by the upper bound.
+
+Pre-formalisation check of the construction (scratch script: CRT solve, then
+brute-force strike test): all 389 gear sets of `m = 1..11` consecutive primes
+from `[5, 200)` with `q' > 2m + 1`; every position of `[0, L)` struck in every
+case, **0 failures**, with the covering claim `anchor_covers` checked
+independently.
+
+## L8, the symmetry group is exactly `(Z/2)^m`
+
+Four parts, together the whole statement.
+
+**Necessity** (the assembly that was missing), in three steps:
+
+```lean
+theorem symm_not_dvd_mul {G : Finset ℕ} (h2 : ∀ g ∈ G, 2 ≤ g) (hcop : ...)
+    {c b : ℤ} (hpres : ∀ n : ℤ, IsOpen G (c * n + b) ↔ IsOpen G n)
+    {g : ℕ} (hg : g ∈ G) : ¬ (g : ℤ) ∣ c
+
+theorem isolate ... (h5 : ∀ g ∈ G, 5 ≤ g) (hcop) (hunit) (hg : g ∈ G) (a : ℤ) :
+    ∃ N : ℤ, (g : ℤ) ∣ N - a ∧
+      ∀ h ∈ G, h ≠ g → ¬ Strikes h N ∧ ¬ Strikes h (c * N + b)
+
+theorem affine_gear ... : Strikes g (c * n + b) ↔ Strikes g n
+```
+
+- `symm_not_dvd_mul`: if a gear divided `c`, then `n` and `n + tP` (`P` the
+  product of the OTHER gears) would have images congruent modulo EVERY gear, so
+  openness would be invariant under `n ↦ n + tP`; but `P` is invertible mod `g`,
+  so some `t` slides the always-open shield `n = -1` onto `g`'s own tooth.  No
+  primality, no size beyond `g ≥ 2`.
+- `isolate`: the CRT with an avoidance choice.  At each other gear only four
+  residues are forbidden (`0` and `-2` for `n`; their two preimages under
+  `x ↦ c x + b` for the image) and the gear has at least five, so
+  `exists_avoiding` supplies a residue; CRT assembles them together with the
+  demanded class at `g`.
+- `affine_gear`: with every other gear missing both `n` and its image, "open" IS
+  "`g` does not strike", so preserving the open set is preserving `g`'s struck
+  set.  `affine_teeth` (round 32) then finishes, per gear.
+
+```lean
+theorem affine_group_of_unit (hodd) (h5) (hcop)
+    (hunit : ∀ g ∈ G, ∃ c' : ℤ, (g : ℤ) ∣ c * c' - 1)
+    (hpres : ∀ n : ℤ, IsOpen G (c * n + b) ↔ IsOpen G n) :
+    ∀ g ∈ G, ((g : ℤ) ∣ c - 1 ∧ (g : ℤ) ∣ b) ∨ ((g : ℤ) ∣ c + 1 ∧ (g : ℤ) ∣ b + 2)
+
+theorem affine_group (hp : ∀ g ∈ G, Nat.Prime g) (h5 : ∀ g ∈ G, 5 ≤ g)
+    (hpres : ∀ n : ℤ, IsOpen G (c * n + b) ↔ IsOpen G n) :
+    ∀ g ∈ G, ((g : ℤ) ∣ c - 1 ∧ (g : ℤ) ∣ b) ∨ ((g : ℤ) ∣ c + 1 ∧ (g : ℤ) ∣ b + 2)
+
+theorem affine_group_form (hp) (h5) (hpres) :
+    (∀ g ∈ G, (g : ℤ) ∣ c - 1 ∨ (g : ℤ) ∣ c + 1) ∧ (∀ g ∈ G, (g : ℤ) ∣ b - (c - 1))
+```
+
+`affine_group_form` is the branch's own wording: every symmetry is
+`n ↦ c(n + 1) - 1` (that is, `b = c - 1` mod every gear) with `c = ±1` modulo
+every gear.
+
+**Sufficiency**: `open_affine` (round 32).  **Realisability** - every sign
+vector occurs, by CRT:
+
+```lean
+theorem exists_symmetry (hcop) (ε : ℕ → ℤ) (hε : ∀ g ∈ G, ε g = 1 ∨ ε g = -1) :
+    ∃ c : ℤ, (∀ g ∈ G, (g : ℤ) ∣ c - ε g) ∧
+      ∀ n : ℤ, IsOpen G (c * (n + 1) - 1) ↔ IsOpen G n
+```
+
+**The count** `2 ^ m`, by the same CRT counting engine `card_filter_crt` that
+gives `wheel_count`, run on the sign predicate (`SignR g n := n % g = 1 ∨
+(n + 1) % g = 0`; two residues per gear, `1` and `g - 1`):
+
+```lean
+theorem sign_count : ∀ (G : Finset ℕ), (∀ g ∈ G, 3 ≤ g) → (hcop) →
+    ((Finset.range (∏ g ∈ G, g)).filter (fun n => SignsN G n)).card = 2 ^ G.card
+```
+
+with `signR_iff_dvd` the bridge from the residue form to
+`(g:ℤ) ∣ c - 1 ∨ (g:ℤ) ∣ c + 1`.
+
+## The one hypothesis that is not derived: invertibility at a COMPOSITE gear
+
+`affine_group_of_unit` carries `hunit`: `c` is invertible modulo each gear -
+the affine map is a bijection of `ℤ_W`, which is what "symmetry" means.  That is
+NOT derived in this generality.  What IS derived, for arbitrary pairwise coprime
+gears, is the weaker `symm_not_dvd_mul` (no gear divides `c`).  For a PRIME gear
+the two are the same statement, which is why `affine_group` needs no `hunit`;
+for a composite gear with `1 < gcd(c, g) < g` the shift argument of
+`symm_not_dvd_mul` yields no contradiction and the counting behind
+`exists_avoiding` would need `2 + 2 gcd(c, g) < g`.  The owner's gears are the
+primes above `q`, so `affine_group` covers the construction, and
+`affine_group_of_unit` is the general statement.  This is the ONLY place in the
+three files where primality is used at all.
+
+Brute-force check of the whole L8 package before formalising: gears
+`{5, 7, 11}`, `W = 385`, all `385 x 385` affine maps of `ℤ_W` - exactly
+**8 = 2^3** preserve the open set, every one of them with `c` a unit, `c = ±1`
+mod each gear, and `b = c - 1` mod `W`.  (Round 32 had the same result at
+`W = 1001`.)
+
+## Build and audit
+
+```
+cd C:/dev/primes/proofs
+~/.elan/bin/lake.exe build TopMachine TopMachineWheel TopMachineCrt
+```
+
+Result: **green**, 1390 jobs, no warnings, no errors.
+
+| target | build time |
+|---|---|
+| `TopMachineCrt` | 6.0 s elaboration, 9.5 s wall for the cold module |
+| `TopMachine`, `TopMachineWheel` | unchanged, cached (6.9 s / 5.9 s cold in R32) |
+
+Ordinary elaboration - no kernel scan, no `decide` - so peak memory is a normal
+`lean.exe`, well under 1 GB; no babysitter needed.
+
+Axiom audit over **all 29 new declarations** (`lake env lean` on a local
+`#print axioms` file, and the same block appended to `proofs/AxiomCheck.lean`
+behind `import TopMachineCrt`):
+
+- every declaration is `[propext, Classical.choice, Quot.sound]` or smaller;
+- `anchor`, `SignR`, `decSignR` depend on no axioms; `signR_congr` on
+  `[propext]` only; `anchor_covers` and `strikes_congr` on
+  `[propext, Quot.sound]`;
+- **no `sorryAx`, no `Lean.ofReduceBool`, no `Lean.trustCompiler`.**
+
+Choice is used essentially in `isolate` (`choose` picks the avoiding residue at
+each gear) and in `parity_attained` (`choose` picks each gear's anchor residue);
+elsewhere it is inherited from mathlib's `Finset` plumbing.
+
+## What the ledger now says
+
+Both round-32 "will not close" verdicts are discharged:
+
+| law | Lean name (namespace `TopMachine`) | status |
+|---|---|---|
+| L8 group is exactly `(Z/2)^m` | `symm_not_dvd_mul`, `isolate`, `affine_gear`, `affine_group_of_unit`, `affine_group`, `affine_group_form`, `exists_symmetry`, `sign_count` | proved (necessity unconditional for prime gears; general form under invertibility) |
+| L17 parity, attainment | `parity_attained`, and the equality `parity_law` | proved |

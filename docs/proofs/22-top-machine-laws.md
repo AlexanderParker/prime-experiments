@@ -262,12 +262,16 @@ and does not reach it: `21, 24, 27` (gears `7..31`) and `15, 16, 17` (gears `13.
    `n + 1` to images differing by exactly `c` (`TopMachine.affine_step`), so adjacency survives
    iff `c = +-1` in `Z_W`; the two survivors are the identity and the mirror
    (`affine_one`, `affine_neg_one`).
-9. **L8, the assembly (not proved).**  Going from "preserves the open set of `G`" to "preserves
-   each gear's struck set", and counting the solutions as `2^m`, needs the CRT surjectivity of
-   `Z_W -> prod Z_g` to isolate one gear while the others miss, i.e. a `Finset`-indexed CRT
-   existence lemma.  It is not in the kernel; the two-modulus version `card_filter_crt` is, and is
-   the natural base for it.  The `m = 3` case is verified by brute force at `W = 1001` (8 of 8
-   affine maps, all of the stated form).
+9. **L8, the assembly (proved, round 33).**  Going from "preserves the open set of `G`" to
+   "preserves each gear's struck set" uses a `Finset`-indexed CRT: for each gear, an open `n` is
+   built whose other gears miss both `n` and its image, so the image is struck iff that gear
+   strikes it (`TopMachine.isolate`, needing `g >= 5`; `affine_gear`).  With per-gear necessity
+   this gives `c = +-1` and `b = c - 1` modulo every gear (`TopMachine.affine_group`,
+   `affine_group_form`; gears prime); every sign vector is realised (`exists_symmetry`), and the
+   count of realising residues mod `W` is exactly `2^m` (`sign_count`).  The CRT lemma itself is
+   `TopMachine.exists_crt` with uniqueness `crt_unique`, by `Finset` induction and Bezout.  The
+   one place primality enters the whole library: for a composite gear sharing a factor with `c`
+   the isolation argument gives no contradiction; the owner's gears are primes above `q`.
 
 ### Metric
 
@@ -312,11 +316,16 @@ and does not reach it: `21, 24, 27` (gears `7..31`) and `15, 16, 17` (gears `13.
     `L + (m mod 2) <= 2m`.  Kernel: `TopMachine.parity_core` and `TopMachine.parity_upper`, in
     exactly that sharp form, with the window lemma `TopMachine.window_pair` and the parity counts
     `card_even_range`, `card_odd_range`.
-15. **L17, attainment (not proved).**  The matching lower bound needs a construction: an explicit
-    assignment of `ceil(m/2) + floor(m/2)` gears to the dominoes of `[0, 2m)` together with a
-    `Finset`-indexed CRT to realise the phase vector -- the same missing lemma as item 9.  The
-    evidence is the cover search of L16: **170 cases, 0 exceptions** (all sets of `m` consecutive
-    primes, `m = 2..11`, starting anywhere in `7..199` with `q' > 2m + 1`).
+15. **L17, attainment (proved, round 33).**  The construction: `ceil(m/2)` gears tile the even
+    positions of `[0, 2m)` with dominoes `{0, 2}, {4, 6}, ...` and `floor(m/2)` gears tile the odd
+    positions with `{1, 3}, {5, 7}, ...` (`TopMachine.anchor`); each gear's residue is chosen by
+    `exists_crt` so that its teeth land on its domino.  Then every position below
+    `2m - (m mod 2)` is struck (`TopMachine.parity_attained`, no size or oddness hypothesis: a
+    gear always strikes both ends of its own domino).  With the upper bound this is the equality
+    `TopMachine.parity_law`: `2m - (m mod 2)` is the greatest run length, as an `IsGreatest`
+    statement, for odd pairwise-coprime gears above `2m + 1`.  The assignment was checked against
+    the cover search first: 389 gear sets (`m = 1..11`, consecutive primes in `[5, 200)`), 0
+    failures.
 
 ### Dynamical
 
@@ -470,10 +479,11 @@ contributing exactly one domino).
 
 ## Status
 
-Kernel: **`proofs/TopMachine.lean`** (core, no project dependency) and
-**`proofs/TopMachineWheel.lean`** (wheel count and conjugacy, imports `Census`), namespace
-`TopMachine`, registered in `proofs/lakefile.toml` and audited from `proofs/AxiomCheck.lean`.
-59 declarations, **zero sorries, no `native_decide`, no `Lean.ofReduceBool`, no `decide` at all**
+Kernel: **`proofs/TopMachine.lean`** (core, no project dependency),
+**`proofs/TopMachineWheel.lean`** (wheel count and conjugacy, imports `Census`) and
+**`proofs/TopMachineCrt.lean`** (the `Finset` CRT lemma, the parity law's attainment, the exact
+symmetry group; round 33), namespace `TopMachine`, registered in `proofs/lakefile.toml` and
+audited from `proofs/AxiomCheck.lean`.  88 declarations, **zero sorries, no `native_decide`, no `Lean.ofReduceBool`, no `decide` at all**
 -- every theorem is an ordinary proof, so nothing depends on a gear set being small enough to
 enumerate.  No theorem assumes primality; each carries the exact hypothesis it needs (`3 <= g`,
 `5 <= g`, `g` odd, pairwise coprime), all of which the owner's construction (primes above `q`, so
@@ -529,17 +539,19 @@ CRT counts); L21's smoothness half; the reading of L19 in item 24.
 | L21 record inside the gear zone | 18 range machines | **0** |
 | the budget analogue `F_top(M + g) - F_top(M) <= 7` | 69 exact ladder steps, gears to 97 | **0** |
 
-**Will not close, with the reason stated.**  Two, both blocked on the same missing lemma.
+**Closed in round 33 (previously "will not close").**  Both were blocked on one lemma, the
+`Finset`-indexed CRT existence statement, now `TopMachine.exists_crt` (with `crt_unique`).
 
-* **L8, "the symmetry group is exactly `(Z/2)^m`."**  Sufficiency and per-gear necessity are in
-  the kernel; the *assembly* -- from "preserves the open set of `G`" to "preserves each gear's
-  struck set", and the count `2^m` -- needs a `Finset`-indexed CRT existence lemma (isolate one
-  gear while the others miss).  The two-modulus version `card_filter_crt` is in the kernel and is
-  the natural base for it.
-* **L17, attainment (`F_top >= 2m - (m mod 2)`).**  The upper bound is closed, in the sharp form
-  `L + (m mod 2) <= 2m`, with the parity argument itself in the kernel.  Attainment needs an
-  explicit assignment of gears to the dominoes of `[0, 2m)` plus the same `Finset`-indexed CRT to
-  realise the phase vector.  The evidence for it is the 170-case cover search, not a proof.
+* **L8, "the symmetry group is exactly `(Z/2)^m`"**: `TopMachine.affine_group` (necessity, gears
+  prime and `>= 5`), `exists_symmetry` (every sign vector realised), `sign_count` (exactly `2^m`
+  residues mod `W` realise a preserving map).
+* **L17, attainment**: `TopMachine.parity_attained` (the explicit tiling assignment `anchor`),
+  and the equality `TopMachine.parity_law` as an `IsGreatest` statement.
+
+Build: `lake build TopMachine TopMachineWheel TopMachineCrt`, green at 1392 jobs; manager audit
+of `exists_crt`, `crt_unique`, `parity_attained`, `parity_law`, `affine_group`,
+`exists_symmetry`, `sign_count`: `[propext, Classical.choice, Quot.sound]` each; zero sorries,
+no `native_decide`, no `decide`.
 
 **Refuted, and recorded as such.**  Three pre-registered predictions of the branch failed: "the
 record is made at the top gears" (the *smallest* gears do the work, `2L/g` strikes each); "the
@@ -631,9 +643,8 @@ first is separation 2 seen through `6^{-1}`, and the second belongs to the ancho
 
 **What enters measured.**  Nothing measured enters the kernel-checked laws (L1-L8 in part, L10,
 L12, L13, L17's upper bound, L19).  L16 and the counting laws are written proofs.  L14, L18, L20,
-L21's location half, W1 and W2 are measurements over stated finite ranges; L17's attainment and
-L8's group count are the two statements whose proofs are missing and whose evidence is a finite
-search.
+L21's location half, W1 and W2 are measurements over stated finite ranges.  L17's attainment and
+L8's group count, measured only in round 32, are kernel-checked since round 33.
 
 ## Where it is used
 
@@ -660,8 +671,8 @@ search.
 `research/proof/top_machine_1.md` (the branch document R4.b: the twelve pre-registered
 predictions and their verdicts, sections 0 and 4 for the setup and the 21 laws, section 8 for the
 dead ends); `research/proof/top_machine_lean.md` (the kernel ledger R4.b.i: what is proved, the
-Lean names and hypotheses, the two "will not close" verdicts and their missing lemma); kernel
-sources `proofs/TopMachine.lean` and `proofs/TopMachineWheel.lean`; scripts and outputs in
+Lean names and hypotheses, and the round-33 closure of the two holes); kernel sources
+`proofs/TopMachine.lean`, `proofs/TopMachineWheel.lean` and `proofs/TopMachineCrt.lean`; scripts and outputs in
 `research/topmachine/r1/`.  Framing: `research/proof/theory_tree.md` node R4 (the period-scale
 formulation, the construction rule, the analogy motor / wheels / clutch).  Context, in the
 bottom's coordinate and used only as context: `research/proof/period_scale.md` 3.1, 3.5, 3.11.
