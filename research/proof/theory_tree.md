@@ -870,7 +870,33 @@ the log at the bottom is chronology only.
               certified object; the pinned letter would give [15, 36] from a formula. Handed
               forward: prove the pinned letter (first test: the family at m17/m19/m23), or find
               a form for the dual weights of the cell (a, a_L) that survives the machine.
-              - 4.i.a.i.a.1. The pinned letter. OPEN, prover running.
+              - 4.i.a.i.a.1. The pinned letter (research/proof/pinned_letter.md). UNPROVED,
+                and it is a REAL-TEETH law: only 43 of 63 tooth-counterfactual members obey
+                0 <= E(a_L) <= 3 (range -6 .. +7), and every step of the glue construction is
+                tooth-invariant, so no glue argument can prove the constant 3; a proof must use
+                u_g = 6^-1 mod g and 3 a_L = q' -+ 1. The generalisation to uncoupled sizes is
+                REFUTED under all three readings (worst: v = 20 at {5..29}, Leg(20) = {59, 61}
+                disjoint from M, yet v + r(v) = 55 = F_2 = F + 12); the letter is chain-law-
+                coupled at 7 of 8 rungs (by gear 5 in the pad at the tight rungs), so the law
+                is not an instance of uncoupledness. PROVED, new: THE SPARE-GEAR LEMMA - if a
+                2-run has a gear that is neither obstructed at the middle opening nor a sole
+                striker inside the run, then F(M) >= a + v (0 counterexamples in 13,616 runs;
+                133 of 133 runs of span above F have no free gear); its contrapositive: the
+                excess E(v) > 0 is equivalent to "no free gear", the price of buying the middle
+                opening from a gear already carrying a flank column alone. EXCEPTIONLESS: at the
+                attaining 2-run of every realised size, every gear of M is a sole striker of
+                some interior column (90 of 90 over five machines): L4 extended to the whole
+                r(v) profile. The one-gear glue fails where it matters (losses up to 7;
+                re-phasing depth 1, 1, 1, 2, 4, unbounded). The gate closes at F + 3 - a_L
+                (3, 4, 6, 8, 15, 20, 27, 36), one above the certified 35 at 29 -> 31; band
+                [15, 36]. Twin rungs: the law holds at 4 of 4 with the smallest excesses; the
+                closing gear is never q' - 2. The record is not a depth-2 function of M's
+                dictionary (short by 1..21 at 8 of 8); the 3-run form max_l (l + N(l)) hits it
+                at 5 of 8 and gives 85 against 88 at 31 -> 37.
+                - 4.i.a.i.a.1.a. The pinned letter's arithmetic (real teeth). OPEN, prover
+                  running: a_L = 2 (q' -+ 1) u_g (mod g) for every gear g, so the letter-gap's
+                  far end sits at a fixed multiple of each gear's own tooth position, decided
+                  by q' mod g.
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1444,3 +1470,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, owner: 'not a route is a bold claim'. Node 4.i.b corrected to route-shaped; opened the ladder instrument (4.i.b.i) and named the functional search (4.i.b.ii).
 - 2026-09-06, prover R4 (period_scale.md): the two machines built exactly to q = 23; level 1 exact; the clutch's coupling is entirely in the both-open cell; the window is the clutch's zero-interaction region; placement residue law (dimension 1 vs 2 = the parity barrier named); exactness buys nothing (Brun's main terms alternate at s = 2). Parked under R4 per the owner.
 - 2026-09-06, prover SL (short_letter_row.md): the gate's residual PROVED scan-free by LP duality at m19, m23, m29; the pinned letter F <= a_L + r(a_L) <= F + 3 at 8 of 8 rungs and confirmed out of sample at 31 -> 37 (r(12) = 46, a_L + r = 58 = F exactly); the pair filter and the closer law proved; the row's emptiness is a per-machine covering fact. Opened the pinned letter.
+- 2026-09-06, prover PL (pinned_letter.md): the pinned letter is a real-teeth law (family violates the constant), unproved; the glue route dead; the spare-gear lemma proved; every gear is a sole striker at the attaining 2-run of every realised size. Opened the arithmetic child.
