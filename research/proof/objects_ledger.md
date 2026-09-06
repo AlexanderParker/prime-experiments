@@ -619,7 +619,15 @@ Everything else open about the motor is the conjecture in disguise (the budget i
 pair statement, `d_0 <= W`, the window statement, the adversarial covering number) or strictly
 stronger than the root (`A(K)`), and none of those can be gate items.
 
-### WHEELS - **NO**, and the gaps are in the counting theory, not the metric one.
+### WHEELS - **YES on paper** (2026-09-06, after top_machine_7.md, top_machine_8.md and Lean
+rounds 36-37): no open structural item. The four items of top_machine_7.md's ledger entry:
+non-cancellation PROVED (W86, the cover polynomial), the capacity bound PROVED (W93), the core
+minimisation reduced to a scan of one core wheel with every structural ingredient proved (a
+complexity question, not structural), L22 KERNEL (round 37). Remaining and not structural: the
+moment vanishing into the kernel (written proof exists); prior art for W86-W93 (register rows to
+add; document 7's L67-L75 still need W-numbers). Earlier verdict kept below for the record.
+
+### WHEELS (earlier verdict, 2026-09-06 morning) - NO, and the gaps are in the counting theory, not the metric one.
 
 1. ~~The vanishing moments (O-W1)~~ CLOSED by top_machine_7.md L73/L74 (proved; verified to d = 26).
 2. ~~`L31` as a formula (O-W2)~~ CLOSED by top_machine_7.md L69 (the loaded record rule, proved both

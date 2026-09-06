@@ -1185,8 +1185,45 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
     - R4.b.xi. The wheels' last open laws (spawned by R4.b.ix's ledger entry: four items
       genuinely open on the wheels alone). Non-cancellation of the top moment M_{r(d)} (W-law
       to prove), the structure and complexity of the core minimisation in the record formula,
-      the parity-refined capacity bound. OPEN, prover running on Fable (research/proof/
-      top_machine_8.md).
+      the parity-refined capacity bound. STRONG, closed (research/proof/top_machine_8.md, laws
+      W86-W93; scripts research/topmachine/r8/). NON-CANCELLATION PROVED (W86): M_{r(d)}(d) =
+      (-1)^r r! C_r(d), every minimum cover carries the same sign (-1)^r because its only
+      covering subfamily is itself, so cancellation is impossible; exact at every d = 2..26
+      including d = 4 (C = 0); all 34 minimum covers of d <= 14 have mu = (-1)^r by direct
+      summation. The count is closed-form by d mod 4: C_r(d) = d/4 - 1, 1, (d + 6)/4,
+      ((d + 1)/4)^2; the eight published multiplicities are r! C_r (6 * 3, 24 * 4, 24 * 1,
+      24 * 1, 120 * 4, 720 * 9, 720 * 2, 720 * 1), 8 of 8; the forbidden gap 4 is the case
+      d/4 - 1 = 0. STRONGER THAN ASKED, THE COVER POLYNOMIAL: the whole universal signature is
+      sum_e c_e(d) z^e = sum_t C_t(d) (1 - z)^t z^(d + 3 - t) (every coefficient, d <= 26, 0
+      mismatches), hence N_d(G) = sum_t C_t(d) (-1)^t Delta^t P_G(d + 3 - t) (27 universal
+      cases against L22 and scans, 0 mismatches); the moment vanishing, r(d) = D(d - 1), the
+      gap-3 = gap-5 identity and the moment form fall out in a line each; c_e(d) is O(d^2) by
+      a transfer matrix (tabulated to d = 60), closing the census-beyond-20 item for the
+      universal regime; a direct CRT bijection (gap <-> minimum cover + gear assignment) gives
+      N_d = r! C_r with no inclusion-exclusion. THE MINIMISATION'S STRUCTURE: D splits by
+      parity, and via 2^-1 mod W_core the two classes are two windows of one adjacent-teeth
+      core wheel, [0, ceil(L/2)) and [H, H + floor(L/2)) with H = (W_core + 1)/2 (0 mismatches
+      on 19,896 phase vectors); the record is a scan of W_core (median gain 29,939x on the
+      family; no gain when the tail is empty, i.e. in use). The classes cannot be decoupled
+      (min(D_e + D_o) > min D_e + min D_o on 3,611 of 5,006 loaded sets, on every set with
+      >= 4 core gears, already at {5, 7}); the run structure cannot be dropped (1,875 sets);
+      a gear's dominoes cannot keep a fixed grid (they alternate, g odd); anchoring a core
+      gear at cell 0 fails on exactly 210 sets, all {7} + four gears > 13 at F = 12, where
+      phase 3 is the unique optimum. How special the optimum is: median 4 distinct D values at
+      L = F, median 5.71% of phasings at the minimum, unique up to reflection on 2,965 sets,
+      2 phasings in 3,172,455 at {5, 9, 11, 13, 17, 29}; full enumeration re-decides all 6,659
+      records with 0 mismatches; NO polynomial algorithm found or claimed (the item is
+      reclassified as a complexity question, every structural ingredient proved). THE BOUND
+      (W93): the parity-refined Lcap2 proved, F <= Lcap2 <= Lcap, 0 violations on 6,659; exact
+      on all 1,653 free sets and on every set with core density rho < 0.376 (3,349 of 3,350
+      below 0.4), never above 0.7, vacuous at rho >= 1: both capacity bounds are density
+      bounds with slack ~ 1/(1 - rho); in use rho > 1 once Q > q^1.65. The slack is the
+      run-parity kind 1,875 times and the overlap kind 702 times ("loose iff overlap"
+      REFUTED); P16 half-refuted (48% of loaded sets exact, not a majority). LEDGER LINE: of
+      the four items, non-cancellation and the bound are closed, the minimisation is reduced
+      to a W_core scan with every structural ingredient proved (a complexity question, not a
+      structural one), L22 is in the kernel (round 37): ON PAPER THE WHEELS HAVE NO OPEN
+      STRUCTURAL ITEM. Register note: document 7's L67-L75 still lack W-numbers.
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
@@ -2187,3 +2224,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, Harvester (jacobsthal_check.md): the correction verified and applied. Three ordered records at K = 1..5 (longest coverable run, F - 1 convention): real 1, 4, 6, 10, 17; the project's adversary of docs/proofs/20 (free primes, D = 2) 1, 4, 6, 15, 21; free two-class (A072753) 2, 4, 10, 24, 31; the real twin-candidate gap at p_n# equals 6 F(M) for n = 3..9 (12, 30, 42, 66, 108, 150, 204 by direct sieve to 223,092,870), not A288815. Verdict: h_2 at primorials is the free-residue two-class record (Ziller-Morack's j_2 quantifies over the even difference D, which by CRT is two arbitrary classes per prime); F(M) is the real-teeth instance D = 2, F(M) - 1 <= A072753 with equality at {5, 7} alone; Conjecture 6 is the adversarial window statement and IMPLIES ours (and Goldbach), not the converse. docs/proofs/20 is NOT a partial result toward Conjecture 6 (the two adversaries strengthen along different axes: doc 20 frees the primes and keeps D = 2; ZM keeps the initial segment and frees D); it now cites A072753 as the published table of the adversary it compares against. The project had the right reading already in docs/novel/jk-growth-discriminator.md section 6; the register's error came from OEIS returning 403 to the lane. Follow-up flagged: sweep docs/novel/j2-lower-ladder.md and j2-upper-bound.md for any sentence reading the project's F as h_2.
 - 2026-09-06, Formalist round 36 (proofs/TopMachineRecord.lean, MachineStack.lean addendum): the loaded record rule is a theorem both ways, necessity with no hypothesis and sufficiency with coprimality alone; the parity law re-proved independently from the rule; a gear strikes both ends of the window iff g = L + 1 exactly (sharper than the branch's <=); CutMono unconditional for prime q >= 5 by a halving induction on Bertrand, so the stack's cap holds for every base from 5. Green at 2246 jobs, standard axioms, zero sorries; 269 declarations.
 - 2026-09-06, Formalist round 37 (proofs/TopMachineCensus.lean): the gap census law W22 is a theorem with gears positive and coprime only; general inclusion-exclusion and multi-forbidden-set CRT lemmas added; the forbidden gap 4 derived from the formula's algebra. Green at 2248 jobs, standard axioms, zero sorries; 310 declarations.
+- 2026-09-06, prover TM8 on Fable (top_machine_8.md): the wheels' last open laws. Non-cancellation proved (every minimum cover has sign (-1)^r; M_{r(d)} = (-1)^r r! C_r with C_r closed-form by d mod 4, the eight multiplicities 8 of 8); the cover polynomial gives the whole universal signature and N_d as a t-th difference formula (0 mismatches, 27 cases); the core minimisation reduced to two windows of one core wheel, classes provably not decouplable, no polynomial algorithm claimed; the parity-refined capacity bound proved, exact below core density 0.376. The wheels have no open structural item on paper.
