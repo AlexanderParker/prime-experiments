@@ -640,7 +640,8 @@ the log at the bottom is chronology only.
       order reaches the lemma for all K; a new gear's net contribution (2/q')(1 - 2 sum 1/g)
       turns negative from {5, 7, 11, 13} on, which is exactly why the all-pairs form is
       invalid. The induction step being sought is not a pairwise law and cannot be made one.
-  - **R4. The period-scale formulation (the owner's reframing, 2026-09-06).** Ignore the window.
+  - **R4. The period-scale formulation (the owner's reframing, 2026-09-06; TO BE TAKEN UP AFTER
+    THE WINDOW'S PROMISING LEADS ARE EXHAUSTED, per the owner).** Ignore the window.
     Machine {5..q} opens exactly prod(g - 2) twin slots per period (proved, CRT). A twin exists
     among them iff some opening survives every prime in (q, sqrt(6 P_q)], the SECOND MACHINE
     built from the gears above q. "Some opening of {5..q} in (q, P_q] survives the second
