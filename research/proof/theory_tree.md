@@ -657,6 +657,14 @@ the log at the bottom is chronology only.
     separation 2 g^-1 mod h at every gear h <= q (W3's family c/r with r = g), each with
     exactly prod(h - 2) openings per period; the second machine's action decomposes into
     coherent copies of the first machine, one per later gear. OPEN.
+    OPENING TASK when this line starts (owner, 2026-09-06: the coupling will draw off previous
+    findings; the framework shapes the research): re-file the record by object. Motor facts
+    (records, spectrum, chain and merge laws, the gear-5 lock, the corridor); wheel facts (the
+    top machine alone: mirror about the origin, in-range density, closed-run records, the
+    placement residue law); clutch facts (the layer law and square gate, the walk from q^2 and
+    the top gear's single strike, the near-twins at most three per rung, the island witness,
+    the window's longest stretch as the largest twin gap, each gear's in-window take on one
+    curve, the both-open cell carrying all the coupling).
     THE ANALOGY (owner, 2026-09-06): the bottom machine is the MOTOR, understood in depth; the
     top machine is the WHEELS, until now inferred only from the motor's odd behaviour (like
     diagnosing a car that will not move by looking only at the engine and theorising a gearbox);
