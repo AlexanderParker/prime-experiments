@@ -1287,7 +1287,8 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       - R4.c.i. The turn ledger (spawned by the onset law). Per turn m the total charges T_m,
         the burnt charges B_m = the sum of the open valves' yields, the pure charge
         P_m = T_m - B_m; whether an exact relation between T_m and B_m forces P_m > 0, and
-        where the counting face of the wall reappears. OPEN, prover to launch.
+        where the counting face of the wall reappears. OPEN, prover running on Fable
+        (research/proof/turn_ledger.md).
       First step when opened, owner's hybrid: a scratch lane with clean context (the three
       objects' definitions, the glossary, the ledger's proved laws; no clutch facts, no wall)
       defining interface objects on the wheels' coordinate and the motor's; a review lane
