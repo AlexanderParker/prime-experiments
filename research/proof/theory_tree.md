@@ -1033,6 +1033,15 @@ the log at the bottom is chronology only.
       kernel shape of the census law L22, and the complete list of the wheels' open items.
       OPEN, prover running (research/proof/top_machine_7.md); the Harvester compiles the
       ledger in parallel.
+    - R4.b.x. The exhaust, first pass (spawned by the objects ledger: the exhaust is the only
+      object with no measurement and no branch document). Self-similarity of tier 3 measured
+      against the wheels' laws in its own parameters; CutMono's exact elementary form and
+      written proof from Bertrand; the zones and the redundancy lemma on a range; the
+      exhaust's own record (expected ROOT); the exhaust's action below and above the window
+      (home / echo census, the first strike that is neither). OPEN, prover running
+      (research/proof/exhaust_1.md). In parallel a Harvester builds the law register
+      (research/proof/law_register.md, W-numbers) and checks prior art for every wheels law,
+      registering the new ones in docs/novel/README.md.
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
