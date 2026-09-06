@@ -767,6 +767,12 @@ the log at the bottom is chronology only.
       coprimality. The existing MergeLaw / TwoTeeth infrastructure did not transfer with
       d = 2 (teeth symmetric about 0 there, the offset pair {0, -2} here); L12 and L13 were
       proved directly.
+    - R4.b.ii. The wheels, second pass (owner: understand the wheels fully before the clutch):
+      tuples of top gears, the gap-3 / gap-5 coincidence, the in-use machine's approach to the
+      wheel record, the smallest gears as the top machine's anchor, the removal law
+      (self-similarity under a larger split). OPEN, prover running (research/proof/
+      top_machine_2.md). In parallel the Formalist closes the two Lean holes (the Finset CRT
+      lemma, the parity law's attainment, the exact symmetry group).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
