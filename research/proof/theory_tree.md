@@ -897,6 +897,11 @@ the log at the bottom is chronology only.
       7, 11 present; the smallest top machine that retains the simplicity; by the conjugacy a
       top machine starting at 5 IS the bottom machine {5..q}, so this measures what transfers).
       OPEN, prover running (research/proof/top_machine_5.md).
+    - R4.b.vii. The zone of tranquillity (owner: past Q - sqrt Q, or the first gear whose
+      square exceeds Q, a zone that should be completely knowable, where the top machine's gap
+      alignments can be located and sized; manager's reading to test: in (Q, Q^2] a number is
+      open iff it is q-smooth times at most one prime above Q). OPEN, prover running
+      (research/proof/top_machine_6.md).
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
