@@ -726,7 +726,32 @@ the log at the bottom is chronology only.
           availability gate has(a) > 0, for which old sizes a some occurrence has a neighbour
           of size = 0, +-d mod q' and >= a_L: a statement about M alone, monotone at the top
           where Rest is not, and once it is 0 the frontier is the pair statement.
-          - 4.i.a.i. The availability gate. OPEN, to run after the branching prover lands.
+          - 4.i.a.i. The availability gate (research/proof/availability_gate.md). FACT, a
+            partial route, empty as a bound. The gate closes at about four fifths of F_old and
+            drifts up (a_gate / F_old = 1.00, 0.00, 0.57, 1.00, 0.72, 0.92, 0.85, 0.81 at the
+            rungs to 31); it splits into two branches, a legal (a is itself a letter: uncapped,
+            hence a_gate = F_old at rungs 7 and 17) and a legal neighbour (capped). THE GATE
+            LADDER (proved, 137 cells): J = 3 needs a legal or hasM(a) > 0; J >= 4 needs
+            hasM(a) > 0 always. THE GATE IS ONE ROW OF THE LEVEL-2 DICTIONARY: a_hasM = the
+            largest a such that (a, a_L) is an adjacent pair of M (7 of 8 rungs; at that a the
+            only legal neighbour occurring is the short letter, 6 of 6), with the closed form
+            a_hasM <= F_2(M) - a_L proved in one line (68 of 68 including 60 family members;
+            deficits 0, 3, 7, 3, 7, 3, 4, 10). THE DECIDING NEGATIVE: that cap helps only when
+            F_2 - F < a_L, and F_2 - F = 2, 2, 4, 5, 7, 6, 5, 12 against a_L = 2, 4, 4, 6, 6, 8,
+            10, 10 fails at 17 -> 19 and 29 -> 31, exactly where the F_2 cap failed: one
+            obstruction, two routes. Three regimes: above the gate only the pair statement
+            (slack 5..24); between a_hasM and a_gate only J = 3 at legal middles (a + N(a) <=
+            F_old + q', 5 of 5); below, the chain statement. The band between the deep-chain
+            cap and the gate is empty to rung 19, then [13, 20], [22, 25], [15, 35]; a* inside
+            at 3 of 3; its minimum slack is the global budget slack; it does not shrink. Family:
+            the real a_gate at or below the family median; all five recorded budget violators
+            break with the gate OPEN (5 of 5). Also exceptionless: hasL = hasR (mirror); a_gate
+            = 0 iff the rung's max merge order is 2; has2(21) = 4 at m31 = the number of
+            order-5 gaps (the four (7, 10, 21, 10, 7) palindromes). RESIDUAL, exactly: the row
+            v = a_L of the level-2 dictionary of M is empty above c F(M) with c < 1: a finite,
+            M-only statement about one gap size (a gap of the new gear's short-letter size
+            never sits next to a gap above c F); the LP lane already certifies cells of that
+            dictionary at m19, m23.
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1295,3 +1320,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover GF (merge_forest.md): branching identity proved (orders = second difference of chain counts; mean order q'/(q'-2) teeth-free); node 4 refuted; the frontier F(M+q') = max_a (a + Rest(a)) with Rest collapsing at the top (Rest(F_old) <= 7; rest <= q' fails only at 29->31). Opened 4.i.a.
 - 2026-09-06, prover FR (frontier_collapse.md): the top law (Rest(F_old) = the old record's largest single neighbour, or its neighbour sum when F_old is a letter) and the fusion-rate identity proved; the frontier splits into the pair half (J = 2) and the chain half; the uncovered band at m31 is [15, 25] and holds the record maximiser; the availability gate named as the child.
 - 2026-09-06, owner: the period-scale formulation (R4). Manager's reading: level of distribution 1 at the period scale removes faces B, D, E; face A stands alone; the second machine decomposes into coherent twisted copies of the first. Opened R4.a.
+- 2026-09-06, prover AG (availability_gate.md): the gate ladder proved, the gate is one row of the level-2 dictionary with the closed form a_hasM <= F_2 - a_L, useful only when F_2 - F < a_L (fails 17->19, 29->31: the same obstruction as the F_2 cap); the band [15, 35] at m31 holds the record maximiser and does not shrink. Residual: the short-letter row of the adjacent-pair dictionary is empty above c F.
