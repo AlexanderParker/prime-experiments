@@ -397,6 +397,14 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   exhaust. In the quiet zone every wheels-open number is byproduct times one wheel prime, each
   family (s, s') of smooth cofactors is a valve, the motor striking the cofactor vents every
   family but (1, 1), and the manifold's outlet is p_1^2, the first square of a wheel prime.
+- **Combustion, back pressure, valve timing.** Engine terms with one object each (owner,
+  2026-09-06). Combustion: a strike, one tooth landing on one number and removing it from the
+  open set. Back pressure: exhaust strikes that are not echoes; exactly zero inside the window,
+  first at p_1^2, then a growing share of the open pairs above it. Valve timing: the phase
+  relation between the motor's open residues and the wheels' families (the clutch's placement
+  residue law). Proposed, not yet adopted: fuel = the wheel prime P and air = the smooth cofactor
+  s in the quiet zone's s x P, with family (1, 1) the pure charge that never burns; knocking = a
+  symptom with no settled timing cause (candidate: the gluability anomaly).
 - **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the motor, tier 2 the
   wheels, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period (cut_0 = q,
   cut_1 = q#, cut_2 = the wheels' period). Not "rung", which is one step q -> q' of the ladder.
