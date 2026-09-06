@@ -398,7 +398,7 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   = every tier above the manifold (retired: third machine, tower). Engine terms attach to these:
   combustion = a strike; byproducts = the engine's q-smooth compounds; fuel = a manifold prime P,
   air = a smooth cofactor s, charge = s x P, burning when a valve strikes the air; the pure charge
-  (family (1, 1)) never burns; back pressure = non-echo exhaust strikes, first at p_1^2; knocking =
+  (family (1, 1)) never burns; back pressure = the manifold's strikes (owner's correction 2026-09-06; the exhaust's non-echo strikes are a separate object, first at p_1^2); knocking =
   an unexplained symptom, the standing knock the gluability anomaly.
 - **Two machines: motor, wheels, clutch.** (older entry, retired words: motor = engine, wheels = manifold, clutch = valves) The bottom machine (motor) is the gears up to q; the
   top machine (wheels) is the primes above q up to the motor's period q#, built on the raw line
@@ -413,8 +413,9 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   family but (1, 1), and the manifold's outlet is p_1^2, the first square of a wheel prime.
 - **Combustion, back pressure, valve timing.** Engine terms with one object each (owner,
   2026-09-06). Combustion: a strike, one tooth landing on one number and removing it from the
-  open set. Back pressure: exhaust strikes that are not echoes; exactly zero inside the window,
-  first at p_1^2, then a growing share of the open pairs above it. Valve timing: the phase
+  open set. Back pressure: the manifold's strikes (the owner's correction of 2026-09-06; the
+  manager had written the exhaust's non-echo strikes, which remain a separate object, zero inside
+  the window and first at p_1^2). Valve timing: the phase
   relation between the motor's open residues and the wheels' families (the clutch's placement
   residue law).
 - **Fuel, air, charge, knocking.** In the quiet zone every wheels-open number is s x P, a smooth
