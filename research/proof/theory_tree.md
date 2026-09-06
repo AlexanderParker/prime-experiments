@@ -657,6 +657,12 @@ the log at the bottom is chronology only.
     separation 2 g^-1 mod h at every gear h <= q (W3's family c/r with r = g), each with
     exactly prod(h - 2) openings per period; the second machine's action decomposes into
     coherent copies of the first machine, one per later gear. OPEN.
+    THE ANALOGY (owner, 2026-09-06): the bottom machine is the MOTOR, understood in depth; the
+    top machine is the WHEELS, until now inferred only from the motor's odd behaviour (like
+    diagnosing a car that will not move by looking only at the engine and theorising a gearbox);
+    the CLUTCH engages the two. Isolate each object, learn its rules separately, then study the
+    clutch. Order of work once the window's leads are exhausted: the top machine alone, then the
+    clutch.
     REFINEMENT (owner, 2026-09-06): the TOP machine is independent of the bottom - the primes
     above q up to the range's edge, teeth +-6^-1, every gear starting at column 0, no exemption,
     its own openings, kills and runs (its period is far beyond the range, so its in-range
