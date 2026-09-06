@@ -1,5 +1,7 @@
 # j2-upper-bound - the first upper bounds on the paired Jacobsthal function j_2
 
+> Note (2026-09-06): `h_2` here is Ziller-Morack's free-class paired Jacobsthal function (`A288815 = 6 A072753 + 6`), the adversary of the wall's face 5a. It is NOT the machine's real-teeth record `F(M)`: the real twin-candidate gap at `p_n#` is `6 F(M)` (12, 30, 42, 66, 108, 150, 204 for n = 3..9), strictly below `h_2` from n = 5. See research/harvest/r1/jacobsthal_check.md. The bounds in this document are about `h_2` as published and stand.
+
 > **READ SECTION 11 FIRST.** Round 26 assembled Unit 1 into a submission
 > candidate: section 11 carries the CURRENT ladder, the CURRENT sandwich, and
 > the CURRENT not-claims list. Sections 1-10 are the working record, written

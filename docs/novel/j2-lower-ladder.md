@@ -1,5 +1,7 @@
 # j2-lower-ladder - the first lower bound on h_2 from the paired structure, and the growth law reread
 
+> Note (2026-09-06): `h_2` here is Ziller-Morack's free-class paired Jacobsthal function (`A288815 = 6 A072753 + 6`), the adversary of the wall's face 5a. It is NOT the machine's real-teeth record `F(M)`: the real twin-candidate gap at `p_n#` is `6 F(M)` (12, 30, 42, 66, 108, 150, 204 for n = 3..9), strictly below `h_2` from n = 5. See research/harvest/r1/jacobsthal_check.md. The bounds in this document are about `h_2` as published and stand.
+
 Round 24 (Harvester), 2026-08-28. Status per claim below; script
 research/j2_lower2.py (all assertions green), predecessor research/j2_lower.py
 (round 23). This doc SUPERSEDES the round-23 "THE LOWER LADDER" subsection of
