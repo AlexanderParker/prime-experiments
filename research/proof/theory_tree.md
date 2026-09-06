@@ -752,11 +752,30 @@ the log at the bottom is chronology only.
         statement in location form is R_min(W) > 0 with the constant c in R_min(L) >= c L;
         the induction through the effective machine at the position. OPEN, prover running
         (research/proof/position_frontier.md).
-      - R2.e.ii. Structured families of slots: explicit CRT families open for the small gears
-        by construction (primorial multiples, all-teeth neighbours, corridor classes, island
-        classes, the anchor's openings), their survival against fair rates, the thickness
-        trade-off, cross-family correlations. OPEN, prover running
-        (research/proof/structured_families.md).
+      - R2.e.ii. Structured families of slots (research/proof/structured_families.md). DEAD
+        as a route, by an identity. Every located family carries twins at the window's own
+        rate: on 661 disjoint sections (130,644 twins) the normalised excess is within 1.2
+        sigma of 1.000 for every family (islands 1.006 +- 0.005 against the rest of the
+        corridor; the tree's candidate object is indistinguishable from ordinary corridor
+        columns). The common value is the s = 2 handicap e^{2 gamma}/4 = 0.793, flat across q.
+        MECHANISM: the singular series of any non-tooth residue family is 12 C_2 divided by the
+        small-gear factor the family "saves", exactly cancelling it: a location rule cancels
+        itself; survivors(F)/survivors(window) = density(F)/prod_{5..y}(1 - 2/g) <= 1 with
+        equality only for the whole opening set. Emptiness is Poisson at the fair rate (nine
+        families, observed/expected empty sections 0.87..1.04; the last empty rung is where the
+        expected count crosses 1). Thickness: the window is at s = 1.79 at q = 4999, every proper
+        family lower; the dimension-2 sieve needs n >= 6.2e15 against W = 4.2e6. Per-gear takes
+        are one curve belonging to the RANGE, not the family (all families agree to 2% in every
+        bin; the island family sits on the anchor family's curve; no gear takes less than 2/g on
+        any family). NEW EXCEPTIONLESS LAW (661 of 661): gear 5 is barred at the column-0 offset
+        for every q, and gear 7 is barred there iff q = +-2 (mod 7), so the always-open column of
+        node 3 is a B = 7 island family on exactly one third of rungs (the first link between
+        node 3 and R2.a.i.a); k_0 mod 35 takes only six values and the island set meets each,
+        never emptily. Corrections: windows at consecutive rungs overlap almost totally, so
+        pooled sigmas are false; two of the brief's families hold every twin of the window by
+        identity and are not location rules. A family defined by residues modulo the lower
+        machine's period can never beat existence, because that period is invertible modulo
+        every gear above it; only a rule whose definition involves the gears above could.
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -1597,3 +1616,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover RG (record_2run.md): record saturation (every gear a sole striker inside the record gap, 68 of 68); the top of the spectrum is pinned to F_2 not F; the switch to ordinary pieces is sharp at 19 -> 23; the record as a 2-run is not where the difficulty lives (slack non-decreasing 10 -> 39); the tightness sits in 3- and 4-runs of ordinary sizes with a letter middle; m37 top band certified scan-free.
 - 2026-09-06, prover LD (ladder_closure.md): the closure as an instrument reaches F(37) = 88 and F(41) = 91 exactly from m23's period alone with every gate exact; m41's record is one of 3,052 fourfold fusions among 8.5 trillion gaps; the span-threshold prune (lemma) is the tool; budget slack 14, 20, 16, 7, 38 along the extended ladder; F(43) needs about 10^8 dictionary rows. The window's leads are now run to their verdicts.
 - 2026-09-06, owner: one more round on location inside the window with the lower machine only; opened R2.e.i (the position-length frontier) and R2.e.ii (structured families); if neither closes, the top machine is next.
+- 2026-09-06, prover SF (structured_families.md): structured families DEAD by identity (a family defined mod the lower machine's period cancels its own saving; every family carries twins at the window's own rate; the islands indistinguishable from ordinary corridor columns, 1.006 +- 0.005); gear 7 barred at the column-0 offset iff q = +-2 mod 7.
