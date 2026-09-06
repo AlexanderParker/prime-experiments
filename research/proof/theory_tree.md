@@ -657,6 +657,24 @@ the log at the bottom is chronology only.
     separation 2 g^-1 mod h at every gear h <= q (W3's family c/r with r = g), each with
     exactly prod(h - 2) openings per period; the second machine's action decomposes into
     coherent copies of the first machine, one per later gear. OPEN.
+    THE ZONES (owner, 2026-09-06, made exact by the manager). On a range of K columns the top
+    gears split by how they act: REPEATING gears g <= sqrt(6K) turn past their own square inside
+    the range and have exclusive kills (the square gate); NON-REPEATING gears sqrt(6K) < g <=
+    6K/q' kill bottom-open columns only at members g m with m q-rough and m < g, so every such
+    kill coincides with a smaller top gear's (redundancy lemma, one line: the smallest prime
+    factor of m is a top gear below g striking the same column); SILENT gears g > 6K/q' strike
+    only their own home column. So the effective top machine on the range is exactly
+    {q'..sqrt(6K)}, a gear machine of the same construction with no anchor. Mixed composites
+    (bottom times top) never touch a bottom-open column; pure-top composites with cofactor
+    below the gear are the redundant zone. THE BOTTOM IS EXACT AGAINST THE TOP from about
+    3^m g / delta columns on (the inclusion-exclusion error 3^m is uniform in the interval
+    length), i.e. from about e^{1.1 q / ln q}: far above the window (q^2), far below the
+    primorial (e^q); products of top gears are exact while below the range over 3^m (level of
+    distribution 1 in the zone). Read for a fixed window y^2/6: split the machine at
+    q ~ ln y ln ln y and the bottom is rigid inside the window against every larger gear (the
+    anchor rigidity of 7b generalised), the top (q, y] has level 1 on the bottom's openings, and
+    what remains is the sifting range s = 2 (face A in two-machine language). First things to
+    formalise when the line opens: the redundancy lemma and the rigidity generalisation.
     OPENING TASK when this line starts (owner, 2026-09-06: the coupling will draw off previous
     findings; the framework shapes the research): re-file the record by object. Motor facts
     (records, spectrum, chain and merge laws, the gear-5 lock, the corridor); wheel facts (the
