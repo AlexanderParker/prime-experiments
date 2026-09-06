@@ -859,10 +859,40 @@ the log at the bottom is chronology only.
       the mex closed forms L30 and L34 (no CRT needed), the triple-hole proof, B(d) via
       card_filter_crt, the triple record's upper bound (shape of parity_upper), the
       distribution identities, the XOR lower bound.
-    - R4.b.iv. The in-use next-opening bound (spawned by R4.b.iii: the mex form is exact in
-      use but its proved bound is vacuous past 10^6). Core gears (<= F + 1) against tail gears
-      entering by count; an explicit proved bound B(q', m, N); the record's position in range;
-      saturation in the tail. OPEN, prover running (research/proof/top_machine_4.md).
+    - R4.b.iv. The in-use next-opening bound (spawned by R4.b.iii; research/proof/
+      top_machine_4.md, laws L46-L56; scripts research/topmachine/r4/). STRONG as a law of the
+      in-use machine, and it says the in-use record is a DIFFERENT OBJECT from the wheel
+      record. THE ZONE LAW (proved in two lines, 0 exceptions in 130,230 cells over 36
+      machines): for gears (q, Q] on [1, N], a pair n <= Q - 2 is open iff n and n + 2 are
+      both q-smooth (any larger prime factor is itself a gear). So the range record is the
+      largest gap of the finite q-smooth-pair list below Q, value AND position exact (the
+      block starts one cell above the gap's lower end; 161 at q = 5 for every N), and for Q
+      beyond the largest smooth pair s(q), F_range >= sqrt(N) - s(q) - 2 (s(5) = 160,
+      s(7) = 8,748, s(11) = 19,600, s(13) = 246,400, s(17) = 672,280, s(19) = s(23) =
+      23,718,420, s(29) = 354,365,440, s(37) = 9,447,152,317; prior art in a line: Stormer
+      1897 / Lehmer 1964 for the finiteness). Ratio truth to bound 1.000-2.000, exactly 1.000
+      at 17 of 36 machines (q = 5, N = 10^8: bound 9,838, truth 9,846). CONSEQUENCES: no bound
+      in (q', m) exists (F_range >= (m log m)/2; F/2m = 1.5, 2.6, 3.4, 4.0 at N = 10^5..10^8,
+      still climbing); in use THE TAIL IS EMPTY (certified covers give F_top >= Q, 3 to 43
+      times 2m, in 26 of 27 machines), so the parity and covering apparatus is a statement
+      about tail gears only; the covering bound 2m/(1 - 2 H_S) is alive iff F < exp exp(1/2 +
+      sum_{p <= q} 1/p - M) (35 of 36) and 40-50x loose where alive; union bounds cannot
+      reach the truth at all (a covering pattern pins x modulo the product of its gears, so
+      counting stops at 2 log N / log q' = 10-19 against records 113-9,846). NO SATURATION
+      (expectation refuted): the gear zone is [1, Q], not [1, sqrt N], so at fixed N = 10^7 the
+      record is linear in the largest gear (186 ... 999,876 as Q goes 316 to 10^6), and on a
+      fixed region strictly above every zone the record still climbs (200 to 1,511). ABOVE THE
+      ZONE the machine is a different size: record A(q, N) = 24 to 419 over the whole tested
+      range, 23x below the zone record at q = 5, fitting a first-hit model within 0.97-2.38;
+      A wins in 10 of 36 machines (all q >= 13, N <= 10^6), each q with one crossover N after
+      which the zone wins for good. WHEEL RECORD, exact core/tail rule: F_top = max{L : the
+      minimum over core phases of the domino cost D(U) <= t} with D the sum of ceil(run/2)
+      over step-2 runs per parity class (0 mismatches on 13 known records, 89 sets decided);
+      the additive form F_core + 2t - defect holds at exactly the 64 empty-core sets (the
+      parity law) and fails at all 25 with a core. REFUTED pre-registrations: s(7) = 448; the
+      tail is nonempty in use; the record sits in the first stretch; A <= 400; the record
+      starts at s(q) + 1. OPEN: a bound above the zone (A(q, N)); the first-hit model as a
+      law.
     - R4.b.v. Sliding the split down (owner: which top-machine laws survive with gears 2, 3, 5,
       7, 11 present; the smallest top machine that retains the simplicity; by the conjugacy a
       top machine starting at 5 IS the bottom machine {5..q}, so this measures what transfers).
@@ -1826,3 +1856,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover TM2 (top_machine_2.md): the wheels' second pass. The gap census law L22 (exact inclusion-exclusion product, 0 mismatches to the full period), W1 closed (gaps 3 and 5 share a polynomial; 7 is the unique separating gear), L18 derived from the census (L25), the forbidden gap 4 explained as the one place closed and free boundary covers differ (L26), the origin as the unique total collision with the clump its shadow (L29), the record of small wheels decided by whether 7 is a gear (L30, exhaustive), F_top depends on m and the gears below F_top + 1 only (L31), W2 replaced (the wheel record is reached, at a computable fraction of the period, L32), no top anchor exists and why (L34-L36), the removal law (L37/L38). Next: the walk lane (R4.b.iii), then L22 into the kernel.
 - 2026-09-06, prover TM3 (top_machine_3.md): the owner's deliverable found. The next open pair after x is x + mex{(-x) mod g, (-x-2) mod g} when every gear exceeds 2m (proved, sharp, 0 mismatches in 1.45 million positions); the next twin candidate (run of three) is x + mex over three residues when every gear exceeds 3m, with record exactly 3m; the layered walk collapses to hop chains of length at most 2; the walk distribution is the dual of the run spectrum; the spectrum cannot decide the record; XOR bounds the record from below, tight. In use the mex form is exact but its proved bound is vacuous past 10^6: the in-use bound is the open item. Next: Formalist on the mex laws.
 - 2026-09-06, Formalist round 34 (proofs/TopMachineWalk.lean): the owner's closed form is a theorem. mex_form (the next open pair after x is x + mex of the two residues per gear, gears above 2m), triple_mex_form and triple_law (the run-of-three record is exactly 3m; attainment needs no size hypothesis), no_start_gap, pair_corr. Green at 1394 jobs, standard axioms, zero sorries; 158 declarations in the top-machine library.
+- 2026-09-06, prover TM4 (top_machine_4.md): the in-use record is the largest gap of the q-smooth-pair list below Q (zone law, proved, exact in value and position), so it is linear in the largest gear and no bound in (q', m) exists; in use the tail is empty and the parity apparatus is about tail gears only; union bounds provably cannot reach the truth; above the zone the record is a different, small object (24-419) with no proved bound. The wheel record's exact core/tail rule found (domino cost). The next-opening deliverable stands as: proved closed form for gears above 2m; exact zone law in use; open above the zone.
