@@ -1260,7 +1260,34 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       (research/proof/valves_scratch.md); the REVIEW lane (Fable) sorts the 36 refiled facts,
       the wall, theorem (E), the conjugacy, the family decomposition into interface objects
       with coordinate flags and inherited assumptions, and puts three predictions and one
-      red flag on record (research/proof/valves_review.md); then RECONCILE.
+      red flag on record (research/proof/valves_review.md); RECONCILED 2026-09-07
+      (research/proof/valves_reconcile.md). THE VALVES HAVE A MECHANISM. Found by both,
+      solid: the IMPRINT (a family (s, s') occupies exactly the residues mod q# with n = 0
+      for p | s, n = -2 for p | s', neither for the other engine primes; in columns each
+      burning gear pins the family to one tooth; CRT proof, 0 exceptions in 45,358 families);
+      the pure charge's count independent of q (the count identity, 9 of 9 runs); the record
+      a twin gap (EMBER: every burnt charge in turns 1 and 2 has a q-smooth member above Q,
+      proof by the air cap plus parity). Scratch-only, new: PORT (a family's class mod 6 is
+      fixed by its air; the fold is the port; one-line proof, 0 exceptions in 23,969,812
+      pairs); TURN and ONSET (turn m = (mQ, (m + 1)Q]; a family has no member before turn
+      max(s, s'), proof n = sP > sQ; measured exact: every family with max <= 25 fires at its
+      turn; turns 1 and 2 carry no fuelled family but (1, 1)): THE VALVES OPEN IN ORDER OF
+      THEIR AIR; INVENTORY (exists iff q-smooth, gcd | 2, same parity, 4 divides exactly one
+      of an even pair; proof by local solvability; the data refused (2, 6) and the proof
+      followed); YIELD (N(s, s') = the imprint's local density integrated, within 2% over 310
+      families; measured; prior art the Bateman-Horn local factors, family (4, 2) the Sophie
+      Germain primes); SPOKE (columns of mQ engine-open when q# | Q); neighbour facts (nearest
+      burnt charge at distance 2 for 37% of twins, always (3a, 1)/(1, 3a'); burnt count between
+      twins not a function of the gap); the first pure charge t_1 >= p_1 only. Review-only,
+      PARTIAL: the corridor, the island witness and K(d) (does not translate into families),
+      the four cells, the zero-interaction region, (E)'s exception set, the twisted copies.
+      The red flag held. SHAPE OF THE ROOT: in turns 1 and 2 the only fuelled valve is (1, 1)
+      and the other charges are embers; the question is whether the twins in (Q, 3Q] can be
+      absent while the embers are present.
+      - R4.c.i. The turn ledger (spawned by the onset law). Per turn m the total charges T_m,
+        the burnt charges B_m = the sum of the open valves' yields, the pure charge
+        P_m = T_m - B_m; whether an exact relation between T_m and B_m forces P_m > 0, and
+        where the counting face of the wall reappears. OPEN, prover to launch.
       First step when opened, owner's hybrid: a scratch lane with clean context (the three
       objects' definitions, the glossary, the ledger's proved laws; no clutch facts, no wall)
       defining interface objects on the wheels' coordinate and the motor's; a review lane
@@ -2322,3 +2349,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, prover MF1 (monotone_functional.md, finished from disk after the limit): THE ORDER LAW, the interaction order the budget needs is exactly L(M) + 1 (B_{L+1} <= F + q' at 9 of 9, B_L > F + q' at 7 of 7, 0 exceptions); Phi = B_{L+1} is the monotone functional, the only one of eleven that bounds the next record and is budget-monotone; its theorem implies the budget at every rung and needs a cap on L plus one fusion lemma; the band check at 29 -> 31 passes with margin 16 by complete enumeration; L(M) bounded stays OPEN (L_pad uncapped). Engine gate: item 2 closed, item 3 found (measured), item 1 open.
 - 2026-09-07, prover LP1 on Fable (pad_cap.md): the padded word capped uniformly over the small alphabet (E1, proved, <= 8, 0 exceptions on 14 rungs; every measured padded word is in that class); the skip half is ROOT (a constant cap is equivalent to F(M + q') <= C q'); the mechanism is the pullback machine's cover of the multipliers, gear 7 the capper. The engine's last structural item is resolved: measured half proved, remaining half the conjecture in disguise. THE GATE OPENS: engine, manifold and exhaust have no open structural item that is not ROOT. Next per the owner's plan: the valves' hybrid first step (scratch lane with clean context on Fable; review lane; reconcile).
 - 2026-09-07, valves review lane (valves_review.md, 852 lines): ten interface objects sorted with status (I1 the conjugacy as the fold on n = 5 mod 6; I2 the anchoring valves 2, 3, 5, 7 and the corridor mod 35 = the opening set of {5, 7}; I3 the family decomposition and the pure charge; I4 the echo set and home strikes, outer boundary p_1^2; I5 the twisted copies = back pressure in the cofactor coordinate; I6 theorem (E) and its exception set, the inner boundary; I7 the placement residue law = valve timing, dimension 1 vs 2 the parity barrier; I8 the island witness and K(d), which does not translate into families; I9 the four cells and the level of distribution, translated into zones; I10 the zero-interaction region, a property of every split). Eighteen inherited assumptions found, chiefly: the column coordinate is not a definition but the first valve (gears 2 and 3 fold); the manifold's metric laws (dominoes, chains, gap 4, parity record) never reach the valves' domain; every tier strikes its own twins as home strikes so the valves never see a smooth-zone twin. Five predictions on record for the reconcile (families occupy exactly the classes of P mod 30 solving s'P' - sP = 2, spot-checked; every family's count independent of q; the valves' record is a twin gap; timing = one forbidden class per engine gear per sign; RED FLAG: any manifold metric law surviving into the valves' open set).
+- 2026-09-07, valves scratch lane on Fable, clean context (valves_scratch.md), and the reconcile (valves_reconcile.md): the valves have a mechanism. Each family is a valve with an imprint (proved, both lanes), a port (class mod 6 fixed by its air, proved), an onset (it opens at the turn equal to its air, proved as a bound, exact as measured), a yield (a local density, measured; Bateman-Horn). The pure charge is the valve with no air: no onset, in every turn, the same count for every engine. Turns 1 and 2 carry no fuelled valve but (1, 1), the rest are embers. The review's four predictions were rediscovered from the definitions; the red flag held. Next: the turn ledger.
