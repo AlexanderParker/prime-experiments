@@ -773,11 +773,48 @@ the log at the bottom is chronology only.
       coprimality; affine_group now does, for composite gears sharing a factor with c. The existing MergeLaw / TwoTeeth infrastructure did not transfer with
       d = 2 (teeth symmetric about 0 there, the offset pair {0, -2} here); L12 and L13 were
       proved directly.
-    - R4.b.ii. The wheels, second pass (owner: understand the wheels fully before the clutch):
-      tuples of top gears, the gap-3 / gap-5 coincidence, the in-use machine's approach to the
-      wheel record, the smallest gears as the top machine's anchor, the removal law
-      (self-similarity under a larger split). OPEN, prover running (research/proof/
-      top_machine_2.md). R4.b.iii the walk and the transforms of the top machine (owner: closed
+    - R4.b.ii. The wheels, second pass (research/proof/top_machine_2.md; scripts
+      research/topmachine/r2/). STRONG: laws L22-L38, both open facts of the first pass closed.
+      L22 THE GAP CENSUS LAW: the number of consecutive open pairs at distance d per wheel is
+      N_d = sum over S in [1, d-1] of (-1)^|S| prod_g (g - |E_g(S)|), E_g(S) = {0, -2, -d, -d-2}
+      u {-j, -j-2 : j in S} mod g; exact by CRT, 0 mismatches over 15 wheels at every d and over
+      the whole 6.7 x 10^9 period of {7..31} for d <= 16. L24 (W1 closed): gaps 3 and 5 share
+      the polynomial prod(g-4) - 2 prod(g-5) + prod(g-6) because both have four forbidden
+      classes per gear and two "some gear here" requirements; the gap-3 classes collapse only
+      for g | 15 (never a gear), the gap-5 classes for g | 7, so 7 is the unique separating
+      gear (16 of 16; the only coincident pair for d <= 16). L25: N_d = sum_k (-1)^k sigma_{m-k}
+      M_k(d), gear-independent exactly when the vanishing-moment count r(d) reaches m, value
+      (-1)^m M_m: L18's universal multiplicities (18; 96, 24, 24; 480; 6480, 1440, 720) are a
+      corollary. L26: r(d) is the parity covering number for every d <= 16 except d = 4, so
+      F_top = max{d : r(d) <= m} - 1 reproduces L17 from the census, and d = 4 is the unique
+      place the gap's closed-boundary cover differs from the record's free-boundary cover (L4
+      explained). L28/L29 tuples: joint census = CRT product, deviation 0 (14 triples and
+      quadruples); 2^m all-struck classes, exactly two (n = 0, -2) where all m dominoes
+      coincide: THE ORIGIN IS THE MACHINE'S UNIQUE TOTAL COLLISION and the origin clump is its
+      shadow; no three distinct traces pairwise overlap (0 of 1,354), so the record cover is a
+      perfect tiling for even m and wastes exactly one unit for odd m (11 of 11). L30
+      (exhaustive, all 1,540 triples and 7,315 quadruples of odd primes 7..97): F_top = 5 or 6
+      and 8 or 9, decided by one bit, whether 7 is a gear (0 exceptions); mechanism: the long
+      letter g - 2 is odd and the only parity-crossing piece, shown only by a gear with
+      g <= L + 1. L31: F_top depends only on m and on the gears <= F_top + 1; large gears enter
+      by their number only (90 cases, 0 exceptions; pre-registered threshold 2m + 3 REFUTED as
+      written, 12 of 70). W2 REPLACED: L32 F_range(N) = max{d : W/c(d) <= N} - 1 within 1 unit
+      at 19 of 21 checkpoints; the wheel record IS reached, at 10.9% of the period for {7..31},
+      0.037% for {13..41}, 0.005% for {19..47}; the first pass's ceiling was an artefact of
+      stopping at 10^7. L33: the 8 record blocks of {7..31} form four mirror pairs summing to
+      W - 33 and occupy two residues mod 1001, one mod 11, one mod 17: the record's position is
+      pinned by its small gears. L34-L36 THE ANCHOR QUESTION, answered exactly and negatively:
+      an anchoring gear needs g - 2 <= 2, i.e. g <= 4; 2 qualifies in the bottom only because
+      it is the unique prime dividing the separation, collapsing its teeth; top gears have
+      g - 2 >= 5, the corridor has density >= 0.58, is uniformly filled (5 of 5) and palindromic
+      from the shield (6 of 6): no fold, no direction. Two independent anchors instead: q'
+      fixes the local metric (run q' - 3, chain q' - 2, clump 2(q' - 3) + 1; 14 of 14) and m
+      alone fixes the record. L37/L38 THE REMOVAL LAW: raising the split divides W by q', the
+      open count by q' - 2, the dominoes by q' - 4, grows the three ceilings and drops F_top by
+      3 (m even) or 1 (m odd), nesting ratio exactly 1 - 2/q'; sharp form: F_top(G minus g) is
+      the same whichever gear leaves (9 of 9 in the large-gear regime, failing exactly outside
+      it). OPEN: L22 in the kernel (exists_crt now available, R4.b.i); the vanishing of M_k(d)
+      for k < r(d) (verified to d = 16, unproved); L31 as a formula. R4.b.iii the walk and the transforms of the top machine (owner: closed
       forms and proofs for locating the next opening): OPEN, prover running
       (research/proof/top_machine_3.md).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
@@ -1716,3 +1753,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover TM (top_machine_1.md): the top machine on its own terms is a domino machine (partner law), with the forbidden gap 4, the parity law F_top = 2m - (m mod 2), the tiling characterisation, universal record multiplicity, the spectrum as a second difference, and the conjugacy n -> 6^-1(n+1) onto the bottom's coordinate (counting and symmetry laws common, metric laws its own). The wheels have their rules; the clutch is next.
 - 2026-09-06, Formalist (top_machine_lean.md): the top machine's laws L1-L8, L10, L12, L13, L17 (upper bound), L19 kernel-checked in two new libraries, 59 declarations, zero sorries, standard axioms; L8's exact group and L17's attainment will not close this round. Manager gate green.
 - 2026-09-06, Formalist round 33 (top_machine_lean.md, proofs/TopMachineCrt.lean): the two holes closed. exists_crt (Finset CRT), parity_attained and parity_law (F_top = 2m - (m mod 2) as an equality), affine_group / exists_symmetry / sign_count (the symmetry group is exactly (Z/2)^m). Build green at 1392 jobs, standard axioms, zero sorries. Of the 21 laws, the statements about gear sets are now kernel-checked except L16 (tiling characterisation, written proof), L18 (multiplicity, measured) and the counting laws by CRT.
+- 2026-09-06, prover TM2 (top_machine_2.md): the wheels' second pass. The gap census law L22 (exact inclusion-exclusion product, 0 mismatches to the full period), W1 closed (gaps 3 and 5 share a polynomial; 7 is the unique separating gear), L18 derived from the census (L25), the forbidden gap 4 explained as the one place closed and free boundary covers differ (L26), the origin as the unique total collision with the clump its shadow (L29), the record of small wheels decided by whether 7 is a gear (L30, exhaustive), F_top depends on m and the gears below F_top + 1 only (L31), W2 replaced (the wheel record is reached, at a computable fraction of the period, L32), no top anchor exists and why (L34-L36), the removal law (L37/L38). Next: the walk lane (R4.b.iii), then L22 into the kernel.
