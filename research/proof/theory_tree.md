@@ -672,7 +672,40 @@ the log at the bottom is chronology only.
         laminar family of column intervals (the exact m31 forest in 33 s). CHILD NAMED: why
         Rest(a) collapses as a -> F(M): 5b's repulsion at the top of the spectrum with the
         chain law attached.
-        - 4.i.a. The frontier's collapse at the top. OPEN, prover running.
+        - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
+          FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
+          F_old = 0 or +-d (mod q'), else n1(F_old), the old record's largest single neighbour;
+          so the top's slack s(F_old) = q' - Rest(F_old) is an identity (4, 9, 10, 10, 12, 18,
+          24, 29). Mechanism: the letter floor a_L = q'/3 colliding with neighbour shortness: a
+          second junction forces the added piece to be an interior gap, hence = 0, +-d mod q'
+          and >= a_L, and the old record's neighbours are 2, 2, 3, 5, 7, 5, 5, 2 against
+          a_L = 2, 4, 4, 6, 6, 8, 10, 10. THE FUSION-RATE IDENTITY (proved from file 05; 137
+          cells): an old gap is fused in exactly 4, 3 or 2 of the q' copies (generic / +-d / 0
+          mod q') and is an interior piece in 0, 1, 2; junction availability never collapses,
+          only piece size does. THE SEPARATING QUANTITY: occurrences with a letter-sized
+          neighbour, 1,858 .. 32 in the interior against 0 at a = F_old at every rung; the
+          availability gate "not legal and has(a) = 0 implies no J >= 3 fusion" verified (40
+          cells). The collapse is a rarity factor 2.3 times a suppression factor 1.6-2.3.
+          Attaining fusions: a >= 0.9 F_old gives J = 2 except exactly when a is a letter
+          (15 of 15); the interior band is J >= 3 at 26 of 39 cells, all with letter interiors.
+          The slack profile s(a) is a saw, not a valley (5-7 strict local minima; 63 of 63
+          family members non-convex): no convexity argument; a proof must case-split on
+          availability. THE 29 -> 31 FAILURE of Rest <= q': at a = 21, size 55, order 5, the
+          recorded Q*_5 maximiser (7, 10, 21, 10, 7), not the (18, 10, 30) run; missed by 3;
+          Rest <= q' + 3 holds 8 of 8 (tight once) and Rest <= q' for a >= 0.605 F_old holds
+          8 of 8. CORRECTION: N(v) <= F_2 does not bound Rest(a) (7 cells with Rest > N, five
+          at J = 3 with a at an end); what is an identity is max_a (a + Rest_2(a)) = F_2(M).
+          PLACEMENT: the frontier splits along the attainment identity, the J = 2 half IS the
+          pair statement and the J >= 3 half IS the chain statement; the collapse at the top
+          lives in the pair half; at m31 the deep-chain cap covers a <= 14, the top bound
+          a >= 26, and the uncovered band [15, 25] contains the record maximiser a = 25; Rest
+          is not monotone. Family: all three recorded budget violators reproduced plus two
+          more found; 5 of 5 break at an interior-legal a; two also break at a = F_old with
+          Rest(F_old) = 21 and 14 against the real machine's worst of 7. CHILD NAMED: the
+          availability gate has(a) > 0, for which old sizes a some occurrence has a neighbour
+          of size = 0, +-d mod q' and >= a_L: a statement about M alone, monotone at the top
+          where Rest is not, and once it is 0 the frontier is the pair statement.
+          - 4.i.a.i. The availability gate. OPEN, to run after the branching prover lands.
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1239,3 +1272,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover HC2 (collision_laws.md): shared-arc law and arc floor proved; twin pairs collide earliest; the block-matching bound proves the adversarial lemma by reasoning at K = 4, 5, 6; the required interaction order grows like K - 3, so no bounded-order law reaches all K. The wall's sharpest structural statement so far.
 - 2026-09-06, manager, toolbox pass (option 2 chosen by the owner): bitwise lands on Liouville of 36k^2 - 1 (Chowla) and the bucket vector; inclusion-exclusion is Brun; the merge recursion as an operator is the renewal ladder; characters give the pole-phase law (real teeth: each gear's Fourier coefficient at a is nearly a function of a mod 6). The one object the tools reach that is unexploited: the merge forest (node 4 WEAK, untested). Opened 4.i, one prover.
 - 2026-09-06, prover GF (merge_forest.md): branching identity proved (orders = second difference of chain counts; mean order q'/(q'-2) teeth-free); node 4 refuted; the frontier F(M+q') = max_a (a + Rest(a)) with Rest collapsing at the top (Rest(F_old) <= 7; rest <= q' fails only at 29->31). Opened 4.i.a.
+- 2026-09-06, prover FR (frontier_collapse.md): the top law (Rest(F_old) = the old record's largest single neighbour, or its neighbour sum when F_old is a letter) and the fusion-rate identity proved; the frontier splits into the pair half (J = 2) and the chain half; the uncovered band at m31 is [15, 25] and holds the record maximiser; the availability gate named as the child.
