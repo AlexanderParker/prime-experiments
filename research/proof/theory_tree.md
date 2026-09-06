@@ -37,6 +37,11 @@ The view: docs/theory_tree.html is generated from this file by `uv run python
 research/tools/tree_view.py` (collapsible tree, verdict chips, search, unexhausted-only filter,
 radial map, log). Regenerate and commit it after every branch; this file stays the source.
 
+Canonical words (owner, 2026-09-06): ENGINE (primes <= q) -> VALVES (the engine acting inside
+the manifold's open set; the families are the valves) -> MANIFOLD (the primes in (q, q#] as a
+machine; regions smooth zone and quiet zone) -> EXHAUST (the tiers above). "Motor", "wheels",
+"top machine" and "clutch" in older nodes below read as engine, manifold, manifold and valves.
+
 ## The tree
 
 - **ROOT. An opening always lands in the window.** For every machine {5..y} the longest

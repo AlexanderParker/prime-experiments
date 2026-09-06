@@ -386,16 +386,21 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
 - **Repulsion.** Big blocked stretches have short neighbours; the one-hole record sits below what
   independent gaps would give (measured; the suppression law and the renewal ladder are the
   measured and the rigorous sides of it).
-- **One word per object (canonical, 2026-09-06).** engine = the primes up to q (retired: motor,
-  bottom machine, lower machine); wheels = the primes in (q, q#] on the raw line (retired: top
-  machine, upper machine; Lean names keep `TopMachine`); clutch = the engine acting inside the
-  wheels' open set, its mechanism the valve train (retired: interaction layer); manifold = the
-  wheels' quiet zone (Q, Q^2], where the charges s x P exit (retired: zone of tranquillity);
-  exhaust = every tier above the wheels (retired: third machine, tower). The loaded record rule,
-  the census, the cover polynomial and the parity coupling are wheels; the smooth zone and the
-  manifold are regions of the wheels; family (1, 1) and the pure charge are manifold objects; the
-  stack's cap is exhaust.
-- **Two machines: motor, wheels, clutch.** (older entry; "motor" is now "engine") The bottom machine (motor) is the gears up to q; the
+- **One word per object (canonical, 2026-09-06; the owner's line engine -> valves -> manifold ->
+  exhaust).** ENGINE = the primes up to q, pistons on the infinite camshaft (retired: motor,
+  bottom machine, lower machine). VALVES = the engine acting inside the manifold's open set: each
+  family (s, s') of the quiet zone is one valve, the valve train is the whole set, valve timing is
+  the placement residue law (retired: clutch, interaction layer). MANIFOLD = the primes in
+  (q, q#] as a machine of its own, with its own laws (the record rule, the census, the cover
+  polynomial, the parity coupling); its regions are the smooth zone [1, Q] and the quiet zone
+  (Q, Q^2] where the charges s x P gather (retired: wheels, top machine, upper machine; the Lean
+  namespace stays `TopMachine`). The manifold is not passive plumbing: its gears strike. EXHAUST
+  = every tier above the manifold (retired: third machine, tower). Engine terms attach to these:
+  combustion = a strike; byproducts = the engine's q-smooth compounds; fuel = a manifold prime P,
+  air = a smooth cofactor s, charge = s x P, burning when a valve strikes the air; the pure charge
+  (family (1, 1)) never burns; back pressure = non-echo exhaust strikes, first at p_1^2; knocking =
+  an unexplained symptom, the standing knock the gluability anomaly.
+- **Two machines: motor, wheels, clutch.** (older entry, retired words: motor = engine, wheels = manifold, clutch = valves) The bottom machine (motor) is the gears up to q; the
   top machine (wheels) is the primes above q up to the motor's period q#, built on the raw line
   on its own terms (teeth at 0 and -2, dominoes {x, x+2}); the clutch is their interaction. The
   conjugacy n -> 6^-1 (n+1) maps the wheels onto the anchored column coordinate exactly.
