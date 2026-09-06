@@ -1287,8 +1287,47 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       - R4.c.i. The turn ledger (spawned by the onset law). Per turn m the total charges T_m,
         the burnt charges B_m = the sum of the open valves' yields, the pure charge
         P_m = T_m - B_m; whether an exact relation between T_m and B_m forces P_m > 0, and
-        where the counting face of the wall reappears. OPEN, prover running on Fable
-        (research/proof/turn_ledger.md).
+        where the counting face of the wall reappears. ANSWERED NO, BY PROOF
+        (research/proof/turn_ledger.md, laws V1-V5; scripts research/valves/r1/). V1 the
+        ledger identities, 0 exceptions in 600 turns (10 ledgers x 60): P_m = T_m - sum over
+        the open valves I(m) minus (1, 1) of N_m(s, s') - B_m^ember with 0 <= B_m^ember <= 2 E_m
+        (E_m the embers in the turn); the family sum needs the ember term (nonzero in 47-60 of
+        60 turns); in turns 1 and 2 the burnt side is the ember charges alone. THE SHARPEST
+        STRUCTURAL STATEMENT THAT IS NOT THE CONJECTURE: everything the pure charge must beat
+        is named, placed and bounded by smooth numbers (the list I(m) of A(m) - 1 fuelled
+        valves, each on its imprint, none present before its air, plus at most 2 E_m ember
+        charges); whether it beats it is a prime count. V2, THE WALL AT THE LEDGER, PROVED:
+        every proved valve law (imprint, onset, port, inventory, ember) uses only "fuel is odd,
+        above Q, coprime to q#"; the counterfactual fuel set F = {n > Q : gcd(n, q#) = 1,
+        n = 1 mod 3} satisfies all of them with P_m = 0 and B_m = T_m > 0 in every turn (0
+        violations at (5, 10^3) and (7, 10^4)); so no inequality B_m <= c T_m with c < 1 can
+        follow from the valve laws, and the wall at the ledger is face A and nothing else; the
+        alternating expression P_m = sum mu(d_1) mu(d_2) M_m(d_1, d_2) telescopes to an identity
+        and using it is a dimension-2 sieve on the charges (face A in three lines). Candidate
+        inequalities: C1 (P_m > 0) 0 exceptions, ROOT; C2 (the ember bound) structural; C3
+        (B_1 <= P_1, B_2 <= P_2) fails at (7, 10^3) turn 2 (22 > 21) and for small Q; C4
+        (monotone B/T) fails everywhere; C5 fails in 9 of 10; C6 fails 10 of 10; C7 (the pure
+        charge is the largest family) holds at Q >= 10^4 (420 turns), fails at 10^3. THE FIRST
+        TWO TURNS, every Q <= 10^5, q = 5, 7, 11, 13: P_1 = 0 iff Q in {1, 5}; P_2 = 0 iff Q in
+        {3, 9}; min P_1 on [10^3, 10^5] = 25 at Q = 1031 (twin gap 120 from 1487); min P_2 = 17
+        at Q = 1071 (gap 168 from 2381); embers outnumber twins in turn 1 last at Q = 74, 400,
+        726, 1355 and in turn 2 last at 555, 1150, 2963, 6562 for q = 5, 7, 11, 13. THE VALVE
+        COUNT A(m) exact to 60 (q = 5: 1, 1, 3, 5, 9, 11, 11, 15, 19, 23, ... 125; q = 7 to 233;
+        q = 11 to 327), recursion A(m) = A(m - 1) + 2 #{s' < m smooth admissible with m} at
+        smooth m; no valve ever early (0 extra in 600 turns); all present from onset to
+        m = 19 / 19 / 15 at Q = 10^4, 49 at (5, 10^5), then sparse valves miss turns. THE BURNT
+        FRACTION B/T = 0.021, 0.088, 0.622, 0.762, 0.819, 0.850, 0.885, 0.903 at m = 1, 2, 3, 5,
+        9, 15, 30, 60 for (5, 10^4), rising only at smooth m; law T_m/P_m = sum over I(m) of
+        w L_m with w = 2^[s even]/(s s') prod over odd p | s s' of (p - 1)/(p - 2), within 2.2%
+        over turns 30-60 at every Q >= 10^4; B/T does NOT tend to 1 in m: the pure share tends
+        to (1/2) prod_{3 <= p <= q} (1 - 2/p), the engine's own pair-opening density (0.100,
+        0.071, 0.058), and tends to 1 in q like 1 - c/(log q)^2. Refuted own predictions
+        recorded (the 2-adic factor of the even families; "every valve present at every turn
+        from onset"; B_2 <= P_2 for q >= 7). THE SHADOW: the property of the fuel that the
+        proved laws do not use and the counterfactual lacks is the fuel's own distribution
+        across the engine-open classes at distance 2 (F sits in one class mod 3 and has no
+        pairs at distance 2 inside it); a set hitting every class need not contain such pairs
+        (the parity barrier's example), so the object is the primes' pair correlation itself.
       First step when opened, owner's hybrid: a scratch lane with clean context (the three
       objects' definitions, the glossary, the ledger's proved laws; no clutch facts, no wall)
       defining interface objects on the wheels' coordinate and the motor's; a review lane
@@ -2351,3 +2390,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, prover LP1 on Fable (pad_cap.md): the padded word capped uniformly over the small alphabet (E1, proved, <= 8, 0 exceptions on 14 rungs; every measured padded word is in that class); the skip half is ROOT (a constant cap is equivalent to F(M + q') <= C q'); the mechanism is the pullback machine's cover of the multipliers, gear 7 the capper. The engine's last structural item is resolved: measured half proved, remaining half the conjecture in disguise. THE GATE OPENS: engine, manifold and exhaust have no open structural item that is not ROOT. Next per the owner's plan: the valves' hybrid first step (scratch lane with clean context on Fable; review lane; reconcile).
 - 2026-09-07, valves review lane (valves_review.md, 852 lines): ten interface objects sorted with status (I1 the conjugacy as the fold on n = 5 mod 6; I2 the anchoring valves 2, 3, 5, 7 and the corridor mod 35 = the opening set of {5, 7}; I3 the family decomposition and the pure charge; I4 the echo set and home strikes, outer boundary p_1^2; I5 the twisted copies = back pressure in the cofactor coordinate; I6 theorem (E) and its exception set, the inner boundary; I7 the placement residue law = valve timing, dimension 1 vs 2 the parity barrier; I8 the island witness and K(d), which does not translate into families; I9 the four cells and the level of distribution, translated into zones; I10 the zero-interaction region, a property of every split). Eighteen inherited assumptions found, chiefly: the column coordinate is not a definition but the first valve (gears 2 and 3 fold); the manifold's metric laws (dominoes, chains, gap 4, parity record) never reach the valves' domain; every tier strikes its own twins as home strikes so the valves never see a smooth-zone twin. Five predictions on record for the reconcile (families occupy exactly the classes of P mod 30 solving s'P' - sP = 2, spot-checked; every family's count independent of q; the valves' record is a twin gap; timing = one forbidden class per engine gear per sign; RED FLAG: any manifold metric law surviving into the valves' open set).
 - 2026-09-07, valves scratch lane on Fable, clean context (valves_scratch.md), and the reconcile (valves_reconcile.md): the valves have a mechanism. Each family is a valve with an imprint (proved, both lanes), a port (class mod 6 fixed by its air, proved), an onset (it opens at the turn equal to its air, proved as a bound, exact as measured), a yield (a local density, measured; Bateman-Horn). The pure charge is the valve with no air: no onset, in every turn, the same count for every engine. Turns 1 and 2 carry no fuelled valve but (1, 1), the rest are embers. The review's four predictions were rediscovered from the definitions; the red flag held. Next: the turn ledger.
+- 2026-09-07, prover VT1 on Fable (turn_ledger.md): the turn ledger is exact (V1, 0 exceptions in 600 turns) and the wall reappears at it BY PROOF (V2): a counterfactual fuel set obeying every proved valve law has zero pure charge in every turn, so imprint, onset, port, inventory and ember cannot force P_m > 0; the wall at the ledger is face A and nothing else. Measured: the first two turns never empty for Q > 9 to 10^5 (min P_1 = 25 at Q = 1031); the valve count A(m) exact with its recursion; the pure share tends to the engine's own pair density in m, not to 0. Shadow: the fuel's pair correlation across the engine-open classes, i.e. the primes' own twin structure.
