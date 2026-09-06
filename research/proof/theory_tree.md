@@ -814,9 +814,51 @@ the log at the bottom is chronology only.
       3 (m even) or 1 (m odd), nesting ratio exactly 1 - 2/q'; sharp form: F_top(G minus g) is
       the same whichever gear leaves (9 of 9 in the large-gear regime, failing exactly outside
       it). OPEN: L22 in the kernel (exists_crt now available, R4.b.i); the vanishing of M_k(d)
-      for k < r(d) (verified to d = 16, unproved); L31 as a formula. R4.b.iii the walk and the transforms of the top machine (owner: closed
-      forms and proofs for locating the next opening): OPEN, prover running
-      (research/proof/top_machine_3.md).
+      for k < r(d) (verified to d = 16, unproved); L31 as a formula. See R4.b.iii.
+    - R4.b.iii. The walk and the transforms of the top machine (owner: closed forms and proofs
+      for locating the next opening; research/proof/top_machine_3.md, laws numbered L30-L45
+      there, a numbering clash with R4.b.ii's L30-L38: cite by document). STRONG, CLOSED FORM
+      FOUND. THE NEXT OPEN PAIR (L30 there): L(x) = mex{ (-x) mod g, (-x - 2) mod g : g in G },
+      the next open pair after x is x + L(x); hypothesis every gear > 2m; proved (two case
+      splits); 0 mismatches over 1,448,287 positions in 9 wheels; SHARP: {7, 11, 13, 17} fails
+      at 36 positions (7 < 8). O(m) operations, no scan, no period. THE NEXT TWIN CANDIDATE
+      (single-number view, runs of three; L34/L35): R(x) = mex{ (-x), (-x - 1), (-x - 2) mod
+      g }, hypothesis every gear > 3m; the record of the triple machine is exactly 3m when every
+      gear >= 3m + 3 (proved; 7 wheels, m = 3, 4, 5 give 9, 12, 15, 0 exceptions). Why 3m and
+      not 2m - (m mod 2): the pair piece {x, x + 2} is a gapped domino confined to one parity
+      class and cannot tile; the triple piece {x, x + 1, x + 2} is solid and tiles exactly; the
+      parity defect belongs to the separation, not the tooth count. The location bound
+      re-proved from the mex (odd gears > 2m + 1 give L(x) <= 2m - (m mod 2), the listed
+      numbers fall into <= m same-parity pairs). IN USE (L32/L33): the same form with each
+      residue replaced by its arithmetic progression is exact on 24,000 walks (0 mismatches;
+      160-443 gears; N to 10^7), typical walk median 2-10, 99th percentile 19-66, against
+      records 71-3,006; the proved covering bound L <= 2m/(1 - 2 H_S) is non-vacuous only while
+      sum_{q < g <= L} 1/g < 1/2 (true at q = 17, 19 for N = 10^6: bounds 4,289 and 753;
+      vacuous at 10^7): pre-registration partly REFUTED here; the in-use bound is the open
+      item. THE LAYERED WALK COLLAPSES (L38): if g > F_G + 3 the hop chain is at most 2, and a
+      double hop occurs iff the landing is on tooth -2 and the lower gap is exactly 2, a
+      one-line non-recursive layer (12 layers, 391,048 positions, 0 exceptions; smallest gear
+      first is the right order, adding 7 last gives chains of 3); the nested form exact on
+      23,432 walks at fewer than one hop per walk. DISTRIBUTION (L36/L37): with C(j) the
+      all-struck window count, #{L = j} = C(j) - C(j + 1), N_d = C(d - 1) - 2 C(d) + C(d + 1),
+      F_top = max{j : C(j) > 0}, mean walk = (1/W) sum C(j), the exact dual of L11; C(j) is an
+      alternating sum of shifted wheel products with path-convolution coefficients and provably
+      NOT a product. SPECTRAL (L40/L41): per-gear factor -(1 + omega^{2a})/g, which in the
+      shield coordinate n + 1 is the real -(2/g) cos(2 pi a/g): the top machine is the u = 1
+      machine, the bottom's fold replaced by one translation; the transform is nonzero at all
+      32,077 frequencies and so are the run indicators (their kernel zeros unreachable since
+      L + 2 < q'); the spectrum decides product questions (run ceiling q' - 3) and CANNOT decide
+      F_top. BITWISE (L42/L43): striker-parity bias exactly prod(g - 4), the domino-count
+      polynomial; {XOR = 1} is a subset of {blocked}, so XOR bounds the record from BELOW, and
+      the bound is tight in all 10 wheels at both parities because a record block covered
+      exactly once always exists (odd-m waste is an edge singleton, not a double cover):
+      pre-registration refuted for odd m into a stronger law. CHARACTERS (L44/L45): the
+      pair-correlation B(d) = prod c_g(d), c_g = g - 2, g - 3, g - 4 for d = 0, +-2, else (400
+      values, 0 mismatches); never vanishes, so holes exist only in the consecutive census: {4}
+      in the pair view, {2, 3} in the triple view (both proved). KERNEL NEXT, cheapest first:
+      the mex closed forms L30 and L34 (no CRT needed), the triple-hole proof, B(d) via
+      card_filter_crt, the triple record's upper bound (shape of parity_upper), the
+      distribution identities, the XOR lower bound.
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -1754,3 +1796,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, Formalist (top_machine_lean.md): the top machine's laws L1-L8, L10, L12, L13, L17 (upper bound), L19 kernel-checked in two new libraries, 59 declarations, zero sorries, standard axioms; L8's exact group and L17's attainment will not close this round. Manager gate green.
 - 2026-09-06, Formalist round 33 (top_machine_lean.md, proofs/TopMachineCrt.lean): the two holes closed. exists_crt (Finset CRT), parity_attained and parity_law (F_top = 2m - (m mod 2) as an equality), affine_group / exists_symmetry / sign_count (the symmetry group is exactly (Z/2)^m). Build green at 1392 jobs, standard axioms, zero sorries. Of the 21 laws, the statements about gear sets are now kernel-checked except L16 (tiling characterisation, written proof), L18 (multiplicity, measured) and the counting laws by CRT.
 - 2026-09-06, prover TM2 (top_machine_2.md): the wheels' second pass. The gap census law L22 (exact inclusion-exclusion product, 0 mismatches to the full period), W1 closed (gaps 3 and 5 share a polynomial; 7 is the unique separating gear), L18 derived from the census (L25), the forbidden gap 4 explained as the one place closed and free boundary covers differ (L26), the origin as the unique total collision with the clump its shadow (L29), the record of small wheels decided by whether 7 is a gear (L30, exhaustive), F_top depends on m and the gears below F_top + 1 only (L31), W2 replaced (the wheel record is reached, at a computable fraction of the period, L32), no top anchor exists and why (L34-L36), the removal law (L37/L38). Next: the walk lane (R4.b.iii), then L22 into the kernel.
+- 2026-09-06, prover TM3 (top_machine_3.md): the owner's deliverable found. The next open pair after x is x + mex{(-x) mod g, (-x-2) mod g} when every gear exceeds 2m (proved, sharp, 0 mismatches in 1.45 million positions); the next twin candidate (run of three) is x + mex over three residues when every gear exceeds 3m, with record exactly 3m; the layered walk collapses to hop chains of length at most 2; the walk distribution is the dual of the run spectrum; the spectrum cannot decide the record; XOR bounds the record from below, tight. In use the mex form is exact but its proved bound is vacuous past 10^6: the in-use bound is the open item. Next: Formalist on the mex laws.
