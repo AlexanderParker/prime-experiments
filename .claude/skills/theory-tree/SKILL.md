@@ -23,6 +23,10 @@ skill. Read it first. It should state:
   the rule that new objects get names that cannot be confused with the main objects;
 - the evidence standards (what counts as exact, measured, proved; which tools certify);
 - compute and memory limits per lane and in total, and how many lanes run at once;
+- which model each kind of lane runs on, decided by the nature of the task: lanes whose
+  output is judgement (formalisation, prior-art verdicts, the clean-context construction of an
+  interaction) on the strongest model; lanes whose output is a bounded scan or census, gated by
+  the manager's re-run, on the cheaper one;
 - standing directions from the project owner;
 - the index of prior results to check before opening any branch;
 - the law register: one project-wide numbering of laws, so two documents never both issue
