@@ -1208,7 +1208,12 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
       family with s > 1; the family (1, 1), the only one with no byproduct, is what stays (the
       twin primes); the manifold's outlet is p_1^2, the exhaust's first non-redundant strike.
       Caution kept: the engine makes the byproducts and also does the venting (the motor
-      acting inside the wheels' open set), not a separate mechanism.
+      acting inside the wheels' open set), not a separate mechanism. Engine terms adopted
+      (glossary): combustion = a strike; fuel = the wheel prime P, air = the smooth cofactor
+      s, charge = s P, burning when the motor strikes the air; family (1, 1) = the pure charge
+      that never burns; back pressure = non-echo exhaust strikes (zero in the window, first at
+      p_1^2); valve timing = the placement residue law; knocking = an unexplained symptom, the
+      standing knock being the gluability anomaly (real teeth glue 2.4x the family).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max

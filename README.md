@@ -402,9 +402,14 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   open set. Back pressure: exhaust strikes that are not echoes; exactly zero inside the window,
   first at p_1^2, then a growing share of the open pairs above it. Valve timing: the phase
   relation between the motor's open residues and the wheels' families (the clutch's placement
-  residue law). Proposed, not yet adopted: fuel = the wheel prime P and air = the smooth cofactor
-  s in the quiet zone's s x P, with family (1, 1) the pure charge that never burns; knocking = a
-  symptom with no settled timing cause (candidate: the gluability anomaly).
+  residue law).
+- **Fuel, air, charge, knocking.** In the quiet zone every wheels-open number is s x P, a smooth
+  cofactor times a wheel prime. Fuel is the wheel prime P; air is the smooth cofactor s; their
+  mixture s x P is the charge, and a charge burns when the motor strikes its air (any family with
+  s > 1). Family (1, 1) is the pure charge, fuel with no air, the only one that never burns: the
+  twin primes. Knocking is a symptom with no settled timing cause; the standing knock is the
+  gluability anomaly (the real teeth glue about 2.4 times more than the counterfactual family in
+  exactly that one measure, unexplained), and a knock is retired when its cause is a law.
 - **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the motor, tier 2 the
   wheels, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period (cut_0 = q,
   cut_1 = q#, cut_2 = the wheels' period). Not "rung", which is one step q -> q' of the ladder.
