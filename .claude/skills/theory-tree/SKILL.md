@@ -20,7 +20,9 @@ skill. Read it first. It should state:
 - the tree file's location and the folder for branch documents and scripts;
 - the root question, in the project's own words, and the form an answer must take;
 - the fixed vocabulary (terms that have caused confusion before, with their one meaning), and
-  the rule that new objects get names that cannot be confused with the main objects;
+  the rule that new objects get names that cannot be confused with the main objects; an
+  analogy's term is kept only while it names exactly one object, and is retired the moment a
+  finding has to be bent to fit it;
 - the evidence standards (what counts as exact, measured, proved; which tools certify);
 - compute and memory limits per lane and in total, and how many lanes run at once;
 - which model each kind of lane runs on, decided by the nature of the task: lanes whose
