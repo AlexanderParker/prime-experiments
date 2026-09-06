@@ -666,9 +666,37 @@ the log at the bottom is chronology only.
     factor); bottom closed and top open; both closed = mixed composites. The clutch's own
     patterns (joint runs, correlations, what the shared origin at column 0 forces) are where the
     owner expects the solution space to live.
-    - R4.a. Build the second machine exactly at q = 13..23; verify the twisted-copy identity;
-      measure the survivor curve against the sieve's lower-bound function; locate where joint
-      moments stop being exact. OPEN, prover running.
+    - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
+      period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
+      route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
+      |strikes - 2N/g| = 1.7, 5.4, 7.8, 14.3, 25.2 at q = 11..23 against the 3^m bound (0
+      exceptions in 2,338 cells; pairs 0 exceptions in 19,956 with gh < P; the true error grows
+      like 2^m). Twisted copies exact (4,676 copies, 17 million cofactors, 0 mismatches): the
+      top machine's action is a union of coherent copies of the bottom at separation 2/g. THE
+      CLUTCH'S FOUR CELLS at q = 23: both open 895,791; bottom-open/top-closed 7,056,384;
+      bottom-closed/top-open 4,150,311; both closed 25,079,659; all the coupling is in the
+      both-open cell (0.83-1.02 of independence), the other three within 5% of independence.
+      THE WINDOW IS THE CLUTCH'S ZERO-INTERACTION REGION: the first proper kill of a
+      bottom-open column lies above the window top at every q (2.4e-6 of the period at
+      q = 23), the only region where one machine decides alone. Twins = both-open plus
+      home-only exactly (0 mismatches in 38.9 million columns); the home-only cell IS the
+      doubly occupied placements. PLACEMENT RESIDUE LAW (new, exact, 25 machine-gear pairs):
+      home columns meet each non-tooth class of a bottom gear exactly twice and each of its
+      two tooth classes once, so placement density is exactly prod(1 - 1/(h - 1)): placement
+      is dimension 1, double occupancy dimension 2, and that step is the parity barrier,
+      named. ORIGIN LAW: both machines are mirror-symmetric about column 0 (0 mismatches);
+      from q = 19 the longest both-open stretch of the whole period starts at column 0 (520,
+      2,523 columns) and ends at the first twin above the range. The twin-free record is a
+      joint object (1.9-3.7 times the sum of the two machines' own closed records), made by the
+      top machine covering the bottom's ordinary leftovers (bottom closed at 1.005 of its
+      average inside those stretches). Survivor curve: 1.000 at s >= 4.27, minimum 0.86 at
+      s = 2.1, 0.79305 (1 + c / ln Z) at s = 2. EXACTNESS BUYS NOTHING: the order-2 Brun error
+      equals the order-3 term at 100% .. 78%, identical to the generic Bonferroni number; face
+      A is not "the error terms are too big" but "the main terms alternate and do not converge
+      at s = 2", visible with every other obstruction removed. Switching gives an identity
+      (E = 2D + Q exact at all five q), no Chen-type asymmetry. The placement question is
+      proved equivalent to the twin prime conjecture and is weaker than the window statement.
+
 
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
@@ -1371,3 +1399,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover AG (availability_gate.md): the gate ladder proved, the gate is one row of the level-2 dictionary with the closed form a_hasM <= F_2 - a_L, useful only when F_2 - F < a_L (fails 17->19, 29->31: the same obstruction as the F_2 cap); the band [15, 35] at m31 holds the record maximiser and does not shrink. Residual: the short-letter row of the adjacent-pair dictionary is empty above c F.
 - 2026-09-06, prover BI (branching_identity.md): the branching identity proved in general; C_r = W_{r-1} + Z_{r-1} (legal words plus all-pad) proved; second moment in closed form (the teeth live in the variance); the size side proved with eps in {0,1,2}; closure at depth K_m <= m J_max proved (finite depth, not finite state). The count side of the spectrum's evolution is now closed-form; the size side's extremes are the chain statement.
 - 2026-09-06, owner: 'not a route is a bold claim'. Node 4.i.b corrected to route-shaped; opened the ladder instrument (4.i.b.i) and named the functional search (4.i.b.ii).
+- 2026-09-06, prover R4 (period_scale.md): the two machines built exactly to q = 23; level 1 exact; the clutch's coupling is entirely in the both-open cell; the window is the clutch's zero-interaction region; placement residue law (dimension 1 vs 2 = the parity barrier named); exactness buys nothing (Brun's main terms alternate at s = 2). Parked under R4 per the owner.

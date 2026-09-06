@@ -377,7 +377,13 @@ square root of the range is s = 2 in dimension 2, below the limit 4.27, and no s
 window was ever what stopped it. The new object: the second machine (gears above q) acts on the
 first machine's openings as a union of coherent twisted copies of the first machine, one per
 later gear g, with separation 2 g^-1 at every gear. Whether that union carries bilinear (Type
-II) structure the sieve cannot see is the only question the window could not ask.
+II) structure the sieve cannot see is the only question the window could not ask. MEASURED
+(period_scale.md, q <= 23): it does not, at these sizes. With every other obstruction removed, face
+A shows its true form: the Brun main terms alternate and do not converge at s = 2 (the order-2
+error equals the order-3 term); the exact pair terms give the same number as the generic
+Bonferroni bound; switching is an identity. And the placement residue law names the barrier in
+the machine's own terms: a top gear's placement on the track is a dimension-1 event, a double
+placement (a twin) is dimension 2.
 
 ## 6. What the wall says is NOT worth another branch
 
