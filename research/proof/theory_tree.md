@@ -702,6 +702,35 @@ the log at the bottom is chronology only.
         laminar family of column intervals (the exact m31 forest in 33 s). CHILD NAMED: why
         Rest(a) collapses as a -> F(M): 5b's repulsion at the top of the spectrum with the
         chain law attached.
+        - 4.i.b. The branching identity, proved and pushed (research/proof/
+          branching_identity.md; the owner flagged the identity). PROVED in general: n_J =
+          C_{J-1} - 2 C_J + C_{J+1} with C_0 = q' N, by a two-line run-length inversion with
+          the cyclic boundary handled exactly (proviso: some gap is not 0 or +-d mod q', strict
+          at all 8 rungs). NEW AND PROVED: C_r = W_{r-1} + Z_{r-1}, the old machine's legal-word
+          count plus its all-pad count, at every depth (the factor 2 in C_1 = 2N and
+          C_2 = 2 A_0 + A_d is the all-pad term); C_r = 0 for r > L + 1; max order = L + 2 =
+          J_max (joining the forest to docs/proofs/10); tail form sum_{J' >= J} n_{J'} = C_{J-1}
+          - C_J, so the merge fraction is an identity with exact deficit C_2 / ((q' - 2) N).
+          Verified 8 of 8 rungs by three routes; m31's order distribution of 6.23 billion gaps
+          is C_1..C_5 = 429,417,450 / 8,025,014 / 13,000 / 4 / 0. SECOND MOMENT, closed form,
+          proved: Var = 2[(q' - 4) + S (q' - 2)] / (q' - 2)^2 with S = sum_{r >= 2} C_r / N;
+          exact at 8 rungs and 42 of 42 family member-rungs; the teeth live in the variance and
+          nowhere lower (real machine at percentile 0.19 of the family, identical to its n_3
+          percentile since the variance is affine in S). SIZE SIDE, proved: m_{M+q'}(v) = sum_J
+          sum over J-windows of span v of eps_J, eps_J in {0, 1, 2} (q' - 4, q' - 3, q' - 2 at
+          J = 1) a function of the window's letters alone; reproduces every multiplicity at 7
+          rungs and every m31 gate; least depth = J_max, sharp (3, 2, 3, 3, 3, 4, 3, 5), with
+          truncation error C_K - C_{K+1} in closed form. CLOSURE, proved: the depth-m dictionary
+          of M + q' with multiplicity is determined by the depth-K_m window dictionary of M,
+          K_m <= m J_max, and K_m tracks J_max, not the rung (K_2 = 4, 4, 4, 4, 6, 5): not an
+          open hierarchy, bounded iff L is bounded (the known open rider). NOT A ROUTE, as
+          pre-registered: finite depth but not finite state (dictionary sizes 41, 730, 7,184,
+          45,854, 208,668, 720,527 at m29 by depth); F(M + q') = max_J Q*_J(M) (at 29 -> 31: 43,
+          55, 58, 55, 55 against budget 74) and nothing bounds a dictionary's extremes by its
+          predecessor's; the residual is the chain statement, unchanged. Prior art handled in a
+          line each (paired-Holt recursion reproduced; renewal ladder cited; dictionary-
+          monotonicity-onset distinguished: it uses the set, this uses the multiset of realised
+          windows and is exact).
         - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
           FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
           F_old = 0 or +-d (mod q'), else n1(F_old), the old record's largest single neighbour;
@@ -1330,3 +1359,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover FR (frontier_collapse.md): the top law (Rest(F_old) = the old record's largest single neighbour, or its neighbour sum when F_old is a letter) and the fusion-rate identity proved; the frontier splits into the pair half (J = 2) and the chain half; the uncovered band at m31 is [15, 25] and holds the record maximiser; the availability gate named as the child.
 - 2026-09-06, owner: the period-scale formulation (R4). Manager's reading: level of distribution 1 at the period scale removes faces B, D, E; face A stands alone; the second machine decomposes into coherent twisted copies of the first. Opened R4.a.
 - 2026-09-06, prover AG (availability_gate.md): the gate ladder proved, the gate is one row of the level-2 dictionary with the closed form a_hasM <= F_2 - a_L, useful only when F_2 - F < a_L (fails 17->19, 29->31: the same obstruction as the F_2 cap); the band [15, 35] at m31 holds the record maximiser and does not shrink. Residual: the short-letter row of the adjacent-pair dictionary is empty above c F.
+- 2026-09-06, prover BI (branching_identity.md): the branching identity proved in general; C_r = W_{r-1} + Z_{r-1} (legal words plus all-pad) proved; second moment in closed form (the teeth live in the variance); the size side proved with eps in {0,1,2}; closure at depth K_m <= m J_max proved (finite depth, not finite state). The count side of the spectrum's evolution is now closed-form; the size side's extremes are the chain statement.
