@@ -673,3 +673,216 @@ strengthening of `Res`), L33 (the counting bound, which needs the harmonic sum
 form, the hop law and the nested form), L40-L43 (everything spectral and
 bitwise - they need roots of unity and a DFT, which nothing in these four
 files has), and the L22 gap census of `top_machine_2.md`.
+
+---
+
+# Round 35: the stack of machines, and the exhaust
+
+New file: `proofs/MachineStack.lean` (imports `TopMachineWalk` and
+`Mathlib.NumberTheory.Bertrand`), registered as a `lean_lib` in
+`proofs/lakefile.toml`, in `defaultTargets`, and audited from
+`proofs/AxiomCheck.lean`.  Branch: `research/proof/theory_tree.md` node R4.b.viii
+(the owner's stack) and `research/proof/top_machine_4.md` L46 (the zone law).
+Proof document: `docs/proofs/23-stack-and-exhaust.md`.  **48 new declarations,
+zero sorries, no `native_decide`, no `decide`, no `Lean.ofReduceBool`.**
+
+## The object: tiers and cuts
+
+```lean
+def gearsIoc (a b : ℕ) : Finset ℕ := (Finset.Ioc a b).filter Nat.Prime
+def primesLE (C : ℕ) : Finset ℕ := gearsIoc 1 C
+
+def cut (q : ℕ) : ℕ → ℕ
+  | 0 => q
+  | 1 => ∏ g ∈ gearsIoc 1 q, g
+  | (k + 2) => ∏ g ∈ gearsIoc (cut q k) (cut q (k + 1)), g
+
+def tier (q : ℕ) : ℕ → Finset ℕ
+  | 0 => ∅
+  | 1 => gearsIoc 1 q
+  | (k + 2) => gearsIoc (cut q k) (cut q (k + 1))
+
+def stack (q k : ℕ) : Finset ℕ := (Finset.range (k+1)).biUnion (fun j => tier q (j+1))
+def Spans (g : ℕ) (M : Finset ℕ) : Prop := (∏ h ∈ M, h) ≤ g
+def Smooth (q n : ℕ) : Prop := ∀ p : ℕ, p.Prime → p ∣ n → p ≤ q
+def CutMono (q k : ℕ) : Prop := ∀ j < k, cut q j ≤ cut q (j + 1)
+```
+
+The owner's vocabulary: tier 1 is the motor, tier 2 the wheels, `cut q k` is tier
+`k`'s period and the lower edge of tier `k + 2` (`tier_prod`: the product over
+`tier q (k+1)` is `cut q (k+1)`, `rfl` after a case split).  The strike and open
+predicates are round 32/34's (`Strikes`, `IsOpen`, `StrikesN`, `OpenNum`), reused
+unchanged; `isOpen_iff_openNum` is the bridge (a pair is open iff both members
+are).
+
+## Stride containment, and where it stops
+
+```lean
+theorem card_dvd_window_le_one {g P : ℕ} (hgP : P < g) (x : ℤ) :
+    (((Finset.range P).filter (fun (j : ℕ) => (g : ℤ) ∣ x + (j : ℤ)))).card ≤ 1
+theorem card_strikes_window_le_two {g P : ℕ} (hgP : P < g) (x : ℤ) :
+    (((Finset.range P).filter (fun (j : ℕ) => Strikes g (x + (j : ℤ))))).card ≤ 2
+theorem spans_two_below {q k g : ℕ} (hg : g ∈ tier q (k + 3)) : Spans g (tier q (k + 1))
+theorem stride_containment {q k g : ℕ} (hg : g ∈ tier q (k + 3)) (x : ℤ) :
+    (((Finset.range (∏ h ∈ tier q (k + 1), h)).filter
+      (fun (j : ℕ) => Strikes g (x + (j : ℤ)))).card) ≤ 2
+theorem tier_pattern_repeats (q k : ℕ) (n : ℤ) :
+    IsOpen (tier q (k+1)) (n + ((∏ h ∈ tier q (k+1), h : ℕ) : ℤ)) ↔ IsOpen (tier q (k+1)) n
+```
+
+Two teeth, so two positions: `card_strikes_window_le_two` is the union of the two
+one-multiple counts at `x` and at `x + 2`.  `tier_pattern_repeats` is the other
+half of containment - the spanned tier's whole pattern comes round inside one
+stride (`isOpen_add_period`, a shift by any common multiple of the gears).
+
+The non-containment side, which is where the construction rule shows its teeth:
+
+```lean
+theorem lt_prod_of_two_le {G : Finset ℕ} (h2 : ∀ g ∈ G, 2 ≤ g) (hcard : 2 ≤ G.card)
+    {g : ℕ} (hg : g ∈ G) : g < ∏ h ∈ G, h
+theorem not_spans_self {q k g : ℕ} (hcard : 2 ≤ (tier q (k+1)).card)
+    (hg : g ∈ tier q (k+1)) : ¬ Spans g (tier q (k+1))
+theorem gear_le_period_below {q k g : ℕ} (hg : g ∈ tier q (k+2)) : g ≤ ∏ h ∈ tier q (k+1), h
+theorem not_spans_below {q k g : ℕ} (hcard : 2 ≤ (tier q (k+1)).card)
+    (hg : g ∈ tier q (k+2)) : ¬ Spans g (tier q (k+1))
+```
+
+Spanning is a threshold, not a matter of degree: it starts exactly two tiers down.
+One tier down it fails for every tier with two or more gears, and the only escape
+is the degenerate single-gear tier (its "silent top"), where the gear IS the
+period.
+
+## The exhaust cap
+
+```lean
+theorem exhaust_home_or_echo {C n p : ℕ} (h1 : C < n) (h2 : n ≤ C ^ 2)
+    (hpC : C < p) (hpn : p ∣ n) : n = p ∨ ∃ r ∈ primesLE C, r ∣ n
+theorem openNum_iff_prime {C n : ℕ} (hC : 2 ≤ C) (h1 : C < n) (h2 : n ≤ C ^ 2) :
+    OpenNum (primesLE C) (n : ℤ) ↔ n.Prime
+theorem open_iff_twin {C n : ℕ} (hC : 2 ≤ C) (h1 : C < n) (h2 : n + 2 ≤ C ^ 2) :
+    IsOpen (primesLE C) (n : ℤ) ↔ (n.Prime ∧ (n + 2).Prime)
+```
+
+**Primality of the exhaust gear is never used** - the kernel shows the cap is a
+statement about ANY divisor above the cut: `n = p m` with `m >= 2` forces
+`m (C+1) <= C C`, hence `m < C`, hence a prime factor of `n` at or below the cut.
+That is one hypothesis weaker than the branch's wording.
+
+Stack form:
+
+```lean
+theorem stack_eq_primesLE (q : ℕ) : ∀ k, CutMono q k → stack q k = primesLE (cut q k)
+theorem exhaust_gear_gt_cut {q k j g : ℕ} (hmono : CutMono q j) (hjk : k ≤ j)
+    (hg : g ∈ tier q (j + 2)) : cut q k < g
+theorem exhaust_silent {q k j n g : ℕ} (hmono : CutMono q j) (hjk : k ≤ j)
+    (hmk : CutMono q k) (hg : g ∈ tier q (j + 2)) (hgn : g ∣ n)
+    (h1 : cut q k < n) (h2 : n ≤ (cut q k) ^ 2) :
+    n = g ∨ ∃ r ∈ stack q k, r ∣ n
+theorem stack_open_iff_twin {q k n : ℕ} (hmono : CutMono q k) (hC : 2 ≤ cut q k)
+    (h1 : cut q k < n) (h2 : n + 2 ≤ (cut q k) ^ 2) :
+    IsOpen (stack q k) (n : ℤ) ↔ (n.Prime ∧ (n + 2).Prime)
+```
+
+## The hypothesis that is NOT derived, and why it cannot be here
+
+`CutMono` (the cuts are nondecreasing) is a prime-density statement about
+`(cut q j, cut q (j+1)]`, not stack arithmetic, and it is **false at the bottom
+for `q = 2, 3`**: the cuts at `q = 3` are `3, 6, 5, 1, ...`, so tier 3 is the
+single gear `{5}` and tier 4 is EMPTY; at `q = 5` they are `5, 30, 215656441, ...`
+and climb.  So it is carried explicitly.  The FIRST step is unconditional, by
+Bertrand:
+
+```lean
+theorem le_prod_primesLE (n : ℕ) : n ≤ ∏ p ∈ primesLE n, p
+theorem cut_zero_le_one (q : ℕ) : cut q 0 ≤ cut q 1
+theorem cutMono_one (q : ℕ) : CutMono q 1
+theorem stack_one (q : ℕ) : stack q 1 = primesLE (cut q 1)
+theorem wheels_open_iff_twin {q n : ℕ} (hq : 2 ≤ q) (h1 : cut q 1 < n)
+    (h2 : n + 2 ≤ (cut q 1) ^ 2) :
+    IsOpen (stack q 1) (n : ℤ) ↔ (n.Prime ∧ (n + 2).Prime)
+```
+
+`le_prod_primesLE` (`n <= n#`) is a strong induction: `n = p m` with `p` least;
+`m = 1` gives `n` prime and a factor of `n#`; otherwise `p <= m`, Bertrand supplies
+a prime in `(m, 2m]`, contained in `(m, n]` and uncounted in `m#`, and
+`n# >= p' m# > m m >= p m = n`.  `wheels_open_iff_twin` is the two-machine window
+statement with **no hypothesis beyond `q >= 2`**: motor plus wheels leave a pair
+open on `(q#, (q#)^2]` iff it is a twin prime.
+
+## The zone laws of the wheels (top_machine_4.md L46)
+
+```lean
+theorem smooth_zone_num {q Q n : ℕ} (hn : 0 < n) (hnQ : n ≤ Q) :
+    OpenNum (gearsIoc q Q) (n : ℤ) ↔ Smooth q n
+theorem smooth_zone {q Q n : ℕ} (hn : 0 < n) (hnQ : n + 2 ≤ Q) :
+    IsOpen (gearsIoc q Q) (n : ℤ) ↔ (Smooth q n ∧ Smooth q (n + 2))
+theorem wheels_smooth_zone {q n : ℕ} (hn : 0 < n) (hnQ : n + 2 ≤ cut q 1) :
+    IsOpen (tier q 2) (n : ℤ) ↔ (Smooth q n ∧ Smooth q (n + 2))
+theorem quiet_zone {q Q n : ℕ} (hn : 0 < n) (hnQ : n ≤ Q ^ 2) :
+    OpenNum (gearsIoc q Q) (n : ℤ) ↔
+      ∃ s P : ℕ, n = s * P ∧ Smooth q s ∧ (P = 1 ∨ (P.Prime ∧ Q < P))
+```
+
+`smooth_zone` is L46 exactly (`n <= Q - 2` in the branch's form).  `quiet_zone` is
+the manager's reading of R4.b.vii, arithmetic half: on `(Q, Q^2]` open means
+`q`-smooth times at most one prime above `Q`, the "at most one" coming from
+`p r >= (Q+1)^2 > Q^2` for two prime factors above `Q`.  `wheels_smooth_zone` is
+the same law read on `tier q 2` (definitional: the wheels are
+`gearsIoc q (cut q 1)`).
+
+## Verification
+
+Bounded brute force (sympy, scratch script): the cuts at `q = 2, 3, 5, 7, 11`
+(degeneracy at 2 and 3 as stated); `n <= n#` for `n < 400`, 0 failures;
+open-iff-twin at `C = 30` over all `n` in `(30, 898]`, 0 failures; the exhaust cap
+at `C = 30` over all `n` in `(30, 900]` and every prime factor, 0 failures; the
+zone law and the quiet zone at `q = 5, Q = 30` over `n <= 900`, 0 failures; stride
+containment for gears 31, 37, 101, 1009 over 250 windows of length 30, 0 failures.
+
+## Build and audit
+
+```
+cd C:/dev/primes/proofs
+~/.elan/bin/lake.exe build TopMachine TopMachineWheel TopMachineCrt TopMachineWalk MachineStack
+```
+
+Result: **green**, 2244 jobs, no warnings, no errors; `MachineStack` 9.3 s cold
+(15.7 s wall for the five targets), ordinary elaboration - no kernel scan, no
+`decide` - peak memory a normal `lean.exe`, no babysitter.
+
+Axiom audit over **all 48 new declarations** (`lake env lean` on a local
+`#print axioms` file, and the same block appended to `proofs/AxiomCheck.lean`
+behind `import MachineStack`):
+
+- every declaration is `[propext, Classical.choice, Quot.sound]` or smaller;
+- `decStrikesInt` and `Smooth` depend on `[propext]` only; `Spans` and
+  `strikes_add_period` on `[propext, Quot.sound]`;
+- **no `sorryAx`, no `Lean.ofReduceBool`, no `Lean.trustCompiler`.**
+
+Choice is inherited from mathlib's `Finset` and `Nat.minFac` plumbing; nothing
+here uses it essentially.
+
+## What the ledger now says
+
+| statement | Lean name (namespace `TopMachine`) | status | hypothesis |
+|---|---|---|---|
+| stride containment, size | `spans_two_below` | proved | none (definitional) |
+| stride containment, count | `card_dvd_window_le_one`, `card_strikes_window_le_two`, `stride_containment` | proved | `P < g` |
+| the spanned pattern repeats | `isOpen_add_period`, `tier_pattern_repeats` | proved | gears divide the shift |
+| no self-span, no span one tier down | `lt_prod_of_two_le`, `not_spans_self`, `gear_le_period_below`, `not_spans_below` | proved | tier has 2 or more gears |
+| exhaust cap (home strike or echo) | `exhaust_home_or_echo` | proved | `C < n <= C^2`, `C < p`, `p` divides `n` |
+| open iff prime / iff twin | `openNum_iff_prime`, `open_iff_twin` | proved | `2 <= C < n`, `n (+2) <= C^2` |
+| a stack prefix is the primes below the cut | `stack_eq_primesLE` | proved | `CutMono q k` |
+| the exhaust is above the cut, and silent | `exhaust_gear_gt_cut`, `exhaust_silent` | proved | `CutMono` |
+| the stack's window statement | `stack_open_iff_twin` | proved | `CutMono q k`, `2 <= cut q k` |
+| `q <= q#`, and the motor+wheels case | `le_prod_primesLE`, `cutMono_one`, `stack_one`, `wheels_open_iff_twin` | proved | `2 <= q` for the last |
+| zone law L46 | `smooth_zone_num`, `smooth_zone`, `wheels_smooth_zone` | proved | `0 < n`, `n + 2 <= Q` |
+| quiet zone (R4.b.vii, arithmetic half) | `quiet_zone` | proved | `0 < n <= Q^2` |
+
+**Not attempted**, and named so the gap is an output: `CutMono` itself beyond the
+first step (it needs a lower bound on the product of the primes in
+`(cut q k, cut q (k+1)]`, i.e. an iterated-Bertrand or Chebyshev argument, and it
+is false at `q = 2, 3`); nonemptiness of a tier at height `k >= 2` (same input);
+anything about WHERE the openings are on the quiet zone - the file caps the search
+space and adds no bound on the in-use machine, which is the instrument still
+missing at every cut.

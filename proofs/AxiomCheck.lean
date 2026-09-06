@@ -5,6 +5,7 @@ import TopMachine
 import TopMachineWheel
 import TopMachineCrt
 import TopMachineWalk
+import MachineStack
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -740,3 +741,53 @@ open BlockedSlots
 #print axioms TopMachine.corrCoeff
 #print axioms TopMachine.card_both_residues_eval
 #print axioms TopMachine.pair_corr
+
+-- Round 35: the stack of machines and the exhaust (proofs/MachineStack.lean).
+#print axioms TopMachine.gearsIoc
+#print axioms TopMachine.mem_gearsIoc
+#print axioms TopMachine.primesLE
+#print axioms TopMachine.mem_primesLE
+#print axioms TopMachine.cut
+#print axioms TopMachine.tier
+#print axioms TopMachine.tier_prod
+#print axioms TopMachine.tier_gear_prime
+#print axioms TopMachine.tier_gear_two_le
+#print axioms TopMachine.gear_gt_cut
+#print axioms TopMachine.gear_le_cut
+#print axioms TopMachine.tier_prod_pos
+#print axioms TopMachine.Spans
+#print axioms TopMachine.decStrikesInt
+#print axioms TopMachine.card_dvd_window_le_one
+#print axioms TopMachine.card_strikes_window_le_two
+#print axioms TopMachine.strikes_add_period
+#print axioms TopMachine.isOpen_add_period
+#print axioms TopMachine.tier_pattern_repeats
+#print axioms TopMachine.spans_two_below
+#print axioms TopMachine.stride_containment
+#print axioms TopMachine.lt_prod_of_two_le
+#print axioms TopMachine.not_spans_self
+#print axioms TopMachine.gear_le_period_below
+#print axioms TopMachine.not_spans_below
+#print axioms TopMachine.strikesN_natCast
+#print axioms TopMachine.isOpen_iff_openNum
+#print axioms TopMachine.exhaust_home_or_echo
+#print axioms TopMachine.openNum_iff_prime
+#print axioms TopMachine.open_iff_twin
+#print axioms TopMachine.stack
+#print axioms TopMachine.CutMono
+#print axioms TopMachine.cut_mono_le
+#print axioms TopMachine.stack_eq_primesLE
+#print axioms TopMachine.exhaust_gear_gt_cut
+#print axioms TopMachine.exhaust_silent
+#print axioms TopMachine.stack_open_iff_twin
+#print axioms TopMachine.Smooth
+#print axioms TopMachine.smooth_zone_num
+#print axioms TopMachine.smooth_zone
+#print axioms TopMachine.wheels_smooth_zone
+#print axioms TopMachine.quiet_zone
+#print axioms TopMachine.le_prod_primesLE
+#print axioms TopMachine.cut_zero_le_one
+#print axioms TopMachine.cutMono_one
+#print axioms TopMachine.two_le_cut_one
+#print axioms TopMachine.stack_one
+#print axioms TopMachine.wheels_open_iff_twin

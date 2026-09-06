@@ -971,8 +971,28 @@ the log at the bottom is chronology only.
       density through the zone (unimodal, peak near Q^1.5); the record always at the bottom
       (20 of 48 elsewhere); the record block bounded by twin primes (13 of 42); nothing
       special at g_0^2 (refuted in the owner's favour).
-    - R4.b.viii. A third machine above the top (owner, 2026-09-06: gears from Q to Q's
-      primorial). FACT, not opened: every top-machine law is stated in (smallest gear, gear
+    - R4.b.viii. The stack and the exhaust (owner, 2026-09-06: a third machine above the
+      top, gears from Q to Q's primorial). KERNEL, round 35 (proofs/MachineStack.lean, 48
+      declarations, docs/proofs/23-stack-and-exhaust.md): cut q 0 = q, cut q 1 = q#,
+      cut q (k+2) = the product of the primes in (cut k, cut k+1]; tier, stack, Spans,
+      Smooth. stride_containment: every gear of tier k+3 spans tier k+1 and strikes at most
+      2 of its positions per stride (card_strikes_window_le_two), and the spanned tier's
+      pattern repeats inside one stride (tier_pattern_repeats); not_spans_below: a gear of
+      tier k+2 is at most tier k+1's period, equal only for a one-gear tier. THE EXHAUST CAP
+      exhaust_home_or_echo: C < n <= C^2 and p > C dividing n gives n = p or a prime <= C
+      divides n; kernel finding: primality of the exhaust gear is never used, any divisor
+      above the cut behaves the same. open_iff_twin: open under all primes <= C on (C, C^2]
+      iff twin prime; stack_eq_primesLE and stack_open_iff_twin under CutMono; unconditional
+      first step by Bertrand: wheels_open_iff_twin (motor + wheels leave a pair open on
+      (q#, (q#)^2] iff it is a twin prime, hypothesis 2 <= q). Zone laws: smooth_zone (L46),
+      wheels_smooth_zone, quiet_zone (n <= Q^2 open iff n = s P, s q-smooth, P = 1 or a prime
+      above Q). HONEST GAP: CutMono (cuts nondecreasing) is a prime-density statement, not
+      stack arithmetic, and is FALSE at q = 2, 3 (at q = 3 the cuts run 3, 6, 5, 1: tier 3 is
+      {5}, tier 4 empty); carried as a hypothesis beyond the first step. Manager gate: build
+      of the five targets green at 2244 jobs; audit of stride_containment, not_spans_below,
+      exhaust_home_or_echo, open_iff_twin, wheels_open_iff_twin, stack_open_iff_twin,
+      smooth_zone, quiet_zone: propext, Classical.choice, Quot.sound; zero sorries. The
+      library is 206 declarations. Earlier assessment kept below. FACT, not opened: every top-machine law is stated in (smallest gear, gear
       count) only, so the third machine is the top machine with split (Q, Q') and obeys the
       same laws (zone law below Q', smooth-times-one-prime in (Q', Q'^2], mex and parity only
       where Q > 2 m_3, which fails); the removal law L37/38 is this self-similarity one gear
@@ -1986,3 +2006,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover TM5 (top_machine_5.md): the split slid down. The smallest simple machine is q' = 5 (domino machine and bottom machine {5..q} begin together); the mex form's true hypothesis is F_top < q'; the parity threshold is 2m + 1 (even m) / 2m + 3 (odd m); the symmetry group is absolute from 3; the record's dependence on m and the gears below F + 1 is absolute down to {2, 3, 5}. Transfers to the bottom listed unchanged / modified / none; the bottom's next-opening formula as a self-certified mex over truncated progressions (exact, 890,501 walks). The anchor rescaling law is the fold as a coordinate identity.
 - 2026-09-06, prover TM6 (top_machine_6.md): the quiet zone. The rule n = smooth times at most one prime above Q holds on all of [1, Q^2] (0 exceptions, 45 machines); the owner's g_0^2 is the true lower edge of the zone's record region, Q - sqrt Q is not; complete knowledge four ways including a q-independent family decomposition and the walk as a smooth-times-nextprime minimum; alignments always occur with a proved prime-gap floor; the record (183-419 at Q = 10^4, sitting at 1.35-2.63 Q) is R4.b.iv's A(q, N); no upper bound because the bottom stratum is the twin primes above Q themselves (L65).
 - 2026-09-06, owner's standing order: no clutch until motor, wheels and exhaust are fully understood (objects ledger as the gate); the clutch to be built piecewise as interface objects, each with a proof and ideally a closed form; when stuck, find the shadow of the object the blocker traces and reopen construction of any part; partial interfaces kept, never dismissed. Skill and memory updated (clutch-strategy).
+- 2026-09-06, Formalist round 35 (proofs/MachineStack.lean, docs/proofs/23): the stack and the exhaust kernel-checked: stride containment two tiers down, non-containment one tier down, the exhaust cap (home strike or echo on (C, C^2], primality of the exhaust gear not needed), open iff twin prime on the window, the smooth and quiet zone laws. Gap stated: CutMono is a prime-density hypothesis, false at q = 2, 3, proved only for the first step (Bertrand).
