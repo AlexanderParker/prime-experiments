@@ -215,9 +215,11 @@ and 16 GB; commit charge, not core count, is the binding limit.
 
 Twin primes is the first of several problems where something called random is constructed
 deterministically and has not been understood: the digits of pi, the gaps between primes, the
-middle column of elementary cellular automaton rule 30 are the next candidates. They are not on
-this project's theory tree; they start when this one concludes, with the ways of working refined
-here. The method lives in two skills (`.claude/skills/theory-tree`, generic, and the owner's
+middle column of elementary cellular automaton rule 30 are the next candidates. Behind them,
+other iterative machine-like problems with hard walls: the Collatz conjecture, the Riemann
+hypothesis, the travelling salesman problem, sorting algorithms, data compression, closed forms
+for the logistic map. They are not on this project's theory tree; they start when this one
+concludes, with the ways of working refined here. The method lives in two skills (`.claude/skills/theory-tree`, generic, and the owner's
 principal-investigator skill) and the project's own files; the short form:
 
 - **Build the machine, then observe it.** Model the object as a machine of parts with schedules;
