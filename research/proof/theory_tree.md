@@ -828,6 +828,35 @@ the log at the bottom is chronology only.
             M-only statement about one gap size (a gap of the new gear's short-letter size
             never sits next to a gap above c F); the LP lane already certifies cells of that
             dictionary at m19, m23.
+            - 4.i.a.i.a. The short-letter row (research/proof/short_letter_row.md). STRONG.
+              The parent's residual is PROVED scan-free at the three rungs that matter, by LP
+              duality: the row (a, a_L) of the adjacent-pair dictionary is empty above its
+              realised top at m19 (above 20), m23 (above 25), m29 (above 35; 270,070 exact
+              operations), and the vehicle refuses at exactly the realised top of each row; at
+              29 -> 31 that is a bound the proved pair cap F_2 - a_L = 45 > 43 = F could not
+              give. r(a_L)/F = 1.00, 0.00, 0.43, 0.64, 0.67, 0.80, 0.74, 0.81, 0.79 at rungs
+              5 -> 7 .. 31 -> 37, flat at four fifths over the top five rungs. NEW MEASURED LAW,
+              THE PINNED LETTER: F(M) <= a_L + r(a_L) <= F(M) + 3 at 8 of 8 rungs (excess 2, 0,
+              2, 0, 3, 1, 2, 0), confirmed OUT OF SAMPLE at 31 -> 37 on the full 33.4-billion-
+              column period after pre-registering 43 <= r(12) <= 49: r(12) = 46 and
+              a_L + r(a_L) = 58 = F exactly. Not a property of a general size (v + r(v) exceeds
+              F + 3 at 23 of 41 sizes at m29). PROVED MECHANISMS: the pair filter (three
+              translates of a two-tooth set cover at most 6 residues, so only gear 5 can forbid
+              a neighbour class; exactly 6 of 25 classes (a, v) mod 5 impossible; 0 of 872
+              realised pairs violate; it is the LP vehicle's zeroth-order dead clause); the
+              closer law ({3 a_L - 1, 3 a_L + 1} = {q', q' -+ 2}, so the only gears that can
+              close an a_L-gap of M are q' and, when q' = 2 mod 3 and q' + 2 is prime, q' + 2;
+              9 of 9 rungs); the row height separates on c_5(a_L) at 9 of 9 (c_5 = 4 gives
+              ratio <= 0.667, c_5 <= 3 gives >= 0.735). Twin rungs decide the closers, not the
+              row. THE DECIDING NEGATIVE: the residue obstruction explains 0, 1, 0, 3, 0, 0, 0,
+              1 of a deficit running 0, 3, 3, 3, 3, 4, 8, 9 and growing; a per-letter CRT
+              enumeration cannot do better (the product of allowed classes stays positive once
+              gear 5 is passed): the row's emptiness is a per-machine covering fact, which is
+              why the certificates are the answer. The band [15, 35] at 29 -> 31 is now a
+              certified object; the pinned letter would give [15, 36] from a formula. Handed
+              forward: prove the pinned letter (first test: the family at m17/m19/m23), or find
+              a form for the dual weights of the cell (a, a_L) that survives the machine.
+              - 4.i.a.i.a.1. The pinned letter. OPEN, prover running.
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1400,3 +1429,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover BI (branching_identity.md): the branching identity proved in general; C_r = W_{r-1} + Z_{r-1} (legal words plus all-pad) proved; second moment in closed form (the teeth live in the variance); the size side proved with eps in {0,1,2}; closure at depth K_m <= m J_max proved (finite depth, not finite state). The count side of the spectrum's evolution is now closed-form; the size side's extremes are the chain statement.
 - 2026-09-06, owner: 'not a route is a bold claim'. Node 4.i.b corrected to route-shaped; opened the ladder instrument (4.i.b.i) and named the functional search (4.i.b.ii).
 - 2026-09-06, prover R4 (period_scale.md): the two machines built exactly to q = 23; level 1 exact; the clutch's coupling is entirely in the both-open cell; the window is the clutch's zero-interaction region; placement residue law (dimension 1 vs 2 = the parity barrier named); exactness buys nothing (Brun's main terms alternate at s = 2). Parked under R4 per the owner.
+- 2026-09-06, prover SL (short_letter_row.md): the gate's residual PROVED scan-free by LP duality at m19, m23, m29; the pinned letter F <= a_L + r(a_L) <= F + 3 at 8 of 8 rungs and confirmed out of sample at 31 -> 37 (r(12) = 46, a_L + r = 58 = F exactly); the pair filter and the closer law proved; the row's emptiness is a per-machine covering fact. Opened the pinned letter.
