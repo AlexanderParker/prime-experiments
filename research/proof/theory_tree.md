@@ -962,8 +962,18 @@ the log at the bottom is chronology only.
       avoided set are active: exposure there is not twin-ness. Consequence: the search is
       capped to bottom + in-use middle + their clutch on the zone (Q, Q^2] = R4.b.vii's zone
       of tranquillity; the difficulty sits in the middle machine's in-use regime (R4.b.iv: no
-      bound yet). Reopen if R4.b.vii names the object governing alignments in (Q, Q^2]; the
-      third machine is then the split to test its self-similarity.
+      bound yet). THE TOWER (owner): with machine k + 1 = the gears from the top of machine k
+      to machine k's period, the lower cut of machine k + 2 is machine k's period, so every
+      gear of machine k + 2 strides a full period of machine k, for every k, and machine k + 1
+      never fits except at its silent top; the redundancy cap repeats at every level. It
+      turns the tower into a ladder of windows at the primorial rungs q, q#, (q#)#, ..., each
+      question "machines 1..k + 1 leave an open pair in (P_k, P_k^2]", the window statement at
+      a sparse set of rungs; theorem (E) already says the effective machine is exact, so no
+      new interactions, but the shape is fixed: known machines + one in-use machine (smallest
+      gear = previous period) + clutch, on a zone of tranquillity; the missing instrument is
+      the same at every rung, an in-use bound, found once and carried up. Reopen if R4.b.vii
+      names the object governing alignments in (Q, Q^2]; the third machine is then the split
+      to test its self-similarity.
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
