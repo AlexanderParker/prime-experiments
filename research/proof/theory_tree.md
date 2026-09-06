@@ -926,10 +926,37 @@ the log at the bottom is chronology only.
                 closing gear is never q' - 2. The record is not a depth-2 function of M's
                 dictionary (short by 1..21 at 8 of 8); the 3-run form max_l (l + N(l)) hits it
                 at 5 of 8 and gives 85 against 88 at 31 -> 37.
-                - 4.i.a.i.a.1.a. The pinned letter's arithmetic (real teeth). OPEN, prover
-                  running: a_L = 2 (q' -+ 1) u_g (mod g) for every gear g, so the letter-gap's
-                  far end sits at a fixed multiple of each gear's own tooth position, decided
-                  by q' mod g.
+                - 4.i.a.i.a.1.a. The pinned letter's arithmetic (research/proof/
+                  pinned_arithmetic.md). THE LAW IS HALF REFUTED out of sample: at 37 -> 41
+                  (M = {5..37}, period 1.24e12, never scanned) the exact CRT search gives
+                  r(14) = 63, so a_L + r(a_L) = 77 against F = 88; the lower half fails by 11
+                  (witness verified at column 470,382,204,623). The upper half
+                  a_L + r(a_L) <= F + 3 survives 9 of 9 rungs with slack 3, 1, 3, 0, 2, 1, 3, 14:
+                  the constant 3 was an artefact of the scannable machines. THE REAL-TEETH
+                  INPUT IS ONE COORDINATE: v = (3v) d_g (mod g) for every distance and gear
+                  (1,200 of 1,200 cells) because d_g = 3^-1, i.e. in the coordinate n = 6k every
+                  gear's teeth sit at +-1 (the members n -+ 1); the letter's content is only
+                  the integer 6 a_L = 2(q' + eps). (This is the owner's raw-line view of the
+                  top machine, met from the bottom's side.) FOUR EXCEPTIONLESS LAWS: the
+                  forced-gear law (g strikes inside EVERY a_L-gap iff 2g <= q' + eps + eps_g + 3:
+                  the bottom half of the machine cannot avoid the letter gap; 45 of 45); the
+                  forced-cover count (forced minima sum to exactly a_L - 1 at 6 of 9 rungs);
+                  the twin-partner law (the partner strikes at most one interior column, 50 of
+                  50); D3 (at most three gears can ever be obstructed at a letter run, 5,400
+                  cells). THE CRT SEARCH IS THE BRANCH'S USABLE PRODUCT: 22 of 22 row tops
+                  reproduced scan-free, including the LP lane's 20, 25, 35 at about 100 times
+                  lower cost and six m31 rows only a 33-billion-column pass had produced; it
+                  reaches one machine beyond every scan. But it is a decision procedure, not a
+                  bound: F never enters it, and the arithmetic's own share of the kills above
+                  the row is zero at exactly the two rungs that carry the budget's tightness.
+                  Family: no single gear is to blame (repairing a real tooth helps no more than
+                  a wrong one); coherence is global. Other letters: b + r(b) <= F + 7 and
+                  q' + r(q') <= F + 9, the shortest letter the tightest. The gate now closes at
+                  the certified row top itself (12, 20, 25, 35, 46), reproducing [15, 35] at
+                  29 -> 31 and adding 31 -> 37. NEXT NAMED: the record gap itself as a 2-run
+                  (both closed routes compared two covering optima that grow by different
+                  mechanisms: F jumps 43 -> 58 -> 88 by a J = 4 fusion while a_L + r(a_L) goes
+                  45 -> 58 -> 77).
     - **5. Made at the top (near-perfect tiling).** STRONG as an observation: overlap in a record
       stretch is tiny, the top three or four gears do the work, the top gear alone covers one or
       two columns. Refinement 2026-09-04: the one-hole record is its own extremal object (at m29 it
@@ -1504,3 +1531,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover R4 (period_scale.md): the two machines built exactly to q = 23; level 1 exact; the clutch's coupling is entirely in the both-open cell; the window is the clutch's zero-interaction region; placement residue law (dimension 1 vs 2 = the parity barrier named); exactness buys nothing (Brun's main terms alternate at s = 2). Parked under R4 per the owner.
 - 2026-09-06, prover SL (short_letter_row.md): the gate's residual PROVED scan-free by LP duality at m19, m23, m29; the pinned letter F <= a_L + r(a_L) <= F + 3 at 8 of 8 rungs and confirmed out of sample at 31 -> 37 (r(12) = 46, a_L + r = 58 = F exactly); the pair filter and the closer law proved; the row's emptiness is a per-machine covering fact. Opened the pinned letter.
 - 2026-09-06, prover PL (pinned_letter.md): the pinned letter is a real-teeth law (family violates the constant), unproved; the glue route dead; the spare-gear lemma proved; every gear is a sole striker at the attaining 2-run of every realised size. Opened the arithmetic child.
+- 2026-09-06, prover PA (pinned_arithmetic.md): the pinned letter's lower half REFUTED out of sample at 37 -> 41 (77 against 88); the upper half survives with growing slack; the real-teeth input is the single coordinate n = 6k with teeth at +-1; four exceptionless laws; the CRT row search reaches one machine beyond every scan. Named next: the record gap as a 2-run.
