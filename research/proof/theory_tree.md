@@ -713,6 +713,10 @@ the log at the bottom is chronology only.
     factor); bottom closed and top open; both closed = mixed composites. The clutch's own
     patterns (joint runs, correlations, what the shared origin at column 0 forces) are where the
     owner expects the solution space to live.
+    LINE OPENED 2026-09-06 after the window round R2.e (location pinpointed at the bottom, not
+    closed). Running: R4.b the top machine on its own terms (research/proof/top_machine_1.md;
+    scripts research/topmachine/r1/) under the construction rule; and the re-filing of the
+    record by object (research/proof/refiled_by_object.md).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
