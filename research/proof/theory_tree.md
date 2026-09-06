@@ -902,6 +902,21 @@ the log at the bottom is chronology only.
       alignments can be located and sized; manager's reading to test: in (Q, Q^2] a number is
       open iff it is q-smooth times at most one prime above Q). OPEN, prover running
       (research/proof/top_machine_6.md).
+    - R4.b.viii. A third machine above the top (owner, 2026-09-06: gears from Q to Q's
+      primorial). FACT, not opened: every top-machine law is stated in (smallest gear, gear
+      count) only, so the third machine is the top machine with split (Q, Q') and obeys the
+      same laws (zone law below Q', smooth-times-one-prime in (Q', Q'^2], mex and parity only
+      where Q > 2 m_3, which fails); the removal law L37/38 is this self-similarity one gear
+      at a time. Stride containment: TRUE for the bottom (every third gear exceeds P, so it
+      strikes at most 2 positions per bottom period, and the bottom's full twin-slot pattern
+      sits inside every stride); FALSE for the middle (its period prod(q, Q] is far above Q,
+      so only third gears above that period contain a full middle period, and those are
+      silent on ranges below it). Below Q^2 the third machine's gears are all above the
+      square root and their only role is striking the numbers smooth times one large prime:
+      the zone rule of R4.b.vii from the other side. The owner's hope (bottom twins open to
+      alignment) reduces to counting the sparse strikes on the bottom's prod(g - 2) slots per
+      period: the counting face of the wall. Reopen if R4.b.vii names the object governing
+      alignments in (Q, Q^2]; the third machine is then the split to test its self-similarity.
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
