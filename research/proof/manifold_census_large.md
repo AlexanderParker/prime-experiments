@@ -63,3 +63,28 @@ vents every family but (1, 1); the record is made by (1, 1) alone in the bottom 
 shortened above it by air pairs. Any valve law must explain why (1, 1) is never empty in
 (Q, Q^2], and the table says that count is the twin-prime count, unchanged by the split. Not a
 new statement; a measured location for the old one.
+
+## Addendum (2026-09-07): the identical record is a mechanism, and it is the usual case
+
+Owner's question: four engines with the identical gap, more than a coincidence?  Yes, a
+mechanism.  In the bottom stratum (Q, 2Q] every open number is a prime or a q-smooth number
+(a charge s x P with s >= 2 already exceeds 2Q).  So an open pair there is a twin prime pair, or
+a smooth number with a prime neighbour at distance 2.  The smooth numbers are so sparse that the
+record twin gap contains none with a prime neighbour: inside 187,907 .. 188,831 there are 0, 1, 2,
+3 q-smooth numbers for q = 5, 7, 11, 13, and none of them has a prime at distance 2.  Hence the
+same gap for all four engines.
+
+How often (exact scan of (Q, 4Q] for Q = 20,000 .. 200,000 step 10,000, q = 5, 7, 11, 13):
+the quiet-zone record is identical across the four engines at **14 of 19** values of Q.  It is
+also sticky: the twin gap 187,907 -> 188,831 is the record for every Q from 100,000 to 180,000
+(and already for q = 5 from 70,000), then 251,969 -> 252,827 (858) takes over at 190,000.  The
+five non-identical cases are all splits by a smooth number with a prime neighbour: at
+Q = 20,000 the gap 498 after 24,419 is split to 422 for q = 13 only; at 70,000 .. 90,000 the
+q = 5 record 924 is split for q >= 7 by 7-smooth numbers landing inside, giving 673 / 780 / 827,
+and for q = 13 again by 13-smooth ones (600, 687).
+
+Law W103 (measured, mechanism stated): the manifold's quiet-zone record at Q is the largest
+gap between consecutive twin primes in its low strata, shortened only where a q-smooth number
+with a prime neighbour lands inside the gap; the engine's size enters through the smooth numbers
+alone, and the twin primes themselves are the same for every engine.  (ROOT: bounding it is
+bounding twin gaps.)
