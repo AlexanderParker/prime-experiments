@@ -211,6 +211,51 @@ Python runs through uv (`uv run python research/<script>.py`); the SAT instrumen
 that imports hundreds of case modules must be tiered, see proofs/lakefile.toml). The box is 20 cores
 and 16 GB; commit charge, not core count, is the binding limit.
 
+## Next projects, and how we work
+
+Twin primes is the first of several problems where something called random is constructed
+deterministically and has not been understood: the digits of pi, the gaps between primes, the
+middle column of elementary cellular automaton rule 30 are the next candidates. They are not on
+this project's theory tree; they start when this one concludes, with the ways of working refined
+here. The method lives in two skills (`.claude/skills/theory-tree`, generic, and the owner's
+principal-investigator skill) and the project's own files; the short form:
+
+- **Build the machine, then observe it.** Model the object as a machine of parts with schedules;
+  find its rules by turning it and comparing parts, pairs and sets; report the mechanism (which
+  parts, which states, what forces the outcome) before naming any theorem it resembles. Use the
+  machine to find new mathematics; never spend a round translating known results into its
+  language.
+- **The proof has one shape.** A known object one can point at and say: this is always here,
+  because the machine works this way, and nothing the machine does can prevent it.
+- **Parts in their own coordinates, then interfaces.** Build each part on its own terms with the
+  others as inspiration only; find the smallest version that keeps the simplicity by sliding the
+  defining parameter; state every law in the part's intrinsic parameters so it holds for every
+  copy of the part; prove where further parts have no bearing (the cap); keep a parts ledger and
+  open the interaction only when no part has an open structural item; build the interaction
+  piecewise as interface objects, each with a proof and a closed form where one exists; keep
+  partial interfaces.
+- **The theory tree.** Every line of enquiry is a node with a parent, a pre-registered scorecard
+  (the owner's predictions on it too), a verdict on the node, and one log line; running lanes are
+  on the tree from launch; commit after every branch.
+- **Evidence.** Exact computation and certificates over sampling; laws with their exception
+  count over a stated range, or a proof; formalise in the kernel the same round and read the
+  hypotheses the proof needed as findings; the manager re-runs the build and the audit before
+  recording a kernel verdict; benchmarks count operations, never wall time.
+- **When stuck.** Dead ends are bricks: keep a map of the wall; for every dead branch write the
+  object, the attack vectors, the reason for failure, the shadow of the object the blocker
+  traces, two or more ideas through and two or more ways to realise each; reach for the toolbox
+  (set theory, bitwise operations on numbers and on structures, linear algebra, complex numbers
+  and characters, the walk); allow the answer to reopen construction of any part.
+- **Vocabulary.** Well-defined objects with names that cannot be confused (motor, wheels,
+  clutch, exhaust; window, section, stretch; smooth zone, quiet zone); a glossary kept current;
+  a project-wide law register with unique numbers.
+- **Reporting.** Findings first, in the chat, with their numbers; plain English before detail;
+  say where the difficulty moved, not only what was gained; "not a route" is a bold claim;
+  anything potentially novel is registered the same round with a dated prior-art check.
+- **Housekeeping.** Generated data and results stay out of the repository (whole folders
+  ignored); nothing personal in a public repository; history purged of large files without
+  losing project history; two or three lanes at a time, jobs killed by process id only.
+
 ## Glossary
 
 The project's terms, in the order you meet them. The classical translation is given where there
