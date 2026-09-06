@@ -730,7 +730,17 @@ the log at the bottom is chronology only.
           predecessor's; the residual is the chain statement, unchanged. Prior art handled in a
           line each (paired-Holt recursion reproduced; renewal ladder cited; dictionary-
           monotonicity-onset distinguished: it uses the set, this uses the multiset of realised
-          windows and is exact).
+          windows and is exact). VERDICT CORRECTED (owner, 2026-09-06: "not a route is a bold
+          claim"): the closure is ROUTE-SHAPED, a deterministic finite-depth recursion on exact
+          objects whose extremes are the records; what is missing is an inequality on its
+          extremes, and "nothing here bounds it" is a brick, not a verdict. Two children: the
+          recursion as an instrument for the ladder past the scan wall (exact records beyond
+          F(59), each a new test of the budget), and the search for a monotone or contracting
+          functional of the recursion (legal-word density per opening by depth, all-pad
+          density, the order variance), the place a bound on the extremes would live.
+          - 4.i.b.i. The ladder past the wall by the closure. OPEN, prover running
+            (research/proof/ladder_closure.md).
+          - 4.i.b.ii. Monotone functionals of the recursion. OPEN, to run after 4.i.b.i.
         - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
           FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
           F_old = 0 or +-d (mod q'), else n1(F_old), the old record's largest single neighbour;
@@ -1360,3 +1370,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, owner: the period-scale formulation (R4). Manager's reading: level of distribution 1 at the period scale removes faces B, D, E; face A stands alone; the second machine decomposes into coherent twisted copies of the first. Opened R4.a.
 - 2026-09-06, prover AG (availability_gate.md): the gate ladder proved, the gate is one row of the level-2 dictionary with the closed form a_hasM <= F_2 - a_L, useful only when F_2 - F < a_L (fails 17->19, 29->31: the same obstruction as the F_2 cap); the band [15, 35] at m31 holds the record maximiser and does not shrink. Residual: the short-letter row of the adjacent-pair dictionary is empty above c F.
 - 2026-09-06, prover BI (branching_identity.md): the branching identity proved in general; C_r = W_{r-1} + Z_{r-1} (legal words plus all-pad) proved; second moment in closed form (the teeth live in the variance); the size side proved with eps in {0,1,2}; closure at depth K_m <= m J_max proved (finite depth, not finite state). The count side of the spectrum's evolution is now closed-form; the size side's extremes are the chain statement.
+- 2026-09-06, owner: 'not a route is a bold claim'. Node 4.i.b corrected to route-shaped; opened the ladder instrument (4.i.b.i) and named the functional search (4.i.b.ii).
