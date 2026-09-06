@@ -952,8 +952,18 @@ the log at the bottom is chronology only.
       square root and their only role is striking the numbers smooth times one large prime:
       the zone rule of R4.b.vii from the other side. The owner's hope (bottom twins open to
       alignment) reduces to counting the sparse strikes on the bottom's prod(g - 2) slots per
-      period: the counting face of the wall. Reopen if R4.b.vii names the object governing
-      alignments in (Q, Q^2]; the third machine is then the split to test its self-similarity.
+      period: the counting face of the wall. OWNER'S CAP (2026-09-06), exact form: in (Q, Q^2]
+      every third-gear strike is a home strike (n = P prime above Q, exempt) or a duplicate
+      of a bottom or middle strike (n = s P with s > 1 having a factor <= Q), so an open pair
+      of bottom + middle there is a twin prime, for every q, to infinity: nothing above Q
+      touches the window (Q, Q^2] (every third gear non-repeating or silent there; the
+      sieve-to-the-square-root fact in machine form). The stronger reading, a bottom period
+      with no third-gear strikes at all, exists by CRT only at heights where gears beyond the
+      avoided set are active: exposure there is not twin-ness. Consequence: the search is
+      capped to bottom + in-use middle + their clutch on the zone (Q, Q^2] = R4.b.vii's zone
+      of tranquillity; the difficulty sits in the middle machine's in-use regime (R4.b.iv: no
+      bound yet). Reopen if R4.b.vii names the object governing alignments in (Q, Q^2]; the
+      third machine is then the split to test its self-similarity.
     - R4.b.vi. The walk laws in Lean (round 34; proofs/TopMachineWalk.lean, 70 declarations;
       ledger research/proof/top_machine_lean.md). KERNEL: mex_form, the next open pair after x
       is x + mexS as an IsLeast statement, with the hypothesis 2m < g placed exactly where it is
