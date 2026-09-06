@@ -1461,11 +1461,49 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             37 -> 41 (slack 7) is where the record's depth climbs from 3 to 4. Truncation is a
             lower-bound instrument only (depth-3 floor 90 against 91). Child named: the Q*_J
             peak sits at J <= 4 at all five rungs, including both where J_max = 5.
-          - 4.i.b.ii. Monotone functionals of the recursion. OPEN, prover running
-            (research/proof/monotone_functional.md; the motor's gate item 3, opened 2026-09-06
-            under the owner's rule that the motor's gate items are worked before the clutch;
-            also carries gate item 1, L(M) bounded, and gate item 2, the chain statement on
-            the band 15..36 at 29 -> 31, as exact finite checks from the closure).
+          - 4.i.b.ii. Monotone functionals of the recursion (research/proof/
+            monotone_functional.md, 980 lines; scripts research/anchor235/r66/). STRONG,
+            with the engine's gate items 2 and 3 answered and item 1 open. THE ORDER LAW
+            (measured, 0 exceptions): the order of interaction the budget needs is exactly
+            k* = L(M) + 1 = J_max - 1, where B_k = the widest span of a level-k admissible
+            fusing word, a functional of the k-window table D_k(M) alone that bounds F(M + q')
+            for every k: B_{L+1} <= F + q' at 9 of 9 computable rungs (margins 3, 6, 9, 7, 7,
+            13, 3, 16, 7) and B_L > F + q' at 7 of 7 rungs from 13 -> 17 (over by 5, 12, 8, 34,
+            11, 23, 32); mechanism: the binding term is always the deepest fusion J = J_max (7
+            of 7); at order L two de Bruijn steps are free and buy the record twice (23 -> 29
+            extremal word (34, 29, 34) at phase 5, span 97 against budget 63, a word m23 does
+            not contain), at order L + 1 one step is free and the maximum lands inside; not an
+            artefact (a second ladder from K_0 = 16 gives identical dictionaries and B_k);
+            37 -> 41 undecided (m37 sticks at depth 2, B_2 = 161 > 129 so k* >= 3, the law
+            predicts 3). Payoff: the budget at 29 -> 31 is a statement about 45,854 rows
+            standing for 214,708,725 gaps. THE MONOTONE ONE: Phi = B_{L+1}, the only candidate
+            of eleven that both bounds the next record (9 of 9, overshoot 1, 3, 0, 3, 5, 1, 17,
+            0, 0) and is budget-monotone (8 of 8, increments 4, 1, 10, 9, 5, 25, -2, 30, each
+            <= q'); its theorem, B_{L+1}(M; q') <= F(M) + q' for all M, implies the budget at
+            every rung, is strictly stronger at 4 of 6 decisive rungs, and its state is a
+            10^2 to 10^5 row table, not the machine; what remains: a cap on L, and one lemma
+            (the level-(J_max - 1) relaxed deepest fusion is within budget; smallest instance
+            at 23 -> 29: realised 2-windows (a, b), (b, c) with b a letter give a + b + c <=
+            F + q', tightest witness (25, 10, 25) at phase 4, 60 <= 63). EVERY OTHER CANDIDATE
+            DIES with its rung and merge: F_J at 19 -> 23, J = 6 (exact identity F_J(m23) =
+            F_{J+t}(m19), t = 3, 3, 4, 4, 4, 4, so 77 - 50 = 27 > 23); top-3 sum at 13 -> 17;
+            excess over threshold by the identity (a + b - x)_+ >= (a - x)_+ + (b - x)_+;
+            J_max non-monotone; the excursion at 13 -> 17 (+33.06 against 17); the
+            letter-floor discount = the pair statement; W_1/N rises at five rungs. Kept: the
+            second-largest realised value is budget-monotone at 9 of 9 (true, not implied,
+            useless as a bound). GATE ITEM 1, L(M) BOUNDED: OPEN. L_bare <= 5 proved (measured
+            1, 0, 1, 1, 1, 2, 1, 3, 3, 1); L_pad is the open half (0..2 here, 2, 2, 3, 3 in the
+            corpus above) and nothing on this instrument caps it (the PAD alphabet grows with
+            the machine); new: the order law gives L a job, a cap L <= c turns the budget into
+            a uniform bounded-order statement about D_{c+1}. GATE ITEM 2, THE BAND: PASSES. At
+            29 -> 31 the complete enumeration of D_4(m29) = 45,854 rows carrying all
+            214,708,725 gaps (loss 0, fusion masses n_2, n_3, n_4 = 413,380,422 / 7,999,018 /
+            12,992 digit for digit): max span with largest piece in [15, 36] is 58 at J = 3
+            (witnesses (18, 10, 30), (23, 10, 25)) and 55 at J = 4 against F(m29) + 31 = 74,
+            margin 16, the pre-registered value; the extremal chain pays exactly the letter
+            floor a_L = 10 in the middle (19 of 21) and alternates +-d at J = 4; the largest
+            old piece falls with chain depth (43, 35, 22 at J = 2, 3, 4). Scorecard: M1-M6, M8
+            confirmed, M7 confirmed with the collapse located.
         - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
           FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
           F_old = 0 or +-d (mod q'), else n1(F_old), the old record's largest single neighbour;
@@ -2237,3 +2275,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, Harvester (law_register.md): rows W86-W102 and X9-X24 registered (126 rows in all; the new rows 6 known, 7 known variant, 14 new, 6 standard tool). Verdicts that matter: the loaded record rule W88 is a KNOWN VARIANT of Ziller-Morack's one-class rejection criterion (arXiv:1611.03310 Cor. 2.3) with the two-class delta as the content (the tail piece is a domino, the price is Gallai's edge-cover identity W87 KNOWN, the boundary g > L + 1 because a point has no parity); the cover polynomial W97 is the edge cover polynomial of a path with two pendant singletons (Akbari-Oboudi 2013) and the difference formula W98 is NEW as an identity (Brown 2024 has the signed subset sum, no generating polynomial); the exhaust's first pass adds no new mathematics (Bertrand iterated, Eratosthenes to the root in range form). Web-search budget exhausted mid-pass: Hagedorn, Iwaniec, Akbari-Oboudi texts and OEIS not read this round; listed in the register.
 - 2026-09-07, cleanup of old contexts (owner's request): human.md and agents-shared.md rewritten as current-state snapshots in the canonical words; README 'Where things stand' to 7 September; the objects ledger folded to one verdict per object (ENGINE not yet, three items; MANIFOLD yes on paper; EXHAUST measured once, CutMono in the kernel) with stale numbers updated; the wall gains 5l mapping its faces onto engine / manifold / valves / exhaust; docs/proofs/README maps the retired words. Two facts surfaced: 310 declarations is the manifold-and-exhaust library only (the engine's Lean corpus has no total on record); docs/proofs holds 23 written proofs, not 21.
 - 2026-09-07, manager (manifold_census_large.md addendum, owner's question): the identical record across four engines is a mechanism, not a coincidence: in the bottom stratum only primes and q-smooth numbers are open, and the record twin gap contains no smooth number with a prime neighbour (0, 1, 2, 3 smooth numbers inside for q = 5, 7, 11, 13, none adjacent to a prime). It is the usual case: identical at 14 of 19 values of Q from 20,000 to 200,000, sticky over ranges of Q; every exception is a smooth number with a prime neighbour splitting the twin gap. W103 (measured, ROOT).
+- 2026-09-07, prover MF1 (monotone_functional.md, finished from disk after the limit): THE ORDER LAW, the interaction order the budget needs is exactly L(M) + 1 (B_{L+1} <= F + q' at 9 of 9, B_L > F + q' at 7 of 7, 0 exceptions); Phi = B_{L+1} is the monotone functional, the only one of eleven that bounds the next record and is budget-monotone; its theorem implies the budget at every rung and needs a cap on L plus one fusion lemma; the band check at 29 -> 31 passes with margin 16 by complete enumeration; L(M) bounded stays OPEN (L_pad uncapped). Engine gate: item 2 closed, item 3 found (measured), item 1 open.

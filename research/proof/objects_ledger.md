@@ -672,6 +672,14 @@ in, their closures recorded against the O-items above).
 
 ### ENGINE - **NOT YET**, by a short list of three, every item a statement about `M` alone.
 
+> Update 2026-09-07 (monotone_functional.md): gate item 2, the chain statement on the band
+> [15, 36] at 29 -> 31, PASSES by complete enumeration (max span 58 at J = 3, 55 at J = 4, against
+> 74; margin 16). Gate item 3, the monotone functional, FOUND and measured: Phi = B_{L+1}, the
+> widest span of a level-(L+1) admissible fusing word, bounds the next record (9 of 9) and is
+> budget-monotone (8 of 8); the order law k* = L(M) + 1 (0 exceptions) says the budget is a
+> bounded-order statement about D_{L+2} once L is capped. Gate item 1, L(M) bounded, OPEN:
+> L_bare <= 5 proved, L_pad uncapped (0..3 measured). One structural item left on the engine.
+
 1. `L(M)` bounded, and with it `L_pad` (O-M1). The only unbounded ingredient of the engine's own
    grammar; every finite-depth statement about the engine is conditional on it.
 2. The chain statement at `J = 3, 4` on the band `[15, 36]` (O-M2). The one object still open
