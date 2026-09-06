@@ -1161,3 +1161,220 @@ Verdicts dated 2026-08-23. NOVEL* = novel as far as searched.
 - reachability-landscape - the q-free set of gears that can reach each offset past q^2 (bar size closed form, islands = CRT classes, doubling law, large gears strike islands at exactly 2/g); the island witness: for every prime 1489..19997 an offset in {5,10,12,17} mod 35 below the top gear's next tooth is struck by no gear - EXACT - prior art NOT YET CHECKED (research/proof/reachability.md)
 - island-witness-integers - the island witness holds for every integer coprime to 30 above 2849 (multiples of 5 fail by a proved relocation law), 0 exceptions in 17,748 primes to 200,000, one class 12 mod 35 suffices from 5477, free island within 0.152 d and absolute offset <= 2,392; cover number K(d) grows (3..20 at d = 35..1120) while counting stalls - EXACT - prior art NOT YET CHECKED (research/proof/island_witness.md)
 - flank-walk - the junction theorem (junctions of M+q' are ordinary openings of M, the max flank sum at junctions is F_2(M)); L6 exact with its two forced consequences; three gear bands with the middle band striking at a constant 0.796; flanks coupled by the anchor mod 5 and 35; the window has at most two junctions (columns of q' and q'^2) with flanks d_0 and the walk from q'^2 - EXACT - prior art NOT YET CHECKED (research/proof/flank_walk.md)
+
+## The wheels and the exhaust - prior art checked 2026-09-06 (harvester)
+
+The wheels are the top machine (the primes in `(q, q#]` on the raw line, teeth at 0 and -2,
+dominoes {x, x+2}); the exhaust is every tier above them.  Their 85 + 8 laws now carry ONE
+project-wide numbering, W1-W85 and X1-X8, in **research/proof/law_register.md**, which holds the
+statement, status and prior-art verdict of every one.  Counts: 14 KNOWN, 18 KNOWN VARIANT,
+38 NEW, 22 STANDARD TOOL, 1 REFUTED.  This discharges objects_ledger O-W7 and O-X5 and the
+"prior art not checked for the machine as an object" line in docs/proofs/22.  ONE NAME TO ADOPT:
+`F_top + 1` IS Ziller-Morack's **paired Jacobsthal function** `j_2` (arXiv:1706.00317 Def 2.1),
+and their Conjecture 6 `h_2(n) < p_n^2 - p_n` IS this project's window target, already in print
+with a proved Goldbach/twin payoff and values to p = 73.  Entries below name every NEW and
+KNOWN VARIANT law; STANDARD TOOL and KNOWN rows are in the register only.
+
+- wheels-domino-form - W3 the partner law (every strike has a partner exactly 2 away, so a gear's
+  struck set is a disjoint union of dominoes {x, x+2}), W4 the forbidden gap 4 (n, n+4 open
+  implies n+2 open), W54 the holes (d = 4 in the pair view, d = 2 and 3 in the triple view) -
+  KERNEL-CHECKED, no hypothesis (`partner`, `strikes_iff_domino`, `open_of_open_add_four`,
+  `no_start_gap`) - NOVEL* (checked 2026-09-06: the ingredient "{0, g-2} are 2 apart" is in every
+  twin-sieve paper; the domino inventory and the forbidden gap are nowhere.  The one-class
+  analogue question - which differences occur between consecutive numbers coprime to a primorial
+  - is Ziller arXiv:2007.01808; the two-class question was never asked.  HONEST: two-line proofs,
+  "immediate but unrecorded")
+- wheels-record-parity - W17 the parity law F_top = 2m - (m mod 2) for gears above 2m+1 (the
+  record is decided by the PARITY OF THE GEAR COUNT and by nothing else - not by the gears'
+  sizes), W71 the sharp threshold (iff q' >= 2m+1 at even m, 2m+3 at odd m, iff the record cover
+  is a free domino tiling), W29 the collision law (no three traces pairwise intersect, so the
+  cover is a perfect tiling at even m and wastes exactly one unit at odd m - the defect in
+  geometric form), W44 the triple record F_3 = 3m EXACTLY with no defect (a solid triomino tiles,
+  a gapped domino cannot: the defect is a property of the tooth SEPARATION, not the tooth count),
+  W38 removal independence, W30 the record of a triple/quadruple, W40 the bound re-proved from
+  the mex - KERNEL-CHECKED as equalities (`parity_law`, `triple_law`, both `IsGreatest`) +
+  MEASURED (W29 11 of 11, W71 7 boundary pairs, W30 exhaustive over 8,855 sets, 0 exceptions) -
+  NOVEL* (checked 2026-09-06.  Nearest: the classical ONE-class proposition "q_1 > omega(n)
+  implies j(n) = omega(n) + 1", background in Erdos, Math. Scand. 10 (1962) 163-170 and
+  Ziller-Morack arXiv:1611.03310 - the size-independence half is its direct analogue, but THE
+  PARITY DEFECT HAS NO ANALOGUE IN PRINT, because the one-class case has no defect.  W29 is the
+  strongest claim: the covering-systems literature (Mirsky-Newman, Znam, Hough Ann. of Math. 181
+  (2015), Balister-Bollobas-Morris-Sahasrabudhe-Tiba) is about infinite covers of Z with distinct
+  moduli and reciprocal sums and would not have found the waste parity of a finite two-class
+  interval cover.  CAUTION: W52 is NOT independent evidence - its proof needs W29)
+- wheels-gap-census - W22 the gap census law N_d as inclusion-exclusion over CRT products, W23
+  the universal signature and the collapse threshold, W24 W1 closed (the counts of gap 3 and gap
+  5 are EQUAL in every wheel whose gears exceed 7 and unequal exactly when 7 is a gear, because
+  both share the signature prod(g-4) - 2prod(g-5) + prod(g-6) and only gear 7 collapses a class;
+  (3,5) the only coincident pair, 4 the only identically zero length, d <= 16), W25 the degree
+  law in elementary symmetric polynomials (degree m - r(d), gear-independent exactly when
+  r(d) = m, which DERIVES W18's universal record multiplicity), W26 r(d) = the parity covering
+  number with d = 4 the unique boundary exception, W85 both surviving onto the range - PROOF
+  (CRT + inclusion-exclusion; not in the kernel) + MEASURED (15 wheels every gap length and the
+  full 6.7e9 period of an eight-gear wheel to d = 16, 0 mismatches; W25 rests on the UNPROVED
+  vanishing M_k(d) = 0 for k < r(d), open item O-W1) - PARTIAL OVERLAP / KNOWN VARIANT, checked
+  2026-09-06: **Steven Brown, arXiv:2311.06873 / Notes on Number Theory and Discrete Mathematics
+  30(1) (2024) 81-99** is the ONE-class version with the same shape - the CRT product
+  nu(T) = prod(p - card(T mod p)) (Thm 3.1), the inclusion-exclusion over the uncovered interior
+  (Thm 2.1), the threshold universality (Lemma 3.1) and even a coincidence of the same type
+  (K(2,P) = K(4,P), eqs 16-17, though for a DIFFERENT reason: his is parity annihilation, ours is
+  equal class counts).  CITE HIM.  Delta: two classes per gear, arbitrary pairwise-coprime odd
+  gears.  Holt is NOT the blocker - his cycle-of-gaps machinery (arXiv:1408.6002, 1510.00743,
+  2502.20470, 2603.25915) is RECURSIVE with only N_2 = prod(q-2) in closed form.  W25, W26 NOVEL*
+- wheels-run-spectrum-duality - W11 the run spectrum is the SECOND DIFFERENCE of
+  A(L) = prod(g-2-L), hence a polynomial of degree m-2 (an arithmetic progression of common
+  difference exactly 6 at three gears, second difference 24 at four, top length occurring
+  prod(g-q'+1) times); W45 the dual C-identities (the gap census is the second difference of the
+  all-struck count C, and F_top = max{j : C(j) > 0}); W46 the closed form of C(j) as a signed sum
+  of shifted wheel products with T(j,k,e) a path convolution - and the structural moral that
+  "all open" is a per-gear condition giving ONE PRODUCT while "all struck" is not and gives a
+  SIGNED SUM; W50 the consequence (the spectrum decides the run record and provably CANNOT decide
+  the blocked record) - PROOF + MEASURED (12 wheels every L; all five C-identities 10 wheels;
+  T brute-forced to j = 12; spectral minima 3.3e-07 to 3.1e-05, never 0) - NOVEL* (checked
+  2026-09-06: A(L) itself is the Schemmel totient (Schemmel 1869) / admissible-tuple CRT count
+  and is STANDARD; the second-difference law, the degree structure, the AP-of-6, the C-identities
+  and the T(j,k,e) form were located nowhere.  Ingredients standard - binom(k-1,e)binom(n-k+1,k-e)
+  is the Kaplansky/Riordan subsets-with-adjacencies count.  THE SHARPEST RE-EXPRESSION FOUND:
+  F_top as the support edge of an exactly computable function, where the whole Jacobsthal
+  literature only bounds it)
+- wheels-mex-walk - W39 the mex form (the next open pair after x is x + mex of the 2m residues
+  {(-x) mod g, (-x-2) mod g}, exact whenever every gear exceeds 2m, O(m) operations, no scan and
+  no period), W66 the SHARP criterion M(x) < q' implies exactness (checkable at each x, contains
+  W39), W43 the three-teeth twin-candidate form, W73 the certified column mex for the motor,
+  W47/W74 the hop collapse (chain length at most 2 with an iff, in either coordinate) -
+  KERNEL-CHECKED as `IsLeast` (`mex_form`, `triple_mex_form`) + MEASURED (1.4M positions nine
+  wheels; 94,774 positions 18 wheels for W66; 890,501 certified column walks; 391,048 hop
+  positions, 0 exceptions throughout) - NOVEL* (checked 2026-09-06: "mex"/minimal excludant
+  appears in combinatorial game theory and in partitions (Andrews-Newman 2019) and in NO
+  number-theoretic sieve; the nearest functional prior art is Pritchard's wheel sieve, which gets
+  the next coprime by table lookup over a period, not by an O(m) residue formula.  W47 is a
+  KNOWN VARIANT of Holt-Rudd arXiv:1408.6002 Lemma 2.2 - "each closure of adjacent gaps occurs
+  exactly once per copy" - in two classes.  HONEST: W39 is the constructive content of W17's
+  threshold, and F_top < q' fails badly at the real anchor, so it is a primitive and a base case,
+  not a route to the window)
+- wheels-symmetry-and-census-parity - W8/W70 the affine symmetry group (exactly n -> c(n+1) - 1
+  with c = +-1 mod every gear, order 2^{#odd gears}, adjacency-preserving subgroup Z/2), W7 the
+  mirror n -> -n - 2 with the shield n = -1 its unique fixed point, W35 the cyclic gap word read
+  from the shield is a PALINDROME, W67 exactly one gap length has an odd count and it is the
+  mirror-self-paired gap, W6 the origin clump of 2(q'-3)+1 forced slots - KERNEL (W7, W8) +
+  PROOF + MEASURED (23 wheels; brute force over all W^2 affine maps at seven wheels) -
+  PARTIAL OVERLAP, checked 2026-09-06: the one-class cycle palindrome is Holt-Rudd arXiv:1408.6002
+  Remark 2.2(v) ("except for the final 2, the cycle of differences is symmetric") and the shield
+  is Ziller arXiv:2007.01808's p# +- 1 argument.  Delta: two classes, mirror n -> -n-2 with fixed
+  point -1 rather than the r/-r pairing, arbitrary gear set rather than an initial segment.
+  PUBLISH AS A LEMMA, NEVER AS A DISCOVERY.  NOVEL* are the full 2^{#odd} stabiliser, the
+  adjacency subgroup Z/2, and W67.  **W9 of document 1 ("every gap length has an even count
+  except length 1") is REFUTED** - false as soon as N_1 = 0; W67 is the true statement and needs
+  no hypothesis
+- wheels-core-tail - W16 the record as an exact cover by the gears' letters with NO FLANKS, W31
+  the sub-threshold reduction (F_top is a function of m and of the gears below F_top + 1 alone),
+  W62 the core/tail rule as a formula (F_top = max{L : min over core phases of the domino cost
+  D(U) <= t}), W61 in use the tail is EMPTY, W63 the additive form holds exactly when the core is
+  empty, W18 universal record multiplicity 18/24/480/720, W33 the record blocks pinned mod the
+  small gears - PROOF (W16 exact by CRT, validated against the full-period scan 15 of 15; W62
+  proof sketch being closed in top_machine_7.md, 0 mismatches on 13 known records and 89 sets
+  decided) + MEASURED - PARTIAL OVERLAP / KNOWN VARIANT, checked 2026-09-06: the covering
+  equivalence is Ziller arXiv:2007.01808 Definition 2.4 ("restricted covering") and Proposition
+  1.8 for ONE class per prime with a flank condition, and the same reduction is the engine of
+  Erdos-Rankin and FGKMT arXiv:1412.5029; the core/tail principle ("primes above the window enter
+  only as a count") is the standard engine of every Jacobsthal computation - Hagedorn, Math. Comp.
+  78 (2009), Costello-Watts arXiv:1208.5342, Ziller-Morack arXiv:1611.03310.  DO NOT CLAIM THE
+  PRINCIPLE.  Delta, and it is real: the two-class version where a large gear removes a DOMINO
+  and not a point, the explicit domino cost D(U), the max-min certificate, and the exactness with
+  no flank condition.  W18, W61, W63, W33 NOVEL*.  **THE HIGHEST-LEVERAGE ITEM IN THE WHEELS**:
+  W31/W62 are the only laws that apply with small gears present, i.e. in the actual window regime
+- wheels-xor-parity-bit - W52: the longest run of ones of the striker-parity bit (the XOR of the
+  gears' masks, a Liouville-type bit restricted to G) equals F_top EXACTLY, because a record block
+  struck exactly once at every cell always exists - so the parity bit, which HAS a product
+  formula, bounds the record, which does not, and the bound is tight - MEASURED, 10 of 10 wheels,
+  both parities of m - NOVEL* (checked 2026-09-06: nothing in the Liouville / parity-problem
+  literature is a finite-period run statement, and no twin-sieve paper defines such a bit.  The
+  COUNT half - #even - #odd = prod(g-4), W51 - is KNOWN, being Schemmel S_4 plus a one-line
+  character sum.  TWO CAUTIONS: W52 is not independent of W29 and they stand or fall together;
+  and this pushes on the parity problem from the inside (Selberg 1949; Tao, "Open question: the
+  parity problem in sieve theory", 2007), so expect it to bound the SIEVE record, not the primes)
+- wheels-anchor-rescaling - W72: adding a gear that leaves exactly one slot rescales the record
+  exactly - F(G+{2}) = 2F_2(G)+1, F(G+{3}) = 3F_3(G)+2, and F(G+{2,3}) = 6 F_col(G) + 5, where
+  F_col is the record of the BOTTOM machine in the column coordinate; with W19 the conjugacy
+  (n -> 6^{-1}(n+1) carries one machine's open set exactly onto the other's) and W69 the corrected
+  ceilings - PROOF (mechanism) + MEASURED, 30 of 30 exact, records from 5 to 107 - PARTIAL
+  OVERLAP, checked 2026-09-06: the one-class analogue j(2n) = 2j(n) (and j(p^k n) = j(pn)) is the
+  basic reduction of every Jacobsthal computation (Ziller-Morack arXiv:1611.03310, Hagedorn 2009)
+  and the composed 6F + 5 is the record-level form of the 6k +- 1 folklore; Ziller-Morack could
+  not have reached p = 73 without collapsing 2 and 3 somehow, so read it as USED BUT UNSTATED.
+  Delta: the exact identity with the sub-lattice coordinate, an equality not an inequality.
+  **ACTION AVAILABLE**: rescale this project's F by 6F + 5 and compare against Ziller-Morack
+  arXiv:1706.03668 Table 1 / OEIS A288815 - a free external validation of the whole machine
+- wheels-smooth-zone - W55 the gear-zone identity (for n <= Q - 2 the pair n is open iff n and
+  n+2 are both q-smooth), W56 the in-use record is the largest gap of that FINITE list (value AND
+  position), W57 the proved lower bound F_range >= sqrt(N) - s(q) - 2 with no sieve estimate, W58
+  no bound of the parity kind, W64 no saturation - KERNEL (W55 = `smooth_zone`) + PROOF +
+  MEASURED (36 machines, 0 exceptions; ratio truth/bound exactly 1.000 at 17 of 36) - **PRIOR ART
+  FOUND, and one entry DEMOTED**, checked 2026-09-06: W55 is KNOWN - the object is the
+  Stormer-Lehmer difference-2 smooth-pair problem (Stormer 1897; **D. H. Lehmer, "On a problem of
+  Stormer", Illinois J. Math. 8 (1964) 57-69**, which reduces to ~2^k - 1 Pell equations and
+  treats difference 2 explicitly; OEIS A002071/A002072; still recomputed for isogeny cryptography,
+  arXiv:2211.04315, arXiv:2509.17699).  **W64 IS DEMOTED FROM A PHENOMENON TO A COROLLARY: the
+  measured constant in F_range = Q - 160 - u at q = 5 IS s(5) = 160** (160 = 2^5*5, 162 = 2*3^4,
+  the last {2,3,5}-smooth pair), so "no saturation" is W57's bound running at equality with a
+  DIOPHANTINE constant, predictable in advance for every q from Lehmer 1964 and Luca-Najman,
+  Math. Comp. 80 (2011).  NOVEL* is what remains: no study of THE GAP STRUCTURE OF THE STORMER
+  LIST itself was located, and W56/W57 are that.  Delta against FGKMT-style results (FKMPT
+  arXiv:1802.07604, whose Remark 7 already names the I_p = {0,2} system): theirs is a full-period
+  theorem driven by density, ours is confined to [1, Q] where the answer is Diophantine and not
+  probabilistic - so ANY THEORY THAT PREDICTS THE IN-USE RECORD FROM DENSITIES IS MEASURING THE
+  WRONG THING
+- wheels-quiet-zone-families - W79 the family decomposition (the zone's open pairs are the
+  DISJOINT UNION, over q-smooth pairs (s, s') with gcd(s,s') | 2, of the linear twin-prime
+  problems s'P' - sP = 2 in primes above Q - at most Psi(Q,q)^2 families, a polylog in Q at fixed
+  q), W80 the exact count and the q-INDEPENDENCE of each family (raising q adds families and
+  changes none; family (1,1) contributes pi_2(Q^2) - pi_2(Q) at every q), W81 the walk in the zone
+  as a minimum over smooth scalings of nextprime, W82 alignments always occur (a proved lower
+  bound on the zone record from ordinary prime gaps alone), W83 the U-shaped record profile, W84
+  the exact reason no upper bound is available - PROOF + MEASURED (1,510 families at q = 5,
+  Q = 10^4, 0 forbidden gcds among 5.4 million pairs; 11.5 million walk positions, 0 mismatches;
+  48 machines for W82, 0 exceptions) - NOVEL* for W79-W83, KNOWN for the ambient rule W76/W77
+  (the Legendre-Meissel-Lehmer partial sieve phi(x,a) = pi(x) - a + 1 for x < p_{a+1}^2), checked
+  2026-09-06.  **NAMING**: the ambient set is "integers free of prime divisors from an interval"
+  (Weingartner, Acta Arith. 98 (2001) 117-131 and 104 (2002) 309-343; Tenenbaum, Ann. Sci. ENS
+  (4) 19 (1986) 1-30) - do NOT call it "semismooth", which Bach-Peralta, Math. Comp. 65 (1996),
+  use for the OPPOSITE inequality.  **CORRECTION TO W84 CARRIED OUT OF THE CHECK**: "the zone
+  record is exactly as hard to bound above as the gaps of the family (1,1)" OVER-STATES it - an
+  upper bound needs an open pair from ANY ONE of W79's families, i.e. a FINITE DISJUNCTION of
+  binary prime problems, strictly weaker than the twin problem itself.  It is still parity-blocked
+  (Selberg 1949; Tao 2007), so the reading survives and the sharp phrasing does not - and the
+  disjunction IS THE PLACE TO PUSH.  Live neighbour: van Doorn and Tang, "Consecutive integers
+  free of certain prime factors", arXiv:2606.19863 (June 2026), settling Erdos Problem #451 on the
+  same ambient object with the complementary extremal question
+- wheels-range-record-first-hit - W32: for a fixed gear set the range record is a first hit on the
+  wheel's own census, F_range(N) = max{d : W/c(d) <= N} - 1, so **the wheel record IS reached**, at
+  0.005% to 10.9% of the period; with W65, the two regimes and the crossover - MEASURED, within
+  one unit at 19 of 21 checkpoints over three eight-gear machines, N = 10^4..10^10 - PARTIAL
+  OVERLAP, checked 2026-09-06: the "set the expected count to 1 and solve" first-occurrence
+  heuristic with a Gumbel law is Kourbatov, J. Integer Seq. 16 (2013) arXiv:1301.2242,
+  Kourbatov-Wolf arXiv:1901.03785, Kourbatov arXiv:2002.02115 - FOR THE PRIMES.  Delta: asserted
+  EXACTLY for a fixed periodic sifted set with a known deterministic census c(d).  HONEST: it
+  cannot be a theorem in general (W/c(d) is a mean spacing and long gaps are not evenly spread),
+  so THE EXACTNESS IS THE FINDING and it is the thing to try to break.  **This REFUTES document
+  1's W2 and docs/proofs/22's "the wheel record is a hard ceiling approached slowly from below"**,
+  which was an artefact of stopping at N = 10^7
+- exhaust-stack - X5 non-containment (a gear never spans its own tier, and spans the tier below
+  only by equalling its period - impossible - so ROOM APPEARS EXACTLY TWO FLOORS UP AND NOT
+  BEFORE), X6 the exhaust cap (on (C, C^2] every strike of a gear above the cut is a HOME STRIKE
+  or an ECHO, no primality used, so a pair the lower tiers leave open IS a twin prime), X1-X4
+  stride containment, plus the cut recursion cut_k = tier k's period = tier k+2's lower edge -
+  KERNEL-CHECKED, 48 declarations, zero sorries, no native_decide (proofs/MachineStack.lean) -
+  **KNOWN**, checked 2026-09-06: X6 is the sieve of Eratosthenes to the square root (Legendre
+  ~1808; Pomerance, "The Sieve of Eratosthenes and Rough Numbers"), and its stack framing is a
+  KNOWN VARIANT of **Fred B. Holt, "Surviving Eratosthenes sieve I: quadratic density and
+  Legendre's conjecture", arXiv:2603.25915 (March 2026)**, whose INTERVAL OF SURVIVAL
+  [p_k^2, p_{k+1}^2] is this dichotomy as a stack-of-stages object - read it before writing this
+  up.  Delta: tier indexing rather than consecutive primes, plus the explicit "nothing higher can
+  help OR hurt" clause, located nowhere.  X1-X4 are STANDARD TOOL (division, periodicity;
+  Holt-Rudd Lemma 2.2 is one-strike-per-copy; segmented-sieve folklore).  X5 and the cut recursion
+  are NOVEL* AS STATED BUT MATHEMATICALLY TRIVIAL - do not present them as theorems.  **HANDLE X6
+  WITH CARE**: the cap is exactly the shape of the parity obstruction, so "the search is capped to
+  the motor plus one machine" restates WHY the classical route stalls; any claim that the cap
+  HELPS must say what it does that a sieve weight does not.  One correction: q <= q# is trivial
+  (q divides q#) - Bertrand is what is needed for TIER NON-EMPTINESS, and docs/proofs/23 should
+  say so

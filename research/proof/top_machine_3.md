@@ -1,5 +1,9 @@
 # The walk and the transforms of the top machine (branch R4.b.iii)
 
+> Law numbers in this document map to the project-wide register
+> (`research/proof/law_register.md`): **L30-L45 = W39-W54**.  This document's L30-L38
+> CLASH with `top_machine_2.md`'s L30-L38; the register resolves the clash.
+
 Parent: R4.b, *The top machine on its own terms* (`research/proof/top_machine_1.md`, laws
 L1-L21; `docs/proofs/22-top-machine-laws.md`; kernel ledger `research/proof/top_machine_lean.md`).
 The observation that spawned this branch is L3 together with L17: a gear's struck set is a

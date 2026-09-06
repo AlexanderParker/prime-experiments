@@ -1,5 +1,8 @@
 # The wheels, second pass (branch R4.b.ii)
 
+> Law numbers in this document map to the project-wide register
+> (`research/proof/law_register.md`): **L22-L38 = W22-W38**.
+
 Parent: R4.b, *The top machine on its own terms* (`research/proof/top_machine_1.md`, 21 laws
 L1-L21, two open facts W1 and W2). The observation that spawned this branch is the owner's
 direction of 2026-09-06: **understand the wheels fully before the clutch**. The first pass

@@ -1,5 +1,10 @@
 # Sliding the split down (branch R4.b.v)
 
+> Law numbers in this document map to the project-wide register
+> (`research/proof/law_register.md`): **L50-L59 = W66-W75**.  This document's L50-L56
+> CLASH with `top_machine_4.md`'s and its L57-L59 with `top_machine_6.md`'s; the register
+> resolves the clash.
+
 Parent: R4.b, *The top machine on its own terms*. The observation that spawned this branch is
 the owner's question of 2026-09-06, verbatim:
 

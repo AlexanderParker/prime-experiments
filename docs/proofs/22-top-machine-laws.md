@@ -576,9 +576,38 @@ residue characterisation and no mechanism, and is not induced by any shift or re
 
 ## Prior art, and what is new
 
-**Prior-art status.**  No literature search has been run for the top machine as an object -- a
-prime machine on the raw line with teeth `{0, -2}`, studied for its own arcs, runs, records and
-symmetries.  Everything below is **prior art not checked** except where stated otherwise.
+**Prior-art status: CHECKED 2026-09-06** (harvester, five parallel literature sweeps; full
+per-law verdicts in `research/proof/law_register.md`, where this file's L1-L21 are W1-W21).  The
+line that used to stand here -- "no literature search has been run for the top machine as an
+object" -- is discharged.  What the check found, in one paragraph.  **The object has a published
+name**: `F_top(G) + 1` is Ziller and Morack's *paired Jacobsthal function* `j_2(W)`
+(arXiv:1706.00317 Definition 2.1; `h_2` at primorials, arXiv:1706.03668 Table 1, OEIS A288815),
+and their Conjecture 6, `h_2(n) < p_n^2 - p_n`, **is** the window statement this project is
+after -- already in print, with a proved Goldbach and prime-pair payoff (their Theorem 4.1) and
+values to `p = 73`.  Of the 21 laws here, 3 are KNOWN (L5, L15, L21), 5 are KNOWN VARIANT
+(L6, L7, L10, L13, L16), 6 are NEW as far as searched (L3, L4, L8, L11, L17, L18), 6 are
+STANDARD TOOL (L1, L2, L12, L14, L19, L20), and **L9 is REFUTED** -- "every gap length has an
+even count except length 1" is false as soon as `N_1 = 0`; the true statement, needing no
+hypothesis, is register W67.  The nearest published relatives, by law: **L16** is Ziller
+arXiv:2007.01808 Definition 2.4 and Proposition 1.8 (the *restricted covering* equivalence) in
+one class per prime, and the same reduction is the engine of Erdos-Rankin and of
+Ford-Green-Konyagin-Maynard-Tao; **L13** is Holt and Rudd arXiv:1408.6002 Lemma 2.1 (concatenate
+`p` copies of the cycle, then close adjacent gaps); **L7** is their Remark 2.2(v) (the one-class
+cycle of gaps is symmetric); **L5**, **L11**'s `A(L)` and **L15** are Schemmel totients
+(Schemmel 1869) and Hardy-Littlewood local factors; **L21** is the Stormer-Lehmer difference-2
+smooth-pair problem (Stormer 1897; Lehmer, Illinois J. Math. **8** (1964) 57-69; OEIS
+A002071/A002072).  **L17's parity defect has no analogue in print** -- the classical one-class
+proposition (`q_1 > omega(n)` implies `j(n) = omega(n) + 1`, Erdos, Math. Scand. **10** (1962)
+163-170) gives size-independence but no defect, because the one-class case has none -- and the
+covering-systems literature (Mirsky-Newman, Znam, Hough, Balister et al.) works in a different
+regime entirely and would not have found the collision law behind it (register W29, the strongest
+novelty claim in the wheels).  One measured claim of this file is **refuted** by the register:
+`W2`, "the range record climbs slowly toward the wheel record and does not reach it", was an
+artefact of stopping at `N = 10^7` -- register W32 reaches it at 0.005% to 10.9% of the period.
+`W1` is **closed** at register W24, and is a KNOWN VARIANT: the one-class coincidence
+`K(2,P) = K(4,P)` is in Steven Brown, arXiv:2311.06873 / *Notes on Number Theory and Discrete
+Math.* **30**(1) (2024) 81-99, for a different reason (parity annihilation, not equal class
+counts).  The old paragraphs below are kept as written, and are correct as far as they go.
 
 **Standard, and used as bookkeeping.**  The wheel count `prod (g - 2)` and the start counts
 `prod (g - 2 - L)`, `prod (g - 3)`, `prod (g - 4)` are the ordinary Hardy-Littlewood / Schemmel

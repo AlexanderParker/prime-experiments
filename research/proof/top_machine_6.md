@@ -1,5 +1,10 @@
 # The zone of tranquillity (branch R4.b.vii)
 
+> Law numbers in this document map to the project-wide register
+> (`research/proof/law_register.md`): **L57-L66 = W76-W85**.  This document's L57-L59
+> CLASH with `top_machine_5.md`'s; the register resolves the clash.  Future documents
+> number from **W86**.
+
 Parent: R4.b.iv, *The in-use next-opening bound* (`research/proof/top_machine_4.md`, laws
 L46-L56). The observation that spawned this branch is the one thing that branch left with no
 mechanism at all: below the largest gear the machine is a proved smooth-number object (L46-L48),

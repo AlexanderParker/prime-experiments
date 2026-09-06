@@ -1,5 +1,10 @@
 # The top machine on its own terms (branch R4.b)
 
+> Law numbers in this document map to the project-wide register
+> (`research/proof/law_register.md`): **L1-L21 = W1-W21**.  The two unmechanised facts
+> called "W1" and "W2" in section 4 below are NOT register entries W1 and W2; they are
+> closed at register W24 and W32 respectively.
+
 Parent: R4, the period-scale formulation, and specifically the owner's CONSTRUCTION RULE of
 2026-09-06: study the top machine on its own, on the raw line, not in the bottom's coordinate
 and not against the bottom's kills. The observation that spawned this branch is the owner's

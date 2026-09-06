@@ -1,5 +1,9 @@
 # The in-use next-opening bound (branch R4.b.iii.a)
 
+> Law numbers in this document map to the project-wide register
+> (`research/proof/law_register.md`): **L46-L56 = W55-W65**.  This document's L50-L56
+> CLASH with `top_machine_5.md`'s L50-L56; the register resolves the clash.
+
 Parent: R4.b.iii, *The walk and the transforms of the top machine*
 (`research/proof/top_machine_3.md`, laws L30-L45 there). The observation that spawned this
 branch is the one open item that branch left: the mex closed form for the next opening is exact

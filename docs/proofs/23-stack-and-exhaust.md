@@ -271,9 +271,39 @@ and their clutch on the quiet zone.  (v) The honest converse: cut monotonicity i
 input, and the stack degenerates at `q = 2, 3`.
 
 **Not new.**  The mathematics of S3 is Eratosthenes; the mathematics of S1 and S2 is counting
-multiples in an interval and comparing a product with its factors.  No prior-art search has been
-run for the stack framing itself; it is carried in `docs/novel` only through the theory tree node
-R4.b.viii, not as a claimed novelty.
+multiples in an interval and comparing a product with its factors.
+
+**Prior-art status: CHECKED 2026-09-06** (harvester; per-fact verdicts in
+`research/proof/law_register.md` as X1-X8, where S1(a-d) = X1-X4, S2 = X5, S3 = X6,
+S4(a-b) = X7-X8; index entry `exhaust-stack` in `docs/novel/README.md`).  In one paragraph.
+Of the eight facts, **three are KNOWN** (S3, and S4's two halves), **four are STANDARD TOOL**
+(all of S1), and **one is NEW as stated but mathematically trivial** (S2).  S3, the exhaust cap,
+is the sieve of Eratosthenes to the square root (Legendre; Pomerance, *The Sieve of Eratosthenes
+and Rough Numbers*) -- as this file already says -- and its **stack framing is a KNOWN VARIANT**
+of Fred B. Holt, *Surviving Eratosthenes sieve I: quadratic density and Legendre's conjecture*,
+arXiv:2603.25915 (March 2026), whose *interval of survival* `[p_k^2, p_{k+1}^2]` is exactly this
+dichotomy read as a stack of stages; the delta is the tier indexing (Holt advances one prime at a
+time, which is why his containment sits one level up rather than two) and the explicit "nothing
+higher can help **or** hurt" clause, which was located nowhere.  **Read Holt 2026 before writing
+any of this up.**  S1's ingredients are division, the tooth pair and periodicity; the
+one-strike-per-copy fact is Holt and Rudd arXiv:1408.6002 Lemma 2.2 and, in implementation form,
+segmented-sieve folklore (Sorenson arXiv:1712.09130); the nearest hierarchy with the same shape
+is Pritchard's wheel sieve, where `p_{k+1} < Pi_k` is used constantly and never remarked on as a
+threshold -- which is what S2 does, so S2 is a new *observation* and must not be presented as a
+theorem.  S4(a) is Stormer 1897 / Lehmer, Illinois J. Math. **8** (1964) 57-69 (the difference-2
+smooth-pair list, OEIS A002071/A002072); S4(b) is the Legendre-Meissel-Lehmer partial sieve
+`phi(x, a) = pi(x) - a + 1` for `x < p_{a+1}^2`, and the ambient set has an established name --
+**"integers free of prime divisors from an interval"** (Weingartner, Acta Arith. **98** (2001)
+117-131 and **104** (2002) 309-343; Tenenbaum, Ann. Sci. ENS (4) **19** (1986) 1-30).  Do **not**
+call it "semismooth": Bach and Peralta, Math. Comp. **65** (1996) 1701-1715, use that word for
+the opposite inequality, an exceptional prime bounded *above*.  Two corrections carried out of
+the check.  (i) `q <= q#` is trivial (`q` divides `q#`); **Bertrand is what is actually needed,
+for tier non-emptiness**, and this file should say so where it says otherwise.  (ii) The cap is
+exactly the shape of the **parity obstruction** (Selberg 1949; Tao, *Open question: the parity
+problem in sieve theory*, 2007), so "the search is capped to the motor, one machine above it and
+their clutch" is a restatement of *why* the classical route stalls -- true, and load-bearing for
+the wall map, but any claim that the cap **helps** must say what it does that a sieve weight does
+not.  The degeneracy at `q = 2, 3` was independently confirmed.
 
 ## Relationship to the conjecture
 
