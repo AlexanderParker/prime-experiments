@@ -1102,6 +1102,25 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
       The library is 269 declarations. NOT ATTEMPTED: the capacity bound L70, the moment
       vanishing L73/L74 (needs Boolean-cube Mobius inversion), the census law L22 (K2's
       general powerset inclusion-exclusion is the missing machinery).
+    - R4.b.xiii. The gap census law in Lean (round 37, Fable; proofs/TopMachineCensus.lean, 41
+      declarations). KERNEL: gap_census (register W22): the number of residues n mod W with n
+      and n + d consecutive open pairs equals the alternating sum over subsets S of the
+      interior positions of prod_g (g - |E_g(S)|), with E_g(S) the image of the offsets
+      {0, 2, d, d + 2} u S u (S + 2) under off g; hypotheses ONLY gears positive and pairwise
+      coprime (no g >= 5, no primality, no oddness: the size hypotheses of the branch are
+      needed only to evaluate |E_g(S)|, not to prove the law). Three general lemmas carry it:
+      K1 the residue characterisation (consecOpenN_iff_residues), K2 card_filter_forall_not, a
+      fully general inclusion-exclusion over a Finset of predicates (no hypotheses; mathlib's
+      version needs a Fintype and was unusable), K3 card_avoid_prod, the count of residues mod
+      a product of coprime moduli avoiding per-gear forbidden Finsets factors as a product;
+      wheel_count and the pair correlation are its special cases (pair_corr_teeth). Check:
+      gap_four_zero, the census at d = 4 is identically 0 from the formula by pairing S with
+      S u {2} (equal products, opposite signs): the forbidden gap derived from the algebra.
+      Manager gate: build of the seven targets green at 2248 jobs; audit of gap_census,
+      card_filter_forall_not, card_avoid_prod, gap_four_zero: propext, Classical.choice,
+      Quot.sound; zero sorries, no decide. The library is 310 declarations. NOT ATTEMPTED:
+      the moment vanishing L73/L74 (needs the per-subset evaluation of |E_g(S)|, the
+      elementary-symmetric expansion and a Boolean-cube Mobius inversion, none in the kernel).
     - R4.b.x. The exhaust, first pass (spawned by the objects ledger: the exhaust is the only
       object with no measurement and no branch document). Self-similarity of tier 3 measured
       against the wheels' laws in its own parameters; CutMono's exact elementary form and
@@ -2167,3 +2186,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, Harvester (law_register.md): the wheels' and exhaust's laws registered W1-W85, X1-X8 with prior-art verdicts (14 known, 18 known variant, 38 new, 22 standard tool, 1 refuted: W9 fails once N_1 = 0, W67 is the true form). Strongest novelty cluster: the collision law W29 with W17, W44, W71 (finite two-class interval covers; the covering-systems literature works on infinite covers with distinct moduli). The gap census W22-W24 is the two-class version of Brown 2024 (arXiv:2311.06873), cite. W64's constant 160 is Lehmer's last {2,3,5}-smooth pair. MANAGER CORRECTION IN FLIGHT: the register's verdict that the record is Ziller-Morack's paired Jacobsthal h_2 and that their Conjecture 6 IS the window statement is wrong as stated: OEIS A288815 = 6 A072753 + 6 and A072753 is the FREE-residue two-class covering record (the wall's 5a adversary); the real twin-candidate gap at primorials is 6 F(M) (12, 30, 42, 66, 108, 150 by direct scan), strictly below h_2 from p = 11 (42 against 66; 528 against 708 at 37). So Conjecture 6 is the ADVERSARIAL window statement, stronger than ours and implying it. A Harvester is computing the three ordered records (real, the project's fixed-separation adversary of docs/proofs/20, free) and correcting the register, docs/novel, docs/proofs/20, 22, 23 and the wall's 5a.
 - 2026-09-06, Harvester (jacobsthal_check.md): the correction verified and applied. Three ordered records at K = 1..5 (longest coverable run, F - 1 convention): real 1, 4, 6, 10, 17; the project's adversary of docs/proofs/20 (free primes, D = 2) 1, 4, 6, 15, 21; free two-class (A072753) 2, 4, 10, 24, 31; the real twin-candidate gap at p_n# equals 6 F(M) for n = 3..9 (12, 30, 42, 66, 108, 150, 204 by direct sieve to 223,092,870), not A288815. Verdict: h_2 at primorials is the free-residue two-class record (Ziller-Morack's j_2 quantifies over the even difference D, which by CRT is two arbitrary classes per prime); F(M) is the real-teeth instance D = 2, F(M) - 1 <= A072753 with equality at {5, 7} alone; Conjecture 6 is the adversarial window statement and IMPLIES ours (and Goldbach), not the converse. docs/proofs/20 is NOT a partial result toward Conjecture 6 (the two adversaries strengthen along different axes: doc 20 frees the primes and keeps D = 2; ZM keeps the initial segment and frees D); it now cites A072753 as the published table of the adversary it compares against. The project had the right reading already in docs/novel/jk-growth-discriminator.md section 6; the register's error came from OEIS returning 403 to the lane. Follow-up flagged: sweep docs/novel/j2-lower-ladder.md and j2-upper-bound.md for any sentence reading the project's F as h_2.
 - 2026-09-06, Formalist round 36 (proofs/TopMachineRecord.lean, MachineStack.lean addendum): the loaded record rule is a theorem both ways, necessity with no hypothesis and sufficiency with coprimality alone; the parity law re-proved independently from the rule; a gear strikes both ends of the window iff g = L + 1 exactly (sharper than the branch's <=); CutMono unconditional for prime q >= 5 by a halving induction on Bertrand, so the stack's cap holds for every base from 5. Green at 2246 jobs, standard axioms, zero sorries; 269 declarations.
+- 2026-09-06, Formalist round 37 (proofs/TopMachineCensus.lean): the gap census law W22 is a theorem with gears positive and coprime only; general inclusion-exclusion and multi-forbidden-set CRT lemmas added; the forbidden gap 4 derived from the formula's algebra. Green at 2248 jobs, standard axioms, zero sorries; 310 declarations.

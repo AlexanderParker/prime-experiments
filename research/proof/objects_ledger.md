@@ -49,8 +49,9 @@ anywhere in this ledger.** Marked slots:
 > exception absorbed (O-W1 closed); L18's multiplicities reproduced; the census law written in
 > kernel shape (three lemmas, each verified). Remaining on the wheels alone: the complexity of
 > min_U D_L(U); non-cancellation of M_{r(d)} (L75, 0 exceptions of 24, unproved); L22 in the
-> kernel (round 36 did L67-L69 and the boundary corollary: proofs/TopMachineRecord.lean; L22, L70,
-> L73/L74 not attempted); a parity-refined capacity bound.
+> kernel (round 36 did L67-L69 and the boundary corollary: proofs/TopMachineRecord.lean; round 37
+> did L22 / W22: proofs/TopMachineCensus.lean, gears positive and coprime only; L70 and L73/L74 not
+> attempted); a parity-refined capacity bound.
 
 ---
 

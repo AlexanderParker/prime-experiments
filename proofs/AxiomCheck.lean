@@ -7,6 +7,7 @@ import TopMachineCrt
 import TopMachineWalk
 import MachineStack
 import TopMachineRecord
+import TopMachineCensus
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -857,3 +858,48 @@ open BlockedSlots
 #print axioms TopMachine.cut_succ_gt_four_mul_aux
 #print axioms TopMachine.cut_succ_gt_four_mul
 #print axioms TopMachine.cutMono_of_five_le
+
+-- Round 37: the gap census law L22 (register W22) - K1 local characterisation,
+-- K2 inclusion-exclusion over the interior positions, K3 the CRT product per
+-- subset, assembled as `gap_census`; the d = 4 vanishing from the formula.
+#print axioms TopMachine.ConsecOpen
+#print axioms TopMachine.ConsecOpenN
+#print axioms TopMachine.decConsecOpenN
+#print axioms TopMachine.consecOpen_natCast
+#print axioms TopMachine.Ncount
+#print axioms TopMachine.Offs
+#print axioms TopMachine.E
+#print axioms TopMachine.mem_Offs
+#print axioms TopMachine.offs_zero_mem
+#print axioms TopMachine.offs_two_mem
+#print axioms TopMachine.offs_d_mem
+#print axioms TopMachine.offs_d_two_mem
+#print axioms TopMachine.offs_mem_of_mem
+#print axioms TopMachine.offs_add_two_mem_of_mem
+#print axioms TopMachine.E_subset_range
+#print axioms TopMachine.E_card_le
+#print axioms TopMachine.E_empty_eq_corrTeeth
+#print axioms TopMachine.mod_eq_off_iff
+#print axioms TopMachine.strikesR_add_iff
+#print axioms TopMachine.mem_E_iff
+#print axioms TopMachine.not_mem_E_iff
+#print axioms TopMachine.AvoidN
+#print axioms TopMachine.decAvoidN
+#print axioms TopMachine.avoidN_E_iff
+#print axioms TopMachine.avoidN_E_empty_iff
+#print axioms TopMachine.not_openN_add_iff
+#print axioms TopMachine.consecOpenN_iff_residues
+#print axioms TopMachine.consecOpenN_iff_avoid
+#print axioms TopMachine.card_filter_forall_not
+#print axioms TopMachine.avoidN_congr
+#print axioms TopMachine.avoidN_insert
+#print axioms TopMachine.card_avoid_prod
+#print axioms TopMachine.card_range_filter_not_mem
+#print axioms TopMachine.card_avoid_E
+#print axioms TopMachine.pair_corr_teeth
+#print axioms TopMachine.gap_census
+#print axioms TopMachine.gap_census_int
+#print axioms TopMachine.gap_census_raw
+#print axioms TopMachine.offs_four_insert_two
+#print axioms TopMachine.E_four_insert_two
+#print axioms TopMachine.gap_four_zero

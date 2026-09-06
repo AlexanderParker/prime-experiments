@@ -1196,3 +1196,191 @@ has); L22 via K1-K3 (K2's general `Finset.powerset` inclusion-exclusion is the o
 piece of machinery; K1 and K3 are mechanical on `card_filter_crt`).  The round's time
 went to L67-L69, the boundary corollary, and the `CutMono` transcription requested
 mid-round.
+
+
+---
+
+# Round 37: the gap census law L22 (W22) in the kernel
+
+New file: `proofs/TopMachineCensus.lean` (imports `TopMachineWalk`, so the whole
+`TopMachine` stack below it), registered as a `lean_lib` in `proofs/lakefile.toml`, in
+`defaultTargets`, and audited from `proofs/AxiomCheck.lean`.  Source: L22 of
+`research/proof/top_machine_2.md` in the kernel shape of `research/proof/top_machine_7.md`
+section 5 (K1, K2, K3).  Register row **W22**; the `d = 4` corollary is the
+register's "`4` the only identically zero length" (W24) and L26's "`d = 4` exception",
+now a one-line consequence of the formula.  **41 new declarations, zero sorries, no
+`native_decide`, no `decide`, no `Lean.ofReduceBool`.**  The ledger is now 310
+declarations across seven libs.
+
+## The objects
+
+```lean
+-- n and n + d are consecutive open pairs: both open, nothing open strictly between
+def ConsecOpen (G : Finset ℕ) (d : ℕ) (n : ℤ) : Prop :=
+  IsOpen G n ∧ IsOpen G (n + d) ∧ ∀ z : ℤ, n < z → z < n + d → ¬ IsOpen G z
+def ConsecOpenN (G : Finset ℕ) (d n : ℕ) : Prop :=                       -- residue form
+  OpenN G n ∧ OpenN G (n + d) ∧ ∀ j ∈ Finset.Ioo 0 d, ¬ OpenN G (n + j)
+theorem consecOpen_natCast : ConsecOpen G d (n : ℤ) ↔ ConsecOpenN G d n
+
+-- the census N_d(G): residues mod the wheel at which n, n + d are consecutive open
+def Ncount (G : Finset ℕ) (d : ℕ) : ℕ :=
+  ((Finset.range (∏ g ∈ G, g)).filter (ConsecOpenN G d)).card
+
+-- the offsets n must avoid, and E_g(S) = their negatives mod g (off g x = (-x) mod g)
+def Offs (d : ℕ) (S : Finset ℕ) : Finset ℕ := ({0, 2, d, d + 2} : Finset ℕ) ∪ S ∪ S.image (· + 2)
+def E (d : ℕ) (S : Finset ℕ) (g : ℕ) : Finset ℕ := (Offs d S).image (fun x : ℕ => off g x)
+
+-- the general per-gear avoidance predicate behind K3
+def AvoidN (G : Finset ℕ) (F : ℕ → Finset ℕ) (n : ℕ) : Prop := ∀ g ∈ G, n % g ∉ F g
+```
+
+`E d S g` is a `Finset` image, so `|E_g(S)|` is whatever the image's card is; no
+distinctness hypothesis is stated anywhere, and none was needed.  `E d ∅ g = CorrTeeth g d`
+(`E_empty_eq_corrTeeth`), the four-tooth set of round 34's pair correlation.
+
+## K1, the local characterisation
+
+```lean
+theorem mod_eq_off_iff (hg : 0 < g) (n x : ℕ) : n % g = off g (x : ℤ) ↔ (n + x) % g = 0
+theorem strikesR_add_iff (hg : 0 < g) (n x : ℕ) :
+    StrikesR g (n + x) ↔ (n % g = off g (x : ℤ) ∨ n % g = off g ((x + 2 : ℕ) : ℤ))
+theorem not_mem_E_iff (hg : 0 < g) (d S n) :
+    n % g ∉ E d S g ↔ ¬ StrikesR g n ∧ ¬ StrikesR g (n + d) ∧ ∀ j ∈ S, ¬ StrikesR g (n + j)
+theorem avoidN_E_iff (hG0 : ∀ g ∈ G, 0 < g) (d S n) :
+    AvoidN G (E d S) n ↔ OpenN G n ∧ OpenN G (n + d) ∧ ∀ j ∈ S, OpenN G (n + j)
+theorem avoidN_E_empty_iff (hG0) (d n) : AvoidN G (E d ∅) n ↔ OpenN G n ∧ OpenN G (n + d)
+theorem not_openN_add_iff (hG0) (n x) :
+    ¬ OpenN G (n + x) ↔ ∃ g ∈ G, (n % g = off g (x : ℤ) ∨ n % g = off g ((x + 2 : ℕ) : ℤ))
+-- K1 as the branch states it
+theorem consecOpenN_iff_residues (hG0) (d n) :
+    ConsecOpenN G d n ↔ AvoidN G (E d ∅) n ∧
+      ∀ j ∈ Finset.Ioo 0 d, ∃ g ∈ G, (n % g = off g (j : ℤ) ∨ n % g = off g ((j + 2 : ℕ) : ℤ))
+-- K1 in the shape K2 consumes
+theorem consecOpenN_iff_avoid (hG0) (d n) :
+    ConsecOpenN G d n ↔ AvoidN G (E d ∅) n ∧ ∀ j ∈ Finset.Ioo 0 d, ¬ OpenN G (n + j)
+```
+
+Hypothesis: gears positive (`0 < g`), nothing else.  The one arithmetic fact is
+`mod_eq_off_iff`, which is `dvd_iff_off_eq` (round 34) after splitting `n = g (n/g) + n % g`.
+
+## K2, inclusion-exclusion over a finite set of positions
+
+```lean
+theorem card_filter_forall_not {α ι : Type*} (A : Finset α) (J : Finset ι)
+    (P : ι → α → Prop) [∀ j, DecidablePred (P j)] :
+    ((A.filter (fun n => ∀ j ∈ J, ¬ P j n)).card : ℤ)
+      = ∑ S ∈ J.powerset, (-1 : ℤ) ^ S.card * ((A.filter (fun n => ∀ j ∈ S, P j n)).card : ℤ)
+```
+
+General in the point set `A`, the position set `J` and the predicate `P` ("position `j`
+is unstruck at `n`"); nothing about the machine enters.  Proof: pointwise
+`prod_{j in J} (1 - [P j n]) = sum_S (-1)^|S| prod_{j in S} [P j n]` by
+`Finset.prod_add` (with `f = -[P]`, `g = 1`) and `Finset.prod_boole`, then
+`Finset.sum_boole` on both sides and `Finset.sum_comm`.  Mathlib's own
+`Finset.inclusion_exclusion_card_inf_compl` needs a `Fintype` ambient type and was not
+used.
+
+## K3, the CRT product for per-gear forbidden sets
+
+```lean
+theorem card_avoid_prod : ∀ (G : Finset ℕ), (∀ g ∈ G, 0 < g) →
+    (∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) → ∀ (F : ℕ → Finset ℕ),
+    ((Finset.range (∏ g ∈ G, g)).filter (fun n => AvoidN G F n)).card
+      = ∏ g ∈ G, ((Finset.range g).filter (fun r => r ∉ F g)).card
+theorem card_range_filter_not_mem (hF : F ⊆ Finset.range g) :
+    ((Finset.range g).filter (fun r => r ∉ F)).card = g - F.card
+theorem card_avoid_E (hG0) (hcop) (d S) :
+    ((Finset.range (∏ g ∈ G, g)).filter (fun n => AvoidN G (E d S) n)).card
+      = ∏ g ∈ G, (g - (E d S g).card)
+-- the S = ∅ term is the pair correlation (L44) with its teeth counted as a Finset
+theorem pair_corr_teeth (hG0) (hcop) (d) :
+    ((Finset.range (∏ g ∈ G, g)).filter (fun n => OpenN G n ∧ OpenN G (n + d))).card
+      = ∏ g ∈ G, (g - (CorrTeeth g d).card)
+```
+
+`card_avoid_prod` is the same `Finset.induction_on` + `card_filter_crt` argument as
+`wheel_count` (round 32) and `corr_prod` (round 34), with an arbitrary forbidden set
+`F g` per gear; `wheel_count` is the instance `F g = {0, g - 2}` and `corr_prod` the
+instance `F g = CorrTeeth g d` (`pair_corr_teeth` shows the latter through the new
+lemma).  Hypotheses: gears positive, pairwise coprime.
+
+## L22 / W22, the gap census law
+
+```lean
+theorem gap_census (hG0 : ∀ g ∈ G, 0 < g) (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) (d : ℕ) :
+    (Ncount G d : ℤ)
+      = ∑ S ∈ (Finset.Ioo 0 d).powerset,
+          (-1 : ℤ) ^ S.card * ((∏ g ∈ G, (g - (E d S g).card) : ℕ) : ℤ)
+theorem gap_census_int (hG0) (hcop) (d) :          -- the product taken in ℤ
+    (Ncount G d : ℤ)
+      = ∑ S ∈ (Finset.Ioo 0 d).powerset, (-1 : ℤ) ^ S.card * ∏ g ∈ G, ((g : ℤ) - ((E d S g).card : ℤ))
+theorem gap_census_raw (hG0) (hcop) (d) :          -- the filter written out
+    (((Finset.range (∏ g ∈ G, g)).filter (fun n : ℕ => ConsecOpenN G d n)).card : ℤ) = ...
+```
+
+Proof: `consecOpenN_iff_avoid` rewrites the census filter as
+`(filter (AvoidN G (E d ∅))).filter (∀ j ∈ Ioo 0 d, ¬ OpenN G (n + j))`;
+`card_filter_forall_not` with `P j n := OpenN G (n + j)` gives the alternating sum;
+for each `S`, `avoidN_E_empty_iff` + `avoidN_E_iff` fold the term's filter into
+`AvoidN G (E d S)`, and `card_avoid_E` counts it.  **Hypotheses as the proof needed
+them: every gear positive, gears pairwise coprime.**  No `g >= 5`, no `g > d + 2`, no
+primality, no odd-gear hypothesis: the size hypotheses of the branch are only needed to
+EVALUATE `|E_g(S)|` (W23's universality), not to state or prove the law.
+
+## The `d = 4` check: the alternating sum is identically zero
+
+```lean
+theorem offs_four_insert_two (S : Finset ℕ) : Offs 4 (insert 2 S) = Offs 4 S
+theorem E_four_insert_two (S : Finset ℕ) (g : ℕ) : E 4 (insert 2 S) g = E 4 S g
+theorem gap_four_zero (hG0) (hcop) : Ncount G 4 = 0
+```
+
+At `d = 4` the interior position `2` contributes the offsets `2` and `4`, both already
+among the boundary offsets `{0, 2, 4, 6}`, so `E_g(S u {2}) = E_g(S)` for every `S` and
+every `g`; `Finset.sum_powerset_insert` pairs each `S ⊆ {1, 3}` with `S u {2}`, the two
+products agree and the signs differ, and the sum is `0`.  This is L4 (`no_gap_four`,
+round 32) re-derived from the algebra of L22 rather than from the direct argument - the
+check that the formula's algebra is captured, and L26's "`d = 4` exception" as
+`top_machine_7.md` section 5 reads it.
+
+## Build and audit
+
+```
+cd C:/dev/primes/proofs
+~/.elan/bin/lake.exe build TopMachine TopMachineWheel TopMachineCrt TopMachineWalk MachineStack TopMachineRecord TopMachineCensus
+```
+
+Result: **green**, 2248 jobs, no warnings, no errors.  `TopMachineCensus` 6.6 s cold
+(1393 jobs on its own), the other six cached; ordinary elaboration throughout, a normal
+`lean.exe`, no kernel scan.
+
+Axiom audit over **all 41 new declarations** (`lake env lean` on a scratch
+`#print axioms` file, and the same block appended to `proofs/AxiomCheck.lean` behind
+`import TopMachineCensus`): every declaration is
+`[propext, Classical.choice, Quot.sound]`; **no `sorryAx`, no `Lean.ofReduceBool`, no
+`Lean.trustCompiler`.**  Choice is inherited from mathlib's `Finset` plumbing; nothing
+in the file chooses.
+
+## What the ledger now says
+
+| law | Lean name (namespace `TopMachine`) | status | hypothesis |
+|---|---|---|---|
+| L22 / W22 the gap census law | `gap_census`, `gap_census_int`, `gap_census_raw` | **proved** | gears positive, pairwise coprime |
+| K1 local characterisation | `consecOpenN_iff_residues`, `consecOpenN_iff_avoid`, `avoidN_E_iff`, `not_mem_E_iff`, `strikesR_add_iff`, `mod_eq_off_iff` | proved | `0 < g` |
+| K2 inclusion-exclusion over positions | `card_filter_forall_not` | proved, general (any `A`, `J`, `P`) | none |
+| K3 CRT product per forbidden set | `card_avoid_prod`, `card_avoid_E`, `card_range_filter_not_mem` | proved | gears positive, pairwise coprime |
+| the `S = ∅` term = L44 pair correlation | `pair_corr_teeth`, `E_empty_eq_corrTeeth`, `avoidN_E_empty_iff` | proved | gears positive, pairwise coprime |
+| raw line = residue form | `consecOpen_natCast` | proved | none |
+| L4 / W24 `d = 4` identically zero, FROM the formula | `gap_four_zero`, `E_four_insert_two`, `offs_four_insert_two` | proved | gears positive, pairwise coprime |
+| L15 `d = 1`, L9, L18 as instances | - | not written out (they are `gap_census` at `d = 1` and the evaluations of `|E_g(S)|`, W23) | - |
+
+**Not attempted this round**, named so the gap is an output: L73 (the moment vanishing
+`M_k(d) = 0` for `k < r(d)`) and L74 (`r(d) = D(d-1)`).  The moment form L25 writes
+`N_d = sum_k (-1)^k sigma_{m-k} M_k(d)` with `M_k(d) = sum_e c_e(d) e^k`, which needs
+W23's evaluation `|E_g(S)| = e(S)` for gears `> d + 2` (a per-subset distinctness count
+on `off g`, the `corrTeeth_card_*` lemmas of round 34 generalised from four offsets to
+`4 + 2|S|`), then the expansion of `prod (g - e(S))` in elementary symmetric functions
+of the gears, and finally the vanishing itself, a Boolean-cube Mobius inversion over
+`{0,1}^{d-1}`.  None of the three pieces is in the kernel; the first is mechanical, the
+third is the branch's actual content.  The time went to K1-K3, the assembly and the
+`d = 4` derivation.

@@ -567,6 +567,15 @@ of L17.  Also `cut_succ_gt_four_mul` / `cutMono_of_five_le`: the stack's cut seq
 monotone for every prime base `q >= 5`, so `stack_open_iff_twin` is unconditional there.  Build
 with the six targets: green at 2246 jobs; audit: standard axioms; zero sorries.
 
+**Round 37 (`proofs/TopMachineCensus.lean`, 41 declarations)** added the gap census law W22:
+`TopMachine.gap_census`, the number of consecutive open pairs at distance `d` per wheel as the
+alternating sum over interior subsets of `prod (g - |E_g(S)|)`, with gears positive and pairwise
+coprime only; the general lemmas `card_filter_forall_not` (inclusion-exclusion over a Finset of
+predicates) and `card_avoid_prod` (residues avoiding per-gear forbidden sets factor as a product,
+of which the wheel count and the pair correlation are special cases); and `gap_four_zero`, the
+forbidden gap derived from the formula.  Build with the seven targets: green at 2248 jobs; audit:
+standard axioms; zero sorries.
+
 Build: `lake build TopMachine TopMachineWheel TopMachineCrt`, green at 1392 jobs; manager audit
 of `exists_crt`, `crt_unique`, `parity_attained`, `parity_law`, `affine_group`,
 `exists_symmetry`, `sign_count`: `[propext, Classical.choice, Quot.sound]` each; zero sorries,
