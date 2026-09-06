@@ -672,6 +672,16 @@ in, their closures recorded against the O-items above).
 
 ### ENGINE - **NOT YET**, by a short list of three, every item a statement about `M` alone.
 
+> Update 2026-09-07, later (pad_cap.md): gate item 1, L(M) bounded, RESOLVED: E1 proves L <= 8
+> over the small alphabet {a, b, q'} uniformly (0 exceptions on 14 rungs; every padded word ever
+> measured is in that class); the skip half (letters 2q', a + q', b + q', first at m53) is ROOT (a
+> constant cap is equivalent to F(M + q') <= C q'). ENGINE GATE: YES on paper; remaining items are
+> ROOT or non-structural (the skip words at m41..m47 by scan; formalising E1 and E2).
+>
+> THE GATE IS OPEN (2026-09-07): engine, manifold and exhaust each have no open structural item
+> that is not the conjecture in disguise. The valves (R4.c) may be opened per the owner's hybrid
+> first step.
+
 > Update 2026-09-07 (monotone_functional.md): gate item 2, the chain statement on the band
 > [15, 36] at 29 -> 31, PASSES by complete enumeration (max span 58 at J = 3, 55 at J = 4, against
 > 74; margin 16). Gate item 3, the monotone functional, FOUND and measured: Phi = B_{L+1}, the

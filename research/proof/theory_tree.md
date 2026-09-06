@@ -1507,8 +1507,39 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             - 4.i.b.ii.a. Cap the padded word (spawned by the order law giving L a job: a cap
               L <= c makes the budget a bounded-order statement about D_{c+1}; the engine's
               last structural item). The PAD alphabet at every rung, the junction-gear
-              counting cap, the letter-value cap, the shadow if uncapped. OPEN, prover running
-              on Fable (research/proof/pad_cap.md).
+              counting cap, the letter-value cap, the shadow if uncapped. STRONG, the
+              engine's last structural item resolved (research/proof/pad_cap.md, laws E1-E3;
+              scripts research/anchor235/r67/). E1 (PROVED, uniform): every realised legal
+              word over the small alphabet {a, b, q'} has length <= CORRCAP_3(q' mod 210) <= 8
+              (the bare cap of docs/proofs/12 with the pad q' added; finite at 48 of 48
+              classes, values 2, 3, 4, 5, 6, 8, never 7); 0 exceptions on 14 rungs (m5..m37
+              computed, m41..m53 corpus), tight at m29 ((10, 21, 10)) and m53. Every padded
+              word the record ever measured (L_pad = 0..3 to m47) is in that class, so the
+              padded half AS MEASURED is closed; E1 explains why the eight 3-words over {20,
+              39, 59} were zero (CORRCAP_3(59) = 2). THE OPEN HALF IS THE SKIP HALF (letters
+              2q', a + q', b + q'; first instance (20, 98, 20) at m53) AND IT IS ROOT: E2
+              (proved) L + 1 <= 2 Omega(T + 1), T = floor((F(M + q') - 2)/q'), tight per class
+              at m29 and m53; E3, the exact corridor + span cap, 9 of 9 rungs with slack 0 or
+              1; none uniform: a constant cap on L_skip is equivalent to F(M + q') <= C q',
+              stronger than the budget. Regime (proved, gear 5 alone): L <= 5 whenever
+              F(M + q') <= 5q' + 1, i.e. the whole corpus (F/q' <= 2.73). MECHANISM: a word's
+              openings lie on two tooth progressions of step q'; in units of q' each class is
+              a set of openings of the pullback machine (same gears, separations 2 u_g q'^-1),
+              holding at most 15/35 of the multipliers under gears 5 and 7; the small alphabet
+              needs the two classes to cover every multiplier (2 x 15/35 < 1: capped), a skip
+              letter leaves a multiplier to neither class and the contradiction disappears;
+              gear 5 alone does not cap, gear 7 does. P3 confirmed at m37: the first rung
+              where a skip 2-word is size-feasible, none of the four candidates is realised in
+              the complete D_2(m37) though the corridor allows each. Exact tables: the PAD
+              alphabet {23}, {29}, {31}, {37, 49}, {41, 55, 68} at m19..m37 (holes 41, 82
+              corridor-allowed); every realised legal word to m37 with counts. REFUTED: the
+              counting cap (capacity/need 1.4-2.2); k_L = L + 1 fails at m29 (the palindrome
+              (10, 21, 10) cannot chain), replaced by k_L in {L, L + 1}; the merge forest's
+              depth, the record's composition and the gear-5 lock are not the shadow. THE
+              SHADOW: the record in gear units, |A_pad| ~ 3 F(M)/q' - 2 for letters and
+              T = F(M + q')/q' for words. Open on the part alone (not structural): the skip
+              words at m41, m43, m47 by a copy-law scan; the full-gear Omega for the pullback
+              separations; formalising E1 (BareAlt plus one letter) and E2.
         - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
           FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
           F_old = 0 or +-d (mod q'), else n1(F_old), the old record's largest single neighbour;
@@ -2281,3 +2312,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, cleanup of old contexts (owner's request): human.md and agents-shared.md rewritten as current-state snapshots in the canonical words; README 'Where things stand' to 7 September; the objects ledger folded to one verdict per object (ENGINE not yet, three items; MANIFOLD yes on paper; EXHAUST measured once, CutMono in the kernel) with stale numbers updated; the wall gains 5l mapping its faces onto engine / manifold / valves / exhaust; docs/proofs/README maps the retired words. Two facts surfaced: 310 declarations is the manifold-and-exhaust library only (the engine's Lean corpus has no total on record); docs/proofs holds 23 written proofs, not 21.
 - 2026-09-07, manager (manifold_census_large.md addendum, owner's question): the identical record across four engines is a mechanism, not a coincidence: in the bottom stratum only primes and q-smooth numbers are open, and the record twin gap contains no smooth number with a prime neighbour (0, 1, 2, 3 smooth numbers inside for q = 5, 7, 11, 13, none adjacent to a prime). It is the usual case: identical at 14 of 19 values of Q from 20,000 to 200,000, sticky over ranges of Q; every exception is a smooth number with a prime neighbour splitting the twin gap. W103 (measured, ROOT).
 - 2026-09-07, prover MF1 (monotone_functional.md, finished from disk after the limit): THE ORDER LAW, the interaction order the budget needs is exactly L(M) + 1 (B_{L+1} <= F + q' at 9 of 9, B_L > F + q' at 7 of 7, 0 exceptions); Phi = B_{L+1} is the monotone functional, the only one of eleven that bounds the next record and is budget-monotone; its theorem implies the budget at every rung and needs a cap on L plus one fusion lemma; the band check at 29 -> 31 passes with margin 16 by complete enumeration; L(M) bounded stays OPEN (L_pad uncapped). Engine gate: item 2 closed, item 3 found (measured), item 1 open.
+- 2026-09-07, prover LP1 on Fable (pad_cap.md): the padded word capped uniformly over the small alphabet (E1, proved, <= 8, 0 exceptions on 14 rungs; every measured padded word is in that class); the skip half is ROOT (a constant cap is equivalent to F(M + q') <= C q'); the mechanism is the pullback machine's cover of the multipliers, gear 7 the capper. The engine's last structural item is resolved: measured half proved, remaining half the conjecture in disguise. THE GATE OPENS: engine, manifold and exhaust have no open structural item that is not ROOT. Next per the owner's plan: the valves' hybrid first step (scratch lane with clean context on Fable; review lane; reconcile).
