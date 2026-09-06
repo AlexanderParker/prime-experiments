@@ -937,8 +937,40 @@ the log at the bottom is chronology only.
     - R4.b.vii. The zone of tranquillity (owner: past Q - sqrt Q, or the first gear whose
       square exceeds Q, a zone that should be completely knowable, where the top machine's gap
       alignments can be located and sized; manager's reading to test: in (Q, Q^2] a number is
-      open iff it is q-smooth times at most one prime above Q). OPEN, prover running
-      (research/proof/top_machine_6.md).
+      open iff it is q-smooth times at most one prime above Q). DONE (research/proof/
+      top_machine_6.md, laws L57-L66; scripts research/topmachine/r6/). THE QUIET ZONE IS
+      (Q, Q^2] AND ITS RULE STARTS AT 1 (L57, two-line proof, 45 machines, every cell of
+      [1, Q^2], 0 exceptions): n <= Q^2 is unstruck iff n = s P with s q-smooth and P = 1 or
+      one prime above Q; the smooth-zone rule is the case P = 1; no transition band; the rule
+      dies at p_1^2 (p_1 the first prime above Q), not Q^2. THE OWNER'S SECOND NUMBER IS RIGHT:
+      the lower edge of the zone's own record region is g_0^2, the square of the first gear
+      with g_0^2 > Q (2.0%, 1.3%, 0.5%, 0.2%, 0.05% above Q as Q grows to 10^7); Q - sqrt Q is
+      not an edge of anything (at q = 5, Q = 10^4 it sits inside one struck block running from
+      161 to 10,006). The zone is layered: at height x the smooth cofactor is at most x/p_1,
+      attained in every stratum; in the bottom stratum (Q, 2Q] the only cofactor is 1, so
+      unstruck = prime or q-smooth (L59). COMPLETE KNOWLEDGE, four ways, 0 mismatches: the
+      enumeration from the rule with no sieve (13 machines); the count Psi(X, q) + sum over
+      s <= X/p_1 of (pi(X/s) - pi(Q)); the family decomposition (every open pair labelled
+      (s, s') solving s' P' - s P = 2; 1,510 families at q = 5, Q = 10^4; each family's count
+      is INDEPENDENT of q, raising q adds families and changes none; family (1, 1) carries
+      pi_2(10^8) - pi_2(10^4) = 440,107 exactly at q = 5 and q = 11); the walk as the mex in a
+      new guise, nextadm(x) = min over q-smooth s of s * nextprime(max(Q, ceil(x/s))), 0
+      mismatches in 11,489,920 positions, the next open pair by iterating it (600,000 walks,
+      mean 2.3-3.5 iterations). ALIGNMENTS ALWAYS OCCUR, FLOOR PROVED: any prime gap in
+      (Q, 2Q] free of q-smooth numbers is a run of struck pairs (48 of 48; truth 3.22-24.00
+      times the floor). The record's profile through the zone is a U (371, 419, ..., 116, ...,
+      311 at q = 5, Q = 10^4): the bottom is family-starved but short, the top has every
+      family but twice the log and is 1,800x longer; the bottom wins 28 of 48, narrowly. HOW
+      BIG: 183-419 at Q = 10^4, at 1.35 Q to 2.63 Q, about 2/Q of the zone, growing with Q
+      but not monotonically, 23.5x below the smooth zone's linear record at Q = 10^4 (3.0x at
+      Q = 316); this object IS R4.b.iv's A(q, N), eight values and positions reproduced
+      exactly. NO UPPER BOUND, AND THE REASON IS EXACT (L65): the zone's bottom stratum is
+      the family (1, 1), the twin primes above Q, so bounding the zone record above is
+      bounding the gaps between twin primes. Free confirmations: no gap of 4 in 49,433,381
+      range gaps; W1 survives as an approximate equality. REFUTED pre-registrations: monotone
+      density through the zone (unimodal, peak near Q^1.5); the record always at the bottom
+      (20 of 48 elsewhere); the record block bounded by twin primes (13 of 42); nothing
+      special at g_0^2 (refuted in the owner's favour).
     - R4.b.viii. A third machine above the top (owner, 2026-09-06: gears from Q to Q's
       primorial). FACT, not opened: every top-machine law is stated in (smallest gear, gear
       count) only, so the third machine is the top machine with split (Q, Q') and obeys the
@@ -1935,3 +1967,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, Formalist round 34 (proofs/TopMachineWalk.lean): the owner's closed form is a theorem. mex_form (the next open pair after x is x + mex of the two residues per gear, gears above 2m), triple_mex_form and triple_law (the run-of-three record is exactly 3m; attainment needs no size hypothesis), no_start_gap, pair_corr. Green at 1394 jobs, standard axioms, zero sorries; 158 declarations in the top-machine library.
 - 2026-09-06, prover TM4 (top_machine_4.md): the in-use record is the largest gap of the q-smooth-pair list below Q (zone law, proved, exact in value and position), so it is linear in the largest gear and no bound in (q', m) exists; in use the tail is empty and the parity apparatus is about tail gears only; union bounds provably cannot reach the truth; above the zone the record is a different, small object (24-419) with no proved bound. The wheel record's exact core/tail rule found (domino cost). The next-opening deliverable stands as: proved closed form for gears above 2m; exact zone law in use; open above the zone.
 - 2026-09-06, prover TM5 (top_machine_5.md): the split slid down. The smallest simple machine is q' = 5 (domino machine and bottom machine {5..q} begin together); the mex form's true hypothesis is F_top < q'; the parity threshold is 2m + 1 (even m) / 2m + 3 (odd m); the symmetry group is absolute from 3; the record's dependence on m and the gears below F + 1 is absolute down to {2, 3, 5}. Transfers to the bottom listed unchanged / modified / none; the bottom's next-opening formula as a self-certified mex over truncated progressions (exact, 890,501 walks). The anchor rescaling law is the fold as a coordinate identity.
+- 2026-09-06, prover TM6 (top_machine_6.md): the quiet zone. The rule n = smooth times at most one prime above Q holds on all of [1, Q^2] (0 exceptions, 45 machines); the owner's g_0^2 is the true lower edge of the zone's record region, Q - sqrt Q is not; complete knowledge four ways including a q-independent family decomposition and the walk as a smooth-times-nextprime minimum; alignments always occur with a proved prime-gap floor; the record (183-419 at Q = 10^4, sitting at 1.35-2.63 Q) is R4.b.iv's A(q, N); no upper bound because the bottom stratum is the twin primes above Q themselves (L65).
