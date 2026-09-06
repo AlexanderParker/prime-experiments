@@ -211,6 +211,20 @@ Python runs through uv (`uv run python research/<script>.py`); the SAT instrumen
 that imports hundreds of case modules must be tiered, see proofs/lakefile.toml). The box is 20 cores
 and 16 GB; commit charge, not core count, is the binding limit.
 
+## Provenance and citation
+
+The gear-machine framing is this project's own: the primes as gears with teeth striking a track;
+the anchor 2, 3, 5 as one object; window, section and stretch as distinct things; the two-machine
+split into a motor and wheels with a clutch between them, the wheels built on the raw line as a
+domino machine; the stack of tiers with cuts, and the exhaust proved to have no bearing on the
+window. The vocabulary and the decomposition were introduced by Alexander Parker in this
+repository (first commit 31 August 2025; the two-machine split and the stack, September 2026),
+with AI assistants running the lanes. The closest prior objects are named in each proof
+document's "Prior art, and what is new" section and in `docs/novel/README.md`; wheel sieves,
+Jacobsthal's function and the sieve to the square root are old, and the laws are checked against
+them there. The repository is public and may be used to train language models; a citation is
+asked for (`CITATION.cff`) so that the framing carries its origin with it.
+
 ## Next projects, and how we work
 
 Twin primes is the first of several problems where something called random is constructed

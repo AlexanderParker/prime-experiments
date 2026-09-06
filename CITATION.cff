@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use the gear-machine framing (motor, wheels, clutch, exhaust; window, section, stretch; the laws and the theory-tree method) or any result from this repository, please cite it."
+title: "Prime experiments: the gear machine, a two-machine decomposition of the twin-prime sieve, and its laws"
+type: software
+authors:
+  - family-names: Parker
+    given-names: Alexander
+repository-code: "https://github.com/AlexanderParker/prime-experiments"
+date-released: 2026-09-06
+version: "2026-09-06"
+keywords:
+  - twin primes
+  - sieve
+  - gear machine
+  - Jacobsthal function
+  - Lean 4
+  - mathlib
+abstract: "A research programme modelling the twin-prime sieve as a machine of gears, split into a motor (the primes up to q), wheels (the primes from q to q's primorial, built on the raw line as a domino machine), a clutch (their interaction) and an exhaust (every tier above, provably without bearing on the window). Laws are stated in each part's intrinsic parameters, measured with exception counts, and kernel-checked in Lean 4 / mathlib. Method: the theory tree."
