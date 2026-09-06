@@ -717,6 +717,38 @@ the log at the bottom is chronology only.
     closed). Running: R4.b the top machine on its own terms (research/proof/top_machine_1.md;
     scripts research/topmachine/r1/) under the construction rule; and the re-filing of the
     record by object (research/proof/refiled_by_object.md).
+    - R4.b. The top machine on its own terms (research/proof/top_machine_1.md; scripts
+      research/topmachine/r1/). STRONG: 21 laws, the top machine is a DOMINO MACHINE. L3 the
+      partner law (proved): a gear's strike never comes alone, its partner is exactly 2 away, so
+      each gear's struck set is a disjoint union of dominoes {x, x + 2} (0 exceptions in 5.6
+      million struck residues, 8 wheels); everything else follows. L4 the forbidden gap: a gap
+      of exactly 4 between open pairs is impossible in any top machine (0 in 12 wheels and 27
+      range machines to 10^7). L2/L10: every gear's slots form arcs (g - 3, 1), the short arc
+      collapsed to the single shield n = -1; longest run of open pairs = q' - 3; longest step-2
+      chain = q' - 2 (12 of 12, attained). L17 THE PARITY LAW (new, proved): if every gear
+      exceeds 2m + 1 then F_top = 2m - (m mod 2): the record is decided by the parity of the
+      gear count, not by the gears' sizes (170 cases, 0 exceptions; increments alternate +3,
+      +1). L16: F_top is exactly the largest L for which [0, L) can be tiled by the gears'
+      letters {2, g - 2}, one phase per gear (15 of 15 against full-period scans). L18: record
+      multiplicity per wheel universal in m alone (18, 24, 480, 720 for m = 3..6; 14 wheels).
+      L11: the run spectrum is the second difference of prod(g - 2 - L), an arithmetic
+      progression of common difference exactly 6 for every three-gear wheel. L19 THE
+      CONJUGACY: n -> 6^-1 (n + 1) carries the top machine's open-pair set exactly onto the same
+      gears in the bottom's column coordinate (0 mismatches, 2.2 million residues), so counting
+      and symmetry laws are common property and the METRIC laws (arcs, runs, records) are the
+      top machine's own. Transferring unchanged: the mirror n -> -n - 2 (fixed point the
+      shield), the symmetry group (Z/2)^m with adjacency group Z/2, even gap counts except
+      length 1, the chain, merge and alternation laws (0 exceptions in 118,341 / 34,646 / 816),
+      prod(g - 2) and prod(g - 4). New: L6 the origin clump of 2(q' - 3) + 1 forced slots; L15
+      prod(g - 3) member-sharing dominoes; L20 no fold at all (flat mod 2, 3, 6). L21 the gear
+      zone: on a range, the pair n <= Z is open iff both members are q-smooth, so the record
+      always sits just above the origin clump, below Z (18 of 18); in-use density exceeds the
+      CRT product by 5-17%; a fixed gear set is flat to 4-5 figures on a range 10^4 times below
+      its wheel. REFUTED: "the top gears make the record" (the smallest gears do the work,
+      2L/g strikes each); "the first stretch above 0 is the most open" (for the in-use machine
+      it is the least open); the budget holds with vast slack (max increment 7 over 69 exact
+      ladder steps to gear 97). Open coincidence: the counts of gap 3 and gap 5 are equal in
+      every wheel whose gears all exceed 7 (9 wheels), unequal iff 7 is a gear.
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -1650,3 +1682,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, owner: one more round on location inside the window with the lower machine only; opened R2.e.i (the position-length frontier) and R2.e.ii (structured families); if neither closes, the top machine is next.
 - 2026-09-06, prover SF (structured_families.md): structured families DEAD by identity (a family defined mod the lower machine's period cancels its own saving; every family carries twins at the window's own rate; the islands indistinguishable from ordinary corridor columns, 1.006 +- 0.005); gear 7 barred at the column-0 offset iff q = +-2 mod 7.
 - 2026-09-06, prover PF (position_frontier.md): theorem (E) proved (the effective machine at a column is exact); R_min(L) >= 3.25 L for L >= d_0 and = 1 below, 0 exceptions; from q = 1427 the longest run of the prefix is the initial run; the window statement reduces exactly to d_0 <= W, the initial run of the bottom machine's diagonal, with all of [q/6, W] provably safe. Location pinpointed: the bottom. The round did not close it; per the owner, the top machine is next.
+- 2026-09-06, prover TM (top_machine_1.md): the top machine on its own terms is a domino machine (partner law), with the forbidden gap 4, the parity law F_top = 2m - (m mod 2), the tiling characterisation, universal record multiplicity, the spectrum as a second difference, and the conjugacy n -> 6^-1(n+1) onto the bottom's coordinate (counting and symmetry laws common, metric laws its own). The wheels have their rules; the clutch is next.
