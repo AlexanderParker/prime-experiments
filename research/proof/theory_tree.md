@@ -1072,6 +1072,36 @@ radial map, log). Regenerate and commit it after every branch; this file stays t
       M_{r(d)} (L75, 0 exceptions of 24), L22 in the kernel, a parity-refined capacity
       bound. Scorecard: 12 of 12 held in substance (P3's named instances refuted; P4's scan
       cap lowered to 2.4 x 10^7).
+    - R4.b.xii. The loaded record rule in Lean (round 36; proofs/TopMachineRecord.lean, 49
+      declarations; CutMono addendum in proofs/MachineStack.lean, 14 declarations; ledger
+      research/proof/top_machine_lean.md). KERNEL: the piece law (trace_subset_domino,
+      trace_card_le_two, trace_one_parity: a tail gear's strikes in the window lie in one
+      domino; trace_crosses_parity_iff: a gear's piece crosses parity iff g <= L + 1;
+      ends_join_iff: a gear strikes both 0 and L - 1 iff g = L + 1 exactly, a distinction the
+      branch did not draw); the matching lemma (Piece, CoveredBy, domCost as an sInf;
+      card_le_two_mul_of_coveredBy; domCost_union_parity: the cost splits across parity
+      classes; domCost_run a j = (j + 1)/2 by cardinality plus the explicit tiling); THE
+      LOADED RECORD RULE both directions: cost_le_tail_of_coverable needs NO hypothesis at all
+      (the tail's definition L + 1 < g is the only thing used), coverable_of_cost_le_tail needs
+      pairwise coprimality alone (no size hypothesis on tail gears: the residue -(c + 2)
+      makes any gear strike both c and c + 2), loaded_record_rule the iff, record_set_eq and
+      record_isGreatest_iff (F_top in the rule's form), coverable_mono; the boundary
+      corollary boundary_cost = 2 floor(L/4) + min(L mod 4, 2), boundary_greatest, and
+      parity_law_of_rule, a second independent proof of the parity law using neither
+      parity_upper nor parity_attained (oddness used in one place: at even m to rule out
+      g = 2m + 2). CUTMONO UNCONDITIONAL: cut_succ_gt_four_mul (prime q >= 5, k >= 1 gives
+      4 cut_k < cut_{k+1}) and cutMono_of_five_le, by one strong induction on b with a
+      halving step (no logarithms, no reals; three Bertrand primes when 8a <= b < 16a, two
+      when b < 8a and a >= 16; base q >= 7 via q# >= 30q, q = 5 via 7 * 11 * 13 = 1001 > 120,
+      cut 5 1 = 30 by interval_cases), so stack_eq_primesLE, exhaust_silent and
+      stack_open_iff_twin are unconditional for every prime base q >= 5. Manager gate: build
+      of the six targets green at 2246 jobs; audit of loaded_record_rule,
+      cost_le_tail_of_coverable, coverable_of_cost_le_tail, parity_law_of_rule,
+      ends_join_iff, domCost_union_parity, cut_succ_gt_four_mul, cutMono_of_five_le,
+      stack_open_iff_twin: propext, Classical.choice, Quot.sound; zero sorries, no decide.
+      The library is 269 declarations. NOT ATTEMPTED: the capacity bound L70, the moment
+      vanishing L73/L74 (needs Boolean-cube Mobius inversion), the census law L22 (K2's
+      general powerset inclusion-exclusion is the missing machinery).
     - R4.b.x. The exhaust, first pass (spawned by the objects ledger: the exhaust is the only
       object with no measurement and no branch document). Self-similarity of tier 3 measured
       against the wheels' laws in its own parameters; CutMono's exact elementary form and
@@ -2131,3 +2161,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover EX1 (exhaust_1.md): the exhaust measured for the first time. Self-similarity of tier 3 confirmed on full periods (0 exceptions in 18 million residues) with one sharpening (the run-start count at L = 1); CutMono is a theorem from q = 5 (cut_{k+1} > 4 cut_k, dyadic Bertrand; the base step fails at q = 2, 3, 4 exactly); the redundancy lemma in range form needs no primality; the exhaust makes no strike below q#, only home strikes and echoes on the window (57,344 of 57,344), its first non-redundant strike is exactly p_1^2, and it is the majority partner one decade above the window; its own record is ROOT; the owner's saturation prediction refuted into the regime law F_range = max(F_smooth, F_quiet).
 - 2026-09-06, Harvester (law_register.md): the wheels' and exhaust's laws registered W1-W85, X1-X8 with prior-art verdicts (14 known, 18 known variant, 38 new, 22 standard tool, 1 refuted: W9 fails once N_1 = 0, W67 is the true form). Strongest novelty cluster: the collision law W29 with W17, W44, W71 (finite two-class interval covers; the covering-systems literature works on infinite covers with distinct moduli). The gap census W22-W24 is the two-class version of Brown 2024 (arXiv:2311.06873), cite. W64's constant 160 is Lehmer's last {2,3,5}-smooth pair. MANAGER CORRECTION IN FLIGHT: the register's verdict that the record is Ziller-Morack's paired Jacobsthal h_2 and that their Conjecture 6 IS the window statement is wrong as stated: OEIS A288815 = 6 A072753 + 6 and A072753 is the FREE-residue two-class covering record (the wall's 5a adversary); the real twin-candidate gap at primorials is 6 F(M) (12, 30, 42, 66, 108, 150 by direct scan), strictly below h_2 from p = 11 (42 against 66; 528 against 708 at 37). So Conjecture 6 is the ADVERSARIAL window statement, stronger than ours and implying it. A Harvester is computing the three ordered records (real, the project's fixed-separation adversary of docs/proofs/20, free) and correcting the register, docs/novel, docs/proofs/20, 22, 23 and the wall's 5a.
 - 2026-09-06, Harvester (jacobsthal_check.md): the correction verified and applied. Three ordered records at K = 1..5 (longest coverable run, F - 1 convention): real 1, 4, 6, 10, 17; the project's adversary of docs/proofs/20 (free primes, D = 2) 1, 4, 6, 15, 21; free two-class (A072753) 2, 4, 10, 24, 31; the real twin-candidate gap at p_n# equals 6 F(M) for n = 3..9 (12, 30, 42, 66, 108, 150, 204 by direct sieve to 223,092,870), not A288815. Verdict: h_2 at primorials is the free-residue two-class record (Ziller-Morack's j_2 quantifies over the even difference D, which by CRT is two arbitrary classes per prime); F(M) is the real-teeth instance D = 2, F(M) - 1 <= A072753 with equality at {5, 7} alone; Conjecture 6 is the adversarial window statement and IMPLIES ours (and Goldbach), not the converse. docs/proofs/20 is NOT a partial result toward Conjecture 6 (the two adversaries strengthen along different axes: doc 20 frees the primes and keeps D = 2; ZM keeps the initial segment and frees D); it now cites A072753 as the published table of the adversary it compares against. The project had the right reading already in docs/novel/jk-growth-discriminator.md section 6; the register's error came from OEIS returning 403 to the lane. Follow-up flagged: sweep docs/novel/j2-lower-ladder.md and j2-upper-bound.md for any sentence reading the project's F as h_2.
+- 2026-09-06, Formalist round 36 (proofs/TopMachineRecord.lean, MachineStack.lean addendum): the loaded record rule is a theorem both ways, necessity with no hypothesis and sufficiency with coprimality alone; the parity law re-proved independently from the rule; a gear strikes both ends of the window iff g = L + 1 exactly (sharper than the branch's <=); CutMono unconditional for prime q >= 5 by a halving induction on Bertrand, so the stack's cap holds for every base from 5. Green at 2246 jobs, standard axioms, zero sorries; 269 declarations.

@@ -6,6 +6,7 @@ import TopMachineWheel
 import TopMachineCrt
 import TopMachineWalk
 import MachineStack
+import TopMachineRecord
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -791,3 +792,68 @@ open BlockedSlots
 #print axioms TopMachine.two_le_cut_one
 #print axioms TopMachine.stack_one
 #print axioms TopMachine.wheels_open_iff_twin
+
+-- Round 36: the loaded record rule (TopMachineRecord) and CutMono (MachineStack)
+#print axioms TopMachine.decStrikesRec
+#print axioms TopMachine.trace
+#print axioms TopMachine.mem_trace
+#print axioms TopMachine.trace_subset_domino
+#print axioms TopMachine.trace_card_le_two
+#print axioms TopMachine.trace_one_parity
+#print axioms TopMachine.trace_subset_off
+#print axioms TopMachine.off_pair_diff
+#print axioms TopMachine.trace_crosses_parity_iff
+#print axioms TopMachine.ends_join_iff
+#print axioms TopMachine.Piece
+#print axioms TopMachine.mem_piece
+#print axioms TopMachine.piece_one_parity
+#print axioms TopMachine.card_piece_le
+#print axioms TopMachine.CoveredBy
+#print axioms TopMachine.coveredBy_self
+#print axioms TopMachine.coveredBy_mono
+#print axioms TopMachine.domCost
+#print axioms TopMachine.domCost_spec
+#print axioms TopMachine.domCost_le
+#print axioms TopMachine.domCost_mono
+#print axioms TopMachine.domCost_empty
+#print axioms TopMachine.card_le_two_mul_of_coveredBy
+#print axioms TopMachine.card_le_two_mul_domCost
+#print axioms TopMachine.domCost_union_parity
+#print axioms TopMachine.run
+#print axioms TopMachine.mem_run
+#print axioms TopMachine.card_run
+#print axioms TopMachine.domCost_run
+#print axioms TopMachine.range_eq_runs
+#print axioms TopMachine.boundary_cost
+#print axioms TopMachine.boundary_greatest
+#print axioms TopMachine.core
+#print axioms TopMachine.tailG
+#print axioms TopMachine.uncovered
+#print axioms TopMachine.Coverable
+#print axioms TopMachine.exists_strikes_of_not_isOpen
+#print axioms TopMachine.coverable_mono
+#print axioms TopMachine.cost_le_tail_of_coverable
+#print axioms TopMachine.coverable_of_cost_le_tail
+#print axioms TopMachine.loaded_record_rule
+#print axioms TopMachine.record_set_eq
+#print axioms TopMachine.record_isGreatest_iff
+#print axioms TopMachine.core_eq_empty
+#print axioms TopMachine.tailG_eq_self
+#print axioms TopMachine.uncovered_empty
+#print axioms TopMachine.parity_law_of_rule
+#print axioms TopMachine.parity_law_agrees
+#print axioms TopMachine.rule_gives_parity_law
+#print axioms TopMachine.gearsIoc_union
+#print axioms TopMachine.gearsIoc_disjoint
+#print axioms TopMachine.prod_gearsIoc_split
+#print axioms TopMachine.exists_prime_mem_gearsIoc
+#print axioms TopMachine.one_le_gearsIoc
+#print axioms TopMachine.four_mul_lt_prod_gearsIoc
+#print axioms TopMachine.thirty_le_cut_one
+#print axioms TopMachine.eight_mul_le_cut_one
+#print axioms TopMachine.gearsIoc_one_five
+#print axioms TopMachine.cut_five_one
+#print axioms TopMachine.cut_two_gt_four_mul
+#print axioms TopMachine.cut_succ_gt_four_mul_aux
+#print axioms TopMachine.cut_succ_gt_four_mul
+#print axioms TopMachine.cutMono_of_five_le

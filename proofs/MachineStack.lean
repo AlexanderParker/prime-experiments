@@ -592,5 +592,258 @@ theorem wheels_open_iff_twin {q n : ℕ} (hq : 2 ≤ q) (h1 : cut q 1 < n)
     IsOpen (stack q 1) (n : ℤ) ↔ (n.Prime ∧ (n + 2).Prime) :=
   stack_open_iff_twin (cutMono_one q) (two_le_cut_one hq) h1 h2
 
+/-! ## Round 36: `CutMono` is a theorem from `q = 5` (exhaust branch, X12 / X13)
+
+`CutMono` was carried as a hypothesis in round 35 because it is a statement about
+the density of primes in `(cut q k, cut q (k+1)]`, not about stack arithmetic.
+The exhaust branch's proof (`research/proof/exhaust_1.md`, section 3.3) makes it
+elementary: Bertrand's postulate applied once per dyadic block of `(a, b]` gives
+`prod { p : a < p <= b } > 4 b` whenever the block count is at least two, and the
+cut recursion then climbs by a factor of more than four at every step.
+
+The transcription below merges the branch's Lemma A and Lemma B into ONE strong
+induction on `b`, which is what the Lean proof actually needed: the branch's
+`t = floor(log_2(b/a))` and its real-number comparison are replaced by a halving
+step `c = b / 2` plus two finite base cases (two dyadic primes when `b < 8a`,
+three when `8a <= b < 16a`).  No logarithms, no `Nat.log`, and the hypothesis is
+the branch's exactly: `a >= 16` with `b >= 4a`, OR `a >= 5` with `b >= 8a`. -/
+
+theorem gearsIoc_union {a c b : ℕ} (hac : a ≤ c) (hcb : c ≤ b) :
+    gearsIoc a c ∪ gearsIoc c b = gearsIoc a b := by
+  ext x
+  simp only [Finset.mem_union, mem_gearsIoc]
+  constructor
+  · rintro (⟨hp, h1, h2⟩ | ⟨hp, h1, h2⟩) <;> exact ⟨hp, by omega, by omega⟩
+  · rintro ⟨hp, h1, h2⟩
+    rcases Nat.lt_or_ge c x with h | h
+    · exact Or.inr ⟨hp, h, h2⟩
+    · exact Or.inl ⟨hp, h1, h⟩
+
+theorem gearsIoc_disjoint {a c b : ℕ} : Disjoint (gearsIoc a c) (gearsIoc c b) := by
+  rw [Finset.disjoint_left]
+  intro x h1 h2
+  have hx1 := (mem_gearsIoc.mp h1).2.2
+  have hx2 := (mem_gearsIoc.mp h2).2.1
+  omega
+
+/-- The product over `(a, b]` splits at any intermediate cut. -/
+theorem prod_gearsIoc_split {a c b : ℕ} (hac : a ≤ c) (hcb : c ≤ b) :
+    ∏ p ∈ gearsIoc a b, p = (∏ p ∈ gearsIoc a c, p) * (∏ p ∈ gearsIoc c b, p) := by
+  rw [← gearsIoc_union hac hcb, Finset.prod_union gearsIoc_disjoint]
+
+/-- Bertrand inside a block: a prime of `(a, 2a]`, hence of `(a, b]`. -/
+theorem exists_prime_mem_gearsIoc {a b : ℕ} (ha : 0 < a) (hb : 2 * a ≤ b) :
+    ∃ p, p ∈ gearsIoc a b ∧ a < p ∧ p ≤ 2 * a := by
+  obtain ⟨p, hp, h1, h2⟩ := Nat.exists_prime_lt_and_le_two_mul a (by omega)
+  exact ⟨p, mem_gearsIoc.mpr ⟨hp, h1, le_trans h2 hb⟩, h1, h2⟩
+
+theorem one_le_gearsIoc {a b i : ℕ} (hi : i ∈ gearsIoc a b) : 1 ≤ i :=
+  (mem_gearsIoc.mp hi).1.one_lt.le
+
+/-- **Lemma A and Lemma B of the branch, in one induction.**  The product of the
+primes in `(a, b]` exceeds `4 b`, given two dyadic blocks and enough room:
+either `a >= 16` and `b >= 4a`, or `a >= 5` and `b >= 8a`. -/
+theorem four_mul_lt_prod_gearsIoc : ∀ b a : ℕ,
+    ((16 ≤ a ∧ 4 * a ≤ b) ∨ (5 ≤ a ∧ 8 * a ≤ b)) → 4 * b < ∏ p ∈ gearsIoc a b, p := by
+  intro b
+  induction b using Nat.strong_induction_on with
+  | _ b ih =>
+    intro a hyp
+    have ha5 : 5 ≤ a := by rcases hyp with ⟨h, _⟩ | ⟨h, _⟩ <;> omega
+    have hb4 : 4 * a ≤ b := by rcases hyp with ⟨_, h⟩ | ⟨_, h⟩ <;> omega
+    rcases Nat.lt_or_ge b (16 * a) with hsmall | hbig
+    · -- BASE: two or three dyadic blocks are enough
+      obtain ⟨p1, hp1mem, hp1a, hp1b⟩ :=
+        exists_prime_mem_gearsIoc (a := a) (b := b) (by omega) (by omega)
+      obtain ⟨p2, hp2mem', hp2a, hp2b⟩ :=
+        exists_prime_mem_gearsIoc (a := 2 * a) (b := b) (by omega) (by omega)
+      have hp2mem : p2 ∈ gearsIoc a b :=
+        mem_gearsIoc.mpr ⟨(mem_gearsIoc.mp hp2mem').1, by omega, (mem_gearsIoc.mp hp2mem').2.2⟩
+      rcases Nat.lt_or_ge b (8 * a) with hb8 | hb8
+      · -- `b < 8a`: the hypothesis must be the `a >= 16` branch
+        have ha16 : 16 ≤ a := by rcases hyp with ⟨h, _⟩ | ⟨_, h⟩ <;> omega
+        have hne : p1 ≠ p2 := by omega
+        have hsub : ({p1, p2} : Finset ℕ) ⊆ gearsIoc a b := by
+          intro x hx
+          rcases Finset.mem_insert.mp hx with rfl | hx
+          · exact hp1mem
+          · rw [Finset.mem_singleton] at hx; subst hx; exact hp2mem
+        have hprod : p1 * p2 ≤ ∏ p ∈ gearsIoc a b, p := by
+          have h1 : ∏ x ∈ ({p1, p2} : Finset ℕ), x = p1 * p2 := Finset.prod_pair hne
+          rw [← h1]
+          exact Finset.prod_le_prod_of_subset_of_one_le' hsub (fun i hi _ => one_le_gearsIoc hi)
+        have hkey : 32 * a ≤ (a + 1) * (2 * a + 1) := by nlinarith
+        calc 4 * b < 32 * a := by omega
+          _ ≤ (a + 1) * (2 * a + 1) := hkey
+          _ ≤ p1 * p2 := Nat.mul_le_mul (by omega) (by omega)
+          _ ≤ ∏ p ∈ gearsIoc a b, p := hprod
+      · -- `8a <= b < 16a`: three blocks
+        obtain ⟨p3, hp3mem', hp3a, hp3b⟩ :=
+          exists_prime_mem_gearsIoc (a := 4 * a) (b := b) (by omega) (by omega)
+        have hp3mem : p3 ∈ gearsIoc a b :=
+          mem_gearsIoc.mpr ⟨(mem_gearsIoc.mp hp3mem').1, by omega, (mem_gearsIoc.mp hp3mem').2.2⟩
+        have hne23 : p2 ≠ p3 := by omega
+        have hnotmem : p1 ∉ ({p2, p3} : Finset ℕ) := by
+          intro h
+          simp only [Finset.mem_insert, Finset.mem_singleton] at h
+          omega
+        have hsub : ({p1, p2, p3} : Finset ℕ) ⊆ gearsIoc a b := by
+          intro x hx
+          simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+          rcases hx with rfl | rfl | rfl
+          · exact hp1mem
+          · exact hp2mem
+          · exact hp3mem
+        have hprod : p1 * (p2 * p3) ≤ ∏ p ∈ gearsIoc a b, p := by
+          have h1 : ∏ x ∈ ({p1, p2, p3} : Finset ℕ), x = p1 * (p2 * p3) := by
+            rw [Finset.prod_insert hnotmem, Finset.prod_pair hne23]
+          rw [← h1]
+          exact Finset.prod_le_prod_of_subset_of_one_le' hsub (fun i hi _ => one_le_gearsIoc hi)
+        have hcube : 64 * a ≤ 8 * (a * (a * a)) := by nlinarith
+        have hexp : 8 * (a * (a * a)) ≤ (a + 1) * ((2 * a + 1) * (4 * a + 1)) := by nlinarith
+        calc 4 * b < 64 * a := by omega
+          _ ≤ 8 * (a * (a * a)) := hcube
+          _ ≤ (a + 1) * ((2 * a + 1) * (4 * a + 1)) := hexp
+          _ ≤ p1 * (p2 * p3) :=
+              Nat.mul_le_mul (by omega) (Nat.mul_le_mul (by omega) (by omega))
+          _ ≤ ∏ p ∈ gearsIoc a b, p := hprod
+    · -- STEP: halve the window
+      have hhyp' : (16 ≤ a ∧ 4 * a ≤ b / 2) ∨ (5 ≤ a ∧ 8 * a ≤ b / 2) := by
+        rcases hyp with ⟨h1, h2⟩ | ⟨h1, h2⟩
+        · exact Or.inl ⟨h1, by omega⟩
+        · exact Or.inr ⟨h1, by omega⟩
+      have ihc := ih (b / 2) (by omega) a hhyp'
+      obtain ⟨p, hpmem, hpa, hpb⟩ :=
+        exists_prime_mem_gearsIoc (a := b / 2) (b := b) (by omega) (by omega)
+      have hple : p ≤ ∏ x ∈ gearsIoc (b / 2) b, x :=
+        Finset.single_le_prod' (fun i hi => one_le_gearsIoc hi) hpmem
+      rw [prod_gearsIoc_split (a := a) (c := b / 2) (b := b) (by omega) (by omega)]
+      have h1 : 4 * (b / 2) + 1 ≤ ∏ x ∈ gearsIoc a (b / 2), x := ihc
+      have h2 : b / 2 + 1 ≤ ∏ x ∈ gearsIoc (b / 2) b, x := le_trans (by omega) hple
+      have hfin : 4 * b < (4 * (b / 2) + 1) * (b / 2 + 1) := by
+        have hc40 : 40 ≤ b / 2 := by omega
+        have hb2 : b ≤ 2 * (b / 2) + 1 := by omega
+        nlinarith
+      exact lt_of_lt_of_le hfin (Nat.mul_le_mul h1 h2)
+
+/-- `q# >= 30` for a prime `q >= 5`: the motor already carries `2, 3, 5`. -/
+theorem thirty_le_cut_one {q : ℕ} (hq5 : 5 ≤ q) : 30 ≤ cut q 1 := by
+  have hsub : ({2, 3, 5} : Finset ℕ) ⊆ gearsIoc 1 q := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl | rfl
+    · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+    · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+    · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+  have hle : ∏ x ∈ ({2, 3, 5} : Finset ℕ), x ≤ ∏ x ∈ gearsIoc 1 q, x :=
+    Finset.prod_le_prod_of_subset_of_one_le' hsub (fun i hi _ => one_le_gearsIoc hi)
+  have hprod : ∏ x ∈ ({2, 3, 5} : Finset ℕ), x = 30 := by norm_num
+  rw [hprod] at hle
+  exact hle
+
+/-- `q# >= 8 q` for a prime `q >= 7`: the motor carries `2, 3, 5` AND `q`. -/
+theorem eight_mul_le_cut_one {q : ℕ} (hq : Nat.Prime q) (hq7 : 7 ≤ q) : 8 * q ≤ cut q 1 := by
+  have hsub : ({2, 3, 5, q} : Finset ℕ) ⊆ gearsIoc 1 q := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl | rfl | rfl
+    · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+    · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+    · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+    · exact mem_gearsIoc.mpr ⟨hq, by omega, le_rfl⟩
+  have hle : ∏ x ∈ ({2, 3, 5, q} : Finset ℕ), x ≤ ∏ x ∈ gearsIoc 1 q, x :=
+    Finset.prod_le_prod_of_subset_of_one_le' hsub (fun i hi _ => one_le_gearsIoc hi)
+  have h2 : (2 : ℕ) ∉ ({3, 5, q} : Finset ℕ) := by
+    intro h; simp only [Finset.mem_insert, Finset.mem_singleton] at h; omega
+  have h3 : (3 : ℕ) ∉ ({5, q} : Finset ℕ) := by
+    intro h; simp only [Finset.mem_insert, Finset.mem_singleton] at h; omega
+  have h5 : (5 : ℕ) ≠ q := by omega
+  have hprod : ∏ x ∈ ({2, 3, 5, q} : Finset ℕ), x = 30 * q := by
+    rw [Finset.prod_insert h2, Finset.prod_insert h3, Finset.prod_pair h5]
+    ring
+  rw [hprod] at hle
+  have hcut : cut q 1 = ∏ x ∈ gearsIoc 1 q, x := rfl
+  rw [hcut]
+  omega
+
+theorem gearsIoc_one_five : gearsIoc 1 5 = ({2, 3, 5} : Finset ℕ) := by
+  ext x
+  simp only [mem_gearsIoc, Finset.mem_insert, Finset.mem_singleton]
+  constructor
+  · rintro ⟨hp, h1, h2⟩
+    interval_cases x
+    · exact Or.inl rfl
+    · exact Or.inr (Or.inl rfl)
+    · exact absurd hp (by norm_num)
+    · exact Or.inr (Or.inr rfl)
+  · rintro (rfl | rfl | rfl) <;> exact ⟨by norm_num, by omega, by omega⟩
+
+theorem cut_five_one : cut 5 1 = 30 := by
+  show ∏ g ∈ gearsIoc 1 5, g = 30
+  rw [gearsIoc_one_five]
+  norm_num
+
+/-- **The base of X12**: `cut q 2 > 4 cut q 1`.  For `q >= 7` this is the
+dyadic lemma with `b = q# >= 8q`; at `q = 5` it is the finite evaluation the
+branch gives, `7 * 11 * 13 = 1001 > 120`. -/
+theorem cut_two_gt_four_mul {q : ℕ} (hq : Nat.Prime q) (hq5 : 5 ≤ q) :
+    4 * cut q 1 < cut q 2 := by
+  have hcut2 : cut q 2 = ∏ p ∈ gearsIoc (cut q 0) (cut q 1), p := rfl
+  have hcut0 : cut q 0 = q := rfl
+  rcases Nat.lt_or_ge q 7 with hq6 | hq7
+  · have hq5' : q = 5 := by
+      interval_cases q
+      · rfl
+      · exact absurd hq (by norm_num)
+    subst hq5'
+    rw [hcut2, hcut0, cut_five_one]
+    have hsub : ({7, 11, 13} : Finset ℕ) ⊆ gearsIoc 5 30 := by
+      intro x hx
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+      rcases hx with rfl | rfl | rfl
+      · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+      · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+      · exact mem_gearsIoc.mpr ⟨by norm_num, by omega, by omega⟩
+    have hle : ∏ x ∈ ({7, 11, 13} : Finset ℕ), x ≤ ∏ x ∈ gearsIoc 5 30, x :=
+      Finset.prod_le_prod_of_subset_of_one_le' hsub (fun i hi _ => one_le_gearsIoc hi)
+    have hprod : ∏ x ∈ ({7, 11, 13} : Finset ℕ), x = 1001 := by norm_num
+    rw [hprod] at hle
+    omega
+  · rw [hcut2, hcut0]
+    exact four_mul_lt_prod_gearsIoc _ q (Or.inr ⟨hq5, eight_mul_le_cut_one hq hq7⟩)
+
+/-- **X12, with the size the induction needs carried alongside.** -/
+theorem cut_succ_gt_four_mul_aux {q : ℕ} (hq : Nat.Prime q) (hq5 : 5 ≤ q) :
+    ∀ j : ℕ, 30 ≤ cut q (j + 1) ∧ 4 * cut q (j + 1) < cut q (j + 2) := by
+  intro j
+  induction j with
+  | zero => exact ⟨thirty_le_cut_one hq5, cut_two_gt_four_mul hq hq5⟩
+  | succ i ih =>
+    obtain ⟨h30, hstep⟩ := ih
+    have h30' : 30 ≤ cut q (i + 2) := by omega
+    have hcut : cut q (i + 3) = ∏ p ∈ gearsIoc (cut q (i + 1)) (cut q (i + 2)), p := rfl
+    refine ⟨h30', ?_⟩
+    show 4 * cut q (i + 2) < cut q (i + 3)
+    rw [hcut]
+    exact four_mul_lt_prod_gearsIoc _ _ (Or.inl ⟨by omega, by omega⟩)
+
+/-- **X12 (`CutMono` from `q = 5`).**  For every prime `q >= 5` and every
+`k >= 1`, `cut q (k+1) > 4 cut q k`.  The hypothesis the proof needed is exactly
+`q` prime and `5 <= q`; `q = 2, 3` fail at the base (X13: `q# >= 4q` is
+`prod_{p < q} p >= 4`, false at `q = 2, 3`). -/
+theorem cut_succ_gt_four_mul {q : ℕ} (hq : Nat.Prime q) (hq5 : 5 ≤ q) {k : ℕ} (hk : 1 ≤ k) :
+    4 * cut q k < cut q (k + 1) := by
+  obtain ⟨j, rfl⟩ : ∃ j, k = j + 1 := ⟨k - 1, by omega⟩
+  exact (cut_succ_gt_four_mul_aux hq hq5 j).2
+
+/-- **`CutMono` discharged.**  For every prime `q >= 5` the cut sequence is
+nondecreasing at every height, so `stack_eq_primesLE`, `exhaust_gear_gt_cut`,
+`exhaust_silent` and `stack_open_iff_twin` are unconditional there. -/
+theorem cutMono_of_five_le {q : ℕ} (hq : Nat.Prime q) (hq5 : 5 ≤ q) (k : ℕ) : CutMono q k := by
+  intro j _
+  rcases Nat.eq_zero_or_pos j with rfl | hpos
+  · exact cut_zero_le_one q
+  · have := cut_succ_gt_four_mul hq hq5 (k := j) hpos
+    omega
 
 end TopMachine

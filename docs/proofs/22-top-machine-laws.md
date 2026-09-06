@@ -556,6 +556,17 @@ CRT counts); L21's smoothness half; the reading of L19 in item 24.
 (no hypothesis), `pair_corr` (the pair-correlation product, gears `>= 5`).  Build with
 `TopMachineWalk` added: green at 1394 jobs; audit of those six: standard axioms; zero sorries.
 
+**Round 36 (`proofs/TopMachineRecord.lean`, 49 declarations; `MachineStack.lean` addendum, 14)**
+added the loaded record rule of `research/proof/top_machine_7.md`: `TopMachine.loaded_record_rule`
+(`[0, L)` is fully struck for some `n` iff some core phasing leaves an uncovered set of domino
+cost at most the tail count; necessity `cost_le_tail_of_coverable` with no hypothesis,
+sufficiency `coverable_of_cost_le_tail` with pairwise coprimality alone), `record_isGreatest_iff`,
+the piece law (`ends_join_iff`: both ends struck iff `g = L + 1`), the matching lemma
+(`domCost_union_parity`, `domCost_run`), and `parity_law_of_rule`, an independent second proof
+of L17.  Also `cut_succ_gt_four_mul` / `cutMono_of_five_le`: the stack's cut sequence is
+monotone for every prime base `q >= 5`, so `stack_open_iff_twin` is unconditional there.  Build
+with the six targets: green at 2246 jobs; audit: standard axioms; zero sorries.
+
 Build: `lake build TopMachine TopMachineWheel TopMachineCrt`, green at 1392 jobs; manager audit
 of `exists_crt`, `crt_unique`, `parity_attained`, `parity_law`, `affine_group`,
 `exists_symmetry`, `sign_count`: `[propext, Classical.choice, Quot.sound]` each; zero sorries,

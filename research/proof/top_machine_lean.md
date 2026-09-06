@@ -886,3 +886,313 @@ is false at `q = 2, 3`); nonemptiness of a tier at height `k >= 2` (same input);
 anything about WHERE the openings are on the quiet zone - the file caps the search
 space and adds no bound on the in-use machine, which is the instrument still
 missing at every cut.
+
+---
+
+# Round 36: the loaded record rule, and `CutMono` discharged
+
+New file: `proofs/TopMachineRecord.lean` (imports `TopMachineWalk`), registered as a
+`lean_lib` in `proofs/lakefile.toml`, in `defaultTargets`, and audited from
+`proofs/AxiomCheck.lean`.  Branch document: `research/proof/top_machine_7.md`, laws
+**L67, L68, L69** and the boundary corollary (**L71**).  Second, smaller piece: an
+addendum at the end of `proofs/MachineStack.lean` transcribing the exhaust branch's
+**X12/X13** (`research/proof/exhaust_1.md` 3.3), which discharges round 35's carried
+hypothesis `CutMono`.  **49 + 14 = 63 new declarations, zero sorries, no
+`native_decide`, no `decide`, no `Lean.ofReduceBool`.**
+
+## The objects
+
+```lean
+def trace (g : ℕ) (n : ℤ) (L : ℕ) : Finset ℕ :=          -- what gear g shows in [0, L)
+  (Finset.range L).filter (fun c => Strikes g (n + (c : ℤ)))
+def Piece (x : ℕ) : Finset ℕ := {x, x + 2}                -- a distance-2 domino
+def CoveredBy (S : Finset ℕ) (k : ℕ) : Prop :=
+  ∃ P : Finset ℕ, P.card ≤ k ∧ S ⊆ P.biUnion Piece
+noncomputable def domCost (S : Finset ℕ) : ℕ := sInf {k | CoveredBy S k}   -- D(S)
+def run (a j : ℕ) : Finset ℕ := (Finset.range j).image (fun i => a + 2 * i)
+def core  (G : Finset ℕ) (L : ℕ) : Finset ℕ := G.filter (fun g => g ≤ L + 1)
+def tailG (G : Finset ℕ) (L : ℕ) : Finset ℕ := G.filter (fun g => L + 1 < g)
+def uncovered (C : Finset ℕ) (n : ℤ) (L : ℕ) : Finset ℕ :=
+  (Finset.range L).filter (fun i => ∀ g ∈ C, ¬ Strikes g (n + (i : ℤ)))
+def Coverable (G : Finset ℕ) (L : ℕ) : Prop :=
+  ∃ n : ℤ, ∀ i : ℕ, i < L → ¬ IsOpen G (n + (i : ℤ))
+```
+
+`Coverable G L` is literally the membership predicate of `parity_law`'s set, so the
+two rounds' record statements are about the same object with no bridge.
+
+## L67, the piece law - and where the branch's wording is one notch off
+
+```lean
+theorem trace_subset_domino (hg : L + 1 < g) : ∃ c : ℕ, trace g n L ⊆ ({c, c + 2} : Finset ℕ)
+theorem trace_card_le_two   (hg : L + 1 < g) : (trace g n L).card ≤ 2
+theorem trace_one_parity    (hg : L + 1 < g) : x ∈ trace g n L → y ∈ trace g n L → x % 2 = y % 2
+```
+
+The tail piece: a gear above the boundary shows a subset of ONE domino, hence at most
+two cells, hence one parity class.  Proof by the round-32 lemma `window_pair` against
+the trace's minimum - no new machinery, and **no hypothesis except `L + 1 < g`**.
+
+The ends-joining half needed the `off` vocabulary of round 34:
+
+```lean
+theorem trace_subset_off (hg : 0 < g) (hL : L ≤ g) :
+    trace g n L ⊆ ({off g n, off g (n + 2)} : Finset ℕ)
+theorem off_pair_diff (hg : 2 ≤ g) (n : ℤ) :
+    (off g n : ℤ) - (off g (n + 2) : ℤ) = 2 ∨ (off g n : ℤ) - (off g (n + 2) : ℤ) = 2 - g
+```
+
+`off_pair_diff` is the whole content: a gear's two teeth are at separation `2`, or at
+separation `g - 2` the other way round, and **nothing else**.  From it:
+
+```lean
+theorem trace_crosses_parity_iff (hodd : g % 2 = 1) (h5 : 5 ≤ g) (h4 : 4 ≤ L) (hgL : L ≤ g) :
+    (∃ (n : ℤ) (x y : ℕ), x ∈ trace g n L ∧ y ∈ trace g n L ∧ x % 2 ≠ y % 2) ↔ g ≤ L + 1
+
+theorem ends_join_iff (h4 : 4 ≤ L) (hgL : L ≤ g) :
+    (∃ n : ℤ, (0 : ℕ) ∈ trace g n L ∧ (L - 1) ∈ trace g n L) ↔ g = L + 1
+```
+
+**A finding, and it is a distinction the branch does not draw.**  L67's reading is "a
+gear can join the two ends of the window iff `g <= L + 1`".  That is TRUE for
+"joining the ends" read as *crossing parity* (`trace_crosses_parity_iff`: the crossing
+separation is `g - 2`, which fits in the window exactly when `g <= L + 1`), and FALSE
+for "joining the ends" read literally as *striking both `0` and `L - 1`*: that happens
+only at `g = L + 1` (`ends_join_iff`).  At `g = L` the gear's parity-crossing piece is
+the WRAP pair `{0, L - 2}` or `{1, L - 1}` - which is what the branch's own table says
+- so `g = L` crosses parity without touching both endpoints.  Both statements are in
+the kernel; the tail hypothesis `g > L + 1` is the right one either way, because it is
+the negation of the crossing condition.
+
+Also, `trace_crosses_parity_iff` is stated for `L <= g`, and that restriction is
+necessary, not cosmetic: for `g < L` a gear may fail to reach the ends at all (e.g.
+`g = 5`, `L = 10`: `5` divides none of `L - 1`, `L + 1`, `L - 3`), so "iff `g <= L+1`"
+is a statement about gears at least as big as the window - exactly the regime L67's
+case list is written in.
+
+## L68, the matching lemma
+
+```lean
+theorem piece_one_parity : y ∈ Piece x → y % 2 = x % 2          -- dominoes never cross parity
+theorem card_le_two_mul_of_coveredBy : CoveredBy S k → S.card ≤ 2 * k   -- the lower bound
+theorem domCost_union_parity (hA : ∀ x ∈ A, x % 2 = 0) (hB : ∀ x ∈ B, x % 2 = 1) :
+    domCost (A ∪ B) = domCost A + domCost B                     -- the parity split
+theorem domCost_run (a j : ℕ) : domCost (run a j) = (j + 1) / 2  -- ceil(j/2) per run
+```
+
+The branch states L68 as "cost = sum over the maximal step-2 runs of `ceil(run/2)`".
+**What is in the kernel is that statement's mechanism, plus the exact value for the
+sets the rest of the round needs**, not the general maximal-run formula:
+
+- the lower bound is proved in the general `Finset` form (`card_le_two_mul_of_coveredBy`
+  - a piece meets any set in at most two cells, so `k >= |S| / 2`);
+- the parity split is proved in the general form, and it is the half of L68 that the
+  branch's matching argument really turns on: pieces never cross parity, so a cover
+  splits into two disjoint pools and the costs ADD;
+- per run the value is exact, both bounds: lower by cardinality (`|run| = j`), upper by
+  the explicit tiling `a, a + 4, a + 8, ...` (`domCost_run`).
+
+The general "sum over maximal runs" identity would need a `Finset`-level definition of
+maximal runs and an induction over the run decomposition; it was not attempted, and it
+is NOT needed anywhere below - the record rule is stated with `domCost` itself, and the
+boundary corollary needs only two runs of opposite parity.  That is the honest scope:
+**L68's lower bound and parity mechanism are general; its closed form is proved on
+runs and on unions of two opposite-parity runs.**
+
+## L69, the loaded record rule - both directions
+
+```lean
+theorem cost_le_tail_of_coverable {G : Finset ℕ} {L : ℕ} {n : ℤ}
+    (hstruck : ∀ i : ℕ, i < L → ¬ IsOpen G (n + (i : ℤ))) :
+    domCost (uncovered (core G L) n L) ≤ (tailG G L).card
+
+theorem coverable_of_cost_le_tail {G : Finset ℕ}
+    (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) {L : ℕ} {n : ℤ}
+    (hU : domCost (uncovered (core G L) n L) ≤ (tailG G L).card) : Coverable G L
+
+theorem loaded_record_rule (hcop) (L : ℕ) :
+    Coverable G L ↔ ∃ n : ℤ, domCost (uncovered (core G L) n L) ≤ (tailG G L).card
+```
+
+**The hypotheses are weaker than the branch's, in both directions, and that is the
+round's main finding about L69.**  The branch carries "pairwise coprime odd gears
+`g >= 3`" throughout.  In the kernel:
+
+- **necessity carries NO hypothesis at all** - not coprimality, not oddness, not
+  primality, not a size condition.  Every gear that strikes an uncovered cell is a tail
+  gear by definition, and `trace_subset_domino` (whose only hypothesis, `L + 1 < g`, IS
+  the definition of the tail) puts its whole trace inside one piece.  The cover of `U`
+  is then the image of the tail under "the anchor of your piece", so at most `t(L)`
+  pieces.
+- **sufficiency carries pairwise coprimality and nothing else.**  In particular no size
+  hypothesis on the tail gears is used: a gear given the residue `-(c + 2)` strikes
+  both `c` and `c + 2` whatever its size, exactly as in `parity_attained`.  A tail
+  gear's EXTRA strikes inside the window (which is what `g > L + 1` rules out) can only
+  help a cover, never hurt it.  So the tail hypothesis is needed for the rule to be an
+  *iff* - it is what makes necessity true - and is free in the sufficiency half.
+
+Assembly, in the shape `parity_law` already uses:
+
+```lean
+theorem record_set_eq (hcop) :
+    {L : ℕ | ∃ n : ℤ, ∀ i : ℕ, i < L → ¬ IsOpen G (n + (i : ℤ))}
+      = {L : ℕ | ∃ n : ℤ, domCost (uncovered (core G L) n L) ≤ (tailG G L).card}
+theorem record_isGreatest_iff (hcop) (F : ℕ) :
+    IsGreatest {L | ∃ n, ∀ i < L, ¬ IsOpen G (n + i)} F ↔ IsGreatest {L | cost ≤ t} F
+```
+
+`F_top` is therefore closed in the form the branch asks for: the record length is the
+greatest coverable length iff it is the greatest length whose minimal core cost is
+affordable.  (The existence of a greatest element is not asserted in general - it is
+supplied for free wheels by `parity_law_of_rule` below and, in general, by any bound on
+the record; `coverable_mono` records that coverability is downward closed, the
+monotonicity `wheelrec.py` assumed.)
+
+## The boundary corollary, and the parity law re-proved
+
+```lean
+theorem boundary_cost (L : ℕ) : domCost (Finset.range L) = 2 * (L / 4) + min (L % 4) 2
+theorem boundary_greatest (m : ℕ) :
+    IsGreatest {L : ℕ | domCost (Finset.range L) ≤ m} (2 * m - m % 2)
+
+theorem parity_law_of_rule (hodd : ∀ g ∈ G, g % 2 = 1) (hbig : ∀ g ∈ G, 2 * G.card + 1 < g)
+    (hcop : ∀ g ∈ G, ∀ h ∈ G, g ≠ h → Nat.Coprime g h) :
+    IsGreatest {L : ℕ | ∃ n : ℤ, ∀ i : ℕ, i < L → ¬ IsOpen G (n + (i : ℤ))}
+      (2 * G.card - G.card % 2)
+theorem rule_gives_parity_law (hodd) (hbig) (hcop) :
+    IsGreatest {L : ℕ | ∃ n, domCost (uncovered (core G L) n L) ≤ (tailG G L).card}
+      (2 * G.card - G.card % 2)
+theorem parity_law_agrees (hodd) (hbig) (hcop) {F : ℕ}
+    (hF : IsGreatest {L | ∃ n, ∀ i < L, ¬ IsOpen G (n + i)} F) : F = 2 * G.card - G.card % 2
+```
+
+`boundary_cost` is the branch's P5 (`0,1,2,2,2,3,4,4,4,5,6,6,6` at `L = 0..12`), proved
+by splitting `[0, L)` into its even and odd runs (`range_eq_runs`), costing each by
+`domCost_run`, and one `omega`.  `boundary_greatest` is P6.
+
+`parity_law_of_rule` is **a second, independent proof of L17** - it uses neither
+`parity_upper` nor `parity_attained`:
+
+- lower: at `L = 2m - (m mod 2)` every gear is above `L + 1`, so the core is empty, the
+  uncovered set is the whole window, its cost is exactly `m`, and the rule's sufficiency
+  places one domino per gear by CRT;
+- upper: if a longer run existed, restriction gives one at `L0 + 1`; **oddness is used
+  exactly once and exactly here** - at even `m` the hypothesis `g > 2m + 1` leaves
+  `g = 2m + 2` possible in principle, and it is oddness that pushes `g` to `2m + 3` so
+  that the core is still empty at `L0 + 1` - and then the rule's necessity gives
+  `D([0, L0+1)) <= m`, while the closed form gives `m + 1`.
+
+The only shared ancestor of the two proofs is `window_pair`; the covering route never
+counts fibres of a striker map.  `parity_law_agrees` states that any greatest element of
+the record set is that value, so round 33's `parity_law` and this round's rule cannot
+disagree.
+
+## `CutMono` is a theorem from `q = 5` (X12/X13), in `MachineStack.lean`
+
+Round 35 left `CutMono` (the cuts are nondecreasing) as a carried hypothesis, noting it
+is a prime-density statement and false at `q = 2, 3`.  The exhaust branch supplied a
+proof; transcribed:
+
+```lean
+theorem prod_gearsIoc_split (hac : a ≤ c) (hcb : c ≤ b) :
+    ∏ p ∈ gearsIoc a b, p = (∏ p ∈ gearsIoc a c, p) * (∏ p ∈ gearsIoc c b, p)
+theorem exists_prime_mem_gearsIoc (ha : 0 < a) (hb : 2 * a ≤ b) :
+    ∃ p, p ∈ gearsIoc a b ∧ a < p ∧ p ≤ 2 * a
+theorem four_mul_lt_prod_gearsIoc : ∀ b a : ℕ,
+    ((16 ≤ a ∧ 4 * a ≤ b) ∨ (5 ≤ a ∧ 8 * a ≤ b)) → 4 * b < ∏ p ∈ gearsIoc a b, p
+theorem thirty_le_cut_one (hq5 : 5 ≤ q) : 30 ≤ cut q 1
+theorem eight_mul_le_cut_one (hq : Nat.Prime q) (hq7 : 7 ≤ q) : 8 * q ≤ cut q 1
+theorem cut_two_gt_four_mul (hq : Nat.Prime q) (hq5 : 5 ≤ q) : 4 * cut q 1 < cut q 2
+theorem cut_succ_gt_four_mul (hq : Nat.Prime q) (hq5 : 5 ≤ q) (hk : 1 ≤ k) :
+    4 * cut q k < cut q (k + 1)
+theorem cutMono_of_five_le (hq : Nat.Prime q) (hq5 : 5 ≤ q) (k : ℕ) : CutMono q k
+```
+
+**What the Lean proof needed, against the branch's write-up.**  The branch proves
+Lemma A (a dyadic product bound with `t = floor(log_2(b/a))`) and then Lemma B by a
+real-number comparison of `(t-1) log_2 a + t(t-1)/2` against `t + 1`.  The
+transcription replaces both by ONE strong induction on `b` with a halving step, and no
+logarithm appears:
+
+- `b >= 16a`: split at `c = b / 2`, use the induction hypothesis on `(a, c]` and one
+  Bertrand prime in `(c, b]`;
+- `8a <= b < 16a`: three Bertrand primes, `(a, 2a]`, `(2a, 4a]`, `(4a, 8a]`, product
+  above `8a^3 >= 64a > 4b`;
+- `b < 8a`: then the hypothesis must be the `a >= 16` branch, and two Bertrand primes
+  give `2a^2 >= 32a > 4b`.
+
+The hypothesis is the branch's, unchanged: `a >= 16` with `b >= 4a`, or `a >= 5` with
+`b >= 8a`.  The base case `cut q 2 > 4 cut q 1` splits exactly as X13 says: for
+`q >= 7` it is the dyadic lemma with `b = q# >= 8q` (`eight_mul_le_cut_one`: the motor
+carries `2, 3, 5` and `q`, so `q# >= 30q`), and at `q = 5` it is the finite evaluation
+`7 * 11 * 13 = 1001 > 120 = 4 * 30`, with `cut 5 1 = 30` proved by `interval_cases`
+(`gearsIoc_one_five`), NOT by `decide`.  The induction then carries `30 <= cut q (k+1)`
+alongside, which is what supplies the `a >= 16` branch at every later step.
+
+`cutMono_of_five_le` needs `q` prime and `5 <= q` and nothing else; `j = 0` is round
+35's `cut_zero_le_one` (Bertrand, unconditional).  With it, `stack_eq_primesLE`,
+`exhaust_gear_gt_cut`, `exhaust_silent` and `stack_open_iff_twin` are unconditional for
+every prime base `q >= 5`.
+
+## Build and audit
+
+```
+cd C:/dev/primes/proofs
+~/.elan/bin/lake.exe build TopMachine TopMachineWheel TopMachineCrt TopMachineWalk MachineStack TopMachineRecord
+```
+
+Result: **green**, 2246 jobs, no warnings, no errors.
+
+| target | build time |
+|---|---|
+| `TopMachineRecord` | 7.8 s cold |
+| `MachineStack` (with the X12 addendum) | 10.0 s cold (was 9.3 s) |
+| the rest | unchanged, cached (13.3 s wall for the six targets) |
+
+Ordinary elaboration throughout - no kernel scan, no `decide` - peak memory a normal
+`lean.exe`, no babysitter.
+
+Axiom audit over **all 63 new declarations** (`lake env lean` on a local `#print axioms`
+file, and the same block appended to `proofs/AxiomCheck.lean` behind
+`import TopMachineRecord`):
+
+- every declaration is `[propext, Classical.choice, Quot.sound]` or smaller;
+- `decStrikesRec` depends on `[propext]` only; `Piece`, `core`, `tailG` on
+  `[propext, Quot.sound]`;
+- **no `sorryAx`, no `Lean.ofReduceBool`, no `Lean.trustCompiler`.**
+
+Choice is used essentially in `domCost` (`sInf` over a non-decidable predicate) and in
+`coverable_of_cost_le_tail` (`choose` picks each gear's demanded residue, as in
+`parity_attained`) and `cost_le_tail_of_coverable` (`choose` picks each tail gear's
+piece anchor); elsewhere it is inherited from mathlib's `Finset` plumbing.
+
+## What the ledger now says
+
+| law | Lean name (namespace `TopMachine`) | status | hypothesis |
+|---|---|---|---|
+| L67 tail piece | `trace_subset_domino`, `trace_card_le_two`, `trace_one_parity` | proved | `L + 1 < g` |
+| L67 two teeth, two separations | `trace_subset_off`, `off_pair_diff` | proved | `L <= g` / `2 <= g` |
+| L67 ends-joining = parity crossing | `trace_crosses_parity_iff` | proved | `g` odd, `5 <= g`, `4 <= L <= g` |
+| L67 end pair `{0, L-1}` | `ends_join_iff` | proved, and SHARPER (`g = L + 1`, not `g <= L + 1`) | `4 <= L <= g` |
+| L68 pieces keep to one parity | `piece_one_parity` | proved | none |
+| L68 lower bound | `card_le_two_mul_of_coveredBy` | proved | none |
+| L68 parity split | `domCost_union_parity` | proved | the two classes |
+| L68 cost of a run | `domCost_run` | proved | none |
+| L68 general maximal-run formula | - | **not attempted** (not needed; needs a run decomposition) | - |
+| L69 necessity | `cost_le_tail_of_coverable` | proved | **none** |
+| L69 sufficiency | `coverable_of_cost_le_tail` | proved | pairwise coprime |
+| L69 the rule | `loaded_record_rule`, `record_set_eq`, `record_isGreatest_iff` | proved | pairwise coprime |
+| L69 monotonicity of coverability | `coverable_mono` | proved | none |
+| L71 empty-core cost, closed form | `boundary_cost`, `boundary_greatest` | proved | none |
+| L71 parity law, second proof | `parity_law_of_rule`, `rule_gives_parity_law`, `parity_law_agrees` | proved | gears odd, `2m + 1 < g`, pairwise coprime |
+| X12 `CutMono` from `q = 5` | `four_mul_lt_prod_gearsIoc`, `cut_two_gt_four_mul`, `cut_succ_gt_four_mul`, `cutMono_of_five_le` | proved | `q` prime, `5 <= q` |
+
+**Not attempted this round**, named so the gap is an output: L70 (the capacity bound -
+one `omega` away from `card_le_two_mul_of_coveredBy` plus a core-gear count, but the
+core count `2 ceil(L/g)` needs a per-gear window census that is not in the kernel);
+L73/L74 (the moment vanishing and `r(d) = D(d-1)` - they need the multilinear expansion
+over `{0,1}^{d-1}` and a Boolean-cube Mobius inversion, which nothing in these files
+has); L22 via K1-K3 (K2's general `Finset.powerset` inclusion-exclusion is the one new
+piece of machinery; K1 and K3 are mechanical on `card_filter_crt`).  The round's time
+went to L67-L69, the boundary corollary, and the `CutMono` transcription requested
+mid-round.

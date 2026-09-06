@@ -49,7 +49,8 @@ anywhere in this ledger.** Marked slots:
 > exception absorbed (O-W1 closed); L18's multiplicities reproduced; the census law written in
 > kernel shape (three lemmas, each verified). Remaining on the wheels alone: the complexity of
 > min_U D_L(U); non-cancellation of M_{r(d)} (L75, 0 exceptions of 24, unproved); L22 in the
-> kernel (Formalist round 36 running, with L67-L69); a parity-refined capacity bound.
+> kernel (round 36 did L67-L69 and the boundary corollary: proofs/TopMachineRecord.lean; L22, L70,
+> L73/L74 not attempted); a parity-refined capacity bound.
 
 ---
 
@@ -638,7 +639,8 @@ measurement and no branch document of its own.
    laws are KERNEL.
 2. ~~`CutMono` unconditional from `q = 5` (O-X1)~~ CLOSED by exhaust_1.md X12/X13 (written proof
    from dyadic Bertrand: cut_{k+1} > 4 cut_k for prime q >= 5; the base step fails at q = 2, 3, 4);
-   kernel transcription pending.
+   kernel transcription DONE round 36: `cut_succ_gt_four_mul`, `cutMono_of_five_le`
+   (proofs/MachineStack.lean); `stack_open_iff_twin` unconditional for prime `q >= 5`.
 3. ~~The zones and the redundancy lemma (O-X2)~~ CLOSED by exhaust_1.md X14-X16 (range form: any g
    with g^2 > N, every multiple in [1, N] is g or has a prime factor below g; 0 exceptions in
    7,357,725 strikes).
