@@ -1504,6 +1504,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             floor a_L = 10 in the middle (19 of 21) and alternates +-d at J = 4; the largest
             old piece falls with chain depth (43, 35, 22 at J = 2, 3, 4). Scorecard: M1-M6, M8
             confirmed, M7 confirmed with the collapse located.
+            - 4.i.b.ii.a. Cap the padded word (spawned by the order law giving L a job: a cap
+              L <= c makes the budget a bounded-order statement about D_{c+1}; the engine's
+              last structural item). The PAD alphabet at every rung, the junction-gear
+              counting cap, the letter-value cap, the shadow if uncapped. OPEN, prover running
+              on Fable (research/proof/pad_cap.md).
         - 4.i.a. The frontier's collapse at the top (research/proof/frontier_collapse.md).
           FACT, exact; a partial route. THE TOP LAW (8 of 8 rungs): Rest(F_old) = N(F_old) if
           F_old = 0 or +-d (mod q'), else n1(F_old), the old record's largest single neighbour;
