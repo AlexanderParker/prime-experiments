@@ -1252,7 +1252,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       ATTEMPTED: the in-use mex with truncated progressions, the harmonic bound, the C(j)
       distribution and hop laws, spectral and bitwise (no DFT in the files), the gap census
       law L22.
-    - R4.c. THE CLUTCH (closed until the objects ledger clears; owner's rule 2026-09-06).
+    - R4.c. THE VALVES (formerly "the clutch"; OPENED 2026-09-07: the ledger's gate cleared,
+      every part with no open structural item that is not ROOT). First step, the owner's
+      hybrid, running: the SCRATCH lane (Fable, clean context: only the glossary, the ledger's
+      definitions and proved laws, the census table; forbidden the wall, the tree, the
+      refiled facts) builds the interface objects from the definitions
+      (research/proof/valves_scratch.md); the REVIEW lane (Fable) sorts the 36 refiled facts,
+      the wall, theorem (E), the conjugacy, the family decomposition into interface objects
+      with coordinate flags and inherited assumptions, and puts three predictions and one
+      red flag on record (research/proof/valves_review.md); then RECONCILE.
       First step when opened, owner's hybrid: a scratch lane with clean context (the three
       objects' definitions, the glossary, the ledger's proved laws; no clutch facts, no wall)
       defining interface objects on the wheels' coordinate and the motor's; a review lane
