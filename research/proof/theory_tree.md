@@ -640,6 +640,26 @@ the log at the bottom is chronology only.
       order reaches the lemma for all K; a new gear's net contribution (2/q')(1 - 2 sum 1/g)
       turns negative from {5, 7, 11, 13} on, which is exactly why the all-pairs form is
       invalid. The induction step being sought is not a pairwise law and cannot be made one.
+  - **R4. The period-scale formulation (the owner's reframing, 2026-09-06).** Ignore the window.
+    Machine {5..q} opens exactly prod(g - 2) twin slots per period (proved, CRT). A twin exists
+    among them iff some opening survives every prime in (q, sqrt(6 P_q)], the SECOND MACHINE
+    built from the gears above q. "Some opening of {5..q} in (q, P_q] survives the second
+    machine" is weaker than the window statement and still gives twins infinite. At this
+    scale every later gear g strikes the openings at exactly 2/g with error below 3^m
+    (negligible against prod(g - 2) ~ e^q), and every product of later gears below P is exact
+    too: a level of distribution of essentially 1. So faces B (position), D (transfer) and E
+    (over-asking) of the wall vanish; face A (the dimension-2 sieve limit 4.27 against
+    s = 2) stands alone, in its purest form (Brun's almost-primes, Chen's theorem are the
+    known reach). MACHINE-NATIVE STRUCTURE at this scale: a later gear g strikes an opening
+    iff the cofactor m = (6k +- 1)/g is q-rough with g m -+ 2 q-rough, i.e. the strikes of g
+    on the openings of {5..q} ARE the openings of the coherent twisted machine with
+    separation 2 g^-1 mod h at every gear h <= q (W3's family c/r with r = g), each with
+    exactly prod(h - 2) openings per period; the second machine's action decomposes into
+    coherent copies of the first machine, one per later gear. OPEN.
+    - R4.a. Build the second machine exactly at q = 13..23; verify the twisted-copy identity;
+      measure the survivor curve against the sieve's lower-bound function; locate where joint
+      moments stop being exact. OPEN, prover running.
+
   - **R3. Structure of the record: how a record stretch is made.** If what makes a record is
     understood, the object that survives it may be nameable. Spawned by the tiling observation
     (out of 1a).
@@ -1273,3 +1293,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, manager, toolbox pass (option 2 chosen by the owner): bitwise lands on Liouville of 36k^2 - 1 (Chowla) and the bucket vector; inclusion-exclusion is Brun; the merge recursion as an operator is the renewal ladder; characters give the pole-phase law (real teeth: each gear's Fourier coefficient at a is nearly a function of a mod 6). The one object the tools reach that is unexploited: the merge forest (node 4 WEAK, untested). Opened 4.i, one prover.
 - 2026-09-06, prover GF (merge_forest.md): branching identity proved (orders = second difference of chain counts; mean order q'/(q'-2) teeth-free); node 4 refuted; the frontier F(M+q') = max_a (a + Rest(a)) with Rest collapsing at the top (Rest(F_old) <= 7; rest <= q' fails only at 29->31). Opened 4.i.a.
 - 2026-09-06, prover FR (frontier_collapse.md): the top law (Rest(F_old) = the old record's largest single neighbour, or its neighbour sum when F_old is a letter) and the fusion-rate identity proved; the frontier splits into the pair half (J = 2) and the chain half; the uncovered band at m31 is [15, 25] and holds the record maximiser; the availability gate named as the child.
+- 2026-09-06, owner: the period-scale formulation (R4). Manager's reading: level of distribution 1 at the period scale removes faces B, D, E; face A stands alone; the second machine decomposes into coherent twisted copies of the first. Opened R4.a.

@@ -367,6 +367,18 @@ tree has no such object. What is proved on this side: the adversarial lemma to K
 certificate (docs/proofs/20), the shared-arc law (twin gears collide at (g + 4)/3), the arc
 floor, the linear deficit law with slope 4/(gh).
 
+## 5i. The period-scale formulation (the owner, 2026-09-06)
+
+Drop the window. The openings of machine q over one period are exact and every later gear's
+first moment on them is exact to 3^m out of e^q; every joint moment is exact while the product
+of the gears involved stays below the period. That is level of distribution 1. Faces B, D and E
+disappear at this scale; face A stands alone: sifting the openings by the primes up to the
+square root of the range is s = 2 in dimension 2, below the limit 4.27, and no structure of the
+window was ever what stopped it. The new object: the second machine (gears above q) acts on the
+first machine's openings as a union of coherent twisted copies of the first machine, one per
+later gear g, with separation 2 g^-1 at every gear. Whether that union carries bilinear (Type
+II) structure the sieve cannot see is the only question the window could not ask.
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real
