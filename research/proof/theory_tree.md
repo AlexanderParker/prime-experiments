@@ -859,6 +859,16 @@ the log at the bottom is chronology only.
       the mex closed forms L30 and L34 (no CRT needed), the triple-hole proof, B(d) via
       card_filter_crt, the triple record's upper bound (shape of parity_upper), the
       distribution identities, the XOR lower bound.
+    - R4.b.iv. The in-use next-opening bound (spawned by R4.b.iii: the mex form is exact in
+      use but its proved bound is vacuous past 10^6). Core gears (<= F + 1) against tail gears
+      entering by count; an explicit proved bound B(q', m, N); the record's position in range;
+      saturation in the tail. OPEN, prover running (research/proof/top_machine_4.md).
+    - R4.b.v. Sliding the split down (owner: which top-machine laws survive with gears 2, 3, 5,
+      7, 11 present; the smallest top machine that retains the simplicity; by the conjugacy a
+      top machine starting at 5 IS the bottom machine {5..q}, so this measures what transfers).
+      OPEN, prover running (research/proof/top_machine_5.md). In parallel the Formalist puts
+      the mex closed forms, the triple record 3m, the census holes and the correlation product
+      into Lean (round 34).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
