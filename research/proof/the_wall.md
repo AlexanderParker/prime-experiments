@@ -400,6 +400,23 @@ with the span-threshold prune, the CRT row search, the configuration enumerator.
 object still open inside the window: the chain statement at depths 3 and 4 on the band. Per
 the owner, this is the point to open the top machine on its own terms (R4).
 
+## 5k. Location pinpointed (2026-09-06)
+
+The owner's last window round asked where in the window the twin slot is, with the lower
+machine only. Answer, proved and measured: the window can be emptied only from the bottom.
+Theorem (E): a column above q is blocked under {5..q} iff blocked under {5..sqrt(6k + 1)}, so
+the effective machine at every column is exact and no blocked stretch of length L can begin
+before 1.25 L (unconditional to 59^2, conditional on the ladder beyond); measured 3.25 L with
+no exception. From q = 1427 the longest blocked run of the whole prefix is the initial run
+from column 1, of length q/6 (the first twin above q), while the window is q^2/6. So the window
+statement is exactly d_0 <= W, the diagonal walk of the bottom machine, the first twin above
+q; every structured family of candidates carries twins at the window's own rate by an identity
+(a rule written in the lower machine's residues cancels its own saving); the top machine is
+irrelevant inside the window. The location is the bottom; the mechanism there is the primes
+themselves (twin gear pairs striking their home columns, then composites of small factors),
+which is twin-Bertrand at scale q. The lower machine alone has said everything it can about
+where; per the owner, the top machine is next.
+
 ## 6. What the wall says is NOT worth another branch
 
 Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks for the real

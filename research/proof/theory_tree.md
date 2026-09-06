@@ -747,11 +747,39 @@ the log at the bottom is chronology only.
 
     - R2.e. Location inside the window, lower machine only (the owner's round, 2026-09-06: one
       more round to pinpoint location; if it does not close, construct the top machine).
-      - R2.e.i. The position-length frontier: R_min(L), the earliest column at which a blocked
-        stretch of length L can begin, on full periods and in every window; the window
-        statement in location form is R_min(W) > 0 with the constant c in R_min(L) >= c L;
-        the induction through the effective machine at the position. OPEN, prover running
-        (research/proof/position_frontier.md).
+      - R2.e.i. The position-length frontier (research/proof/position_frontier.md). STRONG:
+        a proved reduction of the window statement to one run. THEOREM (E), proved in a line:
+        for every column with 6k - 1 > q, blocked under {5..q} iff blocked under
+        {5..floor(sqrt(6k + 1))} (the cofactor's least prime factor), so the effective machine
+        at a column is exact, and R_min(L) >= ceil((y_L^2 - 1)/6) - L + 1: an induction on the
+        machine, unconditional for stretches whose top member is below 59^2 = 3481 (the
+        certified ladder), conditional on the ladder beyond. Measured: R_min(L) = 1 for every
+        L < d_0 and R_min(L) >= 3.25 L for every L >= d_0, 0 exceptions in 113 period cells
+        (m7..m29) and 8,375 window cells (q = 23..19,997); the frontier is bimodal with nothing
+        between; the ladder delivers c = 1.25 (1.54 for L >= 6) unconditionally, and c = 3 would
+        need F(y) <= y^2/24 (refuted at y = 5, 7, 11): the frontier constant and the record
+        constant are one number in two coordinates. The induction's failing step is NOT the
+        big-gear fusions at the top of the window (zero: at 23 frontier stretches including
+        q = 997's 241-column window record there are 0 columns without an effective striker
+        and the effective machine leaves each stretch in one piece); the exception set of (E)
+        is exactly the TWIN GEAR PAIRS striking their own home columns (7 of 7 count matches),
+        all below (q + 1)/6. MAIN FINDING: from q = 1427 on the longest blocked run of the whole
+        prefix [1, W] IS THE INITIAL RUN from column 1 (2,038 of 2,038 rungs, 0 exceptions);
+        the Pareto staircase of the prefix collapses to the single point (1, d_0 - 1);
+        (d_0 - 1)/(q/6) in [0.97, 1.35], median 1.005: the initial run is q/6, linear, while
+        the window record grows like log^2 q. TOWARD THE ROOT: the window statement is
+        R_min(W) > 1, i.e. "the exception set stops below W", and the exception set is
+        {L < d_0}, so it reads d_0 <= W exactly; all of [q/6, W] is provably removed from
+        suspicion (x >= 1.25 L), leaving one run: the initial run, the diagonal walk of the
+        bottom machine, the first twin above q. Real-teeth, both: c at the 85th-90th
+        percentile of the family, and the column-1 anomaly reproduced by 0 of 60 members
+        (real/family-median initial run 4.35, 10.6, 14.1 at q = 211, 401, 997, growing). Also
+        exact: the mirror R_max = P - R_min - L + 1 (88 of 88); the same low columns 13, 53, 59,
+        111 serve every machine (column 111, the twin gap 661 -> 809, the tight point from m19
+        on). VERDICT: location pinpointed. The window can be emptied only from the bottom; the
+        top machine is irrelevant inside the window (E); what remains is d_0 <= W, the first
+        twin above q, decided by the bottom machine's diagonal alone.
+
       - R2.e.ii. Structured families of slots (research/proof/structured_families.md). DEAD
         as a route, by an identity. Every located family carries twins at the window's own
         rate: on 661 disjoint sections (130,644 twins) the normalised excess is within 1.2
@@ -1617,3 +1645,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-06, prover LD (ladder_closure.md): the closure as an instrument reaches F(37) = 88 and F(41) = 91 exactly from m23's period alone with every gate exact; m41's record is one of 3,052 fourfold fusions among 8.5 trillion gaps; the span-threshold prune (lemma) is the tool; budget slack 14, 20, 16, 7, 38 along the extended ladder; F(43) needs about 10^8 dictionary rows. The window's leads are now run to their verdicts.
 - 2026-09-06, owner: one more round on location inside the window with the lower machine only; opened R2.e.i (the position-length frontier) and R2.e.ii (structured families); if neither closes, the top machine is next.
 - 2026-09-06, prover SF (structured_families.md): structured families DEAD by identity (a family defined mod the lower machine's period cancels its own saving; every family carries twins at the window's own rate; the islands indistinguishable from ordinary corridor columns, 1.006 +- 0.005); gear 7 barred at the column-0 offset iff q = +-2 mod 7.
+- 2026-09-06, prover PF (position_frontier.md): theorem (E) proved (the effective machine at a column is exact); R_min(L) >= 3.25 L for L >= d_0 and = 1 below, 0 exceptions; from q = 1427 the longest run of the prefix is the initial run; the window statement reduces exactly to d_0 <= W, the initial run of the bottom machine's diagonal, with all of [q/6, W] provably safe. Location pinpointed: the bottom. The round did not close it; per the owner, the top machine is next.

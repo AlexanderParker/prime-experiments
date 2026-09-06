@@ -65,6 +65,17 @@ WHAT THE LAST TWO WEEKS FOUND, IN ORDER OF STRENGTH:
    36 at the 29 -> 31 rung, with no local certificate. The record itself, the letter, and the
    top of the spectrum are all exactly understood and are not where the tightness lives.
 
+7. WHERE THE TWIN SLOT IS, PINPOINTED. A column above q is blocked by the machine iff it is
+   blocked by the gears up to the square root of its own number (proved), so a long blocked
+   run cannot start early: no run of length L begins before about three times L (measured,
+   no exception; 1.25 L proved from the certified ladder). From q = 1427 the longest blocked
+   run of the whole window is the run from column 1, of length about q/6, the gap up to the
+   first twin above q. The window is q^2/6 long. So the window can only ever be emptied from
+   the bottom, every located family of candidates elsewhere carries twins at the window's own
+   rate by an identity, and the whole conjecture inside the window is one statement: the first
+   twin above q lies below q'^2. That is the bottom machine's limit on "where"; the top machine
+   is next.
+
 ## Honest ledger
 
 - The conjecture is accepted as true and every measurement agrees with slack: the record
