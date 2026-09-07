@@ -1632,6 +1632,16 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       statement, "every band holds a twin", is twin-Bertrand between consecutive squares of
       the chain. Pre-registration misses recorded (P3 "never closed", P5's profile, P6's
       interval).
+      - R4.d.i. The base case and the step (owner, 2026-09-07: "definitely worth pursuing the
+        base case; the smallest machine that builds a twin pair is 2, 3"). The chain's links
+        are the square intervals [g, g^2) along g -> nextprime(g^2); [2, 4) has no pair at
+        distance 2, [3, 9) has (3, 5) and (5, 7), so the base machine is {2, 3, 5, 7}; by S7
+        the step is "machines 1..k, each with twin gears, leave an open slot on band k".
+        Branch: the chain from the base and other bases, every link's twin count; how the
+        lower machines' twin gears act on the band (the collision law's role); the
+        start-of-band excess (up to 5x independence just above g_k^2) and its mechanism (only
+        machine k's gears up to x / g_k have acted at height x); the first twin above g_k^2 as
+        the base-case quantity. OPEN, prover running on Fable (research/proof/base_and_step.md).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -2683,3 +2693,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, prover PZ1 on Fable (phase_zero.md): phase zero is exactly saturation (the open set closed under divisors and multiplication by air; proved, 0 violations in 107,750,211 tests), which no adversary has, and which does not force a pure pair (the saturated sieve with the twins added as gears has none: what excludes it is the cut). Law table: 13 phase-free by the translation lemma, 10 phase-zero, 3 beyond multiplicativity and all three are saturation. The slice profile is new: poor at the bottom (onset), rich in the middle (Buchstab), flat at the top; the manifold's record sits in the emptied bottom. The Liouville-signed charge census is 0.1% against a pure share of 8.2%: the parity barrier in one number. ROOT.
 - 2026-09-07, owner: revisit the construction; stack machines by squares (machine 2 = primes q' to q'^2 run to q#, machine 3 from the next prime to its square, ...), classify each machine's anchor cycles as open / closed / mixed on its square part and its band, across q, then relate the machines and connect to machine 1's cycles. Vocabulary: machine 1 (the engine), machine 2 (formerly the manifold's first block), machine k; square part; band. Opened R4.d, builder running.
 - 2026-09-07, builder SQ1 on Fable (stacked_squares.md): the stack by squares built exactly. The band structure holds with 0 exceptions (half-open square parts; every prime's square is a twin slot, S1); the count of machines is 1 + floor(log2(theta(q)/ln q')); no gear >= 7 closes a cycle alone and every closed cycle uses >= 3 gears (S3); on a band a machine's open numbers are exactly the smooth numbers and smooth-times-one-prime (S4), so the CRT cycle expectation is wrong in both directions; every square-built machine has Mertens product 1/2 (S5): the construction is the equal-weight decomposition of the manifold; the gears of machine k + 1 are the primes of band k and the twins of band k are its double-home slots (S7, exact); the joint-open ratio is P(prime | rough)/P(open) (S6). The cycle at q# is not open for machines >= 2. ROOT: every band holds a twin is twin-Bertrand between consecutive squares.
+- 2026-09-07, owner: pursue the base case; the smallest machine that builds a twin pair is 2, 3. Manager: the base link is [3, 9) with twin gears (3, 5), (5, 7); the step is exact by S7; opened R4.d.i.
