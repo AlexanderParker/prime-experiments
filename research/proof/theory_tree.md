@@ -1446,6 +1446,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           multiplicativity); the charge set as a structure (burn as multiplication by air);
           the record laws on the charges. OPEN, prover running on Fable
           (research/proof/phase_zero.md).
+        - R4.c.v. Openings aligning with the engine's twin slots (owner's mechanism,
+          2026-09-07: the manifold's longest opening is its first gear's arc; if it aligns
+          over the engine's twin slots, which occur at a definite frequency, that is the
+          proof, within or outside the certified range). Manager's two size facts on the
+          scorecard: the longest opening q' - 3 is far shorter than the engine's blocked runs
+          (about 6 F(M)), so an opening must land on a slot, not span to one; and the longest
+          opening is rare (density about exp(-(q' - 1) sum 1/g)) and may not occur below Q^2.
+          Branch: the opening spectrum on the quiet zone; the engine's gap at each opening;
+          the engine-plus-first-gear composite (period q# x q') and how each further gear
+          thins the aligned openings against CRT and against free phase; forced alignment.
+          OPEN, prover running on Fable (research/proof/opening_alignment.md).
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
