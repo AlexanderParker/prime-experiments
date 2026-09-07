@@ -473,3 +473,22 @@ Anything that (a) reduces to a count, (b) lives at a fixed modulus, (c) looks fo
 machine to be special by symmetry or squareness, (d) needs transfer for real q, or (e) proves
 a twin in a short interval. Every branch closed on the tree is one of these, and their
 closures are the measurements above.
+
+## 5m. Existence without count or position (owner, 2026-09-07)
+
+The owner: "we don't have to see position, although that would be strong; just knowing there
+exists any position regardless of where it's located would be proof." Exactly right, and it
+sharpens the wall. Every existence proof found so far has one of two shapes. Existence by count
+(the number of open pairs in the window is positive) is face A: a two-dimensional sieve that
+stops at 4.27 windows and never reaches one; the turn ledger's counterfactual fuel proves it again
+inside the valves. Existence by construction (a position the machine cannot strike) has always
+produced its position at the scale of the period W (CRT, the mirror, the symmetry group, the
+richest translate), never inside (y, y^2], a vanishing fraction of W; inside a short interval,
+"there is one" without a count means "here", and position never sees length. So the wall is:
+existence inside a short interval with neither a count that reaches it nor a location that
+survives. The third shape, the target in the owner's words, is an invariant the window carries
+by construction that forces an opening without naming the column, the way column 0 is open in
+every machine because nothing strikes 1. Column 0 is the trivial instance at position 0; the
+search is for a second such object at the window's scale. The island witness (offsets 12 mod 35
+past q^2, 0 exceptions to 200,000, no mechanism) is the only candidate on record that is neither
+a count nor a period-scale construction.
