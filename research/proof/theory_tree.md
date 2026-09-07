@@ -1328,6 +1328,30 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         across the engine-open classes at distance 2 (F sits in one class mod 3 and has no
         pairs at distance 2 inside it); a set hitting every class need not contain such pairs
         (the parity barrier's example), so the object is the primes' pair correlation itself.
+        UNSTICK PASS 3 (research/proof/dead_branches_reopened_3.md): (a) the fuel as the
+        exhaust's gear set walks DOWN exactly via theorem (E): turn m of Q is the top
+        1/(m + 1) of the window of sqrt((m + 1) Q), so P_1(Q) > 0 follows from
+        F(y) < W(y)/2 at y = sqrt(2Q); every valve turn is the engine's window at a lower
+        rung, the descent spending the slack as 1/(m + 1); (b) the exhaust's dominoes on
+        the engine's wheel: the engine acts on prime-led charges with one tooth, so the
+        walk to the next twin is a one-class sieve on the prime sequence, dimension 1,
+        parity-blocked; (c) adversaries: what F lacks as objects is balance on gear 3's
+        teeth, mirror closure of the valve set (checked 11 of 11, 5 of 5) and one
+        number-tooth per gear; a one-tooth free-phase manifold adversary with all three
+        still empties the pure charge of the first 60 turns at Q = 10^4 with 776 of 1,226
+        gears; what remains is phase zero at every prime up to Q, i.e. the real fuel; (d)
+        the valves' walk is loaded from turn 3 and cannot collapse. Every ROOT node
+        descends to the engine's record (W103, L65 to F at sqrt(3Q); the skip half to
+        F/q'). THE ONE OBJECT THAT IS NOT THE RECORD RESTATED: its dual, the rich-interval
+        function Omega of the pullback along the new gear (the most openings of the twist
+        M^(q') in n consecutive multipliers), E2/E3's exact cap on the skip half with slack
+        0 or 1 at nine of nine rungs, universal and finite per n, a max over translates
+        rather than a count. Recommended and opened: the rich half of the record (engine).
+        - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
+          ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
+          do records sit at the pullback's richest translates; does the arc floor
+          (proofs/21) have a pullback form under the twisted separations. OPEN, prover
+          running on Fable (research/proof/rich_half.md).
       First step when opened, owner's hybrid: a scratch lane with clean context (the three
       objects' definitions, the glossary, the ledger's proved laws; no clutch facts, no wall)
       defining interface objects on the wheels' coordinate and the motor's; a review lane
@@ -2391,3 +2415,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, valves review lane (valves_review.md, 852 lines): ten interface objects sorted with status (I1 the conjugacy as the fold on n = 5 mod 6; I2 the anchoring valves 2, 3, 5, 7 and the corridor mod 35 = the opening set of {5, 7}; I3 the family decomposition and the pure charge; I4 the echo set and home strikes, outer boundary p_1^2; I5 the twisted copies = back pressure in the cofactor coordinate; I6 theorem (E) and its exception set, the inner boundary; I7 the placement residue law = valve timing, dimension 1 vs 2 the parity barrier; I8 the island witness and K(d), which does not translate into families; I9 the four cells and the level of distribution, translated into zones; I10 the zero-interaction region, a property of every split). Eighteen inherited assumptions found, chiefly: the column coordinate is not a definition but the first valve (gears 2 and 3 fold); the manifold's metric laws (dominoes, chains, gap 4, parity record) never reach the valves' domain; every tier strikes its own twins as home strikes so the valves never see a smooth-zone twin. Five predictions on record for the reconcile (families occupy exactly the classes of P mod 30 solving s'P' - sP = 2, spot-checked; every family's count independent of q; the valves' record is a twin gap; timing = one forbidden class per engine gear per sign; RED FLAG: any manifold metric law surviving into the valves' open set).
 - 2026-09-07, valves scratch lane on Fable, clean context (valves_scratch.md), and the reconcile (valves_reconcile.md): the valves have a mechanism. Each family is a valve with an imprint (proved, both lanes), a port (class mod 6 fixed by its air, proved), an onset (it opens at the turn equal to its air, proved as a bound, exact as measured), a yield (a local density, measured; Bateman-Horn). The pure charge is the valve with no air: no onset, in every turn, the same count for every engine. Turns 1 and 2 carry no fuelled valve but (1, 1), the rest are embers. The review's four predictions were rediscovered from the definitions; the red flag held. Next: the turn ledger.
 - 2026-09-07, prover VT1 on Fable (turn_ledger.md): the turn ledger is exact (V1, 0 exceptions in 600 turns) and the wall reappears at it BY PROOF (V2): a counterfactual fuel set obeying every proved valve law has zero pure charge in every turn, so imprint, onset, port, inventory and ember cannot force P_m > 0; the wall at the ledger is face A and nothing else. Measured: the first two turns never empty for Q > 9 to 10^5 (min P_1 = 25 at Q = 1031); the valve count A(m) exact with its recursion; the pure share tends to the engine's own pair density in m, not to 0. Shadow: the fuel's pair correlation across the engine-open classes, i.e. the primes' own twin structure.
+- 2026-09-07, unstick pass 3 (dead_branches_reopened_3.md): every valve object descends to the engine's record at a lower rung (turn m of Q is the top 1/(m + 1) of the window at sqrt((m + 1) Q), exact via theorem (E)); adversaries with balance, mirror closure and one tooth per gear still empty the pure charge, so what remains is the real fuel's phase zero at every prime; the one object not the record restated is its dual Omega, the rich-interval function of the pullback. Opened: the rich half of the record, back in the engine.
