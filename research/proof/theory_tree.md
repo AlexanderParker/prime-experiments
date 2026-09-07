@@ -1456,7 +1456,48 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           Branch: the opening spectrum on the quiet zone; the engine's gap at each opening;
           the engine-plus-first-gear composite (period q# x q') and how each further gear
           thins the aligned openings against CRT and against free phase; forced alignment.
-          OPEN, prover running on Fable (research/proof/opening_alignment.md).
+          DONE, FACT with a ROOT mark (research/proof/opening_alignment.md, laws V20-V24;
+          scripts research/valves/r4/). Size fact (i) HOLDS: the engine's longest blocked run
+          of pairs is 11, 29, 41 (q = 5, 7, 11) against the run ceilings 4, 8, 10, and even
+          the mean slot spacing 10, 14, 17.1 exceeds the ceiling: an opening holds at most
+          ceil(L/6) slots. Size fact (ii) HALF: the ceiling length's density is exactly
+          prod_{g in (q, Q]} (1 - (q' - 1)/g) = 1.5e-4 to 1.4e-8, yet the ceiling length IS
+          present below Q^2 in 6 of 7 runs (247 / 3,634 / 78,660 at q = 5 for Q = 10^3, 10^4,
+          10^5; 6 / 14 at q = 7; 6 at (11, 10^4)), absent only where CRT expects 0.4; law of
+          the longest opening below Q^2: attained whenever the CRT count of the ceiling
+          length is >= 1, measured 1.1 to 4.6 times CRT. V22 (EXACT, 0 exceptions in 65,115):
+          an ember-free opening lies in turn >= the max of its smooth vector; slot-free
+          openings can enter at turn L + 2, slot-holding ones not before turn 12 (L = 3..8),
+          16, 18 (L = 9, 10); the first aligned length-3 opening at (5, 10^4) sits at 129,586,
+          turn 12, exactly on the threshold; the earliest twins in length-2 openings are
+          ember-seeded (2,592 = 2^5 3^4; 21,600 = 2^5 3^3 5^2). ALIGNMENT IS GENERIC, NOT
+          STRUCTURED (V21): over a full period the engine-plus-first-gears composite is
+          exactly uniform and phase-blind (periods to 9.7 million; every count equals its CRT
+          integer; two random phase vectors identical; 0 mismatches at q = 5, 7, 11; the arc
+          table of q' uniform per position: 3, 15, 135); on the quiet zone the fraction of
+          openings of length L holding a slot is 0.78-1.0 times the uniform |S_L|/q# at every
+          length with >= 100 openings (V24: 0.081/0.100, 0.184/0.200, 0.290/0.300, 0.382/0.400
+          at (5, 10^4)), the random-phase copy at 1.00, the slot position inside the opening
+          uniform. OWNER'S "long openings always hold a slot" REFUTED with counts: slot-free
+          openings at the ceiling 2,247 of 3,634 (q = 5, 10^4), 47,569 of 78,660 (10^5), 3 of
+          14 (q = 7), 1 of 6 (q = 11). Pre-registration refuted the other way (V23): the
+          opening spectrum on (Q, Q^2] EXCEEDS CRT by a factor rising with L (1.09, 1.19, 1.25,
+          1.38 at (5, 10^4); to 4.2 at L = 10, q = 11) while the free-phase copy sits at 1.000
+          at every L: phase zero makes the fuel the primes, denser than the CRT sieve by
+          e^gamma/u at height Q^u and denser still at height y/s for members with air s,
+          compounded over the block (Mertens / Buchstab, one line). Forced alignment: the
+          first aligned opening of length 4 sits at 20,476 / 185,529 / 1,885,304 for Q = 10^3,
+          10^4, 10^5, linear in Q, past q# q'; only its turn is pinned (20, 18, 18) just above
+          the V22 threshold. The V12 adversary: aligned fraction uniform, first aligned
+          opening of every length <= 4 in turn 61 (the first it did not cover); it is a
+          machine on the fuel, not a manifold on the integers (1,809 openings over the run
+          ceiling, longest 9), and "aligned" for it is a surviving pure-imprint pair, not a
+          twin. ROOT: an opening holding a slot below Q^2 IS a twin (the cap), so "some
+          opening holds a slot below Q^2" is the conjecture on the quiet zone restated; what
+          the branch adds is localisation: twins sit in openings of length 1 in 92-95% of
+          cases (404,635 of 440,107 at (5, 10^4)), in the ceiling length in 0.1-0.3%, with a
+          flat per-pair slot rate (0.081, 0.092, 0.097, 0.095), and slot-holding long
+          openings cannot exist below turn 12 without an ember.
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
@@ -2553,3 +2594,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, prover NP1 on Fable (lengthen_never_precede.md): theorem (E) at one step proved with its exact two-column exception set (E6); the prefix frontier inherited exactly up the ladder (E7, 0 exceptions in 8,152 cells), so new gears lengthen and never precede on the prefix, while on the full period the sentence is false (8 of 11 steps, order-2-4 merges); the frontier for all rungs reduces (E8) to the straddling condition, a bound on the twin gap across each prime square, ROOT in face E's sense; V8 corrected: a hidden hypothesis and, above Q = 148, the certification is the share form. The frontier's constants are eleven twin gaps on a staircase; 4.625 from rung 23, never undercut.
 - 2026-09-07, Formalist round 39 on Fable (proofs/OneStepE.lean, 32 declarations): theorem (E) at one step in the kernel (blocked_succ_iff; the exact exception set new_iff: the home column d_0(M) iff (q', q'+2) is twin, the square column iff q'^2 - 2 is prime; home_isLeast_open: the new home column IS d_0(M)); prefix inheritance for maximal runs (maxRun_succ). Finding: theorem (E) as phrased in position_frontier.md is false outside the prefix (refuting instance q = 5, k = 8 in the kernel, E_needs_prefix); the true form needs 6k + 1 < q'^2 (blocked_iff_sqrt), which is where it was used; position_frontier.md and the wall (5n) corrected. Hypotheses: q never assumed prime; the next-prime property enters only as 'no prime strictly between q and q''. Manager gate: lake build OneStepE green at 740 jobs; audit standard axioms; zero sorries.
 - 2026-09-07, owner: the record's 'window' and the descent to rungs were a regression; the solution space is horizontal, the manifold (fully understood) and its interaction with the engine, with the exhaust as the known upper limit; derive the manifold's behaviour from scratch instead of translating back. Manager: accepted; the descent stays a fact, not a tool; opened R4.c.iv, phase zero in the manifold's own terms, with window / rung / ladder / descent forbidden.
+- 2026-09-07, prover AL1 on Fable (opening_alignment.md): the owner's alignment mechanism measured. The manifold's longest opening is present below Q^2 (6 of 7 runs) but is far shorter than the engine's blocked runs, holds at most ceil(L/6) slots, and is slot-free in 62% of cases at (5, 10^4); alignment of openings with the engine's slots is exactly uniform and phase-blind over full periods and 0.78-1.0 of uniform on the quiet zone; the one phase-zero effect is the opening spectrum exceeding CRT (the fuel is the primes, Mertens); a slot-holding opening below Q^2 is a twin, so the statement is the conjecture restated. Localisation kept: twins sit in openings of length 1 in 92-95% of cases; slot-holding long openings need turn >= 12 or an ember (V22, exact).
