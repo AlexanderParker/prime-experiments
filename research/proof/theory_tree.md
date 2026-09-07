@@ -1444,8 +1444,43 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           manifold and valve laws hold under free phase (no phase-zero content) and which
           fail; which fail for the parity-defined adversary too (content beyond
           multiplicativity); the charge set as a structure (burn as multiplication by air);
-          the record laws on the charges. OPEN, prover running on Fable
-          (research/proof/phase_zero.md).
+          the record laws on the charges. DONE, ROOT honestly (research/proof/phase_zero.md,
+          laws V13-V17; scripts research/valves/r3/). X = SATURATION (V14, proved): all phases
+          zero iff the struck set is a union of ideals iff the open set is closed under
+          divisors and under multiplication by air; the real charge set has 0 violations in
+          107,750,211 closure tests at (5, 10^4); no adversary on record has it: free-phase
+          manifolds fail 76.5% of closures, the one-tooth adversary and V2's F have composite
+          fuel, the parity adversary {even Omega} is a sub-semigroup but not divisor-closed
+          (closure fails at exactly the odd-Omega air, never at even-Omega air). X DOES NOT
+          FORCE A PURE PAIR (V17): the saturated sieve with the twin members in (Q, Q^2] added
+          as gears (880,214 gears above Q) passes every row the real manifold passes and has
+          0 pure pairs in all 9,999 turns; what excludes it is the cut, and saturation plus
+          the cut is the manifold's definition. LAW TABLE SPLIT: 13 phase-free, 1
+          position-only, 10 phase-zero, of which 3 beyond multiplicativity (one property,
+          saturation, counted three ways). Phase-free by the translation lemma V13 (a
+          free-phase manifold is the real one translated by the CRT solution of t = c_g; 15
+          of 15 wheels exact, periods to 215,656,441): domino form, no gap 4 (a tautology for
+          any number set), run and chain ceilings, parity law, record rule, census law, mex
+          form, wheel count and correlation product, symmetry group; imprint, port,
+          inventory by V2's proof. Phase-zero via "fuel above Q" only (so held by the parity
+          adversary too): onset, air cap, ember law, the quiet-zone "only if"; nothing on
+          record uses the order of the multiples beyond P > Q. The one-tooth adversary is not
+          a sieve on the raw line (breaks the run ceiling). Burn is a bijection air x pure ->
+          burnt on numbers, giving T - E = sum_s N_pure(Q^2/s) exactly (23,899,705 both sides,
+          0 difference at four (q, Q)): Legendre's identity, FACT; the pair system is not
+          closed. V15 (new, measured), THE SLICE PROFILE: a random slice is flat at the
+          period density in every turn and gap length (56 census cells within 2.5 sqrt N);
+          the real slice is poor at the bottom (turn 1: 0.107 = 47% of 0.228; small gaps at
+          0.5-6% of the period count in turns 1-2), rich in the middle (turn 60: 127%; pairs
+          175%), at the period value at the top; mechanism: onset closes the families at the
+          bottom, a single prime's density 1/log x beats the period's rough density in the
+          middle (Buchstab against Mertens, prior art); the record (420 after 26,261, turn 2)
+          sits in the emptied bottom: W103 in density terms. The record rule is silent about
+          the slice (at L = 420 the free core covers the whole window; the period record
+          >= 1,880, 4.5x the zone record; the capacity bound vacuous). Side facts: the
+          Liouville-signed charge census is -6,635 of 5,376,501 (0.1%) against a pure share
+          of 8.2%: the parity barrier in one number. Correction to V12: the one-tooth
+          adversary's fuel is not divisor-closed.
         - R4.c.v. Openings aligning with the engine's twin slots (owner's mechanism,
           2026-09-07: the manifold's longest opening is its first gear's arc; if it aligns
           over the engine's twin slots, which occur at a definite frequency, that is the
@@ -2595,3 +2630,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, Formalist round 39 on Fable (proofs/OneStepE.lean, 32 declarations): theorem (E) at one step in the kernel (blocked_succ_iff; the exact exception set new_iff: the home column d_0(M) iff (q', q'+2) is twin, the square column iff q'^2 - 2 is prime; home_isLeast_open: the new home column IS d_0(M)); prefix inheritance for maximal runs (maxRun_succ). Finding: theorem (E) as phrased in position_frontier.md is false outside the prefix (refuting instance q = 5, k = 8 in the kernel, E_needs_prefix); the true form needs 6k + 1 < q'^2 (blocked_iff_sqrt), which is where it was used; position_frontier.md and the wall (5n) corrected. Hypotheses: q never assumed prime; the next-prime property enters only as 'no prime strictly between q and q''. Manager gate: lake build OneStepE green at 740 jobs; audit standard axioms; zero sorries.
 - 2026-09-07, owner: the record's 'window' and the descent to rungs were a regression; the solution space is horizontal, the manifold (fully understood) and its interaction with the engine, with the exhaust as the known upper limit; derive the manifold's behaviour from scratch instead of translating back. Manager: accepted; the descent stays a fact, not a tool; opened R4.c.iv, phase zero in the manifold's own terms, with window / rung / ladder / descent forbidden.
 - 2026-09-07, prover AL1 on Fable (opening_alignment.md): the owner's alignment mechanism measured. The manifold's longest opening is present below Q^2 (6 of 7 runs) but is far shorter than the engine's blocked runs, holds at most ceil(L/6) slots, and is slot-free in 62% of cases at (5, 10^4); alignment of openings with the engine's slots is exactly uniform and phase-blind over full periods and 0.78-1.0 of uniform on the quiet zone; the one phase-zero effect is the opening spectrum exceeding CRT (the fuel is the primes, Mertens); a slot-holding opening below Q^2 is a twin, so the statement is the conjecture restated. Localisation kept: twins sit in openings of length 1 in 92-95% of cases; slot-holding long openings need turn >= 12 or an ember (V22, exact).
+- 2026-09-07, prover PZ1 on Fable (phase_zero.md): phase zero is exactly saturation (the open set closed under divisors and multiplication by air; proved, 0 violations in 107,750,211 tests), which no adversary has, and which does not force a pure pair (the saturated sieve with the twins added as gears has none: what excludes it is the cut). Law table: 13 phase-free by the translation lemma, 10 phase-zero, 3 beyond multiplicativity and all three are saturation. The slice profile is new: poor at the bottom (onset), rich in the middle (Buchstab), flat at the top; the manifold's record sits in the emptied bottom. The Liouville-signed charge census is 0.1% against a pure share of 8.2%: the parity barrier in one number. ROOT.
