@@ -1641,7 +1641,32 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         lower machines' twin gears act on the band (the collision law's role); the
         start-of-band excess (up to 5x independence just above g_k^2) and its mechanism (only
         machine k's gears up to x / g_k have acted at height x); the first twin above g_k^2 as
-        the base-case quantity. OPEN, PARKED at the owner's weekly limit (2026-09-07; resets 2026-09-11 04:00 Perth); the lane died before writing; relaunch fresh on resume.
+                the base-case quantity. PARKED at the owner's weekly limit (resets 2026-09-11 04:00
+        Perth); the lane died after its pre-registration; relaunch fresh on resume.
+        - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
+          section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
+          computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
+          q^2 the first twin lies below the top gear's long arc (offset i < (2q + 1)/3
+          columns), 0 exceptions, median at 1% of the arc, max 77%; in the witness's four
+          classes i = 5, 10, 12, 17 mod 35 alone, 8 exceptions, all q <= 461 (the recorded
+          witness holds from 2849), the first witness twin at a median 3% of the arc, the four
+          classes equally used (339, 321, 270, 288). THE MECHANISM, EXACT: relative to a square
+          q^2 (q coprime to g), gear g strikes offset i (members q^2 + 6i - 2, q^2 + 6i) iff
+          6i = -q^2 or 2 - q^2 mod g, i.e. iff -6i or 2 - 6i is congruent to a nonzero SQUARE
+          mod g; so each gear strikes at most g - 1 offset classes relative to squares and is
+          blind at 1 + (the number of pairs of nonzero squares differing by 2) classes: gear 5
+          blind at i = 0, 2 mod 5, gear 7 at i = 3, 5 mod 7, jointly the four classes 5, 10,
+          12, 17 mod 35. The start of a section is not a generic stretch of the line: every
+          gear's strikes there are governed by quadratic residues, the owner's "squares are
+          even" (R2.a.i.a.1.b) made exact, and this is the base-case quantity's structure. TO
+          BUILD on resume (Fable): the quadratic-residue strike pattern of machines 1..k
+          relative to the cut p_k^2 as an object (which offsets each gear can strike relative
+          to a square, as a function of q^2 mod g; the blind classes per gear; the joint
+          pattern of the first gears); whether it explains the start-of-section richness
+          (S6) and the witness's arc bound; and whether a slot open to all gears exists within
+          the long arc for a structural reason (the blind classes of the small gears plus the
+          quadratic pattern of the rest), tested against the counter-machines (a free-phase
+          copy has no square structure; the parity adversary does).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -2695,3 +2720,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, builder SQ1 on Fable (stacked_squares.md): the stack by squares built exactly. The band structure holds with 0 exceptions (half-open square parts; every prime's square is a twin slot, S1); the count of machines is 1 + floor(log2(theta(q)/ln q')); no gear >= 7 closes a cycle alone and every closed cycle uses >= 3 gears (S3); on a band a machine's open numbers are exactly the smooth numbers and smooth-times-one-prime (S4), so the CRT cycle expectation is wrong in both directions; every square-built machine has Mertens product 1/2 (S5): the construction is the equal-weight decomposition of the manifold; the gears of machine k + 1 are the primes of band k and the twins of band k are its double-home slots (S7, exact); the joint-open ratio is P(prime | rough)/P(open) (S6). The cycle at q# is not open for machines >= 2. ROOT: every band holds a twin is twin-Bertrand between consecutive squares.
 - 2026-09-07, owner: pursue the base case; the smallest machine that builds a twin pair is 2, 3. Manager: the base link is [3, 9) with twin gears (3, 5), (5, 7); the step is exact by S7; opened R4.d.i.
 - 2026-09-07, round closed at the weekly limit (owner: pause until Friday 2026-09-11). State: the stack by squares built and exact (R4.d); the base case and the step opened (R4.d.i) and parked before any computation. Every leaf below R4.c is FACT or ROOT with its mechanism named; the one open branch is R4.d.i. On resume: relaunch R4.d.i fresh (Fable) with the brief on record; then the owner's next step in the plan, the pattern across machines' rules and the connection to machine 1's cycles.
+- 2026-09-07, manager (hot lead, one computation): the island witness and the stack's start-of-section richness are one object. Above every prime square to 10^4 the first twin lies below the top gear's long arc (0 exceptions in 1,226); the witness's four classes mod 35 are exactly the offsets gears 5 and 7 can never strike relative to a square, because a gear strikes offset i relative to q^2 iff -6i or 2 - 6i is a nonzero square mod g: the section's start is governed by quadratic residues, the owner's 'squares are even' made exact. Node R4.d.i.a; to build on resume.
