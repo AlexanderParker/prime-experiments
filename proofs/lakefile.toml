@@ -2214,3 +2214,8 @@ name = "TopMachineCensus"
 
 [[lean_lib]]
 name = "ArcFloor"
+
+# Round 39: theorem (E) at one step (E6), (E) in its true form, prefix inheritance (E7);
+# NOT in defaultTargets (see top_machine_lean.md, Round 39).
+[[lean_lib]]
+name = "OneStepE"

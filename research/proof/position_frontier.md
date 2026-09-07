@@ -500,3 +500,12 @@ measurably) and concentrates the root on a single run, the one at column 1, whos
 - **The fusion structure at column 1 as a mechanism.** It is an identity: the run ends at the
   first effective-machine opening that is not a twin gear pair, which is `d_0` by definition.
 
+> Kernel correction (2026-09-07, round 39, `proofs/OneStepE.lean`): theorem (E) as phrased here
+> ("for every column with 6k - 1 > q, blocked under {5..q} iff blocked under {5..sqrt(6k + 1)}")
+> is FALSE outside the prefix: the kernel holds the refuting instance q = 5, k = 8 (members 47 and
+> 49 = 7^2; blocked under {5..7}, open under {5}; sqrt(49) = 7 > q). The true statement needs the
+> column inside the next prime's square, 6k + 1 < q'^2, which is exactly where this document used
+> it (`OneStepE.blocked_iff_sqrt`), or the weaker `blocked_iff_of_sqrt_le` with sqrt(6k + 1) <= r
+> <= q. At one step the exact exception set is the home column d_0(M) iff (q', q' + 2) is a twin
+> pair, and the square column W iff q'^2 - 2 is prime (`OneStepE.new_iff`), and every maximal run
+> strictly inside [1, W] is inherited (`maxRun_succ`).

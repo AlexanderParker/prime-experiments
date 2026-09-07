@@ -492,3 +492,13 @@ every machine because nothing strikes 1. Column 0 is the trivial instance at pos
 search is for a second such object at the window's scale. The island witness (offsets 12 mod 35
 past q^2, 0 exceptions to 200,000, no mechanism) is the only candidate on record that is neither
 a count nor a period-scale construction.
+
+## 5n. Theorem (E)'s exact hypothesis (kernel, round 39)
+
+Theorem (E) holds for columns inside the next prime's square (6k + 1 < q'^2) and fails at the
+square column and beyond: the refuting instance q = 5, k = 8 (47, 49) is in the kernel
+(`OneStepE.E_needs_prefix`). Every use of (E) in this document (5k, the effective machine at a
+column, the location pinpointed to the bottom) was inside the window, where it is a theorem
+(`OneStepE.blocked_iff_sqrt`). At one step the new gear's only new strikes below its square are
+the home column d_0(M), iff (q', q' + 2) is twin, and the square column, iff q'^2 - 2 is prime
+(`OneStepE.new_iff`); every maximal run strictly inside the prefix is inherited (`maxRun_succ`).

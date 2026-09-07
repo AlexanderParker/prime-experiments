@@ -1559,3 +1559,191 @@ file 20's Lemma 2 in full and the document's step (iii) as stated; file 21's The
 the same kind of residue-in-an-interval argument as E4 and would sit in this file;
 Theorem 4's fifteen-number table for `(5, 7)` (a finite computation, for a certificate
 file, not here).
+
+# Round 39: theorem (E) at one step (E6), (E) in its true form, and prefix inheritance (E7)
+
+New file: `proofs/OneStepE.lean` (lib `OneStepE`, registered as a `lean_lib` in
+`proofs/lakefile.toml`, **not** in `defaultTargets`; imported and audited from
+`proofs/AxiomCheck.lean` behind `import OneStepE`).  It imports mathlib only
+(`Nat.Prime.Basic`, `Nat.Sqrt`, `Ring`, `NormNum.Prime`); nothing from the corpus.
+
+Source: `research/proof/lengthen_never_precede.md` (Setup; 4.1 E6 with its proof; 4.2 E7;
+"What is new" 1 and 2) and `research/proof/position_frontier.md` (theorem (E)).  The
+corpus's column predicates were checked first: `TopMachineWheel.ColOpen` is over `ℤ` with an
+arbitrary `Finset` of gears (no "next prime" structure, no `5 <= p <= q` bound), and
+`Census.lo`/`Census.hi` are bare members with no blocking predicate around them; neither
+gives the engine `{5..q}` as an object.  So the predicate is defined afresh, in `ℕ`, in
+namespace `OneStepE`, and that is stated in the file header.
+
+**32 declarations (4 defs, 28 theorems), zero sorries, no `native_decide`, no `decide`,
+no `Lean.ofReduceBool`.**  The ledger is now 408 declarations across nine libs.
+
+## The objects
+
+```lean
+def SmallFactor (q n : ℕ) : Prop := ∃ p, p.Prime ∧ 5 ≤ p ∧ p ≤ q ∧ p ∣ n   -- a gear of {5..q} divides n
+def Blocked (q k : ℕ) : Prop := SmallFactor q (6 * k - 1) ∨ SmallFactor q (6 * k + 1)  -- column k struck
+def W (q' : ℕ) : ℕ := (q' ^ 2 - 1) / 6                                       -- the square column
+def MaxRun (q a b : ℕ) : Prop :=                                              -- maximal run a..b
+  a ≤ b ∧ (∀ j, a ≤ j → j ≤ b → Blocked q j) ∧ ¬ Blocked q (a - 1) ∧ ¬ Blocked q (b + 1)
+```
+
+Columns are `ℕ` with truncated subtraction, so column `0` is an artefact (`6·0 - 1 = 0`);
+every theorem carries `1 <= k`.  The engine `{5..q}` is the bound `5 <= p <= q` on primes;
+`q` is never assumed prime.  "`q'` is the next prime after `q`" enters only as
+`hgap : ∀ p, p.Prime → p < q' → p ≤ q` (no prime strictly between) together with `q ≤ q'`
+or `q < q'`, as listed per theorem below.
+
+## Theorem (E): the version that is true
+
+position_frontier.md states (E) as "for `6k - 1 > q`, `k` is blocked under `{5..q}` iff
+under `{5..floor(sqrt(6k+1))}`".  Its proof uses `sqrt(n) < q'` silently, i.e. the column is
+in the prefix; without that the statement is false, and the kernel now holds the refuting
+instance:
+
+```lean
+theorem E_needs_prefix : Blocked 7 8 ∧ ¬ Blocked 5 8 ∧ Nat.sqrt (6 * 8 + 1) = 7
+```
+
+(`q = 5`, `k = 8`, members `47, 49`, `6k - 1 = 47 > 5`; `sqrt 49 = 7` and `7 | 49`, but
+`{5}` strikes neither member).  The true general form needs no next prime at all:
+
+```lean
+theorem blocked_iff_of_sqrt_le (hr : Nat.sqrt (6 * k + 1) ≤ r) (hrq : r ≤ q) (hqk : q < 6 * k - 1) :
+    Blocked q k ↔ Blocked r k
+theorem blocked_iff_min_sqrt (hqk : q < 6 * k - 1) :
+    Blocked q k ↔ Blocked (min q (Nat.sqrt (6 * k + 1))) k
+theorem blocked_iff_sqrt (hgap) (hqk : q < 6 * k - 1) (hlt : 6 * k + 1 < q' ^ 2) :
+    Blocked q k ↔ Blocked (Nat.sqrt (6 * k + 1)) k      -- the document's form, inside the prefix
+```
+
+Mechanism, as proved: a gear `p <= q` dividing a member `n > q` shows `n` composite
+(`p ≠ 1`, `p ≠ n`), so the least prime factor of `n` has square `<= n <= 6k + 1`
+(`Nat.minFac_sq_le_self`), is `>= 5` because `n` is coprime to 6 (`five_le_of_dvd`), and
+is a gear of `{5..r}` for every `r >= sqrt(6k+1)`.  The hypothesis `6k - 1 > q` is used
+exactly once, to rule out `n = p` (a prime member that is itself a gear), and cannot be
+dropped: column `1 = (5, 7)` is blocked by `{5..7}` and `sqrt 7 = 2`.
+
+## E6, theorem (E) at one step
+
+```lean
+theorem blocked_succ_iff (hq' : q'.Prime) (hle : q ≤ q') (hgap) (hk : 1 ≤ k) (hlt : 6 * k + 1 < q' ^ 2) :
+    Blocked q' k ↔ Blocked q k ∨ 6 * k - 1 = q' ∨ 6 * k + 1 = q'
+```
+
+Below its square the new gear's only new strike is at its home column: if `q' | n` with
+`n < q'^2` and `n ≠ q'` then `n` is composite, its least prime factor `r` has
+`r * r <= n < q'^2` so `r < q'`, hence `r <= q` by `hgap`, and `r >= 5`.  Hypotheses
+actually needed: `q ≤ q'` only for the easy direction (blocking grows), `hgap` only for the
+hard one; `5 <= q'` is not needed (a home column forces it).
+
+The two boundary columns, and the exception set exactly as the document's `N_1 ∪ N_2`:
+
+```lean
+theorem blocked_succ_W (hq' : q'.Prime) (h5 : 5 ≤ q') : Blocked q' (W q')
+theorem blocked_W_iff (hq' : q'.Prime) (h5 : 5 ≤ q') (hlt : q < q') (hgap) :
+    Blocked q (W q') ↔ ¬ (q' ^ 2 - 2).Prime                       -- N_2: new iff q'^2 - 2 prime
+theorem home_minus_open_iff (hq') (h5) (hlt : q < q') (hgap) (hk : 6 * k - 1 = q') :
+    ¬ Blocked q k ↔ (q' + 2).Prime                               -- N_1: new iff (q', q'+2) twin
+theorem home_plus_blocked (hgap) (hk : 6 * k + 1 = q') (h7 : 7 ≤ q') : Blocked q k
+                                                                  -- q' = 1 (mod 6): never new
+theorem new_iff (hq' : q'.Prime) (h5 : 5 ≤ q') (hlt : q < q') (hgap) (hk : 1 ≤ k) (hkW : k ≤ W q') :
+    (Blocked q' k ∧ ¬ Blocked q k) ↔
+      (6 * k - 1 = q' ∧ (q' + 2).Prime) ∨ (k = W q' ∧ (q' ^ 2 - 2).Prime)
+theorem not_new_of_ne ... (h1 : 6 * k - 1 ≠ q') (h2 : k ≠ W q') : ¬ (Blocked q' k ∧ ¬ Blocked q k)
+```
+
+`new_iff` is E6 verbatim: on `[1, W]` the columns blocked by `M + q'` and not by `M` are the
+home column `(q' + 1)/6` when `(q', q' + 2)` is a twin pair and the square column `W` when
+`q'^2 - 2` is prime, and nothing else.  The document's identification of the home column
+with `d_0(M)` is also in the kernel:
+
+```lean
+theorem blocked_of_lo_lt (hgap) (hj : 1 ≤ j) (hlt : 6 * j - 1 < q') : Blocked q j
+theorem le_lo_of_open (hgap) (hj : 1 ≤ j) (h : ¬ Blocked q j) : q' ≤ 6 * j - 1     -- h(q') ≤ d_0(M)
+theorem home_isLeast_open (hq') (h5) (hlt) (hgap) (hk : 6 * k - 1 = q') (htw : (q' + 2).Prime) :
+    ¬ Blocked q k ∧ ∀ j, 1 ≤ j → j < k → Blocked q j                              -- h(q') = d_0(M)
+```
+
+The second clause of `home_isLeast_open` needs neither primality of `q'` nor of `q' + 2`:
+every column whose lower member is below `q'` is struck by `{5..q}` (a prime member below
+`q'` is a gear; a composite one has a prime factor `<= sqrt < q'`).  That is the identity
+`h(q') <= d_0(M)` of lengthen_never_precede.md 3(b), with equality iff twin.
+
+Reduction (R) on one member is the workhorse, and is its own theorem:
+
+```lean
+theorem smallFactor_iff_not_prime (hgap) (h2 : ¬ 2 ∣ n) (h3 : ¬ 3 ∣ n) (hqn : q < n) (hlt : n < q' ^ 2) (h1 : 1 < n) :
+    SmallFactor q n ↔ ¬ n.Prime
+```
+
+The square column needs `q'^2 = 1 (mod 6)` (`exists_sq_eq_six`, `six_mul_W_add_one`:
+`6 * W q' + 1 = q'^2` for `q'` coprime to 6) and that `{5..q}` does not strike `q'^2`
+(`Nat.Prime.dvd_of_dvd_pow` and `q < q'`; this is where `q < q'` rather than `q ≤ q'` is
+forced - at `q = q'` the old engine strikes the square).
+
+## E7, prefix inheritance
+
+```lean
+theorem blocked_succ_iff_of_ne (hq') (h5) (hlt : q < q') (hgap) (hk : 1 ≤ k) (hkW : k ≤ W q')
+    (h1 : 6 * k - 1 ≠ q') (h2 : k ≠ W q') : Blocked q' k ↔ Blocked q k
+theorem blocked_succ_iff_of_not_new ... (h1 : ¬ (6 * k - 1 = q' ∧ (q' + 2).Prime))
+    (h2 : ¬ (k = W q' ∧ (q' ^ 2 - 2).Prime)) : Blocked q' k ↔ Blocked q k
+theorem maxRun_succ (hq') (h5) (hlt : q < q') (hgap) (ha : 2 ≤ a) (hb : b + 1 ≤ W q') :
+    MaxRun q' a b → MaxRun q a b
+theorem maxRun_succ_of ... (ha' : 6 * (a - 1) - 1 ≠ q') (hb' : 6 * (b + 1) - 1 ≠ q') (hbW : b + 1 ≠ W q') :
+    MaxRun q a b → MaxRun q' a b
+```
+
+The pointwise form is the brief's "the blocked predicates agree on `[1, W]` minus two
+points"; the sharper form exempts the two points only when they are actually new.
+`maxRun_succ` is E7 as the document states it: a maximal run of `M + q'` inside
+`[2, W - 1]` (not containing column 1, not reaching the square column) is a maximal run of
+`M` with the same first and last column.  The proof of the home-column case is the
+document's: the home column cannot lie in such a run at all, because every column below it
+is blocked under `{5..q}` (`blocked_of_lo_lt`), so the open neighbour `a - 1 >= 1` would be
+blocked - the run would have started at column 1.  The converse `maxRun_succ_of` needs the
+two neighbours to be neither the home column nor the square column (the run through the
+square column keeps its start and grows into the section; the run next to a new home
+column fuses with the initial run), which is the document's list of the two changes.
+
+The frontier clause of E7 (`R_min^{M+q'}(L) = R_min^M(L)` for `d_0(M+q') <= L <= F_pre(M)`)
+is not formalised: it needs `R_min`, `d_0`, `F_pre` as objects, none of which the corpus has.
+`maxRun_succ` is the statement it is proved from.
+
+## Build and audit
+
+```
+cd C:/dev/primes/proofs
+~/.elan/bin/lake.exe build OneStepE
+```
+
+Result: **green**, `Build completed successfully (740 jobs)`, `OneStepE` 6.3 s cold, mathlib
+cached; `lake env lean OneStepE.lean` clean, no warnings, no errors.  Ordinary elaboration
+throughout.
+
+Axiom audit over **all 32 declarations** (`lake env lean` on a scratch `#print axioms` file
+listing every `def` and `theorem`; the same block appended to `proofs/AxiomCheck.lean`
+behind `import OneStepE`): 20 are `[propext, Classical.choice, Quot.sound]`, 5 are
+`[propext, Quot.sound]` (`five_le_of_dvd`, `coprime_six_of_prime`, `exists_sq_eq_six`,
+`six_mul_W_add_one`, `blocked_succ_W`), 7 are `[propext]` (the four defs,
+`smallFactor_mono`, `blocked_mono`, `lt_of_mul_self_le_of_lt_sq`; the defs pick up
+`propext` through `Nat.Prime`).  **No
+`sorryAx`, no `Lean.ofReduceBool`, no `Lean.trustCompiler`.**  Choice is inherited from
+mathlib's `Nat.minFac` / `Nat.sqrt` plumbing; nothing in the file chooses.
+
+## What the ledger now says
+
+| law | Lean name (namespace `OneStepE`) | status | hypothesis |
+|---|---|---|---|
+| (E) general form (no next prime) | `blocked_iff_of_sqrt_le`, `blocked_iff_min_sqrt` | **proved** | `q < 6k - 1`; `sqrt(6k+1) <= r <= q` |
+| (E) as position_frontier.md states it | `blocked_iff_sqrt` | **proved inside the prefix** `6k + 1 < q'^2` | `hgap`, `q < 6k - 1` |
+| (E) outside the prefix | `E_needs_prefix` | **refuted** at `q = 5, k = 8` | - |
+| E6, one step | `blocked_succ_iff` | **proved** | `q'` prime, `q <= q'`, `hgap`, `1 <= k`, `6k + 1 < q'^2` |
+| E6, exception set `N_1 ∪ N_2` | `new_iff`, `not_new_of_ne`, `blocked_W_iff`, `blocked_succ_W`, `home_minus_open_iff`, `home_plus_blocked` | **proved** | `q'` prime `>= 5`, `q < q'`, `hgap` |
+| `h(q') <= d_0(M)`, equality iff twin | `le_lo_of_open`, `blocked_of_lo_lt`, `home_isLeast_open` | **proved** | `hgap` (and twin for equality) |
+| reduction (R), one member | `smallFactor_iff_not_prime`, `smallFactor_of_lt` | proved | `hgap`, coprime to 6, `q < n < q'^2` |
+| E7, pointwise | `blocked_succ_iff_of_ne`, `blocked_succ_iff_of_not_new` | **proved** | as E6's exception set |
+| E7, maximal runs | `maxRun_succ` (and the converse `maxRun_succ_of`) | **proved** | run inside `[2, W - 1]` |
+| E7, the frontier clause `R_min` | - | **not formalised** (no `R_min`, `d_0`, `F_pre` objects in the corpus) | - |
+| E8, the induction step | - | not attempted (not in the brief; needs the frontier objects) | - |

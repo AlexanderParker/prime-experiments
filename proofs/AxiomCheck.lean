@@ -11,6 +11,9 @@ import TopMachineCensus
 -- Round 38: the arc floor E4 and the +4 laws (file 21 Theorem 1, rich_half.md E5); lib ArcFloor,
 -- NOT in defaultTargets (see top_machine_lean.md, Round 38).
 import ArcFloor
+-- Round 39: theorem (E) at one step (E6), (E) in its true form, prefix inheritance (E7);
+-- lib OneStepE, NOT in defaultTargets (see top_machine_lean.md, Round 39).
+import OneStepE
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -972,3 +975,35 @@ open BlockedSlots
 #print axioms ArcFloor.four_mul_div_le_collision
 #print axioms ArcFloor.coincidence_add_mul
 #print axioms ArcFloor.instDecidablePredNatHit
+#print axioms OneStepE.SmallFactor
+#print axioms OneStepE.Blocked
+#print axioms OneStepE.W
+#print axioms OneStepE.MaxRun
+#print axioms OneStepE.smallFactor_mono
+#print axioms OneStepE.blocked_mono
+#print axioms OneStepE.five_le_of_dvd
+#print axioms OneStepE.exists_small_prime_factor
+#print axioms OneStepE.lt_of_mul_self_le_of_lt_sq
+#print axioms OneStepE.smallFactor_iff_not_prime
+#print axioms OneStepE.smallFactor_of_lt
+#print axioms OneStepE.blocked_of_lo_lt
+#print axioms OneStepE.le_lo_of_open
+#print axioms OneStepE.blocked_iff_of_sqrt_le
+#print axioms OneStepE.blocked_iff_min_sqrt
+#print axioms OneStepE.blocked_iff_sqrt
+#print axioms OneStepE.E_needs_prefix
+#print axioms OneStepE.blocked_succ_iff
+#print axioms OneStepE.coprime_six_of_prime
+#print axioms OneStepE.exists_sq_eq_six
+#print axioms OneStepE.six_mul_W_add_one
+#print axioms OneStepE.blocked_succ_W
+#print axioms OneStepE.blocked_W_iff
+#print axioms OneStepE.home_minus_open_iff
+#print axioms OneStepE.home_plus_blocked
+#print axioms OneStepE.home_isLeast_open
+#print axioms OneStepE.new_iff
+#print axioms OneStepE.not_new_of_ne
+#print axioms OneStepE.blocked_succ_iff_of_ne
+#print axioms OneStepE.blocked_succ_iff_of_not_new
+#print axioms OneStepE.maxRun_succ
+#print axioms OneStepE.maxRun_succ_of
