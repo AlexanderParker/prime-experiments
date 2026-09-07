@@ -1350,8 +1350,27 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
-          (proofs/21) have a pullback form under the twisted separations. OPEN, prover
-          running on Fable (research/proof/rich_half.md).
+          (proofs/21) have a pullback form under the twisted separations. DONE, ROOT
+          honestly (research/proof/rich_half.md, laws E4, E5; scripts research/anchor235/r68/;
+          the 37 -> 41 positions addendum pending its scan). Omega^full(n) exact to n = 20 at
+          nine rungs: only gears 5, 7 and 11 (by a unit) ever decide it; every gear above 7
+          adds nothing on the corpus. The sharpened cap's slack is IDENTICAL to E3's (1, 1, 0,
+          1, 1, 1, 1, 1, 0 at m19..m53; the two are the same count of the corridor's two tooth
+          classes). Records sit at the richest translate at 4 of 7 rungs, not at 3 (deficits
+          1, 1, 2 at 23 -> 29, 29 -> 31, 31 -> 37): the record trades a pullback opening for a
+          long flank, the flank slot struck by gear 5 (four of four known positions to
+          29 -> 31) or a single large gear; the start class is not a formula (26,208 classes
+          at the maximum for 2 records per period: richness selects 1-2% of translates,
+          poorness selects the record). E4 (PROVED, new): the arc floor is a theorem for ANY
+          separations with arcs >= 2, which is why it holds on the real teeth, fails on random
+          draws, and fails on the pullback's arc-1 gears exactly at L = 2 (0 exceptions in
+          2,473,871); the twin collision (g + 4)/3 has no pullback form (the shared arc 3a =
+          g -+ 1 is destroyed by q'^-1); E5 the rich direction's own +4 law. ROOT: Omega is a
+          maximum over translates and every cap it yields is linear in T = F(M + q')/q'; the
+          existence of a richest translate is a free-phase fact that says nothing about the
+          poorness around it; the record is the poorest interval whose openings are on the
+          teeth, a condition Omega does not see. Open on the part alone: whether gears >= 13
+          ever lower Omega at n > 20 (cheap to n = 26); E4 and E5 into the kernel.
       First step when opened, owner's hybrid: a scratch lane with clean context (the three
       objects' definitions, the glossary, the ledger's proved laws; no clutch facts, no wall)
       defining interface objects on the wheels' coordinate and the motor's; a review lane
@@ -2416,3 +2435,5 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, valves scratch lane on Fable, clean context (valves_scratch.md), and the reconcile (valves_reconcile.md): the valves have a mechanism. Each family is a valve with an imprint (proved, both lanes), a port (class mod 6 fixed by its air, proved), an onset (it opens at the turn equal to its air, proved as a bound, exact as measured), a yield (a local density, measured; Bateman-Horn). The pure charge is the valve with no air: no onset, in every turn, the same count for every engine. Turns 1 and 2 carry no fuelled valve but (1, 1), the rest are embers. The review's four predictions were rediscovered from the definitions; the red flag held. Next: the turn ledger.
 - 2026-09-07, prover VT1 on Fable (turn_ledger.md): the turn ledger is exact (V1, 0 exceptions in 600 turns) and the wall reappears at it BY PROOF (V2): a counterfactual fuel set obeying every proved valve law has zero pure charge in every turn, so imprint, onset, port, inventory and ember cannot force P_m > 0; the wall at the ledger is face A and nothing else. Measured: the first two turns never empty for Q > 9 to 10^5 (min P_1 = 25 at Q = 1031); the valve count A(m) exact with its recursion; the pure share tends to the engine's own pair density in m, not to 0. Shadow: the fuel's pair correlation across the engine-open classes, i.e. the primes' own twin structure.
 - 2026-09-07, unstick pass 3 (dead_branches_reopened_3.md): every valve object descends to the engine's record at a lower rung (turn m of Q is the top 1/(m + 1) of the window at sqrt((m + 1) Q), exact via theorem (E)); adversaries with balance, mirror closure and one tooth per gear still empty the pure charge, so what remains is the real fuel's phase zero at every prime; the one object not the record restated is its dual Omega, the rich-interval function of the pullback. Opened: the rich half of the record, back in the engine.
+- 2026-09-07, prover RH1 on Fable (rich_half.md): the rich half of the record is the corridor's richness (gears 5, 7, 11 decide Omega; the sharpened cap equals E3 value for value); records sit at the richest translate at 4 of 7 rungs and the start class is not a formula; E4 proved (the arc floor holds for any separations with arcs >= 2); ROOT honestly (Omega is a max over translates, every cap linear in F/q'). The dual coordinate is the record's cap restated, sharper by a constant and not in shape.
+- 2026-09-07, owner: the LADDER is the problem as an analogy: it forces building the proof upward, where unseen rungs could kill the conjecture; the exhaust says the ladder never has to reach beyond the window, and the manifold's back pressure on the valves says the same from below. The descent found today (turn m of Q = the top 1/(m + 1) of the window at sqrt((m + 1) Q), exact via theorem (E)) is the mechanical form: the object at scale Q is the object at scale sqrt(Q); not an ascent but a self-similar map. Ladder retired as a proof framing; kept only as the name of the certified record table (rungs = its entries).

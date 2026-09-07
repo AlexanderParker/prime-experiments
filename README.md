@@ -436,6 +436,12 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   standing knock is the gluability anomaly (the real teeth glue about 2.4 times more than the
   counterfactual family in exactly that one measure, unexplained), and a knock is retired when
   its cause is a law.
+- **Ladder (retired as a framing, 2026-09-07).** Kept only as the name of the certified record
+  table F(M) for M = {5..q}, q = 5..41, whose entries are rungs. Not a picture of the proof: the
+  owner's point is that building upward leaves unseen rungs that could kill the conjecture,
+  whereas the exhaust's cap says nothing above Q acts inside (Q, Q^2] and the descent through
+  theorem (E) says turn m of the manifold at Q is the engine's window at sqrt((m+1)Q): the same
+  object at every scale, a self-similar map rather than an ascent.
 - **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the engine, tier 2
   the manifold, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period
   (cut_0 = q, cut_1 = q#, cut_2 = the manifold's period). Not "rung", which is one step q -> q'
