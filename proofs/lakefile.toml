@@ -2211,3 +2211,6 @@ name = "TopMachineRecord"
 
 [[lean_lib]]
 name = "TopMachineCensus"
+
+[[lean_lib]]
+name = "ArcFloor"

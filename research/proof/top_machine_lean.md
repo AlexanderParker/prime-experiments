@@ -1384,3 +1384,178 @@ of the gears, and finally the vanishing itself, a Boolean-cube Mobius inversion 
 `{0,1}^{d-1}`.  None of the three pieces is in the kernel; the first is mechanical, the
 third is the branch's actual content.  The time went to K1-K3, the assembly and the
 `d = 4` derivation.
+
+
+---
+
+# Round 38: the arc floor E4 for any separations, and the +4 laws in both directions
+
+New file: `proofs/ArcFloor.lean` (lib `ArcFloor`, registered as a `lean_lib` in
+`proofs/lakefile.toml`, **not** in `defaultTargets` - the default set carries the
+CaseCert37 root and must not be pulled by a bare build; audited from
+`proofs/AxiomCheck.lean` behind `import ArcFloor`).  It imports `TopMachineWheel` for
+one lemma only, the two-modulus CRT count `TopMachine.card_filter_crt`; everything else
+is elementary and in its own namespace `ArcFloor`.  **This file is the project's kernel
+ledger for the engine's files too, from this round on**: E4 and E5 are statements of the
+engine (`docs/proofs/20`, `docs/proofs/21`, `research/proof/rich_half.md`), not of the
+top machine, and they are recorded here because there is no other kernel ledger.
+
+Source: `rich_half.md` section 5 (E4 the arc floor with its true hypothesis `arc >= 2`;
+E5 the coincidence law) and section 11 ("E4 is four elementary steps about residues in
+an interval and belongs in the kernel beside file 20's Lemma 2; E5 is file 21's Theorem
+1 with `max` replaced by `min`"); `docs/proofs/21-collision-laws.md` Theorem 1 (the
+linear deficit law) and Theorem 3 (the arc floor, a CERTIFICATE there, "any correct proof
+must use `3 a_g = g -+ 1`").  **Nothing to connect to**: file 20 and file 21 both say
+"Kernel: none", and the corpus has no `max_g`, `joint_max` or deficit (`TwoTeeth.lean` is
+the kill-spacing law, a different object).  So the objects are built here; the two
+pieces of file 20's Lemma 2 that E4 and Theorem 1 consume are proved directly, the full
+capacity formula `2 floor(L/g) + e` is not.
+
+**66 new declarations (65 + one `DecidablePred` instance), zero sorries, no
+`native_decide`, no `decide`, no `Lean.ofReduceBool`.**  The ledger is now 376
+declarations across eight libs.
+
+## The objects
+
+```lean
+-- gear g, teeth at cyclic separation s, phase c: column k is struck iff k = c or c + s (mod g)
+def Hit (g s c k : ℕ) : Prop := k ≡ c [MOD g] ∨ k ≡ c + s [MOD g]
+def strikeSet (g s c L : ℕ) : Finset ℕ := (Finset.range L).filter (Hit g s c)   -- the run [0, L)
+def arc (g s : ℕ) : ℕ := min s (g - s)                                          -- a_g (for s < g)
+def maxStrike (g s L : ℕ) : ℕ := (range (g+1)).sup' _ fun c => (strikeSet g s c L).card   -- max_g(L)
+def minStrike (g s L : ℕ) : ℕ := (range (g+1)).inf' _ fun c => (strikeSet g s c L).card   -- min_g(L)
+def jointMax (g s h t L : ℕ) : ℕ :=                                              -- joint_max(g,h;L)
+  (range (g+1) ×ˢ range (h+1)).sup' _ fun p => (strikeSet g s p.1 L ∪ strikeSet h t p.2 L).card
+def jointMin ...                                                                 -- inf' of the same
+def collision   (g s h t L : ℕ) : ℕ := maxStrike g s L + maxStrike h t L - jointMax g s h t L  -- c(g,h;L)
+def coincidence (g s h t L : ℕ) : ℕ := minStrike g s L + minStrike h t L - jointMin g s h t L  -- k(g,h;n)
+```
+
+The run is slid to `0` (phases are free); `joint_max` quantifies over independent phase
+pairs exactly as file 21 defines it - **the one-orbit / CRT reduction is not used for E4
+at all**, only E5's count `|U| = 2g + 2h - 4` needs CRT.  Phases range over
+`range (g + 1)`, a full residue system for every `g`, so the definitions are total; only
+`c % g` matters (`strikeSet_mod`), so the sup / inf is over all phases
+(`card_le_maxStrike`, `minStrike_le`, `card_le_jointMax`, `jointMin_le`, each needing
+only `0 < g`).  `arc g s = min s (g - s)` is the document's `a_g` when `s < g`, and `0`
+for a degenerate one-tooth gear (`s = 0` or `s >= g`); the document's gears have
+`1 <= s <= (g - 1)/2`, which the Lean statements never assume - each carries exactly the
+side condition it needs.
+
+## E4, the arc floor - and what the hypotheses turned out to be
+
+The four steps of `rich_half.md` 5.1 became:
+
+| step | Lean name | statement | hypothesis |
+|---|---|---|---|
+| (i) two strikes of one gear are an arc apart | `arc_le_dist` | `a < b`, both hit => `arc g s <= b - a` | `0 < g` (vacuous when `arc = 0`) |
+| (i) the far gear strikes at most one column | `card_le_one_of_arc` | `L <= arc h t` => `#(strikeSet h t d L) <= 1`, every phase `d` | `0 < h` |
+| (i) `max_h(L) = 1` | `maxStrike_eq_one` | `1 <= L <= arc h t` => `maxStrike h t L = 1` | none beyond `L <= arc` |
+| (i) any column can be struck | `hit_self` | `Hit g s k k` (phase = column) | none |
+| (iii)/(iv) the near gear leaves a column free | `exists_unstruck` | `exists k < L, not Hit g s c k`, every phase `c` | `3 <= g`, `2 <= L`, and `3 <= L or (s < g and arc g s != 1)` |
+| (ii) assembly, one-sided | `arc_floor_of_arc_ge` | `jointMax g s h t L = maxStrike g s L + maxStrike h t L` | `3 <= g`, `2 <= L <= arc h t`, `3 <= L or (s < g and arc g s != 1)` |
+| **E4, symmetric** | `arc_floor` | same, for `2 <= L <= max (arc g s) (arc h t)` | `3 <= g`, `3 <= h`, and for `L = 2`: `s < g`, `t < h`, neither arc `= 1` |
+| E4 clause 1, `c = 0` for `3 <= L <= max` | `collision_eq_zero_of_three_le` | `collision g s h t L = 0` | `3 <= g`, `3 <= h` |
+| E4 clause 2, `c(2) = 0` unless an arc is `1` | `collision_two_eq_zero` | `collision g s h t 2 = 0` | `3 <= g`, `3 <= h`, `s < g`, `0 < t < h`, `arc g s != 1`, `arc h t != 1` |
+| E4 "in particular", file 21 Theorem 3 | `collision_eq_zero_of_arcs` | `2 <= arc g s`, `2 <= arc h t`, `2 <= L <= max` => `collision = 0` | **nothing else** |
+| the `L = 2` exception, exact value | `collision_two_of_arc_one` | `arc g s = 1`, `2 <= arc h t` => `collision g s h t 2 = 1` | none |
+| `max_g(2) = 2` if adjacent teeth | `maxStrike_two_of_arc_one` | `arc g s = 1` => `maxStrike g s 2 = 2` | none |
+| the real teeth satisfy E4 | `arc_real_ge_two` | `3 s = 1 [MOD g]`, `s < g` => `2 <= arc g s` | `5 <= g` |
+| `c >= 0`, `k >= 0` | `jointMax_le_add`, `jointMin_le_add` | union <= sum, both directions | `0 < g`, `0 < h` |
+| symmetry | `jointMax_comm` | `jointMax g s h t L = jointMax h t g s L` | none |
+
+Findings against the document's statement:
+
+1. **`g, h >= 5` is not needed; `3 <= g` on the near gear is, and it is sharp.**  The
+   document's step (iii) bounds `max_g(L) <= 2 ceil(L/g) < L` and needs `g >= 5` for
+   `2L/5 + 2 < L`.  The kernel proof replaces it: three consecutive columns have three
+   distinct residues mod `g >= 3` and a gear has two teeth, so at EVERY phase some column
+   of the first three is unstruck (`exists_unstruck`), which is stronger than the
+   document's "at a phase attaining `max_g`".  The far gear (the one with `arc >= L`)
+   needs no size hypothesis at all - `L <= arc h t` with `L >= 1` already forces
+   `h >= 2 L`.  `3 <= g` cannot be dropped: `g = 2, s = 1` strikes every column of every
+   run, so `max_g(L) = L` and `c(g, h; L) = 1` on the whole floor (a remark, not in the
+   kernel).  In the "arcs `>= 2`" form (`collision_eq_zero_of_arcs`) there is **no**
+   hypothesis besides the arcs and `2 <= L <= max`, since `arc >= 2` forces `g >= 4`.
+2. **File 21's note "any correct proof must use `3 a_g = g -+ 1`" is refuted in the
+   kernel**: no statement above mentions the separation's value; the real teeth enter
+   only through `arc_real_ge_two`, which is the whole of what file 21 saw in them.
+3. **The `L = 2` clause is an iff, and one gear's teeth need not be distinct.**  The
+   document says `c(2) = 0` "unless exactly one of the arcs is 1"; the kernel has both
+   directions: `collision_two_eq_zero` (neither arc `1` gives `0`) and
+   `collision_two_of_arc_one` (an arc-`1` gear against an arc-`>= 2` gear gives exactly
+   `1`).  For the first, distinct teeth are needed for ONE gear only (`0 < t < h`, to make
+   `max(a_g, a_h) >= 2`); the other needs only `s < g` (so that `arc` is the cyclic gap:
+   with `s = g + 1` the teeth are adjacent but `arc = 0`).
+4. `max_g(L) < L` for `L >= 3` (the document's (iii)) holds at every phase, not only the
+   maximising one - `exists_unstruck` is quantified over `c`.
+
+## E5 and Theorem 1, the +4 laws - the hypotheses actually needed
+
+| law | Lean name | statement | hypothesis |
+|---|---|---|---|
+| period is `g`, at every phase | `hit_periodic`, `card_filter_hit_range`, `card_filter_hit_Ico`, `card_filter_hit_Ico_mul` | `2` strikes per `g` consecutive columns, `2m` per `gm` | `0 < s < g` |
+| file 20 Lemma 2, the piece used (Theorem 1 step 1) | `card_strikeSet_add` | `#(strikeSet g s c (L + gm)) = #(strikeSet g s c L) + 2m`, every phase | `0 < s < g` |
+| Theorem 1 step 3, `\|U\| = 2g + 2h - 4` | `card_filter_union_range`, `card_filter_union_Ico`, `hitU_periodic` | `#{k < gh : Hit g or Hit h} + 4 = 2g + 2h`, every phase pair | `0 < s < g`, `0 < t < h`, `Coprime g h` |
+| Theorem 1 step 2, per phase pair | `card_union_add` | `#(union on L + gh) + 4 = #(union on L) + 2g + 2h` | same |
+| `max_g(L + gm) = max_g(L) + 2m` | `maxStrike_add` | | `0 < s < g` |
+| `min_g(L + gm) = min_g(L) + 2m` | `minStrike_add` | | `0 < s < g` |
+| `joint_max(L + gh) = joint_max(L) + 2g + 2h - 4` | `jointMax_add` | stated as `jointMax (L + gh) + 4 = jointMax L + 2g + 2h` | `0 < s < g`, `0 < t < h`, `Coprime g h` |
+| **E5 clause 2** `joint_min(n + gh) = joint_min(n) + 2g + 2h - 4` | `jointMin_add` | same shape | same |
+| **file 21 Theorem 1** `c(g, h; L + gh) = c(g, h; L) + 4` | `collision_add` | | same |
+| **E5** `k(g, h; n + gh) = k(g, h; n) + 4` | `coincidence_add` | | same |
+| slope exactly `4` per period | `collision_add_mul`, `coincidence_add_mul` | `+ 4n` after `n` periods | same |
+| `c(g, h; L) >= 4 floor(L/gh)`; every zero in `[1, gh]` | `four_mul_div_le_collision` | | same |
+
+Findings: the document says "for any two gears with any separations"; the kernel needs
+**two distinct teeth per gear** (`0 < s < g`, `0 < t < h`: a one-tooth gear carries one
+strike per period, not two) and **`Coprime g h`** (the union count `gh - (g-2)(h-2)` is
+CRT; for `g = h` the period is `g`, not `g^2`).  Both are implicit in the document's
+"gears" (distinct primes with `1 <= s`), so they are the document's hypotheses made
+explicit, not new ones.  The proof is exactly file 21's steps 1-4 with `max` and `min`
+handled by the same per-phase identity (`card_union_add`), so the two directions are one
+proof, as section 11 predicted.  The `-4` is stated additively (`+ 4` on the left) to keep
+the natural-number subtraction out of the law; the subtraction in `collision` /
+`coincidence` is sound because `jointMax_le_add` / `jointMin_le_add` hold.
+
+## Build and audit
+
+```
+cd C:/dev/primes/proofs
+~/.elan/bin/lake.exe build TopMachineWheel ArcFloor
+```
+
+Result: **green**, `Build completed successfully (1231 jobs)`; `ArcFloor` 9.1 s cold,
+`TopMachineWheel` and everything below cached; `lake env lean ArcFloor.lean` clean, no
+warnings, no errors.  Ordinary elaboration throughout, no kernel scan.
+
+Axiom audit over **all 66 declarations** (`lake env lean` on a scratch `#print axioms`
+file listing every `theorem`, `def` and the instance; the same block appended to
+`proofs/AxiomCheck.lean` behind `import ArcFloor`): 57 declarations are
+`[propext, Classical.choice, Quot.sound]`, 3 are `[propext, Quot.sound]`
+(`exists_unstruck`, `arc_real_ge_two`, `hitU_periodic`), 2 are `[propext]`
+(`hit_congr`, `hit_periodic`), 4 depend on no axioms (`Hit`, `arc`, `hit_self`,
+`instDecidablePredNatHit`).  **No `sorryAx`, no `Lean.ofReduceBool`, no
+`Lean.trustCompiler`.**  Choice is inherited from mathlib's `Finset` plumbing; nothing in
+the file chooses.
+
+## What the ledger now says
+
+| law | Lean name (namespace `ArcFloor`) | status | hypothesis |
+|---|---|---|---|
+| E4 arc floor, any separations | `arc_floor`, `arc_floor_of_arc_ge`, `collision_eq_zero_of_three_le`, `collision_two_eq_zero`, `collision_eq_zero_of_arcs` | **proved** | `3 <= g`, `3 <= h` (or nothing, in the arcs-`>= 2` form) |
+| E4, the `L = 2` failure is exactly arc `1` | `collision_two_of_arc_one`, `maxStrike_two_of_arc_one` | proved | none |
+| file 21 Theorem 3 (was a certificate) | `collision_eq_zero_of_arcs` + `arc_real_ge_two` | **proved**, for the real teeth at `g >= 5` and beyond them | `5 <= g` only for the arc of the real separation |
+| file 21 Theorem 1, linear deficit law | `collision_add`, `collision_add_mul`, `four_mul_div_le_collision` | **proved** | distinct teeth, `Coprime g h` |
+| E5 coincidence law | `coincidence_add`, `coincidence_add_mul`, `jointMin_add` | **proved** | distinct teeth, `Coprime g h` |
+| file 20 Lemma 2, the pieces used | `card_le_one_of_arc`, `card_strikeSet_add` | proved | `L <= arc` / `0 < s < g` |
+| file 20 Lemma 2, the capacity formula `2 floor(L/g) + e` | - | **not formalised** (not consumed by E4 or Theorem 1) | - |
+| file 21 Theorem 2, shared-arc law | - | not attempted (not in the brief) | - |
+
+**Not attempted this round**, named so the gap is an output: the capacity formula itself
+(`maxStrike g s L = 2 (L / g) + e`, with `e` by `L % g` against `arc`), which would give
+file 20's Lemma 2 in full and the document's step (iii) as stated; file 21's Theorem 2
+(`arc g s = arc h t = a` implies `1 <= collision g s h t (a + 1)`), whose steps 7-10 are
+the same kind of residue-in-an-interval argument as E4 and would sit in this file;
+Theorem 4's fifteen-number table for `(5, 7)` (a finite computation, for a certificate
+file, not here).

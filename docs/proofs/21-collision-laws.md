@@ -508,3 +508,5 @@ coherent families), `research/proof/arc_multiset.md` (the ladder `A(K)`, the hol
 dictionary), `research/proof/gear_count.md` (the domino dichotomy, shared arc iff twins),
 `research/proof/small_K_theorem.md` (the explicit covers), `research/proof/the_wall.md` (the
 one-orbit reduction, faces A and C).
+
+> Kernel note (2026-09-07, round 38): `proofs/ArcFloor.lean` (namespace `ArcFloor`) now carries Theorem 1 as `collision_add` (the deficit grows by exactly 4 per common period, for any two gears with two distinct teeth each and coprime moduli), Theorem 3's arc-floor content as `collision_eq_zero_of_arcs` (zero collision on runs `2 <= L <= max arc` whenever both arcs are at least 2, with the arc-1 exception exact as `collision_two_of_arc_one`), and the rich direction's law as `coincidence_add`. Hypotheses needed by the kernel are weaker than this file's: the near gear needs only `3 <= g`, and the separation's value `3a = g -+ 1` never enters (this file's remark that any proof must use it is withdrawn). Build: `lake build TopMachineWheel ArcFloor`, green at 1231 jobs; axioms standard; zero sorries.

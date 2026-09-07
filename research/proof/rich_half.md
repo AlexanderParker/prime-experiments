@@ -662,4 +662,4 @@ P2, P3 (3 of 4), P7's `D = 0` clause, P8 (one fusion). Half: P5.
 
 ## 12. Addendum: the 37 -> 41 record's positions
 
-(Filled when the 33,263-copy scan of m37 finishes; see `results/positions_37.json`.)
+(Not filled: the 33,263-copy scan of m37 was killed by the session limit of 2026-09-07 before completion; `results/positions_37.json` does not exist. The 37 -> 41 record's translate rank stays unmeasured; positions to 31 -> 37 stand.)

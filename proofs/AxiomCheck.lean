@@ -8,6 +8,9 @@ import TopMachineWalk
 import MachineStack
 import TopMachineRecord
 import TopMachineCensus
+-- Round 38: the arc floor E4 and the +4 laws (file 21 Theorem 1, rich_half.md E5); lib ArcFloor,
+-- NOT in defaultTargets (see top_machine_lean.md, Round 38).
+import ArcFloor
 import BareAlternation
 import BareAltInst
 import WordLegal13
@@ -903,3 +906,69 @@ open BlockedSlots
 #print axioms TopMachine.offs_four_insert_two
 #print axioms TopMachine.E_four_insert_two
 #print axioms TopMachine.gap_four_zero
+#print axioms ArcFloor.Hit
+#print axioms ArcFloor.strikeSet
+#print axioms ArcFloor.arc
+#print axioms ArcFloor.range_succ_nonempty
+#print axioms ArcFloor.maxStrike
+#print axioms ArcFloor.minStrike
+#print axioms ArcFloor.phasePairs
+#print axioms ArcFloor.phasePairs_nonempty
+#print axioms ArcFloor.jointMax
+#print axioms ArcFloor.jointMin
+#print axioms ArcFloor.collision
+#print axioms ArcFloor.coincidence
+#print axioms ArcFloor.hit_congr
+#print axioms ArcFloor.strikeSet_mod
+#print axioms ArcFloor.mem_strikeSet
+#print axioms ArcFloor.card_strikeSet_le
+#print axioms ArcFloor.hit_self
+#print axioms ArcFloor.mod_mem_range_succ
+#print axioms ArcFloor.mem_phasePairs
+#print axioms ArcFloor.card_le_maxStrike
+#print axioms ArcFloor.minStrike_le
+#print axioms ArcFloor.card_le_jointMax
+#print axioms ArcFloor.jointMin_le
+#print axioms ArcFloor.exists_maxStrike
+#print axioms ArcFloor.exists_minStrike
+#print axioms ArcFloor.exists_jointMax
+#print axioms ArcFloor.exists_jointMin
+#print axioms ArcFloor.maxStrike_le_of
+#print axioms ArcFloor.le_minStrike_of
+#print axioms ArcFloor.jointMax_le_of
+#print axioms ArcFloor.le_jointMin_of
+#print axioms ArcFloor.jointMax_le_add
+#print axioms ArcFloor.jointMin_le_add
+#print axioms ArcFloor.jointMax_comm
+#print axioms ArcFloor.arc_le_dist
+#print axioms ArcFloor.card_le_one_of_arc
+#print axioms ArcFloor.maxStrike_eq_one
+#print axioms ArcFloor.exists_unstruck
+#print axioms ArcFloor.arc_floor_of_arc_ge
+#print axioms ArcFloor.arc_floor
+#print axioms ArcFloor.collision_eq_zero_of_three_le
+#print axioms ArcFloor.collision_two_eq_zero
+#print axioms ArcFloor.collision_eq_zero_of_arcs
+#print axioms ArcFloor.arc_real_ge_two
+#print axioms ArcFloor.maxStrike_two_of_arc_one
+#print axioms ArcFloor.collision_two_of_arc_one
+#print axioms ArcFloor.hit_periodic
+#print axioms ArcFloor.card_filter_hit_range
+#print axioms ArcFloor.card_filter_not_hit_range
+#print axioms ArcFloor.card_filter_hit_Ico
+#print axioms ArcFloor.card_filter_hit_Ico_mul
+#print axioms ArcFloor.card_strikeSet_add
+#print axioms ArcFloor.hitU_periodic
+#print axioms ArcFloor.card_filter_union_range
+#print axioms ArcFloor.card_filter_union_Ico
+#print axioms ArcFloor.card_union_add
+#print axioms ArcFloor.maxStrike_add
+#print axioms ArcFloor.minStrike_add
+#print axioms ArcFloor.jointMax_add
+#print axioms ArcFloor.jointMin_add
+#print axioms ArcFloor.collision_add
+#print axioms ArcFloor.coincidence_add
+#print axioms ArcFloor.collision_add_mul
+#print axioms ArcFloor.four_mul_div_le_collision
+#print axioms ArcFloor.coincidence_add_mul
+#print axioms ArcFloor.instDecidablePredNatHit
