@@ -1347,6 +1347,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         M^(q') in n consecutive multipliers), E2/E3's exact cap on the skip half with slack
         0 or 1 at nine of nine rungs, universal and finite per n, a max over translates
         rather than a count. Recommended and opened: the rich half of the record (engine).
+        - R4.c.iii. Existence in the valve (owner, 2026-09-07: "we don't have to see
+          position; just knowing there exists any position would be proof", and "the position
+          doesn't have to be inside the window, which is the engine; it can be in the valve").
+          Exact form: for every Q some turn m holds a pure charge = a twin in (Q, Q^2]; by the
+          descent, the engine's window statement at SOME scale in [sqrt(2Q), Q], not every
+          scale. Branch: the freedom of the turn; the frontier's certified turns (position
+          facts seeing length at the top of the window); invariants of the charge set forcing
+          a member on the pure imprint, each tested against the counterfactual fuel. OPEN,
+          prover running on Fable (research/proof/valve_existence.md).
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
@@ -2437,3 +2446,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, unstick pass 3 (dead_branches_reopened_3.md): every valve object descends to the engine's record at a lower rung (turn m of Q is the top 1/(m + 1) of the window at sqrt((m + 1) Q), exact via theorem (E)); adversaries with balance, mirror closure and one tooth per gear still empty the pure charge, so what remains is the real fuel's phase zero at every prime; the one object not the record restated is its dual Omega, the rich-interval function of the pullback. Opened: the rich half of the record, back in the engine.
 - 2026-09-07, prover RH1 on Fable (rich_half.md): the rich half of the record is the corridor's richness (gears 5, 7, 11 decide Omega; the sharpened cap equals E3 value for value); records sit at the richest translate at 4 of 7 rungs and the start class is not a formula; E4 proved (the arc floor holds for any separations with arcs >= 2); ROOT honestly (Omega is a max over translates, every cap linear in F/q'). The dual coordinate is the record's cap restated, sharper by a constant and not in shape.
 - 2026-09-07, owner: the LADDER is the problem as an analogy: it forces building the proof upward, where unseen rungs could kill the conjecture; the exhaust says the ladder never has to reach beyond the window, and the manifold's back pressure on the valves says the same from below. The descent found today (turn m of Q = the top 1/(m + 1) of the window at sqrt((m + 1) Q), exact via theorem (E)) is the mechanical form: the object at scale Q is the object at scale sqrt(Q); not an ascent but a self-similar map. Ladder retired as a proof framing; kept only as the name of the certified record table (rungs = its entries).
+- 2026-09-07, owner: existence suffices (wall 5m) and the position can be in the valve, not the engine's window. Exact weakening: a twin anywhere in (Q, Q^2] = the engine's window nonempty at some scale in [sqrt(2Q), Q]. Opened R4.c.iii, existence in the valve.
