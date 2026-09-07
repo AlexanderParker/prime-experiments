@@ -16,7 +16,7 @@ note "16141" was wrong, 16139 is prime). Twin-gear pairs per link: 1 ((5, 7) in 
 is at most 160 numbers above it (5.3 cycles, base 7 at cut 2809), against arcs of 500 to 64,554
 numbers. The first-twin scan of section_start.py: for every prime q to 200,000 (17,981 primes)
 the first twin above q^2 lies below the long arc of q, 0 exceptions, median 0.09% of the arc,
-worst 77% at q = 53. A scan to q = 10^6 is running.
+worst 77% at q = 53. The scan to q = 10^6 (78,495 primes): 0 exceptions, median 0.02% of the arc, 90% 0.13%, 99% 1.0%, worst still 77% at q = 53; 28.9% of first twins in the 5/7-blind classes. A scan to q = 10^7 is running.
 
 ## 2. The band structure, checked cycle by cycle
 
