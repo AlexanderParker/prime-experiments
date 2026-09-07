@@ -1582,6 +1582,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       that never burns; back pressure = non-echo exhaust strikes (zero in the window, first at
       p_1^2); valve timing = the placement residue law; knocking = an unexplained symptom, the
       standing knock being the gluability anomaly (real teeth glue 2.4x the family).
+    - R4.d. THE STACKED MACHINES BY SQUARES (owner's reconstruction, 2026-09-07: the manifold
+      as built, all gears to q#, is a mess of interactions; rebuild it as a stack: machine 2 =
+      the primes from q' to q'^2, run over [1, q#]; machine 3 = the primes from the next prime
+      after q'^2 to its square; and so on until q# is reached; analyse each machine's square
+      part and its band separately by the anchor's 30-cycles (open / closed / mixed), across q,
+      find the rules, relate the machines, then connect to machine 1's cycles). Manager's two
+      claims on the scorecard: the band structure (below its first gear's square a machine's
+      strikes are home strikes and echoes, so on the band [g_k^2, g_{k+1}^2) exactly machines
+      1..k act and a jointly open slot is a twin: the exhaust cap once per band) and the count
+      (about log2(q / log q) machines: three at q = 17, 19, 23). OPEN, builder running on Fable
+      (research/proof/stacked_squares.md; scripts research/stack/r1/).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -2631,3 +2642,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, owner: the record's 'window' and the descent to rungs were a regression; the solution space is horizontal, the manifold (fully understood) and its interaction with the engine, with the exhaust as the known upper limit; derive the manifold's behaviour from scratch instead of translating back. Manager: accepted; the descent stays a fact, not a tool; opened R4.c.iv, phase zero in the manifold's own terms, with window / rung / ladder / descent forbidden.
 - 2026-09-07, prover AL1 on Fable (opening_alignment.md): the owner's alignment mechanism measured. The manifold's longest opening is present below Q^2 (6 of 7 runs) but is far shorter than the engine's blocked runs, holds at most ceil(L/6) slots, and is slot-free in 62% of cases at (5, 10^4); alignment of openings with the engine's slots is exactly uniform and phase-blind over full periods and 0.78-1.0 of uniform on the quiet zone; the one phase-zero effect is the opening spectrum exceeding CRT (the fuel is the primes, Mertens); a slot-holding opening below Q^2 is a twin, so the statement is the conjecture restated. Localisation kept: twins sit in openings of length 1 in 92-95% of cases; slot-holding long openings need turn >= 12 or an ember (V22, exact).
 - 2026-09-07, prover PZ1 on Fable (phase_zero.md): phase zero is exactly saturation (the open set closed under divisors and multiplication by air; proved, 0 violations in 107,750,211 tests), which no adversary has, and which does not force a pure pair (the saturated sieve with the twins added as gears has none: what excludes it is the cut). Law table: 13 phase-free by the translation lemma, 10 phase-zero, 3 beyond multiplicativity and all three are saturation. The slice profile is new: poor at the bottom (onset), rich in the middle (Buchstab), flat at the top; the manifold's record sits in the emptied bottom. The Liouville-signed charge census is 0.1% against a pure share of 8.2%: the parity barrier in one number. ROOT.
+- 2026-09-07, owner: revisit the construction; stack machines by squares (machine 2 = primes q' to q'^2 run to q#, machine 3 from the next prime to its square, ...), classify each machine's anchor cycles as open / closed / mixed on its square part and its band, across q, then relate the machines and connect to machine 1's cycles. Vocabulary: machine 1 (the engine), machine 2 (formerly the manifold's first block), machine k; square part; band. Opened R4.d, builder running.

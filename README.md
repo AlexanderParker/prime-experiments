@@ -442,6 +442,14 @@ is one; the status of a term's main fact is marked kernel (checked by the Lean k
   whereas the exhaust's cap says nothing above Q acts inside (Q, Q^2] and the descent through
   theorem (E) says turn m of the manifold at Q is the engine's window at sqrt((m+1)Q): the same
   object at every scale, a self-similar map rather than an ascent.
+- **Machine k, square part, band (the stack by squares, owner 2026-09-07).** Machine 1 is the
+  engine (primes 7..q over the anchor); machine 2 is the primes from q' to q'^2 run over
+  [1, q#]; machine k+1 is the primes from the next prime above machine k's largest gear to the
+  square of that first gear; about log2(q / log q) machines reach q#. A machine's square part
+  [1, g_k^2] holds only its home strikes and echoes; on its band [g_k^2, g_{k+1}^2) exactly
+  machines 1..k act, and a slot open under all of them is a twin. Cycles (the anchor's 30-turns)
+  are classified per machine as open, closed or mixed. The manifold remains the name of the whole
+  set (q, q#] as one machine; the stack by squares is its decomposition.
 - **Stack, tier, cut.** The stack is the whole sequence of machines: tier 1 the engine, tier 2
   the manifold, tier k+1 the primes in (cut_{k-1}, cut_k] where cut_k is tier k's period
   (cut_0 = q, cut_1 = q#, cut_2 = the manifold's period). Not "rung", which is one step q -> q'
