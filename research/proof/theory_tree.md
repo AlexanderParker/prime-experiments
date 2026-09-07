@@ -1395,8 +1395,44 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             constants are fixed for all larger machines because a new gear lengthens runs
             rather than creating a long run earlier). The statement: adding q' never creates
             a run of length >= d_0(M) before the first such run of M; a proof gives turns 1-4
-            for all Q via V8. OPEN, prover running on Fable (research/proof/
-            lengthen_never_precede.md).
+            for all Q via V8. FACT with a ROOT mark and one refutation (research/proof/
+            lengthen_never_precede.md, laws E6-E8; scripts research/anchor235/r69/; the
+            m37-m43 period table pending its scan). E6 (PROVED, direct-sieve gate at 428
+            rungs): theorem (E) at one step, with its exact two-column exception set: below
+            W(q) = (q'^2 - 1)/6 the new gear q' newly blocks exactly the two columns whose
+            number is q' times 1 or the twin partner, never the column of 5q' (the brief's
+            "+-u_{q'}" was wrong); identity h(q') <= d_0(M) with equality iff (q', q'') is a
+            twin pair. E7 (PROVED, 0 exceptions in 8,152 cells over 2,260 rungs): the frontier
+            of the PREFIX [1, W] is inherited exactly up the ladder, the absorbed lengths and
+            the run through the square column being the complete list of changes: new gears
+            lengthen and never precede ON THE PREFIX. ON THE FULL PERIOD THE SENTENCE IS FALSE:
+            8 of 11 steps m5 -> m43 have a run of length >= L appearing earlier after the gear
+            is added, every exception a merge of order 2-4 beyond W(q) or the one straddle at
+            17 -> 19 (R_min(6) = 151 at m11 against 89 at m13; 89 against 61 at m17; 61 against
+            59 at m19). Form C (the constant monotone) false twice on the prefix (17 -> 19:
+            10.6 -> 5.364; 19 -> 23: 5.364 -> 4.625) and never again to 19,997; the floor 4.625
+            attained on rungs [23, 131] and never undercut; the staircase of constants is
+            eleven twin gaps, each the minimiser on an interval of rungs; c_pre infinite from
+            1427 (the initial run is the longest run of the prefix). E8 (PROVED with its
+            proviso): H_c(q) implies H_c(q') for c <= 6.25 and q' >= 118 provided the
+            STRADDLING run (the run of M + q' through the square column W(q)) satisfies
+            x_s >= c L_s whenever L_s >= d_0(q'); interior section runs disposed of by a prime
+            gap bound (E8-a, prior art, q' >= 118); inherited runs by E7. THE RESIDUE, EXACT: in
+            the twin coordinate the straddling condition reads "a twin gap across a prime square
+            that is longer than the prime is at most 21.6% of its start" (t_1 - t_0 >= q' + 6
+            implies t_1 - t_0 <= (t_0 + 7)/4.625 + 6); it is vacuous at every rung above 487 in
+            the measured range (the straddling run at most 484 columns against an initial run
+            of q'/6) and rests on 24 rungs where it bites, all with ratio >= 4.75; it is ROOT in
+            face E's sense (a two-sided gap bound at the square, stronger than existence,
+            implying infinitely many twins by chaining), and the object is NOT d_0 <= W but the
+            twin gap across the prime square. CORRECTION TO V8: its proof uses a hidden
+            hypothesis, d_0(y_m(Q)) <= klo_m(Q), a twin in (y_m, mQ] (true in 399,973 of
+            399,973 cells to 10^5 and supplied by the induction it certifies); and its frontier
+            hypothesis is non-vacuous only at rungs 5, 7, 11, 23, so above Q = 148 the measured
+            certification of turns 1-4 is the share form F_pre(y) < c_m(Q), already ROOT: the
+            frontier's constant certifies turns 3 and 4 for Q = 106..148 and nothing else.
+            Formalist target named: E6 (divisibility of 6k -+ 1 by q' below q'^2, kernel-sized)
+            and E7 as its corollary on maximal runs. Genuinely open on the part alone: none.
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
@@ -2490,3 +2526,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, owner: existence suffices (wall 5m) and the position can be in the valve, not the engine's window. Exact weakening: a twin anywhere in (Q, Q^2] = the engine's window nonempty at some scale in [sqrt(2Q), Q]. Opened R4.c.iii, existence in the valve.
 - 2026-09-07, Formalist round 38 on Fable (proofs/ArcFloor.lean, 66 declarations, namespace ArcFloor): E4 the arc floor in the kernel for any separations with arcs >= 2 (collision_eq_zero_of_arcs, no hypothesis beyond the arcs; the exception at arc 1 is an exact value, collision_two_of_arc_one); the near gear needs only 3 <= g, sharp at g = 2; the document's g, h >= 5 not needed; file 21's claim that any proof must use 3a = g -+ 1 is refuted in the kernel (the separation's value never appears); arc_real_ge_two shows the real teeth satisfy it. File 21's Theorem 1 (collision_add, +4 per common period, any separations with two distinct teeth and coprime gears) and E5 (coincidence_add, the min form) proved from one per-phase identity. Manager gate: lake build TopMachineWheel ArcFloor green at 1231 jobs; audit: standard axioms; zero sorries. Files 20 and 21 had no kernel before this round.
 - 2026-09-07, prover VE1 on Fable (valve_existence.md): existence in the valve is the window statement at some rung (the freedom of the turn is worth three integers), ROOT; but the frontier sees length at the top: V8 proved that a frontier constant c certifies the turns m < c, giving turn 1 for every Q in [30, 1859] from the certified ladder and turns 1-4 to 8 x 10^7 from the measured prefix floor; V9 exact: the frontier's constants 4.625 and 3.25 are the twin gaps 661 -> 809 and 73 -> 101, fixed for all larger machines because new gears lengthen runs rather than precede them. Phase zero is the sole invariant surviving the counterfactuals. Next child: new gears lengthen, never precede (engine construction).
+- 2026-09-07, prover NP1 on Fable (lengthen_never_precede.md): theorem (E) at one step proved with its exact two-column exception set (E6); the prefix frontier inherited exactly up the ladder (E7, 0 exceptions in 8,152 cells), so new gears lengthen and never precede on the prefix, while on the full period the sentence is false (8 of 11 steps, order-2-4 merges); the frontier for all rungs reduces (E8) to the straddling condition, a bound on the twin gap across each prime square, ROOT in face E's sense; V8 corrected: a hidden hypothesis and, above Q = 148, the certification is the share form. The frontier's constants are eleven twin gaps on a staircase; 4.625 from rung 23, never undercut.
