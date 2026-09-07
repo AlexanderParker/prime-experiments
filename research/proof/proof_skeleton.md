@@ -29,7 +29,7 @@ so a < P, and the smallest prime factor of a is below P and strikes n. Contradic
 ## 4. The cuts, the sections, the machines
 
 Set c_1 = 3. Let p_k be the smallest prime at or above c_k, and set c_{k+1} = p_k^2. So the cuts
-are 3, 9, 121, 16129, 260,532,... (p_k = 3, 11, 127, 16141, ...). Section k is the numbers from
+are 3, 9, 121, 16129, 260,532,... (p_k = 3, 11, 127, 16139, ...). Section k is the numbers from
 c_k up to but not including c_{k+1}. Machine k is the set of gears whose sizes are the primes in
 section k: machine 1 = {3, 5, 7}, machine 2 = {11, 13, ..., 113}, machine 3 = {127, ..., 16127}.
 Every prime above 2 belongs to exactly one machine, because the sections tile the line from 3
