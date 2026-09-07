@@ -227,7 +227,25 @@ absorbed (start 1), straddle (the run contains `W(q)`), deep (start `> W(q)`), o
 `[2, W(q)]` without containing `W(q)`; E6 says impossible). `J` is the merge order of that run
 (1 + the openings of `M` inside it).
 
-PERIOD_TABLE_PLACEHOLDER
+| step | range for `M+q'` | `F-1`: `M` -> `M+q'` | `d_0` | new prefix columns | Form B cells | exceptions (absorbed / straddle / deep / other) | Form A exceptions | `J` of the distinct earlier runs | `c(M)` at |
+|---|---|---|---|---|---|---|---|---|---|
+| 5 -> 7 | full period 35 | 1 -> 4 | 2 -> 2 | W=8 | 0 | 0 / 0 / 0 / 0 | 0 | - | - |
+| 7 -> 11 | full period 385 | 4 -> 6 | 2 -> 3 | d_0=2 | 3 | 1 / 0 / 0 / 0 | 0 | - | 3.250 at (13, 4) |
+| 11 -> 13 | full period 5,005 | 6 -> 10 | 3 -> 3 | W=28 | 4 | 0 / 0 / 1 / 0 | 1 | J=2: 1 | 3.250 at (13, 4) |
+| 13 -> 17 | full period 85,085 | 10 -> 17 | 3 -> 5 | d_0=3 | 8 | 2 / 0 / 5 / 0 | 5 | J=2: 1, J=3: 1 | 3.250 at (13, 4) |
+| 17 -> 19 | full period 1,616,615 | 17 -> 24 | 5 -> 5 | W=60 | 13 | 0 / 6 / 6 / 0 | 12 | J=2: 2 | 6.778 at (61, 9) |
+| 19 -> 23 | full period 37,182,145 | 24 -> 33 | 5 -> 5 | none | 20 | 0 / 0 / 0 / 0 | 0 | - | 4.625 at (111, 24) |
+| 23 -> 29 | full period 1,078,282,205 | 33 -> 42 | 5 -> 7 | d_0=5, W=140 | 29 | 2 / 0 / 9 / 0 | 9 | J=2: 4, J=3: 1 | 4.625 at (111, 24) |
+| 29 -> 31 | full period 33,426,748,355 | 42 -> 57 | 7 -> 7 | none | 36 | 0 / 0 / 17 / 0 | 17 | J=2: 6, J=3: 1 | 4.625 at (111, 24) |
+| 31 -> 37 | prefix `2^35` of 1,236,789,689,135 | 57 -> 67 | 7 -> 7 | W=228 | 51 | 0 / 0 / 24 / 0 | 24 | J=2: 4, J=3: 4, J=4: 1 | 4.625 at (111, 24) |
+| 37 -> 41 | prefix `2^35` of 50,708,377,254,535 | 67 -> 89 | 7 -> 10 | d_0=7 | 61 | 3 / 0 / 23 / 0 | 23 | J=2: 4, J=3: 2 | 4.625 at (111, 24) |
+| 41 -> 43 | prefix `2^35` of 2,180,460,221,945,005 | 89 -> 89 | 10 -> 10 | W=308 | 80 | 0 / 0 / 49 / 0 | 49 | J=2: 6, J=3: 3, J=4: 1 | 4.625 at (111, 24) |
+
+Totals: Form B 305 cells, 148 exceptions (8 absorbed, 6 straddle, 134 deep, **0 other**); Form A
+297 cells, 140 exceptions; the distinct earlier runs have `J = 2` at 28, `J = 3` at 12, `J = 4` at
+2. The `F - 1` values at m37..m43 are those seen inside `2^35` columns (the ladder's records are
+88, 91, 103 gaps); the m31 full period reproduces `F(31) = 58` exactly. E6 by direct sieve on
+`[1, W(q)]`: 11 of 11 steps exact.
 
 Read off the table:
 
@@ -238,7 +256,7 @@ Read off the table:
   from the frontier.
 - **The deep exceptions are merges of order 2 to 4** (every deep exception is a genuine chain of
   the new gear through 1-3 openings of `M`; the distribution is in the table), and their starts
-  are between 89 and `2.2 x 10^8`: the merge law at work beyond the prefix, exactly where the
+  are between 61 and `7.9 x 10^9`: the merge law at work beyond the prefix, exactly where the
   brief's mechanism (b) expects it, and nowhere inside the prefix.
 - **19 -> 23 has no exception at all**: 23 has no new column in `[1, 88]` (`(23, 25)` is not
   twin and `23^2 - 2 = 527 = 17 x 31`), and its deep merges all produce lengths 25..33 that
