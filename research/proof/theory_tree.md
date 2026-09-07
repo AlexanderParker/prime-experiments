@@ -1395,7 +1395,8 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             constants are fixed for all larger machines because a new gear lengthens runs
             rather than creating a long run earlier). The statement: adding q' never creates
             a run of length >= d_0(M) before the first such run of M; a proof gives turns 1-4
-            for all Q via V8. OPEN, prover to launch.
+            for all Q via V8. OPEN, prover running on Fable (research/proof/
+            lengthen_never_precede.md).
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
