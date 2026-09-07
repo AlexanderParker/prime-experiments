@@ -29,7 +29,7 @@ so a < P, and the smallest prime factor of a is below P and strikes n. Contradic
 ## 4. The cuts, the sections, the machines
 
 Set c_1 = 3. Let p_k be the smallest prime at or above c_k, and set c_{k+1} = p_k^2. So the cuts
-are 3, 9, 121, 16129, 260,532,... (p_k = 3, 11, 127, 16139, ...). Section k is the numbers from
+are 3, 9, 121, 16129, 260,467,321... (p_k = 3, 11, 127, 16139, ...). Section k is the numbers from
 c_k up to but not including c_{k+1}. Machine k is the set of gears whose sizes are the primes in
 section k: machine 1 = {3, 5, 7}, machine 2 = {11, 13, ..., 113}, machine 3 = {127, ..., 16127}.
 Every prime above 2 belongs to exactly one machine, because the sections tile the line from 3
@@ -61,7 +61,7 @@ gears of machine k+1 at distance 2, and the same thing as a slot machines 1 .. k
 Machine 1 = {3, 5, 7} contains the pairs (3, 5) and (5, 7) at distance 2. Section 2 = [9, 121):
 the slots machine 1 leaves open are (11,13), (17,19), (29,31), (41,43), (59,61), (71,73),
 (101,103), (107,109), eight twin pairs, which are the twin gears of machine 2. Every section
-computed along this chain (to c_5 = 260,532,881) and along every chain from every base to
+computed along this chain (to c_5 = 260,467,321) and along every chain from every base to
 q = 23 holds at least one. [PROVED for machine 1 by inspection; MEASURED beyond]
 
 ## 8. The step (THEORISED)
