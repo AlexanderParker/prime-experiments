@@ -1354,8 +1354,48 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           descent, the engine's window statement at SOME scale in [sqrt(2Q), Q], not every
           scale. Branch: the freedom of the turn; the frontier's certified turns (position
           facts seeing length at the top of the window); invariants of the charge set forcing
-          a member on the pure imprint, each tested against the counterfactual fuel. OPEN,
-          prover running on Fable (research/proof/valve_existence.md).
+          a member on the pure imprint, each tested against the counterfactual fuel. DONE
+          (research/proof/valve_existence.md, laws V6-V12; scripts research/valves/r2/).
+          V6 the descent exact (0 mismatches in 60 turns at (5, 10^4) and 19,998 cells at
+          m = 1, 2). THE FREEDOM OF THE TURN IS A CHOICE OF RUNG, NOT A WEAKENING: the
+          weakest engine statement implying existence in the valve is the position form
+          (some turn at which the blocked run of {5..y_m} ending at the slice's top is shorter
+          than Q/6 columns), which is the turn statement renamed, ROOT; the share form
+          (S < 1/(m + 1) at y = sqrt((m + 1) Q), no rung beyond m = 3 since F/(y^2/6) >= 0.278)
+          is strictly stronger and certifies every Q in [3, 1859] except 24 and 25; the
+          freedom is worth exactly three integers (Q = 5, 26, 29); the disjunction over turns
+          is the window statement at rung Q less a sliver. V8 (PROVED with its hypothesis):
+          a frontier constant c at rung y_m certifies exactly the turns m < c, because the
+          frontier sees length at the top (the run ending at the window's top is at most
+          1/(c + 1) of the window). With c = 1.25 from the certified ladder (F(59) = 161):
+          turn 1 for every Q in [30, 1859], turn 2 on the whole range at rungs 11, 29, 41,
+          43, 47, 53, 59, turn 3 at 24 values of Q, turn 4 at Q = 9; 0 of 2,944 certificates
+          empty. Measured (prefix floor c = 4.625, 0 exceptions to rung 19,997): turns 1-4
+          to Q <= 8 x 10^7; no constant reaches turn 5. V9 (EXACT): the frontier's tight
+          instance 4.625 = 111/24 IS the twin gap 661 -> 809 and it is the last empty turn 5
+          (Q = 132, 133, 134; Q_5 = 135); the period constant 3.25 is the gap 73 -> 101: the
+          frontier's constants are the primes' first twin gaps, fixed for all larger machines
+          because new gears lengthen runs rather than precede them; the universal frontier is
+          twin-Bertrand on the prefix, ROOT beyond the measured range. INVARIANTS: the mirror
+          fixes the pure imprint with one fixed class (-1 mod q#), forces inventory closure
+          (122 of 123 families) and count symmetry, nothing on existence (FACT); the
+          pigeonhole V10 fails at every q (needed F_odd + 1 = 7, 16, 22, 34, 55, 76 open odd
+          numbers against the manifold ceiling q' - 1 = 6, 10, 12, 16, 18, 22; margin 1 at
+          q = 5 and realised: 2 of 14 runs of six hold no twin; FACT); the walk V11 has no cap
+          (per-turn max 2 to 53 at (5, 10^4), 0.74-1.86 of the geometric scale; the manifold's
+          laws cap runs of charges, the wrong side; FACT). COUNTERFACTUAL TEST V12: F violates
+          balance, mirror closure, one-tooth and phase zero; the one-tooth adversary (776 of
+          1,226 gears, P_m = 0 to m = 60) violates phase zero only: PHASE ZERO IS THE SOLE
+          SURVIVING INVARIANT, a set property (which class each gear removes) whose existence
+          consequence is the conjecture; side fact: the greedy adversary cannot empty even
+          turn 1 at (5, 10^3) with all 165 gears. Next child named: "a new gear never creates
+          a run of length >= d_0 before the runs already there", an engine construction
+          statement; its proof would give turns 1-4 for all Q via V8.
+          - R4.c.iii.a. New gears lengthen, never precede (spawned by V9: the frontier's
+            constants are fixed for all larger machines because a new gear lengthens runs
+            rather than creating a long run earlier). The statement: adding q' never creates
+            a run of length >= d_0(M) before the first such run of M; a proof gives turns 1-4
+            for all Q via V8. OPEN, prover to launch.
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
@@ -2448,3 +2488,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, owner: the LADDER is the problem as an analogy: it forces building the proof upward, where unseen rungs could kill the conjecture; the exhaust says the ladder never has to reach beyond the window, and the manifold's back pressure on the valves says the same from below. The descent found today (turn m of Q = the top 1/(m + 1) of the window at sqrt((m + 1) Q), exact via theorem (E)) is the mechanical form: the object at scale Q is the object at scale sqrt(Q); not an ascent but a self-similar map. Ladder retired as a proof framing; kept only as the name of the certified record table (rungs = its entries).
 - 2026-09-07, owner: existence suffices (wall 5m) and the position can be in the valve, not the engine's window. Exact weakening: a twin anywhere in (Q, Q^2] = the engine's window nonempty at some scale in [sqrt(2Q), Q]. Opened R4.c.iii, existence in the valve.
 - 2026-09-07, Formalist round 38 on Fable (proofs/ArcFloor.lean, 66 declarations, namespace ArcFloor): E4 the arc floor in the kernel for any separations with arcs >= 2 (collision_eq_zero_of_arcs, no hypothesis beyond the arcs; the exception at arc 1 is an exact value, collision_two_of_arc_one); the near gear needs only 3 <= g, sharp at g = 2; the document's g, h >= 5 not needed; file 21's claim that any proof must use 3a = g -+ 1 is refuted in the kernel (the separation's value never appears); arc_real_ge_two shows the real teeth satisfy it. File 21's Theorem 1 (collision_add, +4 per common period, any separations with two distinct teeth and coprime gears) and E5 (coincidence_add, the min form) proved from one per-phase identity. Manager gate: lake build TopMachineWheel ArcFloor green at 1231 jobs; audit: standard axioms; zero sorries. Files 20 and 21 had no kernel before this round.
+- 2026-09-07, prover VE1 on Fable (valve_existence.md): existence in the valve is the window statement at some rung (the freedom of the turn is worth three integers), ROOT; but the frontier sees length at the top: V8 proved that a frontier constant c certifies the turns m < c, giving turn 1 for every Q in [30, 1859] from the certified ladder and turns 1-4 to 8 x 10^7 from the measured prefix floor; V9 exact: the frontier's constants 4.625 and 3.25 are the twin gaps 661 -> 809 and 73 -> 101, fixed for all larger machines because new gears lengthen runs rather than precede them. Phase zero is the sole invariant surviving the counterfactuals. Next child: new gears lengthen, never precede (engine construction).
