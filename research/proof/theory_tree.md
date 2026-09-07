@@ -1433,6 +1433,19 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             frontier's constant certifies turns 3 and 4 for Q = 106..148 and nothing else.
             Formalist target named: E6 (divisibility of 6k -+ 1 by q' below q'^2, kernel-sized)
             and E7 as its corollary on maximal runs. Genuinely open on the part alone: none.
+        - R4.c.iv. Phase zero in the manifold's own terms (owner's correction, 2026-09-07:
+          the descent to the engine's certified range and rungs was a regression to the
+          approach known not to reach; the proof space is the valves' domain (Q, Q^2] with the
+          manifold's and the valves' laws on the raw line; window, rung, ladder and the descent
+          FORBIDDEN in this branch). The manifold-native wall: the fuel is not free (it is the
+          primes), the only structure-respecting counterfactual is free phase, and the
+          free-phase adversary kills the pure charge; the real manifold's distinguishing
+          property is PHASE ZERO (a gear strikes exactly its multiples). Branch: which
+          manifold and valve laws hold under free phase (no phase-zero content) and which
+          fail; which fail for the parity-defined adversary too (content beyond
+          multiplicativity); the charge set as a structure (burn as multiplication by air);
+          the record laws on the charges. OPEN, prover running on Fable
+          (research/proof/phase_zero.md).
         - R4.c.ii. The rich half of the record (spawned by unstick pass 3; reopens the
           ENGINE): Omega^full(n) with all gears for the pullbacks at m19..m53; sharpen E2;
           do records sit at the pullback's richest translates; does the arc floor
@@ -2528,3 +2541,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, prover VE1 on Fable (valve_existence.md): existence in the valve is the window statement at some rung (the freedom of the turn is worth three integers), ROOT; but the frontier sees length at the top: V8 proved that a frontier constant c certifies the turns m < c, giving turn 1 for every Q in [30, 1859] from the certified ladder and turns 1-4 to 8 x 10^7 from the measured prefix floor; V9 exact: the frontier's constants 4.625 and 3.25 are the twin gaps 661 -> 809 and 73 -> 101, fixed for all larger machines because new gears lengthen runs rather than precede them. Phase zero is the sole invariant surviving the counterfactuals. Next child: new gears lengthen, never precede (engine construction).
 - 2026-09-07, prover NP1 on Fable (lengthen_never_precede.md): theorem (E) at one step proved with its exact two-column exception set (E6); the prefix frontier inherited exactly up the ladder (E7, 0 exceptions in 8,152 cells), so new gears lengthen and never precede on the prefix, while on the full period the sentence is false (8 of 11 steps, order-2-4 merges); the frontier for all rungs reduces (E8) to the straddling condition, a bound on the twin gap across each prime square, ROOT in face E's sense; V8 corrected: a hidden hypothesis and, above Q = 148, the certification is the share form. The frontier's constants are eleven twin gaps on a staircase; 4.625 from rung 23, never undercut.
 - 2026-09-07, Formalist round 39 on Fable (proofs/OneStepE.lean, 32 declarations): theorem (E) at one step in the kernel (blocked_succ_iff; the exact exception set new_iff: the home column d_0(M) iff (q', q'+2) is twin, the square column iff q'^2 - 2 is prime; home_isLeast_open: the new home column IS d_0(M)); prefix inheritance for maximal runs (maxRun_succ). Finding: theorem (E) as phrased in position_frontier.md is false outside the prefix (refuting instance q = 5, k = 8 in the kernel, E_needs_prefix); the true form needs 6k + 1 < q'^2 (blocked_iff_sqrt), which is where it was used; position_frontier.md and the wall (5n) corrected. Hypotheses: q never assumed prime; the next-prime property enters only as 'no prime strictly between q and q''. Manager gate: lake build OneStepE green at 740 jobs; audit standard axioms; zero sorries.
+- 2026-09-07, owner: the record's 'window' and the descent to rungs were a regression; the solution space is horizontal, the manifold (fully understood) and its interaction with the engine, with the exhaust as the known upper limit; derive the manifold's behaviour from scratch instead of translating back. Manager: accepted; the descent stays a fact, not a tool; opened R4.c.iv, phase zero in the manifold's own terms, with window / rung / ladder / descent forbidden.
