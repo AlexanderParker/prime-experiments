@@ -1591,8 +1591,47 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       claims on the scorecard: the band structure (below its first gear's square a machine's
       strikes are home strikes and echoes, so on the band [g_k^2, g_{k+1}^2) exactly machines
       1..k act and a jointly open slot is a twin: the exhaust cap once per band) and the count
-      (about log2(q / log q) machines: three at q = 17, 19, 23). OPEN, builder running on Fable
-      (research/proof/stacked_squares.md; scripts research/stack/r1/).
+      (about log2(q / log q) machines: three at q = 17, 19, 23). BUILT, FACT with a ROOT mark
+      (research/proof/stacked_squares.md, laws S1-S7; scripts research/stack/r1/,
+      stacked_squares.py runs q = 23 in 11 s). THE BAND STRUCTURE (claim A) EXACT, 0
+      exceptions at 23 machine instances and 16 bands (q = 5..23), once the square part is the
+      half-open [1, g_k^2): every new strike below g_k^2 is a home strike, and on every band the
+      slots open under machines 1..k are the twins slot by slot (296,672 + 296,783 + 296,350
+      twins on band 3 at q = 23). S1: every prime's square is 1 or 19 mod 30, so g_k^2 always
+      lands on a twin slot and is the machine's first genuine strike (the inclusive square
+      part fails claim A at exactly one number per machine). COUNT (claim B): g_3 = 127, 173,
+      293, 367, 541, 853 and g_4 = 134,699, 292,693, 727,613; banded machines 2, 2, 2, 3, 3, 3 at
+      q = 7..23, = 1 + floor(log2(theta(q)/ln q')) exactly (a fourth at q = 41), plus one
+      home-and-echo machine on top. S3 (single-gear law, proved): a gear >= 11 strikes at most
+      one number per cycle, gear 7 two at j = 2 mod 7, no gear >= 7 closes a cycle alone; every
+      closed cycle of machines 2 and 3 uses >= 3 distinct gears (minimum 3 in every 500-cycle
+      sample, peak 5, up to 11); the engine closes with 2 at the gear-7 double. CLASSIFICATION:
+      machine 2's square part closed at every cycle but 0-2 (25 of 27 at q = 23); its band
+      open/closed 432/9,082 of 24,225 cycles at q = 23 against CRT 358/9,902; machine 3's band
+      73,124/3,618,540 of 7,412,175 against CRT 117,752/3,107,139: the CRT expectation REFUTED
+      in both directions. S4 (band composition, EXACT): on its band a machine's open numbers
+      are exactly the g_k-smooth numbers and the g_k-smooth multiples of one prime >= g_{k+1}
+      (asserted at every machine k >= 2), the prime part (30/8)/ln x and the smooth x prime part
+      matching the measured decomposition to 0.01-0.025 per bin: prod(1 - 6/g) is the wrong
+      expectation on a band. S5 (the half law, Mertens): every square-built machine has
+      prod(1 - 1/p) = 0.502-0.524 (machine 2) and 0.5016-0.5026 (machine 3), so all have the
+      same CRT classification (1 : 27 : 36)/64: the construction is the EQUAL-WEIGHT
+      decomposition of the manifold. S7 (cross-machine, EXACT): the gears of machine k + 1 are
+      exactly the primes of band k, and the twins of band k are exactly the double-home slots
+      of machine k + 1 (0 mismatches at all 16 bands); band starts chain by nextprime(.)^2;
+      closed positions of k + 1 bear no relation to those of k through squares (rates 0.50,
+      0.66, 0.52 against densities 0.58, 0.59, 0.49). S6 (joint-open ratios): on band k the
+      lower machines leave the g_k-rough pairs and machine k strikes exactly the rough
+      composites, so the ratio twins / product of open fractions is P(prime | rough) / P(open
+      under k): 1.9-5.0 at the band's start (4.95 in the first bin of band 3 at q = 23),
+      crossing 1 between u = 2.75 and 3.25, 0.81-0.87 at u = 4 (e^gamma/2 per number);
+      whole-band 1.29 to 0.88 on band 2 (q = 7..23), 4.32, 3.50, 2.08 on band 3. THE CYCLE AT
+      q# (claim C) REFUTED for machines k >= 2: open under the engine only for q <= 7 (q# + 11
+      divisible by 11 from q = 11; the slot (q# + 29, q# + 31) always open), and under machines
+      k >= 2 open at 0 of 16 instances (7 mixed, 9 closed). ROOT: the one route-shaped
+      statement, "every band holds a twin", is twin-Bertrand between consecutive squares of
+      the chain. Pre-registration misses recorded (P3 "never closed", P5's profile, P6's
+      interval).
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -2643,3 +2682,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-07, prover AL1 on Fable (opening_alignment.md): the owner's alignment mechanism measured. The manifold's longest opening is present below Q^2 (6 of 7 runs) but is far shorter than the engine's blocked runs, holds at most ceil(L/6) slots, and is slot-free in 62% of cases at (5, 10^4); alignment of openings with the engine's slots is exactly uniform and phase-blind over full periods and 0.78-1.0 of uniform on the quiet zone; the one phase-zero effect is the opening spectrum exceeding CRT (the fuel is the primes, Mertens); a slot-holding opening below Q^2 is a twin, so the statement is the conjecture restated. Localisation kept: twins sit in openings of length 1 in 92-95% of cases; slot-holding long openings need turn >= 12 or an ember (V22, exact).
 - 2026-09-07, prover PZ1 on Fable (phase_zero.md): phase zero is exactly saturation (the open set closed under divisors and multiplication by air; proved, 0 violations in 107,750,211 tests), which no adversary has, and which does not force a pure pair (the saturated sieve with the twins added as gears has none: what excludes it is the cut). Law table: 13 phase-free by the translation lemma, 10 phase-zero, 3 beyond multiplicativity and all three are saturation. The slice profile is new: poor at the bottom (onset), rich in the middle (Buchstab), flat at the top; the manifold's record sits in the emptied bottom. The Liouville-signed charge census is 0.1% against a pure share of 8.2%: the parity barrier in one number. ROOT.
 - 2026-09-07, owner: revisit the construction; stack machines by squares (machine 2 = primes q' to q'^2 run to q#, machine 3 from the next prime to its square, ...), classify each machine's anchor cycles as open / closed / mixed on its square part and its band, across q, then relate the machines and connect to machine 1's cycles. Vocabulary: machine 1 (the engine), machine 2 (formerly the manifold's first block), machine k; square part; band. Opened R4.d, builder running.
+- 2026-09-07, builder SQ1 on Fable (stacked_squares.md): the stack by squares built exactly. The band structure holds with 0 exceptions (half-open square parts; every prime's square is a twin slot, S1); the count of machines is 1 + floor(log2(theta(q)/ln q')); no gear >= 7 closes a cycle alone and every closed cycle uses >= 3 gears (S3); on a band a machine's open numbers are exactly the smooth numbers and smooth-times-one-prime (S4), so the CRT cycle expectation is wrong in both directions; every square-built machine has Mertens product 1/2 (S5): the construction is the equal-weight decomposition of the manifold; the gears of machine k + 1 are the primes of band k and the twins of band k are its double-home slots (S7, exact); the joint-open ratio is P(prime | rough)/P(open) (S6). The cycle at q# is not open for machines >= 2. ROOT: every band holds a twin is twin-Bertrand between consecutive squares.
