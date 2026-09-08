@@ -16,7 +16,7 @@ note "16141" was wrong, 16139 is prime). Twin-gear pairs per link: 1 ((5, 7) in 
 is at most 160 numbers above it (5.3 cycles, base 7 at cut 2809), against arcs of 500 to 64,554
 numbers. The first-twin scan of section_start.py: for every prime q to 200,000 (17,981 primes)
 the first twin above q^2 lies below the long arc of q, 0 exceptions, median 0.09% of the arc,
-worst 77% at q = 53. The scan to q = 10^6 (78,495 primes): 0 exceptions, median 0.02% of the arc, 90% 0.13%, 99% 1.0%, worst still 77% at q = 53; 28.9% of first twins in the 5/7-blind classes. A scan to q = 10^7 is running.
+worst 77% at q = 53. The scan to q = 10^6 (78,495 primes): 0 exceptions, median 0.02% of the arc, 90% 0.13%, 99% 1.0%, worst still 77% at q = 53; 28.9% of first twins in the 5/7-blind classes. The scan to q = 10^7 (664,576 primes): 0 exceptions; median offset below 0.005% of the arc, 99% at 0.15%, worst still q = 53 at 77% (53^2 = 2809, first twin 2969, 160 numbers above the cut); blind-class share 28.1%.
 
 ## 2. The band structure, checked cycle by cycle
 
@@ -57,3 +57,24 @@ The step is measured true at every computed link, with the first twin within a f
 cut. The square gives structure to WHERE (the blind classes, exact) and nothing to HOW MANY (the
 control census). Twin-gear cheapness is a small density correction. What remains for the lanes: a
 property of a section's survivors, not a count, that the squaring preserves.
+
+## Review of the local runs (2026-09-08)
+
+1. The arc bound is a count with a growing margin, not a structure. The expected number of twins
+   in (q^2, q^2 + 4q] by the twin density near q^2 is about 1.3 q / ln^2 q: 4 at q = 53, 5 x 10^4
+   at q = 10^7. The measured first-twin offsets sit where the density puts them (median a few
+   hundred numbers above the cut at 10^7, i.e. 3 ln^2 q). The only place the bound is tested is
+   small q, and the worst case, q = 53 at 77% of the arc, has not moved since 10^4. As evidence
+   for the step it is strong; as a mechanism it is ROOT (existence by count).
+2. The blind-class preference fades with q: the share of first twins in the four 5/7-blind
+   classes is 30.0% at 2 x 10^5, 28.9% at 10^6, 28.1% at 10^7, against 26.7% uniform. The class
+   census matches the availability fractions exactly (17: 51,698 against 7: 33,700 is 1.53,
+   availability 1 against 2/3). The square fixes classes and adds no preference at large q.
+3. Twin-gear cheapness is a density correction of a few per cent, concentrated in (5, 7).
+4. The band structure is exact cycle by cycle; the newest machine engages only from the next cut.
+
+Net: every local measurement of the square's structure (blind classes, arc bound, cheapness) is
+either exact-but-a-count or fading. The one input no counter-machine reproduces remains the
+recursion of the construction: a machine's gears are the survivors of the machines below. That
+is where the Friday lanes go; the square-start lead is closed as FACT (blind classes exact) and
+ROOT (existence in the arc).
