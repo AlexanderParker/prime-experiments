@@ -109,25 +109,36 @@ That widening is the count again (the density of twins), stated as a record; wha
 would have to supply is a reason the record of machines 1..k, which are the survivors of the
 sections below, cannot reach the length of the section above them.
 
-## 6. The covering structure of the record runs (2026-09-09, research/stack/r4/record_cover.py)
+## 6. The covering structure of the record runs, corrected (2026-09-09, record_cover.py and supply_demand.py)
 
-For each section's record run (its largest twin gap, L slots), which gears of the machines below
-strike each slot. Chain from base 3, section 4, L = 579 slots at 255,949,955: 528 distinct gears
-used, largest 16,127 (below the cut); core gears (g <= 6L + 1 = 3475): 347 gears making 1,783
-slot-strikes; tail gears (g > 3475): 181 gears making exactly 181 slot-strikes, one each. Top
-coverers 5: 232, 7: 166, 11: 106, 13: 90, 17: 68, 19: 61, 23: 51, 29: 40, i.e. each small gear
-covers its ordinary share 2L/g of the run (232/579 = 0.40 = 2/5; 166/579 = 0.29 = 2/7). The same
-shape at every section: base 7 section 3 (L = 254): core 167 gears, tail 37 gears each striking
-once; every section 2 has an empty tail.
+First reading (withdrawn): "the core leaves 31% of the record run and the tail finishes it". The
+181 tail-struck slots of the base-3 section-4 record are mostly ALSO struck by core gears;
+record_cover.py counted strikes, not leftovers. The exact object is the core's LEFTOVER K(w) on a
+window w of L slots (slots struck by no gear <= 6L + 1) against the tail's strikes T(w) (gears in
+(6L + 1, cut), at most one slot each per window). supply_demand.py over EVERY window of the
+record length in three sections:
 
-Reading. The core strikes the record run at its average rate, so the run is not a small-gear
-alignment. The core's UNION leaves 181 of 579 slots (31%) unstruck, against about 2% for a
-typical stretch under gears to 3475; those 181 leftovers are each struck by a distinct tail gear,
-exactly once, with no tail gear wasted. A twin gap is a stretch where the middle gears miss far
-more than usual and the large gears finish the cover perfectly. This is the loaded record rule's
-core-and-tail object (top_machine_7.md) with the REAL phases: the tail contributes one slot per
-gear (a gear above 6L strikes at most one slot of a run of L slots per tooth... measured: one),
-and the step at a link is "the tail of machines 1..k cannot finish the core's leftovers on any
-run as long as the section". The Friday lane's exact target: the core's leftover count on record
-runs against its typical value, and the tail's supply (the number of gears between 6L and the
-cut) against the demand (the leftovers), as a covering inequality of the construction.
+| section | L | core gears | tail gears | core leftover K: typical / max / at the record | tail strikes T: typical / min / at the record | windows with T >= K | twin-free windows |
+|---|---|---|---|---|---|---|---|
+| base 3, [16129, 260,467,321) | 579 | 485 | 1,390 | 20.4 / 56 / 12 | 199 / 56 / 181 | 100.00% | 1 |
+| base 7, [2809, 7,946,761) | 254 | 239 | 168 | 10.4 / 38 / 1 | 40.6 / 0 / 37 | 99.95% | 1 |
+| base 23, [529, 292,681) | 153 | 97 | none | 9.2 / 26 / 0 | 0 | 1 window | 1 |
+
+Reading. The small gears cover their ordinary share of every window (5 covers 2/5, 7 covers
+2/7). Supply never binds: the tail has enough strikes to cover the core's leftover in essentially
+every window (100% and 99.95%), yet exactly one window per section is twin-free. The record run is
+a window where the core's leftover is below average (12 against 20; 1 against 10) and the tail's
+strikes happen to land on every one of those leftovers. Where the tail is empty (base 23, section
+2) the record is a window the core covers entirely by itself (K = 0), i.e. the core's own record.
+So a twin gap is the core's tighter-than-average leftover plus an exact finish by the tail, and
+the exact finish is a coincidence of K independent placements: the count, in the construction's
+own terms. A covering inequality (supply against demand) cannot close the step, because supply is
+never the constraint; what would have to be bounded is the core's minimum leftover over
+positions, which is the real-phase record of the core machine, the thing the loaded record rule
+bounds only with free phases.
+
+Net for Friday: the recursion's content, if any, is not in supply against demand. It would have
+to be in the core's real-phase leftover: why the machines below, whose gears are the survivors of
+lower sections, cannot leave a window of the section's length with zero leftover. That is the
+composite record statement once more, now located precisely at the core (gears up to 6L + 1) with
+its true phases.
