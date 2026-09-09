@@ -108,3 +108,26 @@ a margin that widens like the square of the cut against the log-squared growth o
 That widening is the count again (the density of twins), stated as a record; what the recursion
 would have to supply is a reason the record of machines 1..k, which are the survivors of the
 sections below, cannot reach the length of the section above them.
+
+## 6. The covering structure of the record runs (2026-09-09, research/stack/r4/record_cover.py)
+
+For each section's record run (its largest twin gap, L slots), which gears of the machines below
+strike each slot. Chain from base 3, section 4, L = 579 slots at 255,949,955: 528 distinct gears
+used, largest 16,127 (below the cut); core gears (g <= 6L + 1 = 3475): 347 gears making 1,783
+slot-strikes; tail gears (g > 3475): 181 gears making exactly 181 slot-strikes, one each. Top
+coverers 5: 232, 7: 166, 11: 106, 13: 90, 17: 68, 19: 61, 23: 51, 29: 40, i.e. each small gear
+covers its ordinary share 2L/g of the run (232/579 = 0.40 = 2/5; 166/579 = 0.29 = 2/7). The same
+shape at every section: base 7 section 3 (L = 254): core 167 gears, tail 37 gears each striking
+once; every section 2 has an empty tail.
+
+Reading. The core strikes the record run at its average rate, so the run is not a small-gear
+alignment. The core's UNION leaves 181 of 579 slots (31%) unstruck, against about 2% for a
+typical stretch under gears to 3475; those 181 leftovers are each struck by a distinct tail gear,
+exactly once, with no tail gear wasted. A twin gap is a stretch where the middle gears miss far
+more than usual and the large gears finish the cover perfectly. This is the loaded record rule's
+core-and-tail object (top_machine_7.md) with the REAL phases: the tail contributes one slot per
+gear (a gear above 6L strikes at most one slot of a run of L slots per tooth... measured: one),
+and the step at a link is "the tail of machines 1..k cannot finish the core's leftovers on any
+run as long as the section". The Friday lane's exact target: the core's leftover count on record
+runs against its typical value, and the tail's supply (the number of gears between 6L and the
+cut) against the demand (the leftovers), as a covering inequality of the construction.
