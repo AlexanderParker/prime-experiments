@@ -36,13 +36,13 @@ at L50 and runs to L59, document 6 runs L57-L66. Every citation below names the 
 
 **Lanes that landed since the first version, all folded into the sections below (2026-09-07):**
 the exhaust in the kernel (Formalist round 35, `proofs/MachineStack.lean`, docs/proofs/23); the
-manifold's open laws (top_machine_7.md L67-L75 and top_machine_8.md W86-W93); the loaded record
+manifold's open laws (top_machine_7.md L67-L75 and top_machine_8.md W95-W102 (written as W86-W93, renumbered)); the loaded record
 rule and `CutMono` in the kernel (round 36, `proofs/TopMachineRecord.lean`, MachineStack
 addendum); the gap census law in the kernel (round 37, `proofs/TopMachineCensus.lean`); the
 exhaust's first measurement (exhaust_1.md X9-X24); the law register (law_register.md, W1-W85,
 X1-X8); the manifold census at large `Q` (manifold_census_large.md). **Running as this is
 written, not counted:** the engine's monotone functional (O-M3, research/proof/
-monotone_functional.md); the register's W86-W93 rows and docs/novel entries.
+monotone_functional.md); the register's W95-W102 rows and docs/novel entries.
 
 ---
 
@@ -389,8 +389,8 @@ count fixes is the record, and neither fixes the other.
 
 | # | statement | range and count | reading |
 |---|---|---|---|
-| 1 | d2 L25 the degree law: `N_d` has degree `m - r(d)` in the gears and is gear-independent exactly when `r(d) = m`, value `(-1)^m M_m(d)` | 0 mismatches over `m = 3,4,5`, `d = 1..14`, three disjoint gear sets each | rested on the vanishing of `M_k(d)` for `k < r(d)`, verified to `d = 16` when first entered; that vanishing is now PROVED (top_machine_7.md L73, verified to `d = 26`) and the top moment's non-cancellation PROVED (top_machine_8.md W86), so the degree law is PROOF on paper; not in the kernel |
-| 2 | d1 L18 universal record multiplicity 18, 24, 480, 720 for `m = 3,4,5,6` | 14 large-gear wheels, 0 exceptions | derived from L25; now PROOF via L73/L74 and W86 (`N_d = r! C_r(d)`, the eight multiplicities 8 of 8) |
+| 1 | d2 L25 the degree law: `N_d` has degree `m - r(d)` in the gears and is gear-independent exactly when `r(d) = m`, value `(-1)^m M_m(d)` | 0 mismatches over `m = 3,4,5`, `d = 1..14`, three disjoint gear sets each | rested on the vanishing of `M_k(d)` for `k < r(d)`, verified to `d = 16` when first entered; that vanishing is now PROVED (top_machine_7.md L73, verified to `d = 26`) and the top moment's non-cancellation PROVED (top_machine_8.md W95), so the degree law is PROOF on paper; not in the kernel |
+| 2 | d1 L18 universal record multiplicity 18, 24, 480, 720 for `m = 3,4,5,6` | 14 large-gear wheels, 0 exceptions | derived from L25; now PROOF via L73/L74 and W95 (`N_d = r! C_r(d)`, the eight multiplicities 8 of 8) |
 | 3 | d2 L26 `r(d)` is the parity covering number, hence `F_top(m) = max{d : r(d) <= m} - 1` reproduces the parity law, and `d = 4` is the unique place the gap's closed-boundary cover differs from the record's free-boundary cover | `d = 1..16`, `d != 4`; census record = cover record 15 of 15 | now PROVED as `r(d) = D(d - 1)` (top_machine_7.md L74), with `d = 4` absorbed (`r(4)` infinite, `M_k(4) = 0` for every `k`) |
 | 4 | d2 L31 the sub-threshold reduction: `F_top` is a function of `m` and of `{g <= F_top + 1}` alone | 90 comparable cases, `m = 3..8`, 0 exceptions | now a formula: the loaded record rule L69 (top_machine_7.md, 0 mismatches on 6,659 gear sets), PROVED both ways and KERNEL (round 36, `TopMachine.loaded_record_rule`, coprimality alone). Pre-registered threshold `2m + 3` REFUTED (12 of 70) |
 | 5 | d2 L30 the record of a triple or quadruple takes exactly two values, decided by one bit - is 7 a gear | exhaustive: 1,540 triples (1,330 / 210) and 7,315 quadruples (5,985 / 1,330), 0 exceptions | EXACT over a finite family, with the mechanism stated (only the odd long letter crosses parity); not a general theorem |
@@ -414,7 +414,7 @@ count fixes is the record, and neither fixes the other.
 top_machine_7.md (L73; `M_k(d)` is `(-1)^{d-1}` times the top multilinear coefficient of `f^k`,
 and a term of `f^k` touches all `d - 1` variables only if `k` pieces cover `[1, d - 1]`), with
 `r(d) = D(d - 1)` (L74), verified exactly to `d = 26`; the non-cancellation of the top moment
-PROVED in top_machine_8.md (W86, every minimum cover has sign `(-1)^r`). Not yet in the kernel
+PROVED in top_machine_8.md (W95, every minimum cover has sign `(-1)^r`). Not yet in the kernel
 (round 37: not attempted; needs a Boolean-cube Mobius inversion). As first written: verified to
 `d = 16`, unproved.
 *Attack.* A direct evaluation of the census signature `c_e(d)` as a moment sequence; the branch
@@ -740,7 +740,7 @@ instrument is a known theorem, an upper bound on a prime gap); the range form of
 lemma into the kernel (the window form is there). O-X3 (no in-use theory) is the root question
 named, not a gate item.
 
-**Gate verdict: the gate is NOT open, on the engine alone.** The manifold and the exhaust have
+**Gate verdict (superseded 2026-09-07 by the update above: THE GATE IS OPEN, the engine's last item resolved by pad_cap.md E1): the earlier text read 'the gate is NOT open, on the engine alone'.** The manifold and the exhaust have
 no open structural item; the engine has three, all instrumented, one with a lane running. When
 the engine's three close (or are recorded as the conjecture in disguise with a reason), the
 valves open with the hybrid first step of theory_tree.md R4.c.

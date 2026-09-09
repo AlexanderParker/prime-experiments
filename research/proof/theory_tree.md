@@ -223,7 +223,7 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       lands in the window at a higher level than needed, whose survivors carry twins). FACT, new:
       the anchor {5..13} is rigid in every window to Q = 5000 (openings sorted modulo any higher
       gear miss their fair share by fewer than 30, proved from the interval discrepancy of the 180
-      re-toothed anchors). CANDIDATE OBJECT, but exhausted at the first gear above the anchor:
+      re-toothed anchors). CANDIDATE OBJECT (mark withdrawn 2026-09-11: R4.d.i.a showed the island witness is the blind classes, exact, plus ordinary density), but exhausted at the first gear above the anchor:
       after it the survivors are the lower machine's pattern, each later gear's take follows one
       curve in ln g / ln Q' with white residual, and from the second gear on the branch re-derives a
       known one-prime identity. DEAD as a route.
@@ -283,11 +283,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         UNPROVEN INTERACTION, named by both provers: the length itself - that the 2 pi(q)
         progressions do not cover the d = 2u_q offsets from offset 1 - of unbounded order
         (minimum blocking set median 9, max 43; 88% of paths contain a column blocked only by a
-        gear above sqrt q). CANDIDATE OBJECT: the reachability landscape (the q-free set of gears
+        gear above sqrt q). CANDIDATE OBJECT (mark withdrawn 2026-09-11: R4.d.i.a showed the island witness is the blind classes, exact, plus ordinary density): the reachability landscape (the q-free set of gears
         that can reach each offset) with the landing preferring its low points; child opened.
         - R2.a.i.a. The reachability landscape (research/proof/reachability.md; register entry
           docs/novel/reachability-landscape.md, prior art not yet checked). Spawned by the
-          quadratic-residue bar. STRONG, exact, and it names a CANDIDATE OBJECT. Parts, all
+          quadratic-residue bar. STRONG, exact, and it names a CANDIDATE OBJECT (mark withdrawn 2026-09-11: R4.d.i.a showed the island witness is the blind classes, exact, plus ordinary density). Parts, all
           proven: (i) bar size in closed form, |Bar(g)| = (g + 1 - chi_g(2) - chi_g(-2))/4, so no
           gear reaches every offset (gear 5 reaches offsets 1, 3, 4 mod 5 only; gear 7 reaches
           0, 1, 2, 4, 6 mod 7); (ii) the islands for bound B (offsets no gear <= B can reach) are
@@ -1367,7 +1367,7 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           is the window statement at rung Q less a sliver. V8 (PROVED with its hypothesis):
           a frontier constant c at rung y_m certifies exactly the turns m < c, because the
           frontier sees length at the top (the run ending at the window's top is at most
-          1/(c + 1) of the window). With c = 1.25 from the certified ladder (F(59) = 161):
+          1/(c + 1) of the window). With c = 1.25 from the certified ladder (161 <= F(59) <= 178, 161 certified as a lower bound; the review found no record closing it to 161 exactly):
           turn 1 for every Q in [30, 1859], turn 2 on the whole range at rungs 11, 29, 41,
           43, 47, 53, 59, turn 3 at 24 values of Q, turn 4 at Q = 9; 0 of 2,944 certificates
           empty. Measured (prefix floor c = 4.625, 0 exceptions to rung 19,997): turns 1-4
@@ -1397,7 +1397,7 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             a run of length >= d_0(M) before the first such run of M; a proof gives turns 1-4
             for all Q via V8. FACT with a ROOT mark and one refutation (research/proof/
             lengthen_never_precede.md, laws E6-E8; scripts research/anchor235/r69/; the
-            m37-m43 period table pending its scan). E6 (PROVED, direct-sieve gate at 428
+            m37-m43 period table completed 2026-09-07: 11 of 11 steps, 140 exceptions in 297 cells). E6 (PROVED, direct-sieve gate at 428
             rungs): theorem (E) at one step, with its exact two-column exception set: below
             W(q) = (q'^2 - 1)/6 the new gear q' newly blocks exactly the two columns whose
             number is q' times 1 or the twin partner, never the column of 5q' (the brief's
@@ -1538,7 +1538,7 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           do records sit at the pullback's richest translates; does the arc floor
           (proofs/21) have a pullback form under the twisted separations. DONE, ROOT
           honestly (research/proof/rich_half.md, laws E4, E5; scripts research/anchor235/r68/;
-          the 37 -> 41 positions addendum pending its scan). Omega^full(n) exact to n = 20 at
+          the 37 -> 41 positions addendum NOT filled: its scan was killed at a session limit). Omega^full(n) exact to n = 20 at
           nine rungs: only gears 5, 7 and 11 (by a unit) ever decide it; every gear above 7
           adds nothing on the corpus. The sharpened cap's slack is IDENTICAL to E3's (1, 1, 0,
           1, 1, 1, 1, 1, 0 at m19..m53; the two are the same count of the corridor's two tooth
@@ -1786,7 +1786,7 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
     - R2.e. Location inside the window, lower machine only (the owner's round, 2026-09-06: one
       more round to pinpoint location; if it does not close, construct the top machine).
       - R2.e.i. The position-length frontier (research/proof/position_frontier.md). STRONG:
-        a proved reduction of the window statement to one run. THEOREM (E), proved in a line:
+        a proved reduction of the window statement to one run. THEOREM (E), proved in a line (kernel round 39 sharpened the hypothesis: the column must lie inside the next prime's square, 6k + 1 < q'^2; the refuting instance q = 5, k = 8 is in the kernel; every use here was inside the window):
         for every column with 6k - 1 > q, blocked under {5..q} iff blocked under
         {5..floor(sqrt(6k + 1))} (the cofactor's least prime factor), so the effective machine
         at a column is exact, and R_min(L) >= ceil((y_L^2 - 1)/6) - L + 1: an induction on the
@@ -2819,3 +2819,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-10 (late): the three lanes (unstick pass 4, Formalist round 40, whole-tree review) were stopped when the session ended and died again at the session limit on resume (resets 05:10 Perth; low-priority mode on). State on disk: proofs/CoreLeftover.lean 498 lines, 0 sorries, but 5 build errors remain (unsolved goals at lines 101, 110, 257; a typeclass at 331; Finset.prod_pos unknown at 430): NOT gated, not committed; the unstick lane's spot-check scripts research/stack/r5/leftover_depth.py and leftover_shadow.py run (base 7 section 3: the prime share among core-free members is 0.80 in every depth bin; tail strikes on core-free numbers mean 6.4, 8 at the record; the identity 'tail strikes on core-free = the core-free complement' holds); neither document written yet. Resume all three at the reset.
 - 2026-09-11, Formalist round 40 finished by the manager (proofs/CoreLeftover.lean, green at 1036 jobs, standard axioms, zero sorries): S11 rigidity (no pairwise-coprime replacement core), the two-prime lemma (B-rough below B^3 is a prime or a two-prime product), the depth lemma in slot and column forms, S12 the crossing (minimum leftover 0 iff the record reaches L) with the engine's unbounded-open discharge, and the section identity (leftover = twin count below the square). Round 40 is KERNEL.
 - 2026-09-11, unstick pass 4 (dead_branches_reopened_4.md): the step at the core reads 'the products of two of the core's survivors cannot meet every core-open slot of a stretch as long as the section's record' (identity verified at 44.7 million starts); the count side is fully independent (binomial PP among leftovers; twin-free runs on the independent prediction at every length); the manager's '40x rarer' lead refuted (starts counted against runs); the depth law S15 proved (kernel), S16 proved forward; the general object is the Omega-census of core-free members at depth u, P against P1P2 being one link's slice. Brief: the leftover at depth u.
+- 2026-09-11, whole-tree review landed (research/proof/tree_review.md): twelve verdict mismatches, corrected on the tree and the ledger where the fix is a note (theorem (E)'s hypothesis; the withdrawn CANDIDATE marks; the ledger's gate contradiction and W-numbers; two stale scan notes; F(59) stated as 161 <= F(59) <= 178 pending a certificate); node 4's WEAK and the pinned letter's refuted lower half are already carried by their children 4.i and 4.i.a.i.a.1.a. Cross-branch identities on record: the step at link k is the window statement at rung p_{k+1} up to the home column, and E8's straddling run is the twin-free run across the cut; one window function under three names (the core leftover K_L, W101's two windows, the pullback's Omega), the record its min and Omega its max with no bound between; the onset law inside the leftover types (every finish at the base-3 record is a fuel-type charge with a single tail prime as air). Staring-at-us: the certified ladder proves the step at exactly three links (base 3, 5, 7, link 1); nothing on record bounds the composite record on a section beyond F({5..q}) at its rung; the smallest missing lemma is min K > 0 at the section length. Untested leads U1-U5 launched or queued.
