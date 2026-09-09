@@ -143,6 +143,35 @@ lead and closing on it is the failure mode this rule exists for. "Not a route" i
 an exact structure is never filed as not a route because a bound is not yet in hand; write what
 is missing and open the child that looks for it.
 
+## Budget mode: never idle, never wait for permission to measure
+
+Lanes cost model budget and can die at a limit mid-write. The work does not stop with them.
+
+- When a lane dies, read what it left on disk (pre-registration, scripts, partial results),
+  commit nothing blindly, and relaunch it fresh later with "continue from the state on disk".
+  Never resume the dead agent.
+- While lanes are blocked, do the lane's core measurement yourself with a local script: low
+  inference, long CPU, results on disk for the next lane. Validate every new script against a
+  number already on the record before trusting its output (a census at a small case; a known
+  count reproduced exactly).
+- Prefer one script that answers the exact question over many chat turns. Launch long runs in
+  the background and read their files later; do not poll.
+- A new reading of data is recorded only after a second, independent measurement confirms it
+  (strike counts are not leftovers; a "31% leftover" read from a strike table was wrong and
+  was withdrawn the same day). Withdrawn readings stay in the document, marked withdrawn.
+- Reports while working: findings and numbers, in the chat, in a table where they line up;
+  no idle status lines; no closing ritual line. The owner incubates on their own terms.
+
+## Write the argument as a construction
+
+At any point the whole argument is written as a construction, not a list of names: the line,
+the gears, the fold, each object built from the ones before it, each claim followed by why the
+construction makes it so, each step labelled PROVED / MEASURED / THEORISED, the single gap in a
+box, and the counter-constructions that show what the gap cannot be built from. Terms are
+defined by building them (a "cut" is where a machine ends and the next begins, and the rule
+that makes the next cut), never by allusion. A reader who knows no vocabulary must be able to
+follow it; if they ask "what is X", the answer is the construction of X.
+
 ## Formalise in the same round
 
 A law found by a prover goes to the formaliser while the branch is warm, with its written proof
