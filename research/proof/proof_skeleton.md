@@ -120,3 +120,19 @@ candidates, neither built yet:
 
 Everything above 8 is built. Everything after 8 follows. The gap is one sentence about what
 the survivors of a section do to the section above it.
+
+## 12. Update of 2026-09-09 (local evidence and the core-leftover lane)
+
+- 11a is measured and weak: twin-gear collisions waste 0.6 to 11% of a pair's strikes, mostly
+  in (5, 7); a density correction, not a forcing.
+- The step at a link, measured at the core: over every stretch of the section's record length,
+  the core's leftover behaves like an extreme value of a count (z about -4.5), the same for the
+  real phases, random phases and integer gear sets; the twin-free stretch is not the minimum
+  leftover but the one the tail finishes exactly; supply never binds. The recursion's only trace
+  is the density deficit next to the origin, which lowers the leftover and never raises it.
+- min K_L = 0 exactly while the core's own longest fully-covered run reaches L (S12, exact).
+- So 11b is not in the leftover's size. What remains of 8 is the exact finish: among the core's
+  leftover slots on a stretch, at least one is a twin. The next pass looks at what the leftover
+  slots are (their members are core-free: primes of the tail range, or products of two large
+  primes) and at the exact finish as a property of the primes' pairing at distance 2, one level
+  down.
