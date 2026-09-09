@@ -1641,8 +1641,7 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         lower machines' twin gears act on the band (the collision law's role); the
         start-of-band excess (up to 5x independence just above g_k^2) and its mechanism (only
         machine k's gears up to x / g_k have acted at height x); the first twin above g_k^2 as
-                the base-case quantity. PARKED at the owner's weekly limit (resets 2026-09-11 04:00
-        Perth); the lane died after its pre-registration; relaunch fresh on resume.
+                the base-case quantity. RELAUNCHED 2026-09-09 with the recursion as the object (research/proof/base_and_step.md continued, scripts research/stack/r2/): the generated survivor set against the counter-machines; the step as "the composite record of machines 1..k inside section k+1 is shorter than the section" (the record statement at the cut, ROOT unless the recursion bounds it); the composite record per section along the chains against the section length and the previous section's record. OPEN, prover running on Fable.
         - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
           section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
           computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
