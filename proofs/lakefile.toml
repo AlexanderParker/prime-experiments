@@ -2219,3 +2219,8 @@ name = "ArcFloor"
 # NOT in defaultTargets (see top_machine_lean.md, Round 39).
 [[lean_lib]]
 name = "OneStepE"
+
+# Round 40: the core leftover - rigidity S11, the crossing S12, the two-prime and depth lemmas;
+# NOT in defaultTargets (see top_machine_lean.md, Round 40).
+[[lean_lib]]
+name = "CoreLeftover"

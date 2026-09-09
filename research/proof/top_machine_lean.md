@@ -1747,3 +1747,34 @@ mathlib's `Nat.minFac` / `Nat.sqrt` plumbing; nothing in the file chooses.
 | E7, maximal runs | `maxRun_succ` (and the converse `maxRun_succ_of`) | **proved** | run inside `[2, W - 1]` |
 | E7, the frontier clause `R_min` | - | **not formalised** (no `R_min`, `d_0`, `F_pre` objects in the corpus) | - |
 | E8, the induction step | - | not attempted (not in the brief; needs the frontier objects) | - |
+
+## Round 40 (2026-09-11): the core leftover, `proofs/CoreLeftover.lean` (lib `CoreLeftover`, namespace `CoreLeftover`)
+
+Written by the Formalist lane (stopped at a session limit with five build errors), finished by
+the manager (two rewrite-order fixes, one `at`-rewrite, one `open Classical in`, `Finset.prod_pos`
+replaced by `Finset.prod_ne_zero_iff`). Not in `defaultTargets`. Build: from `proofs/`,
+`~/.elan/bin/lake.exe build CoreLeftover`: green at 1036 jobs. Zero sorries; no `decide`,
+`native_decide` or `Lean.ofReduceBool`. Audit of twenty declarations (scratch `#print axioms`):
+`[propext, Classical.choice, Quot.sound]`.
+
+Objects: `Rough B n` (no prime factor below B), `PrimeOrSemiprime B n`, `primesIn N` (the primes
+in [5, N]), `Covered / leftover / run / record` for an abstract `Struck : N -> Prop`, and
+OneStepE's `Blocked q k` on columns.
+
+- **S11 rigidity** (`rigidity`, `card_eq_card_primesIn`, `eq_minFac_pow`): a Finset of integers in
+  [5, N], pairwise coprime, each coprime to 6, with at least as many members as there are
+  primes in [5, N], consists of prime powers and its least-prime-factor map is a bijection onto
+  those primes. A pairwise-coprime replacement core does not exist.
+- **The two-prime lemma** (`primeOrSemiprime_of_rough_lt_cube`): 1 < n < B^3 and B-rough gives
+  n prime or n = p q with primes p, q >= B. No hypothesis on B.
+- **The depth lemma, slot form** (`twin_of_rough`, `slot_types_of_rough`, and on columns
+  `twin_of_not_blocked`, `slot_types_of_not_blocked`, `not_blocked_iff_twin`): both members
+  B-rough and n + 2 < B^2 gives a twin; below B^3 each member is a prime or a two-prime product.
+- **S12 the crossing** (`leftover_eq_zero_iff`, `exists_leftover_zero_iff`, `run_isGreatest`,
+  `le_record_iff`, `sInf_leftover_eq_zero_iff`, `min_leftover_eq_zero_iff_record`, `crossing`,
+  `crossing_core`): the minimum leftover over a section is 0 iff the record (the longest fully
+  covered run beginning in the section) is at least L; for the engine {5..6L+1} as the core the
+  hypothesis "some slot beyond every x is open" is discharged by `blocked_unbounded_open` (an
+  explicit open column with members 1 and 3 modulo every gear).
+- **The section identity** (`leftover_eq_card_twins`, `stretch_twins`): inside a stretch below
+  (q + 1)^2 the leftover of {5..q} is exactly the number of twin slots in it.

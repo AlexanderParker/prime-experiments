@@ -76,6 +76,7 @@ import Machine29Cen
 import Machine31Cen
 import LadderPeriod
 import Mirror
+import CoreLeftover
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -1007,3 +1008,25 @@ open BlockedSlots
 #print axioms OneStepE.blocked_succ_iff_of_not_new
 #print axioms OneStepE.maxRun_succ
 #print axioms OneStepE.maxRun_succ_of
+
+-- Round 40: the core leftover (CoreLeftover.lean)
+#print axioms CoreLeftover.rigidity
+#print axioms CoreLeftover.card_eq_card_primesIn
+#print axioms CoreLeftover.eq_minFac_pow
+#print axioms CoreLeftover.primeOrSemiprime_of_rough_lt_cube
+#print axioms CoreLeftover.twin_of_rough
+#print axioms CoreLeftover.slot_types_of_rough
+#print axioms CoreLeftover.twin_of_not_blocked
+#print axioms CoreLeftover.slot_types_of_not_blocked
+#print axioms CoreLeftover.not_blocked_iff_twin
+#print axioms CoreLeftover.leftover_eq_zero_iff
+#print axioms CoreLeftover.exists_leftover_zero_iff
+#print axioms CoreLeftover.run_isGreatest
+#print axioms CoreLeftover.le_record_iff
+#print axioms CoreLeftover.sInf_leftover_eq_zero_iff
+#print axioms CoreLeftover.min_leftover_eq_zero_iff_record
+#print axioms CoreLeftover.blocked_unbounded_open
+#print axioms CoreLeftover.crossing
+#print axioms CoreLeftover.crossing_core
+#print axioms CoreLeftover.leftover_eq_card_twins
+#print axioms CoreLeftover.stretch_twins
