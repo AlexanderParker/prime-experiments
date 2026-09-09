@@ -1678,6 +1678,50 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           every threshold, whose quiet-part half is the longest twin gap (the minimising runs at
           L = 125-225 sit at the record gaps 187,913 and 850,355); the record needs the tail's
           coincidence on top. No candidate.
+          - R4.d.i.c. Unstick pass 4, P against P1 P2 in the construction (research/proof/
+            dead_branches_reopened_4.md; scripts research/stack/r5/leftover_shadow.py,
+            leftover_depth.py, leftover_indep.py). THE REFORMULATION (verified): with
+            t = 6L + 1 and S the primes in (t, t^2), every core-free member of a section is a
+            prime or a product P1 P2 of two members of S (kernel two-prime lemma); the tail's
+            strikes on core-free numbers coincide with the composite core-free members at every
+            one of the 43,407,953 + 1,323,738 starts of the base-3 and base-7 sections (identity,
+            0 exceptions); a stretch is twin-free iff S x S meets each of its K core-open slots:
+            THE STEP AT THE CORE READS "the products of two of the core's survivors cannot meet
+            every core-open slot of a stretch as long as the section's record". At the base-3
+            record: 12 core-open slots, 15 charges, all 30 prime factors distinct (forced: a
+            prime above 6L has at most one multiple in 6L numbers), every fuel in (16129, 65111),
+            a prime of the section itself, i.e. a gear of machine 4, below t^2. THE COUNT SIDE IS
+            FULLY INDEPENDENT: PP among K leftovers is binomial at K = 8..16 (K = 12: observed
+            1 / 37 / 315 / 1750 / 6639 against 2.4 / 43.6 / 367 / 1877 / 6469), and the twin-free
+            RUN count follows the independent-slot prediction at every length from L/4 to L
+            (806/809, 102/76, 29/23, 8/7.8, 2/2.3, 1/1.1, and 1 against 0.72 at L = 579; base 7:
+            1 against 1.28). MANAGER'S LEAD REFUTED: "40 times rarer than independence" counted
+            starts against one run (a gap of L + r slots contributes r + 1 starts, the record gap
+            exactly one). The composite count is not the constraint (exact bound 1,158 per
+            stretch, measured max 87, record 59, +1.1 sd). THE DEPTH LAW: S15 (PROVED, kernel
+            twin_of_rough / twin_of_not_blocked): a core-open slot below t^2 is a twin, so a
+            twin-free stretch with K > 0 lies at depth u = ln n / ln t > 2 of its own core; S16
+            (proved forward, converse with exact hypothesis): the tail is empty iff the section
+            has no composite core-free member, and then every twin-free stretch has K = 0 and the
+            record is the core's own composite record (S12). Verified on 13 record stretches: PP
+            share exactly 1.0000 in every depth bin below 2, then 0.931 / 0.789 / 0.686 / 0.605;
+            the 11 tail-empty sections lie below depth 1.95 with K = 0; the two with a tail have
+            records at depth 2.10 (K = 1) and 2.37 (K = 12). The record's depth grows along the
+            base-3 chain (1.35, 1.69, 2.37, about 4 next), so P against P1 P2 is one link's
+            slice: above depth 3, P1 P2 P3 has the Liouville sign of P and the general object is
+            the Omega-census of core-free members at depth u. Candidates: (a) the tail's charge
+            set on the core's open set: the valves' laws transfer verbatim and force nothing
+            (onset = the depth law); new object: the fuels at the top of a section are the
+            section's own bottom primes (P2 > n / p_k); (b) the distance-2 graph is a matching,
+            cover 12 of 12 with 3 spare, no structure; (c) the sign: five exact constraints on
+            the P1 P2 census and nothing else, the PP deficit is the twin count's own extreme
+            value (z = -3.56); (d) mirror not forcing. BRIEF: open "the leftover at depth u" on
+            the base-3 section with shorter L' (50..579, core per L'), per (L', u) bin the
+            Omega-census, the PP share, twin-free runs against the independent prediction, min K
+            on twin-free stretches, the fuels' identity; pre-registered: PP share depends on u
+            alone, Omega = 3 appears from u = 3, runs stay on the independent count above 3; a
+            refutation is the first trace of the construction beyond depth; confirmation files
+            the step at the core as ROOT in (L, u).
         - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
           section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
           computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
@@ -2774,3 +2818,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-10, lanes running (limits reset): unstick pass 4 on the step at the core (Fable; research/proof/dead_branches_reopened_4.md: the P-against-P1P2 decision as the shadow; the tail's charges one tier down; the leftover-slot graph and its cover; the sign census; the depth law); Formalist round 40 (Fable; proofs/CoreLeftover.lean: S11 no pairwise-coprime replacement core, the two-prime lemma, S12, the depth lemma); a whole-tree Reviewer (Fable; research/proof/tree_review.md: node-by-node verdict audit, cross-branch reconciliation, the untested list, the staring-at-us check).
 - 2026-09-10 (late): the three lanes (unstick pass 4, Formalist round 40, whole-tree review) were stopped when the session ended and died again at the session limit on resume (resets 05:10 Perth; low-priority mode on). State on disk: proofs/CoreLeftover.lean 498 lines, 0 sorries, but 5 build errors remain (unsolved goals at lines 101, 110, 257; a typeclass at 331; Finset.prod_pos unknown at 430): NOT gated, not committed; the unstick lane's spot-check scripts research/stack/r5/leftover_depth.py and leftover_shadow.py run (base 7 section 3: the prime share among core-free members is 0.80 in every depth bin; tail strikes on core-free numbers mean 6.4, 8 at the record; the identity 'tail strikes on core-free = the core-free complement' holds); neither document written yet. Resume all three at the reset.
 - 2026-09-11, Formalist round 40 finished by the manager (proofs/CoreLeftover.lean, green at 1036 jobs, standard axioms, zero sorries): S11 rigidity (no pairwise-coprime replacement core), the two-prime lemma (B-rough below B^3 is a prime or a two-prime product), the depth lemma in slot and column forms, S12 the crossing (minimum leftover 0 iff the record reaches L) with the engine's unbounded-open discharge, and the section identity (leftover = twin count below the square). Round 40 is KERNEL.
+- 2026-09-11, unstick pass 4 (dead_branches_reopened_4.md): the step at the core reads 'the products of two of the core's survivors cannot meet every core-open slot of a stretch as long as the section's record' (identity verified at 44.7 million starts); the count side is fully independent (binomial PP among leftovers; twin-free runs on the independent prediction at every length); the manager's '40x rarer' lead refuted (starts counted against runs); the depth law S15 proved (kernel), S16 proved forward; the general object is the Omega-census of core-free members at depth u, P against P1P2 being one link's slice. Brief: the leftover at depth u.
