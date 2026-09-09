@@ -78,3 +78,33 @@ either exact-but-a-count or fading. The one input no counter-machine reproduces 
 recursion of the construction: a machine's gears are the survivors of the machines below. That
 is where the Friday lanes go; the square-start lead is closed as FACT (blind classes exact) and
 ROOT (existence in the arc).
+
+## 5. The composite record per section (2026-09-09, research/stack/r4/composite_record.py)
+
+Inside section k+1 the slots struck by machines 1..k are all slots but the twins (band
+structure), so the composite record of machines 1..k on the section is the longest twin-free run
+of slots inside it, and the step at link k is exactly "that record is shorter than the section".
+Measured (sieve to 3 x 10^8):
+
+| chain | section | length (slots) | twins | composite record (slots) | record / length | first twin above the cut |
+|---|---|---|---|---|---|---|
+| base 3 | [9, 121) | 19 | 8 | 4 | 0.21 | +2 |
+| base 3 | [121, 16129) | 2,668 | 276 | 46 | 0.017 | +16 |
+| base 3 | [16129, 260,467,321) | 43,408,532 | 1,027,948 | 579 | 1.3 x 10^-5 | +10 |
+| base 5 | [25, 841) | 136 | 29 | 24 | 0.18 | +4 |
+| base 5 | [841, 727,609) | 121,128 | 6,224 | 167 | 1.4 x 10^-3 | +16 |
+| base 7 | [49, 2809) | 460 | 74 | 27 | 0.059 | +10 |
+| base 7 | [2809, 7,946,761) | 1,323,992 | 48,249 | 254 | 1.9 x 10^-4 | +160 |
+| base 13 | [169, 29,929) | 4,960 | 455 | 82 | 0.017 | +10 |
+| base 17 | [289, 85,849) | 14,260 | 1,056 | 104 | 7.3 x 10^-3 | +22 |
+| base 23 | [529, 292,681) | 48,692 | 2,917 | 153 | 3.1 x 10^-3 | +40 |
+| base 31 | [961, 935,089) | 155,688 | 7,688 | 241 | 1.6 x 10^-3 | +58 |
+
+The record inside a section is the largest twin gap inside it (the record at 187,913 in the
+base-23 section is the gap 187,907 -> 188,831 of W103; at 850,355 the gap 850,349 -> 851,801).
+Along the base-3 chain the record grows 4, 46, 579 slots while the section grows 19, 2,668,
+43 million: the ratio falls from 0.21 to 1.3 x 10^-5. The step holds at every computed link with
+a margin that widens like the square of the cut against the log-squared growth of twin gaps.
+That widening is the count again (the density of twins), stated as a record; what the recursion
+would have to supply is a reason the record of machines 1..k, which are the survivors of the
+sections below, cannot reach the length of the section above them.
