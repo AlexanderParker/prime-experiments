@@ -1641,7 +1641,43 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         lower machines' twin gears act on the band (the collision law's role); the
         start-of-band excess (up to 5x independence just above g_k^2) and its mechanism (only
         machine k's gears up to x / g_k have acted at height x); the first twin above g_k^2 as
-                the base-case quantity. RELAUNCHED 2026-09-09 with the recursion as the object (research/proof/base_and_step.md continued, scripts research/stack/r2/): the generated survivor set against the counter-machines; the step as "the composite record of machines 1..k inside section k+1 is shorter than the section" (the record statement at the cut, ROOT unless the recursion bounds it); the composite record per section along the chains against the section length and the previous section's record. OPEN, prover running on Fable.
+                the base-case quantity. The lane on the recursion died at the weekly limit three times
+        (2026-09-07 to 09); the manager measured its reduction locally (research/proof/
+        step_evidence.md sections 5-6: the composite record per section is the largest twin
+        gap inside it, 4, 46, 579 slots against sections of 19, 2,668, 43 million; over every
+        stretch of the record length the core's leftover is typically 20 and 12 at the record,
+        the tail's strikes typically 199 and 181 at the record, supply exceeding demand in 100%
+        of stretches yet exactly one twin-free: a twin gap is a below-average core leftover
+        plus an exact finish by the tail).
+        - R4.d.i.b. The core's real-phase leftover (research/proof/core_leftover.md, laws
+          S10-S14; scripts research/stack/r5/). FACT with a ROOT mark. K_L(x) = the core's
+          (gears <= 6L + 1) unstruck slots on the stretch of L slots at x, a definite periodic
+          function since phases are real. Base 3, section [16129, 260,467,321), L* = 579, core
+          485 primes: the real minimum over 43.4 million starts is K = 3 (one stretch, at
+          70,722,785, which holds 2 twins) against a free-phase minimum of 0 (a greedy phasing
+          of the same core covers 25,267 slots, 43.6 L*); the record stretch is NOT the minimum
+          (K = 12 there, the 2.07th percentile, 897,507 starts at or below it): it is twin-free
+          because 181 tail gears land on all 12. Base 7: min 1 against 0. Base 23 (no tail): min
+          0 exactly once, at the record. S12 (EXACT): min K_L = 0 iff the core's own longest
+          fully-covered run R(6L + 1) >= L; on base 3 that holds to L_0 = 278 = R(1669) exactly,
+          then the minimum climbs 1, 2, 3, ... 20 at L = 300, 425, 500, ... 2000 while the mean
+          goes 13 to 49. S13 (measured): every minimum is an extreme value of its own count,
+          z = (min - mean)/sd between -4.19 and -4.71 at L = 579 for the real phases, three
+          random phasings and two integer sets alike; the distribution is narrower than
+          binomial (variance ratio 0.83). COUNTERFACTUALS: random phases of the same core give
+          L_0 = 254, 296, 272 against 278 and minima 5, 3, 3 against 3, within 2 of the real
+          minimum to L = 1000; from L = 1200 the real minimum sits below every random seed by
+          exactly the shift of the mean: the real section's leftover density is 0.03516 against
+          the CRT product 0.037439, a 6% deficit at L* rising to 14% at L = 2000 with
+          u = ln n / ln(6L + 1): the Buchstab deficit next to the origin (S14, known mechanism).
+          S11 (PROVED, kernel-ready): a pairwise-coprime replacement of the core does not exist
+          (any pairwise coprime set of 485 integers in [5, 3475] coprime to 6 is one prime power
+          per prime); the non-coprime substitute doubles the mean and the minimum with the same
+          z-score. THE RECURSION'S ONLY TRACE IN THE MINIMUM IS THE ORIGIN'S DENSITY DEFICIT,
+          which lowers it and never raises it. ROOT: min K_L > 0 above L_0 is R(6L + 1) < L for
+          every threshold, whose quiet-part half is the longest twin gap (the minimising runs at
+          L = 125-225 sit at the record gaps 187,913 and 850,355); the record needs the tail's
+          coincidence on top. No candidate.
         - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
           section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
           computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
@@ -2733,3 +2769,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-09, manager (composite_record.py; the lane on the recursion died at the weekly limit again, relaunch Friday): the step measured as a record: inside each section the composite record of the machines below (the longest twin-free run) is 4, 46, 579 slots along the base-3 chain against sections of 19, 2,668, 43,408,532 slots (ratio 0.21 to 1.3 x 10^-5); the record inside a section is its largest twin gap. The step holds at every computed link with a margin widening like the square of the cut against log-squared twin gaps: the count again, as a record.
 - 2026-09-09, manager (record_cover.py; the lane died at the weekly limit a third time): the covering structure of every section's record run. The small gears cover their ordinary share (5 covers 2/5 of the run, 7 covers 2/7), so a twin gap is not a small-gear alignment; the core's union leaves 31% of the run unstruck against about 2% typical, and the tail gears strike those leftovers exactly once each with none wasted (181 gears, 181 slots at the base-3 section 4 record). The step at a link is 'the tail cannot finish the core's leftovers on any run as long as the section': the loaded record rule's core-and-tail object with the real phases. Friday: supply against demand as a covering inequality of the construction. Paused until 2026-09-11 04:00.
 - 2026-09-09, manager (supply_demand.py; correction of the previous entry): the '31% leftover' reading was wrong (record_cover counted strikes, not leftovers). Over every window of the record length: the core's leftover is typically 20 (max 56) and 12 at the record (base 3, section 4); the tail's strikes typically 199 and 181 at the record; supply exceeds demand in 100% of windows yet exactly one window is twin-free. A twin gap is a below-average core leftover plus an exact finish by the tail: a coincidence of K placements, the count in the construction's terms. Supply against demand cannot close the step; what would have to be bounded is the core's real-phase minimum leftover, the composite record again, located at the core. Paused until Friday.
+- 2026-09-09, prover BC4 on Fable (core_leftover.md): the core's real-phase leftover is an extreme value of a count (z about -4.5 for real phases, random phases and integer sets alike); the real minimum is 3 against a free-phase 0 on the base-3 section; the record stretch is not the minimum (12, the 2nd percentile) but the one the tail finishes; min K_L = 0 iff the core's own run R(6L + 1) >= L (S12, exact, L_0 = 278); the recursion's only trace is the origin's density deficit, lowering the minimum. ROOT; no candidate. A pairwise-coprime replacement core cannot exist (S11, proved).
