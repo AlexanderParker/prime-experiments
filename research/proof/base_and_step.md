@@ -142,3 +142,201 @@ band's start.
 | P7 | prover | j(g#) > 2g at every twin prime g >= 11: the pattern alone cannot force a rough number into Z_g | (filled below) |
 | O1 | owner | the base is exact and every link holds a twin | (filled below) |
 | O2 | owner (as read) | the excess is a mechanism that forces a twin near every band's start | (filled below) |
+
+### The previous lane's scorecard, filled from its result files (2026-09-09, before the new runs)
+
+The lane of 2026-09-07 ran chain.py and zone.py (results/chain_a.json, chain_b.json, zone.json
+on disk) and did not fill its scorecard. Filled from those files by the present lane, without
+re-running: P1 CONFIRMED (3,401 bases g with g^2 <= 10^9; 1 empty link, the trivial [2, 4); 0 empty
+links from g = 3 on; the sieve reproduces pi_2(10^8) = 440,312; link counts 276 at [127, 16129),
+1,028,184 at [16141, 16141^2) as filed, against 289 and 1,029,119 from the Hardy-Littlewood
+integral). P2 REFUTED in its number: along the base chain the first twin above g_k lies at
+distance 0, 0, 10, 0, 0, 1170, 478, 30004, 156214, 143958 for k = 1..10, and 30004 / ln^2 g_8
+with g_8 of 68 digits (ln g_8 = 155) is 1.25, 156214 / ln^2 g_9 (ln = 310) is 1.63 and 143958 /
+ln^2 g_10 (ln = 621) is 0.37: within 3 ln^2 g; but over ALL bases g <= 31622 the maximum of
+(first twin above g^2 - g^2) / ln^2(g^2) is 7.32 at g = 8699 (distance 2410), above the refutation
+line 5. P4 and P6 CONFIRMED (0 coincidence failures, 0 in-zone failures, 0 rough composites in
+any zone, minimum zone twin count 1 at g = 11 and 17, over 9,589 primes g <= 10^5 and 3,242 zones
+g <= 30,000). P3 and P5 were not run (bandstep.py and excess.py have no result files); left
+unfilled. P7 CONFIRMED from the known values (j(11#) = 34 > 22). O1 CONFIRMED as far as computed
+(every link of every base holds a twin). O2 not tested by that lane.
+
+## Part II. The recursion: the generated survivor set and the step (branch R4.d.i.b, 2026-09-09)
+
+Prover, third round of the stack line. Parent: the review of research/proof/step_evidence.md
+(2026-09-08), whose conclusion was that the one input no counter-machine reproduces is the
+recursion of proof_skeleton.md section 6: machine k + 1's gears are the survivors of machines
+1..k in section k + 1. The three counter-machines of skeleton section 10 (shifted gears, the
+saturated machine with the section's twins as gears, the parity set) all kill the count and all
+violate that recursion. So the step, if it has a proof, uses a property of GENERATED survivor
+sets that arbitrary prime sets lack. This part names that property exactly, tests it against the
+counter-machines, and writes the step as a statement about the composite machine's record on
+one section. Scripts: research/stack/r2/generated.py (the chains: the explicit construction,
+the properties table, the composite record per section), research/stack/r2/record_scan.py (the
+composite record on the section [q^2, q'^2) for every prime q with q'^2 <= 10^9, and the
+chain-link pairs), research/stack/r2/period_record.py (the full-period record of the composite
+machines small enough to scan). Outputs in research/stack/r2/results/ (untracked); every
+number used is in this text. Laws numbered S10 onward (S8 and S9 are issued in
+stacked_squares.md). Vocabulary: the raw line with the anchor 2, 3, 5 as the clock (cycle j =
+the numbers 30j .. 30j + 29, three slots per cycle at 30j + 11/13, 17/19, 29/31); cut c_{k+1} =
+p_k^2 with p_k the first prime at or above c_k; section k + 1 = [c_{k+1}, c_{k+2}); machine 1 = the
+primes from 7 up to c_2, machine k + 1 = the primes of section k + 1. The gears of machines 1..k
+are therefore exactly the primes 7 <= p < p_{k+1}, and P_k = their product times 30 is "the lower
+product".
+
+Prior results checked before opening: docs/novel/README.md entries paired-jacobsthal-values
+(the free-phase two-class covering record h_2(p_n#) of Ziller-Morack, OEIS A288815: 2, 6, 18,
+30, 66, 150, 192, 258, 366, 450, 570, 708, 894, 1044, 1284, 1422, 1656, 1902, 2190, 2460, 2622 for
+p_n = 2..73, in numbers on the raw line, with the record "Conjecture 6 h_2(n) < p_n^2 - p_n
+implies the project's target statement" already on file, 2026-09-06), j2-upper-bound (the best
+proved upper bound on the paired function is polynomial, exponent 4.266 + eps, and the exponent
+2 that the target needs sits below the parity floor), j2-lower-ladder (h_2(P(z)) >= 1.349 z log z
+proved; the empirical growth c z log^2 z with c about 2.5), research/harvest/r1/jacobsthal_check.md
+(the real-phase full-period record of {5..p_n} is 6 F(M) = 12, 30, 42, 66, 108, 150, 204 numbers
+at p_n = 5..23, below h_2 from p_n = 11 on), phase_zero.md V14 and V17 (saturation, and the
+saturated counter-machine), turn_ledger.md V2 and valve_existence.md V12 (the structural laws
+are blind to the fuel's primality; the only separating invariant of the charge set is phase
+zero, whose existence consequence is the root), stacked_squares.md S1-S9, and step_evidence.md.
+What this part can find that is not on record: the exact separating property of a GENERATED
+survivor set stated as a set property and tested on the same section against the three
+counter-machines at once (V12 tested the fuel's properties, not the section's survivor set as
+the next machine); the composite record on each section along the chains against the section's
+length and the previous section's record (no such table exists: the project's records are
+full-period records of small machines, and the section is a slice); which links of the chains
+are already proved by the free-phase record table; and the growth law of the section record
+over every cut q^2 <= 10^9 with counts. What it will NOT do: re-derive Conjecture 6's implication
+(on record), or the Jacobsthal bounds.
+
+### Pre-registered (written before any script of this part ran; verdicts filled in afterwards)
+
+#### Theory
+
+T5 (the generated set is the coprime set, and that is all it is). Machine k + 1 = {n in
+[p_k^2, p_{k+1}^2) : gcd(n, P_k) = 1}, P_k = 30 x prod of the primes 7 <= p < p_{k+1} (skeleton
+section 5; there is no prime in [p_k^2, p_{k+1}) by the definition of p_{k+1}, so the primes below
+p_{k+1} are exactly the anchor and the gears of machines 1..k). Every property of the generated
+set on its section is a property of "the numbers coprime to P_k on one interval". The properties
+an arbitrary prime set of the same size on the same section lacks are therefore exactly two,
+and both are set-theoretic, not counts: (M) MAXIMALITY, every number of the section coprime to
+P_k is a member (the saturated counter-machine V17 and a random subset both violate it: they
+drop members); and (I) the gear set is an INITIAL SEGMENT of the primes, every prime below the
+cut is a gear and no prime above it (V17 violates it by adding the section's twin members, which
+lie above the cut, as gears). (M) is what the recursion gives and (I) is what the recursion
+forbids. Every forbidden-configuration law of the manifold (no three members at n, n + 2, n + 4;
+no member in the class 0 of a lower gear; the residue laws of consecutive gaps) is inherited by
+every SUBSET of the coprime set, so the counter-machines (b) and (c) satisfy all of them; the
+parity set (d) violates the class-0 law because its members carry lower-gear factors. No
+census, mirror or character identity is exact on a slice: the section is a slice of length
+about p_k^4 in a period of length exp(p_k^2), it is not self-mirrored, and every class count on
+it deviates from the period average by a square-root fluctuation.
+
+T6 (the step through the recursion is a record statement). By skeleton section 5, on section
+k + 1 a slot is open under machines 1..k iff it is a twin prime pair, and by T5 the open slots are
+the pairs (n, n + 2) with both members coprime to P_k. So the step at link k is exactly: THE
+LONGEST RUN OF CONSECUTIVE STRUCK SLOTS OF MACHINES 1..k INSIDE SECTION k + 1 IS SHORTER THAN THE
+SECTION. Two records bound it from above: the real-phase full-period record R(P_k) of the
+composite machine (the longest run of struck slots anywhere in its period), and the free-phase
+two-class covering record h_2 of the same gear sizes (any phases; Ziller-Morack's function),
+with section record <= R(P_k) <= h_2(gears) + O(1). If h_2 of the primes below the cut is shorter
+than the section, the step at that link is PROVED by the covering record alone, with no
+reference to the section's position. The exact table of h_2 reaches p_n = 73, so this proves
+the links whose lower gears are the primes below 73 + something: link 1 of base 3 (gears above
+the fold 2, 3: {5, 7}, h_2 = 30 against a section of 112 numbers), link 1 of base 5 ({5..23}, 366
+against 816) and link 1 of base 7 ({5..47}, 1284 against 2760). No other link of any chain is
+within the table, and the proved upper bounds on h_2 (exponent 4.266) are a full power above the
+section (exponent 2 in the largest gear), so from link 2 on the reduction is the target
+statement at the cut (ROOT) and is the README's recorded "Conjecture 6 implies the target" read
+in the stack's coordinate. The recursion adds nothing to the record: the record of a machine is
+a function of its gear sizes and phases, the recursion fixes the sizes to be the initial
+segment of primes and the phases to be zero, and that is the definition of the real machine.
+
+T7 (the growth of the section record). The composite record on section k + 1 is the largest
+twin-free run of slots in [p_k^2, p_{k+1}^2). Its growth is the growth of maximal twin gaps,
+about (ln x)^2 numbers at height x up to a constant near 1-2 (Cramer-type for pairs), i.e. about
+(ln x)^2 / 10 slots, while the section has about p_k^4 / 10 slots. Along a chain the cut is
+squared at each link, ln x doubles, and the record per section grows by a factor about 4 while
+the section grows by the square: the ratio record / section falls like ln^2 p_k / p_k^2. The
+previous section's record does not determine the next (the record is a property of the primes
+near height x, not of the gears' gaps): the ratio record(k + 1) / record(k) scatters around 4.
+
+#### Predictions with numbers, and what would refute each
+
+Q1 (the explicit construction). Machines built recursively from the base by striking multiples
+of the members of the machines below (no primality test in the construction) equal the primes
+of every section: 0 mismatches at the 8 full sections (base 3: [9, 121), [121, 16129), [16129,
+260,467,321); base 5: [25, 841), [841, 727,609); base 7: [49, 2809), [2809, 7,946,761); base 13:
+[169, 29,929), [29,929, 896,822,809)) and on the prefixes to 10^9 of the three sections that run
+beyond it (base 5 from 727,609, base 7 from 7,946,761). Base 11's chain merges with base 3's at
+[121, 16129). Refuted by one mismatch.
+
+Q2 (the properties table). On every full section, against (a) the generated set G, (b) the
+saturated counter-machine's survivors B = G minus the twin members, (c) a random subset C of G
+with |C| = |B|, (d) the parity set D = {s P in the section : P prime >= p_{k+1}, s coprime to 30
+with an even number of prime factors} (the Liouville-negative charges, which contain G): (M) the
+count of numbers coprime to P_k missing from the set is 0 for G and D, 2 x twins for B, |G| - |B|
+for C; (I) the count of members divisible by a lower gear is 0 for G, B, C and positive for D;
+the forbidden patterns (a member in class 0 of a gear 7 <= g < p_{k+1}; three members at n, n + 2,
+n + 4; consecutive gaps (2, 4) or (4, 2)) have count 0 for G, B and C at every section; the
+reflection of the section's members through the section's midpoint lands on members at the
+chance rate (within 3 standard deviations of |set|^2 / (numbers coprime to 30 in the section))
+for all four sets; the class census mod 7, 11, 13 and mod 30 has every nonzero class within 4
+standard deviations of the mean for G, B, C, and no two classes exactly equal beyond chance
+(fewer than 2 exact ties per section among the classes mod 7, 11, 13); the character sums are
+never zero. Refuted by an exact identity (a census tie or a zero character sum) that holds at
+every section, or by a forbidden pattern in G.
+
+Q3 (the ends). The smallest member of every generated set is p_{k+1} (the first prime at or
+above the cut), exactly, 8 of 8; the first twin above the cut lies within 160 numbers (5.3 cycles)
+of it at every full section and every prefix, the maximum being the 160 of base 7's section 2
+(cut 2809, first twin 2969), and the last twin lies within 1000 numbers of the section's end at
+every full section. Refuted by a first twin above 160 numbers.
+
+Q4 (the composite record per section, exact). At every full section the longest run of struck
+slots of machines 1..k equals the longest twin-free run of slots (0 mismatches); its length in
+slots is at most 3 % of the section's slots at [121, 16129) and at most 0.01 % at the sections
+above 10^8; on the section [9, 121) it is 2 slots of 11 (77/79, 89/91 struck by 7), on [25, 841)
+at most 10 of 82. Refuted by a ratio above 10 % at any section from [121, 16129) on.
+
+Q5 (the scan). Over every prime q with 7 <= q and q'^2 <= 10^9 (about 3,400 sections), the
+section record (longest twin-free slot run in [q^2, q'^2), counting the runs from the section's
+start to the first twin and from the last twin to its end) is shorter than the section at every
+q (this is the count: 0 empty sections); the largest ratio record / section over q >= 7 is at a
+q below 100 and is below 0.5; for every q >= 1000 the ratio is below 0.02; the record in numbers
+is within [0.5, 4] x (ln q^2)^2 for at least 95 % of the sections. Refuted by a ratio above 0.5,
+or by fewer than 90 % of the sections in the stated band.
+
+Q6 (the chain pairs). For every prime r with r'' = nextprime(r^2) and nextprime(r''^2)^2 <= 10^9
+(about 40 pairs), the ratio record[r''^2, nextprime(r''^2)^2) / record[r^2, r''^2) has median in
+[2, 8] and no value above 30; the previous section's record does not determine the next (the
+Spearman correlation of the two records, after removing the trend in ln r, is below 0.5 in
+absolute value). Refuted by a median outside [2, 8].
+
+Q7 (the record proves three links). h_2({5, 7}) = 30 < 112, h_2({5..23}) = 366 < 816,
+h_2({5..47}) = 1284 < 2760: the first link of the chains from 3, 5, 7 holds by the free-phase
+covering record; for the first link of base 11 (gears {5..113}, section 16008) and base 13
+({5..167}, section 29760) no exact h_2 is on record, the proved bound is far above the section,
+and the measured growth (about 2.5 z ln^2 z: 6,300 and 11,000) sits below the section. The
+real-phase full-period record of the composite machine of base 5's link 1 (gears 7..23 above the
+anchor, period 7,436,429 cycles) in slots is about 20 (6 F(23) = 204 numbers), below the section's
+82 slots; the section's own record is smaller than the full-period record at every scannable
+case. Refuted by a full-period record above the section.
+
+The owner's prediction, as read from the brief (O3): "IF the real record of the composite
+machine is below the section length, the step holds at that k by the record alone", and the
+question whether the recursion (each machine's gears are the previous section's survivors,
+whose gaps are bounded by the previous record) gives the record a bound. Recorded prediction:
+the record is below the section at every computed cut, by a margin growing like p_k^2 / ln^2 p_k;
+the recursion gives the record no bound beyond "the gears are all the primes below the cut".
+
+#### Scorecard
+
+| # | owner | claim | verdict |
+|---|---|---|---|
+| Q1 | prover | recursive construction = primes, 0 mismatches at 8 sections + 3 prefixes | (filled below) |
+| Q2 | prover | (M) and (I) are the only separating properties; forbidden patterns inherited by subsets; no exact slice identity | (filled below) |
+| Q3 | prover | smallest member = p_{k+1}; first twin within 160 numbers at every section | (filled below) |
+| Q4 | prover | struck-slot record = twin-free record; <= 3 % of the section at [121, 16129), <= 0.01 % above 10^8 | (filled below) |
+| Q5 | prover | scan: record < section at every q; max ratio < 0.5 at q < 100; < 0.02 for q >= 1000; 95 % within [0.5, 4] (ln q^2)^2 | (filled below) |
+| Q6 | prover | chain pairs: record ratio median in [2, 8]; no determination by the previous record | (filled below) |
+| Q7 | prover | h_2 proves link 1 of bases 3, 5, 7 and no other link; full-period record of {7..23} about 20 slots < 82 | (filled below) |
+| O3 | owner (as read) | the record is below the section at every cut, and the recursion may bound the record | (filled below) |

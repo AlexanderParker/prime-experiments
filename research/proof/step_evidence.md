@@ -142,3 +142,23 @@ to be in the core's real-phase leftover: why the machines below, whose gears are
 lower sections, cannot leave a window of the section's length with zero leftover. That is the
 composite record statement once more, now located precisely at the core (gears up to 6L + 1) with
 its true phases.
+
+## 7. What the core's leftover slots are (2026-09-09, research/stack/r5/leftover_types.py)
+
+A leftover slot's members have no prime factor <= 6L + 1, and every member is below the section's
+top c_{k+2} < (6L + 1)^3, so each member is a prime or a product of exactly two primes above
+6L + 1. Types per stretch of the record length: PP (both prime: a twin), P+C (one prime, one
+two-prime product), C+C.
+
+| section | record stretch: PP / P+C / C+C | 300 random stretches, mean PP / P+C / C+C | twin-free among the random |
+|---|---|---|---|
+| base 3, L = 579 | 0 / 9 / 3 | 13.9 / 5.6 / 0.7 | 0 |
+| base 7, L = 254 | 0 / 1 / 0 | 9.4 / 1.0 / 0.07 | 0 |
+
+The record stretch's composite members are all products of two primes in the tail range (base 3:
+14173 x 18059, 11903 x 21503, 5987 x 42751, ...; base 7: 2039 x 2389). So the "exact finish by the
+tail" is: every leftover slot of the stretch has a member that is a product of two tail primes
+(or a prime whose partner is). The step at the core is therefore: among the core's leftover slots
+of a stretch, whose members are all P or P1 P2, at least one is PP. That is the parity
+barrier's object stated inside the construction (P against P1 P2), and it is where the count
+stops: a sign-sensitive count cannot separate PP from the P1 P2 pairs.
