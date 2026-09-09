@@ -332,11 +332,274 @@ the recursion gives the record no bound beyond "the gears are all the primes bel
 
 | # | owner | claim | verdict |
 |---|---|---|---|
-| Q1 | prover | recursive construction = primes, 0 mismatches at 8 sections + 3 prefixes | (filled below) |
-| Q2 | prover | (M) and (I) are the only separating properties; forbidden patterns inherited by subsets; no exact slice identity | (filled below) |
-| Q3 | prover | smallest member = p_{k+1}; first twin within 160 numbers at every section | (filled below) |
-| Q4 | prover | struck-slot record = twin-free record; <= 3 % of the section at [121, 16129), <= 0.01 % above 10^8 | (filled below) |
-| Q5 | prover | scan: record < section at every q; max ratio < 0.5 at q < 100; < 0.02 for q >= 1000; 95 % within [0.5, 4] (ln q^2)^2 | (filled below) |
-| Q6 | prover | chain pairs: record ratio median in [2, 8]; no determination by the previous record | (filled below) |
-| Q7 | prover | h_2 proves link 1 of bases 3, 5, 7 and no other link; full-period record of {7..23} about 20 slots < 82 | (filled below) |
-| O3 | owner (as read) | the record is below the section at every cut, and the recursion may bound the record | (filled below) |
+| Q1 | prover | recursive construction = primes, 0 mismatches at 8 sections + 3 prefixes | **CONFIRMED** (11 full runs + 5 prefixes, 1,333,333,231 numbers coprime to 30, 0 mismatches; the pre-registered counts 8 and 3 are miscounts of the 9 and 5 the chains actually have) |
+| Q2 | prover | (M) and (I) are the only separating properties; forbidden patterns inherited by subsets; no exact slice identity | **HELD in the main, THREE clauses REFUTED**: no exact identity and no forbidden pattern in G at any section; but (2, 4) is not a forbidden pattern, the reflection is the Goldbach count and not chance, and B is separable from G by its class census (161 sd), which T5 did not allow for |
+| Q3 | prover | smallest member = p_{k+1}; first twin within 160 numbers at every section | **HELD at the 11 full sections** (max offset exactly the predicted 160, base 7 section 2), **REFUTED at the prefixes** (268 at base 5 from 727,609); last twin within 1,000 of the end at every full section (max 362) |
+| Q4 | prover | struck-slot record = twin-free record; <= 3 % of the section at [121, 16129), <= 0.01 % above 10^8 | **HELD on three clauses** (0 mismatches at 16 of 16; 1.686 %; 0.00133 % and 0.00053 %), **REFUTED on the fourth**: [25, 841) has 14 of 82 slots, not "at most 10" |
+| Q5 | prover | scan: record < section at every q; max ratio < 0.5 at q < 100; < 0.02 for q >= 1000; 95 % within [0.5, 4] (ln q^2)^2 | **HELD on the count** (3,397 sections, 0 empty), **REFUTED on all three numbers**: max ratio 0.6667 at q = 29; 653 sections with q >= 1000 above 0.02 (max 0.1744 at q = 1,289); 23.31 % in the band, 0 below it and 2,605 above |
+| Q6 | prover | chain pairs: record ratio median in [2, 8]; no determination by the previous record | **REFUTED**: there are 5 pairs, not "about 40" (the cap forces r <= 13); ratios 13.500, 7.143, 9.500, 12.852, 9.714, median 9.714 outside [2, 8]; residual Spearman 0.90, above the 0.5 line, on 5 points |
+| Q7 | prover | h_2 proves link 1 of bases 3, 5, 7 and no other link; full-period record of {7..23} about 20 slots < 82 | **CONFIRMED** (30 < 112, 366 < 816, 1,284 < 2,760; full-period record 19 slots, largest cyclic gap 204 numbers, reproducing jacobsthal_check exactly), **one clause REFUTED**: at base 3 link 1 the section record equals the full-period record (2 = 2), it is not smaller |
+| O3 | owner (as read) | the record is below the section at every cut, and the recursion may bound the record | **CONFIRMED as far as computed**: record < section at all 3,397 cuts and all 16 chain runs, margin 1.500 (q = 29) to 1,493.8 (q = 31,397); the recursion gives no bound, and the record's law is an extreme value (S18) |
+
+### Part II filled from the result files (prover, 2026-09-10, lead U1 of research/proof/tree_review.md)
+
+The lane that pre-registered Q1-Q7 and O3 died at the weekly limit before writing a verdict. This
+section fills the scorecard above from `research/stack/r2/results/`. What was on disk and used as
+it stood: `record_scan.json` and `record_scan_rows.npz` (the complete scan, 3,397 sections with
+`q'^2 <= 10^9`, and the chain pairs) and `twins_1e9.npy` (3,424,506 twins to 10^9, reproducing
+`pi_2(10^8) = 440,312` and `pi_2(10^9) = 3,424,506`). Two things had to be run because the result
+was missing or was not the pre-registered one:
+
+- `generated.json` on disk was a reduced run (`N = 10^5`, bases 3 and 5 only), not the
+  pre-registered `N = 10^9` over the five bases. Re-run as pre-registered: **386.5 s on one core**,
+  well inside the half-hour allowance.
+- `period_record.json` did not exist at all (Q7's full-period clause). Run: **1 s**.
+
+Nothing else was recomputed; the mirror recount of Q2 and the extreme-value fit of the closing
+section are new reads of files already on disk. Scripts of this fill:
+`research/stack/r6/part2_fill.py`, `gen_report.py`, `mirror_check.py`. Laws are numbered **S18
+onward**: S15-S16 are issued in dead_branches_reopened_4.md and S17 is reserved by
+leftover_depth.md, so tree_review.md's instruction "it must start at S15" is stale.
+
+#### Q1. The explicit construction is the primes. CONFIRMED.
+
+The five chains give **11 full section runs and 5 prefix runs** (9 and 3 of them distinct: base
+11's chain merges into base 3's at `[121, 16129)`, so its two rows repeat base 3's). Over all 16
+runs the recursive construction - striking multiples of the members of the machines below, with no
+primality test anywhere in it - was compared against an independent Eratosthenes sieve on
+**1,333,333,231 numbers coprime to 30**: **0 mismatches**. The gmpy2 spot check on samples drawn
+through the run: **0 of 104,251 members not prime, 0 of 104,426 non-members prime**. The
+pre-registration's "8 full sections" and "3 prefixes" are miscounts of its own list (which names 9
+and 2); the true figures are 9 distinct full sections and 3 distinct prefixes.
+
+#### Q2. The properties table. Held in the main; three clauses refuted, one of them usefully.
+
+Read set by set on the 11 full runs (`G` = the generated set, `B` = `G` minus the twin members
+(V17's survivors), `C` = `G` minus a random subset of the same size, `D` = the Liouville-negative
+charges).
+
+**(M) maximality.** Numbers of the section coprime to the lower product that are missing: **0 for
+`G` at 11 of 11, 0 for `D` at 11 of 11**. For `B` the count is `2 x (twins of G)` exactly at 8 of
+the 11 and `2 x twins + 1` at three - `[121, 16129)`, `[25, 841)`, `[169, 29929)`. The excess is
+exact and explicable: the section's top is `p_k^2` and the pair `(p_k^2 - 2, p_k^2)` survives the
+LOWER gears (the only divisor of `p_k^2` is `p_k`, which is not one of them), so when `p_k^2 - 2`
+is prime the member `p_k^2 - 2` is flagged as a twin member although its partner lies outside the
+section. That is the case at exactly those three sections (16127, 839, 29927 prime; 119, 2807,
+727607, 7946759, 260467319, 896822807 composite). It is the same phenomenon that
+research/proof/frontier_floor_1e7.md measures at 11.27 % of all cuts to 10^7.
+
+**(I) initial segment.** Members divisible by a lower gear: **0 for `G`, `B`, `C` at 11 of 11**;
+positive for `D` at 9 of 11 (66, 14,094, 228,906, 185, 10,523,643, 39,294,738, ...), and **0 at the
+two smallest sections** `[9, 121)` and `[25, 841)`, where `D = G` exactly because no
+Liouville-negative charge with a lower-gear factor fits. So (I) separates `D` from `G` at 9 of 11
+sections, not at all 11.
+
+**Forbidden patterns.** Triples `n, n+2, n+4`: **0 for all four sets at 11 of 11**. A member in
+class 0 of a lower gear: 0 for `G`, `B`, `C` at 11 of 11 (the `0/1/1` at `[9, 121)` is 11 and 13
+themselves, which are members there and not gears there). Consecutive gaps `(2, 4)` or `(4, 2)`:
+**REFUTED as a forbidden pattern** - it is legal and common (10 at `[9, 121)`, 135 at
+`[121, 16129)`, 245,016 at `[16129, 260467321)`, 691,971 at `[29929, 896822809)`). `B` has 0 of
+them only because removing every twin member removes every gap 2. The pre-registration misfiled a
+legal word as forbidden.
+
+**The reflection.** REFUTED as pre-registered ("lands on members at the chance rate, within 3
+standard deviations"), and the deviation is fully accounted for by two things, neither of them a
+slice identity:
+
+1. `M` is a multiple of 30, so the image `M - 2 - n` is coprime to 30 for only **3 of the 8 classes
+   mod 30** (`n = 11, 17, 29`): the ceiling on ordered hits is `3/8` of the naive chance. Measured
+   share of members in those three classes: 0.3751 and 0.3750 at the two sections recounted.
+2. Conditioned on that, the count is the Hardy-Littlewood Goldbach count. Recounted independently
+   (`mirror_check.py`): at `[2809, 7946761)`, `M - 2 = 2 x 7 x 13 x 31 x 1409`, ordered hits 64,574
+   `= 0.4761` of chance against the prediction `2 C_2 (8/30) prod_{p | M-2, p odd} (p-1)/(p-2)
+   = 0.4771`; at `[16129, 260467321)`, `M - 2 = 2 x 8069 x 16141`, hits 1,021,230 `= 0.3509`
+   against 0.3522. Agreement to 0.2 % and 0.4 %.
+
+That is a known count and it is filed as known, not pursued. One measurement fault was found on the
+way: `generated.py` counts a same-segment reflection pair twice and a cross-segment pair once, so
+its reported ratio halves on every section longer than one 2^24 segment (0.181 reported against
+0.3509 true at `[16129, 260467321)`; single-segment sections such as `[2809, 7946761)` agree with
+the recount exactly, 64,574 = 64,574).
+
+**The class census.** Largest deviation of a nonzero class mod 7, 11, 13 from the mean, in standard
+deviations: `G` at most **0.46** over all 11 sections, `C` at most **1.82** - both inside the
+predicted 4. `B` **REFUTED**: 3.09 at `[121, 16129)`, 9.57 at `[841, 727609)`, 24.01 at
+`[2809, 7946761)`, 96.53 at `[16129, 260467321)`, **161.15 at `[29929, 896822809)`**, growing with
+the section. The mechanism is exact and it matters: `B` removes the twin members, and a twin's
+lower member is barred from two residues mod every gear `g` (class 0 and class `-2`), so the
+removed set is class-biased and its removal prints that bias onto `B`. `C` removes the same NUMBER
+of members at random and shows nothing. So the saturated counter-machine is separable from the
+generated set by a census of its own members, which T5's "the properties an arbitrary prime set
+lacks are exactly (M) and (I)" did not allow for. It is still a consequence of maximality - it is
+WHICH members are missing - but it is the first separating property on this branch that is
+measurable on the set alone, without reference to the coprime set it came from.
+
+**Ties and characters.** Exact ties among the classes mod 7, 11, 13 for `G`: 4/7/9 at `[9, 121)`
+down to 0/0/0 at the three largest sections - the "fewer than 2 per section" clause fails at the
+small sections by pigeonhole (few members spread over `g - 1` classes) and holds at the large ones.
+Legendre character sums for `G`: **none of the 33 values is zero** (the refutation line is not
+reached); `B` has `chi_7 = 0` at two small sections. A pattern worth naming and not pursuing: **all
+33 of `G`'s character sums are negative**, at every section and every modulus. That is the
+Chebyshev bias, a known result; recorded, not opened.
+
+**Verdict on T5.** The refutation line ("an exact identity holding at every section, or a forbidden
+pattern in `G`") is not reached: no census tie and no zero character sum survives to the large
+sections, and `G` has no forbidden pattern anywhere. T5 stands, sharpened by the census finding
+above.
+
+#### Q3. The ends. Split.
+
+The smallest member of every generated set is `p_{k+1}` at **16 of 16 runs** (true by construction
+and confirmed). The first twin above the cut, in numbers: `[9, 121)` +2, `[121, 16129)` +16,
+`[16129, 260467321)` +10, `[25, 841)` +4, `[841, 727609)` +16, `[49, 2809)` +10,
+`[2809, 7946761)` **+160**, `[169, 29929)` +10, `[29929, 896822809)` +82. So at the 11 full
+sections the maximum is **exactly the predicted 160**, at base 7 section 2 (cut 2809, first twin
+2969) - the pre-registration named the maximiser correctly. At the prefixes it is **REFUTED**: base
+5's prefix from 727,609 has its first twin at 727,877, **+268**. The last twin lies within 1,000
+numbers of the end at every full section: the largest gap is **362** (`[16129, 260467321)`, last
+twin 260,466,959); the others are 14, 62, 14, 110, 8, 80, 50, 128.
+
+#### Q4. The record per section. Three clauses held, one refuted.
+
+The longest run of struck slots of machines 1..k equals the longest twin-free run of slots at **16
+of 16 runs, 0 mismatches** (the two are computed by different routes in `generated.py`: one from
+the survivor mask, one from the pair list). The ratios: `[121, 16129)` **27 of 1,601 = 1.686 %**
+(predicted at most 3 %); `[16129, 260467321)` **347 of 26,045,119 = 0.00133 %** and
+`[29929, 896822809)` **476 of 89,679,288 = 0.00053 %** (predicted at most 0.01 % above 10^8).
+`[9, 121)`: **2 slots**, the pair of slots 77/79 and 89/91 both struck by 7 - the mechanism is as
+predicted, but the section has **12** slots, not the 11 the pre-registration wrote. `[25, 841)`:
+**14 of 82 slots**, against the predicted "at most 10" - **REFUTED**.
+
+#### Q5. The scan. The count held; every number refuted.
+
+3,397 sections, `q` from 7 to 31,601, every prime `q >= 7` with `q'^2 <= 10^9`.
+
+- **0 empty sections.** The record is shorter than the section at every one of the 3,397 cuts.
+  This is the clause that matters and it holds.
+- Largest ratio record/section: **0.6667 at `q = 29`** - the section `[841, 961)`, 8 struck slots
+  of 12, holding just two twins (857 and 881). The argmax is below 100 as predicted, but 0.6667 is
+  **above the 0.5 refutation line**.
+- "below 0.02 for every `q >= 1000`": **REFUTED**, 653 of the 3,232 sections with `q >= 1000` are
+  above it; the maximum is **0.17442 at `q = 1,289`** (section `[1661521, 1666681)`, 90 slots of
+  516, 30 twins), and 0.06143 at `q = 10,499`, 0.0308 at `q = 23,537`.
+- "record in numbers inside `[0.5, 4] (ln q^2)^2` for at least 95 %": **REFUTED**, the share is
+  **23.31 %**, with **0 sections below the band and 2,605 above it**. The band is mis-centred, not
+  too narrow: the ratio runs from 0.760 (`q = 13`) to 11.478 (`q = 26,423`) with median 4.867, and
+  **98.91 % lie in `[0.5, 8]`**. The correct shape is S18 below.
+
+#### Q6. The chain pairs. Refuted, including its own count of pairs.
+
+There are **5 pairs**, not "about 40": `r`, `r'' = nextprime(r^2)`, `nextprime(r''^2)` with
+`nextprime(r''^2)^2 <= 10^9` forces `r <= 13`, so `r = 3, 5, 7, 11, 13`. Their record ratios are
+**13.500, 7.143, 9.500, 12.852, 9.714**; median **9.714, outside `[2, 8]` - REFUTED**; none above
+30, as predicted. The residual Spearman correlation after removing the trend in `ln r` is **0.90**,
+above the 0.5 line, so the "no determination by the previous record" clause also fails on the
+number - but on five points it carries no weight and should not be read as a finding. The fits
+themselves: `log(previous record) = -1.040 + 1.923 log r`, `log(next record) = 1.347 + 1.893 log r`.
+
+#### Q7. The record proves three links. Confirmed; one clause refuted.
+
+`h_2({5, 7}) = 30 < 112`, `h_2({5..23}) = 366 < 816`, `h_2({5..47}) = 1,284 < 2,760`: the first
+link of the chains from 3, 5 and 7 holds by the free-phase covering record alone, and the sections
+in numbers are exactly 112, 816 and 2,760. No other link is inside the exact table, which stops at
+`p_n = 73`. The full-period real-phase records of the composite machines, run for this fill
+(`period_record.py`, 1 s):
+
+| gears | period in cycles | record in slots | largest cyclic gap in numbers |
+|---|---|---|---|
+| {7} | 7 | 2 | 30 |
+| {7, 11} | 77 | 3 | 42 |
+| {7, 11, 13} | 1,001 | 6 | 66 |
+| {7..17} | 17,017 | 10 | 108 |
+| {7..19} | 323,323 | 14 | 150 |
+| {7..23} | 7,436,429 | **19** | **204** |
+
+The number column reproduces research/harvest/r1/jacobsthal_check.md exactly (30, 42, 66, 108,
+150, 204). So base 5's link 1 has a full-period record of **19 slots against the section's 82** -
+the predicted "about 20", and the refutation line (a full-period record above the section) is not
+reached. The last clause, "the section's own record is smaller than the full-period record at every
+scannable case", is **REFUTED at the smallest case**: base 3 link 1 has section record 2 and
+full-period record 2, equal. At base 5 link 1 it is 14 against 19, smaller as predicted.
+
+#### O3. The owner's reading. Confirmed as far as computed; the recursion bounds nothing.
+
+The record is below the section at all 3,397 cuts of the scan and at all 16 chain runs. The margin
+`section/record` runs from **1.500** (`q = 29`) through a median of **103.1** to **1,493.8**
+(`q = 31,397`). "A margin growing like `p_k^2 / ln^2 p_k`" is the right shape but not the right
+constant: `margin / (q^2 / ln^2 q)` has median `1.0 x 10^-4` and maximum 0.2705, because the
+section's slot count is `(q'^2 - q^2)/10` and is therefore set by the prime gap `q' - q`, which
+fluctuates - the margin's minimum sits where the gap is 2 (`q = 29`, section 12 slots) and its
+maximum where the gap is 72 (`q = 31,397`, section 452,635 slots). On the second half: **the
+recursion gives the record no bound**. Q2 is the evidence - what the recursion supplies is (M) and
+(I), two set-theoretic properties, and neither is an inequality on a run length; nothing in the
+scan or the properties table produced one.
+
+### What Part II says about the step
+
+**The records against the section lengths, along the scan.** By decade of `q`, the ratio
+record/section:
+
+| `q` | sections | median ratio | max ratio (at `q`) | median record (slots) | max record | median section (slots) |
+|---|---|---|---|---|---|---|
+| 7 - 100 | 22 | 0.2453 | 0.6667 (29) | 8.5 | 20 | 33.5 |
+| 100 - 1,000 | 143 | 0.0784 | 0.3256 (107) | 44 | 144 | 576 |
+| 1,000 - 10^4 | 1,061 | 0.0191 | 0.1744 (1,289) | 124 | 286 | 6,619 |
+| 10^4 - 31,601 | 2,171 | 0.0066 | 0.0614 (10,499) | 205 | 476 | 31,128 |
+
+**The largest ratio record/length seen anywhere in the scan is 0.6667**, at `q = 29`: the section
+`[841, 961)` has 12 slots, holds exactly two twins (857 and 881), and its record is the 8-slot
+run from 881 to the section's end. 97 of the 3,397 sections exceed 0.1, 261 exceed 0.05, 818
+exceed 0.02.
+
+**No section had no twin: 0 of 3,397.** The sparsest are `q = 11` (`[121, 169)`, 5 slots, 2 twins),
+`q = 17` (`[289, 361)`, 7 slots, 2 twins) and `q = 29` (12 slots, 2 twins); only those three have
+two or fewer, and the median section holds 673.
+
+**S18 (THE SECTION RECORD IS AN EXTREME VALUE; measured over 3,397 sections, mechanism known).**
+Write `mu(x) = ln^2 x / (2 C_2)` for the Hardy-Littlewood mean twin gap at height `x` and `T` for
+the number of twins in the section. Then the composite record of the section `[q^2, q'^2)`, in
+numbers, is
+
+    record = c x mu(q^2) x ln T ,     c with median 0.9831 over the 3,397 sections,
+
+and `c` is flat across the scan: median **1.2411 / 0.9789 / 0.9791 / 0.9853** on the four decades
+of `q` above, i.e. constant to 1 % over three decades; quartiles `[0.8835, 1.1102]`, 95th
+percentile 1.3848, 7 sections above 2 and the maximum 3.3599 at `q = 29` (the 12-slot section,
+where `ln T = ln 2`). That is the Gumbel form for the maximum of about `T` roughly exponential
+gaps, with coefficient 1. Refuted by a decade whose median `c` leaves `[0.9, 1.1]`, or by a section
+above `c = 4`.
+
+The extreme-value form is the known heuristic for maximal gaps and is filed as known. What is new
+here is that it is exact on the STACK's slices - a section is not an interval chosen for
+convenience, it is `[q^2, q'^2)`, and the record on it is nonetheless the plain extreme value of
+its own twin count, with no visible contribution from the cut being a square.
+
+**Two consequences for the step, stated exactly.**
+
+1. The step at link `k` is "the record on section `k+1` is shorter than the section". By S18 the
+   record is an extreme value of a count, and an extreme value has no unconditional upper bound;
+   the only proved upper bounds on a record available anywhere on the tree are the composite
+   machine's full-period record `F` and the free-phase covering record `h_2` at the same gear
+   sizes, and both exceed the section from link 2 of every chain on. Q7 is exactly the list of
+   links they do settle: three. So Part II's answer to "does the recursion give the step" is no,
+   and the reason is not that the recursion is weak but that the object to be bounded is a maximum,
+   while everything the recursion supplies is a set property.
+2. The margin is enormous and it is not the point. `record/section` falls like `ln^2 q^2 x ln T`
+   over `(q'^2 - q^2)/10`, i.e. like `ln^2 q / q^2` up to the prime gap, and the measured fall is
+   0.245 -> 0.0784 -> 0.0191 -> 0.0066 by decade. A margin that grows is what a count gives; it is
+   not a proof, and it is the same margin the review's face-E reading names.
+
+**One correction to a claim on the tree.** tree_review.md section 2.9 says the composite record of
+a section "sits near the TOP of the section", from two examples (base 3 at 0.98 of its section,
+base 23 at 0.64). Over all 3,397 sections the record's start is **uniform in the section**: median
+position 0.480, mean 0.485, **48.1 %** in the top half (and 48.5 % restricted to `q >= 1000`). The
+record is the section's head run at 17 sections, its tail run at 22, and strictly interior at
+3,358. The two examples were a coincidence; nothing about the cut pulls the record to either end.
+
+**S19 (THE FIRST TWIN ABOVE THE CUT AND THE LAST BELOW THE END; measured on the whole scan).**
+Over the 3,397 sections the first twin above the cut `q^2` lies at most **2,410** numbers above it
+(at `q = 8,699`, cut 75,672,601, first twin 75,675,011), with median 172; the last twin lies at
+most **2,534** numbers below the section's end (at `q = 15,107`). Both are of the order of the
+maximal twin gap at that height and neither is exceptional against it, which is why the head and
+tail runs are the record at only 39 of the 3,397 sections. Refuted by a first-twin offset above
+the section's own record.
