@@ -1770,6 +1770,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           fractions 1, 2/3, 1/2, 1/3, 1/6 mod 35, exact). The witness = blind classes (proved)
           + ordinary density (a count). ROOT for existence; the blind-class structure kept as
           FACT.
+       - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
+         requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
+         research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
+         FACT, not a route. Next gap: g(p) = mex over the core's truncated progressions and the
+         tail's single residues (-p) mod q, certified exact when the mex is below the bound
+         (kernel mex_form for the free regime; the core / tail split from the loaded record
+         rule; the square-root rule). The nth prime: p_n = c_k + W_k(n - N_k), the walk of
+         machine k on the section of the base-2 stack that holds it, indexed by the machine's
+         count; exact at 15 of 15 checks across the first four sections (p_147 = 853, p_58175 =
+         721859). The stretch count in closed form, pi(x + 6L) - pi(x) = Omega_core - S_tail
+         under x + 6L < (6L + 1)^3 (kernel two-prime lemma), exact at 12 of 12 stretches to
+         8.5 x 10^8: Meissel's formula read on the machine, KNOWN VARIANT, kept because its twin
+         version is the step's object. No formula in n or p alone is on the record; the
+         obstruction in both is the iterated mex, i.e. the record of {primes <= sqrt p} on a
+         stretch, the same object as the step.
     - R4.a. The two machines and the clutch, built exactly at q = 11..23 (research/proof/
       period_scale.md). FACT, exact; the reframing is confirmed and, at these sizes, opens no
       route; PARKED here per the owner (after the window). Level of distribution 1 exact: max
@@ -2871,3 +2886,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, prover U2 (order_law_37_41.md): the order law confirmed out of sample at 37 -> 41: B_3 = 98 <= 129, B_2 = 161 > 129, k* = 3 = L + 1; 10 of 10 steps, 0 exceptions; the binding word (21, 14, 41, 22) is the deepest fusion; NEW INSTRUMENT: D_k membership decided by a covering problem per window, no scan, no dictionary, gated on three exact checks. Manager's fourth and fifth measurements of DU1's one deviation (base 3, gap band [400, 450) slots): 66 gaps against a geometric tail's 36 (ratio 1.84; neighbours 0.94, 0.97, 1.27, 1.03), the 66 spread uniformly across the section (fractions 0.19 to 0.96) with no preferred length (34 distinct lengths, max multiplicity 6): a single-band excess with no positional or length structure; filed as an unexplained fluctuation, not a claim.
 - 2026-09-11, three lanes launched: prover U2x (opus) the order law past 41 with the covering-problem instrument (41 -> 43, 43 -> 47, 47 -> 53; research/anchor235/r71/, order_law_beyond_41.md); prover U4/U5 (opus) N(v) <= F_2 and the J-run outer law at m37, W32 first-hit exactness on the engine y = 7..53 and on the section records (research/anchor235/r72/, engine_laws_m37.md); theorist (fable) the fusion lemma of Phi = B_{L+1} attempted as a proof from the covering-problem characterisation (research/anchor235/r73/, fusion_lemma.md).
 - 2026-09-11, manager (local, leftover_depth.md sixth measurement; research/stack/r6/twin_gap_bands.py): the band histogram of twin gaps on five more sections (bases 13, 17, 19, 23 section 3; base 5 section 4 to 5.3 x 10^11; 1.3 x 10^9 twins in all): every band with expected >= 10 within ordinary spread (largest 20 against 12.7), no counterpart of the base-3 bump (66 against 35.9). The one deviation is a fluctuation of one band on one section; closed unless a mechanism singles out the base-3 section. Three lanes died at a session limit before starting and were resumed on the reset.
+- 2026-09-11, manager (owner's request: a closed form for the nth prime from all the work; nth_prime_closed_form.md; research/stack/r7/nth_prime.py): p_n = c_k + W_k(n - N_k), the certified walk of the section's machine indexed by the machine's count, exact at 15 of 15 checks (n to 58175, four sections); the stretch count pi(x + 6L) - pi(x) = Omega_core - S_tail in two finite sums under x + 6L < (6L + 1)^3, exact at 12 of 12 (Meissel's formula read on the machine, KNOWN VARIANT); no formula in n alone on the record, the obstruction being the iterated mex = the step's object. Node R4.d.ii opened as FACT, holding both closed-form documents.
