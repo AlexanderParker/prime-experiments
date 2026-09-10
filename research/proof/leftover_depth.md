@@ -687,6 +687,25 @@ length structure. Recorded as an unexplained fluctuation of one band on one sect
 claim; the next measurement is the same band decomposition on a third section (base 5 or the
 section above c_5).
 
+**Sixth measurement: five more sections (research/stack/r6/twin_gap_bands.py, validated on the
+base-3 section first: twins 1,027,948 reproduced).** The same 50-slot band histogram with the same
+geometric-tail prediction from the four bands below, on section 3 of bases 13, 17, 19, 23 and
+section 4 of base 5:
+
+| section | range | twins | record (slots) | largest band ratio with expected >= 10 | band | observed / expected |
+|---|---|---|---|---|---|---|
+| base 13 s3 | [29929, 8.97 x 10^8) | 3,104,831 | 794 | 1.42 | [550, 600) | 20 / 14.1 |
+| base 17 s3 | [85849, 7.37 x 10^9) | 20,779,668 | 1,004 | 1.14 | [800, 850) | 13 / 11.4 |
+| base 19 s3 | [134689, 1.81 x 10^10) | 47,134,595 | 1,004 | 1.58 | [900, 950) | 20 / 12.7 |
+| base 23 s3 | [292681, 8.57 x 10^10) | 194,697,852 | 1,339 | 1.15 | [1000, 1050) | 101 / 87.8 |
+| base 5 s4 | [727609, 5.29 x 10^11) | 1,039,637,070 | 1,722 | 1.33 | [1450, 1500) | 13 / 9.8 |
+
+Every band with an expected count of at least 10 lies within ordinary Poisson spread on all five
+sections (the largest, 20 against 12.7, is about +2 sd; the bands below 0.6 of each record sit at
+ratios 0.91 to 1.16). The base-3 bump (66 against 35.9, ratio 1.84 at a band of 25 to 40 expected)
+has no counterpart on any of the five. Reading: a fluctuation of one band on one section; the
+question is closed unless a mechanism is proposed that singles out the base-3 section.
+
 ## 6. The fuels
 
 The composite core-free members that sit in core-open slots inside a twin gap of at least L' slots
