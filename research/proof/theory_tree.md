@@ -1996,6 +1996,33 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             floor a_L = 10 in the middle (19 of 21) and alternates +-d at J = 4; the largest
             old piece falls with chain depth (43, 35, 22 at J = 2, 3, 4). Scorecard: M1-M6, M8
             confirmed, M7 confirmed with the collapse located.
+            - 4.i.b.ii.b. THE ORDER LAW OUT OF SAMPLE AT 37 -> 41 (research/proof/
+              order_law_37_41.md; scripts research/anchor235/r70/). CONFIRMED EXACTLY:
+              B_3(m37; 41) = 98 <= 129 = F(37) + 41 (margin 31, the largest on the record) while
+              B_2 = 161 > 129 (recomputed, with B_1 = 299), so k* = 3 = L(m37) + 1 = J_max - 1 as
+              predicted; the law now stands at B_{L+1} <= F + q' at 10 of 10 computable steps
+              (margins 3, 6, 9, 7, 7, 13, 3, 16, 7, 31) and k* = L + 1 at 7 of 7 decisive steps,
+              0 exceptions. The binding word (21, 14, 41, 22) at phase 20, span 98, J = 4 =
+              J_max (the deepest fusion, as at 8 of 8 earlier steps); its two triples are
+              realised (certified columns of m37 verified against all ten gears), the 4-word is
+              not; the true record fusion is (21, 14, 41, 15) at the same phase, so B_3 - F(41)
+              = 7 is one unrealised overlap in one slot. NEW INSTRUMENT: membership of a window
+              in D_k(M) is decidable exactly with no scan and no dictionary (each gear's two
+              struck classes sit at an independent free phase, so a local pattern is realised
+              iff a covering problem over the gears is satisfiable); a rung costs a few hundred
+              covering problems instead of a table of 10^11 gaps; gated against the m23 period
+              scan (35,937 triples, 0 disagreements), the closure's D_3(m29) (7,184 realised, 0
+              missed; 10,000 sampled unrealised, 0 false positives), Q*_3 = 90 and Q*_4 = F(41)
+              = 91 recomputed, (34, 29, 34) correctly unrealised in m23. MECHANISM (new): the
+              deepest fusion's two middles must be an adjacent legal letter pair of D_2(m37); of
+              36 letter pairs m37 realises seven and legality kills three, leaving (14, 41) /
+              (41, 14) (1,525 openings each) and (27, 41) / (41, 27) (one opening each); the
+              cheapest legal pair (14, 27), sum 41 = the alphabet's minimum, is not realised at
+              all, and the second pad 82 is not a realised gap value; 55 of the 98 columns sit
+              in the middle (unlike 29 -> 31, where the chains paid the letter floor and bought
+              span with the flanks). OPEN: extend the order law and Phi = B_{L+1} past 41 with
+              the covering-problem instrument (43, 47, 53, ...), and the fusion lemma's
+              instances.
             - 4.i.b.ii.a. Cap the padded word (spawned by the order law giving L a job: a cap
               L <= c makes the budget a bounded-order statement about D_{c+1}; the engine's
               last structural item). The PAD alphabet at every rung, the junction-gear
@@ -2841,3 +2868,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, whole-tree review landed (research/proof/tree_review.md): twelve verdict mismatches, corrected on the tree and the ledger where the fix is a note (theorem (E)'s hypothesis; the withdrawn CANDIDATE marks; the ledger's gate contradiction and W-numbers; two stale scan notes; F(59) stated as 161 <= F(59) <= 178 pending a certificate); node 4's WEAK and the pinned letter's refuted lower half are already carried by their children 4.i and 4.i.a.i.a.1.a. Cross-branch identities on record: the step at link k is the window statement at rung p_{k+1} up to the home column, and E8's straddling run is the twin-free run across the cut; one window function under three names (the core leftover K_L, W101's two windows, the pullback's Omega), the record its min and Omega its max with no bound between; the onset law inside the leftover types (every finish at the base-3 record is a fuel-type charge with a single tail prime as air). Staring-at-us: the certified ladder proves the step at exactly three links (base 3, 5, 7, link 1); nothing on record bounds the composite record on a section beyond F({5..q}) at its rung; the smallest missing lemma is min K > 0 at the section length. Untested leads U1-U5 launched or queued.
 - 2026-09-11, prover U1+U3 (frontier_floor_1e7.md; base_and_step.md Part II filled): THE FRONTIER FLOOR 4.625 CARRIES TO EVERY PRIME CUT TO 10^7 (664,576 cuts; E11): E8's proviso bites at exactly 24 cuts, the last p = 487, the same 24 as the measured range to 20,011; minimum ratio over the claimed cuts (p >= 23) 6.7273 at p = 31; max tau = 0.083333 at p = 31, collapsing to 5 x 10^-9 above 10^6; the first twin above p^2 below the long arc at all 664,576 cuts by an independent method (column sieve, gmpy2), max fraction 0.7714 at p = 53; E10 corrects the review's decomposition to L_s = L_top + L_1 - 1; why it stops biting: d_0 = p/6 (median ratio 1.0000) against L_s ~ ln^2(p^2), max L_s/d_0 above p = 487 is 0.826. PART II: 3,397 sections to 10^9, none twin-free, largest record/length 0.6667 at q = 29 ([841, 961)); S18 the section record is a plain extreme value, record = c ln^2(cut)/(2 C_2) ln T with median c = 0.983 flat to 1% over three decades: the object to bound is a maximum and the recursion supplies set properties; the review's 'record near the top of the section' was a two-example artefact (median position 0.480); the saturated counter-machine is separable from the real set by its own class census (161 sd); a segment-boundary fault in generated.py found and stated.
 - 2026-09-11, prover DU1 (leftover_depth.md): the leftover at depth u is ROOT in (L, u): twin-free runs sit on the independent count at 2 <= u < 3 (+0.55 sd over 184,398 runs) and at u >= 3 (+0.61 sd over 409,251), so crossing the depth where P-against-P1P2 fails changes nothing a count sees; one deviation recorded (base 3, L' = 400, gap band [400, 450): 66 against 38.6, z +4.3, surviving two re-measurements, localised to one band, not explained); Omega thresholds exact at nextprime(t')^j (S17, proved).
+- 2026-09-11, prover U2 (order_law_37_41.md): the order law confirmed out of sample at 37 -> 41: B_3 = 98 <= 129, B_2 = 161 > 129, k* = 3 = L + 1; 10 of 10 steps, 0 exceptions; the binding word (21, 14, 41, 22) is the deepest fusion; NEW INSTRUMENT: D_k membership decided by a covering problem per window, no scan, no dictionary, gated on three exact checks. Manager's fourth and fifth measurements of DU1's one deviation (base 3, gap band [400, 450) slots): 66 gaps against a geometric tail's 36 (ratio 1.84; neighbours 0.94, 0.97, 1.27, 1.03), the 66 spread uniformly across the section (fractions 0.19 to 0.96) with no preferred length (34 distinct lengths, max multiplicity 6): a single-band excess with no positional or length structure; filed as an unexplained fluctuation, not a claim.
