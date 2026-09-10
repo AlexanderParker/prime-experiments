@@ -2038,6 +2038,39 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
               span with the flanks). OPEN: extend the order law and Phi = B_{L+1} past 41 with
               the covering-problem instrument (43, 47, 53, ...), and the fusion lemma's
               instances.
+            - 4.i.b.ii.c. THE FUSION LEMMA OF Phi (theorist on Fable, 2026-09-11; research/proof/
+              fusion_lemma.md; scripts research/anchor235/r73/fl_*.py; the rebuilt dictionaries
+              D_10(m29), D_6(m31) in r73/results). PROVED, no hypothesis, formalisable: with L =
+              L(M) and the maximal words m = the realised legal words of length exactly L, every
+              realisation of a maximal word is a J_max-fusion (a struck flank would realise a
+              legal word of length L + 1), so the deepest term of the record law is phase-free,
+              Q*_{J_max} = max_m [N(m) + |m|] with N(m) the widest flank pair around one
+              realisation; the relaxed term is R = max_m [P(m) + |m| + S(m)] (P, S the widest gap
+              ever preceding / following any realisation of m); THEOREM A: Phi = B_{L+1} =
+              max(F(M + q'), R); COROLLARY B: the relaxation's overshoot is one flank
+              substitution P + S - N; THEOREM C: the fusion lemma is equivalent to [the budget at
+              the step] AND [R <= F(M) + q']. Verified at 10 of 10 steps (R = 6, 10, 10, 21, 30,
+              35, 60, 55, 75, 98; Q*_{J_max} = 5, 7, 8, 18, 25, 34, 43, 55, 68, 91 phase-free;
+              0 struck flanks, also on 14,400 tooth-family machines). ROOT for the budget half
+              (its terms J <= L + 1 are the exact Q*_J; J = 2 is node 1e's pair statement); the
+              brief's "one gear adds at most q'" is not a mechanism (the gear adds the letters,
+              sum 55 at 37 -> 41, 86 at 41 -> 43; the flanks are the engine's). The non-root
+              remainder R <= F + q' (at L = 1: 2 P(b) + b <= F + q' for every realised letter b)
+              holds at 10 of 10 (margins 3, 6, 10, 7, 7, 13, 3, 19, 20, 31) but is NOT a
+              consequence of the budget and NOT a law of two-tooth engines: on the tooth
+              families it fails at 124 of 1,439 budget-holding machines (13 -> 17) and 2,371 of
+              12,924 (17 -> 19), excess to 16 columns, the budget itself failing at 0.07% /
+              0.28%; the real teeth sit at the 55th-57th percentile of its margin. Smallest
+              instance: {5}, q' = 7, (2, 2, 2) at phase 3, 6 <= 9; tightest: {5..23}, q' = 29,
+              (25, 10, 25) at phase 4, 60 <= 63 (m23 never puts a gap of 27..34 beside a 10, no
+              visible reason). NEW AT 41 -> 43 by covering problems alone: m41 has FIVE maximal
+              words w.r.t. 43, (14, 43), (43, 14), (29, 43), (43, 29), (43, 43), not the one the
+              corpus listed; all 35 legal 3-word extensions unrealised, so L(m41) = 2 from the
+              instrument; (14, 43): P = 28, S = 33, N = 43, relaxed 118, exact 100 against F(43)
+              = 103; (29, 43): 97 / 93; (43, 43) undecided at the hour (725 verdicts memoised).
+              THE DECIDING MEASUREMENT: P(43, 43) in m41 (at most 67 covering problems, running):
+              P <= 24 gives R = 118 <= 134 and the order law's upper half past the scan wall;
+              otherwise k* = J_max there and Phi's role ends.
             - 4.i.b.ii.a. Cap the padded word (spawned by the order law giving L a job: a cap
               L <= c makes the budget a bounded-order statement about D_{c+1}; the engine's
               last structural item). The PAD alphabet at every rung, the junction-gear
@@ -2887,3 +2920,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, three lanes launched: prover U2x (opus) the order law past 41 with the covering-problem instrument (41 -> 43, 43 -> 47, 47 -> 53; research/anchor235/r71/, order_law_beyond_41.md); prover U4/U5 (opus) N(v) <= F_2 and the J-run outer law at m37, W32 first-hit exactness on the engine y = 7..53 and on the section records (research/anchor235/r72/, engine_laws_m37.md); theorist (fable) the fusion lemma of Phi = B_{L+1} attempted as a proof from the covering-problem characterisation (research/anchor235/r73/, fusion_lemma.md).
 - 2026-09-11, manager (local, leftover_depth.md sixth measurement; research/stack/r6/twin_gap_bands.py): the band histogram of twin gaps on five more sections (bases 13, 17, 19, 23 section 3; base 5 section 4 to 5.3 x 10^11; 1.3 x 10^9 twins in all): every band with expected >= 10 within ordinary spread (largest 20 against 12.7), no counterpart of the base-3 bump (66 against 35.9). The one deviation is a fluctuation of one band on one section; closed unless a mechanism singles out the base-3 section. Three lanes died at a session limit before starting and were resumed on the reset.
 - 2026-09-11, manager (owner's request: a closed form for the nth prime from all the work; nth_prime_closed_form.md; research/stack/r7/nth_prime.py): p_n = c_k + W_k(n - N_k), the certified walk of the section's machine indexed by the machine's count, exact at 15 of 15 checks (n to 58175, four sections); the stretch count pi(x + 6L) - pi(x) = Omega_core - S_tail in two finite sums under x + 6L < (6L + 1)^3, exact at 12 of 12 (Meissel's formula read on the machine, KNOWN VARIANT); no formula in n alone on the record, the obstruction being the iterated mex = the step's object. Node R4.d.ii opened as FACT, holding both closed-form documents.
+- 2026-09-11, theorist (fusion_lemma.md): Phi = B_{L+1} = max(F(M + q'), R) PROVED with R = max over maximal words of P + |m| + S (Theorem A); the fusion lemma is equivalent to the budget AND R <= F + q' (Theorem C); the budget half is ROOT, the remainder holds 10 of 10 but fails on 8.6% / 18.3% of budget-holding tooth-family machines, so it is a real-teeth fact with no mechanism; m41 has five maximal words w.r.t. 43 and L(m41) = 2 from the instrument; P(43, 43) is the deciding number (running locally).
