@@ -1722,6 +1722,25 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             alone, Omega = 3 appears from u = 3, runs stay on the independent count above 3; a
             refutation is the first trace of the construction beyond depth; confirmation files
             the step at the core as ROOT in (L, u).
+            - R4.d.i.d. The leftover at depth u (research/proof/leftover_depth.md, laws S17,
+              S20-S22; scripts research/stack/r6/). ROOT IN (L, u). P3 HELD: the twin-free run
+              counts sit on the independent-slot prediction in 14 of 15 non-degenerate
+              lengths; the 62 bins at 2 <= u < 3 hold 184,398 runs against 184,223 predicted
+              (+0.55 sd) and the 7 bins at u >= 3, where Omega = 3 members exist and
+              P-against-P1P2 is false, 409,251 against 409,040 (+0.61 sd): crossing depth 3
+              changes nothing a count can see. ONE DEVIATION, RECORDED NOT EXPLAINED: base 3,
+              L' = 400, u = 2.3-2.4, 83 twin-free runs against 54 (z +4.33), surviving a second
+              measurement (z +3.28) and localised by a third to one gap band [400, 450) slots (66
+              against 38.6) while [300, 450) together sits below prediction (602 against 621);
+              no overdispersion in the twin count (variance equal to the model's to 0.2%); base 7
+              at the same relative length is -1.8 sd. P1 held to 2.7%, refuted as exact (a smooth
+              1/ln t' drift, no section dependence, S21). P2 held with a sharper threshold, S17
+              PROVED: Omega = j members first appear at nextprime(t')^j, 0 members below (11/11,
+              5/5, 2/2; at L' = 18 exactly one Omega = 4 member, 127^4). P4 refuted with the
+              exception count exactly the Omega >= 3 count (37,908 of 37,908; the two-prime lemma
+              in disguise, switching at q^2 >= p_k, S20). S22: what remains of the step at the
+              core is a bound on the count of PP among independent leftovers, with S15 and S17 as
+              its only structure.
         - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
           section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
           computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
@@ -2821,3 +2840,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, unstick pass 4 (dead_branches_reopened_4.md): the step at the core reads 'the products of two of the core's survivors cannot meet every core-open slot of a stretch as long as the section's record' (identity verified at 44.7 million starts); the count side is fully independent (binomial PP among leftovers; twin-free runs on the independent prediction at every length); the manager's '40x rarer' lead refuted (starts counted against runs); the depth law S15 proved (kernel), S16 proved forward; the general object is the Omega-census of core-free members at depth u, P against P1P2 being one link's slice. Brief: the leftover at depth u.
 - 2026-09-11, whole-tree review landed (research/proof/tree_review.md): twelve verdict mismatches, corrected on the tree and the ledger where the fix is a note (theorem (E)'s hypothesis; the withdrawn CANDIDATE marks; the ledger's gate contradiction and W-numbers; two stale scan notes; F(59) stated as 161 <= F(59) <= 178 pending a certificate); node 4's WEAK and the pinned letter's refuted lower half are already carried by their children 4.i and 4.i.a.i.a.1.a. Cross-branch identities on record: the step at link k is the window statement at rung p_{k+1} up to the home column, and E8's straddling run is the twin-free run across the cut; one window function under three names (the core leftover K_L, W101's two windows, the pullback's Omega), the record its min and Omega its max with no bound between; the onset law inside the leftover types (every finish at the base-3 record is a fuel-type charge with a single tail prime as air). Staring-at-us: the certified ladder proves the step at exactly three links (base 3, 5, 7, link 1); nothing on record bounds the composite record on a section beyond F({5..q}) at its rung; the smallest missing lemma is min K > 0 at the section length. Untested leads U1-U5 launched or queued.
 - 2026-09-11, prover U1+U3 (frontier_floor_1e7.md; base_and_step.md Part II filled): THE FRONTIER FLOOR 4.625 CARRIES TO EVERY PRIME CUT TO 10^7 (664,576 cuts; E11): E8's proviso bites at exactly 24 cuts, the last p = 487, the same 24 as the measured range to 20,011; minimum ratio over the claimed cuts (p >= 23) 6.7273 at p = 31; max tau = 0.083333 at p = 31, collapsing to 5 x 10^-9 above 10^6; the first twin above p^2 below the long arc at all 664,576 cuts by an independent method (column sieve, gmpy2), max fraction 0.7714 at p = 53; E10 corrects the review's decomposition to L_s = L_top + L_1 - 1; why it stops biting: d_0 = p/6 (median ratio 1.0000) against L_s ~ ln^2(p^2), max L_s/d_0 above p = 487 is 0.826. PART II: 3,397 sections to 10^9, none twin-free, largest record/length 0.6667 at q = 29 ([841, 961)); S18 the section record is a plain extreme value, record = c ln^2(cut)/(2 C_2) ln T with median c = 0.983 flat to 1% over three decades: the object to bound is a maximum and the recursion supplies set properties; the review's 'record near the top of the section' was a two-example artefact (median position 0.480); the saturated counter-machine is separable from the real set by its own class census (161 sd); a segment-boundary fault in generated.py found and stated.
+- 2026-09-11, prover DU1 (leftover_depth.md): the leftover at depth u is ROOT in (L, u): twin-free runs sit on the independent count at 2 <= u < 3 (+0.55 sd over 184,398 runs) and at u >= 3 (+0.61 sd over 409,251), so crossing the depth where P-against-P1P2 fails changes nothing a count sees; one deviation recorded (base 3, L' = 400, gap band [400, 450): 66 against 38.6, z +4.3, surviving two re-measurements, localised to one band, not explained); Omega thresholds exact at nextprime(t')^j (S17, proved).
