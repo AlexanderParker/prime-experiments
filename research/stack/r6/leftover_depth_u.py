@@ -191,7 +191,7 @@ for Lp in Ls:
     # ---- K, twin-free starts and runs, analytic prediction under independent slots
     cso = np.concatenate([[0], np.cumsum(op, dtype=np.int32)])
     # log(1 - p) per slot; a bin with p = 1 (every core-open slot is a twin, below depth 2) gets a
-    # finite floor of -50 so that a window holding such a slot has predicted probability 0.
+    # finite floor of -50 so that a stretch holding such a slot has predicted probability 0.
     _pc = pslot.astype(np.float64)
     _lp = np.where(_pc >= 1.0, -50.0, np.log1p(-np.minimum(_pc, 0.999999999)))
     logq = np.concatenate([[0.0], np.cumsum(_lp, dtype=np.float64)])

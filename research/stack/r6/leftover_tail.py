@@ -2,11 +2,11 @@
 
 leftover_depth_u.py and leftover_runs.py tie the core t' to the stretch length L', so the predicted
 counts of twin gaps of at least L' slots come from a DIFFERENT model at each length and cannot be
-differenced into band counts.  Here one core t' is fixed and the window length G is swept, so
+differenced into band counts.  Here one core t' is fixed and the stretch length G is swept, so
 N(>= G) is predicted by one model throughout and the bands [G, G') are consistent.  Also: the
-overdispersion check -- the observed variance of the twin count PP over windows of G slots against
-the variance the independent-slot model itself has (E of the within-window variance plus the
-variance of the window's own mean).
+overdispersion check -- the observed variance of the twin count PP over stretches of G slots against
+the variance the independent-slot model itself has (E of the within-stretch variance plus the
+variance of the stretch's own mean).
 
 usage: uv run python research/stack/r6/leftover_tail.py BASE SECTION TPRIME G1,G2,... [NSIM] [TAG]
 """
@@ -63,7 +63,7 @@ tidx = np.nonzero(twin)[0]
 gaps = (np.diff(np.concatenate([[-1], tidx, [S]])) - 1).astype(np.int32)
 del tidx
 
-# local calibration of p, window W slots
+# local calibration of p, stretch W slots
 W = 1000001; h = W // 2
 j = np.arange(S)
 a = np.clip(j - h, 0, S); b = np.clip(j + h + 1, 0, S)
