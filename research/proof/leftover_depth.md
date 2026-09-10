@@ -672,6 +672,21 @@ moment exactly on the model and the sign reversed on the other section. It is re
 full, and it is where a fourth measurement would go: the same band decomposition on a third
 section, or on the base-3 section split into halves.
 
+**Fourth and fifth measurements (manager, model-free).** Two checks that use no model of p at all.
+Fourth: the histogram of twin-gap lengths in 50-slot bands on the base-3 section (one fixed core
+t' = 2401) is close to geometric below 400 slots, so the band [400, 450) is predicted from the
+geometric decay of the bands [200, 250) ... [350, 400) alone: 35.9 expected, 66 observed, ratio
+1.84; the same tail prediction applied to the neighbouring bands gives ratios 0.94, 0.97, 1.27, 1.03
+(for [300, 350), [350, 400), [450, 500), [500, 550)). The excess is one band under a model-free
+tail as under the calibrated model. Fifth: the 66 gaps themselves. Their lengths are spread across
+400 to 447 slots (34 distinct lengths, no length occurring more than 6 times) and their positions
+are spread uniformly across the section (fractions 0.19 to 0.96 of the way from c_4 to c_5; 12 lie
+in the decade 10^7 and 54 in the decade 10^8, in proportion to the section's extent), so the bump
+is neither one length repeated nor one region of the section: it has no positional and no
+length structure. Recorded as an unexplained fluctuation of one band on one section, not as a
+claim; the next measurement is the same band decomposition on a third section (base 5 or the
+section above c_5).
+
 ## 6. The fuels
 
 The composite core-free members that sit in core-open slots inside a twin gap of at least L' slots
