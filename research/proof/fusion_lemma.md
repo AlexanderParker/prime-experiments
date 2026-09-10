@@ -558,3 +558,24 @@ construction. ROOT, with the non-root remainder split off as a PARTIAL object.**
 - `research/anchor235/r73/fl_next.py` - `R(m41; 43)` by covering problems; `results/next_41.log`,
   `next_41_43.json`, `m41_memo.json` (every covering verdict)
 - `results/` is untracked.
+
+## Addendum (manager, 2026-09-11): the deciding number at 41 -> 43
+
+The scan resumed from the 725 memoised verdicts (`fl_next.py 41`, 351 further covering problems,
+1658 s) and finished all five maximal words of m41 with respect to 43:
+
+| maximal word | P | S | N (flank pair) | relaxed P + |m| + S | exact N + |m| |
+|---|---|---|---|---|---|
+| (14, 43) | 28 | 33 | 43 at (15, 28) | 118 | 100 |
+| (43, 14) | 33 | 28 | 43 at (20, 23) | 118 | 100 |
+| (29, 43) | 13 | 12 | 21 at (13, 8) | 97 | 93 |
+| (43, 29) | 12 | 13 | 21 at (8, 13) | 97 | 93 |
+| (43, 43) | 5 | 5 | 7 at (2, 5) | 96 | 93 |
+
+Struck flanks realised: none, at all five. So P(43, 43) = 5 <= 24, R(m41; 43) = 118, and by
+Theorem A, Phi = B_3(m41; 43) = max(F(43), 118) = max(103, 118) = 118 <= 134 = F(41) + 43: the
+remainder R <= F + q' holds at 41 -> 43 with margin 16, the order law's upper half
+B_{L+1} <= F + q' stands at 11 of 11 steps (the first past the scan wall, by covering problems
+alone), and the phase-free deepest term Q*_{J_max}(m41; 43) = 100 <= F(43) = 103 is consistent
+with the record. The lower half at this step (B_2(m41; 43) > 134, k* = 3) is the order-law
+prover's item (order_law_beyond_41.md), not decided here.

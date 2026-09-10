@@ -2068,9 +2068,12 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
               corpus listed; all 35 legal 3-word extensions unrealised, so L(m41) = 2 from the
               instrument; (14, 43): P = 28, S = 33, N = 43, relaxed 118, exact 100 against F(43)
               = 103; (29, 43): 97 / 93; (43, 43) undecided at the hour (725 verdicts memoised).
-              THE DECIDING MEASUREMENT: P(43, 43) in m41 (at most 67 covering problems, running):
-              P <= 24 gives R = 118 <= 134 and the order law's upper half past the scan wall;
-              otherwise k* = J_max there and Phi's role ends.
+              THE DECIDING MEASUREMENT, DONE (manager, fusion_lemma.md addendum): P(43, 43) = 5
+              (S = 5, N = 7), so R(m41; 43) = 118 and Phi = B_3(m41; 43) = max(103, 118) = 118 <=
+              134: the remainder holds at 41 -> 43 (margin 16), the upper half B_{L+1} <= F + q'
+              stands at 11 of 11 steps, the first past the scan wall by covering problems alone;
+              Q*_{J_max}(m41; 43) = 100 <= F(43) = 103. Lower half (B_2 > 134) with the order-law
+              prover.
             - 4.i.b.ii.a. Cap the padded word (spawned by the order law giving L a job: a cap
               L <= c makes the budget a bounded-order statement about D_{c+1}; the engine's
               last structural item). The PAD alphabet at every rung, the junction-gear
@@ -2921,3 +2924,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, manager (local, leftover_depth.md sixth measurement; research/stack/r6/twin_gap_bands.py): the band histogram of twin gaps on five more sections (bases 13, 17, 19, 23 section 3; base 5 section 4 to 5.3 x 10^11; 1.3 x 10^9 twins in all): every band with expected >= 10 within ordinary spread (largest 20 against 12.7), no counterpart of the base-3 bump (66 against 35.9). The one deviation is a fluctuation of one band on one section; closed unless a mechanism singles out the base-3 section. Three lanes died at a session limit before starting and were resumed on the reset.
 - 2026-09-11, manager (owner's request: a closed form for the nth prime from all the work; nth_prime_closed_form.md; research/stack/r7/nth_prime.py): p_n = c_k + W_k(n - N_k), the certified walk of the section's machine indexed by the machine's count, exact at 15 of 15 checks (n to 58175, four sections); the stretch count pi(x + 6L) - pi(x) = Omega_core - S_tail in two finite sums under x + 6L < (6L + 1)^3, exact at 12 of 12 (Meissel's formula read on the machine, KNOWN VARIANT); no formula in n alone on the record, the obstruction being the iterated mex = the step's object. Node R4.d.ii opened as FACT, holding both closed-form documents.
 - 2026-09-11, theorist (fusion_lemma.md): Phi = B_{L+1} = max(F(M + q'), R) PROVED with R = max over maximal words of P + |m| + S (Theorem A); the fusion lemma is equivalent to the budget AND R <= F + q' (Theorem C); the budget half is ROOT, the remainder holds 10 of 10 but fails on 8.6% / 18.3% of budget-holding tooth-family machines, so it is a real-teeth fact with no mechanism; m41 has five maximal words w.r.t. 43 and L(m41) = 2 from the instrument; P(43, 43) is the deciding number (running locally).
+- 2026-09-11, manager (fusion_lemma.md addendum; fl_next.py 41 resumed, 351 covering problems): P(43, 43) = 5 in m41, so R = 118 and Phi = B_3(m41; 43) = 118 <= 134: the order law's upper half holds at 41 -> 43, 11 of 11 steps, the first decided past the scan wall with no table of m41.
