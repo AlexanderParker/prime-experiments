@@ -134,7 +134,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         (28, 37, 12, 11)). CHILD NAMED: for every 3-run with v >= 6 there is a two-colouring of
         the gears whose CRT re-phasing blocks the glued target; finite, covering-theoretic, no
         density, no transfer, modulus grows with the machine (the wall's shape); residue 20 runs
-        at v in {6, 7, 8, 11}.
+        at v in {6, 7, 8, 11}. OUT OF SAMPLE AT m37 (prover U4, 2026-09-11, research/proof/
+        engine_laws_m37.md; scripts research/anchor235/r72/u45_*.py): max over realised v >= 6
+        of N(v) at m37 = 87 <= F_2(37) = 90, HOLDS with 3 to spare (maximiser (60, 10, 27) and
+        its mirror, span 97 = F_3(m37)); two routes agree (covering scan, 323 words; the
+        complete D_3(m37), 30,325 rows carrying 217,929,355,875 gaps, built by the closure
+        ladder from K_0 = 17, loss 0, 4,220 s). The J-run outer law max(g_1 + g_J), middles
+        >= 6: m29 55, 52, 45, 40, 39, 33 and m31 66, 60, 59, 55, 50, 52 at J = 3..8 on full
+        periods, m37 87, 82 at J = 3, 4; 0 exceptions at eight machines. Broken: "the maximum
+        falls with J" (m31: 50 at J = 7, 52 at J = 8, witness (32, 8, 8, 7, 7, 6, 7, 20)); the
+        maximiser's middle moves (v = 6 or 7 to m31, v = 10 at m37, v = 7 reaches only 79).
+        Not closed: J = 5 at m37 (exhaustive negative above 105, 57,064 candidates undecided
+        between 90 and 105: the solver stalls at span 120-140 with ten gears). New instrument:
+        the exact full-period gap census c(d) for any gear set as a covering count, no period,
+        no scan (u45_census.py), gated on m11-m31's complete spectra and all 20 + 21 published
+        W32 numbers. FACT, exact, no proof; nearly tight at J = 3 (F_2 - outer = 0, 2, 3).
         - 2g.i.a. The glue as a covering statement (research/proof/glue_covering.md). DEAD as
           a route: the covering statement is false exactly where it matters. Of 862 attaining
           3-runs with v >= 6 at m13..m31, 756 have v >= min(L, R) where the constant colouring
@@ -885,7 +899,16 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       in (q', m) exists (F_range >= (m log m)/2; F/2m = 1.5, 2.6, 3.4, 4.0 at N = 10^5..10^8,
       still climbing); in use THE TAIL IS EMPTY (certified covers give F_top >= Q, 3 to 43
       times 2m, in 26 of 27 machines), so the parity and covering apparatus is a statement
-      about tail gears only; the covering bound 2m/(1 - 2 H_S) is alive iff F < exp exp(1/2 +
+      about tail gears only; [U5, 2026-09-11, engine_laws_m37.md: W32's first-hit exactness on
+      the engine's own window is REFUTED: within one unit at 4 of 13 windows y = 7..53 (misses
+      to +14 at y = 23) and 5 of 43 section records (-6 to +18, mean +5.4, 33 high / 8 low);
+      cause split and measured: (a) the formula is biased low at small N (the median record of
+      200,000 random translates exceeds the prediction at 13 of 13 windows, 40 of 43 sections);
+      (b) the window's record is INHERITED, one gap (columns 110 -> 135, twins 659/661 ->
+      809/811) being the record at six consecutive y, while a first-hit law prices a fresh
+      range and the window adds 5-30% fresh per y (decay +14, +13, +10, +8, +8, +5). On the
+      engine's phase-zero prefix at N >= 10^5 the law is within one unit at 12 of 13 (the
+      wheels' rate): W32 is a large-N law, the item "first-hit as a law on the engine" CLOSED;] the covering bound 2m/(1 - 2 H_S) is alive iff F < exp exp(1/2 +
       sum_{p <= q} 1/p - M) (35 of 36) and 40-50x loose where alive; union bounds cannot
       reach the truth at all (a covering pattern pins x modulo the product of its gears, so
       counting stops at 2 log N / log q' = 10-19 against records 113-9,846). NO SATURATION
@@ -2925,3 +2948,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, manager (owner's request: a closed form for the nth prime from all the work; nth_prime_closed_form.md; research/stack/r7/nth_prime.py): p_n = c_k + W_k(n - N_k), the certified walk of the section's machine indexed by the machine's count, exact at 15 of 15 checks (n to 58175, four sections); the stretch count pi(x + 6L) - pi(x) = Omega_core - S_tail in two finite sums under x + 6L < (6L + 1)^3, exact at 12 of 12 (Meissel's formula read on the machine, KNOWN VARIANT); no formula in n alone on the record, the obstruction being the iterated mex = the step's object. Node R4.d.ii opened as FACT, holding both closed-form documents.
 - 2026-09-11, theorist (fusion_lemma.md): Phi = B_{L+1} = max(F(M + q'), R) PROVED with R = max over maximal words of P + |m| + S (Theorem A); the fusion lemma is equivalent to the budget AND R <= F + q' (Theorem C); the budget half is ROOT, the remainder holds 10 of 10 but fails on 8.6% / 18.3% of budget-holding tooth-family machines, so it is a real-teeth fact with no mechanism; m41 has five maximal words w.r.t. 43 and L(m41) = 2 from the instrument; P(43, 43) is the deciding number (running locally).
 - 2026-09-11, manager (fusion_lemma.md addendum; fl_next.py 41 resumed, 351 covering problems): P(43, 43) = 5 in m41, so R = 118 and Phi = B_3(m41; 43) = 118 <= 134: the order law's upper half holds at 41 -> 43, 11 of 11 steps, the first decided past the scan wall with no table of m41.
+- 2026-09-11, prover U4/U5 (engine_laws_m37.md): N(v) <= F_2 holds at m37 (87 <= 90, eight machines, 0 exceptions) and the J-run outer law at J = 3, 4 (J = 5 undecided between 90 and 105, solver wall); 'falls with J' false at m31; D_3(m37) built complete (30,325 rows, loss 0). W32's first-hit exactness REFUTED on the engine's window (4 of 13, 5 of 43 sections): small-N bias plus the nested window's inherited record; on the phase-zero prefix at N >= 10^5 it is within one unit at 12 of 13, so W32 is a large-N law (register rider). New instrument: the exact gap census as a covering count, no period. Neither a route.
