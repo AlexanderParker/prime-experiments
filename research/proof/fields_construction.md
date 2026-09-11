@@ -314,6 +314,49 @@ terms: what gear g adds to the struck set when it is added to the wheel is exact
 field (its strict part plus its powers times higher survivors), and everything else it strikes
 was already struck.
 
+## J. A machine below its next square, across all the fields (research/stack/r8/machine_map.py)
+
+Owner's instruction (2026-09-12): start with the machine {5}, look below 25 across all the
+fields, then bigger machines, and see which fields locate the twins. Below the next prime's
+square g'^2 every composite member has least factor <= g, so every kill is by the gear field of
+a gear of the machine; the square field kills one column per gear (its square column) and the
+factor-count fields split the kills by depth.
+
+Machine {5}, columns below 49 (7 columns): twins at k = 1, 2, 3, 5, 7 (the pairs (5,7),
+(11,13), (17,19), (29,31), (41,43)); column 4 killed by 25 = 5^2 (gear field 5, square field,
+field 2); column 6 killed by 35 = 5 . 7 (gear field 5, field 2).
+
+Machine {5, 7}, columns below 121 (19 columns): twins at k = 1, 2, 3, 5, 7, 10, 12, 17, 18;
+kills: gear field 5 at columns 4, 6, 9, 11, 14, 16, 19 (25, 35, 55, 65, 85, 95, 115), gear field
+7 at 8, 13, 15 (49, 77, 91); the squares 25, 49; every kill in field 2.
+
+| machine {5..g} | columns below g'^2 | twins | member-kills by gear field (least factor) | by factor-count field | by the square field |
+|---|---|---|---|---|---|
+| {5} | 7 | 5 | 5: 2 | F2: 2 | 1 |
+| {5, 7} | 19 | 9 | 5: 7, 7: 3 | F2: 10 | 2 |
+| {5..11} | 27 | 11 | 5: 10, 7: 6, 11: 2 | F2: 17, F3: 1 (125) | 3 |
+| {5..13} | 47 | 18 | 5: 18, 7: 9, 11: 5, 13: 3 | F2: 31, F3: 4 | 4 |
+| {5..17} | 59 | 20 | 5: 23, 7: 13, 11: 7, 13: 4, 17: 2 | F2: 43, F3: 6 | 5 |
+| {5..19} | 87 | 24 | 5: 34, 7: 19, 11: 11, 13: 7, 17: 4, 19: 2 | F2: 67, F3: 10 | 6 |
+| {5..23} | 139 | 32 | 5: 55, 7: 31, 11: 17, 13: 13, 17: 9, 19: 7, 23: 3 | F2: 113, F3: 21, F4: 1 (625) | 7 |
+
+What locates the twins below g'^2, exactly: the twins are the columns avoiding every gear
+field's residues (k not = +-6^-1 mod h for every h <= g: the wheel's open columns, a CRT set)
+TOGETHER WITH the home columns of the machine's own twin gears (k = 1 for (5, 7), k = 2 for
+(11, 13), k = 3 for (17, 19): a gear strikes its own column only at itself, and it is prime).
+Checked at every machine 5..23: the wheel's open columns plus the home columns = the twins,
+with no exception. So below the next square the twin locator is CLOSED: the CRT complement of
+the gear fields' residues within the range, plus the twin gears themselves. The square field
+kills exactly one column per gear of the machine (its square column, always a right member);
+field 2 carries nearly every kill (113 of 135 at {5..23}); field 3 enters at 125 = 5^3 (machine
+11), field 4 at 625 = 5^4 (machine 23), each first at a power of 5 (D3).
+
+The kills by gear field fall with the gear (55, 31, 17, 13, 9, 7, 3 at {5..23}): the field of
+gear 5 does 41% of the killing, the five smallest gears 92%. This is the location rule for
+the twins in every machine's range below its next square, and it is the sieve: what step 8
+needs is the same rule on the section [p_k^2, p_{k+1}^2), i.e. the CRT complement's members in
+a stretch far shorter than the wheel's period, which the CRT does not place.
+
 ## E. Relations between fields
 
 | # | statement | status |
