@@ -50,7 +50,67 @@ the fields j >= 2. A section is [c, c') with c' = nextprime(c)^2 (the constructi
 | C6 | field 2 alone cannot cover a section: some column has neither member in field 2 | PROVABLE by count (Landau: semiprimes have density (log log x)/log x among integers; among S the share is below 1/2 from a computable x on); no elementary proof on record; not formalised |
 | C7 | the symmetric pairs of field 2 about 6 g m are exactly the pairs {6m - i, 6m + i} both in field 1, the twin being radius 1 | PROVED (fields.md E4, the mirror law read backwards); MEASURED 0 mismatches over 171,243 axes |
 
-## D. Field j >= 3
+## D. Fields 3, 4, 5, 6, each on its own (census research/stack/r8/field_census.py, section [121, 16129): 5,336 members of S, 2,667 columns, gears to 113)
+
+The general statements shared by every field j >= 3 are in D-all below; first each field
+separately, with its own measured facts on the section (second measurement on the base-5
+section [841, 727609) in research/stack/r8/results_field_census_b5s3.txt).
+
+### Field 3 (products of three primes)
+
+| fact | value on [121, 16129) |
+|---|---|
+| size, share of S | 919, 17.2% |
+| class split left / right | 469 / 450 (nearly even; the class rule: left iff an odd count of class -1 factors) |
+| first and last member | 125 = 5^3; 16115 |
+| least factor: largest present | 23 (confinement: 23^3 = 12167 < 16129 < 29^3) |
+| least-factor profile | 5: 473 (51.5%), 7: 245, 11: 105, 13: 58, 17: 25; gears <= 13 carry 95.9% |
+| longest field-3-free range of S | 29 members, 1333 .. 1417 |
+| columns hit: left only / right only / both | 408 / 389 / 61 |
+| columns where field 3 is the only striking field | 417 of 2,667 |
+| mirror pairs about 6 . 5 . m and 6 . 7 . m | 93 and 63 |
+
+Field 3's own shape: it is carried by the gear 5 for half its members and by the gears up to
+13 for 96%, so on a section below p'^2 it is the dilate 5 . field 2 with a thin remainder;
+its free ranges are long (29 members against field 2's 12) and its exclusive kills are 417
+columns, 16% of the section: without field 3 those 417 columns would be twins.
+
+### Field 4 (products of four primes)
+
+| fact | value on [121, 16129) |
+|---|---|
+| size, share of S | 161, 3.0% |
+| class split left / right | 77 / 84 |
+| first and last member | 625 = 5^4; 16121 |
+| least factor: largest present | 11 (11^4 = 14641 < 16129 < 13^4) |
+| least-factor profile | 5: 130 (80.7%), 7: 30, 11: 1; gears <= 13 carry 100% |
+| longest field-4-free range of S | 168 members, 121 .. 623 (the field is empty below 5^4) |
+| columns hit: left only / right only / both | 77 / 84 / 0 (no column has both members in field 4) |
+| columns where field 4 is the only striking field | 81 |
+| mirror pairs about 6 . 5 . m and 6 . 7 . m | 2 and 1 |
+
+Field 4's own shape: four-fifths of it is 5 . field 3; it never hits both members of a
+column on this section; it kills 81 columns on its own.
+
+### Field 5 (products of five primes)
+
+| fact | value on [121, 16129) |
+|---|---|
+| size, share of S | 16, 0.3% |
+| class split | 9 / 7 |
+| first and last member | 3125 = 5^5; 15925 = 5^2 . 7^2 . 13 |
+| least factor | 5 for all 16 (5^5 = 3125 < 16129 < 7^5 = 16807) |
+| longest field-5-free range of S | 1,001 members, 121 .. 3121 |
+| columns hit | 9 left, 7 right, 0 both; 8 exclusive kills |
+
+Field 5's own shape: entirely 5 . field 4 on this section; 8 exclusive kills.
+
+### Field 6
+
+One member, 15625 = 5^6, a right member; no exclusive kill (its column's left member 15623
+is composite). Field 7 and above are empty below 5^7 = 78125 > 16129.
+
+### D-all. What every field j >= 3 satisfies
 
 | # | statement | status |
 |---|---|---|
