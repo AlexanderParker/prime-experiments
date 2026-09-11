@@ -238,6 +238,45 @@ field in isolation is completely described: it is the single-tooth wheel of the 
 line by multiplication by g, and it holds no information beyond that wheel. Its first member
 is g^2, and every other member is g times a survivor of the lower machine that is at least g.
 
+## H. The third kind of field: the composites of a gear and the gears below it (research/stack/r8/smooth_fields.py)
+
+Owner's instruction (2026-09-12): a field containing just the composites of the gear and the
+lower gears. Two readings, both built: the smooth field C_g = the composites of S whose prime
+factors all lie in {5, ..., g} (cumulative: the machine {5..g} composing only with itself), and
+its layer L_g = the members of C_g whose largest prime factor is g (new at g): L_g = g times
+the members of S that are g-smooth and at least 5, so C_g is the disjoint union of the layers
+L_5, L_7, ..., L_g. Section [121, 16129):
+
+| gear g | smooth field C_g | layer L_g | first of L_g | last | L_g below g^2 / at or above | left / right | largest gap (S-steps) | g^a alone / g x prime / g x composite |
+|---|---|---|---|---|---|---|---|---|
+| 5 | 4 | 4 | 125 = 5^3 | 15625 | 0 / 4 | 2 / 2 | 4,167 | 4 / 0 / 0 |
+| 7 | 15 | 11 | 175 = 5^2 . 7 | 12005 | 0 / 11 | 5 / 6 | 1,143 | 2 / 0 / 9 |
+| 11 | 36 | 21 | 121 = 11^2 | 15125 | 0 / 21 | 11 / 10 | 1,283 | 3 / 0 / 18 |
+| 13 | 67 | 31 | 143 = 11 . 13 | 15925 | 1 / 30 | 14 / 17 | 789 | 2 / 1 / 28 |
+| 17 | 105 | 38 | 187 = 11 . 17 | 15895 | 2 / 36 | 19 / 19 | 669 | 2 / 2 / 34 |
+| 19 | 151 | 46 | 133 = 7 . 19 | 16093 | 4 / 42 | 21 / 25 | 747 | 2 / 4 / 40 |
+| 23 | 202 | 51 | 161 = 7 . 23 | 15295 | 5 / 46 | 27 / 24 | 414 | 2 / 5 / 44 |
+| 29 | 255 | 53 | 145 = 5 . 29 | 15979 | 8 / 45 | 27 / 26 | 348 | 1 / 7 / 45 |
+| 31 | 310 | 55 | 155 = 5 . 31 | 15283 | 9 / 46 | 26 / 29 | 248 | 1 / 8 / 46 |
+| 37 | 365 | 55 | 185 = 5 . 37 | 15725 | 11 / 44 | 26 / 29 | 296 | 1 / 9 / 45 |
+
+What this field is in isolation, exact: the smooth field C_g is the image of the exponent
+lattice {(a_5, a_7, ..., a_g) : sum >= 2} under (a) -> 5^{a_5} 7^{a_7} ... g^{a_g}, restricted
+to S (every such product is in S automatically, since each factor is +-1 mod 6); its class is
+the parity of the count of class -1 factors (D2); it is closed under multiplication and is the
+multiplicative semigroup of the machine {5..g} minus its generators; its members thin as a
+power of log x (the count of g-smooth numbers up to x is a polynomial in log x of degree
+pi(g) - 2 for fixed g: Ennola / Dickman, register, KNOWN); its gaps grow without bound, so it
+never covers a section on its own and never comes close (4 to 365 members of 5,336 here). The
+layer L_g in isolation: its first member is the smallest product g . m with m a g-smooth
+survivor (5g when 5g >= the section's start, else g^2 or a larger smooth multiple), members
+below g^2 are echoes of the lower gears (0 at g = 5, 7, 11; 11 of 55 at g = 37), the kinds
+split into g^a alone (1-4), g x prime (0-9) and g x smooth composite (the majority), and
+the class split is even to within 3. Relation to the other kinds, for part E: L_g is the
+part of gear g's field (part G) whose cofactor m is g-smooth, and C_g is the struck set of
+the machine {5..g} restricted to the numbers with no prime factor above g, so the overlay
+minus the union of the C_g is exactly the strikes whose cofactor carries a prime above g.
+
 ## E. Relations between fields
 
 | # | statement | status |
