@@ -110,6 +110,27 @@ Field 5's own shape: entirely 5 . field 4 on this section; 8 exclusive kills.
 One member, 15625 = 5^6, a right member; no exclusive kill (its column's left member 15623
 is composite). Field 7 and above are empty below 5^7 = 78125 > 16129.
 
+### Second measurement: each field on the base-5 section [841, 727609) (242,256 members of S, 121,127 columns, gears to 839)
+
+| field | size (share) | left / right | first member | largest least factor | gear-5 share | longest free range | both members | exclusive kills |
+|---|---|---|---|---|---|---|---|---|
+| prime | 58,462 (24.1%) | 29,275 / 29,187 | 853 | - | - | 37 | 6,224 twins | 6,224 |
+| semiprime | 102,377 (42.3%) | 51,106 / 51,271 | 841 = 29^2 | 839 | 13.1% | 19 | 21,359 | 45,172 |
+| three-factor | 60,188 (24.8%) | 30,168 / 30,020 | 845 = 5 . 13^2 | 89 (89^3 < 727609 < 97^3) | 35.2% | 29 (1333 .. 1417 again) | 6,933 | 22,746 |
+| four-factor | 17,560 (7.2%) | 8,731 / 8,829 | 875 = 5^3 . 7 | 29 (29^4 < 727609 < 31^4) | 61.2% | 130 | 335 | 5,544 |
+| five-factor | 3,201 (1.3%) | 1,619 / 1,582 | 3125 = 5^5 | 13 | 82.1% | 761 | 5 | 1,019 |
+| six-factor | 426 (0.2%) | 207 / 219 | 15625 = 5^6 | 7 | 93.9% | 4,928 | 0 | 148 |
+| seven-factor | 40 | 21 / 19 | 78125 = 5^7 | 5 | 100% | 25,761 | 0 | 17 |
+
+Read against the base-3 section: every field's largest least factor is exactly the largest
+prime g with g^j below the section's top (D4 holds with equality in the sense that the bound
+is attained: 89 for three factors, 29 for four, 13 for five, 7 for six, 5 for seven); the
+class split of every field is even to within 1%; the gear-5 share falls with the section's
+size within a field and rises with the field index; the three-factor field's longest free
+range is the same interval 1333 .. 1417 on both sections (it lies in both); exclusive kills
+in order 45,172 / 22,746 / 5,544 / 1,019 / 148 / 17 (37%, 19%, 4.6%, 0.8%, 0.1%, 0.01% of
+columns), and 6,224 twins.
+
 ### D-all. What every field j >= 3 satisfies
 
 | # | statement | status |
