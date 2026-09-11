@@ -143,6 +143,23 @@ lead and closing on it is the failure mode this rule exists for. "Not a route" i
 an exact structure is never filed as not a route because a bound is not yet in hand; write what
 is missing and open the child that looks for it.
 
+## Briefing a lane: an execution spec, not a reading list
+
+A lane starts with an empty context. Every document it is told to read is paid for again,
+and a lane that must re-derive its task from the tree will re-derive it differently. So the
+manager holds the theory and writes the brief as a self-contained execution spec:
+
+- the definitions the task needs, inline, in two to ten lines (column, gear, strike, section,
+  whatever the task touches), never "grep the tree for the definition";
+- the inputs by path and function name (scripts to reuse, result files, kernel names);
+- the exact computation, its gates with the known numbers inline, and the stop condition;
+- the exact output: the table's columns, the file names, the one document section to write;
+- no skill files, no "read these documents first", no open-ended "attempt the proof".
+
+Execution lanes run on the cheaper model; the expensive model is for a proof or a judgement
+the manager cannot make locally. A computation of minutes is done locally, not delegated.
+The lane's report is numbers in the fixed table; interpretation is the manager's.
+
 ## Budget mode: never idle, never wait for permission to measure
 
 Lanes cost model budget and can die at a limit mid-write. The work does not stop with them.
