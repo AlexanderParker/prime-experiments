@@ -419,6 +419,58 @@ last: which squared vectors leave a blind offset within (g'^2 - g^2)/6 columns; 
 8 in phase form, and it now reads: the squared residue vector of a prime is never a covering
 vector for a stretch as long as its own square gap.
 
+## L. Which squared vectors leave a blind offset inside the new range (research/stack/r8/squared_vectors.py and the exact scans)
+
+Owner's instruction (2026-09-12): find which squared vectors leave a blind offset inside a
+stretch as long as g's own square gap. Setting: step g -> g', gears h in [5, g], L = (g'^2 -
+g^2)/6; a phase vector phi = (phi_h)_h places the origin; offset i is struck by h iff (phi_h +
+6i) mod h in {0, 2}; the vector FAILS if offsets 1..L are all struck (no twin in the new range).
+
+Three kinds of vector, 400 samples each per g, against the real one (g = 5 .. 109):
+
+| kind | leaves a blind offset in 1..L | mean number of blind offsets |
+|---|---|---|
+| the real vector phi_h = g^2 mod h | always (27 of 27 steps); its count sits inside the random spread at every step (3, 4, 3, 7, 3, 4, 9, 2, 12, 7, 4, 12, 13, 13, 6, 19, 12, 3, 15, 14, 15, 21, 15, 8, 11, 6, 11) | as the random means |
+| a random SQUARED vector phi_h = r_h^2, r_h in 1..h-1 | 1.000 at every g except 0.993 at g = 17 and 0.998 at g = 71 | 2.0 .. 28.8 |
+| a random free vector phi_h in 0..h-1 | 1.000 except 0.993 at g = 17 and 0.998 at g = 29 | 2.4 .. 29.2 |
+
+Exact, by scanning the whole wheel period (every phase vector once), the FAILING SET = the
+origins x such that the columns x+1 .. x+L are all struck, i.e. the origins sitting just
+before a struck run of the wheel at least L long:
+
+| g | wheel period | L | wheel record F | failing vectors | of the period | among square origins (6x+1 a square mod every gear) | among square origins with 6x+1 a NONZERO square mod every gear | the real origin fails |
+|---|---|---|---|---|---|---|---|---|
+| 7 | 35 | 12 | 5 | 0 | 0 | 0 of 12 | 0 | no |
+| 11 | 385 | 8 | 7 | 0 | 0 | 0 of 72 | 0 | no |
+| 13 | 5,005 | 20 | 11 | 0 | 0 | 0 of 504 | 0 | no |
+| 17 | 85,085 | 12 | 18 | 370 | 4.3 x 10^-3 | 14 of 4,536 | 3 | no |
+| 19 | 1,616,615 | 28 | 25 | 0 | 0 | 0 of 45,360 | 0 | no |
+
+The answer, exact: a vector fails iff it is the phase of a column just before a struck run of
+the wheel of length at least L. When L exceeds the wheel's record (g = 7, 11, 13, 19 here: L =
+12 > 5, 8 > 7, 20 > 11, 28 > 25) NO vector fails, squared or not: the record route. When L is
+below the record (g = 17: 12 < 18) the failing set is the starts of the wheel's runs of length
+>= L, 370 of 85,085 phases, 14 of them square origins, and 3 of those with the origin value a
+nonzero square mod every gear, i.e. squares of numbers coprime to the wheel (e.g. 6x + 1 =
+280219 with roots n = 158, 1467, 3252, 5163, ... mod 85,085, all coprime to 85,085). So nothing
+structural excludes the square of a prime from the failing set: the failing origins include
+squares of numbers coprime to every gear, and a prime is one residue class among them. At g =
+17 the real origin 17^2 (column 48) is not one of the 3; the one trial the wheel {5..17}
+gets is the prime 17 itself, and it passes.
+
+What this settles for the two statements. For the finer statement (a twin between
+consecutive prime squares) the failing set is empty whenever L exceeds the record and is a
+small set of residue classes otherwise, with the prime one draw per wheel and no structural
+exclusion: the property is measured (0 exceptions to 10^7) and its only visible reason is the
+size of the failing set, (1 - delta)^L in order, summable over the primes. For step 8 (the
+construction's sections, L about q^2/6 with q the top gear) the failing set is empty at every
+certified q because F(q) < q^2/6 there (the record route, III.4), and step 8 for all q is
+exactly "the failing set stays empty", i.e. F(q) < q^2/6 for every q (IV.1). The unwinding
+therefore ends where the length face ended, with one addition: the origin of every section
+is a square, and a square origin's phases are the squared residues of its root, but the
+failing set contains square origins with roots coprime to every gear, so the squaring is not
+what keeps the origin out of it.
+
 ## E. Relations between fields
 
 | # | statement | status |
