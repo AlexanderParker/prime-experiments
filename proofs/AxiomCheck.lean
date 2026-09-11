@@ -81,6 +81,7 @@ import CoreLeftover
 -- family, and the record route S0; lib SquareColumn, NOT in defaultTargets.
 import SquareColumn
 import Fields
+import FieldsB
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -1132,3 +1133,19 @@ open BlockedSlots
 #print axioms Fields.twin_iff_not_hits_overlay
 #print axioms Fields.smallFactor_iff_mem_overlay
 #print axioms Fields.blocked_iff_hits_overlay
+
+-- FieldsB (D3-D5, B5a/B5b, E6, E6b)
+#print axioms Fields.pow_length_le_of_forall_le
+#print axioms Fields.field_empty_below
+#print axioms Fields.field_least_factor_le
+#print axioms Fields.field_confined
+#print axioms Fields.field_index_le
+#print axioms Fields.squareField_empty_between
+#print axioms Fields.squareField_empty_between'
+#print axioms Fields.squareField_cuts
+#print axioms Fields.overlay_periodic
+#print axioms Fields.five_pow_mem_field
+#print axioms Fields.mul_not_mem_field
+#print axioms Fields.field_add_mul_of_add
+#print axioms Fields.field_not_closed_add
+#print axioms Fields.field_not_periodic

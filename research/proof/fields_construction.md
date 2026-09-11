@@ -35,7 +35,7 @@ the fields j >= 2. A section is [c, c') with c' = nextprime(c)^2 (the constructi
 | B2 | each prime p >= 5 hits exactly one column, k = (p^2 - 1)/6 | PROVED `Fields.square_column_unique`, `square_column_eq_W` |
 | B3 | the square field cannot cover a stretch: the number of columns it hits in [a, a + l) is at most the number of primes whose squares land there | PROVED `Fields.squares_in_section_le`, `squares_cannot_cover` |
 | B4 | in the construction's section [p_k^2, p_{k+1}^2) the squares present are those of the primes in [p_k, p_{k+1}), fewer than the section's columns | PROVED `Fields.squares_cannot_cover_W` |
-| B5 | the square field is empty in every finer section and equals the cuts of the construction | PROVED for the cuts by B2 and the definition of the cuts; the emptiness in finer sections is B2 read with p < q < p' impossible |
+| B5 | the square field is empty in every finer section and equals the cuts of the construction | PROVED `Fields.squareField_empty_between`, `squareField_empty_between'`, `squareField_cuts` (FieldsB) |
 | B6 | a gear's first new strike is its square: below p^2 every strike of gear p is an echo of a smaller gear; at p^2 it is new | PROVED `OneStepE.new_iff` |
 
 ## C. Field 2 (products of two primes)
@@ -116,9 +116,9 @@ is composite). Field 7 and above are empty below 5^7 = 78125 > 16129.
 |---|---|---|
 | D1 | field j = the union over primes p >= 5 of p . field j-1; field j ∩ 5S = 5 . field j-1 | PROVED `Fields.field_succ_eq_union`, `field_inter_five` |
 | D2 | class rule: a member is = 1 mod 6 iff its count of class -1 factors is even | PROVED `Fields.class_rule` |
-| D3 | field j is empty below 5^j | PROVABLE, elementary (each factor >= 5); not formalised |
-| D4 | confinement: in a section below p'^2, every member of field j has a prime factor <= p'^{2/j}, so field j hits only the teeth of the gears <= p'^{2/j} | PROVABLE, elementary (the least of j factors is at most the j-th root); MEASURED 0 exceptions in 20 sections (fields.md E5); not formalised |
-| D5 | the deepest field present in section k+1 has index floor(2 log_5 p_{k+1}) | PROVABLE from D3 and the section's top; MEASURED exact at p = 11..53 |
+| D3 | field j is empty below 5^j, and 5^j is its first member | PROVED `Fields.field_empty_below`, `five_pow_mem_field` (FieldsB) |
+| D4 | confinement: n in field j has minFac(n)^j <= n, so below P^2 its least factor g satisfies g^j < P^2 (field j hits only the teeth of the gears below P^{2/j}) | PROVED `Fields.field_least_factor_le`, `field_confined` (FieldsB); MEASURED 0 exceptions in 20 sections |
+| D5 | the deepest field present below P^2 has index j with 5^j < P^2 | PROVED `Fields.field_index_le` (FieldsB); MEASURED exact (equality) at p = 11..53 |
 | D6 | field j alone cannot cover a section | PROVABLE by count (Landau: density (log log x)^{j-1}/((j-1)! log x)); not formalised |
 
 ## E. Relations between fields
@@ -130,7 +130,7 @@ is composite). Field 7 and above are empty below 5^7 = 78125 > 16129.
 | E3 | column k is a twin iff no field j >= 2 hits it | PROVED `Fields.twin_iff_not_hits_overlay` |
 | E4 | the square field is the diagonal of field 2 (p . p); field 2 minus the square field is the off-diagonal | PROVED by definition; `hits_squareField_iff` |
 | E5 | in a section below t^3 only fields 1 and 2 occur among the t-rough members (fields >= 3 are struck by the core) | PROVED `CoreLeftover.primeOrSemiprime_of_rough_lt_cube` |
-| E6 | no field is periodic, though the overlay restricted to the gears <= q is periodic with period the product of the gears | PROVED (fields.md E2, two lines); not formalised |
+| E6 | no field is periodic (for every M >= 1 some n in field j has n + M outside it), while the overlay of any finite gear set is periodic with period the product of the gears (for k >= 1) | PROVED `Fields.field_not_periodic`, `field_not_closed_add`, `overlay_periodic` (FieldsB) |
 | E7 | the class bias alternates with j (field 2 right-heavy, field 3 left-heavy, field 4 right-heavy) | MEASURED 9 of 9 signs (fields.md); known in print (Meng 2018) |
 | E8 | a column's two members lie in fields (i, j); the column is hit iff (i, j) != (1, 1) | PROVED by E1-E3 |
 

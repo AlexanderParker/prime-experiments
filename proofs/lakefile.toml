@@ -2238,3 +2238,9 @@ name = "SquareColumn"
 # NOT in defaultTargets.
 [[lean_lib]]
 name = "Fields"
+
+# The fields, part B: D3-D5 (floor of a field, least factor, deepest field below P^2), B5a/B5b
+# (square field empty between consecutive prime squares, at a cut), E6 (strike predicate periodic),
+# E6b (no field is periodic); NOT in defaultTargets.
+[[lean_lib]]
+name = "FieldsB"
