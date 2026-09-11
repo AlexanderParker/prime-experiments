@@ -178,8 +178,38 @@ m has no factor below g and is below g^2, so m is prime: the two-prime lemma at 
 scale); (G3) the gear field's free runs on S are g times the free runs of R_g, the open set of
 the gears below g, so they grow with g (6, 13, 36, 60, 78, 88, 136, 240, ...); (G4) exclusive
 kills fall roughly as the field's size (465, 232, 116, 87, 57, ...), gear 5 alone accounting
-for 17% of the section's columns. The gear fields are the dilation form D3 read as fields:
+for 17% of the section's columns (a relation between fields, belongs to part E). The gear fields are the dilation form D3 read as fields:
 gear g's field is g . R_g exactly.
+
+### G-alone. Each gear field in isolation, on the whole line (research/stack/r8/gear_field_alone.py)
+
+Gear field of g on the line: F_g = { g m : m in S, m >= g, no prime below g divides m }, the
+gear's dilate of the lower machine's survivors. Measured over two full periods for g = 5..23,
+each claim checked exactly:
+
+| gear field | period in columns | hits per period | mirror | largest gap (columns) | the three main gaps and their counts |
+|---|---|---|---|---|---|
+| 5 | 5 | 2 | r hit iff -r hit | 3 | residues 1, 4 mod 5 |
+| 7 | 35 | 8 | yes | 7 | 2 (3), 5 (2), 7 (2); residues 1, 8, 13, 15, 20, 22, 27, 34 mod 35 |
+| 11 | 385 | 48 | yes | 18 | 4 (14), 7 (15), 11 (14); then 15 (2), 18 (2) |
+| 13 | 5,005 | 480 | yes | 30 | 4 (135), 9 (134), 13 (142); then 17, 22, 26, 30 |
+| 17 | 85,085 | 5,760 | yes | 62 | 6 (1,484), 11 (1,485), 17 (1,690); then 23 .. 62 |
+| 19 | 1,616,615 | 92,160 | yes | 82 | 6, 13, 19 (22,275 / 22,274 / 26,630); then 25 .. 82 |
+| 23 | 37,182,145 | 1,658,880 | yes | 130 | 8, 15, 23 (378,675 / 378,675 / 470,629); then 31 .. 130 |
+
+Exact facts of a gear field alone, each verified above and provable from the construction:
+(G5) F_g is periodic in columns with period the product of the gears 5 .. g (the dilate by g
+of the lower machine's period); (G6) hits per period = 2 . product over 5 <= h < g of (h - 1)
+(m is a single number, so each lower gear removes one residue in h; two classes of the fold);
+(G7) mirror symmetry about column 0: r is hit iff -r is hit (the survivors below g are
+symmetric under m -> -m); (G8) the gap spectrum is the lower survivors' gap spectrum in
+numbers (2, 4, 6 and their sums) scaled by g / 6: the three main gaps are the images of 2, 4,
+6, with the 6-image most frequent, and the largest gap is g / 6 times the lower machine's
+largest gap between survivors (3, 7, 18, 30, 62, 82, 130 columns for g = 5 .. 23). So a gear
+field in isolation is completely described: it is the single-tooth wheel of the gears below g
+(the manifold's objects, closed forms on record: period, census, symmetry) carried to the
+line by multiplication by g, and it holds no information beyond that wheel. Its first member
+is g^2, and every other member is g times a survivor of the lower machine that is at least g.
 
 ## E. Relations between fields
 
