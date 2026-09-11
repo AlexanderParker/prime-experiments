@@ -277,6 +277,43 @@ part of gear g's field (part G) whose cofactor m is g-smooth, and C_g is the str
 the machine {5..g} restricted to the numbers with no prime factor above g, so the overlay
 minus the union of the C_g is exactly the strikes whose cofactor carries a prime above g.
 
+## I. The fourth kind: each gear's composites of itself and only higher gears
+
+Owner's instruction (2026-09-12). Two readings, both exact: "itself and higher" (the cofactor
+m has every prime factor >= g, g itself allowed) is exactly the gear field of part G (least
+factor g); "strictly higher" (every prime factor of m above g, so g divides n exactly once) is
+the gear field minus the multiples of g^2. Both are closed: the strict field is g times the
+survivors of the wheel {5..g} (all gears up to and including g), periodic in columns with
+period g times the product of the primes in [5, g], with 2 . prod_{5 <= h <= g} (h - 1) hits per
+period (checked: gear 7, period 245, 48 per period; gear 11, period 4,235, 480 per period; both
+periodic over two periods), mirror-symmetric, gaps g times the wheel's.
+
+This kind completes a three-way split of a gear's multiples on S, exact and verified on
+[121, 16129) (the columns add up at every gear):
+
+| gear g | multiples of g | itself + higher (gear field, part G) | of which strictly higher (g exactly once) | of which pure powers g^a | of which g^2 x higher | itself + lower only (smooth layer, part H) | mixed, lower and higher (echoes) |
+|---|---|---|---|---|---|---|---|
+| 5 | 1,067 | 1,067 | 853 | 4 | 210 | 4 | 0 |
+| 7 | 762 | 610 | 523 | 2 | 85 | 11 | 143 |
+| 11 | 486 | 334 | 304 | 3 | 27 | 21 | 134 |
+| 13 | 410 | 256 | 236 | 2 | 18 | 31 | 125 |
+| 17 | 313 | 180 | 169 | 2 | 9 | 38 | 97 |
+| 19 | 281 | 150 | 142 | 2 | 6 | 46 | 87 |
+| 23 | 232 | 120 | 117 | 2 | 1 | 51 | 63 |
+| 29 | 184 | 92 | 91 | 1 | 0 | 53 | 40 |
+| 31 | 172 | 87 | 86 | 1 | 0 | 55 | 31 |
+| 37 | 144 | 73 | 72 | 1 | 0 | 55 | 17 |
+
+(The pure powers g^a are counted in both "itself + higher" and "itself + lower", so the
+columns sum to the multiples once the powers are counted once.) Reading per gear: the new
+strikes of gear g (part G) are almost all g times a single higher prime or a higher survivor;
+the echoes (a lower factor and a higher factor) are the multiples of g that a smaller gear
+already struck and grow as a share with g (0% at 5, 19% at 7, 28% at 11, 31% at 17, 12% at 37
+on this section); the lower-only layer (part H) is the sparse smooth part. In the machine's
+terms: what gear g adds to the struck set when it is added to the wheel is exactly its part-G
+field (its strict part plus its powers times higher survivors), and everything else it strikes
+was already struck.
+
 ## E. Relations between fields
 
 | # | statement | status |
