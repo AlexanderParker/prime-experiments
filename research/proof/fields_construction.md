@@ -667,6 +667,24 @@ interval near q g, for any q. The bands' parabolas are the shape of that product
 square; their apexes at g/(3q) are where the products h (q g + 2) with h at the band's edge
 land.
 
+## S. The band products as lattice points of the hyperbolic strip (research/stack/r8/band_products.py; primes g in [200, 2500], 492,766 band kills)
+
+| measurement | result |
+|---|---|
+| (i) kills by tenth of the range | 10.1, 10.0, 10.0, 9.9, 10.0, 10.1, 9.9, 10.0, 10.0, 9.9%: uniform across the strip |
+| (ii) share by band q = floor(g/x) | q = 1: 16.0% (340 distinct x), 2: 9.4%, 3: 6.8%, 4: 5.2%, 5: 4.4%, 6 and above: 58.2% (74 distinct x): falling like 1/q per band, most kills from x near sqrt(g) |
+| (iii) the cofactor y | prime 89.1% of the time; sits in the middle of its strip, (y - q g)/g = +0.45 (q = 1) to +0.65 (q >= 6), sd 0.29-0.34 |
+| (iv) band-kill rate at a twin's neighbour offsets | 33.2% against 42.5% overall: lower, because the neighbours are taken by gear 5 (part O (h)); not a band effect |
+| (v) kills per x against the strip width 2 g d / x | mean ratio 0.132, the survivor density of S free of the primes below x |
+
+Reading. The product set is uniform over the strip's columns, its bands carry shares falling
+like 1/q, its cofactors are prime nine times in ten and centred in their strips, and its kills
+per prime are the survivor density times the strip width. The parabolas of part Q are the
+first strikes' geometry; summed over all strikes the band kills show no position preference,
+so the bands carve the small comb's survivors uniformly. What is left for the twins is
+therefore the small comb's open offsets thinned uniformly at the rates of parts R and S; no
+further structure of the product set has been found that points to the survivors.
+
 ## E. Relations between fields
 
 | # | statement | status |
