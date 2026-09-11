@@ -1919,6 +1919,54 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           and 101 is not a gear; in the monoid's own line 101 is absent). The teeth half and the
           classes are exhausted. Two P4 details corrected in the document; one script threshold
           bug found and fixed (40 mismatches to 0).
+        - R4.d.i.i. THE FIELDS (owner's decomposition, 2026-09-11; theorist on Fable;
+          research/proof/fields.md, 767 lines; scripts research/anchor235/r79/fd_*.py; gated at
+          20 sections and 13 machine sights, 0 mismatches). VERDICT ROOT: the fields are exact
+          objects and the split is real, but it is exactly the split a sieve cannot make: the
+          fields are the Omega-strata of the overlay, the sieve sees only the overlay, and a
+          twin is the column whose two strata are (1, 1). EXACT FACTS, proved (E1-E8): (1) every
+          field is the primes dilated: F_j intersect 5S = 5 . F_{j-1}, so F_1 = (F_j intersect 5S
+          intersect ... intersect 5^{j-1} S) / 5^{j-1}; no field has a location rule the primes
+          lack, the square field's being F_1 = sqrt(Q); (2) no field is periodic while the
+          overlay on a sight is (an aperiodic partition of a periodic set); (3) the class rule:
+          F_j hits a right member iff its class -1 factor count is even, squares right-only, F_2
+          right by same-class pairs and left by cross-class; (4) THE MIRROR LAW: column m dilated
+          by g becomes the columns g m -+ k_g, mirror images about 6 g m (the bifurcation of the
+          fold), and the symmetric pairs of F_j through g about 6 g m are exactly the pairs
+          {6m - i, 6m + i} both in F_{j-1}, the twin being radius 1 (0 mismatches over 171,243
+          axes); (5) deep-field blind sets: F_j (j >= 3) is confined to the teeth of
+          {5..p'^{2/j}} in the section below p'^2 (at p = 53: F_3 on {5, 7, 11, 13}, F_4 on
+          {5, 7}, F_5 = {3125} on {5}); THE SQUARE FIELD IS EMPTY IN EVERY FINER SECTION AND IS
+          THE CUTS OF THE CONSTRUCTION (in section k + 1, the squares of machine k's gears above
+          p_k); (6) the twin as "open here, struck there": column c is a twin iff cube-core-open
+          and every tail cofactor (6c +- 1)/g is composite, i.e. struck at scale 1/g by a lower
+          engine (20 of 20; the pins at p = 29: 8 pins on 6 of 8 core-open columns, the unpinned
+          are the twins 143, 147). MEASURED: the class bias alternates with j (F_2 right-heavy,
+          F_3 left-heavy, F_4 right-heavy; 9 of 9 signs; Meng 2018, stopped); twin semiprimes
+          5,518,555 against 1,027,948 twin primes at base 3 link 3; one-field columns 1.000,
+          0.786, 0.523 along base 3, the mode moving from 2 at the origin to 2 + 3 at height;
+          THE GROWING MIRROR SYMMETRY THE OWNER EXPECTED IS REAL: symmetric F_2 pairs per axis
+          through 5 grow 2.00 -> 46.83 -> 110,944 along base 3 while the twin's share falls
+          0.50 -> 7 x 10^-7, the radial profile flat (radius 1: 2,594 among 2,599-4,103 per
+          radius): it is the Goldbach pairing of F_1 about 6m and the twin is its innermost
+          radius (Hardy-Littlewood, stopped); new and confirmed twice (12 of 12 cells each way):
+          off the multiples of g the symmetry is carried entirely by the primes of the axis g m
+          (pairs sharing a prime with m above the null, z = +3 to +62; pairs coprime to it below,
+          z = -4 to -14), the mirror about 6 g m preserving divisibility by every prime of 6 g m.
+          THE OBSTRUCTION as a construction: (i) any relabelling of the composites among the
+          fields leaves the overlay and its complement fixed, a partition does not see its
+          complement; (ii) a label property that is not relabelling-invariant sees F_1, the
+          primes' positions, step 8 restated; (iii) what a sieve computes about the labels
+          cannot see their parity: the column sign of length_face.md is (-1)^{Omega(L) +
+          Omega(R)}, the parity of the field-index sum, smallest instance O^- at q = 11 (empty
+          below column 28 against 20). The parity problem again, in one sentence. Died: a
+          location rule for F_2 not through the primes; a period of any field; the blind sets
+          intersected as a non-count rule (they reduce to "core-open and unpinned"); the mirror
+          symmetry as a lever on radius 1 (flat profile); E8's induction. Not excluded: E8 as a
+          fixed-point object; the tooth-family control with the fields' labels on the cofactors
+          (a phantom pin = a pin whose cofactor is not in F_1). Scorecard: P1-P4, P8 in full; P6
+          with its reading corrected; P5 7 of 8 / 3 of 4; P7 20 of 20 with the ratio clause 6 of
+          8; the owner's (a)-(d) held in the stated forms, (e) refuted as sufficient.
         - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
           section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
           computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
@@ -3155,3 +3203,4 @@ Part III or Part IV of the proof document?
 - 2026-09-11 (late), owner: pursue a new mechanic from the fold. Theorist lane launched (research/anchor235/r78/, fold_mechanic.md): the class reading of the monoid counter-machine (its irreducibles beyond 5 are all = 1 mod 6, so no twin is possible for a class reason; the sharpened axiom is gears from BOTH classes of the fold at every scale), the left / right cover condition with sides swapped by class, thinned two-class monoids to find the exact content of both classes, the class sign as a sieve-visible Liouville-type sign, proof attempt or exact obstruction.
 - 2026-09-11 (late), owner's idea: split the hits into separate FIELDS (field 1 the primes / home strikes; the square field; field j the products of exactly j primes) and analyse each field's own structure, the relations between fields, the section against each field, and the fields on the 6-cycle (mirror symmetry, bifurcation of the fold), to find location rules per field for twin gaps. Theorist lane launched (research/anchor235/r79/, fields.md) with the exact facts pre-stated: field j = the union of the dilates p . field_{j-1}; the square field hits only right members; field 2 hits right members by same-class pairs and left members by cross-class pairs; the mirror law of a dilate about the multiples of 6g.
 - 2026-09-11 (late), theorist (fold_mechanic.md): ROOT; the missing axiom cannot be a property of the gear set: thinning the primes by exactly the twin lowers keeps every gear-set property (both classes at every scale, equidistribution) and kills every section; every two-class monoid is transparent (8 holds on it iff it keeps a twin lower, proved, 0 mismatches over 7,309 sections); the classes are invisible to the column cover; the fold's sign is sieve-visible (n mod 3) and the invisible part of Liouville is the class +1 factor count. The axiom is the line itself: every survivor of the fold is a gear or a multiple of a smaller gear (the strike-class law's first half, the completeness of the line at phase zero).
+- 2026-09-11 (late), theorist (fields.md): ROOT; the fields are exact (every field is the primes dilated; no field periodic; the class rule; the mirror law about 6 g m with the twin as radius 1; the deep fields confined to the small gears below p'^2; the square field empty in every finer section and equal to the construction's cuts), the owner's growing mirror symmetry is real (2 -> 46.8 -> 110,944 pairs per axis) and is the Goldbach pairing of the primes with the twin as its innermost radius; the split is exactly the one a sieve cannot make (the Omega-strata of the overlay; the column sign is the parity of the field-index sum). New: the mirror about 6 g m preserves divisibility by every prime of 6 g m (12 of 12 cells, two ways).

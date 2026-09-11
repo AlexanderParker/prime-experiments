@@ -268,6 +268,23 @@ runs sit; the first run of a given length has no floor (at p = 29 it lies below 
 8e <=> the run through the square column is shorter than the interval; the gear set alone
 cannot give it (III.2). ROOT for 8e. Not needed for 8.
 
+## IV.3a The fields (the owner's decomposition; research/proof/fields.md)
+
+Split the hits by the striker's kind: field 1 the primes, field j the products of exactly j
+primes >= 5, the square field the diagonal of field 2. Exact and proved: every field is the
+primes dilated (F_j intersect 5S = 5 . F_{j-1}), so no field has a location rule the primes
+lack; no field is periodic though the overlay is; field j hits a right member iff its class -1
+factor count is even; dilating a column by g lands its members mirror-symmetric about 6 g m,
+and the symmetric pairs of field j about that axis are exactly the pairs of field j - 1 at
+equal distance, the twin being radius 1; below p'^2 the deep fields are confined to the small
+gears (F_3 on {5, 7, 11, 13} at p = 53); the square field is empty in every finer section and
+equals the cuts of the construction. The growing mirror symmetry is real (pairs per axis 2,
+47, 110,944 along the chain from 3) and is the pairing of the primes about 6m with the twin
+as its innermost radius. The split is the one a sieve cannot make: the fields are the
+Omega-strata of the overlay, the sieve sees only the overlay, the column sign of IV.1 is the
+parity of the field-index sum, and a partition of the struck set does not see its
+complement. ROOT. [PROVED facts; MEASURED symmetry; the obstruction by construction]
+
 ## IV.4 The shape of what would close 8
 
 The three faces meet at one place. The count face and the length face are both parity-blocked
