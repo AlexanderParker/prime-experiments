@@ -548,6 +548,29 @@ So the square origin's blind classes concentrate the twins on the shallow gears'
 and say nothing about which of those offsets the deeper gears leave: the pointer does not
 sharpen into a rule as the cut grows, it fades, and the deeper gears' phases g^2 mod h decide.
 
+## O. Two batteries of cross-part measurements on the new ranges (research/stack/r8/cross_measures.py, cross_measures2.py; primes g in [17, 4000], 544 ranges, 88,541 twins)
+
+| measurement | result | reading |
+|---|---|---|
+| (a) first twin offset L_1 by the class of g mod 6 | 26.6 (g = 1) against 25.6 (g = 5) | no class effect |
+| (a) L_1 and twin density by g mod 35 (the phases of 5 and 7 at the square) | class means spread 5.4 against a standard error of 5.1; densities 3.8 .. 4.6% | no dependence on the small gears' phases |
+| (b) kills by gears dividing g +- s, s <= 4 / 10 / 30 / 100 | 57% / 72% / 83% / 91% of member-kills | confounded: every small gear divides some g +- s; not a neighbourhood effect |
+| (c) mirror score of the twin offsets about the range's centre | 0.031 real against 0.041 random | no mirror symmetry of the twins about the centre |
+| (d) twins below the new gear's own first strike (offset g/3 or 2g/3) | the first twin is below it in 542 of 544 ranges; 19% of all twins | the first twin arrives long before the newest gear acts |
+| (e) twin density x ln^2(x) by the gap d = g' - g | 7.76, 7.85, 7.90, 7.98, 7.93, 7.91 for d = 2, 4, 6, 8-12, 14-20, 22+ (se 0.05-0.13) | no dependence on the gap that sets the range; the constant is 6 x 2 C_2 = 7.92, Hardy-Littlewood exactly |
+| (f) strikes as least factor in the range, observed against 2L/h | 1.000, 0.800, 0.686, 0.623, 0.575, ... for h = 5, 7, 11, 13, 17; the top gear 0.365 | exactly the products prod_{h' < h} (1 - 1/h') (0.8, 0.686, 0.623, ...): the gears strike a square-origin range at the independent rates |
+| (g) autocorrelation of the scale-free twin density across consecutive ranges | lag 1: -0.017, lag 2: -0.103 | consecutive ranges are independent |
+| (h) the least factor killing a twin's neighbour column | gear 5 at 67.5% against 24.8% of all kills | gear 5's teeth at +-1: a column open to 5 has 2/3 of its neighbours struck by 5 (the forbidden-gap-4 rigidity W4); known |
+
+Reading. Between the parts measured here, the new range after a square is ordinary in every
+respect: its twin density is Hardy-Littlewood's constant to 0.4%, independent of the gap that
+sets its length and of the previous range; its gears strike at the independent rates as least
+factors; its twins show no class dependence on the small gears' phases and no mirror symmetry
+about the centre; the one strong local structure (a twin's neighbours die to gear 5 two times
+in three) is the teeth of the smallest gear. The square origin's specific structure is the two
+combs of part M, and beyond them the range behaves as a random start (the earlier ratio 1.0035
+of R4.d.i.a, confirmed from a different side).
+
 ## E. Relations between fields
 
 | # | statement | status |
