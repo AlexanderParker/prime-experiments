@@ -571,6 +571,31 @@ in three) is the teeth of the smallest gear. The square origin's specific struct
 combs of part M, and beyond them the range behaves as a random start (the earlier ratio 1.0035
 of R4.d.i.a, confirmed from a different side).
 
+## P. Two gear fields across one column (the section [121, 16279207), 2,713,180 columns, 1,755,098 with both members composite)
+
+A column with both members composite is killed by two DIFFERENT gear fields (a gear cannot
+divide both 6k - 1 and 6k + 1), one per member. The pair (least factor of the left member,
+least factor of the right member), observed against the product of the marginals:
+
+| left \ right | 5 | 7 | 11 | 13 | 17 | 19 | 23 |
+|---|---|---|---|---|---|---|---|
+| 5 | 0 | 1.35 | 1.32 | 1.31 | 1.31 | 1.30 | 1.30 |
+| 7 | 1.35 | 0 | 1.11 | 1.11 | 1.10 | 1.10 | 1.09 |
+| 11 | 1.32 | 1.11 | 0 | 0.99 | 0.99 | 0.98 | 0.98 |
+| 13 | 1.31 | 1.11 | 0.99 | 0 | 0.96 | 0.95 | 0.95 |
+| 17 | 1.31 | 1.10 | 0.99 | 0.96 | 0 | 0.92 | 0.92 |
+| 23 | 1.30 | 1.09 | 0.98 | 0.95 | 0.92 | 0.91 | 0 |
+
+Symmetric; the diagonal empty by the fold (one gear never takes both members); the pairs with
+gear 5 enriched 1.30-1.35, with 7 about 1.10, from 11 on about 1 and falling to 0.91 at (19, 23).
+This is the exact joint density of two gear fields on one column: the left member's least
+factor g and the right member's least factor h are linked by R - L = 2, so the pair's density
+is the wheel's count of columns with L = 0 mod g, R = 0 mod h, L free of the gears below g and
+R free of the gears below h, which is not the product of the marginals; the enrichment for
+small g, h and the depletion for large ones are the two-tooth correlation, the same
+correction that the singular series makes at the twin cell of F4. A relation between the
+gear fields, exact and computable, and the imprint of the fold on pairs.
+
 ## E. Relations between fields
 
 | # | statement | status |
