@@ -1764,6 +1764,42 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
               in disguise, switching at q^2 >= p_k, S20). S22: what remains of the step at the
               core is a bound on the count of PP among independent leftovers, with S15 and S17 as
               its only structure.
+        - R4.d.i.e. THE FIRST REALISATION (theorist on Fable, 2026-09-11; research/proof/
+          first_realisation.md; scripts research/anchor235/r74/xm_*.py). Spawned by proof
+          skeleton section 13 (step 8 is position, not length). x_min(p, l) = the first column
+          at which the engine {5..p} begins a fully struck run of l columns; PROVED from the
+          construction: C1 x_min is the least element of a union of residue classes, one per
+          cover (two computations agree: F(23) = 34 first at column 12,694,429; the m29, m31,
+          m37, m41 records scan against CRT); C2 monotone in the gear set, so no lower bound
+          comes from a smaller engine; C3 below the square column the runs are twin gaps; C4
+          step 8 at the cut p <=> L_a(p) < l_p, the run THROUGH the square column shorter than
+          the section, and L_a IS L_1(p), the first-twin offset above p^2 of R4.d.i.a's arc
+          bound (0 exceptions to 10^7): the position form of step 8 is that measured object,
+          STOP LINE. THE BRIEF'S TARGET REFUTED at p = 29: x_min(29, 20) = 111 < 140 = the
+          square column (the twin gap 659..811, 24 columns, lies below the square) while step 8
+          holds there (the run at column 140 is 3 long). L_a / l_p = 0.375, 0.100, 0.333, 0.357,
+          0.135, 0.150, 0.147, 0.192, 0.107, 0.067, 0.050, 0.241 at p = 11..53. Laws refuted:
+          X1 the first-hit floor x_min rho >= 1/4 (min 0.0014 at m19, l = 24; 80 of 647 cells
+          below); X2 x_min >= (3/8) l^2 (111 < 216); P4 x_min(p, l_p) > p'^2 / 6 (refuted at 29,
+          vacuous at 11, 13, 19, 23, 31, holds at the rest by factors 2 to 10^5, no floor). NEW
+          POSITIONS (two methods each): the m37 record first at 90,816,580,903 (0.0734 of the
+          period), m41 at 630,700,131,373 (0.0124); the record's first fraction 0.34, 0.19,
+          0.044, 0.073, 0.012 at m23..m41; the staircases nested across engines (positions 5,643;
+          6,024; 102,273; 254,736; 27,819,088; 16,365,163,681 recur, lengthened in place by added
+          gears) and erratic (m37: run 62 at 2.8 x 10^7, run 63 only at 1.3 x 10^10). MECHANISM:
+          every gear used at every first realisation with r >= 11 and every gear forced at the
+          record (9 of 9 engines); at 82 of 82 rows the position is the least element of its
+          forced class; twin-gear coincidence columns inside the first runs 44 against 51.6 by
+          chance, the arc-floor object plays no part. THE EXACT OBSTRUCTION, a construction: the
+          tooth family (same gears, teeth +-v_g) strikes the whole section at p = 17 (15 of
+          1,440 members, e.g. teeth (1, 1, 2, 6, 1)), at p = 29 (6,030 of 1,995,840) and at every
+          cut 37..53 (killers by exact cover over the teeth, e.g. (2, 1, 2, 2, 4, 3, 3, 9, 13, 5)
+          at 37; 111 columns killed with 14 gears at 53), and at none of 7, 11, 13, 19, 23, 31
+          (exhaustive). So step 8 is NOT a fact of the gear set: any proof at 17, 29, 37 and
+          beyond must use the real teeth u_g = 6^-1 mod g. ROOT: the smallest missing lemma is
+          L_1(p) < l_p, and the construction gives no lower bound on any position because a
+          residue is not bounded below. Measurement only, no route: the count of record copies
+          per period at m37 / m41 (u45_census.py) would say whether the first copy is early.
         - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
           section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
           computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
@@ -2977,3 +3013,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, prover U4/U5 (engine_laws_m37.md): N(v) <= F_2 holds at m37 (87 <= 90, eight machines, 0 exceptions) and the J-run outer law at J = 3, 4 (J = 5 undecided between 90 and 105, solver wall); 'falls with J' false at m31; D_3(m37) built complete (30,325 rows, loss 0). W32's first-hit exactness REFUTED on the engine's window (4 of 13, 5 of 43 sections): small-N bias plus the nested window's inherited record; on the phase-zero prefix at N >= 10^5 it is within one unit at 12 of 13, so W32 is a large-N law (register rider). New instrument: the exact gap census as a covering count, no period. Neither a route.
 - 2026-09-11, manager (owner: the goal is the proof; proof_skeleton.md section 13): the one unproved statement is step 8 (a twin between every cut and its square). With the certified records it is now exact that the record cannot prove it: at 7 of 11 cuts from 13 to 53 the machine {5..p} has a fully struck run longer than the whole section (e.g. p = 41: section 28 slots, F = 91; p = 53: 112 against 145) and realises it elsewhere in its period, never inside the section (inside, the longest gap is 28 at p = 53). Step 8 is a position statement: the first column at which {5..p} realises a run of the section's length lies above p'^2 / 6. Count routes (record, leftover, supply, order law) measure length and are closed as FACT; the order-law lane finishes its document and the thread stops there. Next lane: the first-realisation column, with the covering-problem instrument (a word is realised on residue classes of the column; its first realisation is the least column in them). Unprocessed overnight results found: 43 -> 47 B_3 = 153 > 150 (candidate first exception to the order law's upper half, R = 45 + 63 + 45 with maximal word (16, 47)), 47 -> 53 B_5 = 145 = F(53) <= 171 (holds, k* = 5); second measurement of R(m43; 47) running.
 - 2026-09-11, prover U2x (order_law_beyond_41.md): THE ORDER LAW IS FALSE at 43 -> 47: B_3(m43; 47) = 153 > 150, exact and certified by explicit columns (the binding word's two triples at columns 1.67 x 10^15 and 1.10 x 10^15 of m43, the 4-word nowhere); k* = 4 = J_max there; the budget itself holds (118 <= 150). 47 -> 53 holds with B_5 = F(53) = 145, the relaxation equal to the machine. Mechanism: deepest term = cheapest realised L-word + widest flanks, overshoot 7, 15, 35, 0 against slack 38, 31, 32, 26. Phi = B_{L+1} DEAD as a law; the budget (12 of 12) and the flank identity survive as FACT. Thread closed (length, not position). Two hung runs of the killed lane removed; ol2_core.decide_many's persistent pool can hang (guard before any long run).
+- 2026-09-11, theorist (first_realisation.md): step 8 at the cut p <=> L_1(p) < l_p exactly (the run through the square column shorter than the section), which is the arc bound's measured object, ROOT; the position floor refuted at p = 29 (the engine's first run of the section's length lies BELOW the square, step 8 holding anyway); the exact obstruction as a construction: two-tooth engines with the same gears strike the whole section at p = 17, 29 and every cut 37..53, so step 8 is a fact of the real teeth 6^-1 mod g, not of the gear set. New record positions m37 (0.0734 of the period) and m41 (0.0124). No route; the wall's shape sharpened.

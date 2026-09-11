@@ -174,3 +174,23 @@ for the engine {5..p}, as a function of p and l, exceeding p'^2 / 6 at l = (p'^2
 one new instrument that speaks about positions is the covering-problem decision of a word's
 realisation (order_law_37_41.md): a word is realised exactly on a set of residue classes of the
 column modulo the gears it uses, and its first realisation is the least column in that set.
+
+## 14. Update of 2026-09-11 (the first-realisation lane): the exact form of 8, and its obstruction
+
+- The position form of 8 is exact and simple: 8 holds at the cut p iff the fully struck run
+  THROUGH the square column p^2 / 6 is shorter than the section, L_a(p) < l_p. That run length
+  is the first-twin offset above p^2 (research/proof/frontier_floor_1e7.md: 0 exceptions to
+  10^7; ratio L_a / l_p between 0.05 and 0.375 at p = 11..53). [PROVED equivalence; the
+  inequality MEASURED]
+- A floor on where the machine's first long run sits does not exist: at p = 29 the machine's
+  first run of the section's length lies below the square (columns 111..134; the square column
+  is 140) and 8 holds there only because that run ends before the square. So 8 cannot be proved
+  by bounding first positions from below; it is about the one run through one column.
+- The obstruction, built: keep the gears of machine k and change only their teeth (the two
+  residues each gear strikes). At p = 17, 29 and every cut from 37 to 53 some such machine
+  strikes the whole section; at 7, 11, 13, 19, 23, 31 none does. So 8 is not a property of
+  "primes up to p as gears" - it is a property of the actual teeth, the columns k = +-6^-1
+  mod g, which is where the primes' own arithmetic enters. Any proof must use the teeth.
+- What was tried and closed: the record (section 13), the leftover count (12), the first
+  position (this section). The remaining object is L_1(p), the run through the square column,
+  and what the teeth 6^-1 mod g do to it.
