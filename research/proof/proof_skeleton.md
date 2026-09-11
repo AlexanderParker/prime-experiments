@@ -200,10 +200,27 @@ exponent 2 (Iwaniec 1978, constant unspecified); for two teeth the dimension-2 s
 limit is 4.2665, exponent 4.27; the free-phase form (any two classes per gear) is Ziller-Morack
 Conjecture 6, h_2 < p_n^2 - p_n, open, measured true to p_n = 73; lower bounds of Erdos-Rankin
 / Ford-Green-Konyagin-Maynard-Tao type are of order q log q log log log q, far below q^2. The
-gap between exponent 2 and 4.27 is the parity barrier in covering form. Open question for the
-machine: does the real-teeth structure (one number line; the classes +-6^{-1} mod g for every
-gear at once; the exact-cover form; the flank identity of research/proof/fusion_lemma.md and
-order_law_beyond_41.md 5) break the symmetry a sieve cannot? [lane running, length_face.md]
+gap between exponent 2 and 4.27 is the parity barrier in covering form.
+
+Answered (research/proof/length_face.md, ROOT, the parity twin built): the real-teeth
+structure does not break the symmetry anywhere a record run can sit.
+- The strike pattern on a stretch depends only on the phase vector (x mod g) and every vector
+  occurs, so F(q) is the record of a fixed-separation two-tooth family; the real teeth add one
+  thing, the separation 2k_g = 3^{-1} mod g, worth a factor 1.3-1.8 in length over free
+  classes (A072753 against F - 1: 60/33 ... 236/144), never an exponent. [PROVED, LF1/LF2]
+- The parity twin: O^- = the open columns whose members have Liouville product -1. It is empty
+  below (q'^2 - 1)/6 > q^2/6 (a rough number below q'^2 is prime, and two primes have product
+  sign +1), and its sieve data on [1, (q'^2 - 1)/6) is indistinguishable from the open set's
+  to square-root size (0 of 1,326 cells above 3 sd at q = 23..53). So at every cut a set with
+  the same sieve inputs violates F < q^2/6 by at least the section's length: no argument
+  from those inputs can prove the target. [PROVED, LF3, with the measurement]
+- Where the real teeth DO break the sign symmetry: exactly one place, the origin, below q'^2,
+  where the open columns are twins (Liouville +1 forced). Every section of the construction
+  sits there (a / l is about 1 / p_{k+1}); every record run sits far above it (x / L >=
+  384,679 at m23, 10^9 at m37), where multiplicativity is invisible inside the stretch.
+- Any uniform bound F(q) <= C q^2 with C < 1/6 already implies twin primes; the band between
+  exponent 2 and 4.27 is open and sieve-unreachable. The phase-zero instance of the missing
+  lemma is "a twin prime pair in (q, q^2 + 1]" for every prime q.
 
 ## IV.2 The count face
 
@@ -219,6 +236,16 @@ runs sit; the first run of a given length has no floor (at p = 29 it lies below 
 cannot give it (III.2). ROOT for 8e. Not needed for 8.
 
 ## IV.4 The shape of what would close 8
+
+The three faces meet at one place. The count face and the length face are both parity-blocked
+away from the origin, and the one place where the real teeth are not a free two-tooth choice
+is the origin: below q'^2 every open column is a twin, the sign symmetry is broken there and
+nowhere else, and that is exactly where every section sits. So what would close 8 is a
+mechanic of the origin: a reason, built from the construction, that the primes below p_{k+1}
+cannot strike every column between p_k^2 and p_{k+1}^2, which uses that these columns lie
+below p_{k+1}^2 (the square-root rule, the one fact that distinguishes the origin) and not a
+count. The counter-machines of III.2 say the reason must also use that the gears are the
+survivors of the sections below (the hand-up, 6).
 
 A closed-form statement of the form "the machine {5..q} with its real teeth cannot cover q^2/6
 consecutive columns, because ...", where the reason is a mechanic already proved (Part III.1)

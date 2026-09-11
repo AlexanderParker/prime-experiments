@@ -1800,6 +1800,45 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           L_1(p) < l_p, and the construction gives no lower bound on any position because a
           residue is not bounded below. Measurement only, no route: the count of record copies
           per period at m37 / m41 (u45_census.py) would say whether the first copy is early.
+        - R4.d.i.f. THE LENGTH FACE OF STEP 8 (theorist on Fable, 2026-09-11; research/proof/
+          length_face.md; scripts research/anchor235/r76/lf_*.py; gates F(11..29) and both
+          first record starts reproduced exactly). VERDICT ROOT, with the parity twin BUILT:
+          F(q) < q^2/6 is the twin prime conjecture in covering form, and the parity barrier is
+          realised for it by a genuine set at every q, located at the origin. LF1/LF2 (proved):
+          the strike pattern on any stretch is a function of the phase vector (x mod g) alone
+          and every vector occurs, so F(q) is the record of the fixed-separation family (teeth
+          t_g +- k_g, separation 2k_g = 3^-1 mod g); multiplicativity is invisible inside any
+          stretch at height x > L/4 + 1, where every record run sits (x/L = 384,679 at m23 to
+          10^9 at m37) and no section does (a/L about 1/p_{k+1}). The real teeth add to the
+          length face exactly one thing, the one-third separation, worth a factor 1.3-1.8 over
+          free classes (A072753 against F - 1: 60/33, 74/42, 94/57, 117/87, 148/90, 173/102,
+          213/117, 236/144), never an exponent. NOTHING ON RECORD CONSTRAINS A RUN OF q^2/6
+          except finite computation: capacity vacuous from q = 13 (2 sum 1/g = 1.02); joint
+          counts teeth-blind (4L/(gh) +- 4 by CRT); W17 / mex need every gear > 2m + 1; merge /
+          saturation bind only while F(M) < (q' -+ 1)/3 (fails at 7 -> 11); the budget summed
+          is ROOT; the flank identity's upper half refuted at 43 -> 47; clump, arc floor, mirror
+          positional. THE PARITY TWIN (LF3, proved): O^- = the open columns with lambda(6k - 1)
+          lambda(6k + 1) = -1 is EMPTY below b = (q'^2 - 1)/6 > q^2/6 (rough below q'^2 means
+          prime, and lambda(p) lambda(p') = +1) while its sieve data on [1, b) matches the
+          plain open set's to square-root size (max |S_d| / sqrt A_d = 1.96 .. 2.89 at q = 23
+          .. 53, 0 of 1,326 cells above 3): at every cut a set with indistinguishable sieve
+          inputs violates the target by at least the section's length. Origin gaps of O^-: 28,
+          60, 60, 140, 140, 228, 228, 308, 308, 368, 620, 620 at q = 11..53 against q^2/6 =
+          20..468; its first element is the square column (r^2 - 2, r^2) with r^2 - 2 prime,
+          12 of 12. INSIDE THE RECORD RUNS (two methods, 4 of 4): the invisible signs are
+          balanced (sum sigma = -3/33, -12/42, -5/57, -9/87 at m23..m37; all 12 cells |z| <=
+          1.85); the sieve-visible striker parity is odd-biased in every fully struck run
+          (-0.43 to -0.47 per column against +0.006..+0.024 in random stretches) because runs
+          are near-tilings (1.39-1.55 strikers per column). THE REAL TEETH BREAK THE SIGN
+          SYMMETRY IN EXACTLY ONE PLACE: THE ORIGIN. The twins' own records on 10^8 columns
+          (every gap re-verified): above about 32 b the twins are fair coins on O (16 of 16
+          records inside the thinning range), 2.4-11 x the engine's record; they exceed q^2/6
+          at generic positions for q <= 23 and not for q >= 29. EXPONENT MAP: any uniform
+          F(q) <= C q^2 with C < 1/6 implies twin primes (the section exceeds (q'^2 - q')/6 >=
+          C q^2 for q >= 1/(1 - 6C)); the band C >= 1/6 and exponents in (2, 4.27) is open,
+          sieve-unreachable, and not what step 8 needs. Smallest uncertified instance: q = 61
+          (F(61) >= 171, needs < 620); its phase-zero instance is "a twin prime pair in
+          (q, q^2 + 1]". Seven pre-registered predictions, none failed.
         - R4.d.i.a. THE HOT LEAD: the island witness is the stack's step at the start of a
           section (manager, 2026-09-07, from the owner's "follow the hot lead"; one local
           computation, no lane). Measured to q = 10^4 (1,226 primes): above EVERY prime square
@@ -3030,3 +3069,4 @@ Part III or Part IV of the proof document?
 - 2026-09-11, owner: testing bigger and bigger machines cannot find the proof (every machine to infinity would have to be tested); proofs are closed-form statements from proven mechanics. The records-by-SAT lane stopped before producing numbers; the Formalist and the length-face theorist continue.
 - 2026-09-11 (evening), manager (owner: bring it all together in one place; are the old mandates still useful): research/proof/proof_skeleton.md rewritten as the single proof document, Parts I (the construction, 1-9), II (the one statement in its exact forms 8a-8e), III (what is proved about it, incl. the three certified links), IV (the three faces and the shape of what would close it); the diary form kept as proof_skeleton_history.md. Standing directions amended: finalisation phase, kept and retired mandates listed.
 - 2026-09-11, Formalist round 41 (proofs/SquareColumn.lean, 40 declarations, built 1096 jobs, manager re-built and audited: propext / Classical.choice / Quot.sound only, 0 sorries): S0 the record route (section_twin_of_unstruck, section_twin_of_record, section_twin_of_record_W: an unstruck column below P^2 is a twin; a record F with F + 1 <= l gives a twin in the section; the gear set need only contain the primes of [5, P)); S1 square_column; S2 offset_strike / offset_strike_modEq / blind_class / strikesZ_iff_root with no hypothesis beyond p^2 = 6a + 1; S3 section_open_iff_twin; S4 L_lt_iff, twin_in_section_iff_L_lt (8 <=> L_a < l); S5 the two-tooth family FamilyBlocked with the real teeth as its special case (real_teeth, blockedZ_eq_family). Proof document Part II (8b, 8c) and III.1 now carry kernel names.
+- 2026-09-11, theorist (length_face.md): the length face F(q) < q^2/6 is ROOT with the parity twin built: O^- (open columns with Liouville product -1) is empty below (q'^2 - 1)/6 and sieve-indistinguishable from the open set (0 of 1,326 cells above 3 sd), so no sieve input separates the target from a set that violates it by the section's length; the real teeth add only the one-third separation (factor 1.3-1.8, never an exponent) and break the sign symmetry in exactly one place, the origin, where every section sits and no record run does (x/L >= 384,679). Any C < 1/6 implies twin primes; the phase-zero instance of the missing lemma is a twin in (q, q^2 + 1]. Part IV.1 of the proof document updated.
