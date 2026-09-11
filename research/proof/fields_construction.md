@@ -357,6 +357,68 @@ the twins in every machine's range below its next square, and it is the sieve: w
 needs is the same rule on the section [p_k^2, p_{k+1}^2), i.e. the CRT complement's members in
 a stretch far shorter than the wheel's period, which the CRT does not place.
 
+## K. Unwinding one gear at a time: how each field advances into the new range (research/stack/r8/unwind_steps.py)
+
+Owner's instruction (2026-09-12): not the imprint (CRT, sieve) but the mechanism: pull the
+machine apart one step at a time, see how each field advances, how the fields' elements shift
+relative to each other, as numbers, as offsets from an origin. Step g -> g' (consecutive
+gears): the new range is (g^2, g'^2); the ORIGIN is the square g^2, column a = (g^2 - 1)/6;
+offsets are counted in columns from a.
+
+Step 7 -> 11, origin 49 (column 8), 11 columns:
++1 (53, 55): 55 = 5 x 11 | +2 (59, 61) TWIN | +3 (65, 67): 65 = 5 x 13 | +4 (71, 73) TWIN |
++5 (77, 79): 77 = 7 x 11 | +6 (83, 85): 85 = 5 x 17 | +7 (89, 91): 91 = 7 x 13 | +8 (95, 97):
+95 = 5 x 19 | +9 (101, 103) TWIN | +10 (107, 109) TWIN | +11 (113, 115): 115 = 5 x 23.
+Every kill is a lower prime (11, 13, 17, 19, 23, all from the range [3^2, 5^2)) carried up
+by 5 or 7. Twins at offsets 2, 4, 9, 10.
+
+Step 13 -> 17, origin 169 (column 28), 19 columns: kills 175 = 5 x 35, 185 = 5 x 37, 187 =
+11 x 17, 203 = 7 x 29, 205 = 5 x 41, 209 = 11 x 19, 215 = 5 x 43, 217 = 7 x 31, 221 = 13 x 17,
+235 = 5 x 47, 245 = 5 x 49, 247 = 13 x 19, 253 = 11 x 23, 259 = 7 x 37, 265 = 5 x 53, 275 =
+5 x 55; twins at offsets 2, 4, 5, 10, 12, 17, 19. The cofactors come from three earlier ranges
+([3^2, 5^2): 5 of them, [5^2, 7^2): 8, [7^2, 11^2): 3), and 14 of the 16 are primes.
+
+| step | new range | columns | twins at offsets from the origin | kills per gear | cofactors' source ranges | first strike of each gear field (offset, member) |
+|---|---|---|---|---|---|---|
+| 5 -> 7 | (25, 49) | 3 | 1, 3 | 5: 1 | [2^2, 3^2): 1 | 5: (2, 35) |
+| 7 -> 11 | (49, 121) | 11 | 2, 4, 9, 10 | 5: 5, 7: 2 | [3^2, 5^2): 7 | 5: (1, 55), 7: (5, 77) |
+| 11 -> 13 | (121, 169) | 7 | 3, 5 | 5: 3, 7: 2, 11: 1 | [3^2, 5^2): 3, [5^2, 7^2): 3 | 5: (1, 125), 7: (2, 133), 11: (4, 143) |
+| 13 -> 17 | (169, 289) | 19 | 2, 4, 5, 10, 12, 17, 19 | 5: 8, 7: 3, 11: 3, 13: 2 | 5 / 8 / 3 from the three ranges | 5: (1, 175), 7: (6, 203), 11: (3, 187), 13: (9, 221) |
+| 17 -> 19 | (289, 361) | 11 | 4, 10 | 5: 5, 7: 3, 11: 2, 13: 1, 17: 1 | 2 / 4 / 6 | 5: (1, 295), 7: (2, 301), 11: (5, 319), 13: (2, 299), 17: (6, 323) |
+| 19 -> 23 | (361, 529) | 27 | 10, 12, 17, 27 | 5: 11, 7: 6, 11: 4, 13: 3, 17: 2, 19: 1 | 2 / 8 / 17 | 5: (1, 365), 7: (2, 371), 11: (8, 407), 13: (3, 377), 17: (5, 391), 19: (13, 437) |
+
+THE MECHANISM, as numbers. (K1) Every kill in the new range is an element of an earlier range
+carried up by one gear: n = h . m with m in (g^2 / h, g'^2 / h), an earlier range; below h^3
+the cofactor is a lower prime (14 of 16 at the step 13 -> 17), so the new range's kill pattern
+is the superposition, over the gears h <= g, of the earlier prime patterns scaled by h and
+shifted to start at g^2 / h. (K2) The newest gear enters its own new range at g . g' (35, 77,
+143, 221, 323, 437), at offset (g g' - g^2)/6 = g (g' - g)/6 from the origin: its gap, times
+itself, in sixths. Gear 5 enters at offset 1 at every step from 11 on (5 times the survivor
+just above g^2 / 5). (K3) The offsets of every gear's strikes from the origin are fixed by the
+origin's residues: gear h strikes offset i iff g^2 + 6i = 0 or 2 (mod h) [kernel
+SquareColumn.offset_strike], so gear h's copy in the new range is its two arithmetic
+progressions in i with phases set by g^2 mod h. The origin is a square, so the phase of every
+lower gear's copy is the SQUARE of g's own residue: phase_h = (g mod h)^2 mod h. In machine
+words: adding gear g places every lower gear's field in the new range at the squared phase of
+where g sits in that gear's wheel; the new range's twins are the lower wheel's openings read
+at the phase vector ((g mod h)^2)_h over a stretch of (g'^2 - g^2)/6 columns. (K4) The twins'
+offsets from the origin (1, 3 | 2, 4, 9, 10 | 3, 5 | 2, 4, 5, 10, 12, 17, 19 | 4, 10 | 10, 12,
+17, 27) are the offsets i at which no gear's progression lands on either side, i.e. -6i and
+2 - 6i are both outside the residue set {(g mod h)^2 - ...}: the pointer to the openings is
+the vector of squared residues of the newest gear, and the openings are its blind offsets.
+
+What the unwinding shows that the imprint does not: the new range is not sifted by arbitrary
+phases; its phases are the squares of the newest gear's residues, and g's residues are where g
+itself sat as an opening of the lower wheels. So the machine's next section is the lower
+wheel read at the squared position of the gear the lower wheel just produced: the hand-up in
+phase form. The relationship between the fields at a step is therefore: (prime field below g)
+-> (g, a member of it) -> (its residue vector, its position in every lower gear field) ->
+(squared) -> (the phases of every gear field in the new range) -> (the twins as the blind
+offsets of that squared vector). Every arrow is exact and numerical. What is not closed is the
+last: which squared vectors leave a blind offset within (g'^2 - g^2)/6 columns; that is step
+8 in phase form, and it now reads: the squared residue vector of a prime is never a covering
+vector for a stretch as long as its own square gap.
+
 ## E. Relations between fields
 
 | # | statement | status |
