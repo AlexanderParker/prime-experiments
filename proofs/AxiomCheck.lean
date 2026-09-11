@@ -80,6 +80,7 @@ import CoreLeftover
 -- Round 41: the square column, the offset-strike law, the section's twins, C4, the two-tooth
 -- family, and the record route S0; lib SquareColumn, NOT in defaultTargets.
 import SquareColumn
+import Fields
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -1075,3 +1076,59 @@ open BlockedSlots
 #print axioms SquareColumn.strikesZ_iff_teeth
 #print axioms SquareColumn.real_teeth
 #print axioms SquareColumn.blockedZ_eq_family
+
+-- Fields (round 42)
+#print axioms Fields.InS
+#print axioms Fields.field
+#print axioms Fields.Hits
+#print axioms Fields.squareField
+#print axioms Fields.overlay
+#print axioms Fields.mem_field
+#print axioms Fields.inS_iff
+#print axioms Fields.ne_zero_of_inS
+#print axioms Fields.inS_of_prime
+#print axioms Fields.five_le_of_mem_primeFactorsList
+#print axioms Fields.length_eq_one_exists
+#print axioms Fields.field_one_iff_prime_ge_five
+#print axioms Fields.prime_field_never_kills
+#print axioms Fields.sq_mod_six
+#print axioms Fields.square_right_only
+#print axioms Fields.squareField_not_left
+#print axioms Fields.hits_squareField_iff
+#print axioms Fields.square_column_unique
+#print axioms Fields.square_column_eq_W
+#print axioms Fields.hits_squareField_W
+#print axioms Fields.squareHits
+#print axioms Fields.sectionPrimes
+#print axioms Fields.mem_sectionPrimes
+#print axioms Fields.squares_in_section_le
+#print axioms Fields.squares_cannot_cover
+#print axioms Fields.mem_sectionPrimes_W
+#print axioms Fields.card_sectionPrimes_W_le
+#print axioms Fields.card_sectionPrimes_W_le_one
+#print axioms Fields.four_le_W_sub_W
+#print axioms Fields.squares_cannot_cover_W_of_lt
+#print axioms Fields.squares_cannot_cover_W
+#print axioms Fields.class_rule_two
+#print axioms Fields.countMinus
+#print axioms Fields.prod_mod_six
+#print axioms Fields.class_rule
+#print axioms Fields.class_rule_field
+#print axioms Fields.mirror_law
+#print axioms Fields.mirror_law_sub
+#print axioms Fields.mirror_law_columns
+#print axioms Fields.mirror_law_class_plus
+#print axioms Fields.mirror_law_class_minus
+#print axioms Fields.mirror_dilate
+#print axioms Fields.inS_mul_iff
+#print axioms Fields.length_primeFactorsList_mul
+#print axioms Fields.field_dilate
+#print axioms Fields.field_succ_eq_union
+#print axioms Fields.field_inter_five
+#print axioms Fields.mem_field_length
+#print axioms Fields.field_unique
+#print axioms Fields.overlay_iff_composite
+#print axioms Fields.mem_overlay_iff
+#print axioms Fields.twin_iff_not_hits_overlay
+#print axioms Fields.smallFactor_iff_mem_overlay
+#print axioms Fields.blocked_iff_hits_overlay

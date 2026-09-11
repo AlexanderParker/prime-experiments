@@ -283,7 +283,11 @@ equals the cuts of the construction. The growing mirror symmetry is real (pairs 
 as its innermost radius. The split is the one a sieve cannot make: the fields are the
 Omega-strata of the overlay, the sieve sees only the overlay, the column sign of IV.1 is the
 parity of the field-index sum, and a partition of the struck set does not see its
-complement. ROOT. [PROVED facts; MEASURED symmetry; the obstruction by construction]
+complement. ROOT. [PROVED facts, kernel proofs/Fields.lean round 42: field_one_iff_prime_ge_five,
+prime_field_never_kills, square_right_only, square_column_unique, squares_cannot_cover_W,
+class_rule, class_rule_field, mirror_law, mirror_law_columns, mirror_dilate, field_dilate,
+field_succ_eq_union, overlay_iff_composite, twin_iff_not_hits_overlay, blocked_iff_hits_overlay;
+MEASURED symmetry; the obstruction by construction]
 
 ## IV.4 The shape of what would close 8
 

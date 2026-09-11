@@ -2230,3 +2230,11 @@ name = "CoreLeftover"
 # NOT in defaultTargets.
 [[lean_lib]]
 name = "SquareColumn"
+
+# The fields (fields.md E1-E8, proof_skeleton.md IV.3a): the fold's survivors split by the
+# count of prime factors; the prime field as the twin's definition, the square field right-only
+# and one column per prime, the square field cannot cover a section, the class rule, the
+# mirror law of a dilate, the nesting per field, the overlay as the composites;
+# NOT in defaultTargets.
+[[lean_lib]]
+name = "Fields"
