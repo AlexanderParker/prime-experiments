@@ -136,3 +136,41 @@ the survivors of a section do to the section above it.
   slots are (their members are core-free: primes of the tail range, or products of two large
   primes) and at the exact finish as a property of the primes' pairing at distance 2, one level
   down.
+
+## 13. Update of 2026-09-11: the one statement, and what cannot prove it
+
+The proof has exactly one unproved statement, 8: for every k the gears of machines 1 .. k leave
+a slot of section k+1 unstruck, i.e. between every cut and its square there is a twin pair.
+Everything else is PROVED (2, 3, 5, 6, 9) or is the base (7).
+
+What 8 is NOT provable from, now with the certified numbers: the machine's record. Section k+1
+in slots is (p'^2 - p^2)/6 for the cut p and the next prime p'; the machine {5..p} has a
+certified longest fully struck run F(p) somewhere in its period. If the section were longer
+than the record, 8 would follow from the record alone. It is not:
+
+| cut p | p' | section, slots | F(p) | section / record |
+|---|---|---|---|---|
+| 17 | 19 | 12 | 18 | 0.67 |
+| 29 | 31 | 20 | 43 | 0.47 |
+| 37 | 41 | 52 | 88 | 0.59 |
+| 41 | 43 | 28 | 91 | 0.31 |
+| 43 | 47 | 60 | 103 | 0.58 |
+| 47 | 53 | 100 | 118 | 0.85 |
+| 53 | 59 | 112 | 145 | 0.77 |
+
+At 7 of the 11 cuts from 13 to 53 the machine CAN strike a run longer than the whole section;
+it does so elsewhere in its period, never inside the section. The section's actual longest
+twin gap is far shorter (28 slots on the window to 59^2 at p = 53, engine_laws_m37.md U5; the
+ratio section / longest gap inside stays above 4.6 to 10^7, frontier_floor_1e7.md). So 8 is a
+statement about WHERE the machine's long runs sit, not how long they are: the first column at
+which the machine {5..p} realises a struck run of the section's length lies above p'^2 / 6.
+Every count-based route (the record, the core's leftover, the tail's supply, the order law that
+bounds the next record by the previous one) measures length, and length is the wrong quantity.
+The bound on the record in flight (the order law past 41) is therefore engine structure, not a
+route to 8, and is closed as FACT when its document lands.
+
+What a proof of 8 must produce: a lower bound on the first column of a struck run of length l
+for the engine {5..p}, as a function of p and l, exceeding p'^2 / 6 at l = (p'^2 - p^2)/6. The
+one new instrument that speaks about positions is the covering-problem decision of a word's
+realisation (order_law_37_41.md): a word is realised exactly on a set of residue classes of the
+column modulo the gears it uses, and its first realisation is the least column in that set.
