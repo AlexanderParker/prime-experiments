@@ -142,6 +142,45 @@ columns), and 6,224 twins.
 | D5 | the deepest field present below P^2 has index j with 5^j < P^2 | PROVED `Fields.field_index_le` (FieldsB); MEASURED exact (equality) at p = 11..53 |
 | D6 | field j alone cannot cover a section | PROVABLE by count (Landau: density (log log x)^{j-1}/((j-1)! log x)); not formalised |
 
+## G. The second kind of field: one per gear, starting at its square (research/stack/r8/gear_fields.py)
+
+Owner's instruction: a field type for each gear and its composites, starting with its own
+square. Gear field of g = the members of S whose least prime factor is g: n = g . m with m >= g
+a survivor of the gears below g (the gear's own strikes from its square on; multiples that a
+smaller gear already struck belong to that smaller gear's field). The square g^2 is the first
+member of every gear field; the square field is the set of these first members. The gear
+fields partition the composites of S (one least factor each), as the factor-count fields do.
+
+Section [121, 16129), 5,336 members of S, 2,667 columns, 29 gears from 5 to 127. Square field:
+26 members present (11^2 = 121 to 127^2 = 16129 excluded, so 121 .. 113^2), all right members,
+11 exclusive kills (the columns whose left member g^2 - 2 is prime; kernel OneStepE.new_iff).
+
+| gear field | size | share of composites | square in section | left / right | m prime | longest free run of S | exclusive kills |
+|---|---|---|---|---|---|---|---|
+| 5 | 1,067 | 30.6% | no (25 below) | 534 / 533 | 447 | 6 | 465 |
+| 7 | 610 | 17.5% | no (49 below) | 305 / 305 | 335 | 13 | 232 |
+| 11 | 334 | 9.6% | yes | 167 / 167 | 228 | 36 | 116 |
+| 13 | 256 | 7.3% | yes | 128 / 128 | 198 | 60 | 87 |
+| 17 | 180 | 5.2% | yes | 89 / 91 | 155 | 78 | 57 |
+| 19 | 150 | 4.3% | yes | 75 / 75 | 139 | 88 | 51 |
+| 23 | 120 | 3.4% | yes | 58 / 62 | 118 | 136 | 38 |
+| 29 | 92 | 2.6% | yes | 45 / 47 | 92 | 240 | 31 |
+| 31 | 87 | 2.5% | yes | 45 / 42 | 87 | 280 | 29 |
+| 37 | 73 | 2.1% | yes | 37 / 36 | 73 | 416 | 22 |
+| 41 | 65 | 1.9% | yes | 31 / 34 | 65 | 520 | 21 |
+| 43 | 61 | 1.7% | yes | 31 / 30 | 61 | 576 | 21 |
+| gears 47 .. 113 | 394 | 11.3% | yes | | all m prime | | |
+
+Facts per gear field, exact: (G1) the class split is even to within one member because the
+member g . m has the class of g times the class of m and m runs over the survivors, which
+alternate; (G2) from gear 29 on every member has m prime (m >= g and m < 16129 / g < g^2 means
+m has no factor below g and is below g^2, so m is prime: the two-prime lemma at the gear's own
+scale); (G3) the gear field's free runs on S are g times the free runs of R_g, the open set of
+the gears below g, so they grow with g (6, 13, 36, 60, 78, 88, 136, 240, ...); (G4) exclusive
+kills fall roughly as the field's size (465, 232, 116, 87, 57, ...), gear 5 alone accounting
+for 17% of the section's columns. The gear fields are the dilation form D3 read as fields:
+gear g's field is g . R_g exactly.
+
 ## E. Relations between fields
 
 | # | statement | status |
