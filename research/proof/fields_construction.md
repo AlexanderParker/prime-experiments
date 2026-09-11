@@ -525,6 +525,29 @@ that point to where the openings concentrate. What they do not give is a guarant
 step, and the steps without a blind twin are decided by the middle gears' phases, which are
 the residues of one prime modulo the primes between 13 and g.
 
+## N. The blind set as the cut grows toward g (research/stack/r8/blind_depth.py; primes g in [17, 1500], 233 steps, 380,472 offsets, 16,626 twins)
+
+Offsets blind to EVERY gear up to a cut c (never struck by any of them from any square origin):
+
+| cut c | share of offsets blind to all gears <= c | share of the twins on them | enrichment | steps with at least one twin blind to c |
+|---|---|---|---|---|
+| 7 | 11.48% | 26.79% | 2.33 x | 230 of 233 |
+| 13 | 1.02% | 3.83% | 3.76 x | 191 of 233 |
+| 23 | 0.01% | 0.03% | 5.20 x | 4 of 231 |
+| 37 and above | 0 | 0 | - | 0 |
+
+Depth of the first twin of each range (the largest gear it is blind to, as a prefix from 5):
+not blind to 5 in 71 steps; blind to 5 only in 74; to 5, 7 in 44; to 5 .. 11 in 11; to 5 .. 13
+in 31; to 5 .. 19 in 2; never deeper.
+
+Reading. The pointer is real and shallow. Each gear's blind classes cover about a quarter of
+its residues, so the joint blind set to all gears up to c thins geometrically (11% at 7, 1% at
+13, 0.01% at 23, empty from 37) while its twin enrichment grows only slowly (2.3 x, 3.8 x, 5.2 x).
+By the cut 23 the candidate set is empty in nearly every range; no first twin is blind past 19.
+So the square origin's blind classes concentrate the twins on the shallow gears' blind offsets
+and say nothing about which of those offsets the deeper gears leave: the pointer does not
+sharpen into a rule as the cut grows, it fades, and the deeper gears' phases g^2 mod h decide.
+
 ## E. Relations between fields
 
 | # | statement | status |
