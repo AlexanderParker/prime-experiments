@@ -142,6 +142,28 @@ columns), and 6,224 twins.
 | D5 | the deepest field present below P^2 has index j with 5^j < P^2 | PROVED `Fields.field_index_le` (FieldsB); MEASURED exact (equality) at p = 11..53 |
 | D6 | field j alone cannot cover a section | PROVABLE by count (Landau: density (log log x)^{j-1}/((j-1)! log x)); not formalised |
 
+## D-alone. Each factor-count field in isolation (research/stack/r8/count_field_alone.py, section [121, 16129), gaps in S-steps)
+
+| field | members | mean gap | commonest gaps (count) | largest gap, after | same-class : opposite-class consecutive | longest one-class run | members per tenth of the section | divisible by 5 | by 7 |
+|---|---|---|---|---|---|---|---|---|---|
+| prime | 1,847 | 2.89 | 1 (566), 2 (431), 3 (341), 4 (164), 5 (145) | 15 after 15683 | 703 : 1,143 (0.62) | 6 | 238, 199, 190, 186, 179, 177, 170, 171, 160, 177 | 0 | 0 |
+| semiprime | 2,392 | 2.23 | 1 (1,052), 2 (595), 3 (339), 4 (185), 5 (102) | 13 after 15253 | 857 : 1,534 (0.56) | 8 | 232, 246, 241, 240, 243, 234, 244, 236, 254, 222 | 18.7% | 14.0% |
+| three-factor | 919 | 5.81 | 3 (135), 1 (114), 2 (108), 7 (97), 4 (82) | 30 after 1331 | 384 : 534 (0.72) | 7 | 58, 77, 89, 91, 92, 105, 95, 106, 95, 111 | 51.5% | 36.0% |
+| four-factor | 161 | 32.3 | 33 (13), 17 (11), 7 (10), 50 (9), 20 (9) | 117 after 875 | 63 : 97 (0.65) | 5 | 6, 10, 13, 16, 18, 15, 23, 18, 23, 19 | 80.7% | 54.0% |
+| five-factor | 16 | 284 | 417, 250, 167 (2 each) | 583 after 4375 | 6 : 9 | 3 | 0, 1, 1, 1, 1, 3, 1, 3, 2, 3 | 100% | 56.2% |
+
+What each field alone shows: the prime field thins along the section (238 to 160-177 per
+tenth) while the semiprime field is flat (222-254) and the three- and four-factor fields
+thicken (58 to 111; 6 to 19), the fields trading density along the section exactly as the
+count of prime factors of a number grows with its size; the semiprime field's gaps are the
+shortest (mean 2.23 S-steps, 44% of consecutive pairs adjacent); every field prefers
+opposite-class consecutive members (ratios 0.56-0.72 against 1.0 for no preference) and no
+field runs longer than 8 members in one class; the three-factor field's commonest gap is 3
+S-steps, not 1, a spacing the semiprime field does not have; the share divisible by 5 rises
+with the field index (0, 18.7, 51.5, 80.7, 100%), which is the nesting field j ⊇ 5 . field
+j-1 growing to fill the field. None of these is a periodic structure (E6); the gear fields
+(G-alone) are where the periodic structure lives.
+
 ## G. The second kind of field: one per gear, starting at its square (research/stack/r8/gear_fields.py)
 
 Owner's instruction: a field type for each gear and its composites, starting with its own
