@@ -2244,3 +2244,9 @@ name = "Fields"
 # E6b (no field is periodic); NOT in defaultTargets.
 [[lean_lib]]
 name = "FieldsB"
+
+# The fields, part C: the gear fields (G0 square first, G1/G2 least factor and disjointness,
+# G3 periodicity, G4 mirror, G5 CRT count of the survivors in one period, G6 gap scaling);
+# NOT in defaultTargets.
+[[lean_lib]]
+name = "FieldsC"

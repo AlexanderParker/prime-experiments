@@ -82,6 +82,7 @@ import CoreLeftover
 import SquareColumn
 import Fields
 import FieldsB
+import FieldsC
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -1149,3 +1150,22 @@ open BlockedSlots
 #print axioms Fields.field_add_mul_of_add
 #print axioms Fields.field_not_closed_add
 #print axioms Fields.field_not_periodic
+
+-- FieldsC (G0-G6: the gear fields)
+#print axioms Fields.sq_mem_gearField
+#print axioms Fields.gearField_minFac
+#print axioms Fields.mem_gearField_of_minFac
+#print axioms Fields.gearField_disjoint
+#print axioms Fields.survivor_of_survivor
+#print axioms Fields.survivor_congr
+#print axioms Fields.dvd_six_prod_of_lt
+#print axioms Fields.survivor_periodic
+#print axioms Fields.gearField_periodic
+#print axioms Fields.survivor_neg
+#print axioms Fields.prime_dvd_six_prod_iff
+#print axioms Fields.survivor_iff_coprime
+#print axioms Fields.totient_prod_primes
+#print axioms Fields.not_dvd_six_of_five_le
+#print axioms Fields.totient_six_prod
+#print axioms Fields.card_survivors_period
+#print axioms Fields.gearField_gap_scaling

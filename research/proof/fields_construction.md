@@ -219,7 +219,12 @@ each claim checked exactly:
 | 19 | 1,616,615 | 92,160 | yes | 82 | 6, 13, 19 (22,275 / 22,274 / 26,630); then 25 .. 82 |
 | 23 | 37,182,145 | 1,658,880 | yes | 130 | 8, 15, 23 (378,675 / 378,675 / 470,629); then 31 .. 130 |
 
-Exact facts of a gear field alone, each verified above and provable from the construction:
+Exact facts of a gear field alone, each verified above and PROVED in the kernel (proofs/FieldsC.lean,
+round 44: Survivor g m, gearField g = { g m : g <= m, Survivor g m }; sq_mem_gearField G0;
+gearField_minFac and mem_gearField_of_minFac G1, the least-factor partition; gearField_disjoint
+G2; survivor_periodic, gearField_periodic G3 = (G5) below; survivor_neg G4 = (G7); card_survivors_period
+= (G6), via Survivor g m <-> Coprime (6P) m and the totient; gearField_gap_scaling = (G8), the gap is
+g times the survivor gap):
 (G5) F_g is periodic in columns with period the product of the gears 5 .. g (the dilate by g
 of the lower machine's period); (G6) hits per period = 2 . product over 5 <= h < g of (h - 1)
 (m is a single number, so each lower gear removes one residue in h; two classes of the fold);
