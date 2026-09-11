@@ -2608,6 +2608,16 @@ them into machine analogy unless it seeds a machine-driven investigation and is 
 Describe a mechanism before naming a theorem it resembles; "explained by CRT" is a description,
 not a proof the object persists. Every branch is judged by whether it moves toward the target
 object. Window = certified range; stretch = sliding run; the budget inequality is a target, not a law.
+FINALISATION PHASE (2026-09-11, owner: "focus everything on resolving step 8"): the single
+document is research/proof/proof_skeleton.md (Parts I-IV); every lane's result is written into
+it or it did not happen. KEPT: construction before name; mechanism before label; no re-derivation
+of known results; second measurement before any new reading; findings first in chat; forbidden
+words window / rung / ladder / descent; no bigger iterations (a larger-q table is not a route;
+proofs are closed-form statements from proven mechanics); formalise in the same round. RETIRED
+(they served the parts phase): the objects-ledger gate (open since 2026-09-07), the clutch
+strategy (the valves are built), budget mode (limits lifted 2026-09-11), the breadth rule (depth
+only, on step 8's three faces). Lanes are judged by one question: does the deliverable change
+Part III or Part IV of the proof document?
 
 ## Log
 - 2026-09-04: tree opened. Lanes running: prover A (branch 1), prover B (branch 2), SAT instrument
@@ -3018,3 +3028,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11 (17:40), manager CORRECTION (proof_skeleton.md section 16): sections 13-15 and node R4.d.i.e measured the finer statement (a twin between consecutive prime squares), not step 8 of the skeleton, whose sections run from p_k^2 to nextprime(p_k^2)^2 (a number to about its square). For step 8 the record route is open and already on record (tree_review.md section 4): F(q) < q^2/6 suffices, the certified records sit at 0.28-0.39 of the square and fall with q, three links proved, none beyond 59; the general bound of exponent 2 on the paired record is Ziller-Morack Conjecture 6 in free-phase form, sieve-blocked at exponent 4.27 (parity). R4.d.i.e's results stand for the finer statement. Owner's hunch parked (not pursued, on the owner's instruction): the machine is self-similar; the fold 2, 3 creates a left/right open pattern no higher gear can cancel (no prime above 3 is a multiple of 2 or 3), later gears only cover some of its runs, so the patterns are nested fragments of the lower pattern.
 - 2026-09-11 (evening; the owner lifted the limits): three lanes on step 8's length face. Formalist round 41 (Fable; proofs/SquareColumn.lean: S0 the record route section_twin_of_unstruck / section_twin_of_record, then S1-S4 the square column, the offset-strike law, the blind corollary, the twin conclusion, step <=> L_a < l); prover (Opus; research/anchor235/r75/, records_by_sat.md): the certified record table past 59 by SAT with the real teeth, gated on F(23..53), F(59) decided, then 61, 67, 71, ...; the ratio 6F/q^2 and the fit q log^2 q against q log q log log q; the free-phase h_2 comparison. Theorist (Fable; research/anchor235/r76/, length_face.md): the target F(q) < q^2/6 as a construction, what on record constrains a run of q^2/6 columns, where the parity barrier bites for the real teeth (measured on the record runs at m23..m37), proof attempt or exact obstruction.
 - 2026-09-11, owner: testing bigger and bigger machines cannot find the proof (every machine to infinity would have to be tested); proofs are closed-form statements from proven mechanics. The records-by-SAT lane stopped before producing numbers; the Formalist and the length-face theorist continue.
+- 2026-09-11 (evening), manager (owner: bring it all together in one place; are the old mandates still useful): research/proof/proof_skeleton.md rewritten as the single proof document, Parts I (the construction, 1-9), II (the one statement in its exact forms 8a-8e), III (what is proved about it, incl. the three certified links), IV (the three faces and the shape of what would close it); the diary form kept as proof_skeleton_history.md. Standing directions amended: finalisation phase, kept and retired mandates listed.
