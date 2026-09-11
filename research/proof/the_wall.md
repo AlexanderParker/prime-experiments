@@ -538,3 +538,17 @@ for 8 itself the section is longer than every gear, so there is no tail and no p
 for 8 is now one sentence: the primes below p_{k+1} are exactly the irreducibles of the
 survivors S = +-1 mod 6 under dilation, and nothing on record distinguishes that structure
 from the monoid's except the fold's two classes themselves.
+
+## 5p. After the fold lane (manager, 2026-09-11, late)
+
+The missing axiom is not a property of the gear set. Thin the primes by exactly the twin
+lowers: the thinned set keeps both classes at every scale, equidistribution, dilation, the
+square-root rule and the side-swap rule, and its monoid kills every section; every two-class
+monoid is transparent (8 holds on it iff it keeps a twin lower). What the thinning breaks is
+the line: a twin (t, t + 2) with t removed is open and t is not a gear. So the axiom a proof
+must use is the strike-class law's first half, the completeness of the line: every survivor of
+the fold is a gear or a multiple of a smaller gear. The classes are invisible to the column
+cover; the fold's sign n mod 3 is sieve-visible; the invisible part of Liouville is the count
+of class +1 factors. The wall for 8 in one sentence, revised: the line is complete and the
+sieve's input cannot see completeness at the origin; a proof needs completeness used at phase
+zero in a way that is neither a free-phase cover nor a count.

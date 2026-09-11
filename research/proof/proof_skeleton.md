@@ -178,6 +178,18 @@ statement 8. Its equivalent and sufficient forms, each proved to be so:
   (4 to 156 phantom strikes per section) and V17 (quotient 1) violate; the smallest section
   the real teeth hold while free classes kill it is the finer section at p = 17, columns 49
   to 59, where 13 and 17 are pinned to 13 x 23, 13 x 25, 17 x 19.
+- The gear set alone, in full (research/proof/fold_mechanic.md): thin the primes by exactly
+  the twin lowers. The thinned set has both classes of the fold at every scale, is
+  equidistributed in every admissible class (the twin lowers have density 0), keeps dilation,
+  the square-root rule and the side-swap rule, and its monoid kills every section (361 of 361
+  finer sections, all three construction sections). Every two-class monoid is transparent:
+  8 holds on it iff its generators keep a twin lower in the section (proved, 0 mismatches
+  over 7,309 sections). So no property of the gear set is the missing axiom. What the
+  thinning breaks, in the integers, is the line: (101, 103) is open under it and 101 is not
+  a gear. The axiom is 2's first half, that every survivor of the fold is on the line, a gear
+  or a multiple of a smaller gear. The classes are invisible to the column cover, and the
+  fold's own sign, n mod 3, is sieve-visible; the invisible part of Liouville is the count of
+  class +1 factors. [PROVED by construction]
   For 8 itself
   (sections of q^2/6 columns) the same question is the free-phase record h_2 against the
   square, Part IV.1.
@@ -272,7 +284,12 @@ and strike exactly the dilates of those classes) in a way that is not the strike
 alone, because the monoid counter-machine has dilation, hand-up and the square-root rule and
 still kills a section. The one construct named and not yet excluded: a non-count use of the
 tail pins, the strikes g x m of the section with m a small prime, which the origin forces
-(below g^3 every quotient is prime) and height does not.
+(below g^3 every quotient is prime) and height does not. After fold_mechanic.md the demand is
+sharper again: the reason cannot be a property of the gear set (both classes, equidistribution,
+dilation, hand-up in the monoid sense: a thinned prime set has them all and kills every
+section); it must use that the line is complete, every survivor of the fold being a gear or a
+multiple of a smaller gear, at phase zero, in a way that is neither a free-phase cover nor a
+count. The teeth, the classes and the gear set are exhausted.
 
 A closed-form statement of the form "the machine {5..q} with its real teeth cannot cover q^2/6
 consecutive columns, because ...", where the reason is a mechanic already proved (Part III.1)
