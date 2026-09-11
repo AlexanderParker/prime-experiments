@@ -220,3 +220,49 @@ question is whether a prime's vector can ever lie in K_p, and nothing on the rec
 not beyond the count (0 exceptions to 10^7). Formalisation of this section is in progress
 (proofs/SquareColumn.lean: the square column, the offset-strike law, the blind corollary, the
 twin conclusion below p'^2, the equivalence with L_a < l_p).
+
+## 16. Correction (manager, 2026-09-11, 17:40): sections 13-15 concern a finer statement, not 8
+
+Sections 13, 14 and 15 measured sections between CONSECUTIVE prime squares, [p^2, p'^2) with
+p' the next prime after p. That is not the construction of section 4. There, c_{k+1} = p_k^2
+with p_k the first prime AT OR ABOVE c_k, so section k+1 = [p_k^2, p_{k+1}^2) with
+p_{k+1} = nextprime(p_k^2): a section runs from a number to about its square (121 to 16129;
+16129 to 260,467,321), and the machines striking it are all the primes below p_{k+1}, whose
+largest, q, is just below p_k^2. The statement of sections 13-15 (a twin between every pair of
+consecutive prime squares) implies 8 and is far stronger; its wall (position; the teeth) is
+real for it, and those sections stand as the map of THAT statement. For 8 itself the picture
+is the one already on record (tree_review.md section 4; base_and_step.md Q7), restated here so
+the skeleton is not misread:
+
+- The record route is OPEN for 8. Section k+1 has about q^2 / 6 columns (q the top gear), and
+  the machine {5..q} cannot strike more than F(q) consecutive columns anywhere. So 8 at link k
+  follows from F(q) < (p_{k+1}^2 - p_k^2)/6, and the certified records are a third of that:
+
+  | q | F(q) | q^2/6 | 6F/q^2 |
+  |---|---|---|---|
+  | 13 | 11 | 28 | 0.39 |
+  | 23 | 34 | 88 | 0.39 |
+  | 31 | 58 | 160 | 0.36 |
+  | 41 | 91 | 280 | 0.33 |
+  | 47 | 118 | 368 | 0.32 |
+  | 53 | 145 | 468 | 0.31 |
+  | 59 | 161..178 | 580 | 0.28..0.31 |
+
+  falling with q. This proves 8 at three links (base 3, 5, 7, link 1: q = 7, 23, 47), and at
+  no other, because no record is certified past 59 (link 2 of base 3 needs F({5..113}) < 2688).
+- What a proof of 8 by the record needs: F(q) < q^2 / 6 for every q, a bound of exponent 2 on
+  the paired record of the primes' own teeth. In the free-phase form (any two classes per gear)
+  this is Ziller-Morack's Conjecture 6, h_2 < p_n^2 - p_n, open in print; the only proved
+  bounds on a two-class record come from the dimension-2 sieve, exponent 4.27 (sifting limit
+  beta_2 = 4.2665 against the 2 that the section has). That gap is the parity barrier in
+  covering form: the record route to 8 is exactly as hard as the sieve's parity problem, and
+  it needs no position at all.
+- The teeth obstruction of section 14 does not apply at the section's true length: the
+  two-tooth families killed 60 to 112 columns with the gears up to 53; the section at q = 53
+  has 468. Whether any two-tooth choice of the gears 5..q can cover q^2 / 6 columns is the
+  free-phase question above (h_2 against the square), measured false to p_n = 73 by the
+  Ziller-Morack table and unproved.
+
+So the one unproved statement 8 has three faces, all on record: length (the record below the
+square; sieve-blocked at exponent 4.27 against 2), count (the leftover; the parity object),
+and, for the finer statement only, position (the run through the square column; the teeth).
