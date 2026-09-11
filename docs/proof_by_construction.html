@@ -14,13 +14,13 @@ h1{font:600 30px/1.15 var(--serif);margin:0 0 6px;text-wrap:balance}
 .sub{color:var(--muted);margin:0 0 22px}
 h2{font:600 20px/1.25 var(--serif);margin:34px 0 10px;text-wrap:balance;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 h2 .n{font:500 13px var(--mono);color:var(--accent)}
+.part{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:44px 0 -18px;border-top:2px solid var(--accent);padding-top:10px}
 p{margin:0 0 12px}
 .chip{display:inline-block;padding:1px 9px;border-radius:999px;font:500 11px/18px var(--mono);letter-spacing:.04em;color:var(--chip-ink);vertical-align:middle;white-space:nowrap}
 .proved{background:var(--proved)}.measured{background:var(--measured)}.theorised{background:var(--theorised)}
 .legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px;margin:0 0 18px}
 figure{margin:18px 0;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow-x:auto}
 figcaption{color:var(--muted);font-size:13px;margin-top:8px}
-svg{display:block;max-width:100%;height:auto}
 table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
 th,td{text-align:left;padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
 th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
@@ -37,100 +37,123 @@ code{font:500 13px var(--mono)}
 </style>
 <main>
 <h1>Twin Primes by Construction</h1>
-<p class="sub">Everything is built, not named. Each claim is followed by why the construction makes it so. State of the argument on 7 September 2026.</p>
+<p class="sub">The one document. Everything is built, not named; each claim says why the construction makes it so. State of the argument on 11 September 2026.</p>
 <div class="legend"><span class="chip proved">PROVED</span> built here or in the kernel <span class="chip measured">MEASURED</span> zero exceptions on a stated range, no proof <span class="chip theorised">THEORISED</span> not proved; if true, closes the conjecture</div>
+
+<div class="part">Part I · The construction</div>
 
 <h2><span class="n">1</span>The line and a gear <span class="chip proved">PROVED</span></h2>
 <p>Take the counting numbers 1, 2, 3, … in a row: the line. A gear of size <code>g</code> is the rule "strike every g-th number": it strikes <code>g, 2g, 3g, …</code> and nothing else. A number is struck by a set of gears if at least one strikes it. A prime <code>p</code> is a number above 1 that no smaller number above 1 divides, so it is struck by no gear smaller than <code>p</code>, and by its own gear at <code>p</code>.</p>
 
 <h2><span class="n">2</span>The fold: what gears 2 and 3 leave <span class="chip proved">PROVED</span></h2>
-<p>Run the gears 2 and 3. In each strip of six, <code>6j … 6j+5</code>, gear 2 takes the even ones and gear 3 takes <code>6j</code> and <code>6j+3</code>. Only <code>6j+1</code> and <code>6j+5</code> survive. Pair the survivors as slots <code>(6j−1, 6j+1)</code>: two numbers at distance 2. Every prime above 3 sits in a slot, and a twin prime pair is a slot with both members prime.</p>
-<div class="why"><b>Why</b>One strip of six checked by hand covers every strip, because the gears repeat every 6.</div>
+<p>Run the gears 2 and 3. In each strip of six, <code>6j … 6j+5</code>, gear 2 takes the even ones and gear 3 takes <code>6j</code> and <code>6j+3</code>. Only <code>6j+1</code> and <code>6j+5</code> survive. Pair the survivors as slots <code>(6j−1, 6j+1)</code>: two numbers at distance 2; call <code>j</code> the slot's column. Every prime above 3 sits in a slot, and a twin prime pair is a slot with both members prime. A gear <code>g ≥ 5</code> strikes column <code>j</code> exactly when <code>g</code> divides <code>6j−1</code> or <code>6j+1</code>: two residues per gear, the gear's teeth.</p>
+<div class="why"><b>Why</b>One strip of six checked by hand covers every strip, because the gears repeat every 6. Kernel: <code>TopMachine.strikesR_iff</code>.</div>
 
 <h2><span class="n">3</span>Only the gears up to the square root decide a prime <span class="chip proved">PROVED</span></h2>
 <p>If <code>n &lt; P²</code> and no prime below <code>P</code> strikes <code>n</code>, then <code>n</code> is prime.</p>
-<div class="why"><b>Why</b>If <code>n = a × b</code> with <code>1 &lt; a ≤ b</code>, then <code>a² ≤ n &lt; P²</code>, so <code>a &lt; P</code>, and the smallest prime factor of <code>a</code> is below <code>P</code> and strikes <code>n</code>. Contradiction.</div>
+<div class="why"><b>Why</b>If <code>n = a × b</code> with <code>1 &lt; a ≤ b</code>, then <code>a² ≤ n &lt; P²</code>, so <code>a &lt; P</code>, and the smallest prime factor of <code>a</code> is below <code>P</code> and strikes <code>n</code>. Contradiction. Kernel: <code>OneStepE.blocked_iff_sqrt</code>, <code>CoreLeftover.twin_of_rough</code>.</div>
 
 <h2><span class="n">4</span>Cuts, sections, machines</h2>
-<p>Set <code>c₁ = 3</code>. Let <code>p_k</code> be the smallest prime at or above <code>c_k</code>, and set <code>c_{k+1} = p_k²</code>. Section <code>k</code> is the numbers from <code>c_k</code> up to <code>c_{k+1}</code>. Machine <code>k</code> is the set of gears whose sizes are the primes in section <code>k</code>. Every prime above 2 belongs to exactly one machine, because the sections tile the line from 3 on.</p>
-<figure>
-<svg viewBox="0 0 720 150" role="img" aria-label="The first four sections as nested bars on a log scale, each labelled with its cut, its machine's gears and its twin count">
-  <defs><style>text{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:currentColor}</style></defs>
-  <g fill="none" stroke="currentColor" stroke-opacity=".35">
-    <line x1="20" y1="70" x2="700" y2="70"/>
-  </g>
-  <g>
-    <rect x="20" y="52" width="60" height="36" fill="#2e7d4f" fill-opacity=".18" stroke="#2e7d4f"/>
-    <rect x="80" y="52" width="140" height="36" fill="#2e7d4f" fill-opacity=".14" stroke="#2e7d4f"/>
-    <rect x="220" y="52" width="230" height="36" fill="#2e7d4f" fill-opacity=".10" stroke="#2e7d4f"/>
-    <rect x="450" y="52" width="250" height="36" fill="#2e7d4f" fill-opacity=".06" stroke="#2e7d4f" stroke-dasharray="4 3"/>
-  </g>
-  <g>
-    <text x="20" y="44">c₁=3</text><text x="80" y="44">c₂=9</text><text x="220" y="44">c₃=121</text><text x="450" y="44">c₄=16129</text><text x="640" y="44">c₅=2.6e8</text>
-    <text x="24" y="75">machine 1</text><text x="84" y="75">machine 2</text><text x="224" y="75">machine 3</text><text x="454" y="75">machine 4</text>
-    <text x="24" y="104">gears 3 5 7</text><text x="84" y="104">gears 11 … 113</text><text x="224" y="104">gears 127 … 16127</text><text x="454" y="104">gears 16139 …</text>
-    <text x="24" y="122">2 twin pairs</text><text x="84" y="122">8 twin pairs</text><text x="224" y="122">twins: many</text><text x="454" y="122">twins: many</text>
-    <text x="24" y="142" fill-opacity=".7">each section's primes are the next machine's gears; each cut is a prime squared</text>
-  </g>
-</svg>
-<figcaption>The sections on a log scale. Cuts 3, 9, 121, 16129, 260,467,321 (p_k = 3, 11, 127, 16139). Machine k's gears are the primes of section k.</figcaption>
-</figure>
-
-<h2><span class="n">5</span>Inside a section only the machines below act: home strikes and echoes <span class="chip proved">PROVED</span></h2>
-<p>Take <code>n</code> in section <code>k+1</code>, so <code>p_k² ≤ n &lt; p_{k+1}²</code>. By 3, <code>n</code> is prime exactly when no gear of machines 1 … k strikes it, since those are the primes below <code>p_{k+1}</code>. Now let a gear <code>p ≥ p_{k+1}</code> strike <code>n</code>, so <code>n = p × c</code>. Then <code>c = n/p &lt; p_{k+1}</code>.</p>
-<ul>
-<li><code>c = 1</code>: <code>n</code> is the gear's own size. A <b>home strike</b>: the gear striking itself.</li>
-<li><code>c &gt; 1</code>: <code>c</code> has a prime factor below <code>p_{k+1}</code>, a gear of machines 1 … k that already strikes <code>n</code>. An <b>echo</b>: a strike on a number a lower machine already struck.</li>
-</ul>
-<p>So inside section <code>k+1</code> the higher machines add nothing but their own sizes, and a slot that machines 1 … k leave unstruck has both members prime: it is a twin prime pair.</p>
-<div class="why"><b>Kernel</b><code>OneStepE.new_iff</code>, <code>MachineStack.exhaust_home_or_echo</code>; verified with 0 exceptions at 16 sections to q = 23.</div>
-
-<h2><span class="n">6</span>The hand-up: survivors become gears <span class="chip proved">PROVED</span></h2>
-<p>By 4 the gears of machine <code>k+1</code> are the primes in section <code>k+1</code>. By 5 those are exactly the numbers machines 1 … k leave unstruck there. So machine <code>k+1</code> is built from the survivors of the machines below it, and one object has three names:</p>
-<ul>
-<li>a twin prime pair in section <code>k+1</code>;</li>
-<li>two gears of machine <code>k+1</code> at distance 2;</li>
-<li>a slot that machines 1 … k left open.</li>
-</ul>
-<div class="why"><b>Why</b>An identity of the construction; checked with 0 mismatches at 16 sections.</div>
-
-<h2><span class="n">7</span>The base <span class="chip proved">PROVED</span> <span class="chip measured">MEASURED beyond</span></h2>
-<p>Machine 1 = {3, 5, 7} contains (3, 5) and (5, 7). In section 2 = [9, 121) machine 1 leaves eight slots open, which are the twin gears of machine 2:</p>
+<p>Set <code>c₁ = 3</code>. Let <code>p_k</code> be the smallest prime at or above <code>c_k</code>, and set <code>c_{k+1} = p_k²</code>. Section <code>k</code> is the numbers from <code>c_k</code> up to <code>c_{k+1}</code>: a section runs from a number to about its square. Machine <code>k</code> is the set of gears whose sizes are the primes in section <code>k</code>. Every prime above 2 belongs to exactly one machine, because the sections tile the line from 3 on.</p>
 <figure>
 <table>
-<tr><th>slot</th><th class="m">3 strikes?</th><th class="m">5 strikes?</th><th class="m">7 strikes?</th><th>result</th></tr>
-<tr><td class="m">(11, 13)</td><td class="m">no</td><td class="m">no</td><td class="m">no</td><td>twin, gears of machine 2</td></tr>
-<tr><td class="m">(17, 19)</td><td class="m">no</td><td class="m">no</td><td class="m">no</td><td>twin</td></tr>
-<tr><td class="m">(23, 25)</td><td class="m">no</td><td class="m">25</td><td class="m">no</td><td>struck</td></tr>
-<tr><td class="m">(29, 31)</td><td class="m">no</td><td class="m">no</td><td class="m">no</td><td>twin</td></tr>
-<tr><td class="m">(35, 37)</td><td class="m">no</td><td class="m">35</td><td class="m">35</td><td>struck</td></tr>
-<tr><td class="m">(41, 43)</td><td class="m">no</td><td class="m">no</td><td class="m">no</td><td>twin</td></tr>
-<tr><td class="m">…</td><td colspan="4">(59,61), (71,73), (101,103), (107,109) also survive: eight in all</td></tr>
+<tr><th>k</th><th class="m">cut c_k</th><th class="m">p_k</th><th>section k</th><th>machine k</th></tr>
+<tr><td>1</td><td class="m">3</td><td class="m">3</td><td class="m">[3, 9)</td><td class="m">{3, 5, 7}</td></tr>
+<tr><td>2</td><td class="m">9</td><td class="m">11</td><td class="m">[9, 121)</td><td class="m">{11, …, 113}</td></tr>
+<tr><td>3</td><td class="m">121</td><td class="m">127</td><td class="m">[121, 16129)</td><td class="m">{127, …, 16127}</td></tr>
+<tr><td>4</td><td class="m">16129</td><td class="m">16139</td><td class="m">[16129, 260,467,321)</td><td class="m">{16139, …}</td></tr>
 </table>
-<figcaption>Every section computed along this chain (to c₅ = 260,467,321) and along every chain from every base to q = 23 holds at least one twin pair.</figcaption>
+<figcaption>The first four cuts of the chain from 3. Kernel: <code>MachineStack.stack_eq_primesLE</code>.</figcaption>
 </figure>
+
+<h2><span class="n">5</span>Inside a section, higher machines only home-strike or echo <span class="chip proved">PROVED</span></h2>
+<p>Take <code>n</code> in section <code>k+1</code>, so <code>p_k² ≤ n &lt; p_{k+1}²</code>. By 3, <code>n</code> is prime exactly when no prime below <code>p_{k+1}</code> strikes it, and those primes are precisely the gears of machines <code>1 … k</code>. A gear <code>p ≥ p_{k+1}</code> that strikes <code>n = p × c</code> has <code>c &lt; p_{k+1}</code>: either <code>c = 1</code> (the gear strikes its own size, a home strike) or <code>c</code> has a prime factor below <code>p_{k+1}</code> that already strikes <code>n</code> (an echo). So a slot of section <code>k+1</code> left unstruck by machines <code>1 … k</code> has both members prime: a twin prime pair.</p>
+<div class="why"><b>Why</b>Kernel: <code>OneStepE.new_iff</code>, <code>MachineStack.exhaust_home_or_echo</code>, <code>MachineStack.stack_open_iff_twin</code>.</div>
+
+<h2><span class="n">6</span>The hand-up: survivors become gears <span class="chip proved">PROVED</span></h2>
+<p>By 4 the gears of machine <code>k+1</code> are the primes of section <code>k+1</code>; by 5 those are exactly the numbers machines <code>1 … k</code> leave unstruck. So machine <code>k+1</code> is built from the survivors of the machines below it, and a twin prime pair in section <code>k+1</code>, two gears of machine <code>k+1</code> at distance 2, and a slot left open by machines <code>1 … k</code> are one and the same thing.</p>
+
+<h2><span class="n">7</span>The base <span class="chip proved">PROVED</span></h2>
+<p>Machine 1 = {3, 5, 7} has the pairs (3, 5) and (5, 7). Section 2 = [9, 121): the slots machine 1 leaves open are (11,13), (17,19), (29,31), (41,43), (59,61), (71,73), (101,103), (107,109), eight twin pairs, the twin gears of machine 2.</p>
 
 <h2><span class="n">8</span>The step <span class="chip theorised">THEORISED</span></h2>
 <div class="gap">
-<p><b>For every k, the gears of machines 1 … k leave at least one slot of section k+1 unstruck.</b></p>
-<p>By 6 that is the same as: machine <code>k+1</code> has two gears at distance 2. In plain words: between every cut and its square there is a twin prime pair.</p>
+<p>For every <code>k</code>: the gears of machines <code>1 … k</code> leave at least one slot in section <code>k+1</code> unstruck. By 6 that is the same as: machine <code>k+1</code> has two gears at distance 2. In plain words: <b>between every cut and its square there is a twin prime pair.</b></p>
+<p><span class="chip measured">MEASURED</span> every section along the chain from 3 to 260,467,321 and along every chain from every base to 23. <span class="chip proved">PROVED</span> at three links (Part III.4).</p>
 </div>
 
-<h2><span class="n">9</span>The conclusion <span class="chip proved">PROVED given 8</span></h2>
-<p>Machine 1 has a twin-gear pair (7). By 8, machines 1 … k leave a slot open in section <code>k+1</code>, which by 5 is a twin prime pair and by 6 a twin-gear pair of machine <code>k+1</code>. So every section holds a twin prime pair, the sections tile the line from 3 on, and there are infinitely many twin primes.</p>
+<h2><span class="n">9</span>The conclusion <span class="chip proved">PROVED</span> given 8</h2>
+<p>Machine 1 has a twin-gear pair (7). By 8 machines <code>1 … k</code> leave a slot open in section <code>k+1</code>, which by 5 is a twin prime pair and by 6 a twin-gear pair of machine <code>k+1</code>. So every section holds a twin prime pair, the sections tile the line, and there are infinitely many twin primes.</p>
 
-<h2><span class="n">10</span>What 8 cannot be built from <span class="chip proved">PROVED, by building the counter-machines</span></h2>
+<div class="part">Part II · The one statement, in its exact forms</div>
+
+<h2><span class="n">II</span>Forms of 8, each proved equivalent or sufficient</h2>
 <ul>
-<li><b>Counting alone.</b> Let each gear strike a shifted progression <code>a+g, a+2g, …</code> instead of its multiples. Such gears can be arranged to strike every slot of a section: 776 of the 1,226 gears below 10⁴ cover the first 60 cycles at q = 5. Any argument that uses only how much each gear strikes applies to them too. The real gears strike multiples; that difference must be used.</li>
-<li><b>Multiples alone.</b> "Strikes multiples" gives exactly the divisor property: an unstruck number has unstruck divisors, a struck number has struck multiples (0 violations in 107,750,211 tests). But the machine made of all primes below <code>p_{k+1}</code> plus the section's own twin primes as extra gears strikes multiples, has the divisor property, obeys every law on record, and leaves no open slot. What excludes it is only 4: a machine's gears are the survivors of the machines below, not an arbitrary set of primes.</li>
-<li><b>So 8 must use the recursion of 6.</b> Every argument so far treated the gears as given.</li>
+<li><b>8a, the section form.</b> Some column <code>j</code> with <code>p_k² ≤ 6j−1</code> and <code>6j+1 &lt; p_{k+1}²</code> is struck by no gear <code>g ≤ q</code>, where <code>q</code> is the largest prime below <code>p_{k+1}</code> (just under <code>p_k²</code>). Equivalent to 8 by 2 and 5.</li>
+<li><b>8b, the run form.</b> With <code>a</code> the cut's column (<code>6a+1 = p_k²</code>) and <code>l = (p_{k+1}² − p_k²)/6</code> the section's length in columns, let <code>L_a</code> be the number of consecutive columns from <code>a</code> on that are each struck by some gear <code>≤ q</code>. Then 8 ⟺ <code>L_a &lt; l</code>. <span class="chip proved">PROVED</span></li>
+<li><b>8c, the record form (sufficient).</b> Let <code>F(q)</code> be the largest number of consecutive columns anywhere on the line each struck by some gear of {5 … q}. If <code>F(q) &lt; l</code> then 8 holds at that link. Since <code>l ≈ q²/6</code>, the uniform statement <code>F(q) &lt; q²/6</code> for every prime <code>q</code> gives 8 at every link. <span class="chip proved">PROVED</span> as an implication; kernel theorem in progress.</li>
+<li><b>8d, 8c on the line.</b> Every interval of <code>q²</code> consecutive numbers contains a slot <code>(n, n+2)</code>, <code>n ≡ 5 mod 6</code>, with no prime factor <code>≤ q</code> in either member.</li>
+<li><b>8e, the finer statement (sufficient, not needed).</b> A twin pair between every pair of consecutive prime squares. Implies 8, is far stronger, measured true for every prime to 10⁷. Its own wall is Part IV.3.</li>
 </ul>
 
-<h2><span class="n">11</span>The shape of what is missing</h2>
-<p>A property of a section's survivor set that is carried to the next section when the cut is squared, is not a count, and forces two survivors at distance 2. The only properties proved to carry across the squaring are counts: every machine removes half the numbers reaching it and a quarter of the slots (Mertens; measured to q = 23). Two candidates, neither built:</p>
+<div class="part">Part III · What is proved about 8</div>
+
+<h2><span class="n">III.1</span>Mechanics of the machine that bear on a run of struck columns <span class="chip proved">PROVED</span></h2>
 <ul>
-<li><span class="chip theorised">11a</span> Two gears at distance 2 strike the same slot earlier than any other pair, at <code>(g+4)/3</code> in the folded coordinate, with deficit growing by exactly 4 per common period (proved, <code>ArcFloor</code>). So a machine with twin pairs strikes the start of the next section less than its size predicts. If that shortfall leaves one slot open before the machine's smallest gear engages, 8 holds and the twin pairs propagate themselves. Not measured.</li>
-<li><span class="chip theorised">11b</span> The property that separates a generated survivor set from an arbitrary divisor-closed set of primes on one section. It must be finer than any signed count: the parity-defined set (even number of prime factors) also has the divisor property and also kills the count, the signed slot census being 0.1% of slots against an 8% twin share. Not identified.</li>
+<li><b>The offset-strike law at a square.</b> With <code>p² = 6a+1</code>, a gear <code>g</code> strikes column <code>a+i</code> iff <code>p² ≡ −6i</code> or <code>2−6i (mod g)</code>. Near a square every strike is a statement about <code>p²</code> modulo the gear; a gear can strike offset <code>i</code> for some <code>p</code> only if <code>−6i</code> or <code>2−6i</code> is a square mod <code>g</code> (the blind classes).</li>
+<li><b>The two-prime lemma.</b> A number below <code>t³</code> with no prime factor <code>≤ t</code> is a prime or a product of exactly two primes above <code>t</code>. Kernel <code>CoreLeftover.primeOrSemiprime_of_rough_lt_cube</code>.</li>
+<li><b>The core / tail split.</b> On a stretch of <code>L</code> columns the gears <code>≤ 6L+1</code> decide the pattern; each larger gear strikes at most one column, and every such strike on a core-open column is a product of two large primes. Kernel <code>TopMachineRecord.loaded_record_rule</code>, <code>CoreLeftover.leftover_eq_card_twins</code>.</li>
+<li><b>The depth law.</b> A core-open column below <code>(6L+1)²</code> is a twin. Kernel <code>CoreLeftover.twin_of_rough</code>.</li>
+<li><b>The record is an exact cover</b> (law W16), and <b>the parity law</b> for machines whose every gear exceeds <code>2m+1</code>: <code>F = 2m − (m mod 2)</code>, kernel <code>TopMachineCrt.parity_law</code>. The primes never satisfy its hypothesis.</li>
+<li><b>The mex form</b> of the next open column in the free regime, kernel <code>TopMachineWalk.mex_form</code>.</li>
 </ul>
-<p class="foot">Everything above 8 is built. Everything after 8 follows. The gap is one sentence about what a section's survivors do to the section above them. Source: research/proof/proof_skeleton.md; kernel: proofs/OneStepE.lean, MachineStack.lean, ArcFloor.lean.</p>
+
+<h2><span class="n">III.2</span>What 8 cannot be built from <span class="chip proved">PROVED</span> by construction</h2>
+<ul>
+<li><b>Counting alone.</b> Shifted gears (progressions <code>a+g, a+2g, …</code>) can strike every slot of a section: 776 of the 1,226 gears below 10⁴ strike the first 60 cycles at <code>q = 5</code>. Any argument using only how many numbers each gear strikes applies to them.</li>
+<li><b>Multiples alone.</b> The machine of all primes below <code>p_{k+1}</code> together with the twin primes of section <code>k+1</code> strikes multiples, has the divisor property, obeys every law on record, and leaves no open slot. Only 4 excludes it: a machine's gears are the primes of its own section.</li>
+<li><b>The gear set alone</b> (for 8e). Keep the gears and change only their teeth: at <code>p = 17, 29</code> and every cut 37 … 53 some two-tooth machine strikes the whole interval between consecutive prime squares; at 7, 11, 13, 19, 23, 31 none does. 8e needs the real teeth.</li>
+</ul>
+
+<h2><span class="n">III.3</span>The counts, all closed <span class="chip measured">MEASURED</span></h2>
+<p>The core's leftover on a stretch of the section's record length is an extreme value of a count (z about −4.5), the same for real phases, random phases and integer gear sets; the minimum leftover is 0 exactly when the core's own record reaches the stretch; supply never binds; the leftover members are primes or products of two tail primes; the twin-free runs sit on the independent-slot prediction at every length; the one band deviation has no counterpart on five other sections.</p>
+
+<h2><span class="n">III.4</span>Where 8 is proved <span class="chip proved">PROVED</span></h2>
+<figure>
+<table>
+<tr><th>link</th><th>section</th><th class="m">q</th><th class="m">F(q)</th><th class="m">section length l</th></tr>
+<tr><td>base 3, link 1</td><td class="m">[9, 121)</td><td class="m">7</td><td class="m">5</td><td class="m">20</td></tr>
+<tr><td>base 5, link 1</td><td class="m">[25, 841)</td><td class="m">23</td><td class="m">34</td><td class="m">140</td></tr>
+<tr><td>base 7, link 1</td><td class="m">[49, 2809)</td><td class="m">47</td><td class="m">118</td><td class="m">468</td></tr>
+</table>
+<figcaption>By 8c and the certified records. No fourth link: link 2 of base 3 needs <code>F({5 … 113}) &lt; 2688</code>, and no record is certified past 59.</figcaption>
+</figure>
+
+<div class="part">Part IV · What a proof of 8 must produce</div>
+
+<h2><span class="n">IV.0</span>The certified records against the square</h2>
+<figure>
+<table>
+<tr><th class="m">q</th><td class="m">13</td><td class="m">17</td><td class="m">19</td><td class="m">23</td><td class="m">29</td><td class="m">31</td><td class="m">37</td><td class="m">41</td><td class="m">43</td><td class="m">47</td><td class="m">53</td><td class="m">59</td></tr>
+<tr><th class="m">F(q)</th><td class="m">11</td><td class="m">18</td><td class="m">25</td><td class="m">34</td><td class="m">43</td><td class="m">58</td><td class="m">88</td><td class="m">91</td><td class="m">103</td><td class="m">118</td><td class="m">145</td><td class="m">161–178</td></tr>
+<tr><th class="m">6F/q²</th><td class="m">.39</td><td class="m">.37</td><td class="m">.42</td><td class="m">.39</td><td class="m">.31</td><td class="m">.36</td><td class="m">.39</td><td class="m">.33</td><td class="m">.33</td><td class="m">.32</td><td class="m">.31</td><td class="m">.28–.31</td></tr>
+</table>
+<figcaption>Falling. Testing larger q cannot prove anything: the proof is a closed-form statement from proven mechanics.</figcaption>
+</figure>
+
+<h2><span class="n">IV.1</span>The length face: <code>F(q) &lt; q²/6</code></h2>
+<p>Needed: a bound of exponent 2 on the record of a two-tooth machine with the real teeth, constant 1/6. Known in print: for one tooth per gear the dimension-1 sieve gives exponent 2 (Iwaniec 1978, constant unspecified); for two teeth the dimension-2 sieve stops at exponent 4.27 (sifting limit 4.2665); the free-phase form is Ziller–Morack's Conjecture 6, open, measured true to <code>p_n = 73</code>; lower bounds of Erdős–Rankin and Ford–Green–Konyagin–Maynard–Tao type are of order <code>q log q log log log q</code>. The gap between 2 and 4.27 is the parity barrier in covering form. Open for the machine: whether the real-teeth structure (one number line, the classes <code>±6⁻¹ mod g</code> for every gear at once, the exact-cover form, the flank identity) breaks the symmetry a sieve cannot.</p>
+
+<h2><span class="n">IV.2</span>The count face</h2>
+<p>Every count on record is matched by a machine with no open slot (III.2, III.3). A proof cannot be a count.</p>
+
+<h2><span class="n">IV.3</span>The position face (8e only)</h2>
+<p>For 8e the interval between consecutive squares is often shorter than the record (at 7 of 11 certified cuts; <code>p = 41</code>: 28 columns against <code>F = 91</code>), so 8e is about where the record's runs sit; the first run of a given length has no floor (at <code>p = 29</code> it lies below the square); and the gear set alone cannot give it. Root for 8e. Not needed for 8.</p>
+
+<h2><span class="n">IV.4</span>The shape of what would close 8</h2>
+<div class="gap">
+<p>A closed-form statement of the form "the machine {5 … q} with its real teeth cannot cover <code>q²/6</code> consecutive columns, because …", where the reason is a proved mechanic (III.1) or a new one built from the construction, and not a count. The one proved mechanic specific to the real teeth is the offset-strike law: every strike is a divisibility of <code>6j ± 1</code>, so a fully struck run of <code>L</code> columns is an interval of <code>6L</code> numbers in which every number <code>≡ ±1 mod 6</code> has a prime factor <code>≤ q</code>. Nothing on record turns that into a bound of exponent 2.</p>
+</div>
+
+<p class="foot">Source of record: research/proof/proof_skeleton.md (this document), research/proof/theory_tree.md (the history), proofs/ (the Lean kernel). Kernel names are the theorems as they stand; "in progress" marks a theorem a Formalist lane is building now.</p>
 </main>
