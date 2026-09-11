@@ -77,6 +77,9 @@ import Machine31Cen
 import LadderPeriod
 import Mirror
 import CoreLeftover
+-- Round 41: the square column, the offset-strike law, the section's twins, C4, the two-tooth
+-- family, and the record route S0; lib SquareColumn, NOT in defaultTargets.
+import SquareColumn
 open BlockedSlots
 #print axioms BlockedSlots.twins_infinite_iff_survivor_in_window
 #print axioms BlockedSlots.survivor_in_window_of_gap_bound
@@ -1030,3 +1033,45 @@ open BlockedSlots
 #print axioms CoreLeftover.crossing_core
 #print axioms CoreLeftover.leftover_eq_card_twins
 #print axioms CoreLeftover.stretch_twins
+
+-- Round 41: the square column and the record route (SquareColumn.lean)
+#print axioms SquareColumn.StruckBy
+#print axioms SquareColumn.struckBy_primesIn_iff
+#print axioms SquareColumn.rough_of_not_dvd
+#print axioms SquareColumn.section_twin_of_unstruck
+#print axioms SquareColumn.stretch_twin_of_unstruck
+#print axioms SquareColumn.not_struckBy_iff_twin
+#print axioms SquareColumn.section_twin_of_record
+#print axioms SquareColumn.section_twin_of_run_le
+#print axioms SquareColumn.section_twin_of_record_W
+#print axioms SquareColumn.square_column
+#print axioms SquareColumn.square_column_W
+#print axioms SquareColumn.eq_W_of_sq
+#print axioms SquareColumn.StrikesZ
+#print axioms SquareColumn.strikesZ_natCast
+#print axioms SquareColumn.BlockedZ
+#print axioms SquareColumn.blockedZ_natCast
+#print axioms SquareColumn.offset_strike
+#print axioms SquareColumn.offset_strike_modEq
+#print axioms SquareColumn.SquareMod
+#print axioms SquareColumn.blind_class
+#print axioms SquareColumn.blind_class_prime
+#print axioms SquareColumn.strikesZ_iff_root
+#print axioms SquareColumn.not_blocked_iff_twin_of_lt_sq
+#print axioms SquareColumn.W_sub_W
+#print axioms SquareColumn.section_open_iff_twin
+#print axioms SquareColumn.section_twin_of_open
+#print axioms SquareColumn.L
+#print axioms SquareColumn.run_eq_of_first_open
+#print axioms SquareColumn.L_eq_of_first_open
+#print axioms SquareColumn.L_lt_iff
+#print axioms SquareColumn.le_L_iff
+#print axioms SquareColumn.twin_in_section_iff_L_lt
+#print axioms SquareColumn.L_eq_first_twin_offset
+#print axioms SquareColumn.Teeth
+#print axioms SquareColumn.FamilyBlocked
+#print axioms SquareColumn.teeth_offset
+#print axioms SquareColumn.exists_six_inv
+#print axioms SquareColumn.strikesZ_iff_teeth
+#print axioms SquareColumn.real_teeth
+#print axioms SquareColumn.blockedZ_eq_family

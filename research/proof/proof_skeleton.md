@@ -99,14 +99,16 @@ statement 8. Its equivalent and sufficient forms, each proved to be so:
   by 2 and 5]
 - (8b, the run form) Let a be the column of the cut, 6a + 1 = p_k^2, and l = (p_{k+1}^2 -
   p_k^2)/6 the section's length in columns. Let L_a be the number of consecutive columns from
-  a on that are each struck by some gear g <= q. Then 8 <=> L_a < l. [PROVED,
-  research/proof/first_realisation.md C4]
+  a on that are each struck by some gear g <= q. Then 8 <=> L_a < l. [PROVED; kernel
+  SquareColumn.twin_in_section_iff_L_lt, L_lt_iff]
 - (8c, the record form, SUFFICIENT) Let F(q) be the largest number of consecutive columns
   anywhere on the line each struck by some gear of {5..q} (the machine's record). If
   F(q) < l then 8 holds at that link, since the section is a stretch of l columns and no
   stretch longer than F(q) is fully struck. Since l is about q^2/6, the uniform statement
-  F(q) < q^2/6 for every prime q gives 8 at every link. [PROVED as an implication; kernel
-  theorem in progress, proofs/SquareColumn.lean section_twin_of_record]
+  F(q) < q^2/6 for every prime q gives 8 at every link. [PROVED; kernel
+  SquareColumn.section_twin_of_unstruck, section_twin_of_record, section_twin_of_record_W:
+  the record enters only as a hypothesis, and the gear set need only contain the primes of
+  [5, P)]
 - (8d, the number form of 8c) Every interval of q^2 consecutive numbers contains a slot
   (n, n+2), n = 5 mod 6, with no prime factor <= q in either member. [8c restated on the line]
 - (8e, the finer statement, SUFFICIENT, NOT NEEDED) A twin pair between every pair of
@@ -123,7 +125,8 @@ statement 8. Its equivalent and sufficient forms, each proved to be so:
 - The offset-strike law at a square: with p^2 = 6a + 1, a gear g strikes column a + i iff
   p^2 = -6i or 2 - 6i mod g. So near a square every strike is a statement about p^2 mod g,
   and a gear can strike offset i for some p only if -6i or 2 - 6i is a square mod g (the blind
-  classes). [PROVED, elementary; kernel in progress, SquareColumn S2]
+  classes). [PROVED; kernel SquareColumn.offset_strike, offset_strike_modEq, blind_class,
+  strikesZ_iff_root; no hypothesis on p or g beyond p^2 = 6a + 1]
 - The two-prime lemma: a number below t^3 with no prime factor <= t is a prime or a product of
   exactly two primes above t. [PROVED, kernel CoreLeftover.primeOrSemiprime_of_rough_lt_cube]
 - The core / tail split on a stretch of L columns: the gears <= 6L + 1 (the core) decide the
@@ -152,7 +155,9 @@ statement 8. Its equivalent and sufficient forms, each proved to be so:
 - The gear set alone (for the finer statement 8e): keep the gears of the machine and change only
   their teeth; at p = 17, 29 and every cut 37..53 some two-tooth machine strikes the whole
   interval between consecutive prime squares; at 7, 11, 13, 19, 23, 31 none does. So 8e needs
-  the real teeth +-6^{-1} mod g. [PROVED by construction, first_realisation.md] For 8 itself
+  the real teeth +-6^{-1} mod g. [PROVED by construction, first_realisation.md; the family
+  and the real teeth as its special case: kernel SquareColumn.FamilyBlocked, real_teeth,
+  blockedZ_eq_family] For 8 itself
   (sections of q^2/6 columns) the same question is the free-phase record h_2 against the
   square, Part IV.1.
 

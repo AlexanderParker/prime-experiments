@@ -2224,3 +2224,9 @@ name = "OneStepE"
 # NOT in defaultTargets (see top_machine_lean.md, Round 40).
 [[lean_lib]]
 name = "CoreLeftover"
+
+# Round 41: the square column, the offset-strike law and blind classes, the section's twins,
+# the run through the square column (C4), the two-tooth family, and the record route (S0);
+# NOT in defaultTargets.
+[[lean_lib]]
+name = "SquareColumn"
