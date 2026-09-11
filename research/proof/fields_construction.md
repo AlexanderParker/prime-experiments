@@ -621,6 +621,52 @@ against the small gears' density) and marks nothing in the twins. So: a new exac
 law of the square origin (the strikes of every gear above sqrt(g) lie on band parabolas with
 apexes at the harmonics of g/3), verified exhaustively, with no effect on where the twins are.
 
+## R. All the new structures together: the exclusion map of a new range (research/stack/r8/exclusion_map.py)
+
+Owner's instruction (2026-09-12): each structure says where twins are not, hence where they
+are; use all of them. The structures on record for the range (g^2, g'^2), applied in order,
+each an exact set of offsets: (1) the small wheel, the teeth of 5, 7, 11, 13 at their squared
+phases (a comb of period 5005 in the offset); (2) the middle gears 17 .. sqrt(g), their teeth
+at the squared phases; (3) the bands, the gears above sqrt(g), each on its parabola (first
+strike at s h - r^2, then every h); (4) the newest gear g itself.
+
+The map for g = 101 (range (10201, 10609), 67 offsets; killer written structure:gear):
+1=1:5 2=1:7 3=1:11 4=1:5 5=1:13 6=1:5 7=1:7 8=3:37 9=1:5 10=3:31 11=1:5 12=TWIN 13=3:19 14=1:5
+15=3:41 16=1:5 17=TWIN 18=1:11 19=1:5 20=3:17 21=1:5 22=TWIN 23=1:7 24=1:5 25=1:11 26=1:5
+27=1:13 28=1:7 29=1:5 30=1:7 31=1:5 32=3:19 33=3:37 34=1:5 35=1:7 36=1:5 37=1:7 38=TWIN 39=1:5
+40=1:11 41=1:5 42=1:7 43=TWIN 44=1:5 45=3:19 46=1:5 47=1:11 48=3:17 49=1:5 50=TWIN 51=1:5
+52=3:23 53=1:13 54=1:5 55=TWIN 56=1:5 57=1:13 58=1:7 59=1:5 60=3:59 61=1:5 62=1:11 63=1:7
+64=1:5 65=1:7 66=1:5 67=3:23. Twins at 12, 17, 22, 38, 43, 50, 55: exactly the offsets no
+structure touches (the map is checked against primality at every offset).
+
+The budget, pooled over the primes g in [200, 2000] (660,991 offsets):
+
+| structure | removes, of all offsets | removes, of what the earlier structures left |
+|---|---|---|
+| 1. the small wheel 5 .. 13 | 70.3% | 70.3% |
+| 2. the middle gears 17 .. sqrt(g) | 11.2% | 37.7% |
+| 3. the bands, gears above sqrt(g) | 14.5% | 78.4% |
+| 4. the newest gear g | 0.03% | 0.3% |
+| twins | 4.0% | 99.7% of what 1-3 leave |
+
+So the bands, whose geometry is the new exact law of part Q, are the decisive structure: of
+the offsets that survive the small wheel and the middle gears (18.5% of the range), the band
+parabolas remove 78%, and what they leave is a twin 997 times in 1000. Where the twins are,
+stated by the structures: on the small wheel's open comb, off the middle gears' teeth, and
+off every band parabola.
+
+What the bands are, in numbers. A band-q gear h strikes n = h m with m in S just above g^2 / h,
+i.e. m near q g: the band kills of the new range are the PRODUCTS h x m of a prime h near g/q
+and a survivor m near q g, both factors close to their band's edges; for q = 1 both factors
+are near g: the kills are the multiplication table's diagonal neighbourhood, x . y with x a
+prime just below g and y a survivor just above it (e.g. at g = 101: 37 x 277, 31 x 331, 19 x 541,
+41 x 251, 17 x 607 ...; 19, 41, 17, 37 all appear twice, at their first and second strike).
+So the exclusion statement for the range is: a twin of (g^2, g'^2) is a survivor of the small
+comb that is not a product of a prime in (sqrt g, g] with a survivor of the matching short
+interval near q g, for any q. The bands' parabolas are the shape of that product set near the
+square; their apexes at g/(3q) are where the products h (q g + 2) with h at the band's edge
+land.
+
 ## E. Relations between fields
 
 | # | statement | status |
