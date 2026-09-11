@@ -2060,7 +2060,33 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
               in the middle (unlike 29 -> 31, where the chains paid the letter floor and bought
               span with the flanks). OPEN: extend the order law and Phi = B_{L+1} past 41 with
               the covering-problem instrument (43, 47, 53, ...), and the fusion lemma's
-              instances.
+              instances. DONE (prover U2x, research/proof/order_law_beyond_41.md; scripts
+              research/anchor235/r71/ol2_*.py): THE ORDER LAW IS FALSE. 43 -> 47: F(43) = 103,
+              budget 150, L = 2, J_max = 4, B_2 >= 213, B_3 = 153 EXACT > 150 (every deferral
+              resolved; independent re-enumeration of 74,873 fusing 4-words, 41,405 above span
+              153, 0 level-3 admissible, 0 undecided), so k* = 4 = L + 2 = J_max there (B_4 =
+              F(47) = 118 <= 150; the budget itself holds with slack 32, only the relaxation
+              fails). Certified as explicit columns, not solver booleans (ol2_verify.py, gated
+              both ways on full periods of m11/m13/m17, 0 disagreements): the two triples of the
+              binding word (45, 16, 47, 45) occur at columns 1,669,802,076,752,677 and
+              1,103,716,997,185,117 of m43, the 4-word nowhere. 41 -> 43: B_3 = 118 <= 134,
+              margin 16, k* = 3, every number agreeing with fusion_lemma.md's addendum. 47 -> 53:
+              F(47) = 118, budget 171, L = 4, J_max = 6, B_4 >= 198, B_5 = 145 = F(53) exactly,
+              margin 26, k* = 5, binding word (70, 35, 18, 22) REALISED, the first step where the
+              relaxation is the machine. MECHANISM (measured exactly): the deepest term is m + a +
+              c, the cheapest realised legal L-word plus the widest flank the engine allows each
+              side (57 + 28 + 33 = 118; 63 + 45 + 45 = 153; 106 + 15 + 17 = 138): a long middle
+              strangles the flanks; overshoot B_{L+1} - F(M + q') = 7, 15, 35, 0 against budget
+              slack 38, 31, 32, 26, and the law is exactly "overshoot <= slack", with L set by q'
+              mod 210 and the overshoot set by the engine: no reason they should agree, and at
+              43 -> 47 they do not. L(m53) = 3 (witness (20, 98, 20); 169 length-4 candidates
+              refuted), so L = 2, 2, 4, 3 is non-monotone. 53 -> 59 running: B_3(m53; 59) >= 203
+              against budget 204, the scan at span 409 of 436; if nothing above 204 qualifies
+              the upper half fails there too. VERDICT: the order law and Phi = B_{L+1} are DEAD
+              as laws (11 of 12 steps, the exception certified); what survives is the budget
+              itself (untouched, 12 of 12) and the flank identity as a FACT of the engine. The
+              thread closes: a bound on the next record is length, and step 8 is position
+              (proof_skeleton.md section 13).
             - 4.i.b.ii.c. THE FUSION LEMMA OF Phi (theorist on Fable, 2026-09-11; research/proof/
               fusion_lemma.md; scripts research/anchor235/r73/fl_*.py; the rebuilt dictionaries
               D_10(m29), D_6(m31) in r73/results). PROVED, no hypothesis, formalisable: with L =
@@ -2950,3 +2976,4 @@ object. Window = certified range; stretch = sliding run; the budget inequality i
 - 2026-09-11, manager (fusion_lemma.md addendum; fl_next.py 41 resumed, 351 covering problems): P(43, 43) = 5 in m41, so R = 118 and Phi = B_3(m41; 43) = 118 <= 134: the order law's upper half holds at 41 -> 43, 11 of 11 steps, the first decided past the scan wall with no table of m41.
 - 2026-09-11, prover U4/U5 (engine_laws_m37.md): N(v) <= F_2 holds at m37 (87 <= 90, eight machines, 0 exceptions) and the J-run outer law at J = 3, 4 (J = 5 undecided between 90 and 105, solver wall); 'falls with J' false at m31; D_3(m37) built complete (30,325 rows, loss 0). W32's first-hit exactness REFUTED on the engine's window (4 of 13, 5 of 43 sections): small-N bias plus the nested window's inherited record; on the phase-zero prefix at N >= 10^5 it is within one unit at 12 of 13, so W32 is a large-N law (register rider). New instrument: the exact gap census as a covering count, no period. Neither a route.
 - 2026-09-11, manager (owner: the goal is the proof; proof_skeleton.md section 13): the one unproved statement is step 8 (a twin between every cut and its square). With the certified records it is now exact that the record cannot prove it: at 7 of 11 cuts from 13 to 53 the machine {5..p} has a fully struck run longer than the whole section (e.g. p = 41: section 28 slots, F = 91; p = 53: 112 against 145) and realises it elsewhere in its period, never inside the section (inside, the longest gap is 28 at p = 53). Step 8 is a position statement: the first column at which {5..p} realises a run of the section's length lies above p'^2 / 6. Count routes (record, leftover, supply, order law) measure length and are closed as FACT; the order-law lane finishes its document and the thread stops there. Next lane: the first-realisation column, with the covering-problem instrument (a word is realised on residue classes of the column; its first realisation is the least column in them). Unprocessed overnight results found: 43 -> 47 B_3 = 153 > 150 (candidate first exception to the order law's upper half, R = 45 + 63 + 45 with maximal word (16, 47)), 47 -> 53 B_5 = 145 = F(53) <= 171 (holds, k* = 5); second measurement of R(m43; 47) running.
+- 2026-09-11, prover U2x (order_law_beyond_41.md): THE ORDER LAW IS FALSE at 43 -> 47: B_3(m43; 47) = 153 > 150, exact and certified by explicit columns (the binding word's two triples at columns 1.67 x 10^15 and 1.10 x 10^15 of m43, the 4-word nowhere); k* = 4 = J_max there; the budget itself holds (118 <= 150). 47 -> 53 holds with B_5 = F(53) = 145, the relaxation equal to the machine. Mechanism: deepest term = cheapest realised L-word + widest flanks, overshoot 7, 15, 35, 0 against slack 38, 31, 32, 26. Phi = B_{L+1} DEAD as a law; the budget (12 of 12) and the flank identity survive as FACT. Thread closed (length, not position). Two hung runs of the killed lane removed; ol2_core.decide_many's persistent pool can hang (guard before any long run).
