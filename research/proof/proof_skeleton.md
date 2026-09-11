@@ -289,6 +289,18 @@ class_rule, class_rule_field, mirror_law, mirror_law_columns, mirror_dilate, fie
 field_succ_eq_union, overlay_iff_composite, twin_iff_not_hits_overlay, blocked_iff_hits_overlay;
 MEASURED symmetry; the obstruction by construction]
 
+## IV.3b The fields construction as a proof programme (research/proof/fields_construction.md)
+
+The owner's instruction: break each striking part into its own field, prove each field's
+behaviour, then the relationships bit by bit. The programme is a statement list (A the prime
+field, B the square field, C field 2, D fields j >= 3, E the relations, F the union), each
+statement PROVED with a kernel name, PROVABLE with its method, MEASURED, or OPEN. Carried
+through, it lands the whole difficulty in one object: the union's coverage of a section is
+inclusion-exclusion over the fields, every single-field term is a count, every relation is an
+identity, and the correction terms are the joint distribution of the field indices of a
+column's two members; the twin is its (1, 1) cell, and step 8 is that the cell is never empty
+on a section (F5). The next steps are listed there in proof order.
+
 ## IV.4 The shape of what would close 8
 
 The three faces meet at one place. The count face and the length face are both parity-blocked
