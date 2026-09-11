@@ -471,6 +471,60 @@ is a square, and a square origin's phases are the squared residues of its root, 
 failing set contains square origins with roots coprime to every gear, so the squaring is not
 what keeps the origin out of it.
 
+## M. Keep looking: what the square origin gives, exactly (research/stack/r8/blind_pointer.py, root_to_square.py)
+
+Two exact structures of the strikes after a square origin, one for the small gears and one
+for the top gears, and the measured consequence.
+
+M1. The small gears' gift: blind classes. From a square origin, gear h can strike offset i only
+if -6i or 2 - 6i is a square mod h. Offsets where neither is a square are blind to h for EVERY
+square origin: for the gears 5 and 7 the blind offsets are i = 5, 10, 12, 17 (mod 35), for
+{5, 7, 11} a class of density 3.12%, for {5, 7, 11, 13} 0.96%. The twins of the new ranges sit on
+them far above their share (424 steps, primes g in [17, 3000], 53,867 twins):
+
+| blind to | share of offsets | share of the twins | enrichment | twins among the blind offsets below L | steps where no blind offset is a twin |
+|---|---|---|---|---|---|
+| 5, 7 | 11.4% | 26.9% (14,474) | 2.4 x | 8.4% (14,474 of 171,895) | yes, some (min 0) |
+| 5, 7, 11 | 3.1% | 9.0% (4,867) | 2.9 x | 10.4% | yes (min 0) |
+| 5, 7, 11, 13 | 0.96% | 3.5% (1,872) | 3.6 x | 12.6% | yes (min 0) |
+
+The first twin of a range is blind to 5 and 7 in 156 of 424 steps (37%, against 11.4% by
+share). So the square origin points: the blind classes are where the twins concentrate. But
+the pointer is not a guarantee: in some steps no blind-class offset below L is a twin (the
+minimum count is 0 at every depth), and 268 of 424 first twins are not blind to 5 and 7. The
+twins on non-blind offsets are where the particular phase g^2 mod h happens to miss.
+
+M2. The top gears' comb, exact. For a gear h = g - t (t even, small), g^2 = t^2 mod h, so h's
+multiples near the square are h m with m in S just above g^2 / h = g + t + t^2/h: the strikes
+above the square are at e = s (g - t) - t^2 for the s = 1, 2, ... with g + t + s in S (two of
+every six values of s), i.e. at offsets (s (g - t) - t^2) / 6 from the origin. Checked on 28
+(g, gear) pairs at g = 101 .. 2003: the first strike above the square is at the least positive
+such e in every case (e = 2g - 2t - t^2 when g + t + 2 is in S, e = 4 (g - t) - t^2 when it is
+g + t + 4, and so on). Below the square the identity g^2 - t^2 = (g - t)(g + t) strikes the
+offsets -t^2/6 for t = 6, 12, 18, ... (the ones landing in S). So the top gears' strikes near
+the square form an explicit comb in t, with first strikes clustered near offset g/3 (s = 2)
+and 2g/3 (s = 4); they are sparse (about sqrt(g) of them across the first g/3 offsets) and
+carry no density; the density is the small and middle gears'.
+
+M3. The root and its square on one wheel. For the wheel {5..g}, every root r (a number coprime
+to the wheel) has a single-tooth gap d(r) to the next root and a two-tooth first blind offset
+B(r) after r^2; the finer statement at the prime g is B(g) <= L(g) = d (2g + d)/6. Over full
+periods of roots on the wheels 7, 11, 13, 17 (47; 479; 5,759; 92,159 roots) B(r) <= L(r) at
+every root, but only because L(r) grows with r (L >= 2r/3) while B is bounded by the wheel's
+record (max B = 10, 15, 20 on the wheels 13, 17, 19); the content is confined to the roots
+below 1.5 x the record, which are the primes just above g, and B does not depend on d (mean B
+by d: 3.7 .. 5.4 across d = 2 .. 28 on the wheel 19, no trend): the single-tooth gap after r
+carries no information about the two-tooth gap after r^2.
+
+Where this leaves the why. The strikes after a square are: the small gears at
+square-restricted phases (M1, a structured comb with blind classes, 2.4-3.6 x enrichment of
+the twins on them), the top gears at polynomial offsets (M2, sparse, explicit), and the
+middle gears at phases g^2 mod h with no visible structure; the twin is an offset all three
+miss. M1 and M2 are the mechanism the owner asked for in the numbers: offsets from the origin
+that point to where the openings concentrate. What they do not give is a guarantee at every
+step, and the steps without a blind twin are decided by the middle gears' phases, which are
+the residues of one prime modulo the primes between 13 and g.
+
 ## E. Relations between fields
 
 | # | statement | status |
