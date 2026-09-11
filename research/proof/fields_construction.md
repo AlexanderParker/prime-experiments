@@ -596,6 +596,31 @@ small g, h and the depletion for large ones are the two-tooth correlation, the s
 correction that the singular series makes at the twin cell of F4. A relation between the
 gear fields, exact and computable, and the imprint of the fold on pairs.
 
+## Q. New structure: the parabolic bands and the caustics of a square origin (research/stack/r8/caustics.py, primes g in [300, 2500])
+
+Exact. For a gear h above sqrt(g), write g = q h + r (q = floor(g / h), r = g mod h). Then
+g^2 = r^2 (mod h), and the first strike of h above the square is at e = s h - r^2 for the least
+s >= 1 with e > 0 and g^2 + e in S (s runs over two of every six values, set by the class of
+g + r + s). Verified against brute force at every gear above sqrt(g) of every prime g in
+[300, 2500]: 61,772 of 61,772. So the gears above sqrt(g) fall into BANDS by their quotient q
+(the primes in (g/(q+1), g/q]), and within a band the first-strike offset is a quadratic in h:
+e(h) = s h - (g - q h)^2 = -q^2 h^2 + (2 q g + s) h - g^2, a downward parabola with vertex at
+h = g/q (the band's top edge) where e = s g / q: the band's first strikes pile up just below the
+offset s g / (6 q), for s = 2 at g / (3 q). The apexes g/3, g/6, g/9, ... are the harmonics of the
+newest gear's own first strike g (g + 2) at offset g/3: every band echoes it at 1/q.
+
+The pile-up is real (a caustic, density rising like the inverse square root of the distance
+below the apex): band q = 1 first strikes with s = 2, by tenths of the apex g/3: 2.5%, 5.7%,
+5.9%, 6.1%, 7.2%, 7.2%, 9.0%, 8.7%, 12.8%, 16.6%, 18.2% from the origin to the apex; band q = 3
+the same shape (2.2% .. 18.1%, 19.2%); band q = 2 has no s = 2 strikes (its class forces odd s).
+
+The predicted consequence, a twin desert just below each apex, is NOT there: twin density in
+[g/(3q) - g/30, g/(3q)] against the whole range is 1.09 (q = 1), 1.02 (q = 2), 1.00 (q = 3) on
+13,903 columns each. The caustic is sparse (about sqrt(spread) / ln g strikes near the apex
+against the small gears' density) and marks nothing in the twins. So: a new exact geometric
+law of the square origin (the strikes of every gear above sqrt(g) lie on band parabolas with
+apexes at the harmonics of g/3), verified exhaustively, with no effect on where the twins are.
+
 ## E. Relations between fields
 
 | # | statement | status |
