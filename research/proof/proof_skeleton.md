@@ -194,3 +194,29 @@ column modulo the gears it uses, and its first realisation is the least column i
 - What was tried and closed: the record (section 13), the leftover count (12), the first
   position (this section). The remaining object is L_1(p), the run through the square column,
   and what the teeth 6^-1 mod g do to it.
+
+## 15. What the teeth do at the square column (manager, 2026-09-11)
+
+The square p^2 is the right member of the column a with p^2 = 6a + 1 (p^2 = 1 mod 6). A gear g
+strikes the column a + i, at offset i from the square, iff g divides 6(a + i) - 1 or
+6(a + i) + 1, i.e. iff
+
+    p^2 = -6i  (mod g)   or   p^2 = 2 - 6i  (mod g).
+
+So the offsets a gear can strike near a square are fixed by quadratic residues: g can strike
+offset i for SOME prime p only if -6i or 2 - 6i is a square mod g (the blind classes of
+R4.d.i.a), and it strikes offset i for THIS p iff p lies in one of at most four classes mod g,
+p = +-sqrt(-6i) or +-sqrt(2 - 6i). This is the whole content of "the real teeth": the tooth
+family of section 14 replaces these four classes by two arbitrary residues per gear, and then
+the square is nothing; with the real teeth every strike near the square is a statement about
+p^2 mod g.
+
+The exact form of step 8 in these terms: the section is fully struck iff for every offset
+0 <= i < l_p some gear g <= p has p^2 in {-6i, 2 - 6i} mod g. Call K_p the set of residue
+vectors (p mod g)_{g <= p} that cover every offset; step 8 at the cut p says the prime p's own
+vector is not in K_p. The family fractions of section 14 (1% at 17, 0.3% at 29) are the size
+of K_p relative to all two-tooth choices, not relative to the vectors a prime can have; the
+question is whether a prime's vector can ever lie in K_p, and nothing on the record says why
+not beyond the count (0 exceptions to 10^7). Formalisation of this section is in progress
+(proofs/SquareColumn.lean: the square column, the offset-strike law, the blind corollary, the
+twin conclusion below p'^2, the equivalence with L_a < l_p).
