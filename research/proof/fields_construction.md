@@ -112,3 +112,28 @@ twin has the same marginals and an empty cell below q'^2).
    product of the marginals (independence) cell by cell; the (1, 1) cell against its
    independent prediction. This is the one measurement the programme asks for, and it decides
    whether the fields' interaction is anything but independence at every scale.
+
+## Step 5, done locally (research/stack/r8/joint_table.py, validated: 8 twins in [9, 121), 276 in [121, 16129))
+
+The joint field-index table T(i, j) of a column's members (i left, j right), each cell against
+the product of its marginals (independence), on five sections:
+
+| section | columns | twin cell (1, 1) observed | independent | ratio | z |
+|---|---|---|---|---|---|
+| [9, 121) | 18 | 8 | 9.3 | 0.86 | -0.4 |
+| [121, 16129) | 2,667 | 276 | 319.4 | 0.86 | -2.4 |
+| [997^2, 1009^2) | 4,011 | 191 | 193.5 | 0.99 | -0.2 |
+| [1999^2, 2003^2) | 2,667 | 93 | 101.0 | 0.92 | -0.8 |
+| [3163^2, 3167^2) | 4,219 | 135 | 145.1 | 0.93 | -0.8 |
+
+The other cells sit at 0.5 to 1.6 of independence with small counts (the (4, 4) cell is 0 of
+2.4 at section 3). The twin cell's ratio against independence has a known value: the
+Hardy-Littlewood singular series with the fold's primes removed, prod over p >= 5 of
+(1 - 1/(p - 1)^2) = 0.8802, which is what the five sections scatter about. So the interaction
+of the fields at the twin cell is the singular series: each gear g >= 5 removes 2 of its g
+classes from the column while independence would remove 1 of g twice; that is the whole
+correction, and it is KNOWN (Hardy-Littlewood 1923; register). The programme's F4 therefore
+reads: the joint distribution is the product of the marginals times the singular series at
+the (1, 1) cell, measured; a proof that the cell is non-empty on every section is a proof of
+the Hardy-Littlewood count's positivity on a section, which no method in print gives. The
+fields programme has now located step 8 exactly, and it is the same place.
