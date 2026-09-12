@@ -128,13 +128,14 @@ function build(){
  ];
  const marks=allMarks.filter(m=>m.n>=n0&&m.n<n0+nn);
  const mirrorN=off+prim/2; // the machine's mirror point in this cycle: n and q# - n strike alike, the axis at q#/2
- const mirrors=(mirrorN>=n0&&mirrorN<n0+nn)?[{n:mirrorN,label:'mirror = '+mirrorN}]:[];
- const hl=highlight?allMarks.find(m=>m.key===highlight.key):null;
+ const mirrorMark={key:'mirror',n:mirrorN,label:'mirror = '+mirrorN,lo:off+1,hi:off+prim,why:'The mirror point of the machine\'s cycle, q#/2: the strike pattern from the cycle start to here is the reverse of the pattern from here to the cycle end (n and q# - n are struck by the same gears). Range: the whole cycle, 1 .. q#'+cy+'.'};
+ const mirrors=(mirrorN>=n0&&mirrorN<n0+nn)?[mirrorMark]:[];
+ const hl=highlight?(highlight.key==='mirror'?mirrorMark:allMarks.find(m=>m.key===highlight.key)):null;
  document.getElementById('mqinfo').textContent='q = '+mq+', q² = '+(mq*mq)+', q# = '+prim+(cyc>1?', cycle '+cyc+' at +'+off:'')+(marks.length?'':'  (none in view)');
  function drawMarks(ctx,h,withLabel){ctx.fillStyle=css('--mark');for(const m of marks){const x=(m.n-n0)*CELL+CELL;for(let y=0;y<h;y+=4)ctx.fillRect(x,y,1,2);if(withLabel){ctx.font='10px '+css('--mono');ctx.textBaseline='top';ctx.fillText(m.label,x+3,1);}}
   ctx.fillStyle=css('--mirror');for(const m of mirrors){const x=(m.n-n0)*CELL+Math.floor(CELL/2);for(let y=0;y<h;y+=4)ctx.fillRect(x,y,1,2);if(withLabel){ctx.font='10px '+css('--mono');ctx.textBaseline='top';ctx.fillText(m.label,x+3,1);}}}
  function markLabels(){const cv=document.createElement('canvas');cv.width=W;cv.height=12;const ctx=cv.getContext('2d');drawMarks(ctx,12,true);
-  const hit=e=>{const rect=cv.getBoundingClientRect();const x=e.clientX-rect.left;for(const m of marks){const x0=(m.n-n0)*CELL+CELL;if(x>=x0&&x<=x0+90)return m;}return null;};
+  const hit=e=>{const rect=cv.getBoundingClientRect();const x=e.clientX-rect.left;for(const m of marks){const x0=(m.n-n0)*CELL+CELL;if(x>=x0&&x<=x0+90)return m;}for(const m of mirrors){const x0=(m.n-n0)*CELL+Math.floor(CELL/2);if(x>=x0&&x<=x0+110)return m;}return null;};
   cv.style.cursor='pointer';
   cv.addEventListener('mousemove',e=>{const m=hit(e);if(!m){tip.style.display='none';return;}tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';tip.textContent=m.why+(highlight&&highlight.key===m.key?'  (click to clear the highlight)':'  (click to highlight this range)');});
   cv.addEventListener('mouseleave',()=>{tip.style.display='none';});
