@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--bg:#f5f3ee;--panel:#fbfaf7;--ink:#1f2328;--muted:#6a6e75;--line:#dcd8cf;--accent:#1f4e79;
---hit:#ffffff;--hitline:#8a8f97;--twin:#2e7d4f;--prime:#1f4e79;--grid:#e6e2d9;--cellbg:#efece5;--kl:#e6c229;--kr:#c0392b;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#1d1c1a;--mark:#d0341c;
+--hit:#ffffff;--hitline:#8a8f97;--twin:#2e7d4f;--prime:#1f4e79;--grid:#e6e2d9;--cellbg:#efece5;--kl:#e6c229;--kr:#c0392b;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#1d1c1a;--mark:#7b3fbf;
 --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;--sans:'IBM Plex Sans',system-ui,Segoe UI,Helvetica,Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c;--mark:#ff6a4d}}
-:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c;--mark:#ff6a4d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c;--mark:#b58cf0}}
+:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c;--mark:#b58cf0}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
 main{max-width:100%;margin:0;padding:18px 16px 60px}
@@ -38,8 +38,6 @@ canvas{display:block;image-rendering:pixelated}
 .foot{color:var(--muted);font-size:12px;margin-top:22px;max-width:110ch}
 </style>
 <main>
-<h1>The Fields</h1>
-<p class="sub">Every field is a grid: one row per gear (the first N primes, N as chosen), one column per natural number. A cell is painted when that gear takes part in the field's strike at that number: green or blue when the number is prime, yellow when the hit kills a left member (n ≡ 5 mod 6), red when it kills a right member (n ≡ 1 mod 6), white when it kills nothing. A column no gear of the field strikes is shaded down its whole height: dark green if the number is a twin prime member, dark blue if a standalone prime, black if neither. The last row of every field, marked "all", is the combined view: the field's strikes in their colours, and every other column in its open colour. Hover a cell for the factorisation. The reference strip at the top marks every prime. The machine size q draws a marker at q, at q² and at the primorial q# wherever they fall in view; the view redraws as you change the numbers.</p>
 <div class="ctl">
 <label>first number <input id="n0" type="number" value="1" min="1" step="1"></label>
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
@@ -106,10 +104,11 @@ function build(){
  let prim=1;for(let p=2;p<=mq;p++)if(isPrime(p))prim*=p;
  const marks=[{n:mq,label:'q = '+mq},{n:mq*mq,label:'q² = '+mq*mq},{n:prim,label:'q# = '+prim}].filter(m=>m.n>=n0&&m.n<n0+nn);
  document.getElementById('mqinfo').textContent='q = '+mq+', q² = '+(mq*mq)+', q# = '+prim+(marks.length?'':'  (none in view)');
- function drawMarks(ctx,h,withLabel){ctx.fillStyle=css('--mark');for(const m of marks){const x=(m.n-n0)*CELL;ctx.fillRect(x,0,1,h);ctx.fillRect(x+CELL-1,0,1,h);if(withLabel){ctx.font='10px '+css('--mono');ctx.textBaseline='top';ctx.fillText(m.label,x+CELL+2,0);}}}
+ function drawMarks(ctx,h,withLabel){ctx.fillStyle=css('--mark');for(const m of marks){const x=(m.n-n0)*CELL+CELL;for(let y=0;y<h;y+=4)ctx.fillRect(x,y,1,2);if(withLabel){ctx.font='10px '+css('--mono');ctx.textBaseline='top';ctx.fillText(m.label,x+3,1);}}}
+ function markLabels(){const cv=document.createElement('canvas');cv.width=W;cv.height=12;const ctx=cv.getContext('2d');drawMarks(ctx,12,true);return cv;}
  const step=nn>=1500?100:nn>=600?50:10;
  function ruler(){const cv=document.createElement('canvas');cv.width=W;cv.height=RH;const ctx=cv.getContext('2d');ctx.fillStyle=css('--muted');ctx.font='10px '+css('--mono');ctx.textBaseline='top';
-  for(let i=0;i<nn;i++){const n=n0+i,x=i*CELL;if(n%step===0){ctx.fillRect(x,RH-5,1,5);ctx.fillText(String(n),x+2,0);}else if(n%(step/5)===0){ctx.fillRect(x,RH-3,1,3);}}drawMarks(ctx,RH,true);return cv;}
+  for(let i=0;i<nn;i++){const n=n0+i,x=i*CELL;if(n%step===0){ctx.fillRect(x,RH-5,1,5);ctx.fillText(String(n),x+2,0);}else if(n%(step/5)===0){ctx.fillRect(x,RH-3,1,3);}}drawMarks(ctx,RH,false);return cv;}
  function strip(paint,bg,hh){const H0=hh||H;const cv=document.createElement('canvas');cv.width=W;cv.height=H0;const ctx=cv.getContext('2d');ctx.fillStyle=css('--cellbg');ctx.fillRect(0,0,W,H0);
   if(bg){for(let i=0;i<nn;i++){const b=bg(nums[i]);if(b){ctx.fillStyle=b;ctx.fillRect(i*CELL,0,CELL,H0);}}}
   ctx.fillStyle=css('--grid');for(let i=0;i<=nn;i++)ctx.fillRect(i*CELL,0,1,H0);ctx.fillRect(0,0,W,1);ctx.fillRect(0,H0-1,W,1);
@@ -135,6 +134,7 @@ function build(){
    const allPaint=c=>{if(c.n<2)return null;const struck=rows.some(h=>F.mark(h,c.n,c.f));if(struck)return colourOf(c);return c.tw?css('--twin'):c.pr?css('--prime'):css('--openx');};
    allRows.push({id:F.id,name:F.name,paint:allPaint});
    g.appendChild(strip(allPaint,null,8));}
+  if(marks.length){const l=document.createElement('div');l.className='gl';g.appendChild(l);g.appendChild(markLabels());}
   fd.appendChild(g);rowsEl.appendChild(fd);
  }
  {const fd=document.createElement('div');fd.className='field';const tt=document.createElement('div');tt.className='ftitle';tt.innerHTML='Summary<small>the "all" row of every field above; hover a label for the field\'s full name; drag a row by its label to reorder</small>';fd.appendChild(tt);
@@ -146,6 +146,7 @@ function build(){
    row.addEventListener('dragend',()=>row.classList.remove('dragging'));
    row.addEventListener('dragover',e=>{e.preventDefault();const d=list.querySelector('.dragging');if(!d||d===row)return;const rect=row.getBoundingClientRect();const before=(e.clientY-rect.top)<rect.height/2;list.insertBefore(d,before?row:row.nextSibling);});
    row.addEventListener('drop',e=>e.preventDefault());}
+  if(marks.length){const row=document.createElement('div');row.className='srow';const l=document.createElement('div');l.className='gl';row.appendChild(l);row.appendChild(markLabels());list.appendChild(row);}
   fd.appendChild(list);rowsEl.appendChild(fd);}
  document.getElementById('foot').textContent='Gears are the first N primes, 2 and 3 included. A number is painted on a gear\'s row only when that gear divides it and the number belongs to the field; the number\'s colour says whether it is a twin prime member, a single prime, or a composite. Nothing is folded onto 6k ± 1.';
 }
