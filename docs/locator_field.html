@@ -1,0 +1,52 @@
+<title>Locator Field</title>
+<style>
+:root{--bg:#f6f4ee;--ink:#1c1a17;--mut:#6b665c;--line:#d8d2c4;--pan:#fffdf8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}}
+:root[data-theme="dark"]{--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif;margin:0;padding-block:12px;padding-inline:16px}
+h1{font-size:18px;margin:0 0 4px;font-weight:600}
+p.lead{margin:0 0 10px;color:var(--mut);max-width:78ch}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:8px 10px;border:1px solid var(--line);background:var(--pan);border-radius:4px;margin-bottom:8px;position:sticky;top:0;z-index:2}
+.ctl label{display:flex;gap:6px;align-items:center}
+input[type=number]{width:5em;font:inherit}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0;color:var(--mut);font-size:13px}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:5px;border-radius:2px}
+.wrap{overflow-x:auto;border:1px solid var(--line);background:#000;border-radius:4px}
+canvas{display:block}
+.box{border:1px solid var(--line);background:var(--pan);border-radius:4px;padding:8px 10px;margin-top:8px;font-size:13px}
+code{font-family:ui-monospace,monospace;font-size:12.5px}
+</style>
+<h1>Locator field</h1>
+<p class="lead">The locator seen as a field. Columns are the natural numbers m; the candidate is the column at offset i after m&sup2;, the pair (m&sup2; + 6i &minus; 2, m&sup2; + 6i). Row h is painted where gear h strikes that candidate: yellow when h divides the left member, red the right, white when the candidate is not a twin slot at all (m not coprime to 6). Rows are periodic in m with period h; the painted classes are the square roots of &minus;(6i &minus; 2) and &minus;6i mod h; a row with no paint is a blind gear for this offset. The all row: bright green = m is prime and its candidate is a twin (a hit gear), dark green = m prime, candidate open to every gear shown but not a twin (a larger gear strikes), dark blue = m prime and struck, black = m composite. The machine box marks m in (&radic;q, q], the gears whose square lies in machine q&rsquo;s window.</p>
+<div class="ctl">
+ <label>offset i <input id="i" type="number" min="1" max="200" value="10"></label>
+ <label>first m <input id="m0" type="number" min="1" value="1"></label>
+ <label>numbers <input id="nn" type="number" min="20" max="3000" value="600"></label>
+ <label>gears <input id="ng" type="number" min="1" max="60" value="25"></label>
+ <label>machine q <input id="q" type="number" min="5" value="101"></label>
+ <label><input id="onlyroots" type="checkbox"> show root classes for every m (ignore the twin-slot test)</label>
+</div>
+<div class="legend"><span><i style="background:#c9a227"></i>strikes the left member</span><span><i style="background:#b0332a"></i>strikes the right member</span><span><i style="background:#eeeeee"></i>not a twin slot (m not coprime to 6)</span><span><i style="background:#7ee08a"></i>hit gear</span><span><i style="background:#153a20"></i>prime, open to the shown gears, struck higher</span><span><i style="background:#132b45"></i>prime, struck</span><span><i style="background:#7b3fbf"></i>machine box (&radic;q, q]</span></div>
+<div class="wrap"><canvas id="c"></canvas></div>
+<div class="box" id="info"></div>
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+function isPrime(n){if(n<2)return false;if(n%2===0)return n===2;for(let d=3;d*d<=n;d+=2)if(n%d===0)return false;return true;}
+function primes(n){const o=[];for(let p=5;o.length<n;p++)if(isPrime(p))o.push(p);return o;}
+function roots(h,i){const L=[],R=[];for(let r=0;r<h;r++){const s=(r*r)%h;if(s===(((-(6*i-2))%h)+h)%h)L.push(r);if(s===(((-6*i)%h)+h)%h)R.push(r);}return {L,R};}
+function draw(){const i=+document.getElementById('i').value||10,m0=+document.getElementById('m0').value||1,nn=+document.getElementById('nn').value||600,ng=+document.getElementById('ng').value||25,q=+document.getElementById('q').value||101,onlyroots=document.getElementById('onlyroots').checked;
+ const G=primes(ng),cw=Math.max(2,Math.min(12,Math.floor(1500/nn))),rh=12,top=18,left=34;const rows=G.length;
+ cv.width=left+nn*cw+10;cv.height=top+rows*rh+8+rh+20;ctx.fillStyle='#000';ctx.fillRect(0,0,cv.width,cv.height);
+ const rt=G.map(h=>roots(h,i));const blind=[];G.forEach((h,k)=>{if(rt[k].L.length+rt[k].R.length===0)blind.push(h);});
+ const sq=Math.floor(Math.sqrt(q));ctx.fillStyle='rgba(123,63,191,.3)';const a=Math.max(m0,sq+1),b=Math.min(m0+nn-1,q);if(b>=a)ctx.fillRect(left+(a-m0)*cw,top-3,(b-a+1)*cw,rows*rh+rh+14);
+ let hits=[],hitsBox=0;
+ for(let m=m0;m<m0+nn;m++){const x=left+(m-m0)*cw;const slot=(m%6===1||m%6===5);const Lm=m*m+6*i-2,Rm=m*m+6*i;let struck=false;
+  G.forEach((h,k)=>{let y=top+k*rh;let c=null;if(!slot&&!onlyroots){c='#eeeeee';}else{const r=m%h;if(rt[k].L.includes(r))c='#c9a227';else if(rt[k].R.includes(r))c='#b0332a';}
+   if(c){ctx.fillStyle=c;ctx.fillRect(x,y,cw-1,rh-1);if(c!=='#eeeeee'&&h<m)struck=true;}});
+  const y=top+rows*rh+8;let col='#000';if(isPrime(m)&&m>=5){const tw=isPrime(Lm)&&isPrime(Rm);col=tw?'#7ee08a':(struck?'#132b45':'#153a20');if(tw){hits.push(m);if(m>sq&&m<=q)hitsBox++;}}
+  ctx.fillStyle=col;ctx.fillRect(x,y,cw-1,rh-1);}
+ ctx.fillStyle='#bbb';ctx.font='10px monospace';G.forEach((h,k)=>ctx.fillText(String(h),2,top+k*rh+9));ctx.fillText('all',2,top+rows*rh+8+9);
+ const every=Math.max(1,Math.round(50/cw));for(let m=m0;m<m0+nn;m+=every){ctx.fillText(String(m),left+(m-m0)*cw,cv.height-6);}
+ document.getElementById('info').innerHTML='offset '+i+': blind gears among the shown rows: <code>'+(blind.join(', ')||'none')+'</code>. Root classes per row (left member / right member): '+G.slice(0,8).map((h,k)=>h+': {'+rt[k].L.join(',')+'} / {'+rt[k].R.join(',')+'}').join('; ')+'. Hit gears in view: <code>'+hits.join(', ')+'</code>; inside the machine box ('+(sq+1)+' .. '+q+'): '+hitsBox+'.';}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',draw));draw();
+</script>
