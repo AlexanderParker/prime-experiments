@@ -48,7 +48,7 @@ canvas{display:block;image-rendering:pixelated}
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
 <label>number of gears <input id="q" type="number" value="11" min="1" max="100" step="1"></label>
 <label>machine size q <button id="mqdn" type="button" aria-label="previous prime">−</button><b id="mqval" style="font:500 13px var(--mono);min-width:44px;text-align:center">7</b><button id="mqup" type="button" aria-label="next prime">+</button></label>
-<label>machine cycle <input id="cyc" type="number" value="1" min="1" step="1"></label>
+<label>machine cycle <button id="cycdn" type="button" aria-label="back one cycle">−</button><input id="cyc" type="number" value="1" min="1" step="1" style="width:64px"><button id="cycup" type="button" aria-label="advance one cycle">+</button></label>
 <span id="mqinfo" style="font:12px var(--mono);color:var(--muted)"></span>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
@@ -196,6 +196,12 @@ let mqState=7;
 function nextPrime(n){let m=n+1;while(!isPrime(m))m++;return m;}
 function prevPrime(n){let m=n-1;while(m>=2&&!isPrime(m))m--;return m<2?2:m;}
 document.getElementById('mqup').addEventListener('click',()=>{mqState=nextPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
+function primorial(q){let m=1;for(let p=2;p<=q;p++)if(isPrime(p))m*=p;return m;}
+function stepCycle(d){const c=document.getElementById('cyc'),n=document.getElementById('n0');const cur=Math.max(1,parseInt(c.value)||1);const nxt=Math.max(1,cur+d);if(nxt===cur)return;c.value=nxt;
+ // advance the view by the same number of whole periods so the markers stay in place on screen
+ const shift=(nxt-cur)*primorial(mqState);n.value=Math.max(1,(parseInt(n.value)||1)+shift);schedule();}
+document.getElementById('cycup').addEventListener('click',()=>stepCycle(1));
+document.getElementById('cycdn').addEventListener('click',()=>stepCycle(-1));
 document.getElementById('mqdn').addEventListener('click',()=>{mqState=prevPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
 for(const s of document.querySelectorAll('.legend span[data-key]')){s.addEventListener('click',()=>{const k=s.dataset.key;if(muted.has(k)){muted.delete(k);s.classList.remove('off');}else{muted.add(k);s.classList.add('off');}build();});}
 for(const id of ['n0','nn','q','cyc'])document.getElementById(id).addEventListener('input',schedule);
