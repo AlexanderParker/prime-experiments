@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--bg:#f5f3ee;--panel:#fbfaf7;--ink:#1f2328;--muted:#6a6e75;--line:#dcd8cf;--accent:#1f4e79;
---hit:#ffffff;--hitline:#8a8f97;--twin:#2e7d4f;--prime:#1f4e79;--grid:#e6e2d9;--cellbg:#efece5;--kl:#e6c229;--kr:#c0392b;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#1d1c1a;
+--hit:#ffffff;--hitline:#8a8f97;--twin:#2e7d4f;--prime:#1f4e79;--grid:#e6e2d9;--cellbg:#efece5;--kl:#e6c229;--kr:#c0392b;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#1d1c1a;--mark:#d0341c;
 --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;--sans:'IBM Plex Sans',system-ui,Segoe UI,Helvetica,Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c}}
-:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c;--mark:#ff6a4d}}
+:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#153a20;--openpr:#132b45;--openx:#000000;--res:#17191c;--mark:#ff6a4d}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
 main{max-width:100%;margin:0;padding:18px 16px 60px}
@@ -39,12 +39,13 @@ canvas{display:block;image-rendering:pixelated}
 </style>
 <main>
 <h1>The Fields</h1>
-<p class="sub">Every field is a grid: one row per gear (the first N primes, N as chosen), one column per natural number. A cell is painted when that gear takes part in the field's strike at that number: green or blue when the number is prime, yellow when the hit kills a left member (n ≡ 5 mod 6), red when it kills a right member (n ≡ 1 mod 6), white when it kills nothing. A column no gear of the field strikes is shaded down its whole height: dark green if the number is a twin prime member, dark blue if a standalone prime, black if neither. The last row of every field, marked "all", is the combined view: the field's strikes in their colours, and every other column in its open colour. Hover a cell for the factorisation. The reference strip at the top marks every prime.</p>
+<p class="sub">Every field is a grid: one row per gear (the first N primes, N as chosen), one column per natural number. A cell is painted when that gear takes part in the field's strike at that number: green or blue when the number is prime, yellow when the hit kills a left member (n ≡ 5 mod 6), red when it kills a right member (n ≡ 1 mod 6), white when it kills nothing. A column no gear of the field strikes is shaded down its whole height: dark green if the number is a twin prime member, dark blue if a standalone prime, black if neither. The last row of every field, marked "all", is the combined view: the field's strikes in their colours, and every other column in its open colour. Hover a cell for the factorisation. The reference strip at the top marks every prime. The machine size q draws a marker at q, at q² and at the primorial q# wherever they fall in view; the view redraws as you change the numbers.</p>
 <div class="ctl">
 <label>first number <input id="n0" type="number" value="1" min="1" step="1"></label>
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
 <label>number of gears <input id="q" type="number" value="11" min="1" max="100" step="1"></label>
-<button id="draw">Draw</button>
+<label>machine size q <input id="mq" type="number" value="7" min="2" step="1"></label>
+<span id="mqinfo" style="font:12px var(--mono);color:var(--muted)"></span>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
 <div class="legend"><span><i style="background:var(--twin)"></i>hit at a twin prime member</span><span><i style="background:var(--prime)"></i>hit at a single prime</span><span><i style="background:var(--kl)"></i>hit that kills a left member (n ≡ 5 mod 6)</span><span><i style="background:var(--kr)"></i>hit that kills a right member (n ≡ 1 mod 6)</span><span><i style="background:var(--hit)"></i>hit that kills nothing</span><span><i style="background:var(--opentw)"></i>open column, twin prime member (dark green)</span><span><i style="background:var(--openpr)"></i>open column, standalone prime (dark blue)</span><span><i style="background:var(--openx)"></i>open column, neither</span><span><i style="background:var(--res)"></i>a gear's residue that is not a strike of this field</span></div>
@@ -101,13 +102,19 @@ function build(){
  document.getElementById('range').textContent='numbers '+n0+' to '+(n0+nn-1)+', gears '+gears.join(' ');
  const nums=[];for(let n=n0;n<n0+nn;n++){const f=n>=2?factor(n):[];const pr=f.length===1;const tw=pr&&(isPrime(n-2)||isPrime(n+2));nums.push({n,f,pr,tw});}
  const CELL=6,H=14,RH=14,W=nn*CELL;
+ let mq=Math.max(2,parseInt(document.getElementById('mq').value)||7);while(mq>2&&!isPrime(mq))mq--;
+ let prim=1;for(let p=2;p<=mq;p++)if(isPrime(p))prim*=p;
+ const marks=[{n:mq,label:'q = '+mq},{n:mq*mq,label:'q² = '+mq*mq},{n:prim,label:'q# = '+prim}].filter(m=>m.n>=n0&&m.n<n0+nn);
+ document.getElementById('mqinfo').textContent='q = '+mq+', q² = '+(mq*mq)+', q# = '+prim+(marks.length?'':'  (none in view)');
+ function drawMarks(ctx,h,withLabel){ctx.fillStyle=css('--mark');for(const m of marks){const x=(m.n-n0)*CELL;ctx.fillRect(x,0,1,h);ctx.fillRect(x+CELL-1,0,1,h);if(withLabel){ctx.font='10px '+css('--mono');ctx.textBaseline='top';ctx.fillText(m.label,x+CELL+2,0);}}}
  const step=nn>=1500?100:nn>=600?50:10;
  function ruler(){const cv=document.createElement('canvas');cv.width=W;cv.height=RH;const ctx=cv.getContext('2d');ctx.fillStyle=css('--muted');ctx.font='10px '+css('--mono');ctx.textBaseline='top';
-  for(let i=0;i<nn;i++){const n=n0+i,x=i*CELL;if(n%step===0){ctx.fillRect(x,RH-5,1,5);ctx.fillText(String(n),x+2,0);}else if(n%(step/5)===0){ctx.fillRect(x,RH-3,1,3);}}return cv;}
+  for(let i=0;i<nn;i++){const n=n0+i,x=i*CELL;if(n%step===0){ctx.fillRect(x,RH-5,1,5);ctx.fillText(String(n),x+2,0);}else if(n%(step/5)===0){ctx.fillRect(x,RH-3,1,3);}}drawMarks(ctx,RH,true);return cv;}
  function strip(paint,bg,hh){const H0=hh||H;const cv=document.createElement('canvas');cv.width=W;cv.height=H0;const ctx=cv.getContext('2d');ctx.fillStyle=css('--cellbg');ctx.fillRect(0,0,W,H0);
   if(bg){for(let i=0;i<nn;i++){const b=bg(nums[i]);if(b){ctx.fillStyle=b;ctx.fillRect(i*CELL,0,CELL,H0);}}}
   ctx.fillStyle=css('--grid');for(let i=0;i<=nn;i++)ctx.fillRect(i*CELL,0,1,H0);ctx.fillRect(0,0,W,1);ctx.fillRect(0,H0-1,W,1);
   for(let i=0;i<nn;i++){const c=nums[i];const col=paint(c);if(!col)continue;ctx.fillStyle=col;ctx.fillRect(i*CELL+1,1,CELL-1,H0-2);if(col===css('--hit')){ctx.strokeStyle=css('--hitline');ctx.strokeRect(i*CELL+1.5,1.5,CELL-2,H0-3);}}
+  drawMarks(ctx,H0,false);
   cv.addEventListener('mousemove',e=>{const rect=cv.getBoundingClientRect();const i=Math.floor((e.clientX-rect.left)/CELL);if(i<0||i>=nn){tip.style.display='none';return;}const c=nums[i];tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';tip.textContent=c.n+(c.pr?(c.tw?'  prime, twin member':'  prime'):(c.f.length?'  = '+c.f.join('·'):''));});
   cv.addEventListener('mouseleave',()=>{tip.style.display='none';});return cv;}
  const colourOf=c=>c.tw?css('--twin'):c.pr?css('--prime'):(c.n%6===5?css('--kl'):c.n%6===1?css('--kr'):css('--hit'));
@@ -142,7 +149,8 @@ function build(){
   fd.appendChild(list);rowsEl.appendChild(fd);}
  document.getElementById('foot').textContent='Gears are the first N primes, 2 and 3 included. A number is painted on a gear\'s row only when that gear divides it and the number belongs to the field; the number\'s colour says whether it is a twin prime member, a single prime, or a composite. Nothing is folded onto 6k ± 1.';
 }
-document.getElementById('draw').addEventListener('click',build);
+let timer=null;const schedule=()=>{clearTimeout(timer);timer=setTimeout(build,250);};
+for(const id of ['n0','nn','q','mq'])document.getElementById(id).addEventListener('input',schedule);
 build();
 })();
 </script>
