@@ -2019,6 +2019,25 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             twin at most 938 below g'^2; no mirror centre beyond the selection of a maximum;
             closing rows at the wheel's shares. The composites of a layer are fully located;
             the old rows' open count in the layer is the one unlocated quantity. STATUS OPEN.
+          - R4.d.i.i.b. THE FIELDS IN THE WINDOW OVER CYCLES (owner's request 2026-09-12;
+            manager, local; research/proof/window_fields.md; scripts research/stack/r8/
+            window_fields.py, mirror_fields.py, cycle_survival.py; machines 5-31, 12 cycles).
+            FACT. Cycle 1: the killing fields are exactly higher:g for g = 5..q (each kills, g^2
+            is in the window), squares of the gears up to q, products:j up to log_5 q^2, lower:g
+            for the largest factors that occur; higher:g with g > q never kills in cycle 1 at
+            any size (exact). Cycles 2+: the machine's rows repeat, so the only change is on
+            the machine's openings (= the window's twins), each a twin again or eaten by ONE
+            field higher:g with g > q, no other field touching an opening; the first eater is
+            always q' with the largest count; openings twins again per cycle listed (zero in
+            some cycles from machine 23). Periodic: higher:g (g <= q), the machine's multiples
+            (g# | q#). Never periodic: higher1 (g^2 does not divide q#), lower, lower1,
+            products, multiples with all rows; squares kill only in cycle 1 from machine 7 on.
+            Nothing genuinely becomes periodic. Mirror q# - n: exact for higher:g (g <= q) and
+            the machine's multiples (494/495, the miss 25 -> 5), 0.82 for higher1, chance for
+            products (0.26), none for squares, lower, lower1; every window twin's mirror is
+            machine-open, a twin again 2/2, 3/4, 2/7, 2/9, 2/15, 3/17, 1/21, 4/28, 1/30 at
+            q = 5..31 (falls as the gears above q thin the mirror). Two bugs fixed first
+            (sympy primorial(q) = first q primes; "stops killing" misread as periodic).
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3253,3 +3272,4 @@ Part III or Part IV of the proof document?
 - 2026-09-12, THE OWNER'S CONSTRUCTION, built as a view (docs/fields_view.html; artifact https://claude.ai/code/artifact/5f8913e4-d329-41a2-9a2c-9d76e65d47c8): fields as grids of gear rows against the natural numbers, one row per gear taking part in the strike; the fields: multiples of each gear, squares, products of j gears up to the last count with a kill, and per gear the composites of itself with higher gears, with only higher gears, with lower gears, with only lower gears (rows running up the primes to the first with no kill); the sieve as highlights only (kills of left / right members, open columns by what they hold); a machine size q with markers at q, q^2, q#, its mirror point q#/2, cycles, and highlights of ranges and of the machine's gears; a combined row per field and a reorderable summary. The owner: 'this construction is now close to what I have in my imagination when I'm talking about pattern searching.' Pattern work from here is done on this construction, not on the 6k +- 1 fold.
 - 2026-09-12, owner: now that we look at the same picture, re-read one or two items closed as "no pattern", "just CRT" or "a count, not a location" on the construction; a sample run; and add a skill for the construction. Manager (local; research/proof/fields_sample_run.md; skill .claude/skills/fields-explorer, user and project copies): node R4.d.i.i.a. Item 1 (the witness after a square) re-opened as a located object: between consecutive squares the new row's toll on the old-open columns is located (g m, m a survivor of a stretch of length (g'^2 - g^2)/g) and zero in 118 of 166 layers; twins in the layer = old-open columns - toll; the remaining unknown is the old wheel's opens in the layer at the square origin, by row and offset. Item 2 (location rules) closed again in one line: a twin's flank strikers are the wheel's open-column pattern to three decimals. The skill records the construction, the view's controls, the twin's API and codes, and the method from a picture to a tested rule.
 - 2026-09-12, owner: try the layer grids next (which old row closes each column at what offset from g^2). Manager (local; layer_fields.py, 428 layers to g = 2999; fields_sample_run.md continued): a layer is window(g') minus window(g). Row g's own strikes in its layer are g times the next primes up to g'^2/g (closed form); the old rows are D3 read in the layer; first twin after g^2 within 3.05 g (ordinary, ln^2 g growth), last twin within 938 of g'^2; no mirror centre beyond chance; closing rows at the wheel's shares. All composites of a layer located; the open count of the old rows in the layer remains the unknown. Node R4.d.i.i.a stays OPEN.
+- 2026-09-12, owner: run the layers again but look at what fields kill in the window over many cycles, which rows kill, which fields never kill / are periodic / become periodic / never; the gears per field per machine layer; the window's twins at the mirror; which fields mirror. Manager (local; window_fields.md; node R4.d.i.i.b): in cycle 1 the window is closed by the machine alone (higher:g for g <= q, squares, products, lower); from cycle 2 the only change is the machine's openings being eaten by higher:g fields of the gears above q, one field per opening, first eater always q'; periodic = higher:g (g <= q) and the machine's rows, everything built on a factor count, a largest factor or a square is never periodic and nothing becomes periodic; mirror exact for the machine's fields only; window twins at the mirror 2/2, 3/4, 2/7 ... 1/30. Two bugs fixed before recording (sympy primorial; stops-killing read as periodic).
