@@ -107,6 +107,7 @@ function build(){
  // reference strip
  {const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML='The numbers<small>every prime marked: green a twin prime member, blue a single prime</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';g.appendChild(l0);g.appendChild(ruler());const l1=document.createElement('div');l1.className='gl';l1.textContent='n';g.appendChild(l1);g.appendChild(strip(c=>c.pr?colourOf(c):null));fd.appendChild(g);rowsEl.appendChild(fd);}
+ const allRows=[];
  for(const F of fields.concat(perGear(gears))){
   const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML=F.name+'<small>'+F.sub+'</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';l0.textContent='';g.appendChild(l0);g.appendChild(ruler());
@@ -116,9 +117,15 @@ function build(){
   // combined row: the field's strikes over all its rows, else the open column's colour
   {const d1=document.createElement('div');d1.className='gl div';g.appendChild(d1);const d2=document.createElement('div');d2.className='div';g.appendChild(d2);
    const l=document.createElement('div');l.className='gl';l.innerHTML='<b>all</b>';g.appendChild(l);
-   g.appendChild(strip(c=>{if(c.n<2)return null;const struck=rows.some(h=>F.mark(h,c.n,c.f));if(struck)return colourOf(c);return c.tw?css('--twin'):c.pr?css('--prime'):css('--openx');},null,8));}
+   const allPaint=c=>{if(c.n<2)return null;const struck=rows.some(h=>F.mark(h,c.n,c.f));if(struck)return colourOf(c);return c.tw?css('--twin'):c.pr?css('--prime'):css('--openx');};
+   allRows.push({name:F.name,paint:allPaint});
+   g.appendChild(strip(allPaint,null,8));}
   fd.appendChild(g);rowsEl.appendChild(fd);
  }
+ {const fd=document.createElement('div');fd.className='field';const tt=document.createElement('div');tt.className='ftitle';tt.innerHTML='Summary<small>the "all" row of every field above, one under the other, in the same order</small>';fd.appendChild(tt);
+  const g=document.createElement('div');g.className='grid';g.style.gridTemplateColumns='260px max-content';const l0=document.createElement('div');l0.className='gl';g.appendChild(l0);g.appendChild(ruler());
+  for(const r of allRows){const l=document.createElement('div');l.className='gl';l.style.whiteSpace='nowrap';l.style.overflow='hidden';l.style.textOverflow='ellipsis';l.innerHTML='<b>'+r.name+'</b>';l.title=r.name;g.appendChild(l);g.appendChild(strip(r.paint,null,8));}
+  fd.appendChild(g);rowsEl.appendChild(fd);}
  document.getElementById('foot').textContent='Gears are the primes up to the chosen top gear, including 2 and 3. A number is painted on a gear\'s row only when that gear divides it and the number belongs to the field; the number\'s colour says whether it is a twin prime member, a single prime, or a composite. Nothing is folded onto 6k ± 1.';
 }
 document.getElementById('draw').addEventListener('click',build);
