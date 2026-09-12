@@ -311,3 +311,46 @@ landing a twin whenever the roots find a member inside the window. Termination f
 one statement: among the multiples of 6 with 2A in (q, q^2], some A avoids two classes mod
 every gear up to q not dividing A. The multi-step form changes the route and the carried set,
 not the landing family.
+
+## Carrying many gears, and the termination statement on the m-line (owner: both; 2026-09-13)
+
+Scripts research/stack/r8/carry_many.py and mline_records.py.
+
+Carrying many gears. Effective axis A = k P_m, P_m the product of the first m gears; landing
+(2 k P_m - 1, 2 k P_m + 1) certified for those m gears by the mirror; the roots must clear the
+rest. The largest m with a landing in the window, machines 11 to 5000:
+
+| q | gears in the machine | largest m carried | multiples of 2 P_m below q^2 | k | gears left to the roots | landing / q^2 |
+|---|---|---|---|---|---|---|
+| 31 | 9 | 4 | 2 | 1 | 7 | 0.44 |
+| 101 | 24 | 5 | 2 | 2 | 21 | 0.91 |
+| 401 | 77 | 5 | 34 | 2 | 74 | 0.06 |
+| 1009 | 167 | 6 | 16 | 3 | 163 | 0.18 |
+| 3001 | 429 | 7 | 8 | 4 | 424 | 0.45 |
+| 4999 | 667 | 7 | 24 | 4 | 662 | 0.16 |
+
+Every largest-m landing is a twin (0 failures). The mirrors can carry only the gears whose
+primorial stays below q^2 / 2: m grows like the number of primes up to about 2 ln q, seven
+gears by q = 3000, against hundreds in the machine. The roots do nearly all the work at every
+size; carrying more gears buys nothing but a landing higher in the window and fewer multiples
+to choose from.
+
+The termination statement on the m-line. From home the landing family is (12 m - 1, 12 m + 1);
+gear h strikes m iff m = -+12^-1 (mod h): two teeth per gear, symmetric about the multiples of
+h. The m-line field: rows the gears, columns m. Termination for q: an m with q < 12 m - 1,
+12 m + 1 <= q^2 unpainted in every row h <= q. Exact on the m-line to q^2 / 12:
+
+| q | open m in the window | first landing (12 m - 1) | record R(q): longest struck run of m below q^2/12 | window length in m | 12 R / q^2 |
+|---|---|---|---|---|---|
+| 11 | 3 | 59 | 4 | 9 | 0.40 |
+| 31 | 14 | 59 | 13 | 77 | 0.16 |
+| 101 | 100 | 107 | 43 | 841 | 0.051 |
+| 401 | 906 | 419 | 80 | 13366 | 0.0060 |
+| 1009 | 4179 | 1019 | 191 | 84756 | 0.0023 |
+| 3001 | 26960 | 3119 | 278 | 750250 | 0.0004 |
+
+The walk terminates for q as long as R(q) is below the window length; the record's share of
+the window falls from 0.40 at q = 11 to 0.0004 at q = 3001, and the count of open m in the
+window grows like q^2 / ln^2 q. This is step 8 in run form on the m-line (R(q) below the
+window), the twin machine with teeth -+12^-1 instead of -+6^-1: the same object, half the
+columns, the same margin.

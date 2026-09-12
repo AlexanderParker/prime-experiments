@@ -2175,7 +2175,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             multi-step reaches the one-flip landings with the carried set = divisors of A.
             Two-step rule (home -> 30 k_1 -> 42 k_2, A the smallest multiple of 6 in the
             window avoiding the teeth of the gears not dividing A): 665 of 665 twins to 5000;
-            mirrors carry 1.25 gears per machine, the roots handle the rest.
+            mirrors carry 1.25 gears per machine, the roots handle the rest. CARRYING MANY
+            (carry_many.py): with A = k P_m the mirrors carry at most the gears whose
+            primorial stays below q^2/2, m = 4 at 31, 7 at 3000-5000, against 9 .. 667 gears in
+            the machine; every largest-m landing a twin; carrying buys a higher landing and
+            fewer multiples, nothing else. THE M-LINE (mline_records.py): landing family
+            (12m - 1, 12m + 1), teeth m = -+12^-1 mod h; termination for q = an unpainted m in
+            (q/12, q^2/12); exact to q = 3001: open m in the window 3, 14, 100, 906, 4179,
+            26960 at q = 11, 31, 101, 401, 1009, 3001; the record R(q) (longest struck run)
+            4, 13, 43, 80, 191, 278 against window lengths 9 .. 750250; share 12R/q^2 falls
+            0.40 -> 0.0004. This is step 8 in run form on the m-line, the twin machine with
+            teeth -+12^-1: same object, half the columns, same margin.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3421,3 +3431,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner's guess: anchor decisions from squares and roots plus a start rule navigate straight to a twin. Manager (local; locator.md; node R4.d.i.i.h): built without search: g = first prime above sqrt q, i = smallest offset the strike law allows against the gears below g; 2258 of 2258 machines to 20000, offset at most 27 columns. Exact lemma: every column in (g^2, g g') missed by the gears below g and by g is a twin (8194 columns to 1500, 0 exceptions), and the rule never left that zone. Termination for all q is now one line: the wheel of the gears below g leaves a column open in the first g (g' - g)/6 columns after g^2, with the teeth fixed by the roots of g. The start pair does not enter the location.
 - 2026-09-13, owner corrected the walk: axes must be real mirrors of gear combinations (multiples of the product of the chosen gears), no offsets. Manager (local; true_mirror_walk.py; node R4.d.i.i.i): from home, one flip about k M lands on (2kM - 1, 2kM + 1), open to S by the mirror; the remaining gears' teeth on k are two classes each (the roots); smallest such k in the window; the landing is a twin by construction whenever k exists; S = {2,3}: every machine 11..20000, landing just above q. Termination = existence of the multiple k, the twin sieve on multiples of M with S removed.
 - 2026-09-13, owner: build the multi-step mirror walks. Manager (local; multi_mirror_walk.py; node R4.d.i.i.i amended): composition law exact, the end of any walk is a reflection about or a slide by the alternating sum A of the real axes and is certified for the gears dividing A; stepwise tracking undercounts; from home every walk lands on (2A - 1, 2A + 1); two-step rule lands on a twin at every machine to 5000. The mirrors fix the landing family and carry the divisors of A; the roots pick the member; the lemma makes it a twin.
+- 2026-09-13, owner: both (carry many gears; the termination statement with the fields). Manager (local; carry_many.py, mline_records.py; node R4.d.i.i.i amended): the mirrors can carry only the gears whose primorial stays below q^2/2 (7 gears by q = 3000 against hundreds), so the roots do the work at every size; on the m-line the landing family is (12m - 1, 12m + 1) with teeth -+12^-1 per gear, termination = an unpainted m in (q/12, q^2/12), records R(q) = 4 .. 278 against windows 9 .. 750250 to q = 3001, share falling to 0.0004; the termination statement is step 8 in run form on the m-line.
