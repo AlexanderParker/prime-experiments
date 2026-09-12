@@ -83,14 +83,20 @@ function productFields(nums,gears){
   out.push({name:'Products of '+w+' gears',sub:'n has exactly '+j+' prime factors counted with multiplicity; painted on the row of each gear in the product'+(j===jmax+1?' (no kill at this count in the range shown: the top of the products)':''),mark:(h,n,f)=>f.length===j&&f.includes(h)});}
  return out;}
 // per-gear fields: one field for each gear g, rows = g and the gears above (or below), every participating gear painted
-function perGear(gears){const out=[];
- for(const g of gears){
-  out.push({name:'Gear '+g+' with itself and higher gears',sub:'n = '+g+' × m where every prime factor of m is '+g+' or larger (the composites in which '+g+' is the smallest gear); rows: '+g+' and the gears above it, each painted where it divides n',
-   rows:gs=>gs.filter(h=>h>=g),residues:true,mark:(h,n,f)=>f.length>=2&&f[0]===g&&f.includes(h)});
+function higherRows(g,mark,nums){
+ // g first; then each higher prime in turn, stopping after the first one with no kill of this field in the shown range
+ const rows=[g];const nmax=nums.length?nums[nums.length-1].n:g;
+ for(let h=g+1;h<=nmax;h++){if(!isPrime(h))continue;rows.push(h);
+  const kills=nums.some(c=>(c.n%6===1||c.n%6===5)&&mark(h,c.n,c.f));if(!kills)break;}
+ return rows;}
+function perGear(gears,nums){const out=[];
+ for(const g of gears){const mark=(h,n,f)=>f.length>=2&&f[0]===g&&f.includes(h);
+  out.push({name:'Gear '+g+' with itself and higher gears',sub:'n = '+g+' × m where every prime factor of m is '+g+' or larger (the composites in which '+g+' is the smallest gear); rows: '+g+' and the higher gears, up to and including the first with no kill in this range',
+   rows:()=>higherRows(g,mark,nums),residues:true,mark});
  }
- for(const g of gears){
-  out.push({name:'Gear '+g+' with only higher gears',sub:'n = '+g+' × m where every prime factor of m is larger than '+g+' ('+g+' appears once and is the smallest gear); rows: '+g+' and the gears above it',
-   rows:gs=>gs.filter(h=>h>=g),residues:true,mark:(h,n,f)=>f.length>=2&&f[0]===g&&f[1]!==g&&f.includes(h)});
+ for(const g of gears){const mark=(h,n,f)=>f.length>=2&&f[0]===g&&f[1]!==g&&f.includes(h);
+  out.push({name:'Gear '+g+' with only higher gears',sub:'n = '+g+' × m where every prime factor of m is larger than '+g+' ('+g+' appears once and is the smallest gear); rows: '+g+' and the higher gears, up to and including the first with no kill in this range',
+   rows:()=>higherRows(g,mark,nums),residues:true,mark});
  }
  for(const g of gears){
   out.push({name:'Gear '+g+' with itself and lower gears',sub:'n = '+g+' × m where every prime factor of m is '+g+' or smaller (the composites in which '+g+' is the largest gear); rows: '+g+' and the gears below it',
@@ -140,7 +146,7 @@ function build(){
  {const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML='The numbers<small>every prime marked: green a twin prime member, blue a single prime</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';g.appendChild(l0);g.appendChild(ruler());const l1=document.createElement('div');l1.className='gl';l1.textContent='n';g.appendChild(l1);g.appendChild(strip(c=>c.pr?colourOf(c):null));fd.appendChild(g);rowsEl.appendChild(fd);}
  const allRows=[];let fid=0;
- for(const F of fields.concat(productFields(nums,gears),perGear(gears))){
+ for(const F of fields.concat(productFields(nums,gears),perGear(gears,nums))){
   fid++;F.id='F'+fid;
   const fd=document.createElement('div');fd.className='field';fd.id=F.id;const t=document.createElement('div');t.className='ftitle';t.innerHTML='<span class="fid">'+F.id+'</span> '+F.name+'<small>'+F.sub+'</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';l0.textContent='';g.appendChild(l0);g.appendChild(ruler());
