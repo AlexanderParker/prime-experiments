@@ -19,6 +19,8 @@ the mirror point q#/2 + offset.
 Fields (ids as in the view, in order):
     'multiples'      row g at every multiple of g
     'squares'        row g at g^2
+    'locator:i'      the locator field: row g at the members of the candidate column (m^2 + 6i - 2, m^2 + 6i)
+                     after every square m^2 that g divides (the strikes on the offset-i candidates)
     'products:j'     n with exactly j prime factors (multiplicity), row of each factor; j = 2 .. jmax+1
     'higher:g'       composites whose smallest gear is g, rows g and the primes above it up to the
                      first with no kill in range; each row painted where its gear divides n
@@ -65,8 +67,9 @@ class Field:
 
 
 class Twin:
-    def __init__(self, n0=1, nn=400, ngears=11, q=7, cycle=1):
+    def __init__(self, n0=1, nn=400, ngears=11, q=7, cycle=1, locator_offset=10):
         self.n0, self.nn, self.ngears, self.q, self.cycle = n0, nn, ngears, q, cycle
+        self.locator_offset = locator_offset
         self.n = np.arange(n0, n0 + nn)
         top = max(n0 + nn + 2, q + 2)
         self._isp = np.zeros(top + 1, dtype=bool); self._isp[_primes_upto(top)] = True
@@ -116,6 +119,18 @@ class Twin:
     def _def(self, name):
         if name == 'multiples': return self.gears, (lambda h, n, f: n % h == 0), False
         if name == 'squares': return self.gears, (lambda h, n, f: n == h * h), False
+        if name.startswith('locator:'):
+            i = int(name.split(':')[1])
+            def cand(n, i=i):
+                # n is a member of the candidate column (m^2 + 6i - 2, m^2 + 6i) after some square m^2, m >= 2
+                for v in (n - 6 * i + 2, n - 6 * i):
+                    if v >= 4:
+                        r = int(v ** 0.5)
+                        while r * r < v: r += 1
+                        while r * r > v: r -= 1
+                        if r * r == v: return True
+                return False
+            return self.gears, (lambda h, n, f, cand=cand: cand(n) and n % h == 0), False
         if name.startswith('products:'):
             j = int(name.split(':')[1]); return self.gears, (lambda h, n, f, j=j: len(f) == j and h in f), False
         kind, g = name.split(':'); g = int(g)
@@ -132,7 +147,7 @@ class Twin:
         raise KeyError(name)
 
     def fields(self):
-        names = ['multiples', 'squares'] + [f'products:{j}' for j in range(2, self._jmax() + 2)]
+        names = ['multiples', 'squares', f'locator:{self.locator_offset}'] + [f'products:{j}' for j in range(2, self._jmax() + 2)]
         for kind in ('higher', 'higher1', 'lower', 'lower1'):
             names += [f'{kind}:{g}' for g in self.gears]
         return names

@@ -108,3 +108,42 @@ survivors of a sieve on the prime line (avoid the root classes mod every smaller
 primes are the survivors of a sieve on the number line (avoid class 0): the same construction
 one level up, with up to four classes per gear instead of one. "A hit gear in (sqrt q, q]" is
 the Bertrand-shaped statement for that second sieve.
+
+## In the fields (owner: look in the fields; go ahead with the work; 2026-09-13)
+
+The locator as a field of the owner's construction: docs/locator_field.html (rows gears h,
+columns the natural numbers m, row h painted where h strikes the candidate after m^2; the
+purple box (sqrt q, q]) and, inside the explorer and the twin, the field kind `locator:i`
+(rows gears, columns the natural numbers n, painted at the members of the candidate columns
+the gear divides; the unpainted candidates are the located twins). Probes in
+research/stack/r8/locator_field.py and blind_offsets.py.
+
+Read off the field:
+
+- Every row is periodic in m with period h and mirror-symmetric about every multiple of h
+  (teeth in pairs r, h - r): this machine has a mirror at every gear's multiples.
+- Teeth per gear (gears to 3000, offset 10): none 24.3%, two 52.6%, four 22.7%, mean 1.96;
+  the same at every offset tried. The twin machine has exactly two per gear. Same load,
+  redistributed: a quarter of the gears absent, a quarter doubled.
+- The white columns are the fold one level up: only m coprime to 6 carries a twin slot after
+  its square.
+- Blind gears across offsets, exact: as i runs mod h, gear h is blind for
+  (h - 1)/4 offset classes when h = 1 mod 8, (h - 3)/4 when h = 3 or 7 mod 8, (h - 5)/4 when
+  h = 5 mod 8 (the count of non-residue pairs at distance 2; checked to 2100, e.g. 13: 2,
+  17: 4, 101: 24, 401: 100, 1009: 252). A quarter of the offsets per gear, a quarter of the
+  gears per offset. No gear is blind on a whole class i = c mod 35 (checked for c = 5, 10,
+  12, 17 to 2100): the blind set of an offset is a fixed quarter of the gears, but which
+  quarter changes with the offset.
+
+The two sieves side by side (offset 10): survivors among their own candidates
+
+| q | primes in (sqrt q, q] | locator survivors | columns in (q, q^2] | twin survivors |
+|---|---|---|---|---|
+| 101 | 22 | 12 (0.545) | 1683 | 201 (0.119) |
+| 307 | 56 | 18 (0.321) | 15657 | 1144 (0.073) |
+| 1009 | 158 | 37 (0.234) | 169512 | 8278 (0.049) |
+| 3001 | 415 | 63 (0.152) | 1500500 | 53804 (0.036) |
+
+So the locator machine is the twin machine's own shape on the gear line: same fold, same
+mean teeth, mirrors at all multiples instead of one, a quarter of its gears missing at every
+offset, with the missing quarter given exactly by h mod 8 and the offset.

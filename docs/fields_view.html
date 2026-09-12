@@ -46,6 +46,7 @@ canvas{display:block;image-rendering:pixelated}
 <div class="ctl">
 <label>first number <input id="n0" type="number" value="1" min="1" step="1"></label>
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
+<label>locator offset <input id="loc" type="number" value="10" min="1" max="200" title="the locator field paints the strikes on the column at this offset (in columns) after every square"></label>
 <label>number of gears <input id="q" type="number" value="11" min="1" max="100" step="1"></label>
 <label>machine size q <button id="mqdn" type="button" aria-label="previous prime">−</button><b id="mqval" style="font:500 13px var(--mono);min-width:44px;text-align:center">7</b><button id="mqup" type="button" aria-label="next prime">+</button></label>
 <label>machine cycle <button id="cycdn" type="button" aria-label="back one cycle">−</button><input id="cyc" type="number" value="1" min="1" step="1" style="width:64px"><button id="cycup" type="button" aria-label="advance one cycle">+</button></label>
@@ -76,7 +77,11 @@ const fields=[
   mark:(h,n,f)=>n%h===0},
  {name:'Squares of the gears',sub:'row g is painted at g²',
   mark:(h,n,f)=>n===h*h},
+ {name:'Locator: the column at a fixed offset after each square',sub:'the candidate after m² is the column (m² + 6i − 2, m² + 6i) for the offset i set above; row g is painted at a member of a candidate that g divides (the strikes on the candidates; the candidates left unpainted are the located twins)',
+  mark:(h,n,f)=>isCandidate(n)&&n%h===0},
 ];
+function locOffset(){const e=document.getElementById('loc');return Math.max(1,parseInt(e&&e.value)||10);}
+function isCandidate(n){const i=locOffset();for(const v of [n-6*i+2,n-6*i]){if(v>=4){const r=Math.round(Math.sqrt(v));if(r*r===v)return true;}}return false;}
 const words=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
 function productFields(nums,gears){
  // the largest number of prime factors among the KILLS in the shown range (composites = 1 or 5 mod 6 with a gear factor), plus one more field to show it holds no kill
