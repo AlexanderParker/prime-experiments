@@ -2137,6 +2137,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             network at 11..31): no step sequence shared by all machines; every path ends in
             the caustic zone of a square; intermediate steps carry one gear and decide
             nothing.
+          - R4.d.i.i.h. THE DIRECT CONSTRUCTION (owner's guess 2026-09-13: anchor decisions
+            from squares and roots navigate straight to a twin; research/proof/locator.md,
+            section "The direct construction"). STRONG, exact where stated. g = the first
+            prime above sqrt q; i = the smallest offset such that for every gear h < g, with
+            r = g mod h, h divides neither r^2 + 6i - 2 nor r^2 + 6i, and g does not divide
+            6i; land on (g^2 + 6i - 2, g^2 + 6i). No search, no landing check. 2258 of 2258
+            machines to 20000, offset at most 27 columns, mean 8.3; the start pair does not
+            enter the location. EXACT: the gears below g are the gears up to sqrt q; a number
+            in (g^2, g g') with no factor below g is prime; so every column in (g^2, g g')
+            missed by the gears below g and by g is a twin (8194 columns to g = 1500, 0
+            exceptions); the rule's offset stayed inside the zone at every machine (max ratio
+            0.82). TERMINATION IN ONE LINE: in the zone (g^2, g g') after the first square
+            above q (at least g/3 columns), the wheel of the gears below g leaves a column
+            open; the teeth of h in offset coordinates are the two classes r_h^2 + 6i = 0, 2
+            mod h, a tooth family fixed by the roots of g; gears just below g cannot strike.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3379,3 +3394,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: we just need one location, do the locator. Manager (local; locator.md; node R4.d.i.i.f): the column at a fixed offset i after every square, open to 5, 7 and g by class for i in the blind classes (offset 2 open to 5 always, to 7 unless g = +-2 mod 7), struck by any other gear only from the square-root classes of -(6i-2) and -6i mod h, blind gears never; every machine 11..20000 has a located twin at offset 2 (and 10, 17) after the square of a gear between sqrt q and q; hit gears chain under squaring. Closed form for the where and the who-cannot; the existence per window is a sieve on the gear line with ~2 classes per gear (quadratic-polynomial primes, open).
 - 2026-09-13, owner corrected the manager's assessment of the walk: it is not a mere checker; it is a working locator algorithm (steps proved, lands on a twin on every machine tried, to 20000 in reduced form) whose missing piece is a termination proof for all q, which is exactly step 8. Nodes R4.d.i.i.d and R4.d.i.i.e amended to say so.
 - 2026-09-13, owner: build a deterministic walk with stepwise rules, no network, no pre-checking, certify afterwards; and read the longer paths of the network across machine sizes. Manager (local; rule_walk.py, path_grammar.py; node R4.d.i.i.g): the residue-blind rules fail at named teeth; the rule that works consults only the sub-machine (gears up to sqrt q): first gear g above sqrt q avoiding its teeth at offset 10, one flip onto (g^2 + 58, g^2 + 60), 2253 of 2258 machines to 20000, the 5 misses at q <= 23 with g = 5 self-striking. Mechanism exact: h strikes iff h divides r^2 + 6i - 2 or r^2 + 6i with r = g mod h, so gears just below g (r = the gap) are harmless. Termination reduces to the prime line near sqrt q. Path grammar: no shared sequence, every path ends in a caustic zone, longer walks add nothing.
+- 2026-09-13, owner's guess: anchor decisions from squares and roots plus a start rule navigate straight to a twin. Manager (local; locator.md; node R4.d.i.i.h): built without search: g = first prime above sqrt q, i = smallest offset the strike law allows against the gears below g; 2258 of 2258 machines to 20000, offset at most 27 columns. Exact lemma: every column in (g^2, g g') missed by the gears below g and by g is a twin (8194 columns to 1500, 0 exceptions), and the rule never left that zone. Termination for all q is now one line: the wheel of the gears below g leaves a column open in the first g (g' - g)/6 columns after g^2, with the teeth fixed by the roots of g. The start pair does not enter the location.

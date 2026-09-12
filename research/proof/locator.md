@@ -216,3 +216,30 @@ sub-machine and the gap: (i) a prime g above sqrt q avoiding the sub-machine's t
 within a gap d of sqrt q with d^2 + 60 below the smallest unconsulted gear (in range d <= 20);
 (ii) no unconsulted gear divides d^2 + 58 or d^2 + 60 (in range, never). Both are statements
 on the prime line near sqrt q, not on the window.
+
+## The direct construction: squares and roots, no search (owner's guess, 2026-09-13)
+
+Owner: anchor decisions tied to squares and roots, plus a start rule, should navigate straight
+to an open twin. Built as: g = the first prime above sqrt q (the first square in the window);
+i = the smallest offset the strike law allows against the gears below g, i.e. for every h < g
+with r = g mod h neither r^2 + 6i - 2 nor r^2 + 6i is divisible by h, and g does not divide
+6i; land on (g^2 + 6i - 2, g^2 + 6i). No search over g, no check of the landing; the offset is
+read off the residues (the roots) of g.
+
+Result, machines 11 to 20000: 2258 of 2258, offset at most 27 columns, mean 8.3. The start
+pair does not enter the location (a one-flip walk from any start lands on the same column and
+differs only in what it carries).
+
+Why it works, exact. The gears below g are exactly the gears up to sqrt q (g is the first
+prime above sqrt q), so "the sub-machine" and "every gear below g" are the same set. A number
+in (g^2, g g'), g' the next prime, with no prime factor below g is prime (a composite there
+would need two factors at least g, hence be at least g g'). So every column in (g^2, g g')
+that the gears below g miss, and that g itself misses, is a twin: checked exhaustively, 8194
+such columns for g to 1500, 0 exceptions. The rule's offset stayed inside that zone at every
+machine (largest ratio to the zone 0.82, at q = 53; mean 0.20), so no landing relied on luck.
+
+Termination for all q, in one line: in the zone (g^2, g g') after the first square above q,
+the wheel of the gears below g leaves a column open. The zone has g (g' - g) / 6 columns, at
+least g / 3. The teeth of gear h in the zone, in offset coordinates, are the two classes of i
+with r_h^2 + 6i = 0 or 2 (mod h), r_h = g mod h: a tooth family fixed by the roots of g. Gears
+with r_h^2 + 6i < h for every i in the zone cannot strike at all (the gears just below g).
