@@ -34,14 +34,14 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 </style>
 <main>
 <h1>The Fields</h1>
-<p class="sub">Each row is one field on the fold's survivors, drawn column by column. A column is the slot (6k − 1, 6k + 1). A cell is painted when the field contains the column's left member (upper half), right member (lower half), or both. Hover a cell for the members and their factorisations.</p>
+<p class="sub">Each row is one field, drawn column by column. A column is the slot (6k − 1, 6k + 1). A cell is painted when the field hits that column. Hover a cell for the column's two members and their factorisations.</p>
 <div class="ctl">
 <label>first column <input id="k0" type="number" value="1" min="1" step="1"></label>
 <label>columns shown <input id="nk" type="number" value="300" min="50" max="4000" step="50"></label>
 <button id="draw">Draw</button>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
-<div class="legend"><span><i style="background:var(--left)"></i>left member 6k−1 in the field</span><span><i style="background:var(--right)"></i>right member 6k+1 in the field</span><span><i style="background:var(--both)"></i>both members</span><span><i style="background:var(--twin)"></i>twin column</span><span><i style="background:var(--sq)"></i>square of a prime</span></div>
+<div class="legend"><span><i style="background:var(--left)"></i>the field hits the column</span><span><i style="background:var(--twin)"></i>twin column</span></div>
 <div id="rows"></div>
 <div id="tip"></div>
 <p class="foot">Definitions: field j = members with exactly j prime factors counted with multiplicity (all ≥ 5). Gear field of g = members whose least prime factor is g (g times a survivor of the gears below g, from g² on). Strictly-higher field of g = the gear field of g with g dividing exactly once. Smooth field of g = composites whose prime factors all lie in {5, …, g}; its layer = those whose largest factor is g. Overlay = every composite member. Source: research/proof/fields_construction.md.</p>
@@ -54,13 +54,15 @@ function fstr(n,f){return f.length===1?n+' prime':n+' = '+f.join('·');}
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 // field predicates on a member n (n in S, n >= 5) with its factor list f
 const G=[5,7,11,13,17,19,23,29,31,37];
+function inv6(g){for(let x=1;x<g;x++)if((6*x)%g===1)return x;return 0;}
 const fields=[
  {group:'The twins and the primes',items:[
   {name:'Twin field',sub:'columns with both members prime',twin:true},
-  {name:'Prime field',sub:'the primes (each gear\'s home strike)',pred:(n,f)=>f.length===1},
+  {name:'Prime field',sub:'the primes',pred:(n,f)=>f.length===1},
  ]},
+ {group:'Gears: the multiples of each gear',items:G.map(g=>{const u=inv6(g);return {name:'Gear '+g,sub:'multiples of '+g+'; columns k ≡ '+u+' and '+(g-u)+' (mod '+g+')',pred:(n,f)=>n%g===0};})},
  {group:'Fields by the count of prime factors',items:[
-  {name:'Square field',sub:'squares of primes p²',pred:(n,f)=>f.length===2&&f[0]===f[1],sq:true},
+  {name:'Square field',sub:'squares of primes p²',pred:(n,f)=>f.length===2&&f[0]===f[1]},
   {name:'Semiprime field',sub:'products of two primes p·q',pred:(n,f)=>f.length===2},
   {name:'Three-factor field',sub:'products of three primes',pred:(n,f)=>f.length===3},
   {name:'Four-factor field',sub:'products of four primes',pred:(n,f)=>f.length===4},
@@ -94,10 +96,7 @@ function build(){
    ctx.fillStyle=css('--grid');for(let i=0;i<=nk;i++)ctx.fillRect(i*CELL,0,1,H);ctx.fillRect(0,H-1,W,1);ctx.fillRect(0,0,W,1);
    for(let i=0;i<nk;i++){const c=cols[i];const x=i*CELL+1,w=CELL-1;
     if(it.twin){if(c.fl.length===1&&c.fr.length===1){ctx.fillStyle=css('--twin');ctx.fillRect(x,1,w,H-2);}continue;}
-    const a=it.pred(c.l,c.fl),b=it.pred(c.r,c.fr);
-    if(a&&b){ctx.fillStyle=css('--both');ctx.fillRect(x,1,w,H-2);}
-    else if(a){ctx.fillStyle=css('--left');ctx.fillRect(x,1,w,(H-2)/2);}
-    else if(b){ctx.fillStyle=it.sq?css('--sq'):css('--right');ctx.fillRect(x,1+(H-2)/2,w,(H-2)/2);}
+    if(it.pred(c.l,c.fl)||it.pred(c.r,c.fr)){ctx.fillStyle=css('--left');ctx.fillRect(x,1,w,H-2);}
    }
    cv.addEventListener('mousemove',e=>{const rect=cv.getBoundingClientRect();const i=Math.floor((e.clientX-rect.left)/CELL);if(i<0||i>=nk){tip.style.display='none';return;}const c=cols[i];
     tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';
