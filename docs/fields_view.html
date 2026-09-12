@@ -47,7 +47,7 @@ canvas{display:block;image-rendering:pixelated}
 <label>first number <input id="n0" type="number" value="1" min="1" step="1"></label>
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
 <label>number of gears <input id="q" type="number" value="11" min="1" max="100" step="1"></label>
-<label>machine size q <select id="mq"></select></label>
+<label>machine size q <button id="mqdn" type="button" aria-label="previous prime">−</button><b id="mqval" style="font:500 13px var(--mono);min-width:44px;text-align:center">7</b><button id="mqup" type="button" aria-label="next prime">+</button></label>
 <span id="mqinfo" style="font:12px var(--mono);color:var(--muted)"></span>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
@@ -115,7 +115,7 @@ function build(){
  document.getElementById('range').textContent='numbers '+n0+' to '+(n0+nn-1)+', gears '+gears.join(' ');
  const nums=[];for(let n=n0;n<n0+nn;n++){const f=n>=2?factor(n):[];const pr=f.length===1;const tw=pr&&(isPrime(n-2)||isPrime(n+2));nums.push({n,f,pr,tw});}
  const CELL=6,H=14,RH=14,W=nn*CELL;
- const mq=parseInt(document.getElementById('mq').value)||7;
+ const mq=mqState;
  let prim=1;for(let p=2;p<=mq;p++)if(isPrime(p))prim*=p;
  const marks=[
   {key:'q',n:mq,label:'q = '+mq,lo:1,hi:mq,why:'q is the machine\'s top gear: the machine is the gears up to q. Range 1 .. q: the gears themselves and the numbers below them.'},
@@ -176,10 +176,14 @@ function build(){
   fd.appendChild(list);rowsEl.appendChild(fd);}
  document.getElementById('foot').textContent='Gears are the first N primes, 2 and 3 included. A number is painted on a gear\'s row only when that gear divides it and the number belongs to the field; the number\'s colour says whether it is a twin prime member, a single prime, or a composite. Nothing is folded onto 6k ± 1.';
 }
-{const sel=document.getElementById('mq');for(let p=2;p<=1000;p++)if(isPrime(p)){const o=document.createElement('option');o.value=p;o.textContent=p;if(p===7)o.selected=true;sel.appendChild(o);}}
-for(const s of document.querySelectorAll('.legend span[data-key]')){s.addEventListener('click',()=>{const k=s.dataset.key;if(muted.has(k)){muted.delete(k);s.classList.remove('off');}else{muted.add(k);s.classList.add('off');}build();});}
 let timer=null;const schedule=()=>{clearTimeout(timer);timer=setTimeout(build,250);};
-for(const id of ['n0','nn','q'])document.getElementById(id).addEventListener('input',schedule);document.getElementById('mq').addEventListener('change',schedule);
+let mqState=7;
+function nextPrime(n){let m=n+1;while(!isPrime(m))m++;return m;}
+function prevPrime(n){let m=n-1;while(m>=2&&!isPrime(m))m--;return m<2?2:m;}
+document.getElementById('mqup').addEventListener('click',()=>{mqState=nextPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
+document.getElementById('mqdn').addEventListener('click',()=>{mqState=prevPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
+for(const s of document.querySelectorAll('.legend span[data-key]')){s.addEventListener('click',()=>{const k=s.dataset.key;if(muted.has(k)){muted.delete(k);s.classList.remove('off');}else{muted.add(k);s.classList.add('off');}build();});}
+for(const id of ['n0','nn','q'])document.getElementById(id).addEventListener('input',schedule);
 build();
 })();
 </script>
