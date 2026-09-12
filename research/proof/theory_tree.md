@@ -2061,6 +2061,25 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             the primorial columns (k q# - 1, k q# + 1), all above q^2. What survives: mirrors
             are exact symmetries of the machine (kernel: mirror law, survivor_neg), useful for
             reading a window from its far end, never for entering it.
+          - R4.d.i.i.d. THE WALK WITH ANCHORS (owner, 2026-09-13: find the rules that would
+            make a walk possible; backward walks; three anchor families by one-off lanes;
+            research/proof/anchors_walk.md; scripts research/stack/r8/backward_walk*.py,
+            anchors_*.py, results_anchors_*.md). FACTS: a flip carries exactly the gears
+            dividing its axis product; gear h is certified at n by an anchor a known open to h
+            iff n = a or -a-2 mod h; certification never certifies a struck column (0 at every
+            machine and family). Killed columns: the killer is carried exactly onto the gear
+            pair containing it, matching side (0 violations, 3291 instances at 101). Twins from
+            the base anchors (pairs + home): 0 fully certified at 31..401 (a gear needs about
+            h/2 anchors). Square anchors (g-1 columns either side of g^2): every gear covered,
+            every twin certified, one anchor per gear (median 144 for 167 gears at 1009), the
+            residue rule with witnesses. Blind-class anchors: complete for 5 and 7 only, the
+            first non-twin known places carrying two gears. Caustic anchors (the run after a
+            square before h's first strike): every gear >= 23 covered, gear 5 never (5 strikes
+            the column after every square), mean 41.7 gears known per anchor at 1009, walk
+            length halved (median 68). VERDICT: the walk is a complete checker, not a locator;
+            the locator form is "which anchor choices compose to a column below q^2", the open
+            count in the anchors' coordinate. Kept: exact kill rule, three verified anchor
+            sources, the walk-length bound.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3298,3 +3317,4 @@ Part III or Part IV of the proof document?
 - 2026-09-12, owner: run the layers again but look at what fields kill in the window over many cycles, which rows kill, which fields never kill / are periodic / become periodic / never; the gears per field per machine layer; the window's twins at the mirror; which fields mirror. Manager (local; window_fields.md; node R4.d.i.i.b): in cycle 1 the window is closed by the machine alone (higher:g for g <= q, squares, products, lower); from cycle 2 the only change is the machine's openings being eaten by higher:g fields of the gears above q, one field per opening, first eater always q'; periodic = higher:g (g <= q) and the machine's rows, everything built on a factor count, a largest factor or a square is never periodic and nothing becomes periodic; mirror exact for the machine's fields only; window twins at the mirror 2/2, 3/4, 2/7 ... 1/30. Two bugs fixed before recording (sympy primorial; stops-killing read as periodic).
 - 2026-09-12, owner: the order ceiling gives an exact shape of which composites can kill, an upper edge of the area to explore, and the zone looks narrow. Manager (local; window_fields.md section 6): j_max(window) = floor(2 log_5 q), exact at 18 machines; cycle ceiling floor(log_5 q#) about 0.62 q; the window's field list is exact and logarithmic in q; orders >= 4 are the smooth field, orders 2 and 3 hold 90-99% of the kills and the order-2 kills are mostly gear x a prime of the window (the hand-up). Recorded on R4.d.i.i.b.
 - 2026-09-13, owner shared the mirror-walk idea (teleport by mirrors about products of gear subsets, final flip into the window on an all-gear axis). Manager: DEAD by proof, node R4.d.i.i.c; a mirror or translation keeps a gear's openness iff the gear divides the axis product, so all-gear-preserving moves are the wheel's own symmetries mod q# and move the open set onto itself; the window's content is unchanged. Owner's boxing of the proof (2026-09-13) recorded as the standing frame: the window statement alone (a twin in (q, q^2] for every prime q) proves step 8 and infinitude; no layers, cycles or lookahead; walls exact (no gear above q below q^2, squares one per gear, orders at most floor(2 log_5 q)); the work is a locator for an open column from the rows of orders 2 and 3, whose kills are gears times the window's own openings.
+- 2026-09-13, owner: the walk's steps must offset from a known location and land in a known place; build backwards from a window twin to a gear pair; then for killed candidates; then forward with 2, 3 and non-killers; then try squares, blind classes and caustics as anchors with one-off lanes. Manager (local + three Opus lanes; anchors_walk.md; node R4.d.i.i.d): kill side exact (killer onto its own pair); square anchors certify every twin for every gear (residue rule with witnesses); blind classes carry 5 and 7 together; caustic anchors carry dozens of gears per column and halve the walk; the walk is a checker, the locator form is which anchor choices compose below q^2. Lanes closed.
