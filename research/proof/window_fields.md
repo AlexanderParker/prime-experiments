@@ -145,3 +145,37 @@ an opening; the first eater is always q' with the largest count. The mirror sepa
 fields cleanly into the machine's (exact mirror) and the rest (none). Not new: the periodicity
 verdicts are the residue facts (g# divides q#; g^2 does not); the mirror survival rate falls as
 the primes above q thin the mirror, an ordinary density.
+
+## 6. The order ceiling: which composites can kill in the window (owner's question, 2026-09-12)
+
+Order j = the number of prime factors with multiplicity (the explorer's "products of j gears").
+Every gear in a twin slot is at least 5 and 5^j is itself a twin-slot composite (5^j alternates
+between 5 and 1 mod 6), so products:j kills in the window (q, q^2] iff 5^j <= q^2:
+
+    j_max(window of q) = floor(log_5 q^2) = floor(2 log_5 q)   (exact; equal to the measured
+    largest killing order at every machine checked: q = 5 .. 59, 101, 211, 401)
+
+The layer (p^2, q^2] has the same ceiling except when 5^j already sits below p^2 (q = 401:
+window 7, layer 6). The whole cycle (up to q#) has ceiling floor(log_5 q#), about 0.62 q: the
+order available in the cycle grows linearly in q, the order available in the window only like
+1.24 ln q. The window's order steps up by one each time q crosses 5^(k/2): 5, 13, 29, 59, 128,
+280, 626, ...
+
+Where the kills live inside the ceiling (window kills by order; a cofactor "above q" is a prime
+of the window itself):
+
+| q | window kills | order 2 | of which gear x gear | gear x prime above q | order 3 | orders >= 4 |
+|---|---|---|---|---|---|---|
+| 31 | 159 | 131 (0.82) | 44 | 87 | 26 (0.16) | 2 (0.01) |
+| 101 | 2141 | 1509 (0.70) | 291 | 1218 | 540 (0.25) | 92 (0.04) |
+| 211 | 10190 | 6590 (0.65) | 1012 | 5578 | 2912 (0.29) | 688 (0.07) |
+
+What the ceiling gives and what it does not. It fixes the exact list of fields that exist in
+the window (products:2 .. products:floor(2 log_5 q); higher:g for g <= q; squares of the gears
+up to q), an upper edge of the area the proof has to cover, and that edge is narrow and grows
+only logarithmically. Inside it, orders 4 and up are the smooth field (closed form, a few
+percent of the kills), and orders 2 and 3 carry 90 to 99 percent of them. The order-2 kills are
+mostly a gear times a prime ABOVE q, i.e. a gear times a prime of the window itself (87 of 131 at
+q = 31, 5578 of 6590 at q = 211): the window's own primes, handed up, are what closes most of
+its columns. So the narrowness is real in order and in field list, and the difficulty sits
+entirely in the two lowest orders, where the cofactors are the primes the statement is about.
