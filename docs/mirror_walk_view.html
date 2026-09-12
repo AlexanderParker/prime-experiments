@@ -25,12 +25,13 @@ th{color:var(--mut);font-weight:500}
 code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px}
 </style>
 <h1>Mirror walk</h1>
-<p class="lead">Nodes are columns (n, n+2). Home is (&minus;1, 1). A flip about an axis k&middot;M/2, M the product of a gear subset containing 2 and 3, sends n to k&middot;M &minus; n &minus; 2 and carries the residues of the gears in M. Click a column to stand on it; click an axis label to flip about it. The window (q, q&sup2;] is boxed in purple, the mirror stretches of the window (near k&middot;q#) in yellow.</p>
+<p class="lead">Nodes are columns (n, n+2). Home is (&minus;1, 1). A flip about an axis k&middot;M/2, M the product of a gear subset containing 2 and 3, sends n to k&middot;M &minus; n &minus; 2 and carries every gear dividing the axis product k&middot;M (more than the axis family names, sometimes). Gear pairs (both members gears of the machine) are marked orange: known twins, struck only by themselves. Use the pair buttons to flip the current node straight onto a gear pair; the axis is then (n + g + 2)/2 and the carried gears are those dividing n + g + 2. Click a column to stand on it; click an axis label to flip about it. The window (q, q&sup2;] is boxed in purple, the mirror stretches of the window (near k&middot;q#) in yellow.</p>
 <div class="ctl">
  <span>machine</span>
  <button data-q="5">5</button><button data-q="7" class="on">7</button><button data-q="11">11</button>
  <span>axes:</span><span id="axes"></span>
  <label>k up to <input id="kmax" type="number" min="1" max="6" value="3" style="width:3.5em"></label>
+ <span>flip to gear pair:</span><span id="pairs"></span>
  <button id="home">back to home</button><button id="undo">undo flip</button>
  <label><input id="showall" type="checkbox"> also axes of M = 6 (every column is one flip away)</label>
 </div>
@@ -41,6 +42,7 @@ code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px}
  <span><i style="background:#7ee08a"></i>twin (both members prime)</span>
  <span><i style="background:#1f6fd0"></i>home / current node</span>
  <span><i style="background:#d04a1f"></i>walk</span>
+ <span><i style="background:#e08a1f"></i>gear pair (anchor)</span>
 </div>
 <div class="wrap"><canvas id="c"></canvas></div>
 <div class="panel">
@@ -59,7 +61,9 @@ function subsets(){const o=gears.filter(g=>g>3),out=[];for(let m=0;m<(1<<o.lengt
 function prod(S){return S.reduce((a,b)=>a*b,1);}
 function setup(){gears=G[q];P=prod(gears);nmin=-P-1;nmax=2*P+P/2;cols=[];for(let n=nmin;n<=nmax;n+=6)cols.push(n);cw=Math.max(3,Math.min(24,Math.floor(1400/cols.length)));
  const ax=document.getElementById('axes');ax.innerHTML='';subsets().forEach(S=>{if(S.length===2)return;const M=prod(S),id='ax'+M;if(axesOn[M]===undefined)axesOn[M]=true;const l=document.createElement('label');l.innerHTML='<input type="checkbox" id="'+id+'" '+(axesOn[M]?'checked':'')+'> M='+M+' ('+S.join('·')+')';l.querySelector('input').addEventListener('change',e=>{axesOn[M]=e.target.checked;draw();});ax.appendChild(l);});
- path=[{n:-1,axis:null,S:null,cert:gears.slice()}];draw();}
+ path=[{n:-1,axis:null,S:null,cert:gears.slice()}];
+ const pr=document.getElementById('pairs');pr.innerHTML='';gears.filter(g=>g>=5&&gears.includes(g+2)).forEach(g=>{const b=document.createElement('button');b.textContent='('+g+', '+(g+2)+')';b.addEventListener('click',()=>{const cur=path[path.length-1],A=cur.n+g+2,S=gears.filter(h=>A%h===0);path.push({n:g,axis:A+'/2 (to the pair)',S:S,cert:cur.cert.filter(h=>S.includes(h))});draw();});pr.appendChild(b);});
+ draw();}
 function xOf(v){return (v-nmin)/6*cw+cw/2;}
 function axisList(){const kmax=parseInt(document.getElementById('kmax').value)||3,out=[];subsets().forEach(S=>{const M=prod(S);if(S.length===2){if(!document.getElementById('showall').checked)return;}else if(!axesOn[M])return;const kk=S.length===2?Math.floor(nmax/6):kmax;for(let k=1;k<=kk;k++){const a=k*M/2-1;if(a<nmin||a>nmax)continue;out.push({S,M,k,a});}});return out;}
 function draw(){const rows=gears.length,rh=14,top=54,H=top+rows*rh+8+rh+8+40;cv.width=Math.ceil(cols.length*cw)+40;cv.height=H;ctx.fillStyle='#000';ctx.fillRect(0,0,cv.width,cv.height);
@@ -81,6 +85,7 @@ function draw(){const rows=gears.length,rh=14,top=54,H=top+rows*rh+8+rh+8+40;cv.
  // nodes
  path.forEach((p,i)=>{const x=xOf(p.n);ctx.fillStyle=i===path.length-1?'#1f6fd0':'#d04a1f';ctx.beginPath();ctx.arc(x,top-6,4,0,2*Math.PI);ctx.fill();});
  ctx.fillStyle='#1f6fd0';ctx.fillRect(xOf(-1)-cw/2,top-2,cw-1,2);
+ gears.filter(g=>g>=5&&gears.includes(g+2)).forEach(g=>{ctx.fillStyle='#e08a1f';ctx.fillRect(xOf(g)-cw/2,top+rows*rh+8+rh-3,cw-1,3);});
  table();}
 function table(){const tb=document.querySelector('#walk tbody');tb.innerHTML='';path.forEach((p,i)=>{const tr=document.createElement('tr');const op=gears.filter(g=>!strikes(g,p.n));tr.innerHTML='<td>'+i+'</td><td><code>('+p.n+', '+(p.n+2)+')</code></td><td>'+(p.axis?'<code>'+p.axis+'</code>':'home')+'</td><td>'+(p.S?p.S.join(' '):'—')+'</td><td class="'+(op.length===gears.length?'ok':'no')+'">'+op.join(' ')+'</td><td class="'+(p.cert.length===gears.length?'ok':'no')+'">'+(p.cert.length?p.cert.join(' '):'none')+'</td><td>'+(twin(p.n)?'twin':(isPrime(p.n)||isPrime(p.n+2)?'one prime':'no'))+'</td>';tb.appendChild(tr);});
  const cur=path[path.length-1],inWin=cur.n>q&&cur.n<=q*q;const info=document.getElementById('info');
@@ -89,7 +94,7 @@ function table(){const tb=document.querySelector('#walk tbody');tb.innerHTML='';
 cv.addEventListener('click',e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
  // axis label hit (top band) or axis line
  const ax=axisList();let best=null,bd=6;ax.forEach(a=>{const d=Math.abs(xOf(a.a)-x);if(d<bd&&y<54){bd=d;best=a;}});
- if(best){const cur=path[path.length-1],m=best.k*best.M-cur.n-2;path.push({n:m,axis:best.k+'·'+best.M+'/2 ('+best.S.join('·')+')',S:best.S,cert:cur.cert.filter(g=>best.S.includes(g))});draw();return;}
+ if(best){const cur=path[path.length-1],m=best.k*best.M-cur.n-2;const A=best.k*best.M,S=gears.filter(h=>A%h===0);path.push({n:m,axis:best.k+'·'+best.M+'/2 ('+best.S.join('·')+')',S:S,cert:cur.cert.filter(g=>S.includes(g))});draw();return;}
  const n=nmin+Math.floor(x/cw)*6;if(n>=nmin&&n<=nmax){path=[{n:n,axis:null,S:null,cert:openAll(n)&&n===-1?gears.slice():[]}];if(n===-1)path[0].cert=gears.slice();draw();}});
 document.querySelectorAll('button[data-q]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('button[data-q]').forEach(x=>x.classList.remove('on'));b.classList.add('on');q=parseInt(b.dataset.q);setup();}));
 document.getElementById('home').addEventListener('click',()=>{path=[{n:-1,axis:null,S:null,cert:gears.slice()}];draw();});
