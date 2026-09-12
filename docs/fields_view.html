@@ -8,7 +8,7 @@
 :root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--left:#7fb0dc;--right:#e0a94a;--both:#e07a68;--twin:#5fbf88;--sq:#b28ee6;--grid:#242930}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
-main{max-width:1200px;margin:0 auto;padding:22px 16px 60px}
+main{max-width:100%;margin:0;padding:18px 16px 60px}
 h1{font:600 24px/1.2 var(--sans);margin:0 0 4px}
 .sub{color:var(--muted);margin:0 0 14px}
 .ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:0 0 14px;font-size:13px}
@@ -19,10 +19,12 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 12px}
 .legend i{display:inline-block;width:14px;height:10px;vertical-align:middle;margin-right:4px;border-radius:2px}
 .group{margin:18px 0 6px;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border-top:1px solid var(--line);padding-top:8px}
-.row{display:grid;grid-template-columns:260px 1fr;gap:10px;align-items:center;margin:0 0 3px}
+.row{display:grid;grid-template-columns:230px 1fr;gap:10px;align-items:center;margin:0 0 3px}
+.row .num{font:11px var(--mono);color:var(--muted);display:inline-block;width:26px}
+.ruler canvas{height:22px;border:0;background:transparent}
 .row .name{font-size:13px;line-height:1.25}
 .row .name small{display:block;color:var(--muted);font:11px var(--mono)}
-.row canvas{width:100%;height:18px;display:block;border:1px solid var(--line);background:var(--panel)}
+.row canvas{width:100%;height:18px;display:block;border:1px solid var(--line);background:var(--panel);image-rendering:pixelated}
 #tip{position:fixed;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:6px 8px;font:12px var(--mono);color:var(--ink);max-width:420px;display:none;z-index:2}
 .foot{color:var(--muted);font-size:12px;margin-top:22px}
 </style>
@@ -72,11 +74,20 @@ function build(){
  document.getElementById('range').textContent='columns '+k0+' to '+(k0+nk-1)+'  (numbers '+(6*k0-1)+' to '+(6*(k0+nk-1)+1)+')';
  const cols=[];for(let k=k0;k<k0+nk;k++){const l=6*k-1,r=6*k+1,fl=factor(l),fr=factor(r);cols.push({k,l,r,fl,fr});}
  const W=nk;
+ let rowNo=0;
+ const step=nk>=2000?200:nk>=800?100:nk>=300?50:10;
+ function ruler(){const row=document.createElement('div');row.className='row ruler';const nm=document.createElement('div');nm.className='name';nm.innerHTML='<small>column k</small>';row.appendChild(nm);
+  const cv=document.createElement('canvas');cv.width=Math.max(W,1200);cv.height=22;row.appendChild(cv);rowsEl.appendChild(row);
+  const ctx=cv.getContext('2d');const sx=cv.width/nk;ctx.fillStyle=css('--muted');ctx.font='11px '+css('--mono');ctx.textBaseline='top';
+  for(let k=Math.ceil(k0/step)*step;k<k0+nk;k+=step){const x=(k-k0)*sx;ctx.fillRect(x,14,1,8);ctx.fillText(String(k),x+2,0);}
+  for(let k=k0;k<k0+nk;k++){if(k%(step/5)===0){const x=(k-k0)*sx;ctx.fillRect(x,18,1,4);}}}
  for(const grp of fields){
   const h=document.createElement('div');h.className='group';h.textContent=grp.group;rowsEl.appendChild(h);
+  ruler();
   for(const it of grp.items){
+   rowNo++;
    const row=document.createElement('div');row.className='row';
-   const nm=document.createElement('div');nm.className='name';nm.innerHTML=it.name+'<small>'+it.sub+'</small>';row.appendChild(nm);
+   const nm=document.createElement('div');nm.className='name';nm.innerHTML='<span class="num">'+rowNo+'</span>'+it.name+'<small>'+it.sub+'</small>';row.appendChild(nm);
    const cv=document.createElement('canvas');cv.width=W;cv.height=18;row.appendChild(cv);rowsEl.appendChild(row);
    const ctx=cv.getContext('2d');ctx.fillStyle=css('--panel');ctx.fillRect(0,0,W,18);
    ctx.fillStyle=css('--grid');for(let x=0;x<W;x+=10)ctx.fillRect(x,0,1,18);
