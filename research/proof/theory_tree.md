@@ -2097,6 +2097,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             143651 (g = 379) at 401; for gears above g the caustic knowledge is the
             divisibility check in other words. VERDICT: efficiency question answered (carry1
             with caustic anchors); no rule produces a destination the anchors did not contain.
+          - R4.d.i.i.f. THE LOCATOR: A FIXED COLUMN AFTER EVERY SQUARE (owner, 2026-09-13:
+            "we just need one location"; research/proof/locator.md; research/stack/r8/
+            locator.py). EXACT: the column at offset i after g^2, (g^2 - 2 + 6i, g^2 + 6i), is
+            open to 5 for every g iff i = 0, 2 mod 5, to 7 iff i = 3, 5 mod 7 (both: the blind
+            classes 5, 10, 12, 17 mod 35), to g for g > 6i; any other gear h strikes it iff
+            g^2 = -(6i-2) or -6i mod h, at most four classes of g mod h (the square roots),
+            and gears with neither a residue never strike that offset from any square (blind
+            gears: for i = 2: 17, 29, 71, 83, 101, ...; i = 10: 7, 11, 13, 41, 43, ...). So
+            "the offset-i column after g^2 is a twin" is a sieve on the gear line, ~2 classes
+            per gear (1.64 at i = 10), classes in closed form. MEASURED: for every prime q
+            from 11 to 20000 some gear g in (sqrt q, q] has its offset-2 column a twin (2259
+            of 2259; also i = 10, 17; i = 5, 12 fail only at q = 7); the hit gears form a
+            chain under squaring (largest consecutive ratio 7.46 at i = 2, 1.63 at i = 10).
+            STATUS: CANDIDATE LOCATOR, closed form for where and for who cannot interfere;
+            existence of a hit gear per window is a density statement on the gear line (prior
+            art: primes in quadratic polynomials, Bunyakovsky / Hardy-Littlewood F, open).
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3336,3 +3352,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner shared the mirror-walk idea (teleport by mirrors about products of gear subsets, final flip into the window on an all-gear axis). Manager: DEAD by proof, node R4.d.i.i.c; a mirror or translation keeps a gear's openness iff the gear divides the axis product, so all-gear-preserving moves are the wheel's own symmetries mod q# and move the open set onto itself; the window's content is unchanged. Owner's boxing of the proof (2026-09-13) recorded as the standing frame: the window statement alone (a twin in (q, q^2] for every prime q) proves step 8 and infinitude; no layers, cycles or lookahead; walls exact (no gear above q below q^2, squares one per gear, orders at most floor(2 log_5 q)); the work is a locator for an open column from the rows of orders 2 and 3, whose kills are gears times the window's own openings.
 - 2026-09-13, owner: the walk's steps must offset from a known location and land in a known place; build backwards from a window twin to a gear pair; then for killed candidates; then forward with 2, 3 and non-killers; then try squares, blind classes and caustics as anchors with one-off lanes. Manager (local + three Opus lanes; anchors_walk.md; node R4.d.i.i.d): kill side exact (killer onto its own pair); square anchors certify every twin for every gear (residue rule with witnesses); blind classes carry 5 and 7 together; caustic anchors carry dozens of gears per column and halve the walk; the walk is a checker, the locator form is which anchor choices compose below q^2. Lanes closed.
 - 2026-09-13, owner: build the network of walks breadth-first (start at a gear pair, a child per anchor option per rule, path-unique nodes, no immediate return, stop at destination) and see which rules work most efficiently. Manager (local; walk_network.md; node R4.d.i.i.e): keep impossible beyond 7, carry1 productive, free wasteful, caustic anchors cheapest; every destination is a landing on a place already known open to (nearly) everything; the located places are the (g^2 + 10, g^2 + 12) columns when twins (g = 13, 97, 379); no rule produced a destination the anchors did not contain.
+- 2026-09-13, owner: we just need one location, do the locator. Manager (local; locator.md; node R4.d.i.i.f): the column at a fixed offset i after every square, open to 5, 7 and g by class for i in the blind classes (offset 2 open to 5 always, to 7 unless g = +-2 mod 7), struck by any other gear only from the square-root classes of -(6i-2) and -6i mod h, blind gears never; every machine 11..20000 has a located twin at offset 2 (and 10, 17) after the square of a gear between sqrt q and q; hit gears chain under squaring. Closed form for the where and the who-cannot; the existence per window is a sieve on the gear line with ~2 classes per gear (quadratic-polynomial primes, open).
