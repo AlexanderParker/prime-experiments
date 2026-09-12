@@ -65,15 +65,26 @@ const fields=[
   mark:(h,n,f)=>f.length===4&&f.includes(h)},
  {name:'Products of five or more gears',sub:'painted on the row of each gear in the product',
   mark:(h,n,f)=>f.length>=5&&f.includes(h)},
- {name:'Each gear with itself and higher gears',sub:'row g is painted at n = g × m where every prime factor of m is g or larger: the composites in which g is the smallest gear',
-  mark:(h,n,f)=>f.length>=2&&f[0]===h},
- {name:'Each gear with only higher gears',sub:'row g is painted at n = g × m where every prime factor of m is larger than g: the composites in which g is the smallest gear and appears once',
-  mark:(h,n,f)=>f.length>=2&&f[0]===h&&f[1]!==h},
- {name:'Each gear with itself and lower gears',sub:'row g is painted at n = g × m where every prime factor of m is g or smaller: the composites in which g is the largest gear',
-  mark:(h,n,f)=>f.length>=2&&f[f.length-1]===h},
- {name:'Each gear with only lower gears',sub:'row g is painted at n = g × m where every prime factor of m is smaller than g: the composites in which g is the largest gear and appears once',
-  mark:(h,n,f)=>f.length>=2&&f[f.length-1]===h&&f[f.length-2]!==h},
 ];
+// per-gear fields: one field for each gear g, rows = g and the gears above (or below), every participating gear painted
+function perGear(gears){const out=[];
+ for(const g of gears){
+  out.push({name:'Gear '+g+' with itself and higher gears',sub:'n = '+g+' × m where every prime factor of m is '+g+' or larger (the composites in which '+g+' is the smallest gear); rows: '+g+' and the gears above it, each painted where it divides n',
+   rows:gs=>gs.filter(h=>h>=g),mark:(h,n,f)=>f.length>=2&&f[0]===g&&f.includes(h)});
+ }
+ for(const g of gears){
+  out.push({name:'Gear '+g+' with only higher gears',sub:'n = '+g+' × m where every prime factor of m is larger than '+g+' ('+g+' appears once and is the smallest gear); rows: '+g+' and the gears above it',
+   rows:gs=>gs.filter(h=>h>=g),mark:(h,n,f)=>f.length>=2&&f[0]===g&&f[1]!==g&&f.includes(h)});
+ }
+ for(const g of gears){
+  out.push({name:'Gear '+g+' with itself and lower gears',sub:'n = '+g+' × m where every prime factor of m is '+g+' or smaller (the composites in which '+g+' is the largest gear); rows: '+g+' and the gears below it',
+   rows:gs=>gs.filter(h=>h<=g),mark:(h,n,f)=>f.length>=2&&f[f.length-1]===g&&f.includes(h)});
+ }
+ for(const g of gears){
+  out.push({name:'Gear '+g+' with only lower gears',sub:'n = '+g+' × m where every prime factor of m is smaller than '+g+' ('+g+' appears once and is the largest gear); rows: '+g+' and the gears below it',
+   rows:gs=>gs.filter(h=>h<=g),mark:(h,n,f)=>f.length>=2&&f[f.length-1]===g&&f[f.length-2]!==g&&f.includes(h)});
+ }
+ return out;}
 function build(){
  rowsEl.innerHTML='';
  const n0=Math.max(1,parseInt(document.getElementById('n0').value)||1),nn=Math.min(3000,Math.max(50,parseInt(document.getElementById('nn').value)||400)),q=Math.min(200,Math.max(5,parseInt(document.getElementById('q').value)||31));
@@ -94,11 +105,12 @@ function build(){
  // reference strip
  {const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML='The numbers<small>every prime marked: green a twin prime member, blue a single prime</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';g.appendChild(l0);g.appendChild(ruler());const l1=document.createElement('div');l1.className='gl';l1.textContent='n';g.appendChild(l1);g.appendChild(strip(c=>c.pr?colourOf(c):null));fd.appendChild(g);rowsEl.appendChild(fd);}
- for(const F of fields){
+ for(const F of fields.concat(perGear(gears))){
   const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML=F.name+'<small>'+F.sub+'</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';l0.textContent='';g.appendChild(l0);g.appendChild(ruler());
-  const openBg=c=>{if(c.n<2)return null;if(gears.some(h=>F.mark(h,c.n,c.f)))return null;return c.tw?css('--opentw'):c.pr?css('--openpr'):css('--openx');};
-  for(const h of gears){const l=document.createElement('div');l.className='gl';l.innerHTML='<b>'+h+'</b>';g.appendChild(l);g.appendChild(strip(c=>F.mark(h,c.n,c.f)?colourOf(c):null,openBg));}
+  const rows=F.rows?F.rows(gears):gears;
+  const openBg=c=>{if(c.n<2)return null;if(rows.some(h=>F.mark(h,c.n,c.f)))return null;return c.tw?css('--opentw'):c.pr?css('--openpr'):css('--openx');};
+  for(const h of rows){const l=document.createElement('div');l.className='gl';l.innerHTML='<b>'+h+'</b>';g.appendChild(l);g.appendChild(strip(c=>F.mark(h,c.n,c.f)?colourOf(c):null,openBg));}
   fd.appendChild(g);rowsEl.appendChild(fd);
  }
  document.getElementById('foot').textContent='Gears are the primes up to the chosen top gear, including 2 and 3. A number is painted on a gear\'s row only when that gear divides it and the number belongs to the field; the number\'s colour says whether it is a twin prime member, a single prime, or a composite. Nothing is folded onto 6k ± 1.';
