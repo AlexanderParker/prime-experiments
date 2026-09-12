@@ -243,3 +243,39 @@ the wheel of the gears below g leaves a column open. The zone has g (g' - g) / 6
 least g / 3. The teeth of gear h in the zone, in offset coordinates, are the two classes of i
 with r_h^2 + 6i = 0 or 2 (mod h), r_h = g mod h: a tooth family fixed by the roots of g. Gears
 with r_h^2 + 6i < h for every i in the zone cannot strike at all (the gears just below g).
+
+## The walk on real mirror axes (owner's correction, 2026-09-13)
+
+Owner: an axis must be an actual mirror of a gear combination, a multiple of M = the product of
+the chosen gears (2, 3 mirror at 6; 2, 3, 5 at 30; 2, 3, 11 at 66); no offsets; the mirror is a
+property of the combined gears, not a word for flipping. Built as such:
+research/stack/r8/true_mirror_walk.py.
+
+- Axis k M, flip n -> 2 k M - n - 2 (columns to columns since 6 divides M). The pattern of the
+  gears in S repeats with period M and is symmetric about 0, hence about every multiple of M,
+  so the flip carries the openness of every gear in S.
+- Start at home (-1, 1), open to every gear. One flip about k M lands on (2 k M - 1, 2 k M + 1),
+  open to every gear of S for every k.
+- The remaining gears h (h <= q, not in S) strike that landing iff k = -(2M)^-1 or +(2M)^-1
+  (mod h): two classes of k per gear, read off the roots. Rule: the smallest k whose landing
+  lies in the window (q, q^2] and whose class avoids those teeth for every remaining gear.
+- Exact: if such a k exists the landing is a twin (both members below q^2, no gear up to q
+  divides them; the S gears by the mirror, the rest by the choice of k).
+
+| S | M | machines with a landing (11 .. 5000) | k, mean / largest | landing position 2kM/q^2, mean / max | landings not twins |
+|---|---|---|---|---|---|
+| 2, 3 | 6 | 665 of 665 | 200 / 425 | 0.0037 / 0.50 | 0 |
+| 2, 3, 5 | 30 | 665 of 665 | 42 / 85 | 0.0040 / 0.50 | 0 |
+| 2, 3, 5, 7 | 210 | 661 of 665 (none at 11, 13, 17, 19) | 9 / 14 | 0.0080 / 0.79 | 0 |
+| 2, 3, 5, 7, 11 | 2310 | 645 of 665 (none below 41) | 2 / 2 | 0.027 / 0.98 | 0 |
+
+To 20000 with S = {2, 3} and {2, 3, 5}: every machine has a landing (see the run line in the
+log). The landing sits just above q (a fraction of a percent into the window on average); the
+bigger S, the fewer multiples fit below q^2 and the small machines lose their landing.
+
+What this is: the mirror walk as the owner described it, one flip from home about a true
+mirror axis of the small gears, the multiple chosen by the roots of the remaining gears; the
+landing is a twin whenever the multiple exists, by the mirror for S and by the choice of k for
+the rest. Termination = the existence of k: a class of k mod every remaining gear that avoids
+two teeth, with 2 k M inside the window. That is the twin sieve on the multiples of M, the
+S gears removed from it by the mirror.

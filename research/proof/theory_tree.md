@@ -2152,6 +2152,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             above q (at least g/3 columns), the wheel of the gears below g leaves a column
             open; the teeth of h in offset coordinates are the two classes r_h^2 + 6i = 0, 2
             mod h, a tooth family fixed by the roots of g; gears just below g cannot strike.
+          - R4.d.i.i.i. THE WALK ON REAL MIRROR AXES (owner's correction 2026-09-13: an axis
+            is a multiple of the product M of a gear set S containing 2, 3; no offsets;
+            research/proof/locator.md, section "The walk on real mirror axes";
+            research/stack/r8/true_mirror_walk.py). STRONG, exact where stated. Flip about
+            k M carries every gear of S (the S pattern is symmetric about every multiple of
+            M). From home (-1, 1) one flip lands on (2kM - 1, 2kM + 1), open to S for every
+            k; a remaining gear h strikes it iff k = -+(2M)^-1 mod h (two classes of k, the
+            roots); rule: the smallest k with the landing in the window avoiding those
+            classes. EXACT: when such k exists the landing is a twin (below q^2, no gear up
+            to q divides it). Machines 11..5000: S = {2,3} and {2,3,5} land on every machine
+            (665/665; k mean 200 / 42; landing a fraction of a percent into the window);
+            {2,3,5,7} 661/665, {2,3,5,7,11} 645/665 (small machines lack a multiple below
+            q^2); to 20000 the two small sets land everywhere; 0 landings fail
+            certification. TERMINATION = existence of k: the twin sieve on the multiples of
+            M with the S gears removed by the mirror.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3395,3 +3410,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner corrected the manager's assessment of the walk: it is not a mere checker; it is a working locator algorithm (steps proved, lands on a twin on every machine tried, to 20000 in reduced form) whose missing piece is a termination proof for all q, which is exactly step 8. Nodes R4.d.i.i.d and R4.d.i.i.e amended to say so.
 - 2026-09-13, owner: build a deterministic walk with stepwise rules, no network, no pre-checking, certify afterwards; and read the longer paths of the network across machine sizes. Manager (local; rule_walk.py, path_grammar.py; node R4.d.i.i.g): the residue-blind rules fail at named teeth; the rule that works consults only the sub-machine (gears up to sqrt q): first gear g above sqrt q avoiding its teeth at offset 10, one flip onto (g^2 + 58, g^2 + 60), 2253 of 2258 machines to 20000, the 5 misses at q <= 23 with g = 5 self-striking. Mechanism exact: h strikes iff h divides r^2 + 6i - 2 or r^2 + 6i with r = g mod h, so gears just below g (r = the gap) are harmless. Termination reduces to the prime line near sqrt q. Path grammar: no shared sequence, every path ends in a caustic zone, longer walks add nothing.
 - 2026-09-13, owner's guess: anchor decisions from squares and roots plus a start rule navigate straight to a twin. Manager (local; locator.md; node R4.d.i.i.h): built without search: g = first prime above sqrt q, i = smallest offset the strike law allows against the gears below g; 2258 of 2258 machines to 20000, offset at most 27 columns. Exact lemma: every column in (g^2, g g') missed by the gears below g and by g is a twin (8194 columns to 1500, 0 exceptions), and the rule never left that zone. Termination for all q is now one line: the wheel of the gears below g leaves a column open in the first g (g' - g)/6 columns after g^2, with the teeth fixed by the roots of g. The start pair does not enter the location.
+- 2026-09-13, owner corrected the walk: axes must be real mirrors of gear combinations (multiples of the product of the chosen gears), no offsets. Manager (local; true_mirror_walk.py; node R4.d.i.i.i): from home, one flip about k M lands on (2kM - 1, 2kM + 1), open to S by the mirror; the remaining gears' teeth on k are two classes each (the roots); smallest such k in the window; the landing is a twin by construction whenever k exists; S = {2,3}: every machine 11..20000, landing just above q. Termination = existence of the multiple k, the twin sieve on multiples of M with S removed.
