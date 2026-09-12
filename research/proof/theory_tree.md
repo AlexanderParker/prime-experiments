@@ -1996,6 +1996,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           fractions 1, 2/3, 1/2, 1/3, 1/6 mod 35, exact). The witness = blind classes (proved)
           + ordinary density (a count). ROOT for existence; the blind-class structure kept as
           FACT.
+          - R4.d.i.i.a. SAMPLE RUN ON THE CONSTRUCTION (owner's request 2026-09-12; manager,
+            local; research/proof/fields_sample_run.md; scripts research/stack/r8/layers.py,
+            flank_killers.py; skill .claude/skills/fields-explorer). Two closed items re-read
+            with gear rows against the natural numbers. (1) R4.d.i.a (the witness after a
+            square, closed as blind classes + a count): between consecutive squares g^2, g'^2
+            the only new row is g, whose field enters at g^2; its strikes on the columns open
+            to the gears below g are g m with m a survivor in [g, g'^2/g] (2 to 4 numbers,
+            located), and every other old-open column is a twin: twins in the layer = old-open
+            columns - toll, toll located; 166 layers to g = 997, toll share mean 0.015, zero in
+            118 layers, never at its bound, twins per layer minimum 2. RE-OPENED as a located
+            object: what remains is the old wheel's open columns in the layer at the square
+            origin, by row and offset (parts M, Q are about exactly this placement); no closed
+            form found in the sample. (2) Location rules (closed at chance): the rows striking a
+            twin's flanks are 5 and 7 at the wheel's open-column rates to three decimals
+            ((5,5) 0.327 against 0.333, (7,5) 0.138 against 0.133, 33,334 columns, 2,129 twins);
+            closed again, the wheel. STATUS OPEN on (1).
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3228,3 +3244,4 @@ Part III or Part IV of the proof document?
 - 2026-09-12, manager (local, band_products.py; programme part S): the band kills (492,766, g in [200, 2500]) are uniform across the range (10% per tenth), shares by band fall like 1/q (16% at q = 1, 58% at q >= 6), cofactors prime 89% and centred in their strips, kills per prime = the survivor density times the strip width; the band-kill rate at a twin's neighbours is lower (33% against 42%) only because gear 5 takes them. No position preference beyond the first-strike parabolas.
 - 2026-09-12, owner: the results must be locations, not density trends. Manager (local, locations.py; programme part T): every structure's kill set written as explicit offset progressions from the square (gear h: c0_h + j h and c2_h + j h with the phases (-g^2) 6^-1 and (2 - g^2) 6^-1 mod h; band gear x: column(g^2 + s x - r^2) - a + j x with r = g mod x; the newest gear at g (g + 2) or g (g + 4)), generated with no factoring; the offsets in no progression are exactly the twins, at g = 101 (12, 17, 22, 38, 43, 50, 55) and at every range from g = 17 to 1499, 233 ranges, 0 disagreements.
 - 2026-09-12, THE OWNER'S CONSTRUCTION, built as a view (docs/fields_view.html; artifact https://claude.ai/code/artifact/5f8913e4-d329-41a2-9a2c-9d76e65d47c8): fields as grids of gear rows against the natural numbers, one row per gear taking part in the strike; the fields: multiples of each gear, squares, products of j gears up to the last count with a kill, and per gear the composites of itself with higher gears, with only higher gears, with lower gears, with only lower gears (rows running up the primes to the first with no kill); the sieve as highlights only (kills of left / right members, open columns by what they hold); a machine size q with markers at q, q^2, q#, its mirror point q#/2, cycles, and highlights of ranges and of the machine's gears; a combined row per field and a reorderable summary. The owner: 'this construction is now close to what I have in my imagination when I'm talking about pattern searching.' Pattern work from here is done on this construction, not on the 6k +- 1 fold.
+- 2026-09-12, owner: now that we look at the same picture, re-read one or two items closed as "no pattern", "just CRT" or "a count, not a location" on the construction; a sample run; and add a skill for the construction. Manager (local; research/proof/fields_sample_run.md; skill .claude/skills/fields-explorer, user and project copies): node R4.d.i.i.a. Item 1 (the witness after a square) re-opened as a located object: between consecutive squares the new row's toll on the old-open columns is located (g m, m a survivor of a stretch of length (g'^2 - g^2)/g) and zero in 118 of 166 layers; twins in the layer = old-open columns - toll; the remaining unknown is the old wheel's opens in the layer at the square origin, by row and offset. Item 2 (location rules) closed again in one line: a twin's flank strikers are the wheel's open-column pattern to three decimals. The skill records the construction, the view's controls, the twin's API and codes, and the method from a picture to a tested rule.
