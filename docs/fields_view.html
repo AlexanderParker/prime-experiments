@@ -2,108 +2,103 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--bg:#f5f3ee;--panel:#fbfaf7;--ink:#1f2328;--muted:#6a6e75;--line:#dcd8cf;--accent:#1f4e79;
---left:#1f4e79;--right:#b7791f;--both:#a23b2b;--twin:#2e7d4f;--sq:#6b3fa0;--grid:#e6e2d9;
+--hit:#ffffff;--hitline:#8a8f97;--twin:#2e7d4f;--prime:#1f4e79;--grid:#e6e2d9;--cellbg:#efece5;
 --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;--sans:'IBM Plex Sans',system-ui,Segoe UI,Helvetica,Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--left:#7fb0dc;--right:#e0a94a;--both:#e07a68;--twin:#5fbf88;--sq:#b28ee6;--grid:#242930}}
-:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--left:#7fb0dc;--right:#e0a94a;--both:#e07a68;--twin:#5fbf88;--sq:#b28ee6;--grid:#242930}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026}}
+:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
 main{max-width:100%;margin:0;padding:18px 16px 60px}
 h1{font:600 24px/1.2 var(--sans);margin:0 0 4px}
-.sub{color:var(--muted);margin:0 0 14px}
-.ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:0 0 14px;font-size:13px}
+.sub{color:var(--muted);margin:0 0 14px;max-width:110ch}
+.ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:0 0 12px;font-size:13px}
 .ctl label{display:flex;gap:6px;align-items:center}
 input[type=number]{width:90px;font:13px var(--mono);padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)}
 button{font:13px var(--sans);padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink);cursor:pointer}
 button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 12px}
-.legend i{display:inline-block;width:14px;height:10px;vertical-align:middle;margin-right:4px;border-radius:2px}
-.group{margin:18px 0 6px;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border-top:1px solid var(--line);padding-top:8px}
+.legend i{display:inline-block;width:14px;height:10px;vertical-align:middle;margin-right:4px;border:1px solid var(--hitline);border-radius:2px}
 #rows{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:6px 0}
-.row{display:block;margin:0 0 10px;width:max-content;padding:0 10px}
-.row .name{position:sticky;left:10px;display:inline-block;width:max-content;max-width:calc(100vw - 60px);margin:0 0 2px}
-.row .cv{display:flex;flex-direction:column}
-.row .num{font:11px var(--mono);color:var(--muted);display:inline-block;width:26px}
-
-.row .name{font-size:13px;line-height:1.25}
-.row .name small{display:block;color:var(--muted);font:11px var(--mono)}
-.row canvas{display:block;image-rendering:pixelated}
-.group{position:sticky;left:0;width:max-content;padding-left:10px}
+.field{width:max-content;padding:0 10px;margin:0 0 22px}
+.ftitle{position:sticky;left:10px;width:max-content;max-width:calc(100vw - 60px);font:600 14px var(--sans);margin:12px 0 2px}
+.ftitle small{display:block;font:11px var(--mono);color:var(--muted);font-weight:400;white-space:normal}
+.grid{display:grid;grid-template-columns:52px max-content;gap:0 6px;align-items:center}
+.gl{position:sticky;left:10px;background:var(--panel);font:11px var(--mono);color:var(--muted);text-align:right;padding-right:4px;z-index:1}
+.gl b{color:var(--ink);font-weight:500}
+canvas{display:block;image-rendering:pixelated}
 #tip{position:fixed;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:6px 8px;font:12px var(--mono);color:var(--ink);max-width:420px;display:none;z-index:2}
-.foot{color:var(--muted);font-size:12px;margin-top:22px}
+.foot{color:var(--muted);font-size:12px;margin-top:22px;max-width:110ch}
 </style>
 <main>
 <h1>The Fields</h1>
-<p class="sub">Each row is one field, drawn column by column. A column is the slot (6k − 1, 6k + 1). A cell is painted when the field hits that column. Hover a cell for the column's two members and their factorisations.</p>
+<p class="sub">Every field is a grid: one row per gear (the primes up to the chosen top gear), one column per natural number. A cell is painted when that gear takes part in the field's strike at that number. Hover a cell for the number's factorisation. The reference strip at the top marks every prime.</p>
 <div class="ctl">
-<label>first column <input id="k0" type="number" value="1" min="1" step="1"></label>
-<label>columns shown <input id="nk" type="number" value="300" min="50" max="4000" step="50"></label>
+<label>first number <input id="n0" type="number" value="1" min="1" step="1"></label>
+<label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
+<label>gears up to <input id="q" type="number" value="31" min="5" max="200" step="1"></label>
 <button id="draw">Draw</button>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
-<div class="legend"><span><i style="background:var(--left)"></i>the field hits the column</span><span><i style="background:var(--twin)"></i>twin column</span></div>
+<div class="legend"><span><i style="background:var(--twin)"></i>hit at a twin prime member</span><span><i style="background:var(--prime)"></i>hit at a single prime</span><span><i style="background:var(--hit)"></i>hit at a composite</span></div>
 <div id="rows"></div>
 <div id="tip"></div>
-<p class="foot">Definitions: field j = members with exactly j prime factors counted with multiplicity (all ≥ 5). Gear field of g = members whose least prime factor is g (g times a survivor of the gears below g, from g² on). Strictly-higher field of g = the gear field of g with g dividing exactly once. Smooth field of g = composites whose prime factors all lie in {5, …, g}; its layer = those whose largest factor is g. Overlay = every composite member. Source: research/proof/fields_construction.md.</p>
+<p class="foot" id="foot"></p>
 </main>
 <script>
 (function(){
 const rowsEl=document.getElementById('rows'),tip=document.getElementById('tip');
-function factor(n){const f=[];let m=n;for(let p=2;p*p<=m;p+=(p===2?1:2)){while(m%p===0){f.push(p);m=Math.floor(m/p);}}if(m>1)f.push(m);return f;}
-function fstr(n,f){return f.length===1?n+' prime':n+' = '+f.join('·');}
+function factor(n){const f=[];let m=n;for(let p=2;p*p<=m;p+=(p===2?1:2)){while(m%p===0){f.push(p);m=Math.floor(m/p);}}if(m>1&&m!==1)f.push(m);return f;}
+function isPrime(n){return n>=2&&factor(n).length===1;}
+function primesUpTo(q){const out=[];for(let p=2;p<=q;p++)if(isPrime(p))out.push(p);return out;}
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
-// field predicates on a member n (n in S, n >= 5) with its factor list f
-const G=[5,7,11,13,17,19,23,29,31,37];
-function inv6(g){for(let x=1;x<g;x++)if((6*x)%g===1)return x;return 0;}
+// A field: mark(gear h, number n, factor list f) -> true if gear h takes part in the field's strike at n
 const fields=[
- {group:'The twins and the primes',items:[
-  {name:'Twin field',sub:'columns with both members prime',twin:true},
-  {name:'Prime field',sub:'the primes',pred:(n,f)=>f.length===1},
- ]},
- {group:'Gears: the multiples of each gear',items:G.map(g=>{const u=inv6(g);return {name:'Gear '+g,sub:'multiples of '+g+'; columns k ≡ '+u+' and '+(g-u)+' (mod '+g+')',pred:(n,f)=>n%g===0};})},
- {group:'Fields by the count of prime factors',items:[
-  {name:'Square field',sub:'squares of primes p²',pred:(n,f)=>f.length===2&&f[0]===f[1]},
-  {name:'Semiprime field',sub:'products of two primes p·q',pred:(n,f)=>f.length===2},
-  {name:'Three-factor field',sub:'products of three primes',pred:(n,f)=>f.length===3},
-  {name:'Four-factor field',sub:'products of four primes',pred:(n,f)=>f.length===4},
-  {name:'Five-factor field',sub:'products of five primes',pred:(n,f)=>f.length===5},
-  {name:'Overlay',sub:'every composite member (all composite fields together)',pred:(n,f)=>f.length>=2},
- ]},
- {group:'Gear fields: each gear\'s composites of itself and higher gears (least factor g), from g² on',items:G.map(g=>({name:'Gear field of '+g,sub:g+' × a survivor of the gears below '+g+', least factor '+g,pred:(n,f)=>f.length>=2&&f[0]===g}))},
- {group:'Strictly-higher fields: each gear times only higher gears (g exactly once)',items:[5,7,11,13].map(g=>({name:'Strictly-higher field of '+g,sub:g+' × a number with every factor above '+g,pred:(n,f)=>f.length>=2&&f[0]===g&&f[1]!==g}))},
- {group:'Smooth fields: composites of a gear and the gears below it',items:[5,7,11,13,17].map(g=>({name:'Smooth field of '+g,sub:'composites with every prime factor ≤ '+g,pred:(n,f)=>f.length>=2&&f[f.length-1]<=g}))},
- {group:'Smooth layers: composites of a gear and lower gears, with the gear as the largest factor',items:[5,7,11,13,17].map(g=>({name:'Layer of '+g,sub:'largest prime factor exactly '+g+', at least two factors',pred:(n,f)=>f.length>=2&&f[f.length-1]===g}))},
+ {name:'Multiples of each gear',sub:'row g is painted at every multiple of g (at n = g the gear strikes itself)',
+  mark:(h,n,f)=>n%h===0},
+ {name:'Squares of the gears',sub:'row g is painted at g²',
+  mark:(h,n,f)=>n===h*h},
+ {name:'Products of two gears',sub:'n = p·q with p and q prime; painted on the row of p and on the row of q (both rows when p = q)',
+  mark:(h,n,f)=>f.length===2&&f.includes(h)},
+ {name:'Products of three gears',sub:'n = p·q·r; painted on the row of each of the three',
+  mark:(h,n,f)=>f.length===3&&f.includes(h)},
+ {name:'Products of four gears',sub:'n = p·q·r·s; painted on the row of each',
+  mark:(h,n,f)=>f.length===4&&f.includes(h)},
+ {name:'Products of five or more gears',sub:'painted on the row of each gear in the product',
+  mark:(h,n,f)=>f.length>=5&&f.includes(h)},
+ {name:'Each gear with itself and higher gears',sub:'row g is painted at n = g × m where every prime factor of m is g or larger: the composites in which g is the smallest gear',
+  mark:(h,n,f)=>f.length>=2&&f[0]===h},
+ {name:'Each gear with only higher gears',sub:'row g is painted at n = g × m where every prime factor of m is larger than g: the composites in which g is the smallest gear and appears once',
+  mark:(h,n,f)=>f.length>=2&&f[0]===h&&f[1]!==h},
+ {name:'Each gear with itself and lower gears',sub:'row g is painted at n = g × m where every prime factor of m is g or smaller: the composites in which g is the largest gear',
+  mark:(h,n,f)=>f.length>=2&&f[f.length-1]===h},
+ {name:'Each gear with only lower gears',sub:'row g is painted at n = g × m where every prime factor of m is smaller than g: the composites in which g is the largest gear and appears once',
+  mark:(h,n,f)=>f.length>=2&&f[f.length-1]===h&&f[f.length-2]!==h},
 ];
 function build(){
  rowsEl.innerHTML='';
- const k0=Math.max(1,parseInt(document.getElementById('k0').value)||1),nk=Math.min(4000,Math.max(50,parseInt(document.getElementById('nk').value)||300));
- document.getElementById('range').textContent='columns '+k0+' to '+(k0+nk-1)+'  (numbers '+(6*k0-1)+' to '+(6*(k0+nk-1)+1)+')';
- const cols=[];for(let k=k0;k<k0+nk;k++){const l=6*k-1,r=6*k+1,fl=factor(l),fr=factor(r);cols.push({k,l,r,fl,fr});}
- const CELL=6,H=18,RH=14;const W=nk*CELL;
- const step=nk>=1000?50:10;
- let rowNo=0;
- function drawRuler(cv){cv.width=W;cv.height=RH;const ctx=cv.getContext('2d');ctx.fillStyle=css('--muted');ctx.font='10px '+css('--mono');ctx.textBaseline='top';
-  for(let k=k0;k<k0+nk;k++){const x=(k-k0)*CELL;if(k%step===0){ctx.fillRect(x,RH-5,1,5);ctx.fillText(String(k),x+2,0);}else if(k%(step/5)===0){ctx.fillRect(x,RH-3,1,3);}}}
- for(const grp of fields){
-  const h=document.createElement('div');h.className='group';h.textContent=grp.group;rowsEl.appendChild(h);
-  for(const it of grp.items){
-   rowNo++;
-   const row=document.createElement('div');row.className='row';
-   const nm=document.createElement('div');nm.className='name';nm.innerHTML='<span class="num">'+rowNo+'</span>'+it.name+'<small>'+it.sub+'</small>';row.appendChild(nm);
-   const box=document.createElement('div');box.className='cv';const rc=document.createElement('canvas');drawRuler(rc);box.appendChild(rc);
-   const cv=document.createElement('canvas');cv.width=W;cv.height=H;box.appendChild(cv);row.appendChild(box);rowsEl.appendChild(row);
-   const ctx=cv.getContext('2d');ctx.fillStyle=css('--panel');ctx.fillRect(0,0,W,H);
-   ctx.fillStyle=css('--grid');for(let i=0;i<=nk;i++)ctx.fillRect(i*CELL,0,1,H);ctx.fillRect(0,H-1,W,1);ctx.fillRect(0,0,W,1);
-   for(let i=0;i<nk;i++){const c=cols[i];const x=i*CELL+1,w=CELL-1;
-    if(it.twin){if(c.fl.length===1&&c.fr.length===1){ctx.fillStyle=css('--twin');ctx.fillRect(x,1,w,H-2);}continue;}
-    if(it.pred(c.l,c.fl)||it.pred(c.r,c.fr)){ctx.fillStyle=css('--left');ctx.fillRect(x,1,w,H-2);}
-   }
-   cv.addEventListener('mousemove',e=>{const rect=cv.getBoundingClientRect();const i=Math.floor((e.clientX-rect.left)/CELL);if(i<0||i>=nk){tip.style.display='none';return;}const c=cols[i];
-    tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';
-    tip.textContent='column '+c.k+':  '+fstr(c.l,c.fl)+'  |  '+fstr(c.r,c.fr)+(c.fl.length===1&&c.fr.length===1?'   TWIN':'');});
-   cv.addEventListener('mouseleave',()=>{tip.style.display='none';});
-  }
+ const n0=Math.max(1,parseInt(document.getElementById('n0').value)||1),nn=Math.min(3000,Math.max(50,parseInt(document.getElementById('nn').value)||400)),q=Math.min(200,Math.max(5,parseInt(document.getElementById('q').value)||31));
+ const gears=primesUpTo(q).filter(p=>p>=2);
+ document.getElementById('range').textContent='numbers '+n0+' to '+(n0+nn-1)+', gears '+gears.join(' ');
+ const nums=[];for(let n=n0;n<n0+nn;n++){const f=n>=2?factor(n):[];const pr=f.length===1;const tw=pr&&(isPrime(n-2)||isPrime(n+2));nums.push({n,f,pr,tw});}
+ const CELL=6,H=14,RH=14,W=nn*CELL;
+ const step=nn>=1500?100:nn>=600?50:10;
+ function ruler(){const cv=document.createElement('canvas');cv.width=W;cv.height=RH;const ctx=cv.getContext('2d');ctx.fillStyle=css('--muted');ctx.font='10px '+css('--mono');ctx.textBaseline='top';
+  for(let i=0;i<nn;i++){const n=n0+i,x=i*CELL;if(n%step===0){ctx.fillRect(x,RH-5,1,5);ctx.fillText(String(n),x+2,0);}else if(n%(step/5)===0){ctx.fillRect(x,RH-3,1,3);}}return cv;}
+ function strip(paint){const cv=document.createElement('canvas');cv.width=W;cv.height=H;const ctx=cv.getContext('2d');ctx.fillStyle=css('--cellbg');ctx.fillRect(0,0,W,H);ctx.fillStyle=css('--grid');for(let i=0;i<=nn;i++)ctx.fillRect(i*CELL,0,1,H);ctx.fillRect(0,0,W,1);ctx.fillRect(0,H-1,W,1);
+  for(let i=0;i<nn;i++){const c=nums[i];const col=paint(c);if(!col)continue;ctx.fillStyle=col;ctx.fillRect(i*CELL+1,1,CELL-1,H-2);if(col===css('--hit')){ctx.strokeStyle=css('--hitline');ctx.strokeRect(i*CELL+1.5,1.5,CELL-2,H-3);}}
+  cv.addEventListener('mousemove',e=>{const rect=cv.getBoundingClientRect();const i=Math.floor((e.clientX-rect.left)/CELL);if(i<0||i>=nn){tip.style.display='none';return;}const c=nums[i];tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';tip.textContent=c.n+(c.pr?(c.tw?'  prime, twin member':'  prime'):(c.f.length?'  = '+c.f.join('·'):''));});
+  cv.addEventListener('mouseleave',()=>{tip.style.display='none';});return cv;}
+ const colourOf=c=>c.tw?css('--twin'):c.pr?css('--prime'):css('--hit');
+ // reference strip
+ {const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML='The numbers<small>every prime marked: green a twin prime member, blue a single prime</small>';fd.appendChild(t);
+  const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';g.appendChild(l0);g.appendChild(ruler());const l1=document.createElement('div');l1.className='gl';l1.textContent='n';g.appendChild(l1);g.appendChild(strip(c=>c.pr?colourOf(c):null));fd.appendChild(g);rowsEl.appendChild(fd);}
+ for(const F of fields){
+  const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML=F.name+'<small>'+F.sub+'</small>';fd.appendChild(t);
+  const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';l0.textContent='';g.appendChild(l0);g.appendChild(ruler());
+  for(const h of gears){const l=document.createElement('div');l.className='gl';l.innerHTML='<b>'+h+'</b>';g.appendChild(l);g.appendChild(strip(c=>F.mark(h,c.n,c.f)?colourOf(c):null));}
+  fd.appendChild(g);rowsEl.appendChild(fd);
  }
+ document.getElementById('foot').textContent='Gears are the primes up to the chosen top gear, including 2 and 3. A number is painted on a gear\'s row only when that gear divides it and the number belongs to the field; the number\'s colour says whether it is a twin prime member, a single prime, or a composite. Nothing is folded onto 6k ± 1.';
 }
 document.getElementById('draw').addEventListener('click',build);
 build();
