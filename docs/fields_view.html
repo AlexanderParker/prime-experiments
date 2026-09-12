@@ -54,6 +54,7 @@ canvas{display:block;image-rendering:pixelated}
 <script>
 (function(){
 const rowsEl=document.getElementById('rows'),tip=document.getElementById('tip');
+let highlight=null; // {lo,hi,key} the range to keep bright; everything else dimmed
 function factor(n){const f=[];let m=n;for(let p=2;p*p<=m;p+=(p===2?1:2)){while(m%p===0){f.push(p);m=Math.floor(m/p);}}if(m>1&&m!==1)f.push(m);return f;}
 function isPrime(n){return n>=2&&factor(n).length===1;}
 function primesUpTo(q){const out=[];for(let p=2;p<=q;p++)if(isPrime(p))out.push(p);return out;}
@@ -102,10 +103,21 @@ function build(){
  const CELL=6,H=14,RH=14,W=nn*CELL;
  let mq=Math.max(2,parseInt(document.getElementById('mq').value)||7);while(mq>2&&!isPrime(mq))mq--;
  let prim=1;for(let p=2;p<=mq;p++)if(isPrime(p))prim*=p;
- const marks=[{n:mq,label:'q = '+mq},{n:mq*mq,label:'q² = '+mq*mq},{n:prim,label:'q# = '+prim}].filter(m=>m.n>=n0&&m.n<n0+nn);
+ const marks=[
+  {key:'q',n:mq,label:'q = '+mq,lo:1,hi:mq,why:'q is the machine\'s top gear: the machine is the gears up to q. Range 1 .. q: the gears themselves and the numbers below them.'},
+  {key:'q2',n:mq*mq,label:'q² = '+mq*mq,lo:mq+1,hi:mq*mq,why:'q² is the square of the top gear. Range q+1 .. q²: every number here that no gear of the machine strikes is prime, so every open column is a prime and every open pair is a twin.'},
+  {key:'qp',n:prim,label:'q# = '+prim,lo:mq*mq+1,hi:prim,why:'q# is the primorial, the product of the gears up to q: the machine\'s period. Range q²+1 .. q#: one full turn of the machine after the square; the strike pattern repeats every q# numbers.'}
+ ].filter(m=>m.n>=n0&&m.n<n0+nn);
  document.getElementById('mqinfo').textContent='q = '+mq+', q² = '+(mq*mq)+', q# = '+prim+(marks.length?'':'  (none in view)');
  function drawMarks(ctx,h,withLabel){ctx.fillStyle=css('--mark');for(const m of marks){const x=(m.n-n0)*CELL+CELL;for(let y=0;y<h;y+=4)ctx.fillRect(x,y,1,2);if(withLabel){ctx.font='10px '+css('--mono');ctx.textBaseline='top';ctx.fillText(m.label,x+3,1);}}}
- function markLabels(){const cv=document.createElement('canvas');cv.width=W;cv.height=12;const ctx=cv.getContext('2d');drawMarks(ctx,12,true);return cv;}
+ function markLabels(){const cv=document.createElement('canvas');cv.width=W;cv.height=12;const ctx=cv.getContext('2d');drawMarks(ctx,12,true);
+  const hit=e=>{const rect=cv.getBoundingClientRect();const x=e.clientX-rect.left;for(const m of marks){const x0=(m.n-n0)*CELL+CELL;if(x>=x0&&x<=x0+90)return m;}return null;};
+  cv.style.cursor='pointer';
+  cv.addEventListener('mousemove',e=>{const m=hit(e);if(!m){tip.style.display='none';return;}tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';tip.textContent=m.why+(highlight&&highlight.key===m.key?'  (click to clear the highlight)':'  (click to highlight this range)');});
+  cv.addEventListener('mouseleave',()=>{tip.style.display='none';});
+  cv.addEventListener('click',e=>{const m=hit(e);if(!m)return;highlight=(highlight&&highlight.key===m.key)?null:{lo:m.lo,hi:m.hi,key:m.key};build();});
+  return cv;}
+ function dim(ctx,h){if(!highlight)return;ctx.fillStyle=css('--panel');ctx.globalAlpha=0.72;for(let i=0;i<nn;i++){const n=n0+i;if(n<highlight.lo||n>highlight.hi)ctx.fillRect(i*CELL,0,CELL,h);}ctx.globalAlpha=1;}
  const step=nn>=1500?100:nn>=600?50:10;
  function ruler(){const cv=document.createElement('canvas');cv.width=W;cv.height=RH;const ctx=cv.getContext('2d');ctx.fillStyle=css('--muted');ctx.font='10px '+css('--mono');ctx.textBaseline='top';
   for(let i=0;i<nn;i++){const n=n0+i,x=i*CELL;if(n%step===0){ctx.fillRect(x,RH-5,1,5);ctx.fillText(String(n),x+2,0);}else if(n%(step/5)===0){ctx.fillRect(x,RH-3,1,3);}}drawMarks(ctx,RH,false);return cv;}
@@ -113,7 +125,7 @@ function build(){
   if(bg){for(let i=0;i<nn;i++){const b=bg(nums[i]);if(b){ctx.fillStyle=b;ctx.fillRect(i*CELL,0,CELL,H0);}}}
   ctx.fillStyle=css('--grid');for(let i=0;i<=nn;i++)ctx.fillRect(i*CELL,0,1,H0);ctx.fillRect(0,0,W,1);ctx.fillRect(0,H0-1,W,1);
   for(let i=0;i<nn;i++){const c=nums[i];const col=paint(c);if(!col)continue;ctx.fillStyle=col;ctx.fillRect(i*CELL+1,1,CELL-1,H0-2);if(col===css('--hit')){ctx.strokeStyle=css('--hitline');ctx.strokeRect(i*CELL+1.5,1.5,CELL-2,H0-3);}}
-  drawMarks(ctx,H0,false);
+  drawMarks(ctx,H0,false);dim(ctx,H0);
   cv.addEventListener('mousemove',e=>{const rect=cv.getBoundingClientRect();const i=Math.floor((e.clientX-rect.left)/CELL);if(i<0||i>=nn){tip.style.display='none';return;}const c=nums[i];tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';tip.textContent=c.n+(c.pr?(c.tw?'  prime, twin member':'  prime'):(c.f.length?'  = '+c.f.join('·'):''));});
   cv.addEventListener('mouseleave',()=>{tip.style.display='none';});return cv;}
  const colourOf=c=>c.tw?css('--twin'):c.pr?css('--prime'):(c.n%6===5?css('--kl'):c.n%6===1?css('--kr'):css('--hit'));
