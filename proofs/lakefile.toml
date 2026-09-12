@@ -2250,3 +2250,6 @@ name = "FieldsB"
 # NOT in defaultTargets.
 [[lean_lib]]
 name = "FieldsC"
+
+[[lean_lib]]
+name = "MirrorWalk"

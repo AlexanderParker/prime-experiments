@@ -357,7 +357,7 @@ after an even number, A the alternating sum of the axes, and the end is certifie
 the gears dividing A, whatever the intermediate landings were (stepwise tracking undercounts:
 42 k_2 - 30 k_1 = 66 carries 11 though neither axis does). Kill rule (0 violations, 3291
 instances at 101): a killed column carries its killer onto the gear pair containing it, on the
-matching side. [EXACT, not yet in the kernel]
+matching side. [EXACT; kernel proofs/MirrorWalk.lean: flip_carries (the axis rule), walk_eq (the composition law), openTo_walk_iff (what a walk carries), walk_home_odd / walk_home_even (the landing family); the kill rule measured, not yet formalised]
 
 ## V.2 The landing family and the lemma
 
@@ -365,7 +365,7 @@ From home (-1, 1), open to every gear, every walk ends on a column (2A - 1, 2A +
 multiple of 6, certified for the gears dividing A. LEMMA (exact; kernel content of 3): a column
 in the window (q, q^2] that no gear up to q strikes is a twin. So a landing in the window whose
 remaining gears (those not dividing A) all miss it is a twin. The remaining gear h strikes the
-landing iff 2A = -+1 (mod h): two classes per gear, read off the roots. [EXACT]
+landing iff 2A = -+1 (mod h): two classes per gear, read off the roots. [EXACT; kernel MirrorWalk.landing_twin via SquareColumn.section_twin_of_unstruck; the carried gears MirrorWalk.not_dvd_landing_of_dvd_axis, landing_open_of_dvd]
 
 ## V.3 The locator (the walk as an algorithm)
 
@@ -401,7 +401,7 @@ the window length (q^2 - q) / 12. Exact to q = 3001: R(q) = 4, 13, 43, 80, 191, 
 q = 11, 31, 101, 401, 1009, 3001 against window lengths 9, 77, 841, 13366, 84756, 750250; the
 open m in the window number 3, 14, 100, 906, 4179, 26960. This is 8 in run form (8b, 8c) on
 the m-line: the twin machine with teeth -+12^-1 instead of -+6^-1, half the columns, the same
-margin. [THEORISED: the record below the window for every q]
+margin. [THEORISED: the record below the window for every q; the implication is in the kernel: MirrorWalk.walk_lands_of_record, the m-line record below the stretch gives a landing twin, the shape of section_twin_of_record]
 
 ## V.5 Standing
 

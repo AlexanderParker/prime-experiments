@@ -2166,7 +2166,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             {2,3,5,7} 661/665, {2,3,5,7,11} 645/665 (small machines lack a multiple below
             q^2); to 20000 the two small sets land everywhere; 0 landings fail
             certification. TERMINATION = existence of k: the twin sieve on the multiples of
-            M with the S gears removed by the mirror. MULTI-STEP (owner: do it; multi_mirror_
+            M with the S gears removed by the mirror. KERNEL (round 45, proofs/MirrorWalk.lean,
+            built, 0 sorries, axioms propext / Classical.choice / Quot.sound only): flip,
+            OpenTo; flip_carries (a gear dividing 2a keeps openness across the flip);
+            openTo_flip_iff; walk and alt (alternating sum); walk_eq (odd length = flip about
+            alt, even = slide by 2 alt); openTo_walk_iff (a gear dividing 2 alt keeps openness
+            across the whole walk); walk_home_odd/even (every walk from home lands on
+            (2A - 1, 2A + 1)); home_open; landing_open_of_dvd; struckBy_mline;
+            not_dvd_landing_of_dvd_axis; landing_twin (the landing 12m +- 1 below P^2 is a
+            twin when the gears not dividing 12m miss it, the dividing gears carried by the
+            mirror); walk_lands_of_record (the m-line record below the stretch gives a
+            landing twin, the shape of section_twin_of_record). MULTI-STEP (owner: do it; multi_mirror_
             walk.py): composition law exact (3000 random walks, 0 violations): the end of a
             walk is 2A - n - 2 (odd flips) or n + 2A (even), A the alternating sum of the
             axes, certified for the gears dividing A; stepwise tracking undercounts (2062 of
@@ -3433,3 +3443,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: build the multi-step mirror walks. Manager (local; multi_mirror_walk.py; node R4.d.i.i.i amended): composition law exact, the end of any walk is a reflection about or a slide by the alternating sum A of the real axes and is certified for the gears dividing A; stepwise tracking undercounts; from home every walk lands on (2A - 1, 2A + 1); two-step rule lands on a twin at every machine to 5000. The mirrors fix the landing family and carry the divisors of A; the roots pick the member; the lemma makes it a twin.
 - 2026-09-13, owner: both (carry many gears; the termination statement with the fields). Manager (local; carry_many.py, mline_records.py; node R4.d.i.i.i amended): the mirrors can carry only the gears whose primorial stays below q^2/2 (7 gears by q = 3000 against hundreds), so the roots do the work at every size; on the m-line the landing family is (12m - 1, 12m + 1) with teeth -+12^-1 per gear, termination = an unpainted m in (q/12, q^2/12), records R(q) = 4 .. 278 against windows 9 .. 750250 to q = 3001, share falling to 0.0004; the termination statement is step 8 in run form on the m-line.
 - 2026-09-13, owner: how do we stand in relation to the proof; update it. Manager: Part V added to the proof document (frame: the window statement suffices; walk steps exact; landing family and lemma exact; the locator measured to 20000 in two forms; termination = the record on the m-line below the window, 8b in the walk's coordinates; standing: one open statement) and to docs/proof_by_construction.html.
+- 2026-09-13, owner: go for it (the walk into the kernel). Manager: proofs/MirrorWalk.lean, round 45, built green, 0 sorries, standard axioms only: the axis rule (flip_carries), the composition law (walk_eq), what a walk carries (openTo_walk_iff), the landing family from home, the landing lemma on the m-line (landing_twin, via SquareColumn.section_twin_of_unstruck) and termination from the m-line record (walk_lands_of_record). Part V of the proof document now has kernel names.
