@@ -73,3 +73,38 @@ at a fixed offset after any square is struck by gear h only from the square-root
 -(6i - 2) and -6i, and gears with neither a residue never strike it. This is the square origin
 made into a locator: one formula, one candidate per square, and a list of gears that cannot
 touch it.
+
+## Steps, and the independence test (owner, 2026-09-13)
+
+Steps of the locator = gears tried from just above sqrt(q) upward until the candidate column
+after the square is a twin (2258 machines, q = 11 .. 20000): offset 2: min 1, median 5, mean
+6.9, max 19 (q = 173); offset 10: median 2, max 6; offset 17: median 2, max 8; any of the five
+offsets: median 1, max 2. Each step certifies the candidate against the gears below its square
+root that can act (at q = 1009, offset 10: 5 of the 10 gears; offset 2: 16 of 23).
+
+Independence test. Predict the hit count in (sqrt q, q] from the closed-form root classes
+alone: sum over gears g in the window of the product over gears h < g of (1 - roots_h /
+(h - 1)), roots_h the nonzero square roots of -(6i - 2) and -6i mod h (class 0 is already
+excluded because g is prime). Against the actual count:
+
+| q | offset 2: expected / actual / ratio | offset 10: expected / actual / ratio |
+|---|---|---|
+| 101 | 2.6 / 2 / 0.76 | 13.4 / 12 / 0.90 |
+| 307 | 4.0 / 4 / 1.01 | 22.1 / 18 / 0.81 |
+| 1009 | 7.5 / 6 / 0.80 | 41.7 / 37 / 0.89 |
+| 3001 | 14.4 / 10 / 0.69 | 79.3 / 63 / 0.79 |
+| 10007 | 30.7 / 21 / 0.68 | 168.0 / 130 / 0.77 |
+| 19997 | 48.1 / 43 / 0.89 | 263.0 / 214 / 0.81 |
+
+The ratio holds near 0.8 with no drift: the gears act on the gear line independently, at their
+closed-form shares, and nothing in the counts points at a structure beyond the classes. The
+constant below 1 is the usual truncation effect of a product over all gears below g (the
+Mertens constant), not a conspiracy.
+
+Reading of the locator in the machine's shape: for g > 3i the candidate column after g^2 lies
+below the next square, so it is a twin iff it is open to the gears up to g, i.e. it is an
+opening of machine g at a fixed offset in machine g's own top layer. The hit gears are the
+survivors of a sieve on the prime line (avoid the root classes mod every smaller gear), as the
+primes are the survivors of a sieve on the number line (avoid class 0): the same construction
+one level up, with up to four classes per gear instead of one. "A hit gear in (sqrt q, q]" is
+the Bertrand-shaped statement for that second sieve.
