@@ -16,6 +16,7 @@ h1{font:600 24px/1.2 var(--sans);margin:0 0 4px}
 .legend span{cursor:pointer;user-select:none;padding:1px 4px;border-radius:3px}
 .legend span.off{opacity:.45;text-decoration:line-through}
 .ctl label{display:flex;gap:6px;align-items:center}
+select{font:13px var(--mono);padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)}
 input[type=number]{width:90px;font:13px var(--mono);padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)}
 button{font:13px var(--sans);padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink);cursor:pointer}
 button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
@@ -46,7 +47,7 @@ canvas{display:block;image-rendering:pixelated}
 <label>first number <input id="n0" type="number" value="1" min="1" step="1"></label>
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
 <label>number of gears <input id="q" type="number" value="11" min="1" max="100" step="1"></label>
-<label>machine size q <input id="mq" type="number" value="7" min="2" step="1"></label>
+<label>machine size q <select id="mq"></select></label>
 <span id="mqinfo" style="font:12px var(--mono);color:var(--muted)"></span>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
@@ -114,7 +115,7 @@ function build(){
  document.getElementById('range').textContent='numbers '+n0+' to '+(n0+nn-1)+', gears '+gears.join(' ');
  const nums=[];for(let n=n0;n<n0+nn;n++){const f=n>=2?factor(n):[];const pr=f.length===1;const tw=pr&&(isPrime(n-2)||isPrime(n+2));nums.push({n,f,pr,tw});}
  const CELL=6,H=14,RH=14,W=nn*CELL;
- let mq=Math.max(2,parseInt(document.getElementById('mq').value)||7);while(mq>2&&!isPrime(mq))mq--;
+ const mq=parseInt(document.getElementById('mq').value)||7;
  let prim=1;for(let p=2;p<=mq;p++)if(isPrime(p))prim*=p;
  const marks=[
   {key:'q',n:mq,label:'q = '+mq,lo:1,hi:mq,why:'q is the machine\'s top gear: the machine is the gears up to q. Range 1 .. q: the gears themselves and the numbers below them.'},
@@ -175,9 +176,10 @@ function build(){
   fd.appendChild(list);rowsEl.appendChild(fd);}
  document.getElementById('foot').textContent='Gears are the first N primes, 2 and 3 included. A number is painted on a gear\'s row only when that gear divides it and the number belongs to the field; the number\'s colour says whether it is a twin prime member, a single prime, or a composite. Nothing is folded onto 6k ± 1.';
 }
+{const sel=document.getElementById('mq');for(let p=2;p<=1000;p++)if(isPrime(p)){const o=document.createElement('option');o.value=p;o.textContent=p;if(p===7)o.selected=true;sel.appendChild(o);}}
 for(const s of document.querySelectorAll('.legend span[data-key]')){s.addEventListener('click',()=>{const k=s.dataset.key;if(muted.has(k)){muted.delete(k);s.classList.remove('off');}else{muted.add(k);s.classList.add('off');}build();});}
 let timer=null;const schedule=()=>{clearTimeout(timer);timer=setTimeout(build,250);};
-for(const id of ['n0','nn','q','mq'])document.getElementById(id).addEventListener('input',schedule);
+for(const id of ['n0','nn','q'])document.getElementById(id).addEventListener('input',schedule);document.getElementById('mq').addEventListener('change',schedule);
 build();
 })();
 </script>
