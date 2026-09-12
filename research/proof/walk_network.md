@@ -86,3 +86,37 @@ on a place already known open to everything, so the walk certifies rather than l
 the located places are the (g^2 + 10, g^2 + 12) columns when they happen to be twins (g = 7,
 13, 97, 379 in range). No rule was found that produces a destination the anchors did not
 already contain.
+
+## Deeper (owner: go deeper until all are reached)
+
+Search over states (column, certified set, previous column) instead of the path tree, so depth
+is not capped by growth (research/stack/r8/walk_network_deep.py). Machine 13 to depth 8: still
+5 of 9 (17, 71, 101, 107 never reached). Machine 31 to depth 6: still 5 of 30. Depth is not the
+limit; the anchor set is.
+
+The exact reachability rule. A twin t lands certified only if the final flip carries every
+gear its own anchor knowledge K(t) lacks, so the previous node must sit in the class -t - 2
+modulo M(t) = the product of the lacking gears, and must itself be certified for them. The
+anchors live near the squares (largest 239 at machine 13, 1139 at 31); the required class is
+empty of anchors as soon as M(t) is large:
+
+| machine 13 twin | gears K(t) lacks | M(t) | anchors in the class |
+|---|---|---|---|
+| 17 | 11, 13 | 143 | none |
+| 29, 41, 149 | none | 1 | not needed (known open to all by the families) |
+| 59 | 5 | 5 | -1, 29, 59, 89, 149 |
+| 71 | 5, 13 | 65 | none |
+| 101 | 5, 7 | 35 | 107 only |
+| 107 | 5, 7 | 35 | 101 only |
+| 137 | 5, 7 | 35 | 71 only |
+
+101 and 107 are each other's only option for 5 and 7 (101 + 107 + 2 = 210), and neither has 5
+and 7 from anywhere else: a closed loop with no entry, so both stay unreached at every depth.
+At machine 31 the lacking products run from 5 to 1,453,336,885 and 25 of the 30 twins have no
+anchor in their class at all.
+
+So "all reached" is not a matter of depth. The walk reaches exactly the twins whose lacking
+gears are few and whose mirror class holds an anchor, and the anchor families, being tied to
+the squares, do not populate the classes of the large products. To reach every twin the anchor
+set would have to contain a known-open column in every class modulo every product of missing
+gears, which is the machine-open set itself.
