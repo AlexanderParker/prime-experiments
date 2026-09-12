@@ -48,6 +48,7 @@ canvas{display:block;image-rendering:pixelated}
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
 <label>number of gears <input id="q" type="number" value="11" min="1" max="100" step="1"></label>
 <label>machine size q <button id="mqdn" type="button" aria-label="previous prime">−</button><b id="mqval" style="font:500 13px var(--mono);min-width:44px;text-align:center">7</b><button id="mqup" type="button" aria-label="next prime">+</button></label>
+<label>machine cycle <input id="cyc" type="number" value="1" min="1" step="1"></label>
 <span id="mqinfo" style="font:12px var(--mono);color:var(--muted)"></span>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
@@ -62,6 +63,7 @@ canvas{display:block;image-rendering:pixelated}
 const rowsEl=document.getElementById('rows'),tip=document.getElementById('tip');
 let highlight=null; // {lo,hi,key} the range to keep bright; everything else dimmed
 const muted=new Set(); // colour tokens the legend has toggled to semi-transparent
+let gearHL=false; // when true, rows of gears above the machine's top gear are dimmed
 function paintCell(ctx,tok,x,y,w,h){ctx.fillStyle=css('--'+tok);ctx.globalAlpha=muted.has(tok)?0.2:1;ctx.fillRect(x,y,w,h);ctx.globalAlpha=1;}
 function factor(n){const f=[];let m=n;for(let p=2;p*p<=m;p+=(p===2?1:2)){while(m%p===0){f.push(p);m=Math.floor(m/p);}}if(m>1&&m!==1)f.push(m);return f;}
 function isPrime(n){return n>=2&&factor(n).length===1;}
@@ -117,14 +119,16 @@ function build(){
  const CELL=6,H=14,RH=14,W=nn*CELL;
  const mq=mqState;
  let prim=1;for(let p=2;p<=mq;p++)if(isPrime(p))prim*=p;
+ const cyc=Math.max(1,parseInt(document.getElementById('cyc').value)||1);const off=(cyc-1)*prim;
+ const cy=cyc>1?' (cycle '+cyc+', offset '+off+')':'';
  const allMarks=[
-  {key:'q',n:mq,label:'q = '+mq,lo:1,hi:mq,why:'q is the machine\'s top gear: the machine is the gears up to q. Range 1 .. q: the gears themselves and the numbers below them.'},
-  {key:'q2',n:mq*mq,label:'q² = '+mq*mq,lo:mq+1,hi:mq*mq,why:'q² is the square of the top gear. Range q+1 .. q²: every number here that no gear of the machine strikes is prime, so every open column is a prime and every open pair is a twin.'},
-  {key:'qp',n:prim,label:'q# = '+prim,lo:mq*mq+1,hi:prim,why:'q# is the primorial, the product of the gears up to q: the machine\'s period. Range q²+1 .. q#: one full turn of the machine after the square; the strike pattern repeats every q# numbers.'}
+  {key:'q',n:mq+off,label:'q = '+mq+(cyc>1?' +'+off:''),lo:1+off,hi:mq+off,why:'q is the machine\'s top gear: the machine is the gears up to q. Range 1 .. q'+cy+': the gears themselves and the numbers below them.'},
+  {key:'q2',n:mq*mq+off,label:'q² = '+mq*mq+(cyc>1?' +'+off:''),lo:mq+1+off,hi:mq*mq+off,why:'q² is the square of the top gear. Range q+1 .. q²'+cy+': in the first cycle every number here that no gear of the machine strikes is prime, so every open column is a prime and every open pair is a twin; in later cycles the same strike pattern, shifted by whole periods.'},
+  {key:'qp',n:prim+off,label:'q# = '+prim+(cyc>1?' +'+off:''),lo:mq*mq+1+off,hi:prim+off,why:'q# is the primorial, the product of the gears up to q: the machine\'s period. Range q²+1 .. q#'+cy+': one full turn of the machine after the square; the strike pattern repeats every q# numbers.'}
  ];
  const marks=allMarks.filter(m=>m.n>=n0&&m.n<n0+nn);
  const hl=highlight?allMarks.find(m=>m.key===highlight.key):null;
- document.getElementById('mqinfo').textContent='q = '+mq+', q² = '+(mq*mq)+', q# = '+prim+(marks.length?'':'  (none in view)');
+ document.getElementById('mqinfo').textContent='q = '+mq+', q² = '+(mq*mq)+', q# = '+prim+(cyc>1?', cycle '+cyc+' at +'+off:'')+(marks.length?'':'  (none in view)');
  function drawMarks(ctx,h,withLabel){ctx.fillStyle=css('--mark');for(const m of marks){const x=(m.n-n0)*CELL+CELL;for(let y=0;y<h;y+=4)ctx.fillRect(x,y,1,2);if(withLabel){ctx.font='10px '+css('--mono');ctx.textBaseline='top';ctx.fillText(m.label,x+3,1);}}}
  function markLabels(){const cv=document.createElement('canvas');cv.width=W;cv.height=12;const ctx=cv.getContext('2d');drawMarks(ctx,12,true);
   const hit=e=>{const rect=cv.getBoundingClientRect();const x=e.clientX-rect.left;for(const m of marks){const x0=(m.n-n0)*CELL+CELL;if(x>=x0&&x<=x0+90)return m;}return null;};
@@ -155,7 +159,13 @@ function build(){
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';l0.textContent='';g.appendChild(l0);g.appendChild(ruler());
   const rows=F.rows?F.rows(gears):gears;
   const openBg=c=>{if(c.n<2)return null;if(rows.some(h=>F.mark(h,c.n,c.f)))return null;return c.tw?'opentw':c.pr?'openpr':'openx';};
-  for(const h of rows){const l=document.createElement('div');l.className='gl';l.innerHTML='<b>'+h+'</b>';g.appendChild(l);g.appendChild(strip(c=>F.mark(h,c.n,c.f)?colourOf(c):(F.residues&&c.n%h===0?'res':null),openBg));}
+  const topIdx=(()=>{let k=-1;rows.forEach((h,i)=>{if(h<=mq)k=i;});return k;})();
+  rows.forEach((h,i)=>{const l=document.createElement('div');l.className='gl';l.innerHTML='<b>'+h+'</b>';g.appendChild(l);
+   const cv=strip(c=>F.mark(h,c.n,c.f)?colourOf(c):(F.residues&&c.n%h===0?'res':null),openBg);
+   if(gearHL&&h>mq){const ctx=cv.getContext('2d');ctx.fillStyle=css('--panel');ctx.globalAlpha=0.72;ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;}
+   g.appendChild(cv);
+   if(i===topIdx&&i<rows.length-1){const l2=document.createElement('div');l2.className='gl';g.appendChild(l2);const ml=document.createElement('canvas');ml.width=W;ml.height=5;const mc=ml.getContext('2d');mc.fillStyle=css('--mark');for(let x=0;x<W;x+=4)mc.fillRect(x,2,2,1);ml.style.cursor='pointer';ml.title=(gearHL?'click to stop highlighting the machine\'s gears':'click to highlight the machine\'s gears (rows up to q = '+mq+')');ml.addEventListener('click',()=>{gearHL=!gearHL;build();});g.appendChild(ml);}
+  });
   // combined row: the field's strikes over all its rows, else the open column's colour
   {const d1=document.createElement('div');d1.className='gl div';g.appendChild(d1);const d2=document.createElement('div');d2.className='div';g.appendChild(d2);
    const l=document.createElement('div');l.className='gl';l.innerHTML='<b>all</b>';g.appendChild(l);
@@ -185,7 +195,7 @@ function prevPrime(n){let m=n-1;while(m>=2&&!isPrime(m))m--;return m<2?2:m;}
 document.getElementById('mqup').addEventListener('click',()=>{mqState=nextPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
 document.getElementById('mqdn').addEventListener('click',()=>{mqState=prevPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
 for(const s of document.querySelectorAll('.legend span[data-key]')){s.addEventListener('click',()=>{const k=s.dataset.key;if(muted.has(k)){muted.delete(k);s.classList.remove('off');}else{muted.add(k);s.classList.add('off');}build();});}
-for(const id of ['n0','nn','q'])document.getElementById(id).addEventListener('input',schedule);
+for(const id of ['n0','nn','q','cyc'])document.getElementById(id).addEventListener('input',schedule);
 build();
 })();
 </script>
