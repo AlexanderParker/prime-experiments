@@ -2080,6 +2080,23 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             the locator form is "which anchor choices compose to a column below q^2", the open
             count in the anchors' coordinate. Kept: exact kill rule, three verified anchor
             sources, the walk-length bound.
+          - R4.d.i.i.e. THE NETWORK OF WALKS (owner, 2026-09-13: breadth-first from a gear
+            pair, a child per allowed anchor option, nodes unique to their path, no return to
+            the node just left, stop at the destination; compare rules; research/proof/
+            walk_network.md; research/stack/r8/walk_network.py). FACTS at machines 7-31:
+            keep (carry every certified gear) finds nothing beyond 7 (no anchor sits on an
+            axis divisible by the certified product); carry1 (carry at least one gear) is the
+            productive rule (5 of 9 twins at 13 within depth 4, 5 of 30 at 31 within depth 3);
+            free expands 10-20x the nodes for the same destinations; caustic anchors are the
+            cheapest per destination (533 nodes for 3 twins at 13 against 83,768 with
+            squares). Every destination's last step lands on an anchor whose merged known set
+            already covers all gears or all but the one or two the flip carries: the walk
+            certifies, the landing place locates. Columns known open to every gear by the
+            families alone: 1-4 per machine, the recurring one the column two after a square,
+            (g^2 + 10, g^2 + 12): 179 (g = 13) for machines 29-113, 9419 (g = 97) to 211,
+            143651 (g = 379) at 401; for gears above g the caustic knowledge is the
+            divisibility check in other words. VERDICT: efficiency question answered (carry1
+            with caustic anchors); no rule produces a destination the anchors did not contain.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3318,3 +3335,4 @@ Part III or Part IV of the proof document?
 - 2026-09-12, owner: the order ceiling gives an exact shape of which composites can kill, an upper edge of the area to explore, and the zone looks narrow. Manager (local; window_fields.md section 6): j_max(window) = floor(2 log_5 q), exact at 18 machines; cycle ceiling floor(log_5 q#) about 0.62 q; the window's field list is exact and logarithmic in q; orders >= 4 are the smooth field, orders 2 and 3 hold 90-99% of the kills and the order-2 kills are mostly gear x a prime of the window (the hand-up). Recorded on R4.d.i.i.b.
 - 2026-09-13, owner shared the mirror-walk idea (teleport by mirrors about products of gear subsets, final flip into the window on an all-gear axis). Manager: DEAD by proof, node R4.d.i.i.c; a mirror or translation keeps a gear's openness iff the gear divides the axis product, so all-gear-preserving moves are the wheel's own symmetries mod q# and move the open set onto itself; the window's content is unchanged. Owner's boxing of the proof (2026-09-13) recorded as the standing frame: the window statement alone (a twin in (q, q^2] for every prime q) proves step 8 and infinitude; no layers, cycles or lookahead; walls exact (no gear above q below q^2, squares one per gear, orders at most floor(2 log_5 q)); the work is a locator for an open column from the rows of orders 2 and 3, whose kills are gears times the window's own openings.
 - 2026-09-13, owner: the walk's steps must offset from a known location and land in a known place; build backwards from a window twin to a gear pair; then for killed candidates; then forward with 2, 3 and non-killers; then try squares, blind classes and caustics as anchors with one-off lanes. Manager (local + three Opus lanes; anchors_walk.md; node R4.d.i.i.d): kill side exact (killer onto its own pair); square anchors certify every twin for every gear (residue rule with witnesses); blind classes carry 5 and 7 together; caustic anchors carry dozens of gears per column and halve the walk; the walk is a checker, the locator form is which anchor choices compose below q^2. Lanes closed.
+- 2026-09-13, owner: build the network of walks breadth-first (start at a gear pair, a child per anchor option per rule, path-unique nodes, no immediate return, stop at destination) and see which rules work most efficiently. Manager (local; walk_network.md; node R4.d.i.i.e): keep impossible beyond 7, carry1 productive, free wasteful, caustic anchors cheapest; every destination is a landing on a place already known open to (nearly) everything; the located places are the (g^2 + 10, g^2 + 12) columns when twins (g = 13, 97, 379); no rule produced a destination the anchors did not contain.
