@@ -65,15 +65,15 @@ const fields=[
   mark:(h,n,f)=>n%h===0},
  {name:'Squares of the gears',sub:'row g is painted at g²',
   mark:(h,n,f)=>n===h*h},
- {name:'Products of two gears',sub:'n = p·q with p and q prime; painted on the row of p and on the row of q (both rows when p = q)',
-  mark:(h,n,f)=>f.length===2&&f.includes(h)},
- {name:'Products of three gears',sub:'n = p·q·r; painted on the row of each of the three',
-  mark:(h,n,f)=>f.length===3&&f.includes(h)},
- {name:'Products of four gears',sub:'n = p·q·r·s; painted on the row of each',
-  mark:(h,n,f)=>f.length===4&&f.includes(h)},
- {name:'Products of five or more gears',sub:'painted on the row of each gear in the product',
-  mark:(h,n,f)=>f.length>=5&&f.includes(h)},
 ];
+const words=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
+function productFields(nums,gears){
+ // the largest number of prime factors among the shown numbers that have at least one gear factor, plus one more field to show it is empty
+ let jmax=2;for(const c of nums){if(c.f.length>jmax&&c.f.some(x=>gears.includes(x)))jmax=c.f.length;}
+ const out=[];
+ for(let j=2;j<=jmax+1;j++){const w=words[j]||String(j);
+  out.push({name:'Products of '+w+' gears',sub:'n has exactly '+j+' prime factors counted with multiplicity; painted on the row of each gear in the product'+(j===jmax+1?' (no such number with a gear factor in this range: shown to mark the top)':''),mark:(h,n,f)=>f.length===j&&f.includes(h)});}
+ return out;}
 // per-gear fields: one field for each gear g, rows = g and the gears above (or below), every participating gear painted
 function perGear(gears){const out=[];
  for(const g of gears){
@@ -114,7 +114,7 @@ function build(){
  {const fd=document.createElement('div');fd.className='field';const t=document.createElement('div');t.className='ftitle';t.innerHTML='The numbers<small>every prime marked: green a twin prime member, blue a single prime</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';g.appendChild(l0);g.appendChild(ruler());const l1=document.createElement('div');l1.className='gl';l1.textContent='n';g.appendChild(l1);g.appendChild(strip(c=>c.pr?colourOf(c):null));fd.appendChild(g);rowsEl.appendChild(fd);}
  const allRows=[];let fid=0;
- for(const F of fields.concat(perGear(gears))){
+ for(const F of fields.concat(productFields(nums,gears),perGear(gears))){
   fid++;F.id='F'+fid;
   const fd=document.createElement('div');fd.className='field';fd.id=F.id;const t=document.createElement('div');t.className='ftitle';t.innerHTML='<span class="fid">'+F.id+'</span> '+F.name+'<small>'+F.sub+'</small>';fd.appendChild(t);
   const g=document.createElement('div');g.className='grid';const l0=document.createElement('div');l0.className='gl';l0.textContent='';g.appendChild(l0);g.appendChild(ruler());
