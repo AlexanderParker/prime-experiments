@@ -1,0 +1,99 @@
+<title>Mirror Walk</title>
+<style>
+:root{--bg:#f6f4ee;--ink:#1c1a17;--mut:#6b665c;--line:#d8d2c4;--pan:#fffdf8;--win:#7b3fbf;--mir:#c9a227;--open:#2f8f4e;--twin:#7ee08a;--kill:#8a2f2f;--home:#1f6fd0;--path:#d04a1f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16;--twin:#8ef59a}}
+:root[data-theme="dark"]{--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16;--twin:#8ef59a}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 "IBM Plex Sans",system-ui,sans-serif;padding-block:14px;padding-inline:16px;margin:0}
+h1{font-size:18px;margin:0 0 4px;font-weight:600}
+p.lead{margin:0 0 10px;color:var(--mut);max-width:70ch}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:8px 10px;border:1px solid var(--line);background:var(--pan);border-radius:4px;margin-bottom:10px}
+.ctl label{display:flex;gap:6px;align-items:center}
+button{font:inherit;padding:3px 9px;border:1px solid var(--line);background:var(--pan);color:var(--ink);border-radius:3px;cursor:pointer}
+button.on{background:var(--ink);color:var(--bg)}
+.wrap{overflow-x:auto;border:1px solid var(--line);background:#000;border-radius:4px}
+canvas{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:8px 0;color:var(--mut);font-size:13px}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:5px;border-radius:2px}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.panel{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);background:var(--pan);border-radius:4px;padding:8px 10px}
+.box h2{font-size:13px;margin:0 0 6px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:13px}
+td,th{padding:2px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:500}
+.ok{color:var(--open)} .no{color:var(--kill)}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px}
+</style>
+<h1>Mirror walk</h1>
+<p class="lead">Nodes are columns (n, n+2). Home is (&minus;1, 1). A flip about an axis k&middot;M/2, M the product of a gear subset containing 2 and 3, sends n to k&middot;M &minus; n &minus; 2 and carries the residues of the gears in M. Click a column to stand on it; click an axis label to flip about it. The window (q, q&sup2;] is boxed in purple, the mirror stretches of the window (near k&middot;q#) in yellow.</p>
+<div class="ctl">
+ <span>machine</span>
+ <button data-q="5">5</button><button data-q="7" class="on">7</button><button data-q="11">11</button>
+ <span>axes:</span><span id="axes"></span>
+ <label>k up to <input id="kmax" type="number" min="1" max="6" value="3" style="width:3.5em"></label>
+ <button id="home">back to home</button><button id="undo">undo flip</button>
+ <label><input id="showall" type="checkbox"> also axes of M = 6 (every column is one flip away)</label>
+</div>
+<div class="legend">
+ <span><i style="background:#8a2f2f"></i>gear strikes the column</span>
+ <span><i style="background:#0f2a18"></i>gear misses</span>
+ <span><i style="background:#2f8f4e"></i>column open to every gear of the machine</span>
+ <span><i style="background:#7ee08a"></i>twin (both members prime)</span>
+ <span><i style="background:#1f6fd0"></i>home / current node</span>
+ <span><i style="background:#d04a1f"></i>walk</span>
+</div>
+<div class="wrap"><canvas id="c"></canvas></div>
+<div class="panel">
+ <div class="box"><h2>The walk</h2><table id="walk"><thead><tr><th>step</th><th>node</th><th>axis</th><th>gears carried</th><th>open to (computed)</th><th>certified from home</th><th>twin?</th></tr></thead><tbody></tbody></table></div>
+ <div class="box"><h2>What the machine sees</h2><div id="info"></div></div>
+</div>
+<script>
+const G={5:[2,3,5],7:[2,3,5,7],11:[2,3,5,7,11]};
+let q=7,gears=G[q],P=210,nmin,nmax,cw,cols,path=[],axesOn={};
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+function isPrime(n){if(n<2)return false;if(n%2===0)return n===2;for(let d=3;d*d<=n;d+=2)if(n%d===0)return false;return true;}
+function strikes(g,n){const a=((n%g)+g)%g,b=(((n+2)%g)+g)%g;return a===0||b===0;}
+function openAll(n){return gears.every(g=>!strikes(g,n));}
+function twin(n){return isPrime(n)&&isPrime(n+2);}
+function subsets(){const o=gears.filter(g=>g>3),out=[];for(let m=0;m<(1<<o.length);m++){const S=[2,3];o.forEach((g,i)=>{if(m&(1<<i))S.push(g);});out.push(S);}return out;}
+function prod(S){return S.reduce((a,b)=>a*b,1);}
+function setup(){gears=G[q];P=prod(gears);nmin=-P-1;nmax=2*P+P/2;cols=[];for(let n=nmin;n<=nmax;n+=6)cols.push(n);cw=Math.max(3,Math.min(24,Math.floor(1400/cols.length)));
+ const ax=document.getElementById('axes');ax.innerHTML='';subsets().forEach(S=>{if(S.length===2)return;const M=prod(S),id='ax'+M;if(axesOn[M]===undefined)axesOn[M]=true;const l=document.createElement('label');l.innerHTML='<input type="checkbox" id="'+id+'" '+(axesOn[M]?'checked':'')+'> M='+M+' ('+S.join('·')+')';l.querySelector('input').addEventListener('change',e=>{axesOn[M]=e.target.checked;draw();});ax.appendChild(l);});
+ path=[{n:-1,axis:null,S:null,cert:gears.slice()}];draw();}
+function xOf(v){return (v-nmin)/6*cw+cw/2;}
+function axisList(){const kmax=parseInt(document.getElementById('kmax').value)||3,out=[];subsets().forEach(S=>{const M=prod(S);if(S.length===2){if(!document.getElementById('showall').checked)return;}else if(!axesOn[M])return;const kk=S.length===2?Math.floor(nmax/6):kmax;for(let k=1;k<=kk;k++){const a=k*M/2-1;if(a<nmin||a>nmax)continue;out.push({S,M,k,a});}});return out;}
+function draw(){const rows=gears.length,rh=14,top=54,H=top+rows*rh+8+rh+8+40;cv.width=Math.ceil(cols.length*cw)+40;cv.height=H;ctx.fillStyle='#000';ctx.fillRect(0,0,cv.width,cv.height);
+ // window and mirror stretches
+ const kmax=parseInt(document.getElementById('kmax').value)||3;
+ ctx.fillStyle='rgba(123,63,191,.28)';ctx.fillRect(xOf(q+1)-cw/2,top-4,(q*q-q)/6*cw+cw,rows*rh+rh+16);
+ ctx.fillStyle='rgba(201,162,39,.28)';for(let k=1;k<=kmax;k++){const lo=k*P-q*q-2,hi=k*P-q-2;if(lo>nmax)break;ctx.fillRect(xOf(lo)-cw/2,top-4,(hi-lo)/6*cw+cw,rows*rh+rh+16);}
+ // gear rows
+ cols.forEach(n=>{const x=xOf(n)-cw/2;gears.forEach((g,i)=>{ctx.fillStyle=strikes(g,n)?'#8a2f2f':'#0f2a18';ctx.fillRect(x,top+i*rh,cw-1,rh-1);});
+  const y=top+rows*rh+8;ctx.fillStyle=openAll(n)?(twin(n)?'#7ee08a':'#2f8f4e'):'#000';ctx.fillRect(x,y,cw-1,rh-1);});
+ ctx.fillStyle='#bbb';ctx.font='11px monospace';gears.forEach((g,i)=>ctx.fillText(String(g),2,top+i*rh+11));ctx.fillText('all',2,top+rows*rh+8+11);
+ // column labels every so often
+ ctx.fillStyle='#888';const every=Math.max(1,Math.round(60/cw));cols.forEach((n,i)=>{if(i%every===0){ctx.fillText(String(n),xOf(n)-cw/2,top+rows*rh+8+rh+14);}});
+ // axes
+ axisList().forEach(ax=>{const x=xOf(ax.a);ctx.strokeStyle=ax.S.length===2?'rgba(120,120,120,.5)':'#e6a3ff';ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(x,top-8);ctx.lineTo(x,top+rows*rh+8+rh);ctx.stroke();ctx.setLineDash([]);
+  if(ax.S.length>2){ctx.fillStyle='#e6a3ff';ctx.font='10px monospace';ctx.save();ctx.translate(x+3,6);ctx.rotate(Math.PI/2);ctx.fillText(ax.k+'·'+ax.M+'/2',0,0);ctx.restore();}});
+ // path arcs
+ for(let i=1;i<path.length;i++){const a=xOf(path[i-1].n),b=xOf(path[i].n),m=(a+b)/2,r=Math.abs(b-a)/2;ctx.strokeStyle='#d04a1f';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(m,top-6,r,Math.PI,0,false);ctx.stroke();ctx.lineWidth=1;}
+ // nodes
+ path.forEach((p,i)=>{const x=xOf(p.n);ctx.fillStyle=i===path.length-1?'#1f6fd0':'#d04a1f';ctx.beginPath();ctx.arc(x,top-6,4,0,2*Math.PI);ctx.fill();});
+ ctx.fillStyle='#1f6fd0';ctx.fillRect(xOf(-1)-cw/2,top-2,cw-1,2);
+ table();}
+function table(){const tb=document.querySelector('#walk tbody');tb.innerHTML='';path.forEach((p,i)=>{const tr=document.createElement('tr');const op=gears.filter(g=>!strikes(g,p.n));tr.innerHTML='<td>'+i+'</td><td><code>('+p.n+', '+(p.n+2)+')</code></td><td>'+(p.axis?'<code>'+p.axis+'</code>':'home')+'</td><td>'+(p.S?p.S.join(' '):'—')+'</td><td class="'+(op.length===gears.length?'ok':'no')+'">'+op.join(' ')+'</td><td class="'+(p.cert.length===gears.length?'ok':'no')+'">'+(p.cert.length?p.cert.join(' '):'none')+'</td><td>'+(twin(p.n)?'twin':(isPrime(p.n)||isPrime(p.n+2)?'one prime':'no'))+'</td>';tb.appendChild(tr);});
+ const cur=path[path.length-1],inWin=cur.n>q&&cur.n<=q*q;const info=document.getElementById('info');
+ const src=[];for(let k=1;k<=3;k++){src.push(k*P-cur.n-2);}
+ info.innerHTML='<p>Current node <code>('+cur.n+', '+(cur.n+2)+')</code>'+(inWin?' is inside the window.':' is outside the window.')+' Residue mod q#: <code>'+(((cur.n%P)+P)%P)+'</code>. Its mirror sources under the last flip (axis k·q#/2): <code>'+src.join(', ')+'</code>, open to every gear: '+src.map(s=>openAll(s)?'yes':'no').join(', ')+'.</p><p>Certified from home means the gears whose openness the walk itself carries (cut to the axis gears at each flip); open to (computed) is what the machine finds at the node directly.</p>';}
+cv.addEventListener('click',e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+ // axis label hit (top band) or axis line
+ const ax=axisList();let best=null,bd=6;ax.forEach(a=>{const d=Math.abs(xOf(a.a)-x);if(d<bd&&y<54){bd=d;best=a;}});
+ if(best){const cur=path[path.length-1],m=best.k*best.M-cur.n-2;path.push({n:m,axis:best.k+'·'+best.M+'/2 ('+best.S.join('·')+')',S:best.S,cert:cur.cert.filter(g=>best.S.includes(g))});draw();return;}
+ const n=nmin+Math.floor(x/cw)*6;if(n>=nmin&&n<=nmax){path=[{n:n,axis:null,S:null,cert:openAll(n)&&n===-1?gears.slice():[]}];if(n===-1)path[0].cert=gears.slice();draw();}});
+document.querySelectorAll('button[data-q]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('button[data-q]').forEach(x=>x.classList.remove('on'));b.classList.add('on');q=parseInt(b.dataset.q);setup();}));
+document.getElementById('home').addEventListener('click',()=>{path=[{n:-1,axis:null,S:null,cert:gears.slice()}];draw();});
+document.getElementById('undo').addEventListener('click',()=>{if(path.length>1){path.pop();draw();}});
+document.getElementById('kmax').addEventListener('input',draw);document.getElementById('showall').addEventListener('change',draw);
+setup();
+</script>
