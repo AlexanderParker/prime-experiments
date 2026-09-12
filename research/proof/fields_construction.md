@@ -685,6 +685,40 @@ so the bands carve the small comb's survivors uniformly. What is left for the tw
 therefore the small comb's open offsets thinned uniformly at the rates of parts R and S; no
 further structure of the product set has been found that points to the survivors.
 
+## T. Locations, not densities: every structure's kill set as explicit offsets from the origin (research/stack/r8/locations.py)
+
+Owner's instruction (2026-09-12): each result has specific locations. Here every structure of
+the new range (g^2, g'^2) is a formula for its offsets i (from the origin, the square column
+a = (g^2 - 1)/6), generated with no factoring, and the twins are the offsets in no set. The
+formulas:
+
+| structure | its kill offsets |
+|---|---|
+| gear h (small or middle) | i = c0_h + j h and i = c2_h + j h, j >= 0, with c0_h = (-g^2) . 6^{-1} mod h and c2_h = (2 - g^2) . 6^{-1} mod h: two arithmetic progressions of step h, phases the squared residue of g turned by 6^{-1} |
+| band gear x > sqrt(g), q = floor(g/x), r = g - q x | i = column(g^2 + s x - r^2) - a + j x, for the two classes of s >= r^2/x with g^2 + s x - r^2 in S: an arithmetic progression of step x whose first term is the parabola of part Q |
+| the newest gear g | the band formula with q = 1, r = 0: i = column(g^2 + s g) - a + j g for the two classes of s (g (g + 2) or g (g + 4), then g (g + 6), ...) |
+| the twins | the offsets 1 .. L in no progression above |
+
+The map for g = 101 (origin column 1700, L = 67; g^2 mod 5, 7 = 1, 2):
+gear 5: 4 + 5j, 1 + 5j -> 1, 4, 6, 9, 11, 14, 16, 19, 21, 24, 26, 29, 31, 34, 36, 39, 41, 44, 46, 49, 51, 54, 56, 59, 61, 64, 66;
+gear 7: 2 + 7j, 0 + 7j -> 2, 7, 9, 14, 16, 21, 23, 28, 30, 35, 37, 42, 44, 49, 51, 56, 58, 63, 65;
+band x = 11 (q 9, r 2): first s = 2 at 3 -> 3, 7, 14, 18, 25, 29, 36, 40, 47, 51, 58, 62; x = 13 (q 7, r 10): s = 8 at 1 -> 1, 5, 14, 18, 27, 31, 40, 44, 53, 57, 66;
+x = 17 (q 5, r 16): s = 16 at 3 -> 3, 14, 20, 31, 37, 48, 54, 65; x = 19 (q 5, r 6): s = 4 at 7 -> 7, 13, 26, 32, 45, 51, 64; x = 23 (q 4, r 9): 6, 21, 29, 44, 52, 67;
+x = 29: 6, 16, 35, 45, 64; x = 31: 10, 31, 41, 62; x = 37 (q 2, r 27, s = 21): 8, 33, 45; x = 41: 15, 29, 56; x = 43: 13, 27, 56; x = 47: 31, 47;
+x = 53 (q 1, r 48, s = 44): 5, 40, 58; x = 59: 1, 21, 60; x = 61: 18, 59; x = 67: 31, 53; x = 71: 16, 63; x = 73: 40, 64; x = 79: 25, 51; x = 83: 29, 57; x = 89 (r 12, s = 2): 6, 65; x = 97 (r 4, s = 2): 30, 62;
+the newest gear 101: 34, 67.
+Offsets in no set: 12, 17, 22, 38, 43, 50, 55 = the twins by primality, exactly. The same
+formula-only map reproduces the twins of every range from g = 17 to 1499 (233 ranges) with 0 disagreements.
+
+So the location statement of the new range is complete and explicit: the twins are the
+offsets that lie on none of the progressions above, every progression being given by g alone
+(its squared residues for the gears below sqrt(g), its quotient-and-remainder for the gears
+above). The band progressions have few terms each (the step x exceeds sqrt(g)) and their first
+terms are the parabola apexes; the small gears' progressions are dense and periodic. Each
+result of parts R and S has its location here: the small comb is the union of the h <= 13
+rows, the bands are the x rows, the multiplication-table products are the x rows read as
+x times the survivor g^2/x < m.
+
 ## E. Relations between fields
 
 | # | statement | status |
