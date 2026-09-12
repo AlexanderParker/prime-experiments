@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{--bg:#f5f3ee;--panel:#fbfaf7;--ink:#1f2328;--muted:#6a6e75;--line:#dcd8cf;--accent:#1f4e79;
---hit:#ffffff;--hitline:#8a8f97;--twin:#2e7d4f;--prime:#1f4e79;--grid:#e6e2d9;--cellbg:#efece5;--kl:#e6c229;--kr:#c0392b;--opentw:#a3a3a3;--openpr:#5c5c5c;--openx:#111111;
+--hit:#ffffff;--hitline:#8a8f97;--twin:#2e7d4f;--prime:#1f4e79;--grid:#e6e2d9;--cellbg:#efece5;--kl:#e6c229;--kr:#c0392b;--opentw:#1e4d2b;--openpr:#1b3a5c;--openx:#111111;
 --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;--sans:'IBM Plex Sans',system-ui,Segoe UI,Helvetica,Arial,sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#8e949c;--openpr:#555b63;--openx:#000000}}
-:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#8e949c;--openpr:#555b63;--openx:#000000}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#1e4d2b;--openpr:#1b3a5c;--openx:#000000}}
+:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--hit:#ffffff;--hitline:#9a9ea6;--twin:#5fbf88;--prime:#7fb0dc;--grid:#2a3038;--cellbg:#1c2026;--kl:#e6c229;--kr:#e05a4a;--opentw:#1e4d2b;--openpr:#1b3a5c;--openx:#000000}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
 main{max-width:100%;margin:0;padding:18px 16px 60px}
@@ -31,7 +31,7 @@ canvas{display:block;image-rendering:pixelated}
 </style>
 <main>
 <h1>The Fields</h1>
-<p class="sub">Every field is a grid: one row per gear (the primes up to the chosen top gear), one column per natural number. A cell is painted when that gear takes part in the field's strike at that number: green or blue when the number is prime, yellow when the hit kills a left member (n ≡ 5 mod 6), red when it kills a right member (n ≡ 1 mod 6), white when it kills nothing. A column no gear of the field strikes is shaded down its whole height: light grey if the number is a twin prime member, dark grey if a standalone prime, black if neither. Hover a cell for the factorisation. The reference strip at the top marks every prime.</p>
+<p class="sub">Every field is a grid: one row per gear (the primes up to the chosen top gear), one column per natural number. A cell is painted when that gear takes part in the field's strike at that number: green or blue when the number is prime, yellow when the hit kills a left member (n ≡ 5 mod 6), red when it kills a right member (n ≡ 1 mod 6), white when it kills nothing. A column no gear of the field strikes is shaded down its whole height: dark green if the number is a twin prime member, dark blue if a standalone prime, black if neither. Hover a cell for the factorisation. The reference strip at the top marks every prime.</p>
 <div class="ctl">
 <label>first number <input id="n0" type="number" value="1" min="1" step="1"></label>
 <label>numbers shown <input id="nn" type="number" value="400" min="50" max="3000" step="50"></label>
@@ -39,7 +39,7 @@ canvas{display:block;image-rendering:pixelated}
 <button id="draw">Draw</button>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
 </div>
-<div class="legend"><span><i style="background:var(--twin)"></i>hit at a twin prime member</span><span><i style="background:var(--prime)"></i>hit at a single prime</span><span><i style="background:var(--kl)"></i>hit that kills a left member (n ≡ 5 mod 6)</span><span><i style="background:var(--kr)"></i>hit that kills a right member (n ≡ 1 mod 6)</span><span><i style="background:var(--hit)"></i>hit that kills nothing</span><span><i style="background:var(--opentw)"></i>open column, twin prime member</span><span><i style="background:var(--openpr)"></i>open column, standalone prime</span><span><i style="background:var(--openx)"></i>open column, neither</span></div>
+<div class="legend"><span><i style="background:var(--twin)"></i>hit at a twin prime member</span><span><i style="background:var(--prime)"></i>hit at a single prime</span><span><i style="background:var(--kl)"></i>hit that kills a left member (n ≡ 5 mod 6)</span><span><i style="background:var(--kr)"></i>hit that kills a right member (n ≡ 1 mod 6)</span><span><i style="background:var(--hit)"></i>hit that kills nothing</span><span><i style="background:var(--opentw)"></i>open column, twin prime member (dark green)</span><span><i style="background:var(--openpr)"></i>open column, standalone prime (dark blue)</span><span><i style="background:var(--openx)"></i>open column, neither</span></div>
 <div id="rows"></div>
 <div id="tip"></div>
 <p class="foot" id="foot"></p>
