@@ -104,14 +104,16 @@ code{font:500 13px var(--mono)}
 <tr><td>3001</td><td>26960</td><td>278</td><td>750250</td><td>0.0004</td></tr></table></div>
 <p>Exact on the m-line to <code>q = 3001</code> (research/stack/r8/mline_records.py).</p>
 
-<h2><span class="n">14</span>What a proof of 13 must produce</h2>
-<p>A reason, from the construction, that the teeth <code>m ≡ ∓12⁻¹ (mod h)</code> of the gears 5 … <code>q</code> cannot cover <code>(q² − q)/12</code> consecutive <code>m</code>. Known about the teeth: two per gear, mirror-symmetric about every multiple of <code>h</code>; the machine's pattern on the m-line has period the product of its gears, far longer than the window, so the window sees one phase of it; the record grows far slower than the window (13). What every earlier route met (the 11 September document, Parts III and IV): a count of open <code>m</code> gives the right order but no guarantee; a machine with the same teeth counts but free phases can cover a window (the counter-machines), so the reason must use the real teeth, which are set by the primes themselves (the hand-up: the gears are the survivors of the lower windows). The walk adds the exact form of the target (10): a run of struck <code>m</code> below <code>q²/12</code> shorter than the window.</p>
+<h2><span class="n">14</span>What stops the walk, by the fields <span class="chip exact">EXACT</span> where stated</h2>
+<p>The walk lands on the first unpainted <code>k</code> at or after the zone start <code>k₀</code> (the first <code>k</code> with <code>12k − 1 &gt; q</code>). It is stopped only by a painted run anchored at <code>k₀</code> spanning the whole zone; nothing else can stop it. On the landing zone the only fields that paint are the multiples rows, one per gear (two teeth per period <code>h</code>; row <code>h</code> leaves <code>h − 2</code> of every <code>h</code> consecutive <code>k</code>); the squares, the higher fields and the product fields are relabellings of that paint, and no gear is blind on the m-line. The rows are independent modulo the product of the gears (exactly <code>∏(h − 2)</code> unpainted <code>k</code> per full period), the zone being one phase of that period.</p>
+<p>Let <code>L(q)</code> be the painted run at <code>k₀</code>: the walk lands iff <code>L(q)</code> is below the zone length. <code>L(q)</code> is the distance from <code>q</code> to the first twin above <code>q</code> with midpoint a multiple of 12, in m-line columns; machines 11 to 20000: mean 8.7, median 6, largest 55 (<code>q = 13007</code>, zone 14,097,420 long).</p>
+<div class="gap"><p><b>The one open statement, sharpest form: for every prime <code>q</code>, the first twin above <code>q</code> with midpoint a multiple of 12 lies below <code>q²</code>.</b> What decides it is the paint just above <code>q</code>, laid by the small composites there (every number in <code>(q, 2q)</code> is prime or has a factor below <code>q</code>). research/proof/walk_fields.md.</p></div>
 
 <div class="part">Part V · Standing</div>
 <ul>
 <li><span class="chip proved">PROVED</span> 1, 2, 3, 4, 6, 7, 8, 9, 10 (kernel names given).</li>
-<li><span class="chip exact">EXACT</span> 5; the lemma and the strike law of 12; the blind-gear laws (research/proof/locator.md).</li>
-<li><span class="chip measured">MEASURED</span> 11 to 20000; 12 to 20000; 13 to 3001.</li>
+<li><span class="chip exact">EXACT</span> 5; the lemma and the strike law of 12; the blind-gear laws (research/proof/locator.md); the field facts of 14.</li>
+<li><span class="chip measured">MEASURED</span> 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000.</li>
 <li><span class="chip open">OPEN</span> 13.</li>
 </ul>
 

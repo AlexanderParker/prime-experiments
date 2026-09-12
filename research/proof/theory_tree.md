@@ -2196,6 +2196,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             4, 13, 43, 80, 191, 278 against window lengths 9 .. 750250; share 12R/q^2 falls
             0.40 -> 0.0004. This is step 8 in run form on the m-line, the twin machine with
             teeth -+12^-1: same object, half the columns, same margin.
+          - R4.d.i.i.j. THE WALK THROUGH THE FIELDS (owner, 2026-09-13: not covering versus
+            capacity; show nothing stops the walk, field by field; research/proof/
+            walk_fields.md; research/stack/r8/walk_fields.py). EXACT: on the landing zone
+            (12k +- 1 in the window) the only painting fields are the multiples rows, two
+            teeth per period h, share 2/h to three decimals; squares (one k per gear, right
+            member), higher:h and products:j are relabellings of that paint (unions equal the
+            painted set, 31/101/401); no gear is blind on the m-line; rows independent mod the
+            product of the gears (prod (h-2) unpainted per period), the zone one phase of it
+            (14 vs 14.5, 100 vs 94.8, 906 vs 913.2). WHAT STOPS THE WALK: only a painted run
+            anchored at the zone start k_0 spanning the zone; L(q) = the run at k_0 = the
+            distance from q to the first twin above q with midpoint 0 mod 12; machines
+            11..20000: mean 8.7, median 6, max 55 (q = 13007, zone 1.4e7). The open statement
+            sharpened: the first aligned twin above q lies below q^2; decided by the paint
+            just above q (every number in (q, 2q) is prime or has a factor below q). Proof
+            document section 14 rewritten to this.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3445,3 +3460,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: how do we stand in relation to the proof; update it. Manager: Part V added to the proof document (frame: the window statement suffices; walk steps exact; landing family and lemma exact; the locator measured to 20000 in two forms; termination = the record on the m-line below the window, 8b in the walk's coordinates; standing: one open statement) and to docs/proof_by_construction.html.
 - 2026-09-13, owner: go for it (the walk into the kernel). Manager: proofs/MirrorWalk.lean, round 45, built green, 0 sorries, standard axioms only: the axis rule (flip_carries), the composition law (walk_eq), what a walk carries (openTo_walk_iff), the landing family from home, the landing lemma on the m-line (landing_twin, via SquareColumn.section_twin_of_unstruck) and termination from the m-line record (walk_lands_of_record). Part V of the proof document now has kernel names.
 - 2026-09-13, owner: the proof document needs a full rewrite, it mixes approaches and carries stale content. Manager: proof_skeleton.md rewritten around one chain (construction 1-5; the mirror walk 6-10 with kernel names; the walk as an algorithm 11-12; the one open statement 13, the m-line record below the window; what a proof must produce 14; standing 15); the previous document kept as proof_skeleton_2026-09-11.md; docs/proof_by_construction.html rewritten to match.
+- 2026-09-13, owner: not covering versus capacity; show nothing stops the walk by identifying which fields each step passes through and why each steers to the landing zone. Manager (local; walk_fields.md; node R4.d.i.i.j; proof document 14 rewritten): only the multiples rows paint the landing zone, everything else is a relabelling; rows independent mod the product of the gears; the walk is stopped only by a painted run anchored at the zone start, L(q), the twin gap above q in m-line columns, mean 8.7 and max 55 to 20000 against zones of millions; the open statement is now the first aligned twin above q lying below q^2, decided by the paint just above q.

@@ -125,22 +125,27 @@ exactly on the m-line to q = 3001: R(q) = 4, 13, 43, 80, 191, 278 at q = 11, 31,
 number 3, 14, 100, 906, 4179, 26960; the record's share of the window falls from 0.40 to
 0.0004. [research/stack/r8/mline_records.py]
 
-## 14. What a proof of 13 must produce
+## 14. What stops the walk, by the fields. EXACT where stated
 
-A reason, from the construction, that the teeth m = -+12^-1 (mod h) of the gears 5 .. q cannot
-cover (q^2 - q)/12 consecutive m. What is known about the teeth: two per gear, mirror-symmetric
-about every multiple of h; the machine's pattern on the m-line has period the product of its
-gears, far longer than the window, so the window sees one phase of it; the record grows far
-slower than the window (13). What every earlier route met (proof_skeleton_2026-09-11.md, Parts
-III and IV): a count of open m gives the right order but no guarantee; a machine with the same
-teeth counts but free phases can cover a window (the counter-machines), so the reason must use
-the real teeth, which are set by the primes themselves (the hand-up: the gears are the survivors
-of the lower windows). The walk adds the exact form of the target (10): a run of struck m below
-q^2/12 shorter than the window.
+The walk lands on the first unpainted k at or after the zone start k_0 (the first k with
+12k - 1 > q). It is stopped only by a painted run anchored at k_0 spanning the whole zone;
+nothing else can stop it. On the landing zone the only fields that paint are the multiples
+rows, one per gear (two teeth per period h; row h leaves h - 2 of every h consecutive k); the
+squares, the higher fields and the product fields are relabellings of that paint, and no gear
+is blind on the m-line. The rows are independent modulo the product of the gears (exactly
+prod (h - 2) unpainted k per full period), the zone being one phase of that period. Let L(q) be
+the painted run at k_0: the walk lands iff L(q) is below the zone length. L(q) is the distance
+from q to the first twin above q with midpoint a multiple of 12, in m-line columns; machines
+11 to 20000: mean 8.7, median 6, largest 55 (q = 13007, zone 14,097,420 long).
+[research/proof/walk_fields.md]
+
+So the one open statement is, in its sharpest form: for every prime q, the first twin above q
+with midpoint a multiple of 12 lies below q^2. What decides it is the paint just above q, laid
+by the small composites there (every number in (q, 2q) is prime or has a factor below q).
 
 # Part V. Standing
 
 - PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10 (kernel names given).
-- EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md).
-- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001.
+- EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14.
+- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000.
 - OPEN: 13.
