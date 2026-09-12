@@ -331,3 +331,83 @@ to the real teeth and proved is the offset-strike law (III.1, first item): every
 divisibility of 6j +- 1, so a fully struck run of L columns is an interval of 6L numbers in
 which every number = +-1 mod 6 has a prime factor <= q. Nothing on record turns that into a
 bound of exponent 2.
+
+---
+
+# Part V. The walk and the locator (2026-09-13)
+
+The owner's boxing of the proof (2026-09-13), adopted as the frame: the window statement alone
+suffices. If for every prime q the window (q, q^2] holds a twin, then twins are infinite (a
+largest twin T would leave the window of any prime above T empty) and step 8 follows (the
+section from a cut c to P^2 lies inside the window of machine P, P >= c). No layers, cycles or
+lookahead are needed. The walls of the window are exact: no gear above q strikes below q^2
+(3); nothing above q^2 enters; the squares are one per gear, g^2 the top of gear g's layer;
+the composites have order at most floor(2 log_5 q) (products of j gears kill in the window iff
+5^j <= q^2, exact at 18 machines to 401), orders 4 and up the smooth field, orders 2 and 3 the
+rest, and the order-2 kills are mostly a gear times a prime of the window itself.
+
+## V.1 The mirror walk: steps proved
+
+A mirror axis is a multiple of the product M of a set S of gears containing 2 and 3: the pattern
+of the gears in S has period M and is symmetric about 0, hence about every multiple of M. A
+flip about the axis k M sends the column (n, n+2) to (2kM - n - 2, 2kM - n) and carries the
+openness of every gear dividing 2kM. Composition (exact, 3000 random walks, 0 violations): a
+walk of flips about a_1, a_2, ... ends at 2A - n - 2 after an odd number of flips and at n + 2A
+after an even number, A the alternating sum of the axes, and the end is certified for exactly
+the gears dividing A, whatever the intermediate landings were (stepwise tracking undercounts:
+42 k_2 - 30 k_1 = 66 carries 11 though neither axis does). Kill rule (0 violations, 3291
+instances at 101): a killed column carries its killer onto the gear pair containing it, on the
+matching side. [EXACT, not yet in the kernel]
+
+## V.2 The landing family and the lemma
+
+From home (-1, 1), open to every gear, every walk ends on a column (2A - 1, 2A + 1), A a
+multiple of 6, certified for the gears dividing A. LEMMA (exact; kernel content of 3): a column
+in the window (q, q^2] that no gear up to q strikes is a twin. So a landing in the window whose
+remaining gears (those not dividing A) all miss it is a twin. The remaining gear h strikes the
+landing iff 2A = -+1 (mod h): two classes per gear, read off the roots. [EXACT]
+
+## V.3 The locator (the walk as an algorithm)
+
+Rule: A = k M with M the product of a small gear set S (2, 3 or 2, 3, 5); k the smallest value
+with the landing in the window whose class avoids the two teeth of every remaining gear. One
+flip from home. Machines 11 to 20000: every machine lands on a twin (2258 of 2258, S = {2, 3}
+and {2, 3, 5}); the landing sits just above q. Carrying more gears in S buys nothing: the
+mirror can carry only the gears whose primorial stays below q^2 / 2 (seven gears by q = 3000
+against hundreds in the machine); the roots do the work at every size. [MEASURED to 20000; the
+landing is a twin by V.2 whenever k exists]
+
+The same walk with the square as the landing zone (the direct construction): g the first prime
+above sqrt q, i the smallest offset such that no gear h below g strikes (h divides neither
+r^2 + 6i - 2 nor r^2 + 6i, r = g mod h: the strike law, exact, 45,150 checks), landing
+(g^2 + 6i - 2, g^2 + 6i); every column in (g^2, g g') missed by the gears below g and by g is a
+twin (8194 columns to g = 1500, 0 exceptions); 2258 of 2258 machines to 20000, offset at most
+27 columns. The gears below g are exactly the gears up to sqrt q: the sub-machine locates the
+twin of the machine. [EXACT lemma; MEASURED existence]
+
+Exact laws found on the way: the column at a fixed offset i after any square is open to 5 for
+every g iff i = 0, 2 mod 5, to 7 iff i = 3, 5 mod 7, to g for g > 6i; any other gear strikes it
+only from the square-root classes of -(6i - 2) and -6i mod h; gears with neither a residue never
+strike that offset (blind gears, a quarter of the gears at every offset, count (h-1)/4,
+(h-3)/4, (h-5)/4 by h mod 8, exact).
+
+## V.4 Termination: the one open statement, in the walk's coordinates
+
+The walk lands for machine q iff a multiple k exists: on the m-line (landing family
+(12m - 1, 12m + 1), gear h painting m = -+12^-1 mod h), some m with q < 12m - 1 and
+12m + 1 <= q^2 is unpainted in every row h <= q. Let R(q) be the longest run of painted m
+below q^2 / 12 (the record on the m-line). The walk terminates for q whenever R(q) is below
+the window length (q^2 - q) / 12. Exact to q = 3001: R(q) = 4, 13, 43, 80, 191, 278 at
+q = 11, 31, 101, 401, 1009, 3001 against window lengths 9, 77, 841, 13366, 84756, 750250; the
+open m in the window number 3, 14, 100, 906, 4179, 26960. This is 8 in run form (8b, 8c) on
+the m-line: the twin machine with teeth -+12^-1 instead of -+6^-1, half the columns, the same
+margin. [THEORISED: the record below the window for every q]
+
+## V.5 Standing
+
+Proved or exact: the frame (window statement suffices), the walls of the window, the walk's
+steps (axis rule, composition law, kill rule), the landing family, the lemma that makes a
+landing a twin, the strike law with roots, the blind-gear laws, the order ceiling. Measured
+and never failing: the locator to 20000 in two forms. Open: exactly one statement, V.4, that
+the record on the m-line stays below the window for every q, which is 8b in the walk's
+coordinates. Nothing else about the walk is open.
