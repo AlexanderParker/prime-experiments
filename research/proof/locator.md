@@ -147,3 +147,29 @@ The two sieves side by side (offset 10): survivors among their own candidates
 So the locator machine is the twin machine's own shape on the gear line: same fold, same
 mean teeth, mirrors at all multiples instead of one, a quarter of its gears missing at every
 offset, with the missing quarter given exactly by h mod 8 and the offset.
+
+## The start of the chain (owner: what do we know about the start pair; 2026-09-13)
+
+Twins the locator rules prove with no checking: the candidate after g^2 is a twin by
+construction when every gear below its square root is excluded by class (5, 7), blind for the
+offset, or has g outside its teeth, and g itself does not divide 6i - 2 or 6i.
+
+| offset i | self-striking g (g divides 6i - 2 or 6i) | twins proved by the rules alone, g <= 60 | first candidate a gear actually strikes |
+|---|---|---|---|
+| 2 | 5 | (59, 61) g = 7; (179, 181) g = 13 | g = 11: 7 strikes 133 |
+| 5 | 7 | (149, 151) g = 11; (197, 199) g = 13; (1877, 1879) g = 43; (2237, 2239) g = 47 | g = 17: 11 strikes 319 |
+| 10 | 5, 29 | (107, 109), (179, 181), (227, 229), (347, 349), (419, 421) for g = 7, 11, 13, 17, 19; (1019, 1021) g = 31; (1427, 1429) g = 37; (2267, 2269) g = 47; (3539, 3541) g = 59 | g = 23: 19 strikes 589 |
+| 12 | 5 | (191, 193) g = 11; (239, 241) g = 13; (431, 433) g = 19; (599, 601) g = 23; (1031, 1033) g = 31 | g = 7: 11 strikes 121 |
+| 17 | 5 | (149, 151) g = 7; (269, 271) g = 13; (389, 391) g = 17; (461, 463) g = 19; (1061, 1063) g = 31; (1949, 1951) g = 43; (2309, 2311) g = 47; (3581, 3583) g = 59 | g = 11: 13 strikes 221 |
+
+Offset 10 is the richest start because 7, 11 and 13 are blind for it: for g up to 19 no gear
+below the square root can act at all, so the first five candidates are twins by the rules,
+and the first strike anywhere is 19 on the candidate after 23^2. These are the machines
+1..19 handled by construction; from 23 on the surviving g are the survivors of the second
+sieve.
+
+The start pair in the walk sense, (5, 7): the first column of the machine's own line, struck
+by 5 and 7 themselves, open to every other gear; the anchor every killed column carries its
+killer 5 or 7 onto; residue classes 5 and 7 mod every larger gear, covering two classes per
+gear; at offset 2 its right member 7 is the first hit gear (59, 61), at offset 10 the pair
+(5, 7) has 5 self-striking (83, 85) and 7 a rule-proved twin (107, 109).
