@@ -68,11 +68,12 @@ const fields=[
 ];
 const words=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
 function productFields(nums,gears){
- // the largest number of prime factors among the shown numbers that have at least one gear factor, plus one more field to show it is empty
- let jmax=2;for(const c of nums){if(c.f.length>jmax&&c.f.some(x=>gears.includes(x)))jmax=c.f.length;}
+ // the largest number of prime factors among the KILLS in the shown range (composites = 1 or 5 mod 6 with a gear factor), plus one more field to show it holds no kill
+ let jmax=1;for(const c of nums){if((c.n%6===1||c.n%6===5)&&c.f.length>=2&&c.f.length>jmax&&c.f.some(x=>gears.includes(x)))jmax=c.f.length;}
+ if(jmax<2)jmax=2;
  const out=[];
  for(let j=2;j<=jmax+1;j++){const w=words[j]||String(j);
-  out.push({name:'Products of '+w+' gears',sub:'n has exactly '+j+' prime factors counted with multiplicity; painted on the row of each gear in the product'+(j===jmax+1?' (no such number with a gear factor in this range: shown to mark the top)':''),mark:(h,n,f)=>f.length===j&&f.includes(h)});}
+  out.push({name:'Products of '+w+' gears',sub:'n has exactly '+j+' prime factors counted with multiplicity; painted on the row of each gear in the product'+(j===jmax+1?' (no kill at this count in the range shown: the top of the products)':''),mark:(h,n,f)=>f.length===j&&f.includes(h)});}
  return out;}
 // per-gear fields: one field for each gear g, rows = g and the gears above (or below), every participating gear painted
 function perGear(gears){const out=[];
