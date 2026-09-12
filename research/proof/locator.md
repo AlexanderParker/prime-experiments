@@ -173,3 +173,46 @@ by 5 and 7 themselves, open to every other gear; the anchor every killed column 
 killer 5 or 7 onto; residue classes 5 and 7 mod every larger gear, covering two classes per
 gear; at offset 2 its right member 7 is the first hit gear (59, 61), at offset 10 the pair
 (5, 7) has 5 self-striking (83, 85) and 7 a rule-proved twin (107, 109).
+
+## Rule walks: a deterministic walk with the sub-machine as the rule (2026-09-13)
+
+Owner: a walk proven needs stepwise rules that pick the next anchor, no search, no
+pre-checking of landings, certification afterwards. Framework research/stack/r8/rule_walk.py
+(rules are small functions returning the next axis; the landing is certified after the walk).
+Machines 11 to 3000 (426), then to 20000 (2258).
+
+Rules tried, machines succeeded of 426 to 3000: ladder to the first gear above sqrt q at
+offset 2 / 10 / 17: 15 / 203 / 129; top gear's square: 71; square axes g^2 - 1 in order: 8;
+Tower-of-Hanoi over the gear periods: 78; blind hops at offset 5 / 10: 94 / 186; ladder
+choosing the first gear g above sqrt q whose classes avoid the teeth of the gears up to B, at
+offset 10: B = 13: 203, B = 31: 382, B = 101: 426 of 426.
+
+Failures of the residue-blind rules are exactly the teeth of named gears, in blocks (every
+machine sharing its first gear above sqrt q shares its fate; all machines between 23^2 and 29^2
+fail at offset 10 because 29 divides 58). Walks that carry knowledge (square axes, Hanoi) do
+worse than one flip: 5 and 7 strike their landings at full rate.
+
+THE RULE THAT WORKS, machines 11 to 20000: consult only the gears up to sqrt q (the
+sub-machine). Take the first gear g above sqrt q whose classes mod the sub-machine's gears
+avoid their teeth for offset 10; flip from (5, 7) onto the column (g^2 + 58, g^2 + 60). One
+flip. Succeeds on 2253 of 2258 machines; the 5 failures are q = 11 .. 23, where g = 5 and 5
+divides its own candidate (5 divides 60). Cutoffs 2 sqrt q and q give the same result (2253,
+2256). Between sqrt q and the chosen g there were 2546 gears the rule never consulted, over
+1211 machines; none of them struck the landing.
+
+Why the unconsulted gears cannot strike: the strike law in residue form. For any gear h below
+g, with r = g mod h, gear h strikes the offset-i candidate after g^2 iff h divides r^2 + 6i - 2
+or r^2 + 6i (g^2 = r^2 mod h); checked exhaustively, 45,150 cases on g to 2000, 0 violations.
+This is the caustic law (e = s h - r^2) read at a fixed offset. For a gear h just below g the
+residue is the gap d = g - h, so h can strike only if h divides d^2 + 58 or d^2 + 60, which
+needs h <= d^2 + 60; the gaps in range are at most 20, so the numbers to divide are at most
+460, and no unconsulted gear divided one (1208 of the 2546 were small enough to be allowed by
+the bound; 0 divided).
+
+What this changes. The locator for machine q is decided by the machine of size sqrt q: its
+teeth on the prime line just above sqrt q pick g, and the gears between sqrt q and g are
+harmless by the gap law. Termination of the walk, for all q, is now two statements about the
+sub-machine and the gap: (i) a prime g above sqrt q avoiding the sub-machine's teeth exists
+within a gap d of sqrt q with d^2 + 60 below the smallest unconsulted gear (in range d <= 20);
+(ii) no unconsulted gear divides d^2 + 58 or d^2 + 60 (in range, never). Both are statements
+on the prime line near sqrt q, not on the window.

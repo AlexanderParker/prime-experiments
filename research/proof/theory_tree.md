@@ -2117,6 +2117,26 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             STATUS: CANDIDATE LOCATOR, closed form for where and for who cannot interfere;
             existence of a hit gear per window is a density statement on the gear line (prior
             art: primes in quadratic polynomials, Bunyakovsky / Hardy-Littlewood F, open).
+          - R4.d.i.i.g. RULE WALKS: THE SUB-MACHINE AS THE RULE (owner, 2026-09-13: stepwise
+            rules, no search, no pre-checking, certify afterwards; research/proof/locator.md
+            section "Rule walks"; research/stack/r8/rule_walk.py, path_grammar.py). STRONG.
+            Residue-blind rules fail exactly at the teeth of named gears, in blocks; walks
+            that carry knowledge (square axes, Hanoi) do worse than one flip. THE RULE: consult
+            only the gears up to sqrt q; take the first gear g above sqrt q whose classes
+            avoid their teeth for offset 10; one flip from (5, 7) onto (g^2 + 58, g^2 + 60).
+            Succeeds on 2253 of 2258 machines to 20000 (the 5 failures are q = 11..23 with
+            g = 5 dividing its own candidate). 2546 gears between sqrt q and g were never
+            consulted; none struck. MECHANISM (exact, 45,150 checks, 0 violations): gear h
+            strikes the offset-i candidate after g^2 iff h divides r^2 + 6i - 2 or r^2 + 6i
+            with r = g mod h (the caustic law at a fixed offset); a gear just below g has
+            r = the gap d, so it can strike only if h divides d^2 + 58 or d^2 + 60, impossible
+            once h > d^2 + 60 (gaps at most 20 in range). The locator of machine q is decided
+            by the machine of size sqrt q. TERMINATION now = two statements on the prime line
+            near sqrt q: an avoiding prime within a small gap of sqrt q, and no gear in that
+            gap dividing d^2 + 58 or d^2 + 60. Path grammar (all destination paths of the
+            network at 11..31): no step sequence shared by all machines; every path ends in
+            the caustic zone of a square; intermediate steps carry one gear and decide
+            nothing.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3358,3 +3378,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: build the network of walks breadth-first (start at a gear pair, a child per anchor option per rule, path-unique nodes, no immediate return, stop at destination) and see which rules work most efficiently. Manager (local; walk_network.md; node R4.d.i.i.e): keep impossible beyond 7, carry1 productive, free wasteful, caustic anchors cheapest; every destination is a landing on a place already known open to (nearly) everything; the located places are the (g^2 + 10, g^2 + 12) columns when twins (g = 13, 97, 379); no rule produced a destination the anchors did not contain.
 - 2026-09-13, owner: we just need one location, do the locator. Manager (local; locator.md; node R4.d.i.i.f): the column at a fixed offset i after every square, open to 5, 7 and g by class for i in the blind classes (offset 2 open to 5 always, to 7 unless g = +-2 mod 7), struck by any other gear only from the square-root classes of -(6i-2) and -6i mod h, blind gears never; every machine 11..20000 has a located twin at offset 2 (and 10, 17) after the square of a gear between sqrt q and q; hit gears chain under squaring. Closed form for the where and the who-cannot; the existence per window is a sieve on the gear line with ~2 classes per gear (quadratic-polynomial primes, open).
 - 2026-09-13, owner corrected the manager's assessment of the walk: it is not a mere checker; it is a working locator algorithm (steps proved, lands on a twin on every machine tried, to 20000 in reduced form) whose missing piece is a termination proof for all q, which is exactly step 8. Nodes R4.d.i.i.d and R4.d.i.i.e amended to say so.
+- 2026-09-13, owner: build a deterministic walk with stepwise rules, no network, no pre-checking, certify afterwards; and read the longer paths of the network across machine sizes. Manager (local; rule_walk.py, path_grammar.py; node R4.d.i.i.g): the residue-blind rules fail at named teeth; the rule that works consults only the sub-machine (gears up to sqrt q): first gear g above sqrt q avoiding its teeth at offset 10, one flip onto (g^2 + 58, g^2 + 60), 2253 of 2258 machines to 20000, the 5 misses at q <= 23 with g = 5 self-striking. Mechanism exact: h strikes iff h divides r^2 + 6i - 2 or r^2 + 6i with r = g mod h, so gears just below g (r = the gap) are harmless. Termination reduces to the prime line near sqrt q. Path grammar: no shared sequence, every path ends in a caustic zone, longer walks add nothing.
