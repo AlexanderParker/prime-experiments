@@ -2166,7 +2166,16 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             {2,3,5,7} 661/665, {2,3,5,7,11} 645/665 (small machines lack a multiple below
             q^2); to 20000 the two small sets land everywhere; 0 landings fail
             certification. TERMINATION = existence of k: the twin sieve on the multiples of
-            M with the S gears removed by the mirror.
+            M with the S gears removed by the mirror. MULTI-STEP (owner: do it; multi_mirror_
+            walk.py): composition law exact (3000 random walks, 0 violations): the end of a
+            walk is 2A - n - 2 (odd flips) or n + 2A (even), A the alternating sum of the
+            axes, certified for the gears dividing A; stepwise tracking undercounts (2062 of
+            3000 walks carry gears no single flip carried, e.g. 42 k_2 - 30 k_1 = 66 carries
+            11). From home every walk ends on (2A - 1, 2A + 1), A any multiple of 6, so
+            multi-step reaches the one-flip landings with the carried set = divisors of A.
+            Two-step rule (home -> 30 k_1 -> 42 k_2, A the smallest multiple of 6 in the
+            window avoiding the teeth of the gears not dividing A): 665 of 665 twins to 5000;
+            mirrors carry 1.25 gears per machine, the roots handle the rest.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3411,3 +3420,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: build a deterministic walk with stepwise rules, no network, no pre-checking, certify afterwards; and read the longer paths of the network across machine sizes. Manager (local; rule_walk.py, path_grammar.py; node R4.d.i.i.g): the residue-blind rules fail at named teeth; the rule that works consults only the sub-machine (gears up to sqrt q): first gear g above sqrt q avoiding its teeth at offset 10, one flip onto (g^2 + 58, g^2 + 60), 2253 of 2258 machines to 20000, the 5 misses at q <= 23 with g = 5 self-striking. Mechanism exact: h strikes iff h divides r^2 + 6i - 2 or r^2 + 6i with r = g mod h, so gears just below g (r = the gap) are harmless. Termination reduces to the prime line near sqrt q. Path grammar: no shared sequence, every path ends in a caustic zone, longer walks add nothing.
 - 2026-09-13, owner's guess: anchor decisions from squares and roots plus a start rule navigate straight to a twin. Manager (local; locator.md; node R4.d.i.i.h): built without search: g = first prime above sqrt q, i = smallest offset the strike law allows against the gears below g; 2258 of 2258 machines to 20000, offset at most 27 columns. Exact lemma: every column in (g^2, g g') missed by the gears below g and by g is a twin (8194 columns to 1500, 0 exceptions), and the rule never left that zone. Termination for all q is now one line: the wheel of the gears below g leaves a column open in the first g (g' - g)/6 columns after g^2, with the teeth fixed by the roots of g. The start pair does not enter the location.
 - 2026-09-13, owner corrected the walk: axes must be real mirrors of gear combinations (multiples of the product of the chosen gears), no offsets. Manager (local; true_mirror_walk.py; node R4.d.i.i.i): from home, one flip about k M lands on (2kM - 1, 2kM + 1), open to S by the mirror; the remaining gears' teeth on k are two classes each (the roots); smallest such k in the window; the landing is a twin by construction whenever k exists; S = {2,3}: every machine 11..20000, landing just above q. Termination = existence of the multiple k, the twin sieve on multiples of M with S removed.
+- 2026-09-13, owner: build the multi-step mirror walks. Manager (local; multi_mirror_walk.py; node R4.d.i.i.i amended): composition law exact, the end of any walk is a reflection about or a slide by the alternating sum A of the real axes and is certified for the gears dividing A; stepwise tracking undercounts; from home every walk lands on (2A - 1, 2A + 1); two-step rule lands on a twin at every machine to 5000. The mirrors fix the landing family and carry the divisors of A; the roots pick the member; the lemma makes it a twin.

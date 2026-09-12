@@ -279,3 +279,35 @@ landing is a twin whenever the multiple exists, by the mirror for S and by the c
 the rest. Termination = the existence of k: a class of k mod every remaining gear that avoids
 two teeth, with 2 k M inside the window. That is the twin sieve on the multiples of M, the
 S gears removed from it by the mirror.
+
+## Multi-step walks on real mirror axes (owner: do it; 2026-09-13)
+
+Script research/stack/r8/multi_mirror_walk.py. Flips about real axes a_1, a_2, ... (each a
+multiple of the product of a gear set containing 2, 3).
+
+- Composition law, exact (3000 random walks of 1 to 5 flips, 0 violations): the walk from n
+  ends at 2A - n - 2 after an odd number of flips and at n + 2A after an even number, where A
+  is the alternating sum of the axes (last axis positive). A slide by 2A and a reflection
+  about A both carry exactly the gears dividing A.
+- So the certification of the end of a walk is the set of gears dividing A, whatever the
+  intermediate landings were. Stepwise tracking (intersecting the carried gears flip by flip)
+  undercounts it: in 2062 of 3000 walks the end was certified for gears no single flip
+  carried (two flips about 30 k_1 and 42 k_2 with 42 k_2 - 30 k_1 = 66 carry 11, though
+  neither axis does).
+- From home (-1, 1) every walk therefore ends on the column (2A - 1, 2A + 1) with A a
+  multiple of 6, certified for the gears dividing A. Multi-step walks reach exactly the
+  landings one flip reaches, with A now any multiple of 6 (a difference of two real axes),
+  so the gears the mirrors carry are the divisors of A, not a fixed set.
+- Two-step rule: A = the smallest multiple of 6 with the landing in the window whose class
+  avoids the teeth of every gear not dividing A (teeth: 2A = -+1 mod h), realised as home ->
+  flip about 30 k_1 -> flip about 42 k_2 with 42 k_2 - 30 k_1 = A. Machines 11 to 5000: 665
+  of 665 landings are twins (exact by the same lemma: below q^2, no gear up to q divides
+  them). Gears carried by the mirrors per machine: mean 1.25; handled by the roots: mean
+  334. The landing sits just above q.
+
+Reading. The mirrors decide the family of landings (columns straddling a multiple of 12) and
+carry the divisors of A; the roots decide which member of the family; the lemma makes the
+landing a twin whenever the roots find a member inside the window. Termination for all q is
+one statement: among the multiples of 6 with 2A in (q, q^2], some A avoids two classes mod
+every gear up to q not dividing A. The multi-step form changes the route and the carried set,
+not the landing family.
