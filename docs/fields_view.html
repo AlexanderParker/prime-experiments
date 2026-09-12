@@ -51,7 +51,7 @@ canvas{display:block;image-rendering:pixelated}
 <label>machine cycle <button id="cycdn" type="button" aria-label="back one cycle">−</button><input id="cyc" type="number" value="1" min="1" step="1" style="width:64px"><button id="cycup" type="button" aria-label="advance one cycle">+</button></label>
 <span id="mqinfo" style="font:12px var(--mono);color:var(--muted)"></span>
 <span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
-<span style="font:11px var(--mono);color:var(--muted)" title="keys work when no input box has focus">keys: Q/q size · C/c cycle · G/g gears · ]/[ double/halve numbers · ./, page forward/back · M mirror · 0 clear</span>
+<span style="font:11px var(--mono);color:var(--muted)" title="keys work when no input box has focus">keys: ← → page · shift+← → cycle · ↑ ↓ machine size · shift+↑ ↓ gears · + − double/halve numbers · M mirror · 0 or Esc clear</span>
 </div>
 <div class="legend"><span data-key="twin"><i style="background:var(--twin)"></i>hit at a twin prime member</span><span data-key="prime"><i style="background:var(--prime)"></i>hit at a single prime</span><span data-key="kl"><i style="background:var(--kl)"></i>hit that kills a left member (n ≡ 5 mod 6)</span><span data-key="kr"><i style="background:var(--kr)"></i>hit that kills a right member (n ≡ 1 mod 6)</span><span data-key="hit"><i style="background:var(--hit)"></i>hit that kills nothing</span><span data-key="opentw"><i style="background:var(--opentw)"></i>open column, twin prime member (dark green)</span><span data-key="openpr"><i style="background:var(--openpr)"></i>open column, standalone prime (dark blue)</span><span data-key="openx"><i style="background:var(--openx)"></i>open column, neither</span><span data-key="res"><i style="background:var(--res)"></i>a gear's residue that is not a strike of this field</span></div>
 </div>
@@ -210,18 +210,18 @@ document.getElementById('cycup').addEventListener('click',()=>stepCycle(1));
 document.getElementById('cycdn').addEventListener('click',()=>stepCycle(-1));
 cycEl.addEventListener('input',()=>{applyCycle();});
 n0El.addEventListener('input',()=>{const c=Math.max(1,parseInt(cycEl.value)||1);baseN0=Math.max(1,(parseInt(n0El.value)||1)-(c-1)*primorial(mqState));});
-// keyboard: Q/q machine size up/down, C/c cycle forward/back, G/g add/remove a gear, ]/[ double/halve the numbers shown, ./, move the view forward/back by one screen, M toggle the mirror highlight, 0 clear highlights
+// keyboard: arrows move (left/right page the view, shift+left/right step a whole cycle; up/down machine size, shift+up/down gears), + and - double/halve the numbers shown, M mirror, 0 or Escape clear
 const gEl=document.getElementById('q'),nnEl=document.getElementById('nn');
 document.addEventListener('keydown',e=>{if(e.target&&(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'))return;if(e.ctrlKey||e.metaKey||e.altKey)return;
- const k=e.key;let done=true;
- if(k==='Q')setSize(nextPrime(mqState));else if(k==='q')setSize(prevPrime(mqState));
- else if(k==='C')stepCycle(1);else if(k==='c')stepCycle(-1);
- else if(k==='G'){gEl.value=Math.min(100,(parseInt(gEl.value)||11)+1);schedule();}else if(k==='g'){gEl.value=Math.max(1,(parseInt(gEl.value)||11)-1);schedule();}
- else if(k===']'){nnEl.value=Math.min(3000,(parseInt(nnEl.value)||400)*2);schedule();}else if(k==='['){nnEl.value=Math.max(50,Math.floor((parseInt(nnEl.value)||400)/2));schedule();}
- else if(k==='.'){const c=Math.max(1,parseInt(cycEl.value)||1);baseN0=baseN0+(parseInt(nnEl.value)||400);n0El.value=baseN0+(c-1)*primorial(mqState);schedule();}
- else if(k===','){const c=Math.max(1,parseInt(cycEl.value)||1);baseN0=Math.max(1,baseN0-(parseInt(nnEl.value)||400));n0El.value=baseN0+(c-1)*primorial(mqState);schedule();}
+ const k=e.key;let done=true;const cyc=()=>Math.max(1,parseInt(cycEl.value)||1);
+ if(k==='ArrowRight'&&e.shiftKey)stepCycle(1);else if(k==='ArrowLeft'&&e.shiftKey)stepCycle(-1);
+ else if(k==='ArrowRight'){baseN0=baseN0+(parseInt(nnEl.value)||400);n0El.value=baseN0+(cyc()-1)*primorial(mqState);schedule();}
+ else if(k==='ArrowLeft'){baseN0=Math.max(1,baseN0-(parseInt(nnEl.value)||400));n0El.value=baseN0+(cyc()-1)*primorial(mqState);schedule();}
+ else if(k==='ArrowUp'&&e.shiftKey){gEl.value=Math.min(100,(parseInt(gEl.value)||11)+1);schedule();}else if(k==='ArrowDown'&&e.shiftKey){gEl.value=Math.max(1,(parseInt(gEl.value)||11)-1);schedule();}
+ else if(k==='ArrowUp')setSize(nextPrime(mqState));else if(k==='ArrowDown')setSize(prevPrime(mqState));
+ else if(k==='+'||k==='='){nnEl.value=Math.min(3000,(parseInt(nnEl.value)||400)*2);schedule();}else if(k==='-'||k==='_'){nnEl.value=Math.max(50,Math.floor((parseInt(nnEl.value)||400)/2));schedule();}
  else if(k==='m'||k==='M'){highlight=(highlight&&highlight.key==='mirror')?null:{key:'mirror'};build();}
- else if(k==='0'){highlight=null;gearHL=false;build();}
+ else if(k==='0'||k==='Escape'){highlight=null;gearHL=false;build();}
  else done=false;
  if(done)e.preventDefault();});
 
