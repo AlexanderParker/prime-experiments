@@ -2076,10 +2076,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             first non-twin known places carrying two gears. Caustic anchors (the run after a
             square before h's first strike): every gear >= 23 covered, gear 5 never (5 strikes
             the column after every square), mean 41.7 gears known per anchor at 1009, walk
-            length halved (median 68). VERDICT: the walk is a complete checker, not a locator;
-            the locator form is "which anchor choices compose to a column below q^2", the open
-            count in the anchors' coordinate. Kept: exact kill rule, three verified anchor
-            sources, the walk-length bound.
+            length halved (median 68). VERDICT (corrected 2026-09-13, owner): the walk is a
+            working locator: its steps are proved, it lands on a window twin on every machine
+            tried, and what is missing is a termination proof, that a landing place always
+            exists in (sqrt q, q] for every q; that termination proof is the proof of step 8.
+            Kept: exact kill rule, three verified anchor sources, the walk-length bound.
           - R4.d.i.i.e. THE NETWORK OF WALKS (owner, 2026-09-13: breadth-first from a gear
             pair, a child per allowed anchor option, nodes unique to their path, no return to
             the node just left, stop at the destination; compare rules; research/proof/
@@ -2096,7 +2097,10 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             (g^2 + 10, g^2 + 12): 179 (g = 13) for machines 29-113, 9419 (g = 97) to 211,
             143651 (g = 379) at 401; for gears above g the caustic knowledge is the
             divisibility check in other words. VERDICT: efficiency question answered (carry1
-            with caustic anchors); no rule produces a destination the anchors did not contain.
+            with caustic anchors). The walk algorithm (start at (5, 7), flip onto an anchor in
+            the window whose known gears cover everything) runs on any q and has landed on a
+            twin on every machine tried; the open item is termination for all q, the proof of
+            step 8 itself (corrected assessment, owner, 2026-09-13).
           - R4.d.i.i.f. THE LOCATOR: A FIXED COLUMN AFTER EVERY SQUARE (owner, 2026-09-13:
             "we just need one location"; research/proof/locator.md; research/stack/r8/
             locator.py). EXACT: the column at offset i after g^2, (g^2 - 2 + 6i, g^2 + 6i), is
@@ -3353,3 +3357,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: the walk's steps must offset from a known location and land in a known place; build backwards from a window twin to a gear pair; then for killed candidates; then forward with 2, 3 and non-killers; then try squares, blind classes and caustics as anchors with one-off lanes. Manager (local + three Opus lanes; anchors_walk.md; node R4.d.i.i.d): kill side exact (killer onto its own pair); square anchors certify every twin for every gear (residue rule with witnesses); blind classes carry 5 and 7 together; caustic anchors carry dozens of gears per column and halve the walk; the walk is a checker, the locator form is which anchor choices compose below q^2. Lanes closed.
 - 2026-09-13, owner: build the network of walks breadth-first (start at a gear pair, a child per anchor option per rule, path-unique nodes, no immediate return, stop at destination) and see which rules work most efficiently. Manager (local; walk_network.md; node R4.d.i.i.e): keep impossible beyond 7, carry1 productive, free wasteful, caustic anchors cheapest; every destination is a landing on a place already known open to (nearly) everything; the located places are the (g^2 + 10, g^2 + 12) columns when twins (g = 13, 97, 379); no rule produced a destination the anchors did not contain.
 - 2026-09-13, owner: we just need one location, do the locator. Manager (local; locator.md; node R4.d.i.i.f): the column at a fixed offset i after every square, open to 5, 7 and g by class for i in the blind classes (offset 2 open to 5 always, to 7 unless g = +-2 mod 7), struck by any other gear only from the square-root classes of -(6i-2) and -6i mod h, blind gears never; every machine 11..20000 has a located twin at offset 2 (and 10, 17) after the square of a gear between sqrt q and q; hit gears chain under squaring. Closed form for the where and the who-cannot; the existence per window is a sieve on the gear line with ~2 classes per gear (quadratic-polynomial primes, open).
+- 2026-09-13, owner corrected the manager's assessment of the walk: it is not a mere checker; it is a working locator algorithm (steps proved, lands on a twin on every machine tried, to 20000 in reduced form) whose missing piece is a termination proof for all q, which is exactly step 8. Nodes R4.d.i.i.d and R4.d.i.i.e amended to say so.

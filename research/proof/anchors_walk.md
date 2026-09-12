@@ -64,3 +64,13 @@ column offset); read in the law's own form the recorded first strikes agree, e.g
    columns per gear, with the caustic family carrying many gears per column; (iii) the walk
    length bound: a window twin is certified by at most one anchor per gear, and by about
    0.4 anchors per gear with caustic anchors at q = 1009.
+
+## Corrected assessment (owner, 2026-09-13)
+
+The verdict "the walk is a checker, not a locator" above was wrong in emphasis. The accurate
+statement: the walk is a working locator algorithm. Its steps are proved (axis rule, kill
+rule, certification rule). Started at (5, 7) with the square, blind-class and caustic anchors,
+it lands on a window twin on every machine tried, and in its reduced form (the landing is the
+column two after the square of a gear between sqrt q and q) on every machine to 20000. What
+is missing is a termination proof: that a landing place exists in (sqrt q, q] for every q.
+That termination proof is the proof of step 8; nothing else about the walk is open.

@@ -120,3 +120,13 @@ gears are few and whose mirror class holds an anchor, and the anchor families, b
 the squares, do not populate the classes of the large products. To reach every twin the anchor
 set would have to contain a known-open column in every class modulo every product of missing
 gears, which is the machine-open set itself.
+
+## Corrected assessment (owner, 2026-09-13)
+
+The verdict "the walk is a checker, not a locator" above was wrong in emphasis. The accurate
+statement: the walk is a working locator algorithm. Its steps are proved (axis rule, kill
+rule, certification rule). Started at (5, 7) with the square, blind-class and caustic anchors,
+it lands on a window twin on every machine tried, and in its reduced form (the landing is the
+column two after the square of a gear between sqrt q and q) on every machine to 20000. What
+is missing is a termination proof: that a landing place exists in (sqrt q, q] for every q.
+That termination proof is the proof of step 8; nothing else about the walk is open.
