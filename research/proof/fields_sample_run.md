@@ -85,3 +85,48 @@ and nearly always zero; what remains is the old wheel's open columns at the squa
 object to build next, by row and offset). One item closed again (item 2: the wheel). The
 construction did what the owner said it would: it split a count into a located part and a
 periodic part, and it showed at once when a candidate is only the wheel.
+
+## Item 1, continued: the layer grids (owner: "try that next", 2026-09-12)
+
+A layer is window(g') minus window(g) = (g^2, g'^2] for consecutive primes g, g': the numbers the
+next machine's window adds. Script research/stack/r8/layer_fields.py: `show g` prints the grid
+(rows the old gears and row g, columns the natural numbers of the layer, x where the gear divides
+a twin-slot member, - where it divides an even or 3-multiple, T twin members, p single primes);
+`probe gmax` reads the grids over every layer with g <= gmax.
+
+Grid of the layer 13^2 = 169 .. 17^2 = 289 (rows 5, 7, 11, 13; offsets from 169):
+
+    offset |         |         |         |         |         |         |         |         |         |         |         |         |
+         5 .-....x....-....x....-....-....-....x....-....x....-....-....-....x....-....x....-....-....-....x....-....x....-....-....
+         7 ......x......-......-......-......x......-......x......-......-......-......x......-......x......-......-......-......x..
+        11 .......-..........x..........-..........x..........-..........-..........-..........x..........-..........x..........-...
+        13 x............-............-............-............x............-............x............-............-............-...
+     twins     p     T T         T T   T T           p           p   T T   p     T T         p     p     p     T T     p   T T
+
+Read off the grids (428 layers, g from 5 to 2999):
+
+- Row g in its own layer: its strikes on twin-slot members are g p for p the primes in
+  (g, g'^2 / g], nothing else (5: 35; 7: 77, 91, 119; 13: 221, 247; 31: 1147, 1271, 1333; 61:
+  4087, 4331, 4453; every layer to 3000). Closed form, located.
+- Row h < g in the layer: h times the survivors of the gears below h in (g^2/h, g'^2/h), the
+  nesting D3 read in the layer; for h > g^(2/3) that stretch lies below h^2, so row h's strikes
+  are h p with p prime in (g^2/h, g'^2/h). Located by primes, nothing new beyond D3.
+- First twin after g^2: offset (left member - g^2) at most 3.05 g (g = 19: 58; g = 53: 160),
+  within g of g^2 in 415 of 428 layers, within 2 g in 426, mean 0.20 g; the offset grows like
+  ln^2 g, not like g (ordinary density), so "a twin within g of every prime square" holds with
+  a widening margin and is a loose bound, not a mechanism.
+- Last twin before g'^2: at most 938 below it (g = 2203).
+- Mirror: a column mirrors to a column only about a multiple of 6 (the fold has parity). The
+  best centre per layer beats the mean over all centres in 351 of 428 layers, which is the
+  selection of a maximum, not a symmetry: the best centres sit at no formula position (offsets
+  from the midpoint -1, -19, -1, -19, 5, -19, -55, ..., all forced to 5 mod 6). No mirror
+  structure in the twins of a layer.
+- Closing row (the smallest old gear on a struck member): 5 closes 0.250, 7 0.143, 11 0.078,
+  13 0.060 of the struck members; the wheel's shares.
+
+Verdict of the continuation: the layer's composites are fully located in closed form (row g by
+the next primes, row h by D3), and the twins' first and last positions and their symmetry show
+nothing beyond ordinary density and the wheel. The layer as an object is exact bookkeeping; the
+old wheel's open count in it stays the unknown. OPEN stays on the node, with the lead narrowed:
+the only unlocated quantity in a layer is how many columns the old rows leave open, and every
+old row's strikes are known progressions in offset (phase (-g^2) 6^-1 and (2 - g^2) 6^-1 mod h).
