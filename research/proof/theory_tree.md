@@ -2046,6 +2046,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             (1-7% of kills); orders 2 and 3 carry the rest, and the order-2 kills are mostly a
             gear times a prime of the window itself (87/131 at q = 31, 5578/6590 at q = 211):
             the narrow zone is exact in order, and its content is the hand-up.
+          - R4.d.i.i.c. THE MIRROR WALK (owner's idea, 2026-09-13): navigate from a known open
+            column by mirrors about M/2 for products M of subsets of the gears (and their
+            multiples), ending with a flip about an axis carrying all of q's gears into the
+            window. DEAD BY PROOF (manager, same day; checked to 500 both sides on gears to
+            11): a mirror about M/2 or a translation by t keeps "column open to gear g" exactly
+            when g divides M (resp. t), so the maps that keep all of q's gears are the symmetries
+            of the wheel mod q# (reflections about multiples of q#/2, translations by multiples
+            of q#); they carry the machine's open set onto itself and change nothing in the
+            window: a column reached in the window is the column itself or the mirror image of
+            a column near k q#, whose openness is the same unknown. Partial-gear steps lose the
+            gears left out and the last flip needs its source all-gear open, which is the
+            target restated. The home column (-1, 1) is open to every machine; its images are
+            the primorial columns (k q# - 1, k q# + 1), all above q^2. What survives: mirrors
+            are exact symmetries of the machine (kernel: mirror law, survivor_neg), useful for
+            reading a window from its far end, never for entering it.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3282,3 +3297,4 @@ Part III or Part IV of the proof document?
 - 2026-09-12, owner: try the layer grids next (which old row closes each column at what offset from g^2). Manager (local; layer_fields.py, 428 layers to g = 2999; fields_sample_run.md continued): a layer is window(g') minus window(g). Row g's own strikes in its layer are g times the next primes up to g'^2/g (closed form); the old rows are D3 read in the layer; first twin after g^2 within 3.05 g (ordinary, ln^2 g growth), last twin within 938 of g'^2; no mirror centre beyond chance; closing rows at the wheel's shares. All composites of a layer located; the open count of the old rows in the layer remains the unknown. Node R4.d.i.i.a stays OPEN.
 - 2026-09-12, owner: run the layers again but look at what fields kill in the window over many cycles, which rows kill, which fields never kill / are periodic / become periodic / never; the gears per field per machine layer; the window's twins at the mirror; which fields mirror. Manager (local; window_fields.md; node R4.d.i.i.b): in cycle 1 the window is closed by the machine alone (higher:g for g <= q, squares, products, lower); from cycle 2 the only change is the machine's openings being eaten by higher:g fields of the gears above q, one field per opening, first eater always q'; periodic = higher:g (g <= q) and the machine's rows, everything built on a factor count, a largest factor or a square is never periodic and nothing becomes periodic; mirror exact for the machine's fields only; window twins at the mirror 2/2, 3/4, 2/7 ... 1/30. Two bugs fixed before recording (sympy primorial; stops-killing read as periodic).
 - 2026-09-12, owner: the order ceiling gives an exact shape of which composites can kill, an upper edge of the area to explore, and the zone looks narrow. Manager (local; window_fields.md section 6): j_max(window) = floor(2 log_5 q), exact at 18 machines; cycle ceiling floor(log_5 q#) about 0.62 q; the window's field list is exact and logarithmic in q; orders >= 4 are the smooth field, orders 2 and 3 hold 90-99% of the kills and the order-2 kills are mostly gear x a prime of the window (the hand-up). Recorded on R4.d.i.i.b.
+- 2026-09-13, owner shared the mirror-walk idea (teleport by mirrors about products of gear subsets, final flip into the window on an all-gear axis). Manager: DEAD by proof, node R4.d.i.i.c; a mirror or translation keeps a gear's openness iff the gear divides the axis product, so all-gear-preserving moves are the wheel's own symmetries mod q# and move the open set onto itself; the window's content is unchanged. Owner's boxing of the proof (2026-09-13) recorded as the standing frame: the window statement alone (a twin in (q, q^2] for every prime q) proves step 8 and infinitude; no layers, cycles or lookahead; walls exact (no gear above q below q^2, squares one per gear, orders at most floor(2 log_5 q)); the work is a locator for an open column from the rows of orders 2 and 3, whose kills are gears times the window's own openings.
