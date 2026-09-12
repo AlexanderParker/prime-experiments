@@ -115,6 +115,7 @@ function build(){
  rowsEl.innerHTML='';
  const n0=Math.max(1,parseInt(document.getElementById('n0').value)||1),nn=Math.min(3000,Math.max(50,parseInt(document.getElementById('nn').value)||400)),ng=Math.min(100,Math.max(1,parseInt(document.getElementById('q').value)||11));
  const gears=[];for(let p=2;gears.length<ng;p++)if(isPrime(p))gears.push(p);
+ if(mqState>gears[gears.length-1]){mqState=gears[gears.length-1];document.getElementById('mqval').textContent=mqState;cycEl.value=1;n0El.value=baseN0;}
  document.getElementById('range').textContent='numbers '+n0+' to '+(n0+nn-1)+', gears '+gears.join(' ');
  const nums=[];for(let n=n0;n<n0+nn;n++){const f=n>=2?factor(n):[];const pr=f.length===1;const tw=pr&&(isPrime(n-2)||isPrime(n+2));nums.push({n,f,pr,tw});}
  const CELL=6,H=14,RH=14,W=nn*CELL;
@@ -202,7 +203,8 @@ function primorial(q){let m=1;for(let p=2;p<=q;p++)if(isPrime(p))m*=p;return m;}
 let baseN0=1;
 const cycEl=document.getElementById('cyc'),n0El=document.getElementById('n0');
 function applyCycle(){const c=Math.max(1,parseInt(cycEl.value)||1);cycEl.value=c;n0El.value=Math.max(1,baseN0+(c-1)*primorial(mqState));}
-function setSize(q){mqState=q;document.getElementById('mqval').textContent=q;cycEl.value=1;n0El.value=baseN0;schedule();}
+function topGear(){const ng=Math.min(100,Math.max(1,parseInt(document.getElementById('q').value)||11));let c=0,p=1;while(c<ng){p++;if(isPrime(p))c++;}return p;}
+function setSize(q){q=Math.min(q,topGear());if(q===mqState)return;mqState=q;document.getElementById('mqval').textContent=q;cycEl.value=1;n0El.value=baseN0;schedule();}
 document.getElementById('mqdn').addEventListener('click',()=>setSize(prevPrime(mqState)));
 document.getElementById('mqup').addEventListener('click',()=>setSize(nextPrime(mqState)));
 function stepCycle(d){const cur=Math.max(1,parseInt(cycEl.value)||1);cycEl.value=Math.max(1,cur+d);applyCycle();schedule();}
