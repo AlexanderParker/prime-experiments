@@ -196,14 +196,20 @@ let timer=null;const schedule=()=>{clearTimeout(timer);timer=setTimeout(build,25
 let mqState=7;
 function nextPrime(n){let m=n+1;while(!isPrime(m))m++;return m;}
 function prevPrime(n){let m=n-1;while(m>=2&&!isPrime(m))m--;return m<2?2:m;}
-document.getElementById('mqup').addEventListener('click',()=>{mqState=nextPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
 function primorial(q){let m=1;for(let p=2;p<=q;p++)if(isPrime(p))m*=p;return m;}
-function stepCycle(d){const c=document.getElementById('cyc'),n=document.getElementById('n0');const cur=Math.max(1,parseInt(c.value)||1);const nxt=Math.max(1,cur+d);if(nxt===cur)return;c.value=nxt;
- // advance the view by the same number of whole periods so the markers stay in place on screen
- const shift=(nxt-cur)*primorial(mqState);n.value=Math.max(1,(parseInt(n.value)||1)+shift);schedule();}
+// the first number is kept as a position within cycle 1 (baseN0) plus whole periods of the CURRENT machine, so size and cycle never go out of phase
+let baseN0=1;
+const cycEl=document.getElementById('cyc'),n0El=document.getElementById('n0');
+function applyCycle(){const c=Math.max(1,parseInt(cycEl.value)||1);cycEl.value=c;n0El.value=Math.max(1,baseN0+(c-1)*primorial(mqState));}
+function setSize(q){mqState=q;document.getElementById('mqval').textContent=q;cycEl.value=1;n0El.value=baseN0;schedule();}
+document.getElementById('mqdn').addEventListener('click',()=>setSize(prevPrime(mqState)));
+document.getElementById('mqup').addEventListener('click',()=>setSize(nextPrime(mqState)));
+function stepCycle(d){const cur=Math.max(1,parseInt(cycEl.value)||1);cycEl.value=Math.max(1,cur+d);applyCycle();schedule();}
 document.getElementById('cycup').addEventListener('click',()=>stepCycle(1));
 document.getElementById('cycdn').addEventListener('click',()=>stepCycle(-1));
-document.getElementById('mqdn').addEventListener('click',()=>{mqState=prevPrime(mqState);document.getElementById('mqval').textContent=mqState;schedule();});
+cycEl.addEventListener('input',()=>{applyCycle();});
+n0El.addEventListener('input',()=>{const c=Math.max(1,parseInt(cycEl.value)||1);baseN0=Math.max(1,(parseInt(n0El.value)||1)-(c-1)*primorial(mqState));});
+
 for(const s of document.querySelectorAll('.legend span[data-key]')){s.addEventListener('click',()=>{const k=s.dataset.key;if(muted.has(k)){muted.delete(k);s.classList.remove('off');}else{muted.add(k);s.classList.add('off');}build();});}
 for(const id of ['n0','nn','q','cyc'])document.getElementById(id).addEventListener('input',schedule);
 build();
