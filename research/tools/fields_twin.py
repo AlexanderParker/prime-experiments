@@ -34,6 +34,9 @@ API (import this module):
     T.to_csv(path, names=None)             -> one CSV per field: header row = numbers, one line per gear row, last line = all
     T.probe_period(name)                   -> which rows repeat exactly with the machine's period q# inside the range (a machine-readable version of "the machine's gears are periodic, the others are not")
     T.probe_mirror(name)                   -> which rows are mirror-symmetric about q#/2 within the cycle
+    T.summary(names)                       -> (names, matrix fields x numbers of the "all" rows), also written as summary.csv by to_csv
+    T.probe_signature(names)               -> per number, the tuple of fields that strike it (what strikes and what does not)
+    T.probe_lone_killers(names)            -> twin-slot composites killed by exactly one field of the list, by field
 CLI: uv run python fields_twin.py --n0 1 --nn 400 --gears 11 --q 7 --cycle 1 --csv outdir [--field multiples]
 """
 import argparse, os
@@ -147,12 +150,45 @@ class Twin:
         all_ = np.array([int(M[:, i][struck[:, i]][0]) if struck[:, i].any() else int(open_[i]) for i in range(self.nn)], dtype=np.int8)
         return Field(name, rows, M, open_, all_)
 
+    # ---- the summary: every field's "all" row side by side
+    def summary(self, names=None):
+        names = names or self.fields()
+        S = np.zeros((len(names), self.nn), dtype=np.int8)
+        for r, name in enumerate(names): S[r] = self.field(name).all
+        return names, S
+
+    def probe_signature(self, names=None):
+        """per number: the tuple of fields that strike it (codes 1-5), i.e. what strikes and what does not; returns
+        {signature: [numbers]} plus the twins' signatures (which should all be the empty tuple: nothing strikes a twin)"""
+        names, S = self.summary(names)
+        sig = {}
+        for i in range(self.nn):
+            key = tuple(names[r] for r in range(len(names)) if 1 <= S[r, i] <= 5 and S[r, i] != 1 and S[r, i] != 2)
+            sig.setdefault(key, []).append(int(self.n[i]))
+        return names, sig
+
+    def probe_lone_killers(self, names=None):
+        """numbers in a twin slot (n = 1 or 5 mod 6, composite) killed by exactly one field of the given list:
+        the field that alone accounts for that kill; returns {field: [numbers]}"""
+        names, S = self.summary(names)
+        out = {}
+        for i in range(self.nn):
+            x = int(self.n[i])
+            if x % 6 not in (1, 5) or self.prime[i] or x < 2: continue
+            killers = [names[r] for r in range(len(names)) if S[r, i] in (3, 4)]
+            if len(killers) == 1: out.setdefault(killers[0], []).append(x)
+        return out
+
     def markers(self):
         return {'q': self.q + self.offset, 'q2': self.q * self.q + self.offset, 'qp': self.prim + self.offset,
                 'mirror': self.prim // 2 + self.offset, 'offset': self.offset, 'cycle': self.cycle, 'period': self.prim}
 
     def to_csv(self, outdir, names=None):
         os.makedirs(outdir, exist_ok=True)
+        sn, S = self.summary(names)
+        with open(os.path.join(outdir, 'summary.csv'), 'w') as fh:
+            fh.write('field,' + ','.join(str(x) for x in self.n) + '\n')
+            for r, name in enumerate(sn): fh.write(f'{name},' + ','.join(str(v) for v in S[r]) + '\n')
         for name in (names or self.fields()):
             F = self.field(name)
             with open(os.path.join(outdir, name.replace(':', '_') + '.csv'), 'w') as fh:
@@ -196,6 +232,12 @@ def main():
     if a.probe:
         for name in ([a.field] if a.field else T.fields()[:3]):
             print(name, 'periodic with q#:', T.probe_period(name), 'mirror about q#/2:', T.probe_mirror(name))
+        base = [n for n in T.fields() if n in ('multiples', 'squares') or n.startswith('products:')]
+        names, sig = T.probe_signature(base)
+        print('summary over', base, ': distinct strike signatures', len(sig))
+        for key, nums in sorted(sig.items(), key=lambda kv: -len(kv[1]))[:8]: print('  ', key or '(nothing strikes)', len(nums), nums[:12])
+        lone = T.probe_lone_killers(base)
+        print('twin-slot composites killed by exactly one of these fields:', {k: len(v) for k, v in lone.items()})
 
 
 if __name__ == '__main__':
