@@ -1,0 +1,100 @@
+<title>The Fields</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f5f3ee;--panel:#fbfaf7;--ink:#1f2328;--muted:#6a6e75;--line:#dcd8cf;--accent:#1f4e79;
+--left:#1f4e79;--right:#b7791f;--both:#a23b2b;--twin:#2e7d4f;--sq:#6b3fa0;--grid:#e6e2d9;
+--mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;--sans:'IBM Plex Sans',system-ui,Segoe UI,Helvetica,Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--left:#7fb0dc;--right:#e0a94a;--both:#e07a68;--twin:#5fbf88;--sq:#b28ee6;--grid:#242930}}
+:root[data-theme="dark"]{--bg:#15181c;--panel:#1c2026;--ink:#e6e3dc;--muted:#9a9ea6;--line:#2c323a;--accent:#7fb0dc;--left:#7fb0dc;--right:#e0a94a;--both:#e07a68;--twin:#5fbf88;--sq:#b28ee6;--grid:#242930}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}
+main{max-width:1200px;margin:0 auto;padding:22px 16px 60px}
+h1{font:600 24px/1.2 var(--sans);margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 14px}
+.ctl{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:0 0 14px;font-size:13px}
+.ctl label{display:flex;gap:6px;align-items:center}
+input[type=number]{width:90px;font:13px var(--mono);padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)}
+button{font:13px var(--sans);padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink);cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 12px}
+.legend i{display:inline-block;width:14px;height:10px;vertical-align:middle;margin-right:4px;border-radius:2px}
+.group{margin:18px 0 6px;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border-top:1px solid var(--line);padding-top:8px}
+.row{display:grid;grid-template-columns:260px 1fr;gap:10px;align-items:center;margin:0 0 3px}
+.row .name{font-size:13px;line-height:1.25}
+.row .name small{display:block;color:var(--muted);font:11px var(--mono)}
+.row canvas{width:100%;height:18px;display:block;border:1px solid var(--line);background:var(--panel)}
+#tip{position:fixed;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:6px 8px;font:12px var(--mono);color:var(--ink);max-width:420px;display:none;z-index:2}
+.foot{color:var(--muted);font-size:12px;margin-top:22px}
+</style>
+<main>
+<h1>The Fields</h1>
+<p class="sub">Each row is one field on the fold's survivors, drawn column by column. A column is the slot (6k − 1, 6k + 1). A cell is painted when the field contains the column's left member (upper half), right member (lower half), or both. Hover a cell for the members and their factorisations.</p>
+<div class="ctl">
+<label>first column <input id="k0" type="number" value="1" min="1" step="1"></label>
+<label>columns shown <input id="nk" type="number" value="600" min="50" max="4000" step="50"></label>
+<button id="draw">Draw</button>
+<span id="range" style="font:12px var(--mono);color:var(--muted)"></span>
+</div>
+<div class="legend"><span><i style="background:var(--left)"></i>left member 6k−1 in the field</span><span><i style="background:var(--right)"></i>right member 6k+1 in the field</span><span><i style="background:var(--both)"></i>both members</span><span><i style="background:var(--twin)"></i>twin column</span><span><i style="background:var(--sq)"></i>square of a prime</span></div>
+<div id="rows"></div>
+<div id="tip"></div>
+<p class="foot">Definitions: field j = members with exactly j prime factors counted with multiplicity (all ≥ 5). Gear field of g = members whose least prime factor is g (g times a survivor of the gears below g, from g² on). Strictly-higher field of g = the gear field of g with g dividing exactly once. Smooth field of g = composites whose prime factors all lie in {5, …, g}; its layer = those whose largest factor is g. Overlay = every composite member. Source: research/proof/fields_construction.md.</p>
+</main>
+<script>
+(function(){
+const rowsEl=document.getElementById('rows'),tip=document.getElementById('tip');
+function factor(n){const f=[];let m=n;for(let p=2;p*p<=m;p+=(p===2?1:2)){while(m%p===0){f.push(p);m=Math.floor(m/p);}}if(m>1)f.push(m);return f;}
+function fstr(n,f){return f.length===1?n+' prime':n+' = '+f.join('·');}
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+// field predicates on a member n (n in S, n >= 5) with its factor list f
+const G=[5,7,11,13,17,19,23,29,31,37];
+const fields=[
+ {group:'The twins and the primes',items:[
+  {name:'Twin field',sub:'columns with both members prime',twin:true},
+  {name:'Prime field',sub:'the primes (each gear\'s home strike)',pred:(n,f)=>f.length===1},
+ ]},
+ {group:'Fields by the count of prime factors',items:[
+  {name:'Square field',sub:'squares of primes p²',pred:(n,f)=>f.length===2&&f[0]===f[1],sq:true},
+  {name:'Semiprime field',sub:'products of two primes p·q',pred:(n,f)=>f.length===2},
+  {name:'Three-factor field',sub:'products of three primes',pred:(n,f)=>f.length===3},
+  {name:'Four-factor field',sub:'products of four primes',pred:(n,f)=>f.length===4},
+  {name:'Five-factor field',sub:'products of five primes',pred:(n,f)=>f.length===5},
+  {name:'Overlay',sub:'every composite member (all composite fields together)',pred:(n,f)=>f.length>=2},
+ ]},
+ {group:'Gear fields: each gear\'s composites of itself and higher gears (least factor g), from g² on',items:G.map(g=>({name:'Gear field of '+g,sub:g+' × a survivor of the gears below '+g+', least factor '+g,pred:(n,f)=>f.length>=2&&f[0]===g}))},
+ {group:'Strictly-higher fields: each gear times only higher gears (g exactly once)',items:[5,7,11,13].map(g=>({name:'Strictly-higher field of '+g,sub:g+' × a number with every factor above '+g,pred:(n,f)=>f.length>=2&&f[0]===g&&f[1]!==g}))},
+ {group:'Smooth fields: composites of a gear and the gears below it',items:[5,7,11,13,17].map(g=>({name:'Smooth field of '+g,sub:'composites with every prime factor ≤ '+g,pred:(n,f)=>f.length>=2&&f[f.length-1]<=g}))},
+ {group:'Smooth layers: composites of a gear and lower gears, with the gear as the largest factor',items:[5,7,11,13,17].map(g=>({name:'Layer of '+g,sub:'largest prime factor exactly '+g+', at least two factors',pred:(n,f)=>f.length>=2&&f[f.length-1]===g}))},
+];
+function build(){
+ rowsEl.innerHTML='';
+ const k0=Math.max(1,parseInt(document.getElementById('k0').value)||1),nk=Math.min(4000,Math.max(50,parseInt(document.getElementById('nk').value)||600));
+ document.getElementById('range').textContent='columns '+k0+' to '+(k0+nk-1)+'  (numbers '+(6*k0-1)+' to '+(6*(k0+nk-1)+1)+')';
+ const cols=[];for(let k=k0;k<k0+nk;k++){const l=6*k-1,r=6*k+1,fl=factor(l),fr=factor(r);cols.push({k,l,r,fl,fr});}
+ const W=nk;
+ for(const grp of fields){
+  const h=document.createElement('div');h.className='group';h.textContent=grp.group;rowsEl.appendChild(h);
+  for(const it of grp.items){
+   const row=document.createElement('div');row.className='row';
+   const nm=document.createElement('div');nm.className='name';nm.innerHTML=it.name+'<small>'+it.sub+'</small>';row.appendChild(nm);
+   const cv=document.createElement('canvas');cv.width=W;cv.height=18;row.appendChild(cv);rowsEl.appendChild(row);
+   const ctx=cv.getContext('2d');ctx.fillStyle=css('--panel');ctx.fillRect(0,0,W,18);
+   ctx.fillStyle=css('--grid');for(let x=0;x<W;x+=10)ctx.fillRect(x,0,1,18);
+   for(let i=0;i<nk;i++){const c=cols[i];
+    if(it.twin){if(c.fl.length===1&&c.fr.length===1){ctx.fillStyle=css('--twin');ctx.fillRect(i,0,1,18);}continue;}
+    const a=it.pred(c.l,c.fl),b=it.pred(c.r,c.fr);
+    if(a&&b){ctx.fillStyle=css('--both');ctx.fillRect(i,0,1,18);}
+    else if(a){ctx.fillStyle=css('--left');ctx.fillRect(i,0,1,9);}
+    else if(b){ctx.fillStyle=it.sq?css('--sq'):css('--right');ctx.fillRect(i,9,1,9);}
+   }
+   cv.addEventListener('mousemove',e=>{const rect=cv.getBoundingClientRect();const i=Math.floor((e.clientX-rect.left)/rect.width*nk);if(i<0||i>=nk){tip.style.display='none';return;}const c=cols[i];
+    tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px';
+    tip.textContent='column '+c.k+':  '+fstr(c.l,c.fl)+'  |  '+fstr(c.r,c.fr)+(c.fl.length===1&&c.fr.length===1?'   TWIN':'');});
+   cv.addEventListener('mouseleave',()=>{tip.style.display='none';});
+  }
+ }
+}
+document.getElementById('draw').addEventListener('click',build);
+build();
+})();
+</script>
