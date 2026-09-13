@@ -2269,7 +2269,16 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             carried primes' product is at most q^2/2: carried_product_le_window). OPEN PART:
             the joint step, one axis in the window settling every remaining gear at once (two
             gears follow by CRT within h h' multiples; all at once within the window is the
-            open statement, stated as a property of the step).
+            open statement, stated as a property of the step). BOTH LEVERS (owner: both;
+            kernel MirrorWalkSettle, round 47): the origin lever PROVED (anchor_certifies: L
+            open to h if some column v open to h has h | L + v + 2), measured at the walk's
+            landing with home and the gear pairs as origins: 3/9, 4/24, 14/77, 22/167, 40/429
+            gears certified at q = 31 .. 3001, the small gears, the large left to the landing
+            law; settling one after another PROVED (openTo_add_of_dvd, flip_stride,
+            exists_axis_open_stride, settle_two: two gears within k_0 + 2 + 2h), the r-th gear
+            costing a stride equal to the product of the settled ones, so 1, 2, 3, 5, 5 gears
+            settle inside the zone at q = 11, 31, 101, 401, 1009. The joint step for all gears
+            stays open, its per-gear cost now proved.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3525,3 +3534,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: go the field (the record as a field). Manager (local; record_field.html, artifact published; record_field.py; walk_fields.md continued): each gear paints in double teeth (the two classes -+12^-1 sit close), a record run is a near-exact tiling by double teeth (single painters 68-100%), runs come in mirror pairs about half the period, the run sits where 5 and 7 interleave without slack; the growth reading is the budget inequality in field form, mechanism not proof.
 - 2026-09-13, owner: given the mechanism for growth, make a proof for the bound. Manager (record_bound_attempt.md): the paint budget is proved (two lemmas, a theorem) and gives R_5 <= 2, R_7 <= 8, R_11 <= 36, nothing from 13 on (2 sum 1/h exceeds 1); the overlap-corrected count is the sieve, positive only from length y^4.27 against the needed y^2/12; the mechanism explains the growth and proves the bound at y = 5 only. The one open statement stands: R_y < y^2/12 for y >= 7.
 - 2026-09-13, owner: counting will never work, do not attempt it; work the walk as parts (origin pair, step rules, each landing and its relation to the last step, target zone), each with its own proof, never the walk as one object. Manager (walk_parts.md; kernel MirrorWalkParts round 46): nine parts proved in the kernel, including the landing law (h strikes the landing iff 2a = n + 2 or n mod h), one gear never blocks a step (settled within three consecutive multiples), and the carry cap; the one open part is the joint step: one axis in the window settling every remaining gear at once. Memory saved: no counting proofs.
+- 2026-09-13, owner: both (the origin lever; the joint step for small sets). Manager (kernel MirrorWalkSettle round 47; walk_parts.md continued): anchor_certifies proved (origins certify by the class of L + v + 2), measured: home and the gear pairs certify the small gears only (40 of 429 at 3001); settle_two proved (two gears within k_0 + 2 + 2h), stride version of the one-gear step proved; settling in sequence costs the product of the settled gears, so two to five gears fit in the zone. The joint step remains the open part.

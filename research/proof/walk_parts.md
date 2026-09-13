@@ -80,3 +80,61 @@ statement over all remaining gears within the window is the open part.
 | target zone | unstruck landing below P^2 is a twin | PROVED |
 | carry cap | carried primes' product at most q^2/2 | PROVED |
 | the joint step | one axis in the window settling every remaining gear | OPEN |
+
+## Both levers (owner, 2026-09-13): the origin lever and settling gears one after another
+
+Kernel proofs/MirrorWalkSettle.lean (round 47, built, 0 sorries, standard axioms).
+
+### The origin lever
+
+- PROVED [anchor_certifies]: a landing L is open to h if some column v open to h has h dividing
+  L + v + 2; L is then the flip of v about the axis (L + v + 2)/2, which h divides. Every known
+  twin, every gear pair and home is such a v for the gears it is open to, so a walk that hops
+  through known twins certifies the final landing for the union of what each visited origin
+  can carry: the certified set is no longer the divisors of one axis sum but the union over
+  origins, and the carry cap applies per origin, not to the union.
+- What the lever does at the walk's landing, with the origins available without search (home
+  and the gear pairs below q):
+
+| q | landing | origins | gears certified by some origin | largest certified | left to the landing law |
+|---|---|---|---|---|---|
+| 31 | 59 | 5 | 3 of 9 | 13 | 6 |
+| 101 | 107 | 8 | 4 of 24 | 23 | 20 |
+| 401 | 419 | 21 | 14 of 77 | 103 | 63 |
+| 1009 | 1019 | 35 | 22 of 167 | 317 | 145 |
+| 3001 | 3119 | 82 | 40 of 429 | 877 | 389 |
+
+The origins certify the small gears (a gear h is certified iff some origin sits in the class
+-L - 2 mod h, and the origins number about q / ln^2 q against h - 2 classes); the large gears
+are left to the landing law. Same shape as the anchor coverage (anchors_walk.md), now as a
+theorem about origins.
+
+### Settling gears one after another
+
+- PROVED [openTo_add_of_dvd]: sliding a column by a multiple of h keeps its openness to h.
+- PROVED [flip_stride]: moving the axis by j D units moves the landing by 2 j D M.
+- PROVED [exists_axis_open_stride]: for a prime h >= 5 not dividing 2 M D, among the axes
+  (k_1 + j D) M, j = 0, 1, 2, some landing is open to h (the three landings sit in three distinct
+  classes mod h, and at most two classes are struck).
+- PROVED [settle_two]: distinct primes h, h' >= 5 not dividing 2M: some axis k M with
+  k_0 <= k <= k_0 + 2 + 2h lands the origin on a column open to both. The first gear is settled
+  within three multiples; the second by strides of the first, which keep the first settled.
+- The same step adds any further gear at a stride equal to the product of the gears already
+  settled (the stride must be a multiple of each settled gear so they stay settled, and
+  coprime to the new one so its three landings are distinct classes). So r gears are settled
+  one after another within 2 (1 + h_1 + h_1 h_2 + ... + h_1 ... h_(r-1)) multiples of M. The
+  cost against the zone:
+
+| q | gears | zone length in k | gears settleable one after another inside the zone | the next one needs |
+|---|---|---|---|---|
+| 11 | 3 | 9 | 1 | 12 |
+| 31 | 9 | 77 | 2 | 82 |
+| 101 | 24 | 841 | 3 | 852 |
+| 401 | 77 | 13366 | 5 | 181032 |
+| 1009 | 167 | 84756 | 5 | 181032 |
+
+So the joint step, built by settling gears in sequence, stays inside the zone for the first
+two to five gears only: the stride is the product of the settled gears and the zone grows as
+q^2. The one-at-a-time construction is a proof for small sets and the exact reason it stops
+is the product. The joint step for all gears at once remains the open part, now with its
+per-gear cost proved.

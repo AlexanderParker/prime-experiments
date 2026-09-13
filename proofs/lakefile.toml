@@ -2256,3 +2256,6 @@ name = "MirrorWalk"
 
 [[lean_lib]]
 name = "MirrorWalkParts"
+
+[[lean_lib]]
+name = "MirrorWalkSettle"
