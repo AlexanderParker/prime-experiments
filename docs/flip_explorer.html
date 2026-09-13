@@ -28,13 +28,13 @@ th{color:var(--mut);font-weight:500}
 code{font-family:ui-monospace,monospace;font-size:12.5px}
 </style>
 <h1>Flip explorer</h1>
-<p class="lead">Rows are gears, columns the natural numbers (yellow: the gear divides a left member, n &equiv; 5 mod 6; red: a right member; grey: a number outside the twin slots). Tick the gears to include in the mirror; 2 and 3 are always in. The axis is the k-th mirror of the included gears above the origin: the k-th multiple of their product M above where you stand (k = 1 the nearest one above, k = 0 the nearest at or below, negative further down). The pattern of the included gears is symmetric about every multiple of M. Click a column to stand on it (the origin), then Flip: the origin&rsquo;s mirror image about the axis is the landing, the reflected stretch between them is shaded, and the table shows for every gear whether the flip carried its openness (the gear divides 2kM) or left it to chance. The window (q, q&sup2;] is boxed in purple; home (&minus;1, 1) is the column at &minus;1.</p>
+<p class="lead">Rows are gears, columns the natural numbers (yellow: the gear divides a left member, n &equiv; 5 mod 6; red: a right member; grey: a number outside the twin slots). Tick the gears to include in the mirror; 2 and 3 are always in. The axis sits relative to the origin pair: k periods of the included gears away from it, at the origin&rsquo;s centre plus k&middot;M (M the product of the included gears). Flipping the origin about that axis lands 2k&middot;M above the origin: the included gears see the same residues there (their pattern repeats every M), so their openness is carried; every other gear is left to chance. Click a column to stand on it (the origin), then Flip: the origin&rsquo;s mirror image about the axis is the landing, the reflected stretch between them is shaded, and the table shows for every gear whether the flip carried its openness (the gear divides 2kM) or left it to chance. The window (q, q&sup2;] is boxed in purple; home (&minus;1, 1) is the column at &minus;1.</p>
 <div class="ctl">
  <label>first number <input id="n0" type="number" value="-6"></label>
  <label>numbers <input id="nn" type="number" min="40" max="3000" value="240"></label>
  <label>gear rows <input id="ng" type="number" min="1" max="60" value="12"></label>
  <label>machine q <input id="q" type="number" min="5" value="13"></label>
- <label>mirror k from the origin <input id="k" type="number" min="-999" value="1"></label>
+ <label>periods k from the origin <input id="k" type="number" min="-999" value="1"></label>
  <button id="flip">Flip</button><button id="undo">Undo</button><button id="home">Stand at home</button>
  <label><input id="showrefl" type="checkbox" checked> shade the reflected stretch</label>
 </div>
@@ -54,10 +54,10 @@ function strikes(h,n){return mod(n,h)===0||mod(n+2,h)===0;}
 let S=new Set(),pos=-1,path=[{n:-1,axis:null}],lastFlip=null;
 function gearsShown(){return primes(+document.getElementById('ng').value||12);}
 function M(){let m=6;S.forEach(g=>m*=g);return m;}
-function axisFrom(origin,k){const m=M();return m*(Math.floor(origin/m)+k);}
+function axisFrom(origin,k){return origin+1+k*M();}
 function buildGears(){const box=document.getElementById('gsel');box.innerHTML='';gearsShown().forEach(g=>{const l=document.createElement('label');const c=document.createElement('input');c.type='checkbox';c.checked=S.has(g);c.addEventListener('change',()=>{if(c.checked)S.add(g);else S.delete(g);draw();});l.appendChild(c);l.appendChild(document.createTextNode(' '+g));box.appendChild(l);});}
 function draw(){const n0=+document.getElementById('n0').value,nn=+document.getElementById('nn').value||240,q=+document.getElementById('q').value||13,k=+document.getElementById('k').value||1;
- const G=gearsShown(),m=M(),a=axisFrom(pos,k);document.getElementById('Mtxt').textContent='M = '+m+' (2·3'+[...S].sort((x,y)=>x-y).map(g=>'·'+g).join('')+'); mirror '+k+' from the origin '+pos+' is the axis '+a+' = '+(a/m)+'·M';
+ const G=gearsShown(),m=M(),a=axisFrom(pos,k);document.getElementById('Mtxt').textContent='M = '+m+' (2·3'+[...S].sort((x,y)=>x-y).map(g=>'·'+g).join('')+'); axis = origin centre '+(pos+1)+' + '+k+'·M = '+a+'; landing = origin + '+(2*k*m);
  const cw=Math.max(3,Math.min(14,Math.floor(1500/nn))),rh=13,top=22,left=36,rows=G.length;
  cv.width=left+nn*cw+10;cv.height=top+rows*rh+8+rh+22;ctx.fillStyle='#000';ctx.fillRect(0,0,cv.width,cv.height);
  const xOf=n=>left+(n-n0)*cw;
@@ -80,8 +80,8 @@ function draw(){const n0=+document.getElementById('n0').value,nn=+document.getEl
  const every=Math.max(1,Math.round(60/cw));for(let i=0;i<nn;i+=every)ctx.fillText(String(n0+i),xOf(n0+i),cv.height-6);
  // table
  const tb=document.querySelector('#tbl tbody');tb.innerHTML='';
- G.forEach(h=>{const inS=S.has(h)||h===2||h===3;const carried=mod(2*a,h)===0;const so=strikes(h,pos),sl=strikes(h,L);const tr=document.createElement('tr');
-  tr.innerHTML='<td>'+h+'</td><td>'+(inS?'yes':'')+'</td><td class="'+(so?'no':'ok')+'">'+(so?'struck':'open')+'</td><td class="'+(sl?'no':'ok')+'">'+(sl?'struck':'open')+'</td><td>'+(carried?'yes (h | 2kM)':'no')+'</td>';tb.appendChild(tr);});
+ G.forEach(h=>{const inS=S.has(h)||h===2||h===3;const carried=mod(2*k*m,h)===0;const so=strikes(h,pos),sl=strikes(h,L);const tr=document.createElement('tr');
+  tr.innerHTML='<td>'+h+'</td><td>'+(inS?'yes':'')+'</td><td class="'+(so?'no':'ok')+'">'+(so?'struck':'open')+'</td><td class="'+(sl?'no':'ok')+'">'+(sl?'struck':'open')+'</td><td>'+(carried?'yes (h | 2kM, the period carries it)':'no')+'</td>';tb.appendChild(tr);});
  const tw=isPrime(L)&&isPrime(L+2);document.getElementById('path').innerHTML=path.map((p,i)=>i===0?'<div>start at <code>('+p.n+', '+(p.n+2)+')</code></div>':'<div>flip about '+p.axis+' → <code>('+p.n+', '+(p.n+2)+')</code></div>').join('')+'<div style="margin-top:6px;color:var(--mut)">next flip about '+a+' would land on <code>('+L+', '+(L+2)+')</code>'+(tw?' — a twin':'')+(q<L&&L+2<=q*q?' — inside the window':' — outside the window')+'</div>';}
 cv.addEventListener('click',e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left;const n0=+document.getElementById('n0').value,cw=Math.max(3,Math.min(14,Math.floor(1500/(+document.getElementById('nn').value||240))));let n=n0+Math.floor((x-36)/cw);n=n-mod(n-5,6);pos=n;path=[{n:n,axis:null}];draw();});
 document.getElementById('flip').addEventListener('click',()=>{const a=axisFrom(pos,+document.getElementById('k').value||0);const L=2*a-pos-2;pos=L;path.push({n:L,axis:a});draw();});
