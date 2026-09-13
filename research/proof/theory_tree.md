@@ -2279,6 +2279,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             costing a stride equal to the product of the settled ones, so 1, 2, 3, 5, 5 gears
             settle inside the zone at q = 11, 31, 101, 401, 1009. The joint step for all gears
             stays open, its per-gear cost now proved.
+          - R4.d.i.i.l. THE REPAIR WALK, THE CONSISTENT SEQUENTIAL WALK (owner, 2026-09-13:
+            find a consistent origin type with a consistent per-step rule; research/proof/
+            walk_parts.md; research/stack/r8/sequential_variants.py; kernel proofs/
+            MirrorWalkRepair.lean, round 48). The product-stride walk is inconsistent under
+            every origin (zone start, primorial-adjacent, square column, window middle), order
+            and step choice (best 236 of 426 to 3000). THE REPAIR WALK: origin the zone start;
+            rule at every step: take the smallest gear striking the current column and move
+            forward by the smallest amount that clears it (1 or 2); stop when no gear strikes.
+            MEASURED: lands on a twin inside the window at 2258 of 2258 machines to 20000;
+            steps mean 6.4, max 41; never passes an open column. PROVED: clear_step (a gear
+            striking k misses k+1 or k+2), Reach and Reach.trans, reach_first_open (a walk of
+            steps 1 or 2 that never passes an open column, started at or below an open
+            column, reaches an open column at or below it), so the walk stops at the first
+            column above q that no gear strikes; landing_twin makes it a twin below q^2. OPEN:
+            that the walk stops before the window's end, i.e. the first column above q open to
+            every gear lies below q^2 (the step count is L(q)). Blind, per-gear, one rule.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3536,3 +3552,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: counting will never work, do not attempt it; work the walk as parts (origin pair, step rules, each landing and its relation to the last step, target zone), each with its own proof, never the walk as one object. Manager (walk_parts.md; kernel MirrorWalkParts round 46): nine parts proved in the kernel, including the landing law (h strikes the landing iff 2a = n + 2 or n mod h), one gear never blocks a step (settled within three consecutive multiples), and the carry cap; the one open part is the joint step: one axis in the window settling every remaining gear at once. Memory saved: no counting proofs.
 - 2026-09-13, owner: both (the origin lever; the joint step for small sets). Manager (kernel MirrorWalkSettle round 47; walk_parts.md continued): anchor_certifies proved (origins certify by the class of L + v + 2), measured: home and the gear pairs certify the small gears only (40 of 429 at 3001); settle_two proved (two gears within k_0 + 2 + 2h), stride version of the one-gear step proved; settling in sequence costs the product of the settled gears, so two to five gears fit in the zone. The joint step remains the open part.
 - 2026-09-13, owner: does the unrestricted sequential walk land inside the window? Manager (walk_parts.md continued): the greedy settle walk (move only when the next gear strikes, stride the product of the settled gears) lands inside the window at 236 of 426 machines to 3000 and outside at 190; it leaves when a later gear strikes after the stride has passed the window and then cannot come back; inside cases are the seeing rule in disguise. Answer: no.
+- 2026-09-13, owner: do not rule the sequential walk out; look for a consistent origin type with a consistent per-step rule. Manager: product-stride variants all inconsistent; the repair walk (smallest striking gear, smallest clearing move, 1 or 2 columns) is consistent: 2258 of 2258 machines to 20000 land on a twin inside the window, never passing an open column; kernel round 48 proves the clearing step and that such a walk reaches the first open column; open: that this happens before q^2. Node R4.d.i.i.l.

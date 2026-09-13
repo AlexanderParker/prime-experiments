@@ -172,3 +172,39 @@ What this says:
 So the answer is no: unrestricted, the sequential walk lands inside the window at about half
 the machines and, once out, stays out. The blind per-gear walk cannot be made to land in the
 window by removing the restriction; the joint step stays the open part.
+
+## The repair walk: the consistent sequential walk (owner, 2026-09-13)
+
+Owner: do not rule the sequential walk out; look for a consistent origin type with a consistent
+per-step rule (step count may vary). Variants of the product-stride walk (origins: zone start,
+primorial-adjacent, square column, window middle; orders ascending and descending; step
+choices 0,1,2 and 0,-1,1; research/stack/r8/sequential_variants.py, machines to 3000): none is
+consistent; the best is the baseline (236 of 426); every variant leaves when a gear strikes
+after the stride has passed the window, and no origin controls the late gears' residues.
+
+The consistent one: THE REPAIR WALK. Origin: the zone start. Rule, the same at every step: take
+the smallest gear striking the current column and move forward by the smallest amount that
+clears it. Stop when no gear strikes.
+
+- Machines 11 to 20000: lands on a twin inside the window at 2258 of 2258. Steps: mean 6.4,
+  maximum 41 (q = 13007). Largest move: 2 columns. Open columns passed over by a move: 0.
+- Gears repaired over all walks: 5: 4478, 7: 2526, 11: 1626, 13: 1333, 17: 740, 19: 623, 23:
+  463, 29: 364, 31: 287, 43: 234.
+
+Its parts, proved (kernel proofs/MirrorWalkRepair.lean, round 48):
+
+- clear_step: a prime gear h >= 5 striking column k misses k + 1 or misses k + 2 (its two teeth
+  cover at most two of any three consecutive columns). So a step is always 1 or 2.
+- A step of 2 is taken only when k + 1 is struck by the clearing gear, so a step never passes a
+  column open to the machine.
+- reach_first_open: a walk with steps of 1 or 2 that never passes an open column, started at or
+  below an open column t, reaches an open column at or below t. So the repair walk from the
+  zone start stops at the first column above q that no gear strikes.
+- landing_twin: that column, if below q^2, is a twin prime pair.
+
+What is left, as a property of this walk: that it stops before the window's end, i.e. that the
+first column above q open to every gear lies below q^2. The step count is the painted run at
+the zone start, L(q) (mean 8.7, max 55 to 20000, against zones of millions). The walk is blind
+to any destination, every step is one gear's operation, the rule never changes, and its
+termination inside the window is exactly the one open statement, now attached to the first
+step sequence above q rather than to a record over the window.
