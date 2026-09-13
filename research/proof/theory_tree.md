@@ -2255,6 +2255,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             document); the bound wanted is at y^2/12. VERDICT: the mechanism proves the
             bound at y = 5 only; a proof must be a structural reason from the teeth, not a
             count.
+          - R4.d.i.i.k. THE WALK IN PARTS (owner, 2026-09-13: no counting, ever; the origin
+            pair, the step rule, each landing and its relation to the last step, the target
+            zone, each part its own proof; research/proof/walk_parts.md; kernel proofs/
+            MirrorWalkParts.lean, round 46, built, 0 sorries, standard axioms). PROVED PARTS:
+            origins (home open to all: home_open; a gear pair open to all but its members:
+            pair_open); the step (flip about a real axis, two steps slide: flip, flip_flip);
+            landing versus last step (carried gears keep openness: flip_carries; the landing
+            law: h strikes the landing iff 2a = n + 2 or 2a = n mod h: struck_flip_iff; one
+            class per side: same_class_of_struck; one gear never blocks a step, settled within
+            three consecutive multiples: exists_axis_open); steps in sequence (walk_eq,
+            openTo_walk_iff, walk_home_*); the target zone (landing_twin); the carry cap (the
+            carried primes' product is at most q^2/2: carried_product_le_window). OPEN PART:
+            the joint step, one axis in the window settling every remaining gear at once (two
+            gears follow by CRT within h h' multiples; all at once within the window is the
+            open statement, stated as a property of the step).
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3509,3 +3524,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: go (the sub-machine's wheel at phase -q). Manager (local; submachine_phase.py; walk_fields.md continued): below 2q painted = painted by the gears up to sqrt(2q), so the zone-start run is the sub-machine's run at phase k_0 and is bounded by its record; sub-machine records exact to y = 29 (2 .. 43, growing like y^2); the sufficient condition is the record route at the sub-machine; the prime phase is not special (runs at prime phases match all phases). Every coordinate leads to the record route; it is the invariant form of the one open statement.
 - 2026-09-13, owner: go the field (the record as a field). Manager (local; record_field.html, artifact published; record_field.py; walk_fields.md continued): each gear paints in double teeth (the two classes -+12^-1 sit close), a record run is a near-exact tiling by double teeth (single painters 68-100%), runs come in mirror pairs about half the period, the run sits where 5 and 7 interleave without slack; the growth reading is the budget inequality in field form, mechanism not proof.
 - 2026-09-13, owner: given the mechanism for growth, make a proof for the bound. Manager (record_bound_attempt.md): the paint budget is proved (two lemmas, a theorem) and gives R_5 <= 2, R_7 <= 8, R_11 <= 36, nothing from 13 on (2 sum 1/h exceeds 1); the overlap-corrected count is the sieve, positive only from length y^4.27 against the needed y^2/12; the mechanism explains the growth and proves the bound at y = 5 only. The one open statement stands: R_y < y^2/12 for y >= 7.
+- 2026-09-13, owner: counting will never work, do not attempt it; work the walk as parts (origin pair, step rules, each landing and its relation to the last step, target zone), each with its own proof, never the walk as one object. Manager (walk_parts.md; kernel MirrorWalkParts round 46): nine parts proved in the kernel, including the landing law (h strikes the landing iff 2a = n + 2 or n mod h), one gear never blocks a step (settled within three consecutive multiples), and the carry cap; the one open part is the joint step: one axis in the window settling every remaining gear at once. Memory saved: no counting proofs.
