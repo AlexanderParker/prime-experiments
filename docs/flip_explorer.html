@@ -37,7 +37,7 @@ code{font-family:ui-monospace,monospace;font-size:12.5px}
  <label>gear rows <input id="ng" type="number" min="1" max="60" value="12"></label>
  <label>numbers per view <input id="nn" type="number" min="40" max="3000" value="240"></label>
  <label>start column (left member) <input id="start" type="number" value="-1"></label>
- <button id="add">Add step</button><button id="remove">Remove last step</button>
+ <button id="add">Add step</button><button id="remove">Remove last step</button><button id="spiral">Load the spiral</button><button id="pspiral">Load the primorial spiral</button>
 </div>
 <div class="legend"><span><i style="background:#c9a227"></i>left member struck</span><span><i style="background:#b0332a"></i>right member struck</span><span><i style="background:#555"></i>outside the twin slots</span><span><i style="background:#1f6fd0"></i>origin</span><span><i style="background:#d04a1f"></i>landing</span><span><i style="background:#e6a3ff"></i>axis</span><span><i style="background:#7b3fbf"></i>window (q, q&sup2;]</span><span><i style="background:#7ee08a"></i>twin (all row)</span></div>
 <div id="steps"></div>
@@ -92,6 +92,17 @@ function drawAll(){steps.forEach((_,i)=>drawStep(i));
  if(steps.length){const L=landingOf(steps.length-1);txt+='. Final landing '+(isPrime(L)&&isPrime(L+2)?'is a twin':'is not a twin')+', '+(q<L&&L+2<=q*q?'inside':'outside')+' the window ('+q+', '+(q*q)+'].';}
  g('sumtxt').textContent=txt;}
 g('add').addEventListener('click',()=>{makeStep(steps.length);drawAll();});
+function loadSpiral(primorial){const q=+g('q').value||13;const all=[];for(let p=2;p<=q;p++)if(isPrime(p))all.push(p);
+ g('ng').value=Math.max(1,all.length-2);g('start').value=-1;
+ while(steps.length){steps.pop().el.remove();}
+ let base=[];if(primorial){let P=1;for(const p of all){if(P*p<=Math.floor(q/2)){P*=p;base.push(p);}else break;}}else base=[2];
+ const rest=all.filter(p=>!base.includes(p)).reverse();
+ rest.forEach((gg,i)=>{makeStep(i);const s=steps[i];s.k=1;s.dir=(i%2===0)?1:-1;base.forEach(b=>s.S.add(b));s.S.add(gg);
+  s.el.querySelector('.k').value=1;s.el.querySelector('.dir').value=String(s.dir);
+  s.el.querySelectorAll('.gears input').forEach(c=>{const h=+c.parentNode.textContent.trim();c.checked=s.S.has(h);});});
+ drawAll();}
+g('spiral').addEventListener('click',()=>loadSpiral(false));
+g('pspiral').addEventListener('click',()=>loadSpiral(true));
 g('remove').addEventListener('click',()=>{if(steps.length>1){const s=steps.pop();s.el.remove();drawAll();}});
 ['q','nn','start'].forEach(id=>g(id).addEventListener('input',drawAll));
 g('ng').addEventListener('input',()=>{const n=steps.length;while(steps.length){steps.pop().el.remove();}for(let i=0;i<n;i++)makeStep(i);drawAll();});
