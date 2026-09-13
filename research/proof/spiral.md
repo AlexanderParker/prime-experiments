@@ -73,3 +73,45 @@ Reading: the spiral's endpoint carries exactly the divisors of the alternating s
 {2, g} pairing; 2 and 3 with the {2, 3, g} pairing) and nothing else; every other gear meets the
 endpoint at its own rate. Passing through every gear leaves no residue trace beyond the gears
 that divide the sum.
+
+## Orders, gear sets, bases and stacking (owner's ideas, tested separately; 2026-09-13)
+
+Scripts research/stack/r8/spiral_ideas.py (machines 11 to 1500, 235 machines) and
+spiral_stack.py (11 to 2000). Endpoint E = -1 + 2 P_base A, A the alternating sum of the
+spiral's gears in the chosen order.
+
+| variant | E/q mean (min..max) | inside the window | E a twin | nearest twin median distance | gears carried |
+|---|---|---|---|---|---|
+| (1) order descending (the spiral) | 2.02 (1.70..2.39) | 235 of 235 | 8 | 12 | 1.24 |
+| (1) order ascending | -0.12 (-2.48..2.24) | 117 | 5 | 74 | 1.24 |
+| (1) order by the tooth 6^-1 mod g | -0.83 (-14.5..10.4) | 81 | 9 | 424 | 1.20 |
+| (1) order by tooth + gear | 0.50 (-11.1..11.3) | 109 | 8 | 70 | 1.16 |
+| (1) striking order (first strike above q) | 0.39 (-7.1..9.2) | 95 | 1 | 220 | 1.20 |
+| (1) random orders (5 per machine) | 0.90 (-49..54) | 560 of 1175 | 21 | 110 | 1.23 |
+| (2) gears below sqrt q only, descending | 0.11 (0.05..1.00) | 0 | 0 | 754 | 0.56 |
+| (2) gears below sqrt q, striking order | 0.02 (-0.34..1.00) | 0 | 0 | 772 | 0.48 |
+| (3) base {2,3,g}, all gears, descending | 6.07 (3.6..9.7) | 235 of 235 | 32 | 12 | 1.26 |
+| (3) base {2,3,g}, gears below sqrt q | 0.28 (-0.09..2.03) | 6 | 6 | 606 | 0.51 |
+| (3) base {2,3,g}, striking order | -1.03 (-27..21) | 99 | 11 | 678 | 1.13 |
+
+Stacking (spiral_stack.py): stages with bases {2}, {2,3}, {2,3,5}, ... while the base's product
+stays below q; the endpoint is the sum of the stage moves, so the stage order does not matter;
+E/q mean 219 (5.6..306), a twin at 3 of 299 machines, carried gears 1.34 (no accumulation: the
+carried set is the divisors of E + 1, and the stages' sums do not share divisors).
+
+Read off:
+
+- The order is what keeps the spiral in the window. Descending is the only order whose
+  alternating sum is pinned (0 <= A <= q, proved) and it lands near 2q every time; every other
+  order, the striking order included, lets the sum wander in sign and size and lands below q or
+  outside the window at half the machines or more.
+- The gear set below sqrt q is too small: its alternating sum is about sqrt(q)/2, so the
+  endpoint sits near 2 sqrt q, below the window at every machine. The higher gears do not blow
+  the landing out; they are what lift it to 2q, and the proved bound A <= q keeps it inside.
+- The base {2,3,g} lands at 6q, on a slot member always, a twin at 14 percent (the slot rate
+  there); the base {2} lands at 2q, on a slot member a third of the time, a twin at 3 percent.
+- Carried gears stay near one per machine in every variant: no order, set or base makes the
+  alternating sum collect gears as divisors. Stacking does not accumulate them either.
+
+So of the ideas, the spiral as first found (descending, base {2} or {2,3}, all gears) is the
+one with a proved landing zone; the others lose the landing before they could gain anything.
