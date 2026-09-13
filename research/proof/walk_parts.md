@@ -236,3 +236,25 @@ The landing is a twin exactly when all those congruences fall right, and no choi
 gear set or multiple made from q alone lines them up: the landings of the q-dependent rules are
 twins at the rate the carried gears predict and no more. A one-flip rule that always lands on a
 twin would have to carry every gear, and the carry cap forbids that inside the window.
+
+## The owner's spiral (found by hand on the flip explorer, machines 5 to 23; 2026-09-13)
+
+Phase 1, the spiral: from home (-1, 1), one flip per gear, k = 1, the mirror set {2, g} for
+g = q, then the next lower gear, down to 3, directions alternating up, down, up, ... Each flip
+moves by 2 M = 4g, so the spiral ends at
+
+    E(q) = -1 + 4 (q - p' + p'' - p''' + ... +- 3),
+
+the alternating sum of the odd gears, four times, from home. Phase 2: one more flip of 2 or 3
+(up or down) lands on a twin.
+
+Checked (machines 5 to 5000): the endpoint E(q) sits between 1.4 q and 2.7 q (mean 2.01 q), so
+phase 1 lands inside the window by construction at every machine, using every gear once, no
+test of anything. Phase 2: the nearest twin in the window is within 6 of E (one flip of 2 or 3)
+at 8 of 8 machines to 29, 7 of 15 to 100, 47 of 143 to 1000, 113 of 501 to 5000; the distance
+to the nearest twin grows with q (mean 3.2, 7.7, 16.2, 22.6 in those ranges; median 14 overall,
+largest 100 at q = 5000). So the spiral is a deterministic mirror walk into the window near 2q
+(a formula position), and the closing flip works for the small machines because twins are
+dense near 2q there; at larger machines the closing step needs a scan of growing length.
+Endpoints: q = 5: 7; 7: 19; 11: 23; 13: 27; 17: 39; 19: 35; 23: 55; 29: 59 (a twin itself);
+31: 63; 37: 83.
