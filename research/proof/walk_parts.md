@@ -138,3 +138,37 @@ two to five gears only: the stride is the product of the settled gears and the z
 q^2. The one-at-a-time construction is a proof for small sets and the exact reason it stops
 is the product. The joint step for all gears at once remains the open part, now with its
 per-gear cost proved.
+
+## The unrestricted sequential walk (owner's question, 2026-09-13)
+
+Owner: if the steps are not restricted to the window, does the sequential walk land on a pair
+inside the window? Built as the greedy settle walk: start at the zone start k_0; for each gear
+h = 5, 7, 11, ... in turn, if the current landing is struck by h move by the stride D (the
+product of the gears already settled), trying j = 0, 1, 2; then D := D h. Every step is one
+per-gear operation, blind to any destination; the final landing is open to every gear of the
+machine by construction.
+
+Machines 11 to 3000 (426): the final landing lies inside the window at 236, outside at 190.
+Moves per walk: mean 2.5, at most 9. The gear that forced the last move: none (59 walks: the
+zone start was already open to everything), 7 (47), 5 (45), 11 (45), 13 (27), 263 (14), 23
+(14), 29 (14). First outside cases: q = 293, 347, 349, 353 all end at k = 50,708,377,339,650
+(the last move forced by 43, after the stride had passed the window); q = 431, 433 end at a
+k of 100 digits (last move forced by 263).
+
+What this says:
+
+- The walk stays inside exactly when every move happens while the stride is still small, i.e.
+  when the first few gears' moves already reach a column no later gear strikes. In those cases
+  the walk is the seeing rule in disguise: the column it stops on is the first aligned twin
+  above k_0 reachable by those small moves.
+- The walk leaves when a later gear strikes the current column after the stride has grown past
+  the window: the move by the stride jumps to the scale of the product. The landing there is
+  unstruck by every gear up to q but far above q^2, so nothing says it is prime. It cannot come
+  back: the column's class modulo the product is fixed, and the class's representative in the
+  window is the one it did not land on.
+- The same final k for whole runs of machines (293 to 353) shows the walk's path depends only
+  on which gears strike along the way, not on q, until a new gear enters.
+
+So the answer is no: unrestricted, the sequential walk lands inside the window at about half
+the machines and, once out, stays out. The blind per-gear walk cannot be made to land in the
+window by removing the restriction; the joint step stays the open part.
