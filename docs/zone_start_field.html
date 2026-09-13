@@ -1,0 +1,48 @@
+<title>Zone Start Field</title>
+<style>
+:root{--bg:#f6f4ee;--ink:#1c1a17;--mut:#6b665c;--line:#d8d2c4;--pan:#fffdf8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}}
+:root[data-theme="dark"]{--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif;margin:0;padding-block:12px;padding-inline:16px}
+h1{font-size:18px;margin:0 0 4px;font-weight:600}
+p.lead{margin:0 0 10px;color:var(--mut);max-width:80ch}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:8px 10px;border:1px solid var(--line);background:var(--pan);border-radius:4px;margin-bottom:8px;position:sticky;top:0;z-index:2}
+.ctl label{display:flex;gap:6px;align-items:center}
+input[type=number]{width:6em;font:inherit}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0;color:var(--mut);font-size:13px}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:5px;border-radius:2px}
+.wrap{overflow-x:auto;border:1px solid var(--line);background:#000;border-radius:4px}
+canvas{display:block}
+.box{border:1px solid var(--line);background:var(--pan);border-radius:4px;padding:8px 10px;margin-top:8px;font-size:13px}
+code{font-family:ui-monospace,monospace;font-size:12.5px}
+</style>
+<h1>Zone start field</h1>
+<p class="lead">The paint just above the top gear q. Columns are the natural numbers q + d. Row h is painted where h divides q + d (one class of d per row, phase fixed by q). Twin slots (numbers 1 or 5 mod 6) show the kill colour, yellow left member, red right member; other numbers white. The all row: bright green = a twin prime pair, dark green = an aligned twin (midpoint a multiple of 12, the walk&rsquo;s landing family), dark blue = a prime, black = composite. The purple tick marks the walk&rsquo;s landing, the first aligned twin above q. Rows are drawn up to the largest gear that can reach the shown range (5h &le; q + N); rows above it paint nothing here.</p>
+<div class="ctl">
+ <label>q <input id="q" type="number" min="5" value="1009"></label>
+ <label>numbers shown <input id="nn" type="number" min="30" max="4000" value="600"></label>
+ <label>rows (gears) <input id="ng" type="number" min="1" max="120" value="40"></label>
+</div>
+<div class="legend"><span><i style="background:#c9a227"></i>row h divides the left member</span><span><i style="background:#b0332a"></i>row h divides the right member</span><span><i style="background:#8a8a8a"></i>row h divides a number outside the twin slots</span><span><i style="background:#7ee08a"></i>twin prime pair</span><span><i style="background:#2fbf6a"></i>aligned twin (walk landing family)</span><span><i style="background:#132b45"></i>prime</span><span><i style="background:#7b3fbf"></i>the walk lands</span></div>
+<div class="wrap"><canvas id="c"></canvas></div>
+<div class="box" id="info"></div>
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+function isPrime(n){if(n<2)return false;if(n%2===0)return n===2;for(let d=3;d*d<=n;d+=2)if(n%d===0)return false;return true;}
+function draw(){const q=+document.getElementById('q').value||1009,nn=+document.getElementById('nn').value||600,ng=+document.getElementById('ng').value||40;
+ const gears=[];for(let p=5;gears.length<ng&&p<=q;p++)if(isPrime(p))gears.push(p);
+ const reach=gears.filter(h=>5*h<=q+nn);const rows=reach.length?reach:gears.slice(0,1);
+ const cw=Math.max(2,Math.min(12,Math.floor(1500/nn))),rh=12,top=16,left=40;
+ cv.width=left+nn*cw+10;cv.height=top+rows.length*rh+8+rh+22;ctx.fillStyle='#000';ctx.fillRect(0,0,cv.width,cv.height);
+ let landing=null;
+ for(let d=1;d<=nn;d++){const n=q+d,x=left+(d-1)*cw;const slot=(n%6===1||n%6===5);
+  rows.forEach((h,i)=>{if(n%h===0){ctx.fillStyle=slot?(n%6===5?'#c9a227':'#b0332a'):'#8a8a8a';ctx.fillRect(x,top+i*rh,cw-1,rh-1);}});
+  const y=top+rows.length*rh+8;let col='#000';
+  if(isPrime(n)){col='#132b45';if(n%6===5&&isPrime(n+2)){col='#7ee08a';if((n+1)%12===0){col='#2fbf6a';if(landing===null)landing=n;}}}
+  ctx.fillStyle=col;ctx.fillRect(x,y,cw-1,rh-1);}
+ if(landing!==null){const x=left+(landing-q-1)*cw;ctx.fillStyle='#7b3fbf';ctx.fillRect(x,top-8,cw,6);}
+ ctx.fillStyle='#bbb';ctx.font='10px monospace';rows.forEach((h,i)=>ctx.fillText(String(h),2,top+i*rh+9));ctx.fillText('all',2,top+rows.length*rh+8+9);
+ const every=Math.max(1,Math.round(60/cw));for(let d=1;d<=nn;d+=every)ctx.fillText(String(q+d),left+(d-1)*cw,cv.height-6);
+ document.getElementById('info').innerHTML='q = '+q+'; rows able to reach q + '+nn+': '+rows.length+' of the first '+gears.length+' gears (largest '+rows[rows.length-1]+'); gears above '+Math.floor((q+nn)/5)+' paint nothing in this range. The walk lands at '+(landing===null?'(beyond the shown range)':('<code>('+landing+', '+(landing+2)+')</code>, offset '+(landing-q)+' above q'))+'.';}
+document.querySelectorAll('input').forEach(e=>e.addEventListener('input',draw));draw();
+</script>
