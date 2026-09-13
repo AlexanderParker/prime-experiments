@@ -123,3 +123,25 @@ Stacking with the initial direction alternating per layer (owner, 2026-09-14): l
 Base {2,3,5} (owner, 2026-09-14): spiral over the gears from 7 up (descending) with the mirror {2,3,5,g}, each step moving 60 d g; endpoint E = -1 + 60 A7. Machines 11 to 5000: E between 21.7 q and 41.5 q (mean 30.1 q); inside the window at 658 of 665 (the misses are q below 30, where 30q exceeds q^2); E a twin at 65 of the 658, rate 0.099, against 0.102 for a random slot column open to 5 (the base is carried, nothing else is); nearest twin median 30 away; carried gears beyond the base 1.21 per machine. For comparison base {2}: 2q, twin rate 0.033; base {2,3}: 6q, rate 0.090. Each base buys exactly its own gears' factor in the twin rate and moves the landing up by the base's product.
 
 Base {2,3,5,7} (owner, 2026-09-14): spiral over the gears from 11 up, step 420 d g, endpoint E = -1 + 420 A11. Machines 11 to 5000: E between 64 q and 420 q (mean 211 q); inside the window at 622 of 665, the first at q = 181 (below that 210 q exceeds q^2); E a twin at 67 of the 622, rate 0.108, against 0.116 for a random slot column open to 5 and 7; nearest twin median 30; carried gears beyond the base 1.06. The base is carried and nothing more, as at every smaller base; the next base {2,3,5,7,11} would land near 2310 q and enter the window only from q = 2311.
+
+## The max-base spiral (owner's rule, 2026-09-14)
+
+Rule: the base is every lower gear whose running product stays at most q/2 (2, then 2 3, then
+2 3 5, ... as long as the product is at most q/2); the spiral runs over the remaining gears,
+descending, each step with the mirror {base, g}, directions alternating; endpoint
+E = -1 + 2 P A, P the base's product, A the alternating sum of the gears above the base.
+
+- Inside the window at every machine 11 to 20000 (2258 of 2258). The upper end is proved:
+  A <= q (altSum_le_head) and P <= q/2 give E < q^2. The lower end (E > q) is measured; the
+  landing sits at 0.20 q^2 on average, at most 0.56 q^2.
+- Base sizes: 1 gear at q = 11; 2 from 13; 3 from 61; 4 from 421; 5 from 4621. The base changes
+  exactly where the next primorial passes q/2.
+- E a twin at 205 of 2258 (0.091), the slot rate adjusted for the carried base; nearest twin
+  median 42 away, largest 768; gears carried beyond the base 1.17 per machine.
+- Examples: q = 61, base 2 3 5, E = 32.4 q; q = 421, base 2 3 5 7, E = 181.6 q; q = 4621, base
+  2 3 5 7 11, E = 2322.5 q, nearest twin 228 away.
+
+So the max-base spiral is a blind mirror walk with a proved ceiling, landing inside the window
+at every machine tried, carrying the largest base the window admits (about log q gears) and
+about one chance gear beyond it. It is the spiral in its strongest exact form; the gears above
+the base still meet its endpoint at their own rate.
