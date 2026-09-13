@@ -1,4 +1,4 @@
-# The spiral (owner's find, 2026-09-13; formalised the same day)
+# The spiral and the primorial spiral (owner's find, 2026-09-13; formalised the same day; the primorial spiral named 2026-09-14)
 
 ## Definition
 
@@ -124,7 +124,7 @@ Base {2,3,5} (owner, 2026-09-14): spiral over the gears from 7 up (descending) w
 
 Base {2,3,5,7} (owner, 2026-09-14): spiral over the gears from 11 up, step 420 d g, endpoint E = -1 + 420 A11. Machines 11 to 5000: E between 64 q and 420 q (mean 211 q); inside the window at 622 of 665, the first at q = 181 (below that 210 q exceeds q^2); E a twin at 67 of the 622, rate 0.108, against 0.116 for a random slot column open to 5 and 7; nearest twin median 30; carried gears beyond the base 1.06. The base is carried and nothing more, as at every smaller base; the next base {2,3,5,7,11} would land near 2310 q and enter the window only from q = 2311.
 
-## The max-base spiral (owner's rule, 2026-09-14)
+## The primorial spiral (owner's rule, 2026-09-14; named 2026-09-14)
 
 Rule: the base is every lower gear whose running product stays at most q/2 (2, then 2 3, then
 2 3 5, ... as long as the product is at most q/2); the spiral runs over the remaining gears,
@@ -141,7 +141,28 @@ E = -1 + 2 P A, P the base's product, A the alternating sum of the gears above t
 - Examples: q = 61, base 2 3 5, E = 32.4 q; q = 421, base 2 3 5 7, E = 181.6 q; q = 4621, base
   2 3 5 7 11, E = 2322.5 q, nearest twin 228 away.
 
-So the max-base spiral is a blind mirror walk with a proved ceiling, landing inside the window
+So the primorial spiral is a blind mirror walk with a proved ceiling, landing inside the window
 at every machine tried, carrying the largest base the window admits (about log q gears) and
 about one chance gear beyond it. It is the spiral in its strongest exact form; the gears above
 the base still meet its endpoint at their own rate.
+
+## Named: the primorial spiral. The closing step by base flips (owner, 2026-09-14)
+
+The max-base spiral is named the primorial spiral: its base is the largest primorial below
+q/2, and a gear joins the base exactly when its primorial passes q/2.
+
+Owner's suspicion: the jump from the endpoint to a twin is a flip about the base's own mirror
+(2, 3, ... whatever the base is), up or down. Tested, machines 11 to 20000 (2258): from the
+endpoint E, flips about the base mirror land at E + 2kP and E - 2kP, all open to the base by
+construction.
+
+- A twin at E itself or one base flip away: 546 of 2258. Within three base flips: 1062. Every
+  machine reaches a twin within 400 base flips (largest needed 34).
+- Smallest number of base flips to a twin: median 4, mean 5.5. First hit up 1077, down 976, at
+  E 205: no preferred direction.
+
+So one base flip is not the rule. The base-mirror landings are slot columns open to the base
+and nothing more, and a twin appears among them at the base-adjusted slot rate (about 0.09 to
+0.12 per landing), which gives the geometric pattern seen: a quarter at the first flip, half
+within three, a tail to 34. The base mirror keeps the base carried exactly; it does not steer
+the other gears.

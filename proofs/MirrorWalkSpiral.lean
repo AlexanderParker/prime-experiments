@@ -1,5 +1,8 @@
 /-
-MirrorWalkSpiral (round 49, 2026-09-13): the owner's spiral, formalised.
+MirrorWalkSpiral (round 49, 2026-09-13): the owner's spiral, formalised.  With a base B in place of {2}
+(the mirror {B, g} at every step, the endpoint -1 + 2 P_B A over the gears above the base) the same
+closed form holds with 4 replaced by 2 P_B; the primorial spiral takes B = the smallest gears whose
+product stays at most q/2 (named 2026-09-14), so that A <= q gives an endpoint below q^2.
 
 The spiral of machine q: from home (-1, 1), one flip per odd gear g = q, p', p'', ..., 3 (the odd
 primes up to q, descending), each about the axis one period of {2, g} from the current column
