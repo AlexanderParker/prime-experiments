@@ -2295,6 +2295,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             column above q that no gear strikes; landing_twin makes it a twin below q^2. OPEN:
             that the walk stops before the window's end, i.e. the first column above q open to
             every gear lies below q^2 (the step count is L(q)). Blind, per-gear, one rule.
+          - R4.d.i.i.m. THE SPIRAL (owner's find on the flip explorer, 2026-09-13; formalised
+            the same day; research/proof/spiral.md; kernel proofs/MirrorWalkSpiral.lean, round
+            49). DEFINITION: from home, one flip per odd gear g = q, p', ..., 3 about the axis
+            one period of {2, g} from the current column, directions alternating up, down,
+            ...; each flip moves by 4 d g. PROVED: the closed form E(q) = -1 + 4 A(q), A the
+            alternating sum of the odd gears (spiral_step, spiral_eq, spiral_home); the
+            endpoint is open to every gear dividing A (spiralEnd_open_of_dvd); the endpoint is
+            below 4q, hence below q^2 for q >= 5, so the spiral never overshoots the window
+            (altSum_le_head, spiralEnd_lt). MEASURED to 20000: E between 1.40 q and 2.71 q
+            (mean 2.003 q), above q at every machine (A > (q+1)/4, a gap statement, not
+            proved); E mod 6 is 1, 3, 5 in equal shares (the mirrors {2, g} do not carry 3);
+            gears dividing A, carried to E: 1.6 per machine; nearest twin within 6 of E at
+            every machine to 29, then at a falling rate (median distance 14 to 5000). STATUS:
+            the first blind, mirror-only walk that enters the window from the machine's
+            structure alone; the launch point for what follows.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3556,3 +3571,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: mirrors are transport; search for a one-flip gear-selection rule (origin pair, extra gears such as q or the gear before q, multiple) that always lands on a twin in the window. Manager (gear_selection.py; walk_parts.md continued): 700 rules on machines 11..3000 plus 288 q-dependent ones; none perfect; the top fixed-axis rules land on one fixed twin and succeed only while it lies in the window; the q-dependent rules land on twins at 0.10-0.13, the random rate 0.068 times the factor the carried gears buy (about 2.3); nothing beyond the carried gears. A perfect one-flip rule would have to carry every gear, which the carry cap forbids inside the window.
 - 2026-09-13, owner found a spiral by hand on the flip explorer (machines 5..23): from home, one flip per gear with the mirror set {2, g} for g = q down to 3, directions alternating, then one flip of 2 or 3 onto a twin. Manager: the spiral ends at E = -1 + 4 (q - p' + p'' - ... +- 3), between 1.4q and 2.7q at every machine to 5000 (a formula landing inside the window using every gear once); the closing flip reaches a twin within 6 at 8 of 8 machines to 29, then 7/15, 47/143, 113/501 up to 5000, the distance to the nearest twin growing (median 14, max 100). Recorded in walk_parts.md.
 - 2026-09-13, owner: the closing move after the spiral may depend on whether q is a twin member. Manager: no; left members, right members and isolated q all need one or two flips at about 30 percent of machines to 5000 and the offsets spread the same way; the closing distance is the twin gap near 2q.
+- 2026-09-13, owner: define and formalise the spiral objectively, the best lead, as the launch point for further exploration. Manager (spiral.md; kernel MirrorWalkSpiral round 49): definition fixed; closed form E = -1 + 4 A(q) proved; carried gears = divisors of A proved; E < 4q < q^2 proved; E > q measured to 20000 (between 1.40 q and 2.71 q); E mod 6 uniform over 1, 3, 5. Node R4.d.i.i.m.
