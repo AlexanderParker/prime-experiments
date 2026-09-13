@@ -168,3 +168,32 @@ within three, a tail to 34. The base mirror keeps the base carried exactly; it d
 the other gears.
 
 Stacking the spiral and the primorial spiral (owner, 2026-09-14), machines 11 to 20000: the spiral alone lands at 0.001 q^2 on average (near 2q), inside at all, a twin at 68, carrying 1.58 gears (divisors of E + 1); the primorial spiral alone at 0.200 q^2, inside at all, a twin at 205, carrying 3.85 gears (its base plus about one); the spiral then the primorial spiral (both starting up) at 0.201 q^2, inside at all, a twin at 29, carrying 1.54 gears, the endpoint spread over the classes 1, 3, 5 mod 6 like the plain spiral; with the second starting down the sum goes negative at every machine; the primorial spiral then the spiral (down) lands inside at 2257 with 24 twins. Stacking loses the base: E + 1 = 4 A1 + 2 P A2 is divisible by the base only when the base divides A1, so the carried set falls back to the plain spiral's and the endpoint leaves the slot grid. The primorial spiral alone is strictly better than any stack containing it.
+
+## Phase 2 as residue avoidance (owner, 2026-09-14)
+
+Owner: the high gear's period must be an open residue and get lucky with the composite
+killers; if we know the killers we pick an upper gear that is not one. Made exact:
+
+- The final step {3, h} from the spiral's landing E lands at L = E + 6h (up) or E - 6h (down).
+  It is open to 2 and 3 by construction, and to h itself iff E is open to h (the mirror
+  carries h). For every other gear g, by the landing law (MirrorWalk.struck_flip_iff): g
+  strikes L iff 6h = -E or -(E + 2) (mod g) for the up flip, 6h = E or E + 2 (mod g) for the
+  down flip. So each gear forbids exactly two residue classes of h, both computed from E,
+  which phase 1 gives in closed form.
+- Checked at every machine 11 to 199, both directions, every high gear in reach: the high
+  gears that avoid every forbidden class are exactly the hits of the table (0 mismatches once
+  the check is written as a boolean). Examples of the forbidden classes for the down flip:
+  q = 47 (E = 323): 5 forbids h = 0, 3; 7 forbids 4, 6; 11 forbids 1, 8; 13 forbids 0, 4; the
+  passing h are 7, 29, 31, 37 down and 23, 41 up. q = 197 (E = 6719): passing 173, 193 up and
+  163 down.
+
+So the algorithm for the final step is: from E, list the two forbidden classes per gear; take
+the first gear above sqrt q (either direction) that sits in no forbidden class; flip about
+{3, h}. The landing is a twin by the landing law and the square-root rule (every gear up to q
+consulted, L below q^2). No primality is tested; residues are.
+
+What this is and is not: it is the direct construction again on the gear line, with the
+classes now fixed by the spiral's E instead of by g^2; the killers per gear are known, the
+choice of h is a sieve on the high gears against two classes per gear; whether some high gear
+in reach always passes is the second-sieve statement (measured: 98 of 100 machines to 569 have
+a passing h with the mirror {3, h}; the two exceptions have passing subsets of other shapes).
