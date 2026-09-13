@@ -3577,3 +3577,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner corrected: base = all gears below sqrt q, spiral over the gears above. Manager: the base's product outgrows the window from q = 29; inside at 9 of 299 machines to 2000; the carry cap in spiral form.
 - 2026-09-14, owner: stacking with the initial direction alternating per layer. Manager: the layers cancel, the endpoint goes negative at most machines (inside the window 36 of 299 to 2000, against 289 with all layers starting up); no carry accumulation; recorded in spiral.md.
 - 2026-09-14, owner: spiral with base 2,3,5. Manager: lands at 30q (inside from q = 31), twin at 0.099, the rate of a slot column open to 5; the base is carried and nothing more; recorded in spiral.md.
+- 2026-09-14, owner: spiral with base 2,3,5,7. Manager: lands at about 211q, inside from q = 181, twin at 0.108 against 0.116 for a slot column open to 5 and 7; the base is carried, nothing more.
