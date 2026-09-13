@@ -1,0 +1,92 @@
+<title>Flip Explorer</title>
+<style>
+:root{--bg:#f6f4ee;--ink:#1c1a17;--mut:#6b665c;--line:#d8d2c4;--pan:#fffdf8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}}
+:root[data-theme="dark"]{--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif;margin:0;padding-block:12px;padding-inline:16px}
+h1{font-size:18px;margin:0 0 4px;font-weight:600}
+p.lead{margin:0 0 10px;color:var(--mut);max-width:84ch}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:8px 10px;border:1px solid var(--line);background:var(--pan);border-radius:4px;margin-bottom:8px;position:sticky;top:0;z-index:2}
+.ctl label{display:flex;gap:5px;align-items:center}
+input[type=number]{width:5.5em;font:inherit}
+button{font:inherit;padding:3px 10px;border:1px solid var(--line);background:var(--pan);color:var(--ink);border-radius:3px;cursor:pointer}
+button.on{background:var(--ink);color:var(--bg)}
+.gears{display:flex;flex-wrap:wrap;gap:4px 10px}
+.gears label{font-family:ui-monospace,monospace;font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0;color:var(--mut);font-size:13px}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:5px;border-radius:2px}
+.wrap{overflow-x:auto;border:1px solid var(--line);background:#000;border-radius:4px}
+canvas{display:block}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+@media(max-width:720px){.panel{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);background:var(--pan);border-radius:4px;padding:8px 10px;font-size:13px}
+.box h2{font-size:12px;margin:0 0 6px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:12.5px}
+td,th{padding:2px 6px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--mut);font-weight:500}
+.ok{color:#2f8f4e}.no{color:#b0332a}
+code{font-family:ui-monospace,monospace;font-size:12.5px}
+</style>
+<h1>Flip explorer</h1>
+<p class="lead">Rows are gears, columns the natural numbers (yellow: the gear divides a left member, n &equiv; 5 mod 6; red: a right member; grey: a number outside the twin slots). Tick the gears to include in the mirror; 2 and 3 are always in. The axis is a multiple k&middot;M of their product M: the pattern of the included gears is symmetric about it. Click a column to stand on it (the origin), then Flip: the origin&rsquo;s mirror image about the axis is the landing, the reflected stretch between them is shaded, and the table shows for every gear whether the flip carried its openness (the gear divides 2kM) or left it to chance. The window (q, q&sup2;] is boxed in purple; home (&minus;1, 1) is the column at &minus;1.</p>
+<div class="ctl">
+ <label>first number <input id="n0" type="number" value="-6"></label>
+ <label>numbers <input id="nn" type="number" min="40" max="3000" value="240"></label>
+ <label>gear rows <input id="ng" type="number" min="1" max="60" value="12"></label>
+ <label>machine q <input id="q" type="number" min="5" value="13"></label>
+ <label>multiple k <input id="k" type="number" min="-999" value="1"></label>
+ <button id="flip">Flip</button><button id="undo">Undo</button><button id="home">Stand at home</button>
+ <label><input id="showrefl" type="checkbox" checked> shade the reflected stretch</label>
+</div>
+<div class="ctl"><span>gears in the mirror:</span><div class="gears" id="gsel"></div><span id="Mtxt"></span></div>
+<div class="legend"><span><i style="background:#c9a227"></i>left member struck</span><span><i style="background:#b0332a"></i>right member struck</span><span><i style="background:#555"></i>outside the twin slots</span><span><i style="background:#1f6fd0"></i>origin</span><span><i style="background:#d04a1f"></i>landing</span><span><i style="background:#e6a3ff"></i>axis</span><span><i style="background:#7b3fbf"></i>window (q, q&sup2;]</span><span><i style="background:#7ee08a"></i>twin (all row)</span></div>
+<div class="wrap"><canvas id="c"></canvas></div>
+<div class="panel">
+ <div class="box"><h2>This flip, gear by gear</h2><table id="tbl"><thead><tr><th>gear</th><th>in mirror</th><th>origin</th><th>landing</th><th>carried</th></tr></thead><tbody></tbody></table></div>
+ <div class="box"><h2>Path</h2><div id="path"></div></div>
+</div>
+<script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+function isPrime(n){if(n<2)return false;if(n%2===0)return n===2;for(let d=3;d*d<=n;d+=2)if(n%d===0)return false;return true;}
+function primes(n){const o=[];for(let p=5;o.length<n;p++)if(isPrime(p))o.push(p);return o;}
+function mod(a,m){return ((a%m)+m)%m;}
+function strikes(h,n){return mod(n,h)===0||mod(n+2,h)===0;}
+let S=new Set(),pos=-1,path=[{n:-1,axis:null}],lastFlip=null;
+function gearsShown(){return primes(+document.getElementById('ng').value||12);}
+function M(){let m=6;S.forEach(g=>m*=g);return m;}
+function buildGears(){const box=document.getElementById('gsel');box.innerHTML='';gearsShown().forEach(g=>{const l=document.createElement('label');const c=document.createElement('input');c.type='checkbox';c.checked=S.has(g);c.addEventListener('change',()=>{if(c.checked)S.add(g);else S.delete(g);draw();});l.appendChild(c);l.appendChild(document.createTextNode(' '+g));box.appendChild(l);});}
+function draw(){const n0=+document.getElementById('n0').value,nn=+document.getElementById('nn').value||240,q=+document.getElementById('q').value||13,k=+document.getElementById('k').value||1;
+ const G=gearsShown(),m=M(),a=k*m;document.getElementById('Mtxt').textContent='M = '+m+' (2·3'+[...S].sort((x,y)=>x-y).map(g=>'·'+g).join('')+'); axis k·M = '+a;
+ const cw=Math.max(3,Math.min(14,Math.floor(1500/nn))),rh=13,top=22,left=36,rows=G.length;
+ cv.width=left+nn*cw+10;cv.height=top+rows*rh+8+rh+22;ctx.fillStyle='#000';ctx.fillRect(0,0,cv.width,cv.height);
+ const xOf=n=>left+(n-n0)*cw;
+ // window
+ if(q*q>n0){ctx.fillStyle='rgba(123,63,191,.25)';const x1=Math.max(xOf(q+1),left),x2=Math.min(xOf(q*q+1),left+nn*cw);if(x2>x1)ctx.fillRect(x1,top-4,x2-x1,rows*rh+rh+14);}
+ // reflected stretch
+ const L=2*a-pos-2;
+ if(document.getElementById('showrefl').checked){const lo=Math.min(pos,L),hi=Math.max(pos,L)+2;const x1=Math.max(xOf(lo),left),x2=Math.min(xOf(hi+1),left+nn*cw);if(x2>x1){ctx.fillStyle='rgba(230,163,255,.12)';ctx.fillRect(x1,top-4,x2-x1,rows*rh+rh+14);}}
+ for(let i=0;i<nn;i++){const n=n0+i,x=xOf(n);const slot=(mod(n,6)===1||mod(n,6)===5);
+  G.forEach((h,r)=>{if(mod(n,h)===0){ctx.fillStyle=slot?(mod(n,6)===5?'#c9a227':'#b0332a'):'#555';ctx.fillRect(x,top+r*rh,cw-1,rh-1);}});
+  const y=top+rows*rh+8;let col='#000';if(mod(n,6)===5){const open=G.every(h=>!strikes(h,n));if(isPrime(n)&&isPrime(n+2))col='#7ee08a';else if(open)col='#2f6f3f';}
+  ctx.fillStyle=col;ctx.fillRect(x,y,cw-1,rh-1);}
+ // axis line at value a (between numbers): reflection n <-> 2a-n-2 has centre a-1 in column coordinates
+ const xa=xOf(a-1)+cw/2;ctx.strokeStyle='#e6a3ff';ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(xa,top-10);ctx.lineTo(xa,top+rows*rh+8+rh);ctx.stroke();ctx.setLineDash([]);
+ ctx.fillStyle='#e6a3ff';ctx.font='10px monospace';ctx.fillText('axis '+a,xa+3,8);
+ // origin and landing boxes
+ const box=(n,c)=>{ctx.strokeStyle=c;ctx.lineWidth=2;ctx.strokeRect(xOf(n)-1,top-3,3*cw+1,rows*rh+rh+12);ctx.lineWidth=1;};
+ box(pos,'#1f6fd0');box(L,'#d04a1f');
+ ctx.fillStyle='#bbb';ctx.font='10px monospace';G.forEach((h,r)=>ctx.fillText(String(h),2,top+r*rh+10));ctx.fillText('all',2,top+rows*rh+8+10);
+ const every=Math.max(1,Math.round(60/cw));for(let i=0;i<nn;i+=every)ctx.fillText(String(n0+i),xOf(n0+i),cv.height-6);
+ // table
+ const tb=document.querySelector('#tbl tbody');tb.innerHTML='';
+ G.forEach(h=>{const inS=S.has(h)||h===2||h===3;const carried=mod(2*a,h)===0;const so=strikes(h,pos),sl=strikes(h,L);const tr=document.createElement('tr');
+  tr.innerHTML='<td>'+h+'</td><td>'+(inS?'yes':'')+'</td><td class="'+(so?'no':'ok')+'">'+(so?'struck':'open')+'</td><td class="'+(sl?'no':'ok')+'">'+(sl?'struck':'open')+'</td><td>'+(carried?'yes (h | 2kM)':'no')+'</td>';tb.appendChild(tr);});
+ const tw=isPrime(L)&&isPrime(L+2);document.getElementById('path').innerHTML=path.map((p,i)=>i===0?'<div>start at <code>('+p.n+', '+(p.n+2)+')</code></div>':'<div>flip about '+p.axis+' → <code>('+p.n+', '+(p.n+2)+')</code></div>').join('')+'<div style="margin-top:6px;color:var(--mut)">next flip about '+a+' would land on <code>('+L+', '+(L+2)+')</code>'+(tw?' — a twin':'')+(q<L&&L+2<=q*q?' — inside the window':' — outside the window')+'</div>';}
+cv.addEventListener('click',e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left;const n0=+document.getElementById('n0').value,cw=Math.max(3,Math.min(14,Math.floor(1500/(+document.getElementById('nn').value||240))));let n=n0+Math.floor((x-36)/cw);n=n-mod(n-5,6);pos=n;path=[{n:n,axis:null}];draw();});
+document.getElementById('flip').addEventListener('click',()=>{const a=(+document.getElementById('k').value||1)*M();const L=2*a-pos-2;pos=L;path.push({n:L,axis:a});draw();});
+document.getElementById('undo').addEventListener('click',()=>{if(path.length>1){path.pop();pos=path[path.length-1].n;draw();}});
+document.getElementById('home').addEventListener('click',()=>{pos=-1;path=[{n:-1,axis:null}];draw();});
+['n0','nn','q','k','showrefl'].forEach(id=>document.getElementById(id).addEventListener('input',draw));
+document.getElementById('ng').addEventListener('input',()=>{buildGears();draw();});
+buildGears();draw();
+</script>
