@@ -197,3 +197,32 @@ classes now fixed by the spiral's E instead of by g^2; the killers per gear are 
 choice of h is a sieve on the high gears against two classes per gear; whether some high gear
 in reach always passes is the second-sieve statement (measured: 98 of 100 machines to 569 have
 a passing h with the mirror {3, h}; the two exceptions have passing subsets of other shapes).
+
+## The forbidden classes as fields (owner, 2026-09-14)
+
+Owner: the forbidden values have the known, proved shape of each field type (squares, products
+of j gears, ...); link the residue test to those findings. Done as a killer map
+(research/stack/r8/results_phase2_killers.txt): for every high gear h in reach at every machine
+11 to 2000, the landing L = E +- 6h either passes (a twin) or is charged to the one field that
+strikes it: higher:g with g the smallest gear factor of the struck member, the member (left L or
+right L + 2) and the order j of the composite.
+
+- Candidates 86,396; pass 3,639; kills 82,757.
+- Kills by field: higher:5 42,041; higher:7 14,584; higher:11 5,325; higher:13 3,764; higher:17
+  2,456; higher:19 1,951; higher:23 1,469; higher:29 1,048; higher:31 884; higher:37 691. The
+  small gears' fields take the kills in the order of the fields' own shares of the line (the
+  higher:g field is g times the survivors of the gears below g, kernel FieldsC).
+- Kills by order of the struck composite: order 2: 34,924; 3: 32,439; 4: 12,483; 5: 2,554; 6:
+  324; 7: 33. Orders 2 and 3 take 81 percent, orders above 7 never appear, as the order
+  ceiling says (5^j <= q^2).
+- Left and right members struck equally (41,509 and 41,248). The square field never strikes a
+  landing (0 of 82,757): the landings E +- 6h are not squares.
+
+The link, exact: the two forbidden classes of h modulo g are the trace of the multiples field
+of g on the landing family {E +- 6h}. Partitioned by smallest factor, the failures are the
+traces of the higher:g fields, each of which is proved to be g times the survivors of the gears
+below g and periodic; so the residue test is the statement "L and L + 2 lie in no higher:g field
+for g <= q", and a high gear passes exactly when its landing escapes every field's trace. What
+the fields give beyond the two classes per gear is the accounting: which field takes each
+failure, in the proved proportions. What they do not give is a reason the traces of all the
+fields on the high-gear line never cover it, which is the open statement.
