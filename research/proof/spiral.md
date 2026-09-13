@@ -115,3 +115,5 @@ Read off:
 
 So of the ideas, the spiral as first found (descending, base {2} or {2,3}, all gears) is the
 one with a proved landing zone; the others lose the landing before they could gain anything.
+
+Base = all gears below sqrt q (owner's correction, 2026-09-13): spiral over the gears above sqrt q with the mirror {all gears <= sqrt q, g}; endpoint E = -1 + 2 P_B A_high, P_B the product of the base. The base's product outgrows the window: q = 11 .. 23 (base 2, 3): E at 0.2 to 0.9 q^2, inside; from q = 29 (base 2, 3, 5) E passes q^2 at most machines; machines 11 to 2000: inside the window 9 of 299, twins among those 3. The base below sqrt q is the carry-cap wall in spiral form: its product must stay below q^2 / 2, and the primorial of sqrt q does not.
