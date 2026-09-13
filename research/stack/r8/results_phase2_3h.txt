@@ -1,0 +1,101 @@
+the {3, h} rows per machine: hits of the form S = {3, h} with h a single gear above sqrt q (landing E +- 6h); listed as h+ or h-
+q = 11: E = 23; gears above sqrt q in reach 3 (x2 directions); hits 0: 
+q = 13: E = 47; gears above sqrt q in reach 4 (x2 directions); hits 1: 5-
+q = 17: E = 155; gears above sqrt q in reach 5 (x2 directions); hits 1: 7+
+q = 19: E = 71; gears above sqrt q in reach 6 (x2 directions); hits 5: 5+ 5- 7- 11+ 13+
+q = 23: E = 203; gears above sqrt q in reach 7 (x2 directions); hits 4: 11+ 11- 13+ 17-
+q = 29: E = 143; gears above sqrt q in reach 7 (x2 directions); hits 3: 7- 17- 23+
+q = 31: E = 227; gears above sqrt q in reach 8 (x2 directions); hits 3: 7+ 13- 31-
+q = 37: E = 215; gears above sqrt q in reach 9 (x2 directions); hits 5: 11+ 11- 13- 19- 29-
+q = 41: E = 275; gears above sqrt q in reach 10 (x2 directions); hits 5: 13- 23- 29- 31+ 41+
+q = 43: E = 239; gears above sqrt q in reach 11 (x2 directions); hits 5: 7+ 7- 17- 23- 37+
+q = 47: E = 323; gears above sqrt q in reach 12 (x2 directions); hits 6: 7- 23+ 29- 31- 37- 41+
+q = 53: E = 311; gears above sqrt q in reach 12 (x2 directions); hits 3: 19- 29- 43+
+q = 59: E = 395; gears above sqrt q in reach 13 (x2 directions); hits 7: 11+ 19- 29+ 37+ 41+ 41- 43-
+q = 61: E = 1979; gears above sqrt q in reach 14 (x2 directions); hits 5: 17+ 17- 43+ 43- 47-
+q = 67: E = 2039; gears above sqrt q in reach 15 (x2 directions); hits 2: 17+ 53-
+q = 71: E = 2219; gears above sqrt q in reach 16 (x2 directions); hits 3: 13- 23- 37-
+q = 73: E = 2159; gears above sqrt q in reach 17 (x2 directions); hits 5: 13+ 13- 37+ 47- 73-
+q = 79: E = 2579; gears above sqrt q in reach 18 (x2 directions); hits 3: 13+ 37+ 73-
+q = 83: E = 2399; gears above sqrt q in reach 19 (x2 directions); hits 5: 43+ 43- 53- 67+ 67-
+q = 89: E = 2939; gears above sqrt q in reach 20 (x2 directions); hits 3: 23- 47- 53+
+q = 97: E = 2879; gears above sqrt q in reach 21 (x2 directions); hits 4: 13- 37- 83- 97+
+q = 101: E = 3179; gears above sqrt q in reach 22 (x2 directions); hits 3: 13+ 47+ 67+
+q = 103: E = 2999; gears above sqrt q in reach 23 (x2 directions); hits 3: 43+ 97+ 103-
+q = 107: E = 3419; gears above sqrt q in reach 24 (x2 directions); hits 5: 23+ 67+ 83+ 97+ 103-
+q = 109: E = 3119; gears above sqrt q in reach 25 (x2 directions); hits 3: 23+ 53- 73+
+q = 113: E = 3659; gears above sqrt q in reach 26 (x2 directions); hits 7: 13- 17- 43+ 67- 83+ 97+ 113+
+q = 127: E = 3959; gears above sqrt q in reach 26 (x2 directions); hits 7: 23- 43+ 47+ 67- 83- 113+ 127+
+q = 131: E = 3899; gears above sqrt q in reach 27 (x2 directions); hits 10: 13- 17+ 43+ 53+ 53- 73+ 73- 97+ 103+ 107-
+q = 137: E = 4319; gears above sqrt q in reach 28 (x2 directions); hits 9: 13- 17+ 17- 53+ 53- 67+ 67- 83- 127-
+q = 139: E = 4019; gears above sqrt q in reach 29 (x2 directions); hits 9: 17- 23+ 37+ 53+ 67+ 73- 83+ 103+ 127-
+q = 149: E = 4919; gears above sqrt q in reach 30 (x2 directions); hits 11: 17+ 47- 67- 73- 83+ 83- 97+ 97- 113- 127- 137+
+q = 151: E = 4139; gears above sqrt q in reach 31 (x2 directions); hits 10: 13+ 17+ 23- 37- 47+ 53- 83+ 97+ 97- 113-
+q = 157: E = 5279; gears above sqrt q in reach 32 (x2 directions); hits 6: 23+ 37+ 43- 107- 127- 157-
+q = 163: E = 4499; gears above sqrt q in reach 33 (x2 directions); hits 11: 13- 23+ 37+ 43- 47- 83- 97- 113- 157+ 157- 163+
+q = 167: E = 5519; gears above sqrt q in reach 34 (x2 directions); hits 7: 13- 17- 23+ 37+ 83- 113+ 167-
+q = 173: E = 4859; gears above sqrt q in reach 34 (x2 directions); hits 10: 23- 37- 73- 97+ 103+ 103- 107+ 107- 157- 173-
+q = 179: E = 5879; gears above sqrt q in reach 35 (x2 directions); hits 6: 23- 37- 53+ 67- 73- 137+
+q = 181: E = 4979; gears above sqrt q in reach 36 (x2 directions); hits 10: 43- 73+ 83+ 83- 107- 113+ 127+ 127- 137- 163-
+q = 191: E = 6479; gears above sqrt q in reach 37 (x2 directions); hits 8: 37+ 47+ 47- 137- 163+ 163- 167- 173-
+q = 193: E = 5099; gears above sqrt q in reach 38 (x2 directions); hits 8: 53+ 67+ 97- 103- 107+ 113- 127- 157-
+q = 197: E = 6719; gears above sqrt q in reach 39 (x2 directions); hits 3: 163- 173+ 193+
+q = 199: E = 5219; gears above sqrt q in reach 40 (x2 directions); hits 9: 37+ 43+ 47+ 73+ 83- 97- 163+ 163- 167-
+q = 211: E = 7439; gears above sqrt q in reach 41 (x2 directions); hits 4: 53+ 73+ 113- 193+
+q = 223: E = 5939; gears above sqrt q in reach 42 (x2 directions); hits 6: 43+ 47- 73- 83- 127+ 137+
+q = 227: E = 7679; gears above sqrt q in reach 43 (x2 directions); hits 5: 37- 163- 193+ 197+ 227+
+q = 229: E = 6059; gears above sqrt q in reach 44 (x2 directions); hits 9: 23+ 53- 67- 97- 103- 107+ 107- 173- 223-
+q = 233: E = 7919; gears above sqrt q in reach 45 (x2 directions); hits 5: 103+ 113+ 157+ 193- 227+
+q = 239: E = 6419; gears above sqrt q in reach 46 (x2 directions); hits 10: 37- 47+ 113- 127- 157- 163- 167- 173+ 223+ 233-
+q = 241: E = 8039; gears above sqrt q in reach 47 (x2 directions); hits 7: 47- 83+ 97- 137+ 167+ 223- 233+
+q = 251: E = 7019; gears above sqrt q in reach 48 (x2 directions); hits 5: 43- 53- 73+ 137- 227-
+q = 257: E = 8399; gears above sqrt q in reach 49 (x2 directions); hits 7: 23+ 73+ 107+ 107- 157+ 157- 173+
+q = 263: E = 7379; gears above sqrt q in reach 50 (x2 directions); hits 5: 83+ 103- 113- 193+ 197-
+q = 269: E = 8759; gears above sqrt q in reach 51 (x2 directions); hits 7: 17+ 37- 47+ 97+ 113+ 167- 257+
+q = 271: E = 7499; gears above sqrt q in reach 52 (x2 directions); hits 5: 43+ 173+ 223+ 227+ 257+
+q = 277: E = 9119; gears above sqrt q in reach 53 (x2 directions); hits 9: 37+ 43- 47- 53+ 97- 197+ 223+ 227- 277-
+q = 281: E = 7739; gears above sqrt q in reach 54 (x2 directions); hits 6: 23+ 47- 163- 173- 257+ 257-
+q = 283: E = 9239; gears above sqrt q in reach 55 (x2 directions); hits 8: 17+ 37+ 67- 73+ 103+ 107- 227- 283+
+q = 293: E = 8339; gears above sqrt q in reach 55 (x2 directions); hits 8: 43+ 83+ 97- 157+ 167+ 223+ 263- 283+
+q = 307: E = 10079; gears above sqrt q in reach 56 (x2 directions); hits 10: 37+ 37- 67- 103- 107- 163+ 173+ 173- 257- 283+
+q = 311: E = 8579; gears above sqrt q in reach 57 (x2 directions); hits 4: 43+ 47+ 127+ 137-
+q = 313: E = 10199; gears above sqrt q in reach 58 (x2 directions); hits 8: 43+ 127- 193- 223- 227- 263+ 277- 307+
+q = 317: E = 8819; gears above sqrt q in reach 59 (x2 directions); hits 8: 37+ 37- 47- 103+ 107+ 157- 173+ 227-
+q = 331: E = 11039; gears above sqrt q in reach 60 (x2 directions); hits 11: 97- 113+ 167+ 167- 197- 223+ 227- 263- 283- 293- 313+
+q = 337: E = 9179; gears above sqrt q in reach 61 (x2 directions); hits 10: 23- 43+ 47+ 53- 83+ 97- 107- 113+ 293+ 313+
+q = 347: E = 11639; gears above sqrt q in reach 62 (x2 directions); hits 11: 23+ 67+ 97- 197+ 197- 223- 227+ 263+ 283+ 293+ 347+
+q = 349: E = 9299; gears above sqrt q in reach 63 (x2 directions); hits 9: 23+ 43- 73- 127- 167+ 193+ 257- 293+ 307-
+q = 353: E = 11879; gears above sqrt q in reach 64 (x2 directions); hits 15: 47+ 83+ 127- 137- 157+ 157- 173+ 223+ 263- 307+ 307- 313+ 337+ 337- 353+
+q = 359: E = 9659; gears above sqrt q in reach 65 (x2 directions); hits 8: 37- 53- 103- 107+ 137- 233+ 317- 353+
+q = 367: E = 12359; gears above sqrt q in reach 65 (x2 directions); hits 11: 53- 97- 107+ 107- 163+ 173+ 227+ 233+ 257+ 317- 367+
+q = 373: E = 10019; gears above sqrt q in reach 66 (x2 directions); hits 11: 47+ 73+ 97- 113- 163- 173+ 193- 197- 283+ 293+ 337+
+q = 379: E = 12719; gears above sqrt q in reach 67 (x2 directions); hits 14: 47+ 83+ 103+ 113+ 113- 157- 167+ 167- 173+ 193+ 197+ 227+ 277- 307+
+q = 383: E = 10259; gears above sqrt q in reach 68 (x2 directions); hits 10: 37- 67- 97- 113+ 137- 163- 233- 277- 317+ 353+
+q = 389: E = 13079; gears above sqrt q in reach 69 (x2 directions); hits 11: 23+ 43+ 43- 53+ 107+ 113+ 137+ 167+ 173- 227- 337-
+q = 397: E = 10739; gears above sqrt q in reach 70 (x2 directions); hits 11: 47- 53+ 73- 163+ 173+ 233- 283- 313- 317- 347+ 367-
+q = 401: E = 13319; gears above sqrt q in reach 71 (x2 directions); hits 14: 53- 67+ 67- 73+ 83- 97+ 113+ 127+ 157- 167+ 193- 257- 367- 397-
+q = 409: E = 11219; gears above sqrt q in reach 72 (x2 directions); hits 14: 47- 83+ 127- 137+ 157+ 193+ 197- 227- 257- 283+ 293- 313- 353+ 397-
+q = 419: E = 13919; gears above sqrt q in reach 73 (x2 directions); hits 9: 67+ 97- 107+ 167- 257- 277+ 293- 313- 367-
+q = 421: E = 76439; gears above sqrt q in reach 74 (x2 directions); hits 9: 47- 73- 137+ 137- 163+ 173+ 173- 283+ 373-
+q = 431: E = 104579; gears above sqrt q in reach 75 (x2 directions); hits 10: 37+ 193- 257+ 283+ 317- 347+ 347- 367+ 397+ 397-
+q = 433: E = 77279; gears above sqrt q in reach 76 (x2 directions); hits 7: 23+ 53- 193+ 277- 283+ 313- 353+
+q = 439: E = 107099; gears above sqrt q in reach 77 (x2 directions); hits 9: 23- 53- 73- 103+ 137- 163- 227+ 233+ 383-
+q = 443: E = 78959; gears above sqrt q in reach 78 (x2 directions); hits 8: 73+ 137- 157+ 173+ 257- 283- 347+ 373+
+q = 449: E = 109619; gears above sqrt q in reach 79 (x2 directions); hits 4: 37+ 193- 317- 443-
+q = 457: E = 82319; gears above sqrt q in reach 80 (x2 directions); hits 10: 47- 67+ 73+ 103- 173- 233+ 257- 317+ 367+ 443+
+q = 461: E = 111299; gears above sqrt q in reach 81 (x2 directions); hits 6: 137- 163- 173+ 347+ 373+ 457+
+q = 463: E = 83159; gears above sqrt q in reach 82 (x2 directions); hits 12: 67+ 67- 73- 157- 193+ 227+ 283+ 313- 353- 367+ 397- 443+
+q = 467: E = 112979; gears above sqrt q in reach 83 (x2 directions); hits 9: 37- 67+ 103- 107+ 107- 277+ 397+ 443- 467+
+q = 479: E = 88199; gears above sqrt q in reach 84 (x2 directions); hits 10: 23+ 103+ 107- 163- 227+ 233+ 283+ 367+ 373+ 397-
+q = 487: E = 116339; gears above sqrt q in reach 85 (x2 directions); hits 10: 73- 163- 173- 193+ 227+ 257+ 257- 283- 383- 467-
+q = 491: E = 89879; gears above sqrt q in reach 86 (x2 directions); hits 13: 23+ 37- 47- 53+ 53- 157+ 257- 263+ 313- 373- 383+ 443- 467+
+q = 499: E = 119699; gears above sqrt q in reach 87 (x2 directions); hits 11: 37+ 47+ 47- 67- 173+ 227+ 313+ 347- 367- 443- 467+
+q = 503: E = 91559; gears above sqrt q in reach 88 (x2 directions); hits 11: 103+ 137+ 157- 193- 227- 233+ 257- 277- 317- 367+ 457-
+q = 509: E = 122219; gears above sqrt q in reach 89 (x2 directions); hits 12: 47+ 107- 193+ 193- 227+ 317+ 347+ 353+ 373- 383- 467- 487-
+q = 521: E = 96599; gears above sqrt q in reach 90 (x2 directions); hits 10: 23+ 37+ 67+ 107- 163+ 193- 283+ 367- 383+ 443+
+q = 523: E = 123059; gears above sqrt q in reach 91 (x2 directions); hits 4: 53+ 53- 353- 523-
+q = 541: E = 104159; gears above sqrt q in reach 91 (x2 directions); hits 10: 37+ 53- 107+ 233- 277- 347- 353+ 397+ 443- 467+
+q = 547: E = 125579; gears above sqrt q in reach 92 (x2 directions); hits 6: 53+ 173- 233- 367- 373+ 443+
+q = 557: E = 108359; gears above sqrt q in reach 93 (x2 directions); hits 8: 107- 193+ 233- 263- 283- 347- 353+ 373-
+q = 563: E = 128099; gears above sqrt q in reach 94 (x2 directions); hits 6: 47- 233+ 257+ 367- 457+ 563+
+q = 569: E = 110879; gears above sqrt q in reach 95 (x2 directions); hits 8: 67- 173- 227- 313+ 367+ 397- 443+ 457+
