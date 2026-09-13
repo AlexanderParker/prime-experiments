@@ -258,3 +258,5 @@ largest 100 at q = 5000). So the spiral is a deterministic mirror walk into the 
 dense near 2q there; at larger machines the closing step needs a scan of growing length.
 Endpoints: q = 5: 7; 7: 19; 11: 23; 13: 27; 17: 39; 19: 35; 23: 55; 29: 59 (a twin itself);
 31: 63; 37: 83.
+
+Closing move against the status of q (owner, 2026-09-13): whether q is the left member of a twin (q+2 prime), the right member (q-2 prime) or isolated does not fix the closing move. Machines 5 to 5000: the nearest twin lies within one or two flips of 2 and 3 (offset in -+2, -+4, -+6, -+10) at 30 of 125 left-member machines, 41 of 125 right-member, 124 of 417 isolated (all near 30 percent), and the offsets themselves spread over the same values in every class (small machines: left members 4, 6, 2, 0, -8, -12, -2; right members -2, 2, 6, -4, 10, 14, -2; isolated 4, -12, 6, -8, 6, -14, 12, 4, -2). The spiral endpoint is a formula position near 2q; the closing distance is the twin gap there, not a function of q.
