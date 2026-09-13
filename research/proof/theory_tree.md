@@ -2220,6 +2220,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             sqrt(2q); exceptions only 11..23. The open statement at the zone start: the
             gears up to sqrt(2q), phased by q, cannot paint every aligned column from q to
             q^2; the length of their painted run at phase -q is the twin gap above q.
+            THE SUB-MACHINE AT PHASE -q (owner: go; submachine_phase.py): exact chain, below
+            2q painted = painted by B(q) = gears up to sqrt(2q), so L(q) <= R_B (the m-line
+            record of the sub-machine) whenever R_B < q/12; sub-machine records exact over
+            full periods: R_y = 2, 4, 7, 9, 17, 19, 34, 43 for y = 5..29, between y^2/20 and
+            y^2/12, the same y^2 growth as the certified F(q); L <= R_B at 73 of 77 machines
+            (misses 11..23 overshoot 2q). The sufficient condition in the limit is
+            R_y < y^2/12: the record route (8c) at the sub-machine; every coordinate used
+            (window, square zone, zone start) leads to it. The prime phase -q is NOT special:
+            runs at prime phases match all phases (y = 13, 17, 19; 18k primes to 200,000).
+            VERDICT: exact location and mechanism (the sub-machine lays the paint), no reason
+            for the record's bound; the record route is the invariant form.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3471,3 +3482,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: the proof document needs a full rewrite, it mixes approaches and carries stale content. Manager: proof_skeleton.md rewritten around one chain (construction 1-5; the mirror walk 6-10 with kernel names; the walk as an algorithm 11-12; the one open statement 13, the m-line record below the window; what a proof must produce 14; standing 15); the previous document kept as proof_skeleton_2026-09-11.md; docs/proof_by_construction.html rewritten to match.
 - 2026-09-13, owner: not covering versus capacity; show nothing stops the walk by identifying which fields each step passes through and why each steers to the landing zone. Manager (local; walk_fields.md; node R4.d.i.i.j; proof document 14 rewritten): only the multiples rows paint the landing zone, everything else is a relabelling; rows independent mod the product of the gears; the walk is stopped only by a painted run anchored at the zone start, L(q), the twin gap above q in m-line columns, mean 8.7 and max 55 to 20000 against zones of millions; the open statement is now the first aligned twin above q lying below q^2, decided by the paint just above q.
 - 2026-09-13, owner: draw and read the paint just above q. Manager (local; zone_start_field.html; zone_start.py; walk_fields.md continued): row h painted at d = -q mod h; only gears up to (q + d)/5 reach offset d; the run at the zone start is painted by the machine of size sqrt(2q) as smallest factors (machines 29..20000, run at most 0.36 q, smallest gears at most 0.78 sqrt(2q)); the open statement read at the zone start is the painted run of the small gears at phase -q, the twin gap above q.
+- 2026-09-13, owner: go (the sub-machine's wheel at phase -q). Manager (local; submachine_phase.py; walk_fields.md continued): below 2q painted = painted by the gears up to sqrt(2q), so the zone-start run is the sub-machine's run at phase k_0 and is bounded by its record; sub-machine records exact to y = 29 (2 .. 43, growing like y^2); the sufficient condition is the record route at the sub-machine; the prime phase is not special (runs at prime phases match all phases). Every coordinate leads to the record route; it is the invariant form of the one open statement.

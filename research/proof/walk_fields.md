@@ -109,3 +109,59 @@ paint every aligned column from q up to q^2. Whatever they paint in (q, 2q) they
 smallest factors of the composites there, with the cofactors following; above 2q the larger
 gears join with their own small multiples. The question is the length of the painted run at
 the phase -q of the small gears, which is the twin gap above q.
+
+## The sub-machine's wheel at phase -q (owner: go; 2026-09-13)
+
+Script research/stack/r8/submachine_phase.py.
+
+Exact chain. Below 2q every painted member of the landing family is a composite below 2q, so
+it has a prime factor at most sqrt(2q): below 2q, painted by the machine = painted by the
+sub-machine B(q) = the gears up to sqrt(2q). So the run at the zone start, L(q), is the painted
+run of the B(q)-wheel on the m-line at the phase k_0, as long as it stays below 2q; and
+L(q) <= R_B, the m-line record of the sub-machine (its longest painted run over a full period),
+whenever R_B < q/12. More generally, with B the gears up to sqrt(q + l): if R_B < l/12 the run
+cannot reach l.
+
+The sub-machine records, exact over full periods (opens = the CRT survivors, prod (h - 2) per
+period; the record = the largest gap between consecutive opens):
+
+| y | period on the m-line | opens per period | record R_y | R_y / (y^2/24) |
+|---|---|---|---|---|
+| 5 | 5 | 3 | 2 | 1.92 |
+| 7 | 35 | 15 | 4 | 1.96 |
+| 11 | 385 | 135 | 7 | 1.39 |
+| 13 | 5,005 | 1,485 | 9 | 1.28 |
+| 17 | 85,085 | 22,275 | 17 | 1.41 |
+| 19 | 1,616,615 | 378,675 | 19 | 1.26 |
+| 23 | 37,182,145 | 7,952,175 | 34 | 1.54 |
+| 29 | 1,078,282,205 | 214,708,725 | 43 | 1.23 |
+
+R_y grows like y^2 (between y^2/20 and y^2/12 here), the same growth as the certified records
+F(q) of the full machine (6F/q^2 between 0.28 and 0.42). L(q) <= R_{B(q)} at 73 of the 77
+machines with sqrt(2q) <= 29 (the four misses are q = 11 .. 23, where the run overshoots 2q);
+L(q) is far below R_B at every one (at q = 419: L = 0, R = 34).
+
+What the sufficient condition becomes. With B the gears up to sqrt((1 + c) q) the condition is
+R_B < c q / 12; since R_y is about y^2/20, this needs c > 1.5 and in the limit of large c it is
+R_y < y^2/12, the record route (8c) on the m-line for the sub-machine. Every coordinate we
+have used (the full window, the square zone, the zone start) leads to the same statement: the
+record of a wheel of gears up to y stays below y^2/12 (the constant depending on the
+coordinate). The record route is the invariant form.
+
+Is the phase -q special? No. For the wheel of the gears 5..y at every phase of one period,
+against the phases k_0(q) for the primes q to 200,000:
+
+| y | all phases: mean run, max | prime phases -q: mean run, max | share with run >= 5: all, prime |
+|---|---|---|---|
+| 13 | 1.94, 9 | 2.09, 9 | 0.100, 0.110 |
+| 17 | 2.32, 17 | 2.50, 14 | 0.153, 0.168 |
+| 19 | 2.70, 19 | 2.89, 19 | 0.204, 0.219 |
+
+The prime phases behave like all phases. The walk's short runs (L mean 8.7 to 20000) against
+the sub-machine records (34, 43) are what any phase gets: the record is the worst phase, and
+the zone start is an ordinary one.
+
+Standing after this step: the zone-start reading is exact and it lands on the record route at
+the sub-machine, with the record's known y^2 growth and known margins. It gives a location
+(the first aligned twin above q) and a mechanism (the sub-machine lays the paint), and it does
+not give a reason the record stays below y^2/12.
