@@ -2265,3 +2265,6 @@ name = "MirrorWalkRepair"
 
 [[lean_lib]]
 name = "MirrorWalkSpiral"
+
+[[lean_lib]]
+name = "MirrorWalkFinal"

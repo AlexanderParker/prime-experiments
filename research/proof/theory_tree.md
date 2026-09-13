@@ -2310,6 +2310,20 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             every machine to 29, then at a falling rate (median distance 14 to 5000). STATUS:
             the first blind, mirror-only walk that enters the window from the machine's
             structure alone; the launch point for what follows.
+          - R4.d.i.i.n. THE LOCATOR IN TWO PHASES: PRIMORIAL SPIRAL, THEN THE FINAL STEP BY
+            RESIDUES (owner, 2026-09-14; research/proof/spiral.md; kernel proofs/
+            MirrorWalkFinal.lean, round 50, built, 0 sorries, standard axioms; docs/
+            flip_explorer.html has buttons for both phases; research/stack/r8/
+            results_phase2_pass.txt). PHASE 1 PROVED: the primorial spiral lands at
+            E = -1 + 2 P A below q^2 (P the primorial below q/2). PHASE 2 PROVED: the step
+            {3, h} lands at E + 6 d h; gear g strikes it iff 6 d h = -E or -(E + 2) mod g
+            (strikes_landing_iff), so each gear forbids two classes of h computed from E;
+            a high gear avoiding every class lands on a twin below q^2 (avoid_iff_open,
+            final_step_twin via section_twin_of_unstruck). MEASURED to 20000: a passing high
+            gear exists at 2257 of 2258 machines (none at q = 11); passing share of the high
+            gears in reach 0.028; the smallest passing h is 1.85 sqrt q at the median, at
+            most 14.6 sqrt q. OPEN: that a passing high gear always exists, the second-sieve
+            statement on the high gears with classes fixed by E.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3582,3 +3596,4 @@ Part III or Part IV of the proof document?
 - 2026-09-14, owner named the max-base spiral the primorial spiral, and suspected the closing jump is a flip about the base mirror. Manager: base flips from the endpoint reach a twin at the first flip at 546 of 2258 machines to 20000, within three at 1062, all within 34; median 4, no preferred direction; the base-mirror landings are base-open slot columns at the base-adjusted twin rate; recorded in spiral.md.
 - 2026-09-14, owner: stack the spiral and the primorial spiral. Manager: the stack loses the base (E + 1 = 4 A1 + 2 P A2), carried gears fall from 3.85 to 1.54, twins from 205 to 29 of 2258 machines to 20000, the endpoint leaves the slot grid; the primorial spiral alone is strictly better.
 - 2026-09-14, owner: the final step's high gear must sit in an open residue against the composite killers; knowing the killers, pick a gear that is not one. Manager (spiral.md continued): made exact by the landing law: for the mirror {3, h} from E each gear forbids two classes of h computed from E (6h = -E, -(E+2) mod g up; E, E+2 down); the high gears avoiding every class are exactly the hits (0 mismatches, machines 11..199); the final-step algorithm is a residue sieve on the high gears, blind to primality; existence of a passing h is the second-sieve statement (98 of 100 machines to 569 with {3, h}).
+- 2026-09-14, owner: all three (kernel, table to 20000, explorer button). Manager: MirrorWalkFinal round 50 proves the forbidden classes and that an avoiding high gear lands on a twin; the table shows a passing high gear at 2257 of 2258 machines to 20000 (none at 11), smallest passing h about 1.85 sqrt q at the median; the flip explorer gained a button that adds the final step by residues from the current landing. Node R4.d.i.i.n.

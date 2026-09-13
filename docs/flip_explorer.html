@@ -36,7 +36,7 @@ code{font-family:ui-monospace,monospace;font-size:12.5px}
  <span>machine q <button id="qdn">−</button> <b id="qv">13</b> <button id="qup">+</button></span><input id="q" type="hidden" value="13"><input id="ng" type="hidden" value="4">
  <label>numbers per view <input id="nn" type="number" min="40" max="3000" value="240"></label>
  <label>start column (left member) <input id="start" type="number" value="-1"></label>
- <button id="add">Add step</button><button id="remove">Remove last step</button><button id="spiral">Load the spiral</button><button id="pspiral">Load the primorial spiral</button>
+ <button id="add">Add step</button><button id="remove">Remove last step</button><button id="spiral">Load the spiral</button><button id="pspiral">Load the primorial spiral</button><button id="final">Add the final step by residues</button>
 </div>
 <div class="legend"><span><i style="background:#c9a227"></i>left member struck</span><span><i style="background:#b0332a"></i>right member struck</span><span><i style="background:#555"></i>outside the twin slots</span><span><i style="background:#1f6fd0"></i>origin</span><span><i style="background:#d04a1f"></i>landing</span><span><i style="background:#e6a3ff"></i>axis</span><span><i style="background:#7b3fbf"></i>window (q, q&sup2;]</span><span><i style="background:#7ee08a"></i>twin (all row)</span></div>
 <div id="steps"></div>
@@ -104,6 +104,20 @@ function loadSpiral(primorial){const q=+g('q').value||13;const all=[];for(let p=
   s.el.querySelectorAll('.gears input').forEach(c=>{const h=+c.parentNode.textContent.trim();c.checked=s.S.has(h);});});
  drawAll();}
 g('spiral').addEventListener('click',()=>loadSpiral(false));
+function modpow(a,e,m){let r=1n,b=BigInt(((a%m)+m)%m),E=BigInt(e),M=BigInt(m);while(E>0n){if(E&1n)r=r*b%M;b=b*b%M;E>>=1n;}return Number(r);}
+function addFinalStep(){const q=+g('q').value||13;const all=gearsShown();const E=steps.length?landingOf(steps.length-1):startCol();
+ const gears=all.filter(h=>h>=5);const sq=Math.max(...all.filter(h=>h*h<=q));const high=all.filter(h=>h>sq);
+ let pick=null;
+ for(const d of [1,-1]){const forb={};gears.forEach(gg=>{const inv=modpow(6,gg-2,gg);forb[gg]=[mod(-d*E*inv,gg),mod(-d*(E+2)*inv,gg)];});
+  for(const h of high){const L=E+6*d*h;if(!(q<L&&L+2<=q*q))continue;
+   const ok=gears.every(gg=>gg===h||!forb[gg].includes(mod(h,gg)))&&mod(E,h)!==0&&mod(E+2,h)!==0;
+   if(ok&&(pick===null||h<pick.h))pick={h,d};}}
+ if(pick===null){alert('no high gear passes the residue test from this landing');return;}
+ makeStep(steps.length);const s=steps[steps.length-1];s.k=1;s.dir=pick.d;s.S.add(3);s.S.add(pick.h);
+ s.el.querySelector('.k').value=1;s.el.querySelector('.dir').value=String(pick.d);
+ s.el.querySelectorAll('.gears input').forEach(c=>{const h=+c.parentNode.textContent.trim();c.checked=s.S.has(h);});
+ drawAll();}
+g('final').addEventListener('click',addFinalStep);
 g('pspiral').addEventListener('click',()=>loadSpiral(true));
 g('remove').addEventListener('click',()=>{if(steps.length>1){const s=steps.pop();s.el.remove();drawAll();}});
 ['nn','start'].forEach(id=>g(id).addEventListener('input',drawAll));
