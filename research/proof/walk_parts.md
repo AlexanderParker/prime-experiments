@@ -208,3 +208,31 @@ the zone start, L(q) (mean 8.7, max 55 to 20000, against zones of millions). The
 to any destination, every step is one gear's operation, the rule never changes, and its
 termination inside the window is exactly the one open statement, now attached to the first
 step sequence above q rather than to a record over the window.
+
+## The gear-selection search (owner, 2026-09-13)
+
+Owner: mirrors are transport; build the origin pair and the mirror's gear set from the
+machine's knowledge (twins live in the 6k class, the landing must fall in (q, q^2], q strikes
+only at q^2, the target is the first twin after q); look for one flip, with the right gears
+added to 2 and 3 (q, or the gear before q), that always lands on a twin in the window.
+Script research/stack/r8/gear_selection.py: origins home, the gear pairs (5, 7) .. (101, 103),
+the largest pair below q; extra gears none, {q}, {p-}, {q, p-}, {p-, p--}, {5}, {5, q}, {7},
+{5, 7}, {5, 7, q}, {5, 7, 11, q}; multiples 1 .. 12, q, p-, the first above q. 700 rules on
+the 426 machines 11 .. 3000, plus 288 q-dependent rules.
+
+- No rule is perfect. The top scores (0.70: origin (11, 13), gears {5, 7}, k = 5) are artefacts:
+  a rule whose axis does not depend on q lands on one fixed column, here (2087, 2089), a twin,
+  and "succeeds" exactly while that column lies inside the window (46 < q < 2087), then fails
+  forever.
+- The rules whose landing moves with q (an axis carrying q or the gear before q) land on a
+  twin at 44 to 54 of 426 machines. A random column near 12q is a twin at 0.068; these rules
+  score 0.10 to 0.13, which is the random rate times the factor the carried gears buy
+  (5/3 for 5, 7/5 for 7, q/(q-2) for q, about 2.3 together). Nothing beyond the carried gears.
+
+What this says, exactly: one flip from a known origin about an axis built from the machine's
+gears lands on a column whose openness to the carried gears is certain and whose openness to
+every other gear is the landing law's congruence, one per gear, undecided by the construction.
+The landing is a twin exactly when all those congruences fall right, and no choice of origin,
+gear set or multiple made from q alone lines them up: the landings of the q-dependent rules are
+twins at the rate the carried gears predict and no more. A one-flip rule that always lands on a
+twin would have to carry every gear, and the carry cap forbids that inside the window.
