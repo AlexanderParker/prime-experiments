@@ -46,3 +46,30 @@ endpoint (the closing move, other pairings, other orders, k varying with the gea
 compared on one footing: where they land relative to E(q), which gears they carry, and how far
 the nearest twin is. Scripts: the spiral and its measurements are in research/stack/r8/
 (spiral tests in walk_parts.md); kernel proofs/MirrorWalkSpiral.lean (round 49).
+
+## Residues at the endpoint, and the {2, 3, g} spiral (owner, 2026-09-13)
+
+Owner: stepping through every gear may pick up and rule out residues, placing the endpoint in
+a specific position relative to all the residues; and try the spiral with 2 and 3 in every
+step. Machines 7 to 5000 (666).
+
+Residues at the {2, g} endpoint E. The strike rate of each gear h at E against 2/h, the rate at
+a random column: 3: 0.667 vs 0.667; 5: 0.380 vs 0.400; 7: 0.284 vs 0.286; 11: 0.155 vs 0.182;
+13: 0.188 vs 0.154; 17: 0.115 vs 0.118; 19: 0.103 vs 0.105; 23: 0.089 vs 0.087; 29: 0.067 vs
+0.069; 31: 0.068 vs 0.065. Every gear strikes the endpoint at its ordinary rate. E is itself a
+twin at 22 of 666 machines. The spiral rules out nothing by residue: E = -1 + 4A and gear h
+strikes it iff h divides 4A - 1 or 4A + 1, and A modulo h is the alternating sum of the other
+gears, which h sees as a random residue.
+
+The {2, 3, g} spiral: gears 5 .. q descending, each step with the mirror {2, 3, g}, moving
+12 d g; endpoint E3 = -1 + 12 A5, A5 the alternating sum of the gears from 5 up. E3 lies
+between 3.3 q and 9.7 q (mean 6.0 q), inside the window; E3 = 5 mod 6 always (2 and 3 carried,
+so the endpoint is always a left slot member). E3 is a twin inside the window at 60 of 666
+machines (0.09, the twin rate of a slot column near 6q); distance to the nearest twin median
+18, largest 228. Strike rates per gear at E3 again match 2/h (5: 0.426 vs 0.400; 7: 0.300 vs
+0.286; 11: 0.174 vs 0.182; 13: 0.152 vs 0.154; 17: 0.106 vs 0.118; 23: 0.094 vs 0.087).
+
+Reading: the spiral's endpoint carries exactly the divisors of the alternating sum (2 with the
+{2, g} pairing; 2 and 3 with the {2, 3, g} pairing) and nothing else; every other gear meets the
+endpoint at its own rate. Passing through every gear leaves no residue trace beyond the gears
+that divide the sum.
