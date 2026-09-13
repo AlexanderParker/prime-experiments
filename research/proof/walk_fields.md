@@ -165,3 +165,49 @@ Standing after this step: the zone-start reading is exact and it lands on the re
 the sub-machine, with the record's known y^2 growth and known margins. It gives a location
 (the first aligned twin above q) and a mechanism (the sub-machine lays the paint), and it does
 not give a reason the record stays below y^2/12.
+
+## The record as a field (owner: go the field; 2026-09-13)
+
+View docs/record_field.html; script research/stack/r8/record_field.py. The wheel of the gears
+5..y on the m-line at its worst phase, the longest painted run R_y, drawn as rows (gears)
+against the columns of the run.
+
+| y | R_y | period | record runs in a period | first run (k) | single-painter columns | paint per column |
+|---|---|---|---|---|---|---|
+| 7 | 4 | 35 | 2 | 10 .. 13 | 4 of 4 | 1.00 |
+| 11 | 7 | 385 | 4 | 127 .. 133 | 6 of 7 | 1.14 |
+| 13 | 9 | 5,005 | 12 | 647 .. 655 | 7 of 9 | 1.33 |
+| 17 | 17 | 85,085 | 4 | 22647 .. 22663 | 12 of 17 | 1.35 |
+| 19 | 19 | 1,616,615 | 68 | 11536 .. 11554 | 14 of 19 | 1.32 |
+| 23 | 34 | 37,182,145 | 2 | 2891056 .. 2891089 | 23 of 34 | 1.38 |
+
+Read off the field:
+
+- The teeth of a gear are a close pair. Gear h paints k = -+12^-1 mod h, and the two classes
+  sit at a small separation: 5 at 2, 3 (adjacent); 7 at 3, 4 (adjacent); 11 at 1, 10 (distance
+  2 across the period); 13 at 1, 12 (distance 2); 17 at 7, 10 (3); 19 at 8, 11 (3); 23 at 2,
+  21 (4). So every row paints in "double teeth": two columns close together, once per period
+  h. The painter strings show it: "5 5", "7 7", "11 _ 11", "13 _ 13", "17 _ _ 17".
+- A record run is a tiling by double teeth with little overlap: single-painter columns 68 to
+  100 percent, total paint 1.00 to 1.38 per column. The gears take turns; the run at y = 23
+  reads 13/23 5 5/13 7 7 17 5 5/11 17 11 7 5/7/19 5 13 19 13 5 5/7 7/11 23 11 5 5/17 23 7 7/17
+  5/13 5 13 11 19 5/7/11 5/7 19: 5 every five columns, 7 every seven, each larger gear once or
+  twice.
+- The record runs come in mirror pairs about half the period (the wheel is symmetric about
+  every multiple of every gear): y = 23 has exactly two, 2891056..2891089 and its image
+  34291056..34291089 (start plus image end = the period); y = 7: 10..13 and 22..25. None of the
+  runs from y = 7 up is its own mirror image.
+- The centre of the record run sits at a fixed class for the smallest gears (5 at 0 or 2.5,
+  7 at 0, 2.5, 3 or 4): the run is placed where the double teeth of 5 and 7 interleave with no
+  slack, and the larger gears fill the remaining columns one double tooth each.
+
+What the field says about the growth R_y ~ y^2. In a run of R columns each gear h places about
+2R/h teeth, so the paint available is about 2R (sum of 1/h over the gears) + 2 pi(y), and the
+run is fully painted only when that exceeds R with the little overlap the field shows. The sum
+of 1/h over the gears to y is about ln ln y, below 1 for every y in reach, so the record is
+carried by the additive term: each gear contributes its double tooth about once, and the run
+length is of the order of the number of teeth the machine can bring to one place, 2 pi(y)
+scaled by the overlap. That is a reading, not a proof: it names the mechanism that makes the
+record grow like y^2 / (something of ln y) and it says why a run longer than the paint the
+gears can bring is impossible, but the bound it gives is the budget inequality, not a proof
+of R_y < y^2/12.

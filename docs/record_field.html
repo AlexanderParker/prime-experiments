@@ -1,0 +1,59 @@
+<title>Record Field</title>
+<style>
+:root{--bg:#f6f4ee;--ink:#1c1a17;--mut:#6b665c;--line:#d8d2c4;--pan:#fffdf8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}}
+:root[data-theme="dark"]{--bg:#15140f;--ink:#ece7da;--mut:#a29b8c;--line:#3a372e;--pan:#1e1c16}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif;margin:0;padding-block:12px;padding-inline:16px}
+h1{font-size:18px;margin:0 0 4px;font-weight:600}
+p.lead{margin:0 0 10px;color:var(--mut);max-width:80ch}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:8px 10px;border:1px solid var(--line);background:var(--pan);border-radius:4px;margin-bottom:8px}
+.ctl label{display:flex;gap:6px;align-items:center}
+input[type=number]{width:6em;font:inherit}
+button{font:inherit;padding:3px 9px;border:1px solid var(--line);background:var(--pan);color:var(--ink);border-radius:3px;cursor:pointer}
+button.on{background:var(--ink);color:var(--bg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0;color:var(--mut);font-size:13px}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:5px;border-radius:2px}
+.wrap{overflow-x:auto;border:1px solid var(--line);background:#000;border-radius:4px}
+canvas{display:block}
+.box{border:1px solid var(--line);background:var(--pan);border-radius:4px;padding:8px 10px;margin-top:8px;font-size:13px}
+code{font-family:ui-monospace,monospace;font-size:12.5px}
+</style>
+<h1>Record field</h1>
+<p class="lead">The wheel of the gears 5 &hellip; y on the m-line (column k is the pair (12k &minus; 1, 12k + 1); gear h paints k &equiv; &mp;12&sup;&minus;1&sup; mod h) at its worst phase: the longest painted run over a full period, the record R<sub>y</sub>. Rows are the gears, columns the k of the run with a margin either side. Yellow: h divides the left member; red: the right member. The all row is black where painted, bright green where open. The record run is boxed in purple. Each record run has a mirror image about half the period; the run shown is the first.</p>
+<div class="ctl">
+ <span>y</span><span id="ys"></span>
+ <label>margin <input id="mg" type="number" min="0" max="200" value="12"></label>
+ <label>start k <input id="k0" type="number" min="1"></label>
+ <label>columns <input id="nn" type="number" min="10" max="2000" value="60"></label>
+</div>
+<div class="legend"><span><i style="background:#c9a227"></i>left member struck</span><span><i style="background:#b0332a"></i>right member struck</span><span><i style="background:#7ee08a"></i>open column of this wheel</span><span><i style="background:#7b3fbf"></i>the record run</span></div>
+<div class="wrap"><canvas id="c"></canvas></div>
+<div class="box" id="info"></div>
+<script>
+const REC={5:[2,3],7:[10,13],11:[127,133],13:[647,655],17:[22647,22663],19:[11536,11554],23:[2891056,2891089]};
+let y=13,custom=false;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+function isPrime(n){if(n<2)return false;if(n%2===0)return n===2;for(let d=3;d*d<=n;d+=2)if(n%d===0)return false;return true;}
+function gearsTo(y){const o=[];for(let p=5;p<=y;p++)if(isPrime(p))o.push(p);return o;}
+function modpow(a,e,m){let r=1n,b=BigInt(a)%BigInt(m),E=BigInt(e),M=BigInt(m);while(E>0n){if(E&1n)r=r*b%M;b=b*b%M;E>>=1n;}return Number(r);}
+function inv12(h){return modpow(12,h-2,h);}
+function draw(){const gears=gearsTo(y),mg=+document.getElementById('mg').value||0;const [a,b]=REC[y];
+ let k0=custom?(+document.getElementById('k0').value||a-mg):a-mg;if(!custom)document.getElementById('k0').value=k0;
+ const nn=custom?(+document.getElementById('nn').value||60):(b-a+1+2*mg);if(!custom)document.getElementById('nn').value=nn;
+ const cw=Math.max(4,Math.min(22,Math.floor(1500/nn))),rh=14,top=18,left=34;
+ cv.width=left+nn*cw+10;cv.height=top+gears.length*rh+8+rh+22;ctx.fillStyle='#000';ctx.fillRect(0,0,cv.width,cv.height);
+ ctx.fillStyle='rgba(123,63,191,.3)';const xa=left+(a-k0)*cw,xb=left+(b-k0+1)*cw;if(xb>left&&xa<left+nn*cw)ctx.fillRect(Math.max(xa,left),top-4,Math.min(xb,left+nn*cw)-Math.max(xa,left),gears.length*rh+rh+14);
+ const teeth=gears.map(h=>{const u=inv12(h);return {h,L:(h-u)%h,R:u};});
+ let open=0;
+ for(let i=0;i<nn;i++){const k=k0+i,x=left+i*cw;let painted=false;
+  teeth.forEach((t,r)=>{const m=((k%t.h)+t.h)%t.h;if(m===t.L||m===t.R){painted=true;ctx.fillStyle=(m===t.L)?'#c9a227':'#b0332a';ctx.fillRect(x,top+r*rh,cw-1,rh-1);}});
+  const yy=top+gears.length*rh+8;ctx.fillStyle=painted?'#000':'#7ee08a';if(!painted)open++;ctx.fillRect(x,yy,cw-1,rh-1);}
+ ctx.fillStyle='#bbb';ctx.font='10px monospace';gears.forEach((h,r)=>ctx.fillText(String(h),2,top+r*rh+10));ctx.fillText('all',2,top+gears.length*rh+8+10);
+ const every=Math.max(1,Math.round(70/cw));for(let i=0;i<nn;i+=every)ctx.fillText(String(k0+i),left+i*cw,cv.height-6);
+ document.getElementById('info').innerHTML='y = '+y+': record R = '+(b-a+1)+', run k = '+a+' .. '+b+' (numbers '+(12*a-1)+' .. '+(12*b+1)+'). Teeth per gear (left, right): '+teeth.map(t=>t.h+': '+t.L+', '+t.R).join('; ')+'. Open columns in view: '+open+'.';}
+const ys=document.getElementById('ys');Object.keys(REC).forEach(v=>{const b=document.createElement('button');b.textContent=v;if(+v===y)b.classList.add('on');b.addEventListener('click',()=>{y=+v;custom=false;document.querySelectorAll('#ys button').forEach(x=>x.classList.toggle('on',+x.textContent===y));draw();});ys.appendChild(b);});
+document.getElementById('mg').addEventListener('input',()=>{custom=false;draw();});
+document.getElementById('k0').addEventListener('input',()=>{custom=true;draw();});
+document.getElementById('nn').addEventListener('input',()=>{custom=true;draw();});
+draw();
+</script>

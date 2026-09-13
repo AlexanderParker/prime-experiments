@@ -2230,7 +2230,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             (window, square zone, zone start) leads to it. The prime phase -q is NOT special:
             runs at prime phases match all phases (y = 13, 17, 19; 18k primes to 200,000).
             VERDICT: exact location and mechanism (the sub-machine lays the paint), no reason
-            for the record's bound; the record route is the invariant form.
+            for the record's bound; the record route is the invariant form. THE RECORD AS A
+            FIELD (owner: go the field; docs/record_field.html; record_field.py): the wheel
+            of the gears 5..y at its worst phase, y = 7..23 exact; each gear's two teeth
+            -+12^-1 are a close pair (5: 2,3; 7: 3,4; 11: 1,10; 13: 1,12; 17: 7,10; 19: 8,11;
+            23: 2,21), so every row paints in double teeth; a record run is a tiling by double
+            teeth with little overlap (single-painter columns 68-100%, paint 1.00-1.38 per
+            column; y = 23 run: 13/23 5 5/13 7 7 17 5 5/11 17 11 7 5/7/19 5 13 19 13 5 5/7
+            7/11 23 11 5 5/17 23 7 7/17 5/13 5 13 11 19 5/7/11 5/7 19); record runs come in
+            mirror pairs about half the period (y = 23: exactly two), none self-mirror; the
+            run sits where the double teeth of 5 and 7 interleave without slack and the
+            larger gears each fill one column pair. Reading of the growth: the paint a run
+            can receive is about 2R sum(1/h) + 2 pi(y) with sum(1/h) < 1, so the record is
+            carried by the additive term, one double tooth per gear; this is the budget
+            inequality in field form, a mechanism for the y^2 growth, not a proof of the
+            bound.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3483,3 +3497,4 @@ Part III or Part IV of the proof document?
 - 2026-09-13, owner: not covering versus capacity; show nothing stops the walk by identifying which fields each step passes through and why each steers to the landing zone. Manager (local; walk_fields.md; node R4.d.i.i.j; proof document 14 rewritten): only the multiples rows paint the landing zone, everything else is a relabelling; rows independent mod the product of the gears; the walk is stopped only by a painted run anchored at the zone start, L(q), the twin gap above q in m-line columns, mean 8.7 and max 55 to 20000 against zones of millions; the open statement is now the first aligned twin above q lying below q^2, decided by the paint just above q.
 - 2026-09-13, owner: draw and read the paint just above q. Manager (local; zone_start_field.html; zone_start.py; walk_fields.md continued): row h painted at d = -q mod h; only gears up to (q + d)/5 reach offset d; the run at the zone start is painted by the machine of size sqrt(2q) as smallest factors (machines 29..20000, run at most 0.36 q, smallest gears at most 0.78 sqrt(2q)); the open statement read at the zone start is the painted run of the small gears at phase -q, the twin gap above q.
 - 2026-09-13, owner: go (the sub-machine's wheel at phase -q). Manager (local; submachine_phase.py; walk_fields.md continued): below 2q painted = painted by the gears up to sqrt(2q), so the zone-start run is the sub-machine's run at phase k_0 and is bounded by its record; sub-machine records exact to y = 29 (2 .. 43, growing like y^2); the sufficient condition is the record route at the sub-machine; the prime phase is not special (runs at prime phases match all phases). Every coordinate leads to the record route; it is the invariant form of the one open statement.
+- 2026-09-13, owner: go the field (the record as a field). Manager (local; record_field.html, artifact published; record_field.py; walk_fields.md continued): each gear paints in double teeth (the two classes -+12^-1 sit close), a record run is a near-exact tiling by double teeth (single painters 68-100%), runs come in mirror pairs about half the period, the run sits where 5 and 7 interleave without slack; the growth reading is the budget inequality in field form, mechanism not proof.
