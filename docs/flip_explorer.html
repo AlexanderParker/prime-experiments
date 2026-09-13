@@ -33,8 +33,7 @@ code{font-family:ui-monospace,monospace;font-size:12.5px}
 <h1>Flip explorer</h1>
 <p class="lead">A walk built step by step. Each step is one flip: tick the gears in its mirror (2 and 3 are gears like any other: tick them or not), set how many periods k of those gears the axis sits from the origin (the axis is the origin&rsquo;s centre plus k&middot;M), and the landing is 2k&middot;M above the origin. The next step takes that landing as its origin. Rows are gears, columns the natural numbers; yellow a struck left member, red a struck right member, grey outside the twin slots. The included gears see the same residues at the landing (their pattern repeats every M), so their openness is carried; the table says which gears the step carried and which it left to chance. The window (q, q&sup2;] is boxed purple.</p>
 <div class="ctl top">
- <label>machine q <input id="q" type="number" min="5" value="13"></label>
- <label>gear rows <input id="ng" type="number" min="1" max="60" value="12"></label>
+ <span>machine q <button id="qdn">−</button> <b id="qv">13</b> <button id="qup">+</button></span><input id="q" type="hidden" value="13"><input id="ng" type="hidden" value="4">
  <label>numbers per view <input id="nn" type="number" min="40" max="3000" value="240"></label>
  <label>start column (left member) <input id="start" type="number" value="-1"></label>
  <button id="add">Add step</button><button id="remove">Remove last step</button><button id="spiral">Load the spiral</button><button id="pspiral">Load the primorial spiral</button>
@@ -49,13 +48,16 @@ function mod(a,m){return ((a%m)+m)%m;}
 function strikes(h,n){return mod(n,h)===0||mod(n+2,h)===0;}
 const g=id=>document.getElementById(id);
 const steps=[];   // {S:Set, k:number, n0:number|null, el, canvas, ...}
-function gearsShown(){return primes(+g('ng').value||12);}
+function gearsShown(){const q=+g('q').value||13;const o=[];for(let p=2;p<=q;p++)if(isPrime(p))o.push(p);return o;}
+function prevPrime(n){for(let p=n-1;p>=5;p--)if(isPrime(p))return p;return 5;}
+function nextPrime(n){for(let p=n+1;;p++)if(isPrime(p))return p;}
+function setQ(q){g('q').value=q;g('qv').textContent=q;const n=steps.length;while(steps.length){steps.pop().el.remove();}for(let i=0;i<n;i++)makeStep(i);drawAll();}
 function Mof(S){let m=1;S.forEach(x=>m*=x);return m;}
 function startCol(){let n=+g('start').value;return n-mod(n-5,6);}
 function originOf(i){return i===0?startCol():landingOf(i-1);}
 function landingOf(i){const s=steps[i];return originOf(i)+2*s.dir*s.k*Mof(s.S);}
 function makeStep(i){const s={S:new Set(),k:1,dir:1,n0:null};const el=document.createElement('div');el.className='step';
- el.innerHTML='<div class="ctl"><h2>Step '+(i+1)+'</h2><span class="status orig"></span><label>direction <select class="dir"><option value="1">up (+)</option><option value="-1">down (−)</option></select></label><label>periods k <input class="k" type="number" min="1" value="1"></label><label>first number shown <input class="n0" type="number"></label><span>gears in the mirror:</span><div class="gears"></div><span class="status M"></span></div><div class="wrap"><canvas></canvas></div><div class="panel"><div class="box"><h3>This step, gear by gear</h3><table><thead><tr><th>gear</th><th>in mirror</th><th>origin</th><th>landing</th><th>carried</th></tr></thead><tbody></tbody></table></div><div class="box"><h3>Landing</h3><div class="land"></div></div></div>';
+ el.innerHTML='<div class="ctl"><h2>Step '+(i+1)+'</h2><span class="status orig"></span><label>direction <select class="dir"><option value="1">up (+)</option><option value="-1">down (−)</option></select></label><label>periods k <input class="k" type="number" min="1" value="1"></label><label>first number shown <input class="n0" type="number"></label><span>gears in the mirror:</span><div class="gears"></div><span class="status M"></span></div><div class="wrap"><canvas></canvas></div><div class="panel"><div class="box"><h3>This step: gears that strike the origin or the landing</h3><table><thead><tr><th>gear</th><th>in mirror</th><th>origin</th><th>landing</th><th>carried</th></tr></thead><tbody></tbody></table></div><div class="box"><h3>Landing</h3><div class="land"></div></div></div>';
  s.el=el;g('steps').appendChild(el);
  el.querySelector('.k').addEventListener('input',e=>{s.k=Math.abs(+e.target.value)||1;drawAll();});
  el.querySelector('.dir').addEventListener('change',e=>{s.dir=+e.target.value;drawAll();});
@@ -83,7 +85,7 @@ function drawStep(i){const s=steps[i],el=s.el,cv=el.querySelector('canvas'),ctx=
  ctx.fillStyle='#bbb';ctx.font='10px monospace';G.forEach((h,r)=>ctx.fillText(String(h),2,top+r*rh+10));ctx.fillText('all',2,top+rows*rh+8+10);
  const every=Math.max(1,Math.round(60/cw));for(let j=0;j<nn;j+=every)ctx.fillText(String(n0+j),xOf(n0+j),cv.height-6);
  const tb=el.querySelector('tbody');tb.innerHTML='';
- G.forEach(h=>{const inS=s.S.has(h);const carried=mod(2*s.k*m,h)===0;const so=strikes(h,origin),sl=strikes(h,L);const tr=document.createElement('tr');
+ G.forEach(h=>{const inS=s.S.has(h);const carried=mod(2*s.k*m,h)===0;const so=strikes(h,origin),sl=strikes(h,L);if(!so&&!sl)return;const tr=document.createElement('tr');
   tr.innerHTML='<td>'+h+'</td><td>'+(inS?'yes':'')+'</td><td class="'+(so?'no':'ok')+'">'+(so?'struck':'open')+'</td><td class="'+(sl?'no':'ok')+'">'+(sl?'struck':'open')+'</td><td>'+(carried?'yes (h | 2kM)':'no')+'</td>';tb.appendChild(tr);});
  const tw=isPrime(L)&&isPrime(L+2),inwin=q<L&&L+2<=q*q,openAll=G.every(h=>!strikes(h,L));
  el.querySelector('.land').innerHTML='<code>('+L+', '+(L+2)+')</code>: '+(tw?'a twin':'not a twin')+'; '+(inwin?'inside the window':'outside the window')+'; open to every shown gear: '+(openAll?'yes':'no')+'.';}
@@ -93,7 +95,7 @@ function drawAll(){steps.forEach((_,i)=>drawStep(i));
  g('sumtxt').textContent=txt;}
 g('add').addEventListener('click',()=>{makeStep(steps.length);drawAll();});
 function loadSpiral(primorial){const q=+g('q').value||13;const all=[];for(let p=2;p<=q;p++)if(isPrime(p))all.push(p);
- g('ng').value=Math.max(1,all.length-2);g('start').value=-1;
+ g('start').value=-1;
  while(steps.length){steps.pop().el.remove();}
  let base=[];if(primorial){let P=1;for(const p of all){if(P*p<=Math.floor(q/2)){P*=p;base.push(p);}else break;}}else base=[2];
  const rest=all.filter(p=>!base.includes(p)).reverse();
@@ -104,7 +106,8 @@ function loadSpiral(primorial){const q=+g('q').value||13;const all=[];for(let p=
 g('spiral').addEventListener('click',()=>loadSpiral(false));
 g('pspiral').addEventListener('click',()=>loadSpiral(true));
 g('remove').addEventListener('click',()=>{if(steps.length>1){const s=steps.pop();s.el.remove();drawAll();}});
-['q','nn','start'].forEach(id=>g(id).addEventListener('input',drawAll));
-g('ng').addEventListener('input',()=>{const n=steps.length;while(steps.length){steps.pop().el.remove();}for(let i=0;i<n;i++)makeStep(i);drawAll();});
+['nn','start'].forEach(id=>g(id).addEventListener('input',drawAll));
+g('qdn').addEventListener('click',()=>setQ(prevPrime(+g('q').value)));
+g('qup').addEventListener('click',()=>setQ(nextPrime(+g('q').value)));
 makeStep(0);drawAll();
 </script>
