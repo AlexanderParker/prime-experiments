@@ -77,3 +77,35 @@ any anchored stretch (take x = k_0); the sharpened hypothesis is the run at k_0 
 | mirror-carried gears (S) | their rows are removed from the zone | passage by mirror, exact, capped by the primorial below q^2/2 | exact |
 | all rows jointly | one phase of the period; prod (h-2) free per period | the zone holds the period share to within a few percent | measured |
 | the run at the zone start | L(q) = the twin gap above q in m-line columns | the only thing that can stop the walk | measured to 20000 |
+
+## The paint just above q (owner: let's do that; 2026-09-13)
+
+Field docs/zone_start_field.html; script research/stack/r8/zone_start.py. Origin q, columns the
+numbers q + d, row h painted where h divides q + d (one class of d per row, d = -q mod h: the
+top gear fixes every row's phase, as the square fixed it at the square origin).
+
+Exact facts of the zone start:
+
+- A gear h paints an offset d only through a multiple q + d = h m with m >= 5 coprime to 6
+  (h itself is below q), so only the gears h <= (q + d)/5 can reach offset d. Gears above
+  2q/5 paint nothing below 2q.
+- A painted member q + d below 2q is a composite below 2q, so it has a prime factor at most
+  sqrt(2q): as long as the run at the zone start stays below q offsets, it is painted by the
+  gears up to sqrt(2q) as smallest factors, each with its cofactor as the other row. The
+  machine of size sqrt(2q) lays the paint at the start of the zone of the machine of size q.
+- Machines 11 to 20000: the run at the zone start spans at most 0.36 q (q = 431) for every
+  q >= 29, and every painted member's smallest gear is at most 0.78 sqrt(2q); the five machines
+  11 to 23 are the exceptions (their zones start within a few columns of q and the run
+  overshoots q).
+
+Read at the worst machine in range, q = 13007 (run of 55 columns, landing at offset 672): the
+first painted columns are (13019, 13021) by rows 29, 47, 277, 449; (13031, 13033) by 83, 157;
+(13043, 13045) by 5, 2609; (13055, 13057) by 5, 7, 11, 373, 1187; each painted column shows a
+small gear and its cofactor. Rows able to reach the landing offset: 555 of 2260 gears at
+q = 19997, 44 of 167 at q = 1009.
+
+So the open statement, read at the zone start: the gears up to sqrt(2q), phased by q, cannot
+paint every aligned column from q up to q^2. Whatever they paint in (q, 2q) they paint as the
+smallest factors of the composites there, with the cofactors following; above 2q the larger
+gears join with their own small multiples. The question is the length of the painted run at
+the phase -q of the small gears, which is the twin gap above q.
