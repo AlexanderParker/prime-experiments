@@ -86,4 +86,17 @@ theorem descent_in_window {q t Ps : ℤ} :
     (q < 2 * t * Ps - 1 ∧ 2 * t * Ps - 1 + 2 ≤ q ^ 2) ↔ (q + 1 < 2 * t * Ps ∧ 2 * t * Ps + 1 ≤ q ^ 2) := by
   constructor <;> rintro ⟨a, b⟩ <;> constructor <;> linarith
 
+/-- **The teeth are symmetric.**  Gear `g` strikes the left member at `t` iff it strikes the right
+member at `-t`: the two teeth of every gear on the `t`-line are `t₀` and `-t₀`. -/
+theorem descent_teeth_symmetric {g : ℕ} {t Ps : ℤ} :
+    (g : ℤ) ∣ 2 * t * Ps - 1 ↔ (g : ℤ) ∣ 2 * (-t) * Ps - 1 + 2 := by
+  have e : 2 * (-t) * Ps - 1 + 2 = -(2 * t * Ps - 1) := by ring
+  rw [e, dvd_neg]
+
+/-- The landing family is a mirror family: the landing at `-t` is the reflection of the landing
+at `t` about the home pair, member for member (`2(-t)P_s - 1 = -(2tP_s + 1)`). -/
+theorem descent_reflect (t Ps : ℤ) :
+    2 * (-t) * Ps - 1 = -(2 * t * Ps - 1 + 2) ∧ 2 * (-t) * Ps - 1 + 2 = -(2 * t * Ps - 1) := by
+  constructor <;> ring
+
 end MirrorWalk

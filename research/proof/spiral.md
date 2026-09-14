@@ -653,3 +653,29 @@ _2310.txt): with the gears taken in order, each gear's two teeth and the t it ta
   at 2310: 8 and 5 = -8; gear 31: 1 and 30). So each gear's two teeth on the t-line are t and
   -t: the descent's landing family is symmetric under t -> -t modulo every gear, the mirror
   property of the primorial P_s seen on the t-line.
+
+## The t-line as the fields construction (2026-09-14)
+
+Kernel: descent_teeth_symmetric (g strikes the left member at t iff the right member at -t) and
+descent_reflect (the landing at -t is the reflection of the landing at t about home, member for
+member), MirrorWalkDescent, built, 0 sorries.
+Grid (research/stack/r8/descent_fields.py, results_descent_fields_210.txt and _2310.txt): rows
+= gears above the base, columns = t, L/R where the gear divides the left/right member; the twin
+columns are the unpainted ones (checked against primality at every t).
+P_s = 210, t = 1..60, rows 11 to 157:
+    11 ....RL.........RL.........RL.........RL.........RL.........R
+    13 ..R......L.....R......L.....R......L.....R......L.....R.....
+    17 ......R..L.............R..L.............R..L.............R..
+    19 ........RL.................RL.................RL............
+    23 ...L..............R.......L..............R.......L..........
+    29 .R........................L...R........................L...R
+  twin T      T     TT  T  TT  T                 T        T
+- Each row is a stripe of period g with two marks per period, L at t_0 and R at -t_0.
+- The gap from the L tooth to the R tooth inside a period is P_s^{-1} mod g (2 t_0 = P_s^{-1}):
+  gears with P_s = 1 (mod g) have the two teeth adjacent (11 and 19 at P_s = 210: 210 = 1 mod 11
+  and mod 19, rows show RL side by side); gear 13 has gap 2^{-1} = 7 (teeth 3 and 10); 17 has gap
+  3 (7 and 10); 23 gap 15 (4 and 19).
+- So on the t-line every row is the multiples field of g folded to period g with its two teeth
+  placed by P_s mod g alone; the twins are the columns no row reaches. The whole picture for a
+  given P_s serves every machine q with q/2 < P_s <= q^2/2, the window fixing only which columns
+  t are in reach.
