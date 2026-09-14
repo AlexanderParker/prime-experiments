@@ -57,7 +57,7 @@ def main():
             high = [p for p in ps if p * p > q]
             for hp in high[:12]:
                 moves = ", ".join(f"{h}: +{(6 * hp) % h}/-{(-6 * hp) % h}" for h in strikers)
-                ok = {d: all(((E + 6 * d * hp) % h) not in (0, h - 2) for h in gears if h != hp) and q < E + 6 * d * hp <= q * q - 2 for d in (1, -1)}
+                ok = {d: all(((E + 6 * d * hp) % h) not in (0, h - 2) for h in gears) and q < E + 6 * d * hp <= q * q - 2 for d in (1, -1)}
                 out.append(f"      h' = {hp:>4}: {moves}   up {'PASS' if ok[1] else 'no'}, down {'PASS' if ok[-1] else 'no'}")
         out.append("")
     Path("research/stack/r8/results_spiral_phases.txt").write_text("\n".join(out), encoding="utf-8")

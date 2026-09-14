@@ -92,7 +92,7 @@ column   6059    239   5579    599   5339    959   5219   1199   4859   1319   4
    correction by one more flip about {3, h'}: the phase move 6h' mod gear for each striking gear, up (+) and down (-); a move that takes every striker off its teeth and puts no other gear on one is a passing h':
       h' =   11: 11: +0/-0, 17: +15/-2   up no, down no
       h' =   13: 11: +1/-10, 17: +10/-7   up PASS, down no
-      h' =   17: 11: +3/-8, 17: +0/-0   up no, down PASS
+      h' =   17: 11: +3/-8, 17: +0/-0   up no, down no
       h' =   19: 11: +4/-7, 17: +12/-5   up no, down no
       h' =   23: 11: +6/-5, 17: +2/-15   up no, down no
       h' =   29: 11: +9/-2, 17: +4/-13   up no, down no
