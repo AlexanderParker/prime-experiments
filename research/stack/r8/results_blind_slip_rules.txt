@@ -1,0 +1,28 @@
+Loop, iteration 5: landing offsets D built from slips of spiral step pairs (no primality).
+P = base product, gears above the base g1 > g2 > g3 > ... (g1 = q).  Landing -1 + 2D.
+  S(j): D = P (g_j - g_{j+1}), the slip of the consecutive pair j (j = 1..6)
+  W:    D = P (q - g) with g the largest gear such that the landing is above q (the first pair
+        whose slip clears the window's start)
+  A(m): D = P (g1 - g2 + g3 - ... +- g_m), the spiral over the top m gears (m = 2..6)
+  T(t): D = t P (q - p), the top pair's slip with t periods (t = 2, 3)
+  B:    D = P (q - p) + P (p - p') ... = P (q - p''): consecutive slips summed = the slip of a
+        wider pair (S with a gap of two gears)
+Machines 11 to 5000: in the window / twin.  usage: uv run python research/stack/r8/blind_slip_rules.py 5000
+
+machines 665 (11 to 5000): rule: twin / in window
+   S(1)      119 /  426
+   S(2)      116 /  423
+   S(3)      116 /  421
+   S(4)      116 /  419
+   S(5)      117 /  417
+   S(6)      117 /  417
+   W         193 /  665
+   A(2)      119 /  426
+   A(3)       75 /  665
+   A(4)      213 /  622
+   A(5)       67 /  663
+   A(6)      167 /  655
+   T(2)      107 /  576
+   T(3)      145 /  618
+   B gap2    198 /  631
+   B gap3    168 /  663

@@ -81,3 +81,16 @@ research/stack/r8/blind_D_rules.py, results_blind_D_rules.txt, machines 11 to 50
 - D5 the primorial spiral: 73 of 665.
 Verdict: no blind D reaches every machine; the slip of the top two steps is the strongest
 single rule. Every rule is open to the gears dividing D and blind to the rest.
+
+### 5. Landing offsets from slips of step pairs (2026-09-15)
+
+research/stack/r8/blind_slip_rules.py, results_blind_slip_rules.txt, machines 11 to 5000 (665).
+D = P times: the slip of consecutive pair j (S(j), j = 1..6): twin 116 to 119 of about 420 in
+the window; the first pair whose slip clears the window's start (W): 193 of 665; the spiral over
+the top m gears (A(m)): m = 2: 119 of 426, m = 3: 75 of 665, m = 4: 213 of 622, m = 5: 67, m = 6:
+167 of 655; the top pair with 2 and 3 periods: 107 of 576, 145 of 618; the slip across a gap of
+two gears (q - g3): 198 of 631; of three: 168 of 663.
+Verdict: every blind offset lands on a twin at a quarter to a third of the machines where it is
+in the window, which is the share of twins among the columns open to the base low in the
+window. No offset rule rises above that share. The odd spirals (m = 3, 5) sit lower because
+their landings are farther up the window.
