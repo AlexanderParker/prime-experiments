@@ -1,0 +1,100 @@
+A high gear's teeth as positions on the h-line, step up.  Gear g above sqrt q has teeth at
+a + g t (left member) and b + g t (right member), 6a = -E, 6b = -(E + 2) mod g.  The h-line in
+reach is the gears in (sqrt q, q] with the landing inside the window.  For every high gear:
+its tooth positions inside (sqrt q, q], which of them are gears, and which of those were still
+standing when g's turn came (the machine's order).  Gears above q/2 hold at most two positions
+per tooth (kernel tooth_at_most_two).
+
+usage: uv run python research/stack/r8/high_teeth_positions.py 499
+
+q = 499, E = 119699, high gears from 23, in reach 87
+
+gear  23            : left tooth 18: 41 gear, already taken, 64, 87, 110, 133, 156, 179 gear, already taken, 202, 225, 248, 271 gear, already taken, 294, 317 gear, already taken, 340, 363, 386, 409 gear, already taken, 432, 455, 478 | right tooth 10: 33, 56, 79 gear, already taken, 102, 125, 148, 171, 194, 217, 240, 263 gear, already taken, 286, 309, 332, 355, 378, 401 gear, already taken, 424, 447, 470, 493
+gear  29            : left tooth 7: 36, 65, 94, 123, 152, 181 gear, already taken, 210, 239 gear, already taken, 268, 297, 326, 355, 384, 413, 442, 471 | right tooth 26: 26, 55, 84, 113 gear, already taken, 142, 171, 200, 229 gear, already taken, 258, 287, 316, 345, 374, 403, 432, 461 gear, already taken, 490
+gear  31            : left tooth 9: 40, 71 gear, already taken, 102, 133, 164, 195, 226, 257 GEAR standing -> taken, 288, 319, 350, 381, 412, 443 GEAR standing -> taken, 474 | right tooth 19: 50, 81, 112, 143, 174, 205, 236, 267, 298, 329, 360, 391, 422, 453, 484   => takes [257, 443], 13 remain
+gear  37            : left tooth 24: 24, 61 gear, already taken, 98, 135, 172, 209, 246, 283 gear, already taken, 320, 357, 394, 431 gear, already taken, 468 | right tooth 36: 36, 73 gear, already taken, 110, 147, 184, 221, 258, 295, 332, 369, 406, 443 gear, already taken, 480
+gear  41            : left tooth 24: 24, 65, 106, 147, 188, 229 gear, already taken, 270, 311 gear, already taken, 352, 393, 434, 475 | right tooth 10: 51, 92, 133, 174, 215, 256, 297, 338, 379 gear, already taken, 420, 461 gear, already taken
+gear  43            : left tooth 38: 38, 81, 124, 167 gear, already taken, 210, 253, 296, 339, 382, 425, 468 | right tooth 9: 52, 95, 138, 181 gear, already taken, 224, 267, 310, 353 GEAR standing -> taken, 396, 439 gear, already taken, 482   => takes [353], 12 remain
+gear  47            : left tooth 33: 33, 80, 127 gear, already taken, 174, 221, 268, 315, 362, 409 gear, already taken, 456 | right tooth 17: 64, 111, 158, 205, 252, 299, 346, 393, 440, 487 gear, already taken
+gear  53            : left tooth 40: 40, 93, 146, 199 gear, already taken, 252, 305, 358, 411, 464 | right tooth 22: 75, 128, 181 gear, already taken, 234, 287, 340, 393, 446, 499 gear, already taken
+gear  59            : left tooth 2: 61 gear, already taken, 120, 179 gear, already taken, 238, 297, 356, 415, 474 | right tooth 41: 41 gear, already taken, 100, 159, 218, 277 gear, already taken, 336, 395, 454
+gear  61            : left tooth 48: 48, 109 gear, already taken, 170, 231, 292, 353 gear, already taken, 414, 475 | right tooth 7: 68, 129, 190, 251 gear, already taken, 312, 373 GEAR standing -> taken, 434, 495   => takes [373], 11 remain
+gear  67            : left tooth 5: 72, 139 gear, already taken, 206, 273, 340, 407, 474 | right tooth 27: 27, 94, 161, 228, 295, 362, 429, 496
+gear  71            : left tooth 13: 84, 155, 226, 297, 368, 439 gear, already taken | right tooth 60: 60, 131 gear, already taken, 202, 273, 344, 415, 486
+gear  73            : left tooth 40: 40, 113 gear, already taken, 186, 259, 332, 405, 478 | right tooth 64: 64, 137 gear, already taken, 210, 283 gear, already taken, 356, 429
+gear  79            : left tooth 24: 24, 103 GEAR standing -> taken, 182, 261, 340, 419 gear, already taken, 498 | right tooth 50: 50, 129, 208, 287, 366, 445   => takes [103], 10 remain
+gear  83            : left tooth 67: 67 GEAR standing -> taken, 150, 233 gear, already taken, 316, 399, 482 | right tooth 39: 39, 122, 205, 288, 371, 454   => takes [67], 9 remain
+gear  89            : left tooth 1: 90, 179 gear, already taken, 268, 357, 446 | right tooth 60: 60, 149 gear, already taken, 238, 327, 416
+gear  97            : left tooth 16: 113 gear, already taken, 210, 307 gear, already taken, 404 | right tooth 48: 48, 145, 242, 339, 436
+gear 101            : left tooth 65: 65, 166, 267, 368, 469 | right tooth 31: 31 gear, already taken, 132, 233 gear, already taken, 334, 435
+gear 103            : left tooth 15: 118, 221, 324, 427 | right tooth 49: 49, 152, 255, 358, 461 gear, already taken
+gear 107            : left tooth 77: 77, 184, 291, 398 | right tooth 41: 41 gear, already taken, 148, 255, 362, 469
+gear 109            : left tooth 88: 88, 197 gear, already taken, 306, 415 | right tooth 15: 124, 233 gear, already taken, 342, 451
+gear 113            : left tooth 70: 70, 183, 296, 409 gear, already taken | right tooth 32: 32, 145, 258, 371, 484
+gear 127            : left tooth 95: 95, 222, 349 gear, already taken, 476 | right tooth 10: 137 gear, already taken, 264, 391
+gear 131            : left tooth 115: 115, 246, 377 | right tooth 71: 71 gear, already taken, 202, 333, 464
+gear 137            : left tooth 75: 75, 212, 349 gear, already taken, 486 | right tooth 29: 29 gear, already taken, 166, 303, 440
+gear 139            : left tooth 43: 43 gear, already taken, 182, 321, 460 | right tooth 89: 89 gear, already taken, 228, 367 gear, already taken
+gear 149            : left tooth 41: 41 gear, already taken, 190, 339, 488 | right tooth 140: 140, 289, 438
+gear 151            : left tooth 108: 108, 259, 410 | right tooth 7: 158, 309, 460
+gear 157            : left tooth 120: 120, 277 gear, already taken, 434 | right tooth 15: 172, 329, 486
+gear 163            : left tooth 72: 72, 235, 398 | right tooth 126: 126, 289, 452
+gear 167            : left tooth 118: 118, 285, 452 | right tooth 62: 62, 229 gear, already taken, 396
+gear 173            : left tooth 147: 147, 320, 493 | right tooth 89: 89 gear, already taken, 262, 435
+gear 179            : left tooth 128: 128, 307 gear, already taken, 486 | right tooth 68: 68, 247, 426
+gear 181            : left tooth 111: 111, 292, 473 | right tooth 171: 171, 352
+gear 191            : left tooth 137: 137 gear, already taken, 328 | right tooth 73: 73 gear, already taken, 264, 455
+gear 193            : left tooth 90: 90, 283 gear, already taken, 476 | right tooth 154: 154, 347 gear, already taken
+gear 197            : left tooth 177: 177, 374 | right tooth 111: 111, 308
+gear 199            : left tooth 116: 116, 315 | right tooth 182: 182, 381
+gear 211            : left tooth 60: 60, 271 gear, already taken, 482 | right tooth 130: 130, 341
+gear 223            : left tooth 83: 83 gear, already taken, 306 | right tooth 157: 157 GEAR standing -> taken, 380   => takes [157], 8 remain
+gear 227            : left tooth 64: 64, 291 | right tooth 215: 215, 442
+gear 229            : left tooth 164: 164, 393 | right tooth 11: 240, 469
+gear 233            : left tooth 127: 127 gear, already taken, 360 | right tooth 49: 49, 282
+gear 239            : left tooth 166: 166, 405 | right tooth 86: 86, 325
+gear 241            : left tooth 13: 254, 495 | right tooth 93: 93, 334
+gear 251 (above q/2): left tooth 172: 172, 423 | right tooth 88: 88, 339
+gear 257 (above q/2): left tooth 139: 139 gear, already taken, 396 | right tooth 53: 53 GEAR standing -> taken, 310   => takes [53], 7 remain
+gear 263 (above q/2): left tooth 82: 82, 345 | right tooth 257: 257 gear, already taken
+gear 269 (above q/2): left tooth 1: 270 | right tooth 180: 180, 449 gear, already taken
+gear 271 (above q/2): left tooth 59: 59 gear, already taken, 330 | right tooth 149: 149 gear, already taken, 420
+gear 277 (above q/2): left tooth 225: 225 | right tooth 40: 40, 317 gear, already taken
+gear 281 (above q/2): left tooth 48: 48, 329 | right tooth 235: 235
+gear 283 (above q/2): left tooth 96: 96, 379 gear, already taken | right tooth 190: 190, 473
+gear 293 (above q/2): left tooth 23: 23 GEAR standing -> taken, 316 | right tooth 218: 218   => takes [23], 6 remain
+gear 307 (above q/2): left tooth 261: 261 | right tooth 56: 56, 363
+gear 311 (above q/2): left tooth 6: 317 gear, already taken | right tooth 213: 213
+gear 313 (above q/2): left tooth 30: 30, 343 | right tooth 134: 134, 447
+gear 317 (above q/2): left tooth 74: 74, 391 | right tooth 285: 285
+gear 331 (above q/2): left tooth 186: 186 | right tooth 296: 296
+gear 337 (above q/2): left tooth 214: 214 | right tooth 326: 326
+gear 347 (above q/2): left tooth 234: 234 | right tooth 118: 118, 465
+gear 349 (above q/2): left tooth 234: 234 | right tooth 1: 350
+gear 353 (above q/2): left tooth 230: 230 | right tooth 112: 112, 465
+gear 359 (above q/2): left tooth 214: 214 | right tooth 94: 94, 453
+gear 367 (above q/2): left tooth 174: 174 | right tooth 296: 296
+gear 373 (above q/2): left tooth 130: 130 | right tooth 254: 254
+gear 379 (above q/2): left tooth 74: 74, 453 | right tooth 200: 200
+gear 383 (above q/2): left tooth 30: 30, 413 | right tooth 285: 285
+gear 389 (above q/2): left tooth 343: 343 | right tooth 213: 213
+gear 397 (above q/2): left tooth 231: 231 | right tooth 363: 363
+gear 401 (above q/2): left tooth 167: 167 gear, already taken | right tooth 33: 33, 434
+gear 409 (above q/2): left tooth 23: 23 gear, already taken, 432 | right tooth 159: 159
+gear 419 (above q/2): left tooth 232: 232 | right tooth 92: 92
+gear 421 (above q/2): left tooth 188: 188 | right tooth 328: 328
+gear 431 (above q/2): left tooth 379: 379 gear, already taken | right tooth 235: 235
+gear 433 (above q/2): left tooth 329: 329 | right tooth 40: 40, 473
+gear 439 (above q/2): left tooth 171: 171 | right tooth 317: 317 gear, already taken
+gear 443 (above q/2): left tooth 59: 59 gear, already taken | right tooth 354: 354
+gear 449 (above q/2): left tooth 330: 330 | right tooth 180: 180
+gear 457 (above q/2): left tooth 82: 82 | right tooth 234: 234
+gear 461 (above q/2): left tooth 411: 411 | right tooth 257: 257 gear, already taken
+gear 463 (above q/2): left tooth 345: 345 | right tooth 36: 36, 499 gear, already taken
+gear 467 (above q/2): left tooth 209: 209 | right tooth 53: 53 gear, already taken
+gear 479 (above q/2): left tooth 248: 248 | right tooth 88: 88
+gear 487 (above q/2): left tooth 423: 423 | right tooth 98: 98
+gear 491 (above q/2): left tooth 263: 263 gear, already taken | right tooth 99: 99
+gear 499 (above q/2): left tooth 426: 426 | right tooth 93: 93
+
+passing: [37, 47, 173, 227, 313, 467]

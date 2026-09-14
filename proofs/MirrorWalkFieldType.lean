@@ -216,4 +216,46 @@ theorem triple_five_seven_iff {g : ℕ} {E a b h : ℤ} (hE : E ≡ -1 [ZMOD 35]
   rw [h5, h7, hg, ← and_assoc, pair_five_seven]
   tauto
 
+/-! ### A high gear's teeth are positions: one tooth holds at most one point per stretch of
+length `g`. -/
+
+/-- **One point per tooth per stretch.**  Two points of the same class modulo `g` closer than `g`
+are the same point. -/
+theorem tooth_unique {g : ℕ} {a h₁ h₂ : ℤ} (h1 : h₁ ≡ a [ZMOD g]) (h2 : h₂ ≡ a [ZMOD g])
+    (hlt : |h₁ - h₂| < g) : h₁ = h₂ := by
+  have hd : (g : ℤ) ∣ h₁ - h₂ := by
+    have := (h1.trans h2.symm)
+    rw [Int.modEq_iff_dvd] at this
+    have e : h₁ - h₂ = -(h₂ - h₁) := by ring
+    rw [e]; exact (dvd_neg).mpr this
+  have := Int.eq_zero_of_abs_lt_dvd hd hlt
+  linarith
+
+/-- **A high gear above half the line has at most two points per tooth in reach**: any three
+points of one tooth inside `(√q, q]` would put two of them closer than `g` when `2g > q - √q`.
+Stated for a tooth's three points: not all distinct. -/
+theorem tooth_at_most_two {g : ℕ} {q a h₁ h₂ h₃ : ℤ} (hg : q < 2 * g)
+    (h1 : h₁ ≡ a [ZMOD g]) (h2 : h₂ ≡ a [ZMOD g]) (h3 : h₃ ≡ a [ZMOD g])
+    (b1 : 0 < h₁ ∧ h₁ ≤ q) (b2 : 0 < h₂ ∧ h₂ ≤ q) (b3 : 0 < h₃ ∧ h₃ ≤ q) :
+    h₁ = h₂ ∨ h₂ = h₃ ∨ h₁ = h₃ := by
+  by_contra hne
+  push_neg at hne
+  obtain ⟨n12, n23, n13⟩ := hne
+  have d12 : (g : ℤ) ∣ h₁ - h₂ := by
+    have := (h1.trans h2.symm); rw [Int.modEq_iff_dvd] at this
+    rw [show h₁ - h₂ = -(h₂ - h₁) by ring]; exact (dvd_neg).mpr this
+  have d23 : (g : ℤ) ∣ h₂ - h₃ := by
+    have := (h2.trans h3.symm); rw [Int.modEq_iff_dvd] at this
+    rw [show h₂ - h₃ = -(h₃ - h₂) by ring]; exact (dvd_neg).mpr this
+  have d13 : (g : ℤ) ∣ h₁ - h₃ := by
+    have := (h1.trans h3.symm); rw [Int.modEq_iff_dvd] at this
+    rw [show h₁ - h₃ = -(h₃ - h₁) by ring]; exact (dvd_neg).mpr this
+  -- each nonzero difference has absolute value at least g
+  have a12 : (g : ℤ) ≤ |h₁ - h₂| := Int.le_of_dvd (abs_pos.mpr (sub_ne_zero.mpr n12)) ((dvd_abs _ _).mpr d12)
+  have a23 : (g : ℤ) ≤ |h₂ - h₃| := Int.le_of_dvd (abs_pos.mpr (sub_ne_zero.mpr n23)) ((dvd_abs _ _).mpr d23)
+  have a13 : (g : ℤ) ≤ |h₁ - h₃| := Int.le_of_dvd (abs_pos.mpr (sub_ne_zero.mpr n13)) ((dvd_abs _ _).mpr d13)
+  -- three points in (0, q] with pairwise gaps at least g force 2g ≤ q
+  rcases le_abs.mp a12 with c12 | c12 <;> rcases le_abs.mp a23 with c23 | c23 <;>
+    rcases le_abs.mp a13 with c13 | c13 <;> omega
+
 end MirrorWalk

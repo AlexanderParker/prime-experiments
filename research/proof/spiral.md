@@ -457,3 +457,23 @@ order, its teeth on the h-line, what it takes from what remains:
 A high gear g's teeth are two positions a, b mod g; with h < g the tooth is the single gear
 h = a or h = b, so a high gear can take only the gears standing exactly on its two teeth. Gear
 293's teeth at 23 and 218: 23 is a gear and was taken; 218 is not a gear.
+
+## A high gear's teeth as positions (2026-09-14)
+
+Kernel (MirrorWalkFieldType, built, 0 sorries): tooth_unique (two points of one class closer
+than g are one point), tooth_at_most_two (a gear above q/2 holds at most two points per tooth
+in (0, q]). Table research/stack/r8/high_teeth_positions.py, results_high_teeth_positions_499.txt:
+every high gear's tooth positions in reach, marked gear / not gear / standing when its turn came.
+- q = 499: gear 31 (smallest high) has 16 positions per tooth, takes 257 and 443 (left tooth
+  9 + 31t at t = 8 and 14). Gear 43: right tooth 9 + 43t holds 353 at t = 8. Gear 61: right
+  tooth 7 + 61t holds 373 at t = 6. Gear 79: left tooth 24 + 79t holds 103 at t = 1. Gear 83:
+  left tooth 67 at t = 0. Gear 223: right tooth 157 at t = 0. Gear 257 (above q/2): right tooth
+  53 at t = 0, left tooth 139 (already taken by the base). Gear 293: left tooth 23 at t = 0;
+  right tooth 218 is not a gear.
+- Above q/2 the teeth are one or two positions each, most of them not gears (172, 423, 88, 339
+  for gear 251; 225 and 40, 317 for 277). The gears among them were mostly taken already by the
+  base or band (139, 257, 449, 59, 149, 317, 379, 167, 23), so the high gear's own kill is the
+  exception: only 257 and 293 above q/2 take a standing gear at q = 499.
+- So a high gear's field on the landing line is finite and explicit from E: the positions
+  a_g + g t and b_g + g t up to q, at most two each above q/2, and it kills only where such a
+  position is a gear still standing.
