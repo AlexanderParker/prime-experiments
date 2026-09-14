@@ -679,3 +679,20 @@ P_s = 210, t = 1..60, rows 11 to 157:
   placed by P_s mod g alone; the twins are the columns no row reaches. The whole picture for a
   given P_s serves every machine q with q/2 < P_s <= q^2/2, the window fixing only which columns
   t are in reach.
+
+## The gap rule in the kernel; the t-line at P_s = 30030 (2026-09-14)
+
+- descent_gap: with t_0 the left tooth (2 P_s t_0 = 1 mod g), P_s (t_0 - (-t_0)) = 1 mod g: the
+  gap between a gear's two teeth is the inverse of P_s modulo g. descent_gap_one: when P_s = 1
+  mod g the teeth are adjacent (2 t_0 = 1 mod g). Built, 0 sorries.
+- Grid at P_s = 30030 (base 2 to 13), t = 1..150, 145 rows from 17 to 3001
+  (results_descent_fields_30030.txt): row 17 "R..............L.R.............." (teeth 1 and 16,
+  gap 15 = 30030^{-1} mod 17); row 19 "L................R.L" (teeth 1 and 18, adjacent across
+  the period: 30030 = 1 mod 19); row 23 teeth 10 and 13; 29 teeth 1 and 28 (30030 = 1 mod 29);
+  31 teeth 12 and 19; 37 teeth 4 and 33; ... Twin columns in t = 1..150: 3, 5, 7, 9, 11, 14, 21,
+  25, 27, 31, 32, 46, 61, 62, 65, 68, 71, 91, 98, 106, 109, 114, 139, 140, 141.
+- Gears g with P_s = 1 mod g (19, 29 at 30030; 11, 19 at 210) have their teeth at t = 1 and
+  t = -1: they strike the landing at t = 1 (2 P_s - 1 and 2 P_s + 1 are the two members with
+  P_s = 1 mod g giving 2 P_s + 1 = 3 mod g... exactly: the L tooth at t_0 = 2^{-1} P_s^{-1} = 2^{-1}
+  when P_s = 1). The picture is the same object at every primorial: stripes of period g, two
+  teeth each at t_0 and -t_0, t_0 = (2 P_s)^{-1} mod g.

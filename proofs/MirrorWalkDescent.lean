@@ -99,4 +99,22 @@ theorem descent_reflect (t Ps : ℤ) :
     2 * (-t) * Ps - 1 = -(2 * t * Ps - 1 + 2) ∧ 2 * (-t) * Ps - 1 + 2 = -(2 * t * Ps - 1) := by
   constructor <;> ring
 
+/-- **The gap between a gear's two teeth.**  If `t₀` is the left tooth (`2 P_s t₀ ≡ 1`), the right
+tooth is `-t₀`, and the distance from left to right inside a period satisfies
+`P_s (t₀ - (-t₀)) = 2 P_s t₀ ≡ 1 (mod g)`: the gap `2 t₀` is the inverse of `P_s` modulo `g`. -/
+theorem descent_gap {g : ℕ} {t₀ Ps : ℤ} (h : 2 * Ps * t₀ ≡ 1 [ZMOD g]) :
+    Ps * (t₀ - (-t₀)) ≡ 1 [ZMOD g] := by
+  have e : Ps * (t₀ - (-t₀)) = 2 * Ps * t₀ := by ring
+  rw [e]; exact h
+
+/-- When `P_s ≡ 1 (mod g)` the two teeth are adjacent: `t₀ - (-t₀) ≡ 1`, so `-t₀ ≡ t₀ - 1`. -/
+theorem descent_gap_one {g : ℕ} {t₀ Ps : ℤ} (hP : Ps ≡ 1 [ZMOD g]) (h : 2 * Ps * t₀ ≡ 1 [ZMOD g]) :
+    2 * t₀ ≡ 1 [ZMOD g] := by
+  have := descent_gap h
+  have e : Ps * (t₀ - (-t₀)) = Ps * (2 * t₀) := by ring
+  rw [e] at this
+  have h1 : Ps * (2 * t₀) ≡ 1 * (2 * t₀) [ZMOD g] := hP.mul_right _
+  rw [one_mul] at h1
+  exact h1.symm.trans this
+
 end MirrorWalk
