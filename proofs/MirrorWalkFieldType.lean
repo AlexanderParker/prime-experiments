@@ -82,4 +82,31 @@ theorem order_two_excludes_smaller {g p : ℕ} {c : ℤ} (hp : 2 ≤ p) (hpg : p
     have h3 : (2 : ℤ) ≤ p := by exact_mod_cast hp
     omega
 
+/-! ### The next type alone: (g, left member, order 3)
+
+The cofactor `c₀ + 6t` is a product of two primes, both at least `g`.  Take the smaller, `p₁`:
+it takes the cofactor on its class of `t` (cofactor_taken_by_iff), and inside that class
+`t = t₁ + p₁ s` the quotient runs on its own column line `d₀ + 6 s`, where the type asks for a
+prime: the order-2 shape one level down. -/
+
+/-- **Order 3, the shape.**  The left member is `g` times two primes at least `g` iff some prime
+`p₁ ≥ g` divides the cofactor with a prime quotient at least `g`. -/
+theorem left_order_three_iff {g : ℕ} {E a c₀ t : ℤ} (hg : 0 < g) (hc : (g : ℤ) * c₀ = E + 6 * a) :
+    (∃ p₁ p₂ : ℤ, Prime p₁ ∧ Prime p₂ ∧ (g : ℤ) ≤ p₁ ∧ (g : ℤ) ≤ p₂ ∧
+        E + 6 * (a + g * t) = (g : ℤ) * (p₁ * p₂)) ↔
+      (∃ p₁ : ℤ, Prime p₁ ∧ (g : ℤ) ≤ p₁ ∧ ∃ d, c₀ + 6 * t = p₁ * d ∧ Prime d ∧ (g : ℤ) ≤ d) := by
+  have hg0 : (g : ℤ) ≠ 0 := by exact_mod_cast hg.ne'
+  constructor
+  · rintro ⟨p₁, p₂, h1, h2, g1, g2, he⟩
+    rw [left_member_on_line hc] at he
+    exact ⟨p₁, h1, g1, p₂, mul_left_cancel₀ hg0 he, h2, g2⟩
+  · rintro ⟨p₁, h1, g1, d, hd, h2, g2⟩
+    exact ⟨p₁, d, h1, h2, g1, g2, by rw [left_member_on_line hc, hd]⟩
+
+/-- **Order 3, the line one level down.**  Inside `p₁`'s class `t = t₁ + p₁ s` the quotient of the
+cofactor by `p₁` is `d₀ + 6 s`, with `p₁ d₀ = c₀ + 6 t₁`. -/
+theorem quotient_on_line {p₁ c₀ t₁ d₀ s : ℤ} (hd : p₁ * d₀ = c₀ + 6 * t₁) :
+    c₀ + 6 * (t₁ + p₁ * s) = p₁ * (d₀ + 6 * s) := by
+  linear_combination (-1 : ℤ) * hd
+
 end MirrorWalk

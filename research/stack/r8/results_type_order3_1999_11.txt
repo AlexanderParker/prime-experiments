@@ -1,0 +1,45 @@
+One field type alone: (g, left member, order 3) on the landing line, step up L = E + 6h.
+
+Class h = a (mod g), h = a + g t, cofactor c = c_0 + 6 t.  Order 3: c = p_1 p_2, primes >= g,
+p_1 the smaller.  Then t sits in p_1's class 6 t = -c_0 (mod p_1), t = t_1 + p_1 s, and the
+quotient runs on its own column line d_0 + 6 s, prime at the kill.  The table shows, for one gear
+g at one machine, every order-3 kill of the type with its p_1, class t_1, s, and quotient line.
+
+usage: uv run python research/stack/r8/type_order3.py 499 11
+
+q = 1999, E = 409499, gear 11: class h = 7 (mod 11), cofactor line c = 37231 + 6t
+
+type (g, left, order 3) alone:
+   h = 73 (t = 6): c = 37267 = 83 * 449; p1's class t = 6 (mod 83), s = 0; quotient line d = 449 + 6s, d = 449 prime
+   h = 227 (t = 20): c = 37351 = 41 * 911; p1's class t = 20 (mod 41), s = 0; quotient line d = 911 + 6s, d = 911 prime
+   h = 557 (t = 50): c = 37531 = 13 * 2887; p1's class t = 11 (mod 13), s = 3; quotient line d = 2869 + 6s, d = 2887 prime
+   h = 733 (t = 66): c = 37627 = 191 * 197; p1's class t = 66 (mod 191), s = 0; quotient line d = 197 + 6s, d = 197 prime
+   h = 887 (t = 80): c = 37711 = 43 * 877; p1's class t = 37 (mod 43), s = 1; quotient line d = 871 + 6s, d = 877 prime
+   h = 997 (t = 90): c = 37771 = 107 * 353; p1's class t = 90 (mod 107), s = 0; quotient line d = 353 + 6s, d = 353 prime
+   h = 1459 (t = 132): c = 38023 = 47 * 809; p1's class t = 38 (mod 47), s = 2; quotient line d = 797 + 6s, d = 809 prime
+   h = 1613 (t = 146): c = 38107 = 53 * 719; p1's class t = 40 (mod 53), s = 2; quotient line d = 707 + 6s, d = 719 prime
+   h = 1657 (t = 150): c = 38131 = 17 * 2243; p1's class t = 14 (mod 17), s = 8; quotient line d = 2195 + 6s, d = 2243 prime
+   h = 1877 (t = 170): c = 38251 = 29 * 1319; p1's class t = 25 (mod 29), s = 5; quotient line d = 1289 + 6s, d = 1319 prime
+
+for comparison, the other t of the class (not this type):
+   h = 139 (t = 12): c = 7*73^2; gear 7's kill
+   h = 271 (t = 24): c = 5^3*13*23; gear 5's kill
+   h = 293 (t = 26): c = 7^3*109; gear 7's kill
+   h = 337 (t = 30): c = 11*19*179; order 4
+   h = 359 (t = 32): c = 37423; order 2 (type of the last round)
+   h = 491 (t = 44): c = 5*7499; gear 5's kill
+   h = 601 (t = 54): c = 5*7*29*37; gear 5's kill
+   h = 821 (t = 74): c = 5^2*11*137; gear 5's kill
+   h = 953 (t = 86): c = 37747; order 2 (type of the last round)
+   h = 1019 (t = 92): c = 37783; order 2 (type of the last round)
+   h = 1063 (t = 96): c = 7*11*491; gear 7's kill
+   h = 1129 (t = 102): c = 13*41*71; order 4
+   h = 1151 (t = 104): c = 5*67*113; gear 5's kill
+   h = 1217 (t = 110): c = 7*5413; gear 7's kill
+   h = 1283 (t = 116): c = 17*23*97; order 4
+   h = 1327 (t = 120): c = 37951; order 2 (type of the last round)
+   h = 1481 (t = 134): c = 5*7607; gear 5's kill
+   h = 1723 (t = 156): c = 38167; order 2 (type of the last round)
+   h = 1789 (t = 162): c = 11*23*151; order 4
+   h = 1811 (t = 164): c = 5*7643; gear 5's kill
+   h = 1987 (t = 180): c = 7*13*421; gear 7's kill

@@ -1,0 +1,23 @@
+One field type alone: (g, left member, order 3) on the landing line, step up L = E + 6h.
+
+Class h = a (mod g), h = a + g t, cofactor c = c_0 + 6 t.  Order 3: c = p_1 p_2, primes >= g,
+p_1 the smaller.  Then t sits in p_1's class 6 t = -c_0 (mod p_1), t = t_1 + p_1 s, and the
+quotient runs on its own column line d_0 + 6 s, prime at the kill.  The table shows, for one gear
+g at one machine, every order-3 kill of the type with its p_1, class t_1, s, and quotient line.
+
+usage: uv run python research/stack/r8/type_order3.py 499 11
+
+q = 499, E = 119699, gear 11: class h = 6 (mod 11), cofactor line c = 10885 + 6t
+
+type (g, left, order 3) alone:
+   h = 127 (t = 11): c = 10951 = 47 * 233; p1's class t = 11 (mod 47), s = 0; quotient line d = 233 + 6s, d = 233 prime
+   h = 149 (t = 13): c = 10963 = 19 * 577; p1's class t = 13 (mod 19), s = 0; quotient line d = 577 + 6s, d = 577 prime
+   h = 479 (t = 43): c = 11143 = 11 * 1013; p1's class t = 10 (mod 11), s = 3; quotient line d = 995 + 6s, d = 1013 prime
+
+for comparison, the other t of the class (not this type):
+   h = 61 (t = 5): c = 5*37*59; gear 5's kill
+   h = 83 (t = 7): c = 7^2*223; gear 7's kill
+   h = 193 (t = 17): c = 10987; order 2 (type of the last round)
+   h = 281 (t = 25): c = 5*2207; gear 5's kill
+   h = 347 (t = 31): c = 11071; order 2 (type of the last round)
+   h = 457 (t = 41): c = 11131; order 2 (type of the last round)

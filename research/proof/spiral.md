@@ -348,3 +348,18 @@ kernel (proofs/MirrorWalkFieldType.lean, built, 0 sorries, standard axioms), thr
 The same three lemmas serve any gear (base, band or high), the right member (a replaced by the
 class of E + 2) and the down step (sign of 6). Next types: (g, left, order 3) with the cofactor
 a product of two primes at least g; then the right member; then the down step.
+
+## Next type alone: (g, left member, order 3), kernel round 52 continued (2026-09-14)
+
+- Shape (left_order_three_iff): the left member is g times two primes at least g iff some prime
+  p_1 >= g divides the cofactor c_0 + 6t with a prime quotient at least g.
+- Line one level down (quotient_on_line): inside p_1's class t = t_1 + p_1 s the quotient is
+  d_0 + 6s with p_1 d_0 = c_0 + 6 t_1. A column line again. So order 3 of g = for some p_1 >= g,
+  the order-2 shape on the quotient line: the type is the last type, one level down.
+- Table (type_order3.py). q = 499, g = 11, class h = 6 (mod 11), c = 10885 + 6t: order-3 kills
+  at t = 11 (c = 47 * 233, p_1's class t = 11 mod 47, s = 0, quotient line 233 + 6s), t = 13
+  (19 * 577; class 13 mod 19; 577 + 6s), t = 43 (11 * 1013; class 10 mod 11, s = 3; 995 + 6s).
+  q = 1999, g = 11: ten order-3 kills, p_1 from 13 to 191, each with its class of t and quotient
+  line; e.g. t = 150: c = 17 * 2243, class 14 mod 17, s = 8, line 2195 + 6s.
+- Order j in general is the same descent j - 2 times: each factor taken in turn on its own
+  class of the current line, the last quotient prime. Nothing new appears past order 3.
