@@ -1,0 +1,84 @@
+Each field type in the band as its own object on the landing line.
+
+Machine q, landing E, final step up: L = E + 6h, h a high gear (sqrt q < h <= q).  Band gear g
+strikes the left member when h is in the class a_g = -E 6^{-1} (mod g), the right member when h
+is in b_g = -(E + 2) 6^{-1} (mod g).  Inside a class h = a + g t and the struck member is
+  g * c,   c = c_0 + 6 t   (c_0 = (E + 6 a) / g for the left member, (E + 2 + 6 a) / g for the right)
+so the cofactors run along an arithmetic progression of step 6: a column line one level down.
+The field type higher:g of order j is the set of t at which c is a product of j - 1 primes, all
+at least g.  A cofactor with a prime factor below g is not g's kill (the smaller gear's field).
+The table lists, per band gear, per member, the class, the cofactor line, and every high gear h
+in the class with its cofactor, factorisation, order and field owner.
+
+usage: uv run python research/stack/r8/band_field_traces.py 499
+
+q = 499, window (499, 249001], base [2, 3, 5, 7] (P = 210), band [11, 13, 17, 19], E = 119699, step up L = E + 6h
+
+band gear 11, left member: class h = 6 (mod 11); h = 6 + 11 t; member = 11 * c, c = 10885 + 6 t
+   h =   61 (t =  5): member 120065 = 11 * 10915, c = 5*37*59; lower gear 5's field (higher:5)
+   h =   83 (t =  7): member 120197 = 11 * 10927, c = 7^2*223; lower gear 7's field (higher:7)
+   h =  127 (t = 11): member 120461 = 11 * 10951, c = 47*233; higher:11 order 3
+   h =  149 (t = 13): member 120593 = 11 * 10963, c = 19*577; higher:11 order 3
+   h =  193 (t = 17): member 120857 = 11 * 10987, c = 10987; higher:11 order 2
+   h =  281 (t = 25): member 121385 = 11 * 11035, c = 5*2207; lower gear 5's field (higher:5)
+   h =  347 (t = 31): member 121781 = 11 * 11071, c = 11071; higher:11 order 2
+   h =  457 (t = 41): member 122441 = 11 * 11131, c = 11131; higher:11 order 2
+   h =  479 (t = 43): member 122573 = 11 * 11143, c = 11*1013; higher:11 order 3
+
+band gear 11, right member: class h = 2 (mod 11); h = 2 + 11 t; member = 11 * c, c = 10883 + 6 t
+   h =   79 (t =  7): member 120175 = 11 * 10925, c = 5^2*19*23; lower gear 5's field (higher:5)
+   h =  101 (t =  9): member 120307 = 11 * 10937, c = 10937; higher:11 order 2
+   h =  167 (t = 15): member 120703 = 11 * 10973, c = 10973; higher:11 order 2
+   h =  211 (t = 19): member 120967 = 11 * 10997, c = 7*1571; lower gear 7's field (higher:7)
+   h =  233 (t = 21): member 121099 = 11 * 11009, c = 101*109; higher:11 order 3
+   h =  277 (t = 25): member 121363 = 11 * 11033, c = 11*17*59; higher:11 order 4
+   h =  409 (t = 37): member 122155 = 11 * 11105, c = 5*2221; lower gear 5's field (higher:5)
+   h =  431 (t = 39): member 122287 = 11 * 11117, c = 11117; higher:11 order 2
+
+band gear 13, left member: class h = 3 (mod 13); h = 3 + 13 t; member = 13 * c, c = 9209 + 6 t
+   h =   29 (t =  2): member 119873 = 13 * 9221, c = 9221; higher:13 order 2
+   h =  107 (t =  8): member 120341 = 13 * 9257, c = 9257; higher:13 order 2
+   h =  211 (t = 16): member 120965 = 13 * 9305, c = 5*1861; lower gear 5's field (higher:5)
+   h =  263 (t = 20): member 121277 = 13 * 9329, c = 19*491; higher:13 order 3
+   h =  367 (t = 28): member 121901 = 13 * 9377, c = 9377; higher:13 order 2
+   h =  419 (t = 32): member 122213 = 13 * 9401, c = 7*17*79; lower gear 7's field (higher:7)
+
+band gear 13, right member: class h = 7 (mod 13); h = 7 + 13 t; member = 13 * c, c = 9211 + 6 t
+   h =   59 (t =  4): member 120055 = 13 * 9235, c = 5*1847; lower gear 5's field (higher:5)
+   h =  137 (t = 10): member 120523 = 13 * 9271, c = 73*127; higher:13 order 3
+   h =  163 (t = 12): member 120679 = 13 * 9283, c = 9283; higher:13 order 2
+   h =  241 (t = 18): member 121147 = 13 * 9319, c = 9319; higher:13 order 2
+   h =  293 (t = 22): member 121459 = 13 * 9343, c = 9343; higher:13 order 2
+   h =  397 (t = 30): member 122083 = 13 * 9391, c = 9391; higher:13 order 2
+   h =  449 (t = 34): member 122395 = 13 * 9415, c = 5*7*269; lower gear 5's field (higher:5)
+
+band gear 17, left member: class h = 11 (mod 17); h = 11 + 17 t; member = 17 * c, c = 7045 + 6 t
+   h =   79 (t =  4): member 120173 = 17 * 7069, c = 7069; higher:17 order 2
+   h =  113 (t =  6): member 120377 = 17 * 7081, c = 73*97; higher:17 order 3
+   h =  181 (t = 10): member 120785 = 17 * 7105, c = 5*7^2*29; lower gear 5's field (higher:5)
+   h =  283 (t = 16): member 121397 = 17 * 7141, c = 37*193; higher:17 order 3
+   h =  317 (t = 18): member 121601 = 17 * 7153, c = 23*311; higher:17 order 3
+   h =  419 (t = 24): member 122213 = 17 * 7189, c = 7*13*79; lower gear 7's field (higher:7)
+   h =  487 (t = 28): member 122621 = 17 * 7213, c = 7213; higher:17 order 2
+
+band gear 17, right member: class h = 5 (mod 17); h = 5 + 17 t; member = 17 * c, c = 7043 + 6 t
+   h =   73 (t =  4): member 120139 = 17 * 7067, c = 37*191; higher:17 order 3
+   h =  107 (t =  6): member 120343 = 17 * 7079, c = 7079; higher:17 order 2
+   h =  277 (t = 16): member 121363 = 17 * 7139, c = 11^2*59; lower gear 11's field (higher:11)
+   h =  311 (t = 18): member 121567 = 17 * 7151, c = 7151; higher:17 order 2
+   h =  379 (t = 22): member 121975 = 17 * 7175, c = 5^2*7*41; lower gear 5's field (higher:5)
+
+band gear 19, left member: class h = 16 (mod 19); h = 16 + 19 t; member = 19 * c, c = 6305 + 6 t
+   h =   73 (t =  3): member 120137 = 19 * 6323, c = 6323; higher:19 order 2
+   h =  149 (t =  7): member 120593 = 19 * 6347, c = 11*577; lower gear 11's field (higher:11)
+   h =  263 (t = 13): member 121277 = 19 * 6383, c = 13*491; lower gear 13's field (higher:13)
+   h =  491 (t = 25): member 122645 = 19 * 6455, c = 5*1291; lower gear 5's field (higher:5)
+
+band gear 19, right member: class h = 3 (mod 19); h = 3 + 19 t; member = 19 * c, c = 6301 + 6 t
+   h =   41 (t =  2): member 119947 = 19 * 6313, c = 59*107; higher:19 order 3
+   h =   79 (t =  4): member 120175 = 19 * 6325, c = 5^2*11*23; lower gear 5's field (higher:5)
+   h =  193 (t = 10): member 120859 = 19 * 6361, c = 6361; higher:19 order 2
+   h =  269 (t = 14): member 121315 = 19 * 6385, c = 5*1277; lower gear 5's field (higher:5)
+   h =  307 (t = 16): member 121543 = 19 * 6397, c = 6397; higher:19 order 2
+   h =  383 (t = 20): member 121999 = 19 * 6421, c = 6421; higher:19 order 2
+   h =  421 (t = 22): member 122227 = 19 * 6433, c = 7*919; lower gear 7's field (higher:7)

@@ -307,3 +307,29 @@ Script research/stack/r8/band_classes.py, table results_band_classes.txt, machin
   in the window, some high gear h has E +- 6h open to the band and to the high gears' fields.
   The base is settled (column h); the band's classes are E's residues; the high gears strike
   only as g | L or g | L + 2. That is the whole remaining statement, in parts.
+
+## Each field type of the band as its own object (owner, 2026-09-14)
+
+Owner: the band is an aggregate with conditional members; solve each field type in it, not
+the band as one object. Script research/stack/r8/band_field_traces.py, table
+results_band_field_traces_499.txt.
+
+Exact shape of one field type on the landing line (step up, L = E + 6h, h a high gear):
+- Band gear g, left member: the class h = a_g (mod g), a_g = -E 6^{-1}; right member: the
+  class b_g = -(E + 2) 6^{-1}. Inside a class h = a + g t and the struck member is g c with
+  c = c_0 + 6 t: the cofactors run along a column line one level down (c = +-1 mod 6).
+- Field type (g, member, order j) = the t of the class at which c is a product of j - 1 primes
+  all at least g. A cofactor with a prime below g is the smaller gear's kill, not g's.
+- So each field type is: one class of h, one cofactor line, one factor shape of c. Three
+  objects, each already proved in the fields: the class (landing law), the line (column
+  structure), the factor shape (higher:g = g times survivors of the lower gears).
+- q = 499, band gear 11, left member: class h = 6 (mod 11), c = 10885 + 6t. Hits: h = 61 (c =
+  5*37*59, gear 5's kill), 83 (7^2*223, gear 7's), 127 (47*233, order 3), 149 (19*577, order 3),
+  193 (10987 prime, order 2), 281 (5*2207, gear 5's), 347 (prime, order 2), 457 (prime, order 2),
+  479 (11*1013, order 3). Right member: class 2 (mod 11), c = 10883 + 6t, order 2 at h = 101,
+  167, 431; order 3 at 233; order 4 at 277 (11*17*59); gears 5, 7 take 79, 211, 409.
+- Band gear 19 at 499: left class 16 (mod 19) has one own kill (h = 73, order 2), the other
+  three t are gears 11, 13, 5's kills; right class 3 (mod 19): order 2 at 193, 307, 383, order
+  3 at 41, gears 5 and 7 take 79, 269, 421.
+- Order 2 of g on the h-line is two coupled prime conditions in t: h = a + g t prime (h is a
+  gear) and c = c_0 + 6 t prime. Order j: c a product of j - 1 primes at least g.
