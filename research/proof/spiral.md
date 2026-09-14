@@ -440,3 +440,20 @@ them (37, 47, 173, 227, 313, 467), the rest each taken by one next single type (
 times, 17 four times, 31 twice, then 19, 43, 61, 79, 83, 223, 257, 293 once); q = 997 (teeth 9,
 5) leaves 41; q = 1999 (teeth 7, 3) leaves 76. The survivors' classes mod 385 differ by
 machine exactly as gear 11's teeth move; the base part of each class is fixed.
+
+## One machine, one gear at a time (2026-09-14)
+
+Script research/stack/r8/one_gear_at_a_time.py, tables results_one_gear_at_a_time_499.txt and
+_997.txt. q = 499, E = 119699, 87 high gears in reach, step up. Each gear in the machine's
+order, its teeth on the h-line, what it takes from what remains:
+- gear 5 (base, teeth 1, 4): takes 43, 44 remain. gear 7 (base, teeth 6, 1): takes 13, 31 remain.
+- gear 11 (band, teeth 6, 2): takes 5, 26 remain. gear 13 (teeth 3, 7): takes 6, 20 remain.
+  gear 17 (teeth 11, 5): takes 4, 16 remain. gear 19 (teeth 16, 3): takes 1, 15 remain.
+- high gears, each taking at most one: 31 takes 257 and 443 (cofactors 3911, 3947, both prime);
+  43 takes 353; 61 takes 373 (cofactor 1999); 79 takes 103; 83 takes 67; 223 takes 157
+  (cofactor 541); 257 takes 53 (cofactor 467); 293 takes 23 (cofactor 409). Every other high
+  gear takes nothing. Every high-gear kill is order 2 here.
+- passing gears: 37, 47, 173, 227, 313, 467.
+A high gear g's teeth are two positions a, b mod g; with h < g the tooth is the single gear
+h = a or h = b, so a high gear can take only the gears standing exactly on its two teeth. Gear
+293's teeth at 23 and 218: 23 is a gear and was taken; 218 is not a gear.

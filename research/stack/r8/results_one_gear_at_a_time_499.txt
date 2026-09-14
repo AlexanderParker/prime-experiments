@@ -1,0 +1,106 @@
+One machine, one gear at a time, step up.  Start from the high gears in reach.  Add the gears
+in the machine's order: base gears (teeth fixed on column h), then band gears (teeth a, b placed
+by E), then the high gears (teeth placed by E; a high gear strikes only by dividing a member).
+At each addition: the gear's teeth, which survivors it takes (with the member and the cofactor),
+and what remains.  Ends with the passing gears.
+
+usage: uv run python research/stack/r8/one_gear_at_a_time.py 499
+
+q = 499, E = 119699, base [2, 3, 5, 7], band [11, 13, 17, 19], high gears from 23
+high gears in reach: 87: [23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499]
+
+gear   5 (base) teeth h =   1,   4 mod 5: takes 43 ->  44 remain   h = 29 (right, cofactor 23975 = 5^2*7*137); h = 31 (left, cofactor 23977 = 23977); h = 41 (left, cofactor 23989 = 7*23*149); h = 59 (right, cofactor 24011 = 13*1847); h = 61 (left, cofactor 24013 = 11*37*59); h = 71 (left, cofactor 24025 = 5^2*31^2); h = 79 (right, cofactor 24035 = 5*11*19*23); h = 89 (right, cofactor 24047 = 139*173); h = 101 (left, cofactor 24061 = 24061); h = 109 (right, cofactor 24071 = 24071); h = 131 (left, cofactor 24097 = 24097); h = 139 (right, cofactor 24107 = 24107); h = 149 (right, cofactor 24119 = 89*271); h = 151 (left, cofactor 24121 = 24121); h = 179 (right, cofactor 24155 = 5*4831); h = 181 (left, cofactor 24157 = 7^2*17*29); h = 191 (left, cofactor 24169 = 24169); h = 199 (right, cofactor 24179 = 24179); h = 211 (left, cofactor 24193 = 13*1861); h = 229 (right, cofactor 24215 = 5*29*167); h = 239 (right, cofactor 24227 = 7*3461); h = 241 (left, cofactor 24229 = 24229); h = 251 (left, cofactor 24241 = 7*3463); h = 269 (right, cofactor 24263 = 19*1277); h = 271 (left, cofactor 24265 = 5*23*211); h = 281 (left, cofactor 24277 = 11*2207); h = 311 (left, cofactor 24313 = 41*593); h = 331 (left, cofactor 24337 = 24337); h = 349 (right, cofactor 24359 = 24359); h = 359 (right, cofactor 24371 = 24371); h = 379 (right, cofactor 24395 = 5*7*17*41); h = 389 (right, cofactor 24407 = 24407); h = 401 (left, cofactor 24421 = 24421); h = 409 (right, cofactor 24431 = 11*2221); h = 419 (right, cofactor 24443 = 24443); h = 421 (left, cofactor 24445 = 5*4889); h = 431 (left, cofactor 24457 = 37*661); h = 439 (right, cofactor 24467 = 43*569); h = 449 (right, cofactor 24479 = 7*13*269); h = 461 (left, cofactor 24493 = 7*3499); h = 479 (right, cofactor 24515 = 5*4903); h = 491 (left, cofactor 24529 = 19*1291); h = 499 (right, cofactor 24539 = 53*463)
+gear   7 (base) teeth h =   6,   1 mod 7: takes 13 ->  31 remain   h = 43 (right, cofactor 17137 = 17137); h = 83 (left, cofactor 17171 = 7*11*223); h = 97 (left, cofactor 17183 = 17183); h = 113 (right, cofactor 17197 = 29*593); h = 127 (right, cofactor 17209 = 17209); h = 167 (left, cofactor 17243 = 43*401); h = 197 (right, cofactor 17269 = 7*2467); h = 223 (left, cofactor 17291 = 17291); h = 293 (left, cofactor 17351 = 17351); h = 307 (left, cofactor 17363 = 97*179); h = 337 (right, cofactor 17389 = 17389); h = 433 (left, cofactor 17471 = 17471); h = 463 (right, cofactor 17497 = 17497)
+gear  11 (band) teeth h =   6,   2 mod 11: takes  5 ->  26 remain   h = 193 (left, cofactor 10987 = 10987); h = 233 (right, cofactor 11009 = 101*109); h = 277 (right, cofactor 11033 = 11*17*59); h = 347 (left, cofactor 11071 = 11071); h = 457 (left, cofactor 11131 = 11131)
+gear  13 (band) teeth h =   3,   7 mod 13: takes  6 ->  20 remain   h = 107 (left, cofactor 9257 = 9257); h = 137 (right, cofactor 9271 = 73*127); h = 163 (right, cofactor 9283 = 9283); h = 263 (left, cofactor 9329 = 19*491); h = 367 (left, cofactor 9377 = 9377); h = 397 (right, cofactor 9391 = 9391)
+gear  17 (band) teeth h =  11,   5 mod 17: takes  4 ->  16 remain   h = 73 (right, cofactor 7067 = 37*191); h = 283 (left, cofactor 7141 = 37*193); h = 317 (left, cofactor 7153 = 23*311); h = 487 (left, cofactor 7213 = 7213)
+gear  19 (band) teeth h =  16,   3 mod 19: takes  1 ->  15 remain   h = 383 (right, cofactor 6421 = 6421)
+gear  23 (high) teeth h =  18,  10 mod 23: takes  0 ->  15 remain
+gear  29 (high) teeth h =   7,  26 mod 29: takes  0 ->  15 remain
+gear  31 (high) teeth h =   9,  19 mod 31: takes  2 ->  13 remain   h = 257 (left, cofactor 3911 = 3911); h = 443 (left, cofactor 3947 = 3947)
+gear  37 (high) teeth h =  24,  36 mod 37: takes  0 ->  13 remain
+gear  41 (high) teeth h =  24,  10 mod 41: takes  0 ->  13 remain
+gear  43 (high) teeth h =  38,   9 mod 43: takes  1 ->  12 remain   h = 353 (right, cofactor 2833 = 2833)
+gear  47 (high) teeth h =  33,  17 mod 47: takes  0 ->  12 remain
+gear  53 (high) teeth h =  40,  22 mod 53: takes  0 ->  12 remain
+gear  59 (high) teeth h =   2,  41 mod 59: takes  0 ->  12 remain
+gear  61 (high) teeth h =  48,   7 mod 61: takes  1 ->  11 remain   h = 373 (right, cofactor 1999 = 1999)
+gear  67 (high) teeth h =   5,  27 mod 67: takes  0 ->  11 remain
+gear  71 (high) teeth h =  13,  60 mod 71: takes  0 ->  11 remain
+gear  73 (high) teeth h =  40,  64 mod 73: takes  0 ->  11 remain
+gear  79 (high) teeth h =  24,  50 mod 79: takes  1 ->  10 remain   h = 103 (left, cofactor 1523 = 1523)
+gear  83 (high) teeth h =  67,  39 mod 83: takes  1 ->   9 remain   h = 67 (left, cofactor 1447 = 1447)
+gear  89 (high) teeth h =   1,  60 mod 89: takes  0 ->   9 remain
+gear  97 (high) teeth h =  16,  48 mod 97: takes  0 ->   9 remain
+gear 101 (high) teeth h =  65,  31 mod 101: takes  0 ->   9 remain
+gear 103 (high) teeth h =  15,  49 mod 103: takes  0 ->   9 remain
+gear 107 (high) teeth h =  77,  41 mod 107: takes  0 ->   9 remain
+gear 109 (high) teeth h =  88,  15 mod 109: takes  0 ->   9 remain
+gear 113 (high) teeth h =  70,  32 mod 113: takes  0 ->   9 remain
+gear 127 (high) teeth h =  95,  10 mod 127: takes  0 ->   9 remain
+gear 131 (high) teeth h = 115,  71 mod 131: takes  0 ->   9 remain
+gear 137 (high) teeth h =  75,  29 mod 137: takes  0 ->   9 remain
+gear 139 (high) teeth h =  43,  89 mod 139: takes  0 ->   9 remain
+gear 149 (high) teeth h =  41, 140 mod 149: takes  0 ->   9 remain
+gear 151 (high) teeth h = 108,   7 mod 151: takes  0 ->   9 remain
+gear 157 (high) teeth h = 120,  15 mod 157: takes  0 ->   9 remain
+gear 163 (high) teeth h =  72, 126 mod 163: takes  0 ->   9 remain
+gear 167 (high) teeth h = 118,  62 mod 167: takes  0 ->   9 remain
+gear 173 (high) teeth h = 147,  89 mod 173: takes  0 ->   9 remain
+gear 179 (high) teeth h = 128,  68 mod 179: takes  0 ->   9 remain
+gear 181 (high) teeth h = 111, 171 mod 181: takes  0 ->   9 remain
+gear 191 (high) teeth h = 137,  73 mod 191: takes  0 ->   9 remain
+gear 193 (high) teeth h =  90, 154 mod 193: takes  0 ->   9 remain
+gear 197 (high) teeth h = 177, 111 mod 197: takes  0 ->   9 remain
+gear 199 (high) teeth h = 116, 182 mod 199: takes  0 ->   9 remain
+gear 211 (high) teeth h =  60, 130 mod 211: takes  0 ->   9 remain
+gear 223 (high) teeth h =  83, 157 mod 223: takes  1 ->   8 remain   h = 157 (right, cofactor 541 = 541)
+gear 227 (high) teeth h =  64, 215 mod 227: takes  0 ->   8 remain
+gear 229 (high) teeth h = 164,  11 mod 229: takes  0 ->   8 remain
+gear 233 (high) teeth h = 127,  49 mod 233: takes  0 ->   8 remain
+gear 239 (high) teeth h = 166,  86 mod 239: takes  0 ->   8 remain
+gear 241 (high) teeth h =  13,  93 mod 241: takes  0 ->   8 remain
+gear 251 (high) teeth h = 172,  88 mod 251: takes  0 ->   8 remain
+gear 257 (high) teeth h = 139,  53 mod 257: takes  1 ->   7 remain   h = 53 (right, cofactor 467 = 467)
+gear 263 (high) teeth h =  82, 257 mod 263: takes  0 ->   7 remain
+gear 269 (high) teeth h =   1, 180 mod 269: takes  0 ->   7 remain
+gear 271 (high) teeth h =  59, 149 mod 271: takes  0 ->   7 remain
+gear 277 (high) teeth h = 225,  40 mod 277: takes  0 ->   7 remain
+gear 281 (high) teeth h =  48, 235 mod 281: takes  0 ->   7 remain
+gear 283 (high) teeth h =  96, 190 mod 283: takes  0 ->   7 remain
+gear 293 (high) teeth h =  23, 218 mod 293: takes  1 ->   6 remain   h = 23 (left, cofactor 409 = 409)
+gear 307 (high) teeth h = 261,  56 mod 307: takes  0 ->   6 remain
+gear 311 (high) teeth h =   6, 213 mod 311: takes  0 ->   6 remain
+gear 313 (high) teeth h =  30, 134 mod 313: takes  0 ->   6 remain
+gear 317 (high) teeth h =  74, 285 mod 317: takes  0 ->   6 remain
+gear 331 (high) teeth h = 186, 296 mod 331: takes  0 ->   6 remain
+gear 337 (high) teeth h = 214, 326 mod 337: takes  0 ->   6 remain
+gear 347 (high) teeth h = 234, 118 mod 347: takes  0 ->   6 remain
+gear 349 (high) teeth h = 234,   1 mod 349: takes  0 ->   6 remain
+gear 353 (high) teeth h = 230, 112 mod 353: takes  0 ->   6 remain
+gear 359 (high) teeth h = 214,  94 mod 359: takes  0 ->   6 remain
+gear 367 (high) teeth h = 174, 296 mod 367: takes  0 ->   6 remain
+gear 373 (high) teeth h = 130, 254 mod 373: takes  0 ->   6 remain
+gear 379 (high) teeth h =  74, 200 mod 379: takes  0 ->   6 remain
+gear 383 (high) teeth h =  30, 285 mod 383: takes  0 ->   6 remain
+gear 389 (high) teeth h = 343, 213 mod 389: takes  0 ->   6 remain
+gear 397 (high) teeth h = 231, 363 mod 397: takes  0 ->   6 remain
+gear 401 (high) teeth h = 167,  33 mod 401: takes  0 ->   6 remain
+gear 409 (high) teeth h =  23, 159 mod 409: takes  0 ->   6 remain
+gear 419 (high) teeth h = 232,  92 mod 419: takes  0 ->   6 remain
+gear 421 (high) teeth h = 188, 328 mod 421: takes  0 ->   6 remain
+gear 431 (high) teeth h = 379, 235 mod 431: takes  0 ->   6 remain
+gear 433 (high) teeth h = 329,  40 mod 433: takes  0 ->   6 remain
+gear 439 (high) teeth h = 171, 317 mod 439: takes  0 ->   6 remain
+gear 443 (high) teeth h =  59, 354 mod 443: takes  0 ->   6 remain
+gear 449 (high) teeth h = 330, 180 mod 449: takes  0 ->   6 remain
+gear 457 (high) teeth h =  82, 234 mod 457: takes  0 ->   6 remain
+gear 461 (high) teeth h = 411, 257 mod 461: takes  0 ->   6 remain
+gear 463 (high) teeth h = 345,  36 mod 463: takes  0 ->   6 remain
+gear 467 (high) teeth h = 209,  53 mod 467: takes  0 ->   6 remain
+gear 479 (high) teeth h = 248,  88 mod 479: takes  0 ->   6 remain
+gear 487 (high) teeth h = 423,  98 mod 487: takes  0 ->   6 remain
+gear 491 (high) teeth h = 263,  99 mod 491: takes  0 ->   6 remain
+gear 499 (high) teeth h = 426,  93 mod 499: takes  0 ->   6 remain
+
+passing gears: [37, 47, 173, 227, 313, 467]
