@@ -1,0 +1,54 @@
+The teeth on the t-line of the primorial descent.  Landing 2 t P_s - 1.  A gear g above the
+base strikes the left member at t = (2 P_s)^{-1} (mod g) and the right member at t = -(2 P_s)^{-1}
+(mod g): two teeth per gear, fixed by g and P_s.  For P_s = 210 and 2310: every gear g above the
+base up to a bound, its two teeth, and on the t-line 1..T which t each gear takes (first taker
+in gear order), the t left standing (twins as long as every gear up to sqrt(2 t P_s + 1) is in
+the list).
+
+usage: uv run python research/stack/r8/descent_classes.py 2310 100
+
+P_s = 2310, base [2, 3, 5, 7, 11], t = 1..100, landings up to 462001; gears above the base up to sqrt: 118 (to 677)
+
+teeth (left, right) mod g: 13: (8, 5), 17: (4, 13), 19: (13, 6), 23: (15, 8), 29: (13, 16), 31: (1, 30), 37: (22, 15), 41: (22, 19), 43: (34, 9), 47: (37, 10), 53: (6, 47), 59: (23, 36), 61: (19, 42), 67: (22, 45), 71: (57, 14), 73: (7, 66), 79: (52, 27), 83: (80, 3), 89: (11, 78), 97: (35, 62), 101: (66, 35), 103: (48, 55), 107: (62, 45), 109: (13, 96) ...
+   gear  13 teeth   8,  5: takes [5, 8, 18, 21, 31, 34, 44, 47, 57, 60, 70, 73, 83, 86, 96, 99]
+   gear  17 teeth   4, 13: takes [4, 13, 30, 38, 55, 64, 72, 81, 89, 98]
+   gear  19 teeth  13,  6: takes [6, 25, 32, 51, 63, 82]
+   gear  23 teeth  15,  8: takes [15, 54, 61, 77, 84, 100]
+   gear  29 teeth  13, 16: takes [16, 42, 45, 71, 74]
+   gear  31 teeth   1, 30: takes [1, 92, 94]
+   gear  37 teeth  22, 15: takes [22, 52, 59]
+   gear  41 teeth  22, 19: takes [19]
+   gear  43 teeth  34,  9: takes [9, 95]
+   gear  47 teeth  37, 10: takes [10, 37]
+   gear  59 teeth  23, 36: takes [23, 36]
+   gear  61 teeth  19, 42: takes [80]
+   gear  71 teeth  57, 14: takes [14, 85]
+   gear  73 teeth   7, 66: takes [7, 66]
+   gear  79 teeth  52, 27: takes [27]
+   gear  83 teeth  80,  3: takes [3]
+   gear  89 teeth  11, 78: takes [11, 78]
+   gear  97 teeth  35, 62: takes [35, 62]
+   gear 103 teeth  48, 55: takes [48]
+   gear 113 teeth  26, 87: takes [26, 87]
+   gear 157 teeth  75, 82: takes [75]
+   gear 179 teeth 100, 79: takes [79]
+   gear 181 teeth 141, 40: takes [40]
+   gear 191 teeth  69,122: takes [69]
+   gear 223 teeth  46,177: takes [46]
+   gear 257 teeth 214, 43: takes [43]
+   gear 277 teeth  28,249: takes [28]
+   gear 293 teeth  56,237: takes [56]
+   gear 307 teeth  41,266: takes [41]
+   gear 311 teeth  76,235: takes [76]
+standing t: [2, 12, 17, 20, 24, 29, 33, 39, 49, 50, 53, 58, 65, 67, 68, 88, 90, 91, 93, 97]
+landings of the standing t: [(9239, 9241), (55439, 55441), (78539, 78541), (92399, 92401), (110879, 110881), (133979, 133981), (152459, 152461), (180179, 180181), (226379, 226381), (230999, 231001)]
+
+tooth positions on the t-line for the first gears above the base:
+   gear 13: left tooth at t = [8, 21, 34, 47, 60, 73, 86, 99]; right tooth at t = [5, 18, 31, 44, 57, 70, 83, 96]
+   gear 17: left tooth at t = [4, 21, 38, 55, 72, 89]; right tooth at t = [13, 30, 47, 64, 81, 98]
+   gear 19: left tooth at t = [13, 32, 51, 70, 89]; right tooth at t = [6, 25, 44, 63, 82]
+   gear 23: left tooth at t = [15, 38, 61, 84]; right tooth at t = [8, 31, 54, 77, 100]
+   gear 29: left tooth at t = [13, 42, 71, 100]; right tooth at t = [16, 45, 74]
+   gear 31: left tooth at t = [1, 32, 63, 94]; right tooth at t = [30, 61, 92]
+   gear 37: left tooth at t = [22, 59, 96]; right tooth at t = [15, 52, 89]
+   gear 41: left tooth at t = [22, 63]; right tooth at t = [19, 60]

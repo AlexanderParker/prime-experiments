@@ -627,3 +627,29 @@ the base by construction) and lies in the window iff (q + 1)/(2 P_s) <= t <= (q^
   q^2/(2 P_s), one t outside the two fixed classes of every gear g above the base with g <= q
   (gears above q are not in the machine). The family 2 t P_s - 1 is the set of columns open to
   the base; the descent reaches every one of them in the window.
+
+## The descent in the kernel, and its teeth on the t-line (2026-09-14)
+
+Kernel proofs/MirrorWalkDescent.lean (round 54, built, 0 sorries, standard axioms):
+- descentEnd_eq: the landing of up on Q then down on (P_i, k_i) is -1 + 2 (Q - sum k_i P_i).
+- descentEnd_form: with P_s dividing Q and every P_i, the landing is 2 t P_s - 1 for an integer t.
+- descent_open_base: the landing is open to every gear dividing P_s (residue -1 carried).
+- descent_strikes_iff: gear g strikes the left member iff 2 P_s t = 1 (mod g), the right iff
+  2 P_s t = -1 (mod g): two classes of t fixed by g and P_s.
+- descent_in_window: in the window iff q + 1 < 2 t P_s and 2 t P_s + 1 <= q^2.
+
+Teeth on the t-line (research/stack/r8/descent_classes.py, results_descent_classes_210.txt and
+_2310.txt): with the gears taken in order, each gear's two teeth and the t it takes.
+- P_s = 210 (base 2, 3, 5, 7), t = 1..60: gear 11 teeth 6, 5 takes 5, 6, 16, 17, 27, 28, 38, 39,
+  49, 50, 60; gear 13 teeth 10, 3 takes 3, 10, 23, 29, 36, 42, 55; 17 (10, 7) takes 7, 24, 41,
+  44, 58; 19 (10, 9) takes 9, 47, 48; 23 (4, 19) takes 4, 19; 29 (27, 2) takes 2, 31, 56; ...;
+  standing t = 1, 8, 14, 15, 18, 21, 22, 25, 43, 52, landings (419, 421), (3359, 3361),
+  (5879, 5881), (6299, 6301), (7559, 7561), (8819, 8821), (9239, 9241), (10499, 10501), ...
+- P_s = 2310 (base to 11), t = 1..100: gear 13 teeth 8, 5 takes 16 of the 100; 17 (4, 13)
+  takes 10; 19 (13, 6) takes 6; 23 (15, 8) takes 6; 29 (13, 16) takes 5; 31 (1, 30) takes 1, 92,
+  94; gears from 37 take 1 to 3 each; standing t = 2, 12, 17, 20, 24, 29, 33, 39, 49, 50, 53, 58,
+  65, 67, 68, 88, 90, 91, 93, 97, landings (9239, 9241), (55439, 55441), (78539, 78541), ...
+- The teeth are pairs of residues symmetric about 0: right tooth = -(left tooth) mod g (gear 13
+  at 2310: 8 and 5 = -8; gear 31: 1 and 30). So each gear's two teeth on the t-line are t and
+  -t: the descent's landing family is symmetric under t -> -t modulo every gear, the mirror
+  property of the primorial P_s seen on the t-line.
