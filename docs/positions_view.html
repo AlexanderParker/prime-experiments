@@ -67,7 +67,7 @@ function build(){
  const roleText=g=>base.includes(g)?'teeth fixed on column h':(g<=r?'teeth from E':'teeth from E, above √q');
  const only=document.getElementById('only').checked,dim=document.getElementById('dim').checked;
  document.getElementById('qv').textContent=q;
- document.getElementById('facts').innerHTML=`base <b>${base.join(', ')}</b> (P = ${P}); band <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; high gears from <b>${high[0]}</b>. Landing E = <b>${E}</b>, E mod P = ${mod(E,P)}. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
+ document.getElementById('facts').innerHTML=`teeth fixed on column h (E ≡ −1 mod g): <b>${base.join(', ')}</b> (P = ${P}); teeth from E, at most √q: <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; teeth from E, above √q: <b>${high[0]} to ${q}</b>. Landing E = <b>${E}</b>, E mod P = ${mod(E,P)}. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
  let html='<thead><tr><th class="g">gear \\ h</th>'+cols.map(h=>`<th class="${taker[h]===null?'pass':'gone'}" title="${taker[h]===null?'passes: ('+(E+6*d*h)+', '+(E+6*d*h+2)+') twin':'taken by '+taker[h]+' ('+status[h]+')'}">${h}${taker[h]===null?'<br>PASS':''}</th>`).join('')+'</tr></thead><tbody>';
  for(const g of gears){const [a,b]=teeth[g];const rl=role(g);
   const takes=cols.filter(h=>taker[h]===g);
