@@ -63,3 +63,21 @@ alternating. No search, no primality (research/stack/r8/pickup_walk_rules.py).
   phase control is affordable only between gears whose product is at most q^2 / (2P); the
   large gears can be held (zero slip inside their own mirror) but not steered.
 Verdict: dead as a full walk; the affordability limit is a fact to build with.
+
+### 4. Blind choices of the landing offset D (2026-09-15)
+
+Every walk from home lands at -1 + 2D, open by construction exactly to the gears dividing D.
+Two flips about axes a1 and a2 give D = a2 - a1: the owner's slip, the difference of two mirror
+sizes (times periods); the gears dividing the difference keep the origin's open phase without
+sitting in either mirror. A blind walk is therefore a blind choice of D at most q^2 / 2.
+research/stack/r8/blind_D_rules.py, results_blind_D_rules.txt, machines 11 to 5000 (665):
+- D1 the largest primorial at most q^2/2: twin 15 of 665.
+- D2 the largest lcm(1..m) at most q^2/2: 95 of 665.
+- D3 the largest factorial: 6. D6 the largest 2^a 3^b (D a multiple of 3): 13.
+- D4 the slip of the top two spiral steps, P (q - p) with p the prime below q (the difference
+  of the mirrors {base, q} and {base, p}): landing in the window at 426 of 665 (below q when the
+  gap q - p is small), twin at 119 of those 426. The best blind rule so far, at 28 percent of
+  the machines where it lands inside: q = 101 lands (239, 241), q = 499 lands (3359, 3361).
+- D5 the primorial spiral: 73 of 665.
+Verdict: no blind D reaches every machine; the slip of the top two steps is the strongest
+single rule. Every rule is open to the gears dividing D and blind to the rest.

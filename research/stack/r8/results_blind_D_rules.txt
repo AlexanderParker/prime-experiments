@@ -1,0 +1,27 @@
+Loop, iteration 4: every walk from home lands at -1 + 2D (D = the signed sum of the mirror
+moves' halves), open by construction exactly to the gears dividing D.  Two flips about axes a1,
+a2 give D = a2 - a1, which is the owner's slip: the difference of two mirror sizes (times
+periods); gears dividing the difference keep the origin's open phase without sitting in either
+mirror.  So a blind walk is a blind choice of D at most q^2/2 with many gear factors.  Rules:
+  D1: the largest primorial at most q^2/2 (the descent at t = 1)
+  D2: the largest lcm(1..m) at most q^2/2
+  D3: the largest m! at most q^2/2 (over 2, since -1 + 2D must be 5 mod 6)
+  D4: P_s * (q - p) for the machine's base P_s and the two top gears (difference of the mirrors
+      {base, q} and {base, p}, p the prime below q): the slip of the last two spiral steps
+  D5: P * (g1 - g2 + g3 - ...) alternating over the gears above the base (the primorial spiral)
+  D6: the largest 2^a 3^b at most q^2/2 with -1 + 2D = 5 mod 6 (D a multiple of 3)
+Measured: machines 11 to 5000: landing in the window and a twin.
+usage: uv run python research/stack/r8/blind_D_rules.py 5000
+
+machines 665 (11 to 5000): twin / in window
+   D1 primorial           15 /  665
+   D2 lcm                 95 /  665
+   D3 factorial            6 /  665
+   D4 slip of top two    119 /  426
+   D5 spiral              73 /  665
+   D6 2^a 3^b             13 /  665
+   q = 31: D1 primorial: 419 T; D2 lcm: 839; D3 factorial: 239 T; D4 slip of top two: 23; D5 spiral: 227 T; D6 2^a 3^b: 863
+   q = 101: D1 primorial: 4619; D2 lcm: 5039; D3 factorial: 10079; D4 slip of top two: 239 T; D5 spiral: 3179; D6 2^a 3^b: 9215
+   q = 499: D1 primorial: 60059; D2 lcm: 55439 T; D3 factorial: 80639; D4 slip of top two: 3359 T; D5 spiral: 119699 T; D6 2^a 3^b: 248831
+   q = 1999: D1 primorial: 1021019; D2 lcm: 1441439; D3 factorial: 725759; D4 slip of top two: 839; D5 spiral: 409499; D6 2^a 3^b: 3981311
+   q = 4999: D1 primorial: 19399379; D2 lcm: 24504479; D3 factorial: 7257599; D4 slip of top two: 27719; D5 spiral: 11402159; D6 2^a 3^b: 23887871
