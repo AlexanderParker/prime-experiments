@@ -1,0 +1,102 @@
+First pair of types on the landing line: base gear 5 and one band gear g, step up.
+
+Two anchors.  Base gear 5 sees column h itself (E = -1 mod 5): its teeth on the h-line sit at
+h = 6^{-1} = 1 (left member) and h = -1 = 4 (right member) mod 5, for every machine with 5 in
+the base.  Band gear g sees the landing: its teeth sit at h = a (left) and h = b (right) mod g,
+a, b fixed by E mod g.  The pair's joint pattern is the alignment of the two anchors, listed
+here as one row per high gear h: where h stands against gear 5's teeth (column h), where the
+landing stands against gear g's teeth, and what remains when both are missed.
+
+usage: uv run python research/stack/r8/pair_base_band.py 499 11
+
+q = 499, E = 119699, base [2, 3, 5, 7]; gear 5 teeth on the h-line: h = 1 (left), 4 (right) mod 5; gear 11 teeth: h = 6 (left), 2 (right) mod 11
+
+   h =   23: h mod 5 = 3 (misses 5); h mod 11 = 1 (misses 11)  pair survivor; then taken by gear 293
+   h =   29: h mod 5 = 4 (5 right); h mod 11 = 7 (misses 11)
+   h =   31: h mod 5 = 1 (5 left); h mod 11 = 9 (misses 11)
+   h =   37: h mod 5 = 2 (misses 5); h mod 11 = 4 (misses 11)  pair survivor; twin
+   h =   41: h mod 5 = 1 (5 left); h mod 11 = 8 (misses 11)
+   h =   43: h mod 5 = 3 (misses 5); h mod 11 = 10 (misses 11)  pair survivor; then taken by gear 7
+   h =   47: h mod 5 = 2 (misses 5); h mod 11 = 3 (misses 11)  pair survivor; twin
+   h =   53: h mod 5 = 3 (misses 5); h mod 11 = 9 (misses 11)  pair survivor; then taken by gear 257
+   h =   59: h mod 5 = 4 (5 right); h mod 11 = 4 (misses 11)
+   h =   61: h mod 5 = 1 (5 left); h mod 11 = 6 (11 left)
+   h =   67: h mod 5 = 2 (misses 5); h mod 11 = 1 (misses 11)  pair survivor; then taken by gear 83
+   h =   71: h mod 5 = 1 (5 left); h mod 11 = 5 (misses 11)
+   h =   73: h mod 5 = 3 (misses 5); h mod 11 = 7 (misses 11)  pair survivor; then taken by gear 17
+   h =   79: h mod 5 = 4 (5 right); h mod 11 = 2 (11 right)
+   h =   83: h mod 5 = 3 (misses 5); h mod 11 = 6 (11 left)
+   h =   89: h mod 5 = 4 (5 right); h mod 11 = 1 (misses 11)
+   h =   97: h mod 5 = 2 (misses 5); h mod 11 = 9 (misses 11)  pair survivor; then taken by gear 7
+   h =  101: h mod 5 = 1 (5 left); h mod 11 = 2 (11 right)
+   h =  103: h mod 5 = 3 (misses 5); h mod 11 = 4 (misses 11)  pair survivor; then taken by gear 79
+   h =  107: h mod 5 = 2 (misses 5); h mod 11 = 8 (misses 11)  pair survivor; then taken by gear 13
+   h =  109: h mod 5 = 4 (5 right); h mod 11 = 10 (misses 11)
+   h =  113: h mod 5 = 3 (misses 5); h mod 11 = 3 (misses 11)  pair survivor; then taken by gear 7
+   h =  127: h mod 5 = 2 (misses 5); h mod 11 = 6 (11 left)
+   h =  131: h mod 5 = 1 (5 left); h mod 11 = 10 (misses 11)
+   h =  137: h mod 5 = 2 (misses 5); h mod 11 = 5 (misses 11)  pair survivor; then taken by gear 13
+   h =  139: h mod 5 = 4 (5 right); h mod 11 = 7 (misses 11)
+   h =  149: h mod 5 = 4 (5 right); h mod 11 = 6 (11 left)
+   h =  151: h mod 5 = 1 (5 left); h mod 11 = 8 (misses 11)
+   h =  157: h mod 5 = 2 (misses 5); h mod 11 = 3 (misses 11)  pair survivor; then taken by gear 223
+   h =  163: h mod 5 = 3 (misses 5); h mod 11 = 9 (misses 11)  pair survivor; then taken by gear 13
+   h =  167: h mod 5 = 2 (misses 5); h mod 11 = 2 (11 right)
+   h =  173: h mod 5 = 3 (misses 5); h mod 11 = 8 (misses 11)  pair survivor; twin
+   h =  179: h mod 5 = 4 (5 right); h mod 11 = 3 (misses 11)
+   h =  181: h mod 5 = 1 (5 left); h mod 11 = 5 (misses 11)
+   h =  191: h mod 5 = 1 (5 left); h mod 11 = 4 (misses 11)
+   h =  193: h mod 5 = 3 (misses 5); h mod 11 = 6 (11 left)
+   h =  197: h mod 5 = 2 (misses 5); h mod 11 = 10 (misses 11)  pair survivor; then taken by gear 7
+   h =  199: h mod 5 = 4 (5 right); h mod 11 = 1 (misses 11)
+   h =  211: h mod 5 = 1 (5 left); h mod 11 = 2 (11 right)
+   h =  223: h mod 5 = 3 (misses 5); h mod 11 = 3 (misses 11)  pair survivor; then taken by gear 7
+   h =  227: h mod 5 = 2 (misses 5); h mod 11 = 7 (misses 11)  pair survivor; twin
+   h =  229: h mod 5 = 4 (5 right); h mod 11 = 9 (misses 11)
+   h =  233: h mod 5 = 3 (misses 5); h mod 11 = 2 (11 right)
+   h =  239: h mod 5 = 4 (5 right); h mod 11 = 8 (misses 11)
+   h =  241: h mod 5 = 1 (5 left); h mod 11 = 10 (misses 11)
+   h =  251: h mod 5 = 1 (5 left); h mod 11 = 9 (misses 11)
+   h =  257: h mod 5 = 2 (misses 5); h mod 11 = 4 (misses 11)  pair survivor; then taken by gear 31
+   h =  263: h mod 5 = 3 (misses 5); h mod 11 = 10 (misses 11)  pair survivor; then taken by gear 13
+   h =  269: h mod 5 = 4 (5 right); h mod 11 = 5 (misses 11)
+   h =  271: h mod 5 = 1 (5 left); h mod 11 = 7 (misses 11)
+   h =  277: h mod 5 = 2 (misses 5); h mod 11 = 2 (11 right)
+   h =  281: h mod 5 = 1 (5 left); h mod 11 = 6 (11 left)
+   h =  283: h mod 5 = 3 (misses 5); h mod 11 = 8 (misses 11)  pair survivor; then taken by gear 17
+   h =  293: h mod 5 = 3 (misses 5); h mod 11 = 7 (misses 11)  pair survivor; then taken by gear 7
+   h =  307: h mod 5 = 2 (misses 5); h mod 11 = 10 (misses 11)  pair survivor; then taken by gear 7
+   h =  311: h mod 5 = 1 (5 left); h mod 11 = 3 (misses 11)
+   h =  313: h mod 5 = 3 (misses 5); h mod 11 = 5 (misses 11)  pair survivor; twin
+   h =  317: h mod 5 = 2 (misses 5); h mod 11 = 9 (misses 11)  pair survivor; then taken by gear 17
+   h =  331: h mod 5 = 1 (5 left); h mod 11 = 1 (misses 11)
+   h =  337: h mod 5 = 2 (misses 5); h mod 11 = 7 (misses 11)  pair survivor; then taken by gear 7
+   h =  347: h mod 5 = 2 (misses 5); h mod 11 = 6 (11 left)
+   h =  349: h mod 5 = 4 (5 right); h mod 11 = 8 (misses 11)
+   h =  353: h mod 5 = 3 (misses 5); h mod 11 = 1 (misses 11)  pair survivor; then taken by gear 43
+   h =  359: h mod 5 = 4 (5 right); h mod 11 = 7 (misses 11)
+   h =  367: h mod 5 = 2 (misses 5); h mod 11 = 4 (misses 11)  pair survivor; then taken by gear 13
+   h =  373: h mod 5 = 3 (misses 5); h mod 11 = 10 (misses 11)  pair survivor; then taken by gear 61
+   h =  379: h mod 5 = 4 (5 right); h mod 11 = 5 (misses 11)
+   h =  383: h mod 5 = 3 (misses 5); h mod 11 = 9 (misses 11)  pair survivor; then taken by gear 19
+   h =  389: h mod 5 = 4 (5 right); h mod 11 = 4 (misses 11)
+   h =  397: h mod 5 = 2 (misses 5); h mod 11 = 1 (misses 11)  pair survivor; then taken by gear 13
+   h =  401: h mod 5 = 1 (5 left); h mod 11 = 5 (misses 11)
+   h =  409: h mod 5 = 4 (5 right); h mod 11 = 2 (11 right)
+   h =  419: h mod 5 = 4 (5 right); h mod 11 = 1 (misses 11)
+   h =  421: h mod 5 = 1 (5 left); h mod 11 = 3 (misses 11)
+   h =  431: h mod 5 = 1 (5 left); h mod 11 = 2 (11 right)
+   h =  433: h mod 5 = 3 (misses 5); h mod 11 = 4 (misses 11)  pair survivor; then taken by gear 7
+   h =  439: h mod 5 = 4 (5 right); h mod 11 = 10 (misses 11)
+   h =  443: h mod 5 = 3 (misses 5); h mod 11 = 3 (misses 11)  pair survivor; then taken by gear 31
+   h =  449: h mod 5 = 4 (5 right); h mod 11 = 9 (misses 11)
+   h =  457: h mod 5 = 2 (misses 5); h mod 11 = 6 (11 left)
+   h =  461: h mod 5 = 1 (5 left); h mod 11 = 10 (misses 11)
+   h =  463: h mod 5 = 3 (misses 5); h mod 11 = 1 (misses 11)  pair survivor; then taken by gear 7
+   h =  467: h mod 5 = 2 (misses 5); h mod 11 = 5 (misses 11)  pair survivor; twin
+   h =  479: h mod 5 = 4 (5 right); h mod 11 = 6 (11 left)
+   h =  487: h mod 5 = 2 (misses 5); h mod 11 = 3 (misses 11)  pair survivor; then taken by gear 17
+   h =  491: h mod 5 = 1 (5 left); h mod 11 = 7 (misses 11)
+   h =  499: h mod 5 = 4 (5 right); h mod 11 = 4 (misses 11)
+
+pair survivors: 36 of the high gears in reach; the classes they occupy mod 55: [3, 7, 8, 12, 18, 23, 27, 32, 37, 38, 42, 43, 47, 48, 52, 53]

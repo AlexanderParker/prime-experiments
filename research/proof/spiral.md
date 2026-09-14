@@ -381,3 +381,14 @@ a product of two primes at least g; then the right member; then the down step.
   class 9 (mod 11), c = 10877 - 6t: order 2 at t = 4, 28; order 3 at 14, 20, 34, 40; gears 5, 7
   at 2, 22 and 8.
 All built, 0 sorries, standard axioms.
+
+## First pair of types: base gear 5 with band gear 11 on the landing line (2026-09-14)
+
+Script research/stack/r8/pair_base_band.py, table results_pair_base_band_499_11.txt. Two anchors,
+not one: gear 5 (base) sees column h itself, teeth at h = 1 (left member) and 4 (right) mod 5 at
+every machine with 5 in the base; gear 11 (band) sees the landing, teeth at h = 6 (left) and 2
+(right) mod 11 at q = 499, fixed by E mod 11. One row per high gear: where column h stands
+against gear 5's teeth, where the landing stands against gear 11's teeth. Pair survivors miss
+both; what then takes a survivor is another single type (gear 7 the most often, then the high
+gears 13, 17, 31, 79, 83, 223, 257, 293 at order 2). The joint pattern of the pair is the
+alignment of the two anchors: column h against E.
