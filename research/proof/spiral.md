@@ -560,3 +560,24 @@ Standing: every set of gears at most sqrt q (sqout, leftsq, rightsq) gives a pas
 step at every machine where the set is nonempty; sqin does the same over the whole range. The
 landings of the small-gear spirals sit low in the window and are twins themselves far more
 often (sqout 135, rightsq 79 of 288, sub-machine 112 of 299).
+
+## Groups by the base gear striking the column; the sub-machine spiral iterated (2026-09-14)
+
+Script research/stack/r8/spiral_groups_levels.py, table results_spiral_groups_levels.txt.
+- Groups (gears above the base by which base gear paints their own column): open (no base
+  gear), by5, by7, by57. Spirals over each, descending first up: open 286 / 46 / 286, by5 286 /
+  42 / 286, by7 222 / 22 / 222, by57 222 / 40 / 222 (in window / landing a twin / passing final
+  step, over the machines where the group is nonempty). Every group passes wherever it exists.
+  q = 499: open (32 gears) E = 83159, by5 (29) 82739, by7 (14) 91559, by57 (16) 120959.
+- Levels (sub of sub): b_0 = q, b_1 = floor sqrt q, b_2 = floor sqrt b_1 while at least 5;
+  level k has base_k = the lowest gears with product at most b_k/2, always holding 2 and 3 (so
+  every landing is a left member, E = 5 mod 6), and gears in (b_{k+1}, b_k] outside base_k.
+  From the deepest level up, each level's spiral runs from the previous landing, first flip up.
+  Level 2 (gears 5 or 5, 7 with base {2, 3}) lands at 59 or 23, twins. Level 1 added (the
+  sub-machine's spiral from there): in the sub-window (sqrt q, q] at 288 of 294, itself a twin
+  at 99 of 294, passing final step at all 294. Level 0 added (gears above sqrt q with the
+  machine's base): in the window 299 of 299, twin 25, passing final step at ALL 299, 11
+  included. q = 499: 71 (twin) then 121451 (pass 9, first 83 up); q = 1999: 59, 359, 417419
+  (pass 22, first 197 up).
+Without 3 forced into the deepest base the levels lose the column alignment (E = 1 mod 6) and
+the final step never passes: the base must carry 2 and 3 at every level.

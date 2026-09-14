@@ -1,0 +1,40 @@
+Two more constructions (owner: go for both).
+
+1. Gears grouped by which base gear strikes their own column.  Gear g sits in column
+   (6g - 1, 6g + 1).  With base gears 5 and 7 (q >= 420) the groups are: column open to every base
+   gear (open), struck by 5 only (by5), by 7 only (by7), by both (by57).  With base gear 5 only
+   (60 <= q < 420): open, by5.  Spiral (base kept, descending, first up) over each group.
+2. The sub-machine spiral iterated (sub of sub).  Levels: b_0 = q, b_1 = floor(sqrt q),
+   b_2 = floor(sqrt b_1), ... while b_k >= 5.  Level k: base_k = lowest gears with product at most
+   b_k / 2, gears_k = primes in (b_{k+1}, b_k] outside base_k, spiral term 2 P_k A_k.  From the
+   deepest level upward: E_k = -1 + sum over levels j >= k of 2 P_j A_j (each level's spiral run
+   from the previous landing, first flip up).  Reported at each level: landing, inside that
+   level's window (b_{k+1}, b_k^2]... the machine's window for k = 0, twin, passing final step.
+
+usage: uv run python research/stack/r8/spiral_groups_levels.py 2000
+
+variant          machines in window  E twin has pass  no pass at
+group open            286       286      46      286  []
+group by5             286       286      42      286  []
+group by7             222       222      22      222  []
+group by57            222       222      40      222  []
+level 2 added         189         0     189      189  []
+level 1 added         294       288      99      294  []
+level 0 added         299       299      25      299  []
+
+q = 499:
+   group open   32 gears  E =    83159 in        pass  12 first (67, 1)
+   group by5    29 gears  E =    82739 in        pass   9 first (137, 1)
+   group by7    14 gears  E =    91559 in        pass  11 first (103, 1)
+   group by57   16 gears  E =   120959 in        pass   8 first (103, 1)
+   levels..1 (b = 22, base [2, 3], 6 gears) E =       71 in   TWIN pass   9 first (83, 1)
+   levels..0 (b = 499, base [2, 3, 5, 7], 87 gears) E =   121451 in        pass   9 first (83, 1)
+
+q = 1999:
+   group open  101 gears  E =   385139 in   TWIN pass  19 first (163, 1)
+   group by5   101 gears  E =   450659 in        pass  22 first (103, 1)
+   group by7    52 gears  E =   382199 in        pass  18 first (577, 1)
+   group by57   45 gears  E =   455699 in        pass  15 first (233, 1)
+   levels..2 (b = 6, base [2, 3], 1 gears) E =       59 OUT  TWIN pass  20 first (337, 1)
+   levels..1 (b = 44, base [2, 3], 11 gears) E =      359 in        pass  21 first (313, 1)
+   levels..0 (b = 1999, base [2, 3, 5, 7], 289 gears) E =   417419 in        pass  22 first (197, 1)
