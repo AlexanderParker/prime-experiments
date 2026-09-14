@@ -75,3 +75,24 @@ name), exact by construction, measured, or open. Nothing here is the walk as one
   of the window's length and the flip enters the window iff 6h > q - E_1 (proved).
 - The base gears of the machine no longer need E = -1 mod P_0; the alignment needed is only
   E = 5 mod 6, carried by 2 and 3 at every level (proved).
+
+## The level rule, and the final flip in the fields (2026-09-14, later)
+
+- Level rule: levels continue while b_k >= 11 (a level needs a window long enough for a flip of
+  6h with h a gear of the level above: at b = 7 the window (7, 49] is shorter than 6 * 5 from
+  the landing 23, at b = 5 the level over the single gear 5 overshoots). With this rule, machines
+  11 to 2000 (research/stack/r8/levels_rule_and_final.py): top-level final flip passes at all
+  299; of the 273 machines with a sub-machine, E_1 lies in the sub-window at 273, is itself a
+  twin at 113, the final step one level down (a sub-machine gear, landing in the sub-machine's
+  window) passes at 273, and the direct final flip from E_1 with h above sqrt q passes at 273.
+  No failure of any part at any machine tested.
+- The final flip from E_1 in the fields, q = 499 (E_1 = 71, the flip enters the window iff
+  h > 71.3): h = 73 painted in row 7 (member 511 = 7 * 73, products:2); 79 row 5 (545 = 5 * 109);
+  83 PASS (569, 571); 89 row 5 (605 = 5 * 11^2, products:3); 97 row 5; 101 row 7; 103 row 13
+  (689 = 13 * 53); 107 row 5 (715 = 5 * 11 * 13); 109 row 5 (725 = 5^2 * 29); 113 row 7; then
+  PASS at 131, 163, 193, 271, 313, 373, 431, 443 among the gears to 499 (9 of 87 pass). q = 1999
+  (E_1 = 239, h > 293.3): PASS at 307, 317, 503, 557, 613, 653, 683, 733, 797, 863, 877, 1087,
+  1433, 1783, 1913, 1987 (16 pass).
+- The landings E_1 + 6h are at most 7q, in the first stretch of the window, where the products:j
+  orders are 2 and 3 only and the painting rows are the small gears 5, 7, 11, 13: the fields
+  that paint here are the multiples rows of the small gears, products:2 and products:3.

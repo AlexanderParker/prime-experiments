@@ -25,7 +25,7 @@ def alt(xs): return sum(x if i % 2 == 0 else -x for i, x in enumerate(xs))
 
 def levels_landing(q, ps):
     bounds = [q]
-    while int(bounds[-1] ** 0.5) >= 7: bounds.append(int(bounds[-1] ** 0.5))
+    while int(bounds[-1] ** 0.5) >= 11: bounds.append(int(bounds[-1] ** 0.5))
     E = -1; lands = []
     for k in range(len(bounds) - 1, -1, -1):
         b = bounds[k]; lo = bounds[k + 1] if k + 1 < len(bounds) else 1
@@ -60,7 +60,7 @@ def main():
         c['A'] += bool(pzA); c['C'] += bool(pzC)
         if not pzA: noA.append(q)
         if not pzC: noC.append(q)
-    out.append(f"(1) rule b_k >= 7, machines 11 to {Q}: {c['n']} machines; top-level final flip passes at {c['top']} (fails {notop}); "
+    out.append(f"(1) rule b_k >= 11, machines 11 to {Q}: {c['n']} machines; top-level final flip passes at {c['top']} (fails {notop}); "
                f"{c['sub']} with a sub-machine: E_1 in the sub-window {c['in1']}, E_1 a twin {c['twin1']}, A (final step one level down) {c['A']} (fails {noA}), C (final flip from E_1 with h > sqrt q) {c['C']} (fails {noC})")
     for q in (499, 1999):
         ps = list(primerange(2, q + 1)); r = int(q ** 0.5); high = [p for p in ps if p > r]

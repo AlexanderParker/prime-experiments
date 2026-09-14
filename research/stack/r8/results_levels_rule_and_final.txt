@@ -9,7 +9,7 @@ multiples field), the member, the products:j order; or PASS.
 
 usage: uv run python research/stack/r8/levels_rule_and_final.py 2000
 
-(1) rule b_k >= 7, machines 11 to 2000: 299 machines; top-level final flip passes at 299 (fails []); 288 with a sub-machine: E_1 in the sub-window 288, E_1 a twin 113, A (final step one level down) 273 (fails [53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113]), C (final flip from E_1 with h > sqrt q) 288 (fails [])
+(1) rule b_k >= 11, machines 11 to 2000: 299 machines; top-level final flip passes at 299 (fails []); 273 with a sub-machine: E_1 in the sub-window 273, E_1 a twin 113, A (final step one level down) 273 (fails []), C (final flip from E_1 with h > sqrt q) 273 (fails [])
 
 (2) q = 499: levels [(1, 22, [2, 3], 6, 71), (0, 499, [2, 3, 5, 7], 87, 121451)]; E_1 = 71; window (499, 249001]; the flip enters the window iff 6h > 428, i.e. h > 71.3
    h =   73: landing (509, 511)  painted in row 7 (multiples), member 511 = 7*73, products:2
