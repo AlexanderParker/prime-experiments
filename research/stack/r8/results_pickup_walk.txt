@@ -1,0 +1,29 @@
+Loop, iteration 1 (2026-09-15): the pick-up walk.
+
+Principle (owner): the mirror action is the only provable way to carry residues along the line;
+build a walk that picks up every gear's residue on the way so the last flip is open by
+construction.  The gcd fact says residue -1 can be held for the base only; but a gear's phase
+need not be held at -1, it need only be kept OFF its two teeth (0 and gear - 2).  So:
+
+  visit the gears in order (descending from q, or ascending from the first above the base);
+  at the step for gear g the mirror is {base, g}; choose direction d and periods k (k = 1..K)
+  such that after the move every gear visited so far (and g itself, and the base) has its phase
+  off both teeth, and the column stays at or above 0 and at most q^2.
+  Greedy: first (k, d) that works; if none works the walk is stuck.
+  The landing after the last gear is open to every gear of the machine: a twin if inside the
+  window.
+
+Information used: the walk's own phases (column mod gear), never primality of any number.
+Measured: machines 11 to 2000, K = 1, 2, 3, 5; descending and ascending; stuck / landed outside /
+twin in the window.
+
+usage: uv run python research/stack/r8/pickup_walk.py 2000
+
+desc, K = 1: twin in the window 0, landed below the window (open but below q) 0, stuck 299; stuck at (q, gear) [(11, 3), (13, 5), (17, 5), (19, 5), (23, 17), (29, 7), (31, 11), (37, 5)]...; samples [(31, 'stuck', 11, 719), (101, 'stuck', 37, 3959), (499, 'stuck', 281, 170939), (1999, 'stuck', 1373, 3916499)]
+desc, K = 2: twin in the window 2, landed below the window (open but below q) 0, stuck 297; stuck at (q, gear) [(11, 3), (13, 5), (17, 5), (23, 17), (29, 7), (31, 11), (37, 5), (41, 7)]...; samples [(31, 'stuck', 11, 719), (101, 'stuck', 37, 3959), (499, 'stuck', 281, 170939), (1999, 'stuck', 967, 3797219)]
+desc, K = 3: twin in the window 3, landed below the window (open but below q) 0, stuck 296; stuck at (q, gear) [(11, 3), (13, 5), (17, 5), (23, 17), (29, 7), (31, 11), (37, 5), (41, 7)]...; samples [(31, 'stuck', 11, 719), (101, 'stuck', 37, 3959), (499, 'stuck', 281, 170939), (1999, 'stuck', 281, 3579659)]
+desc, K = 5: twin in the window 10, landed below the window (open but below q) 0, stuck 289; stuck at (q, gear) [(11, 3), (13, 5), (17, 5), (23, 17), (29, 7), (37, 5), (41, 5), (43, 5)]...; samples [(31, 'twin', None, 227), (101, 'stuck', 37, 3959), (499, 'stuck', 281, 170939), (1999, 'stuck', 281, 3579659)]
+asc, K = 1: twin in the window 0, landed below the window (open but below q) 0, stuck 299; stuck at (q, gear) [(11, 5), (13, 7), (17, 7), (19, 7), (23, 7), (29, 7), (31, 7), (37, 7)]...; samples [(31, 'stuck', 7, 59), (101, 'stuck', 13, 1079), (499, 'stuck', 17, 10079), (1999, 'stuck', 17, 10079)]
+asc, K = 2: twin in the window 0, landed below the window (open but below q) 0, stuck 299; stuck at (q, gear) [(11, 5), (13, 7), (17, 11), (19, 13), (23, 13), (29, 13), (31, 13), (37, 13)]...; samples [(31, 'stuck', 13, 359), (101, 'stuck', 13, 1079), (499, 'stuck', 17, 10079), (1999, 'stuck', 17, 10079)]
+asc, K = 3: twin in the window 0, landed below the window (open but below q) 0, stuck 299; stuck at (q, gear) [(11, 7), (13, 7), (17, 11), (19, 13), (23, 13), (29, 23), (31, 23), (37, 31)]...; samples [(31, 'stuck', 23, 191), (101, 'stuck', 13, 1079), (499, 'stuck', 17, 10079), (1999, 'stuck', 17, 10079)]
+asc, K = 5: twin in the window 0, landed below the window (open but below q) 0, stuck 299; stuck at (q, gear) [(11, 7), (13, 7), (17, 11), (19, 13), (23, 13), (29, 23), (31, 23), (37, 31)]...; samples [(31, 'stuck', 23, 191), (101, 'stuck', 13, 1079), (499, 'stuck', 17, 10079), (1999, 'stuck', 17, 10079)]
