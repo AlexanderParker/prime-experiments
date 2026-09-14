@@ -165,3 +165,60 @@ Standing: a two-flip walk from the sub-machine's landing with small mirrors find
 flip's gear at every machine to 2000, but the mirror family that works differs by machine; no
 single rule. The same shape as the network result of 2026-09-13: short walks exist, a fixed
 rule does not appear.
+
+# The primorial descent, as parts
+
+2026-09-14, owner's construction: a walk that carries every residue from an open pair (the
+primorial does) and still converges in the window: flip on the machine's primorial, then flip
+back on partial primorials. Written as parts, each with its status. Kernel
+proofs/MirrorWalkDescent.lean (round 54, built, 0 sorries, standard axioms).
+
+### 1. Origin
+
+- Home (-1, 1), open to every gear (`home_open`).
+
+### 2. The up flip
+
+- Mirror = every gear of the machine, size q#; one period; landing (2 q# - 1, 2 q# + 1). Carries
+  every residue: open to every gear of the machine (`descent_open_base` with P_s = q#). Far past
+  the window.
+
+### 3. The down flips
+
+- Mirror = the partial primorial q#/q, then q#/(q q'), ..., each a real primorial axis, k_i
+  periods each, direction down. Landing after the list: -1 + 2 (q# - sum k_i P_i)
+  (`descentEnd_eq`).
+- The descent stops at P_s, the first primorial above q/2. Every P_i and q# are multiples of
+  P_s, so the landing is 2 t P_s - 1 for an integer t (`descentEnd_form`); t is set by the
+  periods, and every t in the window's range is reachable (exact: choose the k_i greedily).
+
+### 4. The landing
+
+- Open to every gear of P_s (`descent_open_base`): the residues of the base are carried from
+  home to the landing by construction.
+- In the window iff q + 1 < 2 t P_s and 2 t P_s + 1 <= q^2 (`descent_in_window`).
+- A gear g above the base strikes the left member iff 2 P_s t = 1 (mod g), the right iff
+  2 P_s t = -1 (`descent_strikes_iff`): two teeth per gear, t_0 and -t_0
+  (`descent_teeth_symmetric`, `descent_reflect`), gap between them P_s^{-1} mod g
+  (`descent_gap`, adjacent when P_s = 1 mod g: `descent_gap_one`). Fixed by g and P_s alone.
+
+### 5. The target zone
+
+- The window (q, q^2]. On the t-line: t from about q/(2 P_s) to q^2/(2 P_s). One drawing per
+  primorial P_s serves every machine 2 P_prev <= q < 2 P_s.
+
+### What is measured
+
+- A twin among the landings at all 299 machines 11 to 2000 (primorial_descent.py).
+- The first gap of the stripes at t = 1, 1, 2, 3, 4, 12, 2, 8, 11, 2 for P_s = 5# to 37#, against
+  reaches at the smallest machine of 2, 8, 38, 355, 3534, 53740, ... (descent_first_gap.py).
+- Below the first gap every painter is a gear whose tooth sits exactly at t, a prime factor of
+  2 t P_s +- 1 above the base; no periodic tooth reaches before the first gap at any primorial to
+  31# (descent_small_t.py).
+
+### What is open
+
+- That the stripes of P_s have a gap at some t at most (q^2 - 1)/(2 P_s): equivalently, that
+  2 t P_s - 1 and 2 t P_s + 1 are both prime for some t in the machine's reach. No landing, no
+  E, no walk-dependent residue is in this statement; it is the window statement restricted to
+  the columns open to the base, and the descent proves that every such column is reached.
