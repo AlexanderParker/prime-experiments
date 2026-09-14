@@ -33,3 +33,17 @@ no primality. research/stack/r8/pickup_walk.py, results_pickup_walk.txt, machine
   or 23: the small gears leave few open phases and each step offers only 2K columns.
 Verdict: greedy with 2K choices per step cannot hold every visited gear off its teeth; the
 constraint tightens by one gear per step while the choices stay at 2K.
+
+### 2. The pick-up walk, with backtracking (2026-09-15)
+
+Same invariant, depth-first search over (periods 1..3, direction), node budget 200000, machines
+11 to 600 (research/stack/r8/pickup_walk_search.py). Not a rule: a feasibility check.
+- Descending: a walk exists at 68 of 105 machines (q = 31: 227 by up, up, down, up, up, down 2
+  periods, ...; q = 101: 5099; q = 199: 20639). None found at 11, 13, 17, 23, 61 to 89, 421, 431,
+  ... within the budget; the search dies fast there (24 to 144 nodes): no branch survives the
+  small gears once they are all visited.
+- Ascending: none at any machine. Visiting the small gears first leaves too few open phases
+  for the later steps' 2K columns.
+Verdict: the invariant "every visited gear off its teeth" can be kept along a walk at two thirds
+of the machines with a search, and at none by a fixed rule so far. The block is the same joint
+condition as the final flip, spread over the steps instead of concentrated in one.

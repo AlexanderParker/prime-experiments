@@ -1,0 +1,11 @@
+Loop, iteration 2: the pick-up walk with backtracking.  Same invariant as iteration 1 (every
+visited gear, the current gear and the base off their teeth after each step, column in
+[0, q^2]); depth-first search over (periods 1..K, direction) with a node budget, to learn whether
+ANY such walk exists per machine, and how the choices must go.  Not a blind rule: a feasibility
+check of the principle.  usage: uv run python research/stack/r8/pickup_walk_search.py 600 3
+
+desc, K = 3: a pick-up walk exists at 68 of 105 machines; none found (budget exhausted or none) at [(11, 72), (13, 24), (17, 36), (23, 30), (61, 48), (67, 66), (73, 48), (79, 48), (83, 48), (89, 48), (421, 114), (431, 144)]...
+   (31, 227, [(31, 1, 1), (29, 1, 1), (23, 1, -1), (19, 1, 1), (17, 1, 1), (13, 2, -1)], '...')
+   (101, 5099, [(101, 1, 1), (97, 1, -1), (89, 1, 1), (83, 1, -1), (79, 1, 1), (73, 1, 1)], '...')
+   (199, 20639, [(199, 1, 1), (197, 1, 1), (193, 1, 1), (191, 1, -1), (181, 1, 1), (179, 1, -1)], '...')
+asc, K = 3: a pick-up walk exists at 0 of 105 machines; none found (budget exhausted or none) at [(11, 30), (13, 18), (17, 36), (19, 60), (23, 96), (29, 138), (31, 138), (37, 174), (41, 198), (43, 204), (47, 228), (53, 228)]...
