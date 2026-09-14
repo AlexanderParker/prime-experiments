@@ -280,3 +280,30 @@ base_strikes_up_iff, base_strikes_down_iff, landing_open_base_iff, primorialEnd_
   gears (between the primorial bound and sqrt q). Widening the base pushes E out of the window
   (base product must stay at most q/2), so the E-dependent band is exactly the price of the
   landing ceiling.
+
+## The band gears' classes (2026-09-14)
+
+Script research/stack/r8/band_classes.py, table results_band_classes.txt, machines 11 to 2000.
+
+- A band gear g (non-base, up to sqrt q) forbids h in the classes -E (6d)^{-1} and
+  -(E + 2)(6d)^{-1} modulo g, fixed by E mod g = -1 + 2 P A mod g, that is by A mod g, the
+  alternating sum of the non-base gears (q down to the first prime above the base) modulo g.
+- Measured: E mod g takes every residue, with no shape. g = 11 over 273 machines: residues
+  0..10 occur 20, 30, 19, 24, 20, 20, 32, 22, 23, 33, 30 times. g = 13 over 264 machines: 18,
+  16, 16, 24, 23, 21, 22, 23, 14, 25, 22, 22, 18. g = 17 over 242: between 8 and 17 each.
+  E itself is struck by g in about 2 of g cases (11: 53 of 273; 13: 40 of 264; 17: 23 of 242),
+  the two-class share and no more.
+- Examples: q = 499, E = 119699: E mod 19, 17, 13, 11 = 18, 2, 8, 8; up classes of h: 19
+  forbids 16, 3; 17 forbids 11, 5; 13 forbids 3, 7; 11 forbids 6, 2. q = 1999: ten band gears
+  11 to 43, E mod g = 2, 12, 3, 11, 7, 19, 20, 20, 32, 10.
+- No closed form: A mod g is the alternating sum of the primes above the base modulo g, which
+  the machine does not fix.
+- The band is forced by the window, not by the spiral: a landing E in the window with E = -1
+  modulo every gear up to sqrt q would need the primorial of sqrt q to divide E + 1, and that
+  primorial exceeds q^2 from q = 121 on (2*3*5*7*11 = 2310 > 121... exactly: the primorial of
+  sqrt q passes q^2 once sqrt q >= 11). So any phase 1 that lands in the window leaves a band
+  of gears between the primorial bound and sqrt q whose classes on the landing are not chosen.
+- Standing: the open item is exactly the band and the high gears together: from a column E
+  in the window, some high gear h has E +- 6h open to the band and to the high gears' fields.
+  The base is settled (column h); the band's classes are E's residues; the high gears strike
+  only as g | L or g | L + 2. That is the whole remaining statement, in parts.

@@ -1,0 +1,25 @@
+The band gears (non-base gears up to sqrt q): what fixes their forbidden classes.
+
+E = -1 + 2 P A with A the alternating sum of the non-base gears descending from q.  For a band
+gear g the two forbidden classes of h are a = -E (6d)^{-1} and b = -(E + 2)(6d)^{-1} mod g, so
+they are fixed by E mod g, i.e. by A mod g.  This tables, per band gear g, the residue A mod g
+and E mod g across the machines, and the split of A mod g into the part above g (gears q down to
+the prime after g), the g term (0), and the part below g (band gears below g).
+
+usage: uv run python research/stack/r8/band_classes.py 2000
+
+g = 7: machines with g in the band 66; E mod g counts by residue: 0:9 1:6 2:10 3:13 4:9 5:11 6:8; E struck by g (E mod g in {0, g-2}): 20 of 66
+g = 11: machines with g in the band 273; E mod g counts by residue: 0:20 1:30 2:19 3:24 4:20 5:20 6:32 7:22 8:23 9:33 10:30; E struck by g (E mod g in {0, g-2}): 53 of 273
+g = 13: machines with g in the band 264; E mod g counts by residue: 0:18 1:16 2:16 3:24 4:23 5:21 6:22 7:23 8:14 9:25 10:22 11:22 12:18; E struck by g (E mod g in {0, g-2}): 40 of 264
+g = 17: machines with g in the band 242; E mod g counts by residue: 0:15 1:13 2:17 3:15 4:12 5:15 6:16 7:13 8:15 9:11 10:11 11:17 12:17 13:15 14:15 15:8 16:17; E struck by g (E mod g in {0, g-2}): 23 of 242
+g = 19: machines with g in the band 231; E mod g counts by residue: 0:9 1:16 2:14 3:14 4:9 5:13 6:9 7:7 8:14 9:16 10:12 11:19 12:5 13:8 14:18 15:11 16:11 17:13 18:13; E struck by g (E mod g in {0, g-2}): 22 of 231
+g = 23: machines with g in the band 204; E mod g counts by residue: 0:7 1:12 2:12 3:7 4:7 5:11 6:8 7:12 8:9 9:5 10:9 11:8 12:8 13:8 14:12 15:8 16:5 17:10 18:11 19:7 20:8 21:9 22:11; E struck by g (E mod g in {0, g-2}): 16 of 204
+g = 29: machines with g in the band 157; E mod g counts by residue: 0:3 1:5 2:7 3:5 4:7 5:8 6:6 7:5 8:3 9:6 10:6 11:2 12:4 13:6 14:8 15:4 16:4 17:4 18:5 19:6 20:11 21:4 22:3 23:6 24:5 25:2 26:6 27:8 28:8; E struck by g (E mod g in {0, g-2}): 11 of 157
+g = 31: machines with g in the band 141; E mod g counts by residue: 0:3 1:3 2:8 3:5 4:3 5:2 6:3 7:5 8:6 9:4 10:5 11:2 12:6 13:6 14:3 15:6 16:7 17:7 18:3 19:4 20:7 21:1 22:4 23:4 24:5 25:4 26:5 27:6 28:5 29:4 30:5; E struck by g (E mod g in {0, g-2}): 7 of 141
+g = 37: machines with g in the band 84; E mod g counts by residue: 0:0 1:2 2:2 3:2 4:1 5:2 6:2 7:3 8:1 9:2 10:1 11:1 12:2 13:3 14:2 15:1 16:2 17:1 18:5 19:3 20:5 21:2 22:3 23:4 24:3 25:2 26:3 27:4 28:4 29:1 30:1 31:3 32:2 33:3 34:3 35:1 36:2; E struck by g (E mod g in {0, g-2}): 1 of 84
+g = 41: machines with g in the band 40; E mod g counts by residue: 0:2 1:2 2:0 3:1 4:1 5:0 6:1 7:1 8:0 9:0 10:2 11:1 12:2 13:0 14:0 15:1 16:1 17:0 18:2 19:0 20:1 21:1 22:3 23:1 24:0 25:1 26:0 27:1 28:1 29:0 30:2 31:2 32:1 33:2 34:2 35:0 36:2 37:0 38:2 39:0 40:1; E struck by g (E mod g in {0, g-2}): 2 of 40
+
+q = 101: base [2, 3, 5], band [7], A = 53, E = 3179; E mod 7 = 1 (h classes up: 1, 3)
+q = 499: base [2, 3, 5, 7], band [19, 17, 13, 11], A = 285, E = 119699; E mod 19 = 18 (h classes up: 16, 3), E mod 17 = 2 (h classes up: 11, 5), E mod 13 = 8 (h classes up: 3, 7), E mod 11 = 8 (h classes up: 6, 2)
+q = 997: base [2, 3, 5, 7], band [31, 29, 23, 19, 17, 13, 11], A = 474, E = 199079; E mod 31 = 28 (h classes up: 16, 26), E mod 29 = 23 (h classes up: 1, 20), E mod 23 = 14 (h classes up: 13, 5), E mod 19 = 16 (h classes up: 10, 16), E mod 17 = 9 (h classes up: 7, 1), E mod 13 = 10 (h classes up: 7, 11), E mod 11 = 1 (h classes up: 9, 5)
+q = 1999: base [2, 3, 5, 7], band [43, 41, 37, 31, 29, 23, 19, 17, 13, 11], A = 975, E = 409499; E mod 43 = 10 (h classes up: 27, 41), E mod 41 = 32 (h classes up: 22, 8), E mod 37 = 20 (h classes up: 9, 21), E mod 31 = 20 (h classes up: 7, 17), E mod 29 = 19 (h classes up: 21, 11), E mod 23 = 7 (h classes up: 18, 10), E mod 19 = 11 (h classes up: 14, 1), E mod 17 = 3 (h classes up: 8, 2), E mod 13 = 12 (h classes up: 11, 2), E mod 11 = 2 (h classes up: 7, 3)
