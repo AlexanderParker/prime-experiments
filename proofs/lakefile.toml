@@ -2271,3 +2271,6 @@ name = "MirrorWalkFinal"
 
 [[lean_lib]]
 name = "MirrorWalkColumn"
+
+[[lean_lib]]
+name = "MirrorWalkFieldType"

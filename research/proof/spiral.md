@@ -333,3 +333,18 @@ Exact shape of one field type on the landing line (step up, L = E + 6h, h a high
   3 at 41, gears 5 and 7 take 79, 269, 421.
 - Order 2 of g on the h-line is two coupled prime conditions in t: h = a + g t prime (h is a
   gear) and c = c_0 + 6 t prime. Order j: c a product of j - 1 primes at least g.
+
+## One field type, alone: (g, left member, order 2), kernel round 52 (2026-09-14)
+
+Owner: I group fields and get stuck on the group. So one type at a time. The first, in the
+kernel (proofs/MirrorWalkFieldType.lean, built, 0 sorries, standard axioms), three parts:
+- the class (left_class_iff): g | E + 6h iff h = a (mod g), where 6a = -E (mod g); g coprime
+  to 6, so every gear from 5.
+- the line (left_member_on_line): h = a + g t gives E + 6h = g (c_0 + 6t), g c_0 = E + 6a. The
+  cofactor runs on the column line c_0 + 6t.
+- the shape (left_order_two_iff): the type takes h iff c_0 + 6t is prime. A smaller gear p takes
+  the cofactor exactly on 6t = -c_0 (mod p) (cofactor_taken_by_iff), and a prime cofactor at
+  least g has no such divisor (order_two_excludes_smaller): the two never overlap.
+The same three lemmas serve any gear (base, band or high), the right member (a replaced by the
+class of E + 2) and the down step (sign of 6). Next types: (g, left, order 3) with the cofactor
+a product of two primes at least g; then the right member; then the down step.
