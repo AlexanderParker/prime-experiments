@@ -696,3 +696,23 @@ P_s = 210, t = 1..60, rows 11 to 157:
   P_s = 1 mod g giving 2 P_s + 1 = 3 mod g... exactly: the L tooth at t_0 = 2^{-1} P_s^{-1} = 2^{-1}
   when P_s = 1). The picture is the same object at every primorial: stripes of period g, two
   teeth each at t_0 and -t_0, t_0 = (2 P_s)^{-1} mod g.
+
+## The first gap of each primorial against the smallest machine in its range (2026-09-14)
+
+research/stack/r8/descent_first_gap.py, results_descent_first_gap.txt. P_s serves the machines
+2 P_prev <= q < 2 P_s; at the smallest, q_min, the reach on the t-line is (q_min^2 - 1)/(2 P_s),
+about 2 P_prev / p_s, and it only grows with q.
+  P_s = 30 (q_min 13): reach 2, first gap t = 1, landing (59, 61).
+  210 (61): reach 8, first gap 1, (419, 421); gaps in reach 1, 8.
+  2310 (421): reach 38, first gap 2, (9239, 9241); gaps 2, 12, 17, 20, 24, 29, 33.
+  30030 (4621): reach 355, first gap 3, (180179, 180181); gaps 3, 5, 7, 9, 11, 14, 21, 25, ...
+  510510 (60077): reach 3534, first gap 4, (4084079, 4084081).
+  9699690 (1021043): reach 53740, first gap 12.
+  223092870 (19399411): reach 843454, first gap 2.
+  6469693230 (446185769): reach 15385717, first gap 8.
+  200560490130 (12939386503): reach 417399566, first gap 11.
+  7420738134810 (401120980261): reach 10841107574, first gap 2.
+The first gap sits at t <= 12 at every primorial to 37#, while the reach at the smallest machine
+grows as 2 P_prev / p_s. So the descent's landing on a twin at every machine reduces to: the
+stripes of P_s have a gap at some t at most (q_min^2 - 1)/(2 P_s), which the first ten primorials
+meet at t <= 12. Exact statement, no landing in it; the gap's existence is the open item.
