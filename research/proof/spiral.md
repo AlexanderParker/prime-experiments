@@ -599,3 +599,31 @@ with a sub-machine (sqrt q at least 5).
   the step E_1 + 6h lands inside it and passes at all 294 (q = 499: first 83 up; q = 1999: first
   313 up). The level-0 spiral is not needed for the final step to pass: the sub-machine's landing
   plus one flip with a high gear reaches a twin of the machine's window at every machine tested.
+
+## The primorial descent (owner, 2026-09-14)
+
+Owner: a walk that carries all residues from an open pair (the primorial does) but converges
+in the window: from the first pair flip on the machine's primorial, then flip back on partial
+primorials (without q, without q - 1, ...) one or more times.
+
+Built (research/stack/r8/primorial_descent.py, results_primorial_descent.txt): from home flip up
+on q# (one period), then down on q#/q with k_1 periods, on q#/(q q') with k_2, ..., stopping at
+the first primorial P_s above q/2. Every flip is a real primorial axis. The landing is
+2 t P_s - 1 with t chosen by the periods; it carries residue -1 at every gear of P_s (open to
+the base by construction) and lies in the window iff (q + 1)/(2 P_s) <= t <= (q^2 - 1)/(2 P_s).
+- A twin among the landings at all 299 machines 11 to 2000.
+- q = 11: P_s = 6, t in 1..10, twins at t = 1, 5, 6, 9 (first landing (11, 13)); descent: q#
+  = 2310, then down on 210 with 10 periods, on 30 with 6, on 6 with 4: 2310 - 2100 - 180 - 24
+  = 6 = 1 * P_s.
+- q = 13, 31: P_s = 30, first twin t = 1, landing (59, 61). q = 101: P_s = 210, t = 1, (419, 421).
+- q = 499, 997, 1999: P_s = 2310, twins at t = 2, 12, 17, 20, 24, 29, 33, 39, 49, 50, 53, ...
+  first landing (9239, 9241); the failing t and their striking gears are the same list at all
+  three machines: t = 1 by 31, 3 by 83, 4 by 17, 5 by 13, 6 by 19, 7 by 73, 8 by 13, ...
+- Why the list is the same: a gear g outside the base strikes 2 t P_s - 1 iff t = (2 P_s)^{-1}
+  (mod g) and 2 t P_s + 1 iff t = -(2 P_s)^{-1} (mod g): two classes of t fixed by g and P_s
+  alone, no landing-dependent residue anywhere. The E-dependence of the spiral's classes is
+  gone; the classes are the gear's own against the primorial.
+- What remains is the same statement in its cleanest dress: among t from about q/(2 P_s) to
+  q^2/(2 P_s), one t outside the two fixed classes of every gear g above the base with g <= q
+  (gears above q are not in the machine). The family 2 t P_s - 1 is the set of columns open to
+  the base; the descent reaches every one of them in the window.
