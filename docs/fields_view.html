@@ -79,7 +79,14 @@ const fields=[
   mark:(h,n,f)=>n===h*h},
  {name:'Locator: the column at a fixed offset after each square',sub:'the candidate after m² is the column (m² + 6i − 2, m² + 6i) for the offset i set above; row g is painted at a member of a candidate that g divides (the strikes on the candidates; the candidates left unpainted are the located twins)',
   mark:(h,n,f)=>isCandidate(n)&&n%h===0},
+ {name:'Final step: the landings E ± 6h from the primorial spiral',sub:'the primorial spiral of the machine lands at E (marked on the line); the final step about the mirror {3, h}, h a gear above √q, lands at the column (E ± 6h, E ± 6h + 2); row g is painted at a member of such a column that g divides (the strikes on the final step candidates; the columns left unpainted are the twins the walk can land on)',
+  mark:(h,n,f)=>finalSet.has(n)&&n%h===0},
 ];
+let finalSet=new Set(),finalE=0;
+function primorialSpiral(mq){const ps=primesUpTo(mq);const base=[];let P=1;for(const p of ps){if(P*p<=Math.floor(mq/2)){P*=p;base.push(p);}else break;}
+ const rest=ps.filter(p=>!base.includes(p)).reverse();let A=0;rest.forEach((g,i)=>A+=i%2===0?g:-g);return {E:-1+2*P*A,P,base};}
+function setFinal(mq){const s=primorialSpiral(mq);finalE=s.E;finalSet=new Set();const r=Math.floor(Math.sqrt(mq));
+ for(const h of primesUpTo(mq)){if(h<=r)continue;for(const d of [1,-1]){const L=s.E+6*d*h;if(L>mq&&L+2<=mq*mq){finalSet.add(L);finalSet.add(L+2);}}}}
 function locOffset(){const e=document.getElementById('loc');return Math.max(1,parseInt(e&&e.value)||10);}
 function isCandidate(n){const i=locOffset();for(const v of [n-6*i+2,n-6*i]){if(v>=4){const r=Math.round(Math.sqrt(v));if(r*r===v)return true;}}return false;}
 const words=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
@@ -125,12 +132,14 @@ function build(){
  const nums=[];for(let n=n0;n<n0+nn;n++){const f=n>=2?factor(n):[];const pr=f.length===1;const tw=pr&&(isPrime(n-2)||isPrime(n+2));nums.push({n,f,pr,tw});}
  const CELL=6,H=14,RH=14,W=nn*CELL;
  const mq=mqState;
+ setFinal(mq);
  let prim=1;for(let p=2;p<=mq;p++)if(isPrime(p))prim*=p;
  const cyc=Math.max(1,parseInt(document.getElementById('cyc').value)||1);const off=(cyc-1)*prim;
  const cy=cyc>1?' (cycle '+cyc+', offset '+off+')':'';
  const allMarks=[
   {key:'q',n:mq+off,label:'q = '+mq+(cyc>1?' +'+off:''),lo:1+off,hi:mq+off,why:'q is the machine\'s top gear: the machine is the gears up to q. Range 1 .. q'+cy+': the gears themselves and the numbers below them.'},
   {key:'q2',n:mq*mq+off,label:'q² = '+mq*mq+(cyc>1?' +'+off:''),lo:mq+1+off,hi:mq*mq+off,why:'q² is the square of the top gear. Range q+1 .. q²'+cy+': in the first cycle every number here that no gear of the machine strikes is prime, so every open column is a prime and every open pair is a twin; in later cycles the same strike pattern, shifted by whole periods.'},
+  {key:'E',n:finalE+off,label:'E = '+finalE+(cyc>1?' +'+off:''),lo:finalE+off,hi:finalE+2+off,why:'E is where the primorial spiral lands: E = −1 + 2PA with P the product of the base gears (the lowest gears with product at most q/2) and A the alternating sum of the other gears from q down. E + 1 is a multiple of P, so E stands one column left of the joint stripe of the base rows. The final step lands at E ± 6h for a gear h above √q.'},
   {key:'qp',n:prim+off,label:'q# = '+prim+(cyc>1?' +'+off:''),lo:mq*mq+1+off,hi:prim+off,why:'q# is the primorial, the product of the gears up to q: the machine\'s period. Range q²+1 .. q#'+cy+': one full turn of the machine after the square; the strike pattern repeats every q# numbers.'}
  ];
  const marks=allMarks.filter(m=>m.n>=n0&&m.n<n0+nn);
