@@ -134,3 +134,19 @@ Script research/stack/r8/stretch_rows.py, table results_stretch_rows.txt.
 - Standing: the final flip's h exists at every machine tested (273 of 273) but no walk of the
   level below locates it by a fixed rule yet. The open item is unchanged in content: existence
   of a gear h in ((q - E_1)/6, q] outside the two classes of every row up to sqrt(7q).
+
+## Wider mirrors for the locating flip (owner: keep going; 2026-09-14, later)
+
+pattern_one_down3.py, 273 machines with a sub-machine. Candidates n = E + 2kMd, h'' every gear
+of the sub-machine from 5; accepted when n is a gear of q in range and E + 6n a twin.
+- From E_1: {3, h''} k = 1: 135; k = 1..3: 242. {2, 3, h''} k = 1: 232; k = 1..3: 254.
+  {base_1, h''} (P_1 = 6 here) the same as {2, 3, h''}. {base_0, h''} (P_0 = 210): 0, the
+  reach overshoots q. Any of these: 264 of 273; the nine failures are 127, 131, 137, 139, 149,
+  151, 157, 163, 167, where the sub-machine is {5, 7, 11} over {2, 3} (sqrt q between 11 and 12).
+- From E_0 (already inside the window): 0 for every mirror, since n = E_0 + ... exceeds q; a
+  locating flip has to start from a landing at most q.
+- q = 499: located by {3, 5} with k = 2 up, n = 131, landing (857, 859). q = 1999: {3, 13} k = 1
+  up, n = 317, landing (2141, 2143).
+Standing: the locating flip works from the sub-machine's landing with small mirrors and a few
+periods at 264 of 273 machines; no single mirror rule covers every machine, and the failures
+are the machines whose sub-machine has three gears.
