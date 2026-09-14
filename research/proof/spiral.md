@@ -226,3 +226,31 @@ for g <= q", and a high gear passes exactly when its landing escapes every field
 the fields give beyond the two classes per gear is the accounting: which field takes each
 failure, in the proved proportions. What they do not give is a reason the traces of all the
 fields on the high-gear line never cover it, which is the open statement.
+
+## Phase 2 field by field (2026-09-14)
+
+The high-gear line in reach from E, the gears consulted in the machine's order (script
+research/stack/r8/phase2_fields.py, table results_phase2_fields.txt, machines 11 to 2000).
+
+- Stages, totals: in reach 86,396; left by higher:5 44,355; left by higher:5 and higher:7
+  29,771; left by every gear of the sub-machine (gears up to sqrt q) 13,334; left by every
+  gear up to q (twins) 3,639.
+- The sub-machine leaves a survivor at every machine except 11 (where the sub-machine is
+  empty and the three high gears are all taken). A passing gear exists at every machine
+  except 11.
+- What takes a sub-machine survivor is always a high gear g above sqrt q dividing L or L + 2,
+  and the struck member is then g times a number free of the gears below sqrt q: order 2
+  (g times a prime of the window) in 9,139 cases, order 3 (g times two primes above sqrt q)
+  in 556, never higher. So after the sub-machine the only killers left are the higher:g fields
+  of the high gears themselves, and each strikes the line in its two classes exactly as the
+  landing law says.
+- Sample rows (q, E, reach, after 5, after 5 and 7, after sub-machine, pass, first pass):
+  31, 227: 16, 8, 4, 4, 3, h = 7 up. 101, 3179: 44, 22, 14, 14, 3, h = 13 up.
+  499, 119699: 174, 88, 62, 29, 11, h = 37 up. 1999, 409499: 578, 296, 196, 69, 20, h = 103 up.
+
+So the open item splits into two proved-shape parts: (a) the sub-machine's traces on the
+high-gear line leave survivors (the sub-machine is the machine of sqrt q acting on a line of
+length about q, the same object as the window statement one level down); (b) among those
+survivors the high gears' own fields, each striking two classes, do not take every one. Part
+(b) is where the landings that fail are g times a window prime: the walk's landing is a column
+of the higher:g field for one high gear g.
