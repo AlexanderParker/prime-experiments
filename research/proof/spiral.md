@@ -581,3 +581,21 @@ Script research/stack/r8/spiral_groups_levels.py, table results_spiral_groups_le
   (pass 22, first 197 up).
 Without 3 forced into the deepest base the levels lose the column alignment (E = 1 mod 6) and
 the final step never passes: the base must carry 2 and 3 at every level.
+
+## The final step one level down; sqout at level 0 (owner: both; 2026-09-14)
+
+Script research/stack/r8/spiral_levels2.py, table results_spiral_levels2.txt, 294 machines
+with a sub-machine (sqrt q at least 5).
+- A. From the level-1 landing E_1 (in the sub-window (sqrt q, q]), the final step with a
+  sub-machine gear h at most sqrt q, landing E_1 +- 6h inside the sub-machine's window: passes
+  at 292 of 294. The two failures, 29 and 31, have b_1 = 5 and the level-1 spiral over the single
+  gear 5 overshoots the sub-window (E_1 = 59 > 25). Examples: q = 499, E_1 = 71, h = 5 up lands
+  (101, 103); q = 997, E_1 = 227, h = 7 up lands (269, 271); q = 1999, E_1 = 359, h = 17 up lands
+  (461, 463). So the same walk, run inside the sub-machine, finds the sub-machine's twin.
+- B. Level 0 run with the sqout set (gears at most sqrt q outside the machine's base) instead of
+  sqin: landing in the window 292 of 294, itself a twin 9, passing final step at all 294.
+  q = 499: 1751, 14 pass, first 41 up; q = 1999: 7919, 35 pass, first 103 up.
+- C. From E_1 directly, the final step with h above sqrt q: E_1 is below the window (6 in), yet
+  the step E_1 + 6h lands inside it and passes at all 294 (q = 499: first 83 up; q = 1999: first
+  313 up). The level-0 spiral is not needed for the final step to pass: the sub-machine's landing
+  plus one flip with a high gear reaches a twin of the machine's window at every machine tested.

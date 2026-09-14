@@ -1,0 +1,45 @@
+Two more level constructions (owner: both).
+
+Levels as in spiral_groups_levels.py: b_0 = q, b_1 = floor sqrt q, ...; base_k = lowest gears
+with product at most b_k / 2, always holding 2 and 3; gears_k = primes in (b_{k+1}, b_k] outside
+base_k; each level's spiral from the previous landing, descending, first flip up.
+
+A. The final step one level down.  E_1 = the landing after level 1 (in the sub-window
+   (sqrt q, q]).  Final step there with a sub-machine gear h in (b_2, b_1] (h at most sqrt q):
+   landing E_1 +- 6h, a twin inside (b_1, b_1^2] = the sub-machine's window.  This is the window
+   statement for the machine b_1 run by the same walk.
+B. Level 0 with the sqout set instead of sqin: from E_1, the level-0 spiral over the gears at
+   most sqrt q outside the machine's base (sqout) with the machine's base, then the final step
+   with h above sqrt q.
+Also C: from E_1 directly, the final step with h above sqrt q (no level-0 spiral).
+
+usage: uv run python research/stack/r8/spiral_levels2.py 2000
+
+variant        machines in window  E twin has pass  no pass at
+A sub final         294       288      99      292  [29, 31]
+B sqout at 0        294       292       9      294  []
+C E1 final          294         6      99      294  []
+
+q = 101:
+   E1 = 23 (b1 = 10, sub-window (10, 100], sub gears for the final step [2, 3, 5, 7])
+   A: passes 2 first (3, 1) -> (41, 43)
+   B: EB = 443 in, passes 7 first (13, 1)
+   C: from E1 with h > sqrt q: in window False, passes 6 first (19, 1)
+
+q = 499:
+   E1 = 71 (b1 = 22, sub-window (22, 484], sub gears for the final step [2, 3, 5, 7, 11, 13, 17, 19])
+   A: passes 6 first (5, 1) -> (101, 103)
+   B: EB = 1751 in, passes 14 first (41, 1)
+   C: from E1 with h > sqrt q: in window False, passes 9 first (83, 1)
+
+q = 997:
+   E1 = 227 (b1 = 31, sub-window (31, 961], sub gears for the final step [7, 11, 13, 17, 19, 23, 29, 31])
+   A: passes 3 first (7, 1) -> (269, 271)
+   B: EB = 9047 in, passes 24 first (97, 1)
+   C: from E1 with h > sqrt q: in window False, passes 15 first (137, 1)
+
+q = 1999:
+   E1 = 359 (b1 = 44, sub-window (44, 1936], sub gears for the final step [7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43])
+   A: passes 5 first (17, 1) -> (461, 463)
+   B: EB = 7919 in, passes 35 first (103, 1)
+   C: from E1 with h > sqrt q: in window False, passes 21 first (313, 1)
