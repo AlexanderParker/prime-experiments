@@ -807,3 +807,22 @@ sum 39; landing - signed sum 35; the column at the sum 31; at twice the sum 31; 
 mirror minus the last (186 - 30 = 156 at q = 31), so "landing - sum" is the landing minus that
 difference. No candidate stands out from the landing's own rate. Closed as run; open to another
 pairing of the sets if the owner has one.
+
+## The spiral with the machine slip, as recorded in the handover (2026-09-15)
+
+docs/handover.md 0.3: cycle slip = the difference of two periods (products of gear sets), how far
+two cycles drift per revolution; machine slip = a period mod a new gear, the phase a composite
+machine presents to that gear; 2.1: relative slips (gear 2 slips against gear 3 by 1 per 2-cycle).
+The cycle slip of consecutive spiral mirrors was run above (first mirror minus last). The machine
+slip run, 299 machines 11 to 2000, four readings, summed plainly and signed by the flip direction:
+- previous mirror mod the new gear (q = 31: 12, 13, 5, 12, 11, 1, 3, 2, sum 59): landing + S 15,
+  - S 35, + 6S 18, - 6S 3 of 78; signed (sum -3): 20, 22, 22, 20.
+- previous move (twice the mirror) mod the new gear: plain 27, 20, 37, 10 of 80; signed 32, 25, 22, 18.
+- base mod gear (6 at every step at q = 31, then 1 at gear 5): plain landing - S 44, the column
+  at 2S 51 of 298; signed 20, 21, 14, 12.
+- previous gear mod the new gear: plain 20, 15, 25, 27; the column at 2S 50 of 297; signed 21, 21,
+  28, 24.
+Against the landing itself at 39 of 299. The columns at twice the sum reach 50 and 51 for two
+readings; everything else is at or below the landing's own rate. No pointer at the level of a
+rule; the two 50s are the columns 2S - 1 with S about 43 to 60, low in the window, where twins
+are dense. Closed as run.
