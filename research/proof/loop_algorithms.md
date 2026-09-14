@@ -145,3 +145,19 @@ research/stack/r8/blind_rules9.py, machines 121 to 5000 (639). From the level-1 
 {2,3,q} 61; {base, q} 31; {3, p} 54; {3, q} then {3, p} down (E_1 + 6 (q - p)) 76; {2,3,q} then
 {2,3,p} down 76. Verdict: below the band (9 to 12 percent): these landings carry only 2, 3 (and
 q or p), not even the machine's base, so they are open to fewer gears than the D rules.
+
+### 10. What a blind algorithm would have to know (2026-09-15)
+
+Axis differences that are multiples of the sub-machine's primorial cannot fit: the primorial of
+the gears up to sqrt q passes q^2 once sqrt q >= 11 (recorded 2026-09-14), so a pair of flips can
+carry at most the largest primorial P_max at most q^2 / 2, and the landing is 2 t P_max - 1 with
+t free. Every rule for t tried in entries 4 to 8 is a guess and lands in the band.
+The descent's first-gap table (research/stack/r8/results_descent_first_gap.txt) shows what the
+guess would have to be: one integer per primorial, the first t with 2 t P_max +- 1 both prime:
+  5#: 1, 7#: 1, 11#: 2, 13#: 3, 17#: 4, 19#: 12, 23#: 2, 29#: 8, 31#: 11, 37#: 2,
+and at every primorial to 37# that t is inside the reach of the smallest machine of the range.
+So an algorithm "flip on q#, flip back to P_max, take t from the table" lands on a twin at every
+machine to about 10^14 with ten stored integers; the integers are the secret knowledge, one per
+primorial, and the conjecture in this form is: for every primorial P, some t at most about
+2 P_prev / p (the reach at the smallest machine) has 2 t P - 1 and 2 t P + 1 both prime.
+Verdict: the loop's target reduces to a rule for one integer per primorial; no rule found.
