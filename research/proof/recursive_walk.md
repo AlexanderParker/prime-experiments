@@ -150,3 +150,18 @@ of the sub-machine from 5; accepted when n is a gear of q in range and E + 6n a 
 Standing: the locating flip works from the sub-machine's landing with small mirrors and a few
 periods at 264 of 273 machines; no single mirror rule covers every machine, and the failures
 are the machines whose sub-machine has three gears.
+
+## Two chained flips, and the deeper landing (2026-09-14, later)
+
+pattern_one_down4.py, 273 machines with a sub-machine.
+- Two flips from E_1 with sub-machine gears, mirrors {3, h} (n = E_1 + 6 d1 h1 + 6 d2 h2):
+  locates a valid h at 264 of 273, the failures again 127 to 167. With {2, 3, h} (12h steps):
+  263, failures 367 to 421 instead. Either family: 273 of 273.
+- From the deeper landing E_2: none exists below q = 14641 (needs sqrt q at least 121).
+- From E_1 with the top machine's three smallest high gears as h'', k up to 3: 63.
+- q = 499: two flips {3, 5} up, {3, 5} up: n = 131, landing (857, 859). q = 1999: {3, 7} up then
+  {3, 37} up: n = 503, landing (3257, 3259). q = 127: {2, 3, 7} up then {2, 3, 11} down: n = 59.
+Standing: a two-flip walk from the sub-machine's landing with small mirrors finds the final
+flip's gear at every machine to 2000, but the mirror family that works differs by machine; no
+single rule. The same shape as the network result of 2026-09-13: short walks exist, a fixed
+rule does not appear.
