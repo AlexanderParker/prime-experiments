@@ -15,7 +15,7 @@ p.lead{color:var(--mut);max-width:80ch;margin:0 0 10px}
 .wrap{overflow-x:auto;border:1px solid var(--line);background:var(--pan)}
 table{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12px}
 th,td{border-bottom:1px solid var(--line);padding:2px 4px;white-space:nowrap;text-align:center}
-th.g{text-align:left;position:sticky;left:0;background:var(--pan);min-width:110px}
+th.g{text-align:left;position:sticky;left:0;background:var(--pan);min-width:190px}
 thead th{position:sticky;top:0;background:var(--pan);font-weight:500}
 thead th.pass{color:var(--pass);font-weight:700}
 thead th.gone{color:var(--gone)}
@@ -30,19 +30,20 @@ td.dead{opacity:.35}
 .k1 b{color:var(--base)}.k2 b{color:var(--band)}.k3 b{color:var(--high)}.k4 b{color:var(--pass)}.k5 b{color:var(--own)}
 </style>
 <h1>Final Step Positions</h1>
-<p class="lead">The final step of the locator, drawn as the fields construction: rows are the machine's gears, columns are the high gears h in reach. The primorial spiral lands at E; the step about {3, h} lands at E ± 6h. Gear g marks column h where its tooth sits: L for the left member (h ≡ a<sub>g</sub>), R for the right (h ≡ b<sub>g</sub>). Base gears' teeth are fixed on column h itself; band and high gears' teeth are placed by E. A column with no mark is a passing gear: the landing is a twin prime pair.</p>
+<p class="lead">The final step of the locator, drawn as the fields construction: rows are the machine's gears, columns are the high gears h in reach. The primorial spiral lands at E; the step about {3, h} lands at E ± 6h. A mark in row g, column h is one kill of one field type: the letter is the member struck (L = left, R = right), the digit is the order of the composite, so L2 is the field higher:g of order 2 (g times a prime) on the left member, R3 is order 3 on the right, and so on. A gear whose E ≡ −1 has its teeth fixed on column h itself; every other gear's teeth are placed by E. A column with no mark is a passing gear: the landing is a twin prime pair.</p>
 <div class="ctl">
   <label>machine q <button id="qm">−</button><b id="qv"></b><button id="qp">+</button></label>
   <label>step <button id="dir">up (E + 6h)</button></label>
-  <label><input type="checkbox" id="only" checked> only gears that take a standing column</label>
+  <label><input type="checkbox" id="only" checked> only gears with a kill on a standing column</label>
   <label><input type="checkbox" id="dim" checked> dim marks on columns already taken</label>
 </div>
 <div class="facts" id="facts"></div>
-<div class="key"><span class="k1"><b>L R</b> base tooth (fixed, = column h)</span><span class="k2"><b>L R</b> band tooth (placed by E)</span><span class="k3"><b>L R</b> high tooth (placed by E)</span><span class="k4"><b>PASS</b> column with no tooth</span><span class="k5"><b>own</b> the step's own gear divides E or E + 2</span></div>
+<div class="key"><span class="k1"><b>L2 R3 …</b> teeth fixed on column h (E ≡ −1 mod g)</span><span class="k2"><b>L2 R3 …</b> teeth placed by E, gear at most √q (orders 2 and up)</span><span class="k3"><b>L2 R3</b> teeth placed by E, gear above √q (order 2 or 3 only)</span><span class="k4"><b>PASS</b> column with no tooth</span><span class="k5"><b>own</b> the step's own gear divides E or E + 2</span></div>
 <div class="wrap"><table id="t"></table></div>
 <script>
 function primesTo(n){const s=new Uint8Array(n+1);const out=[];for(let i=2;i<=n;i++){if(!s[i]){out.push(i);for(let j=i*i;j<=n;j+=i)s[j]=1;}}return out;}
 function mod(a,m){return ((a%m)+m)%m;}
+function order(n){let c=0;for(let p=2;p*p<=n;p++){while(n%p===0){n/=p;c++;}}if(n>1)c++;return c;}
 function inv6(g){for(let x=1;x<g;x++)if((6*x)%g===1)return x;return 0;}
 let q=499,d=1;
 const PR=primesTo(20000);
@@ -63,6 +64,7 @@ function build(){
   taker[h]=t;status[h]=m;}
  const pass=cols.filter(h=>taker[h]===null);
  const role=g=>base.includes(g)?'base':(g<=r?'band':'high');
+ const roleText=g=>base.includes(g)?'teeth fixed on column h':(g<=r?'teeth from E':'teeth from E, above √q');
  const only=document.getElementById('only').checked,dim=document.getElementById('dim').checked;
  document.getElementById('qv').textContent=q;
  document.getElementById('facts').innerHTML=`base <b>${base.join(', ')}</b> (P = ${P}); band <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; high gears from <b>${high[0]}</b>. Landing E = <b>${E}</b>, E mod P = ${mod(E,P)}. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
@@ -70,10 +72,12 @@ function build(){
  for(const g of gears){const [a,b]=teeth[g];const rl=role(g);
   const takes=cols.filter(h=>taker[h]===g);
   if(only&&takes.length===0)continue;
-  html+=`<tr class="${rl}"><th class="g">${g} <small>${rl}, teeth ${a}, ${b}</small></th>`;
+  const kinds={};for(const h of cols){if(h===g)continue;const L=E+6*d*h;let m=null;if(h%g===a)m='L';else if(h%g===b)m='R';if(m){const j=1+order((m==='L'?L:L+2)/g);const k=m+j;kinds[k]=(kinds[k]||0)+(taker[h]===g?1:0);}}
+  const kt=Object.keys(kinds).sort().filter(k=>kinds[k]>0).map(k=>`${k}×${kinds[k]}`).join(' ');
+  html+=`<tr class="${rl}"><th class="g">${g} <small>${roleText(g)}; teeth ${a}, ${b}${kt?'; kills '+kt:''}</small></th>`;
   for(const h of cols){let c='',txt='';
    if(h===g){if(status[h]&&status[h].startsWith('own')){c='own';txt='own';}}
-   else if(h%g===a){c='L';txt='L';}else if(h%g===b){c='R';txt='R';}
+   else if(h%g===a){c='L';txt='L'+(1+order((E+6*d*h)/g));}else if(h%g===b){c='R';txt='R'+(1+order((E+6*d*h+2)/g));}
    if(c&&dim&&taker[h]!==g)c+=' dead';
    html+=`<td class="${c}">${txt}</td>`;}
   html+='</tr>';}
