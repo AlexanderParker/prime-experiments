@@ -1,0 +1,51 @@
+Stacked and recursive spiral constructions by gear type (owner: keep trying).
+
+All spirals: descending gears, first flip up, one period, mirror {base, g}.
+  sqout>sqin   sqout spiral (gears at most sqrt q above the base) from home, then from its landing
+               a sqin spiral (gears above sqrt q) with the same base, first flip up or down
+  sqin>sqout   the reverse order
+  sub          the SUB-MACHINE's primorial spiral: base_s = lowest gears with product at most
+               sqrt(q)/2, spiral over the gears from there up to sqrt q; lands in the sub-window
+               (sqrt q, q] when it lands at all
+  sub>sqin     from the sub-machine's landing, the sqin spiral with the sub-machine's base
+  sub>final    the sub-machine's landing, then the final step alone
+For each: landing, in the window (q, q^2] or the sub-window, landing itself a twin, passing
+final step (h above sqrt q, E +- 6h a twin in the window), machines with no pass.
+
+usage: uv run python research/stack/r8/spiral_stacks2.py 2000
+
+variant        machines in window  E twin has pass  no pass at
+sqout>sqin +        295       295      39      295  []
+sqout>sqin -        295         0       0        1  [29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73]...
+sqin>sqout +        295       295      39      295  []
+sqin>sqout -        295       295      46      294  [11]
+sub                 299       297     112      276  [11, 13, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]...
+sub>sqin +          299       298      37      276  [11, 13, 17, 23, 29, 31, 37, 41, 53, 59, 61, 67]...
+sub>sqin -          299         0       0       23  [11, 17, 23, 41, 43, 47, 53, 71, 73, 79, 89, 97]...
+
+q = 101 (sub-machine base [2]):
+   sqout>sqin +  E =     3179 in        pass   3 first (13, 1)
+   sqout>sqin -  E =    -2341 OUT       pass   0
+   sqin>sqout +  E =     3179 in        pass   3 first (13, 1)
+   sqin>sqout -  E =     2339 in   TWIN pass   3 first (53, 1)
+   sub           E =       19 in        pass   0
+   sub>sqin +    E =      203 in        pass   8 first (11, 1)
+   sub>sqin -    E =     -165 OUT       pass   0
+
+q = 499 (sub-machine base [2, 3]):
+   sqout>sqin +  E =   123059 in        pass   3 first (53, 1)
+   sqout>sqin -  E =  -119701 OUT       pass   0
+   sqin>sqout +  E =   123059 in        pass   3 first (53, 1)
+   sqin>sqout -  E =   119699 in   TWIN pass  11 first (37, 1)
+   sub           E =       71 in   TWIN pass   9 first (83, 1)
+   sub>sqin +    E =     3539 in   TWIN pass  20 first (47, 1)
+   sub>sqin -    E =    -3397 OUT       pass   0
+
+q = 1999 (sub-machine base [2, 3]):
+   sqout>sqin +  E =   424619 in        pass  22 first (73, 1)
+   sqout>sqin -  E =  -409501 OUT       pass   0
+   sqin>sqout +  E =   424619 in        pass  22 first (73, 1)
+   sqin>sqout -  E =   409499 in        pass  20 first (103, 1)
+   sub           E =      239 in   TWIN pass  16 first (307, 1)
+   sub>sqin +    E =    12155 in        pass  70 first (127, 1)
+   sub>sqin -    E =   -11677 OUT       pass   0
