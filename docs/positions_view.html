@@ -1,0 +1,87 @@
+<title>Final Step Positions</title>
+<style>
+:root{--bg:#f5f3ec;--ink:#1e1c18;--mut:#6f6a5e;--line:#d9d3c5;--pan:#fffdf7;--base:#8a5a1f;--band:#245c8a;--high:#5b3f8a;--pass:#1f7a3f;--gone:#b8b1a3;--own:#a0261f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16150f;--ink:#ebe6d8;--mut:#a39c8c;--line:#3b382f;--pan:#1f1d16;--base:#d9a45a;--band:#6fb1e8;--high:#b394e8;--pass:#5fd08a;--gone:#5a564c;--own:#f07b73}}
+:root[data-theme="dark"]{--bg:#16150f;--ink:#ebe6d8;--mut:#a39c8c;--line:#3b382f;--pan:#1f1d16;--base:#d9a45a;--band:#6fb1e8;--high:#b394e8;--pass:#5fd08a;--gone:#5a564c;--own:#f07b73}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 "IBM Plex Sans",system-ui,sans-serif;margin:0;padding-block:14px;padding-inline:16px}
+h1{font-size:19px;font-weight:600;margin:0 0 4px}
+p.lead{color:var(--mut);max-width:80ch;margin:0 0 10px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0 12px}
+.ctl button{font:inherit;padding:4px 10px;border:1px solid var(--line);background:var(--pan);color:var(--ink);border-radius:4px;cursor:pointer}
+.ctl button:focus-visible{outline:2px solid var(--band)}
+.ctl label{display:flex;gap:6px;align-items:center}
+.facts{font-variant-numeric:tabular-nums;color:var(--mut);margin:0 0 10px;max-width:100ch}
+.facts b{color:var(--ink);font-weight:600}
+.wrap{overflow-x:auto;border:1px solid var(--line);background:var(--pan)}
+table{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12px}
+th,td{border-bottom:1px solid var(--line);padding:2px 4px;white-space:nowrap;text-align:center}
+th.g{text-align:left;position:sticky;left:0;background:var(--pan);min-width:110px}
+thead th{position:sticky;top:0;background:var(--pan);font-weight:500}
+thead th.pass{color:var(--pass);font-weight:700}
+thead th.gone{color:var(--gone)}
+td.L,td.R{font-weight:700}
+tr.base td.L,tr.base td.R{color:var(--base)}
+tr.band td.L,tr.band td.R{color:var(--band)}
+tr.high td.L,tr.high td.R{color:var(--high)}
+td.own{color:var(--own);font-weight:700}
+td.dead{opacity:.35}
+.key{display:flex;flex-wrap:wrap;gap:14px;color:var(--mut);margin:8px 0}
+.key span b{font-weight:700}
+.k1 b{color:var(--base)}.k2 b{color:var(--band)}.k3 b{color:var(--high)}.k4 b{color:var(--pass)}.k5 b{color:var(--own)}
+</style>
+<h1>Final Step Positions</h1>
+<p class="lead">The final step of the locator, drawn as the fields construction: rows are the machine's gears, columns are the high gears h in reach. The primorial spiral lands at E; the step about {3, h} lands at E ± 6h. Gear g marks column h where its tooth sits: L for the left member (h ≡ a<sub>g</sub>), R for the right (h ≡ b<sub>g</sub>). Base gears' teeth are fixed on column h itself; band and high gears' teeth are placed by E. A column with no mark is a passing gear: the landing is a twin prime pair.</p>
+<div class="ctl">
+  <label>machine q <button id="qm">−</button><b id="qv"></b><button id="qp">+</button></label>
+  <label>step <button id="dir">up (E + 6h)</button></label>
+  <label><input type="checkbox" id="only" checked> only gears that take a standing column</label>
+  <label><input type="checkbox" id="dim" checked> dim marks on columns already taken</label>
+</div>
+<div class="facts" id="facts"></div>
+<div class="key"><span class="k1"><b>L R</b> base tooth (fixed, = column h)</span><span class="k2"><b>L R</b> band tooth (placed by E)</span><span class="k3"><b>L R</b> high tooth (placed by E)</span><span class="k4"><b>PASS</b> column with no tooth</span><span class="k5"><b>own</b> the step's own gear divides E or E + 2</span></div>
+<div class="wrap"><table id="t"></table></div>
+<script>
+function primesTo(n){const s=new Uint8Array(n+1);const out=[];for(let i=2;i<=n;i++){if(!s[i]){out.push(i);for(let j=i*i;j<=n;j+=i)s[j]=1;}}return out;}
+function mod(a,m){return ((a%m)+m)%m;}
+function inv6(g){for(let x=1;x<g;x++)if((6*x)%g===1)return x;return 0;}
+let q=499,d=1;
+const PR=primesTo(20000);
+function prevPrime(x){let i=PR.indexOf(x);return i>0?PR[i-1]:x;}
+function nextPrime(x){let i=PR.indexOf(x);return i<PR.length-1?PR[i+1]:x;}
+function build(){
+ const primes=PR.filter(p=>p<=q);let base=[],P=1;
+ for(const p of primes){if(P*p<=Math.floor(q/2)){P*=p;base.push(p);}else break;}
+ const nb=primes.filter(p=>!base.includes(p)).reverse();let A=0;nb.forEach((g,i)=>A+=i%2===0?g:-g);
+ const E=-1+2*P*A;const r=Math.floor(Math.sqrt(q));
+ const gears=primes.filter(p=>p>=5);const high=primes.filter(p=>p>r);
+ const cols=high.filter(h=>{const L=E+6*d*h;return q<L&&L+2<=q*q;});
+ const teeth={};for(const g of gears){const i=inv6(g);teeth[g]=[mod(-d*E*i,g),mod(-d*(E+2)*i,g)];}
+ const taker={};const status={};
+ for(const h of cols){let t=null,m=null;
+  for(const g of gears){if(g===h)continue;const [a,b]=teeth[g];if(h%g===a){t=g;m='L';break;}if(h%g===b){t=g;m='R';break;}}
+  if(t===null){const L=E+6*d*h;if(mod(E,h)===0){t=h;m='own L';}else if(mod(E+2,h)===0){t=h;m='own R';}}
+  taker[h]=t;status[h]=m;}
+ const pass=cols.filter(h=>taker[h]===null);
+ const role=g=>base.includes(g)?'base':(g<=r?'band':'high');
+ const only=document.getElementById('only').checked,dim=document.getElementById('dim').checked;
+ document.getElementById('qv').textContent=q;
+ document.getElementById('facts').innerHTML=`base <b>${base.join(', ')}</b> (P = ${P}); band <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; high gears from <b>${high[0]}</b>. Landing E = <b>${E}</b>, E mod P = ${mod(E,P)}. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
+ let html='<thead><tr><th class="g">gear \\ h</th>'+cols.map(h=>`<th class="${taker[h]===null?'pass':'gone'}" title="${taker[h]===null?'passes: ('+(E+6*d*h)+', '+(E+6*d*h+2)+') twin':'taken by '+taker[h]+' ('+status[h]+')'}">${h}${taker[h]===null?'<br>PASS':''}</th>`).join('')+'</tr></thead><tbody>';
+ for(const g of gears){const [a,b]=teeth[g];const rl=role(g);
+  const takes=cols.filter(h=>taker[h]===g);
+  if(only&&takes.length===0)continue;
+  html+=`<tr class="${rl}"><th class="g">${g} <small>${rl}, teeth ${a}, ${b}</small></th>`;
+  for(const h of cols){let c='',txt='';
+   if(h===g){if(status[h]&&status[h].startsWith('own')){c='own';txt='own';}}
+   else if(h%g===a){c='L';txt='L';}else if(h%g===b){c='R';txt='R';}
+   if(c&&dim&&taker[h]!==g)c+=' dead';
+   html+=`<td class="${c}">${txt}</td>`;}
+  html+='</tr>';}
+ html+='</tbody>';document.getElementById('t').innerHTML=html;}
+document.getElementById('qm').addEventListener('click',()=>{q=prevPrime(q);if(q<11)q=11;build();});
+document.getElementById('qp').addEventListener('click',()=>{q=nextPrime(q);build();});
+document.getElementById('dir').addEventListener('click',e=>{d=-d;e.target.textContent=d>0?'up (E + 6h)':'down (E − 6h)';build();});
+document.getElementById('only').addEventListener('change',build);
+document.getElementById('dim').addEventListener('change',build);
+build();
+</script>
