@@ -1,0 +1,160 @@
+Triple: base gears 5 and 7 (fixed teeth on column h) with one E-anchored gear g, step up.
+
+Survivors of the triple are the high gears h with h not 1, 4 mod 5; not 1, 6 mod 7; not a, b
+mod g (6a = -E, 6b = -(E + 2) mod g).  One line per machine: g's teeth, the survivors, their
+classes mod 35g, and the next single type that takes each survivor (smallest gear dividing a
+member, or twin).
+
+usage: uv run python research/stack/r8/triple_5_7_g.py 11 499 997 1999
+
+q = 499, E = 119699: gear 11 teeth h = 6 (left), 2 (right) mod 11; base teeth fixed (5: 1, 4; 7: 6, 1)
+   triple leaves 26 high gears; classes mod 385: [12, 23, 37, 47, 53, 58, 67, 73, 82, 102, 103, 107, 137, 157, 163, 173, 227, 257, 263, 283, 313, 317, 353, 367, 373, 383]
+      h =   23 (mod 5: 3, mod 7: 2, mod 11: 1): next: gear 293
+      h =   37 (mod 5: 2, mod 7: 2, mod 11: 4): twin
+      h =   47 (mod 5: 2, mod 7: 5, mod 11: 3): twin
+      h =   53 (mod 5: 3, mod 7: 4, mod 11: 9): next: gear 257
+      h =   67 (mod 5: 2, mod 7: 4, mod 11: 1): next: gear 83
+      h =   73 (mod 5: 3, mod 7: 3, mod 11: 7): next: gear 17
+      h =  103 (mod 5: 3, mod 7: 5, mod 11: 4): next: gear 79
+      h =  107 (mod 5: 2, mod 7: 2, mod 11: 8): next: gear 13
+      h =  137 (mod 5: 2, mod 7: 4, mod 11: 5): next: gear 13
+      h =  157 (mod 5: 2, mod 7: 3, mod 11: 3): next: gear 223
+      h =  163 (mod 5: 3, mod 7: 2, mod 11: 9): next: gear 13
+      h =  173 (mod 5: 3, mod 7: 5, mod 11: 8): twin
+      h =  227 (mod 5: 2, mod 7: 3, mod 11: 7): twin
+      h =  257 (mod 5: 2, mod 7: 5, mod 11: 4): next: gear 31
+      h =  263 (mod 5: 3, mod 7: 4, mod 11: 10): next: gear 13
+      h =  283 (mod 5: 3, mod 7: 3, mod 11: 8): next: gear 17
+      h =  313 (mod 5: 3, mod 7: 5, mod 11: 5): twin
+      h =  317 (mod 5: 2, mod 7: 2, mod 11: 9): next: gear 17
+      h =  353 (mod 5: 3, mod 7: 3, mod 11: 1): next: gear 43
+      h =  367 (mod 5: 2, mod 7: 3, mod 11: 4): next: gear 13
+      h =  373 (mod 5: 3, mod 7: 2, mod 11: 10): next: gear 61
+      h =  383 (mod 5: 3, mod 7: 5, mod 11: 9): next: gear 19
+      h =  397 (mod 5: 2, mod 7: 5, mod 11: 1): next: gear 13
+      h =  443 (mod 5: 3, mod 7: 2, mod 11: 3): next: gear 31
+      h =  467 (mod 5: 2, mod 7: 5, mod 11: 5): twin
+      h =  487 (mod 5: 2, mod 7: 4, mod 11: 3): next: gear 17
+
+q = 997, E = 199079: gear 11 teeth h = 9 (left), 5 (right) mod 11; base teeth fixed (5: 1, 4; 7: 6, 1)
+   triple leaves 41 high gears; classes mod 385: [3, 12, 17, 37, 47, 58, 67, 72, 73, 87, 102, 103, 107, 117, 138, 157, 172, 173, 177, 178, 193, 208, 213, 222, 227, 228, 233, 257, 263, 268, 277, 283, 292, 298, 347, 348, 353, 367, 373]
+      h =   37 (mod 5: 2, mod 7: 2, mod 11: 4): next: gear 13
+      h =   47 (mod 5: 2, mod 7: 5, mod 11: 3): next: gear 31
+      h =   67 (mod 5: 2, mod 7: 4, mod 11: 1): next: gear 19
+      h =   73 (mod 5: 3, mod 7: 3, mod 11: 7): next: gear 19
+      h =  103 (mod 5: 3, mod 7: 5, mod 11: 4): next: gear 17
+      h =  107 (mod 5: 2, mod 7: 2, mod 11: 8): next: gear 29
+      h =  157 (mod 5: 2, mod 7: 3, mod 11: 3): next: gear 139
+      h =  173 (mod 5: 3, mod 7: 5, mod 11: 8): next: gear 293
+      h =  193 (mod 5: 3, mod 7: 4, mod 11: 6): next: gear 13
+      h =  227 (mod 5: 2, mod 7: 3, mod 11: 7): next: gear 227
+      h =  233 (mod 5: 3, mod 7: 2, mod 11: 2): next: gear 29
+      h =  257 (mod 5: 2, mod 7: 5, mod 11: 4): next: gear 19
+      h =  263 (mod 5: 3, mod 7: 4, mod 11: 10): next: gear 19
+      h =  277 (mod 5: 2, mod 7: 4, mod 11: 2): next: gear 191
+      h =  283 (mod 5: 3, mod 7: 3, mod 11: 8): next: gear 41
+      h =  347 (mod 5: 2, mod 7: 4, mod 11: 6): next: gear 17
+      h =  353 (mod 5: 3, mod 7: 3, mod 11: 1): next: gear 43
+      h =  367 (mod 5: 2, mod 7: 3, mod 11: 4): next: gear 31
+      h =  373 (mod 5: 3, mod 7: 2, mod 11: 10): next: gear 23
+      h =  397 (mod 5: 2, mod 7: 5, mod 11: 1): next: gear 13
+      h =  443 (mod 5: 3, mod 7: 2, mod 11: 3): next: gear 17
+      h =  457 (mod 5: 2, mod 7: 2, mod 11: 6): twin
+      h =  487 (mod 5: 2, mod 7: 4, mod 11: 3): next: gear 79
+      h =  523 (mod 5: 3, mod 7: 5, mod 11: 6): next: gear 19
+      h =  557 (mod 5: 2, mod 7: 4, mod 11: 7): next: gear 13
+      h =  563 (mod 5: 3, mod 7: 3, mod 11: 2): next: gear 61
+      h =  593 (mod 5: 3, mod 7: 5, mod 11: 10): twin
+      h =  607 (mod 5: 2, mod 7: 5, mod 11: 2): next: gear 37
+      h =  613 (mod 5: 3, mod 7: 4, mod 11: 8): next: gear 17
+      h =  653 (mod 5: 3, mod 7: 2, mod 11: 4): next: gear 17
+      h =  677 (mod 5: 2, mod 7: 5, mod 11: 6): next: gear 31
+      h =  683 (mod 5: 3, mod 7: 4, mod 11: 1): next: gear 13
+      h =  733 (mod 5: 3, mod 7: 5, mod 11: 7): next: gear 67
+      h =  773 (mod 5: 3, mod 7: 3, mod 11: 3): next: gear 101
+      h =  787 (mod 5: 2, mod 7: 3, mod 11: 6): next: gear 13
+      h =  857 (mod 5: 2, mod 7: 3, mod 11: 10): next: gear 17
+      h =  877 (mod 5: 2, mod 7: 2, mod 11: 8): next: gear 127
+      h =  887 (mod 5: 2, mod 7: 5, mod 11: 7): next: gear 23
+      h =  947 (mod 5: 2, mod 7: 2, mod 11: 1): next: gear 13
+      h =  983 (mod 5: 3, mod 7: 3, mod 11: 4): next: gear 71
+      h =  997 (mod 5: 2, mod 7: 3, mod 11: 7): next: gear 47
+
+q = 1999, E = 409499: gear 11 teeth h = 7 (left), 3 (right) mod 11; base teeth fixed (5: 1, 4; 7: 6, 1)
+   triple leaves 76 high gears; classes mod 385: [12, 17, 32, 38, 53, 67, 68, 72, 82, 87, 93, 103, 107, 122, 123, 137, 138, 142, 152, 163, 173, 177, 178, 192, 193, 207, 208, 213, 222, 228, 233, 243, 247, 257, 262, 263, 268, 277, 283, 292, 298, 313, 317, 327, 332, 338, 347, 353, 367, 368, 373, 383]
+      h =   53 (mod 5: 3, mod 7: 4, mod 11: 9): next: gear 17
+      h =   67 (mod 5: 2, mod 7: 4, mod 11: 1): next: gear 13
+      h =  103 (mod 5: 3, mod 7: 5, mod 11: 4): twin
+      h =  107 (mod 5: 2, mod 7: 2, mod 11: 8): twin
+      h =  137 (mod 5: 2, mod 7: 4, mod 11: 5): next: gear 29
+      h =  163 (mod 5: 3, mod 7: 2, mod 11: 9): next: gear 73
+      h =  173 (mod 5: 3, mod 7: 5, mod 11: 8): next: gear 199
+      h =  193 (mod 5: 3, mod 7: 4, mod 11: 6): next: gear 13
+      h =  233 (mod 5: 3, mod 7: 2, mod 11: 2): next: gear 193
+      h =  257 (mod 5: 2, mod 7: 5, mod 11: 4): next: gear 17
+      h =  263 (mod 5: 3, mod 7: 4, mod 11: 10): next: gear 17
+      h =  277 (mod 5: 2, mod 7: 4, mod 11: 2): next: gear 71
+      h =  283 (mod 5: 3, mod 7: 3, mod 11: 8): next: gear 283
+      h =  313 (mod 5: 3, mod 7: 5, mod 11: 5): next: gear 97
+      h =  317 (mod 5: 2, mod 7: 2, mod 11: 9): next: gear 23
+      h =  347 (mod 5: 2, mod 7: 4, mod 11: 6): next: gear 67
+      h =  353 (mod 5: 3, mod 7: 3, mod 11: 1): next: gear 13
+      h =  367 (mod 5: 2, mod 7: 3, mod 11: 4): next: gear 541
+      h =  373 (mod 5: 3, mod 7: 2, mod 11: 10): twin
+      h =  383 (mod 5: 3, mod 7: 5, mod 11: 9): next: gear 239
+      h =  397 (mod 5: 2, mod 7: 5, mod 11: 1): next: gear 223
+      h =  457 (mod 5: 2, mod 7: 2, mod 11: 6): next: gear 13
+      h =  467 (mod 5: 2, mod 7: 5, mod 11: 5): next: gear 17
+      h =  523 (mod 5: 3, mod 7: 5, mod 11: 6): twin
+      h =  563 (mod 5: 3, mod 7: 3, mod 11: 2): next: gear 17
+      h =  577 (mod 5: 2, mod 7: 3, mod 11: 5): next: gear 73
+      h =  593 (mod 5: 3, mod 7: 5, mod 11: 10): next: gear 23
+      h =  607 (mod 5: 2, mod 7: 5, mod 11: 2): twin
+      h =  613 (mod 5: 3, mod 7: 4, mod 11: 8): next: gear 13
+      h =  647 (mod 5: 2, mod 7: 3, mod 11: 9): next: gear 19
+      h =  653 (mod 5: 3, mod 7: 2, mod 11: 4): next: gear 331
+      h =  677 (mod 5: 2, mod 7: 5, mod 11: 6): next: gear 23
+      h =  683 (mod 5: 3, mod 7: 4, mod 11: 1): next: gear 193
+      h =  787 (mod 5: 2, mod 7: 3, mod 11: 6): next: gear 41
+      h =  823 (mod 5: 3, mod 7: 4, mod 11: 9): next: gear 23
+      h =  857 (mod 5: 2, mod 7: 3, mod 11: 10): twin
+      h =  863 (mod 5: 3, mod 7: 2, mod 11: 5): twin
+      h =  877 (mod 5: 2, mod 7: 2, mod 11: 8): next: gear 241
+      h =  907 (mod 5: 2, mod 7: 4, mod 11: 5): next: gear 19
+      h =  947 (mod 5: 2, mod 7: 2, mod 11: 1): next: gear 13
+      h =  977 (mod 5: 2, mod 7: 4, mod 11: 9): next: gear 13
+      h =  983 (mod 5: 3, mod 7: 3, mod 11: 4): next: gear 19
+      h = 1013 (mod 5: 3, mod 7: 5, mod 11: 1): next: gear 157
+      h = 1033 (mod 5: 3, mod 7: 4, mod 11: 10): next: gear 41
+      h = 1087 (mod 5: 2, mod 7: 2, mod 11: 9): next: gear 643
+      h = 1097 (mod 5: 2, mod 7: 5, mod 11: 8): next: gear 19
+      h = 1117 (mod 5: 2, mod 7: 4, mod 11: 6): next: gear 61
+      h = 1123 (mod 5: 3, mod 7: 3, mod 11: 1): next: gear 29
+      h = 1153 (mod 5: 3, mod 7: 5, mod 11: 9): twin
+      h = 1187 (mod 5: 2, mod 7: 4, mod 11: 10): twin
+      h = 1193 (mod 5: 3, mod 7: 3, mod 11: 5): next: gear 37
+      h = 1223 (mod 5: 3, mod 7: 5, mod 11: 2): next: gear 233
+      h = 1237 (mod 5: 2, mod 7: 5, mod 11: 5): next: gear 13
+      h = 1277 (mod 5: 2, mod 7: 3, mod 11: 1): next: gear 17
+      h = 1297 (mod 5: 2, mod 7: 2, mod 11: 10): next: gear 29
+      h = 1307 (mod 5: 2, mod 7: 5, mod 11: 9): next: gear 67
+      h = 1423 (mod 5: 3, mod 7: 2, mod 11: 4): next: gear 101
+      h = 1447 (mod 5: 2, mod 7: 5, mod 11: 6): next: gear 17
+      h = 1453 (mod 5: 3, mod 7: 4, mod 11: 1): next: gear 17
+      h = 1487 (mod 5: 2, mod 7: 3, mod 11: 2): next: gear 17
+      h = 1493 (mod 5: 3, mod 7: 2, mod 11: 8): next: gear 13
+      h = 1523 (mod 5: 3, mod 7: 4, mod 11: 5): next: gear 13
+      h = 1607 (mod 5: 2, mod 7: 4, mod 11: 1): next: gear 41
+      h = 1627 (mod 5: 2, mod 7: 3, mod 11: 10): next: gear 13
+      h = 1663 (mod 5: 3, mod 7: 4, mod 11: 2): next: gear 577
+      h = 1733 (mod 5: 3, mod 7: 4, mod 11: 6): next: gear 83
+      h = 1747 (mod 5: 2, mod 7: 4, mod 11: 9): next: gear 43
+      h = 1753 (mod 5: 3, mod 7: 3, mod 11: 4): next: gear 13
+      h = 1783 (mod 5: 3, mod 7: 5, mod 11: 1): next: gear 13
+      h = 1787 (mod 5: 2, mod 7: 2, mod 11: 5): next: gear 17
+      h = 1823 (mod 5: 3, mod 7: 3, mod 11: 8): next: gear 593
+      h = 1867 (mod 5: 2, mod 7: 5, mod 11: 8): next: gear 29
+      h = 1907 (mod 5: 2, mod 7: 3, mod 11: 4): next: gear 509
+      h = 1913 (mod 5: 3, mod 7: 2, mod 11: 10): next: gear 13
+      h = 1993 (mod 5: 3, mod 7: 5, mod 11: 2): next: gear 29
+      h = 1997 (mod 5: 2, mod 7: 2, mod 11: 6): next: gear 17

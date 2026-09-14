@@ -429,3 +429,14 @@ own_landing_iff (built, 0 sorries).
   (101, 17), (107, 11), (107, 13), (127, 17), (127, 37), (127, 107), (131, 47), (131, 83),
   (137, 29), (149, 19), (149, 37), (151, 41), (151, 101), (997, 227), (997, 877); each h divides
   E or E + 2. Gear 13 in the pair above is exempt from its own teeth for that reason.
+
+## A triple: the fixed pair (5, 7) on column h with one E-anchored gear (2026-09-14)
+
+Kernel triple_five_seven_iff (built, 0 sorries): with E = -1 mod 35 and gear g's teeth a, b
+placed by E, the landing E + 6h is open to 5, 7 and g iff h avoids 1, 4 mod 5; 6, 1 mod 7; a, b
+mod g. Composition of the pair lemma with the two class lemmas; nothing new enters.
+Table triple_5_7_g.py with g = 11: q = 499 (teeth 6, 2) leaves 26 high gears, 6 twins among
+them (37, 47, 173, 227, 313, 467), the rest each taken by one next single type (gear 13 six
+times, 17 four times, 31 twice, then 19, 43, 61, 79, 83, 223, 257, 293 once); q = 997 (teeth 9,
+5) leaves 41; q = 1999 (teeth 7, 3) leaves 76. The survivors' classes mod 385 differ by
+machine exactly as gear 11's teeth move; the base part of each class is fixed.

@@ -199,4 +199,21 @@ theorem own_landing_iff (E : ℤ) (h : ℕ) :
   · rw [show E + 6 * (h : ℤ) + 2 = (E + 2) + 6 * h by ring]
     exact dvd_add_left (dvd_mul_left (h : ℤ) 6)
 
+/-! ### A triple: the fixed pair (5, 7) on column `h` with one `E`-anchored gear `g`. -/
+
+/-- **Triple (5, 7, g).**  With `E ≡ -1 (mod 35)` (5 and 7 in the base) and `g` coprime to 6
+with teeth `a, b` (`6a ≡ -E`, `6b ≡ -(E + 2) (mod g)`), the landing `E + 6h` is open to 5, 7
+and `g` iff `h` avoids `1, 4 (mod 5)`, `6, 1 (mod 7)`, and `a, b (mod g)`. -/
+theorem triple_five_seven_iff {g : ℕ} {E a b h : ℤ} (hE : E ≡ -1 [ZMOD 35])
+    (hco : IsCoprime (g : ℤ) 6) (ha : 6 * a ≡ -E [ZMOD g]) (hb : 6 * b ≡ -(E + 2) [ZMOD g]) :
+    (OpenTo 5 (E + 6 * h) ∧ OpenTo 7 (E + 6 * h) ∧ OpenTo g (E + 6 * h)) ↔
+      (h % 5 ≠ 1 ∧ h % 5 ≠ 4 ∧ h % 7 ≠ 6 ∧ h % 7 ≠ 1 ∧ ¬ h ≡ a [ZMOD g] ∧ ¬ h ≡ b [ZMOD g]) := by
+  have h5 := (landing_open_base_iff (h := h) hE (by norm_num : ((5 : ℕ) : ℤ) ∣ 35)).1
+  have h7 := (landing_open_base_iff (h := h) hE (by norm_num : ((7 : ℕ) : ℤ) ∣ 35)).1
+  have hg : OpenTo g (E + 6 * h) ↔ (¬ h ≡ a [ZMOD g] ∧ ¬ h ≡ b [ZMOD g]) := by
+    unfold OpenTo
+    rw [left_class_iff hco ha, right_class_iff hco hb]
+  rw [h5, h7, hg, ← and_assoc, pair_five_seven]
+  tauto
+
 end MirrorWalk
