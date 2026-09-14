@@ -1,0 +1,32 @@
+The spiral with the slip (owner's idea, parked 2026-09-14, run 2026-09-15).
+
+Primorial spiral: base P, gears g_1 > g_2 > ... (descending), step i moves the column by
+d_i = +-2 P g_i (alternating, first up).  Slip of a step = how far the move overshoots whole
+cycles of another gear: the signed residue of d_i modulo that gear, taken in (-g/2, g/2].
+  slip A: against the previous step's gear g_{i-1}
+  slip B: against every earlier gear of the spiral (sum of signed residues over j < i)
+  slip C: against every gear of the machine outside the base (sum over all)
+Summed slips S_A, S_B, S_C.  Candidate landings: E + S, E - S (when S = 0 mod 6, else the
+nearest slot), E + 6S, E - 6S.  Measured over the machines: how often each candidate is a twin
+in the window, against the plain landing E.
+
+usage: uv run python research/stack/r8/spiral_slip.py 2000
+
+machines 299 (11 to 2000): candidate: twin / in window
+   E         39 /  299
+   E+SA      17 /  299
+   E-SA      18 /  299
+   E+6SA     22 /  299
+   E-6SA     26 /  298
+   E+SB      23 /  299
+   E-SB      26 /  299
+   E+6SB     20 /  253
+   E-6SB     21 /  252
+   E+SC      18 /  299
+   E-SC      29 /  298
+   E+6SC     18 /  263
+   E-6SC     13 /  262
+   q = 31: E = 227, S_A = -24, S_B = -83, S_C = -106; E = 227T, E+SA = 203, E-SA = 251, E+6SA = 83, E-6SA = 371, E+SB = 143, E-SB = 305, E+6SB = -271, E-6SB = 725, E+SC = 119, E-SC = 329, E+6SC = -409, E-6SC = 863
+   q = 101: E = 3179, S_A = 27, S_B = -341, S_C = -440; E = 3179, E+SA = 3203, E-SA = 3149, E+6SA = 3341, E-6SA = 3017, E+SB = 2837, E-SB = 3515, E+6SB = 1133, E-6SB = 5225, E+SC = 2735, E-SC = 3617, E+6SC = 539, E-6SC = 5819
+   q = 499: E = 119699, S_A = -958, S_B = 11071, S_C = 5466; E = 119699T, E+SA = 118739, E-SA = 120653, E+6SA = 113951, E-6SA = 125447, E+SB = 130769, E-SB = 108623, E+6SB = 186125, E-6SB = 53273, E+SC = 125165, E-SC = 114233, E+6SC = 152495, E-6SC = 86903
+   q = 1999: E = 409499, S_A = 2327, S_B = -65844, S_C = -23767; E = 409499, E+SA = 411821T, E-SA = 407171, E+6SA = 423461T, E-6SA = 395537, E+SB = 343655, E-SB = 475343, E+6SB = 14435, E-6SB = 804563, E+SC = 385727, E-SC = 433265, E+6SC = 266897T, E-6SC = 552101

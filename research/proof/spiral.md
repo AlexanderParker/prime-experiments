@@ -781,3 +781,16 @@ q strikes is a twin prime pair), nothing new to prove for correctness.
   statement that span 0 holds a hole, i.e. a twin in (q, 2 P g_min - 1], which covers most of
   the window: the window statement itself. It is also a scan, slot by slot, which is what the
   owner ruled out as a mechanism on 2026-09-13 (the repair walk).
+
+## The spiral with the slip (owner's idea; run 2026-09-15)
+
+research/stack/r8/spiral_slip.py, results_spiral_slip.txt, 299 machines 11 to 2000. Slip of a
+step = the signed overshoot of its move d_i = +-2 P g_i past whole cycles of another gear (the
+residue in (-g/2, g/2]); summed over the spiral against the previous gear (S_A), against every
+earlier gear (S_B), against every gear outside the base (S_C). Candidates E +- S (nearest slot)
+and E +- 6S, against the plain landing E.
+- E itself: twin at 39 of 299. E + S_A 17, E - S_A 18, E + 6 S_A 22, E - 6 S_A 26; S_B variants
+  23, 26, 20, 21; S_C variants 18, 29, 18, 13 (in the window 252 to 299).
+- No slip sum does better than the plain landing; most do worse. q = 1999: E = 409499 (not a
+  twin), E + S_A = 411821 twin, E + 6 S_A = 423461 twin, E + 6 S_C = 266897 twin, the rest not.
+Verdict: the summed slip does not point to a twin. Closed.
