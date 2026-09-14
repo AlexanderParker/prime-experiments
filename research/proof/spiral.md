@@ -477,3 +477,26 @@ every high gear's tooth positions in reach, marked gear / not gear / standing wh
 - So a high gear's field on the landing line is finite and explicit from E: the positions
   a_g + g t and b_g + g t up to q, at most two each above q/2, and it kills only where such a
   position is a gear still standing.
+
+## The band gears' teeth as positions; the whole line written from E (2026-09-14)
+
+Script research/stack/r8/band_teeth_positions.py, table results_band_teeth_positions_499.txt.
+q = 499, E = 119699, every tooth of every gear up to sqrt q written as positions on the h-line,
+each position marked not a gear / gear taken earlier by which gear / gear taken now.
+- gear 5, left tooth 1 + 5t: the gears 31, 41, 61, 71, 101, 131, 151, 181, 191, 211, 241, 251,
+  ...; right tooth 4 + 5t: 29, 59, 79, 89, 109, 139, 149, 179, 199, 229, 239, ... Fixed teeth,
+  every fifth position, gears wherever the position is prime.
+- gear 7, left 6 + 7t: takes 83, 97, 167, 223, 293, 307, ...; passes 41, 139, 181, 251, 349
+  (taken by 5 already). Right 1 + 7t: takes 43, 113, 127, 197, 337; passes 29, 71, 211, 239, 281.
+- gear 11 (band), left 6 + 11t: positions 28, 39, 50, 61, 72, 83, ..., 490; gears on them 61,
+  83, 127, 149, 281, 479 (taken by 5 or 7 already), 193, 347, 457 (taken now). Right 2 + 11t:
+  233, 277 taken now; 79, 101, 167, 211, 409, 431 already gone.
+- gear 13, left 3 + 13t: takes 107, 263, 367; right 7 + 13t: 137, 163, 397. gear 17, left
+  11 + 17t: 283, 317, 487; right 5 + 17t: 73. gear 19, left 16 + 19t: nothing new (73 by 17,
+  149 by 5, 263 by 13, 491 by 5); right 3 + 19t: 383.
+- Standing after the sub-machine: 23, 37, 47, 53, 67, 103, 157, 173, 227, 257, 313, 353, 373,
+  443, 467 (15). Then the high gears' positions (previous section) take 23, 53, 67, 103, 157,
+  257, 353, 373, 443, leaving 37, 47, 173, 227, 313, 467.
+So at one machine the whole test is a list of positions from E: base teeth fixed, band teeth at
+a_g + g t and b_g + g t across the line, high teeth at a few positions each. A gear passes iff
+it stands on none of the positions. Nothing implicit remains at a given machine.
