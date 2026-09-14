@@ -1,0 +1,24 @@
+The stack locator (owner, 2026-09-15: can we build a locator).
+
+Base = the largest primorial P (2, 2*3, 2*3*5, ...) with 2 P g_min - 1 <= q^2, g_min the next prime
+after the base; so span 0 = (q, 2 P g_min - 1] is as long as the window allows and every layer
+is active on it.  Locator: walk the slots (6j - 1, 6j + 1) upward from q; stop at the first slot
+no layer marks (no gear of base + any layer divides a member).  A hole in span 0 is a twin by
+construction.  Reported per machine: base, span 0, the located slot, its offset above q in
+slots, and a check; failures where span 0 has no hole.
+
+usage: uv run python research/stack/r8/stack_locator.py 5000
+
+machines 11..5000: 665; located a twin at 665; failures []
+slots walked to the located twin: max 29, at the median 5
+   q = 11: base [2, 3] (P = 6), span 0 = (11, 59]; located (17, 19) after 2 slots
+   q = 13: base [2, 3] (P = 6), span 0 = (13, 59]; located (17, 19) after 1 slots
+   q = 31: base [2, 3, 5] (P = 30), span 0 = (31, 419]; located (41, 43) after 2 slots
+   q = 59: base [2, 3, 5] (P = 30), span 0 = (59, 419]; located (71, 73) after 3 slots
+   q = 101: base [2, 3, 5, 7] (P = 210), span 0 = (101, 4619]; located (107, 109) after 2 slots
+   q = 419: base [2, 3, 5, 7, 11] (P = 2310), span 0 = (419, 60059]; located (431, 433) after 3 slots
+   q = 499: base [2, 3, 5, 7, 11] (P = 2310), span 0 = (499, 60059]; located (521, 523) after 4 slots
+   q = 997: base [2, 3, 5, 7, 11] (P = 2310), span 0 = (997, 60059]; located (1019, 1021) after 4 slots
+   q = 1999: base [2, 3, 5, 7, 11, 13] (P = 30030), span 0 = (1999, 1021019]; located (2027, 2029) after 5 slots
+   q = 4603: base [2, 3, 5, 7, 11, 13, 17] (P = 510510), span 0 = (4603, 19399379]; located (4637, 4639) after 6 slots
+   q = 4999: base [2, 3, 5, 7, 11, 13, 17] (P = 510510), span 0 = (4999, 19399379]; located (5009, 5011) after 2 slots

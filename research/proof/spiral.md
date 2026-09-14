@@ -763,3 +763,21 @@ sieve itself). Stack = layers over each other; hole = slot no layer marks; true 
 Standing: the part of the stack most consistent in twin appearance is span 0, the stretch before
 the first layer ends, where holes are twins by construction; it holds a twin at every machine
 except those just below 2 P_s, where it is too short.
+
+## The stack locator (owner, 2026-09-15: can we build a locator)
+
+research/stack/r8/stack_locator.py, results_stack_locator.txt. Base = the largest primorial P
+with 2 P g_min - 1 <= q^2; span 0 = (q, 2 P g_min - 1]; the locator walks the slots upward from
+q and stops at the first slot no layer marks. Every layer is active on span 0, so the first hole
+is a twin: this is section_twin_of_unstruck in the kernel (a slot below q^2 that no gear up to
+q strikes is a twin prime pair), nothing new to prove for correctness.
+- Every machine 11 to 5000 (665): a twin located at all 665. Slots walked: 5 at the median,
+  29 at most. q = 101: base to 7, span 0 = (101, 4619], located (107, 109) after 2 slots.
+  q = 499: base to 11, (499, 60059], located (521, 523) after 4. q = 1999: base to 13,
+  (1999, 1021019], (2027, 2029) after 5. q = 4603: base to 17, (4603, 19399379], (4637, 4639)
+  after 6.
+- What it is: the first twin above q, found by testing slots against the gears in order. Its
+  correctness is proved; it lands in the window by construction; that it finds anything is the
+  statement that span 0 holds a hole, i.e. a twin in (q, 2 P g_min - 1], which covers most of
+  the window: the window statement itself. It is also a scan, slot by slot, which is what the
+  owner ruled out as a mechanism on 2026-09-13 (the repair walk).
