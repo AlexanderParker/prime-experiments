@@ -188,4 +188,15 @@ theorem pair_five_seven (h : ℤ) :
     exact ⟨⟨fun x => a ((teeth_five h).1.mp x), fun x => b ((teeth_five h).2.mp x)⟩,
            ⟨fun x => c ((teeth_seven h).1.mp x), fun x => d ((teeth_seven h).2.mp x)⟩⟩
 
+/-! ### The walk's own gear against its own landing. -/
+
+/-- **Own landing.**  The gear `h` of the final step strikes its own landing `E + 6h` iff `h ∣ E`
+(left member) or `h ∣ E + 2` (right member): the step's own gear only ever tests `E`. -/
+theorem own_landing_iff (E : ℤ) (h : ℕ) :
+    (((h : ℤ) ∣ E + 6 * h) ↔ (h : ℤ) ∣ E) ∧ (((h : ℤ) ∣ E + 6 * h + 2) ↔ (h : ℤ) ∣ E + 2) := by
+  constructor
+  · exact dvd_add_left (dvd_mul_left (h : ℤ) 6)
+  · rw [show E + 6 * (h : ℤ) + 2 = (E + 2) + 6 * h by ring]
+    exact dvd_add_left (dvd_mul_left (h : ℤ) 6)
+
 end MirrorWalk

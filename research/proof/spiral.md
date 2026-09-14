@@ -412,3 +412,20 @@ Kernel MirrorWalkFieldType (teeth_five, teeth_seven, pair_five_seven; built, 0 s
 - Same shape as the (5, 7) pair, with the teeth placed by E instead of by the gear alone.
   Gear 13 is itself a high gear: its landing (h = 13) is struck by 13 only if 13 | E or E + 2,
   which is the class test again.
+
+## Fourth pair, cross anchor across machines: base gear 5 with gear 13; and the own gear (2026-09-14)
+
+Script research/stack/r8/pair_base_high.py, table results_pair_base_high.txt; kernel
+own_landing_iff (built, 0 sorries).
+- Gear 5's teeth fixed at h = 1, 4 mod 5 at every machine from 61 (5 in the base). Gear 13's
+  teeth move with E: q = 61, E mod 13 = 3, teeth 6, 10; q = 67, E mod 13 = 11, teeth 9, 0;
+  q = 73 and 89, E mod 13 = 1, teeth 2, 6; q = 101, 127, 167, E mod 13 = 7, teeth 1, 5; q = 499,
+  E mod 13 = 8, teeth 3, 7. Same E mod 13 gives the same teeth, whatever the machine.
+- The pair leaves, at q = 61 to 167, between 6 and 16 of the high gears in reach; the gears
+  17, 37, 43, 47 (h = 2 or 3 mod 5) recur as survivors whenever 13's teeth miss their class.
+- The own gear: h strikes its own landing E + 6h iff h | E (left) or h | E + 2 (right)
+  (own_landing_iff), so the step's gear tests only E. Measured: at q = 61 to 167 and 499, 997
+  the own strikes are (67, 13), (73, 17), (79, 29), (89, 17), (97, 43), (97, 67), (101, 11),
+  (101, 17), (107, 11), (107, 13), (127, 17), (127, 37), (127, 107), (131, 47), (131, 83),
+  (137, 29), (149, 19), (149, 37), (151, 41), (151, 101), (997, 227), (997, 877); each h divides
+  E or E + 2. Gear 13 in the pair above is exempt from its own teeth for that reason.
