@@ -117,3 +117,12 @@ higher up). A rule that always lands on a twin would have to choose D so that 2D
 avoid every gear up to q at every machine, which is the theorem itself in the machine's terms.
 The loop continues with different principles for the choice of D, recorded here as they are
 tried.
+
+### 7. Landing offsets from the gaps between the top gears (2026-09-15)
+
+research/stack/r8/blind_gap_rules.py, machines 11 to 5000 (665). D = P times: the product of
+the two top half-gaps 125 of 488; the sum of the top three gaps 168 of 663; the product of the
+three half-gaps 134 of 626; the largest of the three gaps 215 of 596; their lcm 95 of 550; the
+top gap times the gear count 63 of 618; a mixed form 142 of 601; q times the top half-gap 33 of
+432. Verdict: the same quarter-to-a-third band, highest for the smallest D (largest gap: the
+landing sits lowest). Nothing above the base-open share.

@@ -1,0 +1,16 @@
+Loop, iteration 7: landing offsets from the gaps between the top gears (no primality).
+P = base product; gaps G1 = q - p, G2 = p - p', G3 = p' - p'' (top four gears).  Landing -1 + 2D.
+  R1: D = P G1 G2 / 4          R2: D = P (G1 + G2 + G3)       R3: D = P G1 G2 G3 / 8
+  R4: D = P max(G1, G2, G3)    R5: D = P lcm(G1/2, G2/2, G3/2) R6: D = P G1 (number of gears above the base)
+  R7: D = P (G1 G2 / 4 + G3 / 2)                                R8: D = P q G1 / 2
+Machines 11 to 5000: twin / in window.  usage: uv run python research/stack/r8/blind_gap_rules.py 5000
+
+machines 665 (11 to 5000): rule: twin / in window
+   R1  125 /  488
+   R2  168 /  663
+   R3  134 /  626
+   R4  215 /  596
+   R5   95 /  550
+   R6   63 /  618
+   R7  142 /  601
+   R8   33 /  432
