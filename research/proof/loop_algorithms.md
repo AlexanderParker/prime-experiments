@@ -181,4 +181,7 @@ the two largest that fit 82 of 655; the smallest with the largest fitting 64 of 
 squared 0 of 663 (measured; no reason established, checked: q = 101 gives 2939 with 2941 = 17 * 173).
 D = sums of primorials at most q^2/2: P_max + P_prev 4 of 644; P_max - P_prev 116 of 665;
 P_max + P_prev + P_prev2 148 of 641. Verdict: the band again (the sums of primorials carry
-P_prev and sit low). The zero for g_min squared is a measurement to explain, not a proved rule.
+P_prev and sit low). The zero for g_min squared is no phenomenon: D depends on the base alone, so the rule has one
+landing per primorial range (299, 2939, 50819, ... six values to q = 5000), and those six
+happen to be struck (299 = 13 * 23; 2941 = 17 * 173; 50819 = 89 * 571). The same caveat holds for
+every rule whose D depends only on the base: its count over machines is a count of ranges.
