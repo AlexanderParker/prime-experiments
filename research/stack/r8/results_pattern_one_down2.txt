@@ -1,0 +1,24 @@
+The three-column pattern located by the sub-machine's own flips.
+
+pattern_one_down.py showed the machine sqrt(7q)'s walk lands above q at most machines (its
+window runs to 7q), so its flips cannot reach the h-range ((q - E_1)/6, q].  Here the locator is
+the sub-machine itself: from E_1 (its level landing, at most q) its flips n = E_1 +- 6h'' with
+h'' a gear at most sqrt q (above the fourth root) give candidates n; accept n when n is a gear of
+q in the range and (E_1 + 6n, E_1 + 6n + 2) is a twin.  Also tried: n = E_1 +- 6h'' for every
+gear h'' of the sub-machine including the base, and n = E_1 +- 12h'' (mirror {2, 3, h''}).
+
+usage: uv run python research/stack/r8/pattern_one_down2.py 2000
+
+machines with a sub-machine: 273
+   6h, h above 4th root: located at 135; fails [127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229]...
+   6h, every gear of the sub-machine: located at 135; fails [127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229]...
+   12h, every gear: located at 232; fails [127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229]...
+q = 499, 6h, h above 4th root: E_1 = 71, sub gears [5, 7, 11, 13, 17, 19]; none
+q = 499, 6h, every gear of the sub-machine: E_1 = 71, sub gears [5, 7, 11, 13, 17, 19]; none
+q = 499, 12h, every gear: E_1 = 71, sub gears [5, 7, 11, 13, 17, 19]; h'' = 5 up -> n = 131 -> (857, 859)
+q = 997, 6h, h above 4th root: E_1 = 227, sub gears [7, 11, 13, 17, 19, 23, 29, 31]; none
+q = 997, 6h, every gear of the sub-machine: E_1 = 227, sub gears [5, 7, 11, 13, 17, 19, 23, 29, 31]; none
+q = 997, 12h, every gear: E_1 = 227, sub gears [5, 7, 11, 13, 17, 19, 23, 29, 31]; h'' = 11 up -> n = 359 -> (2381, 2383)
+q = 1999, 6h, h above 4th root: E_1 = 239, sub gears [7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]; h'' = 13 up -> n = 317 -> (2141, 2143)
+q = 1999, 6h, every gear of the sub-machine: E_1 = 239, sub gears [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]; h'' = 13 up -> n = 317 -> (2141, 2143)
+q = 1999, 12h, every gear: E_1 = 239, sub gears [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]; h'' = 37 up -> n = 683 -> (4337, 4339)

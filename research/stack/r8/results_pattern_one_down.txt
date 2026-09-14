@@ -1,0 +1,22 @@
+The three-column pattern one level down, by the same walk.
+
+Top machine q, level-1 landing E_1 <= q.  The final flip needs a gear h in ((q - E_1)/6, q] with
+(E_1 + 6h, E_1 + 6h + 2) a twin.  The deciding rows are the gears up to sqrt(7q); let m be the
+largest prime at most sqrt(7q).  Run the machine m's own walk (levels, rule b_k >= 11; for m
+below 121 just its top spiral over its base) to its landing E_m, then its final flips
+n = E_m +- 6h' with h' a gear of m above sqrt m.  Accept n when n is a gear of q in the range and
+(E_1 + 6n, E_1 + 6n + 2) is a twin: then the machine m's walk has located the top machine's h.
+Reported: per machine whether some n is accepted, the first, and the machines where none is.
+
+usage: uv run python research/stack/r8/pattern_one_down.py 2000
+
+machines with a sub-machine: 273; the machine m's walk locates a valid h for q at 25; fails at [173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 293, 307, 311, 313, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439]...
+q = 173: E_1 = 47, m = 31, E_m = 227, gears of m above sqrt m: [7, 11, 13, 17, 19, 23, 29, 31]; candidates n that are gears of q in range: 5; none accepted
+q = 179: E_1 = 47, m = 31, E_m = 227, gears of m above sqrt m: [7, 11, 13, 17, 19, 23, 29, 31]; candidates n that are gears of q in range: 5; none accepted
+q = 181: E_1 = 47, m = 31, E_m = 227, gears of m above sqrt m: [7, 11, 13, 17, 19, 23, 29, 31]; candidates n that are gears of q in range: 5; none accepted
+q = 191: E_1 = 47, m = 31, E_m = 227, gears of m above sqrt m: [7, 11, 13, 17, 19, 23, 29, 31]; candidates n that are gears of q in range: 5; none accepted
+q = 193: E_1 = 47, m = 31, E_m = 227, gears of m above sqrt m: [7, 11, 13, 17, 19, 23, 29, 31]; candidates n that are gears of q in range: 5; none accepted
+q = 197: E_1 = 47, m = 37, E_m = 215, gears of m above sqrt m: [7, 11, 13, 17, 19, 23, 29, 31, 37]; candidates n that are gears of q in range: 7; none accepted
+q = 499: E_1 = 71, m = 59, E_m = 395, gears of m above sqrt m: [11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59]; candidates n that are gears of q in range: 9; none accepted
+q = 997: E_1 = 227, m = 83, E_m = 2399, gears of m above sqrt m: [11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83]; candidates n that are gears of q in range: 0; none accepted
+q = 1999: E_1 = 239, m = 113, E_m = 3659, gears of m above sqrt m: [11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113]; candidates n that are gears of q in range: 0; none accepted

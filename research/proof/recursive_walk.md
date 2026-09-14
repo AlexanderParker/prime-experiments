@@ -118,3 +118,19 @@ Script research/stack/r8/stretch_rows.py, table results_stretch_rows.txt.
   and sqrt(7q). The stretch is the machine sqrt(7q)'s territory: the final flip is the window
   statement of the machine of size about 2.6 sqrt q, with the pattern (h, E_1 + 6h, E_1 + 6h + 2)
   in place of (n, n + 2).
+
+## The pattern one level down, by the same walk: tested, does not close (2026-09-14, later)
+
+- pattern_one_down.py: the machine m = largest prime at most sqrt(7q) run by its own walk lands
+  at E_m in its window (m, m^2] which runs to about 7q, so its flips E_m +- 6h' reach the h-range
+  ((q - E_1)/6, q] only when E_m happens to be low: a valid h for q located at 25 of 273
+  machines (q = 997: E_m = 2399 > q, no candidate at all).
+- pattern_one_down2.py: the sub-machine as locator, flips from its landing E_1 with its own gears
+  h'': n = E_1 +- 6h'' located a valid h (n a gear of q in range with E_1 + 6n a twin) at 135 of
+  273; with the mirror {2, 3, h''} (n = E_1 +- 12h'') at 232 of 273 (q = 499: h'' = 5 up, n = 131,
+  landing (857, 859); q = 997: h'' = 11 up, n = 359, (2381, 2383); q = 1999: h'' = 37 up, n = 683,
+  (4337, 4339)); fails cluster at the small machines 127 to 233 where the sub-machine has few
+  gears. Not a closing rule.
+- Standing: the final flip's h exists at every machine tested (273 of 273) but no walk of the
+  level below locates it by a fixed rule yet. The open item is unchanged in content: existence
+  of a gear h in ((q - E_1)/6, q] outside the two classes of every row up to sqrt(7q).
