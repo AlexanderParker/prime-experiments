@@ -96,3 +96,25 @@ name), exact by construction, measured, or open. Nothing here is the walk as one
 - The landings E_1 + 6h are at most 7q, in the first stretch of the window, where the products:j
   orders are 2 and 3 only and the painting rows are the small gears 5, 7, 11, 13: the fields
   that paint here are the multiples rows of the small gears, products:2 and products:3.
+
+## The stretch (q, 7q] against the columns E_1 + 6h, by rows (2026-09-14, later)
+
+Script research/stack/r8/stretch_rows.py, table results_stretch_rows.txt.
+- A composite member of a landing at most 7q has its smallest gear at most sqrt(7q) (59 at
+  q = 499, 118 at 1999). The rows that decide a column are therefore the gears up to sqrt(7q):
+  the sub-machine's gears and the next few. Larger rows appear only as the cofactor of a
+  smaller row's kill (the lower:g reading), never as the first painter.
+- Row g paints the columns of h in two classes, a_g = -E_1 6^{-1} and b_g = -(E_1 + 2) 6^{-1}
+  modulo g. q = 499, E_1 = 71: row 5 paints h = 4, 2 (mod 5), 39 columns of 75; row 7 paints
+  1, 3 (mod 7), 25 columns; row 11 paints 1, 8 (mod 11), 13; row 13 paints 12, 3 (mod 13), 12;
+  row 17 paints 8, 2 (mod 17), 10; rows 19 to 59 paint 1 to 8 columns each. Pass columns: h = 83,
+  131, 163, 193, 271, 313, 373, 431, 443. q = 1999, E_1 = 239: row 5 paints h = 1, 4 (mod 5);
+  row 7 paints 1, 3 (mod 7); row 11 paints 6, 2 (mod 11); ... rows up to 113 paint 3 to 7
+  columns each; pass at 307, 317, 503, 557, 613, 653, 683, 733, 797, 863, 877, 1087, 1433, 1783,
+  1913, 1987.
+- So the final flip from E_1 is exactly: a gear h in ((q - E_1)/6, q] standing in none of the
+  two classes of any row up to sqrt(7q). Three conditions on h per row g of the sub-machine
+  (h itself not 0 mod g, since h is a gear; h not a_g; h not b_g), two per row between sqrt q
+  and sqrt(7q). The stretch is the machine sqrt(7q)'s territory: the final flip is the window
+  statement of the machine of size about 2.6 sqrt q, with the pattern (h, E_1 + 6h, E_1 + 6h + 2)
+  in place of (n, n + 2).
