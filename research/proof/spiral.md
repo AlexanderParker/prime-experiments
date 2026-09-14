@@ -363,3 +363,21 @@ a product of two primes at least g; then the right member; then the down step.
   line; e.g. t = 150: c = 17 * 2243, class 14 mod 17, s = 8, line 2195 + 6s.
 - Order j in general is the same descent j - 2 times: each factor taken in turn on its own
   class of the current line, the last quotient prime. Nothing new appears past order 3.
+
+## Right member, down step, and one high gear's type (2026-09-14, kernel round 52 continued)
+
+- Right member, step up: class h = b (mod g) with 6b = -(E + 2) (right_class_iff); line
+  E + 6h + 2 = g (c_0 + 6t) with g c_0 = E + 2 + 6b (right_member_on_line). Same shapes as the
+  left member with the class moved.
+- Step down: class h = a' with 6a' = E (down_class_iff); line E - 6h = g (c_0 - 6t) with
+  g c_0 = E - 6a' (down_member_on_line). The cofactor line runs downward.
+- A high gear's type alone: with g^2 > q and the member at most q^2, the cofactor cannot be
+  three primes at least g (high_gear_no_order_four: g^4 <= g c <= q^2 < g^4). So a high gear
+  has types of order 2 and 3 only, exactly as measured (9,139 and 556, none higher).
+- Table (type_right_down.py), q = 499, g = 11: right member up, class h = 2 (mod 11),
+  c = 10883 + 6t: order 2 at t = 9, 15, 39; order 3 at 21 (101 * 109); order 4 at 25
+  (11 * 17 * 59); gears 5, 7 at 7, 37 and 19. Left member down, class 5 (mod 11), c = 10879 - 6t:
+  order 2 at t = 28, 36, 42; order 3 at 12, 16; gears 5, 7 at 24, 34 and 6. Right member down,
+  class 9 (mod 11), c = 10877 - 6t: order 2 at t = 4, 28; order 3 at 14, 20, 34, 40; gears 5, 7
+  at 2, 22 and 8.
+All built, 0 sorries, standard axioms.

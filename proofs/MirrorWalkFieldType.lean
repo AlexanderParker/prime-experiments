@@ -109,4 +109,54 @@ theorem quotient_on_line {p₁ c₀ t₁ d₀ s : ℤ} (hd : p₁ * d₀ = c₀ 
     c₀ + 6 * (t₁ + p₁ * s) = p₁ * (d₀ + 6 * s) := by
   linear_combination (-1 : ℤ) * hd
 
+/-! ### The right member, and the down step: the same three parts with the class moved. -/
+
+/-- **Right member, the class.**  With `6b ≡ -(E + 2) (mod g)`, `g ∣ E + 6h + 2` iff `h ≡ b`. -/
+theorem right_class_iff {g : ℕ} {E b h : ℤ} (hco : IsCoprime (g : ℤ) 6)
+    (hb : 6 * b ≡ -(E + 2) [ZMOD g]) : (g : ℤ) ∣ E + 6 * h + 2 ↔ h ≡ b [ZMOD g] := by
+  have := left_class_iff (E := E + 2) (h := h) hco hb
+  rwa [show E + 2 + 6 * h = E + 6 * h + 2 by ring] at this
+
+/-- **Right member, the line.**  `h = b + g t` gives `E + 6h + 2 = g (c₀ + 6t)`, `g c₀ = E + 2 + 6b`. -/
+theorem right_member_on_line {g : ℕ} {E b c₀ t : ℤ} (hc : (g : ℤ) * c₀ = E + 2 + 6 * b) :
+    E + 6 * (b + g * t) + 2 = (g : ℤ) * (c₀ + 6 * t) := by
+  linear_combination (-1 : ℤ) * hc
+
+/-- **Down step, the class.**  The landing is `E - 6h`; with `6a' ≡ E (mod g)`, `g ∣ E - 6h` iff
+`h ≡ a'`. -/
+theorem down_class_iff {g : ℕ} {E a' h : ℤ} (hco : IsCoprime (g : ℤ) 6)
+    (ha : 6 * a' ≡ E [ZMOD g]) : (g : ℤ) ∣ E - 6 * h ↔ h ≡ a' [ZMOD g] := by
+  have h1 : (g : ℤ) ∣ E - 6 * h ↔ (g : ℤ) ∣ -E + 6 * h := by
+    rw [show -E + 6 * h = -(E - 6 * h) by ring, dvd_neg]
+  rw [h1]
+  apply left_class_iff hco
+  rw [neg_neg]; exact ha
+
+/-- **Down step, the line.**  `h = a' + g t` gives `E - 6h = g (c₀ - 6t)`, `g c₀ = E - 6a'`: the
+cofactor line runs downward. -/
+theorem down_member_on_line {g : ℕ} {E a' c₀ t : ℤ} (hc : (g : ℤ) * c₀ = E - 6 * a') :
+    E - 6 * (a' + g * t) = (g : ℤ) * (c₀ - 6 * t) := by
+  linear_combination (-1 : ℤ) * hc
+
+/-! ### A high gear's type alone: above `√q` the order stops at 3. -/
+
+/-- **High gear, order at most 3.**  If `g² > q`, the member `g c` lies at or below `q²`, and `c`
+is a product of three primes each at least `g`, contradiction: `g⁴ ≤ g c ≤ q² < g⁴`. -/
+theorem high_gear_no_order_four {g : ℕ} {q c p₁ p₂ p₃ : ℤ} (hq : 0 < q) (hg : q < (g : ℤ) ^ 2)
+    (hle : (g : ℤ) * c ≤ q ^ 2) (hc : c = p₁ * p₂ * p₃)
+    (h1 : (g : ℤ) ≤ p₁) (h2 : (g : ℤ) ≤ p₂) (h3 : (g : ℤ) ≤ p₃) : False := by
+  have hg0 : (0 : ℤ) ≤ g := by exact_mod_cast Nat.zero_le g
+  have a1 : (g : ℤ) * g ≤ g * p₁ := mul_le_mul_of_nonneg_left h1 hg0
+  have b1 : (0 : ℤ) ≤ g * p₁ := le_trans (mul_nonneg hg0 hg0) a1
+  have a2 : (g : ℤ) * g * g ≤ g * p₁ * p₂ := mul_le_mul a1 h2 hg0 b1
+  have b2 : (0 : ℤ) ≤ g * p₁ * p₂ := le_trans (mul_nonneg (mul_nonneg hg0 hg0) hg0) a2
+  have a3 : (g : ℤ) * g * g * g ≤ g * p₁ * p₂ * p₃ := mul_le_mul a2 h3 hg0 b2
+  have hq2 : q ^ 2 < ((g : ℤ) ^ 2) ^ 2 := by
+    rw [pow_two q, pow_two ((g : ℤ) ^ 2)]; exact mul_lt_mul'' hg hg hq.le hq.le
+  have e : ((g : ℤ) ^ 2) ^ 2 = g * g * g * g := by ring
+  have e2 : (g : ℤ) * (p₁ * p₂ * p₃) = g * p₁ * p₂ * p₃ := by ring
+  rw [hc, e2] at hle
+  rw [e] at hq2
+  linarith
+
 end MirrorWalk

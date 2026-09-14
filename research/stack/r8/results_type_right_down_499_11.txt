@@ -1,0 +1,42 @@
+The right-member type and the down-step type of one gear, alone.
+
+Gear g at machine q, landing E of the primorial spiral.
+  right member, step up:  class h = b (mod g), 6b = -(E + 2); h = b + g t; E + 6h + 2 = g (c_0 + 6t)
+  left member, step down: class h = a' (mod g), 6a' = E;       h = a' + g t; E - 6h = g (c_0 - 6t)
+  right member, step down: class h = b' (mod g), 6b' = E + 2;  h = b' + g t; E - 6h + 2 = g (c_0 - 6t)
+Each row of the class: the cofactor, its factorisation, and the type that takes it.
+
+usage: uv run python research/stack/r8/type_right_down.py 499 11
+
+q = 499, E = 119699, gear 11
+
+right member, step up: class h = 2 (mod 11); h = 2 + 11 t; member = 11 * c, c = 10883 + 6t
+   h = 79 (t = 7): c = 5^2*19*23; gear 5's kill
+   h = 101 (t = 9): c = 10937; type order 2
+   h = 167 (t = 15): c = 10973; type order 2
+   h = 211 (t = 19): c = 7*1571; gear 7's kill
+   h = 233 (t = 21): c = 101*109; type order 3
+   h = 277 (t = 25): c = 11*17*59; type order 4
+   h = 409 (t = 37): c = 5*2221; gear 5's kill
+   h = 431 (t = 39): c = 11117; type order 2
+
+left member, step down: class h = 5 (mod 11); h = 5 + 11 t; member = 11 * c, c = 10879 - 6t
+   h = 71 (t = 6): c = 7*1549; gear 7's kill
+   h = 137 (t = 12): c = 101*107; type order 3
+   h = 181 (t = 16): c = 41*263; type order 3
+   h = 269 (t = 24): c = 5*19*113; gear 5's kill
+   h = 313 (t = 28): c = 10711; type order 2
+   h = 379 (t = 34): c = 5^2*7*61; gear 5's kill
+   h = 401 (t = 36): c = 10663; type order 2
+   h = 467 (t = 42): c = 10627; type order 2
+
+right member, step down: class h = 9 (mod 11); h = 9 + 11 t; member = 11 * c, c = 10877 - 6t
+   h = 31 (t = 2): c = 5*41*53; gear 5's kill
+   h = 53 (t = 4): c = 10853; type order 2
+   h = 97 (t = 8): c = 7^2*13*17; gear 7's kill
+   h = 163 (t = 14): c = 43*251; type order 3
+   h = 229 (t = 20): c = 31*347; type order 3
+   h = 251 (t = 22): c = 5*7*307; gear 5's kill
+   h = 317 (t = 28): c = 10709; type order 2
+   h = 383 (t = 34): c = 13*821; type order 3
+   h = 449 (t = 40): c = 11*967; type order 3
