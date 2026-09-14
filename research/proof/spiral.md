@@ -735,3 +735,31 @@ because every gear above the base is larger than the first gap's t (at most 12).
   first t at which both 2 t P_s - 1 and 2 t P_s + 1 have no factor at all; the stripes (periodic
   teeth) only begin to matter once t passes the smallest gear above the base (13 at 2310, 17 at
   30030), which is beyond the first gap at every primorial to 31#.
+
+## The one-mirror stack across machine sizes and base sets (owner, 2026-09-15)
+
+research/stack/r8/stack_one_mirror.py (pictures, span tables), stack_bases.py
+(results_stack_bases.txt; 75 machines 31 to 1999; bases null, {2}, {2,3}, {2,3,5}, {2,3,5,7},
+spiral). Layer g = the sieve of base + {g} on the slot line from the origin to its landing
+2 P g - 1 (mirrored once about P g; the sieve is symmetric about P g, so the mirror image is the
+sieve itself). Stack = layers over each other; hole = slot no layer marks; true hole = twin.
+- Exact: a hole is a twin as long as every layer is still active; false holes come only from
+  layers that have ended. Span 0 (window start to the first landing) has holes = twins at every
+  base and machine (spiral: 4567 of 4567; {2,3,5,7}: 6205 of 6205).
+- Null base and {2}: the landings 2g - 1 and 4g - 1 sit at or below the window start for almost
+  every layer, so the stack marks almost nothing inside the window (null: 11787 holes of 11817
+  slots; {2}: 35380 of 35408). The stack needs 2 and 3 in the base to say anything about slots.
+- {2,3}: first landings 12 g - 1 are below q for most layers: span 0 holds a twin at 2 of 75.
+  {2,3,5}: 18 of 75 (span 0 = (q, 419] is empty once q > 419). {2,3,5,7}: 75 of 75 in this sample,
+  but P = 210 is above q/2 below q = 421, where span 0 is the whole window.
+- Spiral base (product at most q/2): span 0 = (q, 2 P g_min - 1] = (q, 2 P_s - 1] with P_s the
+  first primorial above q/2, and it holds a twin at 75 of 75 sampled machines; checked at every
+  machine 11 to 5000 it fails at 27: 11; 41 to 59 (span 0 ends at 59); 347 to 419 (ends at 419);
+  4547 to 4603 (ends at 4619): the machines just below 2 P_s, where span 0 is short or empty.
+- True-hole share falls span by span as layers end (spiral: span 1 928 of 936, span 3 784 of
+  868, span 5 2321 of 2786, span 8 1487 of 2641, spans 12 and beyond 237921 of 1533172).
+- The twin-gear spans (ending at 13, 31, 43, 61, ...) show no different twin share in aggregate
+  (spiral: 18309 of 314116 slots against 239792 of 4421249): the q = 101 reading was noise.
+Standing: the part of the stack most consistent in twin appearance is span 0, the stretch before
+the first layer ends, where holes are twins by construction; it holds a twin at every machine
+except those just below 2 P_s, where it is too short.
