@@ -392,3 +392,23 @@ against gear 5's teeth, where the landing stands against gear 11's teeth. Pair s
 both; what then takes a survivor is another single type (gear 7 the most often, then the high
 gears 13, 17, 31, 79, 83, 223, 257, 293 at order 2). The joint pattern of the pair is the
 alignment of the two anchors: column h against E.
+
+## Second pair, same anchor: base gears 5 and 7 on column h (2026-09-14)
+
+Kernel MirrorWalkFieldType (teeth_five, teeth_seven, pair_five_seven; built, 0 sorries):
+- gear 5's teeth on the h-line: h = 1 (left member), 4 (right) mod 5; gear 7's: h = 6 (left),
+  1 (right) mod 7; column h open to both iff h avoids 1, 4 mod 5 and 1, 6 mod 7: fifteen
+  classes mod 35, the same at every machine with 5 and 7 in the base (E = -1 mod 35).
+- Measured (pair_same_anchor.py) at q = 499, 997, 1999: the high gears the pair leaves occupy
+  exactly the classes 2, 3, 12, 17, 18, 23, 32, 33 mod 35 at all three machines; the other
+  seven open classes (0, 5, 7, 10, 25, 28, 30) are multiples of 5 or 7 and hold no gear.
+  So for gears the pair leaves eight classes of 35, fixed.
+
+## Third pair, cross anchor: band gear 11 with high gear 13 at q = 499
+
+- Both anchored on E: gear 11's teeth h = 6 (left), 2 (right) mod 11; gear 13's teeth h = 3
+  (left), 7 (right) mod 13; both pairs of classes fixed by E = 119699 mod 11 and mod 13.
+- The pair leaves 58 of the high gears in reach, spread over 51 classes mod 143.
+- Same shape as the (5, 7) pair, with the teeth placed by E instead of by the gear alone.
+  Gear 13 is itself a high gear: its landing (h = 13) is struck by 13 only if 13 | E or E + 2,
+  which is the class test again.

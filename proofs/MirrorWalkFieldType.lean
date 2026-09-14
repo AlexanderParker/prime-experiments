@@ -159,4 +159,33 @@ theorem high_gear_no_order_four {g : ℕ} {q c p₁ p₂ p₃ : ℤ} (hq : 0 < q
   rw [e] at hq2
   linarith
 
+/-! ### Same-anchor pair: base gears 5 and 7 on column `h`, fixed teeth at every machine. -/
+
+/-- Gear 5's teeth on the `h`-line: left member at `h ≡ 1`, right member at `h ≡ 4 (mod 5)`. -/
+theorem teeth_five (h : ℤ) :
+    ((5 : ℤ) ∣ 6 * h - 1 ↔ h % 5 = 1) ∧ ((5 : ℤ) ∣ 6 * h + 1 ↔ h % 5 = 4) := by
+  constructor <;> omega
+
+/-- Gear 7's teeth on the `h`-line: left member at `h ≡ 6`, right member at `h ≡ 1 (mod 7)`. -/
+theorem teeth_seven (h : ℤ) :
+    ((7 : ℤ) ∣ 6 * h - 1 ↔ h % 7 = 6) ∧ ((7 : ℤ) ∣ 6 * h + 1 ↔ h % 7 = 1) := by
+  constructor <;> omega
+
+/-- **The pair (5, 7) on column `h`.**  Column `h` is open to both iff `h` avoids `1, 4 (mod 5)`
+and `1, 6 (mod 7)`: fifteen open classes of `h` modulo 35, the same at every machine. -/
+theorem pair_five_seven (h : ℤ) :
+    (OpenTo 5 (6 * h - 1) ∧ OpenTo 7 (6 * h - 1)) ↔
+      (h % 5 ≠ 1 ∧ h % 5 ≠ 4 ∧ h % 7 ≠ 6 ∧ h % 7 ≠ 1) := by
+  unfold OpenTo
+  have e : 6 * h - 1 + 2 = 6 * h + 1 := by ring
+  rw [e]
+  push_cast
+  constructor
+  · rintro ⟨⟨a, b⟩, ⟨c, d⟩⟩
+    exact ⟨fun x => a ((teeth_five h).1.mpr x), fun x => b ((teeth_five h).2.mpr x),
+           fun x => c ((teeth_seven h).1.mpr x), fun x => d ((teeth_seven h).2.mpr x)⟩
+  · rintro ⟨a, b, c, d⟩
+    exact ⟨⟨fun x => a ((teeth_five h).1.mp x), fun x => b ((teeth_five h).2.mp x)⟩,
+           ⟨fun x => c ((teeth_seven h).1.mp x), fun x => d ((teeth_seven h).2.mp x)⟩⟩
+
 end MirrorWalk
