@@ -21,8 +21,6 @@ Fields (ids as in the view, in order):
     'squares'        row g at g^2
     'locator:i'      the locator field: row g at the members of the candidate column (m^2 + 6i - 2, m^2 + 6i)
                      after every square m^2 that g divides (the strikes on the offset-i candidates)
-    'final'          the final step of the locator: row g at the members of the columns (E +- 6h, E +- 6h + 2)
-                     that g divides, h a gear above sqrt q, E the primorial spiral's landing for the machine q
     'products:j'     n with exactly j prime factors (multiplicity), row of each factor; j = 2 .. jmax+1
     'higher:g'       composites whose smallest gear is g, rows g and the primes above it up to the
                      first with no kill in range; each row painted where its gear divides n
@@ -133,9 +131,6 @@ class Twin:
                         if r * r == v: return True
                 return False
             return self.gears, (lambda h, n, f, cand=cand: cand(n) and n % h == 0), False
-        if name == 'final':
-            cols = self._final_columns()
-            return self.gears, (lambda h, n, f, cols=cols: n in cols and n % h == 0), False
         if name.startswith('products:'):
             j = int(name.split(':')[1]); return self.gears, (lambda h, n, f, j=j: len(f) == j and h in f), False
         kind, g = name.split(':'); g = int(g)
@@ -151,28 +146,8 @@ class Twin:
             return [h for h in self.gears if h <= g], (lambda h, n, f, g=g: len(f) >= 2 and f[-1] == g and f[-2] != g and h in f), True
         raise KeyError(name)
 
-    def spiral_landing(self):
-        """The primorial spiral's landing E for the machine q: base = the lowest gears with product at most q/2,
-        A = alternating sum of the other gears from q down, E = -1 + 2 P A."""
-        ps = _primes_upto(self.q); base = []; P = 1
-        for p in ps:
-            if P * p <= self.q // 2: P *= p; base.append(p)
-            else: break
-        rest = [p for p in ps if p not in base][::-1]
-        A = sum(g if i % 2 == 0 else -g for i, g in enumerate(rest))
-        return -1 + 2 * P * A, P, base
-
-    def _final_columns(self):
-        E, P, base = self.spiral_landing(); r = int(self.q ** 0.5); cols = set()
-        for h in _primes_upto(self.q):
-            if h <= r: continue
-            for d in (1, -1):
-                L = E + 6 * d * h
-                if self.q < L and L + 2 <= self.q * self.q: cols.add(L); cols.add(L + 2)
-        return cols
-
     def fields(self):
-        names = ['multiples', 'squares', f'locator:{self.locator_offset}', 'final'] + [f'products:{j}' for j in range(2, self._jmax() + 2)]
+        names = ['multiples', 'squares', f'locator:{self.locator_offset}'] + [f'products:{j}' for j in range(2, self._jmax() + 2)]
         for kind in ('higher', 'higher1', 'lower', 'lower1'):
             names += [f'{kind}:{g}' for g in self.gears]
         return names
