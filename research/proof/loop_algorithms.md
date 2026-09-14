@@ -47,3 +47,19 @@ Same invariant, depth-first search over (periods 1..3, direction), node budget 2
 Verdict: the invariant "every visited gear off its teeth" can be kept along a walk at two thirds
 of the machines with a search, and at none by a fixed rule so far. The block is the same joint
 condition as the final flip, spread over the steps instead of concentrated in one.
+
+### 3. Pick-up walks with fixed period rules from slip inverses (2026-09-15)
+
+Rule C: descending; at gear g's step the periods k are chosen so the previous gear's phase lands
+at the centre of its open arc (k = (centre - phase) times the slip inverse mod the previous
+gear). Rule D: the previous two gears centred at once (k from the CRT of the two). Up only, or
+alternating. No search, no primality (research/stack/r8/pickup_walk_rules.py).
+- Landing inside the window at 1 of 299 for C up, C alt, D up; 0 for D alt. Twin 0.
+- Why: centring one gear costs k up to that gear, so the move is up to 2 P g g' where g' is the
+  previous gear; with both gears large that exceeds q^2 (q = 499: landing 9037979, ten times
+  past the window, though open to every gear of the machine; q = 1999: 116353859).
+- Exact limit: a step about {base, g} can place another gear g' at a chosen phase only if
+  2 P g g' fits in the window, i.e. g g' at most q^2 / (2P), which is at least q. So targeted
+  phase control is affordable only between gears whose product is at most q^2 / (2P); the
+  large gears can be held (zero slip inside their own mirror) but not steered.
+Verdict: dead as a full walk; the affordability limit is a fact to build with.

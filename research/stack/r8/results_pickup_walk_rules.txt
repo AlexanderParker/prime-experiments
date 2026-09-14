@@ -1,0 +1,17 @@
+Loop, iteration 3: pick-up walks with fixed period rules (no search, no primality).
+
+Rule C (slip inverse): descending over the gears above the base; at the step for gear g the
+mirror is {base, g}; the periods k are chosen so that the PREVIOUS gear's phase lands at the
+centre of its open arc, floor(prev/2): k = (centre - phase) * slip^{-1} mod prev, where slip =
+2 P g mod prev (k in 1..prev; if the slip is 0 mod prev, k = 1); direction always up, or
+alternating.  The column may leave the window; a final reduction is not applied.
+Rule D (base-centre): same but the target is chosen so that ALL base gears are irrelevant (they
+are carried) and the previous TWO gears are centred by solving for k modulo prev * prev2 (CRT),
+when that k keeps the column below q^2.
+Measured: machines 11 to 2000; landing in the window, twin, number of gears on a tooth at the
+landing.  usage: uv run python research/stack/r8/pickup_walk_rules.py 2000
+
+rule C up: landing in the window 1 of 299, twin 0; samples (q, landing, in window, gears on a tooth) [(31, 1859, False, 2, [11, 13]), (101, 69059, False, 1, [53]), (499, 9037979, False, 0, []), (1999, 116353859, False, 4, [13, 41, 181, 977])]
+rule C alt: landing in the window 1 of 299, twin 0; samples (q, landing, in window, gears on a tooth) [(31, -1453, False, 0, []), (101, -219181, False, 1, [17]), (499, -221968741, False, 0, []), (1999, -2220667261, False, 0, [])]
+rule D up: landing in the window 1 of 299, twin 0; samples (q, landing, in window, gears on a tooth) [(31, 1859, False, 2, [11, 13]), (101, 69059, False, 1, [53]), (499, 9037979, False, 0, []), (1999, 116353859, False, 4, [13, 41, 181, 977])]
+rule D alt: landing in the window 0 of 299, twin 0; samples (q, landing, in window, gears on a tooth) [(31, -83353, False, 2, [17, 19]), (101, -17274901, False, 2, [7, 41]), (499, -30670696141, False, 1, [47]), (1999, -1725527789161, False, 3, [11, 19, 1523])]
