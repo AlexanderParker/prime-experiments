@@ -1,51 +1,44 @@
 <title>Final Step Positions</title>
 <style>
-:root{--bg:#f5f3ec;--ink:#1e1c18;--mut:#6f6a5e;--line:#d9d3c5;--pan:#fffdf7;--base:#8a5a1f;--band:#245c8a;--high:#5b3f8a;--pass:#1f7a3f;--gone:#b8b1a3;--own:#a0261f}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16150f;--ink:#ebe6d8;--mut:#a39c8c;--line:#3b382f;--pan:#1f1d16;--base:#d9a45a;--band:#6fb1e8;--high:#b394e8;--pass:#5fd08a;--gone:#5a564c;--own:#f07b73}}
-:root[data-theme="dark"]{--bg:#16150f;--ink:#ebe6d8;--mut:#a39c8c;--line:#3b382f;--pan:#1f1d16;--base:#d9a45a;--band:#6fb1e8;--high:#b394e8;--pass:#5fd08a;--gone:#5a564c;--own:#f07b73}
+:root{--bg:#f5f3ec;--ink:#1e1c18;--mut:#6f6a5e;--line:#d9d3c5;--pan:#fffdf7;--mark:#245c8a;--pass:#1f7a3f;--gone:#b8b1a3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16150f;--ink:#ebe6d8;--mut:#a39c8c;--line:#3b382f;--pan:#1f1d16;--mark:#6fb1e8;--pass:#5fd08a;--gone:#5a564c}}
+:root[data-theme="dark"]{--bg:#16150f;--ink:#ebe6d8;--mut:#a39c8c;--line:#3b382f;--pan:#1f1d16;--mark:#6fb1e8;--pass:#5fd08a;--gone:#5a564c}
 body{background:var(--bg);color:var(--ink);font:14px/1.45 "IBM Plex Sans",system-ui,sans-serif;margin:0;padding-block:14px;padding-inline:16px}
 h1{font-size:19px;font-weight:600;margin:0 0 4px}
 p.lead{color:var(--mut);max-width:80ch;margin:0 0 10px}
-.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0 12px}
-.ctl button{font:inherit;padding:4px 10px;border:1px solid var(--line);background:var(--pan);color:var(--ink);border-radius:4px;cursor:pointer}
-.ctl button:focus-visible{outline:2px solid var(--band)}
+.ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0 12px}
+.ctl button,.ctl select{font:inherit;padding:4px 10px;border:1px solid var(--line);background:var(--pan);color:var(--ink);border-radius:4px;cursor:pointer}
+.ctl button:focus-visible,.ctl select:focus-visible{outline:2px solid var(--mark)}
 .ctl label{display:flex;gap:6px;align-items:center}
 .facts{font-variant-numeric:tabular-nums;color:var(--mut);margin:0 0 10px;max-width:100ch}
 .facts b{color:var(--ink);font-weight:600}
+h2{font-size:15px;font-weight:600;margin:14px 0 6px}
 .wrap{overflow-x:auto;border:1px solid var(--line);background:var(--pan)}
 table{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12px}
-th,td{border-bottom:1px solid var(--line);padding:2px 4px;white-space:nowrap;text-align:center}
-th.g{text-align:left;position:sticky;left:0;background:var(--pan);min-width:120px}
+th,td{border-bottom:1px solid var(--line);padding:2px 5px;white-space:nowrap;text-align:center}
+th.g{text-align:left;position:sticky;left:0;background:var(--pan);min-width:70px}
+th.g small{color:var(--mut);font-weight:400}
 thead th{position:sticky;top:0;background:var(--pan);font-weight:500}
 thead th.pass{color:var(--pass);font-weight:700}
 thead th.gone{color:var(--gone)}
-td.L,td.R{font-weight:700}
-tr.base td.L,tr.base td.R{color:var(--base)}
-tr.band td.L,tr.band td.R{color:var(--band)}
-tr.high td.L,tr.high td.R{color:var(--high)}
-td.own{color:var(--own);font-weight:700}
-td.dead{opacity:.35}
-.key{display:flex;flex-wrap:wrap;gap:14px;color:var(--mut);margin:8px 0}
-.key span b{font-weight:700}
-.k1 b{color:var(--base)}.k2 b{color:var(--band)}.k3 b{color:var(--high)}.k4 b{color:var(--pass)}.k5 b{color:var(--own)}
+td.m{font-weight:700;color:var(--mark)}
 </style>
 <h1>Final Step Positions</h1>
-<p class="lead">The final step of the locator, drawn as the fields construction: rows are the machine's gears, columns are the high gears h in reach. The primorial spiral lands at E; the step about {3, h} lands at E ± 6h. Fields named as in the fields explorer. Row g is the multiples field of gear g: a mark at column h means g divides a member of the landing. The mark reads j + member: j is the products:j field the member sits in (its number of prime factors), L the left member E ± 6h, R the right E ± 6h + 2. The bold mark in a column is the smallest gear dividing that member, so the column's kill belongs to higher:g for that row; dimmed marks in the same column are the larger gears of the same composite, the lower:g reading. Squares is empty on this line. A column with no mark is open in every field: a twin prime pair.</p>
+<p class="lead">The final step of the locator in the fields construction. The primorial spiral lands at E; the step about {3, h} lands at (E ± 6h, E ± 6h + 2). Columns are the high gears h in reach; rows are gears. Pick a field: the table shows that field alone, marked L where the field holds the left member and R where it holds the right, exactly as the fields explorer paints it. A column with no mark in the multiples field is open in every field: a twin prime pair.</p>
 <div class="ctl">
   <label>machine q <button id="qm">−</button><b id="qv"></b><button id="qp">+</button></label>
   <label>step <button id="dir">up (E + 6h)</button></label>
-  <label><input type="checkbox" id="only" checked> only gears with a kill on a standing column</label>
-  <label><input type="checkbox" id="dim" checked> dim marks on columns already taken</label>
+  <label>field <select id="field"></select></label>
 </div>
 <div class="facts" id="facts"></div>
-<div class="key"><span class="k1"><b>2L</b> gear with E ≡ −1 mod g: teeth on column h (row tag =h)</span><span class="k2"><b>2L</b> gear ≤ √q, teeth from E (tag E)</span><span class="k3"><b>2L</b> gear > √q, teeth from E, j ≤ 3 (tag E)</span><span class="k4"><b>PASS</b> open in every field</span><span class="k5"><b>own</b> h divides E or E + 2</span>  <span>row: gear · tag · teeth a,b · kills as higher:g</span></div>
+<h2 id="ftitle"></h2>
 <div class="wrap"><table id="t"></table></div>
 <script>
 function primesTo(n){const s=new Uint8Array(n+1);const out=[];for(let i=2;i<=n;i++){if(!s[i]){out.push(i);for(let j=i*i;j<=n;j+=i)s[j]=1;}}return out;}
 function mod(a,m){return ((a%m)+m)%m;}
-function order(n){let c=0;for(let p=2;p*p<=n;p++){while(n%p===0){n/=p;c++;}}if(n>1)c++;return c;}
+function factors(n){const f=[];for(let p=2;p*p<=n;p++){while(n%p===0){n/=p;f.push(p);}}if(n>1)f.push(n);return f;}
 function inv6(g){for(let x=1;x<g;x++)if((6*x)%g===1)return x;return 0;}
-let q=499,d=1;
+let q=499,d=1,field='multiples';
 const PR=primesTo(20000);
 function prevPrime(x){let i=PR.indexOf(x);return i>0?PR[i-1]:x;}
 function nextPrime(x){let i=PR.indexOf(x);return i<PR.length-1?PR[i+1]:x;}
@@ -56,36 +49,39 @@ function build(){
  const E=-1+2*P*A;const r=Math.floor(Math.sqrt(q));
  const gears=primes.filter(p=>p>=5);const high=primes.filter(p=>p>r);
  const cols=high.filter(h=>{const L=E+6*d*h;return q<L&&L+2<=q*q;});
- const teeth={};for(const g of gears){const i=inv6(g);teeth[g]=[mod(-d*E*i,g),mod(-d*(E+2)*i,g)];}
- const taker={};const status={};
- for(const h of cols){let t=null,m=null;
-  for(const g of gears){if(g===h)continue;const [a,b]=teeth[g];if(h%g===a){t=g;m='L';break;}if(h%g===b){t=g;m='R';break;}}
-  if(t===null){const L=E+6*d*h;if(mod(E,h)===0){t=h;m='own L';}else if(mod(E+2,h)===0){t=h;m='own R';}}
-  taker[h]=t;status[h]=m;}
- const pass=cols.filter(h=>taker[h]===null);
- const role=g=>base.includes(g)?'base':(g<=r?'band':'high');
- const roleText=g=>base.includes(g)?'=h':'E';
- const only=document.getElementById('only').checked,dim=document.getElementById('dim').checked;
+ // members and their factorisations
+ const mem={};for(const h of cols){const L=E+6*d*h;mem[h]=[{n:L,f:factors(L),s:'L'},{n:L+2,f:factors(L+2),s:'R'}];}
+ const twin=h=>mem[h][0].f.length===1&&mem[h][1].f.length===1;
+ const pass=cols.filter(twin);
+ let jmax=2;for(const h of cols)for(const m of mem[h])jmax=Math.max(jmax,m.f.length);
+ // field list, ids as in the fields explorer
+ const sel=document.getElementById('field');const list=['multiples','squares'];
+ for(let j=2;j<=jmax;j++)list.push('products:'+j);
+ for(const g of gears)list.push('higher:'+g);
+ for(const g of gears)list.push('lower:'+g);
+ if(sel.options.length===0||sel.dataset.q!=q){const cur=field;sel.innerHTML=list.map(f=>`<option value="${f}">${f}</option>`).join('');sel.dataset.q=q;sel.value=list.includes(cur)?cur:'multiples';field=sel.value;}
+ // field definition: does row g mark member m of column h
+ const gearOf=f=>f.filter(p=>p>=5);
+ let rows=gears,holds,title;
+ if(field==='multiples'){holds=(g,m)=>m.n%g===0;title='multiples: row g at every multiple of g';}
+ else if(field==='squares'){holds=(g,m)=>m.n===g*g;title='squares: row g at g²';}
+ else if(field.startsWith('products:')){const j=+field.slice(9);holds=(g,m)=>m.f.length===j&&m.n%g===0;title=`products:${j}: members with exactly ${j} prime factors, row of each factor`;}
+ else if(field.startsWith('higher:')){const g0=+field.slice(7);holds=(g,m)=>{const gs=gearOf(m.f);return gs.length&&m.f.length>1&&Math.min(...gs)===g0&&m.n%g===0;};rows=gears.filter(g=>g>=g0);title=`higher:${g0}: composites whose smallest gear is ${g0}; rows ${g0} and the gears above it, each where it divides the member`;}
+ else if(field.startsWith('lower:')){const g0=+field.slice(6);holds=(g,m)=>{const gs=gearOf(m.f);return gs.length&&m.f.length>1&&Math.max(...gs)===g0&&m.n%g===0;};rows=gears.filter(g=>g<=g0);title=`lower:${g0}: composites whose largest gear is ${g0}; rows ${g0} and the gears below it`;}
+ // keep only rows that mark something
+ rows=rows.filter(g=>cols.some(h=>mem[h].some(m=>holds(g,m))));
  document.getElementById('qv').textContent=q;
- document.getElementById('facts').innerHTML=`teeth on column h (E ≡ −1 mod g): <b>${base.join(', ')}</b> (P = ${P}); teeth from E, g ≤ √q: <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; g > √q: <b>${high[0]} to ${q}</b>. Landing E = <b>${E}</b>, E mod P = ${mod(E,P)}. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
- let html='<thead><tr><th class="g">gear \\ h</th>'+cols.map(h=>`<th class="${taker[h]===null?'pass':'gone'}" title="${taker[h]===null?'passes: ('+(E+6*d*h)+', '+(E+6*d*h+2)+') twin':'taken by '+taker[h]+' ('+status[h]+')'}">${h}${taker[h]===null?'<br>PASS':''}</th>`).join('')+'</tr></thead><tbody>';
- for(const g of gears){const [a,b]=teeth[g];const rl=role(g);
-  const takes=cols.filter(h=>taker[h]===g);
-  if(only&&takes.length===0)continue;
-  const kinds={};for(const h of cols){if(h===g)continue;const L=E+6*d*h;let m=null;if(h%g===a)m='L';else if(h%g===b)m='R';if(m){const j=1+order((m==='L'?L:L+2)/g);const k=j+m;kinds[k]=(kinds[k]||0)+(taker[h]===g?1:0);}}
-  const kt=Object.keys(kinds).sort().filter(k=>kinds[k]>0).map(k=>`${k}×${kinds[k]}`).join(' ');
-  html+=`<tr class="${rl}"><th class="g">${g} <small>${roleText(g)} · ${a},${b}${kt?' · '+kt:''}</small></th>`;
-  for(const h of cols){let c='',txt='';
-   if(h===g){if(status[h]&&status[h].startsWith('own')){c='own';txt='own';}}
-   else if(h%g===a){c='L';txt=(1+order((E+6*d*h)/g))+'L';}else if(h%g===b){c='R';txt=(1+order((E+6*d*h+2)/g))+'R';}
-   if(c&&dim&&taker[h]!==g)c+=' dead';
-   html+=`<td class="${c}">${txt}</td>`;}
+ document.getElementById('ftitle').textContent=title+(rows.length?'':'  (empty on this line)');
+ document.getElementById('facts').innerHTML=`gears with E ≡ −1 mod g: <b>${base.join(', ')}</b> (P = ${P}); gears ≤ √q with teeth from E: <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; gears > √q: <b>${high[0]} to ${q}</b>. E = <b>${E}</b>. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
+ let html='<thead><tr><th class="g">gear \\ h</th>'+cols.map(h=>`<th class="${twin(h)?'pass':'gone'}" title="(${mem[h][0].n}, ${mem[h][1].n}) = (${mem[h][0].f.join('·')}, ${mem[h][1].f.join('·')})">${h}${twin(h)?'<br>PASS':''}</th>`).join('')+'</tr></thead><tbody>';
+ for(const g of rows){const i=inv6(g);const a=mod(-d*E*i,g),b=mod(-d*(E+2)*i,g);
+  html+=`<tr><th class="g">${g} <small>${a},${b}</small></th>`;
+  for(const h of cols){const t=mem[h].filter(m=>holds(g,m)).map(m=>m.s).join('');html+=`<td class="${t?'m':''}">${t}</td>`;}
   html+='</tr>';}
  html+='</tbody>';document.getElementById('t').innerHTML=html;}
 document.getElementById('qm').addEventListener('click',()=>{q=prevPrime(q);if(q<11)q=11;build();});
 document.getElementById('qp').addEventListener('click',()=>{q=nextPrime(q);build();});
 document.getElementById('dir').addEventListener('click',e=>{d=-d;e.target.textContent=d>0?'up (E + 6h)':'down (E − 6h)';build();});
-document.getElementById('only').addEventListener('change',build);
-document.getElementById('dim').addEventListener('change',build);
+document.getElementById('field').addEventListener('change',e=>{field=e.target.value;build();});
 build();
 </script>
