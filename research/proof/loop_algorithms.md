@@ -137,3 +137,11 @@ q minus the largest column-twin gear: 106 of 639. D = P_s times q mod g_min: 91 
 is a twin at P_s = 2310 and 30030's ranges hold t = 3 (the machines 4620 to 5000 with q = 1 mod
 6 then fail); it is the first-gap table of the descent seen through q's class, not a mechanism.
 Verdict: same band, with one coincidental high mark.
+
+### 9. The sub-machine's landing plus one blind flip with the top gear (2026-09-15)
+
+research/stack/r8/blind_rules9.py, machines 121 to 5000 (639). From the level-1 landing E_1
+(at most q), one flip up with the fewest periods that enter the window: {3, q} 55 of 639;
+{2,3,q} 61; {base, q} 31; {3, p} 54; {3, q} then {3, p} down (E_1 + 6 (q - p)) 76; {2,3,q} then
+{2,3,p} down 76. Verdict: below the band (9 to 12 percent): these landings carry only 2, 3 (and
+q or p), not even the machine's base, so they are open to fewer gears than the D rules.

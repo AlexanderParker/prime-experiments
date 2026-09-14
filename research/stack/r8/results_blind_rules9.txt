@@ -1,0 +1,18 @@
+Loop, iteration 9: the sub-machine's landing plus one flip with the top gear (no primality).
+E1 = the level-1 landing of the levels walk (base with 2 and 3 at every level, levels while
+b_k >= 11), at most q.  Then one flip up with the fewest periods that enter the window:
+  L1 mirror {3, q}: E1 + 6 k q       L2 {2,3,q}: E1 + 12 k q      L3 {base, q}: E1 + 2 k P q
+  L4 {3, p} with p the prime below q  L5 {3, q} then {3, p} down: E1 + 6q - 6p
+  L6 {2,3,q} then {2,3,p} down: E1 + 12 (q - p)
+Machines 121 to 5000: twin / in window.  usage: uv run python research/stack/r8/blind_rules9.py 5000
+
+machines 639 (121 to 5000): rule: twin / in window
+   L1   55 /  639
+   L2   61 /  639
+   L3   31 /  639
+   L4   54 /  639
+   L5   76 /  639
+   L6   76 /  639
+   (499, 71, {'L1': 3065, 'L2': 6059, 'L3': 209651, 'L4': 3017, 'L5': 503, 'L6': 551})
+   (1999, 239, {'L1': 12233, 'L2': 24227, 'L3': 839819, 'L4': 12221, 'L5': 2003, 'L6': 2015})
+   (4999, 2039, {'L1': 32033, 'L2': 62027, 'L3': 23097419, 'L4': 31997, 'L5': 5027, 'L6': 5063})
