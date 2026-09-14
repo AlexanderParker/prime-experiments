@@ -94,3 +94,26 @@ Verdict: every blind offset lands on a twin at a quarter to a third of the machi
 in the window, which is the share of twins among the columns open to the base low in the
 window. No offset rule rises above that share. The odd spirals (m = 3, 5) sit lower because
 their landings are farther up the window.
+
+### 6. Hand the residues forward from machine to machine (2026-09-15)
+
+Origin for machine q = the previous machine's landing (open to every gear up to p when it is a
+twin); one flip up about {2,3,q}, {2,3,5,q} or {base, q}, the fewest periods that put the
+landing above q. research/stack/r8/chain_machines.py.
+- The chain leaves the twins at the first machine: from (11, 13) the flip about {2,3,7} lands
+  at 95 = 5 * 19; from (17, 19) at 101, 103 twin... then breaks at the next. Continuing from
+  every landing regardless, the origin climbs by 2M per machine and leaves the windows: twin
+  at 22 of 562 landings in the window with {2,3,q}, none in the window with the larger mirrors.
+- Why: the flip keeps only the phases of the gears in its mirror; the origin's openness to the
+  other gears is not carried, and the accumulated moves outrun the windows.
+Verdict: dead. Handing forward carries the mirror's gears and nothing else, as the gcd fact says.
+
+### Interim reading after six algorithms
+
+Every blind construction from home lands at -1 + 2D and is open exactly to the gears dividing
+D, with D at most q^2 / 2; every blind rule tried lands on a twin at about the share of twins
+among the base-open columns near its landing (a quarter to a third low in the window, less
+higher up). A rule that always lands on a twin would have to choose D so that 2D - 1 and 2D + 1
+avoid every gear up to q at every machine, which is the theorem itself in the machine's terms.
+The loop continues with different principles for the choice of D, recorded here as they are
+tried.

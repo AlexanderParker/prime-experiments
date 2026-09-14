@@ -1,0 +1,17 @@
+Loop, iteration 6: hand the residues forward from machine to machine.
+
+Origin for machine q = the landing of the previous machine p (the prime below q), which is open
+to every gear up to p when it is a twin.  One flip up about a mirror holding q: landing =
+origin + 2 k M, M in {6q (mirror {2,3,q}), 30q, P_q q (the spiral base with q), q# / p... }.
+The flip keeps the phase of every gear dividing M; every other gear shifts by 2kM mod gear.
+Blind rule: k = the smallest periods putting the landing above q.  Chain from machine 5 with
+origin (11, 13), or (17, 19).  Reported: how far the chain stays on twins (the first machine
+whose landing is not a twin), and, letting the chain continue from non-twin landings too, the
+twin rate over the machines to 5000.  usage: uv run python research/stack/r8/chain_machines.py 5000
+
+seed (11, 13), mirror {2,3,q}: chain stays on twins up to the machine before (7, 95); continuing from every landing, twin at 22 of 562 in the window over 666 machines
+seed (11, 13), mirror {2,3,5,q}: chain stays on twins up to the machine before (7, 431); continuing from every landing, twin at 0 of 0 in the window over 666 machines
+seed (11, 13), mirror {base,q}: chain stays on twins up to the machine before (7, 39); continuing from every landing, twin at 0 of 2 in the window over 666 machines
+seed (17, 19), mirror {2,3,q}: chain stays on twins up to the machine before (7, 101); continuing from every landing, twin at 23 of 562 in the window over 666 machines
+seed (17, 19), mirror {2,3,5,q}: chain stays on twins up to the machine before (7, 437); continuing from every landing, twin at 0 of 0 in the window over 666 machines
+seed (17, 19), mirror {base,q}: chain stays on twins up to the machine before (7, 45); continuing from every landing, twin at 0 of 2 in the window over 666 machines
