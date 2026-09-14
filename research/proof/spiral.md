@@ -500,3 +500,38 @@ each position marked not a gear / gear taken earlier by which gear / gear taken 
 So at one machine the whole test is a list of positions from E: base teeth fixed, band teeth at
 a_g + g t and b_g + g t across the line, high teeth at a few positions each. A gear passes iff
 it stands on none of the positions. Nothing implicit remains at a given machine.
+
+## Approaches A and B by field type (owner, 2026-09-14)
+
+Owner: the crux is the residues carried across the flip; know which field types can bite at
+the mirrored position from the mirror size and the carried residues; (A) exclude the dangerous
+types at the final step and pick a safe axis; (B) build the spiral from gears of one type.
+
+A (research/stack/r8/final_step_types.py, results_final_step_types.txt, machines 11 to 2000):
+- Exclusion 1, no E residue used: base gears (E = -1 mod g) bite the landing iff they bite
+  column h itself, so drop every h whose own column is painted by a base gear. Candidates
+  86,396 become 30,710.
+- Exclusion 2, no E residue on the gear: the axis gear bites iff h | E or h | E + 2. Drops 320
+  more: 30,390.
+- The rest is charged to the E-placed types: a gear at most sqrt q outside the base takes
+  17,158 (products:2 and up), a gear above sqrt q takes 9,593 (products:2 or 3), 3,639 pass.
+  A passing h exists at every machine but 11. The type rules alone do not pick the axis; the
+  E-placed gears still decide. Among survivors whose own column is a twin (8,703), 1,076 pass.
+
+B (research/stack/r8/spiral_types.py, results_spiral_types.txt, 299 machines 11 to 2000; base
+kept, spiral over one type of gear above the base, E' = -1 + 2 P A'):
+- all (the primorial spiral): E' in the window 299/299, E' itself a twin 39, passing final
+  step 298 (not 11).
+- coltwin (gears whose own column is a twin): 299 / 62 / 298.
+- sqin (only gears above sqrt q): 299 / 42 / 299: a passing final step at EVERY machine,
+  11 included (q = 11: base {2}, E' = 35, h = 11 up lands (101, 103)).
+- sqout (only gears at most sqrt q above the base): in window 292 of 295, E' itself a twin
+  135 of 295, passing 295 of 295. The landing is low (E' = 1679 at 499, 7559 at 1999, 8819 at
+  997) because A' is an alternating sum of gears below sqrt q.
+- twinmem 299 / 32 / 298; solo (295 machines) 295 / 43 / 293.
+- Sample q = 499: all 119699 (twin, pass 11); coltwin 114659 (twin, 11); sqin 121379 (13 paints
+  the right member, 12); sqout 1679 = 23 * 73 with 1681 = 41^2 (15 pass, first 53 up); twinmem
+  18479 (17 | left, 12); solo 126419 (167 | left, 9).
+Two leads from B: the sqin spiral (gears above sqrt q only) has a passing final step at every
+machine tested including 11; the sqout spiral (gears at most sqrt q) lands on a twin itself at
+135 of 295 machines and low in the window.

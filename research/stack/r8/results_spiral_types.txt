@@ -1,0 +1,64 @@
+Approach B: build the spiral from gears of one field type.
+
+The primorial base stays (the lowest gears with product at most q/2, in every mirror).  The
+spiral then flips once per gear of the chosen type, descending, alternating up and down, with
+mirror {base, g}; landing E' = -1 + 2 P A' where A' is the alternating sum of the chosen gears.
+Types tried (gears above the base only):
+  all        every gear above the base (the primorial spiral as it stands)
+  coltwin    gears whose own column (6g - 1, 6g + 1) is a twin prime pair
+  sqin       gears with g^2 inside the window (g > sqrt q)
+  sqout      gears with g^2 below the window (g <= sqrt q)
+  twinmem    gears that are twin prime members
+  solo       gears that are not twin members
+For each type and machine: E', inside the window or not, the fields painting E' (smallest gear of
+each member, or twin), and the final step from E': how many h above sqrt q pass, the first one.
+
+usage: uv run python research/stack/r8/spiral_types.py 2000
+
+q = 37:
+   all: 10 gears, E' = 215 in window, E' painted by 5|7, pass 5 first (11, 1)
+   coltwin: 4 gears, E' = 95 in window, E' painted by 5|None, pass 4 first (7, 1)
+   sqin: 9 gears, E' = 275 in window, E' painted by 5|None, pass 4 first (31, 1)
+   sqout: 1 gears, E' = 59 in window, E' painted by twin, pass 4 first (7, 1)
+   twinmem: 8 gears, E' = 95 in window, E' painted by 5|None, pass 4 first (7, 1)
+   solo: 2 gears, E' = 167 in window, E' painted by None|13, pass 3 first (17, 1)
+
+q = 101:
+   all: 23 gears, E' = 3179 in window, E' painted by 11|None, pass 3 first (13, 1)
+   coltwin: 4 gears, E' = 2039 in window, E' painted by None|13, pass 2 first (17, 1)
+   sqin: 22 gears, E' = 2759 in window, E' painted by 31|11, pass 2 first (83, 1)
+   sqout: 1 gears, E' = 419 in window, E' painted by twin, pass 7 first (17, 1)
+   twinmem: 14 gears, E' = 4919 in window, E' painted by None|7, pass 8 first (17, 1)
+   solo: 9 gears, E' = 3539 in window, E' painted by twin, pass 3 first (47, 1)
+
+q = 499:
+   all: 91 gears, E' = 119699 in window, E' painted by twin, pass 11 first (37, 1)
+   coltwin: 13 gears, E' = 114659 in window, E' painted by twin, pass 11 first (23, 1)
+   sqin: 87 gears, E' = 121379 in window, E' painted by None|13, pass 12 first (137, 1)
+   sqout: 4 gears, E' = 1679 in window, E' painted by 23|41, pass 15 first (53, 1)
+   twinmem: 44 gears, E' = 18479 in window, E' painted by 17|None, pass 12 first (73, 1)
+   solo: 47 gears, E' = 126419 in window, E' painted by 167|None, pass 9 first (73, 1)
+
+q = 997:
+   all: 164 gears, E' = 199079 in window, E' painted by 227|None, pass 12 first (457, 1)
+   coltwin: 19 gears, E' = 222179 in window, E' painted by 41|43, pass 16 first (173, 1)
+   sqin: 157 gears, E' = 207899 in window, E' painted by 127|29, pass 3 first (373, -1)
+   sqout: 7 gears, E' = 8819 in window, E' painted by twin, pass 24 first (37, 1)
+   twinmem: 66 gears, E' = 27719 in window, E' painted by 53|19, pass 15 first (37, 1)
+   solo: 98 gears, E' = 198239 in window, E' painted by 137|None, pass 16 first (37, 1)
+
+q = 1999:
+   all: 299 gears, E' = 409499 in window, E' painted by None|283, pass 20 first (103, 1)
+   coltwin: 25 gears, E' = 349859 in window, E' painted by 89|271, pass 23 first (233, 1)
+   sqin: 289 gears, E' = 417059 in window, E' painted by 23|17, pass 20 first (53, 1)
+   sqout: 10 gears, E' = 7559 in window, E' painted by twin, pass 29 first (53, 1)
+   twinmem: 118 gears, E' = 49559 in window, E' painted by None|29, pass 22 first (313, 1)
+   solo: 181 gears, E' = 403619 in window, E' painted by 59|None, pass 20 first (227, 1)
+
+over the 299 machines 11 to 2000: per type, machines with E' inside the window / E' itself a twin / a passing final step
+   all       299 /   39 /  298   (machines with gears of the type: 299)
+   coltwin   299 /   62 /  298   (machines with gears of the type: 299)
+   sqin      299 /   42 /  299   (machines with gears of the type: 299)
+   sqout     292 /  135 /  295   (machines with gears of the type: 295)
+   twinmem   299 /   32 /  298   (machines with gears of the type: 299)
+   solo      295 /   43 /  293   (machines with gears of the type: 295)
