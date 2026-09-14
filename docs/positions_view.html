@@ -30,7 +30,7 @@ td.dead{opacity:.35}
 .k1 b{color:var(--base)}.k2 b{color:var(--band)}.k3 b{color:var(--high)}.k4 b{color:var(--pass)}.k5 b{color:var(--own)}
 </style>
 <h1>Final Step Positions</h1>
-<p class="lead">The final step of the locator, drawn as the fields construction: rows are the machine's gears, columns are the high gears h in reach. The primorial spiral lands at E; the step about {3, h} lands at E ± 6h. A mark in row g, column h is one kill of one field type: the letter is the member struck (L = left, R = right), the digit is the order of the composite, so L2 is the field higher:g of order 2 (g times a prime) on the left member, R3 is order 3 on the right, and so on. A gear whose E ≡ −1 has its teeth fixed on column h itself; every other gear's teeth are placed by E. A column with no mark is a passing gear: the landing is a twin prime pair.</p>
+<p class="lead">The final step of the locator, drawn as the fields construction: rows are the machine's gears, columns are the high gears h in reach. The primorial spiral lands at E; the step about {3, h} lands at E ± 6h. Fields named as in the fields explorer. Row g is the field higher:g (composites whose smallest gear is g). A mark in row g, column h says the landing's member is in higher:g and in products:j: the digit is j (the number of prime factors), the letter the member (L = E ± 6h, R = E ± 6h + 2). The multiples field of g is the union of its marks; the squares field is empty on this line (no landing is a square); lower:g fields appear as the dimmed marks in the rows above g. A gear with E ≡ −1 mod g has its teeth on column h itself; every other gear's teeth are placed by E. A column with no mark is open in every field: a twin prime pair.</p>
 <div class="ctl">
   <label>machine q <button id="qm">−</button><b id="qv"></b><button id="qp">+</button></label>
   <label>step <button id="dir">up (E + 6h)</button></label>
@@ -38,7 +38,7 @@ td.dead{opacity:.35}
   <label><input type="checkbox" id="dim" checked> dim marks on columns already taken</label>
 </div>
 <div class="facts" id="facts"></div>
-<div class="key"><span class="k1"><b>L2 R3 …</b> teeth fixed on column h (E ≡ −1 mod g)</span><span class="k2"><b>L2 R3 …</b> teeth placed by E, gear at most √q (orders 2 and up)</span><span class="k3"><b>L2 R3</b> teeth placed by E, gear above √q (order 2 or 3 only)</span><span class="k4"><b>PASS</b> column with no tooth</span><span class="k5"><b>own</b> the step's own gear divides E or E + 2</span></div>
+<div class="key"><span class="k1"><b>2L 3R …</b> higher:g with E ≡ −1 mod g (teeth on column h)</span><span class="k2"><b>2L 3R …</b> higher:g, g ≤ √q, teeth from E (products:2 and up)</span><span class="k3"><b>2L 3R</b> higher:g, g > √q, teeth from E (products:2, products:3 only)</span><span class="k4"><b>PASS</b> open in every field</span><span class="k5"><b>own</b> multiples of h at E or E + 2</span></div>
 <div class="wrap"><table id="t"></table></div>
 <script>
 function primesTo(n){const s=new Uint8Array(n+1);const out=[];for(let i=2;i<=n;i++){if(!s[i]){out.push(i);for(let j=i*i;j<=n;j+=i)s[j]=1;}}return out;}
@@ -64,20 +64,20 @@ function build(){
   taker[h]=t;status[h]=m;}
  const pass=cols.filter(h=>taker[h]===null);
  const role=g=>base.includes(g)?'base':(g<=r?'band':'high');
- const roleText=g=>base.includes(g)?'teeth fixed on column h':(g<=r?'teeth from E':'teeth from E, above √q');
+ const roleText=g=>base.includes(g)?'teeth on column h':(g<=r?'teeth from E':'teeth from E, g > √q');
  const only=document.getElementById('only').checked,dim=document.getElementById('dim').checked;
  document.getElementById('qv').textContent=q;
- document.getElementById('facts').innerHTML=`teeth fixed on column h (E ≡ −1 mod g): <b>${base.join(', ')}</b> (P = ${P}); teeth from E, at most √q: <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; teeth from E, above √q: <b>${high[0]} to ${q}</b>. Landing E = <b>${E}</b>, E mod P = ${mod(E,P)}. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
- let html='<thead><tr><th class="g">gear \\ h</th>'+cols.map(h=>`<th class="${taker[h]===null?'pass':'gone'}" title="${taker[h]===null?'passes: ('+(E+6*d*h)+', '+(E+6*d*h+2)+') twin':'taken by '+taker[h]+' ('+status[h]+')'}">${h}${taker[h]===null?'<br>PASS':''}</th>`).join('')+'</tr></thead><tbody>';
+ document.getElementById('facts').innerHTML=`fields higher:g with teeth on column h (E ≡ −1 mod g): <b>${base.join(', ')}</b> (P = ${P}); with teeth from E, g ≤ √q: <b>${gears.filter(g=>g<=r&&!base.includes(g)).join(', ')||'none'}</b>; with teeth from E, g > √q: <b>${high[0]} to ${q}</b>. Landing E = <b>${E}</b>, E mod P = ${mod(E,P)}. High gears in reach: <b>${cols.length}</b>; passing: <b>${pass.length}</b> (${pass.join(', ')||'none'}).`;
+ let html='<thead><tr><th class="g">field \\ h</th>'+cols.map(h=>`<th class="${taker[h]===null?'pass':'gone'}" title="${taker[h]===null?'passes: ('+(E+6*d*h)+', '+(E+6*d*h+2)+') twin':'taken by '+taker[h]+' ('+status[h]+')'}">${h}${taker[h]===null?'<br>PASS':''}</th>`).join('')+'</tr></thead><tbody>';
  for(const g of gears){const [a,b]=teeth[g];const rl=role(g);
   const takes=cols.filter(h=>taker[h]===g);
   if(only&&takes.length===0)continue;
-  const kinds={};for(const h of cols){if(h===g)continue;const L=E+6*d*h;let m=null;if(h%g===a)m='L';else if(h%g===b)m='R';if(m){const j=1+order((m==='L'?L:L+2)/g);const k=m+j;kinds[k]=(kinds[k]||0)+(taker[h]===g?1:0);}}
+  const kinds={};for(const h of cols){if(h===g)continue;const L=E+6*d*h;let m=null;if(h%g===a)m='L';else if(h%g===b)m='R';if(m){const j=1+order((m==='L'?L:L+2)/g);const k=j+m;kinds[k]=(kinds[k]||0)+(taker[h]===g?1:0);}}
   const kt=Object.keys(kinds).sort().filter(k=>kinds[k]>0).map(k=>`${k}×${kinds[k]}`).join(' ');
-  html+=`<tr class="${rl}"><th class="g">${g} <small>${roleText(g)}; teeth ${a}, ${b}${kt?'; kills '+kt:''}</small></th>`;
+  html+=`<tr class="${rl}"><th class="g">higher:${g} <small>${roleText(g)}; teeth ${a}, ${b}${kt?'; kills '+kt:''}</small></th>`;
   for(const h of cols){let c='',txt='';
    if(h===g){if(status[h]&&status[h].startsWith('own')){c='own';txt='own';}}
-   else if(h%g===a){c='L';txt='L'+(1+order((E+6*d*h)/g));}else if(h%g===b){c='R';txt='R'+(1+order((E+6*d*h+2)/g));}
+   else if(h%g===a){c='L';txt=(1+order((E+6*d*h)/g))+'L';}else if(h%g===b){c='R';txt=(1+order((E+6*d*h+2)/g))+'R';}
    if(c&&dim&&taker[h]!==g)c+=' dead';
    html+=`<td class="${c}">${txt}</td>`;}
   html+='</tr>';}
