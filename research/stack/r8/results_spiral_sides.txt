@@ -1,0 +1,43 @@
+Spirals over gears by the side of their own column, and by residue-free field facts.
+
+A gear g above 3 sits in column (g-1)/6 or (g+1)/6 as its LEFT member (g = 5 mod 6) or RIGHT
+member (g = 1 mod 6).  Variants (base kept, descending, first flip up, single mirrors):
+  left     gears that are left members of their column (g = 5 mod 6)
+  right    gears that are right members (g = 1 mod 6)
+  leftsq   left gears at most sqrt q;  rightsq  right gears at most sqrt q
+  lefthi   left gears above sqrt q;    righthi  right gears above sqrt q
+  twinL    gears that are the LEFT member of a twin prime pair (g + 2 prime)
+  twinR    gears that are the RIGHT member of a twin prime pair (g - 2 prime)
+Measured: landing in the window, landing itself a twin, passing final step, no-pass machines.
+
+usage: uv run python research/stack/r8/spiral_sides.py 2000
+
+variant   machines in window  E twin has pass  no pass at
+left           299       299      52      297  [11, 71]
+right          299       299      36      298  [11]
+leftsq         281       270      39      281  []
+rightsq        288       287      79      288  []
+lefthi         299       299      43      297  [11, 71]
+righthi        299       299      47      298  [11]
+twinL          299       299      45      298  [11]
+twinR          299       298      45      298  [11]
+
+q = 499:
+   left      47 gears  E =   105419 in        pass   9 first (227, 1)
+   right     44 gears  E =   103319 in        pass   6 first (227, 1)
+   leftsq     2 gears  E =     2519 in        pass  20 first (23, 1)
+   rightsq    2 gears  E =     2519 in        pass  20 first (23, 1)
+   lefthi    45 gears  E =   107939 in        pass  10 first (73, 1)
+   righthi   42 gears  E =   100799 in   TWIN pass  11 first (53, 1)
+   twinL     22 gears  E =   105839 in        pass   8 first (47, 1)
+   twinR     22 gears  E =   105839 in        pass   8 first (47, 1)
+
+q = 1999:
+   left     152 gears  E =   443519 in        pass  20 first (137, 1)
+   right    147 gears  E =   436379 in        pass  15 first (677, 1)
+   leftsq     5 gears  E =    12179 in        pass  43 first (107, 1)
+   rightsq    5 gears  E =    13019 in        pass  40 first (53, 1)
+   lefthi   147 gears  E =   455699 in        pass  15 first (233, 1)
+   righthi  142 gears  E =   423359 in        pass  22 first (107, 1)
+   twinL     59 gears  E =   488459 in        pass  22 first (257, 1)
+   twinR     59 gears  E =   489299 in        pass  21 first (107, 1)

@@ -535,3 +535,28 @@ kept, spiral over one type of gear above the base, E' = -1 + 2 P A'):
 Two leads from B: the sqin spiral (gears above sqrt q only) has a passing final step at every
 machine tested including 11; the sqout spiral (gears at most sqrt q) lands on a twin itself at
 135 of 295 machines and low in the window.
+
+## More spiral constructions by type (owner: keep trying; 2026-09-14)
+
+Scripts research/stack/r8/spiral_variants2.py, spiral_stacks2.py, spiral_sides.py; tables
+results_*.txt; machines 11 to 2000 (299; 295 where the type has gears). Columns: landing in the
+window / landing itself a twin / machines with a passing final step.
+- Shape: only descending order with the first flip up keeps the landing in the window, for
+  every gear set. Ascending, first flip down, twin pairs as one mirror, and two periods all
+  leave the window at many machines (e.g. sqin desc down: 0 in window; pairs: 0).
+- sqout desc up: 292 / 135 / 295 of 295. sqin desc up: 299 / 42 / 299, no failure, 11 included.
+- Stacks: sqout then sqin (both up) = sqin then sqout = E of the full spiral shifted, 295 / 39 /
+  295. sqin then sqout with the second flip down returns exactly the primorial spiral's E.
+- The sub-machine's own primorial spiral (base_s with product at most sqrt(q)/2, gears up to
+  sqrt q): lands in the sub-window (sqrt q, q] at 297 of 299 and ON A TWIN at 112 of 299
+  (q = 499: E_s = 71; q = 1999: E_s = 239; both twins). Its final step passes at 276 only (the
+  landing is low, so E_s + 6h with h > sqrt q sits low in the window). sub then sqin up:
+  298 / 37 / 276.
+- By the side of the gear's own column: left gears (5 mod 6) 299 / 52 / 297 (fails 11, 71);
+  right gears (1 mod 6) 299 / 36 / 298; leftsq 270 / 39 / 281 of 281 (no failure); rightsq
+  287 / 79 / 288 of 288 (no failure); lefthi and righthi like the full sets; twinL, twinR like
+  the full spiral.
+Standing: every set of gears at most sqrt q (sqout, leftsq, rightsq) gives a passing final
+step at every machine where the set is nonempty; sqin does the same over the whole range. The
+landings of the small-gear spirals sit low in the window and are twins themselves far more
+often (sqout 135, rightsq 79 of 288, sub-machine 112 of 299).
