@@ -1,0 +1,15 @@
+Loop, iteration 13: the pick-up walk with a deterministic scoring rule (no search, no
+primality; the walk's own phases only).  Descending over the gears above the base; at gear g,
+mirror {base, g}; among (periods 1..K, direction) choose the move that keeps the invariant
+(every visited gear off its teeth) and maximises the smallest distance of any visited gear's
+phase from its nearer tooth (0 or gear - 2); ties by the smaller move.  If no move keeps the
+invariant, take the move with the fewest gears on a tooth (the walk carries a defect) and go on.
+Reported: machines 11 to 2000: twin in the window, defects at the landing, K = 3, 5, 9.
+usage: uv run python research/stack/r8/pickup_walk_score.py 2000
+
+K = 3: in the window 299 of 299; landing with no visited gear on a tooth 116; twin 116; samples [(31, 659, []), (101, 8219, []), (499, 223439, []), (1999, 3609059, [])]
+K = 5: in the window 299 of 299; landing with no visited gear on a tooth 175; twin 175; samples [(31, 659, []), (101, 8219, []), (499, 33599, []), (1999, 3966059, [11])]
+K = 9: in the window 299 of 299; landing with no visited gear on a tooth 197; twin 197; samples [(31, 659, []), (101, 8219, []), (499, 91139, []), (1999, 3862739, [])]
+K = 15: in the window 299 of 299; landing with no visited gear on a tooth 220; twin 220; samples [(31, 659, []), (101, 8219, []), (499, 91139, []), (1999, 3862739, [])]
+K = 25: in the window 299 of 299; landing with no visited gear on a tooth 220; twin 220; samples [(31, 659, []), (101, 8219, []), (499, 91139, []), (1999, 3862739, [])]
+K = 60: in the window 299 of 299; landing with no visited gear on a tooth 220; twin 220; samples [(31, 659, []), (101, 8219, []), (499, 91139, []), (1999, 3862739, [])]

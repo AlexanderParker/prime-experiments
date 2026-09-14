@@ -185,3 +185,19 @@ P_prev and sit low). The zero for g_min squared is no phenomenon: D depends on t
 landing per primorial range (299, 2939, 50819, ... six values to q = 5000), and those six
 happen to be struck (299 = 13 * 23; 2941 = 17 * 173; 50819 = 89 * 571). The same caveat holds for
 every rule whose D depends only on the base: its count over machines is a count of ranges.
+
+### 13. The pick-up walk with a deterministic scoring rule (2026-09-15)
+
+research/stack/r8/pickup_walk_score.py, results_pickup_walk_score.txt, machines 11 to 2000.
+Descending over the gears above the base; at gear g (mirror {base, g}) the move among periods
+1..K and both directions is the one that keeps every visited gear off its teeth and maximises
+the smallest distance of any visited phase from its nearer tooth; if none keeps the invariant,
+the move with the fewest gears on a tooth. Deterministic; uses the walk's own phases, never
+primality.
+- In the window at all 299 machines. Landing with no visited gear on a tooth, hence a twin:
+  K = 3: 116; K = 5: 175; K = 9: 197; K = 15, 25, 60: 220 of 299.
+- The 79 failures: the gear left on a tooth is 11 at 50 machines, 7 at 21, 5 at 6, 13 at 1, 3 at
+  1: the smallest gears above the base, visited last, where the joint constraint is tightest.
+  The first defect appears at every stage of the walk, most often in the last fifth.
+Verdict: the strongest residue-carrying rule so far: three quarters of the machines with no
+primality used. Not a guarantee; the failures are the small gears at the walk's end.
