@@ -1,0 +1,81 @@
+(b) Why the first gap sits low: the columns t = 1, 2, ... of each primorial's stripes.
+
+Column t of P_s is the pair (2 t P_s - 1, 2 t P_s + 1).  A gear g above the base paints it iff
+g divides a member, i.e. iff t is on one of g's two teeth t_0 = (2 P_s)^{-1} or -t_0 mod g.  For
+t below g that means the tooth IS t (a gear whose tooth sits exactly at t); for g <= t the gear
+is periodic on the t-line and reaches t if t = +-t_0 mod g.  So for each primorial and each t
+up to the first gap: the two members factored, the painting gears, and for each whether it is
+a gear with its tooth exactly at t (g > t) or a periodic small gear (g <= t).
+
+usage: uv run python research/stack/r8/descent_small_t.py
+
+P_s = 30 (base to 5), columns up to the first gap:
+   t = 1: (59, 61) GAP, both prime
+   gears whose tooth sits at t = 1: [59, 61]; at t = 2: [7, 11, 17]; at t = 3: [179, 181]
+
+P_s = 210 (base to 7), columns up to the first gap:
+   t = 1: (419, 421) GAP, both prime
+   gears whose tooth sits at t = 1: [419, 421]; at t = 2: [29, 839]; at t = 3: [13, 97, 1259]
+
+P_s = 2310 (base to 11), columns up to the first gap:
+   t = 1: (31*149, 4621); painted by 31 L (tooth at t), 149 L (tooth at t)
+   t = 2: (9239, 9241) GAP, both prime
+   gears whose tooth sits at t = 1: [31, 149, 4621]; at t = 2: [9239, 9241]; at t = 3: [83, 167, 13859]
+
+P_s = 30030 (base to 13), columns up to the first gap:
+   t = 1: (19*29*109, 17*3533); painted by 17 R (tooth at t), 19 L (tooth at t), 29 L (tooth at t), 109 L (tooth at t), 3533 R (tooth at t)
+   t = 2: (113*1063, 120121); painted by 113 L (tooth at t), 1063 L (tooth at t)
+   t = 3: (180179, 180181) GAP, both prime
+   gears whose tooth sits at t = 1: [17, 19, 29, 109, 3533]; at t = 2: [113, 1063, 120121]; at t = 3: [180179, 180181]
+
+P_s = 510510 (base to 17), columns up to the first gap:
+   t = 1: (1021019, 181*5641); painted by 181 R (tooth at t), 5641 R (tooth at t)
+   t = 2: (2042039, 1429^2); painted by 1429 R (tooth at t)
+   t = 3: (3063059, 1451*2111); painted by 1451 R (tooth at t), 2111 R (tooth at t)
+   t = 4: (4084079, 4084081) GAP, both prime
+   gears whose tooth sits at t = 1: [181, 5641, 1021019]; at t = 2: [1429, 2042039]; at t = 3: [1451, 2111, 3063059]
+
+P_s = 9699690 (base to 19), columns up to the first gap:
+   t = 1: (19399379, 67*289543); painted by 67 R (tooth at t), 289543 R (tooth at t)
+   t = 2: (38798759, 103*376687); painted by 103 R (tooth at t), 376687 R (tooth at t)
+   t = 3: (5297*10987, 4177*13933); painted by 4177 R (tooth at t), 5297 L (tooth at t), 10987 L (tooth at t), 13933 R (tooth at t)
+   t = 4: (353*219823, 479*161999); painted by 353 L (tooth at t), 479 R (tooth at t), 161999 R (tooth at t), 219823 L (tooth at t)
+   t = 5: (163*595073, 8447*11483); painted by 163 L (tooth at t), 8447 R (tooth at t), 11483 R (tooth at t), 595073 L (tooth at t)
+   t = 6: (116396279, 1103*105527); painted by 1103 R (tooth at t), 105527 R (tooth at t)
+   t = 7: (151*899309, 29*37*271*467); painted by 29 R (tooth at t), 37 R (tooth at t), 151 L (tooth at t), 271 R (tooth at t), 467 R (tooth at t), 899309 L (tooth at t)
+   t = 8: (155195039, 43*61*59167); painted by 43 R (tooth at t), 61 R (tooth at t), 59167 R (tooth at t)
+   t = 9: (887*196837, 174594421); painted by 887 L (tooth at t), 196837 L (tooth at t)
+   t = 10: (23*8434513, 193993801); painted by 23 L (tooth at t), 8434513 L (tooth at t)
+   t = 11: (213393179, 31*149*46199); painted by 31 R (tooth at t), 149 R (tooth at t), 46199 R (tooth at t)
+   t = 12: (232792559, 232792561) GAP, both prime
+   gears whose tooth sits at t = 1: [67, 289543, 19399379]; at t = 2: [103, 376687, 38798759]; at t = 3: [4177, 5297, 10987, 13933]
+
+P_s = 223092870 (base to 23), columns up to the first gap:
+   t = 1: (41*10882579, 97*191*24083); painted by 41 L (tooth at t), 97 R (tooth at t), 191 R (tooth at t), 24083 R (tooth at t), 10882579 L (tooth at t)
+   t = 2: (892371479, 892371481) GAP, both prime
+   gears whose tooth sits at t = 1: [41, 97, 191, 24083, 10882579]; at t = 2: [892371479, 892371481]; at t = 3: [61, 613, 1171, 35797, 1143089]
+
+P_s = 6469693230 (base to 29), columns up to the first gap:
+   t = 1: (229*56503871, 397*32592913); painted by 229 L (tooth at t), 397 R (tooth at t), 32592913 R (tooth at t), 56503871 L (tooth at t)
+   t = 2: (61*8291*51169, 277*93425173); painted by 61 L (tooth at t), 277 R (tooth at t), 8291 L (tooth at t), 51169 L (tooth at t), 93425173 R (tooth at t)
+   t = 3: (38818159379, 2017*3833*5021); painted by 2017 R (tooth at t), 3833 R (tooth at t), 5021 R (tooth at t)
+   t = 4: (51757545839, 241*3299*65099); painted by 241 R (tooth at t), 3299 R (tooth at t), 65099 R (tooth at t)
+   t = 5: (64696932299, 58313*1109477); painted by 58313 R (tooth at t), 1109477 R (tooth at t)
+   t = 6: (53*2707*541129, 77636318761); painted by 53 L (tooth at t), 2707 L (tooth at t), 541129 L (tooth at t)
+   t = 7: (90575705219, 37*2447992033); painted by 37 R (tooth at t), 2447992033 R (tooth at t)
+   t = 8: (103515091679, 103515091681) GAP, both prime
+   gears whose tooth sits at t = 1: [229, 397, 32592913, 56503871]; at t = 2: [61, 277, 8291, 51169, 93425173]; at t = 3: [2017, 3833, 5021, 38818159379]
+
+P_s = 200560490130 (base to 31), columns up to the first gap:
+   t = 1: (173*2318618383, 401120980261); painted by 173 L (tooth at t), 2318618383 L (tooth at t)
+   t = 2: (233*3443098543, 236627*3390323); painted by 233 L (tooth at t), 236627 R (tooth at t), 3390323 R (tooth at t), 3443098543 L (tooth at t)
+   t = 3: (114199*10537421, 2753*3169*137933); painted by 2753 R (tooth at t), 3169 R (tooth at t), 114199 L (tooth at t), 137933 R (tooth at t), 10537421 L (tooth at t)
+   t = 4: (61*26303015099, 99391*16143151); painted by 61 L (tooth at t), 99391 R (tooth at t), 16143151 R (tooth at t), 26303015099 L (tooth at t)
+   t = 5: (3373*4817*123439, 37*823*65863351); painted by 37 R (tooth at t), 823 R (tooth at t), 3373 L (tooth at t), 4817 L (tooth at t), 123439 L (tooth at t), 65863351 R (tooth at t)
+   t = 6: (72883*33021773, 773*1109*2807473); painted by 773 R (tooth at t), 1109 R (tooth at t), 72883 L (tooth at t), 2807473 R (tooth at t), 33021773 L (tooth at t)
+   t = 7: (2807846861819, 113*163*152442959); painted by 113 R (tooth at t), 163 R (tooth at t), 152442959 R (tooth at t)
+   t = 8: (103*31155027593, 59*14627*3718417); painted by 59 R (tooth at t), 103 L (tooth at t), 14627 R (tooth at t), 3718417 R (tooth at t), 31155027593 L (tooth at t)
+   t = 9: (199*18141149861, 277*13367*974999); painted by 199 L (tooth at t), 277 R (tooth at t), 13367 R (tooth at t), 974999 R (tooth at t), 18141149861 L (tooth at t)
+   t = 10: (47^2*1815848711, 83*48327828947); painted by 47 L (tooth at t), 83 R (tooth at t), 1815848711 L (tooth at t), 48327828947 R (tooth at t)
+   t = 11: (4412330782859, 4412330782861) GAP, both prime
+   gears whose tooth sits at t = 1: [173, 2318618383, 401120980261]; at t = 2: [233, 236627, 3390323, 3443098543]; at t = 3: [2753, 3169, 114199, 137933, 10537421]

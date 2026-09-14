@@ -716,3 +716,22 @@ The first gap sits at t <= 12 at every primorial to 37#, while the reach at the 
 grows as 2 P_prev / p_s. So the descent's landing on a twin at every machine reduces to: the
 stripes of P_s have a gap at some t at most (q_min^2 - 1)/(2 P_s), which the first ten primorials
 meet at t <= 12. Exact statement, no landing in it; the gap's existence is the open item.
+
+## (b) The columns t = 1, 2, ... of each primorial, read gear by gear (2026-09-14)
+
+research/stack/r8/descent_small_t.py, results_descent_small_t.txt. Column t is the pair
+(2 t P_s - 1, 2 t P_s + 1). Below the first gap every painting gear has its tooth exactly at t
+(g > t, so t is on a tooth iff the tooth is t): no periodic small gear reaches these columns,
+because every gear above the base is larger than the first gap's t (at most 12).
+- P_s = 30: t = 1 is the gap (59, 61). 210: t = 1 (419, 421).
+- 2310: t = 1 is 31 * 149 on the left (teeth of 31 and 149 both at 1); t = 2 gap (9239, 9241).
+- 30030: t = 1 painted by 17 R, 19 L, 29 L, 109 L, 3533 R; t = 2 by 113 L, 1063 L; t = 3 gap.
+- 510510: t = 1 by 181, 5641 (R); t = 2 by 1429 R (1429^2); t = 3 by 1451, 2111 (R); t = 4 gap.
+- 9699690: eleven columns painted, each by 2 to 6 gears with their tooth there (t = 7: 29, 37,
+  151, 271, 467, 899309); t = 12 gap. 223092870: t = 1 by 41, 97, 191, 24083, 10882579; t = 2 gap.
+  6469693230: t = 8 gap. 200560490130: t = 11 gap.
+- So at small t the picture is not stripes at all: it is a list of gears whose tooth happens to
+  sit at that t, i.e. the prime factors of 2 t P_s +- 1 above the base. The first gap is the
+  first t at which both 2 t P_s - 1 and 2 t P_s + 1 have no factor at all; the stripes (periodic
+  teeth) only begin to matter once t passes the smallest gear above the base (13 at 2310, 17 at
+  30030), which is beyond the first gap at every primorial to 31#.
