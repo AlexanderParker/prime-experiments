@@ -794,3 +794,16 @@ and E +- 6S, against the plain landing E.
 - No slip sum does better than the plain landing; most do worse. q = 1999: E = 409499 (not a
   twin), E + S_A = 411821 twin, E + 6 S_A = 423461 twin, E + 6 S_C = 266897 twin, the rest not.
 Verdict: the summed slip does not point to a twin. Closed.
+
+## Slip as the difference of mirror sizes (owner's definition, 2026-09-15)
+
+Slip = the difference between the products of two gear sets. In the spiral the mirrors are
+base times gear, so at q = 31 (base 2, 3) the mirrors are 186, 174, 138, 114, 102, 78, 66, 42,
+30 and the slips between consecutive steps 12, 36, 24, 12, 24, 12, 24, 12: sum 156, sum with the
+flip directions' signs -12, landing 227. Over the 299 machines 11 to 2000, twins in the window:
+the landing itself 39; landing + sum 29; landing - sum 48 of 182 in the window; landing + signed
+sum 39; landing - signed sum 35; the column at the sum 31; at twice the sum 31; at the signed sum
+26 of 117; at twice the signed sum 20 of 129. The plain sum of consecutive slips is the first
+mirror minus the last (186 - 30 = 156 at q = 31), so "landing - sum" is the landing minus that
+difference. No candidate stands out from the landing's own rate. Closed as run; open to another
+pairing of the sets if the owner has one.
