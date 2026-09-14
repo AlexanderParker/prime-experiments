@@ -254,3 +254,29 @@ length about q, the same object as the window statement one level down); (b) amo
 survivors the high gears' own fields, each striking two classes, do not take every one. Part
 (b) is where the landings that fail are g times a window prime: the walk's landing is a column
 of the higher:g field for one high gear g.
+
+## The landing is column h modulo the base (2026-09-14)
+
+Exact, kernel proofs/MirrorWalkColumn.lean (round 51, built, 0 sorries, standard axioms):
+base_strikes_up_iff, base_strikes_down_iff, landing_open_base_iff, primorialEnd_modEq.
+
+- The primorial spiral lands at E = -1 + 2 P A, so E = -1 modulo P, the product of the base.
+- Up step {3, h}: L = E + 6h = 6h - 1 and L + 2 = 6h + 1 modulo every base gear. The landing
+  IS column h. Down step: L = -(6h + 1), L + 2 = -(6h - 1): the reflection of column h.
+- So a base gear strikes the landing iff it strikes column h = (6h - 1, 6h + 1). The base
+  gears' forbidden classes of h are +-6^{-1} modulo g: fixed by the gear, independent of E and
+  of the direction. Checked at every machine 11 to 2000, both directions, every high gear in
+  reach: 0 mismatches (research/stack/r8/phase2_column.py, results_phase2_column.txt).
+- Gear roles on the high-gear line, per machine: base (2, 3, and the gears with primorial at
+  most q/2; classes fixed, = column h), sub non-base (from the next prime to sqrt q; classes
+  depend on E and direction), high (above sqrt q; strike only as g | L or g | L + 2, order 2
+  or 3). Example q = 499: base {2, 3, 5, 7}, sub non-base {11, 13, 17, 19}, high from 23.
+- Totals to 2000: in reach 86,396; column h open to the base 30,710; left by the whole
+  sub-machine 13,382; pass 3,639. High gears whose own column is a twin prime pair: 8,825, of
+  which 1,076 pass (their landings are open to the base for free, then meet the E-dependent
+  gears).
+- What this fixes: the base part of the residue test is not a second sieve at all; it is
+  the fields' own statement about column h. The E-dependence lives only in the sub non-base
+  gears (between the primorial bound and sqrt q). Widening the base pushes E out of the window
+  (base product must stay at most q/2), so the E-dependent band is exactly the price of the
+  landing ceiling.

@@ -2268,3 +2268,6 @@ name = "MirrorWalkSpiral"
 
 [[lean_lib]]
 name = "MirrorWalkFinal"
+
+[[lean_lib]]
+name = "MirrorWalkColumn"
