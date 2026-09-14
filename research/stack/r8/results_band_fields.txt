@@ -1,0 +1,43 @@
+For each band gear g at a machine q: which of g's fields exist in the window (q, q^2] and which
+of them strike the final step's landings E +- 6h.
+
+Fields of row g, keyed by the cofactor of g:
+  square      g^2 (and g^2 times more) -- g^2 in the window iff g^2 > q; for a band gear g <= sqrt q it is not
+  powers      g^j alone, in the window iff g^j <= q^2
+  higher:g,j  g times a product of j-1 primes all above g (smallest factor g), order j; exists iff g^j <= q^2
+  lower       g times something with a smaller gear: charged to the smaller gear's field, not g's
+The table gives, per band gear: the largest order possible, which pure powers sit in the window,
+and the orders of the landings' struck members whose smallest gear is g (both directions, every
+high gear in reach), plus whether g^2 ever divides a struck member.
+
+usage: uv run python research/stack/r8/band_fields.py 101 499 997 1999
+
+q = 101: window (101, 10201], base [2, 3, 5], band [7], high gears 22, E = 3179
+   band gear 7: g^2 = 49 below the window; pure powers in the window: ['g^3 = 343', 'g^4 = 2401']; largest order with smallest gear g: 4; struck landing members with smallest gear 7 by order: {2: 8, 3: 4}; g^2 divides a struck member: 2; examples: ['3283 = 7^2*67', '3353 = 7*479', '3367 = 7*13*37']
+
+q = 499: window (499, 249001], base [2, 3, 5, 7], band [11, 13, 17, 19], high gears 87, E = 119699
+   band gear 11: g^2 = 121 below the window; pure powers in the window: ['g^3 = 1331', 'g^4 = 14641', 'g^5 = 161051']; largest order with smallest gear g: 5; struck landing members with smallest gear 11 by order: {2: 11, 3: 10, 4: 1}; g^2 divides a struck member: 3; examples: ['120307 = 11*10937', '120461 = 11*47*233', '120593 = 11*19*577']
+   band gear 13: g^2 = 169 below the window; pure powers in the window: ['g^3 = 2197', 'g^4 = 28561']; largest order with smallest gear g: 4; struck landing members with smallest gear 13 by order: {2: 9, 3: 7, 4: 1}; g^2 divides a struck member: 2; examples: ['119873 = 13*9221', '120341 = 13*9257', '120523 = 13*73*127']
+   band gear 17: g^2 = 289 below the window; pure powers in the window: ['g^3 = 4913', 'g^4 = 83521']; largest order with smallest gear g: 4; struck landing members with smallest gear 17 by order: {2: 7, 3: 8}; g^2 divides a struck member: 0; examples: ['120139 = 17*37*191', '120173 = 17*7069', '120343 = 17*7079']
+   band gear 19: g^2 = 361 below the window; pure powers in the window: ['g^3 = 6859', 'g^4 = 130321']; largest order with smallest gear g: 4; struck landing members with smallest gear 19 by order: {2: 8, 3: 2}; g^2 divides a struck member: 0; examples: ['119947 = 19*59*107', '120137 = 19*6323', '120859 = 19*6361']
+
+q = 997: window (997, 994009], base [2, 3, 5, 7], band [11, 13, 17, 19, 23, 29, 31], high gears 157, E = 199079
+   band gear 11: g^2 = 121 below the window; pure powers in the window: ['g^3 = 1331', 'g^4 = 14641', 'g^5 = 161051']; largest order with smallest gear g: 5; struck landing members with smallest gear 11 by order: {2: 19, 3: 20, 4: 3}; g^2 divides a struck member: 3; examples: ['199397 = 11*18127', '199903 = 11*17*1069', '200057 = 11*13*1399']
+   band gear 13: g^2 = 169 below the window; pure powers in the window: ['g^3 = 2197', 'g^4 = 28561', 'g^5 = 371293']; largest order with smallest gear g: 5; struck landing members with smallest gear 13 by order: {2: 16, 3: 11, 4: 2}; g^2 divides a struck member: 1; examples: ['199303 = 13*15331', '199433 = 13*23^2*29', '199901 = 13*15377']
+   band gear 17: g^2 = 289 below the window; pure powers in the window: ['g^3 = 4913', 'g^4 = 83521']; largest order with smallest gear g: 4; struck landing members with smallest gear 17 by order: {2: 9, 3: 11}; g^2 divides a struck member: 2; examples: ['199699 = 17^2*691', '199733 = 17*31*379', '200923 = 17*53*223']
+   band gear 19: g^2 = 361 below the window; pure powers in the window: ['g^3 = 6859', 'g^4 = 130321']; largest order with smallest gear g: 4; struck landing members with smallest gear 19 by order: {2: 11, 3: 5}; g^2 divides a struck member: 1; examples: ['199481 = 19*10499', '199519 = 19*10501', '200621 = 19*10559']
+   band gear 23: g^2 = 529 below the window; pure powers in the window: ['g^3 = 12167', 'g^4 = 279841']; largest order with smallest gear g: 4; struck landing members with smallest gear 23 by order: {2: 10, 3: 5}; g^2 divides a struck member: 1; examples: ['199663 = 23*8681', '200261 = 23*8707', '201319 = 23*8753']
+   band gear 29: g^2 = 841 below the window; pure powers in the window: ['g^3 = 24389', 'g^4 = 707281']; largest order with smallest gear g: 4; struck landing members with smallest gear 29 by order: {2: 6, 3: 6}; g^2 divides a struck member: 1; examples: ['199723 = 29*71*97', '200419 = 29*6911', '200477 = 29*31*223']
+   band gear 31: g^2 = 961 below the window; pure powers in the window: ['g^3 = 29791', 'g^4 = 923521']; largest order with smallest gear g: 4; struck landing members with smallest gear 31 by order: {2: 4, 3: 3}; g^2 divides a struck member: 0; examples: ['199361 = 31*59*109', '201283 = 31*43*151', '203143 = 31*6553']
+
+q = 1999: window (1999, 3996001], base [2, 3, 5, 7], band [11, 13, 17, 19, 23, 29, 31, 37, 41, 43], high gears 289, E = 409499
+   band gear 11: g^2 = 121 below the window; pure powers in the window: ['g^4 = 14641', 'g^5 = 161051', 'g^6 = 1771561']; largest order with smallest gear g: 6; struck landing members with smallest gear 11 by order: {2: 33, 3: 29, 4: 12, 5: 1}; g^2 divides a struck member: 5; examples: ['409783 = 11*37253', '409937 = 11*83*449', '410443 = 11*37313']
+   band gear 13: g^2 = 169 below the window; pure powers in the window: ['g^3 = 2197', 'g^4 = 28561', 'g^5 = 371293']; largest order with smallest gear g: 5; struck landing members with smallest gear 13 by order: {2: 24, 3: 25, 4: 3}; g^2 divides a struck member: 5; examples: ['409903 = 13*31531', '410033 = 13*31541', '410657 = 13*31*1019']
+   band gear 17: g^2 = 289 below the window; pure powers in the window: ['g^3 = 4913', 'g^4 = 83521', 'g^5 = 1419857']; largest order with smallest gear g: 5; struck landing members with smallest gear 17 by order: {2: 17, 3: 24}; g^2 divides a struck member: 3; examples: ['409819 = 17*24107', '409853 = 17*24109', '410261 = 17*24133']
+   band gear 19: g^2 = 361 below the window; pure powers in the window: ['g^3 = 6859', 'g^4 = 130321', 'g^5 = 2476099']; largest order with smallest gear g: 5; struck landing members with smallest gear 19 by order: {2: 21, 3: 9, 4: 2}; g^2 divides a struck member: 3; examples: ['410153 = 19*21587', '410647 = 19*21613', '412927 = 19*103*211']
+   band gear 23: g^2 = 529 below the window; pure powers in the window: ['g^3 = 12167', 'g^4 = 279841']; largest order with smallest gear g: 4; struck landing members with smallest gear 23 by order: {2: 17, 3: 9}; g^2 divides a struck member: 1; examples: ['410573 = 23*17851', '411079 = 23*61*293', '411401 = 23*31*577']
+   band gear 29: g^2 = 841 below the window; pure powers in the window: ['g^3 = 24389', 'g^4 = 707281']; largest order with smallest gear g: 4; struck landing members with smallest gear 29 by order: {2: 12, 3: 10}; g^2 divides a struck member: 1; examples: ['409973 = 29*67*211', '410321 = 29*14149', '413453 = 29*53*269']
+   band gear 31: g^2 = 961 below the window; pure powers in the window: ['g^3 = 29791', 'g^4 = 923521']; largest order with smallest gear g: 4; struck landing members with smallest gear 31 by order: {2: 10, 3: 3}; g^2 divides a struck member: 0; examples: ['411773 = 31*37*359', '415183 = 31*59*227', '417787 = 31*13477']
+   band gear 37: g^2 = 1369 below the window; pure powers in the window: ['g^3 = 50653', 'g^4 = 1874161']; largest order with smallest gear g: 4; struck landing members with smallest gear 37 by order: {2: 8, 3: 6}; g^2 divides a struck member: 0; examples: ['410441 = 37*11093', '411403 = 37*11119', '415399 = 37*103*109']
+   band gear 41: g^2 = 1681 below the window; pure powers in the window: ['g^3 = 68921', 'g^4 = 2825761']; largest order with smallest gear g: 4; struck landing members with smallest gear 41 by order: {2: 13, 3: 2}; g^2 divides a struck member: 0; examples: ['410287 = 41*10007', '412747 = 41*10067', '413813 = 41*10093']
+   band gear 43: g^2 = 1849 below the window; pure powers in the window: ['g^3 = 79507', 'g^4 = 3418801']; largest order with smallest gear g: 4; struck landing members with smallest gear 43 by order: {2: 13}; g^2 divides a struck member: 0; examples: ['410177 = 43*9539', '410693 = 43*9551', '412241 = 43*9587']
