@@ -1,0 +1,17 @@
+Loop, iteration 8: offsets from gears with a property below the window, and from q's residues.
+Landing -1 + 2D.  P = base product, P_s = the first primorial above q/2, g_min its last gear.
+  C1: D = P (c1 - c2), c1 > c2 the two largest gears whose own column (6g-1, 6g+1) is a twin pair
+  C2: D = P (t1 - t2), the two largest gears that are twin members
+  C3: D = P (q - c1)
+  Q1: D = P_s * (q mod g_min)            Q2: D = P_s * ((q - 1) / 2 mod g_min)
+  Q3: D = P_s * (count of gears above the base)   Q4: D = P_s * (q mod 6 == 1 ? 2 : 1)
+Machines 11 to 5000: twin / in window.  usage: uv run python research/stack/r8/blind_rules8.py 5000
+
+machines 665 (11 to 5000): rule: twin / in window
+   C1  146 /  641
+   C2   64 /  221
+   C3  106 /  639
+   Q1   91 /  664
+   Q2  104 /  665
+   Q3   64 /  554
+   Q4  306 /  662

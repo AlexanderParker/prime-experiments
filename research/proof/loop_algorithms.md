@@ -126,3 +126,14 @@ three half-gaps 134 of 626; the largest of the three gaps 215 of 596; their lcm 
 top gap times the gear count 63 of 618; a mixed form 142 of 601; q times the top half-gap 33 of
 432. Verdict: the same quarter-to-a-third band, highest for the smallest D (largest gap: the
 landing sits lowest). Nothing above the base-open share.
+
+### 8. Offsets from column-twin gears and from q's residues (2026-09-15)
+
+research/stack/r8/blind_rules8.py, machines 11 to 5000. D = P times the slip of the two largest
+gears whose own column is a twin: 146 of 641; of the two largest twin-member gears: 64 of 221;
+q minus the largest column-twin gear: 106 of 639. D = P_s times q mod g_min: 91 of 664; times
+(q-1)/2 mod g_min: 104 of 665; times the gear count: 64 of 554; times 1 or 2 by q mod 6: 306 of
+662. The last is the descent at t = 1 or 2 chosen by q's class mod 6; it scores because t = 2
+is a twin at P_s = 2310 and 30030's ranges hold t = 3 (the machines 4620 to 5000 with q = 1 mod
+6 then fail); it is the first-gap table of the descent seen through q's class, not a mechanism.
+Verdict: same band, with one coincidental high mark.
