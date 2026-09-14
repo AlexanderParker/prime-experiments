@@ -178,8 +178,7 @@ residues of the primorial; it is the position of the first pair of primes in the
 
 Machines 11 to 5000 (665). D = P times two gears: the two smallest above the base 10 of 660;
 the two largest that fit 82 of 655; the smallest with the largest fitting 64 of 663; g_min
-squared 0 of 663 (2 P g^2 - 1 always struck: it is the column of g's own square family).
+squared 0 of 663 (measured; no reason established, checked: q = 101 gives 2939 with 2941 = 17 * 173).
 D = sums of primorials at most q^2/2: P_max + P_prev 4 of 644; P_max - P_prev 116 of 665;
 P_max + P_prev + P_prev2 148 of 641. Verdict: the band again (the sums of primorials carry
-P_prev and sit low). g_min squared is an exact zero: 2 P g^2 - 1 = (twice the square family
-column), a proved strike, worth keeping as a rule the walk must avoid.
+P_prev and sit low). The zero for g_min squared is a measurement to explain, not a proved rule.
