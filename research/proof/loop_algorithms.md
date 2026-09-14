@@ -161,3 +161,15 @@ machine to about 10^14 with ten stored integers; the integers are the secret kno
 primorial, and the conjecture in this form is: for every primorial P, some t at most about
 2 P_prev / p (the reach at the smallest machine) has 2 t P - 1 and 2 t P + 1 both prime.
 Verdict: the loop's target reduces to a rule for one integer per primorial; no rule found.
+
+### 11. Rules for the one integer per primorial (2026-09-15)
+
+First gaps extended to 61#: 1, 1, 2, 3, 4, 12, 2, 8, 11, 2, 37, 12, 72, 14, 7, 130 for 5# to 61#
+(the gap grows slowly; the reach at the smallest machine of each range, about 2 P_prev / p,
+grows as the primorial). Eleven rules for t from the primorial alone tested at the 16
+primorials: t = 1 (2 twins), 2 (3), the next gear (1), the last base gear (0), their difference
+(1), P mod the next gear (2), the inverse and minus inverse of 2P mod the next gear (0, 0),
+(next gear + 1)/2 (3), (last gear + 1)/2 (2), the number of base gears (2). No rule gives a
+twin at more than 3 of 16. Verdict: the one integer per primorial has no rule among the natural
+residues of the primorial; it is the position of the first pair of primes in the progression
+2 t P +- 1, i.e. the opening itself.
