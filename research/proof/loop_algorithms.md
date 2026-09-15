@@ -479,3 +479,19 @@ seeded with its family's hand-built walks plus random members of the family; per
 kept in results_evolve_walk4_<island>.json. Machines as entry 25. Smoke test at generation 0:
 spiral and spiral+flip 7 / 24 (sqout spiral then {2,3,h1} up), levels 2 / 28, descent 7 / 64
 (t = 3), flips 2 / 10. Run of 50 generations of 200 per island: running.
+
+Entry 26, short run (50 generations of 200 per island, 288 machines to 6000), final bests:
+- spiral and spiral+flip: streak 20 (to q = 113), total 84: sqout spiral on base {2,3} with two
+  periods, then a flip about {3, h_2} (the third gear above sqrt q) with the entering period.
+- levels: streak 8, total 65 (levels then a descent step, i.e. the descent alone).
+- descent: streak 282 (every sampled machine 31 to 5981), total 287 of 288: descent with
+  t = q mod 2 = 1, then a flip on the base B four periods up: landing 2 P_s - 1 + 8 B =
+  2 B (g_1 + 4) - 1, one number per base range: 107, 659, 6299, 78539, 1261259, twins at the
+  five bases 6 to 30030 (t = g_1 + 4 = 9, 11, 15, 17, 21 are gaps of those primorials'
+  stripes), then 23483459 at 510510 not a twin: dies from q = 1021021. Five ranges by chance,
+  one more than any earlier constant.
+- flips: streak 229 (to q = 4603), total 233: the constant 11 + 2B(g_4 + g_1) again.
+Verdict: the islands find their family's best per-range constant where the family allows one
+(descent, flips) and sit at the base-open share where it does not (spiral, levels). The
+descent island's winner is the descent at t = g_1 + 4: a fixed t rule that happens to hit the
+first gap's neighbourhood for five primorials. Long run (400 generations of 300) continuing.
