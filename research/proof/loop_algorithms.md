@@ -765,3 +765,10 @@ So the small mirror removes the affordability failures as expected; what is left
 of true residue failures, and the landing is a twin at 163 of 170 (the walk recovers from most
 defects, not all). The candidate count per step now runs from about q/12 at the top gear to
 q^2 / 60 at gear 5.
+
+Entry 36, K = 40 (93 machines, every prime to 200 then every fifth to 2000, foreground run):
+machines with a step lacking a keeping move: 4 of 93, all toy machines (11, 13, 17, 23); at
+every sampled machine from 29 to 2000 a keeping move existed at EVERY step. Landings in the
+window 92, twins 90 (the misses are among the toy machines). So with the mirror {2, 3, g} and
+forty periods each way, the one-step statement held at every step of every machine sampled
+above 23. Verification on every machine to 1500 follows.

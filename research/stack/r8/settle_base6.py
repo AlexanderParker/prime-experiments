@@ -40,14 +40,14 @@ def walk(m, K, flex=True):
     return L, fails, fewfit
 
 def main():
-    E.QMAX = 3000
+    E.QMAX = 1500
     N = E.QMAX * E.QMAX * 4 + 10; sv = np.ones(N + 1, dtype=bool); sv[:2] = False
     for i in range(2, int(N ** 0.5) + 1):
         if sv[i]: sv[i * i::i] = False
-    ps = list(primerange(11, E.QMAX + 1)); qs = [p for p in ps if p <= 200] + [p for i, p in enumerate(ps) if p > 200 and i % 3 == 0]
+    ps = list(primerange(11, E.QMAX + 1)); qs = [p for p in ps if p <= 1500]
     machines = [E.Machine(q, sv) for q in qs]
     out = [__doc__.strip(), ""]
-    for K in (15, 40):
+    for K in (40,):
         bad = []; twins = 0; inwin = 0
         for m in machines:
             L, f, ff = walk(m, K)
