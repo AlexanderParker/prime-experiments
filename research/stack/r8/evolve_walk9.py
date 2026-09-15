@@ -145,6 +145,7 @@ def main():
     popn = int(sys.argv[2]) if len(sys.argv) > 2 else 150
     seed = int(sys.argv[3]) if len(sys.argv) > 3 else 1
     random.seed(seed)
+    E.QMAX = int(sys.argv[4]) if len(sys.argv) > 4 else 4000   # smaller sieve: the earlier run was killed for memory
     N = E.QMAX * E.QMAX * 4 + 10; sv = np.ones(N + 1, dtype=bool); sv[:2] = False
     for i in range(2, int(N ** 0.5) + 1):
         if sv[i]: sv[i * i::i] = False
