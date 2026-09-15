@@ -752,3 +752,16 @@ fraction of q^2 and one or two candidates fit; when those happen to be struck th
 keeping move. Where several candidates fit, one keeps at nearly every step.
 Next change: shrink the mirror at every step to {2, 3, g} (P = 6) and visit 5 and 7 as gears,
 so that q/(12 g) or more candidates fit at every step, and measure the missing moves again.
+
+### 36. The settle walk with the smallest base {2, 3} (loop, 2026-09-16)
+
+research/stack/r8/settle_base6.py, results_settle_base6.txt (machines to 3000; the K = 40
+line was cut by the memory watchdog and reruns). Mirror {2, 3, g} at every step, 5 and 7
+visited as gears, full memory, K = 15: machines with a step lacking a keeping move fall from
+27 to 8 of 170, and of those only the toy machines 13 and 23 fail for want of candidates in
+range; at 1471, 1861, 2819, 2843 one step has more than three candidates in range and all are
+struck (a residue failure). Landings in the window 169 of 170, twins 163.
+So the small mirror removes the affordability failures as expected; what is left is a handful
+of true residue failures, and the landing is a twin at 163 of 170 (the walk recovers from most
+defects, not all). The candidate count per step now runs from about q/12 at the top gear to
+q^2 / 60 at gear 5.
