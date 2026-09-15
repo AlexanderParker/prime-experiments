@@ -320,3 +320,18 @@ primorial at most q^2/2) x machine rule (newest gear; twin member). Chain from (
 Verdict: the 'keep' rule is the pick-up walk restricted to the newest-gear machine; it reaches
 seven twins and stops where the base can no longer fit the window. No variant of this family
 carries the unsettled gears; the two walls are the same as entry 18.
+
+### 20. The two variants of entry 19 (2026-09-15, loop)
+
+Repair flip (a second flip on the base when no single flip keeps every settled gear) and the
+base allowed up to q^2, each with the window of the old machine or of the new gear.
+- Window of the old machine: 0 twins (the first flip from (-1, 1) on 6 lands at 5, at the
+  window's start, so the settle of 5 has no room; same as before).
+- Window of the new gear, base at most q^2/2: 8 twins, with or without the repair flip: the
+  chain of entry 19 plus (659, 661) at machine 29; then settling 31 on 210 from 659 has no
+  landing to 959 keeping 11, 13, 17, 19, 23, 29 off their teeth (the two flips available inside
+  the window cannot satisfy six gears' two teeth each).
+- Base at most q^2: 5 twins; the larger base (210 from machine 17) leaves fewer flips inside.
+Verdict: the repair flip adds nothing (the window holds at most two landings once the base is
+210); the base bound trades flips for carried gears one for one. The family is exhausted at
+the gcd wall.
