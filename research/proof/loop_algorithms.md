@@ -529,3 +529,12 @@ then {2,3,h_1}: 7 / 24 (pure); sqout then 6 * hi_free[1]: 7 / 18; descent then k
 The residue-selected flips do not beat the pure ones at the seeds: choosing the flip's own gear
 free settles that gear only, and the other gears take the landing at the usual share. Run of
 200 generations of 300: running.
+
+Entry 27, result (200 generations of 300, 288 machines to 6000): by generation 20 the best is
+the constant 11 + 2B(g_4 + g_1) again (streak 229 to q = 4603, total 233), first found with
+k_avoid periods (which return k = 1 there) and then replaced by its pure equivalent through
+the purity tie-break; unchanged to generation 199. The residue-selection rules (hi_free,
+hi_far, hi_adj, hi_res, k_avoid, k_center) appear in no winner: choosing the flip's gear or one
+period by a residue settles one gear, and the landing meets the rest at the base-open share.
+Verdict: under the owner's line (gear and period selection by residues allowed, landing tests
+barred) the search finds nothing beyond the per-range constants and the base-open share.

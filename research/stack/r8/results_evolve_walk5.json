@@ -1,0 +1,994 @@
+{
+ "elite": [
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 4
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "count_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 4
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 6
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 4
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "count_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "count_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 4
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 6
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 4
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 4
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 1
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "count_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 4
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "enter",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 0
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 0
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  }
+ ],
+ "best_fitness": [
+  229,
+  0,
+  233,
+  1,
+  -2
+ ],
+ "best": "origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+ "best_pure": "origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+ "best_pure_fitness": [
+  229,
+  0,
+  233,
+  1,
+  -2
+ ],
+ "log": [
+  "gen 140: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 141: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 142: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 143: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 144: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 145: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 146: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 147: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 148: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 149: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 150: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 151: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 152: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 153: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 154: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 155: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 156: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 157: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 158: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 159: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 160: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 161: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 162: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 163: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 164: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 165: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 166: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 167: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 168: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 169: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 170: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 171: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 172: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 173: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 174: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 175: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 176: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 177: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 178: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 179: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 180: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 181: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 182: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 183: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 184: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 185: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 186: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 187: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 188: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 189: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 190: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 191: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 192: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 193: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 194: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 195: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 196: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 197: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 198: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up",
+  "gen 199: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[3] xenter[4] up; flip B_x_above[0] xenter[5] up"
+ ]
+}
