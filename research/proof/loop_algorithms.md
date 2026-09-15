@@ -731,3 +731,10 @@ number of periods. Previous gear carried in the mirror {base, g, g_prev}, K = 15
 (twins 133): the mirror grows by a factor g_prev and few periods stay inside the range.
 Verdict: the count of missing keeping moves is set by the lookahead, not by the periods; a
 larger mirror is worse (the affordability limit again). Next: the flex scoring at K = 60.
+
+Entry 34, addendum: with the lookahead enabled, K = 60 and K = 120 give exactly the same 27
+machines and the same failing steps as K = 15 (q = 11, 13, 17, 23, 61, 67, 73, 79, 83, 89,
+127, 431 with 7, ...): the extra periods never supply a keeping move where the first fifteen
+did not. So the missing moves are not for want of periods; at those steps few candidates fit
+the range at all, or every candidate in range is struck. Measured next: the number of in-range
+candidates at each failing step and which gears strike them.
