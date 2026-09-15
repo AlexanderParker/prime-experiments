@@ -2,6 +2,38 @@
  "elite": [
   {
    "origin": {
+    "kind": "twin_pair",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "two_x_below",
+      "a": 4
+     },
+     "period": {
+      "kind": "k_avoid",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "spiral",
+     "set": "top_a",
+     "order": "asc",
+     "start": "down",
+     "base": "23",
+     "k": 1,
+     "a": 1
+    }
+   ]
+  },
+  {
+   "origin": {
     "kind": "home",
     "a": 1
    },
@@ -873,114 +905,76 @@
      }
     }
    ]
-  },
-  {
-   "origin": {
-    "kind": "home",
-    "a": 1
-   },
-   "steps": [
-    {
-     "type": "flip",
-     "mirror": {
-      "kind": "three_x_hi_mod6",
-      "a": 1
-     },
-     "period": {
-      "kind": "gap_mod",
-      "a": 5
-     },
-     "dir": {
-      "kind": "alt",
-      "a": 0
-     }
-    },
-    {
-     "type": "flip",
-     "mirror": {
-      "kind": "two_x_below",
-      "a": 4
-     },
-     "period": {
-      "kind": "k_avoid",
-      "a": 2
-     },
-     "dir": {
-      "kind": "up",
-      "a": 0
-     }
-    }
-   ]
   }
  ],
  "best_fitness": [
-  -0.8912,
-  4,
-  32,
+  -0.8896,
+  3,
+  27,
   0,
   -2
  ],
- "best": "origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+ "best": "origin twin_pair[1]; flip two_x_below[4] xk_avoid[2] up; spiral top_a[1] asc down base 23 k1",
  "log": [
-  "gen 90: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 91: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 92: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 93: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 94: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 95: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 96: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 97: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 98: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 99: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 100: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 101: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 102: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 103: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 104: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 105: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 106: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 107: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 108: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 109: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 110: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 111: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 112: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 113: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 114: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 115: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 116: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 117: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 118: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 119: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 120: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 121: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 122: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 123: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 124: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 125: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 126: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 127: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 128: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 129: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 130: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 131: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 132: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 133: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 134: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 135: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 136: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 137: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 138: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 139: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 140: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 141: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 142: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 143: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 144: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 145: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 146: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 147: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 148: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
-  "gen 149: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3"
+  "gen 240: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 241: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 242: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 243: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 244: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 245: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 246: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 247: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 248: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 249: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 250: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 251: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 252: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 253: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 254: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 255: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 256: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 257: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 258: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 259: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 260: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 261: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 262: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 263: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 264: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 265: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 266: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 267: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 268: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 269: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 270: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 271: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 272: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 273: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 274: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 275: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 276: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 277: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 278: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 279: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 280: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 281: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 282: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 283: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 284: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 285: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 286: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 287: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 288: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 289: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 290: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 291: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 292: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 293: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 294: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 295: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 296: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 297: mean log2(1 + distance) 0.8912; streak from 31: 4 (to q = 43); twins 32 of 88; pure 0; 2 steps: origin home[1]; flip three_x_hi_mod6[1] xgap_mod[5] alt; flip two_x_below[4] xk_avoid[2] step_mod3",
+  "gen 298: mean log2(1 + distance) 0.8896; streak from 31: 3 (to q = 41); twins 27 of 88; pure 0; 2 steps: origin twin_pair[1]; flip two_x_below[4] xk_avoid[2] up; spiral top_a[1] asc down base 23 k1",
+  "gen 299: mean log2(1 + distance) 0.8896; streak from 31: 3 (to q = 41); twins 27 of 88; pure 0; 2 steps: origin twin_pair[1]; flip two_x_below[4] xk_avoid[2] up; spiral top_a[1] asc down base 23 k1"
  ]
 }

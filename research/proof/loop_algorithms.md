@@ -618,3 +618,18 @@ alternating; then flip on twice the fifth prime below q with the smallest period
 of the third gear above the base. Machine-varying (its landing moves with q's neighbouring
 primes); 32 of 88 is the base-open share. The fitness improved from 1.72 (generation 0) to
 0.89 (generation 50) and then held. Longer run from the elite: launched.
+
+Entry 30, long distinct-landings run (300 generations of 400 from the elite): the fitness
+moved from 0.8912 to 0.8896 with the twin count falling from 32 to 27 of 88 (a genome with
+nearer misses and fewer hits): a plateau. No machine-varying walk under the distance fitness
+rises above the base-open share.
+
+## Standing after thirty entries
+
+With the smooth fitness (distance to the nearest twin, balanced across base ranges) and tables
+barred, the evolution climbs for about fifty generations and then holds at the base-open
+share, about one machine in three, with landings a slot or two from a twin on average. With
+tables allowed it finds tables: two-key tables of up to fifteen landings, six of them twins.
+The walks that reach every machine (entries 13 to 15) remain the only ones at 100 percent, and
+they read the landing's phases. The evolutionary line, under every fitness tried, settles
+where the reach theorem says it must.
