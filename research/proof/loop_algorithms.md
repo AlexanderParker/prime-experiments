@@ -468,3 +468,14 @@ landing 17 + 6 P_s, streak 229 machines from 31 to q = 4603, total 232 of 288. T
 and descent were outcompeted by it from generation 10 (their streaks 5 to 7, totals 24 to 72).
 Verdict: with the hand-built walks as seeds the evolution converges to the same coincidence;
 the macro steps add no fixed rule above the base-open share.
+
+### 26. Islands: the hand-built families evolved independently (owner, 2026-09-15)
+
+research/stack/r8/evolve_walk4.py. Five populations, no migration, each with a membership rule
+enforced in fitness: spiral (a spiral step, no descent or levels), spiral+flip (a spiral then
+flips), levels, descent, flips (flips only and not base-only: some mirror from the gears below
+q, above sqrt q or the twin gears, or a period rule reading the window or q's residues). Each
+seeded with its family's hand-built walks plus random members of the family; per-island elites
+kept in results_evolve_walk4_<island>.json. Machines as entry 25. Smoke test at generation 0:
+spiral and spiral+flip 7 / 24 (sqout spiral then {2,3,h1} up), levels 2 / 28, descent 7 / 64
+(t = 3), flips 2 / 10. Run of 50 generations of 200 per island: running.
