@@ -28,8 +28,14 @@ def main():
     for i in range(2, int(N ** 0.5) + 1):
         if sv[i]: sv[i * i::i] = False
     idx = np.arange(5, N - 2, 6); twins = idx[sv[idx] & sv[idx + 2]].tolist()
-    ps = list(primerange(11, E.QMAX + 1)); qs = [p for p in ps if p <= 200] + [p for i, p in enumerate(ps) if p > 200 and i % 3 == 0]
+    # machines balanced across the base ranges (bases 6, 30, 210, 2310 below QMAX): up to 25 per range, spread
+    ps = list(primerange(11, E.QMAX + 1)); qs = []
+    for lo, hi in ((11, 60), (60, 420), (420, 4620), (4620, E.QMAX + 1)):
+        rng = [p for p in ps if lo <= p < hi]
+        step = max(1, len(rng) // 25); qs += rng[::step][:25]
     machines = [E.Machine(q, sv) for q in qs]
+    ranges = {}
+    for i, m in enumerate(machines): ranges.setdefault(m.B, []).append(i)
     start = next(i for i, m in enumerate(machines) if m.q >= 31)
     def distance(m, L):
         lo, hi = m.q + 1, m.q * m.q - 2
@@ -55,7 +61,8 @@ def main():
                 if ok: n += 1
                 else: break
             return n
-        return (-round(sum(ds) / len(ds), 4), streak(31), sum(oks), 0 if G.uses_residues(genome) else 1, -len(genome['steps']))
+        per_range = [sum(ds[i] for i in ix) / len(ix) for ix in ranges.values()]
+        return (-round(sum(per_range) / len(per_range), 4), streak(31), sum(oks), 0 if G.uses_residues(genome) else 1, -len(genome['steps']))
     out_path = Path("research/stack/r8/results_evolve_walk8.json")
     pop = []
     if out_path.exists():

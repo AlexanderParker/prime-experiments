@@ -589,3 +589,14 @@ five ranges by chance, or a machine-varying walk at the base-open share. The rea
 (entry 21) accounts for both. The evolutionary line is closed: no fitness or grammar over
 mirror rules has produced a walk that lands on a twin beyond chance without reading the
 landing, and none can, since every such walk's landing family is fixed by its gcd.
+
+### 30. Eighth form: fitness by distance to the nearest twin (owner, 2026-09-15)
+
+research/stack/r8/evolve_walk8.py. Each landing scored by its distance in slots to the
+nearest twin inside the window (0 at a twin; outside the window, the window's width plus the
+overshoot); primary fitness the mean of log2(1 + distance), averaged per base range and then
+over the ranges (so the range holding most machines cannot dominate); then the streak, the
+total, purity, steps. Machines balanced: up to 25 per base range for the bases 6, 30, 210,
+2310 below 6000. Seed ranking under the unbalanced set: descent t = 2 (distance 0.85, twins
+181, a constant twin in the 2310 range), descent t = 3 (1.56), descent then B * hi_free (1.64,
+1.72), one settled-set flip (1.74). Run of 150 generations of 300 with the balanced set: running.
