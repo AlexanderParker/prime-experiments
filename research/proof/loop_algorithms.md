@@ -550,3 +550,8 @@ machine's gears on a tooth at the landing (fewer better), then purity, then step
 one flip from home on set_free_fit with the entering period: streak 14 (to q = 89), total 20,
 mean gears on a tooth 1.59; the descent at t = 3: 7 / 64 / 1.55; descent then k_avoid: 1.29 on
 a tooth but 12 twins. Run of 150 generations of 300: running.
+
+Entry 28, first run: stopped by the system at generation 45 (low memory); at that point the
+best was the constant 11 + 2B(g_1 + g_4) again (streak 229, total 233, mean gears on a tooth
+0.59, pure). The settled-set flips did not hold the lead past the first generations. Resumed
+from the kept elite for 100 more generations.

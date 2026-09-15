@@ -1,0 +1,978 @@
+{
+ "elite": [
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 0
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 1
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 1
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B_x_above",
+      "a": 3
+     },
+     "period": {
+      "kind": "q_mod",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  }
+ ],
+ "best_fitness": [
+  229,
+  0,
+  233,
+  -0.59,
+  1,
+  -2
+ ],
+ "best": "origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+ "log": [
+  "gen 0: streak from 31: 14 (to q = 89); from 11: 20; total 20 of 288; mean gears on a tooth 1.59; pure 0; 1 steps: origin home[0]; flip set_free_fit[0] xenter[1] up",
+  "gen 1: streak from 31: 14 (to q = 89); from 11: 20; total 20 of 288; mean gears on a tooth 1.59; pure 0; 1 steps: origin home[0]; flip set_free_fit[0] xenter[1] up",
+  "gen 2: streak from 31: 20 (to q = 113); from 11: 0; total 25 of 288; mean gears on a tooth 1.552; pure 0; 1 steps: origin twin_pair[2]; flip set_free_fit[1] xk_avoid[3] up",
+  "gen 3: streak from 31: 20 (to q = 113); from 11: 0; total 25 of 288; mean gears on a tooth 1.552; pure 0; 1 steps: origin twin_pair[2]; flip set_free_fit[1] xk_avoid[3] up",
+  "gen 4: streak from 31: 39 (to q = 241); from 11: 0; total 41 of 288; mean gears on a tooth 212.188; pure 0; 1 steps: origin twin_pair[2]; flip Pmax_prev[3] xk_avoid[1] step_mod3",
+  "gen 5: streak from 31: 39 (to q = 241); from 11: 0; total 41 of 288; mean gears on a tooth 212.188; pure 0; 1 steps: origin twin_pair[2]; flip Pmax_prev[3] xk_avoid[1] step_mod3",
+  "gen 6: streak from 31: 39 (to q = 241); from 11: 0; total 41 of 288; mean gears on a tooth 2.948; pure 1; 1 steps: origin twin_pair[2]; flip Pmax_prev[2] xconst[0] step_mod3",
+  "gen 7: streak from 31: 39 (to q = 241); from 11: 0; total 41 of 288; mean gears on a tooth 2.948; pure 1; 1 steps: origin twin_pair[2]; flip Pmax_prev[2] xconst[0] step_mod3",
+  "gen 8: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 9: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 10: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 11: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 12: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 13: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 14: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 15: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 3.451; pure 1; 1 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] alt",
+  "gen 16: streak from 31: 48 (to q = 409); from 11: 0; total 53 of 288; mean gears on a tooth 1.826; pure 0; 1 steps: origin twin_pair[2]; flip set_free[0] xconst[1] alt",
+  "gen 17: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 18: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 19: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 20: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 21: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 22: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 23: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 24: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 25: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 26: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 27: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 28: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 29: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 30: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 31: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 32: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 33: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 34: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 35: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 36: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 37: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 38: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 39: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 40: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 41: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 42: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 43: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 44: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 45: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 46: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 47: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 48: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 49: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3",
+  "gen 50: streak from 31: 229 (to q = 4603); from 11: 0; total 233 of 288; mean gears on a tooth 0.59; pure 1; 2 steps: origin twin_pair[2]; flip B_x_above[0] xconst[1] up; flip B_x_above[3] xq_mod[2] step_mod3"
+ ]
+}
