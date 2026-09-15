@@ -279,3 +279,22 @@ route, because the mex's value is the record of the gears' teeth on the stretch,
 The free regime, where the mex is provably below the bound, needs every gear above the base to
 exceed twice their count, which never holds inside a window for the full gear set (at q = 2000
 the smallest gear above the base is 13 against a count near 300).
+
+### 18. Settle the next gear, then grow (owner's rule, 2026-09-15)
+
+Rule: base = the carried gears (product P); the next gear g = the first prime not in the base;
+flip on P (landing O + kP) taking the first k whose landing is off g's two teeth (provable:
+within three flips, the kernel's settle lemma; measured k = 1 or 2 at every step); g joins the
+base; the machine grows.
+- Machine = the newest gear: settle 5 from (-1, 1) on 6: k = 2, (11, 13), in (5, 25]. Settle 7
+  on 30: k = 1, (41, 43), in (7, 49]. Settle 11 on 210: the smallest landing 251 is past 121:
+  no flip on the base stays in the window. Stops at the third gear: the base 210 exceeds the
+  window (11, 121], the gcd wall.
+- Machine = the twin member found: the window (L, L^2] always holds the next base, but the gears
+  between the newest settled gear and L are not settled and strike: settle 13 on 2310 from
+  (461, 463): k = 1, (2771, 2773), off 13's teeth but 2773 = 47 * 59 and 2771 = 17 * 163; settle
+  23 on 9699690: (10243001, 10243003) struck by 29; settle 29: struck by 47. Twins at the steps
+  for 5, 7, 11, 17, 19 (by the unsettled gears' chance), struck at 13, 23, 29.
+Verdict: each settle step is provable and cheap; what cannot be done is to keep every settled
+gear settled without holding it in the base, and the base is bounded by the window (newest-gear
+machine) or the unsettled gears outnumber the settled (twin-member machine). Same wall.
