@@ -511,3 +511,21 @@ Verdict: with 400 generations the islands settle where the short run left them. 
 object any island finds is "discard the walk, land at a fixed multiple of P_s, shift by a fixed
 multiple of B": one integer per primorial range, chosen by chance across five ranges. Nothing
 machine-varying rises above the base-open share.
+
+### 27. Fifth form: residue rules for gear and period selection allowed (owner, 2026-09-15)
+
+Owner's clarification: the bar was on hunting landings by division; residue checks that
+choose a gear are allowed as long as the step does not test which landings are twins; a
+fitness term should favour genomes that reach the same output without residue checks.
+research/stack/r8/evolve_walk5.py adds gear-selection mirrors read at the current column
+before the flip: hi_free (a gear above sqrt q whose phase is off its two teeth, so the flip
+about {3, h} cannot be struck by h: a provable step), hi_far (the gear whose phase is farthest
+from a tooth), hi_mod6, hi_adj (2 P_s = 1 mod h), hi_res (q's residue in the middle third); and
+period rules steering one named gear (k_avoid: the smallest k off that gear's teeth; k_center:
+the k centring its phase). Fitness: streak from 31, streak from 11, total, purity (1 without
+residue rules, as a tie-break), fewer steps. Seeds: the hand-built walks and the residue-
+selected final flips. Seed ranking at generation 0: descent t = 3: 7 / 64 (pure); sqout spiral
+then {2,3,h_1}: 7 / 24 (pure); sqout then 6 * hi_free[1]: 7 / 18; descent then k_avoid: 7 / 12.
+The residue-selected flips do not beat the pure ones at the seeds: choosing the flip's own gear
+free settles that gear only, and the other gears take the landing at the usual share. Run of
+200 generations of 300: running.
