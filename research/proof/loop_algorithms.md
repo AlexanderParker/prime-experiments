@@ -377,3 +377,8 @@ where it lands on a twin in the window.
   of ranges, and each dies at a fixed primorial by the reach theorem's own arithmetic.
 Verdict: the grammar's best rules are coincidences over the first four primorial ranges,
 already dead beyond them. Consistent with entry 21.
+
+Addendum to entry 22: the grammar restricted to machine-varying mirrors (B*q, B*p, 6q, 6p, 30q,
+B*q*p), one and two flips, every origin: best 128 of 299, origin (29,31), B*q up then B*p down
+(the slip of the top pair from a twin origin: 29 + 2B(q - p)); then 105, 103, 96, 87. All in
+the base-open band. No machine-varying fixed rule leaves it.
