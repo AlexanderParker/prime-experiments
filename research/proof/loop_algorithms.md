@@ -307,9 +307,12 @@ fit) x k rule (first k off the new gear's teeth; first k off the teeth of the ne
 previously settled gear; k = 1) x base rule (all settled gears that fit q^2/2; the largest
 primorial at most q^2/2) x machine rule (newest gear; twin member). Chain from (-1, 1).
 - Best: 7 twins, every variant with the 'keep' k rule and the newest-gear machine: (-1,1) ->
-  (11,13) -> (41,43) -> (101,103)? ... settling 5, 7, 11, 13, 17, 19, 23 in turn, base up to
-  210, then at machine 23 (window (23, 529]) settling 29 needs a flip on 210 from 239 with no
-  landing inside: the gcd wall.
+  (11,13) on 6 -> (17,19) on 6 -> (29,31) on 6 -> (59,61) on 30 -> (149,151) on 30 -> (179,181)
+  on 30 -> (239,241) on 30, settling 5, 7, 11, 13, 17, 19, 23 in turn; then at machine 23
+  (window (23, 529], base 210) settling 29 from 239 on 210: the one landing inside, 449, has
+  451 = 11 * 41, the settled gear 11 back on its tooth, and the next landing 659 is past the
+  window. The settled gears outside the base (11 to 23) are not carried by the flip on 210 and
+  the window allows one flip: the gcd wall.
 - Twin-member machine: 4 twins at best (base the largest primorial, 'first' or 'keep'), then a
   gear not yet settled strikes (59 at the fifth step); 'all' base: 3 twins.
 - k = 1 never leaves the origin's window at machine 3 (the first flip on 6 lands at 5, below
