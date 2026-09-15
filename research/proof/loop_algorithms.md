@@ -719,3 +719,15 @@ a depth that never fails would be a search over the whole remaining walk, the si
 The flex rule of entry 14 (scoring by the next step's options) is depth 2 with a preference,
 which is why it lacks a keeping move at 27 machines against 46 here. Verdict: no d-step local
 lemma to depth 3.
+
+### 34. More periods, and the previous gear carried in the mirror (loop, 2026-09-16)
+
+research/stack/r8/settle_periods.py, results_settle_periods.txt (machines to 3947 for K = 15,
+to 3000 for the rest; the memory watchdog stopped the first run). Steps lacking a keeping move:
+K = 15, flex rule: 27 of 210 (twins 207). K = 30, flex: 27 of 170 (twins 167). K = 60 and 120
+without the flex scoring (its lookahead scan was gated off above 30 for cost): 152 of 170
+(twins 130, 132): without the one-step lookahead the walk runs into dead ends whatever the
+number of periods. Previous gear carried in the mirror {base, g, g_prev}, K = 15: 148 of 170
+(twins 133): the mirror grows by a factor g_prev and few periods stay inside the range.
+Verdict: the count of missing keeping moves is set by the lookahead, not by the periods; a
+larger mirror is worse (the affordability limit again). Next: the flex scoring at K = 60.

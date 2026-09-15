@@ -1,0 +1,10 @@
+Loop, entry 34: more periods instead of lookahead.  The full-memory settle walk (descending,
+flex rule) with K = 15, 30, 60, 120 periods on offer per step: machines (to 3947) with a step
+lacking a keeping move, and the landings that are twins.  Also the mirror {base, g, g_prev}
+(the previous gear carried in the mirror, so it needs no check) with K = 15.
+usage: uv run python research/stack/r8/settle_periods.py
+
+K = 30: machines with a step lacking a keeping move: 27 of 170: [(11, 1), (13, 1), (17, 1), (23, 2), (61, 2), (67, 1), (73, 3), (79, 1), (83, 2), (89, 1), (127, 1), (431, 7)]...; twins 167
+K = 60: machines with a step lacking a keeping move: 152 of 170: [(11, 1), (13, 1), (17, 1), (19, 2), (23, 2), (29, 1), (31, 1), (37, 2), (41, 1), (43, 2), (47, 2), (53, 2)]...; twins 130
+K = 120: machines with a step lacking a keeping move: 152 of 170: [(11, 1), (13, 1), (17, 1), (19, 2), (23, 2), (29, 1), (31, 1), (37, 2), (41, 1), (43, 2), (47, 2), (53, 2)]...; twins 132
+K = 15, previous gear carried: machines with a step lacking a keeping move: 148 of 170: [(11, 1), (13, 1), (17, 1), (23, 2), (43, 1), (59, 1), (61, 2), (67, 1), (73, 3), (79, 1), (83, 2), (89, 1)]...; twins 133
