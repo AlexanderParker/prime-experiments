@@ -201,3 +201,20 @@ primality.
   The first defect appears at every stage of the walk, most often in the last fifth.
 Verdict: the strongest residue-carrying rule so far: three quarters of the machines with no
 primality used. Not a guarantee; the failures are the small gears at the walk's end.
+
+### 14. The pick-up walk with a flexibility score and two repair flips (2026-09-15)
+
+research/stack/r8/pickup_walk_v2.py, results_pickup_walk_v2.txt, machines 11 to 2000 (299).
+Base with 2 and 3 forced in; gears visited from q downward (or small gears first, or large then
+small); at gear g the mirror is {base, g}, periods 1 to 15, both directions; the chosen move
+keeps every visited gear off its two teeth and, among those, leaves the next gear's step the
+most such moves ('flex'), ties by the largest distance of any phase from a tooth then the
+smaller move; after the last gear up to two repair flips about {base, s}, s a gear at most
+sqrt q, by the same rule over all gears. Uses the walk's own phases only.
+- Descending, distance score: 220 without repair, 291 with two repair flips.
+- Descending, flexibility score: 296 without repair (fails 11, 13, 17), 299 of 299 with two.
+- Small gears first, flexibility, two repairs: 299 of 299. Large-then-small: 299 of 299.
+Every landing is open to every gear by the walk's own check, hence a twin by the landing lemma;
+each was verified against the sieve. The walk carries residues by mirrors only and never
+consults primality or the window; it is not a closed formula (it reads its own phases) and it is
+not proved to always keep the invariant. Entry 15 runs it further.
