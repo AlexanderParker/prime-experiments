@@ -538,3 +538,15 @@ hi_far, hi_adj, hi_res, k_avoid, k_center) appear in no winner: choosing the fli
 period by a residue settles one gear, and the landing meets the rest at the base-open share.
 Verdict: under the owner's line (gear and period selection by residues allowed, landing tests
 barred) the search finds nothing beyond the per-range constants and the base-open share.
+
+### 28. Sixth form: multi-gear mirrors of settled gears, and a residue term (loop, 2026-09-15)
+
+research/stack/r8/evolve_walk6.py. New mirrors: at the current column the gears whose phase is
+off their two teeth are settled; a flip may take the mirror B times the first (a+1) settled
+gears above the base (set_free), above sqrt q (set_free_hi), or all settled gears above the
+base whose product keeps the mirror at most q^2/4 (set_free_fit); such a flip carries every
+settled gear in it. Fitness adds, after the streaks and the total, the mean number of the
+machine's gears on a tooth at the landing (fewer better), then purity, then steps. Seed ranking:
+one flip from home on set_free_fit with the entering period: streak 14 (to q = 89), total 20,
+mean gears on a tooth 1.59; the descent at t = 3: 7 / 64 / 1.55; descent then k_avoid: 1.29 on
+a tooth but 12 twins. Run of 150 generations of 300: running.
