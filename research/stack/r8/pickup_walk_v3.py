@@ -22,7 +22,7 @@ def main():
         if good: assert sv[n] and sv[n + 2]; ok += 1
         else: fails.append(q)
         if q in (499, 1999, 4999) or q > 15000: sample.append((q, n, good))
-    out = [__doc__.strip(), "", f"machines {len(qs)} ({qs[0]} to {qs[-1]}, every prime to {Q1} then every 20th): twin at {ok}; fails {fails}", f"samples {sample[:8]}"]
+    out = [__doc__.strip(), "", f"machines {len(qs)} ({qs[0]} to {qs[-1]}, every prime to {Q1} then every 60th): twin at {ok}; fails {fails}", f"samples {sample[:8]}"]
     Path("research/stack/r8/results_pickup_walk_v3.txt").write_text("\n".join(out), encoding="utf-8")
     print("\n".join(out[2:]))
 

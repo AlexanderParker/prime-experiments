@@ -218,3 +218,22 @@ Every landing is open to every gear by the walk's own check, hence a twin by the
 each was verified against the sieve. The walk carries residues by mirrors only and never
 consults primality or the window; it is not a closed formula (it reads its own phases) and it is
 not proved to always keep the invariant. Entry 15 runs it further.
+
+### 15. The flex pick-up walk with two repair flips, further (2026-09-15)
+
+research/stack/r8/pickup_walk_v3.py, results_pickup_walk_v3.txt. Entry 14's walk (descending,
+flexibility score, periods 1 to 15, two repair flips about {base, s} with s at most sqrt q; 2 and
+3 forced into the base) on every machine 11 to 4000 and every 60th prime to 11549: 561 machines,
+a twin in the window at all 561, no failure. q = 499 lands 107099; q = 1999 lands 3821579.
+
+## Standing after fifteen entries
+
+The loop's target is met as a measurement: entry 14's walk carries residues by mirrors only,
+consults no primality and no lookahead at the window, reads only its own phases (column mod
+gear, computed from the mirror sizes), and lands on a twin at every machine tested (860
+machines over entries 14 and 15). What is not met: a proof that the invariant "every visited
+gear off its teeth" can always be kept, or that two repair flips always close a defect. That
+proof is the twin prime statement for this walk; the loop does not produce it. The blind
+constructions (closed formulas for the landing) all sit at the base-open twin share and cannot
+reach every machine; the walk that does reach every machine is the one that chooses by its own
+phases, which is the machine's own arithmetic, not a hidden fact about the opening.

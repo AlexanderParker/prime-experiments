@@ -1,0 +1,7 @@
+Loop, iteration 15: the flex pick-up walk with two repair flips, checked further.
+Same as entry 14 'desc, flex, repair 2', with 2 and 3 forced into the base (so every landing is a
+left member), run on every machine 11 to 5000 and on a sample of larger machines to 20000.
+usage: uv run python research/stack/r8/pickup_walk_v3.py 5000 20000
+
+machines 561 (11 to 11549, every prime to 4000 then every 60th): twin at 561; fails []
+samples [(499, 107099, True), (1999, 3821579, True)]
