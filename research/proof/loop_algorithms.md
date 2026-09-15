@@ -355,3 +355,25 @@ Consequence for the loop's target: no walk built from mirror actions alone can b
 land on a twin in the window without reading the teeth of the gears outside its gcd; the
 guarantee it can give ends at the base. Any provable walk needs a mechanism other than
 mirrors to control the residues above the base, or a proof of the window statement itself.
+
+### 22. Every one- and two-flip rule from a grammar (owner: not all combinations tried; 2026-09-15)
+
+research/stack/r8/rule_grammar_search.py, results_rule_grammar_search.txt, machines 11 to
+2000. Origins: home, the twin gear pairs (5,7) to (41,43), the top twin gear pair, the top one
+at most sqrt q. Mirrors: the spiral base B, the largest primorial at most q^2/2 and the one
+below, B*q, B*p, B*g (g the first gear above the base), 6q, 6p, 30q, B*q*p. Periods 1 to 3,
+both directions. 480 one-flip and 28800 two-flip fixed rules, each scored by the machines
+where it lands on a twin in the window.
+- Top scores: origin (17,19), flip B*g three periods up: 296 of 299; (41,43) with B*g twice
+  up: 286; the top twin gears at most sqrt q with the primorial below the largest, once up:
+  265; home with B*g twice up: 222. Two flips add nothing above 296.
+- What the top rules are: B*g = P_s, the first primorial above q/2, which takes four values
+  across the 299 machines (30, 210, 2310, 30030); the landing 17 + 6 P_s is therefore one of
+  four numbers, 197, 1277, 13877, 180197, the first three twins, and the score counts the
+  machines sharing those ranges. Followed through the primorials: 180197 at 13# is not a twin,
+  and from 17# on the landing 17 + 6 P_s is divisible by 17, the origin gear, at every
+  primorial. (41,43) + 4 P_s: twins at 7# and 11# only, divisible by 41 from 41#. Every
+  high-scoring rule is a base-only offset, one landing per primorial range, its score a count
+  of ranges, and each dies at a fixed primorial by the reach theorem's own arithmetic.
+Verdict: the grammar's best rules are coincidences over the first four primorial ranges,
+already dead beyond them. Consistent with entry 21.
