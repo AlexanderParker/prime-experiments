@@ -241,3 +241,18 @@ proofs/MirrorWalkInWindow.lean (round 56, built, 0 sorries, standard axioms):
 What the piece does not cover: the gears g with 2g + 3 > q (the top few, visited first from
 home, where the column is low and the up move fits anyway), and the residue condition, which
 is the next piece.
+
+# The settle walk: piece 2, the residues (status, 2026-09-16)
+
+Measurement research/stack/r8/settle_defects.py, results_settle_defects.txt: the full-memory
+settle walk (descending, K = 15, flex rule, no repairs) on 210 machines to 3947. At 27 machines
+some step has NO move among the thirty (fifteen periods, up and down, inside the range) that
+keeps every visited gear off its teeth: q = 11, 13, 17, 23, 61, 67, 73, 79, 83, 89, 127, then
+431 (7 such steps), 443, 461 (8), 479, 499 (6), 521, 547, 569, ... The walk takes the move with
+the fewest gears on a tooth (one, at most two) and later steps re-settle them; the landing is
+a twin at all but the three smallest of those machines.
+So the local lemma "from a settled column, one of the thirty spaced columns is settled" is
+false as stated: the walk succeeds by recovering, not by never failing. Piece 2 cannot be a
+one-step lemma; it is the statement that the walk's final column is off every gear's teeth,
+which is the twin statement for the walk's own family. Piece 1 (the window) stands; piece 2 is
+where the proof is missing, and the measurement says it is not a local fact.
