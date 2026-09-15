@@ -2280,3 +2280,6 @@ name = "MirrorWalkLevels"
 
 [[lean_lib]]
 name = "MirrorWalkDescent"
+
+[[lean_lib]]
+name = "MirrorWalkReach"

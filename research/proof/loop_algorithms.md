@@ -335,3 +335,23 @@ base allowed up to q^2, each with the window of the old machine or of the new ge
 Verdict: the repair flip adds nothing (the window holds at most two landings once the base is
 210); the base bound trades flips for carried gears one for one. The family is exhausted at
 the gcd wall.
+
+### 21. The reach theorem: what a mirror walk carries, exactly (2026-09-15)
+
+Kernel proofs/MirrorWalkReach.lean (round 55, built, 0 sorries, standard axioms):
+- gcdL_dvd_combo, gcdL_is_combo, multiple_reachable: a walk from home on mirrors M_1..M_n, any
+  periods, directions, repeats and order, lands at -1 + 2D with D an integer combination of
+  the mirrors; D is a multiple of their gcd G, and every multiple of G is such a D (Bezout on
+  a list). The reachable columns are exactly -1 + 2 G Z.
+- landing_open_of_dvd_combo: the landing is open to every gear dividing D (residue -1 carried).
+- struck_reachable: for a gear g coprime to 2G, some reachable column is struck by g: the walk
+  guarantees nothing about g.
+- gcd_le_of_in_window: a landing inside (q, q^2] forces 2G <= q^2 + 1.
+Closed statement: a mirror walk guarantees openness by construction to exactly the gears of
+its gcd, and inside the window that gcd is at most (q^2 + 1)/2, one primorial's worth. Chains
+of windows change nothing: every landing of every chain lies in -1 + 2 G Z for the gcd of all
+mirrors used, and each window's bound applies to the landing inside it.
+Consequence for the loop's target: no walk built from mirror actions alone can be proved to
+land on a twin in the window without reading the teeth of the gears outside its gcd; the
+guarantee it can give ends at the base. Any provable walk needs a mechanism other than
+mirrors to control the residues above the base, or a proof of the window statement itself.
