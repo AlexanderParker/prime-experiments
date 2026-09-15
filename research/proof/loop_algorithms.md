@@ -707,3 +707,15 @@ rules for one gear or one period) falls back to the base-open share or below. Ev
 reads nothing lands at the base-open share or is a lookup table. The evolutionary search has
 converged, under nine forms and seven fitness definitions, on the same two outcomes the reach
 theorem predicts. Loop stopped.
+
+### 33. Keeping paths with lookahead (loop, 2026-09-16)
+
+research/stack/r8/settle_lookahead.py, results_settle_lookahead.txt, 210 machines to 3947,
+full-memory settle walk, descending, K = 15, taking the first keeping move (no flex scoring)
+and demanding a keeping path of depth d ahead. Machines with a step lacking a d-keeping move:
+depth 1: 195 of 210 (landings twins at 149); depth 2: 46 (twins 200); depth 3: 28 (twins 207;
+q = 431 with 14 such steps, 461 with 21). Lookahead lowers the count and does not remove it;
+a depth that never fails would be a search over the whole remaining walk, the sieve.
+The flex rule of entry 14 (scoring by the next step's options) is depth 2 with a preference,
+which is why it lacks a keeping move at 27 machines against 46 here. Verdict: no d-step local
+lemma to depth 3.

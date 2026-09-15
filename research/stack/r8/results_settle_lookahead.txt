@@ -1,0 +1,10 @@
+Loop, entry 33: does a keeping move exist with lookahead?  At each step of the full-memory
+settle walk (descending, K = 15), a move is 'd-keeping' if it keeps every visited gear off its
+teeth and there is a d-keeping move at the next step (depth d), i.e. a keeping path of d steps
+exists.  For depth d = 1, 2, 3: the machines (to 3947) with a step where no d-keeping move
+exists.  If some depth never fails, the local lemma is a d-step statement.
+usage: uv run python research/stack/r8/settle_lookahead.py
+
+depth 1: machines with a step lacking a 1-keeping move: 195 of 210: [(11, 1), (13, 1), (17, 1), (23, 2), (29, 1), (37, 1), (41, 1), (43, 1), (53, 1), (59, 2), (61, 2), (67, 2), (71, 1), (73, 4)]...; landings that are twins 149
+depth 2: machines with a step lacking a 2-keeping move: 46 of 210: [(11, 2), (13, 2), (17, 2), (23, 3), (61, 3), (67, 2), (73, 5), (79, 2), (83, 3), (89, 4), (101, 2), (107, 3), (109, 2), (131, 2)]...; landings that are twins 200
+depth 3: machines with a step lacking a 3-keeping move: 28 of 210: [(11, 3), (13, 3), (17, 3), (23, 3), (61, 4), (67, 3), (73, 7), (79, 3), (83, 4), (89, 3), (109, 3), (431, 14), (443, 3), (461, 21)]...; landings that are twins 207
