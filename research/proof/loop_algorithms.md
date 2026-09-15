@@ -610,3 +610,11 @@ sqrt q and on the primorial range): 431 (machines 127..241), 4637 (293..839), 46
 fifteen; the distance fitness favours it because its misses sit a few slots from a twin in the
 dense low window. A table with two keys, not a mechanism. Next run adds a distinct-landings
 requirement (at least 80 percent of the machines must land on different columns).
+
+Entry 30, distinct-landings run (at least 80 percent of the machines landing on different
+columns; 150 generations of 300): best mean log2(1 + distance) 0.8912, twins 32 of 88, streak 4:
+home; flip on 3h with h the first gear above sqrt q with h = 5 mod 6, period the top gap mod 5,
+alternating; then flip on twice the fifth prime below q with the smallest period off the teeth
+of the third gear above the base. Machine-varying (its landing moves with q's neighbouring
+primes); 32 of 88 is the base-open share. The fitness improved from 1.72 (generation 0) to
+0.89 (generation 50) and then held. Longer run from the elite: launched.
