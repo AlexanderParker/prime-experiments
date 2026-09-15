@@ -1,0 +1,186 @@
+Single flips on whole field sets (owner, 2026-09-15): for each set of gears defined by a
+field property, one flip whose mirror is the product of ALL the gears in the set (the set as
+one mirror, not its gears one at a time), and the same for combinations (unions and
+intersections of two sets, and each set joined with the base).  Methodically: origin, set,
+mirror, direction, period; the landing; in the window or not; a twin, or the distance in
+slots to the nearest twin (capped).
+
+Field sets, per machine q (gears from 5 unless stated):
+  base        the spiral base (lowest gears with product at most q/2), 2 and 3 included
+  sqout       gears above the base at most sqrt q          sqin      gears above sqrt q
+  coltwin     gears whose own column (6g-1, 6g+1) is a twin pair
+  colopen     gears whose column is open to every base gear (from 5)
+  col5, col7  gears whose column is painted by 5 (by 7)
+  twinL/R     left / right members of twin gear pairs      solo      gears in no twin pair
+  m1, m5      gears = 1 mod 6 / = 5 mod 6
+  divq-1, divq+1   gears dividing q - 1 / q + 1            top3      the three top gears
+Origins: home (-1, 1) and the top twin gear pair.  Directions up and down.  Periods 1 and
+'enter' (the first period putting the landing above q).  A mirror above q^2 overshoots the
+window at one period; recorded as such.
+usage: uv run python research/stack/r8/field_set_flips.py 2000
+
+machines 105 (11 to 2000); rules 1600
+
+ twin inwin    n  mean log2(1+d)  set / combination, origin, direction, period   (top 40 by twins)
+   28   105  105           1.298  base                     toptwin  up    enter
+   28   105  105           1.731  base U divq+1            home     up    enter
+   27    99  105           1.276  base                     toptwin  up    1
+   22   105  105           1.798  base U divq-1            toptwin  up    1
+   22   105  105           1.798  base U divq-1            toptwin  up    enter
+   22    86  105           1.838  base U divq+1            home     up    1
+   21   105  105           1.364  base                     home     up    enter
+   21    50  105           0.995  base U col7              home     up    enter
+   21    37  105           0.895  base U sqout             home     up    enter
+   21    32  105           0.724  base U sqout             home     up    1
+   20   105  105           1.763  base U divq-1            home     up    enter
+   20   105  105           1.877  base U divq+1            toptwin  up    enter
+   20   103  105           1.846  base U divq+1            toptwin  up    1
+   16    82  105           1.893  base U divq-1            home     up    1
+    9    50  105           1.258  base U col7              toptwin  up    enter
+    8    44  105           1.203  base U col7              toptwin  up    1
+    8    37  105            1.63  base U sqout             toptwin  up    enter
+    8    36  105           1.509  base U sqout             toptwin  up    1
+    7   105  105           5.316  twinL I twinR            toptwin  up    enter
+    7   105  105           5.316  twinR I m5               toptwin  up    enter
+    6   105  105           5.015  twinL I twinR            home     up    enter
+    6   105  105           5.015  twinR I m5               home     up    enter
+    6    95   95           4.709  divq+1                   home     up    enter
+    5    87   87           5.343  sqout I twinL            home     up    enter
+    5    77   87           5.439  sqout I m5               home     up    enter
+    5    64   64           4.408  colopen I divq+1         home     up    enter
+    5    60   60             4.3  sqin I divq+1            home     up    enter
+    5    57   57           3.947  m5 I divq+1              home     up    enter
+    5    52   52           3.581  m1 I divq-1              home     up    enter
+    5    51   51           4.275  coltwin I divq+1         home     up    enter
+    5    13  105           0.996  base U col5              toptwin  up    enter
+    4   100  100           5.666  sqout I coltwin          toptwin  up    enter
+    4    69   79           5.408  sqout I col5             home     up    enter
+    4    60   60           4.685  twinR I divq-1           home     up    enter
+    4    46   46            4.02  twinL I divq+1           home     up    enter
+    4     8  105             0.5  base U col5              toptwin  up    1
+    3    65   65             5.5  m5 I divq-1              toptwin  up    enter
+    3    57   57            5.01  twinR I divq+1           home     up    enter
+    3    54   54           4.513  sqin I divq-1            home     up    enter
+    3    46   46           5.419  twinL I divq-1           toptwin  up    enter
+
+single sets, all variants:
+    0     0  105            None  base                     home     down  1
+    0     0  105            None  base                     home     down  enter
+    0     0  105            None  base                     home     up    1
+   21   105  105           1.364  base                     home     up    enter
+    0     0  105            None  base                     toptwin  down  1
+    0     0  105            None  base                     toptwin  down  enter
+   27    99  105           1.276  base                     toptwin  up    1
+   28   105  105           1.298  base                     toptwin  up    enter
+    0     0   92            None  col5                     home     down  1
+    0     0   92            None  col5                     home     down  enter
+    0     0   92            None  col5                     home     up    1
+    0     0   92            None  col5                     home     up    enter
+    0     0   92            None  col5                     toptwin  down  1
+    0     0   92            None  col5                     toptwin  down  enter
+    0     0   92            None  col5                     toptwin  up    1
+    0     0   92            None  col5                     toptwin  up    enter
+    0     0   55            None  col7                     home     down  1
+    0     0   55            None  col7                     home     down  enter
+    0     0   55            None  col7                     home     up    1
+    0     0   55            None  col7                     home     up    enter
+    0     0   55            None  col7                     toptwin  down  1
+    0     0   55            None  col7                     toptwin  down  enter
+    0     0   55            None  col7                     toptwin  up    1
+    0     0   55            None  col7                     toptwin  up    enter
+    0     0  105            None  colopen                  home     down  1
+    0     0  105            None  colopen                  home     down  enter
+    0     0  105            None  colopen                  home     up    1
+    0     0  105            None  colopen                  home     up    enter
+    0     0  105            None  colopen                  toptwin  down  1
+    0     0  105            None  colopen                  toptwin  down  enter
+    0     0  105            None  colopen                  toptwin  up    1
+    0     0  105            None  colopen                  toptwin  up    enter
+    0     0  105            None  coltwin                  home     down  1
+    0     0  105            None  coltwin                  home     down  enter
+    0     2  105           5.954  coltwin                  home     up    1
+    0     2  105           5.954  coltwin                  home     up    enter
+    0     0  105            None  coltwin                  toptwin  down  1
+    0     0  105            None  coltwin                  toptwin  down  enter
+    0     2  105           5.954  coltwin                  toptwin  up    1
+    0     2  105           5.954  coltwin                  toptwin  up    enter
+    0     0   95            None  divq+1                   home     down  1
+    0     0   95            None  divq+1                   home     down  enter
+    0     0   95            None  divq+1                   home     up    1
+    6    95   95           4.709  divq+1                   home     up    enter
+    0     0   95            None  divq+1                   toptwin  down  1
+    0     0   95            None  divq+1                   toptwin  down  enter
+    0    82   95           5.954  divq+1                   toptwin  up    1
+    0    95   95           5.954  divq+1                   toptwin  up    enter
+    0     0   95            None  divq-1                   home     down  1
+    0     0   95            None  divq-1                   home     down  enter
+    0     0   95            None  divq-1                   home     up    1
+    1    95   95           5.323  divq-1                   home     up    enter
+    0     0   95            None  divq-1                   toptwin  down  1
+    0     0   95            None  divq-1                   toptwin  down  enter
+    0    87   95           5.954  divq-1                   toptwin  up    1
+    0    95   95           5.913  divq-1                   toptwin  up    enter
+    0     0  105            None  m1                       home     down  1
+    0     0  105            None  m1                       home     down  enter
+    0     2  105           5.954  m1                       home     up    1
+    0     2  105           5.954  m1                       home     up    enter
+    0     0  105            None  m1                       toptwin  down  1
+    0     0  105            None  m1                       toptwin  down  enter
+    0     2  105           5.954  m1                       toptwin  up    1
+    0     2  105           5.954  m1                       toptwin  up    enter
+    0     0  105            None  m5                       home     down  1
+    0     0  105            None  m5                       home     down  enter
+    0     2  105           5.954  m5                       home     up    1
+    0     2  105           5.954  m5                       home     up    enter
+    0     0  105            None  m5                       toptwin  down  1
+    0     0  105            None  m5                       toptwin  down  enter
+    0     2  105           5.954  m5                       toptwin  up    1
+    0     2  105           5.954  m5                       toptwin  up    enter
+    0     0  101            None  solo                     home     down  1
+    0     0  101            None  solo                     home     down  enter
+    0     4  101           5.954  solo                     home     up    1
+    0     4  101           5.954  solo                     home     up    enter
+    0     0  101            None  solo                     toptwin  down  1
+    0     0  101            None  solo                     toptwin  down  enter
+    0     4  101           5.954  solo                     toptwin  up    1
+    0     4  101           5.954  solo                     toptwin  up    enter
+    0     0  105            None  sqin                     home     down  1
+    0     0  105            None  sqin                     home     down  enter
+    0     0  105            None  sqin                     home     up    1
+    0     0  105            None  sqin                     home     up    enter
+    0     0  105            None  sqin                     toptwin  down  1
+    0     0  105            None  sqin                     toptwin  down  enter
+    0     0  105            None  sqin                     toptwin  up    1
+    0     0  105            None  sqin                     toptwin  up    enter
+    0     0  100            None  sqout                    home     down  1
+    0     0  100            None  sqout                    home     down  enter
+    0    24  100           5.954  sqout                    home     up    1
+    0    46  100           5.601  sqout                    home     up    enter
+    0     0  100            None  sqout                    toptwin  down  1
+    0     0  100            None  sqout                    toptwin  down  enter
+    0    41  100           5.954  sqout                    toptwin  up    1
+    0    46  100           5.846  sqout                    toptwin  up    enter
+    0     0  105            None  top3                     home     down  1
+    0     0  105            None  top3                     home     down  enter
+    0     0  105            None  top3                     home     up    1
+    0     0  105            None  top3                     home     up    enter
+    0     0  105            None  top3                     toptwin  down  1
+    0     0  105            None  top3                     toptwin  down  enter
+    0     0  105            None  top3                     toptwin  up    1
+    0     0  105            None  top3                     toptwin  up    enter
+    0     0  105            None  twinL                    home     down  1
+    0     0  105            None  twinL                    home     down  enter
+    0     2  105           5.954  twinL                    home     up    1
+    0     2  105           5.954  twinL                    home     up    enter
+    0     0  105            None  twinL                    toptwin  down  1
+    0     0  105            None  twinL                    toptwin  down  enter
+    0     2  105           5.954  twinL                    toptwin  up    1
+    0     2  105           5.954  twinL                    toptwin  up    enter
+    0     0  105            None  twinR                    home     down  1
+    0     0  105            None  twinR                    home     down  enter
+    0     1  105           5.954  twinR                    home     up    1
+    0     1  105           5.954  twinR                    home     up    enter
+    0     0  105            None  twinR                    toptwin  down  1
+    0     0  105            None  twinR                    toptwin  down  enter
+    0     1  105           5.954  twinR                    toptwin  up    1
+    0     1  105           5.954  twinR                    toptwin  up    enter

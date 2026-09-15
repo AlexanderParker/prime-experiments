@@ -633,3 +633,24 @@ tables allowed it finds tables: two-key tables of up to fifteen landings, six of
 The walks that reach every machine (entries 13 to 15) remain the only ones at 100 percent, and
 they read the landing's phases. The evolutionary line, under every fitness tried, settles
 where the reach theorem says it must.
+
+### 32. Single flips on whole field sets and their combinations (owner, 2026-09-15)
+
+research/stack/r8/field_set_flips.py, results_field_set_flips.txt: 15 field sets (base, sqout,
+sqin, coltwin, colopen, col5, col7, twinL, twinR, solo, 1 and 5 mod 6, divisors of q - 1 and of
+q + 1, top three gears), the set as ONE mirror (the product of all its gears), plus every union
+and intersection of two sets and each set joined with the base; origins home and the top twin
+gear pair; up and down; one period and the first period entering the window; 1600 rules over
+105 machines 11 to 2000 (every prime to 173, then every fourth).
+- Every set larger than a few gears overshoots the window at one period (sqin, sqout above
+  q = 121, coltwin, twinL, twinR, solo, m1, m5, colopen, col5, col7 each have products far past
+  q^2): their single flips never land inside. Only the base, the divisor sets of q +- 1, the
+  top three gears, and small intersections fit.
+- Best by twins: the base as the mirror from the top twin gear pair, entering period, up: 28 of
+  105 (mean log2(1 + distance) 1.30); base with the divisors of q + 1 from home: 28 of 105; the
+  base from home: 21 of 105; base with sqout (fits at 37 machines): 21 of 37; base with col7
+  (fits at 50): 21 of 50. Intersections such as twinL with twinR (the gear 5) or divisor sets
+  land inside at most machines but on a twin at 5 to 7 of 105.
+- Downward flips and the top-three-gears mirror never land inside the window.
+Verdict: whole-set mirrors either overshoot or are the base; the ones that fit land at the
+base-open share (a quarter to a third), the same as every single flip carrying the base.
