@@ -237,3 +237,7 @@ proof is the twin prime statement for this walk; the loop does not produce it. T
 constructions (closed formulas for the landing) all sit at the base-open twin share and cannot
 reach every machine; the walk that does reach every machine is the one that chooses by its own
 phases, which is the machine's own arithmetic, not a hidden fact about the opening.
+
+Addendum to entry 15: the first run (thought lost) finished: every machine 11 to 5000 and every
+20th prime to 19891, 745 machines, a twin in the window at all 745, no failure. q = 4999 lands
+6842219; q = 15149 lands 138900299; q = 15881 lands 108722459.
