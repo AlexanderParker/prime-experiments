@@ -654,3 +654,22 @@ gear pair; up and down; one period and the first period entering the window; 160
 - Downward flips and the top-three-gears mirror never land inside the window.
 Verdict: whole-set mirrors either overshoot or are the base; the ones that fit land at the
 base-open share (a quarter to a third), the same as every single flip carrying the base.
+
+### 31. Ninth form: the settle walk with bounded residue memory (loop, 2026-09-15)
+
+research/stack/r8/evolve_walk9.py. The pick-up walk of entry 14 as a macro step with a memory
+w: at each gear's step the period and direction are chosen so that the gear and the last w
+visited gears are off their teeth (w = 0: the flip's own gear only, a provable step; w = all:
+entry 14). Fitness: streak from 31, streak from 11, total, then the smaller memory, then steps.
+Seed ranking at generation 0 (288 machines to 6000):
+  memory all, descending, K = 15, two repairs: streak 282 (every sampled machine 31 to 5981),
+    total 287 of 288 -- the successful run under the fitness, and the entry-14 walk;
+  memory 13: streak 31, total 89;  memory 5: streak 28, total 79;  memory 8: total 68;
+  memory 0 (only the flip's own gear checked): the best is a plain flip constant, streak 48.
+  small-first order with memory all: streak 7, total 237 to 253 (the small gears first leave
+  the large ones unsettled at the end).
+So the streak needs the whole memory: a walk checking only the last thirteen gears reaches a
+third of the machines. The residue checking that makes the walk succeed is the full check of
+every visited gear, which at the last step is the openness of the landing to every gear: the
+sieve on the candidates. The run continues to see whether evolution finds a smaller memory
+with the same streak.
