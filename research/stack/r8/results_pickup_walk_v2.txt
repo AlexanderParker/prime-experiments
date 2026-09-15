@@ -1,0 +1,30 @@
+Loop, iteration 14: the scoring pick-up walk, improved (phases only, no primality).
+Variants on entry 13 (K = 15):
+  order: 'desc' (q down to the smallest), 'desc-mid' (large gears descending, then the gears at
+         most sqrt q ascending), 'small-first-then-desc' (gears at most sqrt q ascending first,
+         then the rest descending)
+  score: 'dist' (entry 13) or 'flex' (prefer the move after which the NEXT gear's step has the
+         most invariant-keeping options; ties by dist)
+  repair: after the walk, up to R extra flips about {base, s} for s among the gears at most
+          sqrt q, each chosen by the same rule over all gears (R = 0, 2, 5)
+Reported: machines 11 to 2000: twin (= landing open to every gear) count.
+usage: uv run python research/stack/r8/pickup_walk_v2.py 2000
+
+order desc                   score dist repair 0: twin at 220 of 299; fails [11, 13, 17, 19, 37, 41, 43, 59, 67, 71]...
+order desc                   score dist repair 2: twin at 291 of 299; fails [37, 41, 43, 67, 71, 83, 107, 113]
+order desc                   score dist repair 5: twin at 291 of 299; fails [37, 41, 43, 67, 71, 83, 107, 113]
+order desc                   score flex repair 0: twin at 296 of 299; fails [11, 13, 17]
+order desc                   score flex repair 2: twin at 299 of 299; fails []
+order desc                   score flex repair 5: twin at 299 of 299; fails []
+order desc-mid               score dist repair 0: twin at 253 of 299; fails [11, 13, 17, 19, 37, 41, 43, 67, 71, 83]...
+order desc-mid               score dist repair 2: twin at 291 of 299; fails [37, 41, 43, 67, 71, 83, 107, 113]
+order desc-mid               score dist repair 5: twin at 291 of 299; fails [37, 41, 43, 67, 71, 83, 107, 113]
+order desc-mid               score flex repair 0: twin at 296 of 299; fails [11, 13, 17]
+order desc-mid               score flex repair 2: twin at 299 of 299; fails []
+order desc-mid               score flex repair 5: twin at 299 of 299; fails []
+order small-first-then-desc  score dist repair 0: twin at 249 of 299; fails [11, 13, 17, 19, 31, 37, 43, 67, 71, 149]...
+order small-first-then-desc  score dist repair 2: twin at 298 of 299; fails [67]
+order small-first-then-desc  score dist repair 5: twin at 298 of 299; fails [67]
+order small-first-then-desc  score flex repair 0: twin at 295 of 299; fails [11, 13, 17, 61]
+order small-first-then-desc  score flex repair 2: twin at 299 of 299; fails []
+order small-first-then-desc  score flex repair 5: twin at 299 of 299; fails []
