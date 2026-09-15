@@ -555,3 +555,7 @@ Entry 28, first run: stopped by the system at generation 45 (low memory); at tha
 best was the constant 11 + 2B(g_1 + g_4) again (streak 229, total 233, mean gears on a tooth
 0.59, pure). The settled-set flips did not hold the lead past the first generations. Resumed
 from the kept elite for 100 more generations.
+
+Entry 28, resumed run (100 more generations from the elite): unchanged; the constant
+11 + 2B(g_1 + g_4) at streak 229, mean gears on a tooth 0.59. The multi-gear settled mirrors
+appear in no winner. Verdict: same as entries 24 to 27.
