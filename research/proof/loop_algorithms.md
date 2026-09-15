@@ -459,3 +459,12 @@ ranking at generation 0 (streak from 31 / total of 288): descent t = 3: 7 / 64; 
 then {2,3,h_1} up: 7 / 24; descent t = 1: 6 / 52; sqout spiral: 5 / 72; sqout then {3, h_0}: 5 / 38.
 The hand-built walks without a residue-chosen final gear sit at the base-open share, as
 measured before (spiral landings 39 to 135 of 299). Run of 60 generations of 300: running.
+
+Entry 25, result (60 generations of 300, 288 machines to 6000): by generation 30 the best is
+origin (17,19), one flip on B * g1 = P_s (the first primorial above q/2) three periods up:
+landing 17 + 6 P_s, streak 229 machines from 31 to q = 4603, total 232 of 288. This is entry
+22's top rule, the per-range constant: 197, 1277, 13877 (twins) for the bases 6, 30, 210,
+180197 (not a twin) from q = 4621, and divisible by 17 from 17# on. The seeded spirals, levels
+and descent were outcompeted by it from generation 10 (their streaks 5 to 7, totals 24 to 72).
+Verdict: with the hand-built walks as seeds the evolution converges to the same coincidence;
+the macro steps add no fixed rule above the base-open share.
