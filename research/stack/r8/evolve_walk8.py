@@ -49,11 +49,13 @@ def main():
                 d = abs(c - L) // 6
                 best = d if best is None else min(best, d)
         return best if best is not None else width
+    distinct_min = float(sys.argv[4]) if len(sys.argv) > 4 else 0.0
     def fitness(genome):
-        ds = []; oks = []
+        ds = []; oks = []; lands = []
         for m in machines:
-            L = G.run_walk(genome, m); d = distance(m, L)
+            L = G.run_walk(genome, m); d = distance(m, L); lands.append(L)
             ds.append(math.log2(1 + d)); oks.append(d == 0)
+        if distinct_min > 0 and len(set(lands)) < distinct_min * len(machines): return (-99.0, 0, 0, 0, -9)
         def streak(s):
             n = 0
             for m, ok in zip(machines, oks):
@@ -63,7 +65,7 @@ def main():
             return n
         per_range = [sum(ds[i] for i in ix) / len(ix) for ix in ranges.values()]
         return (-round(sum(per_range) / len(per_range), 4), streak(31), sum(oks), 0 if G.uses_residues(genome) else 1, -len(genome['steps']))
-    out_path = Path("research/stack/r8/results_evolve_walk8.json")
+    out_path = Path(f"research/stack/r8/results_evolve_walk8{'_distinct' if distinct_min > 0 else ''}.json")
     pop = []
     if out_path.exists():
         try: pop = list(json.loads(out_path.read_text(encoding="utf-8")).get('elite', []))

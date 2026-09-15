@@ -1,0 +1,626 @@
+{
+ "elite": [
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 6
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 2
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 7
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 1
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 6
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 1
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 1
+     },
+     "period": {
+      "kind": "enter",
+      "a": 6
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 0
+     },
+     "period": {
+      "kind": "enter",
+      "a": 5
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "Pmax_prev",
+      "a": 2
+     },
+     "period": {
+      "kind": "enter",
+      "a": 3
+     },
+     "dir": {
+      "kind": "step_mod3",
+      "a": 0
+     }
+    }
+   ]
+  }
+ ],
+ "best_fitness": [
+  -0.4155,
+  0,
+  55,
+  1,
+  -1
+ ],
+ "best": "origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+ "log": [
+  "gen 90: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 91: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 92: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 93: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 94: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 95: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 96: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 97: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 98: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 99: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 100: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 101: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 102: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 103: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 104: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 105: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 106: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 107: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 108: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 109: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 110: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 111: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 112: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 113: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 114: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 115: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 116: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 117: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 118: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 119: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 120: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 121: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 122: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 123: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 124: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 125: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 126: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 127: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 128: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 129: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 130: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 131: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 132: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 133: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 134: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 135: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 136: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 137: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 138: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 139: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 140: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 141: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 142: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 143: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 144: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 145: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 146: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 147: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 148: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3",
+  "gen 149: mean log2(1 + distance) 0.4155; streak from 31: 0 (to q = -); twins 55 of 88; pure 1; 1 steps: origin top_twin_root[3]; flip Pmax_prev[0] xenter[5] step_mod3"
+ ]
+}

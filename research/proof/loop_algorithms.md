@@ -600,3 +600,13 @@ total, purity, steps. Machines balanced: up to 25 per base range for the bases 6
 2310 below 6000. Seed ranking under the unbalanced set: descent t = 2 (distance 0.85, twins
 181, a constant twin in the 2310 range), descent t = 3 (1.56), descent then B * hi_free (1.64,
 1.72), one settled-set flip (1.74). Run of 150 generations of 300 with the balanced set: running.
+
+Entry 30, result (150 generations of 300, 88 machines balanced over four base ranges): best
+mean log2(1 + distance) 0.4155, twins 55 of 88, streak 0: origin the top twin gear pair at most
+sqrt q, one flip on the primorial below the largest fitting the window, entering period, up.
+Decoded: the landing t + 2 P' takes fifteen values over the machines to 6000 (a table keyed on
+sqrt q and on the primorial range): 431 (machines 127..241), 4637 (293..839), 4649, 60089,
+60101 (1693..3469), 1021091 twins; 65, 425, 4631, 60119, 1021079 not. Six twin entries of
+fifteen; the distance fitness favours it because its misses sit a few slots from a twin in the
+dense low window. A table with two keys, not a mechanism. Next run adds a distinct-landings
+requirement (at least 80 percent of the machines must land on different columns).
