@@ -261,3 +261,21 @@ machine = the larger (or smaller) member of the landing.
   there are three or more, and the landing at k = 1 is decided by their teeth jointly.
 Verdict: the chain is the descent with t = 1 and a moving origin; it carries the base and no
 more, as the gcd fact says, and breaks at the fourth machine.
+
+### 17. The twins' version of the single-prime closed form (owner's suggestion, 2026-09-15)
+
+The single prime's next gap is the mex (the first residue missing) over the union of every
+gear's progression (-y) mod g + j g on the line (R4.d.ii, kernel mex_form). The twins have the
+same property, and it is already in the kernel: TopMachineWalk.lean defines Res G x as the union
+over gears of the TWO offsets, of the left member and of the right, and mexS G x as the first j
+outside it; open_mexS and mex_form prove that x + mexS is open to every gear of G, and is the
+least such, in the free regime (every gear larger than twice the gear count); mexS_le bounds it
+by 2 |G|. Measured here on the column line above q with every gear 5..q: the twin mex gives
+the first twin above q exactly at every machine 11 to 5000 (the 163 apparent misses are the
+machines where q itself heads a twin, which the mex, starting at j = 1, skips); mex at most 28,
+median 5. It is the stack locator of 2026-09-15 and the repair walk of 2026-09-13 in closed
+form: the same object, and its standing is the same as the nth prime's node, a FACT and not a
+route, because the mex's value is the record of the gears' teeth on the stretch, not a formula.
+The free regime, where the mex is provably below the bound, needs every gear above the base to
+exceed twice their count, which never holds inside a window for the full gear set (at q = 2000
+the smallest gear above the base is 13 against a count near 300).
