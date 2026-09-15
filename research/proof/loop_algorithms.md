@@ -559,3 +559,15 @@ from the kept elite for 100 more generations.
 Entry 28, resumed run (100 more generations from the elite): unchanged; the constant
 11 + 2B(g_1 + g_4) at streak 229, mean gears on a tooth 0.59. The multi-gear settled mirrors
 appear in no winner. Verdict: same as entries 24 to 27.
+
+### 29. Seventh form: per-range constants barred; residues as the target (loop, 2026-09-15)
+
+research/stack/r8/evolve_walk7.py. Mode 'varying' (a genome whose landings coincide within
+every base range scores zero), 120 generations of 300: best streak 54 (to q = 521), total 55 of
+288: origin the top twin gear pair at most sqrt q, one flip on 6h two periods up, h the first
+gear above sqrt q with h = 5 mod 6. Decoded: the landing t + 24h changes only when sqrt q
+crosses a prime, so it is a table keyed on sqrt q: 269 (machines 31..113), 419 (127..283), 569
+(293..523), three twins; then 713 = 23 * 31 and the landing falls below q from 541 on. A
+coincidence class the base check does not catch (a table keyed on a slowly varying quantity).
+The genuinely varying rules (landing changing at every machine) stay at the base-open share.
+Mode 'teeth' (mean gears on a tooth first): running.

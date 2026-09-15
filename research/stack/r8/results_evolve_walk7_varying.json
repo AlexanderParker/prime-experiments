@@ -1,0 +1,627 @@
+{
+ "elite": [
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 3
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "six_x_hi_mod6",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 2
+     },
+     "dir": {
+      "kind": "up",
+      "a": 0
+     }
+    }
+   ]
+  }
+ ],
+ "best_fitness": [
+  54,
+  0,
+  55,
+  -342.41,
+  0,
+  -1
+ ],
+ "best": "origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+ "log": [
+  "[varying] gen 60: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 61: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 62: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 63: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 64: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 65: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 66: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 67: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 68: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 69: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 70: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 71: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 72: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 73: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 74: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 75: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 76: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 77: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 78: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 79: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 80: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 81: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 82: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 83: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 84: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 85: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 86: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 87: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 88: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 89: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 90: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 91: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 92: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 93: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 94: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 95: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 96: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 97: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 98: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 99: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 100: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 101: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 102: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 103: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 104: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 105: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 106: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 107: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 108: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 109: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 110: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 111: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 112: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 113: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 114: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 115: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 116: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 117: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 118: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up",
+  "[varying] gen 119: streak from 31: 54 (to q = 521); total 55 of 288; mean on a tooth 342.41; pure 0; 1 steps: origin top_twin_root[0]; flip six_x_hi_mod6[1] xconst[2] up"
+ ]
+}
