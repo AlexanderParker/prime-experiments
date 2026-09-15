@@ -408,3 +408,16 @@ results_evolve_walk.json each generation. First run (fitness = streak from 11, 8
 population 200): stalled at a streak of 6 (to q = 29), the elite converged to one genome; the
 machines 11..29 with base {2,3} and windows to 841 decide the streak by luck. Second run with
 the reworked fitness and diversity: running.
+
+Entry 24, second run (fitness: streak from 31, then from 11, total, steps; 120 generations of
+300, machines 11 to 2999, 426): by generation 60 the streak reached 420, every machine from 31
+to 2999, total 424 of 426, with the genome: origin the third twin gear pair (11, 13); flip on
+B * g4 (the fourth gear above the base) once up; then flip on B * g1 with the first period that
+enters the window, up. Decoded: the first landing 11 + 2 B g4 already exceeds q throughout each
+base range, so the entering period is always 1 and the landing is 11 + 2B (g4 + g1): one number
+per base range, 227 (base 6), 1451 (base 30), 14291 (base 210), all twins, and 166331 at base
+2310, not a twin (the same number as entry 23's second rule, since g4 + g1 = g2 + g3 = 36
+there). The evolution rediscovered the per-range constant; with machines to 3000 only four
+ranges exist to be fitted. Third form, evolve_walk2.py: machines sampled eight per base range
+across the ranges of 6 to 43# (q to about 6 * 10^15, twin test by isprime), so a genome must
+work across eighteen ranges. Running.
