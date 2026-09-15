@@ -222,3 +222,22 @@ proofs/MirrorWalkDescent.lean (round 54, built, 0 sorries, standard axioms).
   2 t P_s - 1 and 2 t P_s + 1 are both prime for some t in the machine's reach. No landing, no
   E, no walk-dependent residue is in this statement; it is the window statement restricted to
   the columns open to the base, and the descent proves that every such column is reached.
+
+# The settle walk: piece 1, the walk is in the window (2026-09-16)
+
+Owner: one piece at a time; the walk needs to be proven in the window. Kernel
+proofs/MirrorWalkInWindow.lean (round 56, built, 0 sorries, standard axioms):
+- in_range_move: from a column L in [0, q^2 - 2], if the mirror fits (4 P g <= q^2 - 2) then
+  one period up or one period down stays in [0, q^2 - 2]. So the step always has an in-range
+  move for every gear with 4 P g <= q^2 - 2, whatever the residue rule then picks.
+- window_move: at the last step, from L in [-1, q^2 - 2], if 4 P g <= q^2 - q - 2 then some
+  number of periods up lands in (q, q^2 - 2], or one period down does: the walk can always end
+  inside the window.
+- base_fits: with the spiral base (2P <= q) both bounds hold for every gear with 2g + 3 <= q,
+  which is every gear but the largest few, and in particular the last gear of the descending
+  walk (the smallest above the base) at every machine q >= 2g + 3.
+- stays_in_range: the induction step; a walk taking only in-range moves has every column in
+  [-1, q^2 - 2].
+What the piece does not cover: the gears g with 2g + 3 > q (the top few, visited first from
+home, where the column is low and the up move fits anyway), and the residue condition, which
+is the next piece.

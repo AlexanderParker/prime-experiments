@@ -2283,3 +2283,6 @@ name = "MirrorWalkDescent"
 
 [[lean_lib]]
 name = "MirrorWalkReach"
+
+[[lean_lib]]
+name = "MirrorWalkInWindow"
