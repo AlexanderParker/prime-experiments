@@ -571,3 +571,21 @@ crosses a prime, so it is a table keyed on sqrt q: 269 (machines 31..113), 419 (
 coincidence class the base check does not catch (a table keyed on a slowly varying quantity).
 The genuinely varying rules (landing changing at every machine) stay at the base-open share.
 Mode 'teeth' (mean gears on a tooth first): running.
+
+Entry 29, mode 'teeth' (100 generations of 300): the winner from generation 0 to 99 is the
+descent at t = 2, landing 4 P_s - 1: mean gears on a tooth 0.635, total 181 of 288 (the base-
+2310 range holds most of the sampled machines and 9239 is a twin), streak 0 (23 and 119 at the
+bases 6 and 30 are not twins). A per-range constant again; asking for residues rather than
+twins changes nothing, because a landing with few gears on a tooth is a landing that is a
+twin at most machines of its range, and the base-only landings are the only ones that hold a
+low count across a whole range.
+
+## Standing after twenty-nine entries
+
+Seven evolutionary forms (plain, cross-range, seeded, islands, residue selection, settled-set
+mirrors, barred constants and residue target) and three grammar searches: every winner is a
+lookup table keyed on a slowly varying quantity (the base, or sqrt q), holding for three to
+five ranges by chance, or a machine-varying walk at the base-open share. The reach theorem
+(entry 21) accounts for both. The evolutionary line is closed: no fitness or grammar over
+mirror rules has produced a walk that lands on a twin beyond chance without reading the
+landing, and none can, since every such walk's landing family is fixed by its gcd.

@@ -1,0 +1,434 @@
+{
+ "elite": [
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "home",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 2
+     }
+    }
+   ]
+  }
+ ],
+ "best_fitness": [
+  -0.635,
+  0,
+  181,
+  1,
+  -1
+ ],
+ "best": "origin home[0]; descent t=const[2]",
+ "log": [
+  "[teeth] gen 40: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 41: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 42: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 43: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 44: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 45: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 46: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 47: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 48: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 49: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 50: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 51: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 52: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 53: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 54: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 55: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 56: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 57: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 58: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 59: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 60: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 61: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 62: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 63: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 64: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 65: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 66: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 67: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 68: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 69: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 70: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 71: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 72: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 73: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 74: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 75: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 76: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 77: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 78: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 79: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 80: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 81: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 82: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 83: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 84: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 85: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 86: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 87: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 88: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 89: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 90: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 91: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 92: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 93: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 94: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 95: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 96: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 97: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 98: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]",
+  "[teeth] gen 99: mean on a tooth 0.635; streak from 31: 0; total 181 of 288; pure 1; 1 steps: origin home[0]; descent t=const[2]"
+ ]
+}
