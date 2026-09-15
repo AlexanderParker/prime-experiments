@@ -241,3 +241,23 @@ phases, which is the machine's own arithmetic, not a hidden fact about the openi
 Addendum to entry 15: the first run (thought lost) finished: every machine 11 to 5000 and every
 20th prime to 19891, 745 machines, a twin in the window at all 745, no failure. q = 4999 lands
 6842219; q = 15149 lands 138900299; q = 15881 lands 108722459.
+
+### 16. The owner's chain: origin twin, base flip, machine grown by a member (2026-09-15)
+
+Convention (owner): a flip "on P" has its axis at P/2 from the origin centre, landing O + P;
+the pair map n -> 2a - n - 2 carries the gears dividing 2a = P. Chain: from the origin twin,
+base = the lowest gears with product at most q^2 that do not strike the origin (a gear striking
+the origin cannot be carried: from (5, 7) the gear 5 carries its own zero); landing O + P; next
+machine = the larger (or smaller) member of the landing.
+- (-1, 1) at machine 3, base {2, 3}: lands (5, 7). Machine 7 (or 5), base {2, 3} (5 strikes the
+  origin), gears above the base 5 and 7: lands (11, 13). Machine 13, base {2, 3, 5}, above 7,
+  11, 13: lands (41, 43). Machine 43, base {2, 3, 5, 7}, above 11 to 43: lands (251, 253),
+  253 = 11 * 23. Three twins, then the chain breaks; the same by the smaller member.
+- The family O + kP over the window at each machine: machine 7: 7 landings, twins at k = 1, 2,
+  4, 6; machine 13: 5 landings, twins at 1, 2, 3; machine 43: 8 landings, twins at 2, 4, 5, 6,
+  8 (k = 1 is the struck one). With the base limited to q^2 / 2 the chain breaks at once
+  (base {2} at machine 3 lands (1, 3)).
+- "One potential kill" holds only when exactly one gear lies above the base; from machine 13 on
+  there are three or more, and the landing at k = 1 is decided by their teeth jointly.
+Verdict: the chain is the descent with t = 1 and a moving origin; it carries the base and no
+more, as the gcd fact says, and breaks at the fourth machine.
