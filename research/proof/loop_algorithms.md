@@ -738,3 +738,17 @@ machines and the same failing steps as K = 15 (q = 11, 13, 17, 23, 61, 67, 73, 7
 did not. So the missing moves are not for want of periods; at those steps few candidates fit
 the range at all, or every candidate in range is struck. Measured next: the number of in-range
 candidates at each failing step and which gears strike them.
+
+### 35. Anatomy of the failing steps (loop, 2026-09-16)
+
+research/stack/r8/settle_failures.py, results_settle_failures.txt, machines to 3000, K = 15.
+Of the 80 steps lacking a keeping move, 77 have at most three of the thirty candidates inside
+the range [0, q^2 - 2] (most have one or two: q = 61 step 7, gear 31, column 2819: one
+candidate, struck by 31; q = 79 step 7, gear 47: one, struck by 47; q = 67 step 10: two,
+struck by 37 and 53), and only 3 have more than three candidates all struck (q = 11's step
+with 9 candidates all struck by 3, 5, 7, 11; q = 17's with 4; q = 73's with 4). So the failures
+are the affordability wall, not the residues: at the large gears the mirror 2Pg is a sizeable
+fraction of q^2 and one or two candidates fit; when those happen to be struck there is no
+keeping move. Where several candidates fit, one keeps at nearly every step.
+Next change: shrink the mirror at every step to {2, 3, g} (P = 6) and visit 5 and 7 as gears,
+so that q/(12 g) or more candidates fit at every step, and measure the missing moves again.
