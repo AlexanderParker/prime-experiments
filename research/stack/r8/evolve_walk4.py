@@ -57,6 +57,7 @@ def main():
     gens = int(sys.argv[1]) if len(sys.argv) > 1 else 40
     popn = int(sys.argv[2]) if len(sys.argv) > 2 else 200
     seed = int(sys.argv[3]) if len(sys.argv) > 3 else 1
+    prefix = sys.argv[4] if len(sys.argv) > 4 else ''
     random.seed(seed)
     N = E.QMAX * E.QMAX * 4 + 10; sv = np.ones(N + 1, dtype=bool); sv[:2] = False
     for i in range(2, int(N ** 0.5) + 1):
@@ -67,7 +68,7 @@ def main():
     print(f"machines {len(machines)} (11 to {qs[-1]})", flush=True)
     summary = []
     for island in ('spiral', 'spiral+flip', 'levels', 'descent', 'flips'):
-        out_path = Path(f"research/stack/r8/results_evolve_walk4_{island}.json")
+        out_path = Path(f"research/stack/r8/results_evolve_walk4_{prefix}{island}.json")
         pop = []
         if out_path.exists():
             try: pop = [g for g in json.loads(out_path.read_text(encoding="utf-8")).get('elite', []) if member(island, g)]
