@@ -115,14 +115,20 @@ def fitness(genome, machines):
     # primary: the streak of consecutive machines from the smallest that land on a twin in the window;
     # secondary: the total number of machines that do (selection pressure while the streak is short);
     # then fewer steps
-    streak = 0; total = 0; alive = True
+    # streak31: the run of consecutive successes from q = 31 (the machines 11..29 have windows of
+    # at most 841 and the base {2,3}; a rule's failure there says little); streak11 from q = 11
+    oks = []
     for m in machines:
         L = run_walk(genome, m)
-        ok = L is not None and m.q < L <= m.q * m.q - 2 and bool(m.sv[L] and m.sv[L + 2])
-        if ok: total += 1
-        if alive and ok: streak += 1
-        elif alive: alive = False
-    return (streak, total, -len(genome['steps']))
+        oks.append(L is not None and m.q < L <= m.q * m.q - 2 and bool(m.sv[L] and m.sv[L + 2]))
+    def streak(start):
+        n = 0
+        for m, ok in zip(machines, oks):
+            if m.q < start: continue
+            if ok: n += 1
+            else: break
+        return n
+    return (streak(31), streak(11), sum(oks), -len(genome['steps']))
 
 def random_rule(kinds, amax):
     return {'kind': random.choice(kinds), 'a': random.randint(0, amax)}
@@ -149,6 +155,10 @@ def crossover(a, b):
     steps = a['steps'][:cut_a] + b['steps'][cut_b:]
     return {'origin': random.choice([a['origin'], b['origin']]), 'steps': (steps or [random_step()])[:8]}
 
+def base_only(g):
+    fixed_m = {'B', 'Pmax', 'Pmax_prev', 'B_x_above', 'six_x_above', 'B_x_above_pair'}
+    return all(st['mirror']['kind'] in fixed_m and st['period']['kind'] == 'const' and st['dir']['kind'] in ('up', 'down', 'alt', 'step_mod3') for st in g['steps']) and g['origin']['kind'] in ('home', 'twin_pair')
+
 def describe(g):
     o = g['origin']; s = ", ".join(f"{st['mirror']['kind']}[{st['mirror'].get('a', 0)}] x{st['period']['kind']}[{st['period'].get('a', 1)}] {st['dir']['kind']}" for st in g['steps'])
     return f"origin {o['kind']}[{o.get('a', 0)}]; steps: {s}"
@@ -167,19 +177,33 @@ def main():
     if out_path.exists():
         try: pop = [g for g in json.loads(out_path.read_text(encoding="utf-8")).get('elite', [])]
         except Exception: pop = []
+    seeds = [
+        {'origin': {'kind': 'home', 'a': 0}, 'steps': [{'mirror': {'kind': 'B_x_above', 'a': 1}, 'period': {'kind': 'const', 'a': 2}, 'dir': {'kind': 'down'}}, {'mirror': {'kind': 'B_x_above', 'a': 2}, 'period': {'kind': 'const', 'a': 3}, 'dir': {'kind': 'up'}}]},
+        {'origin': {'kind': 'twin_pair', 'a': 1}, 'steps': [{'mirror': {'kind': 'B_x_above', 'a': 1}, 'period': {'kind': 'const', 'a': 1}, 'dir': {'kind': 'up'}}, {'mirror': {'kind': 'B_x_above', 'a': 2}, 'period': {'kind': 'const', 'a': 1}, 'dir': {'kind': 'up'}}]},
+        {'origin': {'kind': 'twin_pair', 'a': 3}, 'steps': [{'mirror': {'kind': 'B_x_below', 'a': 0}, 'period': {'kind': 'const', 'a': 1}, 'dir': {'kind': 'up'}}, {'mirror': {'kind': 'B_x_below', 'a': 1}, 'period': {'kind': 'const', 'a': 1}, 'dir': {'kind': 'down'}}]},
+        {'origin': {'kind': 'home', 'a': 0}, 'steps': [{'mirror': {'kind': 'B_x_below', 'a': 0}, 'period': {'kind': 'const', 'a': 1}, 'dir': {'kind': 'up'}}, {'mirror': {'kind': 'B_x_below', 'a': 1}, 'period': {'kind': 'const', 'a': 1}, 'dir': {'kind': 'down'}}]},
+    ]
+    pop += seeds
     while len(pop) < popn: pop.append(random_genome())
     log = []
     for gen in range(gens):
         scored = sorted(((fitness(g, machines), g) for g in pop), key=lambda t: t[0], reverse=True)
         elite = [g for f, g in scored[:20]]
         best_f, best_g = scored[0]
-        line = f"gen {gen}: streak {best_f[0]} machines (to q = {machines[best_f[0] - 1].q if best_f[0] else '-'}), total {best_f[1]} of {len(machines)}, {-best_f[2]} steps: {describe(best_g)}"
+        start = next(i for i, m in enumerate(machines) if m.q >= 31)
+        line = f"gen {gen}: streak from 31: {best_f[0]} machines (to q = {machines[start + best_f[0] - 1].q if best_f[0] else '-'}); from 11: {best_f[1]}; total {best_f[2]} of {len(machines)}; {-best_f[3]} steps; base-only {base_only(best_g)}: {describe(best_g)}"
         log.append(line); print(line, flush=True)
         out_path.write_text(json.dumps({'elite': elite, 'best_fitness': best_f, 'best': describe(best_g), 'log': log[-50:]}, indent=1), encoding="utf-8")
+        pool = [g for f, g in scored[:60]]
         newpop = list(elite)
         while len(newpop) < popn:
-            if random.random() < 0.3: newpop.append(crossover(random.choice(elite), random.choice(elite)))
-            else: newpop.append(mutate(random.choice(elite)))
+            r = random.random()
+            if r < 0.15: newpop.append(random_genome())
+            elif r < 0.45: newpop.append(crossover(random.choice(pool), random.choice(pool)))
+            else:
+                g = random.choice(pool)
+                for _ in range(random.randint(1, 3)): g = mutate(g)
+                newpop.append(g)
         pop = newpop
 
 if __name__ == "__main__":
