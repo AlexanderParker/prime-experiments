@@ -444,3 +444,18 @@ to the gears of G only, G bounded by the window. Algorithms that reach every mac
 on a twin provably; widening the search over mirror rules cannot change that, since every rule
 lands inside the same family. What could: a mechanism other than mirrors that constrains the
 residues of the gears above the base, or a proof of the window statement by other means.
+
+### 25. Evolution seeded with the hand-built walks (owner, 2026-09-15)
+
+research/stack/r8/evolve_walk3.py. The genome gains macro steps: 'spiral' over a gear set
+(all above the base, above sqrt q, at most sqrt q, column-twin gears, twin-member gears, solo
+gears, the top a gears; order; first direction; base = spiral base, {2,3} or {2,3,5}; one or two
+periods), 'descent' (landing 2 t P_s - 1 with a t rule), 'levels' (the recursive spiral), and
+flips with mirrors 3h, 6h, 30h, B*h for h the a-th gear above sqrt q. Seeds: the six spirals,
+the levels walk, the descent at t = 1, 2, 3, each spiral followed by one flip about {3, h} or
+{2,3,h} for h the a-th gear above sqrt q (a = 0..3, up and down), levels then a flip, and the
+grammar's best rules. Machines: every prime to 200 then every third to 6000 (288). Seed
+ranking at generation 0 (streak from 31 / total of 288): descent t = 3: 7 / 64; sqout spiral
+then {2,3,h_1} up: 7 / 24; descent t = 1: 6 / 52; sqout spiral: 5 / 72; sqout then {3, h_0}: 5 / 38.
+The hand-built walks without a residue-chosen final gear sit at the base-open share, as
+measured before (spiral landings 39 to 135 of 299). Run of 60 generations of 300: running.
