@@ -688,3 +688,22 @@ landing is checked against the teeth of all the gears that can strike it, which 
 the candidate; a bounded memory succeeds only as far as the unchecked gears happen to miss.
 The successful run under the fitness is entry 14's walk; it is a locator that reads the
 landing, not a walk that carries the residues.
+
+Entry 31, carrying variant (research/stack/r8/settle_memory_carry.py): the mirror at each step
+is the base times the remembered settled gears that fit (product times sixty at most q^2), so
+those gears keep their phase without being checked. Worse at every memory: memory all 203 of
+210 (against 209 without carrying), streak 1 (fails at 37); memory 13: 84; 55: 130; 89: 147.
+Carrying enlarges the mirror and leaves fewer periods inside the window, which costs more than
+the checks it saves: the affordability limit (entry 3) seen from the memory side.
+
+## Standing after thirty-two entries
+
+A successful run under the fitness exists: the settle walk with full memory (entry 14), landing
+on a twin at every sampled machine from 31 to 5981, and at 204 of 204 to 3947 in the direct
+measurement. It succeeds because at each step it checks the landing against the teeth of
+every gear visited, which by the last step is every gear of the machine: the sieve on the
+candidate. Every reduction of that checking (bounded memory, carrying in the mirror, residue
+rules for one gear or one period) falls back to the base-open share or below. Every rule that
+reads nothing lands at the base-open share or is a lookup table. The evolutionary search has
+converged, under nine forms and seven fitness definitions, on the same two outcomes the reach
+theorem predicts. Loop stopped.

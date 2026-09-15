@@ -1,0 +1,15 @@
+Variant of the memory measurement: the mirror at each step is the base times the remembered
+gears that fit (product at most q^2 / 60, so that fifteen periods stay inside the window), so
+the gears carried in the mirror keep their phase without being checked; only the remembered
+gears NOT in the mirror are checked.  Does carrying cut the memory a full streak needs?
+usage: uv run python research/stack/r8/settle_memory_carry.py
+
+machines 210; carrying mirror = base x remembered settled gears that fit (product x 60 <= q^2)
+   memory    3: streak from 31   1, total  49 of 210; first failures [11, 37, 61, 67, 73, 79]
+   memory    8: streak from 31   1, total  66 of 210; first failures [11, 37, 41, 43, 59, 61]
+   memory   13: streak from 31   1, total  84 of 210; first failures [11, 37, 41, 43, 71, 79]
+   memory   21: streak from 31   1, total  82 of 210; first failures [11, 37, 41, 43, 71, 79]
+   memory   34: streak from 31   1, total 110 of 210; first failures [11, 37, 41, 43, 71, 79]
+   memory   55: streak from 31   1, total 130 of 210; first failures [11, 37, 41, 43, 71, 79]
+   memory   89: streak from 31   1, total 147 of 210; first failures [11, 37, 41, 43, 71, 79]
+   memory  all: streak from 31   1, total 203 of 210; first failures [11, 37, 41, 43, 71, 79]
