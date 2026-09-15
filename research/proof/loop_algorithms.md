@@ -421,3 +421,11 @@ there). The evolution rediscovered the per-range constant; with machines to 3000
 ranges exist to be fitted. Third form, evolve_walk2.py: machines sampled eight per base range
 across the ranges of 6 to 43# (q to about 6 * 10^15, twin test by isprime), so a genome must
 work across eighteen ranges. Running.
+
+Entry 24, third form (cross-range machines, 98 sampled over the ranges of the bases 6 to 43#,
+100 generations of 300): best streak 21 sampled machines from q = 31, to q = 4363, total 24 of
+98; the genome is the same per-range constant as the second run (origin (11,13), flip on
+B * g4 up, then B * g1 with the entering period), which dies at the first machine of the base-
+2310 range, as decoded. No genome in 100 generations lands beyond the third base range in a
+streak; the totals sit at the base-open share (24 of 98). Elite kept in results_evolve_walk2.json
+for the next run.
