@@ -673,3 +673,18 @@ third of the machines. The residue checking that makes the walk succeed is the f
 every visited gear, which at the last step is the openness of the landing to every gear: the
 sieve on the candidates. The run continues to see whether evolution finds a smaller memory
 with the same streak.
+
+Entry 31, measurement (research/stack/r8/settle_memory.py, results_settle_memory.txt; the
+evolution itself was killed twice by the system's memory watchdog): the settle walk
+(descending, K = 15, two repairs, flex rule) with memory w, machines every prime to 200 then
+every third to 4000 (210):
+  w = 0: streak 0, total 22;  1: 2 / 25;  2: 1 / 58;  3: 3 / 73;  5: 28 / 67;  8: 4 / 125;
+  13: 31 / 83;  21: 35 / 73;  34: 47 (to q = 389) / 160;  55: 53 (to 499) / 185;
+  89: 88 (to 1223) / 199;  144: 204 (every machine from 31 to 3947) / 209;  all: the same.
+The streak grows with the memory and reaches the full run only when the memory holds every
+gear visited, or at least the last 144 (the smallest gears, in descending order; for the
+machines below 830 that is every gear). Read plainly: the walk succeeds exactly when the
+landing is checked against the teeth of all the gears that can strike it, which is the sieve on
+the candidate; a bounded memory succeeds only as far as the unchecked gears happen to miss.
+The successful run under the fitness is entry 14's walk; it is a locator that reads the
+landing, not a walk that carries the residues.

@@ -1,0 +1,18 @@
+Direct measurement (the evolution was killed twice for system memory): the settle walk's
+streak as a function of its residue memory w.  Machines every prime to 200 then every third to
+4000.  usage: uv run python research/stack/r8/settle_memory.py
+
+machines 210 (11 to 3947); settle walk descending, K = 15, two repairs, flex rule; memory w = number of previously visited gears kept off their teeth at each step
+   memory    0: streak from 31   0 (to q = -), total  22 of 210; first failures [11, 13, 19, 23, 29, 31]
+   memory    1: streak from 31   2 (to q = 37), total  25 of 210; first failures [11, 13, 19, 23, 41, 43]
+   memory    2: streak from 31   1 (to q = 31), total  58 of 210; first failures [11, 13, 17, 37, 41, 53]
+   memory    3: streak from 31   3 (to q = 41), total  73 of 210; first failures [11, 43, 47, 59, 61, 131]
+   memory    5: streak from 31  28 (to q = 163), total  67 of 210; first failures [11, 167, 173, 179, 181, 191]
+   memory    8: streak from 31   4 (to q = 43), total 125 of 210; first failures [11, 47, 73, 97, 139, 167]
+   memory   13: streak from 31  31 (to q = 179), total  83 of 210; first failures [11, 181, 191, 193, 197, 199]
+   memory   21: streak from 31  35 (to q = 197), total  73 of 210; first failures [11, 199, 211, 229, 241, 263]
+   memory   34: streak from 31  47 (to q = 389), total 160 of 210; first failures [11, 409, 431, 479, 499, 521]
+   memory   55: streak from 31  53 (to q = 499), total 185 of 210; first failures [11, 521, 547, 569, 617, 809]
+   memory   89: streak from 31  88 (to q = 1223), total 199 of 210; first failures [11, 1237, 3137, 3191, 3251, 3301]
+   memory  144: streak from 31 204 (to q = 3947), total 209 of 210; first failures [11]
+   memory  all: streak from 31 204 (to q = 3947), total 209 of 210; first failures [11]
