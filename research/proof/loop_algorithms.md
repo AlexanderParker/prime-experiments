@@ -382,3 +382,29 @@ Addendum to entry 22: the grammar restricted to machine-varying mirrors (B*q, B*
 B*q*p), one and two flips, every origin: best 128 of 299, origin (29,31), B*q up then B*p down
 (the slip of the top pair from a twin origin: 29 + 2B(q - p)); then 105, 103, 96, 87. All in
 the base-open band. No machine-varying fixed rule leaves it.
+
+### 23. The larger grammar, up to three flips (2026-09-15)
+
+research/stack/r8/rule_grammar_search2.py, results_rule_grammar_search2.txt: 1152 one-flip,
+110592 two-flip and 46875 restricted three-flip rules over origins to (101,103), machine-varying
+mirrors B*g1..g3, B*q, B*p, B*p2, 6q, 6p, 6g1, B*q*g1, 2q, 2p, periods 1..3 and 'first period
+entering the window' and 'last inside', both directions. Best 297 of 299: home, B*g2 twice down
+then B*g3 three times up; and (11,13), B*g2 up then B*g3 up. Both depend on the base alone
+(landing -1 + 2B(3g3 - 2g2) and 11 + 2B(g2 + g3)): one landing per primorial range. Followed
+through the ranges: twins at the bases 6, 30, 210; not twins at 2310 (106259, 166331), so both
+fail at every machine with q/2 in [2310, 30030), i.e. from q = 4621. Three flips: 286 at best,
+the same shape. Verdict: as entry 22.
+
+### 24. Evolutionary search over walk algorithms (owner, 2026-09-15)
+
+research/stack/r8/evolve_walk.py. Genome = origin rule + steps of (mirror rule, period rule,
+direction rule) from a grammar of machine quantities (base, primorials fitting the window,
+gears above the base, gears below q, twin gear pairs, the gear at sqrt q, residues of q, the
+step index, the column's position against the window); no residue or primality test of a
+candidate column anywhere. Fitness: the streak of consecutive machines from q = 31 landing on a
+twin in the window, then the streak from 11, then the total, then fewer steps. Elite kept,
+tournament pool, mutation, crossover, random immigrants; the elite is written to
+results_evolve_walk.json each generation. First run (fitness = streak from 11, 80 generations,
+population 200): stalled at a streak of 6 (to q = 29), the elite converged to one genome; the
+machines 11..29 with base {2,3} and windows to 841 decide the streak by luck. Second run with
+the reworked fitness and diversity: running.
