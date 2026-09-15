@@ -1,0 +1,42 @@
+Loop, iteration 23: a larger rule grammar, up to three flips.
+
+Origins: home; the twin gear pairs (5,7) .. (101,103) inside the machine; the top twin gear pair;
+the top one at most sqrt q; the top one at most q/2.
+Mirrors (machine-varying): B*g1, B*g2, B*g3 (B the spiral base, g1 < g2 < g3 the first gears
+above it), B*q, B*p, B*p2 (p, p2 the two primes below q), 6q, 6p, 6*g1, B*(q-p)/... only
+integers: B*q, B*p, B*p2, B*g1, B*g2, B*g3, 6q, 6p, 6g1, B*q*g1 (when at most q^2/2), 2q, 2p.
+Periods: 1, 2, 3, and two rules: 'enter' = the smallest k that puts the landing above q,
+'top' = the largest k that keeps it at most q^2 - 2.  Directions up and down (rules 'enter'
+and 'top' are up only).
+Scored over the machines 11 to 2000; one, two and three flips (three flips restricted to the
+mirrors B*g1, B*q, B*p, 6q, 6g1 and periods 1..2 to keep the count near 10^5).
+usage: uv run python research/stack/r8/rule_grammar_search2.py 2000
+
+machines 299
+one flip: 1152 rules; best:
+    296  (17,19)              B*g1 x3 up
+    286  (41,43)              B*g1 x2 up
+    286  (41,43)              B*g1 x3 up
+    277  (101,103)            B*g1 x1 up
+    277  (101,103)            B*g1 xenter up
+    232  (17,19)              B*g2 x1 up
+    232  (17,19)              B*g2 xenter up
+    222  home                 B*g1 x2 up
+two flips: 110592 rules; best:
+    297  home                 B*g2 x2 down; B*g3 x3 up
+    297  home                 B*g3 x3 up; B*g2 x2 down
+    297  (11,13)              B*g2 x1 up; B*g3 x1 up
+    297  (11,13)              B*g2 x1 up; B*g3 xenter up
+    297  (11,13)              B*g2 xenter up; B*g3 x1 up
+    297  (11,13)              B*g2 xenter up; B*g3 xenter up
+    297  (11,13)              B*g3 x1 up; B*g2 x1 up
+    297  (11,13)              B*g3 x1 up; B*g2 xenter up
+three flips (restricted): 46875 rules; best:
+    286  (29,31)              B*g1 x2 up; B*g1 x2 up; B*g1 x2 up
+    233  home                 6g1 x2 down; 6g1 x2 down; B*g1 xenter up
+    229  (29,31)              B*g1 x1 up; B*g1 x2 up; 6g1 x1 down
+    229  (29,31)              B*g1 x1 up; 6g1 x1 down; B*g1 x2 up
+    229  (29,31)              B*g1 x2 up; B*g1 x1 up; 6g1 x1 down
+    229  (29,31)              B*g1 x2 up; B*g1 xenter up; 6g1 x1 down
+    229  (29,31)              B*g1 x2 up; 6g1 x1 down; B*g1 x1 up
+    229  (29,31)              B*g1 x2 up; 6g1 x1 down; B*g1 xenter up
