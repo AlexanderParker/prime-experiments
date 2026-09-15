@@ -1,0 +1,45 @@
+Loop, iteration 22: every combination of step rules from a grammar (owner: not all
+combinations of rules have been tried).
+
+A rule is fixed across machines and reads no teeth: it names an origin, and one or two flips,
+each with a mirror, periods and a direction, all drawn from the machine's own quantities.
+  origins: home (-1, 1); the twin gear pairs (5,7), (11,13), (17,19), (29,31), (41,43) when
+           inside the machine; the largest twin gear pair at most q; the largest at most sqrt q
+  mirrors: B = the spiral base (lowest gears with product at most q/2); Pmax = the largest
+           primorial at most q^2/2; Pmax' = the one below it; B*q; B*p (p the prime below q);
+           B*g (g the first gear above the base); 6q; 6p; 30q; B*(q-p)/2 ... only integers:
+           B*q, B*p, B*g, 6q, 6p, 30q, Pmax, Pmax', B, and B*q*p when at most q^2/2
+  periods k: 1, 2, 3;  direction: up, down
+One-flip rules: origin + mirror + k + direction.  Two-flip rules: two such steps in sequence
+(landing of the first as the origin of the second).  Every rule is scored over the machines
+11 to 2000: the number of machines where the landing is a twin inside the window.  Reported:
+the best rules of each length, and the distribution.
+usage: uv run python research/stack/r8/rule_grammar_search.py 2000
+
+machines 299 (11 to 2000); one-flip rules 480, two-flip rules 28800
+
+best one-flip rules (machines landing on a twin in the window):
+    296  origin (17,19)                    flip B*g x3 up
+    286  origin (41,43)                    flip B*g x2 up
+    286  origin (41,43)                    flip B*g x3 up
+    265  origin top twin gears <= sqrt q   flip Pmax' x1 up
+    250  origin (29,31)                    flip Pmax' x1 up
+    222  origin home                       flip B*g x2 up
+    222  origin (17,19)                    flip B*g x1 up
+    222  origin (29,31)                    flip B*g x1 up
+
+best two-flip rules:
+    296  origin (17,19)                    B*g x1 up, then B*g x2 up
+    296  origin (17,19)                    B*g x2 up, then B*g x1 up
+    290  origin (41,43)                    B x1 down, then B*g x2 up
+    290  origin (41,43)                    B*g x1 up, then B*g x3 up
+    290  origin (41,43)                    B*g x2 up, then B x1 down
+    290  origin (41,43)                    B*g x2 up, then B*g x2 up
+    290  origin (41,43)                    B*g x3 up, then B*g x1 up
+    286  origin home                       B x3 up, then B*g x1 up
+    286  origin home                       B x3 up, then B*g x2 up
+    286  origin home                       B*g x1 up, then B x3 up
+    286  origin home                       B*g x2 up, then B x3 up
+    286  origin (11,13)                    B x3 down, then B*g x3 up
+
+two-flip score distribution: max 296, rules above 100: 315, above 150: 159, above 200: 113
