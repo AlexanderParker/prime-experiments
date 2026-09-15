@@ -429,3 +429,18 @@ B * g4 up, then B * g1 with the entering period), which dies at the first machin
 2310 range, as decoded. No genome in 100 generations lands beyond the third base range in a
 streak; the totals sit at the base-open share (24 of 98). Elite kept in results_evolve_walk2.json
 for the next run.
+
+Entry 24, fourth run (150 generations of 400 from the kept elite): no change; best streak 21,
+total 24 of 98, the same genome. The grammar is exhausted for this fitness.
+
+## Standing after twenty-four entries
+
+Fixed rules (grammar searches over 160,000 rules, evolution over about 200,000 genomes) score
+at the base-open share across ranges and reach long streaks only as per-range constants over
+the first three primorial ranges. The reach theorem (entry 21, kernel round 55) says why: a
+mirror walk's landing family is -1 + 2 G Z for the gcd G of its mirrors, open by construction
+to the gears of G only, G bounded by the window. Algorithms that reach every machine (entries
+13 to 15) do so by reading the landing's phases. No walk built from mirror rules alone lands
+on a twin provably; widening the search over mirror rules cannot change that, since every rule
+lands inside the same family. What could: a mechanism other than mirrors that constrains the
+residues of the gears above the base, or a proof of the window statement by other means.
