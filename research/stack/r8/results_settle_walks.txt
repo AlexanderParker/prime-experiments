@@ -1,0 +1,123 @@
+Loop, iteration 19: the family of settle-and-grow walks (owner, 2026-09-15: the base grows
+with the machine; iterate walks of this kind to find one that brings the right residues).
+
+State: origin twin O (left member), base B (carried gears, product P), machine top q.
+Step: choose the gear g to settle; flip on the mirror M (landing O + k M) with the k rule; then
+grow the base and the machine.  Variants:
+  settle order   'asc' the smallest unsettled gear <= q; 'desc' the largest unsettled gear <= q;
+                 'striker' the smallest gear currently striking the landing (none: 'asc')
+  mirror         'base' M = P; 'base+settled' M = P times the previously settled non-base gears
+                 that still fit the window
+  k rule         'first' the first k with the landing off g's teeth; 'keep' the first k with the
+                 landing off the teeth of g AND of every previously settled gear (bounded search);
+                 'one' k = 1
+  base rule      'all' every settled gear joins the base if the product stays at most q^2 / 2;
+                 'prim' base = the largest primorial at most q^2 / 2
+  machine rule   'gear' q = the newest settled gear; 'twin' q = the larger member of the landing
+Chain from (-1, 1), machine 3, base {2, 3}; a step fails when no landing in the window is found
+(k up to 60) or when the landing is struck by a gear of the machine.  Reported per variant: the
+number of twins landed before the first failure, and the failure.
+usage: uv run python research/stack/r8/settle_walks.py
+
+twins  order    mirror        k      base  machine   last line
+    7  asc      base          keep   all   gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  asc      base          keep   prim  gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  asc      base+settled  keep   all   gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  asc      base+settled  keep   prim  gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  desc     base          keep   all   gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  desc     base          keep   prim  gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  desc     base+settled  keep   all   gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  desc     base+settled  keep   prim  gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  striker  base          keep   all   gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  striker  base          keep   prim  gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  striker  base+settled  keep   all   gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    7  striker  base+settled  keep   prim  gear     step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+    4  asc      base          first  prim  twin     step 4: settle 29 on 223092870 -> (446216231, 446216233) struck by [59]; machine 446216233
+    4  asc      base          keep   prim  twin     step 4: settle 29 on 223092870 -> (446216231, 446216233) struck by [59]; machine 446216233
+    4  asc      base+settled  first  prim  twin     step 4: settle 29 on 223092870 -> (446216231, 446216233) struck by [59]; machine 446216233
+    4  asc      base+settled  keep   prim  twin     step 4: settle 29 on 223092870 -> (446216231, 446216233) struck by [59]; machine 446216233
+    4  striker  base          keep   prim  twin     step 4: settle 30491 on 223092870 -> (223123361, 223123363) struck by [29, 233, 957611]; machine 223123363
+    4  striker  base+settled  keep   prim  twin     step 4: settle 30491 on 223092870 -> (223123361, 223123363) struck by [29, 233, 957611]; machine 223123363
+    3  asc      base          first  all   twin     step 3: settle 13 on 2310 -> (2771, 2773) struck by [17, 47, 59, 163]; machine 2773
+    3  asc      base          keep   all   twin     step 3: settle 13 on 2310 -> (2771, 2773) struck by [17, 47, 59, 163]; machine 2773
+    3  asc      base+settled  first  all   twin     step 3: settle 13 on 2310 -> (2771, 2773) struck by [17, 47, 59, 163]; machine 2773
+    3  asc      base+settled  keep   all   twin     step 3: settle 13 on 2310 -> (2771, 2773) struck by [17, 47, 59, 163]; machine 2773
+    3  desc     base          first  all   twin     step 3: settle 433 on 16770 -> (17201, 17203) struck by [103, 167, 17203]; machine 17203
+    3  desc     base          keep   all   twin     step 3: settle 433 on 16770 -> (17201, 17203) struck by [103, 167, 17203]; machine 17203
+    3  desc     base+settled  first  all   twin     step 3: settle 433 on 16770 -> (17201, 17203) struck by [103, 167, 17203]; machine 17203
+    3  desc     base+settled  keep   all   twin     step 3: settle 433 on 16770 -> (17201, 17203) struck by [103, 167, 17203]; machine 17203
+    2  asc      base          first  all   gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  asc      base          first  prim  gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  asc      base+settled  first  all   gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  asc      base+settled  first  prim  gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  desc     base          first  all   gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  desc     base          first  prim  gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  desc     base          first  prim  twin     step 2: settle 43 on 210 -> (251, 253) struck by [11, 23, 251]; machine 253
+    2  desc     base          keep   prim  twin     step 2: settle 43 on 210 -> (251, 253) struck by [11, 23, 251]; machine 253
+    2  desc     base+settled  first  all   gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  desc     base+settled  first  prim  gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  desc     base+settled  first  prim  twin     step 2: settle 43 on 210 -> (251, 253) struck by [11, 23, 251]; machine 253
+    2  desc     base+settled  keep   prim  twin     step 2: settle 43 on 210 -> (251, 253) struck by [11, 23, 251]; machine 253
+    2  striker  base          first  all   gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  striker  base          first  all   twin     step 2: settle 41 on 330 -> (371, 373) struck by [7, 53, 373]; machine 373
+    2  striker  base          first  prim  gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  striker  base          first  prim  twin     step 2: settle 41 on 210 -> (251, 253) struck by [11, 23, 251]; machine 253
+    2  striker  base          keep   all   twin     step 2: settle 41 on 330 -> (371, 373) struck by [7, 53, 373]; machine 373
+    2  striker  base+settled  first  all   gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  striker  base+settled  first  all   twin     step 2: settle 41 on 330 -> (371, 373) struck by [7, 53, 373]; machine 373
+    2  striker  base+settled  first  prim  gear     step 2: settle 11 on 6 -> (23, 25) struck by [5]; machine 11
+    2  striker  base+settled  first  prim  twin     step 2: settle 41 on 210 -> (251, 253) struck by [11, 23, 251]; machine 253
+    2  striker  base+settled  keep   all   twin     step 2: settle 41 on 330 -> (371, 373) struck by [7, 53, 373]; machine 373
+    0  asc      base          one    all   gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  asc      base          one    all   twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  asc      base          one    prim  gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  asc      base          one    prim  twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  asc      base+settled  one    all   gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  asc      base+settled  one    all   twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  asc      base+settled  one    prim  gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  asc      base+settled  one    prim  twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base          one    all   gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base          one    all   twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base          one    prim  gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base          one    prim  twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base+settled  one    all   gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base+settled  one    all   twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base+settled  one    prim  gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  desc     base+settled  one    prim  twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base          one    all   gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base          one    all   twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base          one    prim  gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base          one    prim  twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base+settled  one    all   gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base+settled  one    all   twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base+settled  one    prim  gear     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+    0  striker  base+settled  one    prim  twin     step 0: settling 5 on mirror 6 from -1: no landing in the window (3, 9]
+
+best chains in full:
+--- asc base keep all gear: 7 twins
+   step 0: settle 5 on 6 -> (11, 13) TWIN; machine 5
+   step 1: settle 7 on 6 -> (17, 19) TWIN; machine 7
+   step 2: settle 11 on 6 -> (29, 31) TWIN; machine 11
+   step 3: settle 13 on 30 -> (59, 61) TWIN; machine 13
+   step 4: settle 17 on 30 -> (149, 151) TWIN; machine 17
+   step 5: settle 19 on 30 -> (179, 181) TWIN; machine 19
+   step 6: settle 23 on 30 -> (239, 241) TWIN; machine 23
+   step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+--- asc base keep prim gear: 7 twins
+   step 0: settle 5 on 6 -> (11, 13) TWIN; machine 5
+   step 1: settle 7 on 6 -> (17, 19) TWIN; machine 7
+   step 2: settle 11 on 6 -> (29, 31) TWIN; machine 11
+   step 3: settle 13 on 30 -> (59, 61) TWIN; machine 13
+   step 4: settle 17 on 30 -> (149, 151) TWIN; machine 17
+   step 5: settle 19 on 30 -> (179, 181) TWIN; machine 19
+   step 6: settle 23 on 30 -> (239, 241) TWIN; machine 23
+   step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]
+--- asc base+settled keep all gear: 7 twins
+   step 0: settle 5 on 6 -> (11, 13) TWIN; machine 5
+   step 1: settle 7 on 6 -> (17, 19) TWIN; machine 7
+   step 2: settle 11 on 6 -> (29, 31) TWIN; machine 11
+   step 3: settle 13 on 30 -> (59, 61) TWIN; machine 13
+   step 4: settle 17 on 30 -> (149, 151) TWIN; machine 17
+   step 5: settle 19 on 30 -> (179, 181) TWIN; machine 19
+   step 6: settle 23 on 30 -> (239, 241) TWIN; machine 23
+   step 7: settling 29 on mirror 210 from 239: no landing in the window (23, 529]

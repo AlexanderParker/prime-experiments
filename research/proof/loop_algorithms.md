@@ -298,3 +298,22 @@ base; the machine grows.
 Verdict: each settle step is provable and cheap; what cannot be done is to keep every settled
 gear settled without holding it in the base, and the base is bounded by the window (newest-gear
 machine) or the unsettled gears outnumber the settled (twin-member machine). Same wall.
+
+### 19. The family of settle-and-grow walks (owner: iterate walks of this kind; 2026-09-15)
+
+research/stack/r8/settle_walks.py, results_settle_walks.txt. 72 variants: settle order (smallest
+unsettled gear, largest, current striker) x mirror (base; base times the settled gears that
+fit) x k rule (first k off the new gear's teeth; first k off the teeth of the new gear AND every
+previously settled gear; k = 1) x base rule (all settled gears that fit q^2/2; the largest
+primorial at most q^2/2) x machine rule (newest gear; twin member). Chain from (-1, 1).
+- Best: 7 twins, every variant with the 'keep' k rule and the newest-gear machine: (-1,1) ->
+  (11,13) -> (41,43) -> (101,103)? ... settling 5, 7, 11, 13, 17, 19, 23 in turn, base up to
+  210, then at machine 23 (window (23, 529]) settling 29 needs a flip on 210 from 239 with no
+  landing inside: the gcd wall.
+- Twin-member machine: 4 twins at best (base the largest primorial, 'first' or 'keep'), then a
+  gear not yet settled strikes (59 at the fifth step); 'all' base: 3 twins.
+- k = 1 never leaves the origin's window at machine 3 (the first flip on 6 lands at 5, below
+  the window's start... (5,7) with 5 = q's window start): 0 by construction of the window test.
+Verdict: the 'keep' rule is the pick-up walk restricted to the newest-gear machine; it reaches
+seven twins and stops where the base can no longer fit the window. No variant of this family
+carries the unsettled gears; the two walls are the same as entry 18.
