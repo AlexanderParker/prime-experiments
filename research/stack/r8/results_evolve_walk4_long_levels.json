@@ -1,0 +1,845 @@
+{
+ "elite": [
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 3
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 0
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 1
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 1
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "twin_pair",
+    "a": 1
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "const",
+      "a": 0
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  },
+  {
+   "origin": {
+    "kind": "top_twin_root",
+    "a": 2
+   },
+   "steps": [
+    {
+     "type": "levels"
+    },
+    {
+     "type": "descent",
+     "t": {
+      "kind": "q_mod",
+      "a": 1
+     }
+    },
+    {
+     "type": "flip",
+     "mirror": {
+      "kind": "B",
+      "a": 0
+     },
+     "period": {
+      "kind": "const",
+      "a": 4
+     },
+     "dir": {
+      "kind": "alt",
+      "a": 0
+     }
+    }
+   ]
+  }
+ ],
+ "best_fitness": [
+  282,
+  0,
+  287,
+  -3
+ ],
+ "best": "origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+ "log": [
+  "[levels] gen 360: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 361: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 362: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 363: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 364: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 365: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 366: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 367: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 368: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 369: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 370: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 371: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 372: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 373: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 374: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 375: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 376: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 377: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 378: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 379: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 380: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 381: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 382: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 383: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 384: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 385: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 386: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 387: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 388: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 389: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 390: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 391: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 392: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 393: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 394: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 395: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 396: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 397: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 398: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt",
+  "[levels] gen 399: streak from 31: 282 (to q = 5981); total 287 of 288; 3 steps: origin top_twin[3]; levels; descent t=q_mod[1]; flip B[0] xconst[4] alt"
+ ]
+}

@@ -495,3 +495,19 @@ Verdict: the islands find their family's best per-range constant where the famil
 (descent, flips) and sit at the base-open share where it does not (spiral, levels). The
 descent island's winner is the descent at t = g_1 + 4: a fixed t rule that happens to hit the
 first gap's neighbourhood for five primorials. Long run (400 generations of 300) continuing.
+
+Entry 26, long run (400 generations of 300 per island, separate elites, results_evolve_walk4_long_*):
+- spiral (no descent or levels step allowed): streak 29 (to q = 167), total 73 of 288: sqout
+  spiral on the base, then flips on B * h_2 and 6 * g_5. The base-open share, a coincidence run
+  on the small machines.
+- spiral+flip, levels, descent: all three converge to the same landing, streak 282 (every
+  sampled machine from 31 to 5981), total 287 of 288: a descent step (which replaces the walk's
+  column by 2 t P_s - 1 with t = 1 under each island's t rule) followed by a flip on the base
+  four periods up, i.e. 2 B (g_1 + 4) - 1, the five-range constant of the short run (dies at
+  base 510510, q from 1021021). The spiral+flip and levels membership rules allowed a descent
+  step inside, and the descent step, which discards the walk before it, invaded both.
+- flips: streak 229, the constant 11 + 2B(g_4 + g_1).
+Verdict: with 400 generations the islands settle where the short run left them. The strongest
+object any island finds is "discard the walk, land at a fixed multiple of P_s, shift by a fixed
+multiple of B": one integer per primorial range, chosen by chance across five ranges. Nothing
+machine-varying rises above the base-open share.
