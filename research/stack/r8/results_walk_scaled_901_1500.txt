@@ -1,0 +1,1 @@
+machines 901..1500 (85), K = 1.0 (ln q)^2: twin landings 85; failures []; machines with a step lacking a keeping move 0 []; free-regime prefix 71.1% of the steps on average

@@ -996,3 +996,21 @@ that; at q = 1000 it is 48 periods, at 10^6 it is 191, always far below the wind
 of about q / 24.
 The free-regime prefix is 67.5% of the steps at these sizes (it does not depend on K: the lemma
 needs the visited gears above twice their number).
+
+### 51. The period count the lemma needs, against the one the walk uses (loop, 2026-09-17)
+
+Two numbers had been conflated. The free-regime lemma proves a keeping move exists among
+2n + 1 candidates when the n visited gears all exceed 2n: it needs the period count to reach n
+at step n. The walk, measured, needs only K = (ln q)^2 uniformly (entry 50: clean at 145 of 145
+machines 29 to 900 and 85 of 85 machines 901 to 1500, free prefix 71%).
+- With a uniform K = (ln q)^2 the lemma covers only the first K steps: 47 of 166 at q = 1000
+  (28%), 190 of 78496 at q = 10^6 (0.2%).
+- With the period count taken as the lemma asks, K_n = 2n + 1 at step n, the lemma covers the
+  whole first cut (every visited gear above twice their number): 70.5% of the steps at
+  q = 1000, 76.6% at 10^4, 84.3% at 10^6.
+- And that period count fits the window throughout the cut: the candidates' span
+  12 g_n (2n + 1) as a fraction of q^2 is at worst 0.90 at q = 1000, 0.68 at 10^4, 0.44 at 10^6
+  (falling, since the cut ends where g is about q / 4.5 while n is about q / ln q).
+So the construction is stated with the period count K_n = max((ln q)^2, 2n + 1) at step n: the
+walk uses the first term, the proof of the prefix uses the second, and both fit the window.
+The proved prefix is then the first cut, rising to 1 like ln q / (ln q + 2).
