@@ -1042,3 +1042,16 @@ The margin is flat in q at about five open candidates, and a drawn handover colu
 has none at the first tail step (two of forty at q = 5000). The walk's own column does better
 (its lookahead steers it), and entry 52 showed every tail step carries an open candidate, so
 the statement to name is StepOpen at SOME tail step, not at the first. Recorded that way.
+
+### 54. Extra strides cannot move the cut (loop, 2026-09-17)
+
+With A strides of K periods each (2AK candidates), a visited gear h strikes at most 2*ceil(K/h)
+candidates per stride, so at most 2A*ceil(K/h) in all. The lemma needs the total struck below
+2AK, i.e. the sum over the visited gears of ceil(K/h) below K. The factor A cancels: it
+multiplies candidates and strikes alike. With every visited gear above K each term is 1 and the
+condition is n < K; with gears below K the terms grow like K/h and the sum passes K exactly
+where the free regime ends. So the cut stands at "the visited gears exceed twice their number",
+whatever the number of strides: 70.5% of the steps at q = 1000, 76.6% at 10^4, 84.3% at 10^6.
+The cut is where exact pigeonhole stops. Below it a gear strikes more than one candidate per
+stride, the strikes must overlap for a survivor to remain, and that overlap is the twin
+statement. This is the boundary of what this route proves, stated cleanly.
