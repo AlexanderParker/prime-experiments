@@ -1111,3 +1111,16 @@ To choose freely the walk would need K of the order of 385 (the product of the s
 at a single step, and in general the product of the tail's gears, which is the primorial of
 about q / 4.5 - past q^2 by the trade lemma. So the placements stay given, not chosen, and the
 tail's covering question is entered where the prefix leaves it.
+
+### 59. Choosing among the handover columns (loop, 2026-09-17)
+
+research/stack/r8/handover_set.py, machines 300 to 700 (63), K = (ln q)^2, prefix run without
+the lookahead term so the whole keeping set H at its last step can be enumerated (32 columns at
+q = 691). Of those columns, 97.4% lead to at least one candidate open to every gear at the FIRST
+tail step (minimum 92.5% over the machines), the best column offers 8.6 open candidates on
+average, and at 17 machines every column of H works. At one machine of the 63, q = 307, no
+column of H works at the first tail step: the walk must use a later tail step there, which
+entry 52 shows it can (that measurement followed the walk with its lookahead, and the lookahead
+is what steers it to a column with a continuation).
+So the freedom to choose the handover column removes almost all of the first step's risk but
+not all of it, and the statement stays as named in entry 53: StepOpen at SOME tail step.

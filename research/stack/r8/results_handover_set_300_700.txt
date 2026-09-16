@@ -1,0 +1,1 @@
+machines 300..700 (63), K = (ln q)^2: handover set size 32 at the last machine; share of handover columns leading to an open candidate at the first tail step: mean 97.4%, min 92.5%; best open count over the handover set: min 0, mean 8.6; machines where NO handover column works 1 [307]; every handover column works at 17 machines
