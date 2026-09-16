@@ -1070,3 +1070,16 @@ With entries 54 and 55 the boundary is fixed from both sides: neither more strid
 different order moves it. The proved prefix is exactly the steps where the memory's smallest
 gear exceeds twice the memory's size, and it is the largest prefix any pigeonhole argument can
 reach on this construction.
+
+### 56. Settle by exclusion (loop, 2026-09-17)
+
+Keeping an unvisited gear's phase across a move 12 g k needs h | k (for h not 2, 3 or g), so
+keeping a whole unvisited set U needs prod(U) | k and the move is at least 12 g prod(U), which
+must stay inside the window: 12 g prod(U) <= q^2. Measured: the unvisited set that can be kept
+while the top gear moves is {5} at q = 101, {5, 7} at 503, 997 and 1999 - three or four gears
+of the machine's 24, 94, 166, 301. The rest cannot be kept at all.
+So settling by exclusion keeps exactly the carried base of the primorial spiral and leaves the
+remaining gears unconstrained, as before: the trade lemma again, reached from the other side.
+Every way of spending the window has now been tried - carry the gears in the mirror, keep them
+by the period, inherit them from the origin, spread them over strides, reorder the visits - and
+each buys the same amount and no more.
