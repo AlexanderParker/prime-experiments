@@ -842,3 +842,17 @@ q^2, which is the twin statement on a progression mod 30 - the descent's stateme
 Verdict: the walk's difficulty is a single arithmetic progression statement, not a shortage of
 candidates. K must grow with q (no fixed K works: at K = 40 a sample has no twin from
 q = 2000 on), and any K growing like (ln q)^2 suffices in the measurement.
+
+### 41. The walk's own last step (loop, 2026-09-16)
+
+research/stack/r8/last_step_real.py: the settle walk run to the step before gear 5, then the
+last flip about {2, 3, 5} from the column L it actually reached. Machines 907 to 1297 (57):
+the first k with L +- 60k a twin has max 12 and mean 3.7; twins among the first eighty
+candidates: min 3, mean 8.56; the column before the last flip sits at 28.6% of the window on
+average (q = 997: L = 925079, 93% up the window, first twin at k = 7; q = 1009: L = 98867,
+9.7% up, first twin at k = 1). Better than the proxy of entry 40 (mean 6.42 at q = 1000)
+because the walk's column tends to sit low in the window, where twins are denser.
+So the whole construction is: a prefix that settles every gear but 5 (three quarters of it
+proved, the rest measured clean and with wide margins), then one flip about {2, 3, 5} whose
+candidates are the progression L + 60k inside the window. The only unproved requirement, at
+every machine tested, is met within twelve periods.

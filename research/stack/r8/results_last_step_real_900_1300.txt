@@ -1,0 +1,9 @@
+Loop, entry 41: the walk's OWN last step, not a proxy.  Run the settle walk (mirror {2,3,g},
+K = 40, full memory, descending) to the step before gear 5, record the column L reached, then
+report for the last flip about {2,3,5}: where L sits in the window, the first k with L +- 60k a
+twin, and the number of twins among the first 80 candidates.
+usage: uv run python research/stack/r8/last_step_real.py lo hi
+
+machines 907..1297 (57): first k with a twin: max 12, mean 3.7; twins among the first 80 candidates: min 3, mean 8.56; the column before the last flip sits at 28.6% of the window on average
+   q = 997: column before the last flip L = 925079 (93.1% up the window); first twin at k = 7; twins among the first 80 candidates 8
+   q = 1009: column before the last flip L = 98867 (9.7% up the window); first twin at k = 1; twins among the first 80 candidates 14
