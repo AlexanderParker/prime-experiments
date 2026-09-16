@@ -1,0 +1,12 @@
+Loop, entry 39: is the tail the same problem one machine down?  Descending settle walk
+with mirror {2, 3, g}, K = 40, full memory.  The prefix = the steps of the free regime (top i
+gears all above 2i); the tail = the remaining gears (below about q / 4.5) down to 5.  At each
+tail step, among the eighty candidates inside the range: how many are open to the small
+gears visited so far (the tail's own machine), how many to the big gears (the prefix's, kept
+in memory), and how many to both (the keeping moves).  If the big gears rarely strike the
+candidates the small gears leave open, the tail is the machine q/4.5's problem with the room
+of the window (q, q^2].
+usage: uv run python research/stack/r8/settle_tail.py lo hi
+
+machines 1009..1249 (36); tail steps 1938; per tail step: candidates 80.0, open to the small gears 56.74, open to the big gears 56.88, keeping (both) 42.65; candidates open to the small gears but struck by a big one 14.10 per step; tail steps with no keeping move 0
+minimum keeping moves over the tail steps per machine (q, min, at gear): [(1019, 3, 5), (1039, 3, 5), (1061, 3, 5), (1087, 3, 5), (1171, 4, 5), (1051, 5, 5), (1153, 5, 5), (1229, 5, 5), (1231, 5, 5), (1117, 6, 5), (1021, 7, 5), (1193, 8, 5)]; overall minimum 3

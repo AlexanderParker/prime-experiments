@@ -811,3 +811,12 @@ So in the tail the keeping moves are plentiful on average (forty of eighty), the
 remove about a quarter of what the small gears leave, and the tail's own machine (the gears
 below q / 4.5) leaves two thirds of the candidates open on average. The binding quantity is
 the minimum over steps, measured next.
+Machines 1009 to 1249 (36, 1938 tail steps): per tail step 42.7 keeping moves of 80 on
+average, never zero; but the MINIMUM over the tail steps is always at the last step, gear 5,
+where every gear is visited: 3 keeping moves of 80 at q = 1019, 1039, 1061, 1087; 4 at 1171; 5
+to 8 elsewhere. So the walk's difficulty sits at one place: the last flip, about {2, 3, 5},
+with all gears in memory, which is the final step by residues of 2026-09-14 with eighty
+candidates. Everything before it has margin; the last step's margin is a handful and will
+shrink as q grows unless the periods grow with it. The tail is not the machine one level down;
+it is the prefix plus one final flip whose existence is the twin statement on eighty spaced
+columns.

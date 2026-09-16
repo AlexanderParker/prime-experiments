@@ -26,11 +26,12 @@ def main():
     qs = list(primerange(lo, hi + 1))
     out = [__doc__.strip(), ""]
     tot = dict(steps=0, cand=0, open_small=0, open_big=0, keeping=0, small_only_but_big_struck=0, no_keep=0)
+    mins = []   # per machine: the minimum keeping count over the tail steps, and the gear where it occurs
     for q in qs:
         m = E.Machine(q, sv); P = 6; seq = [g for g in m.ps if g >= 5][::-1]
         free = 0
         while free < len(seq) and seq[free] > 2 * (free + 1): free += 1
-        visited = []; L = -1
+        visited = []; L = -1; mk = (10 ** 9, None)
         for i, g in enumerate(seq):
             visited.append(g); nxt = seq[i + 1] if i + 1 < len(seq) else None
             big = [h for h in visited if h > seq[free - 1]] if free else []
@@ -48,6 +49,7 @@ def main():
                 tot['open_small'] += len(os_); tot['open_big'] += len(ob); tot['keeping'] += len(keep)
                 tot['small_only_but_big_struck'] += len(os_) - len(keep)
                 if not keep: tot['no_keep'] += 1
+                if len(keep) < mk[0]: mk = (len(keep), g)
             best = None
             for n in cands:
                 on = sum(1 for h in visited if n % h in (0, h - 2))
@@ -58,10 +60,12 @@ def main():
                 sc = (-on, fl, md)
                 if best is None or sc > best[0]: best = (sc, n)
             L = best[1]
+        mins.append((q, mk[0], mk[1]))
     s = tot['steps']
     out.append(f"machines {qs[0]}..{qs[-1]} ({len(qs)}); tail steps {s}; per tail step: candidates {tot['cand'] / s:.1f}, open to the small gears {tot['open_small'] / s:.2f}, open to the big gears {tot['open_big'] / s:.2f}, keeping (both) {tot['keeping'] / s:.2f}; candidates open to the small gears but struck by a big one {tot['small_only_but_big_struck'] / s:.2f} per step; tail steps with no keeping move {tot['no_keep']}")
+    out.append(f"minimum keeping moves over the tail steps per machine (q, min, at gear): {sorted(mins, key=lambda r: r[1])[:12]}; overall minimum {min(r[1] for r in mins)}")
     Path(f"research/stack/r8/results_settle_tail_{lo}_{hi}.txt").write_text("\n".join(out), encoding="utf-8")
-    print(out[-1])
+    print(out[-2]); print(out[-1])
 
 if __name__ == "__main__":
     main()
