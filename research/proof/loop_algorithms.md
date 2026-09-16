@@ -968,3 +968,18 @@ mirror_times_candidates): candidates spaced 2M apart inside a window of length q
 at most (q^2 - q) / (2M). Carried gears multiply M; candidates need room; the two divide the
 same window. Every variant of the last eight entries has spent the window on one side or the
 other, and the product is fixed.
+
+### 49. StepOpen's margin at larger machines, and the period law (loop, 2026-09-16)
+
+research/stack/r8/stepopen_large.py, 60 draws per q of a column low in the window with the
+right residue mod 30, candidates over the first eight strides above sqrt q.
+- Fixed family (8 strides, 4 periods, 64 candidates): open candidates mean 2.97 at q = 1000,
+  2.02 at 3000, 1.37 at 10^4, 1.30 at 3 x 10^4, 0.98 at 10^5, 0.92 at 3 x 10^5; draws with none
+  1, 9, 10, 13, 23, 22 of 60. A fixed family thins out, as the twin density says it must
+  (64 candidates times about 2.2 / (ln q)^2).
+- Family scaled as (ln q)^2 / 4 periods (176 candidates at q = 1000 up to 624 at 3 x 10^5):
+  open candidates min 2 to 3 and mean 9.3 to 10.4 at every q, no draw with none.
+So the construction must let the period count grow, K about (ln q)^2 / 4, and then the margin
+is flat in q (about ten open candidates of a few hundred). The window affords far more: at the
+top gears K may run to about q / 24 before the candidates leave the window, so the growth costs
+nothing. Recorded as the walk's period law; the hypothesis StepOpen is stated with this K.

@@ -1,0 +1,18 @@
+Loop, entry 49: StepOpen's margin at larger machines.  The walk's own last step is expensive
+to reach at large q, so the column L is replaced by its measured statistics: L is a column of
+the window open to every gear of the machine except the ones the last step re-settles, and it
+sits low in the window (29 to 38 percent measured).  Here the margin is measured directly on
+the family: from a column L drawn in the window with L = 11, 17 or 29 mod 30 (open to 2, 3, 5)
+and low in the window, the candidates L + 12 g k d for the first A gears above sqrt q,
+k = 1..K, both directions: how many are open to every gear up to q (i.e. are twins, by the
+square-root rule, since the candidates are below q^2).  Reported per q: the minimum and mean
+over 60 draws, and the share of draws with none.
+usage: uv run python research/stack/r8/stepopen_large.py A K
+
+family: 8 strides x 4 periods x 2 directions = 64 candidates
+q =    1000: open candidates min 0, mean 2.97, draws with none 1 of 60
+q =    3000: open candidates min 0, mean 2.02, draws with none 9 of 60
+q =   10000: open candidates min 0, mean 1.37, draws with none 10 of 60
+q =   30000: open candidates min 0, mean 1.30, draws with none 13 of 60
+q =  100000: open candidates min 0, mean 0.98, draws with none 23 of 60
+q =  300000: open candidates min 0, mean 0.92, draws with none 22 of 60
