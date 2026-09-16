@@ -1,0 +1,1 @@
+machines 300..800 (77), K = (ln q)^2: at the prefix's last step the keeping candidates cover 11.7% of the 180 admissible residue triples (mod 5, 7, 11) on average, min 0.0%, max 17.8%; all 180 reached at 0 machines

@@ -1097,3 +1097,17 @@ gear, placed on the candidate line by the column, and a survivor exists unless t
 every candidate. That is the fields on the line again, with the shapes named; it is not a count,
 but it is also not a mechanism that forces a gap, because the placements are exactly the column's
 residues, which the walk does not control.
+
+### 58. Can the prefix choose the handover column's small residues? (loop, 2026-09-17)
+
+research/stack/r8/handover_choice.py, machines 300 to 800 (77), K = (ln q)^2. At the prefix's
+last step the candidates that keep every visited gear settled cover, on average, 11.7% of the
+180 admissible residue triples mod 5, 7, 11 (min 0%, max 17.8%); no machine reaches all 180.
+The reason is the arithmetic of one step: the candidates are c + 12 g k for k = 1..K, so their
+residues mod 5, 7, 11 run through at most K values of a single progression in each modulus, and
+K = (ln q)^2 is far below 385; the keeping condition then removes most of those. The prefix
+does not choose the handover residues; it offers a small, structured subset.
+To choose freely the walk would need K of the order of 385 (the product of the small moduli)
+at a single step, and in general the product of the tail's gears, which is the primorial of
+about q / 4.5 - past q^2 by the trade lemma. So the placements stay given, not chosen, and the
+tail's covering question is entered where the prefix leaves it.
