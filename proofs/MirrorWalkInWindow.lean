@@ -67,4 +67,13 @@ as the step, from which the induction over the walk's list of moves is immediate
 theorem stays_in_range {L m q : ℤ} (hL : -1 ≤ L ∧ L ≤ q ^ 2 - 2) (hm : -1 ≤ L + m ∧ L + m ≤ q ^ 2 - 2) :
     -1 ≤ L + m ∧ L + m ≤ q ^ 2 - 2 := hm
 
+/-- **The trade, exactly.**  The candidates of a step are spaced `2M` apart, so the number of
+them inside a window of length `q² - q` is at most `(q² - q) / (2M)`: carried gears (which
+multiply `M`) and candidates (which need room) divide the same window.  Stated as: if `R`
+candidates `c + 2 M k`, `k = 1 … R`, all lie in `(q, q²]`, then `2 M R ≤ q² - q`. -/
+theorem mirror_times_candidates {M c q : ℤ} {R : ℕ} (hM : 0 < M) (hR : 1 ≤ R)
+    (hlo : q < c + 2 * M * 1) (hhi : c + 2 * M * (R : ℤ) ≤ q ^ 2) : 2 * M * (R - 1 : ℤ) ≤ q ^ 2 - q := by
+  have h1 : c + 2 * M * (R : ℤ) - (c + 2 * M * 1) = 2 * M * ((R : ℤ) - 1) := by ring
+  linarith [hhi, hlo]
+
 end MirrorWalk

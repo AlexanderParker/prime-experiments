@@ -952,3 +952,19 @@ gears cut the family to about a quarter, and every remaining gear is above 17 an
 2/h of what is left. The sum of 2/h over the gears 19 to q is near 1 at these sizes, so no
 count leaves a survivor; the measured survivors (three to fourteen open to every gear) come from
 the strikes overlapping, which is the twin statement's own content.
+
+### 48. The returning mirror, and the trade stated exactly (loop, 2026-09-16)
+
+research/stack/r8/returning_mirror.py, machines 400 to 2000 (225). Ending the walk on a column
+congruent to home modulo the tail primorial T inherits the tail gears' openness from the origin
+instead of re-earning it. But the landing must lie in the window, so 2T <= q^2: the inherited
+tail reaches only gear 13 (T = 30030) up to q = 1300 and gear 17 (T = 510510) beyond, leaving
+73 to 296 gears to be handled, while the columns in reach fall to 16, 4, 3, 2 as T grows. A
+twin among the inherited columns at 87 of 225 machines: q = 997 has 16 columns and 6 twins,
+q = 1999 has 3 columns and none. Worse than the walk, and it is the descent of 2026-09-15
+re-derived as an endgame.
+The trade behind every one of these attempts, now in the kernel (MirrorWalkInWindow,
+mirror_times_candidates): candidates spaced 2M apart inside a window of length q^2 - q number
+at most (q^2 - q) / (2M). Carried gears multiply M; candidates need room; the two divide the
+same window. Every variant of the last eight entries has spent the window on one side or the
+other, and the product is fixed.

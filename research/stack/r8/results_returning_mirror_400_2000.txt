@@ -1,0 +1,18 @@
+Loop, entry 48: the returning mirror.  Idea: end the walk on a column congruent to the ORIGIN
+modulo the tail primorial T = 5 * 7 * 11 * ... * m, so the tail gears' openness is inherited
+from home (-1 is open to every gear) rather than re-earned.  A move by a multiple of 2T does
+that; the walk's own moves are 12 g k, so the total displacement D must satisfy T | D/2, i.e.
+2T | D.  The displacement lands in the window iff 2T <= q^2, so T <= q^2 / 2: the tail primorial
+must fit the window.
+Measured per machine: the largest m with the primorial of 5..m at most q^2 / 2 (how much tail
+can be inherited), the gears left over (above m, below q), and whether a column
+-1 + 2 T t inside the window is open to those leftover gears for some t (the walk's remaining
+task).  This is the descent of 2026-09-15 re-derived as the walk's endgame: reported for
+comparison.
+usage: uv run python research/stack/r8/returning_mirror.py lo hi
+
+machines 400..2000 (225): the inherited tail reaches gear 13 to 17; leftover gears 73 to 296; a twin among the inherited columns at 87
+   q = 503: inherited tail = gears to 13 (T = 30030); leftover gears 90 ([17, 19, 23, 29, 31]...); columns in reach 4; open to the leftover gears 1; twins 1
+   q = 997: inherited tail = gears to 13 (T = 30030); leftover gears 162 ([17, 19, 23, 29, 31]...); columns in reach 16; open to the leftover gears 6; twins 6
+   q = 1499: inherited tail = gears to 17 (T = 510510); leftover gears 232 ([19, 23, 29, 31, 37]...); columns in reach 2; open to the leftover gears 0; twins 0
+   q = 1999: inherited tail = gears to 17 (T = 510510); leftover gears 296 ([19, 23, 29, 31, 37]...); columns in reach 3; open to the leftover gears 0; twins 0
