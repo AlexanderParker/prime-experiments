@@ -40,11 +40,12 @@ def walk(m, K, flex=True):
     return L, fails, fewfit
 
 def main():
-    E.QMAX = 1500
+    lo, hi = (int(sys.argv[1]), int(sys.argv[2])) if len(sys.argv) > 2 else (11, 1500)
+    E.QMAX = hi
     N = E.QMAX * E.QMAX * 4 + 10; sv = np.ones(N + 1, dtype=bool); sv[:2] = False
     for i in range(2, int(N ** 0.5) + 1):
         if sv[i]: sv[i * i::i] = False
-    ps = list(primerange(11, E.QMAX + 1)); qs = [p for p in ps if p <= 1500]
+    qs = list(primerange(lo, hi + 1))
     machines = [E.Machine(q, sv) for q in qs]
     out = [__doc__.strip(), ""]
     for K in (40,):
@@ -57,7 +58,7 @@ def main():
                 if m.sv[L] and m.sv[L + 2]: twins += 1
         line = f"base {{2,3}}, K = {K}: machines with a step lacking a keeping move: {len(bad)} of {len(machines)} (q, steps, of which with at most 3 candidates in range): {bad[:12]}{'...' if len(bad) > 12 else ''}; landings in the window {inwin}, twins {twins}"
         out.append(line); print(line, flush=True)
-    Path("research/stack/r8/results_settle_base6.txt").write_text("\n".join(out), encoding="utf-8")
+    Path(f"research/stack/r8/results_settle_base6_{lo}_{hi}.txt").write_text("\n".join(out), encoding="utf-8")
 
 if __name__ == "__main__":
     main()

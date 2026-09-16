@@ -772,3 +772,6 @@ every sampled machine from 29 to 2000 a keeping move existed at EVERY step. Land
 window 92, twins 90 (the misses are among the toy machines). So with the mirror {2, 3, g} and
 forty periods each way, the one-step statement held at every step of every machine sampled
 above 23. Verification on every machine to 1500 follows.
+
+Entry 36, every machine 29 to 700 (116 machines, K = 40, mirror {2, 3, g}, full memory): a
+keeping move at every step of every machine; 116 of 116 landings are twins.
