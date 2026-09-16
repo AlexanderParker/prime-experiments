@@ -256,3 +256,28 @@ false as stated: the walk succeeds by recovering, not by never failing. Piece 2 
 one-step lemma; it is the statement that the walk's final column is off every gear's teeth,
 which is the twin statement for the walk's own family. Piece 1 (the window) stands; piece 2 is
 where the proof is missing, and the measurement says it is not a local fact.
+
+# The settle walk: piece 2, the free regime (2026-09-16)
+
+Measured (loop entries 35, 36): the missing keeping moves were the affordability wall; with the
+mirror shrunk to {2, 3, g} at every step (5 and 7 visited as gears) and forty periods each way,
+the walk never lacks a keeping move at any step of any machine 29 to 2000, and every landing is
+a twin (294 machines). Piece 2 is therefore the local statement "from a column where the
+visited gears are settled, one of the eighty spaced columns L +- 12 g k inside the range is
+settled too, with g as well", uniformly, and the proof splits by regime.
+
+Proved, kernel proofs/MirrorWalkSettleFree.lean (round 57, built, 0 sorries, standard axioms):
+- strikes_iff_offA: a gear h coprime to the step s (with a an inverse of s mod h) strikes the
+  candidate y + s k iff k lies in the class -y a mod h: two classes of k per gear, one per member.
+- resA_card_le: the struck classes of a set G of gears number at most 2 |G|.
+- keeping_move_free: if every gear of G exceeds 2 |G| (and is coprime to s), some k at most
+  2 |G| gives a candidate open to every gear of G. Exact; the kernel's mex_form carried to the
+  progression. No residue read, no density: each gear strikes at most two of 2|G| + 1 consecutive
+  candidates because its period exceeds their span.
+Coverage: the descending walk's early steps, while the visited gears are few and all larger
+than twice their number (roughly the first q / (ln q + 2) steps, all gears above about q / 4).
+Not covered: the later steps, where the small gears enter and the visited set's size exceeds
+the smallest gear's half; there the eighty candidates span several periods of the small gears,
+each of which strikes more than two, and the count of struck classes alone no longer leaves a
+free candidate. That tail is where the measured walk still succeeds and the proof does not
+reach: the twin statement's own territory, now confined to the final stretch of the walk.

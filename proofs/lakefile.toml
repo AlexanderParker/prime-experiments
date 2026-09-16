@@ -2286,3 +2286,6 @@ name = "MirrorWalkReach"
 
 [[lean_lib]]
 name = "MirrorWalkInWindow"
+
+[[lean_lib]]
+name = "MirrorWalkSettleFree"

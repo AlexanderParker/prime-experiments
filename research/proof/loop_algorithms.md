@@ -784,3 +784,18 @@ Every machine 1501 to 1750 (33) and 1751 to 2000 (31): the same. In all, every m
 periods each way never lacks a keeping move at any step, and its landing is a twin every time.
 The method that got here (owner): read each failure on its own; the failures were the
 affordability wall, and shrinking the mirror removed them.
+
+### 37. Piece 2, the free regime, in the kernel (2026-09-16)
+
+proofs/MirrorWalkSettleFree.lean (round 57): strikes_iff_offA, resA_card_le,
+keeping_move_free: with the visited gears all larger than twice their number, a keeping move
+among 2n + 1 consecutive candidates exists, exactly. Covers the descending walk's early steps;
+the tail with the small gears is uncovered (recursive_walk.md, piece 2).
+
+### 38. The softer target (q, q#] (owner, 2026-09-16)
+
+Quick measurement, machines 11 to 400 (74): primorial spiral with the base bounded by q^e / 2,
+landing in (q, q#] and a twin by primality test: e = 1: 13 twins, all inside the window; e = 2:
+16, none inside the window; e = 3: 10; e = 4: 6. Beyond q^2 a column open to every gear up to
+q need not be prime (two factors above q), so the machine certifies nothing there: the softer
+range gives up the landing lemma, and the rates do not rise. Not pursued further.
