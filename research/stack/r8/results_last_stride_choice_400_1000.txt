@@ -1,0 +1,12 @@
+Loop, entry 46: choose the last stride among several gears.  At the walk's last step the
+column L is open to every gear except those the step must re-settle.  The stride is 2 P g
+(P the carried base, g the step's gear); different g give different progressions.  Measured
+per machine: for each candidate last gear g among the gears above sqrt q (the first eight),
+whether StepOpen holds within K = 40 periods, how many of the eighty candidates are open to
+every gear, and the smallest k that works.  Reported: the machines where SOME g works (the
+walk may choose the stride), against those where a FIXED g works.
+usage: uv run python research/stack/r8/last_stride_choice.py lo hi
+
+machines 400..1000 (90): some choice of the last stride gives StepOpen at 90; a fixed stride (the i-th gear above sqrt q) works at [90, 90, 90, 90, 88, 90, 89, 87]; smallest working k over the choices: max 4
+   q = 503: last-stride gears that work (gear, open candidates of 80, first k): [(23, 7, 1), (29, 4, 3), (31, 4, 8), (37, 6, 1), (41, 5, 1), (43, 5, 4)]
+   q = 997: last-stride gears that work (gear, open candidates of 80, first k): [(37, 2, 17), (41, 4, 11), (43, 3, 5), (47, 5, 3), (59, 3, 34), (61, 4, 5)]

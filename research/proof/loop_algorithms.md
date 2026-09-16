@@ -924,3 +924,16 @@ machines. Twin landings 98 of 134 (worse than the {2,3,g} walk with lookahead, w
 a twin everywhere: the larger mirror costs candidates and this version has no lookahead).
 Verdict: closed by the affordability limit, the same wall as the reach theorem, now step-wise:
 a mirror can carry only the gears of a primorial at most q / 4.
+
+### 46. Choosing the last stride (loop, 2026-09-16)
+
+research/stack/r8/last_stride_choice.py, machines 400 to 1000 (90). The walk is run down to the
+last two gears, then the last stride is tried over the first eight gears above sqrt q. Some
+choice of stride gives StepOpen at all 90 machines; each fixed stride works at 87 to 90 of 90;
+and the smallest working period over the choices is at most 4 at every machine (q = 503: gear
+23 works at k = 1 with seven open candidates of eighty; q = 997: gear 47 at k = 3 with five).
+So StepOpen may be stated over a union of eight progressions with K = 4, that is sixty-four
+candidates, rather than one progression with eighty. The union has more candidates and the
+strides are different, so the small gears' forbidden classes fall differently on each; the
+hypothesis is weaker in form. Its content is unchanged: some column of a finite explicit set
+inside the window must be open to every gear, which is the window statement on that set.
