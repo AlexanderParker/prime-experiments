@@ -873,3 +873,19 @@ options. The landing at the gear-7 step is a twin. The tight requirement is that
 its eighty candidates L +- 84k must be open to every gear from 5 to q. Measured margin: 3 to 14
 such candidates at machines near 1000, mean 8.6; first success within 12 periods at every
 machine 907 to 1297 and within 7 at the sampled machines 2003 to 4889.
+
+### 43. Stopping the walk early (loop, 2026-09-16)
+
+research/stack/r8/walk_stop.py, machines 300 to 900 (92). Stop at gear 7, lookahead over 5:
+twin landings 92 of 92, no failure; candidates at the last step open to every gear from 5 up:
+min 5, mean 9.37. Stop at gear 11, lookahead over 7 and 5: twin landings 33 of 92, though the
+margin is still min 4, mean 7.40 - the scoring only looks one gear ahead, so it does not
+enforce 7 and 5 together; the candidates exist, the rule does not pick them.
+So the construction that works is: gears q down to 7, mirror {2, 3, g}, K = 40, memory every
+visited gear, score = keep all settled then maximise the next gear's options (which at the last
+step is gear 5 and carries its condition). Landing: a twin, at every machine tested.
+The final step's requirement, stated cleanly: among the eighty columns L +- 84k, one is open to
+every gear from 5 to q. Measured margin 4 to 14. A count cannot prove it: the small gears strike
+about 2/h of the candidates each, and the sum over the gears diverges, so no counting bound
+leaves a survivor (and counting is not allowed here in any case). The requirement is the twin
+statement on a progression of modulus 84 inside the window.

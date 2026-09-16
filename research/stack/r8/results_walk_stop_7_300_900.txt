@@ -1,0 +1,1 @@
+stop at gear 7, lookahead [5], machines 300..900 (92): twin landings 92; failures []; candidates at the last step open to every gear: min 5, mean 9.37
