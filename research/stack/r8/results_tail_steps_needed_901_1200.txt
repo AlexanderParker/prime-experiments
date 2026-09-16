@@ -1,0 +1,1 @@
+machines 901..1200 (42), K = (ln q)^2: the first tail step at which the walk can finish - distribution [(0, 42)]; max 0; machines that never finish in the tail 0 []

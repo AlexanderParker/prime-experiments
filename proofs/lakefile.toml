@@ -2292,3 +2292,6 @@ name = "MirrorWalkSettleFree"
 
 [[lean_lib]]
 name = "MirrorWalkConditional"
+
+[[lean_lib]]
+name = "MirrorWalkTheorem"

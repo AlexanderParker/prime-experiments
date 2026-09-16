@@ -1137,3 +1137,17 @@ first step, applied to the column the lookahead prefix hands over. The construct
 fixed finite procedure with one hypothesis:
    prefix (proved, the first cut) -> handover column -> one step of 2K candidates -> twin.
 Extension to machines 901 to 1600 running.
+
+Entry 60, extension: machines 901 to 1200 (42): the first tail step at which the walk can finish
+is step 0 at all 42, as at 200 to 900. 150 machines in all, no exception.
+
+### 61. The construction as one theorem (loop, 2026-09-17)
+
+proofs/MirrorWalkTheorem.lean (round 59, built, 0 sorries, standard axioms):
+- `Handover`: the walk's data at the handover (column, stride, period bound, top gear).
+- `construction_twin`: with G holding every prime from 5 below the top gear, StepOpen at the
+  handover gives a twin prime pair inside the window.
+- `window_statement_of_stepOpen`: if every machine's walk meets its step hypothesis, every
+  machine's window holds a twin prime pair - the window statement, from the construction.
+So the chain is complete as an implication, with exactly one hypothesis left, and that
+hypothesis is measured at the tail's first step at every machine from 200 to 1200.
