@@ -1124,3 +1124,16 @@ entry 52 shows it can (that measurement followed the walk with its lookahead, an
 is what steers it to a column with a continuation).
 So the freedom to choose the handover column removes almost all of the first step's risk but
 not all of it, and the statement stays as named in entry 53: StepOpen at SOME tail step.
+
+### 60. How many tail steps does the walk need? (loop, 2026-09-17)
+
+research/stack/r8/tail_steps_needed.py, machines 200 to 900 (108), K = (ln q)^2, the walk run
+with its lookahead. The first tail step at which some candidate is open to every gear of the
+machine is step 0 at all 108 machines - the walk can finish at the tail's very first step, every
+time, when it arrives there by its own path (entry 59's 97.4% measured the handover columns of a
+prefix run WITHOUT the lookahead; the lookahead removes the remaining risk).
+So the open statement can be stated at one named step, not "some step": StepOpen at the tail's
+first step, applied to the column the lookahead prefix hands over. The construction is then a
+fixed finite procedure with one hypothesis:
+   prefix (proved, the first cut) -> handover column -> one step of 2K candidates -> twin.
+Extension to machines 901 to 1600 running.
