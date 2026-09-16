@@ -856,3 +856,20 @@ So the whole construction is: a prefix that settles every gear but 5 (three quar
 proved, the rest measured clean and with wide margins), then one flip about {2, 3, 5} whose
 candidates are the progression L + 60k inside the window. The only unproved requirement, at
 every machine tested, is met within twelve periods.
+
+### 42. The last flip is redundant: the walk lands on the twin one step earlier (loop, 2026-09-16)
+
+The last flip's mirror {2, 3, 5} has move 60k, and 5 divides 60, so the flip PRESERVES the
+phases of 2, 3 and 5: it cannot settle gear 5. Gear 5 must already be open at the column before
+it. Measured (machines 900 to 1300, 57): that column is open to gear 5 at all 57, and is
+already a twin at all 57. So the walk has finished at the step before.
+The mechanism is the one-step lookahead: at the gear-7 step the score prefers candidates whose
+next step (gear 5) has keeping moves, and since the gear-5 move preserves 5, a candidate with
+any such option must itself be open to 5; being open to every gear from 7 up as well, it is a
+twin. The lookahead is not a heuristic here, it is the carrier of gear 5's condition.
+Construction as it now stands: gears q down to 7, mirror {2, 3, g}, K = 40 periods each way,
+memory every visited gear, score = keep all visited settled, then maximise the next gear's
+options. The landing at the gear-7 step is a twin. The tight requirement is that step's: one of
+its eighty candidates L +- 84k must be open to every gear from 5 to q. Measured margin: 3 to 14
+such candidates at machines near 1000, mean 8.6; first success within 12 periods at every
+machine 907 to 1297 and within 7 at the sampled machines 2003 to 4889.
