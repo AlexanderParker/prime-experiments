@@ -1,0 +1,19 @@
+Loop, entry 40: the last step's margin against q.  The walk's last flip is about {2, 3, 5}
+from a column L open to 2, 3, 5 (L = 11, 17 or 29 mod 30); the candidates are L +- 60 k,
+k = 1..K, inside the window (q, q^2 - 2]; the keeping moves are the candidates that are twins.
+Proxy for the walk's own L: 200 columns per q drawn uniformly from the window with the right
+residue mod 30.  Reported per q: the mean and the minimum number of twins among the 2K
+candidates for K = 40, and the K needed so that every sampled column has at least one twin
+among its first K periods (the largest first-hit k over the samples).  Twins by isprime.
+usage: uv run python research/stack/r8/last_step_margin.py
+
+q =      500: twins among the 80 candidates (K = 40): mean 8.36, min 3, samples with none 0; K needed for every sample to have a twin within K periods: 29
+q =     1000: twins among the 80 candidates (K = 40): mean 6.42, min 1, samples with none 0; K needed for every sample to have a twin within K periods: 31
+q =     2000: twins among the 80 candidates (K = 40): mean 5.28, min 0, samples with none 1; K needed for every sample to have a twin within K periods: 47
+q =     5000: twins among the 80 candidates (K = 40): mean 4.29, min 0, samples with none 1; K needed for every sample to have a twin within K periods: 43
+q =    10000: twins among the 80 candidates (K = 40): mean 3.71, min 0, samples with none 7; K needed for every sample to have a twin within K periods: 91
+q =    20000: twins among the 80 candidates (K = 40): mean 3.09, min 0, samples with none 3; K needed for every sample to have a twin within K periods: 54
+q =    50000: twins among the 80 candidates (K = 40): mean 2.60, min 0, samples with none 11; K needed for every sample to have a twin within K periods: 103
+q =   100000: twins among the 80 candidates (K = 40): mean 2.12, min 0, samples with none 11; K needed for every sample to have a twin within K periods: 71
+q =   300000: twins among the 80 candidates (K = 40): mean 1.98, min 0, samples with none 33; K needed for every sample to have a twin within K periods: 155
+q =  1000000: twins among the 80 candidates (K = 40): mean 1.55, min 0, samples with none 40; K needed for every sample to have a twin within K periods: 133

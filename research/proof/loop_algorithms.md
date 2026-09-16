@@ -820,3 +820,25 @@ candidates. Everything before it has margin; the last step's margin is a handful
 shrink as q grows unless the periods grow with it. The tail is not the machine one level down;
 it is the prefix plus one final flip whose existence is the twin statement on eighty spaced
 columns.
+
+### 40. The last step's margin against q (loop, 2026-09-16)
+
+research/stack/r8/last_step_margin.py, results_last_step_margin.txt. The last flip is about
+{2, 3, 5} from a column L open to 2, 3, 5 (L = 11, 17 or 29 mod 30); candidates L +- 60 k
+inside the window. Proxy: 200 columns per q drawn from the window with the right residue.
+Twins among the eighty candidates at K = 40, and the K at which every sampled column has a twin
+within K periods:
+  q = 500: mean 8.36, min 3, none 0 of 200; K needed 29
+  1000: 6.42, 1, 0; 31        2000: 5.28, 0, 1; 47        5000: 4.29, 0, 1; 43
+  10000: 3.71, 0, 7; 91       20000: 3.09, 0, 3; 54       50000: 2.60, 0, 11; 103
+  100000: 2.12, 0, 11; 71     300000: 1.98, 0, 33; 155     1000000: 1.55, 0, 40; 133
+The margin at a fixed K falls like the twin density at the window's scale (about 1 / (ln q)^2
+per column, so about 80 / (ln q)^2 twins among the candidates: 8.4 at q = 500 against the
+measured 8.36, 1.6 at 10^6 against 1.55). The K needed grows slowly (29 to 155 over three
+decades) and stays far below what the window affords (K up to q^2 / 120). So the last step is
+never short of room; it is short of a proof that the progression L + 60k holds a twin below
+q^2, which is the twin statement on a progression mod 30 - the descent's statement of
+2026-09-15 with P_s = 30.
+Verdict: the walk's difficulty is a single arithmetic progression statement, not a shortage of
+candidates. K must grow with q (no fixed K works: at K = 40 a sample has no twin from
+q = 2000 on), and any K growing like (ln q)^2 suffices in the measurement.
