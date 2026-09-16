@@ -1083,3 +1083,17 @@ remaining gears unconstrained, as before: the trade lemma again, reached from th
 Every way of spending the window has now been tried - carry the gears in the mirror, keep them
 by the period, inherit them from the origin, spread them over strides, reorder the visits - and
 each buys the same amount and no more.
+
+### 57. The tail's struck classes have a fixed shape (loop, 2026-09-17)
+
+On the candidate line c + s k the gear h strikes at k = -c a and k = -(c + 2) a, with a the
+inverse of s modulo h, so the two teeth sit a fixed distance -2a apart: fixed by h and the
+stride alone, the same for every column, and only the PAIR'S POSITION moves with the column.
+Measured for the strides 12g at g = 11, 13, 101: gear 5's gap is 4, 3, 4; gear 7's is 2, 6, 5;
+gear 11's is 10, 10; gear 13's is 12, 8; and so on, each an exact residue with no pattern
+across h.
+So the tail's question is a covering question with explicit shapes: fixed-width pairs, one per
+gear, placed on the candidate line by the column, and a survivor exists unless the pairs cover
+every candidate. That is the fields on the line again, with the shapes named; it is not a count,
+but it is also not a mechanism that forces a gap, because the placements are exactly the column's
+residues, which the walk does not control.
