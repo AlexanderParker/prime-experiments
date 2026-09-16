@@ -775,3 +775,7 @@ above 23. Verification on every machine to 1500 follows.
 
 Entry 36, every machine 29 to 700 (116 machines, K = 40, mirror {2, 3, g}, full memory): a
 keeping move at every step of every machine; 116 of 116 landings are twins.
+Every machine 701 to 1100 (59) and 1101 to 1500 (55): the same, no missing keeping move, every
+landing a twin. So on every machine from 29 to 1500 (230 machines) the settle walk with the
+mirror {2, 3, g}, full memory and forty periods each way never lacks a keeping move, and its
+landing is a twin every time.

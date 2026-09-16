@@ -1,0 +1,9 @@
+Loop, entry 36: the settle walk with the smallest base.  Mirror {2, 3, g} at every step
+(P = 6), every gear from 5 visited descending with full memory, so that at every step at least
+q^2 / (12 g) candidates fit the range.  K periods per direction.  Machines to 3000: steps
+lacking a keeping move, and landings that are twins (a landing open to every visited gear is
+open to every gear of the machine from 5, hence a twin by the landing lemma, since 2 and 3 are
+carried from home).
+usage: uv run python research/stack/r8/settle_base6.py
+
+base {2,3}, K = 40: machines with a step lacking a keeping move: 0 of 55 (q, steps, of which with at most 3 candidates in range): []; landings in the window 55, twins 55
