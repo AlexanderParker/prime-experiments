@@ -290,3 +290,22 @@ unproved tail. In the measurement the walk never lacked a keeping move in the ta
 with eighty candidates against up to three hundred visited gears: far beyond what the
 free-regime count gives (2n + 1 candidates for n gears), which means the struck classes
 overlap heavily there; that overlap is the joint behaviour the twin statement asserts.
+
+# The walk's theorem, with its one hypothesis named (2026-09-16)
+
+Kernel proofs/MirrorWalkConditional.lean (round 58, built, 0 sorries, standard axioms):
+- cand c s k = c + s k: the candidate columns of a step (s = 2 g columns for the mirror
+  {2, 3, g}, either sign).
+- StepOpen G c s K P: some candidate within K periods is a column of the window (1 <= m,
+  6m + 1 < P^2) that no gear of G strikes.
+- walk_twin_of_stepOpen: with G holding every prime from 5 below P, StepOpen gives a twin prime
+  pair inside the window.
+So the construction now reads as one implication with one open hypothesis:
+   [the walk stays in the window: proved, round 56]
+ + [every step of the free prefix has a keeping move: proved, round 57, a fraction
+    ln q / (ln q + 2) of the steps]
+ + [StepOpen at the last step: measured at every machine to 2000, margin four to fourteen of
+    eighty candidates; not proved]
+ => a twin prime pair in (q, q^2].
+StepOpen is the window statement restricted to one arithmetic progression of modulus 84 (or 60
+for a {2,3,5} step): the whole construction is a reduction of the window statement to that.
