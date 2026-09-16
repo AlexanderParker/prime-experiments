@@ -1,0 +1,1 @@
+machines 200..700 (79), K = (ln q)^2: tail steps where some candidate is open to EVERY gear: all of them at 79 machines; the minimum over the tail steps has min 1 and mean 2.14; the first tail step with such a candidate is step 0 to 0 of the tail (0 = the first)

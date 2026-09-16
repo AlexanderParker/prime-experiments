@@ -1014,3 +1014,15 @@ machines 29 to 900 and 85 of 85 machines 901 to 1500, free prefix 71%).
 So the construction is stated with the period count K_n = max((ln q)^2, 2n + 1) at step n: the
 walk uses the first term, the proof of the prefix uses the second, and both fit the window.
 The proved prefix is then the first cut, rising to 1 like ln q / (ln q + 2).
+
+### 52. The tail's requirement is uniform (loop, 2026-09-17)
+
+research/stack/r8/tail_uniform.py, machines 200 to 700 (79), K = (ln q)^2. At EVERY tail step
+(the steps after the first cut) some candidate is open to every gear of the machine, at all 79
+machines; the minimum over a machine's tail steps is 1 at worst and 2.14 on average; and the
+first tail step already has such a candidate at every machine.
+So StepOpen need not be reserved for the last step: it holds at the tail's first step, and the
+walk may stop there. The construction becomes: run the proved prefix (the first cut), then take
+the first candidate open to every gear; that column is a twin by the landing lemma. The open
+statement is StepOpen at ONE step, the first of the tail, with the column that the proved
+prefix hands over.
