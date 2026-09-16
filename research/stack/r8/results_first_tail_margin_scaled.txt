@@ -1,0 +1,13 @@
+Loop, entry 53: the margin at the tail's first step, against q.  Running the whole prefix at
+large q is expensive, so the column handed over is drawn as measured: a column of the window,
+open to every gear above the cut (which the prefix guarantees) and to 2, 3 and 5, sitting in the
+lower part of the window.  At the tail's first step the stride is 12 g with g the first gear
+below the cut (about q / 4.5); the candidates are c + 12 g k d, k = 1..K.  Measured per q over
+40 draws: candidates open to every gear of the machine, with K fixed and K scaled.
+usage: uv run python research/stack/r8/first_tail_margin.py K_mode
+
+q =   1000: cut at gear 233 (step 117 of 166), K =  47, candidates   94: open min 2, mean 4.65, draws with none 0 of 40
+q =   2000: cut at gear 433 (step 219 of 301), K =  57, candidates  114: open min 1, mean 4.78, draws with none 0 of 40
+q =   5000: cut at gear 997 (step 501 of 667), K =  72, candidates  144: open min 0, mean 4.55, draws with none 2 of 40
+q =  10000: cut at gear 1879 (step 940 of 1227), K =  84, candidates  168: open min 2, mean 4.88, draws with none 0 of 40
+q =  20000: cut at gear 3533 (step 1768 of 2260), K =  98, candidates  196: open min 2, mean 5.62, draws with none 0 of 40

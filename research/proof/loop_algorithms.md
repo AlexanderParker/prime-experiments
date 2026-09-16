@@ -1026,3 +1026,19 @@ walk may stop there. The construction becomes: run the proved prefix (the first 
 the first candidate open to every gear; that column is a twin by the landing lemma. The open
 statement is StepOpen at ONE step, the first of the tail, with the column that the proved
 prefix hands over.
+
+### 53. The margin at the tail's first step, against q (loop, 2026-09-17)
+
+research/stack/r8/first_tail_margin.py, 40 draws per q of a handover column (a column of the
+lower window open to every gear the prefix has settled, and to 2, 3, 5), stride 12 g with g the
+first gear below the cut, K = (ln q)^2:
+   q = 1000: cut at gear 233 (step 117 of 166), K = 47, 94 candidates: open min 2, mean 4.65,
+             draws with none 0 of 40
+   2000: gear 433, K = 57, 114 candidates: min 1, mean 4.78, none 0
+   5000: gear 997, K = 72, 144 candidates: min 0, mean 4.55, none 2 of 40
+   10000: gear 1879, K = 84, 168 candidates: min 2, mean 4.88, none 0
+   20000: gear 3533, K = 98, 196 candidates: min 2, mean 5.62, none 0
+The margin is flat in q at about five open candidates, and a drawn handover column occasionally
+has none at the first tail step (two of forty at q = 5000). The walk's own column does better
+(its lookahead steers it), and entry 52 showed every tail step carries an open candidate, so
+the statement to name is StepOpen at SOME tail step, not at the first. Recorded that way.
