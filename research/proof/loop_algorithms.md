@@ -799,3 +799,15 @@ landing in (q, q#] and a twin by primality test: e = 1: 13 twins, all inside the
 16, none inside the window; e = 3: 10; e = 4: 6. Beyond q^2 a column open to every gear up to
 q need not be prime (two factors above q), so the machine certifies nothing there: the softer
 range gives up the landing lemma, and the rates do not rise. Not pursued further.
+
+### 39. The tail as the machine one level down (loop, 2026-09-16)
+
+research/stack/r8/settle_tail.py, machines 401 to 997 (90), mirror {2, 3, g}, K = 40. The
+prefix = the free-regime steps; the tail = the gears below about q / 4.5 down to 5; the big
+gears stay in memory. Per tail step (3327 steps), of 79.5 candidates in range: open to the
+small gears visited so far 55.2; open to the big gears 55.1; open to both, the keeping moves,
+40.9; open to the small gears but struck by a big one 14.3. Tail steps with no keeping move: 0.
+So in the tail the keeping moves are plentiful on average (forty of eighty), the big gears
+remove about a quarter of what the small gears leave, and the tail's own machine (the gears
+below q / 4.5) leaves two thirds of the candidates open on average. The binding quantity is
+the minimum over steps, measured next.
