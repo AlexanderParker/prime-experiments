@@ -1,0 +1,12 @@
+Loop, entry 47: is the candidate family a complete residue system for the small gears?
+
+The family: L + 12 g_i k d, for the first A gears g_i above sqrt q, k = 1..K, d = +-1.
+For a small gear h (5, 7, 11, 13, 17): the residues mod h that the family's columns take, and
+whether every residue appears (so the family always contains columns off h's two teeth), and
+more strongly whether every PAIR of residues (mod h1, mod h2) appears (the family is a complete
+system for h1 h2, so no pair of small gears can jointly block it).
+Reported per machine: the smallest h whose residues the family misses, and the smallest pair
+it misses; and the number of candidates left after the small gears up to 17 have struck.
+usage: uv run python research/stack/r8/family_cover.py lo hi A K
+
+machines 400..900 (76), family = 8 strides x 4 periods x 2 directions = 64 candidates: smallest gear whose residues the family misses: {5: 76}; smallest pair it misses: {(5, 7): 76}; candidates surviving the gears 5..17: min 11, mean 15.8

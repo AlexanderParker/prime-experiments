@@ -937,3 +937,18 @@ candidates, rather than one progression with eighty. The union has more candidat
 strides are different, so the small gears' forbidden classes fall differently on each; the
 hypothesis is weaker in form. Its content is unchanged: some column of a finite explicit set
 inside the window must be open to every gear, which is the window statement on that set.
+
+### 47. Is the candidate family a complete residue system? (loop, 2026-09-16)
+
+research/stack/r8/family_cover.py, machines 400 to 900 (76), family = 8 strides x 4 periods x
+2 directions = 64 candidates. The family misses residues modulo 5 at every machine, and the
+missed class is always L's own: the stride 12 g k is 2 g k mod 5, so k = 1..4 gives the four
+nonzero multiples and never returns to 0 mod 5; the family covers four classes of five and
+misses the class of L itself. The same for any h > K (missing L's class mod h), so a family
+with K periods is a complete system exactly for the gears at most K. Since L is open to the
+small gears (it comes from the walk), missing its own class is a loss, not a gain.
+Candidates surviving the gears 5, 7, 11, 13, 17: min 11, mean 15.8 of 64. So the five smallest
+gears cut the family to about a quarter, and every remaining gear is above 17 and strikes about
+2/h of what is left. The sum of 2/h over the gears 19 to q is near 1 at these sizes, so no
+count leaves a survivor; the measured survivors (three to fourteen open to every gear) come from
+the strikes overlapping, which is the twin statement's own content.
