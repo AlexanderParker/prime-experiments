@@ -1055,3 +1055,18 @@ whatever the number of strides: 70.5% of the steps at q = 1000, 76.6% at 10^4, 8
 The cut is where exact pigeonhole stops. Below it a gear strikes more than one candidate per
 stride, the strikes must overlap for a survivor to remain, and that overlap is the twin
 statement. This is the boundary of what this route proves, stated cleanly.
+
+### 55. No visiting order moves the cut (loop, 2026-09-17)
+
+The cut depends on the visited SET, not on the order: after n steps the memory holds n of the
+machine's gears, so its smallest is at most the n-th largest gear of the machine. Descending
+order attains that bound, so it is optimal, and the best cut over all orders is the largest n
+with the n-th largest gear above 2n: 117 of 166 steps at q = 1000 (gear 239, about q/4.2), 940
+of 1227 at 10^4 (1889, q/5.3), 7778 of 9590 at 10^5 (15559, q/6.4), 66148 of 78496 at 10^6
+(132299, q/7.6). Interleaving cannot help: a gear left unvisited is not in the memory, so it
+does not raise the minimum; it only delays its own settling, and every gear must be settled
+before the landing.
+With entries 54 and 55 the boundary is fixed from both sides: neither more strides nor a
+different order moves it. The proved prefix is exactly the steps where the memory's smallest
+gear exceeds twice the memory's size, and it is the largest prefix any pigeonhole argument can
+reach on this construction.
