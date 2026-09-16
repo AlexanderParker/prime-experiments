@@ -911,3 +911,16 @@ need the mirror to hold the primorial of about q/4, astronomically past q^2 (aff
 so the tail cannot be collapsed into one step either.
 Standing: the walk is proved step by step for a fraction of the steps tending to 1, and the
 residual is the twin statement on one progression, as entry 43 states.
+
+### 45. Settling the small gears first, carried in the base (loop, 2026-09-16)
+
+research/stack/r8/small_first_carry.py, machines 300 to 1200 (134). A flip about {B, g} keeps
+the phases of every gear dividing B, so a carried primorial base would make the later steps
+immune to the small gears. But the base must satisfy 4 B q <= q^2, i.e. B <= q / 4, so the
+largest carried primorial is 30 at q = 503 and 210 at q = 997: the first three or four gears,
+exactly what the walk already carries. The gears above the base still include 11, 13, 17, ...,
+which are small against their own count, so "every step in the free regime" holds at 0 of 134
+machines. Twin landings 98 of 134 (worse than the {2,3,g} walk with lookahead, which lands on
+a twin everywhere: the larger mirror costs candidates and this version has no lookahead).
+Verdict: closed by the affordability limit, the same wall as the reach theorem, now step-wise:
+a mirror can carry only the gears of a primorial at most q / 4.

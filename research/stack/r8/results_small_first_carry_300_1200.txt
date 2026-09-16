@@ -1,0 +1,13 @@
+Loop, entry 45: settle the small gears first and carry them.  Base B = the primorial of the
+small gears 2, 3, 5, ..., m (m a parameter): every flip about {B, g} preserves the phases of
+every gear up to m, so once the column is open to them it stays open.  Then the walk over the
+gears above m (descending) has only those gears in memory, and the free regime needs them all
+above twice their number - which they are, until the count reaches half the smallest of them.
+Measured per machine: the largest m whose primorial keeps a flip inside the window
+(4 B g <= q^2 for the top gear g), the number of gears above m, and whether every step of the
+walk is then in the free regime; also the walk's landing.
+usage: uv run python research/stack/r8/small_first_carry.py lo hi
+
+machines 300..1200 (134): every step in the free regime at 0; twin landings 98
+   q = 503: carried base 30 (gears to 5), gears above 93, every step in the free regime False; missing keeping moves 0; landing 251219 twin
+   q = 997: carried base 210 (gears to 7), gears above 164, every step in the free regime False; missing keeping moves 1; landing 830339 twin
