@@ -889,3 +889,25 @@ every gear from 5 to q. Measured margin 4 to 14. A count cannot prove it: the sm
 about 2/h of the candidates each, and the sum over the gears diverges, so no counting bound
 leaves a survivor (and counting is not allowed here in any case). The requirement is the twin
 statement on a progression of modulus 84 inside the window.
+
+### 44. Enlarging the proved prefix (loop, 2026-09-16)
+
+research/stack/r8/prefix_extend.py.
+(a) The spacing route (a gear h strikes at most 2K/h + 2 of the 2K candidates, so the prefix
+survives while the sum of 1/h over the visited gears stays below 1) reaches LESS far than the
+free regime: at q = 503 it ends at step 36 of 94 against the free regime's 65; at q = 937,
+step 38 of 157 against 111. It is also a density bound, not an exact statement, so it would not
+be admissible here in any case. Dropped.
+(b) The free regime's own reach, with the period count taken as the number of visited gears
+(K = n, the lemma's own hypothesis): steps covered, against ln q / (ln q + 2):
+   q = 1000: 117 of 166 (70.5%), last free gear 239; law 77.5%
+   10000: 940 of 1227 (76.6%), gear 1889; 82.2%
+   100000: 7778 of 9590 (81.1%), gear 15559; 85.2%
+   1000000: 66148 of 78496 (84.3%), gear 132299; 87.4%
+The covered fraction rises towards 1 like ln q / (ln q + 2): the unproved tail is a vanishing
+fraction of the walk, but it always ends at the gears 5, 7, 11, ..., and those are exactly the
+gears whose teeth are dense on any candidate line. A single flip carrying the whole tail would
+need the mirror to hold the primorial of about q/4, astronomically past q^2 (affordability),
+so the tail cannot be collapsed into one step either.
+Standing: the walk is proved step by step for a fraction of the steps tending to 1, and the
+residual is the twin statement on one progression, as entry 43 states.

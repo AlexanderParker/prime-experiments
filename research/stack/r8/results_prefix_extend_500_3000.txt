@@ -1,0 +1,61 @@
+Loop, entry 44: enlarge the proved prefix.  The free-regime lemma needs the visited gears all
+above 2n (n = their number), which covers the first steps.  Two ways to push it further,
+measured on the walk itself:
+ (a) spacing: a gear h strikes at most ceil(2K / h) + 2 of the 2K candidates, so the struck
+     candidates number at most sum over visited h of (2K/h + 2); the lemma survives while that
+     sum is below 2K, i.e. while sum over visited h of (1/h + 1/K) < 1.  Report the step at
+     which the sum passes 1 (the "spacing regime" end) against the free regime's end.
+ (b) memory trimming: at step i, does the candidate chosen need the whole memory, or only the
+     gears above some bound?  Measure the largest gear that is ever the sole striker of every
+     otherwise-keeping candidate (if the small gears never bind until late, the memory can be
+     trimmed and the free regime applies to a longer prefix).
+usage: uv run python research/stack/r8/prefix_extend.py lo hi
+
+q = 503: gears 94; free regime ends at step 65 (gear 131); spacing regime ends at step 36 (gear 283), 38% of the walk
+q = 563: gears 101; free regime ends at step 69 (gear 149); spacing regime ends at step 36 (gear 337), 35% of the walk
+q = 601: gears 108; free regime ends at step 75 (gear 151); spacing regime ends at step 36 (gear 379), 33% of the walk
+q = 643: gears 115; free regime ends at step 80 (gear 163); spacing regime ends at step 37 (gear 419), 32% of the walk
+q = 683: gears 122; free regime ends at step 85 (gear 173); spacing regime ends at step 37 (gear 457), 30% of the walk
+q = 739: gears 129; free regime ends at step 90 (gear 181); spacing regime ends at step 37 (gear 499), 28% of the walk
+q = 787: gears 136; free regime ends at step 95 (gear 193); spacing regime ends at step 37 (gear 557), 27% of the walk
+q = 829: gears 143; free regime ends at step 99 (gear 211); spacing regime ends at step 37 (gear 599), 25% of the walk
+q = 881: gears 150; free regime ends at step 105 (gear 223); spacing regime ends at step 37 (gear 641), 24% of the walk
+q = 937: gears 157; free regime ends at step 111 (gear 227); spacing regime ends at step 38 (gear 673), 24% of the walk
+q = 983: gears 164; free regime ends at step 116 (gear 233); spacing regime ends at step 38 (gear 727), 23% of the walk
+q = 1031: gears 171; free regime ends at step 120 (gear 251); spacing regime ends at step 38 (gear 769), 22% of the walk
+q = 1069: gears 178; free regime ends at step 126 (gear 257); spacing regime ends at step 38 (gear 823), 21% of the walk
+q = 1117: gears 185; free regime ends at step 131 (gear 269); spacing regime ends at step 38 (gear 863), 20% of the walk
+q = 1181: gears 192; free regime ends at step 136 (gear 277); spacing regime ends at step 38 (gear 919), 19% of the walk
+q = 1229: gears 199; free regime ends at step 141 (gear 283); spacing regime ends at step 38 (gear 971), 19% of the walk
+q = 1283: gears 206; free regime ends at step 146 (gear 307); spacing regime ends at step 38 (gear 1019), 18% of the walk
+q = 1319: gears 213; free regime ends at step 153 (gear 307); spacing regime ends at step 38 (gear 1061), 17% of the walk
+q = 1399: gears 220; free regime ends at step 157 (gear 317); spacing regime ends at step 38 (gear 1103), 17% of the walk
+q = 1447: gears 227; free regime ends at step 163 (gear 331); spacing regime ends at step 38 (gear 1163), 16% of the walk
+q = 1487: gears 234; free regime ends at step 168 (gear 347); spacing regime ends at step 38 (gear 1217), 16% of the walk
+q = 1543: gears 241; free regime ends at step 174 (gear 349); spacing regime ends at step 38 (gear 1277), 15% of the walk
+q = 1583: gears 248; free regime ends at step 179 (gear 359); spacing regime ends at step 38 (gear 1303), 15% of the walk
+q = 1621: gears 255; free regime ends at step 184 (gear 373); spacing regime ends at step 38 (gear 1373), 14% of the walk
+q = 1693: gears 262; free regime ends at step 189 (gear 383); spacing regime ends at step 38 (gear 1433), 14% of the walk
+q = 1741: gears 269; free regime ends at step 194 (gear 397); spacing regime ends at step 39 (gear 1471), 14% of the walk
+q = 1789: gears 276; free regime ends at step 200 (gear 401); spacing regime ends at step 39 (gear 1511), 14% of the walk
+q = 1867: gears 283; free regime ends at step 205 (gear 419); spacing regime ends at step 39 (gear 1567), 13% of the walk
+q = 1907: gears 290; free regime ends at step 210 (gear 431); spacing regime ends at step 39 (gear 1609), 13% of the walk
+q = 1979: gears 297; free regime ends at step 216 (gear 433); spacing regime ends at step 39 (gear 1663), 13% of the walk
+q = 2017: gears 304; free regime ends at step 221 (gear 443); spacing regime ends at step 39 (gear 1721), 12% of the walk
+q = 2081: gears 311; free regime ends at step 226 (gear 457); spacing regime ends at step 39 (gear 1777), 12% of the walk
+q = 2129: gears 318; free regime ends at step 231 (gear 463); spacing regime ends at step 39 (gear 1831), 12% of the walk
+q = 2179: gears 325; free regime ends at step 236 (gear 479); spacing regime ends at step 39 (gear 1879), 12% of the walk
+q = 2243: gears 332; free regime ends at step 242 (gear 487); spacing regime ends at step 39 (gear 1949), 11% of the walk
+q = 2293: gears 339; free regime ends at step 247 (gear 499); spacing regime ends at step 39 (gear 1999), 11% of the walk
+q = 2347: gears 346; free regime ends at step 252 (gear 509); spacing regime ends at step 39 (gear 2053), 11% of the walk
+q = 2389: gears 353; free regime ends at step 258 (gear 521); spacing regime ends at step 39 (gear 2099), 11% of the walk
+q = 2441: gears 360; free regime ends at step 263 (gear 541); spacing regime ends at step 39 (gear 2143), 10% of the walk
+q = 2521: gears 367; free regime ends at step 270 (gear 541); spacing regime ends at step 39 (gear 2221), 10% of the walk
+q = 2579: gears 374; free regime ends at step 275 (gear 557); spacing regime ends at step 39 (gear 2273), 10% of the walk
+q = 2647: gears 381; free regime ends at step 281 (gear 563); spacing regime ends at step 39 (gear 2333), 10% of the walk
+q = 2687: gears 388; free regime ends at step 285 (gear 577); spacing regime ends at step 39 (gear 2377), 10% of the walk
+q = 2719: gears 395; free regime ends at step 291 (gear 587); spacing regime ends at step 39 (gear 2417), 9% of the walk
+q = 2777: gears 402; free regime ends at step 296 (gear 599); spacing regime ends at step 39 (gear 2473), 9% of the walk
+q = 2833: gears 409; free regime ends at step 301 (gear 607); spacing regime ends at step 39 (gear 2549), 9% of the walk
+q = 2887: gears 416; free regime ends at step 306 (gear 617); spacing regime ends at step 39 (gear 2617), 9% of the walk
+q = 2953: gears 423; free regime ends at step 311 (gear 631); spacing regime ends at step 39 (gear 2671), 9% of the walk
