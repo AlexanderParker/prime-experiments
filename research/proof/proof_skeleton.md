@@ -143,9 +143,55 @@ So the one open statement is, in its sharpest form: for every prime q, the first
 with midpoint a multiple of 12 lies below q^2. What decides it is the paint just above q, laid
 by the small composites there (every number in (q, 2q) is prime or has a factor below q).
 
+# Part IV b. The settle walk: the construction of 2026-09-16, as three parts
+
+The walk of Part III is one flip whose period is chosen by the residues.  The settle walk is the
+same idea run gear by gear, and it splits the open statement differently: most of it is proved,
+and what is left is named.
+
+## 15. The settle walk. PROVED in its first two parts
+
+From home, visit the gears q down to 7 in descending order.  At the gear g the mirror is
+{2, 3, g}, so the move is 12 g k for a period k, either direction.  The period is chosen so that
+every gear visited so far, and g, is off its two teeth at the new column, and among those the
+one leaving the next gear the most such moves.  The period count at step n is
+K_n = max((ln q)^2, 2n + 1): the walk uses the first term, the proof below uses the second, and
+both keep the candidates inside the window.
+
+  (a) The walk stays in the window.  PROVED: an in-range move exists at every step whose mirror
+      fits (`in_range_move`), a move into the window exists at the last step (`window_move`),
+      the spiral base fits for every gear with 2g + 3 <= q (`base_fits`), and the induction is
+      immediate (`stays_in_range`).  [proofs/MirrorWalkInWindow.lean, round 56]
+  (b) The keeping move exists at every step of the first cut.  PROVED: a gear coprime to the
+      stride strikes the candidates in two classes of the period (`strikes_iff_offA`), n gears
+      strike at most 2n classes (`resA_card_le`), so with every visited gear above 2n some
+      period at most 2n gives a candidate open to all of them (`keeping_move_free`).
+      [proofs/MirrorWalkSettleFree.lean, round 57]  The cut is the steps where the visited gears
+      all exceed twice their number: 70.5% of the steps at q = 1000, 76.6% at 10^4, 84.3% at
+      10^6, rising like ln q / (ln q + 2); the candidates it needs fit the window throughout
+      (worst span 0.90 of q^2 at q = 1000, 0.44 at 10^6).
+  (c) The tail.  MEASURED: the remaining steps, the gears below about q / 4.5 down to 7, have
+      forty or more keeping moves each at every machine 29 to 2000, and the walk's landing is a
+      twin at every machine tested (294 machines to 2000 at K = 40; 230 of 230 with the scaled
+      count to 1500).
+
+## 16. What the tail needs. OPEN, named
+
+`StepOpen G c s K P`: among the candidates c + s k, k = 1..K, one is a column of the window that
+no gear of G strikes.  With G holding every prime from 5 below P, StepOpen gives a twin prime
+pair in the window: `walk_twin_of_stepOpen` [proofs/MirrorWalkConditional.lean, round 58].
+So the chain is: (a) + (b) + StepOpen at the tail's steps => a twin in (q, q^2].
+StepOpen is the window statement restricted to one arithmetic progression (modulus 12 g), and
+the measurements put its margin at three to fourteen open candidates of eighty at q near 1000,
+flat in q once the period count grows as (ln q)^2.  The trade behind every attempt to remove it
+is exact: candidates spaced 2M apart inside a window of length q^2 - q number at most
+(q^2 - q) / (2M), so carried gears and candidates divide the same window
+(`mirror_times_candidates`, round 56).
+
 # Part V. Standing
 
-- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10 (kernel names given).
-- EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14.
-- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000.
-- OPEN: 13.
+- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 15(a), 15(b), the implication of 16 (kernel names given).
+- EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14, the trade of 16.
+- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15(c) to 2000.
+- OPEN: 13, and equivalently StepOpen of 16. The settle walk proves the construction's first two
+  parts outright and names the third; the open statement is the same one in both forms.
