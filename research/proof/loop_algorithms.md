@@ -983,3 +983,16 @@ So the construction must let the period count grow, K about (ln q)^2 / 4, and th
 is flat in q (about ten open candidates of a few hundred). The window affords far more: at the
 top gears K may run to about q / 24 before the candidates leave the window, so the growth costs
 nothing. Recorded as the walk's period law; the hypothesis StepOpen is stated with this K.
+
+### 50. The whole walk under the period law (loop, 2026-09-17)
+
+research/stack/r8/walk_scaled.py. Entry 49's family had eight strides; the walk's own step has
+one stride and 2K candidates, so the law must be read per step: K = (ln q)^2 / 4 gives only
+eleven periods at q = 1000 and the walk then fails at 15 of 145 machines 29 to 900 (failures
+101, 157, 191, 211, 223, 281, ...), with one step lacking a keeping move. With K = (ln q)^2
+(48 periods at q = 1000, 96 candidates per step): twin landings 145 of 145, no step lacking a
+keeping move. So the walk's period law is K = (ln q)^2, not a fixed forty and not a quarter of
+that; at q = 1000 it is 48 periods, at 10^6 it is 191, always far below the window's own limit
+of about q / 24.
+The free-regime prefix is 67.5% of the steps at these sizes (it does not depend on K: the lemma
+needs the visited gears above twice their number).
