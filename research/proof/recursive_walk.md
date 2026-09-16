@@ -281,3 +281,12 @@ the smallest gear's half; there the eighty candidates span several periods of th
 each of which strikes more than two, and the count of struck classes alone no longer leaves a
 free candidate. That tail is where the measured walk still succeeds and the proof does not
 reach: the twin statement's own territory, now confined to the final stretch of the walk.
+
+Coverage of the free regime (the top i gears all above 2i), descending walk: q = 101: 15 of 24
+steps (down to gear 37); 499: 64 of 93 (to 131); 997: 117 of 166 (to 239); 1999: 219 of 301
+(to 439); 4999: 501 of 667 (to 1009); 9973: 940 of 1227 (to 1889). About three quarters of the
+steps are proved; the remaining quarter, the gears below roughly q / 4.5 down to 5, is the
+unproved tail. In the measurement the walk never lacked a keeping move in the tail either,
+with eighty candidates against up to three hundred visited gears: far beyond what the
+free-regime count gives (2n + 1 candidates for n gears), which means the struck classes
+overlap heavily there; that overlap is the joint behaviour the twin statement asserts.
