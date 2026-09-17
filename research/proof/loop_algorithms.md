@@ -1612,3 +1612,32 @@ set, and the covering theorem behind it is proved (`mult_chain_window`). What ea
 asserts is that such a multiplier exists, which is the open content; what the measurement shows
 is that the room needed collapses to nothing as the chain proceeds while the room available grows
 like the landing.
+
+### 73. The multiplicative step's margin, and the certificate's ceiling (loop, 2026-09-17)
+
+The open content is one sentence: for every twin centre t, some j <= t - 3 has t * j a twin
+centre. This measures how much room that has - every working j, not just the first
+(research/stack/r8/multiplier_margin.py, all 80 twin centres from 12 to 3000):
+
+     t in            landings   working multipliers   mean   share of the allowance
+     [12, 300)          17          3 to 31           15.1        16.5%
+     [300, 1000)        16         19 to 72           47.5         8.0%
+     [1000, 2000)       26         50 to 161          84.6         5.9%
+     [2000, 3000)       20         87 to 284         136.5         5.6%
+
+No landing has none. The smallest margin anywhere is 3, at the chain's own start t = 12 (the
+working multipliers there are 5, 6 and 9, giving the landings 60, 72 and 108). The count of working
+multipliers grows roughly with the landing while the share of the allowance settles near 5 or 6
+percent, so the statement gets easier to meet as the chain climbs, never harder.
+
+Between 58 and 100 percent of the working multipliers share a gear with the landing, which is
+what the carrying rule predicts: gears dividing the landing cannot strike its multiples, so a
+multiplier built from them starts with fewer forbidden classes than one built from new gears.
+
+The certificate's ceiling. I tried to extend `window_statement_below` past its fourth link by
+adding the fifth, 16601062113221682, which would settle every machine below 1.66 x 10^16. The
+primality of a seventeen-digit member is beyond what `norm_num` will do in the kernel in
+reasonable time (over ten minutes for one of the two members, against seconds for the nine-digit
+link). Extending the certificate therefore needs Lucas or Pratt certificates for the two members
+of each new link, not trial division. Recorded as the next kernel task if the range matters; the
+proved range stays at machines below 128845109.
