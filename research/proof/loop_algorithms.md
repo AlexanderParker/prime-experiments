@@ -1641,3 +1641,42 @@ reasonable time (over ten minutes for one of the two members, against seconds fo
 link). Extending the certificate therefore needs Lucas or Pratt certificates for the two members
 of each new link, not trial division. Recorded as the next kernel task if the range matters; the
 proved range stays at machines below 128845109.
+
+### 74. Lucas certificates, and the chain certificate extended (loop, 2026-09-17)
+
+Entry 73 recorded the ceiling: `norm_num` proves a prime by trial division, so the kernel
+certificate could not pass its fourth link. Measured here: a thirteen-digit prime
+(1000000000039) took six and a half minutes and then failed on the recursion limit; the
+seventeen-digit members of the fifth link would cost about 1.3 x 10^8 divisions each.
+
+The fix is a Lucas certificate - a witness a of order p - 1 modulo p, checked by one
+square-and-multiply chain and one check per prime factor of p - 1. The cost is the logarithm
+rather than the square root: about fifty squarings for a seventeen-digit prime, each a single
+multiplication that `norm_num` does instantly.
+
+Kernel tools (proofs/PrattTools.lean, round 69, 0 sorries):
+  * `cast_pow_eq_one_iff` moves `lucas_primality`'s ZMod statement to arithmetic on N;
+  * `sq_of` and `sq_mul_of` are the two chain steps in literal form, so a generated proof never
+    has to rewrite inside a goal;
+  * `ne_one_of_mod` discharges the order conditions.
+
+Generator: research/stack/r8/gen_pratt.py emits the Lean proof for a given prime, recursing into
+the factors of p - 1 whenever they are too large for `norm_num` themselves (the threshold is
+10^8). Checked on 1000000000039: certified in 34 seconds, against six and a half minutes of
+failure by trial division.
+
+proofs/PrattCertificates.lean holds the certificates for the fifth link's two members,
+16601062113221681 and 16601062113221683, with the two recursive certificates they need
+(2842647622127 and 144205681). 1671 lines, built in 2 minutes 39 seconds.
+
+So the chain certificate now runs to five links:
+
+    12,  108,  11352,  128845110,  16601062113221682
+
+and `window_statement_below` [proofs/MirrorWalkCertificate.lean] proves, with no hypotheses:
+
+    every machine q with 11 <= q <= 16601062113221680 has a twin prime pair inside (q, q^2].
+
+That is a range of machines 1.3 x 10^8 times wider than round 65's, from five twin pairs and the
+covering theorem. The next link (2.76 x 10^32) needs the same treatment one level deeper, since
+the factors of its members minus one are themselves large.
