@@ -176,4 +176,38 @@ theorem mult_chain_window {t j : ℕ → ℕ}
     | succ m ih => rw [hstep m]; exact Dvd.dvd.mul_right ih _
   exact window_statement_of_chain hmono hchain hsix (fun n => by have := hgrow n; omega) htwin hq
 
+/-- **The landing's own gears never strike its multiples.**  A gear dividing the landing `t`
+misses every candidate `t * j ± 1`: it would have to divide 1.  (The `ℤ` form for a general
+mirror is `mirror_gear_never_strikes` in OneFlipLocator.) -/
+theorem landing_gear_never_strikes {h t j : ℕ} (hh : 1 < h) (hdvd : h ∣ t) (hj : 1 ≤ j)
+    (ht : 1 ≤ t) : ¬ h ∣ t * j - 1 ∧ ¬ h ∣ t * j + 1 := by
+  have hk : h ∣ t * j := hdvd.mul_right j
+  have htj : 1 ≤ t * j := Nat.one_le_iff_ne_zero.mpr (by positivity)
+  constructor
+  · intro hd
+    have : h ∣ t * j - (t * j - 1) := Nat.dvd_sub hk hd
+    rw [Nat.sub_sub_self htj] at this
+    have := Nat.le_of_dvd one_pos this
+    omega
+  · intro hd
+    have h1 : h ∣ t * j + 1 - t * j := Nat.dvd_sub hd hk
+    have e : t * j + 1 - t * j = 1 := by omega
+    rw [e] at h1
+    have := Nat.le_of_dvd one_pos h1
+    omega
+
+/-- **The carried gears grow along a multiplicative chain.**  Every gear of a landing divides
+every later landing, so the set the mirror switches off only ever grows. -/
+theorem mult_carried_monotone {t j : ℕ → ℕ} (hstep : ∀ n, t (n + 1) = t n * j n)
+    {h : ℕ} {n : ℕ} (hn : h ∣ t n) : ∀ k, h ∣ t (n + k) := by
+  intro k
+  induction k with
+  | zero => exact hn
+  | succ m ih =>
+      have : t (n + m + 1) = t (n + m) * j (n + m) := hstep (n + m)
+      have h2 : h ∣ t (n + m) * j (n + m) := ih.mul_right _
+      have e : n + (m + 1) = n + m + 1 := by omega
+      rw [e, this]
+      exact h2
+
 end MirrorWalk

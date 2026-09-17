@@ -1559,3 +1559,56 @@ turns that rule into the window statement.
 What is unchanged: the rule still asserts twins exist, so it is a restatement of the open content
 in the machine's own terms, not a proof of it. It is the smallest such restatement the search has
 produced: one sentence, no parameters, no window.
+
+### 72. The enriching chain: each landing carries one more gear (loop, 2026-09-17)
+
+Two kernel facts make the multiplicative chain self-improving:
+
+  * a gear dividing the landing can never strike its multiples - it would have to divide 1
+    (`landing_gear_never_strikes`);
+  * along a multiplicative chain every gear of a landing divides every later landing, so the
+    carried set only ever grows (`mult_carried_monotone`).
+[proofs/MirrorWalkChain.lean, round 67, 0 sorries.]
+
+The mechanism shows up directly in the multipliers. 400 landings near 10^6, smallest j with t j a
+twin centre, grouped by which of the gears 5, 7, 11 divide the landing
+(research/stack/r8/enriching_chain.py):
+
+    gears in the landing     n     mean j   median
+    (none)                 191     37.7       25
+    (5)                     92     20.6       15
+    (7)                     50     33.9       19
+    (11)                    24     37.1       29
+    (5, 7)                  19     15.1        8
+    (5, 11)                 15     18.9       14
+    (7, 11)                  7     15.1       16
+    (5, 7, 11)               2     11.5       20
+
+A landing that carries gear 5 reaches the next landing with roughly half the multiplier of one
+that does not, and carrying 5 and 7 halves it again. The gear that matters most is the smallest
+one missing, exactly as the teeth law says: a gear h that does not divide t forbids the two
+classes j = +-t^{-1} mod h, and the smaller h is, the larger a share of the multipliers it takes.
+
+So the chain has a greedy form: at each step multiply by the smallest gear the landing does not
+yet carry, times whatever small factor is needed to land on a twin centre again. Run from 12:
+
+  step   new gear   multiplier j   m = j / p   landing digits   gears carried   share of allowance
+     1          5              5           1        2                3          0.42
+     2          7              7           1        3                4          0.12
+     3         11             22           2        4                5          0.052
+     4         13             91           7        6                6          0.0098
+     8         29            203           7       16               10          4.8e-12
+    12         43           4945         115       29               14          5.3e-22
+    16         61             61           1       41               18          2.3e-37
+    21         83           4399          53       62               24          5.7e-55
+
+Twenty-one steps reach a 62-digit landing carrying 24 gears, and the multiplier is a vanishing
+share of what the chain condition allows - by step 21 it is spending 5.7 x 10^-55 of the
+allowance. The extra factor m stayed under 700 at every step.
+
+This is the primorial spiral in its working form: the landings are multiples of a growing
+primorial, each reached from the one before by a single mirror flip about the landing's own gear
+set, and the covering theorem behind it is proved (`mult_chain_window`). What each step still
+asserts is that such a multiplier exists, which is the open content; what the measurement shows
+is that the room needed collapses to nothing as the chain proceeds while the room available grows
+like the landing.

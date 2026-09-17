@@ -317,6 +317,17 @@ the worst. By size of the landing the mean multiplier runs 11.8 (t near 10^3), 1
 23.4, 92.2 (t near 10^8), while the allowance grows like t, so the margin widens by a factor of
 ten per decade.
 
+
+The chain is self-improving. A gear dividing the landing can never strike its multiples
+(`landing_gear_never_strikes`), and along a multiplicative chain every gear of a landing divides
+every later one (`mult_carried_monotone`), so the carried set only grows. MEASURED
+(research/stack/r8/enriching_chain.py): of 400 landings near 10^6, those carrying gear 5 need a
+mean multiplier of 20.6 against 37.7 for those carrying none, and those carrying 5 and 7 need
+15.1. The greedy form - at each step multiply by the smallest gear the landing does not carry,
+times a small factor - runs from 12 to a 62-digit landing carrying 24 gears in 21 steps, with the
+extra factor never above 700 and the multiplier down to 5.7 x 10^-55 of the allowance. This is
+the primorial spiral in its working form.
+
 # Part V. Standing
 
 - PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), 18, 19, 20, the carry wall of the wall map, the implications of 15 and 17 (kernel names given).
