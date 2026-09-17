@@ -1,15 +1,15 @@
 /-
-MirrorWalkCertificate (rounds 65, 69, 2026-09-17): the window statement for every machine below
+MirrorWalkCertificate (rounds 65, 69, 70, 2026-09-17/18): the window statement for every machine below
 1.66 × 10¹⁶, from five landings.
 
 A landing serves every machine from its square root up to itself (`chain_covers_upto`), so a
 handful of twin pairs settles an enormous range of machines.  This file carries the first five
 links of the greedy chain - each the largest twin centre below the square of the one before -
 
-    12,  108,  11352,  128845110,  16601062113221682
+    12,  108,  11352,  128845110,  16601062113221682,  275595263287044304869593048464770
 
 and with them proves, with no hypotheses and no sorries, that every machine from 11 to
-16601062113221681 has a twin prime pair inside its window `(q, q²]`.
+275595263287044304869593048464768 has a twin prime pair inside its window `(q, q²]`.
 
 The fifth link is out of reach of `norm_num`, whose primality test is trial division: a
 seventeen-digit member costs about 1.3 × 10⁸ divisions, and a thirteen-digit one already took
@@ -36,25 +36,26 @@ def cert : ℕ → ℕ
   | 1 => 108
   | 2 => 11352
   | 3 => 128845110
-  | _ => 16601062113221682
+  | 4 => 16601062113221682
+  | _ => 275595263287044304869593048464770
 
 /-- **The window statement below 1.66 × 10¹⁶, proved.**  Every machine from 11 to
 16601062113221681 has a twin prime pair inside its window. -/
 theorem window_statement_below :
-    ∀ q : ℕ, 11 ≤ q → q < 16601062113221681 →
+    ∀ q : ℕ, 11 ≤ q → q < 275595263287044304869593048464769 →
       ∃ m : ℕ, 1 ≤ m ∧ q < 6 * m - 1 ∧ 6 * m + 1 ≤ q ^ 2 ∧
         (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
   intro q hlo hhi
-  have hchain : ∀ n < 4, cert (n + 1) + 1 < (cert n - 1) ^ 2 := by
+  have hchain : ∀ n < 5, cert (n + 1) + 1 < (cert n - 1) ^ 2 := by
     intro n hn
     interval_cases n <;> simp [cert] <;> norm_num
-  have hsix : ∀ n, n ≤ 4 → 6 ∣ cert n := by
+  have hsix : ∀ n, n ≤ 5 → 6 ∣ cert n := by
     intro n hn
     interval_cases n <;> simp [cert] <;> norm_num
-  have h6 : ∀ n, n ≤ 4 → 6 ≤ cert n := by
+  have h6 : ∀ n, n ≤ 5 → 6 ≤ cert n := by
     intro n hn
     interval_cases n <;> simp [cert]
-  have htwin : ∀ n, n ≤ 4 → TwinCenter (cert n) := by
+  have htwin : ∀ n, n ≤ 5 → TwinCenter (cert n) := by
     intro n hn
     interval_cases n
     · exact ⟨(by norm_num : Nat.Prime 11), (by norm_num : Nat.Prime 13)⟩
@@ -62,7 +63,9 @@ theorem window_statement_below :
     · exact ⟨(by norm_num : Nat.Prime 11351), (by norm_num : Nat.Prime 11353)⟩
     · exact ⟨(by norm_num : Nat.Prime 128845109), (by norm_num : Nat.Prime 128845111)⟩
     · exact ⟨Pratt.prime_16601062113221681, Pratt.prime_16601062113221683⟩
-  exact window_statement_upto (N := 4) hchain hsix h6 htwin (by simp [cert]; omega)
+    · exact ⟨Pratt.prime_275595263287044304869593048464769,
+        Pratt.prime_275595263287044304869593048464771⟩
+  exact window_statement_upto (N := 5) hchain hsix h6 htwin (by simp [cert]; omega)
     (by simp [cert]; omega)
 
 end MirrorWalk

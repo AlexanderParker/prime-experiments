@@ -1668,4 +1668,5723 @@ theorem prime_16601062113221683 : Nat.Prime 16601062113221683 := by
     rw [show (16601062113221683 : ℕ) - 1 = 16601062113221682 by norm_num, show 16601062113221682 / 144205681 = 115120722 by norm_num]
     exact Pratt.ne_one_of_mod (by norm_num) g426 (by norm_num)
 
+/-- `118261309739333` is prime, by a Lucas certificate with witness 2. -/
+theorem prime_118261309739333 : Nat.Prime 118261309739333 := by
+  refine lucas_primality 118261309739333 ((2 : ℕ) : ZMod 118261309739333) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 2 ^ 1 % 118261309739333 = 2 := by norm_num
+    have h1 : 2 ^ 3 % 118261309739333 = 8 :=
+      Pratt.sq_mul_of h0 (by norm_num) (by norm_num)
+    have h2 : 2 ^ 6 % 118261309739333 = 64 :=
+      Pratt.sq_of h1 (by norm_num) (by norm_num)
+    have h3 : 2 ^ 13 % 118261309739333 = 8192 :=
+      Pratt.sq_mul_of h2 (by norm_num) (by norm_num)
+    have h4 : 2 ^ 26 % 118261309739333 = 67108864 :=
+      Pratt.sq_of h3 (by norm_num) (by norm_num)
+    have h5 : 2 ^ 53 % 118261309739333 = 19339714551684 :=
+      Pratt.sq_mul_of h4 (by norm_num) (by norm_num)
+    have h6 : 2 ^ 107 % 118261309739333 = 117136108004223 :=
+      Pratt.sq_mul_of h5 (by norm_num) (by norm_num)
+    have h7 : 2 ^ 215 % 118261309739333 = 78367631111372 :=
+      Pratt.sq_mul_of h6 (by norm_num) (by norm_num)
+    have h8 : 2 ^ 430 % 118261309739333 = 72094932316567 :=
+      Pratt.sq_of h7 (by norm_num) (by norm_num)
+    have h9 : 2 ^ 860 % 118261309739333 = 67954337753421 :=
+      Pratt.sq_of h8 (by norm_num) (by norm_num)
+    have h10 : 2 ^ 1720 % 118261309739333 = 22280330988792 :=
+      Pratt.sq_of h9 (by norm_num) (by norm_num)
+    have h11 : 2 ^ 3441 % 118261309739333 = 35354318072821 :=
+      Pratt.sq_mul_of h10 (by norm_num) (by norm_num)
+    have h12 : 2 ^ 6883 % 118261309739333 = 60853897323632 :=
+      Pratt.sq_mul_of h11 (by norm_num) (by norm_num)
+    have h13 : 2 ^ 13767 % 118261309739333 = 91839137544751 :=
+      Pratt.sq_mul_of h12 (by norm_num) (by norm_num)
+    have h14 : 2 ^ 27534 % 118261309739333 = 10088915937395 :=
+      Pratt.sq_of h13 (by norm_num) (by norm_num)
+    have h15 : 2 ^ 55069 % 118261309739333 = 24128874767685 :=
+      Pratt.sq_mul_of h14 (by norm_num) (by norm_num)
+    have h16 : 2 ^ 110139 % 118261309739333 = 86630092570934 :=
+      Pratt.sq_mul_of h15 (by norm_num) (by norm_num)
+    have h17 : 2 ^ 220278 % 118261309739333 = 30046132494124 :=
+      Pratt.sq_of h16 (by norm_num) (by norm_num)
+    have h18 : 2 ^ 440557 % 118261309739333 = 35921295085445 :=
+      Pratt.sq_mul_of h17 (by norm_num) (by norm_num)
+    have h19 : 2 ^ 881115 % 118261309739333 = 37704838856789 :=
+      Pratt.sq_mul_of h18 (by norm_num) (by norm_num)
+    have h20 : 2 ^ 1762230 % 118261309739333 = 32979117181318 :=
+      Pratt.sq_of h19 (by norm_num) (by norm_num)
+    have h21 : 2 ^ 3524461 % 118261309739333 = 94068531705936 :=
+      Pratt.sq_mul_of h20 (by norm_num) (by norm_num)
+    have h22 : 2 ^ 7048923 % 118261309739333 = 83351914491359 :=
+      Pratt.sq_mul_of h21 (by norm_num) (by norm_num)
+    have h23 : 2 ^ 14097846 % 118261309739333 = 111652154770208 :=
+      Pratt.sq_of h22 (by norm_num) (by norm_num)
+    have h24 : 2 ^ 28195693 % 118261309739333 = 85182159341480 :=
+      Pratt.sq_mul_of h23 (by norm_num) (by norm_num)
+    have h25 : 2 ^ 56391386 % 118261309739333 = 9066494983472 :=
+      Pratt.sq_of h24 (by norm_num) (by norm_num)
+    have h26 : 2 ^ 112782773 % 118261309739333 = 73206872496545 :=
+      Pratt.sq_mul_of h25 (by norm_num) (by norm_num)
+    have h27 : 2 ^ 225565547 % 118261309739333 = 19367277610114 :=
+      Pratt.sq_mul_of h26 (by norm_num) (by norm_num)
+    have h28 : 2 ^ 451131094 % 118261309739333 = 54235418008347 :=
+      Pratt.sq_of h27 (by norm_num) (by norm_num)
+    have h29 : 2 ^ 902262189 % 118261309739333 = 46741539139053 :=
+      Pratt.sq_mul_of h28 (by norm_num) (by norm_num)
+    have h30 : 2 ^ 1804524379 % 118261309739333 = 11762272423893 :=
+      Pratt.sq_mul_of h29 (by norm_num) (by norm_num)
+    have h31 : 2 ^ 3609048759 % 118261309739333 = 106158547545312 :=
+      Pratt.sq_mul_of h30 (by norm_num) (by norm_num)
+    have h32 : 2 ^ 7218097518 % 118261309739333 = 28925847221767 :=
+      Pratt.sq_of h31 (by norm_num) (by norm_num)
+    have h33 : 2 ^ 14436195036 % 118261309739333 = 106135300324646 :=
+      Pratt.sq_of h32 (by norm_num) (by norm_num)
+    have h34 : 2 ^ 28872390073 % 118261309739333 = 19158237754282 :=
+      Pratt.sq_mul_of h33 (by norm_num) (by norm_num)
+    have h35 : 2 ^ 57744780146 % 118261309739333 = 83183211230745 :=
+      Pratt.sq_of h34 (by norm_num) (by norm_num)
+    have h36 : 2 ^ 115489560292 % 118261309739333 = 107586021757443 :=
+      Pratt.sq_of h35 (by norm_num) (by norm_num)
+    have h37 : 2 ^ 230979120584 % 118261309739333 = 82332093436992 :=
+      Pratt.sq_of h36 (by norm_num) (by norm_num)
+    have h38 : 2 ^ 461958241169 % 118261309739333 = 55851016611592 :=
+      Pratt.sq_mul_of h37 (by norm_num) (by norm_num)
+    have h39 : 2 ^ 923916482338 % 118261309739333 = 32678939445133 :=
+      Pratt.sq_of h38 (by norm_num) (by norm_num)
+    have h40 : 2 ^ 1847832964677 % 118261309739333 = 77594270573759 :=
+      Pratt.sq_mul_of h39 (by norm_num) (by norm_num)
+    have h41 : 2 ^ 3695665929354 % 118261309739333 = 42575902712694 :=
+      Pratt.sq_of h40 (by norm_num) (by norm_num)
+    have h42 : 2 ^ 7391331858708 % 118261309739333 = 32502738355395 :=
+      Pratt.sq_of h41 (by norm_num) (by norm_num)
+    have h43 : 2 ^ 14782663717416 % 118261309739333 = 32721478446779 :=
+      Pratt.sq_of h42 (by norm_num) (by norm_num)
+    have h44 : 2 ^ 29565327434833 % 118261309739333 = 65442956893557 :=
+      Pratt.sq_mul_of h43 (by norm_num) (by norm_num)
+    have h45 : 2 ^ 59130654869666 % 118261309739333 = 118261309739332 :=
+      Pratt.sq_of h44 (by norm_num) (by norm_num)
+    have h46 : 2 ^ 118261309739332 % 118261309739333 = 1 :=
+      Pratt.sq_of h45 (by norm_num) (by norm_num)
+    rw [show (118261309739333 : ℕ) - 1 = 118261309739332 by norm_num, h46]
+  · intro q hq hqd
+    have hfac : 118261309739333 - 1 = 2 ^ 2 * (29 ^ 1 * (142601 ^ 1 * (7149277 ^ 1))) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 2 ^ 1 % 118261309739333 = 2 := by norm_num
+      have g01 : 2 ^ 3 % 118261309739333 = 8 :=
+        Pratt.sq_mul_of g00 (by norm_num) (by norm_num)
+      have g02 : 2 ^ 6 % 118261309739333 = 64 :=
+        Pratt.sq_of g01 (by norm_num) (by norm_num)
+      have g03 : 2 ^ 13 % 118261309739333 = 8192 :=
+        Pratt.sq_mul_of g02 (by norm_num) (by norm_num)
+      have g04 : 2 ^ 26 % 118261309739333 = 67108864 :=
+        Pratt.sq_of g03 (by norm_num) (by norm_num)
+      have g05 : 2 ^ 53 % 118261309739333 = 19339714551684 :=
+        Pratt.sq_mul_of g04 (by norm_num) (by norm_num)
+      have g06 : 2 ^ 107 % 118261309739333 = 117136108004223 :=
+        Pratt.sq_mul_of g05 (by norm_num) (by norm_num)
+      have g07 : 2 ^ 215 % 118261309739333 = 78367631111372 :=
+        Pratt.sq_mul_of g06 (by norm_num) (by norm_num)
+      have g08 : 2 ^ 430 % 118261309739333 = 72094932316567 :=
+        Pratt.sq_of g07 (by norm_num) (by norm_num)
+      have g09 : 2 ^ 860 % 118261309739333 = 67954337753421 :=
+        Pratt.sq_of g08 (by norm_num) (by norm_num)
+      have g010 : 2 ^ 1720 % 118261309739333 = 22280330988792 :=
+        Pratt.sq_of g09 (by norm_num) (by norm_num)
+      have g011 : 2 ^ 3441 % 118261309739333 = 35354318072821 :=
+        Pratt.sq_mul_of g010 (by norm_num) (by norm_num)
+      have g012 : 2 ^ 6883 % 118261309739333 = 60853897323632 :=
+        Pratt.sq_mul_of g011 (by norm_num) (by norm_num)
+      have g013 : 2 ^ 13767 % 118261309739333 = 91839137544751 :=
+        Pratt.sq_mul_of g012 (by norm_num) (by norm_num)
+      have g014 : 2 ^ 27534 % 118261309739333 = 10088915937395 :=
+        Pratt.sq_of g013 (by norm_num) (by norm_num)
+      have g015 : 2 ^ 55069 % 118261309739333 = 24128874767685 :=
+        Pratt.sq_mul_of g014 (by norm_num) (by norm_num)
+      have g016 : 2 ^ 110139 % 118261309739333 = 86630092570934 :=
+        Pratt.sq_mul_of g015 (by norm_num) (by norm_num)
+      have g017 : 2 ^ 220278 % 118261309739333 = 30046132494124 :=
+        Pratt.sq_of g016 (by norm_num) (by norm_num)
+      have g018 : 2 ^ 440557 % 118261309739333 = 35921295085445 :=
+        Pratt.sq_mul_of g017 (by norm_num) (by norm_num)
+      have g019 : 2 ^ 881115 % 118261309739333 = 37704838856789 :=
+        Pratt.sq_mul_of g018 (by norm_num) (by norm_num)
+      have g020 : 2 ^ 1762230 % 118261309739333 = 32979117181318 :=
+        Pratt.sq_of g019 (by norm_num) (by norm_num)
+      have g021 : 2 ^ 3524461 % 118261309739333 = 94068531705936 :=
+        Pratt.sq_mul_of g020 (by norm_num) (by norm_num)
+      have g022 : 2 ^ 7048923 % 118261309739333 = 83351914491359 :=
+        Pratt.sq_mul_of g021 (by norm_num) (by norm_num)
+      have g023 : 2 ^ 14097846 % 118261309739333 = 111652154770208 :=
+        Pratt.sq_of g022 (by norm_num) (by norm_num)
+      have g024 : 2 ^ 28195693 % 118261309739333 = 85182159341480 :=
+        Pratt.sq_mul_of g023 (by norm_num) (by norm_num)
+      have g025 : 2 ^ 56391386 % 118261309739333 = 9066494983472 :=
+        Pratt.sq_of g024 (by norm_num) (by norm_num)
+      have g026 : 2 ^ 112782773 % 118261309739333 = 73206872496545 :=
+        Pratt.sq_mul_of g025 (by norm_num) (by norm_num)
+      have g027 : 2 ^ 225565547 % 118261309739333 = 19367277610114 :=
+        Pratt.sq_mul_of g026 (by norm_num) (by norm_num)
+      have g028 : 2 ^ 451131094 % 118261309739333 = 54235418008347 :=
+        Pratt.sq_of g027 (by norm_num) (by norm_num)
+      have g029 : 2 ^ 902262189 % 118261309739333 = 46741539139053 :=
+        Pratt.sq_mul_of g028 (by norm_num) (by norm_num)
+      have g030 : 2 ^ 1804524379 % 118261309739333 = 11762272423893 :=
+        Pratt.sq_mul_of g029 (by norm_num) (by norm_num)
+      have g031 : 2 ^ 3609048759 % 118261309739333 = 106158547545312 :=
+        Pratt.sq_mul_of g030 (by norm_num) (by norm_num)
+      have g032 : 2 ^ 7218097518 % 118261309739333 = 28925847221767 :=
+        Pratt.sq_of g031 (by norm_num) (by norm_num)
+      have g033 : 2 ^ 14436195036 % 118261309739333 = 106135300324646 :=
+        Pratt.sq_of g032 (by norm_num) (by norm_num)
+      have g034 : 2 ^ 28872390073 % 118261309739333 = 19158237754282 :=
+        Pratt.sq_mul_of g033 (by norm_num) (by norm_num)
+      have g035 : 2 ^ 57744780146 % 118261309739333 = 83183211230745 :=
+        Pratt.sq_of g034 (by norm_num) (by norm_num)
+      have g036 : 2 ^ 115489560292 % 118261309739333 = 107586021757443 :=
+        Pratt.sq_of g035 (by norm_num) (by norm_num)
+      have g037 : 2 ^ 230979120584 % 118261309739333 = 82332093436992 :=
+        Pratt.sq_of g036 (by norm_num) (by norm_num)
+      have g038 : 2 ^ 461958241169 % 118261309739333 = 55851016611592 :=
+        Pratt.sq_mul_of g037 (by norm_num) (by norm_num)
+      have g039 : 2 ^ 923916482338 % 118261309739333 = 32678939445133 :=
+        Pratt.sq_of g038 (by norm_num) (by norm_num)
+      have g040 : 2 ^ 1847832964677 % 118261309739333 = 77594270573759 :=
+        Pratt.sq_mul_of g039 (by norm_num) (by norm_num)
+      have g041 : 2 ^ 3695665929354 % 118261309739333 = 42575902712694 :=
+        Pratt.sq_of g040 (by norm_num) (by norm_num)
+      have g042 : 2 ^ 7391331858708 % 118261309739333 = 32502738355395 :=
+        Pratt.sq_of g041 (by norm_num) (by norm_num)
+      have g043 : 2 ^ 14782663717416 % 118261309739333 = 32721478446779 :=
+        Pratt.sq_of g042 (by norm_num) (by norm_num)
+      have g044 : 2 ^ 29565327434833 % 118261309739333 = 65442956893557 :=
+        Pratt.sq_mul_of g043 (by norm_num) (by norm_num)
+      have g045 : 2 ^ 59130654869666 % 118261309739333 = 118261309739332 :=
+        Pratt.sq_of g044 (by norm_num) (by norm_num)
+      rw [show (118261309739333 : ℕ) - 1 = 118261309739332 by norm_num, show 118261309739332 / 2 = 59130654869666 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g045 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 29 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 29)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 2 ^ 1 % 118261309739333 = 2 := by norm_num
+      have g11 : 2 ^ 3 % 118261309739333 = 8 :=
+        Pratt.sq_mul_of g10 (by norm_num) (by norm_num)
+      have g12 : 2 ^ 7 % 118261309739333 = 128 :=
+        Pratt.sq_mul_of g11 (by norm_num) (by norm_num)
+      have g13 : 2 ^ 14 % 118261309739333 = 16384 :=
+        Pratt.sq_of g12 (by norm_num) (by norm_num)
+      have g14 : 2 ^ 29 % 118261309739333 = 536870912 :=
+        Pratt.sq_mul_of g13 (by norm_num) (by norm_num)
+      have g15 : 2 ^ 59 % 118261309739333 = 55128633914446 :=
+        Pratt.sq_mul_of g14 (by norm_num) (by norm_num)
+      have g16 : 2 ^ 118 % 118261309739333 = 60813041281380 :=
+        Pratt.sq_of g15 (by norm_num) (by norm_num)
+      have g17 : 2 ^ 237 % 118261309739333 = 55647874576894 :=
+        Pratt.sq_mul_of g16 (by norm_num) (by norm_num)
+      have g18 : 2 ^ 474 % 118261309739333 = 97731624181808 :=
+        Pratt.sq_of g17 (by norm_num) (by norm_num)
+      have g19 : 2 ^ 949 % 118261309739333 = 72852447670144 :=
+        Pratt.sq_mul_of g18 (by norm_num) (by norm_num)
+      have g110 : 2 ^ 1898 % 118261309739333 = 6149270997944 :=
+        Pratt.sq_of g19 (by norm_num) (by norm_num)
+      have g111 : 2 ^ 3797 % 118261309739333 = 76004931511006 :=
+        Pratt.sq_mul_of g110 (by norm_num) (by norm_num)
+      have g112 : 2 ^ 7595 % 118261309739333 = 30342954199798 :=
+        Pratt.sq_mul_of g111 (by norm_num) (by norm_num)
+      have g113 : 2 ^ 15191 % 118261309739333 = 50624545617505 :=
+        Pratt.sq_mul_of g112 (by norm_num) (by norm_num)
+      have g114 : 2 ^ 30383 % 118261309739333 = 59423155674757 :=
+        Pratt.sq_mul_of g113 (by norm_num) (by norm_num)
+      have g115 : 2 ^ 60766 % 118261309739333 = 12481214919315 :=
+        Pratt.sq_of g114 (by norm_num) (by norm_num)
+      have g116 : 2 ^ 121533 % 118261309739333 = 60919257643003 :=
+        Pratt.sq_mul_of g115 (by norm_num) (by norm_num)
+      have g117 : 2 ^ 243066 % 118261309739333 = 14007249965246 :=
+        Pratt.sq_of g116 (by norm_num) (by norm_num)
+      have g118 : 2 ^ 486132 % 118261309739333 = 112850817300645 :=
+        Pratt.sq_of g117 (by norm_num) (by norm_num)
+      have g119 : 2 ^ 972265 % 118261309739333 = 16994895327045 :=
+        Pratt.sq_mul_of g118 (by norm_num) (by norm_num)
+      have g120 : 2 ^ 1944530 % 118261309739333 = 25418907088217 :=
+        Pratt.sq_of g119 (by norm_num) (by norm_num)
+      have g121 : 2 ^ 3889061 % 118261309739333 = 6315323943980 :=
+        Pratt.sq_mul_of g120 (by norm_num) (by norm_num)
+      have g122 : 2 ^ 7778122 % 118261309739333 = 18554304600087 :=
+        Pratt.sq_of g121 (by norm_num) (by norm_num)
+      have g123 : 2 ^ 15556244 % 118261309739333 = 417780108578 :=
+        Pratt.sq_of g122 (by norm_num) (by norm_num)
+      have g124 : 2 ^ 31112489 % 118261309739333 = 101030224174878 :=
+        Pratt.sq_mul_of g123 (by norm_num) (by norm_num)
+      have g125 : 2 ^ 62224978 % 118261309739333 = 36963135877603 :=
+        Pratt.sq_of g124 (by norm_num) (by norm_num)
+      have g126 : 2 ^ 124449957 % 118261309739333 = 106643921363858 :=
+        Pratt.sq_mul_of g125 (by norm_num) (by norm_num)
+      have g127 : 2 ^ 248899914 % 118261309739333 = 81772757835787 :=
+        Pratt.sq_of g126 (by norm_num) (by norm_num)
+      have g128 : 2 ^ 497799828 % 118261309739333 = 21597198240390 :=
+        Pratt.sq_of g127 (by norm_num) (by norm_num)
+      have g129 : 2 ^ 995599657 % 118261309739333 = 60299863696426 :=
+        Pratt.sq_mul_of g128 (by norm_num) (by norm_num)
+      have g130 : 2 ^ 1991199315 % 118261309739333 = 9999369177255 :=
+        Pratt.sq_mul_of g129 (by norm_num) (by norm_num)
+      have g131 : 2 ^ 3982398630 % 118261309739333 = 102269732069851 :=
+        Pratt.sq_of g130 (by norm_num) (by norm_num)
+      have g132 : 2 ^ 7964797261 % 118261309739333 = 103214237913960 :=
+        Pratt.sq_mul_of g131 (by norm_num) (by norm_num)
+      have g133 : 2 ^ 15929594523 % 118261309739333 = 32743301691013 :=
+        Pratt.sq_mul_of g132 (by norm_num) (by norm_num)
+      have g134 : 2 ^ 31859189046 % 118261309739333 = 94499741939845 :=
+        Pratt.sq_of g133 (by norm_num) (by norm_num)
+      have g135 : 2 ^ 63718378092 % 118261309739333 = 67377225925736 :=
+        Pratt.sq_of g134 (by norm_num) (by norm_num)
+      have g136 : 2 ^ 127436756184 % 118261309739333 = 92803237578126 :=
+        Pratt.sq_of g135 (by norm_num) (by norm_num)
+      have g137 : 2 ^ 254873512369 % 118261309739333 = 46700273522557 :=
+        Pratt.sq_mul_of g136 (by norm_num) (by norm_num)
+      have g138 : 2 ^ 509747024738 % 118261309739333 = 91529739970734 :=
+        Pratt.sq_of g137 (by norm_num) (by norm_num)
+      have g139 : 2 ^ 1019494049477 % 118261309739333 = 95283090527229 :=
+        Pratt.sq_mul_of g138 (by norm_num) (by norm_num)
+      have g140 : 2 ^ 2038988098954 % 118261309739333 = 886492938323 :=
+        Pratt.sq_of g139 (by norm_num) (by norm_num)
+      have g141 : 2 ^ 4077976197908 % 118261309739333 = 26638962314744 :=
+        Pratt.sq_of g140 (by norm_num) (by norm_num)
+      rw [show (118261309739333 : ℕ) - 1 = 118261309739332 by norm_num, show 118261309739332 / 29 = 4077976197908 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g141 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq2 | hqd
+    . have hqe : q = 142601 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 142601)).mp (hq.dvd_of_dvd_pow hq2)
+      subst hqe
+      have g20 : 2 ^ 1 % 118261309739333 = 2 := by norm_num
+      have g21 : 2 ^ 3 % 118261309739333 = 8 :=
+        Pratt.sq_mul_of g20 (by norm_num) (by norm_num)
+      have g22 : 2 ^ 6 % 118261309739333 = 64 :=
+        Pratt.sq_of g21 (by norm_num) (by norm_num)
+      have g23 : 2 ^ 12 % 118261309739333 = 4096 :=
+        Pratt.sq_of g22 (by norm_num) (by norm_num)
+      have g24 : 2 ^ 24 % 118261309739333 = 16777216 :=
+        Pratt.sq_of g23 (by norm_num) (by norm_num)
+      have g25 : 2 ^ 49 % 118261309739333 = 89904714463980 :=
+        Pratt.sq_mul_of g24 (by norm_num) (by norm_num)
+      have g26 : 2 ^ 98 % 118261309739333 = 3231510028546 :=
+        Pratt.sq_of g25 (by norm_num) (by norm_num)
+      have g27 : 2 ^ 197 % 118261309739333 = 22132790464183 :=
+        Pratt.sq_mul_of g26 (by norm_num) (by norm_num)
+      have g28 : 2 ^ 395 % 118261309739333 = 57942531377249 :=
+        Pratt.sq_mul_of g27 (by norm_num) (by norm_num)
+      have g29 : 2 ^ 790 % 118261309739333 = 53931815905350 :=
+        Pratt.sq_of g28 (by norm_num) (by norm_num)
+      have g210 : 2 ^ 1581 % 118261309739333 = 88091663162493 :=
+        Pratt.sq_mul_of g29 (by norm_num) (by norm_num)
+      have g211 : 2 ^ 3163 % 118261309739333 = 18291491153998 :=
+        Pratt.sq_mul_of g210 (by norm_num) (by norm_num)
+      have g212 : 2 ^ 6327 % 118261309739333 = 51292903950289 :=
+        Pratt.sq_mul_of g211 (by norm_num) (by norm_num)
+      have g213 : 2 ^ 12654 % 118261309739333 = 20284281900035 :=
+        Pratt.sq_of g212 (by norm_num) (by norm_num)
+      have g214 : 2 ^ 25308 % 118261309739333 = 4814598943827 :=
+        Pratt.sq_of g213 (by norm_num) (by norm_num)
+      have g215 : 2 ^ 50617 % 118261309739333 = 29438759101712 :=
+        Pratt.sq_mul_of g214 (by norm_num) (by norm_num)
+      have g216 : 2 ^ 101234 % 118261309739333 = 3170246697282 :=
+        Pratt.sq_of g215 (by norm_num) (by norm_num)
+      have g217 : 2 ^ 202469 % 118261309739333 = 66788253644971 :=
+        Pratt.sq_mul_of g216 (by norm_num) (by norm_num)
+      have g218 : 2 ^ 404939 % 118261309739333 = 2977487436613 :=
+        Pratt.sq_mul_of g217 (by norm_num) (by norm_num)
+      have g219 : 2 ^ 809879 % 118261309739333 = 28483498195005 :=
+        Pratt.sq_mul_of g218 (by norm_num) (by norm_num)
+      have g220 : 2 ^ 1619758 % 118261309739333 = 83269804935344 :=
+        Pratt.sq_of g219 (by norm_num) (by norm_num)
+      have g221 : 2 ^ 3239516 % 118261309739333 = 803740992186 :=
+        Pratt.sq_of g220 (by norm_num) (by norm_num)
+      have g222 : 2 ^ 6479032 % 118261309739333 = 20402200522642 :=
+        Pratt.sq_of g221 (by norm_num) (by norm_num)
+      have g223 : 2 ^ 12958064 % 118261309739333 = 32500769806347 :=
+        Pratt.sq_of g222 (by norm_num) (by norm_num)
+      have g224 : 2 ^ 25916129 % 118261309739333 = 73156357863250 :=
+        Pratt.sq_mul_of g223 (by norm_num) (by norm_num)
+      have g225 : 2 ^ 51832258 % 118261309739333 = 80314001090573 :=
+        Pratt.sq_of g224 (by norm_num) (by norm_num)
+      have g226 : 2 ^ 103664516 % 118261309739333 = 93655436807980 :=
+        Pratt.sq_of g225 (by norm_num) (by norm_num)
+      have g227 : 2 ^ 207329033 % 118261309739333 = 93054948051302 :=
+        Pratt.sq_mul_of g226 (by norm_num) (by norm_num)
+      have g228 : 2 ^ 414658066 % 118261309739333 = 11542869279813 :=
+        Pratt.sq_of g227 (by norm_num) (by norm_num)
+      have g229 : 2 ^ 829316132 % 118261309739333 = 66493444832389 :=
+        Pratt.sq_of g228 (by norm_num) (by norm_num)
+      rw [show (118261309739333 : ℕ) - 1 = 118261309739332 by norm_num, show 118261309739332 / 142601 = 829316132 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g229 (by norm_num)
+    have hqe : q = 7149277 :=
+      (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 7149277)).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g30 : 2 ^ 1 % 118261309739333 = 2 := by norm_num
+    have g31 : 2 ^ 3 % 118261309739333 = 8 :=
+      Pratt.sq_mul_of g30 (by norm_num) (by norm_num)
+    have g32 : 2 ^ 7 % 118261309739333 = 128 :=
+      Pratt.sq_mul_of g31 (by norm_num) (by norm_num)
+    have g33 : 2 ^ 15 % 118261309739333 = 32768 :=
+      Pratt.sq_mul_of g32 (by norm_num) (by norm_num)
+    have g34 : 2 ^ 31 % 118261309739333 = 2147483648 :=
+      Pratt.sq_mul_of g33 (by norm_num) (by norm_num)
+    have g35 : 2 ^ 63 % 118261309739333 = 54228974455805 :=
+      Pratt.sq_mul_of g34 (by norm_num) (by norm_num)
+    have g36 : 2 ^ 126 % 118261309739333 = 75906992180657 :=
+      Pratt.sq_of g35 (by norm_num) (by norm_num)
+    have g37 : 2 ^ 252 % 118261309739333 = 116680574626398 :=
+      Pratt.sq_of g36 (by norm_num) (by norm_num)
+    have g38 : 2 ^ 504 % 118261309739333 = 72297369433319 :=
+      Pratt.sq_of g37 (by norm_num) (by norm_num)
+    have g39 : 2 ^ 1009 % 118261309739333 = 34962443497966 :=
+      Pratt.sq_mul_of g38 (by norm_num) (by norm_num)
+    have g310 : 2 ^ 2019 % 118261309739333 = 74683778026274 :=
+      Pratt.sq_mul_of g39 (by norm_num) (by norm_num)
+    have g311 : 2 ^ 4038 % 118261309739333 = 112462148699912 :=
+      Pratt.sq_of g310 (by norm_num) (by norm_num)
+    have g312 : 2 ^ 8077 % 118261309739333 = 42430996108942 :=
+      Pratt.sq_mul_of g311 (by norm_num) (by norm_num)
+    have g313 : 2 ^ 16154 % 118261309739333 = 1783287264798 :=
+      Pratt.sq_of g312 (by norm_num) (by norm_num)
+    have g314 : 2 ^ 32308 % 118261309739333 = 92988827737228 :=
+      Pratt.sq_of g313 (by norm_num) (by norm_num)
+    have g315 : 2 ^ 64616 % 118261309739333 = 52173765298206 :=
+      Pratt.sq_of g314 (by norm_num) (by norm_num)
+    have g316 : 2 ^ 129232 % 118261309739333 = 82552110773364 :=
+      Pratt.sq_of g315 (by norm_num) (by norm_num)
+    have g317 : 2 ^ 258464 % 118261309739333 = 103178646641064 :=
+      Pratt.sq_of g316 (by norm_num) (by norm_num)
+    have g318 : 2 ^ 516928 % 118261309739333 = 11924422906137 :=
+      Pratt.sq_of g317 (by norm_num) (by norm_num)
+    have g319 : 2 ^ 1033857 % 118261309739333 = 108712341563124 :=
+      Pratt.sq_mul_of g318 (by norm_num) (by norm_num)
+    have g320 : 2 ^ 2067714 % 118261309739333 = 35694289921799 :=
+      Pratt.sq_of g319 (by norm_num) (by norm_num)
+    have g321 : 2 ^ 4135429 % 118261309739333 = 56721548798506 :=
+      Pratt.sq_mul_of g320 (by norm_num) (by norm_num)
+    have g322 : 2 ^ 8270858 % 118261309739333 = 115649479903998 :=
+      Pratt.sq_of g321 (by norm_num) (by norm_num)
+    have g323 : 2 ^ 16541716 % 118261309739333 = 63881505230286 :=
+      Pratt.sq_of g322 (by norm_num) (by norm_num)
+    rw [show (118261309739333 : ℕ) - 1 = 118261309739332 by norm_num, show 118261309739332 / 7149277 = 16541716 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g323 (by norm_num)
+
+/-- `733915969930370835373` is prime, by a Lucas certificate with witness 2. -/
+theorem prime_733915969930370835373 : Nat.Prime 733915969930370835373 := by
+  refine lucas_primality 733915969930370835373 ((2 : ℕ) : ZMod 733915969930370835373) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 2 ^ 1 % 733915969930370835373 = 2 := by norm_num
+    have h1 : 2 ^ 2 % 733915969930370835373 = 4 :=
+      Pratt.sq_of h0 (by norm_num) (by norm_num)
+    have h2 : 2 ^ 4 % 733915969930370835373 = 16 :=
+      Pratt.sq_of h1 (by norm_num) (by norm_num)
+    have h3 : 2 ^ 9 % 733915969930370835373 = 512 :=
+      Pratt.sq_mul_of h2 (by norm_num) (by norm_num)
+    have h4 : 2 ^ 19 % 733915969930370835373 = 524288 :=
+      Pratt.sq_mul_of h3 (by norm_num) (by norm_num)
+    have h5 : 2 ^ 39 % 733915969930370835373 = 549755813888 :=
+      Pratt.sq_mul_of h4 (by norm_num) (by norm_num)
+    have h6 : 2 ^ 79 % 733915969930370835373 = 450066554619389841109 :=
+      Pratt.sq_mul_of h5 (by norm_num) (by norm_num)
+    have h7 : 2 ^ 159 % 733915969930370835373 = 467159564947846352411 :=
+      Pratt.sq_mul_of h6 (by norm_num) (by norm_num)
+    have h8 : 2 ^ 318 % 733915969930370835373 = 174964533951856924453 :=
+      Pratt.sq_of h7 (by norm_num) (by norm_num)
+    have h9 : 2 ^ 636 % 733915969930370835373 = 336715653536742547411 :=
+      Pratt.sq_of h8 (by norm_num) (by norm_num)
+    have h10 : 2 ^ 1273 % 733915969930370835373 = 152742366764246996719 :=
+      Pratt.sq_mul_of h9 (by norm_num) (by norm_num)
+    have h11 : 2 ^ 2546 % 733915969930370835373 = 387614651823113477406 :=
+      Pratt.sq_of h10 (by norm_num) (by norm_num)
+    have h12 : 2 ^ 5092 % 733915969930370835373 = 185977974790080351653 :=
+      Pratt.sq_of h11 (by norm_num) (by norm_num)
+    have h13 : 2 ^ 10185 % 733915969930370835373 = 135294815273292892361 :=
+      Pratt.sq_mul_of h12 (by norm_num) (by norm_num)
+    have h14 : 2 ^ 20370 % 733915969930370835373 = 605280670991199057369 :=
+      Pratt.sq_of h13 (by norm_num) (by norm_num)
+    have h15 : 2 ^ 40740 % 733915969930370835373 = 208729729212827529997 :=
+      Pratt.sq_of h14 (by norm_num) (by norm_num)
+    have h16 : 2 ^ 81481 % 733915969930370835373 = 554319979805906069156 :=
+      Pratt.sq_mul_of h15 (by norm_num) (by norm_num)
+    have h17 : 2 ^ 162962 % 733915969930370835373 = 349642146031270699683 :=
+      Pratt.sq_of h16 (by norm_num) (by norm_num)
+    have h18 : 2 ^ 325924 % 733915969930370835373 = 677579648322727696901 :=
+      Pratt.sq_of h17 (by norm_num) (by norm_num)
+    have h19 : 2 ^ 651848 % 733915969930370835373 = 481441283009616698978 :=
+      Pratt.sq_of h18 (by norm_num) (by norm_num)
+    have h20 : 2 ^ 1303696 % 733915969930370835373 = 433881756080630075446 :=
+      Pratt.sq_of h19 (by norm_num) (by norm_num)
+    have h21 : 2 ^ 2607393 % 733915969930370835373 = 334395492645717106563 :=
+      Pratt.sq_mul_of h20 (by norm_num) (by norm_num)
+    have h22 : 2 ^ 5214786 % 733915969930370835373 = 79099868824379689137 :=
+      Pratt.sq_of h21 (by norm_num) (by norm_num)
+    have h23 : 2 ^ 10429573 % 733915969930370835373 = 339892008410481582813 :=
+      Pratt.sq_mul_of h22 (by norm_num) (by norm_num)
+    have h24 : 2 ^ 20859146 % 733915969930370835373 = 118909346083092404132 :=
+      Pratt.sq_of h23 (by norm_num) (by norm_num)
+    have h25 : 2 ^ 41718292 % 733915969930370835373 = 211334133191298961280 :=
+      Pratt.sq_of h24 (by norm_num) (by norm_num)
+    have h26 : 2 ^ 83436585 % 733915969930370835373 = 265466440269315969952 :=
+      Pratt.sq_mul_of h25 (by norm_num) (by norm_num)
+    have h27 : 2 ^ 166873171 % 733915969930370835373 = 504140649755529289269 :=
+      Pratt.sq_mul_of h26 (by norm_num) (by norm_num)
+    have h28 : 2 ^ 333746343 % 733915969930370835373 = 488609103511497837989 :=
+      Pratt.sq_mul_of h27 (by norm_num) (by norm_num)
+    have h29 : 2 ^ 667492686 % 733915969930370835373 = 427390215413092418772 :=
+      Pratt.sq_of h28 (by norm_num) (by norm_num)
+    have h30 : 2 ^ 1334985372 % 733915969930370835373 = 637912319614421199700 :=
+      Pratt.sq_of h29 (by norm_num) (by norm_num)
+    have h31 : 2 ^ 2669970744 % 733915969930370835373 = 604989816569931564591 :=
+      Pratt.sq_of h30 (by norm_num) (by norm_num)
+    have h32 : 2 ^ 5339941489 % 733915969930370835373 = 684018534325070623365 :=
+      Pratt.sq_mul_of h31 (by norm_num) (by norm_num)
+    have h33 : 2 ^ 10679882979 % 733915969930370835373 = 578206723342366690425 :=
+      Pratt.sq_mul_of h32 (by norm_num) (by norm_num)
+    have h34 : 2 ^ 21359765958 % 733915969930370835373 = 112950641698115797969 :=
+      Pratt.sq_of h33 (by norm_num) (by norm_num)
+    have h35 : 2 ^ 42719531916 % 733915969930370835373 = 52292889875630716949 :=
+      Pratt.sq_of h34 (by norm_num) (by norm_num)
+    have h36 : 2 ^ 85439063833 % 733915969930370835373 = 291106312646119077556 :=
+      Pratt.sq_mul_of h35 (by norm_num) (by norm_num)
+    have h37 : 2 ^ 170878127666 % 733915969930370835373 = 128149712927511211660 :=
+      Pratt.sq_of h36 (by norm_num) (by norm_num)
+    have h38 : 2 ^ 341756255333 % 733915969930370835373 = 52254027094187257067 :=
+      Pratt.sq_mul_of h37 (by norm_num) (by norm_num)
+    have h39 : 2 ^ 683512510666 % 733915969930370835373 = 152941545656884669266 :=
+      Pratt.sq_of h38 (by norm_num) (by norm_num)
+    have h40 : 2 ^ 1367025021333 % 733915969930370835373 = 507179160272304063612 :=
+      Pratt.sq_mul_of h39 (by norm_num) (by norm_num)
+    have h41 : 2 ^ 2734050042667 % 733915969930370835373 = 50588424528786942912 :=
+      Pratt.sq_mul_of h40 (by norm_num) (by norm_num)
+    have h42 : 2 ^ 5468100085335 % 733915969930370835373 = 648597371563538274769 :=
+      Pratt.sq_mul_of h41 (by norm_num) (by norm_num)
+    have h43 : 2 ^ 10936200170671 % 733915969930370835373 = 204133626518759760058 :=
+      Pratt.sq_mul_of h42 (by norm_num) (by norm_num)
+    have h44 : 2 ^ 21872400341343 % 733915969930370835373 = 168602417673273559273 :=
+      Pratt.sq_mul_of h43 (by norm_num) (by norm_num)
+    have h45 : 2 ^ 43744800682686 % 733915969930370835373 = 647767830620101019122 :=
+      Pratt.sq_of h44 (by norm_num) (by norm_num)
+    have h46 : 2 ^ 87489601365372 % 733915969930370835373 = 253051565709286603713 :=
+      Pratt.sq_of h45 (by norm_num) (by norm_num)
+    have h47 : 2 ^ 174979202730744 % 733915969930370835373 = 159516250603025530121 :=
+      Pratt.sq_of h46 (by norm_num) (by norm_num)
+    have h48 : 2 ^ 349958405461488 % 733915969930370835373 = 524638337942808556470 :=
+      Pratt.sq_of h47 (by norm_num) (by norm_num)
+    have h49 : 2 ^ 699916810922976 % 733915969930370835373 = 686079674684268611765 :=
+      Pratt.sq_of h48 (by norm_num) (by norm_num)
+    have h50 : 2 ^ 1399833621845952 % 733915969930370835373 = 176128307467223056455 :=
+      Pratt.sq_of h49 (by norm_num) (by norm_num)
+    have h51 : 2 ^ 2799667243691905 % 733915969930370835373 = 270130797047450291208 :=
+      Pratt.sq_mul_of h50 (by norm_num) (by norm_num)
+    have h52 : 2 ^ 5599334487383810 % 733915969930370835373 = 176211727563630453978 :=
+      Pratt.sq_of h51 (by norm_num) (by norm_num)
+    have h53 : 2 ^ 11198668974767621 % 733915969930370835373 = 623982238285958542038 :=
+      Pratt.sq_mul_of h52 (by norm_num) (by norm_num)
+    have h54 : 2 ^ 22397337949535242 % 733915969930370835373 = 91917925376345654650 :=
+      Pratt.sq_of h53 (by norm_num) (by norm_num)
+    have h55 : 2 ^ 44794675899070485 % 733915969930370835373 = 640210846712985770799 :=
+      Pratt.sq_mul_of h54 (by norm_num) (by norm_num)
+    have h56 : 2 ^ 89589351798140971 % 733915969930370835373 = 205194198426483896871 :=
+      Pratt.sq_mul_of h55 (by norm_num) (by norm_num)
+    have h57 : 2 ^ 179178703596281942 % 733915969930370835373 = 198888047985204980576 :=
+      Pratt.sq_of h56 (by norm_num) (by norm_num)
+    have h58 : 2 ^ 358357407192563884 % 733915969930370835373 = 387582640968252240883 :=
+      Pratt.sq_of h57 (by norm_num) (by norm_num)
+    have h59 : 2 ^ 716714814385127768 % 733915969930370835373 = 699251312629059148996 :=
+      Pratt.sq_of h58 (by norm_num) (by norm_num)
+    have h60 : 2 ^ 1433429628770255537 % 733915969930370835373 = 4942008753069426983 :=
+      Pratt.sq_mul_of h59 (by norm_num) (by norm_num)
+    have h61 : 2 ^ 2866859257540511075 % 733915969930370835373 = 703179769522401839129 :=
+      Pratt.sq_mul_of h60 (by norm_num) (by norm_num)
+    have h62 : 2 ^ 5733718515081022151 % 733915969930370835373 = 636788893033704058562 :=
+      Pratt.sq_mul_of h61 (by norm_num) (by norm_num)
+    have h63 : 2 ^ 11467437030162044302 % 733915969930370835373 = 200067424977895937441 :=
+      Pratt.sq_of h62 (by norm_num) (by norm_num)
+    have h64 : 2 ^ 22934874060324088605 % 733915969930370835373 = 146453814609945989011 :=
+      Pratt.sq_mul_of h63 (by norm_num) (by norm_num)
+    have h65 : 2 ^ 45869748120648177210 % 733915969930370835373 = 80330051702970056582 :=
+      Pratt.sq_of h64 (by norm_num) (by norm_num)
+    have h66 : 2 ^ 91739496241296354421 % 733915969930370835373 = 240002423207984334760 :=
+      Pratt.sq_mul_of h65 (by norm_num) (by norm_num)
+    have h67 : 2 ^ 183478992482592708843 % 733915969930370835373 = 253911123514402165852 :=
+      Pratt.sq_mul_of h66 (by norm_num) (by norm_num)
+    have h68 : 2 ^ 366957984965185417686 % 733915969930370835373 = 733915969930370835372 :=
+      Pratt.sq_of h67 (by norm_num) (by norm_num)
+    have h69 : 2 ^ 733915969930370835372 % 733915969930370835373 = 1 :=
+      Pratt.sq_of h68 (by norm_num) (by norm_num)
+    rw [show (733915969930370835373 : ℕ) - 1 = 733915969930370835372 by norm_num, h69]
+  · intro q hq hqd
+    have hfac : 733915969930370835373 - 1 = 2 ^ 2 * (3 ^ 1 * (17 ^ 1 * (29 ^ 1 * (1049 ^ 1 * (118261309739333 ^ 1))))) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 2 ^ 1 % 733915969930370835373 = 2 := by norm_num
+      have g01 : 2 ^ 2 % 733915969930370835373 = 4 :=
+        Pratt.sq_of g00 (by norm_num) (by norm_num)
+      have g02 : 2 ^ 4 % 733915969930370835373 = 16 :=
+        Pratt.sq_of g01 (by norm_num) (by norm_num)
+      have g03 : 2 ^ 9 % 733915969930370835373 = 512 :=
+        Pratt.sq_mul_of g02 (by norm_num) (by norm_num)
+      have g04 : 2 ^ 19 % 733915969930370835373 = 524288 :=
+        Pratt.sq_mul_of g03 (by norm_num) (by norm_num)
+      have g05 : 2 ^ 39 % 733915969930370835373 = 549755813888 :=
+        Pratt.sq_mul_of g04 (by norm_num) (by norm_num)
+      have g06 : 2 ^ 79 % 733915969930370835373 = 450066554619389841109 :=
+        Pratt.sq_mul_of g05 (by norm_num) (by norm_num)
+      have g07 : 2 ^ 159 % 733915969930370835373 = 467159564947846352411 :=
+        Pratt.sq_mul_of g06 (by norm_num) (by norm_num)
+      have g08 : 2 ^ 318 % 733915969930370835373 = 174964533951856924453 :=
+        Pratt.sq_of g07 (by norm_num) (by norm_num)
+      have g09 : 2 ^ 636 % 733915969930370835373 = 336715653536742547411 :=
+        Pratt.sq_of g08 (by norm_num) (by norm_num)
+      have g010 : 2 ^ 1273 % 733915969930370835373 = 152742366764246996719 :=
+        Pratt.sq_mul_of g09 (by norm_num) (by norm_num)
+      have g011 : 2 ^ 2546 % 733915969930370835373 = 387614651823113477406 :=
+        Pratt.sq_of g010 (by norm_num) (by norm_num)
+      have g012 : 2 ^ 5092 % 733915969930370835373 = 185977974790080351653 :=
+        Pratt.sq_of g011 (by norm_num) (by norm_num)
+      have g013 : 2 ^ 10185 % 733915969930370835373 = 135294815273292892361 :=
+        Pratt.sq_mul_of g012 (by norm_num) (by norm_num)
+      have g014 : 2 ^ 20370 % 733915969930370835373 = 605280670991199057369 :=
+        Pratt.sq_of g013 (by norm_num) (by norm_num)
+      have g015 : 2 ^ 40740 % 733915969930370835373 = 208729729212827529997 :=
+        Pratt.sq_of g014 (by norm_num) (by norm_num)
+      have g016 : 2 ^ 81481 % 733915969930370835373 = 554319979805906069156 :=
+        Pratt.sq_mul_of g015 (by norm_num) (by norm_num)
+      have g017 : 2 ^ 162962 % 733915969930370835373 = 349642146031270699683 :=
+        Pratt.sq_of g016 (by norm_num) (by norm_num)
+      have g018 : 2 ^ 325924 % 733915969930370835373 = 677579648322727696901 :=
+        Pratt.sq_of g017 (by norm_num) (by norm_num)
+      have g019 : 2 ^ 651848 % 733915969930370835373 = 481441283009616698978 :=
+        Pratt.sq_of g018 (by norm_num) (by norm_num)
+      have g020 : 2 ^ 1303696 % 733915969930370835373 = 433881756080630075446 :=
+        Pratt.sq_of g019 (by norm_num) (by norm_num)
+      have g021 : 2 ^ 2607393 % 733915969930370835373 = 334395492645717106563 :=
+        Pratt.sq_mul_of g020 (by norm_num) (by norm_num)
+      have g022 : 2 ^ 5214786 % 733915969930370835373 = 79099868824379689137 :=
+        Pratt.sq_of g021 (by norm_num) (by norm_num)
+      have g023 : 2 ^ 10429573 % 733915969930370835373 = 339892008410481582813 :=
+        Pratt.sq_mul_of g022 (by norm_num) (by norm_num)
+      have g024 : 2 ^ 20859146 % 733915969930370835373 = 118909346083092404132 :=
+        Pratt.sq_of g023 (by norm_num) (by norm_num)
+      have g025 : 2 ^ 41718292 % 733915969930370835373 = 211334133191298961280 :=
+        Pratt.sq_of g024 (by norm_num) (by norm_num)
+      have g026 : 2 ^ 83436585 % 733915969930370835373 = 265466440269315969952 :=
+        Pratt.sq_mul_of g025 (by norm_num) (by norm_num)
+      have g027 : 2 ^ 166873171 % 733915969930370835373 = 504140649755529289269 :=
+        Pratt.sq_mul_of g026 (by norm_num) (by norm_num)
+      have g028 : 2 ^ 333746343 % 733915969930370835373 = 488609103511497837989 :=
+        Pratt.sq_mul_of g027 (by norm_num) (by norm_num)
+      have g029 : 2 ^ 667492686 % 733915969930370835373 = 427390215413092418772 :=
+        Pratt.sq_of g028 (by norm_num) (by norm_num)
+      have g030 : 2 ^ 1334985372 % 733915969930370835373 = 637912319614421199700 :=
+        Pratt.sq_of g029 (by norm_num) (by norm_num)
+      have g031 : 2 ^ 2669970744 % 733915969930370835373 = 604989816569931564591 :=
+        Pratt.sq_of g030 (by norm_num) (by norm_num)
+      have g032 : 2 ^ 5339941489 % 733915969930370835373 = 684018534325070623365 :=
+        Pratt.sq_mul_of g031 (by norm_num) (by norm_num)
+      have g033 : 2 ^ 10679882979 % 733915969930370835373 = 578206723342366690425 :=
+        Pratt.sq_mul_of g032 (by norm_num) (by norm_num)
+      have g034 : 2 ^ 21359765958 % 733915969930370835373 = 112950641698115797969 :=
+        Pratt.sq_of g033 (by norm_num) (by norm_num)
+      have g035 : 2 ^ 42719531916 % 733915969930370835373 = 52292889875630716949 :=
+        Pratt.sq_of g034 (by norm_num) (by norm_num)
+      have g036 : 2 ^ 85439063833 % 733915969930370835373 = 291106312646119077556 :=
+        Pratt.sq_mul_of g035 (by norm_num) (by norm_num)
+      have g037 : 2 ^ 170878127666 % 733915969930370835373 = 128149712927511211660 :=
+        Pratt.sq_of g036 (by norm_num) (by norm_num)
+      have g038 : 2 ^ 341756255333 % 733915969930370835373 = 52254027094187257067 :=
+        Pratt.sq_mul_of g037 (by norm_num) (by norm_num)
+      have g039 : 2 ^ 683512510666 % 733915969930370835373 = 152941545656884669266 :=
+        Pratt.sq_of g038 (by norm_num) (by norm_num)
+      have g040 : 2 ^ 1367025021333 % 733915969930370835373 = 507179160272304063612 :=
+        Pratt.sq_mul_of g039 (by norm_num) (by norm_num)
+      have g041 : 2 ^ 2734050042667 % 733915969930370835373 = 50588424528786942912 :=
+        Pratt.sq_mul_of g040 (by norm_num) (by norm_num)
+      have g042 : 2 ^ 5468100085335 % 733915969930370835373 = 648597371563538274769 :=
+        Pratt.sq_mul_of g041 (by norm_num) (by norm_num)
+      have g043 : 2 ^ 10936200170671 % 733915969930370835373 = 204133626518759760058 :=
+        Pratt.sq_mul_of g042 (by norm_num) (by norm_num)
+      have g044 : 2 ^ 21872400341343 % 733915969930370835373 = 168602417673273559273 :=
+        Pratt.sq_mul_of g043 (by norm_num) (by norm_num)
+      have g045 : 2 ^ 43744800682686 % 733915969930370835373 = 647767830620101019122 :=
+        Pratt.sq_of g044 (by norm_num) (by norm_num)
+      have g046 : 2 ^ 87489601365372 % 733915969930370835373 = 253051565709286603713 :=
+        Pratt.sq_of g045 (by norm_num) (by norm_num)
+      have g047 : 2 ^ 174979202730744 % 733915969930370835373 = 159516250603025530121 :=
+        Pratt.sq_of g046 (by norm_num) (by norm_num)
+      have g048 : 2 ^ 349958405461488 % 733915969930370835373 = 524638337942808556470 :=
+        Pratt.sq_of g047 (by norm_num) (by norm_num)
+      have g049 : 2 ^ 699916810922976 % 733915969930370835373 = 686079674684268611765 :=
+        Pratt.sq_of g048 (by norm_num) (by norm_num)
+      have g050 : 2 ^ 1399833621845952 % 733915969930370835373 = 176128307467223056455 :=
+        Pratt.sq_of g049 (by norm_num) (by norm_num)
+      have g051 : 2 ^ 2799667243691905 % 733915969930370835373 = 270130797047450291208 :=
+        Pratt.sq_mul_of g050 (by norm_num) (by norm_num)
+      have g052 : 2 ^ 5599334487383810 % 733915969930370835373 = 176211727563630453978 :=
+        Pratt.sq_of g051 (by norm_num) (by norm_num)
+      have g053 : 2 ^ 11198668974767621 % 733915969930370835373 = 623982238285958542038 :=
+        Pratt.sq_mul_of g052 (by norm_num) (by norm_num)
+      have g054 : 2 ^ 22397337949535242 % 733915969930370835373 = 91917925376345654650 :=
+        Pratt.sq_of g053 (by norm_num) (by norm_num)
+      have g055 : 2 ^ 44794675899070485 % 733915969930370835373 = 640210846712985770799 :=
+        Pratt.sq_mul_of g054 (by norm_num) (by norm_num)
+      have g056 : 2 ^ 89589351798140971 % 733915969930370835373 = 205194198426483896871 :=
+        Pratt.sq_mul_of g055 (by norm_num) (by norm_num)
+      have g057 : 2 ^ 179178703596281942 % 733915969930370835373 = 198888047985204980576 :=
+        Pratt.sq_of g056 (by norm_num) (by norm_num)
+      have g058 : 2 ^ 358357407192563884 % 733915969930370835373 = 387582640968252240883 :=
+        Pratt.sq_of g057 (by norm_num) (by norm_num)
+      have g059 : 2 ^ 716714814385127768 % 733915969930370835373 = 699251312629059148996 :=
+        Pratt.sq_of g058 (by norm_num) (by norm_num)
+      have g060 : 2 ^ 1433429628770255537 % 733915969930370835373 = 4942008753069426983 :=
+        Pratt.sq_mul_of g059 (by norm_num) (by norm_num)
+      have g061 : 2 ^ 2866859257540511075 % 733915969930370835373 = 703179769522401839129 :=
+        Pratt.sq_mul_of g060 (by norm_num) (by norm_num)
+      have g062 : 2 ^ 5733718515081022151 % 733915969930370835373 = 636788893033704058562 :=
+        Pratt.sq_mul_of g061 (by norm_num) (by norm_num)
+      have g063 : 2 ^ 11467437030162044302 % 733915969930370835373 = 200067424977895937441 :=
+        Pratt.sq_of g062 (by norm_num) (by norm_num)
+      have g064 : 2 ^ 22934874060324088605 % 733915969930370835373 = 146453814609945989011 :=
+        Pratt.sq_mul_of g063 (by norm_num) (by norm_num)
+      have g065 : 2 ^ 45869748120648177210 % 733915969930370835373 = 80330051702970056582 :=
+        Pratt.sq_of g064 (by norm_num) (by norm_num)
+      have g066 : 2 ^ 91739496241296354421 % 733915969930370835373 = 240002423207984334760 :=
+        Pratt.sq_mul_of g065 (by norm_num) (by norm_num)
+      have g067 : 2 ^ 183478992482592708843 % 733915969930370835373 = 253911123514402165852 :=
+        Pratt.sq_mul_of g066 (by norm_num) (by norm_num)
+      have g068 : 2 ^ 366957984965185417686 % 733915969930370835373 = 733915969930370835372 :=
+        Pratt.sq_of g067 (by norm_num) (by norm_num)
+      rw [show (733915969930370835373 : ℕ) - 1 = 733915969930370835372 by norm_num, show 733915969930370835372 / 2 = 366957984965185417686 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g068 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 3 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 3)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 2 ^ 1 % 733915969930370835373 = 2 := by norm_num
+      have g11 : 2 ^ 3 % 733915969930370835373 = 8 :=
+        Pratt.sq_mul_of g10 (by norm_num) (by norm_num)
+      have g12 : 2 ^ 6 % 733915969930370835373 = 64 :=
+        Pratt.sq_of g11 (by norm_num) (by norm_num)
+      have g13 : 2 ^ 13 % 733915969930370835373 = 8192 :=
+        Pratt.sq_mul_of g12 (by norm_num) (by norm_num)
+      have g14 : 2 ^ 26 % 733915969930370835373 = 67108864 :=
+        Pratt.sq_of g13 (by norm_num) (by norm_num)
+      have g15 : 2 ^ 53 % 733915969930370835373 = 9007199254740992 :=
+        Pratt.sq_mul_of g14 (by norm_num) (by norm_num)
+      have g16 : 2 ^ 106 % 733915969930370835373 = 618623373176279946307 :=
+        Pratt.sq_of g15 (by norm_num) (by norm_num)
+      have g17 : 2 ^ 212 % 733915969930370835373 = 139657942849718109194 :=
+        Pratt.sq_of g16 (by norm_num) (by norm_num)
+      have g18 : 2 ^ 424 % 733915969930370835373 = 58582359600842772124 :=
+        Pratt.sq_of g17 (by norm_num) (by norm_num)
+      have g19 : 2 ^ 848 % 733915969930370835373 = 117398792253975177676 :=
+        Pratt.sq_of g18 (by norm_num) (by norm_num)
+      have g110 : 2 ^ 1697 % 733915969930370835373 = 44537097368078969668 :=
+        Pratt.sq_mul_of g19 (by norm_num) (by norm_num)
+      have g111 : 2 ^ 3395 % 733915969930370835373 = 128973870327937475812 :=
+        Pratt.sq_mul_of g110 (by norm_num) (by norm_num)
+      have g112 : 2 ^ 6790 % 733915969930370835373 = 339758177580350734401 :=
+        Pratt.sq_of g111 (by norm_num) (by norm_num)
+      have g113 : 2 ^ 13580 % 733915969930370835373 = 420795021337277639739 :=
+        Pratt.sq_of g112 (by norm_num) (by norm_num)
+      have g114 : 2 ^ 27160 % 733915969930370835373 = 13127402679660523119 :=
+        Pratt.sq_of g113 (by norm_num) (by norm_num)
+      have g115 : 2 ^ 54320 % 733915969930370835373 = 493522279124077658865 :=
+        Pratt.sq_of g114 (by norm_num) (by norm_num)
+      have g116 : 2 ^ 108641 % 733915969930370835373 = 106071251344570723212 :=
+        Pratt.sq_mul_of g115 (by norm_num) (by norm_num)
+      have g117 : 2 ^ 217282 % 733915969930370835373 = 555003052789666307998 :=
+        Pratt.sq_of g116 (by norm_num) (by norm_num)
+      have g118 : 2 ^ 434565 % 733915969930370835373 = 61446853422743903478 :=
+        Pratt.sq_mul_of g117 (by norm_num) (by norm_num)
+      have g119 : 2 ^ 869131 % 733915969930370835373 = 531307011575741872184 :=
+        Pratt.sq_mul_of g118 (by norm_num) (by norm_num)
+      have g120 : 2 ^ 1738262 % 733915969930370835373 = 666616898264911026809 :=
+        Pratt.sq_of g119 (by norm_num) (by norm_num)
+      have g121 : 2 ^ 3476524 % 733915969930370835373 = 552575218985417429021 :=
+        Pratt.sq_of g120 (by norm_num) (by norm_num)
+      have g122 : 2 ^ 6953048 % 733915969930370835373 = 249936564822310635192 :=
+        Pratt.sq_of g121 (by norm_num) (by norm_num)
+      have g123 : 2 ^ 13906097 % 733915969930370835373 = 632166429917899236408 :=
+        Pratt.sq_mul_of g122 (by norm_num) (by norm_num)
+      have g124 : 2 ^ 27812195 % 733915969930370835373 = 113471125115011732187 :=
+        Pratt.sq_mul_of g123 (by norm_num) (by norm_num)
+      have g125 : 2 ^ 55624390 % 733915969930370835373 = 418973177365266277279 :=
+        Pratt.sq_of g124 (by norm_num) (by norm_num)
+      have g126 : 2 ^ 111248781 % 733915969930370835373 = 600963591510245690832 :=
+        Pratt.sq_mul_of g125 (by norm_num) (by norm_num)
+      have g127 : 2 ^ 222497562 % 733915969930370835373 = 133543504655058566106 :=
+        Pratt.sq_of g126 (by norm_num) (by norm_num)
+      have g128 : 2 ^ 444995124 % 733915969930370835373 = 135006255164730058886 :=
+        Pratt.sq_of g127 (by norm_num) (by norm_num)
+      have g129 : 2 ^ 889990248 % 733915969930370835373 = 697121639325139497102 :=
+        Pratt.sq_of g128 (by norm_num) (by norm_num)
+      have g130 : 2 ^ 1779980496 % 733915969930370835373 = 719824979807004900313 :=
+        Pratt.sq_of g129 (by norm_num) (by norm_num)
+      have g131 : 2 ^ 3559960993 % 733915969930370835373 = 2687595408983015649 :=
+        Pratt.sq_mul_of g130 (by norm_num) (by norm_num)
+      have g132 : 2 ^ 7119921986 % 733915969930370835373 = 570697658121244789249 :=
+        Pratt.sq_of g131 (by norm_num) (by norm_num)
+      have g133 : 2 ^ 14239843972 % 733915969930370835373 = 689340468892086713747 :=
+        Pratt.sq_of g132 (by norm_num) (by norm_num)
+      have g134 : 2 ^ 28479687944 % 733915969930370835373 = 610127541790014525710 :=
+        Pratt.sq_of g133 (by norm_num) (by norm_num)
+      have g135 : 2 ^ 56959375888 % 733915969930370835373 = 372459652498310795947 :=
+        Pratt.sq_of g134 (by norm_num) (by norm_num)
+      have g136 : 2 ^ 113918751777 % 733915969930370835373 = 334228620469500476584 :=
+        Pratt.sq_mul_of g135 (by norm_num) (by norm_num)
+      have g137 : 2 ^ 227837503555 % 733915969930370835373 = 180481481439684573909 :=
+        Pratt.sq_mul_of g136 (by norm_num) (by norm_num)
+      have g138 : 2 ^ 455675007111 % 733915969930370835373 = 381527324013589840385 :=
+        Pratt.sq_mul_of g137 (by norm_num) (by norm_num)
+      have g139 : 2 ^ 911350014222 % 733915969930370835373 = 43172431789995261652 :=
+        Pratt.sq_of g138 (by norm_num) (by norm_num)
+      have g140 : 2 ^ 1822700028445 % 733915969930370835373 = 540147634008533416335 :=
+        Pratt.sq_mul_of g139 (by norm_num) (by norm_num)
+      have g141 : 2 ^ 3645400056890 % 733915969930370835373 = 314744045656097450906 :=
+        Pratt.sq_of g140 (by norm_num) (by norm_num)
+      have g142 : 2 ^ 7290800113781 % 733915969930370835373 = 538019447066809247762 :=
+        Pratt.sq_mul_of g141 (by norm_num) (by norm_num)
+      have g143 : 2 ^ 14581600227562 % 733915969930370835373 = 295092091973933636720 :=
+        Pratt.sq_of g142 (by norm_num) (by norm_num)
+      have g144 : 2 ^ 29163200455124 % 733915969930370835373 = 615840040920237394179 :=
+        Pratt.sq_of g143 (by norm_num) (by norm_num)
+      have g145 : 2 ^ 58326400910248 % 733915969930370835373 = 7963335945180479146 :=
+        Pratt.sq_of g144 (by norm_num) (by norm_num)
+      have g146 : 2 ^ 116652801820496 % 733915969930370835373 = 542746755547142868246 :=
+        Pratt.sq_of g145 (by norm_num) (by norm_num)
+      have g147 : 2 ^ 233305603640992 % 733915969930370835373 = 573008751340649468266 :=
+        Pratt.sq_of g146 (by norm_num) (by norm_num)
+      have g148 : 2 ^ 466611207281984 % 733915969930370835373 = 584800146957282001249 :=
+        Pratt.sq_of g147 (by norm_num) (by norm_num)
+      have g149 : 2 ^ 933222414563968 % 733915969930370835373 = 468263296059386553538 :=
+        Pratt.sq_of g148 (by norm_num) (by norm_num)
+      have g150 : 2 ^ 1866444829127936 % 733915969930370835373 = 448739940604835645196 :=
+        Pratt.sq_of g149 (by norm_num) (by norm_num)
+      have g151 : 2 ^ 3732889658255873 % 733915969930370835373 = 549162484174093454216 :=
+        Pratt.sq_mul_of g150 (by norm_num) (by norm_num)
+      have g152 : 2 ^ 7465779316511747 % 733915969930370835373 = 589229688257494039231 :=
+        Pratt.sq_mul_of g151 (by norm_num) (by norm_num)
+      have g153 : 2 ^ 14931558633023495 % 733915969930370835373 = 282409960787413801839 :=
+        Pratt.sq_mul_of g152 (by norm_num) (by norm_num)
+      have g154 : 2 ^ 29863117266046990 % 733915969930370835373 = 524618923257729168891 :=
+        Pratt.sq_of g153 (by norm_num) (by norm_num)
+      have g155 : 2 ^ 59726234532093980 % 733915969930370835373 = 563914779137863614846 :=
+        Pratt.sq_of g154 (by norm_num) (by norm_num)
+      have g156 : 2 ^ 119452469064187961 % 733915969930370835373 = 573983792469642723204 :=
+        Pratt.sq_mul_of g155 (by norm_num) (by norm_num)
+      have g157 : 2 ^ 238904938128375922 % 733915969930370835373 = 235099136876419801298 :=
+        Pratt.sq_of g156 (by norm_num) (by norm_num)
+      have g158 : 2 ^ 477809876256751845 % 733915969930370835373 = 624491288904096994009 :=
+        Pratt.sq_mul_of g157 (by norm_num) (by norm_num)
+      have g159 : 2 ^ 955619752513503691 % 733915969930370835373 = 472816589011048251039 :=
+        Pratt.sq_mul_of g158 (by norm_num) (by norm_num)
+      have g160 : 2 ^ 1911239505027007383 % 733915969930370835373 = 359855526586052577672 :=
+        Pratt.sq_mul_of g159 (by norm_num) (by norm_num)
+      have g161 : 2 ^ 3822479010054014767 % 733915969930370835373 = 249583503439538467202 :=
+        Pratt.sq_mul_of g160 (by norm_num) (by norm_num)
+      have g162 : 2 ^ 7644958020108029535 % 733915969930370835373 = 549061623454753187894 :=
+        Pratt.sq_mul_of g161 (by norm_num) (by norm_num)
+      have g163 : 2 ^ 15289916040216059070 % 733915969930370835373 = 466195225086463804716 :=
+        Pratt.sq_of g162 (by norm_num) (by norm_num)
+      have g164 : 2 ^ 30579832080432118140 % 733915969930370835373 = 151700615937493267251 :=
+        Pratt.sq_of g163 (by norm_num) (by norm_num)
+      have g165 : 2 ^ 61159664160864236281 % 733915969930370835373 = 278473207851648056319 :=
+        Pratt.sq_mul_of g164 (by norm_num) (by norm_num)
+      have g166 : 2 ^ 122319328321728472562 % 733915969930370835373 = 405952653718138410404 :=
+        Pratt.sq_of g165 (by norm_num) (by norm_num)
+      have g167 : 2 ^ 244638656643456945124 % 733915969930370835373 = 405952653718138410403 :=
+        Pratt.sq_of g166 (by norm_num) (by norm_num)
+      rw [show (733915969930370835373 : ℕ) - 1 = 733915969930370835372 by norm_num, show 733915969930370835372 / 3 = 244638656643456945124 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g167 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq2 | hqd
+    . have hqe : q = 17 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 17)).mp (hq.dvd_of_dvd_pow hq2)
+      subst hqe
+      have g20 : 2 ^ 1 % 733915969930370835373 = 2 := by norm_num
+      have g21 : 2 ^ 2 % 733915969930370835373 = 4 :=
+        Pratt.sq_of g20 (by norm_num) (by norm_num)
+      have g22 : 2 ^ 4 % 733915969930370835373 = 16 :=
+        Pratt.sq_of g21 (by norm_num) (by norm_num)
+      have g23 : 2 ^ 9 % 733915969930370835373 = 512 :=
+        Pratt.sq_mul_of g22 (by norm_num) (by norm_num)
+      have g24 : 2 ^ 18 % 733915969930370835373 = 262144 :=
+        Pratt.sq_of g23 (by norm_num) (by norm_num)
+      have g25 : 2 ^ 37 % 733915969930370835373 = 137438953472 :=
+        Pratt.sq_mul_of g24 (by norm_num) (by norm_num)
+      have g26 : 2 ^ 74 % 733915969930370835373 = 541566683219309970459 :=
+        Pratt.sq_of g25 (by norm_num) (by norm_num)
+      have g27 : 2 ^ 149 % 733915969930370835373 = 385332065837457993113 :=
+        Pratt.sq_mul_of g26 (by norm_num) (by norm_num)
+      have g28 : 2 ^ 299 % 733915969930370835373 = 234958207644342242168 :=
+        Pratt.sq_mul_of g27 (by norm_num) (by norm_num)
+      have g29 : 2 ^ 599 % 733915969930370835373 = 680860698806836990656 :=
+        Pratt.sq_mul_of g28 (by norm_num) (by norm_num)
+      have g210 : 2 ^ 1198 % 733915969930370835373 = 611092962141334875326 :=
+        Pratt.sq_of g29 (by norm_num) (by norm_num)
+      have g211 : 2 ^ 2396 % 733915969930370835373 = 542661058195464755645 :=
+        Pratt.sq_of g210 (by norm_num) (by norm_num)
+      have g212 : 2 ^ 4793 % 733915969930370835373 = 707193000683074505233 :=
+        Pratt.sq_mul_of g211 (by norm_num) (by norm_num)
+      have g213 : 2 ^ 9586 % 733915969930370835373 = 714864178819158035973 :=
+        Pratt.sq_of g212 (by norm_num) (by norm_num)
+      have g214 : 2 ^ 19172 % 733915969930370835373 = 55329336622154724756 :=
+        Pratt.sq_of g213 (by norm_num) (by norm_num)
+      have g215 : 2 ^ 38344 % 733915969930370835373 = 718747349483027082196 :=
+        Pratt.sq_of g214 (by norm_num) (by norm_num)
+      have g216 : 2 ^ 76688 % 733915969930370835373 = 696941379345821251515 :=
+        Pratt.sq_of g215 (by norm_num) (by norm_num)
+      have g217 : 2 ^ 153376 % 733915969930370835373 = 689220885342918676587 :=
+        Pratt.sq_of g216 (by norm_num) (by norm_num)
+      have g218 : 2 ^ 306752 % 733915969930370835373 = 243180993525351586510 :=
+        Pratt.sq_of g217 (by norm_num) (by norm_num)
+      have g219 : 2 ^ 613504 % 733915969930370835373 = 64902286558132612134 :=
+        Pratt.sq_of g218 (by norm_num) (by norm_num)
+      have g220 : 2 ^ 1227008 % 733915969930370835373 = 70642450463567273565 :=
+        Pratt.sq_of g219 (by norm_num) (by norm_num)
+      have g221 : 2 ^ 2454017 % 733915969930370835373 = 709624353975077493895 :=
+        Pratt.sq_mul_of g220 (by norm_num) (by norm_num)
+      have g222 : 2 ^ 4908034 % 733915969930370835373 = 56215954604123312395 :=
+        Pratt.sq_of g221 (by norm_num) (by norm_num)
+      have g223 : 2 ^ 9816068 % 733915969930370835373 = 127510565205817621885 :=
+        Pratt.sq_of g222 (by norm_num) (by norm_num)
+      have g224 : 2 ^ 19632137 % 733915969930370835373 = 471470620262514249909 :=
+        Pratt.sq_mul_of g223 (by norm_num) (by norm_num)
+      have g225 : 2 ^ 39264275 % 733915969930370835373 = 123780385858558139565 :=
+        Pratt.sq_mul_of g224 (by norm_num) (by norm_num)
+      have g226 : 2 ^ 78528551 % 733915969930370835373 = 14923399049187397619 :=
+        Pratt.sq_mul_of g225 (by norm_num) (by norm_num)
+      have g227 : 2 ^ 157057102 % 733915969930370835373 = 694640015433814404676 :=
+        Pratt.sq_of g226 (by norm_num) (by norm_num)
+      have g228 : 2 ^ 314114205 % 733915969930370835373 = 496835604331507328012 :=
+        Pratt.sq_mul_of g227 (by norm_num) (by norm_num)
+      have g229 : 2 ^ 628228410 % 733915969930370835373 = 653830513891041824670 :=
+        Pratt.sq_of g228 (by norm_num) (by norm_num)
+      have g230 : 2 ^ 1256456821 % 733915969930370835373 = 11559839964892785006 :=
+        Pratt.sq_mul_of g229 (by norm_num) (by norm_num)
+      have g231 : 2 ^ 2512913642 % 733915969930370835373 = 443776334857671402592 :=
+        Pratt.sq_of g230 (by norm_num) (by norm_num)
+      have g232 : 2 ^ 5025827284 % 733915969930370835373 = 228993391412297875139 :=
+        Pratt.sq_of g231 (by norm_num) (by norm_num)
+      have g233 : 2 ^ 10051654568 % 733915969930370835373 = 328427498113871456668 :=
+        Pratt.sq_of g232 (by norm_num) (by norm_num)
+      have g234 : 2 ^ 20103309137 % 733915969930370835373 = 264793700739122625277 :=
+        Pratt.sq_mul_of g233 (by norm_num) (by norm_num)
+      have g235 : 2 ^ 40206618274 % 733915969930370835373 = 492453744275415798699 :=
+        Pratt.sq_of g234 (by norm_num) (by norm_num)
+      have g236 : 2 ^ 80413236549 % 733915969930370835373 = 309565351770488339646 :=
+        Pratt.sq_mul_of g235 (by norm_num) (by norm_num)
+      have g237 : 2 ^ 160826473098 % 733915969930370835373 = 377876519222424881319 :=
+        Pratt.sq_of g236 (by norm_num) (by norm_num)
+      have g238 : 2 ^ 321652946196 % 733915969930370835373 = 127297053089541033293 :=
+        Pratt.sq_of g237 (by norm_num) (by norm_num)
+      have g239 : 2 ^ 643305892392 % 733915969930370835373 = 275738994075454716533 :=
+        Pratt.sq_of g238 (by norm_num) (by norm_num)
+      have g240 : 2 ^ 1286611784784 % 733915969930370835373 = 132035154418837668702 :=
+        Pratt.sq_of g239 (by norm_num) (by norm_num)
+      have g241 : 2 ^ 2573223569569 % 733915969930370835373 = 598496443534774235012 :=
+        Pratt.sq_mul_of g240 (by norm_num) (by norm_num)
+      have g242 : 2 ^ 5146447139139 % 733915969930370835373 = 628816245626154253081 :=
+        Pratt.sq_mul_of g241 (by norm_num) (by norm_num)
+      have g243 : 2 ^ 10292894278279 % 733915969930370835373 = 732970046013573895984 :=
+        Pratt.sq_mul_of g242 (by norm_num) (by norm_num)
+      have g244 : 2 ^ 20585788556558 % 733915969930370835373 = 723483069445219547545 :=
+        Pratt.sq_of g243 (by norm_num) (by norm_num)
+      have g245 : 2 ^ 41171577113116 % 733915969930370835373 = 159436314400213965008 :=
+        Pratt.sq_of g244 (by norm_num) (by norm_num)
+      have g246 : 2 ^ 82343154226232 % 733915969930370835373 = 725892505358762620141 :=
+        Pratt.sq_of g245 (by norm_num) (by norm_num)
+      have g247 : 2 ^ 164686308452465 % 733915969930370835373 = 413292789650771083512 :=
+        Pratt.sq_mul_of g246 (by norm_num) (by norm_num)
+      have g248 : 2 ^ 329372616904930 % 733915969930370835373 = 724051265047968388792 :=
+        Pratt.sq_of g247 (by norm_num) (by norm_num)
+      have g249 : 2 ^ 658745233809860 % 733915969930370835373 = 516991432646062530800 :=
+        Pratt.sq_of g248 (by norm_num) (by norm_num)
+      have g250 : 2 ^ 1317490467619720 % 733915969930370835373 = 359499970458866534919 :=
+        Pratt.sq_of g249 (by norm_num) (by norm_num)
+      have g251 : 2 ^ 2634980935239440 % 733915969930370835373 = 225914995672627449597 :=
+        Pratt.sq_of g250 (by norm_num) (by norm_num)
+      have g252 : 2 ^ 5269961870478880 % 733915969930370835373 = 324155769418740299326 :=
+        Pratt.sq_of g251 (by norm_num) (by norm_num)
+      have g253 : 2 ^ 10539923740957761 % 733915969930370835373 = 51632726253691167815 :=
+        Pratt.sq_mul_of g252 (by norm_num) (by norm_num)
+      have g254 : 2 ^ 21079847481915522 % 733915969930370835373 = 429666393020939957328 :=
+        Pratt.sq_of g253 (by norm_num) (by norm_num)
+      have g255 : 2 ^ 42159694963831045 % 733915969930370835373 = 620289640728852588358 :=
+        Pratt.sq_mul_of g254 (by norm_num) (by norm_num)
+      have g256 : 2 ^ 84319389927662090 % 733915969930370835373 = 628916306183520365964 :=
+        Pratt.sq_of g255 (by norm_num) (by norm_num)
+      have g257 : 2 ^ 168638779855324180 % 733915969930370835373 = 358169619086275395512 :=
+        Pratt.sq_of g256 (by norm_num) (by norm_num)
+      have g258 : 2 ^ 337277559710648361 % 733915969930370835373 = 711696492408118710642 :=
+        Pratt.sq_mul_of g257 (by norm_num) (by norm_num)
+      have g259 : 2 ^ 674555119421296723 % 733915969930370835373 = 440575628688041220597 :=
+        Pratt.sq_mul_of g258 (by norm_num) (by norm_num)
+      have g260 : 2 ^ 1349110238842593447 % 733915969930370835373 = 526073540997471417956 :=
+        Pratt.sq_mul_of g259 (by norm_num) (by norm_num)
+      have g261 : 2 ^ 2698220477685186894 % 733915969930370835373 = 312076602048096813210 :=
+        Pratt.sq_of g260 (by norm_num) (by norm_num)
+      have g262 : 2 ^ 5396440955370373789 % 733915969930370835373 = 376573374555009213537 :=
+        Pratt.sq_mul_of g261 (by norm_num) (by norm_num)
+      have g263 : 2 ^ 10792881910740747579 % 733915969930370835373 = 384203036911876633180 :=
+        Pratt.sq_mul_of g262 (by norm_num) (by norm_num)
+      have g264 : 2 ^ 21585763821481495158 % 733915969930370835373 = 623805604140504617757 :=
+        Pratt.sq_of g263 (by norm_num) (by norm_num)
+      have g265 : 2 ^ 43171527642962990316 % 733915969930370835373 = 653696116581396425 :=
+        Pratt.sq_of g264 (by norm_num) (by norm_num)
+      rw [show (733915969930370835373 : ℕ) - 1 = 733915969930370835372 by norm_num, show 733915969930370835372 / 17 = 43171527642962990316 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g265 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq3 | hqd
+    . have hqe : q = 29 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 29)).mp (hq.dvd_of_dvd_pow hq3)
+      subst hqe
+      have g30 : 2 ^ 1 % 733915969930370835373 = 2 := by norm_num
+      have g31 : 2 ^ 2 % 733915969930370835373 = 4 :=
+        Pratt.sq_of g30 (by norm_num) (by norm_num)
+      have g32 : 2 ^ 5 % 733915969930370835373 = 32 :=
+        Pratt.sq_mul_of g31 (by norm_num) (by norm_num)
+      have g33 : 2 ^ 10 % 733915969930370835373 = 1024 :=
+        Pratt.sq_of g32 (by norm_num) (by norm_num)
+      have g34 : 2 ^ 21 % 733915969930370835373 = 2097152 :=
+        Pratt.sq_mul_of g33 (by norm_num) (by norm_num)
+      have g35 : 2 ^ 43 % 733915969930370835373 = 8796093022208 :=
+        Pratt.sq_mul_of g34 (by norm_num) (by norm_num)
+      have g36 : 2 ^ 87 % 733915969930370835373 = 726146673425949005716 :=
+        Pratt.sq_mul_of g35 (by norm_num) (by norm_num)
+      have g37 : 2 ^ 175 % 733915969930370835373 = 464562776639154022601 :=
+        Pratt.sq_mul_of g36 (by norm_num) (by norm_num)
+      have g38 : 2 ^ 351 % 733915969930370835373 = 713860192657634897800 :=
+        Pratt.sq_mul_of g37 (by norm_num) (by norm_num)
+      have g39 : 2 ^ 702 % 733915969930370835373 = 685226695594887935581 :=
+        Pratt.sq_of g38 (by norm_num) (by norm_num)
+      have g310 : 2 ^ 1404 % 733915969930370835373 = 504314191168402063998 :=
+        Pratt.sq_of g39 (by norm_num) (by norm_num)
+      have g311 : 2 ^ 2809 % 733915969930370835373 = 644997394000457498202 :=
+        Pratt.sq_mul_of g310 (by norm_num) (by norm_num)
+      have g312 : 2 ^ 5619 % 733915969930370835373 = 166705425288598806593 :=
+        Pratt.sq_mul_of g311 (by norm_num) (by norm_num)
+      have g313 : 2 ^ 11238 % 733915969930370835373 = 76320068149445197485 :=
+        Pratt.sq_of g312 (by norm_num) (by norm_num)
+      have g314 : 2 ^ 22477 % 733915969930370835373 = 433331007019908484100 :=
+        Pratt.sq_mul_of g313 (by norm_num) (by norm_num)
+      have g315 : 2 ^ 44955 % 733915969930370835373 = 188632800251144719195 :=
+        Pratt.sq_mul_of g314 (by norm_num) (by norm_num)
+      have g316 : 2 ^ 89910 % 733915969930370835373 = 541141274722562799611 :=
+        Pratt.sq_of g315 (by norm_num) (by norm_num)
+      have g317 : 2 ^ 179820 % 733915969930370835373 = 348400408451548377819 :=
+        Pratt.sq_of g316 (by norm_num) (by norm_num)
+      have g318 : 2 ^ 359640 % 733915969930370835373 = 624877238158058654179 :=
+        Pratt.sq_of g317 (by norm_num) (by norm_num)
+      have g319 : 2 ^ 719280 % 733915969930370835373 = 328528445145527221040 :=
+        Pratt.sq_of g318 (by norm_num) (by norm_num)
+      have g320 : 2 ^ 1438561 % 733915969930370835373 = 31992932162946320013 :=
+        Pratt.sq_mul_of g319 (by norm_num) (by norm_num)
+      have g321 : 2 ^ 2877123 % 733915969930370835373 = 560974408952691047075 :=
+        Pratt.sq_mul_of g320 (by norm_num) (by norm_num)
+      have g322 : 2 ^ 5754247 % 733915969930370835373 = 259569518252579052984 :=
+        Pratt.sq_mul_of g321 (by norm_num) (by norm_num)
+      have g323 : 2 ^ 11508494 % 733915969930370835373 = 477939700875238819459 :=
+        Pratt.sq_of g322 (by norm_num) (by norm_num)
+      have g324 : 2 ^ 23016989 % 733915969930370835373 = 733414745208808120541 :=
+        Pratt.sq_mul_of g323 (by norm_num) (by norm_num)
+      have g325 : 2 ^ 46033978 % 733915969930370835373 = 82017012455194771946 :=
+        Pratt.sq_of g324 (by norm_num) (by norm_num)
+      have g326 : 2 ^ 92067956 % 733915969930370835373 = 143138650117292221823 :=
+        Pratt.sq_of g325 (by norm_num) (by norm_num)
+      have g327 : 2 ^ 184135913 % 733915969930370835373 = 60480281184015830560 :=
+        Pratt.sq_mul_of g326 (by norm_num) (by norm_num)
+      have g328 : 2 ^ 368271826 % 733915969930370835373 = 454029857248864912733 :=
+        Pratt.sq_of g327 (by norm_num) (by norm_num)
+      have g329 : 2 ^ 736543653 % 733915969930370835373 = 722774288480547659908 :=
+        Pratt.sq_mul_of g328 (by norm_num) (by norm_num)
+      have g330 : 2 ^ 1473087307 % 733915969930370835373 = 692982857186027174000 :=
+        Pratt.sq_mul_of g329 (by norm_num) (by norm_num)
+      have g331 : 2 ^ 2946174614 % 733915969930370835373 = 559790706831359413442 :=
+        Pratt.sq_of g330 (by norm_num) (by norm_num)
+      have g332 : 2 ^ 5892349229 % 733915969930370835373 = 658230866442067778223 :=
+        Pratt.sq_mul_of g331 (by norm_num) (by norm_num)
+      have g333 : 2 ^ 11784698459 % 733915969930370835373 = 271348706446157947711 :=
+        Pratt.sq_mul_of g332 (by norm_num) (by norm_num)
+      have g334 : 2 ^ 23569396919 % 733915969930370835373 = 245997594095538937978 :=
+        Pratt.sq_mul_of g333 (by norm_num) (by norm_num)
+      have g335 : 2 ^ 47138793839 % 733915969930370835373 = 151629562752509015699 :=
+        Pratt.sq_mul_of g334 (by norm_num) (by norm_num)
+      have g336 : 2 ^ 94277587678 % 733915969930370835373 = 598665602140420331977 :=
+        Pratt.sq_of g335 (by norm_num) (by norm_num)
+      have g337 : 2 ^ 188555175356 % 733915969930370835373 = 286016933484604961846 :=
+        Pratt.sq_of g336 (by norm_num) (by norm_num)
+      have g338 : 2 ^ 377110350712 % 733915969930370835373 = 85087671707921762827 :=
+        Pratt.sq_of g337 (by norm_num) (by norm_num)
+      have g339 : 2 ^ 754220701425 % 733915969930370835373 = 5318580515164108492 :=
+        Pratt.sq_mul_of g338 (by norm_num) (by norm_num)
+      have g340 : 2 ^ 1508441402851 % 733915969930370835373 = 446300070477845634656 :=
+        Pratt.sq_mul_of g339 (by norm_num) (by norm_num)
+      have g341 : 2 ^ 3016882805702 % 733915969930370835373 = 699103392616836042847 :=
+        Pratt.sq_of g340 (by norm_num) (by norm_num)
+      have g342 : 2 ^ 6033765611404 % 733915969930370835373 = 17642781569826194350 :=
+        Pratt.sq_of g341 (by norm_num) (by norm_num)
+      have g343 : 2 ^ 12067531222809 % 733915969930370835373 = 330335680793234016519 :=
+        Pratt.sq_mul_of g342 (by norm_num) (by norm_num)
+      have g344 : 2 ^ 24135062445619 % 733915969930370835373 = 439479706344214707533 :=
+        Pratt.sq_mul_of g343 (by norm_num) (by norm_num)
+      have g345 : 2 ^ 48270124891239 % 733915969930370835373 = 257371518189574388245 :=
+        Pratt.sq_mul_of g344 (by norm_num) (by norm_num)
+      have g346 : 2 ^ 96540249782479 % 733915969930370835373 = 455332483843682792369 :=
+        Pratt.sq_mul_of g345 (by norm_num) (by norm_num)
+      have g347 : 2 ^ 193080499564958 % 733915969930370835373 = 321352438230849743722 :=
+        Pratt.sq_of g346 (by norm_num) (by norm_num)
+      have g348 : 2 ^ 386160999129917 % 733915969930370835373 = 700481591720045072040 :=
+        Pratt.sq_mul_of g347 (by norm_num) (by norm_num)
+      have g349 : 2 ^ 772321998259835 % 733915969930370835373 = 207714603956605364515 :=
+        Pratt.sq_mul_of g348 (by norm_num) (by norm_num)
+      have g350 : 2 ^ 1544643996519671 % 733915969930370835373 = 194389474585914756763 :=
+        Pratt.sq_mul_of g349 (by norm_num) (by norm_num)
+      have g351 : 2 ^ 3089287993039343 % 733915969930370835373 = 82118713894198245400 :=
+        Pratt.sq_mul_of g350 (by norm_num) (by norm_num)
+      have g352 : 2 ^ 6178575986078687 % 733915969930370835373 = 511779549103249202400 :=
+        Pratt.sq_mul_of g351 (by norm_num) (by norm_num)
+      have g353 : 2 ^ 12357151972157375 % 733915969930370835373 = 25452117068215982212 :=
+        Pratt.sq_mul_of g352 (by norm_num) (by norm_num)
+      have g354 : 2 ^ 24714303944314750 % 733915969930370835373 = 100484298531915413730 :=
+        Pratt.sq_of g353 (by norm_num) (by norm_num)
+      have g355 : 2 ^ 49428607888629501 % 733915969930370835373 = 289495557767033044130 :=
+        Pratt.sq_mul_of g354 (by norm_num) (by norm_num)
+      have g356 : 2 ^ 98857215777259002 % 733915969930370835373 = 670021174659208074266 :=
+        Pratt.sq_of g355 (by norm_num) (by norm_num)
+      have g357 : 2 ^ 197714431554518005 % 733915969930370835373 = 405245611617343865190 :=
+        Pratt.sq_mul_of g356 (by norm_num) (by norm_num)
+      have g358 : 2 ^ 395428863109036010 % 733915969930370835373 = 173415082672999542545 :=
+        Pratt.sq_of g357 (by norm_num) (by norm_num)
+      have g359 : 2 ^ 790857726218072020 % 733915969930370835373 = 240705978327381510265 :=
+        Pratt.sq_of g358 (by norm_num) (by norm_num)
+      have g360 : 2 ^ 1581715452436144041 % 733915969930370835373 = 593406440450052314463 :=
+        Pratt.sq_mul_of g359 (by norm_num) (by norm_num)
+      have g361 : 2 ^ 3163430904872288083 % 733915969930370835373 = 543634979172762075017 :=
+        Pratt.sq_mul_of g360 (by norm_num) (by norm_num)
+      have g362 : 2 ^ 6326861809744576167 % 733915969930370835373 = 53397518150999055996 :=
+        Pratt.sq_mul_of g361 (by norm_num) (by norm_num)
+      have g363 : 2 ^ 12653723619489152334 % 733915969930370835373 = 34547459946681485865 :=
+        Pratt.sq_of g362 (by norm_num) (by norm_num)
+      have g364 : 2 ^ 25307447238978304668 % 733915969930370835373 = 270449144805188651832 :=
+        Pratt.sq_of g363 (by norm_num) (by norm_num)
+      rw [show (733915969930370835373 : ℕ) - 1 = 733915969930370835372 by norm_num, show 733915969930370835372 / 29 = 25307447238978304668 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g364 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq4 | hqd
+    . have hqe : q = 1049 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 1049)).mp (hq.dvd_of_dvd_pow hq4)
+      subst hqe
+      have g40 : 2 ^ 1 % 733915969930370835373 = 2 := by norm_num
+      have g41 : 2 ^ 2 % 733915969930370835373 = 4 :=
+        Pratt.sq_of g40 (by norm_num) (by norm_num)
+      have g42 : 2 ^ 4 % 733915969930370835373 = 16 :=
+        Pratt.sq_of g41 (by norm_num) (by norm_num)
+      have g43 : 2 ^ 9 % 733915969930370835373 = 512 :=
+        Pratt.sq_mul_of g42 (by norm_num) (by norm_num)
+      have g44 : 2 ^ 19 % 733915969930370835373 = 524288 :=
+        Pratt.sq_mul_of g43 (by norm_num) (by norm_num)
+      have g45 : 2 ^ 38 % 733915969930370835373 = 274877906944 :=
+        Pratt.sq_of g44 (by norm_num) (by norm_num)
+      have g46 : 2 ^ 77 % 733915969930370835373 = 662953616102625586807 :=
+        Pratt.sq_mul_of g45 (by norm_num) (by norm_num)
+      have g47 : 2 ^ 155 % 733915969930370835373 = 442025205895073991923 :=
+        Pratt.sq_mul_of g46 (by norm_num) (by norm_num)
+      have g48 : 2 ^ 310 % 733915969930370835373 = 479448951220014790749 :=
+        Pratt.sq_of g47 (by norm_num) (by norm_num)
+      have g49 : 2 ^ 621 % 733915969930370835373 = 725348065241961555362 :=
+        Pratt.sq_mul_of g48 (by norm_num) (by norm_num)
+      have g410 : 2 ^ 1242 % 733915969930370835373 = 603219756476919256799 :=
+        Pratt.sq_of g49 (by norm_num) (by norm_num)
+      have g411 : 2 ^ 2485 % 733915969930370835373 = 161504157551296283600 :=
+        Pratt.sq_mul_of g410 (by norm_num) (by norm_num)
+      have g412 : 2 ^ 4971 % 733915969930370835373 = 315988140895369008829 :=
+        Pratt.sq_mul_of g411 (by norm_num) (by norm_num)
+      have g413 : 2 ^ 9942 % 733915969930370835373 = 2581926398506663298 :=
+        Pratt.sq_of g412 (by norm_num) (by norm_num)
+      have g414 : 2 ^ 19884 % 733915969930370835373 = 567056566057990210289 :=
+        Pratt.sq_of g413 (by norm_num) (by norm_num)
+      have g415 : 2 ^ 39769 % 733915969930370835373 = 447474454982435064123 :=
+        Pratt.sq_mul_of g414 (by norm_num) (by norm_num)
+      have g416 : 2 ^ 79539 % 733915969930370835373 = 667142446010516575496 :=
+        Pratt.sq_mul_of g415 (by norm_num) (by norm_num)
+      have g417 : 2 ^ 159078 % 733915969930370835373 = 452877475626069499536 :=
+        Pratt.sq_of g416 (by norm_num) (by norm_num)
+      have g418 : 2 ^ 318156 % 733915969930370835373 = 593960430557566602031 :=
+        Pratt.sq_of g417 (by norm_num) (by norm_num)
+      have g419 : 2 ^ 636313 % 733915969930370835373 = 593760321356149720029 :=
+        Pratt.sq_mul_of g418 (by norm_num) (by norm_num)
+      have g420 : 2 ^ 1272626 % 733915969930370835373 = 310459093624720133583 :=
+        Pratt.sq_of g419 (by norm_num) (by norm_num)
+      have g421 : 2 ^ 2545253 % 733915969930370835373 = 323629949190380928158 :=
+        Pratt.sq_mul_of g420 (by norm_num) (by norm_num)
+      have g422 : 2 ^ 5090506 % 733915969930370835373 = 75781688832672460049 :=
+        Pratt.sq_of g421 (by norm_num) (by norm_num)
+      have g423 : 2 ^ 10181013 % 733915969930370835373 = 323131604600377065659 :=
+        Pratt.sq_mul_of g422 (by norm_num) (by norm_num)
+      have g424 : 2 ^ 20362026 % 733915969930370835373 = 260922404197403365653 :=
+        Pratt.sq_of g423 (by norm_num) (by norm_num)
+      have g425 : 2 ^ 40724053 % 733915969930370835373 = 261770555314696850004 :=
+        Pratt.sq_mul_of g424 (by norm_num) (by norm_num)
+      have g426 : 2 ^ 81448106 % 733915969930370835373 = 565240447720750047247 :=
+        Pratt.sq_of g425 (by norm_num) (by norm_num)
+      have g427 : 2 ^ 162896213 % 733915969930370835373 = 39845994226918434099 :=
+        Pratt.sq_mul_of g426 (by norm_num) (by norm_num)
+      have g428 : 2 ^ 325792426 % 733915969930370835373 = 597891505415510194452 :=
+        Pratt.sq_of g427 (by norm_num) (by norm_num)
+      have g429 : 2 ^ 651584852 % 733915969930370835373 = 399013710560136688698 :=
+        Pratt.sq_of g428 (by norm_num) (by norm_num)
+      have g430 : 2 ^ 1303169705 % 733915969930370835373 = 323110247939383281064 :=
+        Pratt.sq_mul_of g429 (by norm_num) (by norm_num)
+      have g431 : 2 ^ 2606339411 % 733915969930370835373 = 454154602496048820712 :=
+        Pratt.sq_mul_of g430 (by norm_num) (by norm_num)
+      have g432 : 2 ^ 5212678823 % 733915969930370835373 = 137152030421598221590 :=
+        Pratt.sq_mul_of g431 (by norm_num) (by norm_num)
+      have g433 : 2 ^ 10425357646 % 733915969930370835373 = 164291286384618855450 :=
+        Pratt.sq_of g432 (by norm_num) (by norm_num)
+      have g434 : 2 ^ 20850715292 % 733915969930370835373 = 656814835700525051991 :=
+        Pratt.sq_of g433 (by norm_num) (by norm_num)
+      have g435 : 2 ^ 41701430584 % 733915969930370835373 = 62043149085030469799 :=
+        Pratt.sq_of g434 (by norm_num) (by norm_num)
+      have g436 : 2 ^ 83402861168 % 733915969930370835373 = 96804334201136346693 :=
+        Pratt.sq_of g435 (by norm_num) (by norm_num)
+      have g437 : 2 ^ 166805722336 % 733915969930370835373 = 678117181175515837196 :=
+        Pratt.sq_of g436 (by norm_num) (by norm_num)
+      have g438 : 2 ^ 333611444672 % 733915969930370835373 = 241852794798534840856 :=
+        Pratt.sq_of g437 (by norm_num) (by norm_num)
+      have g439 : 2 ^ 667222889345 % 733915969930370835373 = 335241942048390899945 :=
+        Pratt.sq_mul_of g438 (by norm_num) (by norm_num)
+      have g440 : 2 ^ 1334445778690 % 733915969930370835373 = 20071876594552576946 :=
+        Pratt.sq_of g439 (by norm_num) (by norm_num)
+      have g441 : 2 ^ 2668891557380 % 733915969930370835373 = 560223065768784226506 :=
+        Pratt.sq_of g440 (by norm_num) (by norm_num)
+      have g442 : 2 ^ 5337783114760 % 733915969930370835373 = 394822344549908642550 :=
+        Pratt.sq_of g441 (by norm_num) (by norm_num)
+      have g443 : 2 ^ 10675566229521 % 733915969930370835373 = 660821840102968480533 :=
+        Pratt.sq_mul_of g442 (by norm_num) (by norm_num)
+      have g444 : 2 ^ 21351132459042 % 733915969930370835373 = 546843551374393110175 :=
+        Pratt.sq_of g443 (by norm_num) (by norm_num)
+      have g445 : 2 ^ 42702264918084 % 733915969930370835373 = 380172298238065792175 :=
+        Pratt.sq_of g444 (by norm_num) (by norm_num)
+      have g446 : 2 ^ 85404529836168 % 733915969930370835373 = 562828080603142775816 :=
+        Pratt.sq_of g445 (by norm_num) (by norm_num)
+      have g447 : 2 ^ 170809059672337 % 733915969930370835373 = 248425814742142424541 :=
+        Pratt.sq_mul_of g446 (by norm_num) (by norm_num)
+      have g448 : 2 ^ 341618119344674 % 733915969930370835373 = 603323432309578481879 :=
+        Pratt.sq_of g447 (by norm_num) (by norm_num)
+      have g449 : 2 ^ 683236238689349 % 733915969930370835373 = 270485698704743851801 :=
+        Pratt.sq_mul_of g448 (by norm_num) (by norm_num)
+      have g450 : 2 ^ 1366472477378699 % 733915969930370835373 = 327962869301208236922 :=
+        Pratt.sq_mul_of g449 (by norm_num) (by norm_num)
+      have g451 : 2 ^ 2732944954757398 % 733915969930370835373 = 723964498507615015468 :=
+        Pratt.sq_of g450 (by norm_num) (by norm_num)
+      have g452 : 2 ^ 5465889909514797 % 733915969930370835373 = 71224985985625513986 :=
+        Pratt.sq_mul_of g451 (by norm_num) (by norm_num)
+      have g453 : 2 ^ 10931779819029594 % 733915969930370835373 = 336122059968113074632 :=
+        Pratt.sq_of g452 (by norm_num) (by norm_num)
+      have g454 : 2 ^ 21863559638059188 % 733915969930370835373 = 293549147762117010604 :=
+        Pratt.sq_of g453 (by norm_num) (by norm_num)
+      have g455 : 2 ^ 43727119276118376 % 733915969930370835373 = 221342771795805664319 :=
+        Pratt.sq_of g454 (by norm_num) (by norm_num)
+      have g456 : 2 ^ 87454238552236753 % 733915969930370835373 = 431734691281749138039 :=
+        Pratt.sq_mul_of g455 (by norm_num) (by norm_num)
+      have g457 : 2 ^ 174908477104473507 % 733915969930370835373 = 260301847629046902833 :=
+        Pratt.sq_mul_of g456 (by norm_num) (by norm_num)
+      have g458 : 2 ^ 349816954208947014 % 733915969930370835373 = 366877878551472005348 :=
+        Pratt.sq_of g457 (by norm_num) (by norm_num)
+      have g459 : 2 ^ 699633908417894028 % 733915969930370835373 = 314920953602137211222 :=
+        Pratt.sq_of g458 (by norm_num) (by norm_num)
+      rw [show (733915969930370835373 : ℕ) - 1 = 733915969930370835372 by norm_num, show 733915969930370835372 / 1049 = 699633908417894028 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g459 (by norm_num)
+    have hqe : q = 118261309739333 :=
+      (Nat.prime_dvd_prime_iff_eq hq prime_118261309739333).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g50 : 2 ^ 1 % 733915969930370835373 = 2 := by norm_num
+    have g51 : 2 ^ 2 % 733915969930370835373 = 4 :=
+      Pratt.sq_of g50 (by norm_num) (by norm_num)
+    have g52 : 2 ^ 5 % 733915969930370835373 = 32 :=
+      Pratt.sq_mul_of g51 (by norm_num) (by norm_num)
+    have g53 : 2 ^ 11 % 733915969930370835373 = 2048 :=
+      Pratt.sq_mul_of g52 (by norm_num) (by norm_num)
+    have g54 : 2 ^ 23 % 733915969930370835373 = 8388608 :=
+      Pratt.sq_mul_of g53 (by norm_num) (by norm_num)
+    have g55 : 2 ^ 47 % 733915969930370835373 = 140737488355328 :=
+      Pratt.sq_mul_of g54 (by norm_num) (by norm_num)
+    have g56 : 2 ^ 94 % 733915969930370835373 = 473361987294747474650 :=
+      Pratt.sq_of g55 (by norm_num) (by norm_num)
+    have g57 : 2 ^ 189 % 733915969930370835373 = 687924277953943476774 :=
+      Pratt.sq_mul_of g56 (by norm_num) (by norm_num)
+    have g58 : 2 ^ 378 % 733915969930370835373 = 723454591727195652423 :=
+      Pratt.sq_of g57 (by norm_num) (by norm_num)
+    have g59 : 2 ^ 757 % 733915969930370835373 = 285950097400082108742 :=
+      Pratt.sq_mul_of g58 (by norm_num) (by norm_num)
+    have g510 : 2 ^ 1515 % 733915969930370835373 = 466992689304309964312 :=
+      Pratt.sq_mul_of g59 (by norm_num) (by norm_num)
+    have g511 : 2 ^ 3030 % 733915969930370835373 = 676695932397460090808 :=
+      Pratt.sq_of g510 (by norm_num) (by norm_num)
+    have g512 : 2 ^ 6060 % 733915969930370835373 = 617730614919178169523 :=
+      Pratt.sq_of g511 (by norm_num) (by norm_num)
+    have g513 : 2 ^ 12120 % 733915969930370835373 = 345597673149990770433 :=
+      Pratt.sq_of g512 (by norm_num) (by norm_num)
+    have g514 : 2 ^ 24241 % 733915969930370835373 = 57612289611705927629 :=
+      Pratt.sq_mul_of g513 (by norm_num) (by norm_num)
+    have g515 : 2 ^ 48483 % 733915969930370835373 = 724427395519921411317 :=
+      Pratt.sq_mul_of g514 (by norm_num) (by norm_num)
+    have g516 : 2 ^ 96966 % 733915969930370835373 = 85649107448858285516 :=
+      Pratt.sq_of g515 (by norm_num) (by norm_num)
+    have g517 : 2 ^ 193933 % 733915969930370835373 = 665255218170885201908 :=
+      Pratt.sq_mul_of g516 (by norm_num) (by norm_num)
+    have g518 : 2 ^ 387867 % 733915969930370835373 = 298421360796276320522 :=
+      Pratt.sq_mul_of g517 (by norm_num) (by norm_num)
+    have g519 : 2 ^ 775735 % 733915969930370835373 = 636196936698282290455 :=
+      Pratt.sq_mul_of g518 (by norm_num) (by norm_num)
+    have g520 : 2 ^ 1551471 % 733915969930370835373 = 592115025525527983293 :=
+      Pratt.sq_mul_of g519 (by norm_num) (by norm_num)
+    have g521 : 2 ^ 3102942 % 733915969930370835373 = 256218604976580467027 :=
+      Pratt.sq_of g520 (by norm_num) (by norm_num)
+    have g522 : 2 ^ 6205884 % 733915969930370835373 = 534076135339000184891 :=
+      Pratt.sq_of g521 (by norm_num) (by norm_num)
+    rw [show (733915969930370835373 : ℕ) - 1 = 733915969930370835372 by norm_num, show 733915969930370835372 / 118261309739333 = 6205884 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g522 (by norm_num)
+
+/-- `275595263287044304869593048464769` is prime, by a Lucas certificate with witness 3. -/
+theorem prime_275595263287044304869593048464769 : Nat.Prime 275595263287044304869593048464769 := by
+  refine lucas_primality 275595263287044304869593048464769 ((3 : ℕ) : ZMod 275595263287044304869593048464769) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 3 ^ 1 % 275595263287044304869593048464769 = 3 := by norm_num
+    have h1 : 3 ^ 3 % 275595263287044304869593048464769 = 27 :=
+      Pratt.sq_mul_of h0 (by norm_num) (by norm_num)
+    have h2 : 3 ^ 6 % 275595263287044304869593048464769 = 729 :=
+      Pratt.sq_of h1 (by norm_num) (by norm_num)
+    have h3 : 3 ^ 13 % 275595263287044304869593048464769 = 1594323 :=
+      Pratt.sq_mul_of h2 (by norm_num) (by norm_num)
+    have h4 : 3 ^ 27 % 275595263287044304869593048464769 = 7625597484987 :=
+      Pratt.sq_mul_of h3 (by norm_num) (by norm_num)
+    have h5 : 3 ^ 54 % 275595263287044304869593048464769 = 58149737003040059690390169 :=
+      Pratt.sq_of h4 (by norm_num) (by norm_num)
+    have h6 : 3 ^ 108 % 275595263287044304869593048464769 = 8166395869382605815787344870701 :=
+      Pratt.sq_of h5 (by norm_num) (by norm_num)
+    have h7 : 3 ^ 217 % 275595263287044304869593048464769 = 248311009449405840348742057798573 :=
+      Pratt.sq_mul_of h6 (by norm_num) (by norm_num)
+    have h8 : 3 ^ 434 % 275595263287044304869593048464769 = 173032558301495754733993175012230 :=
+      Pratt.sq_of h7 (by norm_num) (by norm_num)
+    have h9 : 3 ^ 869 % 275595263287044304869593048464769 = 64499697550035183022021883466387 :=
+      Pratt.sq_mul_of h8 (by norm_num) (by norm_num)
+    have h10 : 3 ^ 1739 % 275595263287044304869593048464769 = 105169990002491568685030645531622 :=
+      Pratt.sq_mul_of h9 (by norm_num) (by norm_num)
+    have h11 : 3 ^ 3478 % 275595263287044304869593048464769 = 73007777077143288547165979593420 :=
+      Pratt.sq_of h10 (by norm_num) (by norm_num)
+    have h12 : 3 ^ 6957 % 275595263287044304869593048464769 = 71976378381932381447570303169200 :=
+      Pratt.sq_mul_of h11 (by norm_num) (by norm_num)
+    have h13 : 3 ^ 13914 % 275595263287044304869593048464769 = 26852523977214451528758328257152 :=
+      Pratt.sq_of h12 (by norm_num) (by norm_num)
+    have h14 : 3 ^ 27828 % 275595263287044304869593048464769 = 189572541558063262523709343161153 :=
+      Pratt.sq_of h13 (by norm_num) (by norm_num)
+    have h15 : 3 ^ 55656 % 275595263287044304869593048464769 = 65149713206142241326537902198219 :=
+      Pratt.sq_of h14 (by norm_num) (by norm_num)
+    have h16 : 3 ^ 111312 % 275595263287044304869593048464769 = 78933550210364361729708077973793 :=
+      Pratt.sq_of h15 (by norm_num) (by norm_num)
+    have h17 : 3 ^ 222624 % 275595263287044304869593048464769 = 86178944903371927648929086516160 :=
+      Pratt.sq_of h16 (by norm_num) (by norm_num)
+    have h18 : 3 ^ 445248 % 275595263287044304869593048464769 = 80386579568981268640183320835305 :=
+      Pratt.sq_of h17 (by norm_num) (by norm_num)
+    have h19 : 3 ^ 890496 % 275595263287044304869593048464769 = 139299953313465214842518105634621 :=
+      Pratt.sq_of h18 (by norm_num) (by norm_num)
+    have h20 : 3 ^ 1780992 % 275595263287044304869593048464769 = 139331496698070811539517703269668 :=
+      Pratt.sq_of h19 (by norm_num) (by norm_num)
+    have h21 : 3 ^ 3561985 % 275595263287044304869593048464769 = 273336614579590094724858002288400 :=
+      Pratt.sq_mul_of h20 (by norm_num) (by norm_num)
+    have h22 : 3 ^ 7123970 % 275595263287044304869593048464769 = 40522712376184620456029271225296 :=
+      Pratt.sq_of h21 (by norm_num) (by norm_num)
+    have h23 : 3 ^ 14247941 % 275595263287044304869593048464769 = 232809835224670814135809280333121 :=
+      Pratt.sq_mul_of h22 (by norm_num) (by norm_num)
+    have h24 : 3 ^ 28495882 % 275595263287044304869593048464769 = 50331109120920908776917372705432 :=
+      Pratt.sq_of h23 (by norm_num) (by norm_num)
+    have h25 : 3 ^ 56991764 % 275595263287044304869593048464769 = 238885634246252943993812624425361 :=
+      Pratt.sq_of h24 (by norm_num) (by norm_num)
+    have h26 : 3 ^ 113983529 % 275595263287044304869593048464769 = 252874686681970581697546242265257 :=
+      Pratt.sq_mul_of h25 (by norm_num) (by norm_num)
+    have h27 : 3 ^ 227967058 % 275595263287044304869593048464769 = 39807513091259879260357885629516 :=
+      Pratt.sq_of h26 (by norm_num) (by norm_num)
+    have h28 : 3 ^ 455934117 % 275595263287044304869593048464769 = 213119432202387770711314798442668 :=
+      Pratt.sq_mul_of h27 (by norm_num) (by norm_num)
+    have h29 : 3 ^ 911868234 % 275595263287044304869593048464769 = 204068846074671916352816166811471 :=
+      Pratt.sq_of h28 (by norm_num) (by norm_num)
+    have h30 : 3 ^ 1823736469 % 275595263287044304869593048464769 = 94932754717664699828175301103291 :=
+      Pratt.sq_mul_of h29 (by norm_num) (by norm_num)
+    have h31 : 3 ^ 3647472939 % 275595263287044304869593048464769 = 221157328391217571197053729479340 :=
+      Pratt.sq_mul_of h30 (by norm_num) (by norm_num)
+    have h32 : 3 ^ 7294945878 % 275595263287044304869593048464769 = 167843022036264376079951199839888 :=
+      Pratt.sq_of h31 (by norm_num) (by norm_num)
+    have h33 : 3 ^ 14589891756 % 275595263287044304869593048464769 = 46114410740317336625247149394263 :=
+      Pratt.sq_of h32 (by norm_num) (by norm_num)
+    have h34 : 3 ^ 29179783513 % 275595263287044304869593048464769 = 187664333498511949354789763347587 :=
+      Pratt.sq_mul_of h33 (by norm_num) (by norm_num)
+    have h35 : 3 ^ 58359567027 % 275595263287044304869593048464769 = 262229321533303609913129322964291 :=
+      Pratt.sq_mul_of h34 (by norm_num) (by norm_num)
+    have h36 : 3 ^ 116719134055 % 275595263287044304869593048464769 = 195170358803578634294129196497446 :=
+      Pratt.sq_mul_of h35 (by norm_num) (by norm_num)
+    have h37 : 3 ^ 233438268111 % 275595263287044304869593048464769 = 88791010340626961560739164947020 :=
+      Pratt.sq_mul_of h36 (by norm_num) (by norm_num)
+    have h38 : 3 ^ 466876536222 % 275595263287044304869593048464769 = 273512043513520126931429410403739 :=
+      Pratt.sq_of h37 (by norm_num) (by norm_num)
+    have h39 : 3 ^ 933753072445 % 275595263287044304869593048464769 = 243080308133693653752689570977313 :=
+      Pratt.sq_mul_of h38 (by norm_num) (by norm_num)
+    have h40 : 3 ^ 1867506144890 % 275595263287044304869593048464769 = 77711281570277051063478270367405 :=
+      Pratt.sq_of h39 (by norm_num) (by norm_num)
+    have h41 : 3 ^ 3735012289781 % 275595263287044304869593048464769 = 68225096491675764037437497291698 :=
+      Pratt.sq_mul_of h40 (by norm_num) (by norm_num)
+    have h42 : 3 ^ 7470024579563 % 275595263287044304869593048464769 = 115212066000259330495986876426568 :=
+      Pratt.sq_mul_of h41 (by norm_num) (by norm_num)
+    have h43 : 3 ^ 14940049159126 % 275595263287044304869593048464769 = 160126702331978228734701629279277 :=
+      Pratt.sq_of h42 (by norm_num) (by norm_num)
+    have h44 : 3 ^ 29880098318252 % 275595263287044304869593048464769 = 176453320796988935379647416577552 :=
+      Pratt.sq_of h43 (by norm_num) (by norm_num)
+    have h45 : 3 ^ 59760196636505 % 275595263287044304869593048464769 = 191960009757627934915917449954047 :=
+      Pratt.sq_mul_of h44 (by norm_num) (by norm_num)
+    have h46 : 3 ^ 119520393273011 % 275595263287044304869593048464769 = 15891092228394319685649502389815 :=
+      Pratt.sq_mul_of h45 (by norm_num) (by norm_num)
+    have h47 : 3 ^ 239040786546022 % 275595263287044304869593048464769 = 205394402268362088229641510231239 :=
+      Pratt.sq_of h46 (by norm_num) (by norm_num)
+    have h48 : 3 ^ 478081573092044 % 275595263287044304869593048464769 = 45320899111881079644624434176330 :=
+      Pratt.sq_of h47 (by norm_num) (by norm_num)
+    have h49 : 3 ^ 956163146184089 % 275595263287044304869593048464769 = 170743593596972965777875818448675 :=
+      Pratt.sq_mul_of h48 (by norm_num) (by norm_num)
+    have h50 : 3 ^ 1912326292368179 % 275595263287044304869593048464769 = 183121078973575238069588205404245 :=
+      Pratt.sq_mul_of h49 (by norm_num) (by norm_num)
+    have h51 : 3 ^ 3824652584736358 % 275595263287044304869593048464769 = 211151753710756195788524935905868 :=
+      Pratt.sq_of h50 (by norm_num) (by norm_num)
+    have h52 : 3 ^ 7649305169472717 % 275595263287044304869593048464769 = 267867467236787260685035844358262 :=
+      Pratt.sq_mul_of h51 (by norm_num) (by norm_num)
+    have h53 : 3 ^ 15298610338945434 % 275595263287044304869593048464769 = 206560601476011519409528003022456 :=
+      Pratt.sq_of h52 (by norm_num) (by norm_num)
+    have h54 : 3 ^ 30597220677890868 % 275595263287044304869593048464769 = 127964474407227728562580618255312 :=
+      Pratt.sq_of h53 (by norm_num) (by norm_num)
+    have h55 : 3 ^ 61194441355781737 % 275595263287044304869593048464769 = 43927707362879358669694342064303 :=
+      Pratt.sq_mul_of h54 (by norm_num) (by norm_num)
+    have h56 : 3 ^ 122388882711563475 % 275595263287044304869593048464769 = 29760061596724523754036852780606 :=
+      Pratt.sq_mul_of h55 (by norm_num) (by norm_num)
+    have h57 : 3 ^ 244777765423126951 % 275595263287044304869593048464769 = 200489337017321278742662516405719 :=
+      Pratt.sq_mul_of h56 (by norm_num) (by norm_num)
+    have h58 : 3 ^ 489555530846253903 % 275595263287044304869593048464769 = 254879225971927301354098827180174 :=
+      Pratt.sq_mul_of h57 (by norm_num) (by norm_num)
+    have h59 : 3 ^ 979111061692507806 % 275595263287044304869593048464769 = 70214214314909909810527221950169 :=
+      Pratt.sq_of h58 (by norm_num) (by norm_num)
+    have h60 : 3 ^ 1958222123385015612 % 275595263287044304869593048464769 = 149083688127488385724805807631228 :=
+      Pratt.sq_of h59 (by norm_num) (by norm_num)
+    have h61 : 3 ^ 3916444246770031225 % 275595263287044304869593048464769 = 129934829193417128608891316408815 :=
+      Pratt.sq_mul_of h60 (by norm_num) (by norm_num)
+    have h62 : 3 ^ 7832888493540062451 % 275595263287044304869593048464769 = 171134041284267248734398953588715 :=
+      Pratt.sq_mul_of h61 (by norm_num) (by norm_num)
+    have h63 : 3 ^ 15665776987080124903 % 275595263287044304869593048464769 = 30839817084568642396727736335882 :=
+      Pratt.sq_mul_of h62 (by norm_num) (by norm_num)
+    have h64 : 3 ^ 31331553974160249807 % 275595263287044304869593048464769 = 105315696445654857234786179676874 :=
+      Pratt.sq_mul_of h63 (by norm_num) (by norm_num)
+    have h65 : 3 ^ 62663107948320499615 % 275595263287044304869593048464769 = 153868893603051093337383644894042 :=
+      Pratt.sq_mul_of h64 (by norm_num) (by norm_num)
+    have h66 : 3 ^ 125326215896640999230 % 275595263287044304869593048464769 = 173553441027265102177630300920240 :=
+      Pratt.sq_of h65 (by norm_num) (by norm_num)
+    have h67 : 3 ^ 250652431793281998461 % 275595263287044304869593048464769 = 116637683711751415960254380450431 :=
+      Pratt.sq_mul_of h66 (by norm_num) (by norm_num)
+    have h68 : 3 ^ 501304863586563996922 % 275595263287044304869593048464769 = 25557683553418719613052705957603 :=
+      Pratt.sq_of h67 (by norm_num) (by norm_num)
+    have h69 : 3 ^ 1002609727173127993845 % 275595263287044304869593048464769 = 165249664517095264752643152052954 :=
+      Pratt.sq_mul_of h68 (by norm_num) (by norm_num)
+    have h70 : 3 ^ 2005219454346255987690 % 275595263287044304869593048464769 = 43817454616685567938012123888274 :=
+      Pratt.sq_of h69 (by norm_num) (by norm_num)
+    have h71 : 3 ^ 4010438908692511975380 % 275595263287044304869593048464769 = 19515348678139899988514436237539 :=
+      Pratt.sq_of h70 (by norm_num) (by norm_num)
+    have h72 : 3 ^ 8020877817385023950761 % 275595263287044304869593048464769 = 271832480852054195011952518775554 :=
+      Pratt.sq_mul_of h71 (by norm_num) (by norm_num)
+    have h73 : 3 ^ 16041755634770047901523 % 275595263287044304869593048464769 = 177871457894911424577053278066450 :=
+      Pratt.sq_mul_of h72 (by norm_num) (by norm_num)
+    have h74 : 3 ^ 32083511269540095803047 % 275595263287044304869593048464769 = 185124262509433904575490261772188 :=
+      Pratt.sq_mul_of h73 (by norm_num) (by norm_num)
+    have h75 : 3 ^ 64167022539080191606095 % 275595263287044304869593048464769 = 246905918952693473974623597537234 :=
+      Pratt.sq_mul_of h74 (by norm_num) (by norm_num)
+    have h76 : 3 ^ 128334045078160383212190 % 275595263287044304869593048464769 = 6960573676540159490071758129453 :=
+      Pratt.sq_of h75 (by norm_num) (by norm_num)
+    have h77 : 3 ^ 256668090156320766424381 % 275595263287044304869593048464769 = 270215026275845666150314294515799 :=
+      Pratt.sq_mul_of h76 (by norm_num) (by norm_num)
+    have h78 : 3 ^ 513336180312641532848762 % 275595263287044304869593048464769 = 246506956409053448104646988547272 :=
+      Pratt.sq_of h77 (by norm_num) (by norm_num)
+    have h79 : 3 ^ 1026672360625283065697524 % 275595263287044304869593048464769 = 31600231642235401212670279292644 :=
+      Pratt.sq_of h78 (by norm_num) (by norm_num)
+    have h80 : 3 ^ 2053344721250566131395049 % 275595263287044304869593048464769 = 226564582762735927397454538308328 :=
+      Pratt.sq_mul_of h79 (by norm_num) (by norm_num)
+    have h81 : 3 ^ 4106689442501132262790099 % 275595263287044304869593048464769 = 167448851030332364376465444723491 :=
+      Pratt.sq_mul_of h80 (by norm_num) (by norm_num)
+    have h82 : 3 ^ 8213378885002264525580199 % 275595263287044304869593048464769 = 131557136009402331861868251449293 :=
+      Pratt.sq_mul_of h81 (by norm_num) (by norm_num)
+    have h83 : 3 ^ 16426757770004529051160398 % 275595263287044304869593048464769 = 104489916990372069459837410494271 :=
+      Pratt.sq_of h82 (by norm_num) (by norm_num)
+    have h84 : 3 ^ 32853515540009058102320796 % 275595263287044304869593048464769 = 128365799105892486120076868829093 :=
+      Pratt.sq_of h83 (by norm_num) (by norm_num)
+    have h85 : 3 ^ 65707031080018116204641592 % 275595263287044304869593048464769 = 17619823576945822617206115655203 :=
+      Pratt.sq_of h84 (by norm_num) (by norm_num)
+    have h86 : 3 ^ 131414062160036232409283184 % 275595263287044304869593048464769 = 154849778183392960825380339048869 :=
+      Pratt.sq_of h85 (by norm_num) (by norm_num)
+    have h87 : 3 ^ 262828124320072464818566368 % 275595263287044304869593048464769 = 160046384958074364291671756425717 :=
+      Pratt.sq_of h86 (by norm_num) (by norm_num)
+    have h88 : 3 ^ 525656248640144929637132737 % 275595263287044304869593048464769 = 7539629353840869059465829343394 :=
+      Pratt.sq_mul_of h87 (by norm_num) (by norm_num)
+    have h89 : 3 ^ 1051312497280289859274265474 % 275595263287044304869593048464769 = 150270644394604807581723765982951 :=
+      Pratt.sq_of h88 (by norm_num) (by norm_num)
+    have h90 : 3 ^ 2102624994560579718548530948 % 275595263287044304869593048464769 = 101573276116745055772221444795729 :=
+      Pratt.sq_of h89 (by norm_num) (by norm_num)
+    have h91 : 3 ^ 4205249989121159437097061896 % 275595263287044304869593048464769 = 77234143174734454653453846939945 :=
+      Pratt.sq_of h90 (by norm_num) (by norm_num)
+    have h92 : 3 ^ 8410499978242318874194123793 % 275595263287044304869593048464769 = 135193117923175078824564762157863 :=
+      Pratt.sq_mul_of h91 (by norm_num) (by norm_num)
+    have h93 : 3 ^ 16820999956484637748388247586 % 275595263287044304869593048464769 = 260619918960252157167079547952169 :=
+      Pratt.sq_of h92 (by norm_num) (by norm_num)
+    have h94 : 3 ^ 33641999912969275496776495173 % 275595263287044304869593048464769 = 232022536729685345519920091854101 :=
+      Pratt.sq_mul_of h93 (by norm_num) (by norm_num)
+    have h95 : 3 ^ 67283999825938550993552990347 % 275595263287044304869593048464769 = 158195144751466046709337981660292 :=
+      Pratt.sq_mul_of h94 (by norm_num) (by norm_num)
+    have h96 : 3 ^ 134567999651877101987105980695 % 275595263287044304869593048464769 = 166825407744615691810778261431802 :=
+      Pratt.sq_mul_of h95 (by norm_num) (by norm_num)
+    have h97 : 3 ^ 269135999303754203974211961391 % 275595263287044304869593048464769 = 108918542977429100990188959209440 :=
+      Pratt.sq_mul_of h96 (by norm_num) (by norm_num)
+    have h98 : 3 ^ 538271998607508407948423922782 % 275595263287044304869593048464769 = 50178770076969387048168521763162 :=
+      Pratt.sq_of h97 (by norm_num) (by norm_num)
+    have h99 : 3 ^ 1076543997215016815896847845565 % 275595263287044304869593048464769 = 25720756245921704109053727135138 :=
+      Pratt.sq_mul_of h98 (by norm_num) (by norm_num)
+    have h100 : 3 ^ 2153087994430033631793695691131 % 275595263287044304869593048464769 = 159060905199552100884760598171003 :=
+      Pratt.sq_mul_of h99 (by norm_num) (by norm_num)
+    have h101 : 3 ^ 4306175988860067263587391382262 % 275595263287044304869593048464769 = 77880468067003454373900821217963 :=
+      Pratt.sq_of h100 (by norm_num) (by norm_num)
+    have h102 : 3 ^ 8612351977720134527174782764524 % 275595263287044304869593048464769 = 109864791326518970180817461433977 :=
+      Pratt.sq_of h101 (by norm_num) (by norm_num)
+    have h103 : 3 ^ 17224703955440269054349565529048 % 275595263287044304869593048464769 = 8354939714501504107967291691270 :=
+      Pratt.sq_of h102 (by norm_num) (by norm_num)
+    have h104 : 3 ^ 34449407910880538108699131058096 % 275595263287044304869593048464769 = 238640552224721169151972986849130 :=
+      Pratt.sq_of h103 (by norm_num) (by norm_num)
+    have h105 : 3 ^ 68898815821761076217398262116192 % 275595263287044304869593048464769 = 261471585361552177204443624818762 :=
+      Pratt.sq_of h104 (by norm_num) (by norm_num)
+    have h106 : 3 ^ 137797631643522152434796524232384 % 275595263287044304869593048464769 = 275595263287044304869593048464768 :=
+      Pratt.sq_of h105 (by norm_num) (by norm_num)
+    have h107 : 3 ^ 275595263287044304869593048464768 % 275595263287044304869593048464769 = 1 :=
+      Pratt.sq_of h106 (by norm_num) (by norm_num)
+    rw [show (275595263287044304869593048464769 : ℕ) - 1 = 275595263287044304869593048464768 by norm_num, h107]
+  · intro q hq hqd
+    have hfac : 275595263287044304869593048464769 - 1 = 2 ^ 7 * (67 ^ 1 * (457 ^ 1 * (95813 ^ 1 * (733915969930370835373 ^ 1)))) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 3 ^ 1 % 275595263287044304869593048464769 = 3 := by norm_num
+      have g01 : 3 ^ 3 % 275595263287044304869593048464769 = 27 :=
+        Pratt.sq_mul_of g00 (by norm_num) (by norm_num)
+      have g02 : 3 ^ 6 % 275595263287044304869593048464769 = 729 :=
+        Pratt.sq_of g01 (by norm_num) (by norm_num)
+      have g03 : 3 ^ 13 % 275595263287044304869593048464769 = 1594323 :=
+        Pratt.sq_mul_of g02 (by norm_num) (by norm_num)
+      have g04 : 3 ^ 27 % 275595263287044304869593048464769 = 7625597484987 :=
+        Pratt.sq_mul_of g03 (by norm_num) (by norm_num)
+      have g05 : 3 ^ 54 % 275595263287044304869593048464769 = 58149737003040059690390169 :=
+        Pratt.sq_of g04 (by norm_num) (by norm_num)
+      have g06 : 3 ^ 108 % 275595263287044304869593048464769 = 8166395869382605815787344870701 :=
+        Pratt.sq_of g05 (by norm_num) (by norm_num)
+      have g07 : 3 ^ 217 % 275595263287044304869593048464769 = 248311009449405840348742057798573 :=
+        Pratt.sq_mul_of g06 (by norm_num) (by norm_num)
+      have g08 : 3 ^ 434 % 275595263287044304869593048464769 = 173032558301495754733993175012230 :=
+        Pratt.sq_of g07 (by norm_num) (by norm_num)
+      have g09 : 3 ^ 869 % 275595263287044304869593048464769 = 64499697550035183022021883466387 :=
+        Pratt.sq_mul_of g08 (by norm_num) (by norm_num)
+      have g010 : 3 ^ 1739 % 275595263287044304869593048464769 = 105169990002491568685030645531622 :=
+        Pratt.sq_mul_of g09 (by norm_num) (by norm_num)
+      have g011 : 3 ^ 3478 % 275595263287044304869593048464769 = 73007777077143288547165979593420 :=
+        Pratt.sq_of g010 (by norm_num) (by norm_num)
+      have g012 : 3 ^ 6957 % 275595263287044304869593048464769 = 71976378381932381447570303169200 :=
+        Pratt.sq_mul_of g011 (by norm_num) (by norm_num)
+      have g013 : 3 ^ 13914 % 275595263287044304869593048464769 = 26852523977214451528758328257152 :=
+        Pratt.sq_of g012 (by norm_num) (by norm_num)
+      have g014 : 3 ^ 27828 % 275595263287044304869593048464769 = 189572541558063262523709343161153 :=
+        Pratt.sq_of g013 (by norm_num) (by norm_num)
+      have g015 : 3 ^ 55656 % 275595263287044304869593048464769 = 65149713206142241326537902198219 :=
+        Pratt.sq_of g014 (by norm_num) (by norm_num)
+      have g016 : 3 ^ 111312 % 275595263287044304869593048464769 = 78933550210364361729708077973793 :=
+        Pratt.sq_of g015 (by norm_num) (by norm_num)
+      have g017 : 3 ^ 222624 % 275595263287044304869593048464769 = 86178944903371927648929086516160 :=
+        Pratt.sq_of g016 (by norm_num) (by norm_num)
+      have g018 : 3 ^ 445248 % 275595263287044304869593048464769 = 80386579568981268640183320835305 :=
+        Pratt.sq_of g017 (by norm_num) (by norm_num)
+      have g019 : 3 ^ 890496 % 275595263287044304869593048464769 = 139299953313465214842518105634621 :=
+        Pratt.sq_of g018 (by norm_num) (by norm_num)
+      have g020 : 3 ^ 1780992 % 275595263287044304869593048464769 = 139331496698070811539517703269668 :=
+        Pratt.sq_of g019 (by norm_num) (by norm_num)
+      have g021 : 3 ^ 3561985 % 275595263287044304869593048464769 = 273336614579590094724858002288400 :=
+        Pratt.sq_mul_of g020 (by norm_num) (by norm_num)
+      have g022 : 3 ^ 7123970 % 275595263287044304869593048464769 = 40522712376184620456029271225296 :=
+        Pratt.sq_of g021 (by norm_num) (by norm_num)
+      have g023 : 3 ^ 14247941 % 275595263287044304869593048464769 = 232809835224670814135809280333121 :=
+        Pratt.sq_mul_of g022 (by norm_num) (by norm_num)
+      have g024 : 3 ^ 28495882 % 275595263287044304869593048464769 = 50331109120920908776917372705432 :=
+        Pratt.sq_of g023 (by norm_num) (by norm_num)
+      have g025 : 3 ^ 56991764 % 275595263287044304869593048464769 = 238885634246252943993812624425361 :=
+        Pratt.sq_of g024 (by norm_num) (by norm_num)
+      have g026 : 3 ^ 113983529 % 275595263287044304869593048464769 = 252874686681970581697546242265257 :=
+        Pratt.sq_mul_of g025 (by norm_num) (by norm_num)
+      have g027 : 3 ^ 227967058 % 275595263287044304869593048464769 = 39807513091259879260357885629516 :=
+        Pratt.sq_of g026 (by norm_num) (by norm_num)
+      have g028 : 3 ^ 455934117 % 275595263287044304869593048464769 = 213119432202387770711314798442668 :=
+        Pratt.sq_mul_of g027 (by norm_num) (by norm_num)
+      have g029 : 3 ^ 911868234 % 275595263287044304869593048464769 = 204068846074671916352816166811471 :=
+        Pratt.sq_of g028 (by norm_num) (by norm_num)
+      have g030 : 3 ^ 1823736469 % 275595263287044304869593048464769 = 94932754717664699828175301103291 :=
+        Pratt.sq_mul_of g029 (by norm_num) (by norm_num)
+      have g031 : 3 ^ 3647472939 % 275595263287044304869593048464769 = 221157328391217571197053729479340 :=
+        Pratt.sq_mul_of g030 (by norm_num) (by norm_num)
+      have g032 : 3 ^ 7294945878 % 275595263287044304869593048464769 = 167843022036264376079951199839888 :=
+        Pratt.sq_of g031 (by norm_num) (by norm_num)
+      have g033 : 3 ^ 14589891756 % 275595263287044304869593048464769 = 46114410740317336625247149394263 :=
+        Pratt.sq_of g032 (by norm_num) (by norm_num)
+      have g034 : 3 ^ 29179783513 % 275595263287044304869593048464769 = 187664333498511949354789763347587 :=
+        Pratt.sq_mul_of g033 (by norm_num) (by norm_num)
+      have g035 : 3 ^ 58359567027 % 275595263287044304869593048464769 = 262229321533303609913129322964291 :=
+        Pratt.sq_mul_of g034 (by norm_num) (by norm_num)
+      have g036 : 3 ^ 116719134055 % 275595263287044304869593048464769 = 195170358803578634294129196497446 :=
+        Pratt.sq_mul_of g035 (by norm_num) (by norm_num)
+      have g037 : 3 ^ 233438268111 % 275595263287044304869593048464769 = 88791010340626961560739164947020 :=
+        Pratt.sq_mul_of g036 (by norm_num) (by norm_num)
+      have g038 : 3 ^ 466876536222 % 275595263287044304869593048464769 = 273512043513520126931429410403739 :=
+        Pratt.sq_of g037 (by norm_num) (by norm_num)
+      have g039 : 3 ^ 933753072445 % 275595263287044304869593048464769 = 243080308133693653752689570977313 :=
+        Pratt.sq_mul_of g038 (by norm_num) (by norm_num)
+      have g040 : 3 ^ 1867506144890 % 275595263287044304869593048464769 = 77711281570277051063478270367405 :=
+        Pratt.sq_of g039 (by norm_num) (by norm_num)
+      have g041 : 3 ^ 3735012289781 % 275595263287044304869593048464769 = 68225096491675764037437497291698 :=
+        Pratt.sq_mul_of g040 (by norm_num) (by norm_num)
+      have g042 : 3 ^ 7470024579563 % 275595263287044304869593048464769 = 115212066000259330495986876426568 :=
+        Pratt.sq_mul_of g041 (by norm_num) (by norm_num)
+      have g043 : 3 ^ 14940049159126 % 275595263287044304869593048464769 = 160126702331978228734701629279277 :=
+        Pratt.sq_of g042 (by norm_num) (by norm_num)
+      have g044 : 3 ^ 29880098318252 % 275595263287044304869593048464769 = 176453320796988935379647416577552 :=
+        Pratt.sq_of g043 (by norm_num) (by norm_num)
+      have g045 : 3 ^ 59760196636505 % 275595263287044304869593048464769 = 191960009757627934915917449954047 :=
+        Pratt.sq_mul_of g044 (by norm_num) (by norm_num)
+      have g046 : 3 ^ 119520393273011 % 275595263287044304869593048464769 = 15891092228394319685649502389815 :=
+        Pratt.sq_mul_of g045 (by norm_num) (by norm_num)
+      have g047 : 3 ^ 239040786546022 % 275595263287044304869593048464769 = 205394402268362088229641510231239 :=
+        Pratt.sq_of g046 (by norm_num) (by norm_num)
+      have g048 : 3 ^ 478081573092044 % 275595263287044304869593048464769 = 45320899111881079644624434176330 :=
+        Pratt.sq_of g047 (by norm_num) (by norm_num)
+      have g049 : 3 ^ 956163146184089 % 275595263287044304869593048464769 = 170743593596972965777875818448675 :=
+        Pratt.sq_mul_of g048 (by norm_num) (by norm_num)
+      have g050 : 3 ^ 1912326292368179 % 275595263287044304869593048464769 = 183121078973575238069588205404245 :=
+        Pratt.sq_mul_of g049 (by norm_num) (by norm_num)
+      have g051 : 3 ^ 3824652584736358 % 275595263287044304869593048464769 = 211151753710756195788524935905868 :=
+        Pratt.sq_of g050 (by norm_num) (by norm_num)
+      have g052 : 3 ^ 7649305169472717 % 275595263287044304869593048464769 = 267867467236787260685035844358262 :=
+        Pratt.sq_mul_of g051 (by norm_num) (by norm_num)
+      have g053 : 3 ^ 15298610338945434 % 275595263287044304869593048464769 = 206560601476011519409528003022456 :=
+        Pratt.sq_of g052 (by norm_num) (by norm_num)
+      have g054 : 3 ^ 30597220677890868 % 275595263287044304869593048464769 = 127964474407227728562580618255312 :=
+        Pratt.sq_of g053 (by norm_num) (by norm_num)
+      have g055 : 3 ^ 61194441355781737 % 275595263287044304869593048464769 = 43927707362879358669694342064303 :=
+        Pratt.sq_mul_of g054 (by norm_num) (by norm_num)
+      have g056 : 3 ^ 122388882711563475 % 275595263287044304869593048464769 = 29760061596724523754036852780606 :=
+        Pratt.sq_mul_of g055 (by norm_num) (by norm_num)
+      have g057 : 3 ^ 244777765423126951 % 275595263287044304869593048464769 = 200489337017321278742662516405719 :=
+        Pratt.sq_mul_of g056 (by norm_num) (by norm_num)
+      have g058 : 3 ^ 489555530846253903 % 275595263287044304869593048464769 = 254879225971927301354098827180174 :=
+        Pratt.sq_mul_of g057 (by norm_num) (by norm_num)
+      have g059 : 3 ^ 979111061692507806 % 275595263287044304869593048464769 = 70214214314909909810527221950169 :=
+        Pratt.sq_of g058 (by norm_num) (by norm_num)
+      have g060 : 3 ^ 1958222123385015612 % 275595263287044304869593048464769 = 149083688127488385724805807631228 :=
+        Pratt.sq_of g059 (by norm_num) (by norm_num)
+      have g061 : 3 ^ 3916444246770031225 % 275595263287044304869593048464769 = 129934829193417128608891316408815 :=
+        Pratt.sq_mul_of g060 (by norm_num) (by norm_num)
+      have g062 : 3 ^ 7832888493540062451 % 275595263287044304869593048464769 = 171134041284267248734398953588715 :=
+        Pratt.sq_mul_of g061 (by norm_num) (by norm_num)
+      have g063 : 3 ^ 15665776987080124903 % 275595263287044304869593048464769 = 30839817084568642396727736335882 :=
+        Pratt.sq_mul_of g062 (by norm_num) (by norm_num)
+      have g064 : 3 ^ 31331553974160249807 % 275595263287044304869593048464769 = 105315696445654857234786179676874 :=
+        Pratt.sq_mul_of g063 (by norm_num) (by norm_num)
+      have g065 : 3 ^ 62663107948320499615 % 275595263287044304869593048464769 = 153868893603051093337383644894042 :=
+        Pratt.sq_mul_of g064 (by norm_num) (by norm_num)
+      have g066 : 3 ^ 125326215896640999230 % 275595263287044304869593048464769 = 173553441027265102177630300920240 :=
+        Pratt.sq_of g065 (by norm_num) (by norm_num)
+      have g067 : 3 ^ 250652431793281998461 % 275595263287044304869593048464769 = 116637683711751415960254380450431 :=
+        Pratt.sq_mul_of g066 (by norm_num) (by norm_num)
+      have g068 : 3 ^ 501304863586563996922 % 275595263287044304869593048464769 = 25557683553418719613052705957603 :=
+        Pratt.sq_of g067 (by norm_num) (by norm_num)
+      have g069 : 3 ^ 1002609727173127993845 % 275595263287044304869593048464769 = 165249664517095264752643152052954 :=
+        Pratt.sq_mul_of g068 (by norm_num) (by norm_num)
+      have g070 : 3 ^ 2005219454346255987690 % 275595263287044304869593048464769 = 43817454616685567938012123888274 :=
+        Pratt.sq_of g069 (by norm_num) (by norm_num)
+      have g071 : 3 ^ 4010438908692511975380 % 275595263287044304869593048464769 = 19515348678139899988514436237539 :=
+        Pratt.sq_of g070 (by norm_num) (by norm_num)
+      have g072 : 3 ^ 8020877817385023950761 % 275595263287044304869593048464769 = 271832480852054195011952518775554 :=
+        Pratt.sq_mul_of g071 (by norm_num) (by norm_num)
+      have g073 : 3 ^ 16041755634770047901523 % 275595263287044304869593048464769 = 177871457894911424577053278066450 :=
+        Pratt.sq_mul_of g072 (by norm_num) (by norm_num)
+      have g074 : 3 ^ 32083511269540095803047 % 275595263287044304869593048464769 = 185124262509433904575490261772188 :=
+        Pratt.sq_mul_of g073 (by norm_num) (by norm_num)
+      have g075 : 3 ^ 64167022539080191606095 % 275595263287044304869593048464769 = 246905918952693473974623597537234 :=
+        Pratt.sq_mul_of g074 (by norm_num) (by norm_num)
+      have g076 : 3 ^ 128334045078160383212190 % 275595263287044304869593048464769 = 6960573676540159490071758129453 :=
+        Pratt.sq_of g075 (by norm_num) (by norm_num)
+      have g077 : 3 ^ 256668090156320766424381 % 275595263287044304869593048464769 = 270215026275845666150314294515799 :=
+        Pratt.sq_mul_of g076 (by norm_num) (by norm_num)
+      have g078 : 3 ^ 513336180312641532848762 % 275595263287044304869593048464769 = 246506956409053448104646988547272 :=
+        Pratt.sq_of g077 (by norm_num) (by norm_num)
+      have g079 : 3 ^ 1026672360625283065697524 % 275595263287044304869593048464769 = 31600231642235401212670279292644 :=
+        Pratt.sq_of g078 (by norm_num) (by norm_num)
+      have g080 : 3 ^ 2053344721250566131395049 % 275595263287044304869593048464769 = 226564582762735927397454538308328 :=
+        Pratt.sq_mul_of g079 (by norm_num) (by norm_num)
+      have g081 : 3 ^ 4106689442501132262790099 % 275595263287044304869593048464769 = 167448851030332364376465444723491 :=
+        Pratt.sq_mul_of g080 (by norm_num) (by norm_num)
+      have g082 : 3 ^ 8213378885002264525580199 % 275595263287044304869593048464769 = 131557136009402331861868251449293 :=
+        Pratt.sq_mul_of g081 (by norm_num) (by norm_num)
+      have g083 : 3 ^ 16426757770004529051160398 % 275595263287044304869593048464769 = 104489916990372069459837410494271 :=
+        Pratt.sq_of g082 (by norm_num) (by norm_num)
+      have g084 : 3 ^ 32853515540009058102320796 % 275595263287044304869593048464769 = 128365799105892486120076868829093 :=
+        Pratt.sq_of g083 (by norm_num) (by norm_num)
+      have g085 : 3 ^ 65707031080018116204641592 % 275595263287044304869593048464769 = 17619823576945822617206115655203 :=
+        Pratt.sq_of g084 (by norm_num) (by norm_num)
+      have g086 : 3 ^ 131414062160036232409283184 % 275595263287044304869593048464769 = 154849778183392960825380339048869 :=
+        Pratt.sq_of g085 (by norm_num) (by norm_num)
+      have g087 : 3 ^ 262828124320072464818566368 % 275595263287044304869593048464769 = 160046384958074364291671756425717 :=
+        Pratt.sq_of g086 (by norm_num) (by norm_num)
+      have g088 : 3 ^ 525656248640144929637132737 % 275595263287044304869593048464769 = 7539629353840869059465829343394 :=
+        Pratt.sq_mul_of g087 (by norm_num) (by norm_num)
+      have g089 : 3 ^ 1051312497280289859274265474 % 275595263287044304869593048464769 = 150270644394604807581723765982951 :=
+        Pratt.sq_of g088 (by norm_num) (by norm_num)
+      have g090 : 3 ^ 2102624994560579718548530948 % 275595263287044304869593048464769 = 101573276116745055772221444795729 :=
+        Pratt.sq_of g089 (by norm_num) (by norm_num)
+      have g091 : 3 ^ 4205249989121159437097061896 % 275595263287044304869593048464769 = 77234143174734454653453846939945 :=
+        Pratt.sq_of g090 (by norm_num) (by norm_num)
+      have g092 : 3 ^ 8410499978242318874194123793 % 275595263287044304869593048464769 = 135193117923175078824564762157863 :=
+        Pratt.sq_mul_of g091 (by norm_num) (by norm_num)
+      have g093 : 3 ^ 16820999956484637748388247586 % 275595263287044304869593048464769 = 260619918960252157167079547952169 :=
+        Pratt.sq_of g092 (by norm_num) (by norm_num)
+      have g094 : 3 ^ 33641999912969275496776495173 % 275595263287044304869593048464769 = 232022536729685345519920091854101 :=
+        Pratt.sq_mul_of g093 (by norm_num) (by norm_num)
+      have g095 : 3 ^ 67283999825938550993552990347 % 275595263287044304869593048464769 = 158195144751466046709337981660292 :=
+        Pratt.sq_mul_of g094 (by norm_num) (by norm_num)
+      have g096 : 3 ^ 134567999651877101987105980695 % 275595263287044304869593048464769 = 166825407744615691810778261431802 :=
+        Pratt.sq_mul_of g095 (by norm_num) (by norm_num)
+      have g097 : 3 ^ 269135999303754203974211961391 % 275595263287044304869593048464769 = 108918542977429100990188959209440 :=
+        Pratt.sq_mul_of g096 (by norm_num) (by norm_num)
+      have g098 : 3 ^ 538271998607508407948423922782 % 275595263287044304869593048464769 = 50178770076969387048168521763162 :=
+        Pratt.sq_of g097 (by norm_num) (by norm_num)
+      have g099 : 3 ^ 1076543997215016815896847845565 % 275595263287044304869593048464769 = 25720756245921704109053727135138 :=
+        Pratt.sq_mul_of g098 (by norm_num) (by norm_num)
+      have g0100 : 3 ^ 2153087994430033631793695691131 % 275595263287044304869593048464769 = 159060905199552100884760598171003 :=
+        Pratt.sq_mul_of g099 (by norm_num) (by norm_num)
+      have g0101 : 3 ^ 4306175988860067263587391382262 % 275595263287044304869593048464769 = 77880468067003454373900821217963 :=
+        Pratt.sq_of g0100 (by norm_num) (by norm_num)
+      have g0102 : 3 ^ 8612351977720134527174782764524 % 275595263287044304869593048464769 = 109864791326518970180817461433977 :=
+        Pratt.sq_of g0101 (by norm_num) (by norm_num)
+      have g0103 : 3 ^ 17224703955440269054349565529048 % 275595263287044304869593048464769 = 8354939714501504107967291691270 :=
+        Pratt.sq_of g0102 (by norm_num) (by norm_num)
+      have g0104 : 3 ^ 34449407910880538108699131058096 % 275595263287044304869593048464769 = 238640552224721169151972986849130 :=
+        Pratt.sq_of g0103 (by norm_num) (by norm_num)
+      have g0105 : 3 ^ 68898815821761076217398262116192 % 275595263287044304869593048464769 = 261471585361552177204443624818762 :=
+        Pratt.sq_of g0104 (by norm_num) (by norm_num)
+      have g0106 : 3 ^ 137797631643522152434796524232384 % 275595263287044304869593048464769 = 275595263287044304869593048464768 :=
+        Pratt.sq_of g0105 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464769 : ℕ) - 1 = 275595263287044304869593048464768 by norm_num, show 275595263287044304869593048464768 / 2 = 137797631643522152434796524232384 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g0106 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 67 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 67)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 3 ^ 1 % 275595263287044304869593048464769 = 3 := by norm_num
+      have g11 : 3 ^ 3 % 275595263287044304869593048464769 = 27 :=
+        Pratt.sq_mul_of g10 (by norm_num) (by norm_num)
+      have g12 : 3 ^ 6 % 275595263287044304869593048464769 = 729 :=
+        Pratt.sq_of g11 (by norm_num) (by norm_num)
+      have g13 : 3 ^ 12 % 275595263287044304869593048464769 = 531441 :=
+        Pratt.sq_of g12 (by norm_num) (by norm_num)
+      have g14 : 3 ^ 25 % 275595263287044304869593048464769 = 847288609443 :=
+        Pratt.sq_mul_of g13 (by norm_num) (by norm_num)
+      have g15 : 3 ^ 51 % 275595263287044304869593048464769 = 2153693963075557766310747 :=
+        Pratt.sq_mul_of g14 (by norm_num) (by norm_num)
+      have g16 : 3 ^ 103 % 275595263287044304869593048464769 = 90764557443756901215568852765647 :=
+        Pratt.sq_mul_of g15 (by norm_num) (by norm_num)
+      have g17 : 3 ^ 207 % 275595263287044304869593048464769 = 247684765925355494193973016274385 :=
+        Pratt.sq_mul_of g16 (by norm_num) (by norm_num)
+      have g18 : 3 ^ 415 % 275595263287044304869593048464769 = 82211921320900121836542724726095 :=
+        Pratt.sq_mul_of g17 (by norm_num) (by norm_num)
+      have g19 : 3 ^ 830 % 275595263287044304869593048464769 = 149445511278227855952764773899131 :=
+        Pratt.sq_of g18 (by norm_num) (by norm_num)
+      have g110 : 3 ^ 1661 % 275595263287044304869593048464769 = 79386649828851061667164162756591 :=
+        Pratt.sq_mul_of g19 (by norm_num) (by norm_num)
+      have g111 : 3 ^ 3322 % 275595263287044304869593048464769 = 236297017002363575189855456710319 :=
+        Pratt.sq_of g110 (by norm_num) (by norm_num)
+      have g112 : 3 ^ 6645 % 275595263287044304869593048464769 = 25873384595337379520458773483956 :=
+        Pratt.sq_mul_of g111 (by norm_num) (by norm_num)
+      have g113 : 3 ^ 13290 % 275595263287044304869593048464769 = 225669814760722851172207164722060 :=
+        Pratt.sq_of g112 (by norm_num) (by norm_num)
+      have g114 : 3 ^ 26581 % 275595263287044304869593048464769 = 73724547145108868950990483473001 :=
+        Pratt.sq_mul_of g113 (by norm_num) (by norm_num)
+      have g115 : 3 ^ 53163 % 275595263287044304869593048464769 = 8873905869205812902201618324401 :=
+        Pratt.sq_mul_of g114 (by norm_num) (by norm_num)
+      have g116 : 3 ^ 106327 % 275595263287044304869593048464769 = 210954633550926861033164119639444 :=
+        Pratt.sq_mul_of g115 (by norm_num) (by norm_num)
+      have g117 : 3 ^ 212655 % 275595263287044304869593048464769 = 16445804400772028569509111217402 :=
+        Pratt.sq_mul_of g116 (by norm_num) (by norm_num)
+      have g118 : 3 ^ 425311 % 275595263287044304869593048464769 = 149168416073905289435426426943939 :=
+        Pratt.sq_mul_of g117 (by norm_num) (by norm_num)
+      have g119 : 3 ^ 850623 % 275595263287044304869593048464769 = 77155405622833456122246213979481 :=
+        Pratt.sq_mul_of g118 (by norm_num) (by norm_num)
+      have g120 : 3 ^ 1701246 % 275595263287044304869593048464769 = 206807395762724981438932938000481 :=
+        Pratt.sq_of g119 (by norm_num) (by norm_num)
+      have g121 : 3 ^ 3402493 % 275595263287044304869593048464769 = 92302299652776294886423996381393 :=
+        Pratt.sq_mul_of g120 (by norm_num) (by norm_num)
+      have g122 : 3 ^ 6804986 % 275595263287044304869593048464769 = 81551946842260532423064800164890 :=
+        Pratt.sq_of g121 (by norm_num) (by norm_num)
+      have g123 : 3 ^ 13609973 % 275595263287044304869593048464769 = 79995267203614886825763733106171 :=
+        Pratt.sq_mul_of g122 (by norm_num) (by norm_num)
+      have g124 : 3 ^ 27219947 % 275595263287044304869593048464769 = 112653534072724457949738761966261 :=
+        Pratt.sq_mul_of g123 (by norm_num) (by norm_num)
+      have g125 : 3 ^ 54439894 % 275595263287044304869593048464769 = 185826564539953300917856211170326 :=
+        Pratt.sq_of g124 (by norm_num) (by norm_num)
+      have g126 : 3 ^ 108879789 % 275595263287044304869593048464769 = 81835284656884617662652587972891 :=
+        Pratt.sq_mul_of g125 (by norm_num) (by norm_num)
+      have g127 : 3 ^ 217759578 % 275595263287044304869593048464769 = 66151028377849904449846273514693 :=
+        Pratt.sq_of g126 (by norm_num) (by norm_num)
+      have g128 : 3 ^ 435519156 % 275595263287044304869593048464769 = 219127795284796057078071964966996 :=
+        Pratt.sq_of g127 (by norm_num) (by norm_num)
+      have g129 : 3 ^ 871038313 % 275595263287044304869593048464769 = 111342907579816117984764177545655 :=
+        Pratt.sq_mul_of g128 (by norm_num) (by norm_num)
+      have g130 : 3 ^ 1742076627 % 275595263287044304869593048464769 = 229572312527221697048808705689098 :=
+        Pratt.sq_mul_of g129 (by norm_num) (by norm_num)
+      have g131 : 3 ^ 3484153255 % 275595263287044304869593048464769 = 148700088532989657594823457303387 :=
+        Pratt.sq_mul_of g130 (by norm_num) (by norm_num)
+      have g132 : 3 ^ 6968306510 % 275595263287044304869593048464769 = 140942758615951041367085223684077 :=
+        Pratt.sq_of g131 (by norm_num) (by norm_num)
+      have g133 : 3 ^ 13936613021 % 275595263287044304869593048464769 = 195164311049590933114232457232898 :=
+        Pratt.sq_mul_of g132 (by norm_num) (by norm_num)
+      have g134 : 3 ^ 27873226043 % 275595263287044304869593048464769 = 209881375497278005325970983680894 :=
+        Pratt.sq_mul_of g133 (by norm_num) (by norm_num)
+      have g135 : 3 ^ 55746452086 % 275595263287044304869593048464769 = 52600308064007932416334043513715 :=
+        Pratt.sq_of g134 (by norm_num) (by norm_num)
+      have g136 : 3 ^ 111492904172 % 275595263287044304869593048464769 = 140004415386507048605031257891017 :=
+        Pratt.sq_of g135 (by norm_num) (by norm_num)
+      have g137 : 3 ^ 222985808345 % 275595263287044304869593048464769 = 144067883258614594825671353225705 :=
+        Pratt.sq_mul_of g136 (by norm_num) (by norm_num)
+      have g138 : 3 ^ 445971616690 % 275595263287044304869593048464769 = 216854478714454707885710300822031 :=
+        Pratt.sq_of g137 (by norm_num) (by norm_num)
+      have g139 : 3 ^ 891943233380 % 275595263287044304869593048464769 = 117552060644962223977345571076063 :=
+        Pratt.sq_of g138 (by norm_num) (by norm_num)
+      have g140 : 3 ^ 1783886466761 % 275595263287044304869593048464769 = 140636624601876482798206553350597 :=
+        Pratt.sq_mul_of g139 (by norm_num) (by norm_num)
+      have g141 : 3 ^ 3567772933522 % 275595263287044304869593048464769 = 213339559404372846747422108368951 :=
+        Pratt.sq_of g140 (by norm_num) (by norm_num)
+      have g142 : 3 ^ 7135545867045 % 275595263287044304869593048464769 = 60593435952274238346214024497135 :=
+        Pratt.sq_mul_of g141 (by norm_num) (by norm_num)
+      have g143 : 3 ^ 14271091734090 % 275595263287044304869593048464769 = 208603149592668962117650971477099 :=
+        Pratt.sq_of g142 (by norm_num) (by norm_num)
+      have g144 : 3 ^ 28542183468181 % 275595263287044304869593048464769 = 197000229900106014160488695118261 :=
+        Pratt.sq_mul_of g143 (by norm_num) (by norm_num)
+      have g145 : 3 ^ 57084366936363 % 275595263287044304869593048464769 = 188580077879557810631132421977849 :=
+        Pratt.sq_mul_of g144 (by norm_num) (by norm_num)
+      have g146 : 3 ^ 114168733872727 % 275595263287044304869593048464769 = 267669968186084565354952563385626 :=
+        Pratt.sq_mul_of g145 (by norm_num) (by norm_num)
+      have g147 : 3 ^ 228337467745454 % 275595263287044304869593048464769 = 113073913860193180580489440024613 :=
+        Pratt.sq_of g146 (by norm_num) (by norm_num)
+      have g148 : 3 ^ 456674935490908 % 275595263287044304869593048464769 = 111856867178475024211621988479111 :=
+        Pratt.sq_of g147 (by norm_num) (by norm_num)
+      have g149 : 3 ^ 913349870981816 % 275595263287044304869593048464769 = 56539174213222436279046057741808 :=
+        Pratt.sq_of g148 (by norm_num) (by norm_num)
+      have g150 : 3 ^ 1826699741963633 % 275595263287044304869593048464769 = 118875928357436980462887427942654 :=
+        Pratt.sq_mul_of g149 (by norm_num) (by norm_num)
+      have g151 : 3 ^ 3653399483927267 % 275595263287044304869593048464769 = 274986733930376341997337839492472 :=
+        Pratt.sq_mul_of g150 (by norm_num) (by norm_num)
+      have g152 : 3 ^ 7306798967854535 % 275595263287044304869593048464769 = 161920456642077035686269563340955 :=
+        Pratt.sq_mul_of g151 (by norm_num) (by norm_num)
+      have g153 : 3 ^ 14613597935709071 % 275595263287044304869593048464769 = 193617479581420769703073237826843 :=
+        Pratt.sq_mul_of g152 (by norm_num) (by norm_num)
+      have g154 : 3 ^ 29227195871418143 % 275595263287044304869593048464769 = 179181782139704402401184551980537 :=
+        Pratt.sq_mul_of g153 (by norm_num) (by norm_num)
+      have g155 : 3 ^ 58454391742836286 % 275595263287044304869593048464769 = 167245406973025074246215697036341 :=
+        Pratt.sq_of g154 (by norm_num) (by norm_num)
+      have g156 : 3 ^ 116908783485672573 % 275595263287044304869593048464769 = 125637425667605007209373013357104 :=
+        Pratt.sq_mul_of g155 (by norm_num) (by norm_num)
+      have g157 : 3 ^ 233817566971345147 % 275595263287044304869593048464769 = 32174614593689696005418428329387 :=
+        Pratt.sq_mul_of g156 (by norm_num) (by norm_num)
+      have g158 : 3 ^ 467635133942690295 % 275595263287044304869593048464769 = 213492848932321291343146827323583 :=
+        Pratt.sq_mul_of g157 (by norm_num) (by norm_num)
+      have g159 : 3 ^ 935270267885380591 % 275595263287044304869593048464769 = 74872714518104791917177985580535 :=
+        Pratt.sq_mul_of g158 (by norm_num) (by norm_num)
+      have g160 : 3 ^ 1870540535770761182 % 275595263287044304869593048464769 = 258751552303103870917297978303171 :=
+        Pratt.sq_of g159 (by norm_num) (by norm_num)
+      have g161 : 3 ^ 3741081071541522365 % 275595263287044304869593048464769 = 250488052277757317315079512806026 :=
+        Pratt.sq_mul_of g160 (by norm_num) (by norm_num)
+      have g162 : 3 ^ 7482162143083044730 % 275595263287044304869593048464769 = 126476588376751711815994276415234 :=
+        Pratt.sq_of g161 (by norm_num) (by norm_num)
+      have g163 : 3 ^ 14964324286166089460 % 275595263287044304869593048464769 = 147056459968689647874231367709744 :=
+        Pratt.sq_of g162 (by norm_num) (by norm_num)
+      have g164 : 3 ^ 29928648572332178920 % 275595263287044304869593048464769 = 271358488971909950728419106534796 :=
+        Pratt.sq_of g163 (by norm_num) (by norm_num)
+      have g165 : 3 ^ 59857297144664357841 % 275595263287044304869593048464769 = 100981879728192137814795569167904 :=
+        Pratt.sq_mul_of g164 (by norm_num) (by norm_num)
+      have g166 : 3 ^ 119714594289328715683 % 275595263287044304869593048464769 = 188917437968248053754783694719142 :=
+        Pratt.sq_mul_of g165 (by norm_num) (by norm_num)
+      have g167 : 3 ^ 239429188578657431366 % 275595263287044304869593048464769 = 6437515679830196971259483415493 :=
+        Pratt.sq_of g166 (by norm_num) (by norm_num)
+      have g168 : 3 ^ 478858377157314862732 % 275595263287044304869593048464769 = 179226239005426417427666844581490 :=
+        Pratt.sq_of g167 (by norm_num) (by norm_num)
+      have g169 : 3 ^ 957716754314629725464 % 275595263287044304869593048464769 = 149600896752087627231981936270275 :=
+        Pratt.sq_of g168 (by norm_num) (by norm_num)
+      have g170 : 3 ^ 1915433508629259450928 % 275595263287044304869593048464769 = 179614567653984474369738903031468 :=
+        Pratt.sq_of g169 (by norm_num) (by norm_num)
+      have g171 : 3 ^ 3830867017258518901856 % 275595263287044304869593048464769 = 114427244338706282250998527970747 :=
+        Pratt.sq_of g170 (by norm_num) (by norm_num)
+      have g172 : 3 ^ 7661734034517037803712 % 275595263287044304869593048464769 = 208888070057103686615185782060903 :=
+        Pratt.sq_of g171 (by norm_num) (by norm_num)
+      have g173 : 3 ^ 15323468069034075607425 % 275595263287044304869593048464769 = 11077565090710492481698744932677 :=
+        Pratt.sq_mul_of g172 (by norm_num) (by norm_num)
+      have g174 : 3 ^ 30646936138068151214851 % 275595263287044304869593048464769 = 3387423329149513561339149311864 :=
+        Pratt.sq_mul_of g173 (by norm_num) (by norm_num)
+      have g175 : 3 ^ 61293872276136302429702 % 275595263287044304869593048464769 = 148695187060979057951711308695473 :=
+        Pratt.sq_of g174 (by norm_num) (by norm_num)
+      have g176 : 3 ^ 122587744552272604859405 % 275595263287044304869593048464769 = 64345275692875382965792154598533 :=
+        Pratt.sq_mul_of g175 (by norm_num) (by norm_num)
+      have g177 : 3 ^ 245175489104545209718811 % 275595263287044304869593048464769 = 78566921976966336523040760660024 :=
+        Pratt.sq_mul_of g176 (by norm_num) (by norm_num)
+      have g178 : 3 ^ 490350978209090419437623 % 275595263287044304869593048464769 = 244093566751179395406661481107202 :=
+        Pratt.sq_mul_of g177 (by norm_num) (by norm_num)
+      have g179 : 3 ^ 980701956418180838875247 % 275595263287044304869593048464769 = 63681845805362148496461737980723 :=
+        Pratt.sq_mul_of g178 (by norm_num) (by norm_num)
+      have g180 : 3 ^ 1961403912836361677750495 % 275595263287044304869593048464769 = 69867502207475129890800694591448 :=
+        Pratt.sq_mul_of g179 (by norm_num) (by norm_num)
+      have g181 : 3 ^ 3922807825672723355500990 % 275595263287044304869593048464769 = 173205972012018841082112623425897 :=
+        Pratt.sq_of g180 (by norm_num) (by norm_num)
+      have g182 : 3 ^ 7845615651345446711001981 % 275595263287044304869593048464769 = 211808055021824234123849408751406 :=
+        Pratt.sq_mul_of g181 (by norm_num) (by norm_num)
+      have g183 : 3 ^ 15691231302690893422003962 % 275595263287044304869593048464769 = 200844881468307715020704498051616 :=
+        Pratt.sq_of g182 (by norm_num) (by norm_num)
+      have g184 : 3 ^ 31382462605381786844007924 % 275595263287044304869593048464769 = 137949016222848816992715008485206 :=
+        Pratt.sq_of g183 (by norm_num) (by norm_num)
+      have g185 : 3 ^ 62764925210763573688015849 % 275595263287044304869593048464769 = 177242148460532120665881925961192 :=
+        Pratt.sq_mul_of g184 (by norm_num) (by norm_num)
+      have g186 : 3 ^ 125529850421527147376031698 % 275595263287044304869593048464769 = 68827271749359555571557651426748 :=
+        Pratt.sq_of g185 (by norm_num) (by norm_num)
+      have g187 : 3 ^ 251059700843054294752063396 % 275595263287044304869593048464769 = 61386295226464884223110790060772 :=
+        Pratt.sq_of g186 (by norm_num) (by norm_num)
+      have g188 : 3 ^ 502119401686108589504126793 % 275595263287044304869593048464769 = 130847382406614337888809184925774 :=
+        Pratt.sq_mul_of g187 (by norm_num) (by norm_num)
+      have g189 : 3 ^ 1004238803372217179008253587 % 275595263287044304869593048464769 = 109315975010254880171244528908169 :=
+        Pratt.sq_mul_of g188 (by norm_num) (by norm_num)
+      have g190 : 3 ^ 2008477606744434358016507174 % 275595263287044304869593048464769 = 223054430246837518716079422325290 :=
+        Pratt.sq_of g189 (by norm_num) (by norm_num)
+      have g191 : 3 ^ 4016955213488868716033014349 % 275595263287044304869593048464769 = 65765379786097369103638822380646 :=
+        Pratt.sq_mul_of g190 (by norm_num) (by norm_num)
+      have g192 : 3 ^ 8033910426977737432066028698 % 275595263287044304869593048464769 = 223861058110341526886295104015641 :=
+        Pratt.sq_of g191 (by norm_num) (by norm_num)
+      have g193 : 3 ^ 16067820853955474864132057396 % 275595263287044304869593048464769 = 211408363046979509927299596465937 :=
+        Pratt.sq_of g192 (by norm_num) (by norm_num)
+      have g194 : 3 ^ 32135641707910949728264114793 % 275595263287044304869593048464769 = 56456514882489687271275305993564 :=
+        Pratt.sq_mul_of g193 (by norm_num) (by norm_num)
+      have g195 : 3 ^ 64271283415821899456528229586 % 275595263287044304869593048464769 = 23001056829869427693532691830894 :=
+        Pratt.sq_of g194 (by norm_num) (by norm_num)
+      have g196 : 3 ^ 128542566831643798913056459172 % 275595263287044304869593048464769 = 156035940618653157482142977108099 :=
+        Pratt.sq_of g195 (by norm_num) (by norm_num)
+      have g197 : 3 ^ 257085133663287597826112918344 % 275595263287044304869593048464769 = 76518697434552500568835156207724 :=
+        Pratt.sq_of g196 (by norm_num) (by norm_num)
+      have g198 : 3 ^ 514170267326575195652225836688 % 275595263287044304869593048464769 = 183531598032489290653337772923010 :=
+        Pratt.sq_of g197 (by norm_num) (by norm_num)
+      have g199 : 3 ^ 1028340534653150391304451673376 % 275595263287044304869593048464769 = 103390650921247560303411069408456 :=
+        Pratt.sq_of g198 (by norm_num) (by norm_num)
+      have g1100 : 3 ^ 2056681069306300782608903346752 % 275595263287044304869593048464769 = 110966383033548948393732860579783 :=
+        Pratt.sq_of g199 (by norm_num) (by norm_num)
+      have g1101 : 3 ^ 4113362138612601565217806693504 % 275595263287044304869593048464769 = 198622197353317701751782709356015 :=
+        Pratt.sq_of g1100 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464769 : ℕ) - 1 = 275595263287044304869593048464768 by norm_num, show 275595263287044304869593048464768 / 67 = 4113362138612601565217806693504 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g1101 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq2 | hqd
+    . have hqe : q = 457 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 457)).mp (hq.dvd_of_dvd_pow hq2)
+      subst hqe
+      have g20 : 3 ^ 1 % 275595263287044304869593048464769 = 3 := by norm_num
+      have g21 : 3 ^ 3 % 275595263287044304869593048464769 = 27 :=
+        Pratt.sq_mul_of g20 (by norm_num) (by norm_num)
+      have g22 : 3 ^ 7 % 275595263287044304869593048464769 = 2187 :=
+        Pratt.sq_mul_of g21 (by norm_num) (by norm_num)
+      have g23 : 3 ^ 15 % 275595263287044304869593048464769 = 14348907 :=
+        Pratt.sq_mul_of g22 (by norm_num) (by norm_num)
+      have g24 : 3 ^ 30 % 275595263287044304869593048464769 = 205891132094649 :=
+        Pratt.sq_of g23 (by norm_num) (by norm_num)
+      have g25 : 3 ^ 60 % 275595263287044304869593048464769 = 42391158275216203514294433201 :=
+        Pratt.sq_of g24 (by norm_num) (by norm_num)
+      have g26 : 3 ^ 121 % 275595263287044304869593048464769 = 201333455137201394212240718013325 :=
+        Pratt.sq_mul_of g25 (by norm_num) (by norm_num)
+      have g27 : 3 ^ 243 % 275595263287044304869593048464769 = 230799856732169748791664673966133 :=
+        Pratt.sq_mul_of g26 (by norm_num) (by norm_num)
+      have g28 : 3 ^ 487 % 275595263287044304869593048464769 = 73081239629146220959724677626558 :=
+        Pratt.sq_mul_of g27 (by norm_num) (by norm_num)
+      have g29 : 3 ^ 974 % 275595263287044304869593048464769 = 113994908988574262669603735404779 :=
+        Pratt.sq_of g28 (by norm_num) (by norm_num)
+      have g210 : 3 ^ 1948 % 275595263287044304869593048464769 = 252307183630014262906684960166379 :=
+        Pratt.sq_of g29 (by norm_num) (by norm_num)
+      have g211 : 3 ^ 3897 % 275595263287044304869593048464769 = 154305261116604065001307983495272 :=
+        Pratt.sq_mul_of g210 (by norm_num) (by norm_num)
+      have g212 : 3 ^ 7794 % 275595263287044304869593048464769 = 26135301108140410838018824002678 :=
+        Pratt.sq_of g211 (by norm_num) (by norm_num)
+      have g213 : 3 ^ 15588 % 275595263287044304869593048464769 = 139803706595472470521162540780155 :=
+        Pratt.sq_of g212 (by norm_num) (by norm_num)
+      have g214 : 3 ^ 31177 % 275595263287044304869593048464769 = 205838433737582587599200535079042 :=
+        Pratt.sq_mul_of g213 (by norm_num) (by norm_num)
+      have g215 : 3 ^ 62354 % 275595263287044304869593048464769 = 259746330657300010064161247262788 :=
+        Pratt.sq_of g214 (by norm_num) (by norm_num)
+      have g216 : 3 ^ 124708 % 275595263287044304869593048464769 = 253980544422409460384071854020673 :=
+        Pratt.sq_of g215 (by norm_num) (by norm_num)
+      have g217 : 3 ^ 249416 % 275595263287044304869593048464769 = 186592500900100356313074138186081 :=
+        Pratt.sq_of g216 (by norm_num) (by norm_num)
+      have g218 : 3 ^ 498833 % 275595263287044304869593048464769 = 250422348162271475904007035432346 :=
+        Pratt.sq_mul_of g217 (by norm_num) (by norm_num)
+      have g219 : 3 ^ 997667 % 275595263287044304869593048464769 = 27172498809890502785423493401203 :=
+        Pratt.sq_mul_of g218 (by norm_num) (by norm_num)
+      have g220 : 3 ^ 1995335 % 275595263287044304869593048464769 = 11111426347340458192737058362424 :=
+        Pratt.sq_mul_of g219 (by norm_num) (by norm_num)
+      have g221 : 3 ^ 3990670 % 275595263287044304869593048464769 = 148941723535455165289420075644504 :=
+        Pratt.sq_of g220 (by norm_num) (by norm_num)
+      have g222 : 3 ^ 7981341 % 275595263287044304869593048464769 = 258709114265590978795984136456313 :=
+        Pratt.sq_mul_of g221 (by norm_num) (by norm_num)
+      have g223 : 3 ^ 15962682 % 275595263287044304869593048464769 = 20593350105697876840457140412816 :=
+        Pratt.sq_of g222 (by norm_num) (by norm_num)
+      have g224 : 3 ^ 31925364 % 275595263287044304869593048464769 = 274476358877291229113085026482849 :=
+        Pratt.sq_of g223 (by norm_num) (by norm_num)
+      have g225 : 3 ^ 63850729 % 275595263287044304869593048464769 = 261796895724310172268790483770878 :=
+        Pratt.sq_mul_of g224 (by norm_num) (by norm_num)
+      have g226 : 3 ^ 127701459 % 275595263287044304869593048464769 = 22722527255081717744288226302146 :=
+        Pratt.sq_mul_of g225 (by norm_num) (by norm_num)
+      have g227 : 3 ^ 255402919 % 275595263287044304869593048464769 = 251081415006617097162318523475108 :=
+        Pratt.sq_mul_of g226 (by norm_num) (by norm_num)
+      have g228 : 3 ^ 510805838 % 275595263287044304869593048464769 = 5796650457067863364398410122913 :=
+        Pratt.sq_of g227 (by norm_num) (by norm_num)
+      have g229 : 3 ^ 1021611676 % 275595263287044304869593048464769 = 111826132634886925438003192376370 :=
+        Pratt.sq_of g228 (by norm_num) (by norm_num)
+      have g230 : 3 ^ 2043223353 % 275595263287044304869593048464769 = 18202909836382788536715286113342 :=
+        Pratt.sq_mul_of g229 (by norm_num) (by norm_num)
+      have g231 : 3 ^ 4086446706 % 275595263287044304869593048464769 = 98406656115631007347038175967822 :=
+        Pratt.sq_of g230 (by norm_num) (by norm_num)
+      have g232 : 3 ^ 8172893413 % 275595263287044304869593048464769 = 66503179530962565567322986113633 :=
+        Pratt.sq_mul_of g231 (by norm_num) (by norm_num)
+      have g233 : 3 ^ 16345786826 % 275595263287044304869593048464769 = 2211519675906021273212013473872 :=
+        Pratt.sq_of g232 (by norm_num) (by norm_num)
+      have g234 : 3 ^ 32691573652 % 275595263287044304869593048464769 = 117874837652645631028106095522325 :=
+        Pratt.sq_of g233 (by norm_num) (by norm_num)
+      have g235 : 3 ^ 65383147304 % 275595263287044304869593048464769 = 230353186453249414045234392986389 :=
+        Pratt.sq_of g234 (by norm_num) (by norm_num)
+      have g236 : 3 ^ 130766294609 % 275595263287044304869593048464769 = 32009766075422055756368427908503 :=
+        Pratt.sq_mul_of g235 (by norm_num) (by norm_num)
+      have g237 : 3 ^ 261532589218 % 275595263287044304869593048464769 = 225840424481000270263147333085221 :=
+        Pratt.sq_of g236 (by norm_num) (by norm_num)
+      have g238 : 3 ^ 523065178437 % 275595263287044304869593048464769 = 57114609557438362684031289850434 :=
+        Pratt.sq_mul_of g237 (by norm_num) (by norm_num)
+      have g239 : 3 ^ 1046130356875 % 275595263287044304869593048464769 = 195286325161847616939684995233528 :=
+        Pratt.sq_mul_of g238 (by norm_num) (by norm_num)
+      have g240 : 3 ^ 2092260713750 % 275595263287044304869593048464769 = 99946625964550164844871906473709 :=
+        Pratt.sq_of g239 (by norm_num) (by norm_num)
+      have g241 : 3 ^ 4184521427501 % 275595263287044304869593048464769 = 163904409244837351941198624633544 :=
+        Pratt.sq_mul_of g240 (by norm_num) (by norm_num)
+      have g242 : 3 ^ 8369042855002 % 275595263287044304869593048464769 = 223273600417660637280110842771674 :=
+        Pratt.sq_of g241 (by norm_num) (by norm_num)
+      have g243 : 3 ^ 16738085710005 % 275595263287044304869593048464769 = 131859449519594101972968378177685 :=
+        Pratt.sq_mul_of g242 (by norm_num) (by norm_num)
+      have g244 : 3 ^ 33476171420011 % 275595263287044304869593048464769 = 117246678391151551191316953625701 :=
+        Pratt.sq_mul_of g243 (by norm_num) (by norm_num)
+      have g245 : 3 ^ 66952342840023 % 275595263287044304869593048464769 = 233978476630007987592124252172738 :=
+        Pratt.sq_mul_of g244 (by norm_num) (by norm_num)
+      have g246 : 3 ^ 133904685680047 % 275595263287044304869593048464769 = 38955642843846445100379383932107 :=
+        Pratt.sq_mul_of g245 (by norm_num) (by norm_num)
+      have g247 : 3 ^ 267809371360095 % 275595263287044304869593048464769 = 114565837047358187220298544280531 :=
+        Pratt.sq_mul_of g246 (by norm_num) (by norm_num)
+      have g248 : 3 ^ 535618742720190 % 275595263287044304869593048464769 = 95820459128421881013486350293829 :=
+        Pratt.sq_of g247 (by norm_num) (by norm_num)
+      have g249 : 3 ^ 1071237485440380 % 275595263287044304869593048464769 = 151021143015222449491510539786899 :=
+        Pratt.sq_of g248 (by norm_num) (by norm_num)
+      have g250 : 3 ^ 2142474970880761 % 275595263287044304869593048464769 = 217256183634789173964945792036699 :=
+        Pratt.sq_mul_of g249 (by norm_num) (by norm_num)
+      have g251 : 3 ^ 4284949941761522 % 275595263287044304869593048464769 = 250145708039343403512696354110661 :=
+        Pratt.sq_of g250 (by norm_num) (by norm_num)
+      have g252 : 3 ^ 8569899883523044 % 275595263287044304869593048464769 = 260513533616500048285054173160640 :=
+        Pratt.sq_of g251 (by norm_num) (by norm_num)
+      have g253 : 3 ^ 17139799767046088 % 275595263287044304869593048464769 = 253598761996349003544928810275024 :=
+        Pratt.sq_of g252 (by norm_num) (by norm_num)
+      have g254 : 3 ^ 34279599534092177 % 275595263287044304869593048464769 = 270237003730619927654046308628626 :=
+        Pratt.sq_mul_of g253 (by norm_num) (by norm_num)
+      have g255 : 3 ^ 68559199068184354 % 275595263287044304869593048464769 = 28231509750411504837306525350696 :=
+        Pratt.sq_of g254 (by norm_num) (by norm_num)
+      have g256 : 3 ^ 137118398136368708 % 275595263287044304869593048464769 = 261402058483827388555141329035008 :=
+        Pratt.sq_of g255 (by norm_num) (by norm_num)
+      have g257 : 3 ^ 274236796272737416 % 275595263287044304869593048464769 = 243902559071527694378041291279075 :=
+        Pratt.sq_of g256 (by norm_num) (by norm_num)
+      have g258 : 3 ^ 548473592545474832 % 275595263287044304869593048464769 = 192002558466445505647373867591408 :=
+        Pratt.sq_of g257 (by norm_num) (by norm_num)
+      have g259 : 3 ^ 1096947185090949665 % 275595263287044304869593048464769 = 200803082867946116696447744849442 :=
+        Pratt.sq_mul_of g258 (by norm_num) (by norm_num)
+      have g260 : 3 ^ 2193894370181899330 % 275595263287044304869593048464769 = 187824541901617969863555687428807 :=
+        Pratt.sq_of g259 (by norm_num) (by norm_num)
+      have g261 : 3 ^ 4387788740363798660 % 275595263287044304869593048464769 = 265727989626182321388752008657191 :=
+        Pratt.sq_of g260 (by norm_num) (by norm_num)
+      have g262 : 3 ^ 8775577480727597320 % 275595263287044304869593048464769 = 67417227023812833158330463294753 :=
+        Pratt.sq_of g261 (by norm_num) (by norm_num)
+      have g263 : 3 ^ 17551154961455194640 % 275595263287044304869593048464769 = 127419661320119236066174970330418 :=
+        Pratt.sq_of g262 (by norm_num) (by norm_num)
+      have g264 : 3 ^ 35102309922910389281 % 275595263287044304869593048464769 = 161351977192499988642994262352302 :=
+        Pratt.sq_mul_of g263 (by norm_num) (by norm_num)
+      have g265 : 3 ^ 70204619845820778562 % 275595263287044304869593048464769 = 221651193638463427809492888448629 :=
+        Pratt.sq_of g264 (by norm_num) (by norm_num)
+      have g266 : 3 ^ 140409239691641557124 % 275595263287044304869593048464769 = 255566665208960643628216424396403 :=
+        Pratt.sq_of g265 (by norm_num) (by norm_num)
+      have g267 : 3 ^ 280818479383283114249 % 275595263287044304869593048464769 = 221065502108576248206128343460633 :=
+        Pratt.sq_mul_of g266 (by norm_num) (by norm_num)
+      have g268 : 3 ^ 561636958766566228499 % 275595263287044304869593048464769 = 80961358461042107094276647776836 :=
+        Pratt.sq_mul_of g267 (by norm_num) (by norm_num)
+      have g269 : 3 ^ 1123273917533132456999 % 275595263287044304869593048464769 = 171751295160408659600557559907805 :=
+        Pratt.sq_mul_of g268 (by norm_num) (by norm_num)
+      have g270 : 3 ^ 2246547835066264913998 % 275595263287044304869593048464769 = 130311080414645522085011602644982 :=
+        Pratt.sq_of g269 (by norm_num) (by norm_num)
+      have g271 : 3 ^ 4493095670132529827997 % 275595263287044304869593048464769 = 184286191513261726409821321008658 :=
+        Pratt.sq_mul_of g270 (by norm_num) (by norm_num)
+      have g272 : 3 ^ 8986191340265059655995 % 275595263287044304869593048464769 = 155492679685682970610445132623729 :=
+        Pratt.sq_mul_of g271 (by norm_num) (by norm_num)
+      have g273 : 3 ^ 17972382680530119311991 % 275595263287044304869593048464769 = 134338471813675391609422418691231 :=
+        Pratt.sq_mul_of g272 (by norm_num) (by norm_num)
+      have g274 : 3 ^ 35944765361060238623983 % 275595263287044304869593048464769 = 218058267047161922556900930871070 :=
+        Pratt.sq_mul_of g273 (by norm_num) (by norm_num)
+      have g275 : 3 ^ 71889530722120477247966 % 275595263287044304869593048464769 = 28418909362380078996022138823350 :=
+        Pratt.sq_of g274 (by norm_num) (by norm_num)
+      have g276 : 3 ^ 143779061444240954495933 % 275595263287044304869593048464769 = 252053307150608451148250821990633 :=
+        Pratt.sq_mul_of g275 (by norm_num) (by norm_num)
+      have g277 : 3 ^ 287558122888481908991866 % 275595263287044304869593048464769 = 70206335138670636435200674888460 :=
+        Pratt.sq_of g276 (by norm_num) (by norm_num)
+      have g278 : 3 ^ 575116245776963817983733 % 275595263287044304869593048464769 = 170540612888321211660390334311986 :=
+        Pratt.sq_mul_of g277 (by norm_num) (by norm_num)
+      have g279 : 3 ^ 1150232491553927635967467 % 275595263287044304869593048464769 = 38396613133311838473360574537609 :=
+        Pratt.sq_mul_of g278 (by norm_num) (by norm_num)
+      have g280 : 3 ^ 2300464983107855271934935 % 275595263287044304869593048464769 = 199529149630248721249475007220447 :=
+        Pratt.sq_mul_of g279 (by norm_num) (by norm_num)
+      have g281 : 3 ^ 4600929966215710543869870 % 275595263287044304869593048464769 = 68690164065491299534760904032495 :=
+        Pratt.sq_of g280 (by norm_num) (by norm_num)
+      have g282 : 3 ^ 9201859932431421087739741 % 275595263287044304869593048464769 = 52037026195795256489028889628266 :=
+        Pratt.sq_mul_of g281 (by norm_num) (by norm_num)
+      have g283 : 3 ^ 18403719864862842175479483 % 275595263287044304869593048464769 = 274829396512050704717615262648702 :=
+        Pratt.sq_mul_of g282 (by norm_num) (by norm_num)
+      have g284 : 3 ^ 36807439729725684350958966 % 275595263287044304869593048464769 = 156292359927662385878380901981741 :=
+        Pratt.sq_of g283 (by norm_num) (by norm_num)
+      have g285 : 3 ^ 73614879459451368701917932 % 275595263287044304869593048464769 = 106888963698555094057188220453304 :=
+        Pratt.sq_of g284 (by norm_num) (by norm_num)
+      have g286 : 3 ^ 147229758918902737403835865 % 275595263287044304869593048464769 = 230219650859691438370649118539000 :=
+        Pratt.sq_mul_of g285 (by norm_num) (by norm_num)
+      have g287 : 3 ^ 294459517837805474807671730 % 275595263287044304869593048464769 = 217851088955248660712101099648311 :=
+        Pratt.sq_of g286 (by norm_num) (by norm_num)
+      have g288 : 3 ^ 588919035675610949615343460 % 275595263287044304869593048464769 = 164427815256796067439141329829689 :=
+        Pratt.sq_of g287 (by norm_num) (by norm_num)
+      have g289 : 3 ^ 1177838071351221899230686920 % 275595263287044304869593048464769 = 68018960857198030062998337034819 :=
+        Pratt.sq_of g288 (by norm_num) (by norm_num)
+      have g290 : 3 ^ 2355676142702443798461373841 % 275595263287044304869593048464769 = 70104982252806505596960396469148 :=
+        Pratt.sq_mul_of g289 (by norm_num) (by norm_num)
+      have g291 : 3 ^ 4711352285404887596922747683 % 275595263287044304869593048464769 = 66234611345078633304862621456497 :=
+        Pratt.sq_mul_of g290 (by norm_num) (by norm_num)
+      have g292 : 3 ^ 9422704570809775193845495366 % 275595263287044304869593048464769 = 245433877972708527075198046917414 :=
+        Pratt.sq_of g291 (by norm_num) (by norm_num)
+      have g293 : 3 ^ 18845409141619550387690990732 % 275595263287044304869593048464769 = 38095263477980229431212285942768 :=
+        Pratt.sq_of g292 (by norm_num) (by norm_num)
+      have g294 : 3 ^ 37690818283239100775381981464 % 275595263287044304869593048464769 = 258097494232012440828274680190917 :=
+        Pratt.sq_of g293 (by norm_num) (by norm_num)
+      have g295 : 3 ^ 75381636566478201550763962928 % 275595263287044304869593048464769 = 275126260240776452947694336602650 :=
+        Pratt.sq_of g294 (by norm_num) (by norm_num)
+      have g296 : 3 ^ 150763273132956403101527925856 % 275595263287044304869593048464769 = 191263897033749206151009828861113 :=
+        Pratt.sq_of g295 (by norm_num) (by norm_num)
+      have g297 : 3 ^ 301526546265912806203055851712 % 275595263287044304869593048464769 = 17815166501417980845349827413770 :=
+        Pratt.sq_of g296 (by norm_num) (by norm_num)
+      have g298 : 3 ^ 603053092531825612406111703424 % 275595263287044304869593048464769 = 13240608465629371487623871239078 :=
+        Pratt.sq_of g297 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464769 : ℕ) - 1 = 275595263287044304869593048464768 by norm_num, show 275595263287044304869593048464768 / 457 = 603053092531825612406111703424 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g298 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq3 | hqd
+    . have hqe : q = 95813 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 95813)).mp (hq.dvd_of_dvd_pow hq3)
+      subst hqe
+      have g30 : 3 ^ 1 % 275595263287044304869593048464769 = 3 := by norm_num
+      have g31 : 3 ^ 2 % 275595263287044304869593048464769 = 9 :=
+        Pratt.sq_of g30 (by norm_num) (by norm_num)
+      have g32 : 3 ^ 4 % 275595263287044304869593048464769 = 81 :=
+        Pratt.sq_of g31 (by norm_num) (by norm_num)
+      have g33 : 3 ^ 9 % 275595263287044304869593048464769 = 19683 :=
+        Pratt.sq_mul_of g32 (by norm_num) (by norm_num)
+      have g34 : 3 ^ 18 % 275595263287044304869593048464769 = 387420489 :=
+        Pratt.sq_of g33 (by norm_num) (by norm_num)
+      have g35 : 3 ^ 37 % 275595263287044304869593048464769 = 450283905890997363 :=
+        Pratt.sq_mul_of g34 (by norm_num) (by norm_num)
+      have g36 : 3 ^ 74 % 275595263287044304869593048464769 = 193077388475005627410440251348554 :=
+        Pratt.sq_of g35 (by norm_num) (by norm_num)
+      have g37 : 3 ^ 148 % 275595263287044304869593048464769 = 127348689123441114081780031918926 :=
+        Pratt.sq_of g36 (by norm_num) (by norm_num)
+      have g38 : 3 ^ 297 % 275595263287044304869593048464769 = 78501974028019283806963042056652 :=
+        Pratt.sq_mul_of g37 (by norm_num) (by norm_num)
+      have g39 : 3 ^ 594 % 275595263287044304869593048464769 = 273852394874383594667736292393988 :=
+        Pratt.sq_of g38 (by norm_num) (by norm_num)
+      have g310 : 3 ^ 1189 % 275595263287044304869593048464769 = 202664330617591447369349533757899 :=
+        Pratt.sq_mul_of g39 (by norm_num) (by norm_num)
+      have g311 : 3 ^ 2379 % 275595263287044304869593048464769 = 28082126153295478201446784910669 :=
+        Pratt.sq_mul_of g310 (by norm_num) (by norm_num)
+      have g312 : 3 ^ 4758 % 275595263287044304869593048464769 = 148467794267030136838272874536520 :=
+        Pratt.sq_of g311 (by norm_num) (by norm_num)
+      have g313 : 3 ^ 9517 % 275595263287044304869593048464769 = 167653023550010718023800058403479 :=
+        Pratt.sq_mul_of g312 (by norm_num) (by norm_num)
+      have g314 : 3 ^ 19034 % 275595263287044304869593048464769 = 108498672750263054685573747195289 :=
+        Pratt.sq_of g313 (by norm_num) (by norm_num)
+      have g315 : 3 ^ 38068 % 275595263287044304869593048464769 = 191887090104426286321279097286171 :=
+        Pratt.sq_of g314 (by norm_num) (by norm_num)
+      have g316 : 3 ^ 76137 % 275595263287044304869593048464769 = 212249140237773913820363246835198 :=
+        Pratt.sq_mul_of g315 (by norm_num) (by norm_num)
+      have g317 : 3 ^ 152274 % 275595263287044304869593048464769 = 254219983396718713135924646772335 :=
+        Pratt.sq_of g316 (by norm_num) (by norm_num)
+      have g318 : 3 ^ 304549 % 275595263287044304869593048464769 = 50408274636878204418367375644233 :=
+        Pratt.sq_mul_of g317 (by norm_num) (by norm_num)
+      have g319 : 3 ^ 609098 % 275595263287044304869593048464769 = 169993270161642673601590908249108 :=
+        Pratt.sq_of g318 (by norm_num) (by norm_num)
+      have g320 : 3 ^ 1218197 % 275595263287044304869593048464769 = 12929604186096291406533996461318 :=
+        Pratt.sq_mul_of g319 (by norm_num) (by norm_num)
+      have g321 : 3 ^ 2436394 % 275595263287044304869593048464769 = 163563060904694262327315781989579 :=
+        Pratt.sq_of g320 (by norm_num) (by norm_num)
+      have g322 : 3 ^ 4872789 % 275595263287044304869593048464769 = 36152439336477406411353019244106 :=
+        Pratt.sq_mul_of g321 (by norm_num) (by norm_num)
+      have g323 : 3 ^ 9745578 % 275595263287044304869593048464769 = 195864700037606244507659885360514 :=
+        Pratt.sq_of g322 (by norm_num) (by norm_num)
+      have g324 : 3 ^ 19491156 % 275595263287044304869593048464769 = 164153513330279453430838144427269 :=
+        Pratt.sq_of g323 (by norm_num) (by norm_num)
+      have g325 : 3 ^ 38982312 % 275595263287044304869593048464769 = 136633687805680546925251859225121 :=
+        Pratt.sq_of g324 (by norm_num) (by norm_num)
+      have g326 : 3 ^ 77964624 % 275595263287044304869593048464769 = 113495962565938853404661250142489 :=
+        Pratt.sq_of g325 (by norm_num) (by norm_num)
+      have g327 : 3 ^ 155929249 % 275595263287044304869593048464769 = 58780151050369106411477023293258 :=
+        Pratt.sq_mul_of g326 (by norm_num) (by norm_num)
+      have g328 : 3 ^ 311858498 % 275595263287044304869593048464769 = 8995350950044188506594652203019 :=
+        Pratt.sq_of g327 (by norm_num) (by norm_num)
+      have g329 : 3 ^ 623716997 % 275595263287044304869593048464769 = 61905779969345950943393750041321 :=
+        Pratt.sq_mul_of g328 (by norm_num) (by norm_num)
+      have g330 : 3 ^ 1247433994 % 275595263287044304869593048464769 = 163512865693748446430421720593365 :=
+        Pratt.sq_of g329 (by norm_num) (by norm_num)
+      have g331 : 3 ^ 2494867988 % 275595263287044304869593048464769 = 13088986772463727401322518624208 :=
+        Pratt.sq_of g330 (by norm_num) (by norm_num)
+      have g332 : 3 ^ 4989735976 % 275595263287044304869593048464769 = 185463786600473704096602161873029 :=
+        Pratt.sq_of g331 (by norm_num) (by norm_num)
+      have g333 : 3 ^ 9979471952 % 275595263287044304869593048464769 = 154669507798407531279309244788263 :=
+        Pratt.sq_of g332 (by norm_num) (by norm_num)
+      have g334 : 3 ^ 19958943904 % 275595263287044304869593048464769 = 139099515138174455871566977734130 :=
+        Pratt.sq_of g333 (by norm_num) (by norm_num)
+      have g335 : 3 ^ 39917887809 % 275595263287044304869593048464769 = 194112045687308108644399523925655 :=
+        Pratt.sq_mul_of g334 (by norm_num) (by norm_num)
+      have g336 : 3 ^ 79835775619 % 275595263287044304869593048464769 = 20264921540336760683130311144659 :=
+        Pratt.sq_mul_of g335 (by norm_num) (by norm_num)
+      have g337 : 3 ^ 159671551239 % 275595263287044304869593048464769 = 97541880457646055792128793563581 :=
+        Pratt.sq_mul_of g336 (by norm_num) (by norm_num)
+      have g338 : 3 ^ 319343102479 % 275595263287044304869593048464769 = 213553017273996345432094646138589 :=
+        Pratt.sq_mul_of g337 (by norm_num) (by norm_num)
+      have g339 : 3 ^ 638686204959 % 275595263287044304869593048464769 = 71583462445055695943372814219990 :=
+        Pratt.sq_mul_of g338 (by norm_num) (by norm_num)
+      have g340 : 3 ^ 1277372409918 % 275595263287044304869593048464769 = 10604759440859993299596808934713 :=
+        Pratt.sq_of g339 (by norm_num) (by norm_num)
+      have g341 : 3 ^ 2554744819837 % 275595263287044304869593048464769 = 108649735872831505661370121807778 :=
+        Pratt.sq_mul_of g340 (by norm_num) (by norm_num)
+      have g342 : 3 ^ 5109489639675 % 275595263287044304869593048464769 = 25284056271455932191796586185359 :=
+        Pratt.sq_mul_of g341 (by norm_num) (by norm_num)
+      have g343 : 3 ^ 10218979279351 % 275595263287044304869593048464769 = 195861619065334506322136684306250 :=
+        Pratt.sq_mul_of g342 (by norm_num) (by norm_num)
+      have g344 : 3 ^ 20437958558703 % 275595263287044304869593048464769 = 28578420969372200594876025602744 :=
+        Pratt.sq_mul_of g343 (by norm_num) (by norm_num)
+      have g345 : 3 ^ 40875917117406 % 275595263287044304869593048464769 = 197648110306275577441805637997701 :=
+        Pratt.sq_of g344 (by norm_num) (by norm_num)
+      have g346 : 3 ^ 81751834234812 % 275595263287044304869593048464769 = 159284132226848723839467147092363 :=
+        Pratt.sq_of g345 (by norm_num) (by norm_num)
+      have g347 : 3 ^ 163503668469624 % 275595263287044304869593048464769 = 217905545963420163340468757291397 :=
+        Pratt.sq_of g346 (by norm_num) (by norm_num)
+      have g348 : 3 ^ 327007336939248 % 275595263287044304869593048464769 = 186557424582060472016832646012707 :=
+        Pratt.sq_of g347 (by norm_num) (by norm_num)
+      have g349 : 3 ^ 654014673878497 % 275595263287044304869593048464769 = 3926748374523612049594918108353 :=
+        Pratt.sq_mul_of g348 (by norm_num) (by norm_num)
+      have g350 : 3 ^ 1308029347756995 % 275595263287044304869593048464769 = 241984209584030701133812262513675 :=
+        Pratt.sq_mul_of g349 (by norm_num) (by norm_num)
+      have g351 : 3 ^ 2616058695513990 % 275595263287044304869593048464769 = 126485299660888122651913170119235 :=
+        Pratt.sq_of g350 (by norm_num) (by norm_num)
+      have g352 : 3 ^ 5232117391027981 % 275595263287044304869593048464769 = 272305978336761285830235485993721 :=
+        Pratt.sq_mul_of g351 (by norm_num) (by norm_num)
+      have g353 : 3 ^ 10464234782055963 % 275595263287044304869593048464769 = 101486636906665905855438367567807 :=
+        Pratt.sq_mul_of g352 (by norm_num) (by norm_num)
+      have g354 : 3 ^ 20928469564111926 % 275595263287044304869593048464769 = 218382611975351126667946680043027 :=
+        Pratt.sq_of g353 (by norm_num) (by norm_num)
+      have g355 : 3 ^ 41856939128223852 % 275595263287044304869593048464769 = 26650076457481141318539026535307 :=
+        Pratt.sq_of g354 (by norm_num) (by norm_num)
+      have g356 : 3 ^ 83713878256447704 % 275595263287044304869593048464769 = 712108812059179137633527690355 :=
+        Pratt.sq_of g355 (by norm_num) (by norm_num)
+      have g357 : 3 ^ 167427756512895409 % 275595263287044304869593048464769 = 254920252155888115634167493792822 :=
+        Pratt.sq_mul_of g356 (by norm_num) (by norm_num)
+      have g358 : 3 ^ 334855513025790819 % 275595263287044304869593048464769 = 84024852630001531177419392133312 :=
+        Pratt.sq_mul_of g357 (by norm_num) (by norm_num)
+      have g359 : 3 ^ 669711026051581639 % 275595263287044304869593048464769 = 102895102897535157131148593106015 :=
+        Pratt.sq_mul_of g358 (by norm_num) (by norm_num)
+      have g360 : 3 ^ 1339422052103163278 % 275595263287044304869593048464769 = 63456087905138430609640628074695 :=
+        Pratt.sq_of g359 (by norm_num) (by norm_num)
+      have g361 : 3 ^ 2678844104206326557 % 275595263287044304869593048464769 = 73746295546565941015653417692454 :=
+        Pratt.sq_mul_of g360 (by norm_num) (by norm_num)
+      have g362 : 3 ^ 5357688208412653114 % 275595263287044304869593048464769 = 162409748112276396039904499439947 :=
+        Pratt.sq_of g361 (by norm_num) (by norm_num)
+      have g363 : 3 ^ 10715376416825306228 % 275595263287044304869593048464769 = 142664298524062893853996531450931 :=
+        Pratt.sq_of g362 (by norm_num) (by norm_num)
+      have g364 : 3 ^ 21430752833650612457 % 275595263287044304869593048464769 = 178555362422670136960786078106821 :=
+        Pratt.sq_mul_of g363 (by norm_num) (by norm_num)
+      have g365 : 3 ^ 42861505667301224915 % 275595263287044304869593048464769 = 13352341080232485021690111655218 :=
+        Pratt.sq_mul_of g364 (by norm_num) (by norm_num)
+      have g366 : 3 ^ 85723011334602449830 % 275595263287044304869593048464769 = 108077924210349499835807459559156 :=
+        Pratt.sq_of g365 (by norm_num) (by norm_num)
+      have g367 : 3 ^ 171446022669204899660 % 275595263287044304869593048464769 = 115742574004772046801694558237587 :=
+        Pratt.sq_of g366 (by norm_num) (by norm_num)
+      have g368 : 3 ^ 342892045338409799320 % 275595263287044304869593048464769 = 65319054793359416568704061540484 :=
+        Pratt.sq_of g367 (by norm_num) (by norm_num)
+      have g369 : 3 ^ 685784090676819598641 % 275595263287044304869593048464769 = 140092014167650753135806894766058 :=
+        Pratt.sq_mul_of g368 (by norm_num) (by norm_num)
+      have g370 : 3 ^ 1371568181353639197283 % 275595263287044304869593048464769 = 145384286303550536797573274768079 :=
+        Pratt.sq_mul_of g369 (by norm_num) (by norm_num)
+      have g371 : 3 ^ 2743136362707278394566 % 275595263287044304869593048464769 = 18077333279115082788863078448033 :=
+        Pratt.sq_of g370 (by norm_num) (by norm_num)
+      have g372 : 3 ^ 5486272725414556789132 % 275595263287044304869593048464769 = 57184920030571837525792060120168 :=
+        Pratt.sq_of g371 (by norm_num) (by norm_num)
+      have g373 : 3 ^ 10972545450829113578264 % 275595263287044304869593048464769 = 39501110569787046771170140660993 :=
+        Pratt.sq_of g372 (by norm_num) (by norm_num)
+      have g374 : 3 ^ 21945090901658227156529 % 275595263287044304869593048464769 = 13141177360611199866587540455070 :=
+        Pratt.sq_mul_of g373 (by norm_num) (by norm_num)
+      have g375 : 3 ^ 43890181803316454313058 % 275595263287044304869593048464769 = 93563129877822331788466360076400 :=
+        Pratt.sq_of g374 (by norm_num) (by norm_num)
+      have g376 : 3 ^ 87780363606632908626116 % 275595263287044304869593048464769 = 267446321070439286467277796864482 :=
+        Pratt.sq_of g375 (by norm_num) (by norm_num)
+      have g377 : 3 ^ 175560727213265817252233 % 275595263287044304869593048464769 = 183035990929585321147244247632081 :=
+        Pratt.sq_mul_of g376 (by norm_num) (by norm_num)
+      have g378 : 3 ^ 351121454426531634504466 % 275595263287044304869593048464769 = 95683418893528290545912442434168 :=
+        Pratt.sq_of g377 (by norm_num) (by norm_num)
+      have g379 : 3 ^ 702242908853063269008933 % 275595263287044304869593048464769 = 150590328141632235464064180420094 :=
+        Pratt.sq_mul_of g378 (by norm_num) (by norm_num)
+      have g380 : 3 ^ 1404485817706126538017867 % 275595263287044304869593048464769 = 18620109591359289059001135222611 :=
+        Pratt.sq_mul_of g379 (by norm_num) (by norm_num)
+      have g381 : 3 ^ 2808971635412253076035735 % 275595263287044304869593048464769 = 261599095988424137606497792028975 :=
+        Pratt.sq_mul_of g380 (by norm_num) (by norm_num)
+      have g382 : 3 ^ 5617943270824506152071471 % 275595263287044304869593048464769 = 123320191518722706283393797185400 :=
+        Pratt.sq_mul_of g381 (by norm_num) (by norm_num)
+      have g383 : 3 ^ 11235886541649012304142943 % 275595263287044304869593048464769 = 191173270884951335505626235676888 :=
+        Pratt.sq_mul_of g382 (by norm_num) (by norm_num)
+      have g384 : 3 ^ 22471773083298024608285887 % 275595263287044304869593048464769 = 79742485146576124596592629557854 :=
+        Pratt.sq_mul_of g383 (by norm_num) (by norm_num)
+      have g385 : 3 ^ 44943546166596049216571774 % 275595263287044304869593048464769 = 81050829880407800459650130828596 :=
+        Pratt.sq_of g384 (by norm_num) (by norm_num)
+      have g386 : 3 ^ 89887092333192098433143548 % 275595263287044304869593048464769 = 240157220836435567391998600653809 :=
+        Pratt.sq_of g385 (by norm_num) (by norm_num)
+      have g387 : 3 ^ 179774184666384196866287096 % 275595263287044304869593048464769 = 147486985777802685455276885091235 :=
+        Pratt.sq_of g386 (by norm_num) (by norm_num)
+      have g388 : 3 ^ 359548369332768393732574192 % 275595263287044304869593048464769 = 144967756542167150846330625160521 :=
+        Pratt.sq_of g387 (by norm_num) (by norm_num)
+      have g389 : 3 ^ 719096738665536787465148384 % 275595263287044304869593048464769 = 111032146318910856979875036528708 :=
+        Pratt.sq_of g388 (by norm_num) (by norm_num)
+      have g390 : 3 ^ 1438193477331073574930296768 % 275595263287044304869593048464769 = 83504508021823401309183449110630 :=
+        Pratt.sq_of g389 (by norm_num) (by norm_num)
+      have g391 : 3 ^ 2876386954662147149860593536 % 275595263287044304869593048464769 = 63218182526120949229932408883200 :=
+        Pratt.sq_of g390 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464769 : ℕ) - 1 = 275595263287044304869593048464768 by norm_num, show 275595263287044304869593048464768 / 95813 = 2876386954662147149860593536 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g391 (by norm_num)
+    have hqe : q = 733915969930370835373 :=
+      (Nat.prime_dvd_prime_iff_eq hq prime_733915969930370835373).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g40 : 3 ^ 1 % 275595263287044304869593048464769 = 3 := by norm_num
+    have g41 : 3 ^ 2 % 275595263287044304869593048464769 = 9 :=
+      Pratt.sq_of g40 (by norm_num) (by norm_num)
+    have g42 : 3 ^ 5 % 275595263287044304869593048464769 = 243 :=
+      Pratt.sq_mul_of g41 (by norm_num) (by norm_num)
+    have g43 : 3 ^ 10 % 275595263287044304869593048464769 = 59049 :=
+      Pratt.sq_of g42 (by norm_num) (by norm_num)
+    have g44 : 3 ^ 21 % 275595263287044304869593048464769 = 10460353203 :=
+      Pratt.sq_mul_of g43 (by norm_num) (by norm_num)
+    have g45 : 3 ^ 43 % 275595263287044304869593048464769 = 328256967394537077627 :=
+      Pratt.sq_mul_of g44 (by norm_num) (by norm_num)
+    have g46 : 3 ^ 87 % 275595263287044304869593048464769 = 213920855825364279029402814600547 :=
+      Pratt.sq_mul_of g45 (by norm_num) (by norm_num)
+    have g47 : 3 ^ 174 % 275595263287044304869593048464769 = 188573332462480984440910000726151 :=
+      Pratt.sq_of g46 (by norm_num) (by norm_num)
+    have g48 : 3 ^ 349 % 275595263287044304869593048464769 = 70950886574728235691457015312999 :=
+      Pratt.sq_mul_of g47 (by norm_num) (by norm_num)
+    have g49 : 3 ^ 699 % 275595263287044304869593048464769 = 170741374871264527123798200111813 :=
+      Pratt.sq_mul_of g48 (by norm_num) (by norm_num)
+    have g410 : 3 ^ 1398 % 275595263287044304869593048464769 = 187176552874765556296054733317410 :=
+      Pratt.sq_of g49 (by norm_num) (by norm_num)
+    have g411 : 3 ^ 2797 % 275595263287044304869593048464769 = 37780058977267817786050225540463 :=
+      Pratt.sq_mul_of g410 (by norm_num) (by norm_num)
+    have g412 : 3 ^ 5595 % 275595263287044304869593048464769 = 228906272534425972144652423685129 :=
+      Pratt.sq_mul_of g411 (by norm_num) (by norm_num)
+    have g413 : 3 ^ 11191 % 275595263287044304869593048464769 = 53946794163601024710243740975365 :=
+      Pratt.sq_mul_of g412 (by norm_num) (by norm_num)
+    have g414 : 3 ^ 22382 % 275595263287044304869593048464769 = 46798422266473043175813442520252 :=
+      Pratt.sq_of g413 (by norm_num) (by norm_num)
+    have g415 : 3 ^ 44764 % 275595263287044304869593048464769 = 269334215355706772913121657182085 :=
+      Pratt.sq_of g414 (by norm_num) (by norm_num)
+    have g416 : 3 ^ 89529 % 275595263287044304869593048464769 = 236045528515926835115966161185064 :=
+      Pratt.sq_mul_of g415 (by norm_num) (by norm_num)
+    have g417 : 3 ^ 179058 % 275595263287044304869593048464769 = 134284069288517625178251246855377 :=
+      Pratt.sq_of g416 (by norm_num) (by norm_num)
+    have g418 : 3 ^ 358117 % 275595263287044304869593048464769 = 236535408055587946908387310092250 :=
+      Pratt.sq_mul_of g417 (by norm_num) (by norm_num)
+    have g419 : 3 ^ 716234 % 275595263287044304869593048464769 = 39904445807021606798037962803898 :=
+      Pratt.sq_of g418 (by norm_num) (by norm_num)
+    have g420 : 3 ^ 1432469 % 275595263287044304869593048464769 = 173901848232058892526739054255530 :=
+      Pratt.sq_mul_of g419 (by norm_num) (by norm_num)
+    have g421 : 3 ^ 2864939 % 275595263287044304869593048464769 = 78718192872029960861245316598957 :=
+      Pratt.sq_mul_of g420 (by norm_num) (by norm_num)
+    have g422 : 3 ^ 5729879 % 275595263287044304869593048464769 = 99261058834122479081574297811327 :=
+      Pratt.sq_mul_of g421 (by norm_num) (by norm_num)
+    have g423 : 3 ^ 11459758 % 275595263287044304869593048464769 = 68353064678140991524231511845599 :=
+      Pratt.sq_of g422 (by norm_num) (by norm_num)
+    have g424 : 3 ^ 22919517 % 275595263287044304869593048464769 = 34068038021144822004275235761932 :=
+      Pratt.sq_mul_of g423 (by norm_num) (by norm_num)
+    have g425 : 3 ^ 45839035 % 275595263287044304869593048464769 = 132850908513529833105371081442621 :=
+      Pratt.sq_mul_of g424 (by norm_num) (by norm_num)
+    have g426 : 3 ^ 91678070 % 275595263287044304869593048464769 = 111591670798273213359332808174663 :=
+      Pratt.sq_of g425 (by norm_num) (by norm_num)
+    have g427 : 3 ^ 183356140 % 275595263287044304869593048464769 = 185668718755015979741553471751299 :=
+      Pratt.sq_of g426 (by norm_num) (by norm_num)
+    have g428 : 3 ^ 366712280 % 275595263287044304869593048464769 = 181039955661915139193368744948514 :=
+      Pratt.sq_of g427 (by norm_num) (by norm_num)
+    have g429 : 3 ^ 733424561 % 275595263287044304869593048464769 = 81906234810966842799348925151351 :=
+      Pratt.sq_mul_of g428 (by norm_num) (by norm_num)
+    have g430 : 3 ^ 1466849123 % 275595263287044304869593048464769 = 202819957264745339280028025348630 :=
+      Pratt.sq_mul_of g429 (by norm_num) (by norm_num)
+    have g431 : 3 ^ 2933698247 % 275595263287044304869593048464769 = 79217974381756073752633354763719 :=
+      Pratt.sq_mul_of g430 (by norm_num) (by norm_num)
+    have g432 : 3 ^ 5867396494 % 275595263287044304869593048464769 = 38792060709949567103431045401282 :=
+      Pratt.sq_of g431 (by norm_num) (by norm_num)
+    have g433 : 3 ^ 11734792988 % 275595263287044304869593048464769 = 155883802446078814861048661960767 :=
+      Pratt.sq_of g432 (by norm_num) (by norm_num)
+    have g434 : 3 ^ 23469585976 % 275595263287044304869593048464769 = 204379518303608132426375790810611 :=
+      Pratt.sq_of g433 (by norm_num) (by norm_num)
+    have g435 : 3 ^ 46939171952 % 275595263287044304869593048464769 = 74156603553080426783106336987275 :=
+      Pratt.sq_of g434 (by norm_num) (by norm_num)
+    have g436 : 3 ^ 93878343904 % 275595263287044304869593048464769 = 224847298292452045628926716049658 :=
+      Pratt.sq_of g435 (by norm_num) (by norm_num)
+    have g437 : 3 ^ 187756687808 % 275595263287044304869593048464769 = 15492287882489096045974880996839 :=
+      Pratt.sq_of g436 (by norm_num) (by norm_num)
+    have g438 : 3 ^ 375513375616 % 275595263287044304869593048464769 = 130003498823395282250342851055407 :=
+      Pratt.sq_of g437 (by norm_num) (by norm_num)
+    rw [show (275595263287044304869593048464769 : ℕ) - 1 = 275595263287044304869593048464768 by norm_num, show 275595263287044304869593048464768 / 733915969930370835373 = 375513375616 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g438 (by norm_num)
+
+/-- `4680807713` is prime, by a Lucas certificate with witness 3. -/
+theorem prime_4680807713 : Nat.Prime 4680807713 := by
+  refine lucas_primality 4680807713 ((3 : ℕ) : ZMod 4680807713) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 3 ^ 1 % 4680807713 = 3 := by norm_num
+    have h1 : 3 ^ 2 % 4680807713 = 9 :=
+      Pratt.sq_of h0 (by norm_num) (by norm_num)
+    have h2 : 3 ^ 4 % 4680807713 = 81 :=
+      Pratt.sq_of h1 (by norm_num) (by norm_num)
+    have h3 : 3 ^ 8 % 4680807713 = 6561 :=
+      Pratt.sq_of h2 (by norm_num) (by norm_num)
+    have h4 : 3 ^ 17 % 4680807713 = 129140163 :=
+      Pratt.sq_mul_of h3 (by norm_num) (by norm_num)
+    have h5 : 3 ^ 34 % 4680807713 = 2111134564 :=
+      Pratt.sq_of h4 (by norm_num) (by norm_num)
+    have h6 : 3 ^ 69 % 4680807713 = 2399636150 :=
+      Pratt.sq_mul_of h5 (by norm_num) (by norm_num)
+    have h7 : 3 ^ 139 % 4680807713 = 4344752304 :=
+      Pratt.sq_mul_of h6 (by norm_num) (by norm_num)
+    have h8 : 3 ^ 278 % 4680807713 = 3412416684 :=
+      Pratt.sq_of h7 (by norm_num) (by norm_num)
+    have h9 : 3 ^ 557 % 4680807713 = 4021442237 :=
+      Pratt.sq_mul_of h8 (by norm_num) (by norm_num)
+    have h10 : 3 ^ 1115 % 4680807713 = 1720482625 :=
+      Pratt.sq_mul_of h9 (by norm_num) (by norm_num)
+    have h11 : 3 ^ 2231 % 4680807713 = 1900086885 :=
+      Pratt.sq_mul_of h10 (by norm_num) (by norm_num)
+    have h12 : 3 ^ 4463 % 4680807713 = 1776117634 :=
+      Pratt.sq_mul_of h11 (by norm_num) (by norm_num)
+    have h13 : 3 ^ 8927 % 4680807713 = 1107900355 :=
+      Pratt.sq_mul_of h12 (by norm_num) (by norm_num)
+    have h14 : 3 ^ 17855 % 4680807713 = 160974518 :=
+      Pratt.sq_mul_of h13 (by norm_num) (by norm_num)
+    have h15 : 3 ^ 35711 % 4680807713 = 4600071985 :=
+      Pratt.sq_mul_of h14 (by norm_num) (by norm_num)
+    have h16 : 3 ^ 71423 % 4680807713 = 1665663215 :=
+      Pratt.sq_mul_of h15 (by norm_num) (by norm_num)
+    have h17 : 3 ^ 142846 % 4680807713 = 3498201541 :=
+      Pratt.sq_of h16 (by norm_num) (by norm_num)
+    have h18 : 3 ^ 285693 % 4680807713 = 1739567014 :=
+      Pratt.sq_mul_of h17 (by norm_num) (by norm_num)
+    have h19 : 3 ^ 571387 % 4680807713 = 2765121811 :=
+      Pratt.sq_mul_of h18 (by norm_num) (by norm_num)
+    have h20 : 3 ^ 1142775 % 4680807713 = 3741344864 :=
+      Pratt.sq_mul_of h19 (by norm_num) (by norm_num)
+    have h21 : 3 ^ 2285550 % 4680807713 = 2078055434 :=
+      Pratt.sq_of h20 (by norm_num) (by norm_num)
+    have h22 : 3 ^ 4571101 % 4680807713 = 808175528 :=
+      Pratt.sq_mul_of h21 (by norm_num) (by norm_num)
+    have h23 : 3 ^ 9142202 % 4680807713 = 2055805140 :=
+      Pratt.sq_of h22 (by norm_num) (by norm_num)
+    have h24 : 3 ^ 18284405 % 4680807713 = 4572214681 :=
+      Pratt.sq_mul_of h23 (by norm_num) (by norm_num)
+    have h25 : 3 ^ 36568810 % 4680807713 = 3473053290 :=
+      Pratt.sq_of h24 (by norm_num) (by norm_num)
+    have h26 : 3 ^ 73137620 % 4680807713 = 289298929 :=
+      Pratt.sq_of h25 (by norm_num) (by norm_num)
+    have h27 : 3 ^ 146275241 % 4680807713 = 584038256 :=
+      Pratt.sq_mul_of h26 (by norm_num) (by norm_num)
+    have h28 : 3 ^ 292550482 % 4680807713 = 3541166344 :=
+      Pratt.sq_of h27 (by norm_num) (by norm_num)
+    have h29 : 3 ^ 585100964 % 4680807713 = 2308974384 :=
+      Pratt.sq_of h28 (by norm_num) (by norm_num)
+    have h30 : 3 ^ 1170201928 % 4680807713 = 996521086 :=
+      Pratt.sq_of h29 (by norm_num) (by norm_num)
+    have h31 : 3 ^ 2340403856 % 4680807713 = 4680807712 :=
+      Pratt.sq_of h30 (by norm_num) (by norm_num)
+    have h32 : 3 ^ 4680807712 % 4680807713 = 1 :=
+      Pratt.sq_of h31 (by norm_num) (by norm_num)
+    rw [show (4680807713 : ℕ) - 1 = 4680807712 by norm_num, h32]
+  · intro q hq hqd
+    have hfac : 4680807713 - 1 = 2 ^ 5 * (7 ^ 2 * (2985209 ^ 1)) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 3 ^ 1 % 4680807713 = 3 := by norm_num
+      have g01 : 3 ^ 2 % 4680807713 = 9 :=
+        Pratt.sq_of g00 (by norm_num) (by norm_num)
+      have g02 : 3 ^ 4 % 4680807713 = 81 :=
+        Pratt.sq_of g01 (by norm_num) (by norm_num)
+      have g03 : 3 ^ 8 % 4680807713 = 6561 :=
+        Pratt.sq_of g02 (by norm_num) (by norm_num)
+      have g04 : 3 ^ 17 % 4680807713 = 129140163 :=
+        Pratt.sq_mul_of g03 (by norm_num) (by norm_num)
+      have g05 : 3 ^ 34 % 4680807713 = 2111134564 :=
+        Pratt.sq_of g04 (by norm_num) (by norm_num)
+      have g06 : 3 ^ 69 % 4680807713 = 2399636150 :=
+        Pratt.sq_mul_of g05 (by norm_num) (by norm_num)
+      have g07 : 3 ^ 139 % 4680807713 = 4344752304 :=
+        Pratt.sq_mul_of g06 (by norm_num) (by norm_num)
+      have g08 : 3 ^ 278 % 4680807713 = 3412416684 :=
+        Pratt.sq_of g07 (by norm_num) (by norm_num)
+      have g09 : 3 ^ 557 % 4680807713 = 4021442237 :=
+        Pratt.sq_mul_of g08 (by norm_num) (by norm_num)
+      have g010 : 3 ^ 1115 % 4680807713 = 1720482625 :=
+        Pratt.sq_mul_of g09 (by norm_num) (by norm_num)
+      have g011 : 3 ^ 2231 % 4680807713 = 1900086885 :=
+        Pratt.sq_mul_of g010 (by norm_num) (by norm_num)
+      have g012 : 3 ^ 4463 % 4680807713 = 1776117634 :=
+        Pratt.sq_mul_of g011 (by norm_num) (by norm_num)
+      have g013 : 3 ^ 8927 % 4680807713 = 1107900355 :=
+        Pratt.sq_mul_of g012 (by norm_num) (by norm_num)
+      have g014 : 3 ^ 17855 % 4680807713 = 160974518 :=
+        Pratt.sq_mul_of g013 (by norm_num) (by norm_num)
+      have g015 : 3 ^ 35711 % 4680807713 = 4600071985 :=
+        Pratt.sq_mul_of g014 (by norm_num) (by norm_num)
+      have g016 : 3 ^ 71423 % 4680807713 = 1665663215 :=
+        Pratt.sq_mul_of g015 (by norm_num) (by norm_num)
+      have g017 : 3 ^ 142846 % 4680807713 = 3498201541 :=
+        Pratt.sq_of g016 (by norm_num) (by norm_num)
+      have g018 : 3 ^ 285693 % 4680807713 = 1739567014 :=
+        Pratt.sq_mul_of g017 (by norm_num) (by norm_num)
+      have g019 : 3 ^ 571387 % 4680807713 = 2765121811 :=
+        Pratt.sq_mul_of g018 (by norm_num) (by norm_num)
+      have g020 : 3 ^ 1142775 % 4680807713 = 3741344864 :=
+        Pratt.sq_mul_of g019 (by norm_num) (by norm_num)
+      have g021 : 3 ^ 2285550 % 4680807713 = 2078055434 :=
+        Pratt.sq_of g020 (by norm_num) (by norm_num)
+      have g022 : 3 ^ 4571101 % 4680807713 = 808175528 :=
+        Pratt.sq_mul_of g021 (by norm_num) (by norm_num)
+      have g023 : 3 ^ 9142202 % 4680807713 = 2055805140 :=
+        Pratt.sq_of g022 (by norm_num) (by norm_num)
+      have g024 : 3 ^ 18284405 % 4680807713 = 4572214681 :=
+        Pratt.sq_mul_of g023 (by norm_num) (by norm_num)
+      have g025 : 3 ^ 36568810 % 4680807713 = 3473053290 :=
+        Pratt.sq_of g024 (by norm_num) (by norm_num)
+      have g026 : 3 ^ 73137620 % 4680807713 = 289298929 :=
+        Pratt.sq_of g025 (by norm_num) (by norm_num)
+      have g027 : 3 ^ 146275241 % 4680807713 = 584038256 :=
+        Pratt.sq_mul_of g026 (by norm_num) (by norm_num)
+      have g028 : 3 ^ 292550482 % 4680807713 = 3541166344 :=
+        Pratt.sq_of g027 (by norm_num) (by norm_num)
+      have g029 : 3 ^ 585100964 % 4680807713 = 2308974384 :=
+        Pratt.sq_of g028 (by norm_num) (by norm_num)
+      have g030 : 3 ^ 1170201928 % 4680807713 = 996521086 :=
+        Pratt.sq_of g029 (by norm_num) (by norm_num)
+      have g031 : 3 ^ 2340403856 % 4680807713 = 4680807712 :=
+        Pratt.sq_of g030 (by norm_num) (by norm_num)
+      rw [show (4680807713 : ℕ) - 1 = 4680807712 by norm_num, show 4680807712 / 2 = 2340403856 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g031 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 7 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 7)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 3 ^ 1 % 4680807713 = 3 := by norm_num
+      have g11 : 3 ^ 2 % 4680807713 = 9 :=
+        Pratt.sq_of g10 (by norm_num) (by norm_num)
+      have g12 : 3 ^ 4 % 4680807713 = 81 :=
+        Pratt.sq_of g11 (by norm_num) (by norm_num)
+      have g13 : 3 ^ 9 % 4680807713 = 19683 :=
+        Pratt.sq_mul_of g12 (by norm_num) (by norm_num)
+      have g14 : 3 ^ 19 % 4680807713 = 1162261467 :=
+        Pratt.sq_mul_of g13 (by norm_num) (by norm_num)
+      have g15 : 3 ^ 39 % 4680807713 = 2797658335 :=
+        Pratt.sq_mul_of g14 (by norm_num) (by norm_num)
+      have g16 : 3 ^ 79 % 4680807713 = 3384741127 :=
+        Pratt.sq_mul_of g15 (by norm_num) (by norm_num)
+      have g17 : 3 ^ 159 % 4680807713 = 1446173012 :=
+        Pratt.sq_mul_of g16 (by norm_num) (by norm_num)
+      have g18 : 3 ^ 318 % 4680807713 = 1994459080 :=
+        Pratt.sq_of g17 (by norm_num) (by norm_num)
+      have g19 : 3 ^ 637 % 4680807713 = 846207876 :=
+        Pratt.sq_mul_of g18 (by norm_num) (by norm_num)
+      have g110 : 3 ^ 1275 % 4680807713 = 2305526319 :=
+        Pratt.sq_mul_of g19 (by norm_num) (by norm_num)
+      have g111 : 3 ^ 2550 % 4680807713 = 2505022964 :=
+        Pratt.sq_of g110 (by norm_num) (by norm_num)
+      have g112 : 3 ^ 5101 % 4680807713 = 1513675312 :=
+        Pratt.sq_mul_of g111 (by norm_num) (by norm_num)
+      have g113 : 3 ^ 10203 % 4680807713 = 4457723928 :=
+        Pratt.sq_mul_of g112 (by norm_num) (by norm_num)
+      have g114 : 3 ^ 20406 % 4680807713 = 4121271660 :=
+        Pratt.sq_of g113 (by norm_num) (by norm_num)
+      have g115 : 3 ^ 40813 % 4680807713 = 2939262786 :=
+        Pratt.sq_mul_of g114 (by norm_num) (by norm_num)
+      have g116 : 3 ^ 81626 % 4680807713 = 1961328605 :=
+        Pratt.sq_of g115 (by norm_num) (by norm_num)
+      have g117 : 3 ^ 163253 % 4680807713 = 1966264704 :=
+        Pratt.sq_mul_of g116 (by norm_num) (by norm_num)
+      have g118 : 3 ^ 326507 % 4680807713 = 1173539008 :=
+        Pratt.sq_mul_of g117 (by norm_num) (by norm_num)
+      have g119 : 3 ^ 653014 % 4680807713 = 167158151 :=
+        Pratt.sq_of g118 (by norm_num) (by norm_num)
+      have g120 : 3 ^ 1306028 % 4680807713 = 4524178664 :=
+        Pratt.sq_of g119 (by norm_num) (by norm_num)
+      have g121 : 3 ^ 2612057 % 4680807713 = 3698542366 :=
+        Pratt.sq_mul_of g120 (by norm_num) (by norm_num)
+      have g122 : 3 ^ 5224115 % 4680807713 = 3201688105 :=
+        Pratt.sq_mul_of g121 (by norm_num) (by norm_num)
+      have g123 : 3 ^ 10448231 % 4680807713 = 4477546869 :=
+        Pratt.sq_mul_of g122 (by norm_num) (by norm_num)
+      have g124 : 3 ^ 20896463 % 4680807713 = 2567280503 :=
+        Pratt.sq_mul_of g123 (by norm_num) (by norm_num)
+      have g125 : 3 ^ 41792926 % 4680807713 = 4013646530 :=
+        Pratt.sq_of g124 (by norm_num) (by norm_num)
+      have g126 : 3 ^ 83585852 % 4680807713 = 430839719 :=
+        Pratt.sq_of g125 (by norm_num) (by norm_num)
+      have g127 : 3 ^ 167171704 % 4680807713 = 3872036881 :=
+        Pratt.sq_of g126 (by norm_num) (by norm_num)
+      have g128 : 3 ^ 334343408 % 4680807713 = 1351174121 :=
+        Pratt.sq_of g127 (by norm_num) (by norm_num)
+      have g129 : 3 ^ 668686816 % 4680807713 = 3745853912 :=
+        Pratt.sq_of g128 (by norm_num) (by norm_num)
+      rw [show (4680807713 : ℕ) - 1 = 4680807712 by norm_num, show 4680807712 / 7 = 668686816 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g129 (by norm_num)
+    have hqe : q = 2985209 :=
+      (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2985209)).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g20 : 3 ^ 1 % 4680807713 = 3 := by norm_num
+    have g21 : 3 ^ 3 % 4680807713 = 27 :=
+      Pratt.sq_mul_of g20 (by norm_num) (by norm_num)
+    have g22 : 3 ^ 6 % 4680807713 = 729 :=
+      Pratt.sq_of g21 (by norm_num) (by norm_num)
+    have g23 : 3 ^ 12 % 4680807713 = 531441 :=
+      Pratt.sq_of g22 (by norm_num) (by norm_num)
+    have g24 : 3 ^ 24 % 4680807713 = 1581073701 :=
+      Pratt.sq_of g23 (by norm_num) (by norm_num)
+    have g25 : 3 ^ 49 % 4680807713 = 3861216219 :=
+      Pratt.sq_mul_of g24 (by norm_num) (by norm_num)
+    have g26 : 3 ^ 98 % 4680807713 = 4581923459 :=
+      Pratt.sq_of g25 (by norm_num) (by norm_num)
+    have g27 : 3 ^ 196 % 4680807713 = 716064628 :=
+      Pratt.sq_of g26 (by norm_num) (by norm_num)
+    have g28 : 3 ^ 392 % 4680807713 = 2369547634 :=
+      Pratt.sq_of g27 (by norm_num) (by norm_num)
+    have g29 : 3 ^ 784 % 4680807713 = 2633205163 :=
+      Pratt.sq_of g28 (by norm_num) (by norm_num)
+    have g210 : 3 ^ 1568 % 4680807713 = 1751563291 :=
+      Pratt.sq_of g29 (by norm_num) (by norm_num)
+    rw [show (4680807713 : ℕ) - 1 = 4680807712 by norm_num, show 4680807712 / 2985209 = 1568 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g210 (by norm_num)
+
+/-- `2463487181` is prime, by a Lucas certificate with witness 10. -/
+theorem prime_2463487181 : Nat.Prime 2463487181 := by
+  refine lucas_primality 2463487181 ((10 : ℕ) : ZMod 2463487181) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+    have h1 : 10 ^ 2 % 2463487181 = 100 :=
+      Pratt.sq_of h0 (by norm_num) (by norm_num)
+    have h2 : 10 ^ 4 % 2463487181 = 10000 :=
+      Pratt.sq_of h1 (by norm_num) (by norm_num)
+    have h3 : 10 ^ 9 % 2463487181 = 1000000000 :=
+      Pratt.sq_mul_of h2 (by norm_num) (by norm_num)
+    have h4 : 10 ^ 18 % 2463487181 = 1422723341 :=
+      Pratt.sq_of h3 (by norm_num) (by norm_num)
+    have h5 : 10 ^ 36 % 2463487181 = 1560413353 :=
+      Pratt.sq_of h4 (by norm_num) (by norm_num)
+    have h6 : 10 ^ 73 % 2463487181 = 357103139 :=
+      Pratt.sq_mul_of h5 (by norm_num) (by norm_num)
+    have h7 : 10 ^ 146 % 2463487181 = 1464418945 :=
+      Pratt.sq_of h6 (by norm_num) (by norm_num)
+    have h8 : 10 ^ 293 % 2463487181 = 307470954 :=
+      Pratt.sq_mul_of h7 (by norm_num) (by norm_num)
+    have h9 : 10 ^ 587 % 2463487181 = 1170502570 :=
+      Pratt.sq_mul_of h8 (by norm_num) (by norm_num)
+    have h10 : 10 ^ 1174 % 2463487181 = 2285398786 :=
+      Pratt.sq_of h9 (by norm_num) (by norm_num)
+    have h11 : 10 ^ 2349 % 2463487181 = 56047688 :=
+      Pratt.sq_mul_of h10 (by norm_num) (by norm_num)
+    have h12 : 10 ^ 4698 % 2463487181 = 552934203 :=
+      Pratt.sq_of h11 (by norm_num) (by norm_num)
+    have h13 : 10 ^ 9397 % 2463487181 = 1705703760 :=
+      Pratt.sq_mul_of h12 (by norm_num) (by norm_num)
+    have h14 : 10 ^ 18794 % 2463487181 = 2051467740 :=
+      Pratt.sq_of h13 (by norm_num) (by norm_num)
+    have h15 : 10 ^ 37589 % 2463487181 = 1887597432 :=
+      Pratt.sq_mul_of h14 (by norm_num) (by norm_num)
+    have h16 : 10 ^ 75179 % 2463487181 = 156798244 :=
+      Pratt.sq_mul_of h15 (by norm_num) (by norm_num)
+    have h17 : 10 ^ 150359 % 2463487181 = 476573286 :=
+      Pratt.sq_mul_of h16 (by norm_num) (by norm_num)
+    have h18 : 10 ^ 300718 % 2463487181 = 2030696093 :=
+      Pratt.sq_of h17 (by norm_num) (by norm_num)
+    have h19 : 10 ^ 601437 % 2463487181 = 221932253 :=
+      Pratt.sq_mul_of h18 (by norm_num) (by norm_num)
+    have h20 : 10 ^ 1202874 % 2463487181 = 1816332391 :=
+      Pratt.sq_of h19 (by norm_num) (by norm_num)
+    have h21 : 10 ^ 2405749 % 2463487181 = 274108896 :=
+      Pratt.sq_mul_of h20 (by norm_num) (by norm_num)
+    have h22 : 10 ^ 4811498 % 2463487181 = 377839229 :=
+      Pratt.sq_of h21 (by norm_num) (by norm_num)
+    have h23 : 10 ^ 9622996 % 2463487181 = 1220054661 :=
+      Pratt.sq_of h22 (by norm_num) (by norm_num)
+    have h24 : 10 ^ 19245993 % 2463487181 = 382541168 :=
+      Pratt.sq_mul_of h23 (by norm_num) (by norm_num)
+    have h25 : 10 ^ 38491987 % 2463487181 = 834822182 :=
+      Pratt.sq_mul_of h24 (by norm_num) (by norm_num)
+    have h26 : 10 ^ 76983974 % 2463487181 = 1466131359 :=
+      Pratt.sq_of h25 (by norm_num) (by norm_num)
+    have h27 : 10 ^ 153967948 % 2463487181 = 1337416142 :=
+      Pratt.sq_of h26 (by norm_num) (by norm_num)
+    have h28 : 10 ^ 307935897 % 2463487181 = 1859140028 :=
+      Pratt.sq_mul_of h27 (by norm_num) (by norm_num)
+    have h29 : 10 ^ 615871795 % 2463487181 = 1612743070 :=
+      Pratt.sq_mul_of h28 (by norm_num) (by norm_num)
+    have h30 : 10 ^ 1231743590 % 2463487181 = 2463487180 :=
+      Pratt.sq_of h29 (by norm_num) (by norm_num)
+    have h31 : 10 ^ 2463487180 % 2463487181 = 1 :=
+      Pratt.sq_of h30 (by norm_num) (by norm_num)
+    rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, h31]
+  · intro q hq hqd
+    have hfac : 2463487181 - 1 = 2 ^ 2 * (5 ^ 1 * (7 ^ 1 * (11 ^ 1 * (19 ^ 1 * (59 ^ 1 * (1427 ^ 1)))))) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+      have g01 : 10 ^ 2 % 2463487181 = 100 :=
+        Pratt.sq_of g00 (by norm_num) (by norm_num)
+      have g02 : 10 ^ 4 % 2463487181 = 10000 :=
+        Pratt.sq_of g01 (by norm_num) (by norm_num)
+      have g03 : 10 ^ 9 % 2463487181 = 1000000000 :=
+        Pratt.sq_mul_of g02 (by norm_num) (by norm_num)
+      have g04 : 10 ^ 18 % 2463487181 = 1422723341 :=
+        Pratt.sq_of g03 (by norm_num) (by norm_num)
+      have g05 : 10 ^ 36 % 2463487181 = 1560413353 :=
+        Pratt.sq_of g04 (by norm_num) (by norm_num)
+      have g06 : 10 ^ 73 % 2463487181 = 357103139 :=
+        Pratt.sq_mul_of g05 (by norm_num) (by norm_num)
+      have g07 : 10 ^ 146 % 2463487181 = 1464418945 :=
+        Pratt.sq_of g06 (by norm_num) (by norm_num)
+      have g08 : 10 ^ 293 % 2463487181 = 307470954 :=
+        Pratt.sq_mul_of g07 (by norm_num) (by norm_num)
+      have g09 : 10 ^ 587 % 2463487181 = 1170502570 :=
+        Pratt.sq_mul_of g08 (by norm_num) (by norm_num)
+      have g010 : 10 ^ 1174 % 2463487181 = 2285398786 :=
+        Pratt.sq_of g09 (by norm_num) (by norm_num)
+      have g011 : 10 ^ 2349 % 2463487181 = 56047688 :=
+        Pratt.sq_mul_of g010 (by norm_num) (by norm_num)
+      have g012 : 10 ^ 4698 % 2463487181 = 552934203 :=
+        Pratt.sq_of g011 (by norm_num) (by norm_num)
+      have g013 : 10 ^ 9397 % 2463487181 = 1705703760 :=
+        Pratt.sq_mul_of g012 (by norm_num) (by norm_num)
+      have g014 : 10 ^ 18794 % 2463487181 = 2051467740 :=
+        Pratt.sq_of g013 (by norm_num) (by norm_num)
+      have g015 : 10 ^ 37589 % 2463487181 = 1887597432 :=
+        Pratt.sq_mul_of g014 (by norm_num) (by norm_num)
+      have g016 : 10 ^ 75179 % 2463487181 = 156798244 :=
+        Pratt.sq_mul_of g015 (by norm_num) (by norm_num)
+      have g017 : 10 ^ 150359 % 2463487181 = 476573286 :=
+        Pratt.sq_mul_of g016 (by norm_num) (by norm_num)
+      have g018 : 10 ^ 300718 % 2463487181 = 2030696093 :=
+        Pratt.sq_of g017 (by norm_num) (by norm_num)
+      have g019 : 10 ^ 601437 % 2463487181 = 221932253 :=
+        Pratt.sq_mul_of g018 (by norm_num) (by norm_num)
+      have g020 : 10 ^ 1202874 % 2463487181 = 1816332391 :=
+        Pratt.sq_of g019 (by norm_num) (by norm_num)
+      have g021 : 10 ^ 2405749 % 2463487181 = 274108896 :=
+        Pratt.sq_mul_of g020 (by norm_num) (by norm_num)
+      have g022 : 10 ^ 4811498 % 2463487181 = 377839229 :=
+        Pratt.sq_of g021 (by norm_num) (by norm_num)
+      have g023 : 10 ^ 9622996 % 2463487181 = 1220054661 :=
+        Pratt.sq_of g022 (by norm_num) (by norm_num)
+      have g024 : 10 ^ 19245993 % 2463487181 = 382541168 :=
+        Pratt.sq_mul_of g023 (by norm_num) (by norm_num)
+      have g025 : 10 ^ 38491987 % 2463487181 = 834822182 :=
+        Pratt.sq_mul_of g024 (by norm_num) (by norm_num)
+      have g026 : 10 ^ 76983974 % 2463487181 = 1466131359 :=
+        Pratt.sq_of g025 (by norm_num) (by norm_num)
+      have g027 : 10 ^ 153967948 % 2463487181 = 1337416142 :=
+        Pratt.sq_of g026 (by norm_num) (by norm_num)
+      have g028 : 10 ^ 307935897 % 2463487181 = 1859140028 :=
+        Pratt.sq_mul_of g027 (by norm_num) (by norm_num)
+      have g029 : 10 ^ 615871795 % 2463487181 = 1612743070 :=
+        Pratt.sq_mul_of g028 (by norm_num) (by norm_num)
+      have g030 : 10 ^ 1231743590 % 2463487181 = 2463487180 :=
+        Pratt.sq_of g029 (by norm_num) (by norm_num)
+      rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, show 2463487180 / 2 = 1231743590 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g030 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 5 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 5)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+      have g11 : 10 ^ 3 % 2463487181 = 1000 :=
+        Pratt.sq_mul_of g10 (by norm_num) (by norm_num)
+      have g12 : 10 ^ 7 % 2463487181 = 10000000 :=
+        Pratt.sq_mul_of g11 (by norm_num) (by norm_num)
+      have g13 : 10 ^ 14 % 2463487181 = 2128348848 :=
+        Pratt.sq_of g12 (by norm_num) (by norm_num)
+      have g14 : 10 ^ 29 % 2463487181 = 1803269570 :=
+        Pratt.sq_mul_of g13 (by norm_num) (by norm_num)
+      have g15 : 10 ^ 58 % 2463487181 = 521331705 :=
+        Pratt.sq_of g14 (by norm_num) (by norm_num)
+      have g16 : 10 ^ 117 % 2463487181 = 444625267 :=
+        Pratt.sq_mul_of g15 (by norm_num) (by norm_num)
+      have g17 : 10 ^ 234 % 2463487181 = 1557316856 :=
+        Pratt.sq_of g16 (by norm_num) (by norm_num)
+      have g18 : 10 ^ 469 % 2463487181 = 2020148072 :=
+        Pratt.sq_mul_of g17 (by norm_num) (by norm_num)
+      have g19 : 10 ^ 939 % 2463487181 = 1501312973 :=
+        Pratt.sq_mul_of g18 (by norm_num) (by norm_num)
+      have g110 : 10 ^ 1879 % 2463487181 = 1480934862 :=
+        Pratt.sq_mul_of g19 (by norm_num) (by norm_num)
+      have g111 : 10 ^ 3758 % 2463487181 = 463115095 :=
+        Pratt.sq_of g110 (by norm_num) (by norm_num)
+      have g112 : 10 ^ 7517 % 2463487181 = 1607296581 :=
+        Pratt.sq_mul_of g111 (by norm_num) (by norm_num)
+      have g113 : 10 ^ 15035 % 2463487181 = 837064362 :=
+        Pratt.sq_mul_of g112 (by norm_num) (by norm_num)
+      have g114 : 10 ^ 30071 % 2463487181 = 993936917 :=
+        Pratt.sq_mul_of g113 (by norm_num) (by norm_num)
+      have g115 : 10 ^ 60143 % 2463487181 = 1049764012 :=
+        Pratt.sq_mul_of g114 (by norm_num) (by norm_num)
+      have g116 : 10 ^ 120287 % 2463487181 = 890547183 :=
+        Pratt.sq_mul_of g115 (by norm_num) (by norm_num)
+      have g117 : 10 ^ 240574 % 2463487181 = 1612467224 :=
+        Pratt.sq_of g116 (by norm_num) (by norm_num)
+      have g118 : 10 ^ 481149 % 2463487181 = 1846491521 :=
+        Pratt.sq_mul_of g117 (by norm_num) (by norm_num)
+      have g119 : 10 ^ 962299 % 2463487181 = 113050041 :=
+        Pratt.sq_mul_of g118 (by norm_num) (by norm_num)
+      have g120 : 10 ^ 1924599 % 2463487181 = 1729712765 :=
+        Pratt.sq_mul_of g119 (by norm_num) (by norm_num)
+      have g121 : 10 ^ 3849198 % 2463487181 = 1389495852 :=
+        Pratt.sq_of g120 (by norm_num) (by norm_num)
+      have g122 : 10 ^ 7698397 % 2463487181 = 1229436361 :=
+        Pratt.sq_mul_of g121 (by norm_num) (by norm_num)
+      have g123 : 10 ^ 15396794 % 2463487181 = 1559782915 :=
+        Pratt.sq_of g122 (by norm_num) (by norm_num)
+      have g124 : 10 ^ 30793589 % 2463487181 = 670052222 :=
+        Pratt.sq_mul_of g123 (by norm_num) (by norm_num)
+      have g125 : 10 ^ 61587179 % 2463487181 = 1887799348 :=
+        Pratt.sq_mul_of g124 (by norm_num) (by norm_num)
+      have g126 : 10 ^ 123174359 % 2463487181 = 2265806318 :=
+        Pratt.sq_mul_of g125 (by norm_num) (by norm_num)
+      have g127 : 10 ^ 246348718 % 2463487181 = 436734942 :=
+        Pratt.sq_of g126 (by norm_num) (by norm_num)
+      have g128 : 10 ^ 492697436 % 2463487181 = 445278727 :=
+        Pratt.sq_of g127 (by norm_num) (by norm_num)
+      rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, show 2463487180 / 5 = 492697436 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g128 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq2 | hqd
+    . have hqe : q = 7 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 7)).mp (hq.dvd_of_dvd_pow hq2)
+      subst hqe
+      have g20 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+      have g21 : 10 ^ 2 % 2463487181 = 100 :=
+        Pratt.sq_of g20 (by norm_num) (by norm_num)
+      have g22 : 10 ^ 5 % 2463487181 = 100000 :=
+        Pratt.sq_mul_of g21 (by norm_num) (by norm_num)
+      have g23 : 10 ^ 10 % 2463487181 = 146051276 :=
+        Pratt.sq_of g22 (by norm_num) (by norm_num)
+      have g24 : 10 ^ 20 % 2463487181 = 1853564783 :=
+        Pratt.sq_of g23 (by norm_num) (by norm_num)
+      have g25 : 10 ^ 41 % 2463487181 = 1593768279 :=
+        Pratt.sq_mul_of g24 (by norm_num) (by norm_num)
+      have g26 : 10 ^ 83 % 2463487181 = 77193566 :=
+        Pratt.sq_mul_of g25 (by norm_num) (by norm_num)
+      have g27 : 10 ^ 167 % 2463487181 = 164960195 :=
+        Pratt.sq_mul_of g26 (by norm_num) (by norm_num)
+      have g28 : 10 ^ 335 % 2463487181 = 471324233 :=
+        Pratt.sq_mul_of g27 (by norm_num) (by norm_num)
+      have g29 : 10 ^ 671 % 2463487181 = 1736136033 :=
+        Pratt.sq_mul_of g28 (by norm_num) (by norm_num)
+      have g210 : 10 ^ 1342 % 2463487181 = 1620446382 :=
+        Pratt.sq_of g29 (by norm_num) (by norm_num)
+      have g211 : 10 ^ 2684 % 2463487181 = 301595796 :=
+        Pratt.sq_of g210 (by norm_num) (by norm_num)
+      have g212 : 10 ^ 5369 % 2463487181 = 1605845532 :=
+        Pratt.sq_mul_of g211 (by norm_num) (by norm_num)
+      have g213 : 10 ^ 10739 % 2463487181 = 661302617 :=
+        Pratt.sq_mul_of g212 (by norm_num) (by norm_num)
+      have g214 : 10 ^ 21479 % 2463487181 = 2114038271 :=
+        Pratt.sq_mul_of g213 (by norm_num) (by norm_num)
+      have g215 : 10 ^ 42959 % 2463487181 = 1947671367 :=
+        Pratt.sq_mul_of g214 (by norm_num) (by norm_num)
+      have g216 : 10 ^ 85919 % 2463487181 = 836255793 :=
+        Pratt.sq_mul_of g215 (by norm_num) (by norm_num)
+      have g217 : 10 ^ 171839 % 2463487181 = 932900 :=
+        Pratt.sq_mul_of g216 (by norm_num) (by norm_num)
+      have g218 : 10 ^ 343678 % 2463487181 = 691435107 :=
+        Pratt.sq_of g217 (by norm_num) (by norm_num)
+      have g219 : 10 ^ 687356 % 2463487181 = 1848358488 :=
+        Pratt.sq_of g218 (by norm_num) (by norm_num)
+      have g220 : 10 ^ 1374713 % 2463487181 = 1026831032 :=
+        Pratt.sq_mul_of g219 (by norm_num) (by norm_num)
+      have g221 : 10 ^ 2749427 % 2463487181 = 1927330641 :=
+        Pratt.sq_mul_of g220 (by norm_num) (by norm_num)
+      have g222 : 10 ^ 5498855 % 2463487181 = 627639484 :=
+        Pratt.sq_mul_of g221 (by norm_num) (by norm_num)
+      have g223 : 10 ^ 10997710 % 2463487181 = 1419002351 :=
+        Pratt.sq_of g222 (by norm_num) (by norm_num)
+      have g224 : 10 ^ 21995421 % 2463487181 = 1244163712 :=
+        Pratt.sq_mul_of g223 (by norm_num) (by norm_num)
+      have g225 : 10 ^ 43990842 % 2463487181 = 161903109 :=
+        Pratt.sq_of g224 (by norm_num) (by norm_num)
+      have g226 : 10 ^ 87981685 % 2463487181 = 945175052 :=
+        Pratt.sq_mul_of g225 (by norm_num) (by norm_num)
+      have g227 : 10 ^ 175963370 % 2463487181 = 1453159488 :=
+        Pratt.sq_of g226 (by norm_num) (by norm_num)
+      have g228 : 10 ^ 351926740 % 2463487181 = 417803880 :=
+        Pratt.sq_of g227 (by norm_num) (by norm_num)
+      rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, show 2463487180 / 7 = 351926740 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g228 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq3 | hqd
+    . have hqe : q = 11 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 11)).mp (hq.dvd_of_dvd_pow hq3)
+      subst hqe
+      have g30 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+      have g31 : 10 ^ 3 % 2463487181 = 1000 :=
+        Pratt.sq_mul_of g30 (by norm_num) (by norm_num)
+      have g32 : 10 ^ 6 % 2463487181 = 1000000 :=
+        Pratt.sq_of g31 (by norm_num) (by norm_num)
+      have g33 : 10 ^ 13 % 2463487181 = 705532321 :=
+        Pratt.sq_mul_of g32 (by norm_num) (by norm_num)
+      have g34 : 10 ^ 26 % 2463487181 = 75707885 :=
+        Pratt.sq_of g33 (by norm_num) (by norm_num)
+      have g35 : 10 ^ 53 % 2463487181 = 694585424 :=
+        Pratt.sq_mul_of g34 (by norm_num) (by norm_num)
+      have g36 : 10 ^ 106 % 2463487181 = 499040546 :=
+        Pratt.sq_of g35 (by norm_num) (by norm_num)
+      have g37 : 10 ^ 213 % 2463487181 = 390116863 :=
+        Pratt.sq_mul_of g36 (by norm_num) (by norm_num)
+      have g38 : 10 ^ 427 % 2463487181 = 2305980398 :=
+        Pratt.sq_mul_of g37 (by norm_num) (by norm_num)
+      have g39 : 10 ^ 854 % 2463487181 = 1624902535 :=
+        Pratt.sq_of g38 (by norm_num) (by norm_num)
+      have g310 : 10 ^ 1708 % 2463487181 = 682892190 :=
+        Pratt.sq_of g39 (by norm_num) (by norm_num)
+      have g311 : 10 ^ 3417 % 2463487181 = 1979810567 :=
+        Pratt.sq_mul_of g310 (by norm_num) (by norm_num)
+      have g312 : 10 ^ 6834 % 2463487181 = 2211456606 :=
+        Pratt.sq_of g311 (by norm_num) (by norm_num)
+      have g313 : 10 ^ 13669 % 2463487181 = 2127363551 :=
+        Pratt.sq_mul_of g312 (by norm_num) (by norm_num)
+      have g314 : 10 ^ 27338 % 2463487181 = 467304450 :=
+        Pratt.sq_of g313 (by norm_num) (by norm_num)
+      have g315 : 10 ^ 54676 % 2463487181 = 168212803 :=
+        Pratt.sq_of g314 (by norm_num) (by norm_num)
+      have g316 : 10 ^ 109352 % 2463487181 = 2309791877 :=
+        Pratt.sq_of g315 (by norm_num) (by norm_num)
+      have g317 : 10 ^ 218704 % 2463487181 = 921351190 :=
+        Pratt.sq_of g316 (by norm_num) (by norm_num)
+      have g318 : 10 ^ 437408 % 2463487181 = 517936883 :=
+        Pratt.sq_of g317 (by norm_num) (by norm_num)
+      have g319 : 10 ^ 874817 % 2463487181 = 1213265245 :=
+        Pratt.sq_mul_of g318 (by norm_num) (by norm_num)
+      have g320 : 10 ^ 1749635 % 2463487181 = 1983564053 :=
+        Pratt.sq_mul_of g319 (by norm_num) (by norm_num)
+      have g321 : 10 ^ 3499271 % 2463487181 = 2288360695 :=
+        Pratt.sq_mul_of g320 (by norm_num) (by norm_num)
+      have g322 : 10 ^ 6998543 % 2463487181 = 2041306845 :=
+        Pratt.sq_mul_of g321 (by norm_num) (by norm_num)
+      have g323 : 10 ^ 13997086 % 2463487181 = 2083003144 :=
+        Pratt.sq_of g322 (by norm_num) (by norm_num)
+      have g324 : 10 ^ 27994172 % 2463487181 = 2133992611 :=
+        Pratt.sq_of g323 (by norm_num) (by norm_num)
+      have g325 : 10 ^ 55988345 % 2463487181 = 743836447 :=
+        Pratt.sq_mul_of g324 (by norm_num) (by norm_num)
+      have g326 : 10 ^ 111976690 % 2463487181 = 1762833993 :=
+        Pratt.sq_of g325 (by norm_num) (by norm_num)
+      have g327 : 10 ^ 223953380 % 2463487181 = 953401591 :=
+        Pratt.sq_of g326 (by norm_num) (by norm_num)
+      rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, show 2463487180 / 11 = 223953380 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g327 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq4 | hqd
+    . have hqe : q = 19 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 19)).mp (hq.dvd_of_dvd_pow hq4)
+      subst hqe
+      have g40 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+      have g41 : 10 ^ 3 % 2463487181 = 1000 :=
+        Pratt.sq_mul_of g40 (by norm_num) (by norm_num)
+      have g42 : 10 ^ 7 % 2463487181 = 10000000 :=
+        Pratt.sq_mul_of g41 (by norm_num) (by norm_num)
+      have g43 : 10 ^ 15 % 2463487181 = 1575591032 :=
+        Pratt.sq_mul_of g42 (by norm_num) (by norm_num)
+      have g44 : 10 ^ 30 % 2463487181 = 788285433 :=
+        Pratt.sq_of g43 (by norm_num) (by norm_num)
+      have g45 : 10 ^ 61 % 2463487181 = 1535909809 :=
+        Pratt.sq_mul_of g44 (by norm_num) (by norm_num)
+      have g46 : 10 ^ 123 % 2463487181 = 319650034 :=
+        Pratt.sq_mul_of g45 (by norm_num) (by norm_num)
+      have g47 : 10 ^ 247 % 2463487181 = 667063568 :=
+        Pratt.sq_mul_of g46 (by norm_num) (by norm_num)
+      have g48 : 10 ^ 494 % 2463487181 = 1983223214 :=
+        Pratt.sq_of g47 (by norm_num) (by norm_num)
+      have g49 : 10 ^ 989 % 2463487181 = 930872865 :=
+        Pratt.sq_mul_of g48 (by norm_num) (by norm_num)
+      have g410 : 10 ^ 1978 % 2463487181 = 1287434519 :=
+        Pratt.sq_of g49 (by norm_num) (by norm_num)
+      have g411 : 10 ^ 3956 % 2463487181 = 273672118 :=
+        Pratt.sq_of g410 (by norm_num) (by norm_num)
+      have g412 : 10 ^ 7913 % 2463487181 = 2377507009 :=
+        Pratt.sq_mul_of g411 (by norm_num) (by norm_num)
+      have g413 : 10 ^ 15827 % 2463487181 = 2275739181 :=
+        Pratt.sq_mul_of g412 (by norm_num) (by norm_num)
+      have g414 : 10 ^ 31654 % 2463487181 = 159789395 :=
+        Pratt.sq_of g413 (by norm_num) (by norm_num)
+      have g415 : 10 ^ 63309 % 2463487181 = 2107967529 :=
+        Pratt.sq_mul_of g414 (by norm_num) (by norm_num)
+      have g416 : 10 ^ 126618 % 2463487181 = 2404069950 :=
+        Pratt.sq_of g415 (by norm_num) (by norm_num)
+      have g417 : 10 ^ 253236 % 2463487181 = 1105026528 :=
+        Pratt.sq_of g416 (by norm_num) (by norm_num)
+      have g418 : 10 ^ 506473 % 2463487181 = 1366092423 :=
+        Pratt.sq_mul_of g417 (by norm_num) (by norm_num)
+      have g419 : 10 ^ 1012947 % 2463487181 = 2283673042 :=
+        Pratt.sq_mul_of g418 (by norm_num) (by norm_num)
+      have g420 : 10 ^ 2025894 % 2463487181 = 679430000 :=
+        Pratt.sq_of g419 (by norm_num) (by norm_num)
+      have g421 : 10 ^ 4051788 % 2463487181 = 2329132702 :=
+        Pratt.sq_of g420 (by norm_num) (by norm_num)
+      have g422 : 10 ^ 8103576 % 2463487181 = 76686552 :=
+        Pratt.sq_of g421 (by norm_num) (by norm_num)
+      have g423 : 10 ^ 16207152 % 2463487181 = 513114228 :=
+        Pratt.sq_of g422 (by norm_num) (by norm_num)
+      have g424 : 10 ^ 32414305 % 2463487181 = 1010603586 :=
+        Pratt.sq_mul_of g423 (by norm_num) (by norm_num)
+      have g425 : 10 ^ 64828610 % 2463487181 = 157485297 :=
+        Pratt.sq_of g424 (by norm_num) (by norm_num)
+      have g426 : 10 ^ 129657220 % 2463487181 = 904357862 :=
+        Pratt.sq_of g425 (by norm_num) (by norm_num)
+      rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, show 2463487180 / 19 = 129657220 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g426 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq5 | hqd
+    . have hqe : q = 59 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 59)).mp (hq.dvd_of_dvd_pow hq5)
+      subst hqe
+      have g50 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+      have g51 : 10 ^ 2 % 2463487181 = 100 :=
+        Pratt.sq_of g50 (by norm_num) (by norm_num)
+      have g52 : 10 ^ 4 % 2463487181 = 10000 :=
+        Pratt.sq_of g51 (by norm_num) (by norm_num)
+      have g53 : 10 ^ 9 % 2463487181 = 1000000000 :=
+        Pratt.sq_mul_of g52 (by norm_num) (by norm_num)
+      have g54 : 10 ^ 19 % 2463487181 = 1909797505 :=
+        Pratt.sq_mul_of g53 (by norm_num) (by norm_num)
+      have g55 : 10 ^ 39 % 2463487181 = 1025967427 :=
+        Pratt.sq_mul_of g54 (by norm_num) (by norm_num)
+      have g56 : 10 ^ 79 % 2463487181 = 964216602 :=
+        Pratt.sq_mul_of g55 (by norm_num) (by norm_num)
+      have g57 : 10 ^ 159 % 2463487181 = 77893126 :=
+        Pratt.sq_mul_of g56 (by norm_num) (by norm_num)
+      have g58 : 10 ^ 318 % 2463487181 = 1719043890 :=
+        Pratt.sq_of g57 (by norm_num) (by norm_num)
+      have g59 : 10 ^ 637 % 2463487181 = 977190604 :=
+        Pratt.sq_mul_of g58 (by norm_num) (by norm_num)
+      have g510 : 10 ^ 1274 % 2463487181 = 750969699 :=
+        Pratt.sq_of g59 (by norm_num) (by norm_num)
+      have g511 : 10 ^ 2548 % 2463487181 = 880493797 :=
+        Pratt.sq_of g510 (by norm_num) (by norm_num)
+      have g512 : 10 ^ 5096 % 2463487181 = 85848046 :=
+        Pratt.sq_of g511 (by norm_num) (by norm_num)
+      have g513 : 10 ^ 10193 % 2463487181 = 112563918 :=
+        Pratt.sq_mul_of g512 (by norm_num) (by norm_num)
+      have g514 : 10 ^ 20387 % 2463487181 = 2121194662 :=
+        Pratt.sq_mul_of g513 (by norm_num) (by norm_num)
+      have g515 : 10 ^ 40775 % 2463487181 = 1284920995 :=
+        Pratt.sq_mul_of g514 (by norm_num) (by norm_num)
+      have g516 : 10 ^ 81550 % 2463487181 = 1261902106 :=
+        Pratt.sq_of g515 (by norm_num) (by norm_num)
+      have g517 : 10 ^ 163101 % 2463487181 = 2077487866 :=
+        Pratt.sq_mul_of g516 (by norm_num) (by norm_num)
+      have g518 : 10 ^ 326203 % 2463487181 = 480381941 :=
+        Pratt.sq_mul_of g517 (by norm_num) (by norm_num)
+      have g519 : 10 ^ 652406 % 2463487181 = 2300906545 :=
+        Pratt.sq_of g518 (by norm_num) (by norm_num)
+      have g520 : 10 ^ 1304813 % 2463487181 = 698093182 :=
+        Pratt.sq_mul_of g519 (by norm_num) (by norm_num)
+      have g521 : 10 ^ 2609626 % 2463487181 = 1182178740 :=
+        Pratt.sq_of g520 (by norm_num) (by norm_num)
+      have g522 : 10 ^ 5219252 % 2463487181 = 613758201 :=
+        Pratt.sq_of g521 (by norm_num) (by norm_num)
+      have g523 : 10 ^ 10438505 % 2463487181 = 2085547360 :=
+        Pratt.sq_mul_of g522 (by norm_num) (by norm_num)
+      have g524 : 10 ^ 20877010 % 2463487181 = 868359420 :=
+        Pratt.sq_of g523 (by norm_num) (by norm_num)
+      have g525 : 10 ^ 41754020 % 2463487181 = 554754528 :=
+        Pratt.sq_of g524 (by norm_num) (by norm_num)
+      rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, show 2463487180 / 59 = 41754020 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g525 (by norm_num)
+    have hqe : q = 1427 :=
+      (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 1427)).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g60 : 10 ^ 1 % 2463487181 = 10 := by norm_num
+    have g61 : 10 ^ 3 % 2463487181 = 1000 :=
+      Pratt.sq_mul_of g60 (by norm_num) (by norm_num)
+    have g62 : 10 ^ 6 % 2463487181 = 1000000 :=
+      Pratt.sq_of g61 (by norm_num) (by norm_num)
+    have g63 : 10 ^ 13 % 2463487181 = 705532321 :=
+      Pratt.sq_mul_of g62 (by norm_num) (by norm_num)
+    have g64 : 10 ^ 26 % 2463487181 = 75707885 :=
+      Pratt.sq_of g63 (by norm_num) (by norm_num)
+    have g65 : 10 ^ 52 % 2463487181 = 1547550851 :=
+      Pratt.sq_of g64 (by norm_num) (by norm_num)
+    have g66 : 10 ^ 105 % 2463487181 = 1035298927 :=
+      Pratt.sq_mul_of g65 (by norm_num) (by norm_num)
+    have g67 : 10 ^ 210 % 2463487181 = 682776066 :=
+      Pratt.sq_of g66 (by norm_num) (by norm_num)
+    have g68 : 10 ^ 421 % 2463487181 = 783494696 :=
+      Pratt.sq_mul_of g67 (by norm_num) (by norm_num)
+    have g69 : 10 ^ 842 % 2463487181 = 1246544923 :=
+      Pratt.sq_of g68 (by norm_num) (by norm_num)
+    have g610 : 10 ^ 1685 % 2463487181 = 1738512767 :=
+      Pratt.sq_mul_of g69 (by norm_num) (by norm_num)
+    have g611 : 10 ^ 3371 % 2463487181 = 318403264 :=
+      Pratt.sq_mul_of g610 (by norm_num) (by norm_num)
+    have g612 : 10 ^ 6743 % 2463487181 = 1879653634 :=
+      Pratt.sq_mul_of g611 (by norm_num) (by norm_num)
+    have g613 : 10 ^ 13487 % 2463487181 = 1875149552 :=
+      Pratt.sq_mul_of g612 (by norm_num) (by norm_num)
+    have g614 : 10 ^ 26974 % 2463487181 = 1215238869 :=
+      Pratt.sq_of g613 (by norm_num) (by norm_num)
+    have g615 : 10 ^ 53948 % 2463487181 = 193907330 :=
+      Pratt.sq_of g614 (by norm_num) (by norm_num)
+    have g616 : 10 ^ 107896 % 2463487181 = 520331122 :=
+      Pratt.sq_of g615 (by norm_num) (by norm_num)
+    have g617 : 10 ^ 215792 % 2463487181 = 68028287 :=
+      Pratt.sq_of g616 (by norm_num) (by norm_num)
+    have g618 : 10 ^ 431585 % 2463487181 = 1839688311 :=
+      Pratt.sq_mul_of g617 (by norm_num) (by norm_num)
+    have g619 : 10 ^ 863170 % 2463487181 = 344982986 :=
+      Pratt.sq_of g618 (by norm_num) (by norm_num)
+    have g620 : 10 ^ 1726340 % 2463487181 = 2411775106 :=
+      Pratt.sq_of g619 (by norm_num) (by norm_num)
+    rw [show (2463487181 : ℕ) - 1 = 2463487180 by norm_num, show 2463487180 / 1427 = 1726340 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g620 (by norm_num)
+
+/-- `541474482383801` is prime, by a Lucas certificate with witness 3. -/
+theorem prime_541474482383801 : Nat.Prime 541474482383801 := by
+  refine lucas_primality 541474482383801 ((3 : ℕ) : ZMod 541474482383801) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 3 ^ 1 % 541474482383801 = 3 := by norm_num
+    have h1 : 3 ^ 3 % 541474482383801 = 27 :=
+      Pratt.sq_mul_of h0 (by norm_num) (by norm_num)
+    have h2 : 3 ^ 7 % 541474482383801 = 2187 :=
+      Pratt.sq_mul_of h1 (by norm_num) (by norm_num)
+    have h3 : 3 ^ 15 % 541474482383801 = 14348907 :=
+      Pratt.sq_mul_of h2 (by norm_num) (by norm_num)
+    have h4 : 3 ^ 30 % 541474482383801 = 205891132094649 :=
+      Pratt.sq_of h3 (by norm_num) (by norm_num)
+    have h5 : 3 ^ 61 % 541474482383801 = 268573666158160 :=
+      Pratt.sq_mul_of h4 (by norm_num) (by norm_num)
+    have h6 : 3 ^ 123 % 541474482383801 = 479610405714421 :=
+      Pratt.sq_mul_of h5 (by norm_num) (by norm_num)
+    have h7 : 3 ^ 246 % 541474482383801 = 333789115234455 :=
+      Pratt.sq_of h6 (by norm_num) (by norm_num)
+    have h8 : 3 ^ 492 % 541474482383801 = 367072695708725 :=
+      Pratt.sq_of h7 (by norm_num) (by norm_num)
+    have h9 : 3 ^ 984 % 541474482383801 = 196265660212127 :=
+      Pratt.sq_of h8 (by norm_num) (by norm_num)
+    have h10 : 3 ^ 1969 % 541474482383801 = 441350375613573 :=
+      Pratt.sq_mul_of h9 (by norm_num) (by norm_num)
+    have h11 : 3 ^ 3939 % 541474482383801 = 384180050978432 :=
+      Pratt.sq_mul_of h10 (by norm_num) (by norm_num)
+    have h12 : 3 ^ 7879 % 541474482383801 = 32723748398776 :=
+      Pratt.sq_mul_of h11 (by norm_num) (by norm_num)
+    have h13 : 3 ^ 15758 % 541474482383801 = 393270683437161 :=
+      Pratt.sq_of h12 (by norm_num) (by norm_num)
+    have h14 : 3 ^ 31517 % 541474482383801 = 10649343549536 :=
+      Pratt.sq_mul_of h13 (by norm_num) (by norm_num)
+    have h15 : 3 ^ 63035 % 541474482383801 = 473765080222642 :=
+      Pratt.sq_mul_of h14 (by norm_num) (by norm_num)
+    have h16 : 3 ^ 126071 % 541474482383801 = 246285757640453 :=
+      Pratt.sq_mul_of h15 (by norm_num) (by norm_num)
+    have h17 : 3 ^ 252143 % 541474482383801 = 215576143022046 :=
+      Pratt.sq_mul_of h16 (by norm_num) (by norm_num)
+    have h18 : 3 ^ 504287 % 541474482383801 = 183877115156969 :=
+      Pratt.sq_mul_of h17 (by norm_num) (by norm_num)
+    have h19 : 3 ^ 1008574 % 541474482383801 = 316670503698217 :=
+      Pratt.sq_of h18 (by norm_num) (by norm_num)
+    have h20 : 3 ^ 2017149 % 541474482383801 = 81528309798484 :=
+      Pratt.sq_mul_of h19 (by norm_num) (by norm_num)
+    have h21 : 3 ^ 4034299 % 541474482383801 = 47327379052653 :=
+      Pratt.sq_mul_of h20 (by norm_num) (by norm_num)
+    have h22 : 3 ^ 8068598 % 541474482383801 = 98873025129031 :=
+      Pratt.sq_of h21 (by norm_num) (by norm_num)
+    have h23 : 3 ^ 16137197 % 541474482383801 = 216923634474202 :=
+      Pratt.sq_mul_of h22 (by norm_num) (by norm_num)
+    have h24 : 3 ^ 32274394 % 541474482383801 = 291504836720480 :=
+      Pratt.sq_of h23 (by norm_num) (by norm_num)
+    have h25 : 3 ^ 64548788 % 541474482383801 = 384767779735092 :=
+      Pratt.sq_of h24 (by norm_num) (by norm_num)
+    have h26 : 3 ^ 129097576 % 541474482383801 = 422292868850467 :=
+      Pratt.sq_of h25 (by norm_num) (by norm_num)
+    have h27 : 3 ^ 258195153 % 541474482383801 = 113041815484227 :=
+      Pratt.sq_mul_of h26 (by norm_num) (by norm_num)
+    have h28 : 3 ^ 516390306 % 541474482383801 = 356927252560051 :=
+      Pratt.sq_of h27 (by norm_num) (by norm_num)
+    have h29 : 3 ^ 1032780613 % 541474482383801 = 267811616294545 :=
+      Pratt.sq_mul_of h28 (by norm_num) (by norm_num)
+    have h30 : 3 ^ 2065561227 % 541474482383801 = 217141721608219 :=
+      Pratt.sq_mul_of h29 (by norm_num) (by norm_num)
+    have h31 : 3 ^ 4131122454 % 541474482383801 = 162600806524330 :=
+      Pratt.sq_of h30 (by norm_num) (by norm_num)
+    have h32 : 3 ^ 8262244909 % 541474482383801 = 125368587045600 :=
+      Pratt.sq_mul_of h31 (by norm_num) (by norm_num)
+    have h33 : 3 ^ 16524489818 % 541474482383801 = 138233738781638 :=
+      Pratt.sq_of h32 (by norm_num) (by norm_num)
+    have h34 : 3 ^ 33048979637 % 541474482383801 = 118525099461354 :=
+      Pratt.sq_mul_of h33 (by norm_num) (by norm_num)
+    have h35 : 3 ^ 66097959275 % 541474482383801 = 35453600837874 :=
+      Pratt.sq_mul_of h34 (by norm_num) (by norm_num)
+    have h36 : 3 ^ 132195918550 % 541474482383801 = 32813201196718 :=
+      Pratt.sq_of h35 (by norm_num) (by norm_num)
+    have h37 : 3 ^ 264391837101 % 541474482383801 = 259624063008498 :=
+      Pratt.sq_mul_of h36 (by norm_num) (by norm_num)
+    have h38 : 3 ^ 528783674202 % 541474482383801 = 480015022699583 :=
+      Pratt.sq_of h37 (by norm_num) (by norm_num)
+    have h39 : 3 ^ 1057567348405 % 541474482383801 = 460848417700515 :=
+      Pratt.sq_mul_of h38 (by norm_num) (by norm_num)
+    have h40 : 3 ^ 2115134696811 % 541474482383801 = 148241445938593 :=
+      Pratt.sq_mul_of h39 (by norm_num) (by norm_num)
+    have h41 : 3 ^ 4230269393623 % 541474482383801 = 87375879181503 :=
+      Pratt.sq_mul_of h40 (by norm_num) (by norm_num)
+    have h42 : 3 ^ 8460538787246 % 541474482383801 = 376752344792154 :=
+      Pratt.sq_of h41 (by norm_num) (by norm_num)
+    have h43 : 3 ^ 16921077574493 % 541474482383801 = 260619438069658 :=
+      Pratt.sq_mul_of h42 (by norm_num) (by norm_num)
+    have h44 : 3 ^ 33842155148987 % 541474482383801 = 94688163934222 :=
+      Pratt.sq_mul_of h43 (by norm_num) (by norm_num)
+    have h45 : 3 ^ 67684310297975 % 541474482383801 = 473555542991406 :=
+      Pratt.sq_mul_of h44 (by norm_num) (by norm_num)
+    have h46 : 3 ^ 135368620595950 % 541474482383801 = 95825478217233 :=
+      Pratt.sq_of h45 (by norm_num) (by norm_num)
+    have h47 : 3 ^ 270737241191900 % 541474482383801 = 541474482383800 :=
+      Pratt.sq_of h46 (by norm_num) (by norm_num)
+    have h48 : 3 ^ 541474482383800 % 541474482383801 = 1 :=
+      Pratt.sq_of h47 (by norm_num) (by norm_num)
+    rw [show (541474482383801 : ℕ) - 1 = 541474482383800 by norm_num, h48]
+  · intro q hq hqd
+    have hfac : 541474482383801 - 1 = 2 ^ 3 * (5 ^ 2 * (7 ^ 1 * (157 ^ 1 * (2463487181 ^ 1)))) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 3 ^ 1 % 541474482383801 = 3 := by norm_num
+      have g01 : 3 ^ 3 % 541474482383801 = 27 :=
+        Pratt.sq_mul_of g00 (by norm_num) (by norm_num)
+      have g02 : 3 ^ 7 % 541474482383801 = 2187 :=
+        Pratt.sq_mul_of g01 (by norm_num) (by norm_num)
+      have g03 : 3 ^ 15 % 541474482383801 = 14348907 :=
+        Pratt.sq_mul_of g02 (by norm_num) (by norm_num)
+      have g04 : 3 ^ 30 % 541474482383801 = 205891132094649 :=
+        Pratt.sq_of g03 (by norm_num) (by norm_num)
+      have g05 : 3 ^ 61 % 541474482383801 = 268573666158160 :=
+        Pratt.sq_mul_of g04 (by norm_num) (by norm_num)
+      have g06 : 3 ^ 123 % 541474482383801 = 479610405714421 :=
+        Pratt.sq_mul_of g05 (by norm_num) (by norm_num)
+      have g07 : 3 ^ 246 % 541474482383801 = 333789115234455 :=
+        Pratt.sq_of g06 (by norm_num) (by norm_num)
+      have g08 : 3 ^ 492 % 541474482383801 = 367072695708725 :=
+        Pratt.sq_of g07 (by norm_num) (by norm_num)
+      have g09 : 3 ^ 984 % 541474482383801 = 196265660212127 :=
+        Pratt.sq_of g08 (by norm_num) (by norm_num)
+      have g010 : 3 ^ 1969 % 541474482383801 = 441350375613573 :=
+        Pratt.sq_mul_of g09 (by norm_num) (by norm_num)
+      have g011 : 3 ^ 3939 % 541474482383801 = 384180050978432 :=
+        Pratt.sq_mul_of g010 (by norm_num) (by norm_num)
+      have g012 : 3 ^ 7879 % 541474482383801 = 32723748398776 :=
+        Pratt.sq_mul_of g011 (by norm_num) (by norm_num)
+      have g013 : 3 ^ 15758 % 541474482383801 = 393270683437161 :=
+        Pratt.sq_of g012 (by norm_num) (by norm_num)
+      have g014 : 3 ^ 31517 % 541474482383801 = 10649343549536 :=
+        Pratt.sq_mul_of g013 (by norm_num) (by norm_num)
+      have g015 : 3 ^ 63035 % 541474482383801 = 473765080222642 :=
+        Pratt.sq_mul_of g014 (by norm_num) (by norm_num)
+      have g016 : 3 ^ 126071 % 541474482383801 = 246285757640453 :=
+        Pratt.sq_mul_of g015 (by norm_num) (by norm_num)
+      have g017 : 3 ^ 252143 % 541474482383801 = 215576143022046 :=
+        Pratt.sq_mul_of g016 (by norm_num) (by norm_num)
+      have g018 : 3 ^ 504287 % 541474482383801 = 183877115156969 :=
+        Pratt.sq_mul_of g017 (by norm_num) (by norm_num)
+      have g019 : 3 ^ 1008574 % 541474482383801 = 316670503698217 :=
+        Pratt.sq_of g018 (by norm_num) (by norm_num)
+      have g020 : 3 ^ 2017149 % 541474482383801 = 81528309798484 :=
+        Pratt.sq_mul_of g019 (by norm_num) (by norm_num)
+      have g021 : 3 ^ 4034299 % 541474482383801 = 47327379052653 :=
+        Pratt.sq_mul_of g020 (by norm_num) (by norm_num)
+      have g022 : 3 ^ 8068598 % 541474482383801 = 98873025129031 :=
+        Pratt.sq_of g021 (by norm_num) (by norm_num)
+      have g023 : 3 ^ 16137197 % 541474482383801 = 216923634474202 :=
+        Pratt.sq_mul_of g022 (by norm_num) (by norm_num)
+      have g024 : 3 ^ 32274394 % 541474482383801 = 291504836720480 :=
+        Pratt.sq_of g023 (by norm_num) (by norm_num)
+      have g025 : 3 ^ 64548788 % 541474482383801 = 384767779735092 :=
+        Pratt.sq_of g024 (by norm_num) (by norm_num)
+      have g026 : 3 ^ 129097576 % 541474482383801 = 422292868850467 :=
+        Pratt.sq_of g025 (by norm_num) (by norm_num)
+      have g027 : 3 ^ 258195153 % 541474482383801 = 113041815484227 :=
+        Pratt.sq_mul_of g026 (by norm_num) (by norm_num)
+      have g028 : 3 ^ 516390306 % 541474482383801 = 356927252560051 :=
+        Pratt.sq_of g027 (by norm_num) (by norm_num)
+      have g029 : 3 ^ 1032780613 % 541474482383801 = 267811616294545 :=
+        Pratt.sq_mul_of g028 (by norm_num) (by norm_num)
+      have g030 : 3 ^ 2065561227 % 541474482383801 = 217141721608219 :=
+        Pratt.sq_mul_of g029 (by norm_num) (by norm_num)
+      have g031 : 3 ^ 4131122454 % 541474482383801 = 162600806524330 :=
+        Pratt.sq_of g030 (by norm_num) (by norm_num)
+      have g032 : 3 ^ 8262244909 % 541474482383801 = 125368587045600 :=
+        Pratt.sq_mul_of g031 (by norm_num) (by norm_num)
+      have g033 : 3 ^ 16524489818 % 541474482383801 = 138233738781638 :=
+        Pratt.sq_of g032 (by norm_num) (by norm_num)
+      have g034 : 3 ^ 33048979637 % 541474482383801 = 118525099461354 :=
+        Pratt.sq_mul_of g033 (by norm_num) (by norm_num)
+      have g035 : 3 ^ 66097959275 % 541474482383801 = 35453600837874 :=
+        Pratt.sq_mul_of g034 (by norm_num) (by norm_num)
+      have g036 : 3 ^ 132195918550 % 541474482383801 = 32813201196718 :=
+        Pratt.sq_of g035 (by norm_num) (by norm_num)
+      have g037 : 3 ^ 264391837101 % 541474482383801 = 259624063008498 :=
+        Pratt.sq_mul_of g036 (by norm_num) (by norm_num)
+      have g038 : 3 ^ 528783674202 % 541474482383801 = 480015022699583 :=
+        Pratt.sq_of g037 (by norm_num) (by norm_num)
+      have g039 : 3 ^ 1057567348405 % 541474482383801 = 460848417700515 :=
+        Pratt.sq_mul_of g038 (by norm_num) (by norm_num)
+      have g040 : 3 ^ 2115134696811 % 541474482383801 = 148241445938593 :=
+        Pratt.sq_mul_of g039 (by norm_num) (by norm_num)
+      have g041 : 3 ^ 4230269393623 % 541474482383801 = 87375879181503 :=
+        Pratt.sq_mul_of g040 (by norm_num) (by norm_num)
+      have g042 : 3 ^ 8460538787246 % 541474482383801 = 376752344792154 :=
+        Pratt.sq_of g041 (by norm_num) (by norm_num)
+      have g043 : 3 ^ 16921077574493 % 541474482383801 = 260619438069658 :=
+        Pratt.sq_mul_of g042 (by norm_num) (by norm_num)
+      have g044 : 3 ^ 33842155148987 % 541474482383801 = 94688163934222 :=
+        Pratt.sq_mul_of g043 (by norm_num) (by norm_num)
+      have g045 : 3 ^ 67684310297975 % 541474482383801 = 473555542991406 :=
+        Pratt.sq_mul_of g044 (by norm_num) (by norm_num)
+      have g046 : 3 ^ 135368620595950 % 541474482383801 = 95825478217233 :=
+        Pratt.sq_of g045 (by norm_num) (by norm_num)
+      have g047 : 3 ^ 270737241191900 % 541474482383801 = 541474482383800 :=
+        Pratt.sq_of g046 (by norm_num) (by norm_num)
+      rw [show (541474482383801 : ℕ) - 1 = 541474482383800 by norm_num, show 541474482383800 / 2 = 270737241191900 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g047 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 5 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 5)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 3 ^ 1 % 541474482383801 = 3 := by norm_num
+      have g11 : 3 ^ 3 % 541474482383801 = 27 :=
+        Pratt.sq_mul_of g10 (by norm_num) (by norm_num)
+      have g12 : 3 ^ 6 % 541474482383801 = 729 :=
+        Pratt.sq_of g11 (by norm_num) (by norm_num)
+      have g13 : 3 ^ 12 % 541474482383801 = 531441 :=
+        Pratt.sq_of g12 (by norm_num) (by norm_num)
+      have g14 : 3 ^ 24 % 541474482383801 = 282429536481 :=
+        Pratt.sq_of g13 (by norm_num) (by norm_num)
+      have g15 : 3 ^ 49 % 541474482383801 = 103462651333505 :=
+        Pratt.sq_mul_of g14 (by norm_num) (by norm_num)
+      have g16 : 3 ^ 98 % 541474482383801 = 381425909958767 :=
+        Pratt.sq_of g15 (by norm_num) (by norm_num)
+      have g17 : 3 ^ 196 % 541474482383801 = 364684500972729 :=
+        Pratt.sq_of g16 (by norm_num) (by norm_num)
+      have g18 : 3 ^ 393 % 541474482383801 = 323429808494116 :=
+        Pratt.sq_mul_of g17 (by norm_num) (by norm_num)
+      have g19 : 3 ^ 787 % 541474482383801 = 364949360591314 :=
+        Pratt.sq_mul_of g18 (by norm_num) (by norm_num)
+      have g110 : 3 ^ 1575 % 541474482383801 = 94963888287617 :=
+        Pratt.sq_mul_of g19 (by norm_num) (by norm_num)
+      have g111 : 3 ^ 3151 % 541474482383801 = 270745978433554 :=
+        Pratt.sq_mul_of g110 (by norm_num) (by norm_num)
+      have g112 : 3 ^ 6303 % 541474482383801 = 53755911053784 :=
+        Pratt.sq_mul_of g111 (by norm_num) (by norm_num)
+      have g113 : 3 ^ 12607 % 541474482383801 = 286038577934735 :=
+        Pratt.sq_mul_of g112 (by norm_num) (by norm_num)
+      have g114 : 3 ^ 25214 % 541474482383801 = 137001145956473 :=
+        Pratt.sq_of g113 (by norm_num) (by norm_num)
+      have g115 : 3 ^ 50428 % 541474482383801 = 8801881178832 :=
+        Pratt.sq_of g114 (by norm_num) (by norm_num)
+      have g116 : 3 ^ 100857 % 541474482383801 = 426691447068783 :=
+        Pratt.sq_mul_of g115 (by norm_num) (by norm_num)
+      have g117 : 3 ^ 201714 % 541474482383801 = 189863371006006 :=
+        Pratt.sq_of g116 (by norm_num) (by norm_num)
+      have g118 : 3 ^ 403429 % 541474482383801 = 308462437117460 :=
+        Pratt.sq_mul_of g117 (by norm_num) (by norm_num)
+      have g119 : 3 ^ 806859 % 541474482383801 = 267467622268888 :=
+        Pratt.sq_mul_of g118 (by norm_num) (by norm_num)
+      have g120 : 3 ^ 1613719 % 541474482383801 = 94839328517520 :=
+        Pratt.sq_mul_of g119 (by norm_num) (by norm_num)
+      have g121 : 3 ^ 3227439 % 541474482383801 = 275222546092824 :=
+        Pratt.sq_mul_of g120 (by norm_num) (by norm_num)
+      have g122 : 3 ^ 6454878 % 541474482383801 = 123787658790456 :=
+        Pratt.sq_of g121 (by norm_num) (by norm_num)
+      have g123 : 3 ^ 12909757 % 541474482383801 = 108422160905154 :=
+        Pratt.sq_mul_of g122 (by norm_num) (by norm_num)
+      have g124 : 3 ^ 25819515 % 541474482383801 = 339233166618759 :=
+        Pratt.sq_mul_of g123 (by norm_num) (by norm_num)
+      have g125 : 3 ^ 51639030 % 541474482383801 = 52466037486346 :=
+        Pratt.sq_of g124 (by norm_num) (by norm_num)
+      have g126 : 3 ^ 103278061 % 541474482383801 = 345680400602712 :=
+        Pratt.sq_mul_of g125 (by norm_num) (by norm_num)
+      have g127 : 3 ^ 206556122 % 541474482383801 = 219408474752914 :=
+        Pratt.sq_of g126 (by norm_num) (by norm_num)
+      have g128 : 3 ^ 413112245 % 541474482383801 = 516218539067943 :=
+        Pratt.sq_mul_of g127 (by norm_num) (by norm_num)
+      have g129 : 3 ^ 826224490 % 541474482383801 = 346750539145284 :=
+        Pratt.sq_of g128 (by norm_num) (by norm_num)
+      have g130 : 3 ^ 1652448981 % 541474482383801 = 389428444139454 :=
+        Pratt.sq_mul_of g129 (by norm_num) (by norm_num)
+      have g131 : 3 ^ 3304897963 % 541474482383801 = 485379068342152 :=
+        Pratt.sq_mul_of g130 (by norm_num) (by norm_num)
+      have g132 : 3 ^ 6609795927 % 541474482383801 = 521602253535270 :=
+        Pratt.sq_mul_of g131 (by norm_num) (by norm_num)
+      have g133 : 3 ^ 13219591855 % 541474482383801 = 262893862811297 :=
+        Pratt.sq_mul_of g132 (by norm_num) (by norm_num)
+      have g134 : 3 ^ 26439183710 % 541474482383801 = 289818207762703 :=
+        Pratt.sq_of g133 (by norm_num) (by norm_num)
+      have g135 : 3 ^ 52878367420 % 541474482383801 = 300501334968049 :=
+        Pratt.sq_of g134 (by norm_num) (by norm_num)
+      have g136 : 3 ^ 105756734840 % 541474482383801 = 497198709411037 :=
+        Pratt.sq_of g135 (by norm_num) (by norm_num)
+      have g137 : 3 ^ 211513469681 % 541474482383801 = 35694766999846 :=
+        Pratt.sq_mul_of g136 (by norm_num) (by norm_num)
+      have g138 : 3 ^ 423026939362 % 541474482383801 = 335744493678531 :=
+        Pratt.sq_of g137 (by norm_num) (by norm_num)
+      have g139 : 3 ^ 846053878724 % 541474482383801 = 400961238586945 :=
+        Pratt.sq_of g138 (by norm_num) (by norm_num)
+      have g140 : 3 ^ 1692107757449 % 541474482383801 = 145997365722841 :=
+        Pratt.sq_mul_of g139 (by norm_num) (by norm_num)
+      have g141 : 3 ^ 3384215514898 % 541474482383801 = 405109254742744 :=
+        Pratt.sq_of g140 (by norm_num) (by norm_num)
+      have g142 : 3 ^ 6768431029797 % 541474482383801 = 541217806390091 :=
+        Pratt.sq_mul_of g141 (by norm_num) (by norm_num)
+      have g143 : 3 ^ 13536862059595 % 541474482383801 = 171677442227735 :=
+        Pratt.sq_mul_of g142 (by norm_num) (by norm_num)
+      have g144 : 3 ^ 27073724119190 % 541474482383801 = 462686250667908 :=
+        Pratt.sq_of g143 (by norm_num) (by norm_num)
+      have g145 : 3 ^ 54147448238380 % 541474482383801 = 164378811015002 :=
+        Pratt.sq_of g144 (by norm_num) (by norm_num)
+      have g146 : 3 ^ 108294896476760 % 541474482383801 = 446555172138516 :=
+        Pratt.sq_of g145 (by norm_num) (by norm_num)
+      rw [show (541474482383801 : ℕ) - 1 = 541474482383800 by norm_num, show 541474482383800 / 5 = 108294896476760 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g146 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq2 | hqd
+    . have hqe : q = 7 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 7)).mp (hq.dvd_of_dvd_pow hq2)
+      subst hqe
+      have g20 : 3 ^ 1 % 541474482383801 = 3 := by norm_num
+      have g21 : 3 ^ 2 % 541474482383801 = 9 :=
+        Pratt.sq_of g20 (by norm_num) (by norm_num)
+      have g22 : 3 ^ 4 % 541474482383801 = 81 :=
+        Pratt.sq_of g21 (by norm_num) (by norm_num)
+      have g23 : 3 ^ 8 % 541474482383801 = 6561 :=
+        Pratt.sq_of g22 (by norm_num) (by norm_num)
+      have g24 : 3 ^ 17 % 541474482383801 = 129140163 :=
+        Pratt.sq_mul_of g23 (by norm_num) (by norm_num)
+      have g25 : 3 ^ 35 % 541474482383801 = 215892719690015 :=
+        Pratt.sq_mul_of g24 (by norm_num) (by norm_num)
+      have g26 : 3 ^ 70 % 541474482383801 = 461573960397918 :=
+        Pratt.sq_of g25 (by norm_num) (by norm_num)
+      have g27 : 3 ^ 140 % 541474482383801 = 114174629387271 :=
+        Pratt.sq_of g26 (by norm_num) (by norm_num)
+      have g28 : 3 ^ 281 % 541474482383801 = 519772437830432 :=
+        Pratt.sq_mul_of g27 (by norm_num) (by norm_num)
+      have g29 : 3 ^ 562 % 541474482383801 = 523398381379984 :=
+        Pratt.sq_of g28 (by norm_num) (by norm_num)
+      have g210 : 3 ^ 1125 % 541474482383801 = 214580872981482 :=
+        Pratt.sq_mul_of g29 (by norm_num) (by norm_num)
+      have g211 : 3 ^ 2251 % 541474482383801 = 331277330800618 :=
+        Pratt.sq_mul_of g210 (by norm_num) (by norm_num)
+      have g212 : 3 ^ 4502 % 541474482383801 = 440886062342922 :=
+        Pratt.sq_of g211 (by norm_num) (by norm_num)
+      have g213 : 3 ^ 9005 % 541474482383801 = 289001188501586 :=
+        Pratt.sq_mul_of g212 (by norm_num) (by norm_num)
+      have g214 : 3 ^ 18010 % 541474482383801 = 310643487819478 :=
+        Pratt.sq_of g213 (by norm_num) (by norm_num)
+      have g215 : 3 ^ 36020 % 541474482383801 = 228631664343541 :=
+        Pratt.sq_of g214 (by norm_num) (by norm_num)
+      have g216 : 3 ^ 72041 % 541474482383801 = 531265654900395 :=
+        Pratt.sq_mul_of g215 (by norm_num) (by norm_num)
+      have g217 : 3 ^ 144082 % 541474482383801 = 161299564326642 :=
+        Pratt.sq_of g216 (by norm_num) (by norm_num)
+      have g218 : 3 ^ 288164 % 541474482383801 = 226414992402491 :=
+        Pratt.sq_of g217 (by norm_num) (by norm_num)
+      have g219 : 3 ^ 576328 % 541474482383801 = 112088264957046 :=
+        Pratt.sq_of g218 (by norm_num) (by norm_num)
+      have g220 : 3 ^ 1152656 % 541474482383801 = 477886585372416 :=
+        Pratt.sq_of g219 (by norm_num) (by norm_num)
+      have g221 : 3 ^ 2305313 % 541474482383801 = 467932626774212 :=
+        Pratt.sq_mul_of g220 (by norm_num) (by norm_num)
+      have g222 : 3 ^ 4610627 % 541474482383801 = 313404442906964 :=
+        Pratt.sq_mul_of g221 (by norm_num) (by norm_num)
+      have g223 : 3 ^ 9221255 % 541474482383801 = 114804958977442 :=
+        Pratt.sq_mul_of g222 (by norm_num) (by norm_num)
+      have g224 : 3 ^ 18442510 % 541474482383801 = 8967516245052 :=
+        Pratt.sq_of g223 (by norm_num) (by norm_num)
+      have g225 : 3 ^ 36885021 % 541474482383801 = 144610914748535 :=
+        Pratt.sq_mul_of g224 (by norm_num) (by norm_num)
+      have g226 : 3 ^ 73770043 % 541474482383801 = 536474987782308 :=
+        Pratt.sq_mul_of g225 (by norm_num) (by norm_num)
+      have g227 : 3 ^ 147540087 % 541474482383801 = 426481114051075 :=
+        Pratt.sq_mul_of g226 (by norm_num) (by norm_num)
+      have g228 : 3 ^ 295080175 % 541474482383801 = 462559850043998 :=
+        Pratt.sq_mul_of g227 (by norm_num) (by norm_num)
+      have g229 : 3 ^ 590160350 % 541474482383801 = 57539247199232 :=
+        Pratt.sq_of g228 (by norm_num) (by norm_num)
+      have g230 : 3 ^ 1180320701 % 541474482383801 = 147567497337697 :=
+        Pratt.sq_mul_of g229 (by norm_num) (by norm_num)
+      have g231 : 3 ^ 2360641402 % 541474482383801 = 118708128916805 :=
+        Pratt.sq_of g230 (by norm_num) (by norm_num)
+      have g232 : 3 ^ 4721282805 % 541474482383801 = 33159418393835 :=
+        Pratt.sq_mul_of g231 (by norm_num) (by norm_num)
+      have g233 : 3 ^ 9442565610 % 541474482383801 = 527449496667650 :=
+        Pratt.sq_of g232 (by norm_num) (by norm_num)
+      have g234 : 3 ^ 18885131221 % 541474482383801 = 123545048469581 :=
+        Pratt.sq_mul_of g233 (by norm_num) (by norm_num)
+      have g235 : 3 ^ 37770262443 % 541474482383801 = 383884095246863 :=
+        Pratt.sq_mul_of g234 (by norm_num) (by norm_num)
+      have g236 : 3 ^ 75540524886 % 541474482383801 = 281915166681606 :=
+        Pratt.sq_of g235 (by norm_num) (by norm_num)
+      have g237 : 3 ^ 151081049772 % 541474482383801 = 232903891488804 :=
+        Pratt.sq_of g236 (by norm_num) (by norm_num)
+      have g238 : 3 ^ 302162099544 % 541474482383801 = 314511844348158 :=
+        Pratt.sq_of g237 (by norm_num) (by norm_num)
+      have g239 : 3 ^ 604324199089 % 541474482383801 = 440837036690338 :=
+        Pratt.sq_mul_of g238 (by norm_num) (by norm_num)
+      have g240 : 3 ^ 1208648398178 % 541474482383801 = 277805975859550 :=
+        Pratt.sq_of g239 (by norm_num) (by norm_num)
+      have g241 : 3 ^ 2417296796356 % 541474482383801 = 123784126007436 :=
+        Pratt.sq_of g240 (by norm_num) (by norm_num)
+      have g242 : 3 ^ 4834593592712 % 541474482383801 = 337105714813845 :=
+        Pratt.sq_of g241 (by norm_num) (by norm_num)
+      have g243 : 3 ^ 9669187185425 % 541474482383801 = 196326234387134 :=
+        Pratt.sq_mul_of g242 (by norm_num) (by norm_num)
+      have g244 : 3 ^ 19338374370850 % 541474482383801 = 129620145203913 :=
+        Pratt.sq_of g243 (by norm_num) (by norm_num)
+      have g245 : 3 ^ 38676748741700 % 541474482383801 = 272502130714818 :=
+        Pratt.sq_of g244 (by norm_num) (by norm_num)
+      have g246 : 3 ^ 77353497483400 % 541474482383801 = 61359697999390 :=
+        Pratt.sq_of g245 (by norm_num) (by norm_num)
+      rw [show (541474482383801 : ℕ) - 1 = 541474482383800 by norm_num, show 541474482383800 / 7 = 77353497483400 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g246 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq3 | hqd
+    . have hqe : q = 157 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 157)).mp (hq.dvd_of_dvd_pow hq3)
+      subst hqe
+      have g30 : 3 ^ 1 % 541474482383801 = 3 := by norm_num
+      have g31 : 3 ^ 3 % 541474482383801 = 27 :=
+        Pratt.sq_mul_of g30 (by norm_num) (by norm_num)
+      have g32 : 3 ^ 6 % 541474482383801 = 729 :=
+        Pratt.sq_of g31 (by norm_num) (by norm_num)
+      have g33 : 3 ^ 12 % 541474482383801 = 531441 :=
+        Pratt.sq_of g32 (by norm_num) (by norm_num)
+      have g34 : 3 ^ 25 % 541474482383801 = 847288609443 :=
+        Pratt.sq_mul_of g33 (by norm_num) (by norm_num)
+      have g35 : 3 ^ 50 % 541474482383801 = 310387954000515 :=
+        Pratt.sq_of g34 (by norm_num) (by norm_num)
+      have g36 : 3 ^ 100 % 541474482383801 = 183986295326097 :=
+        Pratt.sq_of g35 (by norm_num) (by norm_num)
+      have g37 : 3 ^ 200 % 541474482383801 = 299822530065795 :=
+        Pratt.sq_of g36 (by norm_num) (by norm_num)
+      have g38 : 3 ^ 401 % 541474482383801 = 525951550162758 :=
+        Pratt.sq_mul_of g37 (by norm_num) (by norm_num)
+      have g39 : 3 ^ 803 % 541474482383801 = 506571866171458 :=
+        Pratt.sq_mul_of g38 (by norm_num) (by norm_num)
+      have g310 : 3 ^ 1606 % 541474482383801 = 511429027874853 :=
+        Pratt.sq_of g39 (by norm_num) (by norm_num)
+      have g311 : 3 ^ 3212 % 541474482383801 = 228986047748618 :=
+        Pratt.sq_of g310 (by norm_num) (by norm_num)
+      have g312 : 3 ^ 6424 % 541474482383801 = 397627227072966 :=
+        Pratt.sq_of g311 (by norm_num) (by norm_num)
+      have g313 : 3 ^ 12848 % 541474482383801 = 138921227045745 :=
+        Pratt.sq_of g312 (by norm_num) (by norm_num)
+      have g314 : 3 ^ 25696 % 541474482383801 = 247347593731678 :=
+        Pratt.sq_of g313 (by norm_num) (by norm_num)
+      have g315 : 3 ^ 51392 % 541474482383801 = 323829111743435 :=
+        Pratt.sq_of g314 (by norm_num) (by norm_num)
+      have g316 : 3 ^ 102784 % 541474482383801 = 317689037060049 :=
+        Pratt.sq_of g315 (by norm_num) (by norm_num)
+      have g317 : 3 ^ 205569 % 541474482383801 = 95764272808865 :=
+        Pratt.sq_mul_of g316 (by norm_num) (by norm_num)
+      have g318 : 3 ^ 411138 % 541474482383801 = 238601308362119 :=
+        Pratt.sq_of g317 (by norm_num) (by norm_num)
+      have g319 : 3 ^ 822277 % 541474482383801 = 446481977338417 :=
+        Pratt.sq_mul_of g318 (by norm_num) (by norm_num)
+      have g320 : 3 ^ 1644555 % 541474482383801 = 397572531157762 :=
+        Pratt.sq_mul_of g319 (by norm_num) (by norm_num)
+      have g321 : 3 ^ 3289110 % 541474482383801 = 489945317690251 :=
+        Pratt.sq_of g320 (by norm_num) (by norm_num)
+      have g322 : 3 ^ 6578220 % 541474482383801 = 323728557877037 :=
+        Pratt.sq_of g321 (by norm_num) (by norm_num)
+      have g323 : 3 ^ 13156440 % 541474482383801 = 440204931053471 :=
+        Pratt.sq_of g322 (by norm_num) (by norm_num)
+      have g324 : 3 ^ 26312881 % 541474482383801 = 484604390768850 :=
+        Pratt.sq_mul_of g323 (by norm_num) (by norm_num)
+      have g325 : 3 ^ 52625763 % 541474482383801 = 346288748455588 :=
+        Pratt.sq_mul_of g324 (by norm_num) (by norm_num)
+      have g326 : 3 ^ 105251527 % 541474482383801 = 394310920591156 :=
+        Pratt.sq_mul_of g325 (by norm_num) (by norm_num)
+      have g327 : 3 ^ 210503055 % 541474482383801 = 475689024304569 :=
+        Pratt.sq_mul_of g326 (by norm_num) (by norm_num)
+      have g328 : 3 ^ 421006110 % 541474482383801 = 167787770818974 :=
+        Pratt.sq_of g327 (by norm_num) (by norm_num)
+      have g329 : 3 ^ 842012220 % 541474482383801 = 102772338418921 :=
+        Pratt.sq_of g328 (by norm_num) (by norm_num)
+      have g330 : 3 ^ 1684024440 % 541474482383801 = 285036625159764 :=
+        Pratt.sq_of g329 (by norm_num) (by norm_num)
+      have g331 : 3 ^ 3368048880 % 541474482383801 = 396925272207125 :=
+        Pratt.sq_of g330 (by norm_num) (by norm_num)
+      have g332 : 3 ^ 6736097760 % 541474482383801 = 327608157354458 :=
+        Pratt.sq_of g331 (by norm_num) (by norm_num)
+      have g333 : 3 ^ 13472195521 % 541474482383801 = 490475374285469 :=
+        Pratt.sq_mul_of g332 (by norm_num) (by norm_num)
+      have g334 : 3 ^ 26944391042 % 541474482383801 = 30772877651140 :=
+        Pratt.sq_of g333 (by norm_num) (by norm_num)
+      have g335 : 3 ^ 53888782084 % 541474482383801 = 514592406541 :=
+        Pratt.sq_of g334 (by norm_num) (by norm_num)
+      have g336 : 3 ^ 107777564168 % 541474482383801 = 491704932627562 :=
+        Pratt.sq_of g335 (by norm_num) (by norm_num)
+      have g337 : 3 ^ 215555128337 % 541474482383801 = 493964470663698 :=
+        Pratt.sq_mul_of g336 (by norm_num) (by norm_num)
+      have g338 : 3 ^ 431110256675 % 541474482383801 = 18449322118120 :=
+        Pratt.sq_mul_of g337 (by norm_num) (by norm_num)
+      have g339 : 3 ^ 862220513350 % 541474482383801 = 297229557261212 :=
+        Pratt.sq_of g338 (by norm_num) (by norm_num)
+      have g340 : 3 ^ 1724441026700 % 541474482383801 = 229850919751606 :=
+        Pratt.sq_of g339 (by norm_num) (by norm_num)
+      have g341 : 3 ^ 3448882053400 % 541474482383801 = 341975291011171 :=
+        Pratt.sq_of g340 (by norm_num) (by norm_num)
+      rw [show (541474482383801 : ℕ) - 1 = 541474482383800 by norm_num, show 541474482383800 / 157 = 3448882053400 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g341 (by norm_num)
+    have hqe : q = 2463487181 :=
+      (Nat.prime_dvd_prime_iff_eq hq prime_2463487181).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g40 : 3 ^ 1 % 541474482383801 = 3 := by norm_num
+    have g41 : 3 ^ 3 % 541474482383801 = 27 :=
+      Pratt.sq_mul_of g40 (by norm_num) (by norm_num)
+    have g42 : 3 ^ 6 % 541474482383801 = 729 :=
+      Pratt.sq_of g41 (by norm_num) (by norm_num)
+    have g43 : 3 ^ 13 % 541474482383801 = 1594323 :=
+      Pratt.sq_mul_of g42 (by norm_num) (by norm_num)
+    have g44 : 3 ^ 26 % 541474482383801 = 2541865828329 :=
+      Pratt.sq_of g43 (by norm_num) (by norm_num)
+    have g45 : 3 ^ 53 % 541474482383801 = 258357522256890 :=
+      Pratt.sq_mul_of g44 (by norm_num) (by norm_num)
+    have g46 : 3 ^ 107 % 541474482383801 = 62487467009996 :=
+      Pratt.sq_mul_of g45 (by norm_num) (by norm_num)
+    have g47 : 3 ^ 214 % 541474482383801 = 306186524493154 :=
+      Pratt.sq_of g46 (by norm_num) (by norm_num)
+    have g48 : 3 ^ 429 % 541474482383801 = 114171780521993 :=
+      Pratt.sq_mul_of g47 (by norm_num) (by norm_num)
+    have g49 : 3 ^ 858 % 541474482383801 = 411472877798407 :=
+      Pratt.sq_of g48 (by norm_num) (by norm_num)
+    have g410 : 3 ^ 1717 % 541474482383801 = 224471227553149 :=
+      Pratt.sq_mul_of g49 (by norm_num) (by norm_num)
+    have g411 : 3 ^ 3434 % 541474482383801 = 258341554254038 :=
+      Pratt.sq_of g410 (by norm_num) (by norm_num)
+    have g412 : 3 ^ 6868 % 541474482383801 = 124545258167786 :=
+      Pratt.sq_of g411 (by norm_num) (by norm_num)
+    have g413 : 3 ^ 13737 % 541474482383801 = 389859145955750 :=
+      Pratt.sq_mul_of g412 (by norm_num) (by norm_num)
+    have g414 : 3 ^ 27475 % 541474482383801 = 502868149200835 :=
+      Pratt.sq_mul_of g413 (by norm_num) (by norm_num)
+    have g415 : 3 ^ 54950 % 541474482383801 = 306621109638441 :=
+      Pratt.sq_of g414 (by norm_num) (by norm_num)
+    have g416 : 3 ^ 109900 % 541474482383801 = 299908814613360 :=
+      Pratt.sq_of g415 (by norm_num) (by norm_num)
+    have g417 : 3 ^ 219800 % 541474482383801 = 196357708157241 :=
+      Pratt.sq_of g416 (by norm_num) (by norm_num)
+    rw [show (541474482383801 : ℕ) - 1 = 541474482383800 by norm_num, show 541474482383800 / 2463487181 = 219800 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g417 (by norm_num)
+
+/-- `150968500433427556811` is prime, by a Lucas certificate with witness 2. -/
+theorem prime_150968500433427556811 : Nat.Prime 150968500433427556811 := by
+  refine lucas_primality 150968500433427556811 ((2 : ℕ) : ZMod 150968500433427556811) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 2 ^ 1 % 150968500433427556811 = 2 := by norm_num
+    have h1 : 2 ^ 2 % 150968500433427556811 = 4 :=
+      Pratt.sq_of h0 (by norm_num) (by norm_num)
+    have h2 : 2 ^ 4 % 150968500433427556811 = 16 :=
+      Pratt.sq_of h1 (by norm_num) (by norm_num)
+    have h3 : 2 ^ 8 % 150968500433427556811 = 256 :=
+      Pratt.sq_of h2 (by norm_num) (by norm_num)
+    have h4 : 2 ^ 16 % 150968500433427556811 = 65536 :=
+      Pratt.sq_of h3 (by norm_num) (by norm_num)
+    have h5 : 2 ^ 32 % 150968500433427556811 = 4294967296 :=
+      Pratt.sq_of h4 (by norm_num) (by norm_num)
+    have h6 : 2 ^ 65 % 150968500433427556811 = 36893488147419103232 :=
+      Pratt.sq_mul_of h5 (by norm_num) (by norm_num)
+    have h7 : 2 ^ 130 % 150968500433427556811 = 53249032532448335776 :=
+      Pratt.sq_of h6 (by norm_num) (by norm_num)
+    have h8 : 2 ^ 261 % 150968500433427556811 = 21111961507489555678 :=
+      Pratt.sq_mul_of h7 (by norm_num) (by norm_num)
+    have h9 : 2 ^ 523 % 150968500433427556811 = 22050226324803063400 :=
+      Pratt.sq_mul_of h8 (by norm_num) (by norm_num)
+    have h10 : 2 ^ 1047 % 150968500433427556811 = 89807353010960638246 :=
+      Pratt.sq_mul_of h9 (by norm_num) (by norm_num)
+    have h11 : 2 ^ 2095 % 150968500433427556811 = 54674209373510654521 :=
+      Pratt.sq_mul_of h10 (by norm_num) (by norm_num)
+    have h12 : 2 ^ 4190 % 150968500433427556811 = 99887993117277086417 :=
+      Pratt.sq_of h11 (by norm_num) (by norm_num)
+    have h13 : 2 ^ 8380 % 150968500433427556811 = 105285503470128705512 :=
+      Pratt.sq_of h12 (by norm_num) (by norm_num)
+    have h14 : 2 ^ 16760 % 150968500433427556811 = 149441965907924400737 :=
+      Pratt.sq_of h13 (by norm_num) (by norm_num)
+    have h15 : 2 ^ 33521 % 150968500433427556811 = 89516278129746650401 :=
+      Pratt.sq_mul_of h14 (by norm_num) (by norm_num)
+    have h16 : 2 ^ 67043 % 150968500433427556811 = 38599676271092605406 :=
+      Pratt.sq_mul_of h15 (by norm_num) (by norm_num)
+    have h17 : 2 ^ 134086 % 150968500433427556811 = 44780906940080995490 :=
+      Pratt.sq_of h16 (by norm_num) (by norm_num)
+    have h18 : 2 ^ 268173 % 150968500433427556811 = 75743346182604684946 :=
+      Pratt.sq_mul_of h17 (by norm_num) (by norm_num)
+    have h19 : 2 ^ 536347 % 150968500433427556811 = 63286516657144246197 :=
+      Pratt.sq_mul_of h18 (by norm_num) (by norm_num)
+    have h20 : 2 ^ 1072695 % 150968500433427556811 = 110123517581252087596 :=
+      Pratt.sq_mul_of h19 (by norm_num) (by norm_num)
+    have h21 : 2 ^ 2145391 % 150968500433427556811 = 55849774880525641920 :=
+      Pratt.sq_mul_of h20 (by norm_num) (by norm_num)
+    have h22 : 2 ^ 4290782 % 150968500433427556811 = 81281650586859283314 :=
+      Pratt.sq_of h21 (by norm_num) (by norm_num)
+    have h23 : 2 ^ 8581565 % 150968500433427556811 = 106467348084645455319 :=
+      Pratt.sq_mul_of h22 (by norm_num) (by norm_num)
+    have h24 : 2 ^ 17163131 % 150968500433427556811 = 54532918691642013209 :=
+      Pratt.sq_mul_of h23 (by norm_num) (by norm_num)
+    have h25 : 2 ^ 34326262 % 150968500433427556811 = 147364083308556809632 :=
+      Pratt.sq_of h24 (by norm_num) (by norm_num)
+    have h26 : 2 ^ 68652525 % 150968500433427556811 = 129258910640649102773 :=
+      Pratt.sq_mul_of h25 (by norm_num) (by norm_num)
+    have h27 : 2 ^ 137305051 % 150968500433427556811 = 91873902659664790101 :=
+      Pratt.sq_mul_of h26 (by norm_num) (by norm_num)
+    have h28 : 2 ^ 274610102 % 150968500433427556811 = 14930117768944033648 :=
+      Pratt.sq_of h27 (by norm_num) (by norm_num)
+    have h29 : 2 ^ 549220205 % 150968500433427556811 = 91926002207963554920 :=
+      Pratt.sq_mul_of h28 (by norm_num) (by norm_num)
+    have h30 : 2 ^ 1098440410 % 150968500433427556811 = 12648072681787760238 :=
+      Pratt.sq_of h29 (by norm_num) (by norm_num)
+    have h31 : 2 ^ 2196880820 % 150968500433427556811 = 93400526139220354869 :=
+      Pratt.sq_of h30 (by norm_num) (by norm_num)
+    have h32 : 2 ^ 4393761640 % 150968500433427556811 = 40044682987817015550 :=
+      Pratt.sq_of h31 (by norm_num) (by norm_num)
+    have h33 : 2 ^ 8787523281 % 150968500433427556811 = 14285334953646582945 :=
+      Pratt.sq_mul_of h32 (by norm_num) (by norm_num)
+    have h34 : 2 ^ 17575046563 % 150968500433427556811 = 60789594121553462945 :=
+      Pratt.sq_mul_of h33 (by norm_num) (by norm_num)
+    have h35 : 2 ^ 35150093127 % 150968500433427556811 = 51343757016260960577 :=
+      Pratt.sq_mul_of h34 (by norm_num) (by norm_num)
+    have h36 : 2 ^ 70300186254 % 150968500433427556811 = 7842585266106866598 :=
+      Pratt.sq_of h35 (by norm_num) (by norm_num)
+    have h37 : 2 ^ 140600372509 % 150968500433427556811 = 112345643362512160785 :=
+      Pratt.sq_mul_of h36 (by norm_num) (by norm_num)
+    have h38 : 2 ^ 281200745018 % 150968500433427556811 = 2579230361223005263 :=
+      Pratt.sq_of h37 (by norm_num) (by norm_num)
+    have h39 : 2 ^ 562401490037 % 150968500433427556811 = 96971356079512470680 :=
+      Pratt.sq_mul_of h38 (by norm_num) (by norm_num)
+    have h40 : 2 ^ 1124802980075 % 150968500433427556811 = 114664545754298750046 :=
+      Pratt.sq_mul_of h39 (by norm_num) (by norm_num)
+    have h41 : 2 ^ 2249605960151 % 150968500433427556811 = 144954534903448044108 :=
+      Pratt.sq_mul_of h40 (by norm_num) (by norm_num)
+    have h42 : 2 ^ 4499211920303 % 150968500433427556811 = 136584453312756401658 :=
+      Pratt.sq_mul_of h41 (by norm_num) (by norm_num)
+    have h43 : 2 ^ 8998423840607 % 150968500433427556811 = 117962928605451679893 :=
+      Pratt.sq_mul_of h42 (by norm_num) (by norm_num)
+    have h44 : 2 ^ 17996847681215 % 150968500433427556811 = 66398693495204640486 :=
+      Pratt.sq_mul_of h43 (by norm_num) (by norm_num)
+    have h45 : 2 ^ 35993695362431 % 150968500433427556811 = 129279966817510882124 :=
+      Pratt.sq_mul_of h44 (by norm_num) (by norm_num)
+    have h46 : 2 ^ 71987390724862 % 150968500433427556811 = 139368169372646680006 :=
+      Pratt.sq_of h45 (by norm_num) (by norm_num)
+    have h47 : 2 ^ 143974781449725 % 150968500433427556811 = 95088325196661632102 :=
+      Pratt.sq_mul_of h46 (by norm_num) (by norm_num)
+    have h48 : 2 ^ 287949562899451 % 150968500433427556811 = 68621186907386218754 :=
+      Pratt.sq_mul_of h47 (by norm_num) (by norm_num)
+    have h49 : 2 ^ 575899125798902 % 150968500433427556811 = 80023149392880886161 :=
+      Pratt.sq_of h48 (by norm_num) (by norm_num)
+    have h50 : 2 ^ 1151798251597805 % 150968500433427556811 = 104026613817051336378 :=
+      Pratt.sq_mul_of h49 (by norm_num) (by norm_num)
+    have h51 : 2 ^ 2303596503195610 % 150968500433427556811 = 81134832576302535040 :=
+      Pratt.sq_of h50 (by norm_num) (by norm_num)
+    have h52 : 2 ^ 4607193006391221 % 150968500433427556811 = 64496523854961504941 :=
+      Pratt.sq_mul_of h51 (by norm_num) (by norm_num)
+    have h53 : 2 ^ 9214386012782443 % 150968500433427556811 = 114018097851953979390 :=
+      Pratt.sq_mul_of h52 (by norm_num) (by norm_num)
+    have h54 : 2 ^ 18428772025564887 % 150968500433427556811 = 128960749894092238707 :=
+      Pratt.sq_mul_of h53 (by norm_num) (by norm_num)
+    have h55 : 2 ^ 36857544051129774 % 150968500433427556811 = 79969084876276506919 :=
+      Pratt.sq_of h54 (by norm_num) (by norm_num)
+    have h56 : 2 ^ 73715088102259549 % 150968500433427556811 = 95661605346371443134 :=
+      Pratt.sq_mul_of h55 (by norm_num) (by norm_num)
+    have h57 : 2 ^ 147430176204519098 % 150968500433427556811 = 4022920503983290682 :=
+      Pratt.sq_of h56 (by norm_num) (by norm_num)
+    have h58 : 2 ^ 294860352409038196 % 150968500433427556811 = 54784277025328526524 :=
+      Pratt.sq_of h57 (by norm_num) (by norm_num)
+    have h59 : 2 ^ 589720704818076393 % 150968500433427556811 = 64605203274649556996 :=
+      Pratt.sq_mul_of h58 (by norm_num) (by norm_num)
+    have h60 : 2 ^ 1179441409636152787 % 150968500433427556811 = 100827012245336752248 :=
+      Pratt.sq_mul_of h59 (by norm_num) (by norm_num)
+    have h61 : 2 ^ 2358882819272305575 % 150968500433427556811 = 91251772554199308679 :=
+      Pratt.sq_mul_of h60 (by norm_num) (by norm_num)
+    have h62 : 2 ^ 4717765638544611150 % 150968500433427556811 = 22698503311615971346 :=
+      Pratt.sq_of h61 (by norm_num) (by norm_num)
+    have h63 : 2 ^ 9435531277089222300 % 150968500433427556811 = 113246375617545057201 :=
+      Pratt.sq_of h62 (by norm_num) (by norm_num)
+    have h64 : 2 ^ 18871062554178444601 % 150968500433427556811 = 150674301343475498300 :=
+      Pratt.sq_mul_of h63 (by norm_num) (by norm_num)
+    have h65 : 2 ^ 37742125108356889202 % 150968500433427556811 = 3119791049428344649 :=
+      Pratt.sq_of h64 (by norm_num) (by norm_num)
+    have h66 : 2 ^ 75484250216713778405 % 150968500433427556811 = 150968500433427556810 :=
+      Pratt.sq_mul_of h65 (by norm_num) (by norm_num)
+    have h67 : 2 ^ 150968500433427556810 % 150968500433427556811 = 1 :=
+      Pratt.sq_of h66 (by norm_num) (by norm_num)
+    rw [show (150968500433427556811 : ℕ) - 1 = 150968500433427556810 by norm_num, h67]
+  · intro q hq hqd
+    have hfac : 150968500433427556811 - 1 = 2 ^ 1 * (5 ^ 1 * (7 ^ 2 * (569 ^ 1 * (541474482383801 ^ 1)))) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 2 ^ 1 % 150968500433427556811 = 2 := by norm_num
+      have g01 : 2 ^ 2 % 150968500433427556811 = 4 :=
+        Pratt.sq_of g00 (by norm_num) (by norm_num)
+      have g02 : 2 ^ 4 % 150968500433427556811 = 16 :=
+        Pratt.sq_of g01 (by norm_num) (by norm_num)
+      have g03 : 2 ^ 8 % 150968500433427556811 = 256 :=
+        Pratt.sq_of g02 (by norm_num) (by norm_num)
+      have g04 : 2 ^ 16 % 150968500433427556811 = 65536 :=
+        Pratt.sq_of g03 (by norm_num) (by norm_num)
+      have g05 : 2 ^ 32 % 150968500433427556811 = 4294967296 :=
+        Pratt.sq_of g04 (by norm_num) (by norm_num)
+      have g06 : 2 ^ 65 % 150968500433427556811 = 36893488147419103232 :=
+        Pratt.sq_mul_of g05 (by norm_num) (by norm_num)
+      have g07 : 2 ^ 130 % 150968500433427556811 = 53249032532448335776 :=
+        Pratt.sq_of g06 (by norm_num) (by norm_num)
+      have g08 : 2 ^ 261 % 150968500433427556811 = 21111961507489555678 :=
+        Pratt.sq_mul_of g07 (by norm_num) (by norm_num)
+      have g09 : 2 ^ 523 % 150968500433427556811 = 22050226324803063400 :=
+        Pratt.sq_mul_of g08 (by norm_num) (by norm_num)
+      have g010 : 2 ^ 1047 % 150968500433427556811 = 89807353010960638246 :=
+        Pratt.sq_mul_of g09 (by norm_num) (by norm_num)
+      have g011 : 2 ^ 2095 % 150968500433427556811 = 54674209373510654521 :=
+        Pratt.sq_mul_of g010 (by norm_num) (by norm_num)
+      have g012 : 2 ^ 4190 % 150968500433427556811 = 99887993117277086417 :=
+        Pratt.sq_of g011 (by norm_num) (by norm_num)
+      have g013 : 2 ^ 8380 % 150968500433427556811 = 105285503470128705512 :=
+        Pratt.sq_of g012 (by norm_num) (by norm_num)
+      have g014 : 2 ^ 16760 % 150968500433427556811 = 149441965907924400737 :=
+        Pratt.sq_of g013 (by norm_num) (by norm_num)
+      have g015 : 2 ^ 33521 % 150968500433427556811 = 89516278129746650401 :=
+        Pratt.sq_mul_of g014 (by norm_num) (by norm_num)
+      have g016 : 2 ^ 67043 % 150968500433427556811 = 38599676271092605406 :=
+        Pratt.sq_mul_of g015 (by norm_num) (by norm_num)
+      have g017 : 2 ^ 134086 % 150968500433427556811 = 44780906940080995490 :=
+        Pratt.sq_of g016 (by norm_num) (by norm_num)
+      have g018 : 2 ^ 268173 % 150968500433427556811 = 75743346182604684946 :=
+        Pratt.sq_mul_of g017 (by norm_num) (by norm_num)
+      have g019 : 2 ^ 536347 % 150968500433427556811 = 63286516657144246197 :=
+        Pratt.sq_mul_of g018 (by norm_num) (by norm_num)
+      have g020 : 2 ^ 1072695 % 150968500433427556811 = 110123517581252087596 :=
+        Pratt.sq_mul_of g019 (by norm_num) (by norm_num)
+      have g021 : 2 ^ 2145391 % 150968500433427556811 = 55849774880525641920 :=
+        Pratt.sq_mul_of g020 (by norm_num) (by norm_num)
+      have g022 : 2 ^ 4290782 % 150968500433427556811 = 81281650586859283314 :=
+        Pratt.sq_of g021 (by norm_num) (by norm_num)
+      have g023 : 2 ^ 8581565 % 150968500433427556811 = 106467348084645455319 :=
+        Pratt.sq_mul_of g022 (by norm_num) (by norm_num)
+      have g024 : 2 ^ 17163131 % 150968500433427556811 = 54532918691642013209 :=
+        Pratt.sq_mul_of g023 (by norm_num) (by norm_num)
+      have g025 : 2 ^ 34326262 % 150968500433427556811 = 147364083308556809632 :=
+        Pratt.sq_of g024 (by norm_num) (by norm_num)
+      have g026 : 2 ^ 68652525 % 150968500433427556811 = 129258910640649102773 :=
+        Pratt.sq_mul_of g025 (by norm_num) (by norm_num)
+      have g027 : 2 ^ 137305051 % 150968500433427556811 = 91873902659664790101 :=
+        Pratt.sq_mul_of g026 (by norm_num) (by norm_num)
+      have g028 : 2 ^ 274610102 % 150968500433427556811 = 14930117768944033648 :=
+        Pratt.sq_of g027 (by norm_num) (by norm_num)
+      have g029 : 2 ^ 549220205 % 150968500433427556811 = 91926002207963554920 :=
+        Pratt.sq_mul_of g028 (by norm_num) (by norm_num)
+      have g030 : 2 ^ 1098440410 % 150968500433427556811 = 12648072681787760238 :=
+        Pratt.sq_of g029 (by norm_num) (by norm_num)
+      have g031 : 2 ^ 2196880820 % 150968500433427556811 = 93400526139220354869 :=
+        Pratt.sq_of g030 (by norm_num) (by norm_num)
+      have g032 : 2 ^ 4393761640 % 150968500433427556811 = 40044682987817015550 :=
+        Pratt.sq_of g031 (by norm_num) (by norm_num)
+      have g033 : 2 ^ 8787523281 % 150968500433427556811 = 14285334953646582945 :=
+        Pratt.sq_mul_of g032 (by norm_num) (by norm_num)
+      have g034 : 2 ^ 17575046563 % 150968500433427556811 = 60789594121553462945 :=
+        Pratt.sq_mul_of g033 (by norm_num) (by norm_num)
+      have g035 : 2 ^ 35150093127 % 150968500433427556811 = 51343757016260960577 :=
+        Pratt.sq_mul_of g034 (by norm_num) (by norm_num)
+      have g036 : 2 ^ 70300186254 % 150968500433427556811 = 7842585266106866598 :=
+        Pratt.sq_of g035 (by norm_num) (by norm_num)
+      have g037 : 2 ^ 140600372509 % 150968500433427556811 = 112345643362512160785 :=
+        Pratt.sq_mul_of g036 (by norm_num) (by norm_num)
+      have g038 : 2 ^ 281200745018 % 150968500433427556811 = 2579230361223005263 :=
+        Pratt.sq_of g037 (by norm_num) (by norm_num)
+      have g039 : 2 ^ 562401490037 % 150968500433427556811 = 96971356079512470680 :=
+        Pratt.sq_mul_of g038 (by norm_num) (by norm_num)
+      have g040 : 2 ^ 1124802980075 % 150968500433427556811 = 114664545754298750046 :=
+        Pratt.sq_mul_of g039 (by norm_num) (by norm_num)
+      have g041 : 2 ^ 2249605960151 % 150968500433427556811 = 144954534903448044108 :=
+        Pratt.sq_mul_of g040 (by norm_num) (by norm_num)
+      have g042 : 2 ^ 4499211920303 % 150968500433427556811 = 136584453312756401658 :=
+        Pratt.sq_mul_of g041 (by norm_num) (by norm_num)
+      have g043 : 2 ^ 8998423840607 % 150968500433427556811 = 117962928605451679893 :=
+        Pratt.sq_mul_of g042 (by norm_num) (by norm_num)
+      have g044 : 2 ^ 17996847681215 % 150968500433427556811 = 66398693495204640486 :=
+        Pratt.sq_mul_of g043 (by norm_num) (by norm_num)
+      have g045 : 2 ^ 35993695362431 % 150968500433427556811 = 129279966817510882124 :=
+        Pratt.sq_mul_of g044 (by norm_num) (by norm_num)
+      have g046 : 2 ^ 71987390724862 % 150968500433427556811 = 139368169372646680006 :=
+        Pratt.sq_of g045 (by norm_num) (by norm_num)
+      have g047 : 2 ^ 143974781449725 % 150968500433427556811 = 95088325196661632102 :=
+        Pratt.sq_mul_of g046 (by norm_num) (by norm_num)
+      have g048 : 2 ^ 287949562899451 % 150968500433427556811 = 68621186907386218754 :=
+        Pratt.sq_mul_of g047 (by norm_num) (by norm_num)
+      have g049 : 2 ^ 575899125798902 % 150968500433427556811 = 80023149392880886161 :=
+        Pratt.sq_of g048 (by norm_num) (by norm_num)
+      have g050 : 2 ^ 1151798251597805 % 150968500433427556811 = 104026613817051336378 :=
+        Pratt.sq_mul_of g049 (by norm_num) (by norm_num)
+      have g051 : 2 ^ 2303596503195610 % 150968500433427556811 = 81134832576302535040 :=
+        Pratt.sq_of g050 (by norm_num) (by norm_num)
+      have g052 : 2 ^ 4607193006391221 % 150968500433427556811 = 64496523854961504941 :=
+        Pratt.sq_mul_of g051 (by norm_num) (by norm_num)
+      have g053 : 2 ^ 9214386012782443 % 150968500433427556811 = 114018097851953979390 :=
+        Pratt.sq_mul_of g052 (by norm_num) (by norm_num)
+      have g054 : 2 ^ 18428772025564887 % 150968500433427556811 = 128960749894092238707 :=
+        Pratt.sq_mul_of g053 (by norm_num) (by norm_num)
+      have g055 : 2 ^ 36857544051129774 % 150968500433427556811 = 79969084876276506919 :=
+        Pratt.sq_of g054 (by norm_num) (by norm_num)
+      have g056 : 2 ^ 73715088102259549 % 150968500433427556811 = 95661605346371443134 :=
+        Pratt.sq_mul_of g055 (by norm_num) (by norm_num)
+      have g057 : 2 ^ 147430176204519098 % 150968500433427556811 = 4022920503983290682 :=
+        Pratt.sq_of g056 (by norm_num) (by norm_num)
+      have g058 : 2 ^ 294860352409038196 % 150968500433427556811 = 54784277025328526524 :=
+        Pratt.sq_of g057 (by norm_num) (by norm_num)
+      have g059 : 2 ^ 589720704818076393 % 150968500433427556811 = 64605203274649556996 :=
+        Pratt.sq_mul_of g058 (by norm_num) (by norm_num)
+      have g060 : 2 ^ 1179441409636152787 % 150968500433427556811 = 100827012245336752248 :=
+        Pratt.sq_mul_of g059 (by norm_num) (by norm_num)
+      have g061 : 2 ^ 2358882819272305575 % 150968500433427556811 = 91251772554199308679 :=
+        Pratt.sq_mul_of g060 (by norm_num) (by norm_num)
+      have g062 : 2 ^ 4717765638544611150 % 150968500433427556811 = 22698503311615971346 :=
+        Pratt.sq_of g061 (by norm_num) (by norm_num)
+      have g063 : 2 ^ 9435531277089222300 % 150968500433427556811 = 113246375617545057201 :=
+        Pratt.sq_of g062 (by norm_num) (by norm_num)
+      have g064 : 2 ^ 18871062554178444601 % 150968500433427556811 = 150674301343475498300 :=
+        Pratt.sq_mul_of g063 (by norm_num) (by norm_num)
+      have g065 : 2 ^ 37742125108356889202 % 150968500433427556811 = 3119791049428344649 :=
+        Pratt.sq_of g064 (by norm_num) (by norm_num)
+      have g066 : 2 ^ 75484250216713778405 % 150968500433427556811 = 150968500433427556810 :=
+        Pratt.sq_mul_of g065 (by norm_num) (by norm_num)
+      rw [show (150968500433427556811 : ℕ) - 1 = 150968500433427556810 by norm_num, show 150968500433427556810 / 2 = 75484250216713778405 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g066 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 5 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 5)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 2 ^ 1 % 150968500433427556811 = 2 := by norm_num
+      have g11 : 2 ^ 3 % 150968500433427556811 = 8 :=
+        Pratt.sq_mul_of g10 (by norm_num) (by norm_num)
+      have g12 : 2 ^ 6 % 150968500433427556811 = 64 :=
+        Pratt.sq_of g11 (by norm_num) (by norm_num)
+      have g13 : 2 ^ 13 % 150968500433427556811 = 8192 :=
+        Pratt.sq_mul_of g12 (by norm_num) (by norm_num)
+      have g14 : 2 ^ 26 % 150968500433427556811 = 67108864 :=
+        Pratt.sq_of g13 (by norm_num) (by norm_num)
+      have g15 : 2 ^ 52 % 150968500433427556811 = 4503599627370496 :=
+        Pratt.sq_of g14 (by norm_num) (by norm_num)
+      have g16 : 2 ^ 104 % 150968500433427556811 = 98841063842603018403 :=
+        Pratt.sq_of g15 (by norm_num) (by norm_num)
+      have g17 : 2 ^ 209 % 150968500433427556811 = 139269549462410098322 :=
+        Pratt.sq_mul_of g16 (by norm_num) (by norm_num)
+      have g18 : 2 ^ 419 % 150968500433427556811 = 63720120370772615490 :=
+        Pratt.sq_mul_of g17 (by norm_num) (by norm_num)
+      have g19 : 2 ^ 838 % 150968500433427556811 = 136868593680433039498 :=
+        Pratt.sq_of g18 (by norm_num) (by norm_num)
+      have g110 : 2 ^ 1676 % 150968500433427556811 = 17907657295409579036 :=
+        Pratt.sq_of g19 (by norm_num) (by norm_num)
+      have g111 : 2 ^ 3352 % 150968500433427556811 = 27099449758075905321 :=
+        Pratt.sq_of g110 (by norm_num) (by norm_num)
+      have g112 : 2 ^ 6704 % 150968500433427556811 = 31972810773997395529 :=
+        Pratt.sq_of g111 (by norm_num) (by norm_num)
+      have g113 : 2 ^ 13408 % 150968500433427556811 = 17153810620153029465 :=
+        Pratt.sq_of g112 (by norm_num) (by norm_num)
+      have g114 : 2 ^ 26817 % 150968500433427556811 = 47866024061523015345 :=
+        Pratt.sq_mul_of g113 (by norm_num) (by norm_num)
+      have g115 : 2 ^ 53634 % 150968500433427556811 = 30230694523363467828 :=
+        Pratt.sq_of g114 (by norm_num) (by norm_num)
+      have g116 : 2 ^ 107269 % 150968500433427556811 = 143994670943992290525 :=
+        Pratt.sq_mul_of g115 (by norm_num) (by norm_num)
+      have g117 : 2 ^ 214539 % 150968500433427556811 = 58999392163377244786 :=
+        Pratt.sq_mul_of g116 (by norm_num) (by norm_num)
+      have g118 : 2 ^ 429078 % 150968500433427556811 = 149085121473113613564 :=
+        Pratt.sq_of g117 (by norm_num) (by norm_num)
+      have g119 : 2 ^ 858156 % 150968500433427556811 = 141980815480984255460 :=
+        Pratt.sq_of g118 (by norm_num) (by norm_num)
+      have g120 : 2 ^ 1716313 % 150968500433427556811 = 27711652367948424869 :=
+        Pratt.sq_mul_of g119 (by norm_num) (by norm_num)
+      have g121 : 2 ^ 3432626 % 150968500433427556811 = 4694525365490328528 :=
+        Pratt.sq_of g120 (by norm_num) (by norm_num)
+      have g122 : 2 ^ 6865252 % 150968500433427556811 = 146600843755806476376 :=
+        Pratt.sq_of g121 (by norm_num) (by norm_num)
+      have g123 : 2 ^ 13730505 % 150968500433427556811 = 1691809985275960613 :=
+        Pratt.sq_mul_of g122 (by norm_num) (by norm_num)
+      have g124 : 2 ^ 27461010 % 150968500433427556811 = 105361210404288887132 :=
+        Pratt.sq_of g123 (by norm_num) (by norm_num)
+      have g125 : 2 ^ 54922020 % 150968500433427556811 = 139007289841128491022 :=
+        Pratt.sq_of g124 (by norm_num) (by norm_num)
+      have g126 : 2 ^ 109844041 % 150968500433427556811 = 70642370002923856241 :=
+        Pratt.sq_mul_of g125 (by norm_num) (by norm_num)
+      have g127 : 2 ^ 219688082 % 150968500433427556811 = 71168199786973710089 :=
+        Pratt.sq_of g126 (by norm_num) (by norm_num)
+      have g128 : 2 ^ 439376164 % 150968500433427556811 = 147554111900178863641 :=
+        Pratt.sq_of g127 (by norm_num) (by norm_num)
+      have g129 : 2 ^ 878752328 % 150968500433427556811 = 24681256670634224385 :=
+        Pratt.sq_of g128 (by norm_num) (by norm_num)
+      have g130 : 2 ^ 1757504656 % 150968500433427556811 = 144472132336006154806 :=
+        Pratt.sq_of g129 (by norm_num) (by norm_num)
+      have g131 : 2 ^ 3515009312 % 150968500433427556811 = 16492371092853770677 :=
+        Pratt.sq_of g130 (by norm_num) (by norm_num)
+      have g132 : 2 ^ 7030018625 % 150968500433427556811 = 126687498312713872024 :=
+        Pratt.sq_mul_of g131 (by norm_num) (by norm_num)
+      have g133 : 2 ^ 14060037250 % 150968500433427556811 = 52405704009132074137 :=
+        Pratt.sq_of g132 (by norm_num) (by norm_num)
+      have g134 : 2 ^ 28120074501 % 150968500433427556811 = 70794618154125140553 :=
+        Pratt.sq_mul_of g133 (by norm_num) (by norm_num)
+      have g135 : 2 ^ 56240149003 % 150968500433427556811 = 109536304848839389722 :=
+        Pratt.sq_mul_of g134 (by norm_num) (by norm_num)
+      have g136 : 2 ^ 112480298007 % 150968500433427556811 = 17460687165414642990 :=
+        Pratt.sq_mul_of g135 (by norm_num) (by norm_num)
+      have g137 : 2 ^ 224960596015 % 150968500433427556811 = 61397704203173170451 :=
+        Pratt.sq_mul_of g136 (by norm_num) (by norm_num)
+      have g138 : 2 ^ 449921192030 % 150968500433427556811 = 127188305302124506810 :=
+        Pratt.sq_of g137 (by norm_num) (by norm_num)
+      have g139 : 2 ^ 899842384060 % 150968500433427556811 = 100607230708109326337 :=
+        Pratt.sq_of g138 (by norm_num) (by norm_num)
+      have g140 : 2 ^ 1799684768121 % 150968500433427556811 = 105407139808637126796 :=
+        Pratt.sq_mul_of g139 (by norm_num) (by norm_num)
+      have g141 : 2 ^ 3599369536243 % 150968500433427556811 = 4694902989859395676 :=
+        Pratt.sq_mul_of g140 (by norm_num) (by norm_num)
+      have g142 : 2 ^ 7198739072486 % 150968500433427556811 = 65212731771278211386 :=
+        Pratt.sq_of g141 (by norm_num) (by norm_num)
+      have g143 : 2 ^ 14397478144972 % 150968500433427556811 = 79435521379623153810 :=
+        Pratt.sq_of g142 (by norm_num) (by norm_num)
+      have g144 : 2 ^ 28794956289945 % 150968500433427556811 = 48113274855526368573 :=
+        Pratt.sq_mul_of g143 (by norm_num) (by norm_num)
+      have g145 : 2 ^ 57589912579890 % 150968500433427556811 = 54413369982330900477 :=
+        Pratt.sq_of g144 (by norm_num) (by norm_num)
+      have g146 : 2 ^ 115179825159780 % 150968500433427556811 = 127521854982050181849 :=
+        Pratt.sq_of g145 (by norm_num) (by norm_num)
+      have g147 : 2 ^ 230359650319561 % 150968500433427556811 = 72388163020597765699 :=
+        Pratt.sq_mul_of g146 (by norm_num) (by norm_num)
+      have g148 : 2 ^ 460719300639122 % 150968500433427556811 = 68245806261420767056 :=
+        Pratt.sq_of g147 (by norm_num) (by norm_num)
+      have g149 : 2 ^ 921438601278244 % 150968500433427556811 = 103734974504831353674 :=
+        Pratt.sq_of g148 (by norm_num) (by norm_num)
+      have g150 : 2 ^ 1842877202556488 % 150968500433427556811 = 141409429594235416819 :=
+        Pratt.sq_of g149 (by norm_num) (by norm_num)
+      have g151 : 2 ^ 3685754405112977 % 150968500433427556811 = 29692249500952471942 :=
+        Pratt.sq_mul_of g150 (by norm_num) (by norm_num)
+      have g152 : 2 ^ 7371508810225954 % 150968500433427556811 = 91500880605545946000 :=
+        Pratt.sq_of g151 (by norm_num) (by norm_num)
+      have g153 : 2 ^ 14743017620451909 % 150968500433427556811 = 88121493705451632682 :=
+        Pratt.sq_mul_of g152 (by norm_num) (by norm_num)
+      have g154 : 2 ^ 29486035240903819 % 150968500433427556811 = 129477512814986319391 :=
+        Pratt.sq_mul_of g153 (by norm_num) (by norm_num)
+      have g155 : 2 ^ 58972070481807639 % 150968500433427556811 = 79608774351965050888 :=
+        Pratt.sq_mul_of g154 (by norm_num) (by norm_num)
+      have g156 : 2 ^ 117944140963615278 % 150968500433427556811 = 24034960551090459363 :=
+        Pratt.sq_of g155 (by norm_num) (by norm_num)
+      have g157 : 2 ^ 235888281927230557 % 150968500433427556811 = 64290701079440207328 :=
+        Pratt.sq_mul_of g156 (by norm_num) (by norm_num)
+      have g158 : 2 ^ 471776563854461115 % 150968500433427556811 = 36101292724037760830 :=
+        Pratt.sq_mul_of g157 (by norm_num) (by norm_num)
+      have g159 : 2 ^ 943553127708922230 % 150968500433427556811 = 92488573623021331553 :=
+        Pratt.sq_of g158 (by norm_num) (by norm_num)
+      have g160 : 2 ^ 1887106255417844460 % 150968500433427556811 = 55693872891441595603 :=
+        Pratt.sq_of g159 (by norm_num) (by norm_num)
+      have g161 : 2 ^ 3774212510835688920 % 150968500433427556811 = 72053579860119363271 :=
+        Pratt.sq_of g160 (by norm_num) (by norm_num)
+      have g162 : 2 ^ 7548425021671377840 % 150968500433427556811 = 47128720496824578233 :=
+        Pratt.sq_of g161 (by norm_num) (by norm_num)
+      have g163 : 2 ^ 15096850043342755681 % 150968500433427556811 = 138394013272221485304 :=
+        Pratt.sq_mul_of g162 (by norm_num) (by norm_num)
+      have g164 : 2 ^ 30193700086685511362 % 150968500433427556811 = 63590802779255770930 :=
+        Pratt.sq_of g163 (by norm_num) (by norm_num)
+      rw [show (150968500433427556811 : ℕ) - 1 = 150968500433427556810 by norm_num, show 150968500433427556810 / 5 = 30193700086685511362 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g164 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq2 | hqd
+    . have hqe : q = 7 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 7)).mp (hq.dvd_of_dvd_pow hq2)
+      subst hqe
+      have g20 : 2 ^ 1 % 150968500433427556811 = 2 := by norm_num
+      have g21 : 2 ^ 2 % 150968500433427556811 = 4 :=
+        Pratt.sq_of g20 (by norm_num) (by norm_num)
+      have g22 : 2 ^ 4 % 150968500433427556811 = 16 :=
+        Pratt.sq_of g21 (by norm_num) (by norm_num)
+      have g23 : 2 ^ 9 % 150968500433427556811 = 512 :=
+        Pratt.sq_mul_of g22 (by norm_num) (by norm_num)
+      have g24 : 2 ^ 18 % 150968500433427556811 = 262144 :=
+        Pratt.sq_of g23 (by norm_num) (by norm_num)
+      have g25 : 2 ^ 37 % 150968500433427556811 = 137438953472 :=
+        Pratt.sq_mul_of g24 (by norm_num) (by norm_num)
+      have g26 : 2 ^ 74 % 150968500433427556811 = 18403377300136253409 :=
+        Pratt.sq_of g25 (by norm_num) (by norm_num)
+      have g27 : 2 ^ 149 % 150968500433427556811 = 129794221115551610124 :=
+        Pratt.sq_mul_of g26 (by norm_num) (by norm_num)
+      have g28 : 2 ^ 299 % 150968500433427556811 = 57642118499638354173 :=
+        Pratt.sq_mul_of g27 (by norm_num) (by norm_num)
+      have g29 : 2 ^ 598 % 150968500433427556811 = 65358581804584660587 :=
+        Pratt.sq_of g28 (by norm_num) (by norm_num)
+      have g210 : 2 ^ 1197 % 150968500433427556811 = 9729486139706405605 :=
+        Pratt.sq_mul_of g29 (by norm_num) (by norm_num)
+      have g211 : 2 ^ 2394 % 150968500433427556811 = 71123660074360787819 :=
+        Pratt.sq_of g210 (by norm_num) (by norm_num)
+      have g212 : 2 ^ 4788 % 150968500433427556811 = 7619238642131954402 :=
+        Pratt.sq_of g211 (by norm_num) (by norm_num)
+      have g213 : 2 ^ 9577 % 150968500433427556811 = 104172115227097120684 :=
+        Pratt.sq_mul_of g212 (by norm_num) (by norm_num)
+      have g214 : 2 ^ 19155 % 150968500433427556811 = 25710873196863208830 :=
+        Pratt.sq_mul_of g213 (by norm_num) (by norm_num)
+      have g215 : 2 ^ 38310 % 150968500433427556811 = 116947285790493332842 :=
+        Pratt.sq_of g214 (by norm_num) (by norm_num)
+      have g216 : 2 ^ 76621 % 150968500433427556811 = 138950503697597758223 :=
+        Pratt.sq_mul_of g215 (by norm_num) (by norm_num)
+      have g217 : 2 ^ 153242 % 150968500433427556811 = 56143854377521734064 :=
+        Pratt.sq_of g216 (by norm_num) (by norm_num)
+      have g218 : 2 ^ 306484 % 150968500433427556811 = 139984518756262115148 :=
+        Pratt.sq_of g217 (by norm_num) (by norm_num)
+      have g219 : 2 ^ 612968 % 150968500433427556811 = 1415275322297232245 :=
+        Pratt.sq_of g218 (by norm_num) (by norm_num)
+      have g220 : 2 ^ 1225937 % 150968500433427556811 = 5610559080674603715 :=
+        Pratt.sq_mul_of g219 (by norm_num) (by norm_num)
+      have g221 : 2 ^ 2451875 % 150968500433427556811 = 65473063742074934306 :=
+        Pratt.sq_mul_of g220 (by norm_num) (by norm_num)
+      have g222 : 2 ^ 4903751 % 150968500433427556811 = 35369658012659551818 :=
+        Pratt.sq_mul_of g221 (by norm_num) (by norm_num)
+      have g223 : 2 ^ 9807503 % 150968500433427556811 = 104168564612631753424 :=
+        Pratt.sq_mul_of g222 (by norm_num) (by norm_num)
+      have g224 : 2 ^ 19615007 % 150968500433427556811 = 147318972005570795581 :=
+        Pratt.sq_mul_of g223 (by norm_num) (by norm_num)
+      have g225 : 2 ^ 39230014 % 150968500433427556811 = 21984832882201236984 :=
+        Pratt.sq_of g224 (by norm_num) (by norm_num)
+      have g226 : 2 ^ 78460029 % 150968500433427556811 = 129810975758476312480 :=
+        Pratt.sq_mul_of g225 (by norm_num) (by norm_num)
+      have g227 : 2 ^ 156920058 % 150968500433427556811 = 118309141040980702649 :=
+        Pratt.sq_of g226 (by norm_num) (by norm_num)
+      have g228 : 2 ^ 313840117 % 150968500433427556811 = 80786670170961338787 :=
+        Pratt.sq_mul_of g227 (by norm_num) (by norm_num)
+      have g229 : 2 ^ 627680234 % 150968500433427556811 = 135725550236397374937 :=
+        Pratt.sq_of g228 (by norm_num) (by norm_num)
+      have g230 : 2 ^ 1255360468 % 150968500433427556811 = 95958298186757787916 :=
+        Pratt.sq_of g229 (by norm_num) (by norm_num)
+      have g231 : 2 ^ 2510720937 % 150968500433427556811 = 66231820948335760115 :=
+        Pratt.sq_mul_of g230 (by norm_num) (by norm_num)
+      have g232 : 2 ^ 5021441875 % 150968500433427556811 = 98537558057394097268 :=
+        Pratt.sq_mul_of g231 (by norm_num) (by norm_num)
+      have g233 : 2 ^ 10042883750 % 150968500433427556811 = 48062932760305454464 :=
+        Pratt.sq_of g232 (by norm_num) (by norm_num)
+      have g234 : 2 ^ 20085767501 % 150968500433427556811 = 52711728759777064230 :=
+        Pratt.sq_mul_of g233 (by norm_num) (by norm_num)
+      have g235 : 2 ^ 40171535002 % 150968500433427556811 = 128569800884974911642 :=
+        Pratt.sq_of g234 (by norm_num) (by norm_num)
+      have g236 : 2 ^ 80343070005 % 150968500433427556811 = 104886297879061129707 :=
+        Pratt.sq_mul_of g235 (by norm_num) (by norm_num)
+      have g237 : 2 ^ 160686140010 % 150968500433427556811 = 42941618482938216859 :=
+        Pratt.sq_of g236 (by norm_num) (by norm_num)
+      have g238 : 2 ^ 321372280021 % 150968500433427556811 = 114620558402460503466 :=
+        Pratt.sq_mul_of g237 (by norm_num) (by norm_num)
+      have g239 : 2 ^ 642744560043 % 150968500433427556811 = 96109311963277258035 :=
+        Pratt.sq_mul_of g238 (by norm_num) (by norm_num)
+      have g240 : 2 ^ 1285489120086 % 150968500433427556811 = 142313839335947454685 :=
+        Pratt.sq_of g239 (by norm_num) (by norm_num)
+      have g241 : 2 ^ 2570978240173 % 150968500433427556811 = 29227265325484456276 :=
+        Pratt.sq_mul_of g240 (by norm_num) (by norm_num)
+      have g242 : 2 ^ 5141956480347 % 150968500433427556811 = 58698156757482044265 :=
+        Pratt.sq_mul_of g241 (by norm_num) (by norm_num)
+      have g243 : 2 ^ 10283912960694 % 150968500433427556811 = 31783871533531017064 :=
+        Pratt.sq_of g242 (by norm_num) (by norm_num)
+      have g244 : 2 ^ 20567825921389 % 150968500433427556811 = 19964119020924683487 :=
+        Pratt.sq_mul_of g243 (by norm_num) (by norm_num)
+      have g245 : 2 ^ 41135651842778 % 150968500433427556811 = 62102407962414248480 :=
+        Pratt.sq_of g244 (by norm_num) (by norm_num)
+      have g246 : 2 ^ 82271303685557 % 150968500433427556811 = 74208077823160686122 :=
+        Pratt.sq_mul_of g245 (by norm_num) (by norm_num)
+      have g247 : 2 ^ 164542607371115 % 150968500433427556811 = 14513408534941457080 :=
+        Pratt.sq_mul_of g246 (by norm_num) (by norm_num)
+      have g248 : 2 ^ 329085214742230 % 150968500433427556811 = 43133033221833513496 :=
+        Pratt.sq_of g247 (by norm_num) (by norm_num)
+      have g249 : 2 ^ 658170429484460 % 150968500433427556811 = 69541000078276751187 :=
+        Pratt.sq_of g248 (by norm_num) (by norm_num)
+      have g250 : 2 ^ 1316340858968920 % 150968500433427556811 = 34229423094412299731 :=
+        Pratt.sq_of g249 (by norm_num) (by norm_num)
+      have g251 : 2 ^ 2632681717937841 % 150968500433427556811 = 49110204765048220320 :=
+        Pratt.sq_mul_of g250 (by norm_num) (by norm_num)
+      have g252 : 2 ^ 5265363435875682 % 150968500433427556811 = 145491882069970759434 :=
+        Pratt.sq_of g251 (by norm_num) (by norm_num)
+      have g253 : 2 ^ 10530726871751364 % 150968500433427556811 = 61445731613265284177 :=
+        Pratt.sq_of g252 (by norm_num) (by norm_num)
+      have g254 : 2 ^ 21061453743502728 % 150968500433427556811 = 42836327528366184744 :=
+        Pratt.sq_of g253 (by norm_num) (by norm_num)
+      have g255 : 2 ^ 42122907487005456 % 150968500433427556811 = 71955442667987629924 :=
+        Pratt.sq_of g254 (by norm_num) (by norm_num)
+      have g256 : 2 ^ 84245814974010913 % 150968500433427556811 = 138749210494905664705 :=
+        Pratt.sq_mul_of g255 (by norm_num) (by norm_num)
+      have g257 : 2 ^ 168491629948021826 % 150968500433427556811 = 63716644065537783201 :=
+        Pratt.sq_of g256 (by norm_num) (by norm_num)
+      have g258 : 2 ^ 336983259896043653 % 150968500433427556811 = 124905932276965297161 :=
+        Pratt.sq_mul_of g257 (by norm_num) (by norm_num)
+      have g259 : 2 ^ 673966519792087307 % 150968500433427556811 = 112267448397107437895 :=
+        Pratt.sq_mul_of g258 (by norm_num) (by norm_num)
+      have g260 : 2 ^ 1347933039584174614 % 150968500433427556811 = 96625248509719119600 :=
+        Pratt.sq_of g259 (by norm_num) (by norm_num)
+      have g261 : 2 ^ 2695866079168349228 % 150968500433427556811 = 64079156007528054064 :=
+        Pratt.sq_of g260 (by norm_num) (by norm_num)
+      have g262 : 2 ^ 5391732158336698457 % 150968500433427556811 = 11974153200345257275 :=
+        Pratt.sq_mul_of g261 (by norm_num) (by norm_num)
+      have g263 : 2 ^ 10783464316673396915 % 150968500433427556811 = 96343681928814881967 :=
+        Pratt.sq_mul_of g262 (by norm_num) (by norm_num)
+      have g264 : 2 ^ 21566928633346793830 % 150968500433427556811 = 44160450890051099407 :=
+        Pratt.sq_of g263 (by norm_num) (by norm_num)
+      rw [show (150968500433427556811 : ℕ) - 1 = 150968500433427556810 by norm_num, show 150968500433427556810 / 7 = 21566928633346793830 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g264 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq3 | hqd
+    . have hqe : q = 569 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 569)).mp (hq.dvd_of_dvd_pow hq3)
+      subst hqe
+      have g30 : 2 ^ 1 % 150968500433427556811 = 2 := by norm_num
+      have g31 : 2 ^ 3 % 150968500433427556811 = 8 :=
+        Pratt.sq_mul_of g30 (by norm_num) (by norm_num)
+      have g32 : 2 ^ 7 % 150968500433427556811 = 128 :=
+        Pratt.sq_mul_of g31 (by norm_num) (by norm_num)
+      have g33 : 2 ^ 14 % 150968500433427556811 = 16384 :=
+        Pratt.sq_of g32 (by norm_num) (by norm_num)
+      have g34 : 2 ^ 29 % 150968500433427556811 = 536870912 :=
+        Pratt.sq_mul_of g33 (by norm_num) (by norm_num)
+      have g35 : 2 ^ 58 % 150968500433427556811 = 288230376151711744 :=
+        Pratt.sq_of g34 (by norm_num) (by norm_num)
+      have g36 : 2 ^ 117 % 150968500433427556811 = 61927174131939579983 :=
+        Pratt.sq_mul_of g35 (by norm_num) (by norm_num)
+      have g37 : 2 ^ 235 % 150968500433427556811 = 73579837607316034399 :=
+        Pratt.sq_mul_of g36 (by norm_num) (by norm_num)
+      have g38 : 2 ^ 471 % 150968500433427556811 = 117152947234028872592 :=
+        Pratt.sq_mul_of g37 (by norm_num) (by norm_num)
+      have g39 : 2 ^ 942 % 150968500433427556811 = 22287605145023471084 :=
+        Pratt.sq_of g38 (by norm_num) (by norm_num)
+      have g310 : 2 ^ 1885 % 150968500433427556811 = 87184885674106158898 :=
+        Pratt.sq_mul_of g39 (by norm_num) (by norm_num)
+      have g311 : 2 ^ 3770 % 150968500433427556811 = 80061161670108588172 :=
+        Pratt.sq_of g310 (by norm_num) (by norm_num)
+      have g312 : 2 ^ 7540 % 150968500433427556811 = 143702520742165574184 :=
+        Pratt.sq_of g311 (by norm_num) (by norm_num)
+      have g313 : 2 ^ 15081 % 150968500433427556811 = 68036287351506093458 :=
+        Pratt.sq_mul_of g312 (by norm_num) (by norm_num)
+      have g314 : 2 ^ 30163 % 150968500433427556811 = 65881504075335910588 :=
+        Pratt.sq_mul_of g313 (by norm_num) (by norm_num)
+      have g315 : 2 ^ 60327 % 150968500433427556811 = 100741655587694095934 :=
+        Pratt.sq_mul_of g314 (by norm_num) (by norm_num)
+      have g316 : 2 ^ 120654 % 150968500433427556811 = 117115264981083488109 :=
+        Pratt.sq_of g315 (by norm_num) (by norm_num)
+      have g317 : 2 ^ 241309 % 150968500433427556811 = 69315284794135728211 :=
+        Pratt.sq_mul_of g316 (by norm_num) (by norm_num)
+      have g318 : 2 ^ 482618 % 150968500433427556811 = 91168422152319126916 :=
+        Pratt.sq_of g317 (by norm_num) (by norm_num)
+      have g319 : 2 ^ 965237 % 150968500433427556811 = 143402150405533779809 :=
+        Pratt.sq_mul_of g318 (by norm_num) (by norm_num)
+      have g320 : 2 ^ 1930475 % 150968500433427556811 = 80736517726527509728 :=
+        Pratt.sq_mul_of g319 (by norm_num) (by norm_num)
+      have g321 : 2 ^ 3860950 % 150968500433427556811 = 50107509686094304663 :=
+        Pratt.sq_of g320 (by norm_num) (by norm_num)
+      have g322 : 2 ^ 7721900 % 150968500433427556811 = 32308023605247870956 :=
+        Pratt.sq_of g321 (by norm_num) (by norm_num)
+      have g323 : 2 ^ 15443801 % 150968500433427556811 = 91551388032932815417 :=
+        Pratt.sq_mul_of g322 (by norm_num) (by norm_num)
+      have g324 : 2 ^ 30887603 % 150968500433427556811 = 139486019707783636371 :=
+        Pratt.sq_mul_of g323 (by norm_num) (by norm_num)
+      have g325 : 2 ^ 61775207 % 150968500433427556811 = 131956487497200325002 :=
+        Pratt.sq_mul_of g324 (by norm_num) (by norm_num)
+      have g326 : 2 ^ 123550415 % 150968500433427556811 = 84877597079636224315 :=
+        Pratt.sq_mul_of g325 (by norm_num) (by norm_num)
+      have g327 : 2 ^ 247100830 % 150968500433427556811 = 93096963660884801566 :=
+        Pratt.sq_of g326 (by norm_num) (by norm_num)
+      have g328 : 2 ^ 494201660 % 150968500433427556811 = 57956019600190676967 :=
+        Pratt.sq_of g327 (by norm_num) (by norm_num)
+      have g329 : 2 ^ 988403321 % 150968500433427556811 = 144142429416015337486 :=
+        Pratt.sq_mul_of g328 (by norm_num) (by norm_num)
+      have g330 : 2 ^ 1976806643 % 150968500433427556811 = 116250093396582898396 :=
+        Pratt.sq_mul_of g329 (by norm_num) (by norm_num)
+      have g331 : 2 ^ 3953613286 % 150968500433427556811 = 82248153701191708692 :=
+        Pratt.sq_of g330 (by norm_num) (by norm_num)
+      have g332 : 2 ^ 7907226573 % 150968500433427556811 = 136384161517909482576 :=
+        Pratt.sq_mul_of g331 (by norm_num) (by norm_num)
+      have g333 : 2 ^ 15814453146 % 150968500433427556811 = 32324378408019342191 :=
+        Pratt.sq_of g332 (by norm_num) (by norm_num)
+      have g334 : 2 ^ 31628906293 % 150968500433427556811 = 15227285475410807088 :=
+        Pratt.sq_mul_of g333 (by norm_num) (by norm_num)
+      have g335 : 2 ^ 63257812587 % 150968500433427556811 = 67346631482224117811 :=
+        Pratt.sq_mul_of g334 (by norm_num) (by norm_num)
+      have g336 : 2 ^ 126515625175 % 150968500433427556811 = 59213305079429926866 :=
+        Pratt.sq_mul_of g335 (by norm_num) (by norm_num)
+      have g337 : 2 ^ 253031250351 % 150968500433427556811 = 134834623332340335980 :=
+        Pratt.sq_mul_of g336 (by norm_num) (by norm_num)
+      have g338 : 2 ^ 506062500702 % 150968500433427556811 = 123476834800975633297 :=
+        Pratt.sq_of g337 (by norm_num) (by norm_num)
+      have g339 : 2 ^ 1012125001404 % 150968500433427556811 = 7794582212386219153 :=
+        Pratt.sq_of g338 (by norm_num) (by norm_num)
+      have g340 : 2 ^ 2024250002808 % 150968500433427556811 = 146851487711911362205 :=
+        Pratt.sq_of g339 (by norm_num) (by norm_num)
+      have g341 : 2 ^ 4048500005616 % 150968500433427556811 = 60105529124311698708 :=
+        Pratt.sq_of g340 (by norm_num) (by norm_num)
+      have g342 : 2 ^ 8097000011232 % 150968500433427556811 = 87604910554339708091 :=
+        Pratt.sq_of g341 (by norm_num) (by norm_num)
+      have g343 : 2 ^ 16194000022464 % 150968500433427556811 = 112054753768795776821 :=
+        Pratt.sq_of g342 (by norm_num) (by norm_num)
+      have g344 : 2 ^ 32388000044929 % 150968500433427556811 = 17424282084013135800 :=
+        Pratt.sq_mul_of g343 (by norm_num) (by norm_num)
+      have g345 : 2 ^ 64776000089859 % 150968500433427556811 = 79815673386506409855 :=
+        Pratt.sq_mul_of g344 (by norm_num) (by norm_num)
+      have g346 : 2 ^ 129552000179718 % 150968500433427556811 = 1598455472964521481 :=
+        Pratt.sq_of g345 (by norm_num) (by norm_num)
+      have g347 : 2 ^ 259104000359436 % 150968500433427556811 = 24505663541449841026 :=
+        Pratt.sq_of g346 (by norm_num) (by norm_num)
+      have g348 : 2 ^ 518208000718872 % 150968500433427556811 = 4904138550876495303 :=
+        Pratt.sq_of g347 (by norm_num) (by norm_num)
+      have g349 : 2 ^ 1036416001437744 % 150968500433427556811 = 113131199495732664288 :=
+        Pratt.sq_of g348 (by norm_num) (by norm_num)
+      have g350 : 2 ^ 2072832002875488 % 150968500433427556811 = 99060994482940320700 :=
+        Pratt.sq_of g349 (by norm_num) (by norm_num)
+      have g351 : 2 ^ 4145664005750976 % 150968500433427556811 = 117148429812043089971 :=
+        Pratt.sq_of g350 (by norm_num) (by norm_num)
+      have g352 : 2 ^ 8291328011501952 % 150968500433427556811 = 69244975324629815347 :=
+        Pratt.sq_of g351 (by norm_num) (by norm_num)
+      have g353 : 2 ^ 16582656023003905 % 150968500433427556811 = 28598681369612925449 :=
+        Pratt.sq_mul_of g352 (by norm_num) (by norm_num)
+      have g354 : 2 ^ 33165312046007811 % 150968500433427556811 = 5158188634770341540 :=
+        Pratt.sq_mul_of g353 (by norm_num) (by norm_num)
+      have g355 : 2 ^ 66330624092015622 % 150968500433427556811 = 70606466452919015046 :=
+        Pratt.sq_of g354 (by norm_num) (by norm_num)
+      have g356 : 2 ^ 132661248184031245 % 150968500433427556811 = 98971080228985030241 :=
+        Pratt.sq_mul_of g355 (by norm_num) (by norm_num)
+      have g357 : 2 ^ 265322496368062490 % 150968500433427556811 = 90432110354517065507 :=
+        Pratt.sq_of g356 (by norm_num) (by norm_num)
+      rw [show (150968500433427556811 : ℕ) - 1 = 150968500433427556810 by norm_num, show 150968500433427556810 / 569 = 265322496368062490 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g357 (by norm_num)
+    have hqe : q = 541474482383801 :=
+      (Nat.prime_dvd_prime_iff_eq hq prime_541474482383801).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g40 : 2 ^ 1 % 150968500433427556811 = 2 := by norm_num
+    have g41 : 2 ^ 2 % 150968500433427556811 = 4 :=
+      Pratt.sq_of g40 (by norm_num) (by norm_num)
+    have g42 : 2 ^ 4 % 150968500433427556811 = 16 :=
+      Pratt.sq_of g41 (by norm_num) (by norm_num)
+    have g43 : 2 ^ 8 % 150968500433427556811 = 256 :=
+      Pratt.sq_of g42 (by norm_num) (by norm_num)
+    have g44 : 2 ^ 17 % 150968500433427556811 = 131072 :=
+      Pratt.sq_mul_of g43 (by norm_num) (by norm_num)
+    have g45 : 2 ^ 34 % 150968500433427556811 = 17179869184 :=
+      Pratt.sq_of g44 (by norm_num) (by norm_num)
+    have g46 : 2 ^ 68 % 150968500433427556811 = 144179404745925269045 :=
+      Pratt.sq_of g45 (by norm_num) (by norm_num)
+    have g47 : 2 ^ 136 % 150968500433427556811 = 86631072541287239822 :=
+      Pratt.sq_of g46 (by norm_num) (by norm_num)
+    have g48 : 2 ^ 272 % 150968500433427556811 = 60306043378328780598 :=
+      Pratt.sq_of g47 (by norm_num) (by norm_num)
+    have g49 : 2 ^ 544 % 150968500433427556811 = 118743751932798886634 :=
+      Pratt.sq_of g48 (by norm_num) (by norm_num)
+    have g410 : 2 ^ 1089 % 150968500433427556811 = 93137492316108631072 :=
+      Pratt.sq_mul_of g49 (by norm_num) (by norm_num)
+    have g411 : 2 ^ 2178 % 150968500433427556811 = 139772523923909497022 :=
+      Pratt.sq_of g410 (by norm_num) (by norm_num)
+    have g412 : 2 ^ 4356 % 150968500433427556811 = 6571038478830342044 :=
+      Pratt.sq_of g411 (by norm_num) (by norm_num)
+    have g413 : 2 ^ 8712 % 150968500433427556811 = 86812528997101730321 :=
+      Pratt.sq_of g412 (by norm_num) (by norm_num)
+    have g414 : 2 ^ 17425 % 150968500433427556811 = 3648498537443143583 :=
+      Pratt.sq_mul_of g413 (by norm_num) (by norm_num)
+    have g415 : 2 ^ 34851 % 150968500433427556811 = 33671468502292995101 :=
+      Pratt.sq_mul_of g414 (by norm_num) (by norm_num)
+    have g416 : 2 ^ 69702 % 150968500433427556811 = 21255726564674067158 :=
+      Pratt.sq_of g415 (by norm_num) (by norm_num)
+    have g417 : 2 ^ 139405 % 150968500433427556811 = 35174741332558472337 :=
+      Pratt.sq_mul_of g416 (by norm_num) (by norm_num)
+    have g418 : 2 ^ 278810 % 150968500433427556811 = 15756610693217651472 :=
+      Pratt.sq_of g417 (by norm_num) (by norm_num)
+    rw [show (150968500433427556811 : ℕ) - 1 = 150968500433427556810 by norm_num, show 150968500433427556810 / 541474482383801 = 278810 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g418 (by norm_num)
+
+/-- `275595263287044304869593048464771` is prime, by a Lucas certificate with witness 2. -/
+theorem prime_275595263287044304869593048464771 : Nat.Prime 275595263287044304869593048464771 := by
+  refine lucas_primality 275595263287044304869593048464771 ((2 : ℕ) : ZMod 275595263287044304869593048464771) ?_ ?_
+  · rw [Pratt.cast_pow_eq_one_iff (by norm_num)]
+    have h0 : 2 ^ 1 % 275595263287044304869593048464771 = 2 := by norm_num
+    have h1 : 2 ^ 3 % 275595263287044304869593048464771 = 8 :=
+      Pratt.sq_mul_of h0 (by norm_num) (by norm_num)
+    have h2 : 2 ^ 6 % 275595263287044304869593048464771 = 64 :=
+      Pratt.sq_of h1 (by norm_num) (by norm_num)
+    have h3 : 2 ^ 13 % 275595263287044304869593048464771 = 8192 :=
+      Pratt.sq_mul_of h2 (by norm_num) (by norm_num)
+    have h4 : 2 ^ 27 % 275595263287044304869593048464771 = 134217728 :=
+      Pratt.sq_mul_of h3 (by norm_num) (by norm_num)
+    have h5 : 2 ^ 54 % 275595263287044304869593048464771 = 18014398509481984 :=
+      Pratt.sq_of h4 (by norm_num) (by norm_num)
+    have h6 : 2 ^ 108 % 275595263287044304869593048464771 = 48923290371382421913562972111485 :=
+      Pratt.sq_of h5 (by norm_num) (by norm_num)
+    have h7 : 2 ^ 217 % 275595263287044304869593048464771 = 238814384766947937160028462831666 :=
+      Pratt.sq_mul_of h6 (by norm_num) (by norm_num)
+    have h8 : 2 ^ 434 % 275595263287044304869593048464771 = 109233877839501410492573436741072 :=
+      Pratt.sq_of h7 (by norm_num) (by norm_num)
+    have h9 : 2 ^ 869 % 275595263287044304869593048464771 = 157242364522743697639070659723948 :=
+      Pratt.sq_mul_of h8 (by norm_num) (by norm_num)
+    have h10 : 2 ^ 1739 % 275595263287044304869593048464771 = 57449676167040117326663722069131 :=
+      Pratt.sq_mul_of h9 (by norm_num) (by norm_num)
+    have h11 : 2 ^ 3478 % 275595263287044304869593048464771 = 206783102114782524749617721771756 :=
+      Pratt.sq_of h10 (by norm_num) (by norm_num)
+    have h12 : 2 ^ 6957 % 275595263287044304869593048464771 = 65720435897557833452237573275767 :=
+      Pratt.sq_mul_of h11 (by norm_num) (by norm_num)
+    have h13 : 2 ^ 13914 % 275595263287044304869593048464771 = 106026675668100724741041141582494 :=
+      Pratt.sq_of h12 (by norm_num) (by norm_num)
+    have h14 : 2 ^ 27828 % 275595263287044304869593048464771 = 230079952223092974654291907589054 :=
+      Pratt.sq_of h13 (by norm_num) (by norm_num)
+    have h15 : 2 ^ 55656 % 275595263287044304869593048464771 = 155808239182781812175391957302951 :=
+      Pratt.sq_of h14 (by norm_num) (by norm_num)
+    have h16 : 2 ^ 111312 % 275595263287044304869593048464771 = 187486891854266314839897151605072 :=
+      Pratt.sq_of h15 (by norm_num) (by norm_num)
+    have h17 : 2 ^ 222624 % 275595263287044304869593048464771 = 119240394036585161911960478736262 :=
+      Pratt.sq_of h16 (by norm_num) (by norm_num)
+    have h18 : 2 ^ 445248 % 275595263287044304869593048464771 = 67896576390567964506612113604301 :=
+      Pratt.sq_of h17 (by norm_num) (by norm_num)
+    have h19 : 2 ^ 890496 % 275595263287044304869593048464771 = 35672004658827239237377684748197 :=
+      Pratt.sq_of h18 (by norm_num) (by norm_num)
+    have h20 : 2 ^ 1780992 % 275595263287044304869593048464771 = 151878366257730333656820773448605 :=
+      Pratt.sq_of h19 (by norm_num) (by norm_num)
+    have h21 : 2 ^ 3561985 % 275595263287044304869593048464771 = 92898063982365488559713152315312 :=
+      Pratt.sq_mul_of h20 (by norm_num) (by norm_num)
+    have h22 : 2 ^ 7123970 % 275595263287044304869593048464771 = 147982850666476284109207695982953 :=
+      Pratt.sq_of h21 (by norm_num) (by norm_num)
+    have h23 : 2 ^ 14247941 % 275595263287044304869593048464771 = 32455285506639276803432252918190 :=
+      Pratt.sq_mul_of h22 (by norm_num) (by norm_num)
+    have h24 : 2 ^ 28495882 % 275595263287044304869593048464771 = 42427582282740236300180443235353 :=
+      Pratt.sq_of h23 (by norm_num) (by norm_num)
+    have h25 : 2 ^ 56991764 % 275595263287044304869593048464771 = 70652188943068440759568078837214 :=
+      Pratt.sq_of h24 (by norm_num) (by norm_num)
+    have h26 : 2 ^ 113983529 % 275595263287044304869593048464771 = 16825968850903809177446063794233 :=
+      Pratt.sq_mul_of h25 (by norm_num) (by norm_num)
+    have h27 : 2 ^ 227967058 % 275595263287044304869593048464771 = 67602109921070026199573681416940 :=
+      Pratt.sq_of h26 (by norm_num) (by norm_num)
+    have h28 : 2 ^ 455934117 % 275595263287044304869593048464771 = 73930037176823144892005563675672 :=
+      Pratt.sq_mul_of h27 (by norm_num) (by norm_num)
+    have h29 : 2 ^ 911868234 % 275595263287044304869593048464771 = 80017690712401487856570313508489 :=
+      Pratt.sq_of h28 (by norm_num) (by norm_num)
+    have h30 : 2 ^ 1823736469 % 275595263287044304869593048464771 = 84584033683526740462203135552617 :=
+      Pratt.sq_mul_of h29 (by norm_num) (by norm_num)
+    have h31 : 2 ^ 3647472939 % 275595263287044304869593048464771 = 224726119923098077531915847631381 :=
+      Pratt.sq_mul_of h30 (by norm_num) (by norm_num)
+    have h32 : 2 ^ 7294945878 % 275595263287044304869593048464771 = 145494159589603142908526195702782 :=
+      Pratt.sq_of h31 (by norm_num) (by norm_num)
+    have h33 : 2 ^ 14589891756 % 275595263287044304869593048464771 = 207796948020632006834381312428925 :=
+      Pratt.sq_of h32 (by norm_num) (by norm_num)
+    have h34 : 2 ^ 29179783513 % 275595263287044304869593048464771 = 136839530711684698055414232201409 :=
+      Pratt.sq_mul_of h33 (by norm_num) (by norm_num)
+    have h35 : 2 ^ 58359567027 % 275595263287044304869593048464771 = 102687737410358724479418289596570 :=
+      Pratt.sq_mul_of h34 (by norm_num) (by norm_num)
+    have h36 : 2 ^ 116719134055 % 275595263287044304869593048464771 = 154400622155155624286168992520195 :=
+      Pratt.sq_mul_of h35 (by norm_num) (by norm_num)
+    have h37 : 2 ^ 233438268111 % 275595263287044304869593048464771 = 259424157393668791123666106846145 :=
+      Pratt.sq_mul_of h36 (by norm_num) (by norm_num)
+    have h38 : 2 ^ 466876536222 % 275595263287044304869593048464771 = 117416200255127453789309359860202 :=
+      Pratt.sq_of h37 (by norm_num) (by norm_num)
+    have h39 : 2 ^ 933753072445 % 275595263287044304869593048464771 = 149012787993259631354556184650206 :=
+      Pratt.sq_mul_of h38 (by norm_num) (by norm_num)
+    have h40 : 2 ^ 1867506144890 % 275595263287044304869593048464771 = 15351059332057956569569191120999 :=
+      Pratt.sq_of h39 (by norm_num) (by norm_num)
+    have h41 : 2 ^ 3735012289781 % 275595263287044304869593048464771 = 225445736526129016252609483007403 :=
+      Pratt.sq_mul_of h40 (by norm_num) (by norm_num)
+    have h42 : 2 ^ 7470024579563 % 275595263287044304869593048464771 = 67149535207629242096832018650621 :=
+      Pratt.sq_mul_of h41 (by norm_num) (by norm_num)
+    have h43 : 2 ^ 14940049159126 % 275595263287044304869593048464771 = 87684441014882062037533490957497 :=
+      Pratt.sq_of h42 (by norm_num) (by norm_num)
+    have h44 : 2 ^ 29880098318252 % 275595263287044304869593048464771 = 32430714301499591468532439761410 :=
+      Pratt.sq_of h43 (by norm_num) (by norm_num)
+    have h45 : 2 ^ 59760196636505 % 275595263287044304869593048464771 = 206017870568223403604262617265682 :=
+      Pratt.sq_mul_of h44 (by norm_num) (by norm_num)
+    have h46 : 2 ^ 119520393273011 % 275595263287044304869593048464771 = 207605254513871221954224873689380 :=
+      Pratt.sq_mul_of h45 (by norm_num) (by norm_num)
+    have h47 : 2 ^ 239040786546022 % 275595263287044304869593048464771 = 33190863846061572172757397617108 :=
+      Pratt.sq_of h46 (by norm_num) (by norm_num)
+    have h48 : 2 ^ 478081573092044 % 275595263287044304869593048464771 = 177848652877038514783019010167741 :=
+      Pratt.sq_of h47 (by norm_num) (by norm_num)
+    have h49 : 2 ^ 956163146184089 % 275595263287044304869593048464771 = 193639170507390028095088004295222 :=
+      Pratt.sq_mul_of h48 (by norm_num) (by norm_num)
+    have h50 : 2 ^ 1912326292368179 % 275595263287044304869593048464771 = 84627107579428669959535417017901 :=
+      Pratt.sq_mul_of h49 (by norm_num) (by norm_num)
+    have h51 : 2 ^ 3824652584736358 % 275595263287044304869593048464771 = 178246675742730887773093006506255 :=
+      Pratt.sq_of h50 (by norm_num) (by norm_num)
+    have h52 : 2 ^ 7649305169472717 % 275595263287044304869593048464771 = 91471791892534348860807145494030 :=
+      Pratt.sq_mul_of h51 (by norm_num) (by norm_num)
+    have h53 : 2 ^ 15298610338945434 % 275595263287044304869593048464771 = 218012492748947415873345333820594 :=
+      Pratt.sq_of h52 (by norm_num) (by norm_num)
+    have h54 : 2 ^ 30597220677890868 % 275595263287044304869593048464771 = 226282879297863439077298022497818 :=
+      Pratt.sq_of h53 (by norm_num) (by norm_num)
+    have h55 : 2 ^ 61194441355781737 % 275595263287044304869593048464771 = 89513537582270955319696645317226 :=
+      Pratt.sq_mul_of h54 (by norm_num) (by norm_num)
+    have h56 : 2 ^ 122388882711563475 % 275595263287044304869593048464771 = 221131787787988119768744420805099 :=
+      Pratt.sq_mul_of h55 (by norm_num) (by norm_num)
+    have h57 : 2 ^ 244777765423126951 % 275595263287044304869593048464771 = 38183077075366269110241328700882 :=
+      Pratt.sq_mul_of h56 (by norm_num) (by norm_num)
+    have h58 : 2 ^ 489555530846253903 % 275595263287044304869593048464771 = 125036783266225825609578436297260 :=
+      Pratt.sq_mul_of h57 (by norm_num) (by norm_num)
+    have h59 : 2 ^ 979111061692507806 % 275595263287044304869593048464771 = 181249760754042805224467275066177 :=
+      Pratt.sq_of h58 (by norm_num) (by norm_num)
+    have h60 : 2 ^ 1958222123385015612 % 275595263287044304869593048464771 = 152301876072716066629094096270647 :=
+      Pratt.sq_of h59 (by norm_num) (by norm_num)
+    have h61 : 2 ^ 3916444246770031225 % 275595263287044304869593048464771 = 39751653405495049236240619011240 :=
+      Pratt.sq_mul_of h60 (by norm_num) (by norm_num)
+    have h62 : 2 ^ 7832888493540062451 % 275595263287044304869593048464771 = 29703955343740747264102385836480 :=
+      Pratt.sq_mul_of h61 (by norm_num) (by norm_num)
+    have h63 : 2 ^ 15665776987080124903 % 275595263287044304869593048464771 = 237390062049215211937139930853437 :=
+      Pratt.sq_mul_of h62 (by norm_num) (by norm_num)
+    have h64 : 2 ^ 31331553974160249807 % 275595263287044304869593048464771 = 161154698353488237885349176419276 :=
+      Pratt.sq_mul_of h63 (by norm_num) (by norm_num)
+    have h65 : 2 ^ 62663107948320499615 % 275595263287044304869593048464771 = 43037189030193587583930082089080 :=
+      Pratt.sq_mul_of h64 (by norm_num) (by norm_num)
+    have h66 : 2 ^ 125326215896640999230 % 275595263287044304869593048464771 = 82837974646248664583426053893898 :=
+      Pratt.sq_of h65 (by norm_num) (by norm_num)
+    have h67 : 2 ^ 250652431793281998461 % 275595263287044304869593048464771 = 71226563057494975930117211635307 :=
+      Pratt.sq_mul_of h66 (by norm_num) (by norm_num)
+    have h68 : 2 ^ 501304863586563996922 % 275595263287044304869593048464771 = 11108689100727767080405055477310 :=
+      Pratt.sq_of h67 (by norm_num) (by norm_num)
+    have h69 : 2 ^ 1002609727173127993845 % 275595263287044304869593048464771 = 205896617847963114492229262289491 :=
+      Pratt.sq_mul_of h68 (by norm_num) (by norm_num)
+    have h70 : 2 ^ 2005219454346255987690 % 275595263287044304869593048464771 = 238779286968982182973901663708812 :=
+      Pratt.sq_of h69 (by norm_num) (by norm_num)
+    have h71 : 2 ^ 4010438908692511975380 % 275595263287044304869593048464771 = 267011731713059394726193110151439 :=
+      Pratt.sq_of h70 (by norm_num) (by norm_num)
+    have h72 : 2 ^ 8020877817385023950761 % 275595263287044304869593048464771 = 212569894912991173552794042535603 :=
+      Pratt.sq_mul_of h71 (by norm_num) (by norm_num)
+    have h73 : 2 ^ 16041755634770047901523 % 275595263287044304869593048464771 = 260283753673290852548295704843923 :=
+      Pratt.sq_mul_of h72 (by norm_num) (by norm_num)
+    have h74 : 2 ^ 32083511269540095803047 % 275595263287044304869593048464771 = 224338584639763720852982483293049 :=
+      Pratt.sq_mul_of h73 (by norm_num) (by norm_num)
+    have h75 : 2 ^ 64167022539080191606095 % 275595263287044304869593048464771 = 105520810324427074317960527260087 :=
+      Pratt.sq_mul_of h74 (by norm_num) (by norm_num)
+    have h76 : 2 ^ 128334045078160383212190 % 275595263287044304869593048464771 = 106743960964050913089244914042863 :=
+      Pratt.sq_of h75 (by norm_num) (by norm_num)
+    have h77 : 2 ^ 256668090156320766424381 % 275595263287044304869593048464771 = 92781156637073233336423218703867 :=
+      Pratt.sq_mul_of h76 (by norm_num) (by norm_num)
+    have h78 : 2 ^ 513336180312641532848762 % 275595263287044304869593048464771 = 209081120122098595926226768753945 :=
+      Pratt.sq_of h77 (by norm_num) (by norm_num)
+    have h79 : 2 ^ 1026672360625283065697524 % 275595263287044304869593048464771 = 34047822610664215987949238802914 :=
+      Pratt.sq_of h78 (by norm_num) (by norm_num)
+    have h80 : 2 ^ 2053344721250566131395049 % 275595263287044304869593048464771 = 159255313343256216760092224696083 :=
+      Pratt.sq_mul_of h79 (by norm_num) (by norm_num)
+    have h81 : 2 ^ 4106689442501132262790099 % 275595263287044304869593048464771 = 94466738065099248213437631988623 :=
+      Pratt.sq_mul_of h80 (by norm_num) (by norm_num)
+    have h82 : 2 ^ 8213378885002264525580199 % 275595263287044304869593048464771 = 274240614052732286512171703289524 :=
+      Pratt.sq_mul_of h81 (by norm_num) (by norm_num)
+    have h83 : 2 ^ 16426757770004529051160398 % 275595263287044304869593048464771 = 231193295193022283756007461246054 :=
+      Pratt.sq_of h82 (by norm_num) (by norm_num)
+    have h84 : 2 ^ 32853515540009058102320796 % 275595263287044304869593048464771 = 71858362347177537598503959493568 :=
+      Pratt.sq_of h83 (by norm_num) (by norm_num)
+    have h85 : 2 ^ 65707031080018116204641592 % 275595263287044304869593048464771 = 115130693480226812065116257313225 :=
+      Pratt.sq_of h84 (by norm_num) (by norm_num)
+    have h86 : 2 ^ 131414062160036232409283184 % 275595263287044304869593048464771 = 137968227803634283402913894090258 :=
+      Pratt.sq_of h85 (by norm_num) (by norm_num)
+    have h87 : 2 ^ 262828124320072464818566368 % 275595263287044304869593048464771 = 239811923679046387784316309612669 :=
+      Pratt.sq_of h86 (by norm_num) (by norm_num)
+    have h88 : 2 ^ 525656248640144929637132737 % 275595263287044304869593048464771 = 212906601542664729503675040270112 :=
+      Pratt.sq_mul_of h87 (by norm_num) (by norm_num)
+    have h89 : 2 ^ 1051312497280289859274265474 % 275595263287044304869593048464771 = 190942692093246456057690516414394 :=
+      Pratt.sq_of h88 (by norm_num) (by norm_num)
+    have h90 : 2 ^ 2102624994560579718548530948 % 275595263287044304869593048464771 = 209172657551453178850761689677989 :=
+      Pratt.sq_of h89 (by norm_num) (by norm_num)
+    have h91 : 2 ^ 4205249989121159437097061896 % 275595263287044304869593048464771 = 224541606780324568847238016546204 :=
+      Pratt.sq_of h90 (by norm_num) (by norm_num)
+    have h92 : 2 ^ 8410499978242318874194123793 % 275595263287044304869593048464771 = 20942836795013918566358587344227 :=
+      Pratt.sq_mul_of h91 (by norm_num) (by norm_num)
+    have h93 : 2 ^ 16820999956484637748388247586 % 275595263287044304869593048464771 = 173569754755385304499708441661750 :=
+      Pratt.sq_of h92 (by norm_num) (by norm_num)
+    have h94 : 2 ^ 33641999912969275496776495173 % 275595263287044304869593048464771 = 224359464160934973009132801642239 :=
+      Pratt.sq_mul_of h93 (by norm_num) (by norm_num)
+    have h95 : 2 ^ 67283999825938550993552990347 % 275595263287044304869593048464771 = 6431308075646472176181038053286 :=
+      Pratt.sq_mul_of h94 (by norm_num) (by norm_num)
+    have h96 : 2 ^ 134567999651877101987105980695 % 275595263287044304869593048464771 = 258219039150140198717858914838848 :=
+      Pratt.sq_mul_of h95 (by norm_num) (by norm_num)
+    have h97 : 2 ^ 269135999303754203974211961391 % 275595263287044304869593048464771 = 143926691477517877698555043196597 :=
+      Pratt.sq_mul_of h96 (by norm_num) (by norm_num)
+    have h98 : 2 ^ 538271998607508407948423922782 % 275595263287044304869593048464771 = 97412803674918857664424812017746 :=
+      Pratt.sq_of h97 (by norm_num) (by norm_num)
+    have h99 : 2 ^ 1076543997215016815896847845565 % 275595263287044304869593048464771 = 234702717650993586095697643506187 :=
+      Pratt.sq_mul_of h98 (by norm_num) (by norm_num)
+    have h100 : 2 ^ 2153087994430033631793695691131 % 275595263287044304869593048464771 = 148293671202070128261816030118012 :=
+      Pratt.sq_mul_of h99 (by norm_num) (by norm_num)
+    have h101 : 2 ^ 4306175988860067263587391382262 % 275595263287044304869593048464771 = 133113410596493103572745208169912 :=
+      Pratt.sq_of h100 (by norm_num) (by norm_num)
+    have h102 : 2 ^ 8612351977720134527174782764524 % 275595263287044304869593048464771 = 98051700400559231092600636683610 :=
+      Pratt.sq_of h101 (by norm_num) (by norm_num)
+    have h103 : 2 ^ 17224703955440269054349565529048 % 275595263287044304869593048464771 = 106545027545151094374966408222834 :=
+      Pratt.sq_of h102 (by norm_num) (by norm_num)
+    have h104 : 2 ^ 34449407910880538108699131058096 % 275595263287044304869593048464771 = 150842789198150740680512444000562 :=
+      Pratt.sq_of h103 (by norm_num) (by norm_num)
+    have h105 : 2 ^ 68898815821761076217398262116192 % 275595263287044304869593048464771 = 108913741990265458827715588021041 :=
+      Pratt.sq_of h104 (by norm_num) (by norm_num)
+    have h106 : 2 ^ 137797631643522152434796524232385 % 275595263287044304869593048464771 = 275595263287044304869593048464770 :=
+      Pratt.sq_mul_of h105 (by norm_num) (by norm_num)
+    have h107 : 2 ^ 275595263287044304869593048464770 % 275595263287044304869593048464771 = 1 :=
+      Pratt.sq_of h106 (by norm_num) (by norm_num)
+    rw [show (275595263287044304869593048464771 : ℕ) - 1 = 275595263287044304869593048464770 by norm_num, h107]
+  · intro q hq hqd
+    have hfac : 275595263287044304869593048464771 - 1 = 2 ^ 1 * (3 ^ 1 * (5 ^ 1 * (13 ^ 1 * (4680807713 ^ 1 * (150968500433427556811 ^ 1))))) := by norm_num
+    rw [hfac] at hqd
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq0 | hqd
+    . have hqe : q = 2 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 2)).mp (hq.dvd_of_dvd_pow hq0)
+      subst hqe
+      have g00 : 2 ^ 1 % 275595263287044304869593048464771 = 2 := by norm_num
+      have g01 : 2 ^ 3 % 275595263287044304869593048464771 = 8 :=
+        Pratt.sq_mul_of g00 (by norm_num) (by norm_num)
+      have g02 : 2 ^ 6 % 275595263287044304869593048464771 = 64 :=
+        Pratt.sq_of g01 (by norm_num) (by norm_num)
+      have g03 : 2 ^ 13 % 275595263287044304869593048464771 = 8192 :=
+        Pratt.sq_mul_of g02 (by norm_num) (by norm_num)
+      have g04 : 2 ^ 27 % 275595263287044304869593048464771 = 134217728 :=
+        Pratt.sq_mul_of g03 (by norm_num) (by norm_num)
+      have g05 : 2 ^ 54 % 275595263287044304869593048464771 = 18014398509481984 :=
+        Pratt.sq_of g04 (by norm_num) (by norm_num)
+      have g06 : 2 ^ 108 % 275595263287044304869593048464771 = 48923290371382421913562972111485 :=
+        Pratt.sq_of g05 (by norm_num) (by norm_num)
+      have g07 : 2 ^ 217 % 275595263287044304869593048464771 = 238814384766947937160028462831666 :=
+        Pratt.sq_mul_of g06 (by norm_num) (by norm_num)
+      have g08 : 2 ^ 434 % 275595263287044304869593048464771 = 109233877839501410492573436741072 :=
+        Pratt.sq_of g07 (by norm_num) (by norm_num)
+      have g09 : 2 ^ 869 % 275595263287044304869593048464771 = 157242364522743697639070659723948 :=
+        Pratt.sq_mul_of g08 (by norm_num) (by norm_num)
+      have g010 : 2 ^ 1739 % 275595263287044304869593048464771 = 57449676167040117326663722069131 :=
+        Pratt.sq_mul_of g09 (by norm_num) (by norm_num)
+      have g011 : 2 ^ 3478 % 275595263287044304869593048464771 = 206783102114782524749617721771756 :=
+        Pratt.sq_of g010 (by norm_num) (by norm_num)
+      have g012 : 2 ^ 6957 % 275595263287044304869593048464771 = 65720435897557833452237573275767 :=
+        Pratt.sq_mul_of g011 (by norm_num) (by norm_num)
+      have g013 : 2 ^ 13914 % 275595263287044304869593048464771 = 106026675668100724741041141582494 :=
+        Pratt.sq_of g012 (by norm_num) (by norm_num)
+      have g014 : 2 ^ 27828 % 275595263287044304869593048464771 = 230079952223092974654291907589054 :=
+        Pratt.sq_of g013 (by norm_num) (by norm_num)
+      have g015 : 2 ^ 55656 % 275595263287044304869593048464771 = 155808239182781812175391957302951 :=
+        Pratt.sq_of g014 (by norm_num) (by norm_num)
+      have g016 : 2 ^ 111312 % 275595263287044304869593048464771 = 187486891854266314839897151605072 :=
+        Pratt.sq_of g015 (by norm_num) (by norm_num)
+      have g017 : 2 ^ 222624 % 275595263287044304869593048464771 = 119240394036585161911960478736262 :=
+        Pratt.sq_of g016 (by norm_num) (by norm_num)
+      have g018 : 2 ^ 445248 % 275595263287044304869593048464771 = 67896576390567964506612113604301 :=
+        Pratt.sq_of g017 (by norm_num) (by norm_num)
+      have g019 : 2 ^ 890496 % 275595263287044304869593048464771 = 35672004658827239237377684748197 :=
+        Pratt.sq_of g018 (by norm_num) (by norm_num)
+      have g020 : 2 ^ 1780992 % 275595263287044304869593048464771 = 151878366257730333656820773448605 :=
+        Pratt.sq_of g019 (by norm_num) (by norm_num)
+      have g021 : 2 ^ 3561985 % 275595263287044304869593048464771 = 92898063982365488559713152315312 :=
+        Pratt.sq_mul_of g020 (by norm_num) (by norm_num)
+      have g022 : 2 ^ 7123970 % 275595263287044304869593048464771 = 147982850666476284109207695982953 :=
+        Pratt.sq_of g021 (by norm_num) (by norm_num)
+      have g023 : 2 ^ 14247941 % 275595263287044304869593048464771 = 32455285506639276803432252918190 :=
+        Pratt.sq_mul_of g022 (by norm_num) (by norm_num)
+      have g024 : 2 ^ 28495882 % 275595263287044304869593048464771 = 42427582282740236300180443235353 :=
+        Pratt.sq_of g023 (by norm_num) (by norm_num)
+      have g025 : 2 ^ 56991764 % 275595263287044304869593048464771 = 70652188943068440759568078837214 :=
+        Pratt.sq_of g024 (by norm_num) (by norm_num)
+      have g026 : 2 ^ 113983529 % 275595263287044304869593048464771 = 16825968850903809177446063794233 :=
+        Pratt.sq_mul_of g025 (by norm_num) (by norm_num)
+      have g027 : 2 ^ 227967058 % 275595263287044304869593048464771 = 67602109921070026199573681416940 :=
+        Pratt.sq_of g026 (by norm_num) (by norm_num)
+      have g028 : 2 ^ 455934117 % 275595263287044304869593048464771 = 73930037176823144892005563675672 :=
+        Pratt.sq_mul_of g027 (by norm_num) (by norm_num)
+      have g029 : 2 ^ 911868234 % 275595263287044304869593048464771 = 80017690712401487856570313508489 :=
+        Pratt.sq_of g028 (by norm_num) (by norm_num)
+      have g030 : 2 ^ 1823736469 % 275595263287044304869593048464771 = 84584033683526740462203135552617 :=
+        Pratt.sq_mul_of g029 (by norm_num) (by norm_num)
+      have g031 : 2 ^ 3647472939 % 275595263287044304869593048464771 = 224726119923098077531915847631381 :=
+        Pratt.sq_mul_of g030 (by norm_num) (by norm_num)
+      have g032 : 2 ^ 7294945878 % 275595263287044304869593048464771 = 145494159589603142908526195702782 :=
+        Pratt.sq_of g031 (by norm_num) (by norm_num)
+      have g033 : 2 ^ 14589891756 % 275595263287044304869593048464771 = 207796948020632006834381312428925 :=
+        Pratt.sq_of g032 (by norm_num) (by norm_num)
+      have g034 : 2 ^ 29179783513 % 275595263287044304869593048464771 = 136839530711684698055414232201409 :=
+        Pratt.sq_mul_of g033 (by norm_num) (by norm_num)
+      have g035 : 2 ^ 58359567027 % 275595263287044304869593048464771 = 102687737410358724479418289596570 :=
+        Pratt.sq_mul_of g034 (by norm_num) (by norm_num)
+      have g036 : 2 ^ 116719134055 % 275595263287044304869593048464771 = 154400622155155624286168992520195 :=
+        Pratt.sq_mul_of g035 (by norm_num) (by norm_num)
+      have g037 : 2 ^ 233438268111 % 275595263287044304869593048464771 = 259424157393668791123666106846145 :=
+        Pratt.sq_mul_of g036 (by norm_num) (by norm_num)
+      have g038 : 2 ^ 466876536222 % 275595263287044304869593048464771 = 117416200255127453789309359860202 :=
+        Pratt.sq_of g037 (by norm_num) (by norm_num)
+      have g039 : 2 ^ 933753072445 % 275595263287044304869593048464771 = 149012787993259631354556184650206 :=
+        Pratt.sq_mul_of g038 (by norm_num) (by norm_num)
+      have g040 : 2 ^ 1867506144890 % 275595263287044304869593048464771 = 15351059332057956569569191120999 :=
+        Pratt.sq_of g039 (by norm_num) (by norm_num)
+      have g041 : 2 ^ 3735012289781 % 275595263287044304869593048464771 = 225445736526129016252609483007403 :=
+        Pratt.sq_mul_of g040 (by norm_num) (by norm_num)
+      have g042 : 2 ^ 7470024579563 % 275595263287044304869593048464771 = 67149535207629242096832018650621 :=
+        Pratt.sq_mul_of g041 (by norm_num) (by norm_num)
+      have g043 : 2 ^ 14940049159126 % 275595263287044304869593048464771 = 87684441014882062037533490957497 :=
+        Pratt.sq_of g042 (by norm_num) (by norm_num)
+      have g044 : 2 ^ 29880098318252 % 275595263287044304869593048464771 = 32430714301499591468532439761410 :=
+        Pratt.sq_of g043 (by norm_num) (by norm_num)
+      have g045 : 2 ^ 59760196636505 % 275595263287044304869593048464771 = 206017870568223403604262617265682 :=
+        Pratt.sq_mul_of g044 (by norm_num) (by norm_num)
+      have g046 : 2 ^ 119520393273011 % 275595263287044304869593048464771 = 207605254513871221954224873689380 :=
+        Pratt.sq_mul_of g045 (by norm_num) (by norm_num)
+      have g047 : 2 ^ 239040786546022 % 275595263287044304869593048464771 = 33190863846061572172757397617108 :=
+        Pratt.sq_of g046 (by norm_num) (by norm_num)
+      have g048 : 2 ^ 478081573092044 % 275595263287044304869593048464771 = 177848652877038514783019010167741 :=
+        Pratt.sq_of g047 (by norm_num) (by norm_num)
+      have g049 : 2 ^ 956163146184089 % 275595263287044304869593048464771 = 193639170507390028095088004295222 :=
+        Pratt.sq_mul_of g048 (by norm_num) (by norm_num)
+      have g050 : 2 ^ 1912326292368179 % 275595263287044304869593048464771 = 84627107579428669959535417017901 :=
+        Pratt.sq_mul_of g049 (by norm_num) (by norm_num)
+      have g051 : 2 ^ 3824652584736358 % 275595263287044304869593048464771 = 178246675742730887773093006506255 :=
+        Pratt.sq_of g050 (by norm_num) (by norm_num)
+      have g052 : 2 ^ 7649305169472717 % 275595263287044304869593048464771 = 91471791892534348860807145494030 :=
+        Pratt.sq_mul_of g051 (by norm_num) (by norm_num)
+      have g053 : 2 ^ 15298610338945434 % 275595263287044304869593048464771 = 218012492748947415873345333820594 :=
+        Pratt.sq_of g052 (by norm_num) (by norm_num)
+      have g054 : 2 ^ 30597220677890868 % 275595263287044304869593048464771 = 226282879297863439077298022497818 :=
+        Pratt.sq_of g053 (by norm_num) (by norm_num)
+      have g055 : 2 ^ 61194441355781737 % 275595263287044304869593048464771 = 89513537582270955319696645317226 :=
+        Pratt.sq_mul_of g054 (by norm_num) (by norm_num)
+      have g056 : 2 ^ 122388882711563475 % 275595263287044304869593048464771 = 221131787787988119768744420805099 :=
+        Pratt.sq_mul_of g055 (by norm_num) (by norm_num)
+      have g057 : 2 ^ 244777765423126951 % 275595263287044304869593048464771 = 38183077075366269110241328700882 :=
+        Pratt.sq_mul_of g056 (by norm_num) (by norm_num)
+      have g058 : 2 ^ 489555530846253903 % 275595263287044304869593048464771 = 125036783266225825609578436297260 :=
+        Pratt.sq_mul_of g057 (by norm_num) (by norm_num)
+      have g059 : 2 ^ 979111061692507806 % 275595263287044304869593048464771 = 181249760754042805224467275066177 :=
+        Pratt.sq_of g058 (by norm_num) (by norm_num)
+      have g060 : 2 ^ 1958222123385015612 % 275595263287044304869593048464771 = 152301876072716066629094096270647 :=
+        Pratt.sq_of g059 (by norm_num) (by norm_num)
+      have g061 : 2 ^ 3916444246770031225 % 275595263287044304869593048464771 = 39751653405495049236240619011240 :=
+        Pratt.sq_mul_of g060 (by norm_num) (by norm_num)
+      have g062 : 2 ^ 7832888493540062451 % 275595263287044304869593048464771 = 29703955343740747264102385836480 :=
+        Pratt.sq_mul_of g061 (by norm_num) (by norm_num)
+      have g063 : 2 ^ 15665776987080124903 % 275595263287044304869593048464771 = 237390062049215211937139930853437 :=
+        Pratt.sq_mul_of g062 (by norm_num) (by norm_num)
+      have g064 : 2 ^ 31331553974160249807 % 275595263287044304869593048464771 = 161154698353488237885349176419276 :=
+        Pratt.sq_mul_of g063 (by norm_num) (by norm_num)
+      have g065 : 2 ^ 62663107948320499615 % 275595263287044304869593048464771 = 43037189030193587583930082089080 :=
+        Pratt.sq_mul_of g064 (by norm_num) (by norm_num)
+      have g066 : 2 ^ 125326215896640999230 % 275595263287044304869593048464771 = 82837974646248664583426053893898 :=
+        Pratt.sq_of g065 (by norm_num) (by norm_num)
+      have g067 : 2 ^ 250652431793281998461 % 275595263287044304869593048464771 = 71226563057494975930117211635307 :=
+        Pratt.sq_mul_of g066 (by norm_num) (by norm_num)
+      have g068 : 2 ^ 501304863586563996922 % 275595263287044304869593048464771 = 11108689100727767080405055477310 :=
+        Pratt.sq_of g067 (by norm_num) (by norm_num)
+      have g069 : 2 ^ 1002609727173127993845 % 275595263287044304869593048464771 = 205896617847963114492229262289491 :=
+        Pratt.sq_mul_of g068 (by norm_num) (by norm_num)
+      have g070 : 2 ^ 2005219454346255987690 % 275595263287044304869593048464771 = 238779286968982182973901663708812 :=
+        Pratt.sq_of g069 (by norm_num) (by norm_num)
+      have g071 : 2 ^ 4010438908692511975380 % 275595263287044304869593048464771 = 267011731713059394726193110151439 :=
+        Pratt.sq_of g070 (by norm_num) (by norm_num)
+      have g072 : 2 ^ 8020877817385023950761 % 275595263287044304869593048464771 = 212569894912991173552794042535603 :=
+        Pratt.sq_mul_of g071 (by norm_num) (by norm_num)
+      have g073 : 2 ^ 16041755634770047901523 % 275595263287044304869593048464771 = 260283753673290852548295704843923 :=
+        Pratt.sq_mul_of g072 (by norm_num) (by norm_num)
+      have g074 : 2 ^ 32083511269540095803047 % 275595263287044304869593048464771 = 224338584639763720852982483293049 :=
+        Pratt.sq_mul_of g073 (by norm_num) (by norm_num)
+      have g075 : 2 ^ 64167022539080191606095 % 275595263287044304869593048464771 = 105520810324427074317960527260087 :=
+        Pratt.sq_mul_of g074 (by norm_num) (by norm_num)
+      have g076 : 2 ^ 128334045078160383212190 % 275595263287044304869593048464771 = 106743960964050913089244914042863 :=
+        Pratt.sq_of g075 (by norm_num) (by norm_num)
+      have g077 : 2 ^ 256668090156320766424381 % 275595263287044304869593048464771 = 92781156637073233336423218703867 :=
+        Pratt.sq_mul_of g076 (by norm_num) (by norm_num)
+      have g078 : 2 ^ 513336180312641532848762 % 275595263287044304869593048464771 = 209081120122098595926226768753945 :=
+        Pratt.sq_of g077 (by norm_num) (by norm_num)
+      have g079 : 2 ^ 1026672360625283065697524 % 275595263287044304869593048464771 = 34047822610664215987949238802914 :=
+        Pratt.sq_of g078 (by norm_num) (by norm_num)
+      have g080 : 2 ^ 2053344721250566131395049 % 275595263287044304869593048464771 = 159255313343256216760092224696083 :=
+        Pratt.sq_mul_of g079 (by norm_num) (by norm_num)
+      have g081 : 2 ^ 4106689442501132262790099 % 275595263287044304869593048464771 = 94466738065099248213437631988623 :=
+        Pratt.sq_mul_of g080 (by norm_num) (by norm_num)
+      have g082 : 2 ^ 8213378885002264525580199 % 275595263287044304869593048464771 = 274240614052732286512171703289524 :=
+        Pratt.sq_mul_of g081 (by norm_num) (by norm_num)
+      have g083 : 2 ^ 16426757770004529051160398 % 275595263287044304869593048464771 = 231193295193022283756007461246054 :=
+        Pratt.sq_of g082 (by norm_num) (by norm_num)
+      have g084 : 2 ^ 32853515540009058102320796 % 275595263287044304869593048464771 = 71858362347177537598503959493568 :=
+        Pratt.sq_of g083 (by norm_num) (by norm_num)
+      have g085 : 2 ^ 65707031080018116204641592 % 275595263287044304869593048464771 = 115130693480226812065116257313225 :=
+        Pratt.sq_of g084 (by norm_num) (by norm_num)
+      have g086 : 2 ^ 131414062160036232409283184 % 275595263287044304869593048464771 = 137968227803634283402913894090258 :=
+        Pratt.sq_of g085 (by norm_num) (by norm_num)
+      have g087 : 2 ^ 262828124320072464818566368 % 275595263287044304869593048464771 = 239811923679046387784316309612669 :=
+        Pratt.sq_of g086 (by norm_num) (by norm_num)
+      have g088 : 2 ^ 525656248640144929637132737 % 275595263287044304869593048464771 = 212906601542664729503675040270112 :=
+        Pratt.sq_mul_of g087 (by norm_num) (by norm_num)
+      have g089 : 2 ^ 1051312497280289859274265474 % 275595263287044304869593048464771 = 190942692093246456057690516414394 :=
+        Pratt.sq_of g088 (by norm_num) (by norm_num)
+      have g090 : 2 ^ 2102624994560579718548530948 % 275595263287044304869593048464771 = 209172657551453178850761689677989 :=
+        Pratt.sq_of g089 (by norm_num) (by norm_num)
+      have g091 : 2 ^ 4205249989121159437097061896 % 275595263287044304869593048464771 = 224541606780324568847238016546204 :=
+        Pratt.sq_of g090 (by norm_num) (by norm_num)
+      have g092 : 2 ^ 8410499978242318874194123793 % 275595263287044304869593048464771 = 20942836795013918566358587344227 :=
+        Pratt.sq_mul_of g091 (by norm_num) (by norm_num)
+      have g093 : 2 ^ 16820999956484637748388247586 % 275595263287044304869593048464771 = 173569754755385304499708441661750 :=
+        Pratt.sq_of g092 (by norm_num) (by norm_num)
+      have g094 : 2 ^ 33641999912969275496776495173 % 275595263287044304869593048464771 = 224359464160934973009132801642239 :=
+        Pratt.sq_mul_of g093 (by norm_num) (by norm_num)
+      have g095 : 2 ^ 67283999825938550993552990347 % 275595263287044304869593048464771 = 6431308075646472176181038053286 :=
+        Pratt.sq_mul_of g094 (by norm_num) (by norm_num)
+      have g096 : 2 ^ 134567999651877101987105980695 % 275595263287044304869593048464771 = 258219039150140198717858914838848 :=
+        Pratt.sq_mul_of g095 (by norm_num) (by norm_num)
+      have g097 : 2 ^ 269135999303754203974211961391 % 275595263287044304869593048464771 = 143926691477517877698555043196597 :=
+        Pratt.sq_mul_of g096 (by norm_num) (by norm_num)
+      have g098 : 2 ^ 538271998607508407948423922782 % 275595263287044304869593048464771 = 97412803674918857664424812017746 :=
+        Pratt.sq_of g097 (by norm_num) (by norm_num)
+      have g099 : 2 ^ 1076543997215016815896847845565 % 275595263287044304869593048464771 = 234702717650993586095697643506187 :=
+        Pratt.sq_mul_of g098 (by norm_num) (by norm_num)
+      have g0100 : 2 ^ 2153087994430033631793695691131 % 275595263287044304869593048464771 = 148293671202070128261816030118012 :=
+        Pratt.sq_mul_of g099 (by norm_num) (by norm_num)
+      have g0101 : 2 ^ 4306175988860067263587391382262 % 275595263287044304869593048464771 = 133113410596493103572745208169912 :=
+        Pratt.sq_of g0100 (by norm_num) (by norm_num)
+      have g0102 : 2 ^ 8612351977720134527174782764524 % 275595263287044304869593048464771 = 98051700400559231092600636683610 :=
+        Pratt.sq_of g0101 (by norm_num) (by norm_num)
+      have g0103 : 2 ^ 17224703955440269054349565529048 % 275595263287044304869593048464771 = 106545027545151094374966408222834 :=
+        Pratt.sq_of g0102 (by norm_num) (by norm_num)
+      have g0104 : 2 ^ 34449407910880538108699131058096 % 275595263287044304869593048464771 = 150842789198150740680512444000562 :=
+        Pratt.sq_of g0103 (by norm_num) (by norm_num)
+      have g0105 : 2 ^ 68898815821761076217398262116192 % 275595263287044304869593048464771 = 108913741990265458827715588021041 :=
+        Pratt.sq_of g0104 (by norm_num) (by norm_num)
+      have g0106 : 2 ^ 137797631643522152434796524232385 % 275595263287044304869593048464771 = 275595263287044304869593048464770 :=
+        Pratt.sq_mul_of g0105 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464771 : ℕ) - 1 = 275595263287044304869593048464770 by norm_num, show 275595263287044304869593048464770 / 2 = 137797631643522152434796524232385 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g0106 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq1 | hqd
+    . have hqe : q = 3 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 3)).mp (hq.dvd_of_dvd_pow hq1)
+      subst hqe
+      have g10 : 2 ^ 1 % 275595263287044304869593048464771 = 2 := by norm_num
+      have g11 : 2 ^ 2 % 275595263287044304869593048464771 = 4 :=
+        Pratt.sq_of g10 (by norm_num) (by norm_num)
+      have g12 : 2 ^ 4 % 275595263287044304869593048464771 = 16 :=
+        Pratt.sq_of g11 (by norm_num) (by norm_num)
+      have g13 : 2 ^ 9 % 275595263287044304869593048464771 = 512 :=
+        Pratt.sq_mul_of g12 (by norm_num) (by norm_num)
+      have g14 : 2 ^ 18 % 275595263287044304869593048464771 = 262144 :=
+        Pratt.sq_of g13 (by norm_num) (by norm_num)
+      have g15 : 2 ^ 36 % 275595263287044304869593048464771 = 68719476736 :=
+        Pratt.sq_of g14 (by norm_num) (by norm_num)
+      have g16 : 2 ^ 72 % 275595263287044304869593048464771 = 4722366482869645213696 :=
+        Pratt.sq_of g15 (by norm_num) (by norm_num)
+      have g17 : 2 ^ 144 % 275595263287044304869593048464771 = 32900665897453284777481902646574 :=
+        Pratt.sq_of g16 (by norm_num) (by norm_num)
+      have g18 : 2 ^ 289 % 275595263287044304869593048464771 = 273528047788663142934201450814247 :=
+        Pratt.sq_mul_of g17 (by norm_num) (by norm_num)
+      have g19 : 2 ^ 579 % 275595263287044304869593048464771 = 121818365469147462580616349582836 :=
+        Pratt.sq_mul_of g18 (by norm_num) (by norm_num)
+      have g110 : 2 ^ 1159 % 275595263287044304869593048464771 = 34030760803710731301033672063933 :=
+        Pratt.sq_mul_of g19 (by norm_num) (by norm_num)
+      have g111 : 2 ^ 2319 % 275595263287044304869593048464771 = 223577376238602362436537726642492 :=
+        Pratt.sq_mul_of g110 (by norm_num) (by norm_num)
+      have g112 : 2 ^ 4638 % 275595263287044304869593048464771 = 224254768338267947649142005072734 :=
+        Pratt.sq_of g111 (by norm_num) (by norm_num)
+      have g113 : 2 ^ 9276 % 275595263287044304869593048464771 = 53133168439985346221982283420026 :=
+        Pratt.sq_of g112 (by norm_num) (by norm_num)
+      have g114 : 2 ^ 18552 % 275595263287044304869593048464771 = 227577242258217612472682979194991 :=
+        Pratt.sq_of g113 (by norm_num) (by norm_num)
+      have g115 : 2 ^ 37104 % 275595263287044304869593048464771 = 48778127889661438126689983407267 :=
+        Pratt.sq_of g114 (by norm_num) (by norm_num)
+      have g116 : 2 ^ 74208 % 275595263287044304869593048464771 = 204503491344186576979466170133077 :=
+        Pratt.sq_of g115 (by norm_num) (by norm_num)
+      have g117 : 2 ^ 148416 % 275595263287044304869593048464771 = 2980700604950224668132227694116 :=
+        Pratt.sq_of g116 (by norm_num) (by norm_num)
+      have g118 : 2 ^ 296832 % 275595263287044304869593048464771 = 215085137225106899443036913922379 :=
+        Pratt.sq_of g117 (by norm_num) (by norm_num)
+      have g119 : 2 ^ 593664 % 275595263287044304869593048464771 = 157660641011183114731537561638112 :=
+        Pratt.sq_of g118 (by norm_num) (by norm_num)
+      have g120 : 2 ^ 1187328 % 275595263287044304869593048464771 = 32025015149511088771427559617995 :=
+        Pratt.sq_of g119 (by norm_num) (by norm_num)
+      have g121 : 2 ^ 2374656 % 275595263287044304869593048464771 = 266692074842352692607491916124360 :=
+        Pratt.sq_of g120 (by norm_num) (by norm_num)
+      have g122 : 2 ^ 4749313 % 275595263287044304869593048464771 = 69233401005786450459607092648248 :=
+        Pratt.sq_mul_of g121 (by norm_num) (by norm_num)
+      have g123 : 2 ^ 9498627 % 275595263287044304869593048464771 = 262653056139317686245551830369242 :=
+        Pratt.sq_mul_of g122 (by norm_num) (by norm_num)
+      have g124 : 2 ^ 18997254 % 275595263287044304869593048464771 = 267163933214907157018396227441802 :=
+        Pratt.sq_of g123 (by norm_num) (by norm_num)
+      have g125 : 2 ^ 37994509 % 275595263287044304869593048464771 = 9893531987288456106858080490631 :=
+        Pratt.sq_mul_of g124 (by norm_num) (by norm_num)
+      have g126 : 2 ^ 75989019 % 275595263287044304869593048464771 = 79925491019879216506818204661117 :=
+        Pratt.sq_mul_of g125 (by norm_num) (by norm_num)
+      have g127 : 2 ^ 151978039 % 275595263287044304869593048464771 = 90527677525494101260492260546921 :=
+        Pratt.sq_mul_of g126 (by norm_num) (by norm_num)
+      have g128 : 2 ^ 303956078 % 275595263287044304869593048464771 = 127536411969817419760212804723463 :=
+        Pratt.sq_of g127 (by norm_num) (by norm_num)
+      have g129 : 2 ^ 607912156 % 275595263287044304869593048464771 = 177562361629024979207871541553017 :=
+        Pratt.sq_of g128 (by norm_num) (by norm_num)
+      have g130 : 2 ^ 1215824313 % 275595263287044304869593048464771 = 34071132126849970703998810950746 :=
+        Pratt.sq_mul_of g129 (by norm_num) (by norm_num)
+      have g131 : 2 ^ 2431648626 % 275595263287044304869593048464771 = 181162726830388888346027224288728 :=
+        Pratt.sq_of g130 (by norm_num) (by norm_num)
+      have g132 : 2 ^ 4863297252 % 275595263287044304869593048464771 = 265132760030457900772444566058983 :=
+        Pratt.sq_of g131 (by norm_num) (by norm_num)
+      have g133 : 2 ^ 9726594504 % 275595263287044304869593048464771 = 90467704066726906969917952026965 :=
+        Pratt.sq_of g132 (by norm_num) (by norm_num)
+      have g134 : 2 ^ 19453189009 % 275595263287044304869593048464771 = 59502393708979337064242894623626 :=
+        Pratt.sq_mul_of g133 (by norm_num) (by norm_num)
+      have g135 : 2 ^ 38906378018 % 275595263287044304869593048464771 = 182709726446937407277168581992150 :=
+        Pratt.sq_of g134 (by norm_num) (by norm_num)
+      have g136 : 2 ^ 77812756037 % 275595263287044304869593048464771 = 41778260143050173966939067045920 :=
+        Pratt.sq_mul_of g135 (by norm_num) (by norm_num)
+      have g137 : 2 ^ 155625512074 % 275595263287044304869593048464771 = 58806700264862562534620741759946 :=
+        Pratt.sq_of g136 (by norm_num) (by norm_num)
+      have g138 : 2 ^ 311251024148 % 275595263287044304869593048464771 = 194080305523394709493935690302628 :=
+        Pratt.sq_of g137 (by norm_num) (by norm_num)
+      have g139 : 2 ^ 622502048296 % 275595263287044304869593048464771 = 170515700349316077658293727386951 :=
+        Pratt.sq_of g138 (by norm_num) (by norm_num)
+      have g140 : 2 ^ 1245004096593 % 275595263287044304869593048464771 = 89576670438763103956341586946504 :=
+        Pratt.sq_mul_of g139 (by norm_num) (by norm_num)
+      have g141 : 2 ^ 2490008193187 % 275595263287044304869593048464771 = 256695979738672704623683474871073 :=
+        Pratt.sq_mul_of g140 (by norm_num) (by norm_num)
+      have g142 : 2 ^ 4980016386375 % 275595263287044304869593048464771 = 114080172219650627812476139838543 :=
+        Pratt.sq_mul_of g141 (by norm_num) (by norm_num)
+      have g143 : 2 ^ 9960032772750 % 275595263287044304869593048464771 = 131192920126340171600674664210840 :=
+        Pratt.sq_of g142 (by norm_num) (by norm_num)
+      have g144 : 2 ^ 19920065545501 % 275595263287044304869593048464771 = 67232154119219712453870745559684 :=
+        Pratt.sq_mul_of g143 (by norm_num) (by norm_num)
+      have g145 : 2 ^ 39840131091003 % 275595263287044304869593048464771 = 28048544539654398043018698188885 :=
+        Pratt.sq_mul_of g144 (by norm_num) (by norm_num)
+      have g146 : 2 ^ 79680262182007 % 275595263287044304869593048464771 = 194432454326805582762048612681268 :=
+        Pratt.sq_mul_of g145 (by norm_num) (by norm_num)
+      have g147 : 2 ^ 159360524364014 % 275595263287044304869593048464771 = 170517574839294609201846408748637 :=
+        Pratt.sq_of g146 (by norm_num) (by norm_num)
+      have g148 : 2 ^ 318721048728029 % 275595263287044304869593048464771 = 95916220919311488823567785078819 :=
+        Pratt.sq_mul_of g147 (by norm_num) (by norm_num)
+      have g149 : 2 ^ 637442097456059 % 275595263287044304869593048464771 = 259241248626017183020286141951516 :=
+        Pratt.sq_mul_of g148 (by norm_num) (by norm_num)
+      have g150 : 2 ^ 1274884194912119 % 275595263287044304869593048464771 = 194415141921400681860625525013143 :=
+        Pratt.sq_mul_of g149 (by norm_num) (by norm_num)
+      have g151 : 2 ^ 2549768389824239 % 275595263287044304869593048464771 = 187633099347661744536193217269637 :=
+        Pratt.sq_mul_of g150 (by norm_num) (by norm_num)
+      have g152 : 2 ^ 5099536779648478 % 275595263287044304869593048464771 = 245839264173740484863369065370289 :=
+        Pratt.sq_of g151 (by norm_num) (by norm_num)
+      have g153 : 2 ^ 10199073559296956 % 275595263287044304869593048464771 = 66494296807204221670966953184215 :=
+        Pratt.sq_of g152 (by norm_num) (by norm_num)
+      have g154 : 2 ^ 20398147118593912 % 275595263287044304869593048464771 = 143336970104901522107588545004490 :=
+        Pratt.sq_of g153 (by norm_num) (by norm_num)
+      have g155 : 2 ^ 40796294237187825 % 275595263287044304869593048464771 = 123638537148256978630846462877503 :=
+        Pratt.sq_mul_of g154 (by norm_num) (by norm_num)
+      have g156 : 2 ^ 81592588474375650 % 275595263287044304869593048464771 = 64155477298117015300443140627369 :=
+        Pratt.sq_of g155 (by norm_num) (by norm_num)
+      have g157 : 2 ^ 163185176948751301 % 275595263287044304869593048464771 = 204913228041416518319860363910316 :=
+        Pratt.sq_mul_of g156 (by norm_num) (by norm_num)
+      have g158 : 2 ^ 326370353897502602 % 275595263287044304869593048464771 = 175275638735031965398491011103461 :=
+        Pratt.sq_of g157 (by norm_num) (by norm_num)
+      have g159 : 2 ^ 652740707795005204 % 275595263287044304869593048464771 = 192302068470763403975657496192615 :=
+        Pratt.sq_of g158 (by norm_num) (by norm_num)
+      have g160 : 2 ^ 1305481415590010408 % 275595263287044304869593048464771 = 14931036054714047835699232113661 :=
+        Pratt.sq_of g159 (by norm_num) (by norm_num)
+      have g161 : 2 ^ 2610962831180020817 % 275595263287044304869593048464771 = 256954485065120150102961711396092 :=
+        Pratt.sq_mul_of g160 (by norm_num) (by norm_num)
+      have g162 : 2 ^ 5221925662360041634 % 275595263287044304869593048464771 = 107643575324459394938069974093531 :=
+        Pratt.sq_of g161 (by norm_num) (by norm_num)
+      have g163 : 2 ^ 10443851324720083269 % 275595263287044304869593048464771 = 161631464598712777361067879016931 :=
+        Pratt.sq_mul_of g162 (by norm_num) (by norm_num)
+      have g164 : 2 ^ 20887702649440166538 % 275595263287044304869593048464771 = 48011523462965384233217981449234 :=
+        Pratt.sq_of g163 (by norm_num) (by norm_num)
+      have g165 : 2 ^ 41775405298880333076 % 275595263287044304869593048464771 = 247490870627268586371222812649622 :=
+        Pratt.sq_of g164 (by norm_num) (by norm_num)
+      have g166 : 2 ^ 83550810597760666153 % 275595263287044304869593048464771 = 114014450898253076734558623832050 :=
+        Pratt.sq_mul_of g165 (by norm_num) (by norm_num)
+      have g167 : 2 ^ 167101621195521332307 % 275595263287044304869593048464771 = 274729317844109998050458739746204 :=
+        Pratt.sq_mul_of g166 (by norm_num) (by norm_num)
+      have g168 : 2 ^ 334203242391042664615 % 275595263287044304869593048464771 = 90780957915028350948218765321817 :=
+        Pratt.sq_mul_of g167 (by norm_num) (by norm_num)
+      have g169 : 2 ^ 668406484782085329230 % 275595263287044304869593048464771 = 206199474516746743165283074708123 :=
+        Pratt.sq_of g168 (by norm_num) (by norm_num)
+      have g170 : 2 ^ 1336812969564170658460 % 275595263287044304869593048464771 = 237719084649113716651344734150751 :=
+        Pratt.sq_of g169 (by norm_num) (by norm_num)
+      have g171 : 2 ^ 2673625939128341316920 % 275595263287044304869593048464771 = 85387731586061220643687757562742 :=
+        Pratt.sq_of g170 (by norm_num) (by norm_num)
+      have g172 : 2 ^ 5347251878256682633841 % 275595263287044304869593048464771 = 173151183632432577924153972445790 :=
+        Pratt.sq_mul_of g171 (by norm_num) (by norm_num)
+      have g173 : 2 ^ 10694503756513365267682 % 275595263287044304869593048464771 = 12212505437258981900882927050939 :=
+        Pratt.sq_of g172 (by norm_num) (by norm_num)
+      have g174 : 2 ^ 21389007513026730535365 % 275595263287044304869593048464771 = 136038588103450053971194754655753 :=
+        Pratt.sq_mul_of g173 (by norm_num) (by norm_num)
+      have g175 : 2 ^ 42778015026053461070730 % 275595263287044304869593048464771 = 42618621553735918311826880626121 :=
+        Pratt.sq_of g174 (by norm_num) (by norm_num)
+      have g176 : 2 ^ 85556030052106922141460 % 275595263287044304869593048464771 = 87663061502024981839775532613019 :=
+        Pratt.sq_of g175 (by norm_num) (by norm_num)
+      have g177 : 2 ^ 171112060104213844282920 % 275595263287044304869593048464771 = 93639696278099519194011604231411 :=
+        Pratt.sq_of g176 (by norm_num) (by norm_num)
+      have g178 : 2 ^ 342224120208427688565841 % 275595263287044304869593048464771 = 21143653540964551723169525367389 :=
+        Pratt.sq_mul_of g177 (by norm_num) (by norm_num)
+      have g179 : 2 ^ 684448240416855377131683 % 275595263287044304869593048464771 = 33796231060608818369926133421633 :=
+        Pratt.sq_mul_of g178 (by norm_num) (by norm_num)
+      have g180 : 2 ^ 1368896480833710754263366 % 275595263287044304869593048464771 = 174859227939076840835800301539899 :=
+        Pratt.sq_of g179 (by norm_num) (by norm_num)
+      have g181 : 2 ^ 2737792961667421508526733 % 275595263287044304869593048464771 = 185424358189788831980220993399287 :=
+        Pratt.sq_mul_of g180 (by norm_num) (by norm_num)
+      have g182 : 2 ^ 5475585923334843017053466 % 275595263287044304869593048464771 = 2323259099125262899544254796785 :=
+        Pratt.sq_of g181 (by norm_num) (by norm_num)
+      have g183 : 2 ^ 10951171846669686034106932 % 275595263287044304869593048464771 = 245551937433389247659910642477526 :=
+        Pratt.sq_of g182 (by norm_num) (by norm_num)
+      have g184 : 2 ^ 21902343693339372068213864 % 275595263287044304869593048464771 = 98145643729373381796118053755729 :=
+        Pratt.sq_of g183 (by norm_num) (by norm_num)
+      have g185 : 2 ^ 43804687386678744136427728 % 275595263287044304869593048464771 = 160271210184538189392577436562218 :=
+        Pratt.sq_of g184 (by norm_num) (by norm_num)
+      have g186 : 2 ^ 87609374773357488272855456 % 275595263287044304869593048464771 = 192253018768628251319598455408879 :=
+        Pratt.sq_of g185 (by norm_num) (by norm_num)
+      have g187 : 2 ^ 175218749546714976545710912 % 275595263287044304869593048464771 = 129187944335584605969237407024373 :=
+        Pratt.sq_of g186 (by norm_num) (by norm_num)
+      have g188 : 2 ^ 350437499093429953091421824 % 275595263287044304869593048464771 = 173211359477885052625944064115986 :=
+        Pratt.sq_of g187 (by norm_num) (by norm_num)
+      have g189 : 2 ^ 700874998186859906182843649 % 275595263287044304869593048464771 = 82825598473239884190965257555559 :=
+        Pratt.sq_mul_of g188 (by norm_num) (by norm_num)
+      have g190 : 2 ^ 1401749996373719812365687298 % 275595263287044304869593048464771 = 42099814218303695442427643742725 :=
+        Pratt.sq_of g189 (by norm_num) (by norm_num)
+      have g191 : 2 ^ 2803499992747439624731374597 % 275595263287044304869593048464771 = 91583579119045226602294175369788 :=
+        Pratt.sq_mul_of g190 (by norm_num) (by norm_num)
+      have g192 : 2 ^ 5606999985494879249462749195 % 275595263287044304869593048464771 = 160054696361139115086364641946984 :=
+        Pratt.sq_mul_of g191 (by norm_num) (by norm_num)
+      have g193 : 2 ^ 11213999970989758498925498391 % 275595263287044304869593048464771 = 85538195564484114843366885665429 :=
+        Pratt.sq_mul_of g192 (by norm_num) (by norm_num)
+      have g194 : 2 ^ 22427999941979516997850996782 % 275595263287044304869593048464771 = 94003713336851522587751992201553 :=
+        Pratt.sq_of g193 (by norm_num) (by norm_num)
+      have g195 : 2 ^ 44855999883959033995701993565 % 275595263287044304869593048464771 = 85647918930923821347222959748227 :=
+        Pratt.sq_mul_of g194 (by norm_num) (by norm_num)
+      have g196 : 2 ^ 89711999767918067991403987130 % 275595263287044304869593048464771 = 234421385329024438626809943862534 :=
+        Pratt.sq_of g195 (by norm_num) (by norm_num)
+      have g197 : 2 ^ 179423999535836135982807974260 % 275595263287044304869593048464771 = 273775154474344331858489584698114 :=
+        Pratt.sq_of g196 (by norm_num) (by norm_num)
+      have g198 : 2 ^ 358847999071672271965615948521 % 275595263287044304869593048464771 = 161708652385678831671030463909935 :=
+        Pratt.sq_mul_of g197 (by norm_num) (by norm_num)
+      have g199 : 2 ^ 717695998143344543931231897043 % 275595263287044304869593048464771 = 260903224982050269421101846967399 :=
+        Pratt.sq_mul_of g198 (by norm_num) (by norm_num)
+      have g1100 : 2 ^ 1435391996286689087862463794087 % 275595263287044304869593048464771 = 122065332306365812702319071268377 :=
+        Pratt.sq_mul_of g199 (by norm_num) (by norm_num)
+      have g1101 : 2 ^ 2870783992573378175724927588174 % 275595263287044304869593048464771 = 165723199314432868795660172658990 :=
+        Pratt.sq_of g1100 (by norm_num) (by norm_num)
+      have g1102 : 2 ^ 5741567985146756351449855176349 % 275595263287044304869593048464771 = 214814052787551056884817682701512 :=
+        Pratt.sq_mul_of g1101 (by norm_num) (by norm_num)
+      have g1103 : 2 ^ 11483135970293512702899710352698 % 275595263287044304869593048464771 = 240955059635910524040726916039159 :=
+        Pratt.sq_of g1102 (by norm_num) (by norm_num)
+      have g1104 : 2 ^ 22966271940587025405799420705397 % 275595263287044304869593048464771 = 76184330585528221802431054885211 :=
+        Pratt.sq_mul_of g1103 (by norm_num) (by norm_num)
+      have g1105 : 2 ^ 45932543881174050811598841410795 % 275595263287044304869593048464771 = 244403132491585777391563295049132 :=
+        Pratt.sq_mul_of g1104 (by norm_num) (by norm_num)
+      have g1106 : 2 ^ 91865087762348101623197682821590 % 275595263287044304869593048464771 = 244403132491585777391563295049131 :=
+        Pratt.sq_of g1105 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464771 : ℕ) - 1 = 275595263287044304869593048464770 by norm_num, show 275595263287044304869593048464770 / 3 = 91865087762348101623197682821590 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g1106 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq2 | hqd
+    . have hqe : q = 5 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 5)).mp (hq.dvd_of_dvd_pow hq2)
+      subst hqe
+      have g20 : 2 ^ 1 % 275595263287044304869593048464771 = 2 := by norm_num
+      have g21 : 2 ^ 2 % 275595263287044304869593048464771 = 4 :=
+        Pratt.sq_of g20 (by norm_num) (by norm_num)
+      have g22 : 2 ^ 5 % 275595263287044304869593048464771 = 32 :=
+        Pratt.sq_mul_of g21 (by norm_num) (by norm_num)
+      have g23 : 2 ^ 10 % 275595263287044304869593048464771 = 1024 :=
+        Pratt.sq_of g22 (by norm_num) (by norm_num)
+      have g24 : 2 ^ 21 % 275595263287044304869593048464771 = 2097152 :=
+        Pratt.sq_mul_of g23 (by norm_num) (by norm_num)
+      have g25 : 2 ^ 43 % 275595263287044304869593048464771 = 8796093022208 :=
+        Pratt.sq_mul_of g24 (by norm_num) (by norm_num)
+      have g26 : 2 ^ 86 % 275595263287044304869593048464771 = 77371252455336267181195264 :=
+        Pratt.sq_of g25 (by norm_num) (by norm_num)
+      have g27 : 2 ^ 173 % 275595263287044304869593048464771 = 230469292944826198914114563839138 :=
+        Pratt.sq_mul_of g26 (by norm_num) (by norm_num)
+      have g28 : 2 ^ 347 % 275595263287044304869593048464771 = 68373690708138907798298560397572 :=
+        Pratt.sq_mul_of g27 (by norm_num) (by norm_num)
+      have g29 : 2 ^ 695 % 275595263287044304869593048464771 = 135386473674499596012799422567653 :=
+        Pratt.sq_mul_of g28 (by norm_num) (by norm_num)
+      have g210 : 2 ^ 1391 % 275595263287044304869593048464771 = 241732049749051873326604721360004 :=
+        Pratt.sq_mul_of g29 (by norm_num) (by norm_num)
+      have g211 : 2 ^ 2782 % 275595263287044304869593048464771 = 200772521535659831085206259459547 :=
+        Pratt.sq_of g210 (by norm_num) (by norm_num)
+      have g212 : 2 ^ 5565 % 275595263287044304869593048464771 = 192688219755348744200728069769915 :=
+        Pratt.sq_mul_of g211 (by norm_num) (by norm_num)
+      have g213 : 2 ^ 11131 % 275595263287044304869593048464771 = 237904622708583635679155167659734 :=
+        Pratt.sq_mul_of g212 (by norm_num) (by norm_num)
+      have g214 : 2 ^ 22262 % 275595263287044304869593048464771 = 254334086451045172557222674346906 :=
+        Pratt.sq_of g213 (by norm_num) (by norm_num)
+      have g215 : 2 ^ 44524 % 275595263287044304869593048464771 = 272120382932744653101935344860442 :=
+        Pratt.sq_of g214 (by norm_num) (by norm_num)
+      have g216 : 2 ^ 89049 % 275595263287044304869593048464771 = 270559286594997082928015063542794 :=
+        Pratt.sq_mul_of g215 (by norm_num) (by norm_num)
+      have g217 : 2 ^ 178099 % 275595263287044304869593048464771 = 110765844918593524168883355917139 :=
+        Pratt.sq_mul_of g216 (by norm_num) (by norm_num)
+      have g218 : 2 ^ 356198 % 275595263287044304869593048464771 = 20441424355734504337696093200140 :=
+        Pratt.sq_of g217 (by norm_num) (by norm_num)
+      have g219 : 2 ^ 712397 % 275595263287044304869593048464771 = 182040257854796595524063621657277 :=
+        Pratt.sq_mul_of g218 (by norm_num) (by norm_num)
+      have g220 : 2 ^ 1424794 % 275595263287044304869593048464771 = 98901162846669501827174559362306 :=
+        Pratt.sq_of g219 (by norm_num) (by norm_num)
+      have g221 : 2 ^ 2849588 % 275595263287044304869593048464771 = 244324688911360786597253228748193 :=
+        Pratt.sq_of g220 (by norm_num) (by norm_num)
+      have g222 : 2 ^ 5699176 % 275595263287044304869593048464771 = 252466592541662090934781556416254 :=
+        Pratt.sq_of g221 (by norm_num) (by norm_num)
+      have g223 : 2 ^ 11398352 % 275595263287044304869593048464771 = 51694836737719372195798876212305 :=
+        Pratt.sq_of g222 (by norm_num) (by norm_num)
+      have g224 : 2 ^ 22796705 % 275595263287044304869593048464771 = 151351193696534200814351672213624 :=
+        Pratt.sq_mul_of g223 (by norm_num) (by norm_num)
+      have g225 : 2 ^ 45593411 % 275595263287044304869593048464771 = 218063665610888292728997035409218 :=
+        Pratt.sq_mul_of g224 (by norm_num) (by norm_num)
+      have g226 : 2 ^ 91186823 % 275595263287044304869593048464771 = 202295248728246213652897645816777 :=
+        Pratt.sq_mul_of g225 (by norm_num) (by norm_num)
+      have g227 : 2 ^ 182373646 % 275595263287044304869593048464771 = 176442060057715307067222020219939 :=
+        Pratt.sq_of g226 (by norm_num) (by norm_num)
+      have g228 : 2 ^ 364747293 % 275595263287044304869593048464771 = 151433777940522653938761739114848 :=
+        Pratt.sq_mul_of g227 (by norm_num) (by norm_num)
+      have g229 : 2 ^ 729494587 % 275595263287044304869593048464771 = 266551573835313288759819274764179 :=
+        Pratt.sq_mul_of g228 (by norm_num) (by norm_num)
+      have g230 : 2 ^ 1458989175 % 275595263287044304869593048464771 = 170520910344258426307007493424564 :=
+        Pratt.sq_mul_of g229 (by norm_num) (by norm_num)
+      have g231 : 2 ^ 2917978351 % 275595263287044304869593048464771 = 264410816560743799966891571913613 :=
+        Pratt.sq_mul_of g230 (by norm_num) (by norm_num)
+      have g232 : 2 ^ 5835956702 % 275595263287044304869593048464771 = 99812874221288665267119307989520 :=
+        Pratt.sq_of g231 (by norm_num) (by norm_num)
+      have g233 : 2 ^ 11671913405 % 275595263287044304869593048464771 = 105689532843466967097278876115728 :=
+        Pratt.sq_mul_of g232 (by norm_num) (by norm_num)
+      have g234 : 2 ^ 23343826811 % 275595263287044304869593048464771 = 198729154724925959327838097584409 :=
+        Pratt.sq_mul_of g233 (by norm_num) (by norm_num)
+      have g235 : 2 ^ 46687653622 % 275595263287044304869593048464771 = 83433154440281791663170603022440 :=
+        Pratt.sq_of g234 (by norm_num) (by norm_num)
+      have g236 : 2 ^ 93375307244 % 275595263287044304869593048464771 = 213390994433602125485452055522820 :=
+        Pratt.sq_of g235 (by norm_num) (by norm_num)
+      have g237 : 2 ^ 186750614489 % 275595263287044304869593048464771 = 139732351661275568189295308117680 :=
+        Pratt.sq_mul_of g236 (by norm_num) (by norm_num)
+      have g238 : 2 ^ 373501228978 % 275595263287044304869593048464771 = 232966178492805199600872512825441 :=
+        Pratt.sq_of g237 (by norm_num) (by norm_num)
+      have g239 : 2 ^ 747002457956 % 275595263287044304869593048464771 = 129811958165250843687086084323367 :=
+        Pratt.sq_of g238 (by norm_num) (by norm_num)
+      have g240 : 2 ^ 1494004915912 % 275595263287044304869593048464771 = 36037859686332730250866076516276 :=
+        Pratt.sq_of g239 (by norm_num) (by norm_num)
+      have g241 : 2 ^ 2988009831825 % 275595263287044304869593048464771 = 73469526168233040291653708697455 :=
+        Pratt.sq_mul_of g240 (by norm_num) (by norm_num)
+      have g242 : 2 ^ 5976019663650 % 275595263287044304869593048464771 = 50528922112964049234584591469043 :=
+        Pratt.sq_of g241 (by norm_num) (by norm_num)
+      have g243 : 2 ^ 11952039327301 % 275595263287044304869593048464771 = 234111154928022110918158992160727 :=
+        Pratt.sq_mul_of g242 (by norm_num) (by norm_num)
+      have g244 : 2 ^ 23904078654602 % 275595263287044304869593048464771 = 123893614799901231919289016712520 :=
+        Pratt.sq_of g243 (by norm_num) (by norm_num)
+      have g245 : 2 ^ 47808157309204 % 275595263287044304869593048464771 = 148513814296507985986093720551011 :=
+        Pratt.sq_of g244 (by norm_num) (by norm_num)
+      have g246 : 2 ^ 95616314618408 % 275595263287044304869593048464771 = 3712966419821331099645353715736 :=
+        Pratt.sq_of g245 (by norm_num) (by norm_num)
+      have g247 : 2 ^ 191232629236817 % 275595263287044304869593048464771 = 239896558322492634466768399872551 :=
+        Pratt.sq_mul_of g246 (by norm_num) (by norm_num)
+      have g248 : 2 ^ 382465258473635 % 275595263287044304869593048464771 = 146020947034658143150570037719057 :=
+        Pratt.sq_mul_of g247 (by norm_num) (by norm_num)
+      have g249 : 2 ^ 764930516947271 % 275595263287044304869593048464771 = 71227816024304230601584769433060 :=
+        Pratt.sq_mul_of g248 (by norm_num) (by norm_num)
+      have g250 : 2 ^ 1529861033894543 % 275595263287044304869593048464771 = 232030080002019974505591928947975 :=
+        Pratt.sq_mul_of g249 (by norm_num) (by norm_num)
+      have g251 : 2 ^ 3059722067789086 % 275595263287044304869593048464771 = 1409057239914011015013052741075 :=
+        Pratt.sq_of g250 (by norm_num) (by norm_num)
+      have g252 : 2 ^ 6119444135578173 % 275595263287044304869593048464771 = 107610108811079881261163308969072 :=
+        Pratt.sq_mul_of g251 (by norm_num) (by norm_num)
+      have g253 : 2 ^ 12238888271156347 % 275595263287044304869593048464771 = 88524457412398240977632646227235 :=
+        Pratt.sq_mul_of g252 (by norm_num) (by norm_num)
+      have g254 : 2 ^ 24477776542312695 % 275595263287044304869593048464771 = 230650104640013639830343833180464 :=
+        Pratt.sq_mul_of g253 (by norm_num) (by norm_num)
+      have g255 : 2 ^ 48955553084625390 % 275595263287044304869593048464771 = 111614877237738449796127734405624 :=
+        Pratt.sq_of g254 (by norm_num) (by norm_num)
+      have g256 : 2 ^ 97911106169250780 % 275595263287044304869593048464771 = 24261787146686240207365995798383 :=
+        Pratt.sq_of g255 (by norm_num) (by norm_num)
+      have g257 : 2 ^ 195822212338501561 % 275595263287044304869593048464771 = 234228968823227454560265761612944 :=
+        Pratt.sq_mul_of g256 (by norm_num) (by norm_num)
+      have g258 : 2 ^ 391644424677003122 % 275595263287044304869593048464771 = 92219110560988620825703158984388 :=
+        Pratt.sq_of g257 (by norm_num) (by norm_num)
+      have g259 : 2 ^ 783288849354006245 % 275595263287044304869593048464771 = 101806041833938618439630109386263 :=
+        Pratt.sq_mul_of g258 (by norm_num) (by norm_num)
+      have g260 : 2 ^ 1566577698708012490 % 275595263287044304869593048464771 = 106601732466210394714961323881351 :=
+        Pratt.sq_of g259 (by norm_num) (by norm_num)
+      have g261 : 2 ^ 3133155397416024980 % 275595263287044304869593048464771 = 256587121435587305600138924411561 :=
+        Pratt.sq_of g260 (by norm_num) (by norm_num)
+      have g262 : 2 ^ 6266310794832049961 % 275595263287044304869593048464771 = 123118674790689992643082062043305 :=
+        Pratt.sq_mul_of g261 (by norm_num) (by norm_num)
+      have g263 : 2 ^ 12532621589664099923 % 275595263287044304869593048464771 = 3264576386654170774965734079322 :=
+        Pratt.sq_mul_of g262 (by norm_num) (by norm_num)
+      have g264 : 2 ^ 25065243179328199846 % 275595263287044304869593048464771 = 198028621464148066760609943919291 :=
+        Pratt.sq_of g263 (by norm_num) (by norm_num)
+      have g265 : 2 ^ 50130486358656399692 % 275595263287044304869593048464771 = 913233691779448408221273850554 :=
+        Pratt.sq_of g264 (by norm_num) (by norm_num)
+      have g266 : 2 ^ 100260972717312799384 % 275595263287044304869593048464771 = 197100593437696332472084253797510 :=
+        Pratt.sq_of g265 (by norm_num) (by norm_num)
+      have g267 : 2 ^ 200521945434625598769 % 275595263287044304869593048464771 = 225685751925598061490164982426685 :=
+        Pratt.sq_mul_of g266 (by norm_num) (by norm_num)
+      have g268 : 2 ^ 401043890869251197538 % 275595263287044304869593048464771 = 195579119548832940559624573569992 :=
+        Pratt.sq_of g267 (by norm_num) (by norm_num)
+      have g269 : 2 ^ 802087781738502395076 % 275595263287044304869593048464771 = 225396721735239344697985983475963 :=
+        Pratt.sq_of g268 (by norm_num) (by norm_num)
+      have g270 : 2 ^ 1604175563477004790152 % 275595263287044304869593048464771 = 157232034888261808351227394490833 :=
+        Pratt.sq_of g269 (by norm_num) (by norm_num)
+      have g271 : 2 ^ 3208351126954009580304 % 275595263287044304869593048464771 = 75855041933037811640817297239698 :=
+        Pratt.sq_of g270 (by norm_num) (by norm_num)
+      have g272 : 2 ^ 6416702253908019160609 % 275595263287044304869593048464771 = 44248798738987883494423857083172 :=
+        Pratt.sq_mul_of g271 (by norm_num) (by norm_num)
+      have g273 : 2 ^ 12833404507816038321219 % 275595263287044304869593048464771 = 213067548836301001695661911479222 :=
+        Pratt.sq_mul_of g272 (by norm_num) (by norm_num)
+      have g274 : 2 ^ 25666809015632076642438 % 275595263287044304869593048464771 = 42462949461893448119205378339627 :=
+        Pratt.sq_of g273 (by norm_num) (by norm_num)
+      have g275 : 2 ^ 51333618031264153284876 % 275595263287044304869593048464771 = 37655882587416421978547210430112 :=
+        Pratt.sq_of g274 (by norm_num) (by norm_num)
+      have g276 : 2 ^ 102667236062528306569752 % 275595263287044304869593048464771 = 14008758828079167954355888365126 :=
+        Pratt.sq_of g275 (by norm_num) (by norm_num)
+      have g277 : 2 ^ 205334472125056613139504 % 275595263287044304869593048464771 = 170535177393080477626259881492831 :=
+        Pratt.sq_of g276 (by norm_num) (by norm_num)
+      have g278 : 2 ^ 410668944250113226279009 % 275595263287044304869593048464771 = 13939189224543211523492386004544 :=
+        Pratt.sq_mul_of g277 (by norm_num) (by norm_num)
+      have g279 : 2 ^ 821337888500226452558019 % 275595263287044304869593048464771 = 245075392210835009089204916493218 :=
+        Pratt.sq_mul_of g278 (by norm_num) (by norm_num)
+      have g280 : 2 ^ 1642675777000452905116039 % 275595263287044304869593048464771 = 124325505709692932024660372220947 :=
+        Pratt.sq_mul_of g279 (by norm_num) (by norm_num)
+      have g281 : 2 ^ 3285351554000905810232079 % 275595263287044304869593048464771 = 51951103191025479865391216681371 :=
+        Pratt.sq_mul_of g280 (by norm_num) (by norm_num)
+      have g282 : 2 ^ 6570703108001811620464159 % 275595263287044304869593048464771 = 248318587776420814054300600755874 :=
+        Pratt.sq_mul_of g281 (by norm_num) (by norm_num)
+      have g283 : 2 ^ 13141406216003623240928318 % 275595263287044304869593048464771 = 28521406503898933433405280437652 :=
+        Pratt.sq_of g282 (by norm_num) (by norm_num)
+      have g284 : 2 ^ 26282812432007246481856636 % 275595263287044304869593048464771 = 126722334738031371702898413663327 :=
+        Pratt.sq_of g283 (by norm_num) (by norm_num)
+      have g285 : 2 ^ 52565624864014492963713273 % 275595263287044304869593048464771 = 117152003344517369859143442903190 :=
+        Pratt.sq_mul_of g284 (by norm_num) (by norm_num)
+      have g286 : 2 ^ 105131249728028985927426547 % 275595263287044304869593048464771 = 206303555382413151545479945440833 :=
+        Pratt.sq_mul_of g285 (by norm_num) (by norm_num)
+      have g287 : 2 ^ 210262499456057971854853094 % 275595263287044304869593048464771 = 56321412840095929563169782892850 :=
+        Pratt.sq_of g286 (by norm_num) (by norm_num)
+      have g288 : 2 ^ 420524998912115943709706189 % 275595263287044304869593048464771 = 14300070333073577087285194718665 :=
+        Pratt.sq_mul_of g287 (by norm_num) (by norm_num)
+      have g289 : 2 ^ 841049997824231887419412379 % 275595263287044304869593048464771 = 212136810790477848172116264744486 :=
+        Pratt.sq_mul_of g288 (by norm_num) (by norm_num)
+      have g290 : 2 ^ 1682099995648463774838824758 % 275595263287044304869593048464771 = 139047074133135152769259453905389 :=
+        Pratt.sq_of g289 (by norm_num) (by norm_num)
+      have g291 : 2 ^ 3364199991296927549677649517 % 275595263287044304869593048464771 = 253752690603745633389100828376083 :=
+        Pratt.sq_mul_of g290 (by norm_num) (by norm_num)
+      have g292 : 2 ^ 6728399982593855099355299034 % 275595263287044304869593048464771 = 243036792350301689082020699008966 :=
+        Pratt.sq_of g291 (by norm_num) (by norm_num)
+      have g293 : 2 ^ 13456799965187710198710598069 % 275595263287044304869593048464771 = 81644708768045182519666539156082 :=
+        Pratt.sq_mul_of g292 (by norm_num) (by norm_num)
+      have g294 : 2 ^ 26913599930375420397421196139 % 275595263287044304869593048464771 = 183531588403463617589142800772375 :=
+        Pratt.sq_mul_of g293 (by norm_num) (by norm_num)
+      have g295 : 2 ^ 53827199860750840794842392278 % 275595263287044304869593048464771 = 199212468256648896659660853966710 :=
+        Pratt.sq_of g294 (by norm_num) (by norm_num)
+      have g296 : 2 ^ 107654399721501681589684784556 % 275595263287044304869593048464771 = 249221380946161838418803640420314 :=
+        Pratt.sq_of g295 (by norm_num) (by norm_num)
+      have g297 : 2 ^ 215308799443003363179369569113 % 275595263287044304869593048464771 = 131001567120498589320938912708532 :=
+        Pratt.sq_mul_of g296 (by norm_num) (by norm_num)
+      have g298 : 2 ^ 430617598886006726358739138226 % 275595263287044304869593048464771 = 255750900828809655971915495505456 :=
+        Pratt.sq_of g297 (by norm_num) (by norm_num)
+      have g299 : 2 ^ 861235197772013452717478276452 % 275595263287044304869593048464771 = 106105222108580665781193011875843 :=
+        Pratt.sq_of g298 (by norm_num) (by norm_num)
+      have g2100 : 2 ^ 1722470395544026905434956552904 % 275595263287044304869593048464771 = 206650130509489933967521777293955 :=
+        Pratt.sq_of g299 (by norm_num) (by norm_num)
+      have g2101 : 2 ^ 3444940791088053810869913105809 % 275595263287044304869593048464771 = 14473616474770873321350554915777 :=
+        Pratt.sq_mul_of g2100 (by norm_num) (by norm_num)
+      have g2102 : 2 ^ 6889881582176107621739826211619 % 275595263287044304869593048464771 = 186653460224009797222696550182231 :=
+        Pratt.sq_mul_of g2101 (by norm_num) (by norm_num)
+      have g2103 : 2 ^ 13779763164352215243479652423238 % 275595263287044304869593048464771 = 253746796497159494915661633828768 :=
+        Pratt.sq_of g2102 (by norm_num) (by norm_num)
+      have g2104 : 2 ^ 27559526328704430486959304846477 % 275595263287044304869593048464771 = 237054959925874756133648476280871 :=
+        Pratt.sq_mul_of g2103 (by norm_num) (by norm_num)
+      have g2105 : 2 ^ 55119052657408860973918609692954 % 275595263287044304869593048464771 = 180962840726593164309460677605346 :=
+        Pratt.sq_of g2104 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464771 : ℕ) - 1 = 275595263287044304869593048464770 by norm_num, show 275595263287044304869593048464770 / 5 = 55119052657408860973918609692954 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g2105 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq3 | hqd
+    . have hqe : q = 13 :=
+        (Nat.prime_dvd_prime_iff_eq hq (by norm_num : Nat.Prime 13)).mp (hq.dvd_of_dvd_pow hq3)
+      subst hqe
+      have g30 : 2 ^ 1 % 275595263287044304869593048464771 = 2 := by norm_num
+      have g31 : 2 ^ 2 % 275595263287044304869593048464771 = 4 :=
+        Pratt.sq_of g30 (by norm_num) (by norm_num)
+      have g32 : 2 ^ 4 % 275595263287044304869593048464771 = 16 :=
+        Pratt.sq_of g31 (by norm_num) (by norm_num)
+      have g33 : 2 ^ 8 % 275595263287044304869593048464771 = 256 :=
+        Pratt.sq_of g32 (by norm_num) (by norm_num)
+      have g34 : 2 ^ 16 % 275595263287044304869593048464771 = 65536 :=
+        Pratt.sq_of g33 (by norm_num) (by norm_num)
+      have g35 : 2 ^ 33 % 275595263287044304869593048464771 = 8589934592 :=
+        Pratt.sq_mul_of g34 (by norm_num) (by norm_num)
+      have g36 : 2 ^ 66 % 275595263287044304869593048464771 = 73786976294838206464 :=
+        Pratt.sq_of g35 (by norm_num) (by norm_num)
+      have g37 : 2 ^ 133 % 275595263287044304869593048464771 = 112784048486543252326902566658264 :=
+        Pratt.sq_mul_of g36 (by norm_num) (by norm_num)
+      have g38 : 2 ^ 267 % 275595263287044304869593048464771 = 135668986171791303721465952154238 :=
+        Pratt.sq_mul_of g37 (by norm_num) (by norm_num)
+      have g39 : 2 ^ 535 % 275595263287044304869593048464771 = 116967604629369762138034803347877 :=
+        Pratt.sq_mul_of g38 (by norm_num) (by norm_num)
+      have g310 : 2 ^ 1070 % 275595263287044304869593048464771 = 159071351897865541723453091964593 :=
+        Pratt.sq_of g39 (by norm_num) (by norm_num)
+      have g311 : 2 ^ 2140 % 275595263287044304869593048464771 = 210399852737797728232986015642008 :=
+        Pratt.sq_of g310 (by norm_num) (by norm_num)
+      have g312 : 2 ^ 4281 % 275595263287044304869593048464771 = 71336208086477103196781629305256 :=
+        Pratt.sq_mul_of g311 (by norm_num) (by norm_num)
+      have g313 : 2 ^ 8562 % 275595263287044304869593048464771 = 66128752428948759583585993729518 :=
+        Pratt.sq_of g312 (by norm_num) (by norm_num)
+      have g314 : 2 ^ 17124 % 275595263287044304869593048464771 = 37515301219561038174475604429553 :=
+        Pratt.sq_of g313 (by norm_num) (by norm_num)
+      have g315 : 2 ^ 34249 % 275595263287044304869593048464771 = 25215051725741223680182211844650 :=
+        Pratt.sq_mul_of g314 (by norm_num) (by norm_num)
+      have g316 : 2 ^ 68499 % 275595263287044304869593048464771 = 261776723758463557606573183232937 :=
+        Pratt.sq_mul_of g315 (by norm_num) (by norm_num)
+      have g317 : 2 ^ 136999 % 275595263287044304869593048464771 = 9904934029952726854010245695802 :=
+        Pratt.sq_mul_of g316 (by norm_num) (by norm_num)
+      have g318 : 2 ^ 273998 % 275595263287044304869593048464771 = 251734046343740682842033128471337 :=
+        Pratt.sq_of g317 (by norm_num) (by norm_num)
+      have g319 : 2 ^ 547997 % 275595263287044304869593048464771 = 108767671307213904904769081782797 :=
+        Pratt.sq_mul_of g318 (by norm_num) (by norm_num)
+      have g320 : 2 ^ 1095995 % 275595263287044304869593048464771 = 160100056403751068652919898868711 :=
+        Pratt.sq_mul_of g319 (by norm_num) (by norm_num)
+      have g321 : 2 ^ 2191990 % 275595263287044304869593048464771 = 77410943918181811962839046052203 :=
+        Pratt.sq_of g320 (by norm_num) (by norm_num)
+      have g322 : 2 ^ 4383981 % 275595263287044304869593048464771 = 164206553714226389050581981110856 :=
+        Pratt.sq_mul_of g321 (by norm_num) (by norm_num)
+      have g323 : 2 ^ 8767963 % 275595263287044304869593048464771 = 117003159064575821401285238578389 :=
+        Pratt.sq_mul_of g322 (by norm_num) (by norm_num)
+      have g324 : 2 ^ 17535927 % 275595263287044304869593048464771 = 266840810013639705235272116650766 :=
+        Pratt.sq_mul_of g323 (by norm_num) (by norm_num)
+      have g325 : 2 ^ 35071855 % 275595263287044304869593048464771 = 75723689681726124309974187740966 :=
+        Pratt.sq_mul_of g324 (by norm_num) (by norm_num)
+      have g326 : 2 ^ 70143710 % 275595263287044304869593048464771 = 41762265363246090157394263106540 :=
+        Pratt.sq_of g325 (by norm_num) (by norm_num)
+      have g327 : 2 ^ 140287420 % 275595263287044304869593048464771 = 263944659609660118338731477897621 :=
+        Pratt.sq_of g326 (by norm_num) (by norm_num)
+      have g328 : 2 ^ 280574841 % 275595263287044304869593048464771 = 220169438678445148514319666161714 :=
+        Pratt.sq_mul_of g327 (by norm_num) (by norm_num)
+      have g329 : 2 ^ 561149682 % 275595263287044304869593048464771 = 243718440339409193605092719123541 :=
+        Pratt.sq_of g328 (by norm_num) (by norm_num)
+      have g330 : 2 ^ 1122299365 % 275595263287044304869593048464771 = 40440400246990252672786218812972 :=
+        Pratt.sq_mul_of g329 (by norm_num) (by norm_num)
+      have g331 : 2 ^ 2244598731 % 275595263287044304869593048464771 = 249489244891439070175913180358238 :=
+        Pratt.sq_mul_of g330 (by norm_num) (by norm_num)
+      have g332 : 2 ^ 4489197463 % 275595263287044304869593048464771 = 211620651599779682892504767236391 :=
+        Pratt.sq_mul_of g331 (by norm_num) (by norm_num)
+      have g333 : 2 ^ 8978394927 % 275595263287044304869593048464771 = 168471414551232292726757699273598 :=
+        Pratt.sq_mul_of g332 (by norm_num) (by norm_num)
+      have g334 : 2 ^ 17956789854 % 275595263287044304869593048464771 = 219580503841888278534013104442423 :=
+        Pratt.sq_of g333 (by norm_num) (by norm_num)
+      have g335 : 2 ^ 35913579709 % 275595263287044304869593048464771 = 158999183161906098196277159703178 :=
+        Pratt.sq_mul_of g334 (by norm_num) (by norm_num)
+      have g336 : 2 ^ 71827159418 % 275595263287044304869593048464771 = 252829043145784058682223506425295 :=
+        Pratt.sq_of g335 (by norm_num) (by norm_num)
+      have g337 : 2 ^ 143654318837 % 275595263287044304869593048464771 = 90899101358922558242793099698325 :=
+        Pratt.sq_mul_of g336 (by norm_num) (by norm_num)
+      have g338 : 2 ^ 287308637675 % 275595263287044304869593048464771 = 219518646718594170646452024151444 :=
+        Pratt.sq_mul_of g337 (by norm_num) (by norm_num)
+      have g339 : 2 ^ 574617275351 % 275595263287044304869593048464771 = 96703812132062277195227682614242 :=
+        Pratt.sq_mul_of g338 (by norm_num) (by norm_num)
+      have g340 : 2 ^ 1149234550702 % 275595263287044304869593048464771 = 30077229635278709054117145909316 :=
+        Pratt.sq_of g339 (by norm_num) (by norm_num)
+      have g341 : 2 ^ 2298469101404 % 275595263287044304869593048464771 = 264321933634193914466957192801839 :=
+        Pratt.sq_of g340 (by norm_num) (by norm_num)
+      have g342 : 2 ^ 4596938202808 % 275595263287044304869593048464771 = 205668401935690725277578070526088 :=
+        Pratt.sq_of g341 (by norm_num) (by norm_num)
+      have g343 : 2 ^ 9193876405616 % 275595263287044304869593048464771 = 76984192277345050395633646625719 :=
+        Pratt.sq_of g342 (by norm_num) (by norm_num)
+      have g344 : 2 ^ 18387752811232 % 275595263287044304869593048464771 = 147989458646147501445115949700325 :=
+        Pratt.sq_of g343 (by norm_num) (by norm_num)
+      have g345 : 2 ^ 36775505622464 % 275595263287044304869593048464771 = 36207181954064259839767606094895 :=
+        Pratt.sq_of g344 (by norm_num) (by norm_num)
+      have g346 : 2 ^ 73551011244929 % 275595263287044304869593048464771 = 40145073400838977905837360930815 :=
+        Pratt.sq_mul_of g345 (by norm_num) (by norm_num)
+      have g347 : 2 ^ 147102022489859 % 275595263287044304869593048464771 = 259811212828958053603993203521911 :=
+        Pratt.sq_mul_of g346 (by norm_num) (by norm_num)
+      have g348 : 2 ^ 294204044979719 % 275595263287044304869593048464771 = 203536368363131000658291989076353 :=
+        Pratt.sq_mul_of g347 (by norm_num) (by norm_num)
+      have g349 : 2 ^ 588408089959439 % 275595263287044304869593048464771 = 234824625676430348087928061780163 :=
+        Pratt.sq_mul_of g348 (by norm_num) (by norm_num)
+      have g350 : 2 ^ 1176816179918879 % 275595263287044304869593048464771 = 273408983772887895819690103429340 :=
+        Pratt.sq_mul_of g349 (by norm_num) (by norm_num)
+      have g351 : 2 ^ 2353632359837759 % 275595263287044304869593048464771 = 113319793282604559497454927154363 :=
+        Pratt.sq_mul_of g350 (by norm_num) (by norm_num)
+      have g352 : 2 ^ 4707264719675518 % 275595263287044304869593048464771 = 228560958916572827898028470629216 :=
+        Pratt.sq_of g351 (by norm_num) (by norm_num)
+      have g353 : 2 ^ 9414529439351036 % 275595263287044304869593048464771 = 254499897455935410082273129948152 :=
+        Pratt.sq_of g352 (by norm_num) (by norm_num)
+      have g354 : 2 ^ 18829058878702073 % 275595263287044304869593048464771 = 257555607134805829157336821018259 :=
+        Pratt.sq_mul_of g353 (by norm_num) (by norm_num)
+      have g355 : 2 ^ 37658117757404146 % 275595263287044304869593048464771 = 142501610516754553030034371052772 :=
+        Pratt.sq_of g354 (by norm_num) (by norm_num)
+      have g356 : 2 ^ 75316235514808292 % 275595263287044304869593048464771 = 68582454242070198102455637240041 :=
+        Pratt.sq_of g355 (by norm_num) (by norm_num)
+      have g357 : 2 ^ 150632471029616585 % 275595263287044304869593048464771 = 98114877969808686888419593909092 :=
+        Pratt.sq_mul_of g356 (by norm_num) (by norm_num)
+      have g358 : 2 ^ 301264942059233171 % 275595263287044304869593048464771 = 153834012264463856747839198456509 :=
+        Pratt.sq_mul_of g357 (by norm_num) (by norm_num)
+      have g359 : 2 ^ 602529884118466342 % 275595263287044304869593048464771 = 80910408815931417669576554815040 :=
+        Pratt.sq_of g358 (by norm_num) (by norm_num)
+      have g360 : 2 ^ 1205059768236932684 % 275595263287044304869593048464771 = 154836253882585664846227575465676 :=
+        Pratt.sq_of g359 (by norm_num) (by norm_num)
+      have g361 : 2 ^ 2410119536473865369 % 275595263287044304869593048464771 = 180091602836779387334949354922851 :=
+        Pratt.sq_mul_of g360 (by norm_num) (by norm_num)
+      have g362 : 2 ^ 4820239072947730739 % 275595263287044304869593048464771 = 108615302554005398499953988222626 :=
+        Pratt.sq_mul_of g361 (by norm_num) (by norm_num)
+      have g363 : 2 ^ 9640478145895461479 % 275595263287044304869593048464771 = 129610849691456169490541922320730 :=
+        Pratt.sq_mul_of g362 (by norm_num) (by norm_num)
+      have g364 : 2 ^ 19280956291790922958 % 275595263287044304869593048464771 = 235578306292421331941343091622311 :=
+        Pratt.sq_of g363 (by norm_num) (by norm_num)
+      have g365 : 2 ^ 38561912583581845917 % 275595263287044304869593048464771 = 260786347277839016225584457001347 :=
+        Pratt.sq_mul_of g364 (by norm_num) (by norm_num)
+      have g366 : 2 ^ 77123825167163691834 % 275595263287044304869593048464771 = 263112008098850623419655671222449 :=
+        Pratt.sq_of g365 (by norm_num) (by norm_num)
+      have g367 : 2 ^ 154247650334327383668 % 275595263287044304869593048464771 = 29151494464126596169970352189672 :=
+        Pratt.sq_of g366 (by norm_num) (by norm_num)
+      have g368 : 2 ^ 308495300668654767336 % 275595263287044304869593048464771 = 17059634235894894463861458559452 :=
+        Pratt.sq_of g367 (by norm_num) (by norm_num)
+      have g369 : 2 ^ 616990601337309534673 % 275595263287044304869593048464771 = 40440874471016186712325712497133 :=
+        Pratt.sq_mul_of g368 (by norm_num) (by norm_num)
+      have g370 : 2 ^ 1233981202674619069347 % 275595263287044304869593048464771 = 33870946153688725555370676007566 :=
+        Pratt.sq_mul_of g369 (by norm_num) (by norm_num)
+      have g371 : 2 ^ 2467962405349238138695 % 275595263287044304869593048464771 = 112569161122065371529685604235636 :=
+        Pratt.sq_mul_of g370 (by norm_num) (by norm_num)
+      have g372 : 2 ^ 4935924810698476277391 % 275595263287044304869593048464771 = 65801929640742813838805107598197 :=
+        Pratt.sq_mul_of g371 (by norm_num) (by norm_num)
+      have g373 : 2 ^ 9871849621396952554783 % 275595263287044304869593048464771 = 100024740980687698191278133807385 :=
+        Pratt.sq_mul_of g372 (by norm_num) (by norm_num)
+      have g374 : 2 ^ 19743699242793905109567 % 275595263287044304869593048464771 = 20267182124519195044381109790925 :=
+        Pratt.sq_mul_of g373 (by norm_num) (by norm_num)
+      have g375 : 2 ^ 39487398485587810219135 % 275595263287044304869593048464771 = 235656493489617623888305997783043 :=
+        Pratt.sq_mul_of g374 (by norm_num) (by norm_num)
+      have g376 : 2 ^ 78974796971175620438271 % 275595263287044304869593048464771 = 37742184110311166041654823316359 :=
+        Pratt.sq_mul_of g375 (by norm_num) (by norm_num)
+      have g377 : 2 ^ 157949593942351240876542 % 275595263287044304869593048464771 = 274631727792209758833239813970273 :=
+        Pratt.sq_of g376 (by norm_num) (by norm_num)
+      have g378 : 2 ^ 315899187884702481753084 % 275595263287044304869593048464771 = 34459650187046722741572757512403 :=
+        Pratt.sq_of g377 (by norm_num) (by norm_num)
+      have g379 : 2 ^ 631798375769404963506169 % 275595263287044304869593048464771 = 5172075917089910695362126050318 :=
+        Pratt.sq_mul_of g378 (by norm_num) (by norm_num)
+      have g380 : 2 ^ 1263596751538809927012338 % 275595263287044304869593048464771 = 246841546666365158090747304953129 :=
+        Pratt.sq_of g379 (by norm_num) (by norm_num)
+      have g381 : 2 ^ 2527193503077619854024676 % 275595263287044304869593048464771 = 121545328882922165279236292126233 :=
+        Pratt.sq_of g380 (by norm_num) (by norm_num)
+      have g382 : 2 ^ 5054387006155239708049353 % 275595263287044304869593048464771 = 148295515942636425782292988934168 :=
+        Pratt.sq_mul_of g381 (by norm_num) (by norm_num)
+      have g383 : 2 ^ 10108774012310479416098706 % 275595263287044304869593048464771 = 134389524178170615769213205869687 :=
+        Pratt.sq_of g382 (by norm_num) (by norm_num)
+      have g384 : 2 ^ 20217548024620958832197412 % 275595263287044304869593048464771 = 104569395693163751710092252743237 :=
+        Pratt.sq_of g383 (by norm_num) (by norm_num)
+      have g385 : 2 ^ 40435096049241917664394825 % 275595263287044304869593048464771 = 216130476669186162102633438738367 :=
+        Pratt.sq_mul_of g384 (by norm_num) (by norm_num)
+      have g386 : 2 ^ 80870192098483835328789651 % 275595263287044304869593048464771 = 243135835619249285319932742230956 :=
+        Pratt.sq_mul_of g385 (by norm_num) (by norm_num)
+      have g387 : 2 ^ 161740384196967670657579303 % 275595263287044304869593048464771 = 234483213939111440993481625308671 :=
+        Pratt.sq_mul_of g386 (by norm_num) (by norm_num)
+      have g388 : 2 ^ 323480768393935341315158607 % 275595263287044304869593048464771 = 273624769497270955318444847314096 :=
+        Pratt.sq_mul_of g387 (by norm_num) (by norm_num)
+      have g389 : 2 ^ 646961536787870682630317214 % 275595263287044304869593048464771 = 151373843035917051999320879602918 :=
+        Pratt.sq_of g388 (by norm_num) (by norm_num)
+      have g390 : 2 ^ 1293923073575741365260634429 % 275595263287044304869593048464771 = 71149682991445464864594531082618 :=
+        Pratt.sq_mul_of g389 (by norm_num) (by norm_num)
+      have g391 : 2 ^ 2587846147151482730521268859 % 275595263287044304869593048464771 = 274419066032918208679414343796513 :=
+        Pratt.sq_mul_of g390 (by norm_num) (by norm_num)
+      have g392 : 2 ^ 5175692294302965461042537719 % 275595263287044304869593048464771 = 4436678315467730287069893261651 :=
+        Pratt.sq_mul_of g391 (by norm_num) (by norm_num)
+      have g393 : 2 ^ 10351384588605930922085075438 % 275595263287044304869593048464771 = 191981943772861182039402279945304 :=
+        Pratt.sq_of g392 (by norm_num) (by norm_num)
+      have g394 : 2 ^ 20702769177211861844170150876 % 275595263287044304869593048464771 = 117630307070529637269974518241957 :=
+        Pratt.sq_of g393 (by norm_num) (by norm_num)
+      have g395 : 2 ^ 41405538354423723688340301752 % 275595263287044304869593048464771 = 186773756075295386240511124192138 :=
+        Pratt.sq_of g394 (by norm_num) (by norm_num)
+      have g396 : 2 ^ 82811076708847447376680603505 % 275595263287044304869593048464771 = 265664638711989078283773100044724 :=
+        Pratt.sq_mul_of g395 (by norm_num) (by norm_num)
+      have g397 : 2 ^ 165622153417694894753361207010 % 275595263287044304869593048464771 = 123566171130110776124080172315934 :=
+        Pratt.sq_of g396 (by norm_num) (by norm_num)
+      have g398 : 2 ^ 331244306835389789506722414020 % 275595263287044304869593048464771 = 108918721715561990060746565816245 :=
+        Pratt.sq_of g397 (by norm_num) (by norm_num)
+      have g399 : 2 ^ 662488613670779579013444828040 % 275595263287044304869593048464771 = 20577089379671216249584493844919 :=
+        Pratt.sq_of g398 (by norm_num) (by norm_num)
+      have g3100 : 2 ^ 1324977227341559158026889656080 % 275595263287044304869593048464771 = 200037260648060716377703164716678 :=
+        Pratt.sq_of g399 (by norm_num) (by norm_num)
+      have g3101 : 2 ^ 2649954454683118316053779312161 % 275595263287044304869593048464771 = 158582448231803834441407836877120 :=
+        Pratt.sq_mul_of g3100 (by norm_num) (by norm_num)
+      have g3102 : 2 ^ 5299908909366236632107558624322 % 275595263287044304869593048464771 = 173863532318174387773912085419890 :=
+        Pratt.sq_of g3101 (by norm_num) (by norm_num)
+      have g3103 : 2 ^ 10599817818732473264215117248645 % 275595263287044304869593048464771 = 40030806835830671769537604596215 :=
+        Pratt.sq_mul_of g3102 (by norm_num) (by norm_num)
+      have g3104 : 2 ^ 21199635637464946528430234497290 % 275595263287044304869593048464771 = 81124068236547713263271641456193 :=
+        Pratt.sq_of g3103 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464771 : ℕ) - 1 = 275595263287044304869593048464770 by norm_num, show 275595263287044304869593048464770 / 13 = 21199635637464946528430234497290 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g3104 (by norm_num)
+    rcases (Nat.Prime.dvd_mul hq).mp hqd with hq4 | hqd
+    . have hqe : q = 4680807713 :=
+        (Nat.prime_dvd_prime_iff_eq hq prime_4680807713).mp (hq.dvd_of_dvd_pow hq4)
+      subst hqe
+      have g40 : 2 ^ 1 % 275595263287044304869593048464771 = 2 := by norm_num
+      have g41 : 2 ^ 3 % 275595263287044304869593048464771 = 8 :=
+        Pratt.sq_mul_of g40 (by norm_num) (by norm_num)
+      have g42 : 2 ^ 6 % 275595263287044304869593048464771 = 64 :=
+        Pratt.sq_of g41 (by norm_num) (by norm_num)
+      have g43 : 2 ^ 12 % 275595263287044304869593048464771 = 4096 :=
+        Pratt.sq_of g42 (by norm_num) (by norm_num)
+      have g44 : 2 ^ 24 % 275595263287044304869593048464771 = 16777216 :=
+        Pratt.sq_of g43 (by norm_num) (by norm_num)
+      have g45 : 2 ^ 49 % 275595263287044304869593048464771 = 562949953421312 :=
+        Pratt.sq_mul_of g44 (by norm_num) (by norm_num)
+      have g46 : 2 ^ 99 % 275595263287044304869593048464771 = 633825300114114700748351602688 :=
+        Pratt.sq_mul_of g45 (by norm_num) (by norm_num)
+      have g47 : 2 ^ 199 % 275595263287044304869593048464771 = 38110989030991069791640884534114 :=
+        Pratt.sq_mul_of g46 (by norm_num) (by norm_num)
+      have g48 : 2 ^ 398 % 275595263287044304869593048464771 = 84206375530412635111880739503025 :=
+        Pratt.sq_of g47 (by norm_num) (by norm_num)
+      have g49 : 2 ^ 797 % 275595263287044304869593048464771 = 158303790062140248423449320967984 :=
+        Pratt.sq_mul_of g48 (by norm_num) (by norm_num)
+      have g410 : 2 ^ 1595 % 275595263287044304869593048464771 = 258791384627394007570118060343679 :=
+        Pratt.sq_mul_of g49 (by norm_num) (by norm_num)
+      have g411 : 2 ^ 3191 % 275595263287044304869593048464771 = 53845276698241432323633994915336 :=
+        Pratt.sq_mul_of g410 (by norm_num) (by norm_num)
+      have g412 : 2 ^ 6383 % 275595263287044304869593048464771 = 256504287233774286944630238108021 :=
+        Pratt.sq_mul_of g411 (by norm_num) (by norm_num)
+      have g413 : 2 ^ 12767 % 275595263287044304869593048464771 = 143719363348025536089770055023036 :=
+        Pratt.sq_mul_of g412 (by norm_num) (by norm_num)
+      have g414 : 2 ^ 25534 % 275595263287044304869593048464771 = 201595121367623431643327621121725 :=
+        Pratt.sq_of g413 (by norm_num) (by norm_num)
+      have g415 : 2 ^ 51068 % 275595263287044304869593048464771 = 249390945398503065949672191305699 :=
+        Pratt.sq_of g414 (by norm_num) (by norm_num)
+      have g416 : 2 ^ 102136 % 275595263287044304869593048464771 = 233535021477186634719309492108091 :=
+        Pratt.sq_of g415 (by norm_num) (by norm_num)
+      have g417 : 2 ^ 204273 % 275595263287044304869593048464771 = 213529308985167402296059872444752 :=
+        Pratt.sq_mul_of g416 (by norm_num) (by norm_num)
+      have g418 : 2 ^ 408546 % 275595263287044304869593048464771 = 265424638282830757690309476857845 :=
+        Pratt.sq_of g417 (by norm_num) (by norm_num)
+      have g419 : 2 ^ 817092 % 275595263287044304869593048464771 = 16938144952239109314463798477954 :=
+        Pratt.sq_of g418 (by norm_num) (by norm_num)
+      have g420 : 2 ^ 1634184 % 275595263287044304869593048464771 = 54458341862871308709974494107954 :=
+        Pratt.sq_of g419 (by norm_num) (by norm_num)
+      have g421 : 2 ^ 3268369 % 275595263287044304869593048464771 = 99405607884354201037607310136724 :=
+        Pratt.sq_mul_of g420 (by norm_num) (by norm_num)
+      have g422 : 2 ^ 6536739 % 275595263287044304869593048464771 = 50253901199287584254028602239689 :=
+        Pratt.sq_mul_of g421 (by norm_num) (by norm_num)
+      have g423 : 2 ^ 13073479 % 275595263287044304869593048464771 = 259248019359544064373750210803481 :=
+        Pratt.sq_mul_of g422 (by norm_num) (by norm_num)
+      have g424 : 2 ^ 26146958 % 275595263287044304869593048464771 = 250769620955693928223935639443518 :=
+        Pratt.sq_of g423 (by norm_num) (by norm_num)
+      have g425 : 2 ^ 52293916 % 275595263287044304869593048464771 = 169195032496412330287525531288607 :=
+        Pratt.sq_of g424 (by norm_num) (by norm_num)
+      have g426 : 2 ^ 104587832 % 275595263287044304869593048464771 = 185180844911270797676301492994654 :=
+        Pratt.sq_of g425 (by norm_num) (by norm_num)
+      have g427 : 2 ^ 209175664 % 275595263287044304869593048464771 = 216907897755794390213029128448220 :=
+        Pratt.sq_of g426 (by norm_num) (by norm_num)
+      have g428 : 2 ^ 418351328 % 275595263287044304869593048464771 = 144633802228598334842396038400248 :=
+        Pratt.sq_of g427 (by norm_num) (by norm_num)
+      have g429 : 2 ^ 836702656 % 275595263287044304869593048464771 = 1478070463441374319598138893396 :=
+        Pratt.sq_of g428 (by norm_num) (by norm_num)
+      have g430 : 2 ^ 1673405312 % 275595263287044304869593048464771 = 184037179525582772394720613932628 :=
+        Pratt.sq_of g429 (by norm_num) (by norm_num)
+      have g431 : 2 ^ 3346810624 % 275595263287044304869593048464771 = 201000179571157772936405652967965 :=
+        Pratt.sq_of g430 (by norm_num) (by norm_num)
+      have g432 : 2 ^ 6693621249 % 275595263287044304869593048464771 = 231799327216744440219631567411302 :=
+        Pratt.sq_mul_of g431 (by norm_num) (by norm_num)
+      have g433 : 2 ^ 13387242499 % 275595263287044304869593048464771 = 274713532628723427159004292968175 :=
+        Pratt.sq_mul_of g432 (by norm_num) (by norm_num)
+      have g434 : 2 ^ 26774484999 % 275595263287044304869593048464771 = 184259372775056683065984683607282 :=
+        Pratt.sq_mul_of g433 (by norm_num) (by norm_num)
+      have g435 : 2 ^ 53548969998 % 275595263287044304869593048464771 = 133531877331777760952421511169442 :=
+        Pratt.sq_of g434 (by norm_num) (by norm_num)
+      have g436 : 2 ^ 107097939997 % 275595263287044304869593048464771 = 8352416310253135201074286585358 :=
+        Pratt.sq_mul_of g435 (by norm_num) (by norm_num)
+      have g437 : 2 ^ 214195879994 % 275595263287044304869593048464771 = 127866893798270723170452249513165 :=
+        Pratt.sq_of g436 (by norm_num) (by norm_num)
+      have g438 : 2 ^ 428391759989 % 275595263287044304869593048464771 = 178678429281270421057698346480587 :=
+        Pratt.sq_mul_of g437 (by norm_num) (by norm_num)
+      have g439 : 2 ^ 856783519979 % 275595263287044304869593048464771 = 161421181973076835060859337627586 :=
+        Pratt.sq_mul_of g438 (by norm_num) (by norm_num)
+      have g440 : 2 ^ 1713567039959 % 275595263287044304869593048464771 = 219505063680837441637379585594608 :=
+        Pratt.sq_mul_of g439 (by norm_num) (by norm_num)
+      have g441 : 2 ^ 3427134079919 % 275595263287044304869593048464771 = 213357125521828431734964734781516 :=
+        Pratt.sq_mul_of g440 (by norm_num) (by norm_num)
+      have g442 : 2 ^ 6854268159838 % 275595263287044304869593048464771 = 21999120990343843160087310702680 :=
+        Pratt.sq_of g441 (by norm_num) (by norm_num)
+      have g443 : 2 ^ 13708536319676 % 275595263287044304869593048464771 = 254362709482285678696052322432105 :=
+        Pratt.sq_of g442 (by norm_num) (by norm_num)
+      have g444 : 2 ^ 27417072639352 % 275595263287044304869593048464771 = 221288901644732343351430406930233 :=
+        Pratt.sq_of g443 (by norm_num) (by norm_num)
+      have g445 : 2 ^ 54834145278704 % 275595263287044304869593048464771 = 84595634783286039473039905166478 :=
+        Pratt.sq_of g444 (by norm_num) (by norm_num)
+      have g446 : 2 ^ 109668290557408 % 275595263287044304869593048464771 = 269596603407853214064081270192862 :=
+        Pratt.sq_of g445 (by norm_num) (by norm_num)
+      have g447 : 2 ^ 219336581114816 % 275595263287044304869593048464771 = 245888855448897171942731536345421 :=
+        Pratt.sq_of g446 (by norm_num) (by norm_num)
+      have g448 : 2 ^ 438673162229632 % 275595263287044304869593048464771 = 239542275393437811643284909883529 :=
+        Pratt.sq_of g447 (by norm_num) (by norm_num)
+      have g449 : 2 ^ 877346324459265 % 275595263287044304869593048464771 = 19368781611270737082551076337602 :=
+        Pratt.sq_mul_of g448 (by norm_num) (by norm_num)
+      have g450 : 2 ^ 1754692648918531 % 275595263287044304869593048464771 = 219141142696976479437441928609443 :=
+        Pratt.sq_mul_of g449 (by norm_num) (by norm_num)
+      have g451 : 2 ^ 3509385297837063 % 275595263287044304869593048464771 = 7824067224788854858924442819660 :=
+        Pratt.sq_mul_of g450 (by norm_num) (by norm_num)
+      have g452 : 2 ^ 7018770595674127 % 275595263287044304869593048464771 = 52547756382749028240132724096389 :=
+        Pratt.sq_mul_of g451 (by norm_num) (by norm_num)
+      have g453 : 2 ^ 14037541191348254 % 275595263287044304869593048464771 = 255653039728292480826180448971521 :=
+        Pratt.sq_of g452 (by norm_num) (by norm_num)
+      have g454 : 2 ^ 28075082382696508 % 275595263287044304869593048464771 = 182358702182028057589318270715853 :=
+        Pratt.sq_of g453 (by norm_num) (by norm_num)
+      have g455 : 2 ^ 56150164765393016 % 275595263287044304869593048464771 = 199073330839146943274075036288969 :=
+        Pratt.sq_of g454 (by norm_num) (by norm_num)
+      have g456 : 2 ^ 112300329530786032 % 275595263287044304869593048464771 = 170545515949306585777457411309438 :=
+        Pratt.sq_of g455 (by norm_num) (by norm_num)
+      have g457 : 2 ^ 224600659061572064 % 275595263287044304869593048464771 = 167781956454463949504645066879888 :=
+        Pratt.sq_of g456 (by norm_num) (by norm_num)
+      have g458 : 2 ^ 449201318123144128 % 275595263287044304869593048464771 = 143623194881168852566468734468836 :=
+        Pratt.sq_of g457 (by norm_num) (by norm_num)
+      have g459 : 2 ^ 898402636246288256 % 275595263287044304869593048464771 = 179614527477386683980627721838072 :=
+        Pratt.sq_of g458 (by norm_num) (by norm_num)
+      have g460 : 2 ^ 1796805272492576512 % 275595263287044304869593048464771 = 70218842631197436308855241284214 :=
+        Pratt.sq_of g459 (by norm_num) (by norm_num)
+      have g461 : 2 ^ 3593610544985153024 % 275595263287044304869593048464771 = 149275284913510267977021626140840 :=
+        Pratt.sq_of g460 (by norm_num) (by norm_num)
+      have g462 : 2 ^ 7187221089970306049 % 275595263287044304869593048464771 = 251703390273858881129952237330704 :=
+        Pratt.sq_mul_of g461 (by norm_num) (by norm_num)
+      have g463 : 2 ^ 14374442179940612098 % 275595263287044304869593048464771 = 123263954332965843516744375550321 :=
+        Pratt.sq_of g462 (by norm_num) (by norm_num)
+      have g464 : 2 ^ 28748884359881224197 % 275595263287044304869593048464771 = 98630031958790429030248437652605 :=
+        Pratt.sq_mul_of g463 (by norm_num) (by norm_num)
+      have g465 : 2 ^ 57497768719762448394 % 275595263287044304869593048464771 = 135298783116493915603396240991257 :=
+        Pratt.sq_of g464 (by norm_num) (by norm_num)
+      have g466 : 2 ^ 114995537439524896789 % 275595263287044304869593048464771 = 47134422513622272805244172151541 :=
+        Pratt.sq_mul_of g465 (by norm_num) (by norm_num)
+      have g467 : 2 ^ 229991074879049793579 % 275595263287044304869593048464771 = 215355736165545830254526362878381 :=
+        Pratt.sq_mul_of g466 (by norm_num) (by norm_num)
+      have g468 : 2 ^ 459982149758099587158 % 275595263287044304869593048464771 = 25202627977277519753538687085071 :=
+        Pratt.sq_of g467 (by norm_num) (by norm_num)
+      have g469 : 2 ^ 919964299516199174317 % 275595263287044304869593048464771 = 46487926230065258499696884020345 :=
+        Pratt.sq_mul_of g468 (by norm_num) (by norm_num)
+      have g470 : 2 ^ 1839928599032398348634 % 275595263287044304869593048464771 = 229711905199039524304047258164558 :=
+        Pratt.sq_of g469 (by norm_num) (by norm_num)
+      have g471 : 2 ^ 3679857198064796697268 % 275595263287044304869593048464771 = 196687706969568807571542291266704 :=
+        Pratt.sq_of g470 (by norm_num) (by norm_num)
+      have g472 : 2 ^ 7359714396129593394536 % 275595263287044304869593048464771 = 31324281840978182444650550833550 :=
+        Pratt.sq_of g471 (by norm_num) (by norm_num)
+      have g473 : 2 ^ 14719428792259186789072 % 275595263287044304869593048464771 = 106907243289279333215765026571441 :=
+        Pratt.sq_of g472 (by norm_num) (by norm_num)
+      have g474 : 2 ^ 29438857584518373578145 % 275595263287044304869593048464771 = 178998887883767691723256987689111 :=
+        Pratt.sq_mul_of g473 (by norm_num) (by norm_num)
+      have g475 : 2 ^ 58877715169036747156290 % 275595263287044304869593048464771 = 99651316780505679715912252813351 :=
+        Pratt.sq_of g474 (by norm_num) (by norm_num)
+      rw [show (275595263287044304869593048464771 : ℕ) - 1 = 275595263287044304869593048464770 by norm_num, show 275595263287044304869593048464770 / 4680807713 = 58877715169036747156290 by norm_num]
+      exact Pratt.ne_one_of_mod (by norm_num) g475 (by norm_num)
+    have hqe : q = 150968500433427556811 :=
+      (Nat.prime_dvd_prime_iff_eq hq prime_150968500433427556811).mp (hq.dvd_of_dvd_pow hqd)
+    subst hqe
+    have g50 : 2 ^ 1 % 275595263287044304869593048464771 = 2 := by norm_num
+    have g51 : 2 ^ 3 % 275595263287044304869593048464771 = 8 :=
+      Pratt.sq_mul_of g50 (by norm_num) (by norm_num)
+    have g52 : 2 ^ 6 % 275595263287044304869593048464771 = 64 :=
+      Pratt.sq_of g51 (by norm_num) (by norm_num)
+    have g53 : 2 ^ 13 % 275595263287044304869593048464771 = 8192 :=
+      Pratt.sq_mul_of g52 (by norm_num) (by norm_num)
+    have g54 : 2 ^ 26 % 275595263287044304869593048464771 = 67108864 :=
+      Pratt.sq_of g53 (by norm_num) (by norm_num)
+    have g55 : 2 ^ 53 % 275595263287044304869593048464771 = 9007199254740992 :=
+      Pratt.sq_mul_of g54 (by norm_num) (by norm_num)
+    have g56 : 2 ^ 106 % 275595263287044304869593048464771 = 81129638414606681695789005144064 :=
+      Pratt.sq_of g55 (by norm_num) (by norm_num)
+    have g57 : 2 ^ 212 % 275595263287044304869593048464771 = 231384100944690620742795241341116 :=
+      Pratt.sq_of g56 (by norm_num) (by norm_num)
+    have g58 : 2 ^ 425 % 275595263287044304869593048464771 = 8825699395375410719543090258159 :=
+      Pratt.sq_mul_of g57 (by norm_num) (by norm_num)
+    have g59 : 2 ^ 850 % 275595263287044304869593048464771 = 258520145622226829635206181865364 :=
+      Pratt.sq_of g58 (by norm_num) (by norm_num)
+    have g510 : 2 ^ 1700 % 275595263287044304869593048464771 = 273993073520069207026191282464693 :=
+      Pratt.sq_of g59 (by norm_num) (by norm_num)
+    have g511 : 2 ^ 3400 % 275595263287044304869593048464771 = 134954358452872976545841732289808 :=
+      Pratt.sq_of g510 (by norm_num) (by norm_num)
+    have g512 : 2 ^ 6800 % 275595263287044304869593048464771 = 26866774830442836564898136495786 :=
+      Pratt.sq_of g511 (by norm_num) (by norm_num)
+    have g513 : 2 ^ 13601 % 275595263287044304869593048464771 = 172096839921277469457684439159075 :=
+      Pratt.sq_mul_of g512 (by norm_num) (by norm_num)
+    have g514 : 2 ^ 27202 % 275595263287044304869593048464771 = 127638211370038192094312844238196 :=
+      Pratt.sq_of g513 (by norm_num) (by norm_num)
+    have g515 : 2 ^ 54404 % 275595263287044304869593048464771 = 121521901942402166743569440971185 :=
+      Pratt.sq_of g514 (by norm_num) (by norm_num)
+    have g516 : 2 ^ 108809 % 275595263287044304869593048464771 = 141287173033130196289111101855529 :=
+      Pratt.sq_mul_of g515 (by norm_num) (by norm_num)
+    have g517 : 2 ^ 217618 % 275595263287044304869593048464771 = 156083246170853231466019510606292 :=
+      Pratt.sq_of g516 (by norm_num) (by norm_num)
+    have g518 : 2 ^ 435236 % 275595263287044304869593048464771 = 47198952714102717826554791214166 :=
+      Pratt.sq_of g517 (by norm_num) (by norm_num)
+    have g519 : 2 ^ 870473 % 275595263287044304869593048464771 = 241215314383967405574018281982430 :=
+      Pratt.sq_mul_of g518 (by norm_num) (by norm_num)
+    have g520 : 2 ^ 1740946 % 275595263287044304869593048464771 = 115348063189554044803630935452377 :=
+      Pratt.sq_of g519 (by norm_num) (by norm_num)
+    have g521 : 2 ^ 3481893 % 275595263287044304869593048464771 = 237180947497743765006199479163169 :=
+      Pratt.sq_mul_of g520 (by norm_num) (by norm_num)
+    have g522 : 2 ^ 6963787 % 275595263287044304869593048464771 = 252995681812320496254350976645099 :=
+      Pratt.sq_mul_of g521 (by norm_num) (by norm_num)
+    have g523 : 2 ^ 13927574 % 275595263287044304869593048464771 = 2384172428011226753740448977132 :=
+      Pratt.sq_of g522 (by norm_num) (by norm_num)
+    have g524 : 2 ^ 27855148 % 275595263287044304869593048464771 = 67015716529346682892978159895966 :=
+      Pratt.sq_of g523 (by norm_num) (by norm_num)
+    have g525 : 2 ^ 55710296 % 275595263287044304869593048464771 = 158362995370831374902697034129323 :=
+      Pratt.sq_of g524 (by norm_num) (by norm_num)
+    have g526 : 2 ^ 111420593 % 275595263287044304869593048464771 = 217171056656644578447882903255367 :=
+      Pratt.sq_mul_of g525 (by norm_num) (by norm_num)
+    have g527 : 2 ^ 222841187 % 275595263287044304869593048464771 = 76956316548475090018216185583828 :=
+      Pratt.sq_mul_of g526 (by norm_num) (by norm_num)
+    have g528 : 2 ^ 445682375 % 275595263287044304869593048464771 = 82620569316287275400525424147157 :=
+      Pratt.sq_mul_of g527 (by norm_num) (by norm_num)
+    have g529 : 2 ^ 891364750 % 275595263287044304869593048464771 = 4287044729254134694943901968803 :=
+      Pratt.sq_of g528 (by norm_num) (by norm_num)
+    have g530 : 2 ^ 1782729500 % 275595263287044304869593048464771 = 175068437406560235228628800755011 :=
+      Pratt.sq_of g529 (by norm_num) (by norm_num)
+    have g531 : 2 ^ 3565459000 % 275595263287044304869593048464771 = 124493798759161920560747750972855 :=
+      Pratt.sq_of g530 (by norm_num) (by norm_num)
+    have g532 : 2 ^ 7130918000 % 275595263287044304869593048464771 = 110540074709622349744915868701769 :=
+      Pratt.sq_of g531 (by norm_num) (by norm_num)
+    have g533 : 2 ^ 14261836000 % 275595263287044304869593048464771 = 109822949379952109464266062879536 :=
+      Pratt.sq_of g532 (by norm_num) (by norm_num)
+    have g534 : 2 ^ 28523672001 % 275595263287044304869593048464771 = 100889734000713597078833660881319 :=
+      Pratt.sq_mul_of g533 (by norm_num) (by norm_num)
+    have g535 : 2 ^ 57047344002 % 275595263287044304869593048464771 = 56879484596406442235750470818837 :=
+      Pratt.sq_of g534 (by norm_num) (by norm_num)
+    have g536 : 2 ^ 114094688004 % 275595263287044304869593048464771 = 168030547041213671950053331798565 :=
+      Pratt.sq_of g535 (by norm_num) (by norm_num)
+    have g537 : 2 ^ 228189376008 % 275595263287044304869593048464771 = 83178991722773349919763032701988 :=
+      Pratt.sq_of g536 (by norm_num) (by norm_num)
+    have g538 : 2 ^ 456378752017 % 275595263287044304869593048464771 = 47456212228396083811322406145741 :=
+      Pratt.sq_mul_of g537 (by norm_num) (by norm_num)
+    have g539 : 2 ^ 912757504035 % 275595263287044304869593048464771 = 274766651033746855457823682700294 :=
+      Pratt.sq_mul_of g538 (by norm_num) (by norm_num)
+    have g540 : 2 ^ 1825515008070 % 275595263287044304869593048464771 = 104001090276904314206286692938223 :=
+      Pratt.sq_of g539 (by norm_num) (by norm_num)
+    rw [show (275595263287044304869593048464771 : ℕ) - 1 = 275595263287044304869593048464770 by norm_num, show 275595263287044304869593048464770 / 150968500433427556811 = 1825515008070 by norm_num]
+    exact Pratt.ne_one_of_mod (by norm_num) g540 (by norm_num)
+
 end Pratt

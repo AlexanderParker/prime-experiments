@@ -1680,3 +1680,35 @@ and `window_statement_below` [proofs/MirrorWalkCertificate.lean] proves, with no
 That is a range of machines 1.3 x 10^8 times wider than round 65's, from five twin pairs and the
 covering theorem. The next link (2.76 x 10^32) needs the same treatment one level deeper, since
 the factors of its members minus one are themselves large.
+
+### 75. The sixth link, certified here (loop, 2026-09-18)
+
+Answer to the question of whether the sixth link can be run on this machine: yes, and it is done.
+
+  * The recursion is shallow. The sixth link is 275595263287044304869593048464770; its two
+    members need 8 certificates in all, at depth 3: the two 33-digit members, then
+    733915969930370835373, 4680807713 and 150968500433427556811, then 118261309739333 and
+    541474482383801, then 2463487181. Every factorisation of p - 1 along the way is within
+    sympy's reach in seconds.
+  * proofs/PrattCertificates.lean is now 7390 generated lines holding 12 certificates (links five
+    and six and their recursions); it checks in 1 minute 48 seconds and builds in 3 minutes 42.
+  * proofs/MirrorWalkCertificate.lean carries six links:
+
+        12, 108, 11352, 128845110, 16601062113221682, 275595263287044304869593048464770
+
+    and `window_statement_below` now proves, with no hypotheses and no sorries:
+
+        every machine q with 11 <= q <= 275595263287044304869593048464768 has a twin prime pair
+        inside its window (q, q^2].
+
+    That is every machine below 2.76 x 10^32, from six twin pairs and the covering theorem.
+
+What blocks the seventh link (5.77 x 10^129): a Lucas certificate for a prime P needs the
+factorisation of P - 1, and for a 130-digit member that is a hard factorisation, not a slow one.
+The chain has a partial way round it. In the multiplicative chain the landing t is a product of
+the previous landing and a small multiplier, so t is factored by construction - which certifies
+the UPPER member t + 1 for free, since its P - 1 is exactly t. The lower member t - 1 needs
+t - 2 factored, and that is the random one. So a certificate-friendly chain would search among
+the many admissible landings for one whose t - 2 breaks up under trial division into small
+factors and a certifiable cofactor. That is a search, not a new idea, and it is the way to keep
+the certificate climbing.
