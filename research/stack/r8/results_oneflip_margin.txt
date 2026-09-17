@@ -1,0 +1,25 @@
+Loop, entry 64: the one-flip locator's margin as q grows.  From home (-1), the columns
+-1 + 12 g k d for g among the first A gears above sqrt q, k = 1..K, d = +-1: how many are open
+to every gear of the machine (hence twins inside the window).  A and K scaled several ways.
+usage: uv run python research/stack/r8/oneflip_margin.py
+
+q =   1000 A = 8, K = (ln q)^2     : candidates   752, open   31, first (37, 15, 1)
+q =   1000 A = 8, K = 40           : candidates   640, open   23, first (37, 15, 1)
+q =   1000 A = ln q, K = (ln q)^2  : candidates   564, open   25, first (37, 15, 1)
+q =   1000 A = 1, K = (ln q)^3     : candidates   658, open   23, first (37, 15, 1)
+q =   2000 A = 8, K = (ln q)^2     : candidates   912, open   33, first (47, 10, 1)
+q =   2000 A = 8, K = 40           : candidates   640, open   20, first (47, 10, 1)
+q =   2000 A = ln q, K = (ln q)^2  : candidates   798, open   27, first (47, 10, 1)
+q =   2000 A = 1, K = (ln q)^3     : candidates   878, open   31, first (47, 10, 1)
+q =   5000 A = 8, K = (ln q)^2     : candidates  1152, open   44, first (71, 19, 1)
+q =   5000 A = 8, K = 40           : candidates   640, open   21, first (71, 19, 1)
+q =   5000 A = ln q, K = (ln q)^2  : candidates  1152, open   44, first (71, 19, 1)
+q =   5000 A = 1, K = (ln q)^3     : candidates  1234, open   31, first (71, 19, 1)
+q =  10000 A = 8, K = (ln q)^2     : candidates  1344, open   40, first (101, 19, 1)
+q =  10000 A = 8, K = 40           : candidates   640, open   20, first (101, 19, 1)
+q =  10000 A = ln q, K = (ln q)^2  : candidates  1512, open   46, first (101, 19, 1)
+q =  10000 A = 1, K = (ln q)^3     : candidates  1562, open   48, first (101, 19, 1)
+q =  20000 A = 8, K = (ln q)^2     : candidates  1568, open   40, first (149, 14, 1)
+q =  20000 A = 8, K = 40           : candidates   640, open   15, first (149, 14, 1)
+q =  20000 A = ln q, K = (ln q)^2  : candidates  1764, open   42, first (149, 14, 1)
+q =  20000 A = 1, K = (ln q)^3     : candidates  1942, open   41, first (149, 14, 1)

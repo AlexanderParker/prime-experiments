@@ -1187,3 +1187,21 @@ The construction therefore reduces to the one-flip locator of Part III: from hom
 columns -1 + 12 g k d for eight gears g, k = 1..K and both directions, one is open to every gear
 of the machine. That is the statement to carry; the settle walk's proved prefix proves that the
 walk can continue, not that the ending is easier.
+
+### 64. The one-flip locator's margin and scaling (loop, 2026-09-17)
+
+research/stack/r8/oneflip_margin.py: from home, the columns -1 + 12 g k d, open to every gear
+(hence twins in the window). Open candidates:
+   q = 1000: A = 8, K = (ln q)^2 (752 candidates) 31; A = 8, K = 40 (640) 23; A = ln q (564) 25;
+             A = 1, K = (ln q)^3 (658) 23
+   2000: 33 / 20 / 27 / 31        5000: 44 / 21 / 44 / 31
+   10000: 40 / 20 / 46 / 48       20000: 40 / 15 / 42 / 41
+So with any scaling that grows the candidate count like (ln q)^2 or better, the margin holds at
+thirty to fifty open columns; with a fixed K = 40 it thins (23 to 15 over the range). The shape
+of the family hardly matters: one stride with K = (ln q)^3 periods does as well as eight strides
+with (ln q)^2, at the same candidate count - the margin follows the number of candidates, not
+their arrangement.
+The first open candidate is always at a small period (k = 10 to 19 at these sizes) and the
+smallest stride tried (the first gear above sqrt q), so the locator finds its twin at once.
+The statement to carry is: among the columns -1 + 12 g k d with g the first gear above sqrt q
+and k up to (ln q)^3, one is open to every gear of the machine.
