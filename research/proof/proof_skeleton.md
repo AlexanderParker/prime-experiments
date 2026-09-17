@@ -234,11 +234,51 @@ and gives the same conclusion: `walk_twin_of_stepOpen`
 [proofs/MirrorWalkConditional.lean, round 58].  `oneflip_twin` is its instance at the column
 2 g k d, that is the progression of columns of stride 2 g d through home.
 
+## 18. The chain form: one landing per primorial, not one per machine. PROVED reduction
+
+A landing serves more than its own machine.  The pair (t - 1, t + 1) lies inside the window
+(q, q^2] of EVERY machine q with
+
+    sqrt(t) <= q < t - 1,
+
+a band from the landing's square root up to the landing itself.  So the construction does not
+need a flip per machine: it needs a sequence of landings whose bands overlap, and the overlap
+condition is each landing below the square of the one before.  PROVED: `chain_covers` and
+`window_statement_of_chain` [proofs/MirrorWalkChain.lean, round 63; 0 sorries, axioms propext /
+Classical.choice / Quot.sound]:
+
+    t(n+1) + 1 < (t n - 1)^2  for every n,  each t n a twin pair on a column
+    =>  every machine from t 0 - 1 onward has a twin pair inside its window.
+
+The landings are the one-flip family's, at the primorial mirrors.  With the mirror {2, 3, ...B}
+the product is M = B#, the flip from home at period k lands on 2 M k +- 1, and no gear up to B
+can strike it (`mirror_gear_never_strikes`) - only the gears above B can.
+
+MEASURED (research/stack/r8/primorial_chain.py, round 63).  For every primorial mirror from
+B = 5 to B = 127 the first period whose landing is a twin is small:
+
+    B    5  7 11 13 17 19 23 29 31 37  41 43 47 53 59  61  67 71  73 79 83 89 97 101 103 107 109 113 127
+    k    1  1  2  3  4 12  2  8 11  2  37 12 72 14  7 130 121 32 103 10 56 62 36  40  24  63 113   1   6
+
+The chain condition holds at all 28 consecutive pairs, so these 29 landings alone cover every
+machine from 8 to 4.8 x 10^49.  And the room is not tight: the period could have been far
+larger and still chain -
+
+    B = 11: k = 2 of an allowed 38;  B = 17: 4 of 31796;  B = 23: 2 of 1.2 x 10^8;
+    B = 113: 1 of 6.3 x 10^46.
+
+So the statement each primorial has to meet is: a twin somewhere on the progression 2 B# k +- 1
+with k up to about the square of the previous landing divided by 2 B#.  That is the same open
+content as before - it still asserts twins exist - but it is one statement per primorial instead
+of one per machine, each with an allowance that grows like the square, and the mirror switches
+off every gear up to B by construction.
+
 # Part V. Standing
 
-- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), the implications of 15 and 17 (kernel names given).
+- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), 18, the implications of 15 and 17 (kernel names given).
 - EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14, the trade of Part IV b.
 - MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15 to 20011 (margin) and to 2000003 (periods needed); the settle walk of 16 to 2000.
-- OPEN: 13, and equivalently OneFlipOpen of 15 (StepOpen of 17 in its general form). The
-  construction is one flip from home; everything around that flip is proved, and the one thing
-  left is that some column of an explicit finite family is open.
+- OPEN: 13, and equivalently OneFlipOpen of 15 (StepOpen of 17 in its general form, and the
+  chain's per-primorial form of 18). The construction is one flip from home; everything around
+  that flip is proved, and the one thing left is that some column of an explicit family is open.
+  By 18 that family need only be met once per primorial, not once per machine.

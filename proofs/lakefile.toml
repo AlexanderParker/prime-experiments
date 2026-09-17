@@ -2298,3 +2298,6 @@ name = "MirrorWalkTheorem"
 
 [[lean_lib]]
 name = "OneFlipLocator"
+
+[[lean_lib]]
+name = "MirrorWalkChain"

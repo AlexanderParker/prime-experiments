@@ -1363,3 +1363,63 @@ What this changes in the statement: the family is now the columns 2 g k d with t
 {2, 3, 5}, periods from the window's start, and the open count grows with q instead of thinning.
 What it does not change: the hypothesis is still that one of them is open, and that is still the
 window statement on one progression.
+
+### 68. The killers by field type, the primorial mirrors, and the chain (loop, 2026-09-17)
+
+Three measurements and one new kernel piece.
+
+(a) Killer census by the fields explorer's ids (research/stack/r8/oneflip_killer_fields.py).
+Mirror {2,3,5}, the first 60 candidates past the window's start, every composite member named by
+its field:
+
+    q = 1009   struck 49 of 60, both members 16;  higher1:7 x15, higher1:11 x10, higher1:13 x7,
+               higher1:23 x5, higher1:17 x5, higher1:19 x4;  products:2 x56, products:3 x8,
+               products:4 x1
+    q = 100003 struck 54 of 60, both members 28;  higher1:7 x14, higher1:13 x7, higher1:11 x7,
+               higher1:29 x4, higher1:17 x4, higher1:19 x4;  products:2 x54, products:3 x23,
+               products:4 x5
+
+So the kills are almost all products:2 and products:3, and the smallest gear is nearly always a
+single power (higher1, not higher) of a gear just above the mirror. The largest-gear ids are
+scattered one or two each - lower:g carries no structure here. Carrying more gears clears only
+part: gears up to 37 clear 39 of 49 kills at q = 1009 but only 29 of 54 at q = 100003, so the
+small gears matter less as the machine grows, exactly as their teeth thin.
+
+(b) Primorial mirrors (research/stack/r8/oneflip_primorial_mirror.py). Mirror = every gear up to
+B; first open period past the window's start, 200 periods tried:
+
+      q      B=5  B=7  B=11  B=13  B=17  B=19  B=23  B=29
+    1009      0    5     1     2     -     -     -     -
+    20011    10    4     7     2     3    11     -     -
+   100003    13    1     2     1     3    11     1     -
+  1000003    10    2     3     4     3    11     1     7
+
+The constant columns are the tell: once 2 B# exceeds q, the window starts at k = 1 and the first
+open period no longer depends on the machine at all. The landing is then a FIXED number serving
+many machines at once.
+
+(c) The chain (research/stack/r8/primorial_chain.py, kernel proofs/MirrorWalkChain.lean round 63,
+0 sorries). A landing t = 2 B# k that is a twin pair lies in the window of every machine with
+sqrt(t) <= q < t - 1 - a band from its square root up to itself. So the machines are covered by a
+chain of landings whose bands overlap, and the overlap condition is t(next) + 1 < (t - 1)^2.
+PROVED: `chain_covers`, `window_statement_of_chain`.
+
+The first twin landing at each primorial mirror, B = 5 to 127:
+
+    k = 1, 1, 2, 3, 4, 12, 2, 8, 11, 2, 37, 12, 72, 14, 7, 130, 121, 32, 103, 10, 56, 62, 36,
+        40, 24, 63, 113, 1, 6
+
+All 28 consecutive pairs satisfy the chain condition, so these 29 landings cover every machine
+from 8 to 4.8 x 10^49. The slack is enormous and grows: at B = 11 the period could have been 38
+instead of 2, at B = 17 31796 instead of 4, at B = 23 1.2 x 10^8 instead of 2, at B = 113
+6.3 x 10^46 instead of 1.
+
+What this changes. The open statement no longer has to be met once per machine. It has to be met
+once per primorial mirror: some period k up to about the previous landing squared over 2 B# has
+2 B# k +- 1 a twin. The mirror switches off every gear up to B by construction (the teeth law's
+first clause), so only the gears above B can strike, and the allowance per link grows like the
+square of the link before.
+
+What it does not change: this is still an existence statement about twins, so it is not a proof.
+It is a restructuring of the target from one statement per machine to one per primorial, with the
+freedom in each link growing without bound.

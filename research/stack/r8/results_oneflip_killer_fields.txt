@@ -1,0 +1,90 @@
+(a) killer census, mirror {2,3,5} (M = 30), first 60 candidates past the window start
+  q =   1009  window starts at k = 17;  struck 49 of 60, both members 16
+     by smallest gear: higher1:7 x15, higher1:11 x10, higher1:13 x7, higher1:23 x5, higher1:17 x5, higher1:19 x4
+     by largest gear:  lower1:83 x2, lower1:47 x2, lower1:67 x2, lower1:97 x2
+     by factor count:  products:2 x56, products:3 x8, products:4 x1
+     gears up to  5 would clear  0 of the 49 struck candidates
+     gears up to  7 would clear 10 of the 49 struck candidates
+     gears up to 11 would clear 17 of the 49 struck candidates
+     gears up to 13 would clear 21 of the 49 struck candidates
+     gears up to 17 would clear 24 of the 49 struck candidates
+     gears up to 19 would clear 28 of the 49 struck candidates
+     gears up to 23 would clear 32 of the 49 struck candidates
+     gears up to 29 would clear 35 of the 49 struck candidates
+     gears up to 31 would clear 36 of the 49 struck candidates
+     gears up to 37 would clear 39 of the 49 struck candidates
+
+  q =   5003  window starts at k = 84;  struck 48 of 60, both members 21
+     by smallest gear: higher1:7 x14, higher1:11 x8, higher1:13 x6, higher1:17 x4, higher1:23 x4, higher1:19 x4
+     by largest gear:  lower1:227 x2, lower1:109 x2, lower1:103 x2, lower1:211 x2
+     by factor count:  products:2 x54, products:3 x14, products:4 x1
+     gears up to  5 would clear  0 of the 48 struck candidates
+     gears up to  7 would clear  8 of the 48 struck candidates
+     gears up to 11 would clear 14 of the 48 struck candidates
+     gears up to 13 would clear 19 of the 48 struck candidates
+     gears up to 17 would clear 21 of the 48 struck candidates
+     gears up to 19 would clear 23 of the 48 struck candidates
+     gears up to 23 would clear 26 of the 48 struck candidates
+     gears up to 29 would clear 29 of the 48 struck candidates
+     gears up to 31 would clear 31 of the 48 struck candidates
+     gears up to 37 would clear 34 of the 48 struck candidates
+
+  q =  20011  window starts at k = 334;  struck 52 of 60, both members 22
+     by smallest gear: higher1:7 x14, higher1:11 x7, higher1:13 x7, higher1:29 x4, higher1:17 x4, higher:7 x3
+     by largest gear:  lower1:691 x2, lower1:359 x2, lower1:179 x2, lower1:53 x2
+     by factor count:  products:2 x50, products:3 x23, products:4 x1
+     gears up to  5 would clear  0 of the 52 struck candidates
+     gears up to  7 would clear  5 of the 52 struck candidates
+     gears up to 11 would clear 10 of the 52 struck candidates
+     gears up to 13 would clear 17 of the 52 struck candidates
+     gears up to 17 would clear 22 of the 52 struck candidates
+     gears up to 19 would clear 26 of the 52 struck candidates
+     gears up to 23 would clear 27 of the 52 struck candidates
+     gears up to 29 would clear 30 of the 52 struck candidates
+     gears up to 31 would clear 32 of the 52 struck candidates
+     gears up to 37 would clear 34 of the 52 struck candidates
+
+  q = 100003  window starts at k = 1667;  struck 54 of 60, both members 28
+     by smallest gear: higher1:7 x14, higher1:13 x7, higher1:11 x7, higher1:29 x4, higher1:17 x4, higher1:19 x4
+     by largest gear:  lower:29 x2, lower1:419 x2, lower1:421 x2, lower1:3449 x1
+     by factor count:  products:2 x54, products:3 x23, products:4 x5
+     gears up to  5 would clear  0 of the 54 struck candidates
+     gears up to  7 would clear  5 of the 54 struck candidates
+     gears up to 11 would clear  9 of the 54 struck candidates
+     gears up to 13 would clear 13 of the 54 struck candidates
+     gears up to 17 would clear 17 of the 54 struck candidates
+     gears up to 19 would clear 18 of the 54 struck candidates
+     gears up to 23 would clear 19 of the 54 struck candidates
+     gears up to 29 would clear 23 of the 54 struck candidates
+     gears up to 31 would clear 26 of the 54 struck candidates
+     gears up to 37 would clear 29 of the 54 struck candidates
+
+(b) primorial mirrors: open candidates within 400 periods of the window start
+     q     mirror up to   M        stride      span   first open offset   open
+   1009           5            30            60     400                  0     58
+   1009           7           210           420     400                  5     61
+   1009          11          2310          4620     220                  1     35
+   1009          13         30030         60060      16                  2      6
+
+   5003           5            30            60     400                  1     54
+   5003           7           210           420     400                  2     61
+   5003          11          2310          4620     400                  0     50
+   5003          13         30030         60060     400                  2     50
+   5003          17        510510       1021020      24                  3      1
+   5003          19       9699690      19399380       1               None      0
+
+  20011           5            30            60     400                 10     43
+  20011           7           210           420     400                  4     56
+  20011          11          2310          4620     400                  7     50
+  20011          13         30030         60060     400                  2     50
+  20011          17        510510       1021020     392                  3     35
+  20011          19       9699690      19399380      20                 11      1
+
+ 100003           5            30            60     400                 13     43
+ 100003           7           210           420     400                  1     51
+ 100003          11          2310          4620     400                  2     51
+ 100003          13         30030         60060     400                  1     50
+ 100003          17        510510       1021020     400                  3     35
+ 100003          19       9699690      19399380     400                 11     34
+ 100003          23     223092870     446185740      22                  1      4
+
