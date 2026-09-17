@@ -569,3 +569,20 @@ What the wall does not block: the chain (`chain_covers`, proofs/MirrorWalkChain.
 serves every machine from its square root up to itself, so the construction needs one landing per
 primorial rather than one per machine, and the allowance for each grows like the square of the
 one before.
+
+
+## The step, closed from both sides (2026-09-18, round 71)
+
+The pigeonhole route to the step is now closed in the kernel, not just in measurements.
+
+- Its hypothesis is unreachable. A mirror that fits the window carries at most log2(q^2) gears,
+  so a small gear is always left live (`small_gear_uncarried`), and once the live gears number at
+  least half that gear the free-regime hypothesis fails for every choice of mirror
+  (`free_regime_unreachable`) [proofs/MirrorWalkCarry.lean].
+- Where the hypothesis fails, the conclusion can fail. Three gears {5, 7, 11} - one below twice
+  their number - and the start 370 leave every candidate of the run k = 0..6 struck, so no
+  keeping move exists (`keeping_move_free_sharp`) [proofs/MirrorWalkSettleFree.lean].
+
+So the four mechanisms the machine has - logarithmic carrying, gcd-only composition, the exact
+trade of carried gears against candidates, and pigeonhole up to the free-regime cut - cannot
+force the step between them. A proof of the window statement needs something outside that list.

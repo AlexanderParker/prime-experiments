@@ -1712,3 +1712,34 @@ t - 2 factored, and that is the random one. So a certificate-friendly chain woul
 the many admissible landings for one whose t - 2 breaks up under trial division into small
 factors and a certifiable cofactor. That is a search, not a new idea, and it is the way to keep
 the certificate climbing.
+
+### 76. The step: what the machine cannot do, proved (loop, 2026-09-18)
+
+Taking the recommendation of the last exchange - leave the certificate at six links, spend the
+effort on the step - this round proves the negative half, which was until now argued from
+measurements (entries 54, 55) rather than stated.
+
+(a) The free regime's cut is sharp. `keeping_move_free` needs every visited gear above twice
+their number. With three gears {5, 7, 11}, one of them (5) below 2 x 3, and the start 370, every
+candidate of the run k = 0..6 is struck: 370 and 375 by gear 5, 371 and 378 by gear 7, 374 by
+gear 11. So no keeping move exists and the conclusion genuinely fails. PROVED by decision
+procedure: `keeping_move_free_sharp` [proofs/MirrorWalkSettleFree.lean, round 71, 0 sorries].
+
+(b) Carrying cannot reach the free regime. A mirror that fits the window carries at most
+log2(q^2) gears (`carried_le_log`, round 64), so if the machine has one more gear below some
+bound b than the mirror can hold, a gear at most b is always left live
+(`small_gear_uncarried`); and once the live gears number at least b/2 the free-regime hypothesis
+fails outright, for every choice of mirror (`free_regime_unreachable`)
+[proofs/MirrorWalkCarry.lean, round 71, 0 sorries].
+
+Together with the measurements already on record - at q = 1000003 the machine has 78499 gears,
+the largest mirror that fits carries 11, and the free regime would need the live gears above
+156976 when they start at 37 - the pigeonhole route is closed from both sides: its hypothesis is
+unreachable by any mirror, and where the hypothesis fails its conclusion can fail too.
+
+What this leaves. The step - for every twin centre t, some j <= t - 3 has t j a twin centre - has
+no forcing available from the mechanisms the machine has: mirror carrying is logarithmic
+(`carried_le_log`), composition carries only the gcd (`gcdL_dvd_combo`, round 55), the window
+trades carried gears against candidates exactly (`mirror_times_candidates`, round 56), and
+pigeonhole stops exactly at the free-regime cut, which no mirror reaches. Every construction of
+rounds 40 to 70 was a different arrangement of those four facts.

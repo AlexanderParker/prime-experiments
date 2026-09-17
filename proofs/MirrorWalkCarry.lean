@@ -56,4 +56,29 @@ theorem uncarried_card {G S : Finset ℕ} (hS : ∀ g ∈ S, 2 ≤ g) {M k q : �
   have h3 := Finset.card_union_le (G \ S) S
   omega
 
+/-- **A small gear always stays live.**  If the mirror carries at most `L` gears and the machine
+has `L + 1` gears at most `b`, then some gear at most `b` is uncarried. -/
+theorem small_gear_uncarried {G S T : Finset ℕ} (hT : T ⊆ G) (hTS : T.card = S.card + 1)
+    {b : ℕ} (hb : ∀ g ∈ T, g ≤ b) : ∃ g ∈ G \ S, g ≤ b := by
+  classical
+  have hne : ¬ (T ⊆ S) := by
+    intro hsub
+    have := Finset.card_le_card hsub
+    omega
+  obtain ⟨g, hgT, hgS⟩ := Finset.not_subset.mp hne
+  exact ⟨g, Finset.mem_sdiff.mpr ⟨hT hgT, hgS⟩, hb g hgT⟩
+
+/-- **Carrying cannot reach the free regime.**  The free-regime step lemma
+(`keeping_move_free`) needs every live gear above twice their number.  A mirror that fits the
+window carries only logarithmically many gears, so a small gear is always left live, and once the
+live gears are more numerous than half that small gear the hypothesis fails - for every choice of
+mirror.  (Its conclusion can fail too: `keeping_move_free_sharp`.) -/
+theorem free_regime_unreachable {G S T : Finset ℕ} (hT : T ⊆ G) (hTS : T.card = S.card + 1)
+    {b : ℕ} (hb : ∀ g ∈ T, g ≤ b) (hlive : b ≤ 2 * (G \ S).card) :
+    ¬ (∀ g ∈ G \ S, 2 * (G \ S).card < g) := by
+  intro hfree
+  obtain ⟨g, hg, hgb⟩ := small_gear_uncarried hT hTS hb
+  have := hfree g hg
+  omega
+
 end MirrorWalk

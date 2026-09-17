@@ -118,4 +118,17 @@ theorem keeping_move_free {G : Finset ℕ} {s : ℤ} {a : ℕ → ℤ}
     have hc := (strikes_iff_offA hgpos (hinv g hg) (x + 2) (k : ℤ)).mp hd
     exact hne2 (eq_of_modEq_lt hklt (offA_lt hgpos (a g) (x + 2)) hc)
 
+/-- **The free regime's cut is sharp.**  The hypothesis that every visited gear exceeds twice
+their number cannot be dropped: with the three gears `{5, 7, 11}` - one of which, 5, is below
+`2 · 3` - and the start 370, every candidate of the run `k = 0 … 6` is struck, so no keeping move
+exists.  (370 and 375 are struck by 5, 371 and 378 by 7, 374 by 11.)
+
+This is what closes the pigeonhole route: the lemma covers exactly the steps where the gears are
+large against their number, and one small gear is enough to take the conclusion away. -/
+theorem keeping_move_free_sharp :
+    ∃ (G : Finset ℕ) (x : ℕ), G.card = 3 ∧ (∃ g ∈ G, g ≤ 2 * G.card) ∧
+      ∀ k, k ≤ 2 * G.card → ∃ g ∈ G, g ∣ (x + k) ∨ g ∣ (x + k + 2) := by
+  refine ⟨{5, 7, 11}, 370, by decide, ⟨5, by decide, by decide⟩, ?_⟩
+  decide
+
 end MirrorWalk
