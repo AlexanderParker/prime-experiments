@@ -1205,3 +1205,44 @@ The first open candidate is always at a small period (k = 10 to 19 at these size
 smallest stride tried (the first gear above sqrt q), so the locator finds its twin at once.
 The statement to carry is: among the columns -1 + 12 g k d with g the first gear above sqrt q
 and k up to (ln q)^3, one is open to every gear of the machine.
+
+### 65. The one-flip locator stated in the kernel as the final form (loop, 2026-09-17)
+
+proofs/OneFlipLocator.lean (round 60), built, 0 sorries, axioms propext / Classical.choice /
+Quot.sound:
+
+    def oneFlip (g : ℤ) (k : ℕ) (d : ℤ) : ℤ := -1 + 12 * g * k * d
+
+    def OneFlipOpen (G : Finset ℕ) (g : ℤ) (K P : ℕ) : Prop :=
+      ∃ (k : ℕ) (d : ℤ) (m : ℕ), 1 ≤ k ∧ k ≤ K ∧ (d = 1 ∨ d = -1) ∧
+        (m : ℤ) = oneFlip g k d ∧ 1 ≤ m ∧ 6 * m + 1 < P ^ 2 ∧
+        ∀ h ∈ G, ¬ (h ∣ 6 * m - 1) ∧ ¬ (h ∣ 6 * m + 1)
+
+    theorem oneflip_twin : (G full below P) → OneFlipOpen G g K P →
+      ∃ m, 1 ≤ m ∧ 6 * m + 1 < P ^ 2 ∧ (6 * m - 1).Prime ∧ (6 * m + 1).Prime
+
+    theorem window_statement_of_oneflip : (OneFlipOpen at every machine) → the window statement
+
+So the construction now has one definition and one hypothesis, and the hypothesis names an
+explicit finite family: from home, one flip about {2, 3, g} with g the first gear above sqrt q
+and period k up to (ln q)^3, either direction.
+
+What this replaces: MirrorWalkTheorem's `Handover` (round 59) carried the settle walk's column
+and stride as data the prefix had to produce. Entry 63 showed the prefix is worse than no
+prefix (4.92 open candidates against 7.31), so the handover is not something to build - the
+column is home, -1, and the stride is 12 g. `Handover` and `construction_twin` stay in the tree
+as the general step form; `oneflip_twin` is their instance at c = -1, s = 12 g d, and is now
+the statement the document carries.
+
+Proof document: research/proof/proof_skeleton.md Part IV b rewritten to match. Section 15 is
+the one-flip locator (stated, one hypothesis, measured to 20000); section 16 keeps the settle
+walk as a recorded result with its two proved parts, `in_range_move`/`window_move`/`base_fits`/
+`stays_in_range` (round 56) and `keeping_move_free` (round 57), and records that part (b)
+applies to the one flip at n = 1 - it is why a period exists that keeps g itself off its teeth;
+section 17 names the one open hypothesis. Part V standing updated.
+
+Where the loop stands after 65 entries: everything around the flip is proved, and the one thing
+left is that some column of the family is open. The trade lemma says why no walk removes it -
+room in the window buys either carried gears or candidates, never both - so the next line of
+attack is not another walk shape but the gears that strike the family: which gears can strike
+how many of the (ln q)^3 columns, and whether their striking classes can be shown to miss one.

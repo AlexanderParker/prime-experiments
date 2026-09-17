@@ -2295,3 +2295,6 @@ name = "MirrorWalkConditional"
 
 [[lean_lib]]
 name = "MirrorWalkTheorem"
+
+[[lean_lib]]
+name = "OneFlipLocator"

@@ -143,20 +143,50 @@ So the one open statement is, in its sharpest form: for every prime q, the first
 with midpoint a multiple of 12 lies below q^2. What decides it is the paint just above q, laid
 by the small composites there (every number in (q, 2q) is prime or has a factor below q).
 
-# Part IV b. The settle walk: the construction of 2026-09-16, as three parts
+# Part IV b. The construction in its final form: one flip from home (2026-09-17)
 
-The walk of Part III is one flip whose period is chosen by the residues.  The settle walk is the
-same idea run gear by gear, and it splits the open statement differently: most of it is proved,
-and what is left is named.
+Sixty-four rounds of walk construction (research/proof/loop_algorithms.md) ended at the simplest
+form available.  Every walk of more than one step spends room in the window on the mirrors it
+carries, and the trade is exact: candidates spaced 2M apart inside a window of length q^2 - q
+number at most (q^2 - q) / (2M), so carried gears and candidates divide the same window
+(`mirror_times_candidates`, round 56).  Measured directly (round 63): at the last step of the
+settle walk the open candidates number 4.92 with the full proved prefix and 7.31 with no prefix
+at all when the stride is chosen from eight; the prefix costs more than it gives, because the
+gears above the cut still strike 22.5 of 75.8 candidates at the handover.  So the construction
+is one flip.
 
-## 15. The settle walk. PROVED in its first two parts
+## 15. The one-flip locator. STATED, one hypothesis
 
-From home, visit the gears q down to 7 in descending order.  At the gear g the mirror is
-{2, 3, g}, so the move is 12 g k for a period k, either direction.  The period is chosen so that
-every gear visited so far, and g, is off its two teeth at the new column, and among those the
-one leaving the next gear the most such moves.  The period count at step n is
-K_n = max((ln q)^2, 2n + 1): the walk uses the first term, the proof below uses the second, and
-both keep the candidates inside the window.
+From home (-1, 1), open to every gear, flip about the mirror {2, 3, g} with period k in either
+direction.  The landing is the column
+
+    -1 + 12 g k d,   k = 1..K,   d = +1 or -1.
+
+`OneFlipOpen G g K P` says one of those columns lies in the window (q, q^2] and is struck by no
+gear of G.  With G holding every prime from 5 below P:
+
+    OneFlipOpen  =>  a twin prime pair inside (q, q^2]        `oneflip_twin`
+    OneFlipOpen for every machine  =>  the window statement   `window_statement_of_oneflip`
+
+[proofs/OneFlipLocator.lean, round 60; 0 sorries, axioms propext / Classical.choice / Quot.sound]
+
+The choices that make it work are fixed, not searched: g is the first gear above sqrt(q), and
+K = (ln q)^3.  MEASURED (research/stack/r8/oneflip_margin.py): the family holds thirty to fifty
+open columns at every machine to 20000, the first at a period between 10 and 19.  The margin
+follows the candidate count and not the arrangement of the family: one stride with (ln q)^3
+periods does as well as eight strides with (ln q)^2, and a fixed count (K = 40) thins with q
+(23 open at q = 1000, 15 at q = 20000).
+
+Part III's locator (11) is the same shape with the mirror {2, 3} or {2, 3, 5} and the period
+chosen by the residues; the form stated here takes the larger mirror {2, 3, g} and lets the
+period run over a fixed range, so the family is explicit and finite without a residue search.
+
+## 16. The settle walk: what it proved, kept as a recorded result
+
+The settle walk (visit the gears q down to 7, at gear g flip about {2, 3, g}, choose the period
+that keeps every gear visited so far off its two teeth) is no longer the construction, but two
+of its parts are proved outright and stay in the kernel as results about mirror walks in
+general:
 
   (a) The walk stays in the window.  PROVED: an in-range move exists at every step whose mirror
       fits (`in_range_move`), a move into the window exists at the last step (`window_move`),
@@ -168,30 +198,28 @@ both keep the candidates inside the window.
       period at most 2n gives a candidate open to all of them (`keeping_move_free`).
       [proofs/MirrorWalkSettleFree.lean, round 57]  The cut is the steps where the visited gears
       all exceed twice their number: 70.5% of the steps at q = 1000, 76.6% at 10^4, 84.3% at
-      10^6, rising like ln q / (ln q + 2); the candidates it needs fit the window throughout
-      (worst span 0.90 of q^2 at q = 1000, 0.44 at 10^6).
-  (c) The tail.  MEASURED: the remaining steps, the gears below about q / 4.5 down to 7, have
-      forty or more keeping moves each at every machine 29 to 2000, and the walk's landing is a
-      twin at every machine tested (294 machines to 2000 at K = 40; 230 of 230 with the scaled
-      count to 1500).
+      10^6.  The lemma is maximal: no stride count, visiting order, carrying, inheritance or
+      residue choice moves the cut (round 57).
 
-## 16. What the tail needs. OPEN, named
+Part (b) applies to the one-flip locator too, at n = 1: it is why a period exists keeping g
+itself off its teeth.  What it cannot do is cover the small gears, and that is the whole of the
+open statement.
 
-`StepOpen G c s K P`: among the candidates c + s k, k = 1..K, one is a column of the window that
-no gear of G strikes.  With G holding every prime from 5 below P, StepOpen gives a twin prime
-pair in the window: `walk_twin_of_stepOpen` [proofs/MirrorWalkConditional.lean, round 58].
-So the chain is: (a) + (b) + StepOpen at the tail's steps => a twin in (q, q^2].
-StepOpen is the window statement restricted to one arithmetic progression (modulus 12 g), and
-the measurements put its margin at three to fourteen open candidates of eighty at q near 1000,
-flat in q once the period count grows as (ln q)^2.  The trade behind every attempt to remove it
-is exact: candidates spaced 2M apart inside a window of length q^2 - q number at most
-(q^2 - q) / (2M), so carried gears and candidates divide the same window
-(`mirror_times_candidates`, round 56).
+## 17. The one hypothesis. OPEN, named
+
+`OneFlipOpen` is the window statement restricted to one explicit arithmetic progression of
+modulus 12 g.  Nothing in the sixty-four rounds removed it, and the trade above says why: room
+in the window buys either carried gears or candidates, never both.  The general step form
+`StepOpen G c s K P` (any column c, any stride s) is the same statement for a walk of any shape
+and gives the same conclusion: `walk_twin_of_stepOpen`
+[proofs/MirrorWalkConditional.lean, round 58].  `oneflip_twin` is its instance at c = -1,
+s = 12 g d.
 
 # Part V. Standing
 
-- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 15(a), 15(b), the implication of 16 (kernel names given).
-- EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14, the trade of 16.
-- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15(c) to 2000.
-- OPEN: 13, and equivalently StepOpen of 16. The settle walk proves the construction's first two
-  parts outright and names the third; the open statement is the same one in both forms.
+- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), the implications of 15 and 17 (kernel names given).
+- EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14, the trade of Part IV b.
+- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15 to 20000; the settle walk of 16 to 2000.
+- OPEN: 13, and equivalently OneFlipOpen of 15 (StepOpen of 17 in its general form). The
+  construction is one flip from home; everything around that flip is proved, and the one thing
+  left is that some column of an explicit finite family is open.
