@@ -1790,3 +1790,49 @@ counting hypothesis is not close to tight:
 and the stretch (q, 20q] where those all sit is 1.9% of the window at q = 1009 and 0.019% at
 q = 100003. The hypothesis of `chen_window_of_count` therefore has room to spare at every size
 measured; what is missing is not room but an effective bound.
+
+### 78. The anatomy of the failures, and the one lever (loop, 2026-09-18)
+
+Asked to look at the reasons for failure, name the machine features behind them, and say how to
+use that. Written up in full as research/proof/failure_anatomy.md; the substance:
+
+The four stops and their causes.
+  1. Silence costs the primorial. A mirror silences exactly the gears dividing its product, so to
+     leave no live gear at or below X the product must be divisible by X#. PROVED this round:
+     `silence_costs_primorial`, `primorial_le_of_silence` [proofs/MirrorWalkCarry.lean, round 73,
+     0 sorries]. With the window's 2 M k <= q^2 this prices the carry wall exactly: linear gain,
+     geometric cost.
+  2. Composition intersects. Several mirrors land on the multiples of their gcd and carry only
+     the gcd's gears (`gcdL_dvd_combo`, round 55) - carried sets can never be added.
+  3. The trade. The mirror's product is both the price of carrying and the spacing of candidates
+     (`mirror_times_candidates`, round 56), so one object does both jobs.
+  4. Pigeonhole ends at the free-regime cut, which no mirror reaches (`free_regime_unreachable`)
+     and where it fails the conclusion can fail (`keeping_move_free_sharp`), round 71. The cause
+     is that each gear has exactly two teeth per candidate line - the dimension-2 sieve, which is
+     also where parity stops the analytic route (entry 77).
+
+The single lever. All four share one root: the machine's only lever on a gear is divisibility. A
+gear either divides the landing and is silent forever, or is live and strikes two classes. I
+tested whether the landings, being constructed, carry anything beyond their factorisation
+(research/stack/r8/landing_structure.py): landings of the form 2^a 3^b - maximal algebraic
+structure, two gears carried - against the next twin centre above each:
+
+    mean smallest multiplier to the next landing: structured 38.4, control 15.2
+    mean gears carried:                           structured 2.00, control 4.00
+
+The structured landings are two and a half times worse, and the control's only advantage is
+carrying twice as many gears. Shape does not help, divisibility does. So the lever is exactly
+one, and `silence_costs_primorial` prices it.
+
+What a proof must do, derived from the four: (1) not silence its way out, since silencing below X
+costs X# against a window of q^2, capping the silenced gears at about 2 log2 q of pi(q); (2) not
+count strikes, since the live gears have divergent reciprocal sum and counting can only win
+through cancellation, which is the sieve, which is parity; (3) name a candidate rather than a
+population - none of the four stops touches a reason why ONE named candidate is open, and such a
+reason cannot come from the gear set; (4) face the pair as one object, since the pair at N is the
+factorisation N^2 - 1 = (N-1)(N+1) and every mechanism the machine has treats the members
+separately as two teeth.
+
+Requirement (3) is the one no route has met, and (1), (2), (4) say why the obvious substitutes
+fail. That is the shape of the hole, drawn tightly enough to recognise a genuine idea - or a
+re-run of rounds 40 to 72 - immediately.

@@ -603,3 +603,12 @@ The kernel now holds the bridge these bounds would need: `exists_in_window_of_co
 `chen_window_of_count` (proofs/WindowFromCount.lean) turn a count at q^2 exceeding the count at q
 into a window statement, for any decidable property. The analytic input is the hypothesis; the
 window shape costs nothing.
+
+
+## The anatomy, in one place (2026-09-18, round 73)
+
+research/proof/failure_anatomy.md now holds the four stops, the machine feature behind each, and
+the four requirements any proof must meet. The root is that the machine's only lever on a gear is
+divisibility - priced exactly by `silence_costs_primorial` - and the measured test of whether a
+landing carries anything beyond its factorisation says it does not (structured landings 2^a 3^b
+need mean multiplier 38.4 against 15.2 for shapeless controls carrying twice as many gears).

@@ -81,4 +81,26 @@ theorem free_regime_unreachable {G S T : Finset ℕ} (hT : T ⊆ G) (hTS : T.car
   have := hfree g hg
   omega
 
+/-- **Silencing the small gears costs the primorial.**  A mirror silences exactly the gears
+dividing its product, so to leave no live gear at or below `X` the product must be divisible by
+every prime up to `X`, hence by the primorial `X#`.  With the window's bound `2 M k ≤ q²` this is
+the sharp form of the carry wall: the price of silence is exponential in `X` while the window
+pays only quadratically in `q`. -/
+theorem silence_costs_primorial {M X : ℕ} (hM : 0 < M)
+    (hsil : ∀ p, p.Prime → p ≤ X → p ∣ M) : primorial X ∣ M := by
+  classical
+  unfold primorial
+  refine Finset.prod_primes_dvd M ?_ ?_
+  · intro p hp
+    simp only [Finset.mem_filter, Finset.mem_range] at hp
+    exact hp.2.prime
+  · intro p hp
+    simp only [Finset.mem_filter, Finset.mem_range] at hp
+    exact hsil p hp.2 (by omega)
+
+/-- The same, as a bound: silence up to `X` forces the primorial below the mirror. -/
+theorem primorial_le_of_silence {M X : ℕ} (hM : 0 < M)
+    (hsil : ∀ p, p.Prime → p ≤ X → p ∣ M) : primorial X ≤ M :=
+  Nat.le_of_dvd hM (silence_costs_primorial hM hsil)
+
 end MirrorWalk

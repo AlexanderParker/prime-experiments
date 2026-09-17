@@ -1,0 +1,14 @@
+landings of the form 2^a 3^b against the next twin centre above each
+     t = 2^a 3^b   gears   smallest j       control t   gears   smallest j
+             108       2            4             138       3            6
+             192       2            6             198       3           15
+             432       2            6             462       4            5
+            1152       2           20            1230       4            9
+            2592       2           29            2658       3           21
+          139968       2           66          140070       6            7
+          472392       2          105          472542       4           40
+          786432       2           46          786552       4           24
+          995328       2           64          995340       5           10
+
+  mean smallest multiplier: structured 38.4 (9 landings, 2 gears each), control 15.2 (9 landings)
+  mean gears carried: structured 2.00, control 4.00
