@@ -1151,3 +1151,18 @@ proofs/MirrorWalkTheorem.lean (round 59, built, 0 sorries, standard axioms):
   machine's window holds a twin prime pair - the window statement, from the construction.
 So the chain is complete as an implication, with exactly one hypothesis left, and that
 hypothesis is measured at the tail's first step at every machine from 200 to 1200.
+
+### 62. Who strikes the handover's candidates? (loop, 2026-09-17)
+
+research/stack/r8/handover_strikers.py, machines 300 to 800 (77), K = (ln q)^2. Per handover
+step: 75.8 candidates; struck by a gear ABOVE the cut 22.5; by a tail gear only 48.4; open 4.92;
+distinct gears striking 54.9, out of 68 above the cut and 31 in the tail.
+Two things this settles. First, the gears above the cut are not spent: the handover column is
+open to them, but the candidates are new columns and those gears strike 22.5 of 75.8 - the
+prefix's work does not carry to the next line, as the trade lemma says it cannot. Second, the
+tail gears do most of the striking (48.4), and 55 distinct gears strike at all, so the covering
+is spread thinly: no small set of gears is responsible, and the survivors are the columns that
+every one of the 55 misses.
+A proof of StepOpen must therefore handle about 55 gears striking about 71 of 76 candidates
+with no gear dominating - the twin statement's own shape at this scale, with the counts made
+explicit.

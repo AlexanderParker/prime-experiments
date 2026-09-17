@@ -1,0 +1,1 @@
+machines 300..800 (77), K = (ln q)^2: per handover step, candidates 75.8; struck by a gear ABOVE the cut 22.5; by a tail gear only 48.4; open 4.92; distinct gears striking 54.9 (the machine has 68 gears above the cut and 31 in the tail)
