@@ -1,0 +1,1 @@
+machines 300..800 (77), K = (ln q)^2: (a) full walk then the handover step: open candidates 4.92 on average, none at 0 machines; (b) no prefix, one step from home with the same stride: 2.73, none at 5; (c) no prefix, best stride of eight: 7.31, none at 0

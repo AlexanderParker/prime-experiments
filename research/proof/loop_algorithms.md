@@ -1166,3 +1166,24 @@ every one of the 55 misses.
 A proof of StepOpen must therefore handle about 55 gears striking about 71 of 76 candidates
 with no gear dominating - the twin statement's own shape at this scale, with the counts made
 explicit.
+
+### 63. Does the prefix earn its place?  No (loop, 2026-09-17)
+
+research/stack/r8/no_prefix.py, machines 300 to 800 (77), K = (ln q)^2, open candidates at the
+final step:
+  (a) the full walk, prefix to the cut then the handover step: 4.92 on average, none at 0
+      machines;
+  (b) no prefix at all, one step from home with the same stride: 2.73, none at 5 machines;
+  (c) no prefix, one step from home, best stride of the first eight gears above sqrt q: 7.31,
+      none at 0 machines.
+So (c) beats the full walk: choosing among eight strides from home gives half again as many
+open candidates as walking the whole prefix first, and works at every machine. The prefix is
+not decorative, it is worse than the freedom it consumes.
+This is the trade lemma once more: the prefix spends the window's room on settling gears whose
+settling does not survive the next line (entry 62: the gears above the cut still strike 22.5 of
+75.8 candidates at the handover), while the eight strides spend the same room on candidates,
+which do survive.
+The construction therefore reduces to the one-flip locator of Part III: from home, among the
+columns -1 + 12 g k d for eight gears g, k = 1..K and both directions, one is open to every gear
+of the machine. That is the statement to carry; the settle walk's proved prefix proves that the
+walk can continue, not that the ending is easier.
