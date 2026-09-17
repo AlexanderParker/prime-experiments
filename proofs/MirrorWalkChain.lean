@@ -127,4 +127,53 @@ theorem window_statement_upto {t : ℕ → ℕ} {N : ℕ}
   · have := (htwin n hnN).1; rwa [hm] at this
   · have := (htwin n hnN).2; rwa [hm] at this
 
+/-- **The multiplicative chain.**  Taking each landing as a multiple of the one before -
+`t (n+1) = t n * j n` with `2 ≤ j n` and `j n + 3 ≤ t n` - the chain condition holds
+automatically, so such a sequence of twin landings settles every machine from the first one on.
+
+This is the flip about the mirror of product `t n / 2`, whose gears are exactly those dividing
+the current landing's centre: from the landing `t`, the candidates are the centres `t * j`. -/
+theorem mult_chain_window {t j : ℕ → ℕ}
+    (hstep : ∀ n, t (n + 1) = t n * j n) (hj2 : ∀ n, 2 ≤ j n) (hjt : ∀ n, j n + 3 ≤ t n)
+    (h12 : 12 ≤ t 0) (hsix0 : 6 ∣ t 0) (htwin : ∀ n, TwinCenter (t n))
+    {q : ℕ} (hq : t 0 - 1 ≤ q) :
+    ∃ m : ℕ, 1 ≤ m ∧ q < 6 * m - 1 ∧ 6 * m + 1 ≤ q ^ 2 ∧
+      (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
+  have hgrow : ∀ n, 12 ≤ t n := by
+    intro n
+    induction n with
+    | zero => exact h12
+    | succ m ih =>
+        have := hj2 m
+        have h := hstep m
+        calc 12 ≤ t m := ih
+          _ ≤ t m * j m := Nat.le_mul_of_pos_right _ (by omega)
+          _ = t (m + 1) := (hstep m).symm
+  have hmono : ∀ n, t n < t (n + 1) := by
+    intro n
+    have h1 := hgrow n
+    have h2 := hj2 n
+    have h := hstep n
+    calc t n < t n * 2 := by omega
+      _ ≤ t n * j n := Nat.mul_le_mul_left _ h2
+      _ = t (n + 1) := h.symm
+  have hchain : ∀ n, t (n + 1) + 1 < (t n - 1) ^ 2 := by
+    intro n
+    have h1 := hgrow n
+    have h2 := hjt n
+    have h := hstep n
+    obtain ⟨S, hS⟩ : ∃ S, t n = S + 1 := ⟨t n - 1, by omega⟩
+    rw [h, hS]
+    have hS1 : S + 1 - 1 = S := by omega
+    rw [hS1]
+    have hjS : j n + 2 ≤ S := by omega
+    have hSbig : 11 ≤ S := by omega
+    nlinarith [hjS, hSbig, Nat.zero_le (j n)]
+  have hsix : ∀ n, 6 ∣ t n := by
+    intro n
+    induction n with
+    | zero => exact hsix0
+    | succ m ih => rw [hstep m]; exact Dvd.dvd.mul_right ih _
+  exact window_statement_of_chain hmono hchain hsix (fun n => by have := hgrow n; omega) htwin hq
+
 end MirrorWalk

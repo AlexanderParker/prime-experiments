@@ -296,12 +296,35 @@ mirror of product M at period k: 108 = 2 x 6 x 9 is the mirror {2, 3} at period 
 `chain_covers_upto` (a finite chain covers a bounded range) and `window_statement_upto` (the same
 with the twin property attached).
 
+## 20. The multiplicative chain: the construction as one self-similar rule. PROVED reduction
+
+From a landing t (a twin centre), flip about the mirror whose product is t / 2 - the landing's own
+gear set, every one of them open at t and none able to strike (`mirror_gear_never_strikes`). The
+move is 2 (t/2) j = t j, so the candidates are the centres t * j. A landing t * j with j + 3 <= t
+meets the chain condition automatically, because t j + 1 < (t - 1)^2 whenever j <= t - 3.
+
+PROVED: `mult_chain_window` [proofs/MirrorWalkChain.lean, round 66]. A sequence of twin centres
+with t(n+1) = t n * j n, 2 <= j n and j n + 3 <= t n, starting at a multiple of 6 at least 12,
+gives the window statement for every machine from t 0 - 1 onward.
+
+So the whole open content reads, with no machines and no window in it:
+
+    for every twin centre t, some j <= t - 3 has t * j a twin centre.
+
+MEASURED (research/stack/r8/multiplicative_chain.py): over every twin centre from 12 to 20000 the
+smallest such j is 2 to 96, mean 15.2, and at most 30 in 89% of cases - 0.66% of the allowance at
+the worst. By size of the landing the mean multiplier runs 11.8 (t near 10^3), 17.2, 19.5, 27.9,
+23.4, 92.2 (t near 10^8), while the allowance grows like t, so the margin widens by a factor of
+ten per decade.
+
 # Part V. Standing
 
-- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), 18, 19, the carry wall of the wall map, the implications of 15 and 17 (kernel names given).
+- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), 18, 19, 20, the carry wall of the wall map, the implications of 15 and 17 (kernel names given).
 - EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14, the trade of Part IV b.
 - MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15 to 20011 (margin) and to 2000003 (periods needed); the settle walk of 16 to 2000.
 - OPEN: 13, and equivalently OneFlipOpen of 15 (StepOpen of 17 in its general form, and the
   chain's per-primorial form of 18). The construction is one flip from home; everything around
   that flip is proved, and the one thing left is that some column of an explicit family is open.
-  By 18 that family need only be met once per primorial, not once per machine.
+  By 18 that family need only be met once per primorial, not once per machine, and by 20 the
+  whole of it is one self-similar rule: from a twin centre, step to a small multiple that is
+  again a twin centre.

@@ -1513,3 +1513,49 @@ not progress on the open statement, which is about all machines; the certificate
 like log log X, so no finite certificate closes it. What it does close is the verification
 question - "does the construction actually work" - for every machine below 1.29 x 10^8 in the
 kernel and below 10^259 on paper.
+
+### 71. The multiplicative chain: the next landing is a multiple of this one (loop, 2026-09-17)
+
+A landing t is a twin centre, and every gear dividing t / 2 is open at it. Flip about the mirror
+whose product IS t / 2: the move is 2 (t/2) j = t j, so the candidates from that landing are the
+centres
+
+    t * j,   j = 2, 3, 4, ...
+
+and by the teeth law no gear dividing t / 2 can strike any of them. A landing t * j with
+j + 3 <= t automatically satisfies the chain condition, since t j + 1 < (t - 1)^2 whenever
+j <= t - 3. So the bands overlap by construction and no separate chain check is needed.
+
+PROVED: `mult_chain_window` [proofs/MirrorWalkChain.lean, round 66, 0 sorries, axioms propext /
+Classical.choice / Quot.sound]. Given a sequence with t(n+1) = t n * j n, 2 <= j n, j n + 3 <= t n,
+6 | t 0, 12 <= t 0, and each t n a twin centre, every machine from t 0 - 1 onward has a twin pair
+inside its window.
+
+So the open statement now reads with no mention of machines or windows at all:
+
+    for every twin centre t, some j <= t - 3 has t * j a twin centre.
+
+MEASURED (research/stack/r8/multiplicative_chain.py). Over every twin centre from 12 to 20000
+(340 landings) the smallest such j is 2 to 96, mean 15.2, and 30 or less in 89% of cases. The
+largest j used is 0.66% of the allowance. By size:
+
+    t near      smallest j: min   max    mean      allowance
+    1e3                       4    46     11.8        1,017
+    1e4                       2    90     17.2       10,005
+    1e5                       6    50     19.5      100,149
+    1e6                       6    92     27.9    1,000,035
+    1e7                       4    70     23.4   10,000,137
+    1e8                       7   529     92.2  100,000,035
+
+The multiplier grows slowly (mean 12 to 92 across five decades) while the allowance grows like t,
+so the margin widens by a factor of ten per decade.
+
+Why this is the cleanest form so far: the mirror is not chosen, it is the landing's own gear set;
+the chain condition is not checked, it follows from j <= t - 3; the machines never appear. The
+construction is a single self-similar rule - from a twin centre, step to a small multiple of it
+that is again a twin centre - and everything else in the proof document is the machinery that
+turns that rule into the window statement.
+
+What is unchanged: the rule still asserts twins exist, so it is a restatement of the open content
+in the machine's own terms, not a proof of it. It is the smallest such restatement the search has
+produced: one sentence, no parameters, no window.
