@@ -1,0 +1,13 @@
+first Chen pair past the window's start, and the count in the first stretch
+      q   first Chen p   offset   first twin   offset   Chen pairs in (q, 20q]
+     11            13        2           17        6                      32
+    101           107        6          107        6                     166
+   1009          1019       10         1019       10                    1005
+  10007         10037       30        10037       30                    6895
+ 100003        100019       16       100151      148                   50562
+1000003       1000037       34      1000037       34                  386936
+
+the window is (q, q^2], so the stretch above is a vanishing part of it:
+  q =    1009: (q, 20q] is 1.88% of the window
+  q =   10007: (q, 20q] is 0.19% of the window
+  q =  100003: (q, 20q] is 0.019% of the window

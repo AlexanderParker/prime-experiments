@@ -1743,3 +1743,50 @@ no forcing available from the mechanisms the machine has: mirror carrying is log
 trades carried gears against candidates exactly (`mirror_times_candidates`, round 56), and
 pigeonhole stops exactly at the free-regime cut, which no mirror reaches. Every construction of
 rounds 40 to 70 was a different arrangement of those four facts.
+
+### 77. The analytic route, and the bridge it would need (loop, 2026-09-18)
+
+Following the decision to aim at the weakest statement of the window's shape that known methods
+can support: a Chen pair in every window, meaning a prime p in (q, q^2] whose partner p + 2 has
+at most two prime factors.
+
+The literature position, checked this round:
+  * The best explicit constant for the twin half of Chen's theorem is
+    pi_{1,2}(x) >= 1.205 C_2 x / (log x)^2 (Bordignon and Starichkova, arXiv:2405.05727), where
+    pi_{1,2} counts primes p <= x with p + 2 a product of at most two primes and C_2 is the twin
+    prime constant. It is stated for sufficiently large x with NO computable threshold.
+  * The fully explicit work is on the Goldbach half: every even number above exp(exp(32.7)) is a
+    prime plus a product of at most two primes (Bordignon, Johnston and Starichkova,
+    arXiv:2207.09452), reduced to exp(exp(15.85)) under the generalised Riemann hypothesis.
+  * So for the twin half there is no effective threshold to pair with a finite check, and where
+    thresholds do exist they start at exp(exp(32.7)), which is beyond any certificate: ours
+    reaches 2.76 x 10^32 (round 70).
+
+The consequence is worth stating plainly. Loosening the target from "by construction" to
+"analytic" does not produce a proof for every machine even of the weakened statement, because the
+sieve results are asymptotic and the gap between our certificate and their thresholds cannot be
+closed by computation.
+
+What is now in the kernel is the bridge that would turn any such bound into the window statement,
+with no analysis in it (proofs/WindowFromCount.lean, round 72, 0 sorries):
+
+    `exists_in_window_of_count`: if fewer good numbers lie below q than below q^2, then a good
+    number lies inside (q, q^2] - for any decidable property.
+    `chen_window_of_count`: the same for Chen pairs.
+    `chenPair_of_twin`: every twin pair is a Chen pair, so the analytic target is genuinely
+    weaker than the machine's.
+
+MEASURED (research/stack/r8/chen_window.py). Chen pairs are dense near the window's start, so the
+counting hypothesis is not close to tight:
+
+        q     first Chen pair past q   first twin past q   Chen pairs in (q, 20q]
+       11              +2                    +6                      32
+      101              +6                    +6                     166
+     1009             +10                   +10                    1005
+    10007             +30                   +30                   6895
+   100003             +16                  +148                  50562
+  1000003             +34                   +34                 386936
+
+and the stretch (q, 20q] where those all sit is 1.9% of the window at q = 1009 and 0.019% at
+q = 100003. The hypothesis of `chen_window_of_count` therefore has room to spare at every size
+measured; what is missing is not room but an effective bound.

@@ -2313,3 +2313,6 @@ name = "PrattTools"
 
 [[lean_lib]]
 name = "PrattCertificates"
+
+[[lean_lib]]
+name = "WindowFromCount"

@@ -586,3 +586,20 @@ The pigeonhole route to the step is now closed in the kernel, not just in measur
 So the four mechanisms the machine has - logarithmic carrying, gcd-only composition, the exact
 trade of carried gears against candidates, and pigeonhole up to the free-regime cut - cannot
 force the step between them. A proof of the window statement needs something outside that list.
+
+
+## The analytic route, and why it does not shorten the path (2026-09-18, round 72)
+
+Loosening the target from a proof by construction to an analytic proof does not help, for a
+reason independent of the machine: the parity barrier blocks 2 even under the strongest
+distribution hypotheses, so no sieve proves the twin window statement. The weakened statement
+that known methods do support - a Chen pair in every window, a prime p in (q, q^2] with p + 2 a
+product of at most two primes - fails for a different reason: the explicit twin-half bound
+(1.205 C_2 x / (log x)^2, Bordignon-Starichkova 2024) carries no computable threshold, and the
+explicit thresholds that do exist, on the Goldbach half, begin at exp(exp(32.7)) while our
+certificate reaches 2.76 x 10^32.
+
+The kernel now holds the bridge these bounds would need: `exists_in_window_of_count` and
+`chen_window_of_count` (proofs/WindowFromCount.lean) turn a count at q^2 exceeding the count at q
+into a window statement, for any decidable property. The analytic input is the hypothesis; the
+window shape costs nothing.
