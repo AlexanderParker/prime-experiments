@@ -1302,3 +1302,64 @@ when 7u_h = 5u_h' ... modulo different moduli, which is where the covering lives
 that decides the open statement is whether the map h -> u_h can be shown to leave a k uncovered,
 and the units u_h are the inverses of 360 modulo each gear - a fixed object, the same for every
 machine, growing only by adding gears.
+
+### 67. Correction: the family's members, and the teeth law that follows (loop, 2026-09-17)
+
+Entry 66 is wrong and this entry replaces it. It read the landing -1 + 12 g k d as a COLUMN and
+so wrote the members as 72 g k - 7 and 72 g k - 5. The landing is a MEMBER, not a column: the
+flip about the mirror {2, 3, ...g} sends the home pair (-1, +1) to
+
+    (12 g k d - 1,  12 g k d + 1),     column m = 2 g k d.
+
+(Entry 64's script used exactly this - x = -1 + 12 g k d with the pair (x, x + 2) - so entry 64
+stands. It was entry 66's two new scripts that took the wrong form.) The wrong form is not just
+mislabelled, it is degenerate: with g = 5 its member 72 g k - 5 is always divisible by 5, and
+with g = 7 its member 72 g k - 7 is always divisible by 7, so the mirrors {2,3,5} and {2,3,7}
+could never have produced a twin. Entry 66's scripts hid this by skipping every gear dividing
+the stride, which is right for the true family and wrong for that one. All of entry 66's mirror
+comparison numbers are therefore void.
+
+The teeth law on the true family, proved and measured (0 mismatches against division at
+q = 1000 and 5000, all gears, k = 1..80):
+
+  * a gear dividing the stride 12 g never strikes at all - it would have to divide 1;
+  * every other gear h strikes at exactly two periods, k = v and k = -v modulo h, where v is the
+    inverse of 12 g modulo h.
+
+So the teeth are a SYMMETRIC pair about k = 0, and k = 0 is home. That is the mirror's carrying
+property read on the candidate line: the mirror's own gears are open along the whole family, and
+every other gear places its two teeth as mirror images about home. Kernel: `oneFlip` corrected
+to 2 g k d, `oneFlip_members`, `strike_iff_scaled`, `oneflip_teeth`, `mirror_gear_never_strikes`
+[proofs/OneFlipLocator.lean, round 62, 0 sorries, axioms propext / Classical.choice / Quot.sound].
+
+The mirror comparison redone (research/stack/r8/oneflip_symmetric_teeth.py), open columns within
+K = (ln q)^3 periods:
+
+     q      {2,3}   {2,3,5}   {2,3,7}   {2,3,11}   first gear > sqrt q
+    251      21       32        22         21          16
+   1009      35       48        38         31          24
+   5003      22       69        55         47          31
+  20011       0       72        67         59          41
+
+{2, 3, 5} wins at every machine. {2, 3} collapses at q = 10007 and beyond for a different
+reason - its window starts at k = q / 12, already past K, so the family has no candidate in
+range at all. Every machine from 11 to 20011 has an open column with {2, 3, 5}; the fewest is 1
+(at q = 11), and the first open period sits 0 to 27 past the window's start, mean 4.7.
+
+How far the periods must run, measured to two million (mirror {2, 3, 5}, stride 60):
+
+        q      window starts at k     first open period past it     open of the first 400
+     1009              17                        0                          58
+    20011             334                       10                          43
+   100003            1667                       13                          43
+   500009            8334                       34                          33
+  2000003           33334                        8                          23
+
+So the period bound is not polylog: it is the window's own start, k = q / 60, plus an offset
+measured at 0 to 34 over that whole range. The candidates before the start are below q and are
+not in the window; the walk must simply begin where the window begins.
+
+What this changes in the statement: the family is now the columns 2 g k d with the mirror
+{2, 3, 5}, periods from the window's start, and the open count grows with q instead of thinning.
+What it does not change: the hypothesis is still that one of them is open, and that is still the
+window statement on one progression.

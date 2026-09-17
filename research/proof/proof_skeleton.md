@@ -149,7 +149,7 @@ Sixty-four rounds of walk construction (research/proof/loop_algorithms.md) ended
 form available.  Every walk of more than one step spends room in the window on the mirrors it
 carries, and the trade is exact: candidates spaced 2M apart inside a window of length q^2 - q
 number at most (q^2 - q) / (2M), so carried gears and candidates divide the same window
-(`mirror_times_candidates`, round 56).  Measured directly (round 63): at the last step of the
+(`mirror_times_candidates`, round 56).  Measured directly (entry 63): at the last step of the
 settle walk the open candidates number 4.92 with the full proved prefix and 7.31 with no prefix
 at all when the stride is chosen from eight; the prefix costs more than it gives, because the
 gears above the cut still strike 22.5 of 75.8 candidates at the handover.  So the construction
@@ -157,10 +157,12 @@ is one flip.
 
 ## 15. The one-flip locator. STATED, one hypothesis
 
-From home (-1, 1), open to every gear, flip about the mirror {2, 3, g} with period k in either
-direction.  The landing is the column
+From home (-1, +1), open to every gear, flip about the mirror {2, 3, ...g} with period k in
+either direction.  The flip sends the home pair to
 
-    -1 + 12 g k d,   k = 1..K,   d = +1 or -1.
+    (12 g k d - 1,  12 g k d + 1),   column m = 2 g k d,   k = 1..K,   d = +1 or -1,
+
+and carries the phases of exactly the gears dividing the mirror.
 
 `OneFlipOpen G g K P` says one of those columns lies in the window (q, q^2] and is struck by no
 gear of G.  With G holding every prime from 5 below P:
@@ -168,28 +170,35 @@ gear of G.  With G holding every prime from 5 below P:
     OneFlipOpen  =>  a twin prime pair inside (q, q^2]        `oneflip_twin`
     OneFlipOpen for every machine  =>  the window statement   `window_statement_of_oneflip`
 
-[proofs/OneFlipLocator.lean, round 60; 0 sorries, axioms propext / Classical.choice / Quot.sound]
+[proofs/OneFlipLocator.lean, rounds 60-62; 0 sorries, axioms propext / Classical.choice /
+Quot.sound]
 
-The choices are fixed, not searched: the mirror is the smallest one that fits, g = 5 (stride
-360), and K = (ln q)^3.  MEASURED (oneflip_margin.py, oneflip_classes.py, oneflip_small_mirror.py):
-the family holds 25 to 58 open columns at every machine from 19 to 20011, the first at a period
-between 6 and 289.  Two things decide it.  The candidate count must grow: with a fixed K = 40 the
-margin thins (23 open at q = 1000, 15 at q = 20000), and the arrangement of the candidates does
-not matter beyond their number.  The mirror must be small: over every admissible mirror at
-q = 5000 the open columns run from 55 (g = 5) down to 0 (g = 2843), mean 8.3, and the mirror at
-the first gear above sqrt(q) leaves none at q = 101 and about half as many as g = 5 at every
-larger machine.  A larger mirror carries more gear phases but spaces the candidates further
-apart, which is the trade again, read on the mirror instead of the walk.
+The teeth law says how rigid the family is, and it is proved:
 
-The teeth law makes the family rigid.  Its members are 72 g k - 7 and 72 g k - 5, so a gear h
-that inverts the stride at u strikes exactly at k = 7u and k = 5u modulo h: every gear's two
-teeth are the fixed pair (7, 5), scaled by that gear's own unit, and nothing else enters.
-PROVED: `strike_iff_scaled`, `oneflip_teeth`, `oneflip_members`
-[proofs/OneFlipLocator.lean, round 61].
+  * a gear dividing the mirror never strikes the family at all - it would have to divide 1
+    (`mirror_gear_never_strikes`);
+  * every other gear h strikes at exactly two periods, k = v and k = -v modulo h, where v
+    inverts the stride 12 g (`oneflip_teeth`, from `strike_iff_scaled`): a symmetric pair about
+    k = 0, which is home itself;
+  * the members of the column are the stride's multiple either side of 1 (`oneFlip_members`).
 
-Part III's locator (11) is the same shape with the mirror {2, 3} or {2, 3, 5} and the period
-chosen by the residues; the form stated here takes the larger mirror {2, 3, g} and lets the
-period run over a fixed range, so the family is explicit and finite without a residue search.
+The choices are fixed, not searched: the mirror is the smallest one that fits, {2, 3, 5}
+(stride 60), and the periods are those of the window's own start, k about q / 60, plus a small
+offset.  MEASURED (research/stack/r8/oneflip_symmetric_teeth.py, round 62):
+
+  * mirror choice, open columns at K = (ln q)^3, q = 20011: 72 for {2, 3, 5}, 67 for {2, 3, 7},
+    59 for {2, 3, 11}, 41 for the mirror at the first gear above sqrt(q), 0 for {2, 3} (whose
+    window start, k = q / 12, is already past K).  {2, 3, 5} is the best at every machine tested.
+    A larger mirror carries more gear phases but spaces its candidates further apart, so they
+    land past the twins: the trade lemma read on the mirror instead of the walk.
+  * margin: 22 to 72 open columns at every machine 11 to 20011, none without one.
+  * periods needed: the first open period sits 0 to 34 past the window's start at every machine
+    measured to 2000003 (at q = 2000003 the start is k = 33334 and the first open period is
+    k = 33342), and 23 to 58 of the first 400 periods are open.
+
+Part III's locator (11) is the same family with the period chosen by a residue rule; the form
+stated here fixes the mirror and lets the period run over a range, so the family is explicit and
+finite without a residue search.
 
 ## 16. The settle walk: what it proved, kept as a recorded result
 
@@ -222,14 +231,14 @@ modulus 12 g.  Nothing in the sixty-four rounds removed it, and the trade above 
 in the window buys either carried gears or candidates, never both.  The general step form
 `StepOpen G c s K P` (any column c, any stride s) is the same statement for a walk of any shape
 and gives the same conclusion: `walk_twin_of_stepOpen`
-[proofs/MirrorWalkConditional.lean, round 58].  `oneflip_twin` is its instance at c = -1,
-s = 12 g d.
+[proofs/MirrorWalkConditional.lean, round 58].  `oneflip_twin` is its instance at the column
+2 g k d, that is the progression of columns of stride 2 g d through home.
 
 # Part V. Standing
 
 - PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), the implications of 15 and 17 (kernel names given).
 - EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14, the trade of Part IV b.
-- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15 to 20000; the settle walk of 16 to 2000.
+- MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15 to 20011 (margin) and to 2000003 (periods needed); the settle walk of 16 to 2000.
 - OPEN: 13, and equivalently OneFlipOpen of 15 (StepOpen of 17 in its general form). The
   construction is one flip from home; everything around that flip is proved, and the one thing
   left is that some column of an explicit finite family is open.

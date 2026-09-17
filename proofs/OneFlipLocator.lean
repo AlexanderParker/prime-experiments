@@ -1,31 +1,35 @@
 /-
-OneFlipLocator (round 60, 2026-09-17): the construction in its final form.
+OneFlipLocator (rounds 60-62, 2026-09-17): the construction in its final form.
 
-Sixty-four rounds of search over walks ended where they began: the best construction is one
-flip from home.  From the open pair `(-1, 1)`, flipping about the mirror `{2, 3, g}` with `k`
-periods in either direction lands on the column `-1 + 12 g k d`; the machine's own gears decide
-whether that column is open, and the square-root rule turns an open column below `q²` into a
-twin prime pair.
+Sixty-odd rounds of search over walks ended where they began: the best construction is one flip
+from home.  The flip about the mirror `{2, 3, …g}` with `k` periods sends the home pair
+`(-1, +1)` to
 
-  `OneFlipOpen G g K P`: some column `-1 + 12 g k d`, `k = 1 … K`, `d = ±1`, lies in the window
+    (12 g k d - 1,  12 g k d + 1),      column `m = 2 g k d`,   `d = ±1`,
+
+which carries the phases of exactly the gears dividing the mirror; the machine's own gears
+decide whether that column is open, and the square-root rule turns an open column below `q²`
+into a twin prime pair.
+
+  `OneFlipOpen G g K P`: some column `2 g k d`, `k = 1 … K`, `d = ±1`, lies in the window
   `(P, P²]` and is struck by no gear of `G`.
 
   `oneflip_twin`: with `G` holding every prime from 5 below `P`, `OneFlipOpen` gives a twin
   prime pair in the window.
 
-The mirror that works is the smallest one that fits the window: `g = 5`, stride `360`
-(research/stack/r8/oneflip_classes.py, oneflip_small_mirror.py, round 61).  Over every
-admissible mirror at `q = 5000` the open columns run from 55 (at `g = 5`) down to 0 (at
-`g = 2843`), mean 8.3; the mirror at the first gear above `√q` leaves none at `q = 101` and
-half as many as `g = 5` at every larger machine tested.  With `g = 5` and `K = (ln q)³` the
-family holds 25 to 58 open columns at every machine from 19 to 20011, and the only machines
-with no candidate at all are `q = 11, 13, 17`, where the stride 360 does not fit below `q²`
-(the mirror `{2, 3}`, stride 72, covers those down to `q = 13`).
+The teeth law below says how rigid the family is.  A gear dividing the mirror never strikes it
+at all (`mirror_gear_never_strikes`): it would have to divide 1.  Every other gear `h` strikes
+at exactly two periods, `k ≡ v` and `k ≡ -v` modulo `h`, where `v` inverts the stride `12 g`
+(`oneflip_teeth`) - a symmetric pair about `k = 0`, which is home itself.
 
-The teeth law below says why the family is rigid: on it every gear's two striking classes are
-the fixed pair `(7, 5)` scaled by that gear's own inverse of the stride.  Everything else the
-search produced - spirals, descents, settle walks with proved prefixes - performs worse for the
-same room in the window (the trade lemma, `mirror_times_candidates`).
+Measured (research/stack/r8/oneflip_symmetric_teeth.py, round 62).  The mirror to use is the
+smallest one that fits, `{2, 3, 5}` (stride 60): it leaves the most open columns at every
+machine tested (72 of 638 at `q = 20011`, against 41 for the mirror at the first gear above
+`√q`), and no machine from 11 to 20011 is without one.  A larger mirror carries more gear
+phases but spaces its candidates further apart, so they land past the twins - the trade lemma
+(`mirror_times_candidates`) read on the mirror instead of the walk.  The periods needed are
+those of the window's own start, `k ≈ q / 60`, plus a small offset: the first open period sits
+0 to 34 past the start at every machine measured to 2000003.
 -/
 import MirrorWalkConditional
 
@@ -33,8 +37,14 @@ namespace MirrorWalk
 
 open SquareColumn
 
-/-- The columns a single flip about `{2, 3, g}` can reach from home. -/
-def oneFlip (g : ℤ) (k : ℕ) (d : ℤ) : ℤ := -1 + 12 * g * k * d
+/-- The column a single flip about `{2, 3, …g}` reaches from home in `k` periods: the flip sends
+the pair `(-1, +1)` to `(12 g k d - 1, 12 g k d + 1)`, whose column is `2 g k d`. -/
+def oneFlip (g : ℤ) (k : ℕ) (d : ℤ) : ℤ := 2 * g * k * d
+
+/-- The members of that column are the stride's multiple either side of 1. -/
+theorem oneFlip_members (g : ℤ) (k : ℕ) (d : ℤ) :
+    6 * oneFlip g k d - 1 = 12 * g * k * d - 1 ∧ 6 * oneFlip g k d + 1 = 12 * g * k * d + 1 := by
+  unfold oneFlip; constructor <;> ring
 
 /-- **The one-flip hypothesis.**  Some column of the family is a column of the window that no
 gear of `G` strikes. -/
@@ -68,8 +78,8 @@ theorem window_statement_of_oneflip
   obtain ⟨G, g, K, hfull, hopen⟩ := H P hP h5
   exact oneflip_twin hfull hopen
 
-/-- **The teeth of a gear on the one-flip family.**  With `u` an inverse of the stride `s`
-modulo `h`, the gear `h` divides `s * k - c` exactly when `k ≡ c * u`. -/
+/-- **A gear striking a scaled line.**  With `u` an inverse of the stride `s` modulo `h`, the
+gear `h` divides `s * k - c` exactly when `k ≡ c * u`. -/
 theorem strike_iff_scaled {h : ℕ} {s u c k : ℤ} (hu : s * u ≡ 1 [ZMOD h]) :
     (h : ℤ) ∣ s * k - c ↔ k ≡ c * u [ZMOD h] := by
   constructor
@@ -91,17 +101,38 @@ theorem strike_iff_scaled {h : ℕ} {s u c k : ℤ} (hu : s * u ≡ 1 [ZMOD h]) 
         _ = c := by ring
     exact Int.ModEq.dvd (Int.ModEq.symm (h1.trans h3))
 
-/-- **Both teeth at once.**  On the family `-1 + 12 g k` the two members are `72 g k - 7` and
-`72 g k - 5`, so a gear `h` inverting the stride at `u` strikes exactly at `k ≡ 7 u` and
-`k ≡ 5 u`: every gear's teeth are the fixed pair `(7, 5)` scaled by its own unit. -/
-theorem oneflip_teeth {h : ℕ} {g u k : ℤ} (hu : (72 * g) * u ≡ 1 [ZMOD h]) :
-    ((h : ℤ) ∣ 72 * g * k - 7 ↔ k ≡ 7 * u [ZMOD h]) ∧
-    ((h : ℤ) ∣ 72 * g * k - 5 ↔ k ≡ 5 * u [ZMOD h]) :=
-  ⟨strike_iff_scaled hu, strike_iff_scaled hu⟩
+/-- **The teeth of a gear on the one-flip family.**  A gear `h` whose inverse of the stride
+`12 g` is `v` strikes the family at exactly two periods, `k ≡ v` and `k ≡ -v`: a symmetric pair
+about home. -/
+theorem oneflip_teeth {h : ℕ} {g v k : ℤ} (hv : (12 * g) * v ≡ 1 [ZMOD h]) :
+    ((h : ℤ) ∣ 12 * g * k - 1 ↔ k ≡ v [ZMOD h]) ∧
+    ((h : ℤ) ∣ 12 * g * k + 1 ↔ k ≡ -v [ZMOD h]) := by
+  constructor
+  · have := strike_iff_scaled (s := 12 * g) (u := v) (c := 1) (k := k) hv
+    simpa using this
+  · have := strike_iff_scaled (s := 12 * g) (u := v) (c := -1) (k := k) hv
+    have e : 12 * g * k - (-1) = 12 * g * k + 1 := by ring
+    rw [e] at this
+    simpa using this
 
-/-- The members of the family's column, in the form the teeth law uses. -/
-theorem oneflip_members (g : ℤ) (k : ℕ) :
-    6 * oneFlip g k 1 - 1 = 72 * g * k - 7 ∧ 6 * oneFlip g k 1 + 1 = 72 * g * k - 5 := by
-  unfold oneFlip; constructor <;> ring
+/-- **The mirror's own gears never strike.**  A gear dividing the stride misses the whole family:
+it would have to divide 1. -/
+theorem mirror_gear_never_strikes {h : ℕ} (hh : 1 < h) {s k : ℤ} (hdvd : (h : ℤ) ∣ s) :
+    ¬ (h : ℤ) ∣ s * k - 1 ∧ ¬ (h : ℤ) ∣ s * k + 1 := by
+  have hk : (h : ℤ) ∣ s * k := hdvd.mul_right k
+  have h1 : (1 : ℤ) < (h : ℤ) := by exact_mod_cast hh
+  constructor
+  · intro hd
+    have : (h : ℤ) ∣ 1 := by
+      have := hk.sub hd
+      simpa using this
+    have := Int.le_of_dvd one_pos this
+    omega
+  · intro hd
+    have : (h : ℤ) ∣ 1 := by
+      have := hd.sub hk
+      simpa using this
+    have := Int.le_of_dvd one_pos this
+    omega
 
 end MirrorWalk
