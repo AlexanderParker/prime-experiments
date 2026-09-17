@@ -1246,3 +1246,59 @@ left is that some column of the family is open. The trade lemma says why no walk
 room in the window buys either carried gears or candidates, never both - so the next line of
 attack is not another walk shape but the gears that strike the family: which gears can strike
 how many of the (ln q)^3 columns, and whether their striking classes can be shown to miss one.
+
+### 66. The teeth law on the one-flip family, and which mirror to use (loop, 2026-09-17)
+
+The family's members, written out: the column -1 + 12 g k has members 72 g k - 7 and 72 g k - 5.
+So a gear h coprime to the stride strikes the candidate k exactly when
+
+    k == 7 u  (mod h)    or    k == 5 u  (mod h),      u = (72 g)^{-1} mod h.
+
+Every gear's two teeth on the family are the SAME shape - the fixed pair (7, 5) - scaled by that
+gear's own unit. The family fixes the shape, the gear fixes the scale, nothing else enters.
+Checked against division at every gear and every k = 1..60 for q = 500 and q = 1000: 0
+mismatches. PROVED in the kernel: `strike_iff_scaled` (h divides s k - c iff k = c u, for any c),
+`oneflip_teeth` (both members at once), `oneflip_members` (the members are that form)
+[proofs/OneFlipLocator.lean round 61, 0 sorries].
+
+Which mirror. research/stack/r8/oneflip_classes.py surveyed every admissible mirror gear g:
+
+   q      best g (open)    g = first > sqrt q (open)    worst g (open)    mean over all mirrors
+   500    7  (30)          23  (8)                      97  (0)           2.66 over 93
+   1000   5  (37)          37  (17)                     271 (0)           3.61 over 166
+   2000   5  (47)          47  (19)                     719 (0)           5.41 over 301
+   5000   5  (55)          71  (24)                     2843 (0)          8.29 over 667
+
+So the mirror the previous entry proposed (first gear above sqrt q) is a poor choice, not a good
+one: it leaves 0 open columns at q = 101 and about half the margin of g = 5 everywhere larger.
+The best mirror is the smallest that fits the window. research/stack/r8/oneflip_small_mirror.py,
+open columns at K = (ln q)^3:
+
+   q       {2,3}   {2,3,5}   {2,3,7}   {2,3,11}   first > sqrt q
+   251     17      25        16        9          2
+   1009    28      37        34        28         17
+   5003    40      55        49        42         24
+   20011   44      58        59        58         36
+
+{2, 3, 5} is best or tied at every size, and the margin grows with q instead of thinning.
+
+Why a bigger mirror is worse, mechanically: it carries more gear phases (the gears dividing the
+mirror never strike) but its stride spaces the candidates further apart, so the same period count
+runs out to much larger numbers - at q = 20011 the sqrt mirror's stride 10728 puts its 971
+candidates out past 10^7 while stride 360 keeps them under 3.5 x 10^5. That is the trade lemma
+read on the mirror rather than on the walk: room in the window buys carried gears or candidates,
+never both.
+
+Failure modes, looked at individually. The three machines with no open column at g = 5 are
+q = 11, 13, 17, and the cause is not covering: their windows end at 121, 169, 289, all below the
+first candidate 353, so the family is EMPTY there - the mirror does not fit. This is exactly the
+`base_fits` condition of round 56 (4 P g <= q^2 - q - 2) failing. The mirror {2, 3} (stride 72)
+has a candidate in every window from q = 13 and an open one at every machine 13 to 20011 except
+q = 11. So the statement carries two mirrors: {2, 3} below q = 19 and {2, 3, 5} above, or simply
+q >= 19 with the small machines exhibited outright.
+
+Next: the teeth law says the striking classes are 7u and 5u. Two gears strike the same candidate
+when 7u_h = 5u_h' ... modulo different moduli, which is where the covering lives. The question
+that decides the open statement is whether the map h -> u_h can be shown to leave a k uncovered,
+and the units u_h are the inverses of 360 modulo each gear - a fixed object, the same for every
+machine, growing only by adding gears.

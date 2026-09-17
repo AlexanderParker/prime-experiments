@@ -1,0 +1,34 @@
+law check: classes (7u, 5u) mod h against division
+  q =   500  g =   23  K = 60   mismatches: 0
+  q =  1000  g =   37  K = 60   mismatches: 0
+
+open candidates by choice of mirror gear g (K = (ln q)^3, d = +1)
+   q     g       role        span  open  first  strikers  struck-once
+  500      5  smallest          239    29     10        86           45
+  500     43  low                80     7      3        66           16
+  500     23  first > sqrt q    150     8      6        77           35
+  500    227  median             15     0   None        24            3
+  500    499  largest (q)         6     0   None        10            3
+       best g = 7 with 30 open; worst g = 97 with 0 open; mean 2.66 over 93 mirrors
+
+ 1000      5  smallest          327    37     17       135           52
+ 1000     83  low               167     7      3       106           36
+ 1000     37  first > sqrt q    329    17      1       133           63
+ 1000    443  median             31     2      9        38            6
+ 1000    997  largest (q)        13     1      6        25            0
+       best g = 5 with 37 open; worst g = 271 with 0 open; mean 3.61 over 166 mirrors
+
+ 2000      5  smallest          434    47     29       222           51
+ 2000    173  low               321    15      3       202           59
+ 2000     47  first > sqrt q    439    19      2       221           79
+ 2000    883  median             62     4      9        75            8
+ 2000   1999  largest (q)        27     2      2        45            4
+       best g = 5 with 47 open; worst g = 719 with 0 open; mean 5.41 over 301 mirrors
+
+ 5000      5  smallest          604    55     75       374           54
+ 5000    443  low               617    27      9       366           89
+ 5000     71  first > sqrt q    617    24      3       392           96
+ 5000   2267  median            153     6     12       151           20
+ 5000   4999  largest (q)        69     1      3        89           12
+       best g = 5 with 55 open; worst g = 2843 with 0 open; mean 8.29 over 667 mirrors
+

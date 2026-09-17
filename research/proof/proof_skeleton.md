@@ -170,12 +170,22 @@ gear of G.  With G holding every prime from 5 below P:
 
 [proofs/OneFlipLocator.lean, round 60; 0 sorries, axioms propext / Classical.choice / Quot.sound]
 
-The choices that make it work are fixed, not searched: g is the first gear above sqrt(q), and
-K = (ln q)^3.  MEASURED (research/stack/r8/oneflip_margin.py): the family holds thirty to fifty
-open columns at every machine to 20000, the first at a period between 10 and 19.  The margin
-follows the candidate count and not the arrangement of the family: one stride with (ln q)^3
-periods does as well as eight strides with (ln q)^2, and a fixed count (K = 40) thins with q
-(23 open at q = 1000, 15 at q = 20000).
+The choices are fixed, not searched: the mirror is the smallest one that fits, g = 5 (stride
+360), and K = (ln q)^3.  MEASURED (oneflip_margin.py, oneflip_classes.py, oneflip_small_mirror.py):
+the family holds 25 to 58 open columns at every machine from 19 to 20011, the first at a period
+between 6 and 289.  Two things decide it.  The candidate count must grow: with a fixed K = 40 the
+margin thins (23 open at q = 1000, 15 at q = 20000), and the arrangement of the candidates does
+not matter beyond their number.  The mirror must be small: over every admissible mirror at
+q = 5000 the open columns run from 55 (g = 5) down to 0 (g = 2843), mean 8.3, and the mirror at
+the first gear above sqrt(q) leaves none at q = 101 and about half as many as g = 5 at every
+larger machine.  A larger mirror carries more gear phases but spaces the candidates further
+apart, which is the trade again, read on the mirror instead of the walk.
+
+The teeth law makes the family rigid.  Its members are 72 g k - 7 and 72 g k - 5, so a gear h
+that inverts the stride at u strikes exactly at k = 7u and k = 5u modulo h: every gear's two
+teeth are the fixed pair (7, 5), scaled by that gear's own unit, and nothing else enters.
+PROVED: `strike_iff_scaled`, `oneflip_teeth`, `oneflip_members`
+[proofs/OneFlipLocator.lean, round 61].
 
 Part III's locator (11) is the same shape with the mirror {2, 3} or {2, 3, 5} and the period
 chosen by the residues; the form stated here takes the larger mirror {2, 3, g} and lets the
