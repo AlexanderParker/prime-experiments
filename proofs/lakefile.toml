@@ -2304,3 +2304,6 @@ name = "MirrorWalkChain"
 
 [[lean_lib]]
 name = "MirrorWalkCarry"
+
+[[lean_lib]]
+name = "MirrorWalkCertificate"

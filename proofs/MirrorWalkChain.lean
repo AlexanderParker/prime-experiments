@@ -83,4 +83,48 @@ theorem window_statement_of_chain {t : ℕ → ℕ}
   · have := (htwin n).1; rwa [hm] at this
   · have := (htwin n).2; rwa [hm] at this
 
+/-- **A finite chain covers a bounded range of machines.**  With the chain condition holding for
+the first `N` steps, every machine from the first landing up to the last has a landing inside its
+window.  This is what makes a certificate possible: a handful of landings settles every machine
+below the last one. -/
+theorem chain_covers_upto {t : ℕ → ℕ} {N : ℕ}
+    (hchain : ∀ n < N, t (n + 1) + 1 < (t n - 1) ^ 2)
+    {q : ℕ} (hlo : t 0 - 1 ≤ q) (hhi : q < t N - 1) :
+    ∃ n, n ≤ N ∧ q < t n - 1 ∧ t n + 1 ≤ q ^ 2 := by
+  classical
+  have hex : ∃ n, q < t n - 1 := ⟨N, hhi⟩
+  set L := Nat.find hex with hL
+  have hLspec : q < t L - 1 := Nat.find_spec hex
+  have hLN : L ≤ N := Nat.find_min' hex hhi
+  have hLpos : L ≠ 0 := by
+    intro h
+    rw [h] at hLspec
+    omega
+  obtain ⟨m, hm⟩ : ∃ m, L = m + 1 := ⟨L - 1, by omega⟩
+  have hprev : ¬ (q < t m - 1) := Nat.find_min hex (by omega)
+  have hle : t m - 1 ≤ q := by omega
+  have hsq : (t m - 1) ^ 2 ≤ q ^ 2 := Nat.pow_le_pow_left hle 2
+  have hstep : t L + 1 < (t m - 1) ^ 2 := by
+    rw [hm]; exact hchain m (by omega)
+  exact ⟨L, hLN, hLspec, by omega⟩
+
+/-- **The window statement over a bounded range, from a finite chain.**  Given `N + 1` landings,
+each a twin pair on a column and each below the square of the one before, every machine from the
+first landing to the last has a twin pair inside its window. -/
+theorem window_statement_upto {t : ℕ → ℕ} {N : ℕ}
+    (hchain : ∀ n < N, t (n + 1) + 1 < (t n - 1) ^ 2)
+    (hsix : ∀ n, n ≤ N → 6 ∣ t n) (h6 : ∀ n, n ≤ N → 6 ≤ t n)
+    (htwin : ∀ n, n ≤ N → TwinCenter (t n))
+    {q : ℕ} (hlo : t 0 - 1 ≤ q) (hhi : q < t N - 1) :
+    ∃ m : ℕ, 1 ≤ m ∧ q < 6 * m - 1 ∧ 6 * m + 1 ≤ q ^ 2 ∧
+      (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
+  obtain ⟨n, hnN, hlo', hhi'⟩ := chain_covers_upto hchain hlo hhi
+  obtain ⟨m, hm⟩ := hsix n hnN
+  refine ⟨m, ?_, ?_, ?_, ?_, ?_⟩
+  · have := h6 n hnN; omega
+  · omega
+  · omega
+  · have := (htwin n hnN).1; rwa [hm] at this
+  · have := (htwin n hnN).2; rwa [hm] at this
+
 end MirrorWalk

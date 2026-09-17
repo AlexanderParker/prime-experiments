@@ -1,0 +1,13 @@
+the greedy chain: each landing the largest twin centre below the square of the last
+   n              landing t   digits   steps of 6 below the square   covers machines up to   mirror reaching it
+   1                    108       3                            2                    107   6
+   2                  11352       5                           16                  11351   2838
+   3            1.28845e+08       9                           15            1.28845e+08   6.44226e+07
+   4            1.66011e+16      17                           33            1.66011e+16   8.30053e+15
+   5            2.75595e+32      33                          165            2.75595e+32   (not factored)
+   6            7.59527e+64      65                         2248            7.59527e+64   (not factored)
+   7           5.76882e+129     130                          462           5.76882e+129   (not factored)
+   8           3.32793e+259     260                        49508           3.32793e+259   (not factored)
+
+chain condition holds at every link: True
+9 landings settle every machine from 11 to 10^259

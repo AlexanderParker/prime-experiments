@@ -1472,3 +1472,44 @@ of it - one landing serves every machine from its square root up to itself, so t
 needs a landing per primorial, each with an allowance growing like the square of the one before.
 The wall says the landing cannot be forced by carrying; the chain says it does not have to be
 forced often.
+
+### 70. The certificate: the window statement proved below 1.29 x 10^8 (loop, 2026-09-17)
+
+The chain of entry 68 has a consequence worth taking: each link roughly squares the range
+covered, so the number of landings needed to settle every machine below X grows like log log X.
+Taking each link as large as the chain condition allows - the largest twin centre below the
+square of the one before (research/stack/r8/chain_certificate.py):
+
+     n   landing                    steps of 6 below the square   covers machines up to
+     1   108                                  2                   107
+     2   11352                               16                   11351
+     3   128845110                           15                   1.28845e8
+     4   1.66011e16                          33                   1.66011e16
+     5   2.75595e32                         165                   2.75595e32
+     6   7.59527e64                        2248                   7.59527e64
+     7   5.76882e129                        462                   5.76882e129
+     8   3.32793e259                      49508                   3.32793e259
+
+Nine landings (with the start 12) settle every machine from 11 to 10^259. Each was found within
+a few hundred columns of the square - the deepest search was 49508 columns at the last link.
+
+The first four are now in the kernel. `window_statement_below`
+[proofs/MirrorWalkCertificate.lean, round 65, 0 sorries, axioms propext / Classical.choice /
+Quot.sound] proves with no hypotheses:
+
+    every machine q with 11 <= q <= 128845108 has a twin prime pair inside its window (q, q^2].
+
+Supporting kernel pieces added this round: `chain_covers_upto` (a finite chain covers a bounded
+range of machines) and `window_statement_upto` (the same with the twin property attached)
+[proofs/MirrorWalkChain.lean].
+
+Each link is a one-flip landing: t = 2 M k is the flip from home about the mirror of product M at
+period k, so 108 = 2 x 6 x 9 is the mirror {2,3} at period 9, and 11352 = 2 x 2838 x 2 the mirror
+of product 2838 at period 2.
+
+What this is and is not. It is the first unconditional window-statement result in the kernel: a
+range of machines settled outright, by construction rather than by checking each machine. It is
+not progress on the open statement, which is about all machines; the certificate's length grows
+like log log X, so no finite certificate closes it. What it does close is the verification
+question - "does the construction actually work" - for every machine below 1.29 x 10^8 in the
+kernel and below 10^259 on paper.

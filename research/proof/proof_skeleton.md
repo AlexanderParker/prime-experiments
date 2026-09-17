@@ -273,9 +273,32 @@ content as before - it still asserts twins exist - but it is one statement per p
 of one per machine, each with an allowance that grows like the square, and the mirror switches
 off every gear up to B by construction.
 
+## 19. The certificate: the window statement below 1.29 x 10^8, unconditionally. PROVED
+
+The chain makes verification cheap, because each link roughly squares the range covered. Taking
+each landing as large as the chain condition allows - the largest twin centre below the square of
+the one before - gives
+
+    12,  108,  11352,  128845110,  2.76 x 10^32,  7.60 x 10^64,  5.77 x 10^129,  3.33 x 10^259
+
+and the chain condition holds at every step (research/stack/r8/chain_certificate.py). Nine
+landings settle every machine from 11 to 10^259; the number of landings needed to settle
+everything below X grows like log log X.
+
+The first four are in the kernel. `window_statement_below` [proofs/MirrorWalkCertificate.lean,
+round 65; 0 sorries, axioms propext / Classical.choice / Quot.sound] proves, with no hypotheses:
+
+    every machine q with 11 <= q <= 128845108 has a twin prime pair inside (q, q^2].
+
+Each link is a landing of the one-flip family, since t = 2 M k is the flip from home about the
+mirror of product M at period k: 108 = 2 x 6 x 9 is the mirror {2, 3} at period 9, and
+11352 = 2 x 2838 x 2 the mirror of product 2838 at period 2. The kernel pieces are
+`chain_covers_upto` (a finite chain covers a bounded range) and `window_statement_upto` (the same
+with the twin property attached).
+
 # Part V. Standing
 
-- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), 18, the implications of 15 and 17 (kernel names given).
+- PROVED: 1, 2, 3, 4, 6, 7, 8, 9, 10, 16(a), 16(b), 18, 19, the carry wall of the wall map, the implications of 15 and 17 (kernel names given).
 - EXACT: 5, the lemma and the strike law of 12, the blind-gear laws (locator.md), the field facts of 14, the trade of Part IV b.
 - MEASURED: 11 to 20000; 12 to 20000; 13 to 3001; L(q) of 14 to 20000; 15 to 20011 (margin) and to 2000003 (periods needed); the settle walk of 16 to 2000.
 - OPEN: 13, and equivalently OneFlipOpen of 15 (StepOpen of 17 in its general form, and the
