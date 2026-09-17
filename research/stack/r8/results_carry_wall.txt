@@ -1,0 +1,22 @@
+largest primorial mirror that fits the window, and what is left to dodge
+      q   gears  mirror B  carried  log2(q^2)  periods afforded  uncarried  free regime needs
+    1009     169        13        6         19                16        163  gears above 326 (have 17)
+    5003     670        19        8         24                 1        662  gears above 1324 (have 23)
+   20011    2263        19        8         28                20       2255  gears above 4510 (have 23)
+  100003    9593        23        9         33                22       9584  gears above 19168 (have 29)
+ 1000003   78499        31       11         39                 2      78488  gears above 156976 (have 37)
+10000019  664580        37       12         46                 6     664568  gears above 1329136 (have 41)
+
+the same trade at every primorial, q = 1000003
+    B   carried   uncarried   mirror product 2M      periods afforded   free regime needs gears above
+    2         1       78498                     4       250,001,250,001      156996
+    3         2       78497                    12        83,333,750,000      156994
+    5         3       78496                    60        16,666,750,000      156992
+    7         4       78495                   420         2,380,964,285      156990
+   11         5       78494                  4620           216,451,298      156988
+   13         6       78493                 60060            16,650,099      156986
+   17         7       78492           1.02102e+06               979,417      156984
+   19         8       78491           1.93994e+07                51,548      156982
+   23         9       78490           4.46186e+08                 2,241      156980
+   29        10       78489           1.29394e+10                    77      156978
+   31        11       78488           4.01121e+11                     2      156976

@@ -552,3 +552,20 @@ cover; the fold's sign n mod 3 is sieve-visible; the invisible part of Liouville
 of class +1 factors. The wall for 8 in one sentence, revised: the line is complete and the
 sieve's input cannot see completeness at the origin; a proof needs completeness used at phase
 zero in a way that is neither a free-phase cover nor a count.
+
+
+## The carry wall (2026-09-17, round 64)
+
+The mirror is the only mechanism that switches a gear off, and the window bounds it exactly. A
+landing at 2 M k inside (q, q^2] forces 2 M <= q^2, so a mirror carries at most log2(q^2) gears
+(`carried_le_log`, `mirror_in_window_carries_le`), and all the rest stay live (`uncarried_card`)
+[proofs/MirrorWalkCarry.lean]. Measured at q = 1000003: 78499 gears, at most 11 carried, and the
+free regime of `keeping_move_free` would need the uncarried gears to start above 156976 when they
+start at 37. Each gear carried divides the periods the window affords by that gear and removes
+exactly one gear from the dodge list - a logarithmic gain at a geometric price. This is the edge
+that every walk construction of rounds 40 to 63 ran into, in its exact form.
+
+What the wall does not block: the chain (`chain_covers`, proofs/MirrorWalkChain.lean). A landing
+serves every machine from its square root up to itself, so the construction needs one landing per
+primorial rather than one per machine, and the allowance for each grows like the square of the
+one before.

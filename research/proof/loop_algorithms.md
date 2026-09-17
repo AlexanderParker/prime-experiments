@@ -1423,3 +1423,52 @@ square of the link before.
 What it does not change: this is still an existence statement about twins, so it is not a proof.
 It is a restructuring of the target from one statement per machine to one per primorial, with the
 freedom in each link growing without bound.
+
+### 69. The carry wall, proved and measured (loop, 2026-09-17)
+
+The mirror is the only thing that switches a gear off, and the window says how many it can
+switch off. A landing at 2 M k inside (q, q^2] forces 2 M <= q^2, and every gear is at least 2,
+so the carried gears number at most log2(q^2). PROVED: `two_pow_card_le`, `carried_le_log`,
+`mirror_in_window_carries_le`, `uncarried_card`
+[proofs/MirrorWalkCarry.lean, round 64, 0 sorries, axioms propext / Classical.choice /
+Quot.sound]. `uncarried_card` is the other half: of the machine's gears all but at most
+log2(q^2) stay live, and those are exactly the ones the period has to dodge.
+
+Measured on the real gear sets (research/stack/r8/carry_wall.py), largest primorial mirror that
+fits the window:
+
+         q      gears   mirror to B   carried   periods afforded   uncarried   free regime needs
+      1009        169        13           6                 16         163     gears above 326
+      5003        670        19           8                  1         662     gears above 1324
+     20011       2263        19           8                 20        2255     gears above 4510
+    100003       9593        23           9                 22        9584     gears above 19168
+   1000003      78499        31          11                  2       78488     gears above 156976
+  10000019     664580        37          12                  6      664568     gears above 1329136
+
+The smallest uncarried gear in each row is the next prime after B: 17, 23, 23, 29, 37, 41. The
+free regime of `keeping_move_free` needs every uncarried gear above twice their number, so at
+q = 1000003 it needs them above 156976 and they start at 37 - a factor of four thousand, and
+growing.
+
+The trade in one machine, q = 1000003, every primorial mirror:
+
+      B    carried   uncarried   periods the window affords
+      2        1       78498        250,001,250,001
+      7        4       78495          2,380,964,285
+     13        6       78493             16,650,099
+     19        8       78491                 51,548
+     23        9       78490                  2,241
+     29       10       78489                     77
+     31       11       78488                      2
+
+Each gear carried divides the periods by that gear and removes exactly one gear from the dodge
+list. That is why no mirror choice can reach the free regime: the mirror buys gears
+logarithmically and the window pays for them geometrically. The sixty-odd rounds of walks were
+all paying that same price in different arrangements, and the wall is now a kernel statement
+rather than a series of measurements.
+
+What survives: the chain of entry 68 does not fight this wall, it sidesteps the per-machine form
+of it - one landing serves every machine from its square root up to itself, so the construction
+needs a landing per primorial, each with an allowance growing like the square of the one before.
+The wall says the landing cannot be forced by carrying; the chain says it does not have to be
+forced often.

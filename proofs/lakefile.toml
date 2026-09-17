@@ -2301,3 +2301,6 @@ name = "OneFlipLocator"
 
 [[lean_lib]]
 name = "MirrorWalkChain"
+
+[[lean_lib]]
+name = "MirrorWalkCarry"
