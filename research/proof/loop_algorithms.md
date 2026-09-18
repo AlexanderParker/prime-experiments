@@ -3581,3 +3581,35 @@ g' - g < (q^2 - p^2) / r.
 **Standing against the target.** FACT. The plug-run law is entry 107's run law read on the
 base-open subsequence: K(p) polylog against nb of exponent 1. Its clustering is a mechanism
 question about the top layer, open.
+
+### 116. Correction to 115, and the independence law of the two layers (loop, 2026-09-19)
+
+**Correction.** Entry 115 read the record plug run K = 32 at p = 5717 against 2 ln(nb) + 4 for
+its own stretch and called the plugs clustered. Wrong comparison: the record is the extreme over
+the WHOLE sample, 4,266,465 base-open columns across 2,259 stretches, and the independent
+expectation for the longest run of a 0.6463-rate process over that many trials is
+ln(N) / ln(1 / 0.6463) = 35.0. The measured 32 is BELOW it. There is no clustering; the claim
+is withdrawn. (The double plugs by one gear at both its teeth - 509 x 12239 and 509 x 12241,
+263 x 23687 and 263 x 23689 at p = 2477 - are the cofactor column (r, r + 2) of the lower level,
+the self-feeding correspondence of research/proof/self_feeding.md, known.)
+
+**The independence law (research/stack/r8/plug_rate_by_neighbour.py, every prime 7..20,000).**
+The top layer's plug rate on a base-open column, bucketed by the base pattern around it:
+  * by distance to the previous base-open column, d = 1..11 and >= 12 (n from 96,194 to
+    2,159,721 per bucket): every bucket within 1.5 sigma of the global 0.6463;
+  * by the base strikes on the two neighbouring columns, all 13 realised patterns of
+    (left/right struck at c-1, c+1) (n from 24,569 to 1,685,828): every bucket within 1.0 sigma.
+So the top layer's action on a base-open column is independent of the base layer's local
+configuration, to within sampling error over four million columns. The two layers of a stretch do
+not interact: the top layer is a Bernoulli plugging of the base-open sequence at a rate fixed by
+the sizes alone (0.646 = one minus the sieve's twin share, entry 115).
+
+**What this decides.** The owner's interleave - the top gears' kill zones woven into the base
+gears' congruences - has no visible structure at the stretch: the weave is exactly as
+independent as two unrelated periodic patterns. Survival of the stretch is therefore not carried
+by any correlation between the layers; it is carried by the independence itself (an independent
+0.646 plugging of nb ~ p gap/(log p)^2 slots never plugs all of them). That is the sieve's
+picture of the stretch, now measured on the machine's own layers with the rigid teeth in place,
+and it is the picture the parity barrier says cannot be turned into a proof by counting. A proof
+from the machine must therefore find structure the two-layer census does not see - at the pins
+of single gears (entry 113's last open item), not in the layers' statistics.
