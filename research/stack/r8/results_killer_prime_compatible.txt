@@ -1,0 +1,14 @@
+stretch 17..19, 5 gears, 12 columns: prime-compatible killers = 0
+
+stretch 29..31, 8 gears, 20 columns: prime-compatible killers = 48896
+   gear  5 residues used by killers: {1: 7872, 2: 16576, 3: 16576, 4: 7872}
+   gear  7 residues used by killers: {1: 6592, 2: 1984, 3: 15872, 4: 15872, 5: 1984, 6: 6592}
+   gear 11 residues used by killers: {1: 192, 2: 4480, 3: 10688, 4: 6976, 5: 2112, 6: 2112, 7: 6976, 8: 10688, 9: 4480, 10: 192}
+   gear 13 residues used by killers: {1: 1536, 2: 9280, 3: 5952, 4: 3392, 5: 1024, 6: 3264, 7: 3264, 8: 1024, 9: 3392, 10: 5952, 11: 9280, 12: 1536}
+   gear 17 residues used by killers: {1: 1408, 2: 3520, 3: 1344, 4: 1344, 5: 960, 6: 7360, 7: 3648, 8: 4864, 9: 4864, 10: 3648, 11: 7360, 12: 960, 13: 1344, 14: 1344, 15: 3520, 16: 1408}
+   gear 19 residues used by killers: {1: 1152, 2: 5440, 3: 1088, 4: 2048, 5: 7040, 6: 1408, 7: 960, 8: 2816, 9: 2496, 10: 2496, 11: 2816, 12: 960, 13: 1408, 14: 7040, 15: 2048, 16: 1088, 17: 5440, 18: 1152}
+   gear 23 residues used by killers: {1: 3328, 2: 704, 3: 448, 4: 4224, 5: 512, 6: 9024, 7: 1664, 8: 3328, 9: 320, 10: 384, 11: 512, 12: 512, 13: 384, 14: 320, 15: 3328, 16: 1664, 17: 9024, 18: 512, 19: 4224, 20: 448, 21: 704, 22: 3328}
+   gear 29 residues used by killers: {0: 48896}
+   p's own vector: (4, 1, 7, 3, 12, 10, 6, 0)   (a killer? False)
+   fewest gears whose residue p would have to change to become a killer: 2 of 8
+

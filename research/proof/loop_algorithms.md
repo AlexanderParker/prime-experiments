@@ -2875,3 +2875,57 @@ are not visited. The machine visits one point per stretch, p's own residues, and
 one of the few killer vectors of its own stretch". That is a statement about where the primes sit
 in the residue space of their own gears - the same object as the exponent-2 question, now with
 the killers named and counted at small p.
+
+### 101. Exploring the question: is a prime ever a killer of its own stretch? (loop, 2026-09-19)
+
+The question from entry 100, taken apart.
+
+**1. What "a prime's own vector" can and cannot be.** A prime p carries r_h = p mod h, which is
+never 0 for a gear h below p and is 0 at the gear p itself. So a killer vector that uses a zero
+residue below p can never be a prime's. Recounting the killers under that constraint
+(research/stack/r8/killer_prime_compatible.py):
+
+    stretch 17..19:  376 killers in the residue space, prime-compatible killers: 0
+    stretch 29..31:  1,708,372 killers, prime-compatible killers: 48,896
+
+At 17..19 every killer needs some gear to divide p, so no prime could ever have killed that
+stretch - a clean structural exclusion at that one size. At 29..31 prime-compatible killers exist;
+29's own vector (4, 1, 7, 3, 12, 10, 6, 0) is not one, and the nearest killer differs from it at
+only 2 of the 8 gears. So nothing structural forbade a kill at 29..31: the prime that could have
+done it would have had to be 29 with two residues changed, and there is no such prime, because 29
+is the only prime with that gear set.
+
+**2. The realisability constraint, stated.** A stretch's residue vector is realised by exactly one
+integer: p itself. The killer set K_p is a set of classes modulo the product of the gears up to p,
+and p is a killer exactly when its own class lies in K_p. There is one trial per prime, and the
+trials at different primes live in different spaces. Nothing links them except size: p is smaller
+than every product of two of its gears, so its residues are the residues of a small number - and
+that is the only property the machine's rules give.
+
+**3. How rare killers become** (research/stack/r8/killer_fraction_sampled.py, 200,000 random
+prime-compatible vectors at each twin-gear stretch, the adversary's easiest case):
+
+      p   columns   fraction of vectors that kill    -ln(fraction) / (p / ln^2 p)
+     29       20          2.7 x 10^-3                       2.31
+     41       28          6.2 x 10^-4                       2.48
+     59       40          3.1 x 10^-4                       2.28
+     71       48          2.5 x 10^-4                       2.13
+    101       68          2.5 x 10^-5                       2.24
+    107       72          5.0 x 10^-6                       2.49
+    137 and up            none in 200,000                   above 1.7
+
+The fraction falls like exp(-c p / ln^2 p) with c between 2.1 and 2.5, which is what covering
+about 2p/3 columns at an open density near 1/ln^2 p predicts. The number of stretches grows only
+like p / ln p. So, as a HEURISTIC and nothing more: the expected number of dead stretches over all
+primes is a rapidly convergent sum dominated by p below a few hundred, where the exact and sieved
+measurements have already found none. This is the Cramer-style reading of the machine, recorded
+as such; it is not a proof and the owner's standing rule against counting proofs applies to it.
+
+**4. What a proof would need, restated on this object.** Not that killers are rare - they are, and
+that is a count - but that p's class never falls in K_p. The classes in K_p are arbitrary points of
+the residue space; p's class is the point whose lift is p. A proof would need a property that
+separates "the class of a prime of the gear set's own size" from the killer classes, for every p.
+The machine's rules supply exactly one property of that class - its lift is below every product
+of two gears - and nothing on record turns that into an exclusion. The 17..19 exclusion shows the
+shape such an argument would have (every killer there needs a gear to divide p); it does not
+persist at 29..31.

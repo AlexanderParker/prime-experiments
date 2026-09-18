@@ -395,3 +395,15 @@ at 17-19; 1.7 million of 1.08 billion at 29-31; none at 19-23, 23-29, 31-37) and
 is never among them. Over all 2260 stretches to 20000 none is twin-free; fewest twins 2 at the
 narrowest, 147 at the fewest above p = 10000. The question is whether a prime is ever congruent,
 modulo every gear up to itself at once, to a killer vector of its own stretch.
+
+
+## 25. Is a prime ever a killer of its own stretch (round 95)
+
+A prime's residues are never zero below itself, and at 17..19 every killer needs a zero, so no
+prime could have killed that stretch; at 29..31 48,896 prime-compatible killers exist and 29's own
+vector is two residues away from one, but 29 is the only prime with that gear set. The
+prime-compatible killer fraction at twin-gear stretches falls like exp(-c p / ln^2 p) with c near
+2.3 (2.7 x 10^-3 at p = 29, 5 x 10^-6 at p = 107, none in 200,000 samples from 137 on) while the
+stretches grow only like p / ln p - a Cramer-style heuristic, recorded as one, not a proof. A proof
+would need a property separating the class of a prime of the gear set's own size from the killer
+classes, and the machine supplies only that the class's lift is small.
