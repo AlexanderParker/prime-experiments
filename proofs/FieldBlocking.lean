@@ -67,4 +67,32 @@ theorem square_lone_killer_iff {g m : ℕ} (hm : g ^ 2 = 6 * m + 1) (hg : 5 ≤ 
   have : 6 * m - 1 = g ^ 2 - 2 := by omega
   rw [this]
 
+/-- **Which member a pure power occupies.**  For a gear `g ≥ 5`, an even power is `1 mod 6` and
+sits on the UPPER member; an odd power is `g mod 6`, so it sits on the upper member when
+`g ≡ 1 mod 6` and on the LOWER member when `g ≡ 5 mod 6`.  Squares are always upper members
+(`square_is_upper_member`); cubes and higher odd powers of the gears `5, 11, 17, …` are lower
+members.  The pure powers beyond the square are the members of the fields `higher:g`, `lower:g`
+and `products:k` where the gear divides more than once, and this is the one thing about them the
+explorer's ids do not say. -/
+theorem power_member_side {g k : ℕ} (hg : g.Prime) (h5 : 5 ≤ g) :
+    (k % 2 = 0 → g ^ k % 6 = 1) ∧ (k % 2 = 1 → g ^ k % 6 = g % 6) := by
+  have h2 : ¬ 2 ∣ g := fun h => by
+    have := (Nat.prime_dvd_prime_iff_eq Nat.prime_two hg).mp h; omega
+  have h3 : ¬ 3 ∣ g := fun h => by
+    have := (Nat.prime_dvd_prime_iff_eq Nat.prime_three hg).mp h; omega
+  have hmod : g % 6 = 1 ∨ g % 6 = 5 := by
+    have := Nat.mod_lt g (by norm_num : 0 < 6)
+    interval_cases hr : g % 6 <;> first | omega | (exfalso; apply h2; omega) | (exfalso; apply h3; omega)
+  have hsq : g ^ 2 % 6 = 1 := by
+    rcases hmod with h | h <;> · rw [Nat.pow_mod, h]
+  constructor
+  · intro hk
+    obtain ⟨j, hj⟩ : ∃ j, k = 2 * j := ⟨k / 2, by omega⟩
+    rw [hj, pow_mul, Nat.pow_mod, hsq, one_pow]
+    norm_num
+  · intro hk
+    obtain ⟨j, hj⟩ : ∃ j, k = 2 * j + 1 := ⟨k / 2, by omega⟩
+    rw [hj, pow_succ, pow_mul, Nat.mul_mod, Nat.pow_mod, hsq, one_pow]
+    rcases hmod with h | h <;> rw [h] <;> norm_num
+
 end MirrorWalk

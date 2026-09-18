@@ -2692,3 +2692,39 @@ at 37 until the search is compiled.
 **So, in one sentence.** The vector would have to be a shift vector whose rigid tooth pairs cover
 the whole window, equivalently one whose truncation strays cancel the positive main term exactly;
 no such vector exists for any gear set up to 37, and the shortfall of the best one grows with q.
+
+### 97. Pure powers in the field analysis - what was counted and what was not named (loop, 2026-09-18)
+
+Asked whether the field analysis (entries 91 to 94) forgot the perfect powers.
+
+**Counted, yes; named, only the squares.** The fields explorer's ids have no field for powers
+beyond `squares` (row g at g^2). A higher power g^k, k >= 3, sits in three of the explorer's
+fields at once - `higher:g` (smallest gear g, dividing more than once, so not `higher1:g`),
+`lower:g` (largest gear g, not `lower1:g`) and `products:k` - and every kill measurement of
+entries 91 to 94 tested only "some gear divides a member", so the powers were inside every count.
+Two of the proved statements cover them without saying so: `lower_on_survivor_is_power` (a member
+of lower:g on a survivor of the smaller gears is a power of g - squares AND higher powers) and
+`top_gear_cofactor` (above q^(2/3) the only power that can appear is the square, since g^3
+exceeds q^2). What was not stated is what the higher powers look like as members. Now it is.
+
+**Which member a power occupies.** PROVED: `power_member_side` [proofs/FieldBlocking.lean, round
+91, 0 sorries] - for a gear g >= 5, an even power is 1 mod 6 and is the UPPER member of its
+column; an odd power is g mod 6, so it is the upper member for gears 1 mod 6 (7, 13, 19, ...) and
+the LOWER member for gears 5 mod 6 (5, 11, 17, ...). Squares are always upper members
+(`square_is_upper_member`); cubes and fifth powers of 5, 11, 17 are lower members. That is the one
+way a pure power behaves unlike the square.
+
+**Measured in the window** (all pure powers of gears with q < g^k <= q^2):
+
+    q = 1009:   158 squares,  38 higher powers  (14 on the lower member, 24 on the upper);
+                14 of the 38 higher powers are lone killers of their column
+    q = 5003:   651 squares,  88 higher powers  (35 lower, 53 upper);  28 of 88 lone killers
+
+Against windows of 169,512 and 4.17 million columns. The higher powers are 5^5 to 5^10, 7^4 to
+7^8, 11^3 to 11^7, 13^3 to 13^5 and so on - one column each, and each only its own gear's column.
+
+**Verdict.** The powers were in every count and in two of the proofs; the omission was the
+label, and one fact about them - the member side of odd powers - which is now proved. Nothing
+about them changes any verdict: like the squares they are one column per power, and a gear's
+powers in the window number at most log base g of q^2, so the field of all pure powers together
+holds fewer columns than the squares field it extends.
