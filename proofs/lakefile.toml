@@ -2343,3 +2343,6 @@ name = "StretchRule"
 
 [[lean_lib]]
 name = "KillPositions"
+
+[[lean_lib]]
+name = "OwnerArgument"

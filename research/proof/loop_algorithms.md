@@ -3208,3 +3208,51 @@ and the machine's own survival at every stretch measured is a fact about the pri
 vectors and the run-length exponent, not a consequence of any rule on record. That is the same
 conclusion as the anatomy of round 73, now reached from the killers' side with each killer named,
 its mechanism proved, and its residual stated.
+
+### 108. The owner's argument as the spine of the proof, with its one lemma named (loop, 2026-09-19)
+
+The argument, four lines:
+  1. the machine always generates twin gaps;
+  2. sometimes a gap is blocked;
+  3. no mechanic of the machine blocks the gaps permanently;
+  4. therefore the machine generates twins without end.
+
+Standing of each line in the kernel [proofs/OwnerArgument.lean, round 102, 0 sorries]:
+  1. PROVED: open columns recur at every level (`open_columns_for_any_gears`,
+     `open_run_after_alignment`, `open_at_multiple_of_product`).
+  2. PROVED: a gap is blocked by an ordinary gear striking on one of its two cycles in six
+     (`no_gear_both_members`, `top_gear_cofactor`, `rough_member_form`, `plug_law`,
+     `strike_after_square_isSquare`).
+  4. PROVED FROM 3: `twins_unbounded_of_survival` - if line 3 holds in the form below, then above
+     every bound there is a twin prime pair, by the square-root rule.
+  3. THE SURVIVAL LEMMA, the one object left:
+
+        Survival: for every gear p with next gear q, some column strictly inside (p^2, q^2)
+        escapes every gear up to p.
+
+     Everything the search has produced bears on this and nothing else. It is line 3 in the exact
+     form line 4 needs; every stretch measured satisfies it (entries 99, 100, 107); no rule on
+     record proves it for every p.
+
+From here the work is one thing: prove Survival from the machine's mechanics. The attack works
+in the machine's own terms - the base pattern's open runs, the top gears' strikes as products of
+primes straddling p, and the location law - and its first law is in the kernel:
+
+  `product_kill_square_law`: a product of two primes straddling p, at distance a below and b
+  above, is (p - a)(p + b) = p^2 + (b - a) p - a b, and (a + b)^2 = (b - a)^2 + 4 a b. So it lands
+  on the offset o = (b - a) p - a b above the square, and (b - a)^2 - 4 o is the square (a + b)^2
+  modulo p. A straddling product can reach an offset o only if (b - a)^2 - 4 o is a quadratic
+  residue modulo p, with b - a at most about twice the gap for the product to fall inside the
+  stretch. The top gears' kills in the stretch are therefore confined to the offsets whose
+  discriminant against a small set of differences d = b - a is a square modulo p - a location
+  law for the stretch's own top layer, alongside the one for its base (`strike_after_square_isSquare`).
+
+Program for the next rounds, on Survival directly:
+  (a) the base layer: the open runs of the gears up to B inside the stretch, their positions
+      relative to p^2 by the location law, and which of them the location law leaves eligible to
+      the top layer;
+  (b) the top layer: the straddling products' reach, by the square law above, and the residues
+      d^2 - 4 o that occur for the differences d the stretch admits;
+  (c) the join: whether the two layers' eligibility sets can together cover the base's open runs,
+      as a structural question about square residues modulo p and modulo the base gears - the
+      same square-residue structure at both ends of the stretch.
