@@ -330,3 +330,15 @@ machine: with all three gears below sqrt q both ratios are 1.000; with one large
 against independence but 0.90 to 0.97 against the pairs, on counts of 42 and 31. Everything a
 triple does is explained by its pairs, and the pure three-body term shrinks toward 1 with q. No
 triple of fields can combine into a blocking state.
+
+
+## 20. Quadruples of fields (round 88)
+
+Against independence and the triple-consistent baseline, 4000 quadruples per stratum: with zero,
+one or two large gears both ratios are 1.00 within 0.05 over hundreds of thousands of
+coincidences; with three large gears 0.88 and 0.82 against independence, less avoidance than the
+three large pairs alone would give (about 0.70); with four large gears one coincidence at q = 1009
+and none at 2003, below measurability. No quadruple of fields can combine into a blocking state.
+At four levels the pattern is: singles at share, pairs independent but for an 11 percent avoidance
+among large gears on a negligible term, triples and quadruples explained by their pairs, and
+coincidences among large fields vanishing at about one per window.

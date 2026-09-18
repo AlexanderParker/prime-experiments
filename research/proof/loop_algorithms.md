@@ -2529,3 +2529,52 @@ except for an 11 percent avoidance between two large gears, on a negligible term
 rigid pattern of two large-prime products two apart (entry 92). Triples add nothing beyond their
 pairs. The many-body property, split into its first three parts, shows one bounded interaction at
 the second level and none at the third.
+
+### 94. Quadruples of fields (loop, 2026-09-18)
+
+Four fields at once, same construction (research/stack/r8/field_quads.py): for g1 < g2 < g3 < g4,
+on the survivors of the gears below g1, the columns all four strike, against independence of the
+four and against the triple-consistent baseline (fourth-order superposition from the four measured
+triple overlaps, six pairs and four singles), which leaves the pure four-body term. 4000
+quadruples per stratum, stratified by how many gears lie above sqrt q.
+
+    q = 1009   gears above sqrt q   quad-struck   vs independence   vs triples
+                     0                301,150         1.001           1.002
+                     1                 15,925         0.997           0.999
+                     2                    798         0.991           0.969
+                     3                     27         0.879           0.349 *
+                     4                      1         2.339 *         0.097 *
+    q = 2003
+                     0                533,471         1.000           0.999
+                     1                 18,218         1.005           1.008
+                     2                    600         0.955           0.960
+                     3                     13         0.815           0.944
+                     4                      0         0.000 *         0.000 *
+
+(* below measurability: with three or four large gears the quadruple coincidences number 0 to 27,
+and the triple-consistent baseline, being a ratio of products of near-zero triple counts, is
+unstable there - at q = 1009 it predicts 77 against an independence value of 31 and an actual of
+27, which is the baseline failing, not the fields interacting.)
+
+Reading it.
+  * Zero, one or two large gears: 1.00 to within 0.05 against both baselines, over hundreds of
+    thousands of coincidences. No four-body interaction.
+  * Three large gears: 0.88 and 0.82 against independence. Three large gears carry three large
+    pairs, each avoiding at 0.89 (entry 92), so the pair avoidance alone predicts about 0.70; the
+    quadruples avoid LESS than their pairs would, the same direction as the triples.
+  * Four large gears: one coincidence at q = 1009 and none at q = 2003. Below measurability, and
+    that is itself the finding: four large fields strike a common survivor column about once per
+    machine.
+
+**Verdict on quadruples.** No quadruple of fields can combine into a blocking state. Where the
+counts are measurable the four-body term is absent; where the fields are all large the
+coincidences vanish faster than any baseline can be estimated, because four large-prime cofactors
+on two members two apart is a pattern that occurs about once per window.
+
+**The pattern at four levels.** Singles at their share. Pairs independent, except 11 percent
+avoidance between two large gears on a negligible term. Triples explained by pairs. Quadruples
+explained by pairs and triples where measurable, and vanishing where all are large. Each level
+above the second either adds nothing or makes the coincidences rarer. A block needs the opposite:
+coincidences that thin out FASTER than independence at every level so the union grows, and the
+fields do that only among the large gears, by a bounded amount, on terms that are already
+negligible.

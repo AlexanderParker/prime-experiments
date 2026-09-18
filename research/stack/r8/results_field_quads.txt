@@ -1,0 +1,16 @@
+q = 1009: 20000 quadruples (stratified), columns of the survivors below g1 struck by all four
+   gears above sqrt q   quads   actual   independence   ratio   triple-consistent   ratio
+          0              4000    301150       300878.2   1.001           300697.4   1.002
+          1              4000     15925        15980.8   0.997            15934.1   0.999
+          2              4000       798          804.9   0.991              823.9   0.969
+          3              4000        27           30.7   0.879               77.4   0.349
+          4              4000         1            0.4   2.339               10.3   0.097
+
+q = 2003: 20000 quadruples (stratified), columns of the survivors below g1 struck by all four
+   gears above sqrt q   quads   actual   independence   ratio   triple-consistent   ratio
+          0              4000    533471       533650.9   1.000           533772.9   0.999
+          1              4000     18218        18126.6   1.005            18071.6   1.008
+          2              4000       600          628.1   0.955              625.1   0.960
+          3              4000        13           16.0   0.815               13.8   0.944
+          4              4000         0            0.1   0.000                0.1   0.000
+
