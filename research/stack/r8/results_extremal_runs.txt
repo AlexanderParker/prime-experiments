@@ -1,0 +1,23 @@
+longest run of struck columns for the gears 5..P with their real teeth, per period
+    P        period   longest run   run in numbers (x6)   window needed (run x 6)^0.5
+    7            35            4                    24                        4.9
+   11           385            6                    36                        6.0
+   13          5005           10                    60                        7.7
+   17         85085           17                   102                       10.1
+   19       1616615           24                   144                       12.0
+   23      37182145           33                   198                       14.1
+
+a machine placed at the start of the worst stretch: distance to its first twin
+    P    k    q (prime just below the stretch)     D     D/(ln q)^2   run x 6
+   13    1                           30763      76        0.71        60
+   13    2                           60793      94        0.77        60
+   13    3                           90823     256        1.96        60
+   17    1                          511213     418        2.42       102
+   17    2                         1021711     250        1.31       102
+   17    3                         1532231     120        0.59       102
+   19    1                         9700337     204        0.79       144
+   19    2                        19400039     150        0.53       144
+   19    3                        29099713     214        0.72       144
+   23    1                       299259409     388        1.02       198
+   23    2                       522352309     538        1.34       198
+   23    3                       745445153     516        1.24       198
