@@ -112,4 +112,14 @@ theorem zero_not_invertible {R : Type*} [Ring R] [Nontrivial R] (x : R) : (0 : R
   rw [zero_mul] at h
   exact zero_ne_one h
 
+/-- **The window always holds a prime.**  The one-member version of the window statement is a
+theorem, and a wasteful one: Bertrand puts a prime already inside `(q, 2q]`, far below `q²`.  The
+contrast with the pair version is the whole difficulty - a gear strikes one class of a single
+number and two classes of a pair, and everything downstream follows from that 1 against 2. -/
+theorem window_has_prime {q : ℕ} (hq : 2 ≤ q) : ∃ p : ℕ, p.Prime ∧ q < p ∧ p ≤ q ^ 2 := by
+  obtain ⟨p, hp, hlo, hhi⟩ := Nat.exists_prime_lt_and_le_two_mul (n := q) (by omega)
+  refine ⟨p, hp, hlo, ?_⟩
+  have h2q : 2 * q ≤ q ^ 2 := by nlinarith
+  omega
+
 end MirrorWalk

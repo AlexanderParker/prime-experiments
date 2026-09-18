@@ -2090,3 +2090,33 @@ at one point, and everything else survived. Adopting a top element costs either 
 (projective), or primality (any field, including the surreals), or nothing at all except that the
 question transfers unchanged (hyperintegers). In no case does the twin statement become easier,
 and in the only case where primality survives it becomes literally the same statement.
+
+### 86. Single primes versus pairs: nothing blocks the first (loop, 2026-09-18)
+
+Asked what blocks proving that the machine generates primes infinitely. The answer is that nothing
+does - the machine proves it, and the proof is the alignment argument itself.
+
+  * Euclid IS the alignment argument. The neighbours of a primorial are open to every gear up to
+    that bound, so any prime factor they have lies above it (`aligned_neighbour_factor`, round 77).
+    That is exactly Euclid's step, in the machine's vocabulary, and `gears_above_every_bound`
+    (round 78) records the conclusion: above every bound there is another gear.
+  * The window version for single primes is also a theorem, and a wasteful one. PROVED this round:
+    `window_has_prime` [proofs/AlignmentLimit.lean, round 80, 0 sorries] - every machine's window
+    (q, q^2] holds a prime, by Bertrand, which already places one inside (q, 2q].
+
+So the one-member statement is settled with room to spare, and the two-member statement is the
+conjecture. The whole difference is one number:
+
+    a gear strikes ONE class of a single number, and TWO classes of a pair.
+
+Everything downstream follows from that 1 against 2:
+  * the free-regime cut sits at gears above the number of gears in the single case (`mexT_le`,
+    the single-tooth walk) and at twice that in the pair case (`keeping_move_free`);
+  * the reciprocal-sum deficit is a factor of log in the single case, which survives, and a factor
+    of log squared in the pair case, which does not;
+  * the sifting dimension is 1 against 2, and the parity obstruction bites only at dimension 2.
+
+The machine is therefore not silent on infinitude - it proves the single-prime form of every
+statement it can express. What it cannot do is carry two members at once, and that is the same
+1-against-2 that stops Chen at almost-primes, stops the Maynard-Tao line at 6 under the strongest
+hypotheses, and stops our run bound at exponent 4 instead of 2 (entry 80).

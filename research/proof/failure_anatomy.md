@@ -220,3 +220,17 @@ The one thing no system does is make n/0 a number while keeping the ring laws, a
 element satisfies 0 * x = 1. Wheel algebras define division by zero and pay by weakening
 subtraction. So adopting zero cost one operation at one point; adopting a top element costs either
 the far side, or primality, or nothing but the transfer that leaves the question unchanged.
+
+
+## 12. One member against two (round 80)
+
+Nothing blocks the single-member versions. Euclid is the alignment argument in the machine's own
+vocabulary (`aligned_neighbour_factor`, `gears_above_every_bound`), and the window version for a
+single prime is a theorem with room to spare: `window_has_prime` [proofs/AlignmentLimit.lean] -
+every window holds a prime, by Bertrand, which places one already inside (q, 2q].
+
+The difference between that and the conjecture is one number. A gear strikes one class of a single
+number and two classes of a pair. From that follows the free-regime cut at n against 2n, a
+reciprocal-sum deficit of log against log squared, and sifting dimension 1 against 2 - and parity
+bites only at dimension 2. The machine proves every single-member statement it can express and no
+two-member one, and the same 1-against-2 stops Chen at almost primes and the Maynard-Tao line at 6.
