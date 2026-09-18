@@ -58,4 +58,13 @@ theorem square_is_upper_member {g : ℕ} (hg : g.Prime) (h5 : 5 ≤ g) :
   have hge : 1 ≤ g ^ 2 := Nat.one_le_pow _ _ (by omega)
   omega
 
+/-- **The one exact pair statement: a square is a lone killer of its column exactly when the
+other member is prime.**  The square `g²` is the upper member `6m + 1`; the column's lower member
+is `g² - 2`.  The pair `(squares, everything else)` combines on that column - some other field
+also strikes it - exactly when `g² - 2` is composite. -/
+theorem square_lone_killer_iff {g m : ℕ} (hm : g ^ 2 = 6 * m + 1) (hg : 5 ≤ g) :
+    (6 * m - 1).Prime ↔ (g ^ 2 - 2).Prime := by
+  have : 6 * m - 1 = g ^ 2 - 2 := by omega
+  rw [this]
+
 end MirrorWalk

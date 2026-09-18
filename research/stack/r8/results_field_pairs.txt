@@ -1,0 +1,34 @@
+q = 1009: 4926 pairs, union of two fields' kills on the survivors below g1, against independence
+   mean ratio 1.0548, min 0.0892, max 1.4925
+   pairs with the largest excess over independence:
+      g1    g2   union   predicted   ratio   both-struck   predicted both
+     503   509     115        77.1   1.493            0             0.2
+     509   653      99        67.8   1.461            0             0.1
+     419   509     134        92.2   1.453            0             0.2
+     509   659      98        67.5   1.452            1             0.1
+     503   547     108        74.4   1.452            0             0.1
+     389   503     144        99.2   1.451            0             0.2
+   pairs with the largest deficit (most overlap):
+     947   971       6        34.6   0.174            0             0.0
+     971   997       5        33.7   0.149            1             0.0
+     977  1009       4        33.3   0.120            0             0.0
+     977   991       3        33.6   0.089            0             0.0
+   squares: 45 of 158 in (sqrt q, q] are lone killers of their column (g^2 - 2 prime)
+
+q = 2003: 6546 pairs, union of two fields' kills on the survivors below g1, against independence
+   mean ratio 1.0465, min 0.0732, max 1.4371
+   pairs with the largest excess over independence:
+      g1    g2   union   predicted   ratio   both-struck   predicted both
+     509  1933     288       200.4   1.437            0             0.2
+     863   907     213       148.4   1.436            0             0.2
+     557  1021     311       218.5   1.424            1             0.3
+     839   929     214       150.7   1.420            0             0.2
+     557   773     345       243.2   1.419            0             0.4
+     797   971     219       155.1   1.412            0             0.2
+   pairs with the largest deficit (most overlap):
+    1913  1949       8        55.7   0.144            0             0.0
+    1873  1993       8        55.7   0.144            1             0.0
+    1873  1949       8        56.3   0.142            0             0.0
+    1949  1987       4        54.6   0.073            0             0.0
+   squares: 75 of 290 in (sqrt q, q] are lone killers of their column (g^2 - 2 prime)
+

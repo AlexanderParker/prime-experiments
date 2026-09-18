@@ -308,3 +308,15 @@ higher fields. higher:g takes its lattice share of the survivors of the gears be
 members are g^2 and g times a prime (`top_gear_cofactor`). No field has a member that can enter a
 blocking state; a block would need the fields' shares to stop overlapping, which is not a property
 of any one field.
+
+
+## 18. Pairs of fields (round 86)
+
+Isolating the pair interaction from each gear's own rate: pairs with at least one gear below sqrt q
+overlap on the survivors exactly as independence says, ratio 1.000 to four decimals over tens of
+thousands of coincidences; pairs of two large gears overlap 11 percent less, flat from q = 1009 to
+2003. The avoidance is the pair's version of the cofactor constraint - a column both large gears
+strike has members g1 p and g2 p' with p, p' prime, a solution of g2 p' - g1 p = 2 - and it acts
+on an overlap term of about 4/(g1 g2) of the survivors, negligible against them. The one exact
+pair, squares against everything else, combines on the square's column exactly when g^2 - 2 is
+composite (`square_lone_killer_iff`). No pair of fields can combine into a blocking state.

@@ -2433,3 +2433,56 @@ the powers of one gear (lower:g on survivors), or a relabelling of the higher fi
 What a block would need is not a field with a special member but the fields' shares failing to
 overlap - the many-body avoidance of entry 90 - and that is not a property any single field can
 carry.
+
+### 92. Pairs of fields: can any two combine into a blocking state? (loop, 2026-09-18)
+
+The owner's framing: the fields are the many-body property split into distinct parts, so the next
+part is pairs. For two gears g1 < g2, take the survivors of the gears below g1; each field kills
+its own share of them (entry 91); a pair combines toward a block only if their kills AVOID each
+other - overlap less than independence, so the union is larger than the shares alone give.
+
+**The pair interaction, isolated** (research/stack/r8/field_pair_interaction.py). For 6000 random
+pairs per machine, the columns of the survivors below g1 that both gears strike, against the
+product of each gear's own measured kill rate on those survivors:
+
+    q = 1009                  actual both-struck   independent    ratio
+      both gears <= sqrt q          59,778           59,780.1     1.000
+      one below, one above          79,836           79,693.5     1.002
+      both gears > sqrt q            7,444            8,439.7     0.882
+    q = 2003
+      both gears <= sqrt q         160,247          160,246.2     1.000
+      one below, one above         105,062          104,908.3     1.001
+      both gears > sqrt q            7,819            8,795.7     0.889
+
+Pairs with at least one gear below sqrt q overlap exactly as independence says, to four decimal
+places over tens of thousands of coincidences. Pairs of two large gears overlap 11 percent LESS
+than independence - they do avoid each other, and that is the direction a block needs.
+
+**The mechanism of the large-pair avoidance, from the fields.** For g1, g2 above sqrt q, a column
+both strike has (apart from the single column of g1 g2 itself) one member g1 p and the other
+g2 p' with p, p' prime (`top_gear_cofactor` in each field), so the coincidence is a solution of
+g2 p' - g1 p = 2 in primes. Two products of large primes two apart is a rigid pattern; its count
+runs 11 percent below the independent product, flat from q = 1009 to 2003. So the avoidance is a
+feature of the pair (higher1:g1, higher1:g2) with both cofactors prime, and it is bounded: it acts
+on the overlap term, which for two large gears is about 4/(g1 g2) of the survivors - negligible
+against the survivors themselves.
+
+**The one exact pair.** PROVED: `square_lone_killer_iff` [proofs/FieldBlocking.lean, round 86] -
+the square g^2 is the upper member of its column and the lower member is g^2 - 2, so the pair
+(squares, everything else) combines on that column exactly when g^2 - 2 is composite. Measured:
+45 of 158 squares at q = 1009 and 75 of 290 at q = 2003 are lone killers, the rest are joined by
+another field on the lower member. Squares never combine with anything to block more than their
+one column.
+
+**What the first baseline showed, for the record** (research/stack/r8/field_pairs.py). Against the
+pure lattice share the union ratios run 0.07 to 1.49, but that spread is the SINGLE-field
+deviation of the large gears (entries 90 and 91: below share at the top, prime-cofactor structure
+in the middle), not a pair effect; isolating the interaction removes it entirely for pairs below
+sqrt q and leaves the 11 percent for pairs above.
+
+**Verdict on pairs.** No pair of fields can combine into a blocking state. Pairs involving any
+gear below sqrt q are independent to four decimals; pairs of large gears avoid each other by 11
+percent, on an overlap term that is itself negligible against the survivors, through a rigid
+pattern (two large-prime products two apart) that is the pair's own version of the cofactor
+constraint. The many-body property, split into pairs, shows one bounded interaction and nothing
+that grows.

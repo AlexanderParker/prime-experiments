@@ -1,0 +1,12 @@
+q = 1009: pair overlap on the survivors below g1, against each gear's own measured rate
+   all 6000 sampled pairs: actual both-struck 147058, independent 147913.3, ratio 0.994
+   both <= q^0.5   actual  59778  independent  59780.1  ratio 1.000
+   mixed           actual  79836  independent  79693.5  ratio 1.002
+   both > q^0.5    actual   7444  independent   8439.7  ratio 0.882
+
+q = 2003: pair overlap on the survivors below g1, against each gear's own measured rate
+   all 6000 sampled pairs: actual both-struck 273128, independent 273950.2, ratio 0.997
+   both <= q^0.5   actual 160247  independent 160246.2  ratio 1.000
+   mixed           actual 105062  independent 104908.3  ratio 1.001
+   both > q^0.5    actual   7819  independent   8795.7  ratio 0.889
+
