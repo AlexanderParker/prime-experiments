@@ -3382,3 +3382,48 @@ residues at every core gear - has domino cost above the tail count for every L r
 stretch's end. That is a statement about square residues against the domino cost, computable
 exactly at each p, and it is the form of the survival lemma that lives entirely inside the kernel's
 own rigid machinery.
+
+### 111. The survival lemma weighed exactly: the weak form IS the conjecture, the strong form is more; entry 110's program withdrawn (loop, 2026-09-19)
+
+**Two corrections to the record, both proved.**
+
+1. `Survival` (entry 108) asks EVERY stretch (p^2, q^2) to survive. Step 4 of the owner's
+   argument uses only that stretches above every bound survive. That weak form is now defined
+   (`SurvivalInf`) and PROVED equivalent to twins unbounded, both directions
+   [`survivalInf_iff_twins_unbounded`, proofs/OwnerArgument.lean, round 104, 0 sorries]:
+     * forward: a surviving column of a stretch is a twin pair, by the square-root rule
+       (`twin_of_surviving_stretch`);
+     * converse: a twin pair (6m-1, 6m+1) far above N lies in the stretch of the largest prime
+       p with p^2 < 6m-1 - the next prime q has q^2 > 6m+1 because q^2 is odd and composite and
+       at least 6m-1; the pair escapes every gear up to p because its members are primes above
+       p^2; and p > N by Bertrand's postulate.
+   So line 3 of the argument, in the exact form line 4 needs, is not a reduction of the
+   conjecture: it IS the conjecture, restated as "not every stretch beyond some point is dead".
+   The strong form `Survival` - a twin pair between every two consecutive prime squares - is a
+   strictly stronger statement, of the same kind as Legendre's conjecture on primes between
+   consecutive squares (open), and is what entries 107 and 109 measured: true at every p to
+   200,000, with the record run above a square at 2 to 5 (ln p)^2 against a stretch of order
+   p x gap.
+
+2. Entry 110's program (the loaded record rule's domino cost at the square-residue core phase
+   vector) is WITHDRAWN. The rule's core/tail split needs a window shorter than the tail gears:
+   core = gears <= L + 1, tail = gears > L + 1. The stretch has length q^2 - p^2 >= 2p + 1 in
+   integers, so every gear up to p is core and the tail is empty; the rule reduces to "the core's
+   uncovered set is nonempty", which is the survival statement itself. Taking a sub-window of
+   length L < p inside the stretch makes the gears in (L + 1, p] the tail, but the tail count is
+   then about pi(p), far above L/2, so the rule's necessary condition (cost <= tail count) holds
+   trivially and decides nothing; only the tail gears' ACTUAL positions matter, and those are the
+   question. The rigid record tools decide records of windows shorter than the gears; the stretch
+   is longer than all of them. No route there.
+
+**Where the target sits now, in one line.** The owner's argument is formalised end to end; its
+line 3 is the twin prime conjecture exactly (weak form) or Legendre-type for twins (strong form).
+The tactic changes: no further reformulation of the conjecture into a survival, run, record, or
+covering statement can lower its weight - the record now has five such reformulations, each proved
+equivalent or stronger (window <-> run bound of exponent 2; stretch <-> exponent 1; survival weak
+<-> conjecture; survival strong -> conjecture; chain covering <- twin-gap growth t_{i+1} < t_i^2).
+The remaining question is which mechanism of the machine yields a lower bound on open columns
+that is not a sieve estimate, and the record's own answer is the one-flip / multiplicative chain:
+a twin at column c gives the family of columns c x j whose gear residues are the residues of c
+rotated by j - open iff j avoids two classes per gear - which is the two-class sieve on j over a
+range of length c. The chain reproduces the problem at every twin; it does not lower its weight.
