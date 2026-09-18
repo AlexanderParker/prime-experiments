@@ -2110,8 +2110,11 @@ conjecture. The whole difference is one number:
     a gear strikes ONE class of a single number, and TWO classes of a pair.
 
 Everything downstream follows from that 1 against 2:
-  * the free-regime cut sits at gears above the number of gears in the single case (`mexT_le`,
-    the single-tooth walk) and at twice that in the pair case (`keeping_move_free`);
+  * the free-regime cut sits at gears above the number of gears in the single case (one residue
+    per gear, so n gears exclude at most n positions - the same pigeonhole as `mexS_le` with one
+    residue instead of two; no kernel lemma carries that exact single-tooth form, and `mexT_le` is
+    the THREE-residue twin-candidate walk, not the single one) and at twice that in the pair case
+    (`keeping_move_free`);
   * the reciprocal-sum deficit is a factor of log in the single case, which survives, and a factor
     of log squared in the pair case, which does not;
   * the sifting dimension is 1 against 2, and the parity obstruction bites only at dimension 2.
@@ -2162,10 +2165,13 @@ the rigid configuration is the weaker killer.)
 
 **What the adversarial question is, named.** Covering a run of consecutive columns with two classes
 per gear is the extremal problem behind the paired Jacobsthal function - the same object as entry
-80. Its known bounds straddle the window: Rankin-type constructions give runs much longer than q,
-and the best upper bounds are around q^(2+o(1)), with the window at q^2. So structure alone neither
-forbids nor permits a twin-free window; the question sits exactly at the exponent-2 knife edge that
-entry 80 identified, which is why no amount of rearranging the gears settles it either way.
+80. Its known bounds straddle the window. For the ONE-class function (Jacobsthal proper)
+Rankin-type constructions give runs much longer than q and Iwaniec's upper bound is about q^2, so
+that function sits at the window's own exponent; for the TWO-class paired function the best proved
+upper exponent is this project's 4.266 (docs/novel, j2-upper-bound) and the lower constructions are
+at least as long as the one-class ones. Either way the window at q^2 lies between what is known
+from below and from above, so the question sits exactly at the exponent-2 knife edge that entry 80
+identified, and no amount of rearranging the gears settles it either way.
 
 **What this exercise rules out.** It rules out the hope that some conspiracy of gears could be
 exhibited - a total cover is impossible by density, and a local cover is the Jacobsthal problem, so
@@ -2173,3 +2179,61 @@ a counterexample is not something one constructs but something one would have to
 in a measured fact worth keeping: the configuration the residues actually take is about half as
 efficient at killing twins as an independently chosen one, at every size tested. That gap between
 the rigid configuration and the free one is where a proof would have to live.
+
+### 88. Review of rounds 60 to 81, and the hunt with prejudice (loop, 2026-09-18)
+
+**Review.** Three inaccuracies found in the record and corrected in place:
+  1. Entry 86 cited `mexT_le` as the single-tooth walk. It is the three-residue twin-candidate walk
+     (`Res3`). No kernel lemma carries the exact one-residue form; the single-tooth cut at n is the
+     same pigeonhole as `mexS_le` with one residue per gear instead of two. Corrected.
+  2. Entry 87 conflated the one-class and two-class Jacobsthal exponents. The one-class function
+     has Iwaniec's bound near q^2; the two-class (paired) function's best proved upper exponent is
+     this project's 4.266. Corrected.
+  3. The window's first column is off by one in three measurement scripts (run_gap_window.py,
+     adversarial_window.py, chen_window.py use lo = q // 6 + 1, which admits the column whose lower
+     member EQUALS q when q = 5 mod 6). Effect: one extra column and, at such q, one extra "twin"
+     counted - e.g. q = 29 reports 136 columns and 29 twins where the window (29, 841] has 135 and
+     28. Every conclusion drawn survives the correction; the new scripts this round use
+     lo = q // 6 + 2. Not rewritten retroactively; recorded here.
+Everything else checked holds: the certificate's stated range (11 to 275595263287044304869593048464768)
+matches the theorem, the machines 5 and 7 below it have twins in their windows ((11,13) and
+(17,19) both lie in (5, 25]), the chain condition numbers, the carry-wall table, the sharpness
+witness at 370, and the kernel names cited in entries 78 to 87.
+
+**Part A - a real adversary.** Round 81's greedy adversary was weak. Simulated annealing with six
+restarts over the free configuration - each gear choosing two classes independently - to minimise
+the uncovered columns of the window (research/stack/r8/adversary_anneal.py):
+
+       q   columns   gears   best uncovered (anneal)   greedy   sum of 2/h
+      29      135       8               8                 12       1.400
+      37      221      10              13                 19       1.519
+      47      360      13              18                 22       1.657
+      59      570      15              31                 39       1.728
+      71      828      18              42                 55       1.819
+     101     1683      24              86                 93       1.959
+
+The adversary improves on greedy by a third and still never reaches zero, at any size, even
+though the sum of 2/h exceeds 1 everywhere - counting permits a cover and the free configuration
+still cannot find one. So at these sizes the window is safe against every configuration the
+annealer can reach, not only the rigid one the integers take. Whether an exact search would find a
+cover at q = 29 (search space about 4.6 x 10^16, an ILP or SAT question) is open and would be the
+next step if the free configuration is to be understood.
+
+**Part B - the closest calls.** Every machine to 10^7 (664,575 of them), the distance from q to
+the first twin above it (research/stack/r8/closest_call.py):
+
+    largest distance:                1722 at q = 9923987   (6.6 x (ln q)^2)
+    largest against (ln q)^2:        7.79 at q = 850349    (distance 1452)
+    largest share of the window:     0.0545, at q = 11 (the twin 17 in a window of 110)
+
+Above q = 11 no machine ever needs more than a vanishing share of its window - at 10^7 the worst
+case uses 1.75 x 10^-11 of it. The worst distances grow like (ln q)^2 with a constant below 8,
+which is Cramer's scale for gaps, and nothing in 664,575 machines comes within eleven orders of
+magnitude of the window's edge.
+
+**What the hunt with prejudice says so far.** No configuration reachable by search kills a window,
+rigid or free; the closest real call is the smallest machine; the worst real distances sit on the
+(ln q)^2 scale with the window at q^2. A counterexample would have to be a machine whose first
+twin is more than q^2 away, against a measured record of 1722 at ten million. The hunt has not
+found a crack, and it has found where the crack would have to be: in the free configuration's
+extremal runs, which is the paired Jacobsthal question, at exponent 2.

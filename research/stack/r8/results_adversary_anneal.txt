@@ -1,0 +1,10 @@
+simulated annealing adversary: minimum uncovered columns over free configurations
+     q   columns   gears   best of 6 restarts   greedy (round 81)   sum of 2/h
+    29       135       8                    8                  12       1.400
+    37       221      10                   13                  19       1.519
+    47       360      13                   18                  22       1.657
+    59       570      15                   31                  39       1.728
+    71       828      18                   42                  55       1.819
+   101      1683      24                   86                  93       1.959
+
+a 0 in the best column would mean some free configuration kills every twin slot of that window

@@ -257,3 +257,14 @@ way. In the real configuration every gear reads the same consecutive line, so it
 tied to every other gear's; in the adversarial one each gear's classes are chosen independently.
 Rigidity against independence, and the rigid configuration kills about half as well. Whether a
 freer arrangement could ever close a window is the same exponent-2 knife edge as before.
+
+
+## 14. The hunt with prejudice (round 82)
+
+A stronger adversary - simulated annealing over the free configuration - cuts the uncovered
+columns by a third against greedy and still never reaches zero at any size tested (8 of 135 at
+q = 29, 86 of 1683 at q = 101), although the sum of 2/h exceeds 1 throughout. Counting permits a
+cover; no configuration found delivers one. The closest real calls to 10^7: the largest distance
+from a machine to its first twin is 1722, at q = 9923987, which is 6.6 (ln q)^2 and 1.75 x 10^-11
+of the window; the largest share of a window ever needed is 0.0545, at q = 11. A counterexample
+would need a distance above q^2 against a record on the (ln q)^2 scale.

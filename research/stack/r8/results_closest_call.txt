@@ -1,0 +1,27 @@
+machines to 10000000: distance from q to the first twin above q
+
+machines scanned: 664575
+
+largest distance to the first twin above q:
+       q      distance   distance / (ln q)^2   distance / window length
+   9923987        1722                 6.63                  1.75e-11
+   9923989        1720                 6.63                  1.75e-11
+   9923993        1716                 6.61                  1.74e-11
+   9924043        1666                 6.42                  1.69e-11
+   9924053        1656                 6.38                  1.68e-11
+   9924071        1638                 6.31                  1.66e-11
+   9924113        1596                 6.15                  1.62e-11
+   9924121        1588                 6.12                  1.61e-11
+
+largest distance relative to (ln q)^2:
+       q      distance   distance / (ln q)^2
+    850349        1452                 7.79
+    850351        1450                 7.78
+    850373        1428                 7.66
+    850387        1414                 7.59
+    850393        1408                 7.55
+    850397        1404                 7.53
+    850403        1398                 7.50
+    850417        1384                 7.42
+
+largest share of the window ever needed to reach the first twin: 0.0545
