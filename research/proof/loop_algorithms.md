@@ -1916,3 +1916,38 @@ sieve gives one.
 This is the sharpest statement of the whole position: the implication from a run bound is proved
 and cheap; the run bound needed is exponent 2; the best proved is 4.266; the floor that any sieve
 can reach is 4; and the truth is polylogarithmic.
+
+### 81. What residues can never decide: the machine's own parity statement (loop, 2026-09-18)
+
+Every mechanism the machine has names a column by a residue class. Carrying names the class of the
+mirror's multiples; the period rule names a class modulo the product of the gears it dodges
+(`openness_periodic`, round 74); a walk of flips names the class of the gcd's multiples
+(`gcdL_dvd_combo`, round 55). That is the whole toolkit, and this round proves it cannot finish -
+with no measurement and no appeal to the literature.
+
+PROVED [proofs/ClassIndistinguishable.lean, round 76, 0 sorries]:
+
+  `class_has_closed_column`: for any modulus M, any residue r, any gear p dividing neither 6 nor
+  M, and any bound N, there is a column m >= N with m congruent to r modulo M whose lower member
+  6m - 1 is divisible by p and larger than p.
+  `no_class_of_twins`: hence that column is not a twin column.
+
+So no statement of the form "the columns of this class are twin columns" is ever true, for any
+class of any modulus, however large. The construction that produces the witness is explicit: solve
+6m congruent to 1 modulo p alongside m congruent to r modulo M, which is possible because 6M is
+invertible modulo p, then push the solution past any bound by adding multiples of M p.
+
+What this settles. Requirement 3 of the anatomy asked for a mechanism naming a candidate open
+against the gears the primorial cannot reach. This says the machine's mechanisms cannot name a
+candidate at all - only a class - and every class contains closed columns. The twin columns inside
+a class are picked out by something the residues do not see. That is the machine's own form of the
+parity obstruction, and it is now a theorem rather than an observation about sieve technique.
+
+Taken with entries 78 to 80 the position is complete and closed on every side:
+  * the four stops and their causes, with the single lever priced (entry 78);
+  * the two levers - divisibility and congruence choice - shown to be the same object with the
+    same primorial price (entry 79);
+  * the run-bound route, whose implication is proved and whose input needs exponent 2 against a
+    sifting floor of 4 (entry 80);
+  * and now the impossibility itself: residues name classes, classes never separate twins
+    (entry 81).

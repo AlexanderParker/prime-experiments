@@ -133,3 +133,21 @@ The numbers put the whole position on one line:
                                                 against windows of 1,684 to 668,335 columns)
 
 So the route is open in form and closed in strength, and the closure is parity again.
+
+
+## 7. The impossibility, stated (round 76)
+
+The four stops are all statements about how far the machine's mechanisms reach. This is the
+statement about what they can express at all.
+
+Every mechanism names a residue class: carrying names the mirror's multiples, the period rule
+names a class modulo the product of the gears it dodges, a walk names the gcd's multiples. And
+`class_has_closed_column` [proofs/ClassIndistinguishable.lean] proves that every class, of every
+modulus, contains columns whose lower member is composite - as far out as one likes. The witness is
+explicit: solve 6m = 1 mod p together with m = r mod M, which is possible for any gear p outside
+6M, then push past any bound with multiples of M p.
+
+So "the columns of this class are twin columns" is never a true statement, and the machine can
+only ever name a class. Whatever separates the twin columns from their neighbours inside a class is
+invisible to residues. That is the parity obstruction in the machine's own terms, and it is what
+requirement 3 was asking for without knowing it.
