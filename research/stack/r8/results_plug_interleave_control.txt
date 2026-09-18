@@ -1,0 +1,5 @@
+triples with p1 below 20000: 2260
+  plug p2*p3 (consecutive):                 base-open 0.1239
+  p2 * (fifth prime after p2):              base-open 0.1659
+  p2 * (random prime in (p2, 2p2)):         base-open 0.1549
+  free-residue expectation, averaged:       0.1966

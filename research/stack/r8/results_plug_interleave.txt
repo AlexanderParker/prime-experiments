@@ -1,0 +1,10 @@
+consecutive triples p1<p2<p3 below 20000: 2258
+  plug p2*p3 whose column is open to the base (the plug does the kill): 280  (0.1240)
+  free-residue expectation of that fraction, averaged over the triples:   0.1966
+  examples where the plug does the kill (p1,p2,p3, plug, partner):
+     (5, 7, 11, 77, 79)
+     (11, 13, 17, 221, 223)
+     (17, 19, 23, 437, 439)
+     (61, 67, 71, 4757, 4759)
+     (139, 149, 151, 22499, 22501)
+     (151, 157, 163, 25591, 25589)

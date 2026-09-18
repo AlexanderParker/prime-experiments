@@ -3122,3 +3122,42 @@ permitted, length forbidden, and the length is the exponent gap - the same one a
 of entry 80, now stated at the stretch: need exponent 1 in p, achieved polylog. Concepts 3 and 4
 are next: 3 asks whether products of near-consecutive primes carry any relation to the base's
 residues, and 4 is the accounting of the others.
+
+### 106. Concept 3, the multiplicative interleave: it carries a relation, and the relation is not a machine rule (loop, 2026-09-19)
+
+**The plug's position is fixed by the gaps.** By the plug law the plug of the stretch above p_2^2
+is p_2 p_3, the product of consecutive primes. Writing p_2 = p_1 + g_1 and p_3 = p_1 + g_1 + g_2,
+its offset from the base's square is p_2 p_3 - p_1^2 = p_1 (2 g_1 + g_2) + g_1 (g_1 + g_2), and its
+offset from its own stretch's start is p_2 g_2. So the plug is not free: it sits where the two
+gaps put it. Its column is open to the base exactly when its partner member p_2 p_3 -+ 2 has no
+prime factor up to p_1 - modulo each gear h that is the quadratic (r + g_1)(r + g_1 + g_2) -+ 2 in
+the base's residue r = p_1 mod h, and it has no algebraic factorisation for any gap pattern.
+
+**Measured** (research/stack/r8/plug_interleave.py, plug_interleave_control.py; all 2260
+consecutive triples with p_1 below 20000), the share of plugs whose column is open to the base:
+
+    plug p_2 p_3, consecutive primes                    0.124
+    p_2 times the fifth prime after it                  0.166
+    p_2 times a random prime in (p_2, 2 p_2)            0.155
+    free residues would give                            0.197
+
+Two effects, and they are different. Against free residues every product falls short, because
+the partner is about p_1^2 in size and must be prime or a product of two primes above p_1 to be
+base-open (`rough_member_form`), which is rarer than avoiding one class per gear. That is the
+size structure already on record. But the CONSECUTIVE product falls short of the non-consecutive
+ones by a further quarter: 0.124 against 0.155 to 0.166. The residues of consecutive primes
+against the base are correlated - a consecutive pair avoids the relation p_3 = -+ 2 / p_2 modulo
+small gears less often than an arbitrary pair does.
+
+**What that relation is.** It is the bias in the residues of consecutive primes (Lemke Oliver and
+Soundararajan, 2016), whose explanation rests on the Hardy-Littlewood prime-tuple conjectures.
+So the interleave does carry a relation between later primes and the base, and it is exactly of
+the kind the plan asked about - but its origin is not a rule of the machine: it is a conjectural
+distribution law about primes, the same family of statements as the twin conjecture itself. The
+machine's rules give the plug's position from the gaps and nothing about the partner's residues
+beyond CRT.
+
+**Concept 3 closed, per the plan's stop criterion.** The multiplicative interleave is
+Dirichlet-type distribution with a consecutive-prime correlation on top; no machine rule forces or
+forbids the covering it would need for a kill. Concept 2 was reduced to it by the plug law, so
+both now rest on the same outside object. Next: concept 1's reduction lemma.

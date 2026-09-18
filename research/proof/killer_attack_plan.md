@@ -52,6 +52,8 @@ plugs cover the base's open set is concept 3.
 
 **Stop criterion.** Plug law proved and confirmed on real machines; the concept then reduces to 3.
 
+**Status (round 99): plug law proved (`plug_law`); reduced to concept 3, which is closed.**
+
 ## 3. Multiplicative interleave
 
 **Statement.** For a plug a b to close the base's open column at m, a b = 6m -+ 1, so modulo the
@@ -76,6 +78,11 @@ if none exists (likely: consecutive primes' residues are free, CRT), the concept
 **Stop criterion.** Either a proved relation between consecutive primes' residues and the base
 (new mechanic), or the explicit statement that the interleave is Dirichlet-type distribution,
 outside the machine's rules.
+
+**Status (round 100): CLOSED.** The plug's position is fixed by the gaps; its partner's residues
+show the consecutive-prime correlation (0.124 base-open against 0.155 to 0.166 for non-consecutive
+products, entry 106), which is the Lemke Oliver / Soundararajan bias, a Hardy-Littlewood-type law
+outside the machine's rules. No machine rule forces or forbids the covering.
 
 ## 4. Truncation strays
 

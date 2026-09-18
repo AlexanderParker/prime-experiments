@@ -455,3 +455,15 @@ exactly the squares and products of near-consecutive primes - concept 2 reduces 
 small lifts do kill short runs: the square of the prime 26987 starts a run of 40 columns fully
 struck by the gears up to 59 alone (its own stretch is 53,980 columns). Position permits a kill;
 the length needed grows like p x gap / 3 and the runs a square can start grow polylogarithmically.
+
+
+## 30. The interleave carries a relation, and it is not a machine rule (round 100)
+
+The plug's position is fixed by the gaps - p_2 p_3 - p_1^2 = p_1 (2 g_1 + g_2) + g_1 (g_1 + g_2) -
+and its column is base-open when the partner p_2 p_3 -+ 2 is rough, a quadratic in the base's
+residue with no factorisation. Measured over 2260 triples below 20000: the consecutive product sits
+on a base-open column 12.4 percent of the time, a non-consecutive product 15.5 to 16.6 percent,
+free residues would give 19.7. The first gap is size (the partner must be prime or a large
+semiprime); the second is the correlation of consecutive primes' residues, the Lemke Oliver and
+Soundararajan bias, explained by the Hardy-Littlewood conjectures. Concepts 2 and 3 rest on that
+outside object; no machine rule forces or forbids the covering a kill would need.
