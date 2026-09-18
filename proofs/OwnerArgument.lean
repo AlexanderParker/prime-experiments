@@ -83,4 +83,26 @@ theorem product_kill_square_law (p a b : ℤ) :
     (b - a) ^ 2 - 4 * ((b - a) * p - a * b) = (a + b) ^ 2 - 4 * (b - a) * p := by
   refine ⟨by ring, by ring, by ring⟩
 
+/-- **Survival on the primorial family.**  The family `30 t ± 1` is the mirror `{2, 3, 5}` from
+home; a gear `h ≥ 7` strikes it at `t ≡ ±30⁻¹` modulo `h`, positions fixed by `h` alone - ONE
+fixed pattern on the `t`-line for all machines, of which the machine `p` sees the range
+`[p²/30, q²/30]`.  If at every gear that fixed pattern leaves some `t` of the range open to the
+gears up to `p`, the survival lemma holds (the column is `m = 5 t`). -/
+theorem survival_of_family
+    (hfam : ∀ p q : ℕ, p.Prime → 5 ≤ p → q.Prime → p < q → (∀ r : ℕ, r.Prime → p < r → q ≤ r) →
+      ∃ t : ℕ, p ^ 2 < 30 * t - 1 ∧ 30 * t + 1 < q ^ 2 ∧
+        ∀ r : ℕ, r.Prime → r ≤ p → ¬ (r ∣ 30 * t - 1) ∧ ¬ (r ∣ 30 * t + 1)) :
+    Survival := by
+  intro p q hp hp5 hq hpq hnext
+  obtain ⟨t, hlo, hhi, hopen⟩ := hfam p q hp hp5 hq hpq hnext
+  refine ⟨5 * t, ?_, ?_, ?_⟩
+  · have : 6 * (5 * t) - 1 = 30 * t - 1 := by ring_nf
+    omega
+  · omega
+  · intro r hr hrp
+    have e1 : 6 * (5 * t) - 1 = 30 * t - 1 := by ring_nf
+    have e2 : 6 * (5 * t) + 1 = 30 * t + 1 := by ring
+    rw [e1, e2]
+    exact hopen r hr hrp
+
 end MirrorWalk

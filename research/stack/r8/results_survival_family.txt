@@ -1,0 +1,10 @@
+fixed pattern of the gears 7..p on the family 30t +- 1: struck run from the square against random positions
+      p     q    stretch in t   run at t0 = p^2/30   mean run at 12 random t in range   max random
+   1009  1013           269                   18                              6.2          21
+   2003  2011          1070                    2                             10.4          31
+   4001  4003           533                   14                             15.5          45
+   6007  6011          1602                   17                             12.6          46
+   8009  8011          1068                   20                             18.0          69
+  10007 10009          1334                    2                             21.1          63
+  15013 15017          4004                  101                             20.2          59
+  19997 20011         18670                    1                             24.9          54

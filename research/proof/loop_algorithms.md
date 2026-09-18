@@ -3256,3 +3256,59 @@ Program for the next rounds, on Survival directly:
   (c) the join: whether the two layers' eligibility sets can together cover the base's open runs,
       as a structural question about square residues modulo p and modulo the base gears - the
       same square-residue structure at both ends of the stretch.
+
+### 109. The survival lemma on the primorial family: one fixed universal pattern, and the square is an ordinary position in it (loop, 2026-09-19)
+
+Steps (a) to (c) of the program of entry 108, run on the primorial family, and what they gave.
+
+**The reduction.** Take the family 30 t +- 1, the mirror {2, 3, 5} from home (t = 0 is home). A
+gear h >= 7 strikes the family at t = +-inv(30) modulo h - positions fixed by h alone, the same
+for every machine. So the gears 7..p lay ONE fixed pattern on the t-line, and the machine p only
+selects the range [p^2/30, q^2/30] of it. PROVED: `survival_of_family`
+[proofs/OwnerArgument.lean, round 103, 0 sorries] - if at every gear that fixed pattern leaves
+some t of the range open to the gears up to p, the survival lemma holds, hence twins without end.
+In the machine's terms the whole conjecture is now one property of one universal object:
+
+    the struck run of the fixed pattern of the gears 7..p on the t-line, starting at the
+    square's position t0 = p^2/30, is shorter than the stretch's span (q^2 - p^2)/30.
+
+Base layer, top layer and their join all live inside that pattern: the base gears are its small
+periods, the top gears its sparse teeth, the location law its phase at t0.
+
+**Is the square a special position of the pattern?** Measured
+(research/stack/r8/survival_family.py): the struck run from t0 = p^2/30 against runs from twelve
+random positions in the same range with the same gears -
+
+       p     stretch span in t   run at the square   mean random run   max random run
+    1009           269                 18                  6.2               21
+    2003          1070                  2                 10.4               31
+    4001           533                 14                 15.5               45
+    6007          1602                 17                 12.6               46
+    8009          1068                 20                 18.0               69
+   10007          1334                  2                 21.1               63
+   15013          4004                101                 20.2               59
+   19997         18670                  1                 24.9               54
+
+The run at the square is an ordinary run of the pattern: inside the spread of the random ones
+at every size, once above it (101 against a maximum of 59 at 15013) and often far below. The
+square's residue structure does not shorten the runs, and it does not lengthen them. So the
+location law, which fixes the phase at t0 by square residues, is not what protects the stretch;
+the pattern's runs are short EVERYWHERE, and the square is one more place.
+
+**What the pattern's runs are.** The runs of the fixed pattern of the gears up to p are the
+paired Jacobsthal runs of that gear set in the family's units: measured here at 20 to 70 over
+ranges of thousands, and at 33 columns over a whole period for the gears to 23 (entry 89). The
+span a kill needs is (q^2 - p^2)/30, about p x gap / 15 - exponent 1 in p. So the survival lemma
+on the family reads: the paired Jacobsthal length of the gears up to p, in family units, is less
+than p x gap / 15. The truth measured is polylogarithmic; the strongest proved upper bound is this
+project's exponent 4.266 (entry 80); the window version needed exponent 2 and the stretch version
+needs exponent 1.
+
+**Where the attack stands, plainly.** The owner's argument is now formalised end to end with one
+lemma left, and that lemma is the statement that a universal, explicitly constructed pattern - the
+teeth of the primes on the line 30 t +- 1 - never has a struck run as long as p x gap / 15 at the
+position p^2 / 30. Every mechanism the machine has is a feature of that pattern; the pattern is
+fixed; the square is an ordinary position. A proof is a bound on the runs of that pattern at
+exponent 1, and the attack from here is on the pattern itself: its runs, their positions, and why
+they stay polylogarithmic - which is the paired Jacobsthal question, in the machine's own units,
+with the machine's own name on it.
