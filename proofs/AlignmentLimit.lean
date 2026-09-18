@@ -102,4 +102,14 @@ theorem gears_above_every_bound (B : ℕ) : ∃ p : ℕ, B < p ∧ p.Prime := by
   obtain ⟨p, hle, hp⟩ := Nat.exists_infinite_primes (B + 1)
   exact ⟨p, by omega, hp⟩
 
+/-- **The allowance around zero is forced, not chosen.**  In any ring where 1 ≠ 0, zero has no
+inverse: from `0 * x = 1` one gets `0 = 1`.  So "division by zero is undefined" was never a
+convention that could have gone the other way, and defining `n / 0` to be a new element does not
+remove the obstruction - it moves it, since the element so defined cannot satisfy the ring laws.
+-/
+theorem zero_not_invertible {R : Type*} [Ring R] [Nontrivial R] (x : R) : (0 : R) * x ≠ 1 := by
+  intro h
+  rw [zero_mul] at h
+  exact zero_ne_one h
+
 end MirrorWalk

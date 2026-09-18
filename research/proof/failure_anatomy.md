@@ -204,3 +204,19 @@ element and "no new gears above the top" is false there too.
 terms: above every bound there is another gear. A framework with a largest number is not the
 framework that has the primes, so an argument of this shape decides the answer by choosing its
 axioms - in either direction.
+
+
+## 11. Adopting infinity, as zero was adopted (round 79)
+
+The analogy is fair and the systems exist. The projective line defines n/0 as a genuine element and
+pays by collapsing the far side (infinity plus twelve is infinity). The surreals give a top-like
+number with a full signed neighbourhood and keep all of arithmetic, and pay by being a field, where
+every nonzero element is a unit and primality is vacuous. The hyperintegers keep primality and pay
+by transfer: Euclid holds there too, so there are gears above every infinite element, and the twin
+question is the same question.
+
+The one thing no system does is make n/0 a number while keeping the ring laws, and that is forced:
+`zero_not_invertible` [proofs/AlignmentLimit.lean] - in any ring with 1 different from 0, no
+element satisfies 0 * x = 1. Wheel algebras define division by zero and pay by weakening
+subtraction. So adopting zero cost one operation at one point; adopting a top element costs either
+the far side, or primality, or nothing but the transfer that leaves the question unchanged.

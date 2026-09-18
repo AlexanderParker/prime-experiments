@@ -2055,3 +2055,38 @@ direction, which is why it cannot be a route to a proof or a disproof.
 
 The salvageable content is the part already proved in entry 82: the alignment is real at every
 finite level, and the quantifiers are what fail in the limit.
+
+### 85. Infinity as an adopted number: the systems that already do it, and what each costs
+(loop, 2026-09-18)
+
+The owner's point: zero also needed allowances - division by zero is undefined - and was adopted
+anyway; so infinity could be adopted as a number, with signed elements beyond it, and n/0 would
+become defined rather than undefined.
+
+The instinct matches mathematics that exists. Three systems already treat infinity as a number in
+close to the way described, and all three are rigorous:
+
+  * **The projective line (Riemann sphere).** Exactly the proposed sharpening: n/0 is a genuine
+    element, infinity. The cost is that the far side collapses - infinity plus twelve is infinity,
+    so there is no distinct element beyond it, and the pair either side of infinity is one point.
+  * **The surreal numbers.** Here omega is a number, and omega + 5, omega - 12, omega / 2 are all
+    distinct - precisely the signed far side proposed. Arithmetic is kept in full: the surreals are
+    an ordered field. The cost is that every nonzero element is invertible, so no element is prime
+    and primality becomes vacuous. Also, omega being invertible does NOT make 1/0 defined.
+  * **The hyperreals and hyperintegers.** Infinite elements, full arithmetic, and in the integer
+    version primality still means something. The cost is the transfer principle: every first-order
+    truth carries over, including Euclid, so there are primes above every infinite element, and the
+    twin question there is equivalent to the twin question here (entry 83).
+
+What none of them can do is make n/0 a number while keeping the ring laws, and that is a theorem
+rather than a tradition. PROVED for the record: `zero_not_invertible`
+[proofs/AlignmentLimit.lean, round 79] - in any ring with 1 different from 0, no x has 0 * x = 1,
+since 0 * x = 0. Defining n/0 to be a new element therefore does not remove the obstruction; it
+moves it, and the system must give up one of the laws. Wheel algebras do exactly that: they define
+division by zero and pay by weakening subtraction, so x - x = 0 no longer holds everywhere.
+
+So the analogy with zero holds, with one asymmetry worth stating. Adopting zero cost one operation
+at one point, and everything else survived. Adopting a top element costs either the far side
+(projective), or primality (any field, including the surreals), or nothing at all except that the
+question transfers unchanged (hyperintegers). In no case does the twin statement become easier,
+and in the only case where primality survives it becomes literally the same statement.
