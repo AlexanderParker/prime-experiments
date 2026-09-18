@@ -1,0 +1,17 @@
+exact search over square-residue shifts: can the gears up to p cover the stretch (p^2, q^2]?
+     p     q   gears   columns   coverable by some residue vector?   fewest uncovered   nodes      s
+     5     7       1         4   no                                      3           1     0.0
+     7    11       2        12   no                                     11           1     0.0
+    11    13       3         8   no                                      1          22     0.0
+    13    17       4        20   no                                      3          65     0.0
+    17    19       5        12   YES - a killer stretch exists           0          89     0.0
+    19    23       6        28   no                                      2        1562     0.0
+    23    29       7        52   no                                      4        8099     0.0
+    29    31       8        20   YES - a killer stretch exists           0          32     0.0
+    31    37       9        68   no                                      3      529991     0.8
+    37    41      10        52   YES - a killer stretch exists           0       80790     0.1
+    41    43      11        28   YES - a killer stretch exists           0         316     0.0
+    43    47      12        60   YES - a killer stretch exists           0      672016     1.0
+    47    53      13       100   YES - a killer stretch exists           0    58275697    95.9
+    53    59      14       112   YES - a killer stretch exists           0    95321311   162.9
+    59    61      15        40   YES - a killer stretch exists           0          15     0.0

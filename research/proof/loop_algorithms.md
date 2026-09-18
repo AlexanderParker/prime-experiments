@@ -2812,3 +2812,66 @@ gears below it - has not occurred once.
 whole conjecture, in the machine's terms, is: for every consecutive pair of gears p < q, the gears
 up to p leave an open column in (p^2, q^2] other than the square's. That is one stretch of about
 p x gap / 3 columns against the gears up to p, with nothing else in play.
+
+### 100. The hunt at one stretch: killers exist in the residue space, the machine never visits them
+(loop, 2026-09-19)
+
+The target is one stretch wide (entry 99): for consecutive gears p < q, can the gears up to p
+cover (p^2, q^2] except the square's column? Three results.
+
+**1. Under the strike law's own constraint, killer configurations exist.** The stretch starts at
+p^2, so gear h's phase at its start is fixed by r = p mod h: the start column is (r^2 + 5) inv(6)
+modulo h - the strike law of proof_skeleton section 12. The adversary at a stretch therefore
+chooses a SQUARE residue per gear, one of (h-1)/2 values, not one of h. Exact search over those
+(research/stack/r8/stretch_kill_search.py):
+
+      p    q   gears   columns   some residue vector covers the stretch?
+      5    7      1        4     no
+     11   13      3        8     no
+     13   17      4       20     no
+     17   19      5       12     YES
+     19   23      6       28     no
+     23   29      7       52     no
+     29   31      8       20     YES
+     31   37      9       68     no
+     37   41     10       52     YES
+     41   43     11       28     YES
+     43   47     12       60     YES
+     47   53     13      100     YES
+     53   59     14      112     YES
+     59   61     15       40     YES
+
+From p = 37 on, every stretch tested has a killer in the residue space; the narrow twin-gear
+stretches (17-19, 29-31, 41-43, 59-61) have them earliest. So the protection of a stretch is NOT
+in the shape of the constraint. Something in the residue model can kill.
+
+**2. But each stretch has exactly one realisable vector, and it is p's own.** The gear set of a
+stretch is the gears up to p with next prime q, and p is the only prime with that gear set. So the
+residue vector at the stretch is not chosen: it is (p mod h) for h up to p, one point of the
+space, fixed by p. Counting the killers against the whole space
+(research/stack/r8/killer_fraction.py, exact enumeration with pruning):
+
+      p    q   columns   residue vectors      killers    fraction     p's own vector kills?
+     17   19      12            85,085           376    4.4 x 10^-3       no
+     19   23      28         1,616,615             0    0                 no
+     23   29      52        37,182,145             0    0                 no
+     29   31      20     1,078,282,205     1,708,372    1.6 x 10^-3       no
+     31   37      68    33,426,748,355             0    0                 no
+
+The killers are a few tenths of a percent of the space where they exist at all, and p's own
+vector is never among them.
+
+**3. Measured over every stretch to 20000** (research/stack/r8/stretch_twins_sieve.py, 2260
+consecutive-gear stretches by segmented sieve): none is twin-free. The fewest twins in a stretch
+is 2, at the narrowest stretches (5-7, 11-13, 17-19, 29-31); among the stretches with p above
+10000 the fewest is 147, at p = 10427; the smallest twins-per-column ratio anywhere is 0.0185, at
+p = 19139. The number the machine has to beat is 1 twin per stretch, and it never comes within a
+factor of a hundred of the edge once p is past 10000.
+
+**What this says about the killers.** The hunt has found them: they are residue vectors of the
+gears up to p that cover the stretch above p^2, they exist from p = 17 on, they are rare, and they
+are not visited. The machine visits one point per stretch, p's own residues, and the question
+"can a killer appear" is exactly "is p ever congruent, modulo every gear up to itself at once, to
+one of the few killer vectors of its own stretch". That is a statement about where the primes sit
+in the residue space of their own gears - the same object as the exponent-2 question, now with
+the killers named and counted at small p.

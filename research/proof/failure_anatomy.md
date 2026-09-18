@@ -382,3 +382,16 @@ their rigid tooth pairs covering a stretch of about p x gap / 3 columns just abo
 the next square - and a permanent kill requires it at every consecutive pair beyond some point.
 Across all 666 consecutive-gear stretches below q = 5000, none is twin-free; the fewest twins in a
 stretch is 2.
+
+
+## 24. The killers, found and counted (round 94)
+
+At a stretch (p^2, q^2] the adversary's shift at gear h is a square residue, fixed by p mod h.
+Exact search over square-residue vectors shows killer configurations EXIST in the residue space
+from p = 17 on, at every stretch tested from p = 37; so the protection is not in the constraint's
+shape. But each stretch has one realisable vector, p's own, since p is the only prime with that
+gear set; the killers are a few tenths of a percent of the space where they exist (376 of 85,085
+at 17-19; 1.7 million of 1.08 billion at 29-31; none at 19-23, 23-29, 31-37) and p's own vector
+is never among them. Over all 2260 stretches to 20000 none is twin-free; fewest twins 2 at the
+narrowest, 147 at the fewest above p = 10000. The question is whether a prime is ever congruent,
+modulo every gear up to itself at once, to a killer vector of its own stretch.

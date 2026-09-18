@@ -1,0 +1,8 @@
+   p    q  columns   residue vectors   killers   fraction     p's own vector kills?
+    5    7        4                 5         0   0.00e+00     False
+    7   11       12                35         0   0.00e+00     False
+   11   13        8               385         0   0.00e+00     False
+   13   17       20              5005         0   0.00e+00     False
+   17   19       12             85085       376   4.42e-03     False
+   19   23       28           1616615         0   0.00e+00     False
+   23   29       52          37182145         0   0.00e+00     False
