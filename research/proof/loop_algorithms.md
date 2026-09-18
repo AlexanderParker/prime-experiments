@@ -3427,3 +3427,49 @@ that is not a sieve estimate, and the record's own answer is the one-flip / mult
 a twin at column c gives the family of columns c x j whose gear residues are the residues of c
 rotated by j - open iff j avoids two classes per gear - which is the two-class sieve on j over a
 range of length c. The chain reproduces the problem at every twin; it does not lower its weight.
+
+### 112. The owner's line 3 against the record's counter-machine: the mechanics do not force survival, and what a proof must therefore use (loop, 2026-09-19)
+
+Before any new hypothesis, the record's own test of the owner's claim, made on 2026-09-11 and not
+cited in the rounds since (research/proof/fold_mechanic.md, sections 2.1, 4.2, 6; scripts
+research/anchor235/r78/fm_*.py).
+
+**The counter-machine.** Take the gear set G = P_+ u (P_- \ W): every prime = +1 mod 6, and every
+prime = -1 mod 6 EXCEPT the lower members of twin prime pairs. Let M_G be the monoid it generates.
+On M_G every mechanic the owner's argument uses holds verbatim:
+  * strikes are multiples (dilation), gears strike at their own teeth and nowhere else;
+  * a prime slips every gear below it (the hand-up: the gears of a section are exactly the
+    elements no smaller gear strikes);
+  * the square-root rule: an element below the next gear's square with no gear factor below it
+    is a gear;
+  * a product kills once: each composite element has one least gear factor, and the strike is
+    that factorisation;
+  * both classes of gears at every scale, in every residue class of every modulus, with the
+    primes' density.
+And on M_G EVERY section is fully struck, the smallest being [49, 2809): 85 columns, 0 twin gear
+pairs. Proved (the Lemma of 2.1): step 8 holds on a section of M_G iff the removed set keeps a twin
+lower inside it; 0 mismatches over 7,309 sections to 10^7.
+
+**What that decides for the argument of entry 108.** Lines 1 and 2 are theorems for every gear
+set. Line 3 - no mechanic blocks the gaps permanently - is TRUE of the mechanics and FALSE as a
+conclusion on M_G: the mechanics are all present there and the gaps are blocked at every section.
+So line 3 in the form line 4 needs (SurvivalInf, entry 111) does not follow from the mechanics of
+striking; if it did, it would hold on M_G. The argument's gap is not a missing mechanic of the
+gears - the record has now checked every named one - but the one property M_G lacks: its line is
+not all of S = {6j +- 1}. The column (t, t + 2) of a twin lower t is not a column of M_G at all.
+
+**The admissibility criterion this gives, for every future round.** A proof of survival must
+use that every j is a column of the real machine (the line's completeness, the strike-class law's
+first half), and must use it in a way that is neither a free-phase cover nor a count. Test for any
+proposed argument: delete the open columns from the line and rerun the argument; if it still goes
+through, it is wrong, because its conclusion fails on M_G. The run-length form (entries 80, 107,
+109) passes the test - a struck run shorter than the interval uses that the interval's columns are
+consecutive - and its weight is the conjecture (entry 111). The pin at p = 29
+(origin_mechanic.md section 3) passes it too - it is a fact about which multiples exist - and the
+record found no general form of it.
+
+**Consequence for the loop.** Rounds that rediscover a mechanic of striking cannot progress; the
+record has closed that direction twice (fold_mechanic.md, entries 107-111). Next: state the
+counter-machine in the kernel as an independence theorem - an abstract machine satisfying the
+striking axioms, the real machine and M_G both models, survival failing on M_G - so the owner's
+argument carries, as a theorem, the exact statement of what its line 3 must add.
