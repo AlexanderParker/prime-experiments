@@ -81,4 +81,18 @@ def WindowStatement : Prop :=
     ∃ m : ℕ, q < 6 * m - 1 ∧ 6 * m + 1 ≤ q ^ 2 ∧
       ∀ g : ℕ, g.Prime → g ≤ q → ¬ (g ∣ (6 * m - 1)) ∧ ¬ (g ∣ (6 * m + 1))
 
+/-- **An aligned neighbour always acquires a factor above the alignment.**  If no gear up to `B`
+divides `n` and `n > 1`, then `n` has a prime factor larger than `B`.  At the primorial this is
+the exact reason the construction stops: the neighbours are open to everything aligned and are
+struck by something above it.  The square-root rule is what converts "the factor is above `B`"
+into "there is no factor" - and it applies only below `B²`. -/
+theorem aligned_neighbour_factor {n B : ℕ} (hn : 1 < n)
+    (hopen : ∀ g : ℕ, g.Prime → g ≤ B → ¬ (g ∣ n)) :
+    ∃ p : ℕ, p.Prime ∧ p ∣ n ∧ B < p := by
+  obtain ⟨p, hp, hpd⟩ := Nat.exists_prime_and_dvd (by omega : n ≠ 1)
+  refine ⟨p, hp, hpd, ?_⟩
+  by_contra hle
+  push_neg at hle
+  exact hopen p hp hle hpd
+
 end MirrorWalk

@@ -171,3 +171,20 @@ The alignment therefore exists at every finite level and nowhere in the limit; t
 not commute. The window statement asks for the pattern in between - a column whose gear set is
 fixed by the column's own size - and that is exactly what neither fact supplies. Every failure in
 sections 1 to 7 is a different attempt to bridge those quantifiers.
+
+
+## 9. Infinity as a number (round 77, continued)
+
+Asked whether treating infinity as a number would make the alignment argument work. In the
+extended reals the pair collapses - infinity plus one and infinity minus one are the same object -
+and primality is undefined, so the statement is vacuous. In the profinite integers the alignment
+is real but it is the sieve's local picture: no congruence obstruction at any modulus, nothing
+about integers. In the nonstandard integers, where infinity genuinely is a number, the transfer
+principle makes the twin prime conjecture equivalent to the existence of an infinite hyperinteger
+whose neighbours are both hyperprime - the same statement, not an easier one - and the
+hyperprimorial's neighbours still carry a hyperprime factor above the alignment.
+
+The finite shadow is proved: `aligned_neighbour_factor` - if no gear up to B divides n and n > 1
+then n has a prime factor above B. Alignment never removes the factor; it pushes it above the
+aligned set. Only the square-root rule turns that into primality, and only below B squared. The
+problem is the window, not the alignment.

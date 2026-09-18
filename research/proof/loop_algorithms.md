@@ -1986,3 +1986,34 @@ at P = 13 the upper is 30031 = 59 x 509.
 So the intuition is sound and it is the reason the construction works at all; what it cannot do is
 close the gap, because closing it would need the alignment to hold for a gear set that grows with
 the number it is aligning.
+
+### 83. Treating infinity as a number: what each system actually gives (loop, 2026-09-18)
+
+The follow-up question: if infinity were treated as a number, would the alignment argument be
+true? The answer depends on which system, and none of them makes it true for free.
+
+  * Extended reals, or naive infinity. There, infinity minus one and infinity plus one are the
+    same object as infinity, so the pair collapses to a single element and primality is not
+    defined on it. The statement becomes meaningless rather than true.
+  * Profinite integers. Zero does have every gear at residue zero and the neighbours are units,
+    exactly as the observation says. But that is the local picture, and it is the sieve's own
+    picture: it says there is no congruence obstruction to twins at any modulus - which is why the
+    conjecture is believed and why the heuristic densities are positive. It says nothing about
+    integers, because a profinite element is a coherent system of residues, not a number with a
+    size or a factorisation.
+  * Nonstandard integers (hyperintegers). This is the system where infinity IS a number, and the
+    transfer principle applies: a first-order statement holds of the standard integers exactly
+    when it holds of the nonstandard ones. The twin prime conjecture is equivalent to the
+    existence of an infinite hyperinteger H with H - 1 and H + 1 both hyperprime. So the
+    nonstandard version is not easier, it is the same statement.
+  * And the alignment fails there for the same reason it fails here. By transfer the primorial
+    function extends, so there is a hyperprimorial of an infinite hyperprime, and its neighbours
+    are coprime to every standard prime and to every hyperprime below it - but they still have a
+    hyperprime factor above it. The finite shadow of that is proved this round:
+    `aligned_neighbour_factor` [proofs/AlignmentLimit.lean, round 77, 0 sorries] - if no gear up
+    to B divides n and n > 1, then n has a prime factor above B. Alignment never removes the
+    factor, it only pushes it above the aligned set.
+
+What converts "the factor is above B" into "there is no factor" is the square-root rule, and it
+applies only below B squared. That is the window, and it is why the whole problem is the window
+rather than the alignment.
