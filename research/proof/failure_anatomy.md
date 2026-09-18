@@ -114,3 +114,22 @@ period X# and needs X# <= q^2 - q to meet the window. Both levers stop at about 
 
 So requirement 3 has an exact statement: every gear from there up to sqrt(N) - all but
 logarithmically many of them - has no naming mechanism in this machine, and a proof needs one.
+
+
+## 6. The run bound, and the exponent gap (round 75)
+
+There is one classical mechanism that meets requirement 3, and the project already owns work on
+it: a bound on the paired Jacobsthal function j2 names an open column in every run of that length,
+with no counting and no choice of mirror. The implication is proved
+(`window_of_column_gap`, `window_statement_of_gap_law`, proofs/JacobsthalWindow.lean): a run bound
+J with 6(q + J) + 1 < q^2 gives the window statement.
+
+The numbers put the whole position on one line:
+
+    needed                exponent 2 in q      (a run bound of the order of the window)
+    proved by the ladder  exponent 4.266       (fundamental lemma, docs/novel j2-upper-bound)
+    sifting floor         exponent 4           (Selberg's 2 kappa; below it is parity)
+    truth, measured       (ln q)^2             (longest run 34 to 251 for q = 101 to 2003,
+                                                against windows of 1,684 to 668,335 columns)
+
+So the route is open in form and closed in strength, and the closure is parity again.

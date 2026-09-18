@@ -1,0 +1,10 @@
+longest run of struck columns inside the window, against the window and (ln q)^2
+      q   window columns   longest struck run   run / (ln q)^2   open columns in window
+    101            1,684                   34             1.60                     202
+    251           10,459                  104             3.41                     818
+    503           42,085                  153             3.95                   2,585
+   1009          169,512                  241             5.04                   8,278
+   2003          668,335                  251             4.34                  26,870
+
+what a proof needs: a bound on the run of the order of the window, i.e. exponent 2 in q
+what the ladder proves: exponent 4.266 (fundamental lemma); the parity floor is 4

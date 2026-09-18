@@ -2319,3 +2319,6 @@ name = "WindowFromCount"
 
 [[lean_lib]]
 name = "LandingForms"
+
+[[lean_lib]]
+name = "JacobsthalWindow"

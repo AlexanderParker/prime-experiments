@@ -1875,3 +1875,44 @@ closed, and can name a candidate open only to the gears below a primorial that f
 The gears from there to sqrt(N) - which is all but logarithmically many - have no naming
 mechanism at all in this machine. That is the hole, and it is now described by what is in it
 rather than by what has failed.
+
+### 80. The run bound: the window statement from j2, and the exponent that is missing (loop, 2026-09-18)
+
+Requirement 3 asks for a mechanism naming a candidate open against the gears between the
+primorial's reach and sqrt(N). There is exactly one classical object that does that, and this
+project has already worked on it: the paired Jacobsthal function j2, the longest run of columns in
+which none escapes every gear of a primorial. A bound on j2 names an open column in EVERY run of
+that length - no counting, no sieve cancellation, no choice of mirror.
+
+PROVED this round [proofs/JacobsthalWindow.lean, round 75, 0 sorries]:
+
+  `window_of_column_gap`: if every run of J consecutive columns holds one that no gear of the
+  machine strikes, and a run of J columns starting at the machine's top gear still ends below
+  q^2, then the window holds a twin prime pair.
+  `window_statement_of_gap_law`: the same for every machine, from a uniform run law.
+
+So the window statement follows from a bound of the shape j2(q#) < q^2 - q. The project's own
+ladder (docs/novel, j2-upper-bound) proves j2(p_n#) << p_n^(4.266+eps) by the fundamental lemma,
+after the elementary 3^(n+1) log^2 p_n rung and a quasi-polynomial one. The window needs exponent
+2. The same ladder carries the ceiling: exponent 2 sits below Selberg's conjectural floor
+2 kappa = 4 for dimension-2 sifting, so the missing factor is parity, not technique - the same
+wall as the analytic route (entry 77).
+
+MEASURED (research/stack/r8/run_gap_window.py) - the truth inside the windows themselves:
+
+       q     window columns    longest struck run    run / (ln q)^2    open columns
+     101          1,684                34               1.60              202
+     251         10,459               104               3.41              818
+     503         42,085               153               3.95            2,585
+    1009        169,512               241               5.04            8,278
+    2003        668,335               251               4.34           26,870
+
+The longest run actually occurring is a few hundred columns against windows of hundreds of
+thousands - four orders of magnitude of room, growing - and tracks (ln q)^2 rather than any power
+of q. So the hypothesis of `window_of_column_gap` is not merely true but enormously slack at every
+size measured. What is missing is a proof of a bound at exponent 2, and the sifting limit says no
+sieve gives one.
+
+This is the sharpest statement of the whole position: the implication from a run bound is proved
+and cheap; the run bound needed is exponent 2; the best proved is 4.266; the floor that any sieve
+can reach is 4; and the truth is polylogarithmic.
