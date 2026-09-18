@@ -1,0 +1,19 @@
+survivors of the gears up to the cut P, and the share of them the gears in (P, q] strike
+       q     cut P   survivors   struck by (P,q]   fraction   independence   ratio
+    1009       q/2        9709              1431     0.1474         0.1821   0.809
+    1009    q^0.75       15127              6849     0.4528         0.4252   1.065
+    1009     q^0.5       31578             23300     0.7379         0.7217   1.022
+    1009    q^0.25      101707             93429     0.9186         0.9136   1.005
+
+    2003       q/2       31159              4289     0.1376         0.1729   0.796
+    2003    q^0.75       49940             23070     0.4620         0.4294   1.076
+    2003     q^0.5      106778             79908     0.7484         0.7312   1.023
+    2003    q^0.25      401001            374131     0.9330         0.9284   1.005
+
+    5003       q/2      149392             18849     0.1262         0.1553   0.813
+    5003    q^0.75      252016            121473     0.4820         0.4347   1.109
+    5003     q^0.5      556473            425930     0.7654         0.7430   1.030
+    5003    q^0.25     1787502           1656959     0.9270         0.9200   1.008
+
+ratio = 1 means the large gears strike survivors exactly in proportion to their share;
+failure would need the fraction to reach 1.0000, i.e. ratio 1/independence.

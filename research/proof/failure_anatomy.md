@@ -280,3 +280,17 @@ primorial multiples, are ordinary (worst 1.85 (ln q)^2 against the record 6.6). 
 worst stretches, the longest struck runs of the gears to P with their real teeth, are 4, 6, 10, 17,
 24, 33 columns for P = 7 to 23, and a machine placed at each reaches its first twin within
 2.42 (ln q)^2.
+
+
+## 16. The property a failure would need (round 84)
+
+Split the gears at a cut. A failure needs the gears above the cut to strike every survivor of the
+gears below it, which under independence they do only in the share 1 - product of (1 - 2/h) over
+the large gears - about 2 ln 2 / ln q at the cut q/2. So a failure needs the large gears' teeth to
+fall on the small gears' survivors far more often than their share, by a factor that grows without
+bound as the cut rises. Measured at q = 5003: the actual ratio to independence is 0.81 at the cut
+q/2 (needed 6.4), 1.11 at q^0.75 (needed 2.3), 1.03 at q^0.5 (needed 1.35). The top cut runs the
+other way for a proved reason: a gear in (q/2, q] strikes a survivor only through a member that is
+the gear itself or the gear times one prime in (q/2, 2q) (`top_gear_cofactor`,
+proofs/FailureConditions.lean). The property is absent in every state measured, reversed where the
+requirement is largest, and not constructible by a free adversary at any size reached.

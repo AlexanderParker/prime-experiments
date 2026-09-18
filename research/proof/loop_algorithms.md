@@ -2315,3 +2315,64 @@ window; the free configuration provably cannot for q up to 19; the adversary's n
 are ordinary; the machine's own worst stretches are polylogarithmic. The crack, if there is one,
 is above the exact frontier and inside the exponent-2 question, exactly where every other route
 put it.
+
+### 90. What would have to emerge for a window to fail, and whether it can (loop, 2026-09-18)
+
+Asked to stop searching and instead say what properties a failure would need, then test whether
+those properties can exist in any state of the machine.
+
+**The failure condition, split at a cut.** Take any cut P below q. The gears up to P leave a set
+of survivors in the window - the columns none of them strikes - and a failure needs the gears in
+(P, q] to strike EVERY survivor. If each large gear's two classes fell on survivors in the same
+proportion as on all columns (independence), the share of survivors they strike would be
+
+    1 - product over P < h <= q of (1 - 2/h),
+
+which is far below 1 whenever the cut is a power of q near 1: about 2 ln 2 / ln q at P = q/2.
+So a failure REQUIRES the large gears' teeth to land on the small gears' survivors far more often
+than their share - by a factor 1 / (that expression), which grows without bound as the cut rises.
+That is the property that would have to emerge: a strong positive correlation between where the
+big gears strike and where the small gears leave gaps, across the whole window at once.
+
+**Measured on real machines** (research/stack/r8/failure_conditions.py), the share of survivors
+the large gears actually strike, against independence, and the ratio a failure would need:
+
+       q     cut     survivors    struck share   independence   actual ratio   ratio failure needs
+    5003     q/2      149,392        0.126          0.155           0.81              6.4
+    5003   q^0.75     252,016        0.482          0.435           1.11              2.3
+    5003   q^0.5      556,473        0.765          0.743           1.03              1.35
+    5003   q^0.25   1,787,502        0.927          0.920           1.01              1.09
+
+(the same pattern at q = 1009 and 2003: ratios 0.81, 1.07, 1.02, 1.005 and 0.80, 1.08, 1.02,
+1.005). The property is absent at every cut, and at the top cut the machine runs the OTHER way:
+the gears in (q/2, q] are less efficient on survivors than their share, ratio 0.8, where a failure
+would need 6.4.
+
+**Why the top cut runs the other way - a proved constraint.** A gear h in (q/2, q] strikes a
+survivor of the gears up to q/2 only through a member n = h k with k free of primes up to q/2 and
+k < 2q; so k is 1 or a single prime in (q/2, 2q). PROVED: `top_gear_cofactor`
+[proofs/FailureConditions.lean, round 84, 0 sorries] - if a gear in (q/2, q] divides a member at
+most q^2 with no prime factor up to q/2, the member is the gear itself or the gear times one prime
+in (q/2, 2q). The top gears cannot strike survivors freely; each strike on a survivor is a product
+of two large primes, which is a rigid feature of the residues and not a count. (The count it
+implies is not tight enough to forbid failure on its own, and counting is not the route; the point
+is the mechanism: the top gears' teeth on the survivor set are pinned to the primes of (q/2, 2q).)
+
+**So, can the required property exist in any state of the machine?** Two answers.
+  * In the rigid configuration, the state is the residues of one integer, and the mechanism above
+    pins the top gears' strikes on survivors to two-prime products; the measured efficiency is
+    below independence at the top cut and within 11 percent of it elsewhere, with the requirement
+    at 6.4 and 2.3. Nothing measured moves toward the requirement as q grows; the top-cut ratio is
+    flat at 0.8 from 1009 to 5003 while the requirement grows like ln q.
+  * In the free configuration - teeth chosen at will - the required correlation can be built for
+    ONE cut by choosing each large gear's classes to hit survivors, but exact search (entry 89)
+    shows that even then no cover exists for q up to 23, and annealing leaves 5 percent open
+    beyond that. The reason is the same in both worlds: a large gear h has about q^2 / (6h) strikes
+    to place and the survivor set is spread evenly over its h classes, so its best class beats its
+    average class by a vanishing margin as q grows.
+
+**Standing.** The failure property is now named - super-proportional efficiency of the large gears
+on the small gears' survivors, growing without bound with the cut - and it is absent in every
+measured state, reversed at the top cut by a proved mechanism, and not constructible by a free
+adversary at any size reached. What is not on record is a proof that it is impossible at every q,
+and that proof would be the window statement.

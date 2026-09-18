@@ -2328,3 +2328,6 @@ name = "ClassIndistinguishable"
 
 [[lean_lib]]
 name = "AlignmentLimit"
+
+[[lean_lib]]
+name = "FailureConditions"
