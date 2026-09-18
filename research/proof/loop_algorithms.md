@@ -3715,3 +3715,49 @@ stretch is killable from p = 17 (entry 105); with the rigid pair it is unkillabl
 real machine sits at Hamming distance half its twin count from the nearest killer at every p
 measured. The conjecture is d(p) >= 1 for infinitely many p; the law measured is d(p) ~ twins/2,
 i.e. the survival margin of a stretch is not one column but half its twins' worth of gears.
+
+### 119. The shift-rigid record IS the machine's record, and the ILP computes it without the period (loop, 2026-09-19)
+
+**The object.** F_shift(p): the longest run [0, L) that SOME assignment of shifts to the rigid
+tooth pairs of the gears 5..p strikes completely (research/stack/r8/shift_rigid_record.py, ILP
+feasibility, L increasing).
+
+**The identity, and why.** F_shift(p) = F({5..p}), the machine's own record with its real
+phases. Reason: by the Chinese remainder theorem every shift vector (s_g) is realised by one
+window position x of the real pattern (x = -s_g mod g for every g), so the real pattern's runs
+over one period are exactly the runs of all shift vectors, and the worst of them is the record.
+The re-phasing adversary of entries 117-118 therefore never leaves the machine: every rigid
+killer it finds is a real position of the real pattern, at some other window. (The free
+two-class adversary, h_2 / A072753, does leave it.)
+
+**Values (ILP), against the certified ladder:**
+
+      p    F_shift   known F(M)          time
+      5       1          1
+      7       4          4
+     11       6          6
+     13      10         10
+     17      17         17
+     19      24         24
+     23      33         33 (entry 89)     1.7 s
+     29      42         42                7.9 s
+     31      57         57               20 s
+     37      87         87 (law_register)  50 s
+     41      90         90              313 s
+     47     bisecting 110..130 (118 certified) - in progress
+     59     bisecting 161..179 (pinned [161, 178]) - in progress
+
+Every value agrees with the record where the record has one. The ILP reaches in seconds what
+the period scan cannot: the period of {5..31} is 2 x 10^11 columns and the exact record 57 came
+from a 9-gear ILP in 20 seconds. The record's own falsification target - one exact rigid record
+beyond q = 59 (entry 110) - is now a computation, not a scan.
+
+**Consequence for the kill-distance law (entry 118).** d(p) is the Hamming distance, in gears,
+from the window at p^2 to the nearest window of the same pattern that is fully struck. That the
+nearest such window is half the twins' worth of gears away says the pattern's dead windows (they
+exist from p = 37, being the record's own runs of length >= the stretch) are nowhere near the
+squares in residue space. The survival lemma in this language: the square's window is never one
+of the pattern's dead windows - and the dead windows of the pattern of gears <= p have length
+F(p) = 57 at 31, 87 at 37, 118 at 47, against stretches of length 2 p gap / 6 which exceed
+F(p) from p = 37 on (stretch 51 at 37 < 87 - the square's window is short enough to be killable
+in principle; and it is not killed).
