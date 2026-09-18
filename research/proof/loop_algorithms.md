@@ -2237,3 +2237,20 @@ rigid or free; the closest real call is the smallest machine; the worst real dis
 twin is more than q^2 away, against a measured record of 1722 at ten million. The hunt has not
 found a crack, and it has found where the crack would have to be: in the free configuration's
 extremal runs, which is the paired Jacobsthal question, at exponent 2.
+
+Addendum to entry 88 - the growth of the record distance. The running records of D(q), the
+distance from q to the first twin above it, over all machines to 10^7:
+
+        q         D     D/(ln q)^2    edge q^2-q-D     D/edge
+      347        72        2.10          1.2e5        6.0e-4
+     2381       168        2.78          5.7e6        3.0e-5
+    24419       498        4.88          6.0e8        8.4e-7
+   187907       924        6.27          3.5e10       2.6e-8
+   850349      1452        7.79          7.2e11       2.0e-9
+  9923987      1722        6.63          9.8e13       1.8e-11
+
+A power fit on the records above q = 1000 gives D about 0.17 (ln q)^3.4; against (ln q)^2 the
+constant drifts up from 2 to 8 across the range, so the records sit between (ln q)^2 and
+(ln q)^3, consistent with the Cramer-style expectation of (ln q)^3 for twins (density 1/(ln q)^2).
+The edge grows as q^2, so the ratio D/edge falls like (ln q)^3 / q^2: by a factor of about 10^7
+across the four decades measured, from 6 x 10^-4 at q = 347 to 1.8 x 10^-11 at q = 9923987.
