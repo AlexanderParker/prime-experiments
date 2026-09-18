@@ -3659,3 +3659,59 @@ to the nearest killer - and its measured law is d ~ twins / 2.5, growing without
 case d(p) >= 1 is the survival of the stretch itself, so a lower bound on d is not a route to
 the conjecture but a statement of how far the machine sits from failure: at p = 5,717, with 984
 twins, of the order of 400 gears would have to move at once.
+
+### 118. The kill distance, exact by integer programming: unkillable stretches, and d = half the twins (loop, 2026-09-19)
+
+research/stack/r8/kill_distance_ilp.py (scipy 1.16 milp / HiGHS): one binary per (gear, shift),
+one shift per gear, every column of the stretch struck, minimise the gears moved off the real
+phase. Every stretch 7 <= p <= 109, exact (the search of entry 117 confirmed where it finished).
+
+      p    q  cols twins   d   d/twins  gears moved
+      7   11    11    4   none        - the stretch cannot be killed by any rigid re-phasing
+     11   13     7    2   none        -
+     13   17    19    7   none        -
+     17   19    11    2    1   0.50   17
+     19   23    27    4   none        -
+     23   29    51    8   none        -
+     29   31    19    2    2   1.00   19, 29
+     31   37    67   11   none        -
+     37   41    51    7    4   0.57   13, 23, 29, 37
+     41   43    27    3    1   0.33   11
+     43   47    59   11    5   0.45   5, 11, 17, 37, 43
+     47   53    99   13    8   0.62   5, 11, 13, 17, 23, 31, 37, 47
+     53   59   111   13    8   0.62   5, 7, 11, 19, 23, 31, 37, 47
+     59   61    39    5    3   0.60   5, 13, 53
+     61   67   127   19    7   0.37   7, 11, 17, 37, 41, 59, 61
+     67   71    91   11    5   0.45   5, 7, 13, 29, 41
+     71   73    47    3    2   0.67   11, 71
+     73   79   151   15    8   0.53   11, 13, 19, 31, 37, 43, 67, 73
+     79   83   107   14    6   0.43   7, 31, 37, 43, 53, 71
+     83   89   171   14    8   0.57   5, 13, 29, 37, 43, 53, 61, 83
+     89   97   247   21   10   0.48   13, 17, 29, 31, 43, 61, 67, 73, 79, 89
+     97  101   131   15    6   0.40   13, 23, 29, 47, 73, 83
+    101  103    67    7    3   0.43   11, 13, 31
+    103  107   139   10    5   0.50   13, 17, 53, 89, 103
+    107  109    71    6    3   0.50   17, 19, 43
+    109  113   147   11    5   0.45   17, 37, 67, 89, 109
+
+**Two facts.**
+  1. UNKILLABLE STRETCHES. At p = 7, 11, 13, 19, 23 and 31 no assignment of shifts to the rigid
+     pairs of the gears 5..p strikes every column of the stretch: those stretches are open under
+     EVERY phase vector, the real one included, by the pair shape and the lengths alone. From
+     p = 37 on every stretch is killable in residue space (entry 105's threshold, now at the
+     stretch and exact), and the machine's own vector is never a killer.
+  2. HALF THE TWINS. Where a killer exists, the distance from the real configuration to the
+     nearest one is d = 0.33 to 0.67 of the twin count, 0.50 on average over the 20 killable
+     stretches, with no drift from 37 to 109. The gears moved are spread over the whole range
+     (5 to p), always including the top gear or one near it in about half the cases.
+
+**Mechanism of the ratio.** A moved gear covers the twins in two classes modulo g and must have
+its abandoned lone kills re-covered; the optimum moves a mix of small gears (each takes 2 to 4
+twins, costs many lone kills) and large gears (each takes 1 or 2 twins at its pinned products,
+costs 0 to 2 lone kills) - about two twins per moved gear.
+
+**Standing.** FACT, and a sharpening of the rigid-vs-free record. In the free two-class model the
+stretch is killable from p = 17 (entry 105); with the rigid pair it is unkillable to 31, and the
+real machine sits at Hamming distance half its twin count from the nearest killer at every p
+measured. The conjecture is d(p) >= 1 for infinitely many p; the law measured is d(p) ~ twins/2,
+i.e. the survival margin of a stretch is not one column but half its twins' worth of gears.
