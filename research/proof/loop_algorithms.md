@@ -3613,3 +3613,49 @@ picture of the stretch, now measured on the machine's own layers with the rigid 
 and it is the picture the parity barrier says cannot be turned into a proof by counting. A proof
 from the machine must therefore find structure the two-layer census does not see - at the pins
 of single gears (entry 113's last open item), not in the layers' statistics.
+
+### 117. The pins under the rigid pair: single-gear killers end at p = 41, and the kill distance of a stretch (loop, 2026-09-19)
+
+Two probes on entry 113's last open item - structure at the pins of single gears.
+
+**Single-gear killers, rigid (research/stack/r8/single_gear_killers.py, every p <= 3,000).** A
+gear g is a single-gear killer of the stretch if re-phasing its rigid tooth pair {s + u, s - u}
+(u = 6^-1 mod g, the pair's shape kept - `teeth_separation`) lands a tooth on every twin of the
+stretch and abandons no column that only g struck. Result: exactly two stretches have one -
+p = 17 (gear 17, shift 4; two twins) and p = 41 (gear 11, shift 10; three twins) - and none
+from 43 to 3,000. The record's p = 29 killer (origin_mechanic.md section 3, teeth at +-2 against
+the real +-5) is a FREE two-class tooth, not a rigid pair: with the pair's separation 2u = 10
+fixed, no shift of gear 29 reaches both twins 143 and 147 (separation 4). So under the machine's
+own tooth law the pin protection of a stretch is never one gear's from p = 43 on, for the plain
+reason that the twins of a stretch (7 at 37, 13 at 47, 984 at 5,717) do not fit in two residue
+classes of any gear.
+
+**The kill distance (research/stack/r8/kill_distance.py, exact by iterative deepening to
+depth 5, p <= 71 in 8 minutes).** d(p) = the least number of gears whose rigid pairs must be
+re-phased away from the real phase to strike every column of the stretch, a re-phased gear's
+abandoned lone kills becoming targets too.
+
+       p   q   cols  twins  d(p)          p   q   cols  twins  d(p)
+       7  11    11     4    > 5          41  43    27     3     1
+      11  13     7     2     2           43  47    59    11     5
+      13  17    19     7    > 5          47  53    99    13    > 5
+      17  19    11     2     1           53  59   111    13    > 5
+      19  23    27     4    > 5          59  61    39     5     3
+      23  29    51     8    > 5          61  67   127    19    > 5
+      29  31    19     2     2           67  71    91    11     5
+      31  37    67    11    > 5          71  73    47     3     2
+      37  41    51     7     5
+
+The distance tracks the twin count: 1 or 2 gears when the stretch holds 2 or 3 twins, 3 at 5
+twins, 5 at 7 to 11, beyond 5 at 13 and more. Mechanism: a re-phased gear g covers the twins in
+two residue classes modulo g - many for a small g - but abandons its lone kills, about
+(2 L / g) c / (ln p)^2 columns for a small g, which the other re-phased gears must then cover at
+two columns per period each; so the cheap gears are the expensive ones, and the distance grows
+with the twins. The capacity bound (re-phased gears strike at most sum 2 ceil(L / g) new
+columns) gives only d >= 1 here and is not the mechanism.
+
+**Standing.** Both FACT. d(p) is a new object - the Hamming distance from the real configuration
+to the nearest killer - and its measured law is d ~ twins / 2.5, growing without bound. Its base
+case d(p) >= 1 is the survival of the stretch itself, so a lower bound on d is not a route to
+the conjecture but a statement of how far the machine sits from failure: at p = 5,717, with 984
+twins, of the order of 400 gears would have to move at once.
