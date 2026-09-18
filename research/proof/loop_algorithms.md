@@ -3161,3 +3161,50 @@ beyond CRT.
 Dirichlet-type distribution with a consecutive-prime correlation on top; no machine rule forces or
 forbids the covering it would need for a kill. Concept 2 was reduced to it by the plug law, so
 both now rest on the same outside object. Next: concept 1's reduction lemma.
+
+### 107. Concept 1 closed: position permits, length forbids, and the length is the conjecture (loop, 2026-09-19)
+
+**The reduction, proved.** `kill_needs_run` [proofs/StretchRule.lean, round 101, 0 sorries]: if
+every column of the stretch (p^2, q^2] is struck, then the least open column above p^2 lies beyond
+q^2. A dead stretch is a struck run starting at the square at least as long as the stretch, and
+nothing else. With the stretch rule (the arriving gear adds only its square) the run is the base's
+own run above its square.
+
+**The run above the square, measured** (research/stack/r8/run_after_square.py, every prime to
+200,000): R(p) = columns above p^2 to the first twin, against the stretch (q^2 - p^2)/6 a kill
+needs.
+
+    record runs:      p        R(p)    stretch needed    R / stretch    R / (ln p)^2
+                    487          86           652          0.132           2.25
+                   1523         138          4072          0.034           2.57
+                   4637         264          3092          0.085           3.70
+                   8699         401         23208          0.017           4.87
+                  39953         411        239772          0.0017          3.66
+                  80363         521        160732          0.0032          4.08
+                 171233         703       1027452          0.0007          4.84
+
+The largest share of a stretch ever covered from its square is 0.32, at p = 19 (9 of 28 columns).
+Above p = 1000 the share never reaches a tenth; at 171233 it is seven parts in ten thousand. The
+records R(p) sit between 2 and 5 times (ln p)^2 across the whole range, the stretch grows like
+p x gap / 3, and the ratio between them falls by a further factor of ten with every factor of
+about thirty in p.
+
+**Verdict on concept 1.** A square can start a covered run of any fixed length - the vector of a
+real prime does land on killer sets of fixed length (entry 105). What no prime's square has done
+is start a run as long as its own stretch, and the reason is not position but growth: the runs a
+square starts grow like (ln p)^2, the stretch a kill needs grows like p. A bound R(p) < stretch(p)
+is the window statement for that stretch; proving it is the conjecture. Concept 1 is closed per
+the plan: position permits, length forbids, and the length is the exponent gap - exponent 1 in p
+against polylog, the stretch-level form of entry 80's exponent 2 against 4.266.
+
+**Concept 4** was the accounting of the other three and is closed with them.
+
+**The plan, closed.** Of the four killer concepts not ruled out, two (the plugs and the
+interleave) rest on a conjectural distribution law about primes outside the machine's rules - the
+consecutive-prime residue correlation and the placement of two-prime products; one (killer
+vectors) rests on the growth exponent of the run a square can start; and one (strays) is the
+identity that accounts for the others. No machine rule forces a kill, no machine rule forbids one,
+and the machine's own survival at every stretch measured is a fact about the primes' residue
+vectors and the run-length exponent, not a consequence of any rule on record. That is the same
+conclusion as the anatomy of round 73, now reached from the killers' side with each killer named,
+its mechanism proved, and its residual stated.

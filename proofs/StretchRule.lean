@@ -25,6 +25,7 @@ stretches up to `q = 5000` none is twin-free; the fewest twins in a stretch is 2
 narrowest stretches.
 -/
 import Mathlib
+import MirrorWalkConditional
 
 namespace MirrorWalk
 
@@ -212,5 +213,18 @@ theorem plug_law {p₁ p₂ p₃ n : ℕ} (hp₂ : p₂.Prime)
         _ = k := hj.symm
     have : p₂ * (p₃ * p₃) ≤ n := by rw [hk]; exact Nat.mul_le_mul_left p₂ hk3
     nlinarith
+
+/-- **A kill needs the run to reach the stretch's end.**  If every column of the stretch is struck
+by the machine's gears, then the least open column above `p²` lies beyond `q²`: the struck run
+starting at the square spans the whole stretch.  With the stretch rule this is the reduction of
+concept 1 of the attack plan: a dead stretch is a struck run above `p²` at least as long as the
+stretch, and nothing else. -/
+theorem kill_needs_run {G : Finset ℕ} {p q : ℕ}
+    (hdead : ∀ m : ℕ, p ^ 2 < 6 * m - 1 → 6 * m + 1 ≤ q ^ 2 → SquareColumn.StruckBy G m)
+    {m : ℕ} (hm : p ^ 2 < 6 * m - 1) (hopen : ¬ SquareColumn.StruckBy G m) :
+    q ^ 2 < 6 * m + 1 := by
+  by_contra h
+  push_neg at h
+  exact hopen (hdead m hm h)
 
 end MirrorWalk

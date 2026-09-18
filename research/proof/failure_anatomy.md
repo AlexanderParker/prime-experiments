@@ -467,3 +467,16 @@ free residues would give 19.7. The first gap is size (the partner must be prime 
 semiprime); the second is the correlation of consecutive primes' residues, the Lemke Oliver and
 Soundararajan bias, explained by the Hardy-Littlewood conjectures. Concepts 2 and 3 rest on that
 outside object; no machine rule forces or forbids the covering a kill would need.
+
+
+## 31. The plan closed (round 101)
+
+`kill_needs_run` (proofs/StretchRule.lean): a dead stretch is a struck run from the square at
+least as long as the stretch. Measured to 200,000: the record run above a square is 703 columns at
+p = 171233 against a stretch of 1,027,452; the largest share of a stretch ever covered from its
+square is 0.32 at p = 19 and never a tenth above p = 1000; the records sit at 2 to 5 times
+(ln p)^2 while the stretch grows like p. Concept 1 closes as position permits, length forbids, and
+the length is the conjecture. With concepts 2 and 3 resting on a distribution law outside the
+rules and concept 4 the accounting of the rest, the plan is closed: no machine rule forces a kill,
+none forbids one, and the machine's survival is a fact about where the primes sit in their own
+residue spaces and the run-length exponent.

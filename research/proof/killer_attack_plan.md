@@ -30,6 +30,10 @@ that stretch. What can be proved is the reduction: `kill needs R(p) >= stretch(p
 (entry 80's exponent 2, now exponent 1 against polylog at the stretch) and close the concept as
 "position permits, length forbids, and the length is the conjecture".
 
+**Status (round 101): CLOSED.** `kill_needs_run` proved; R(p) measured to 200,000 sits at 2 to 5
+times (ln p)^2 while the stretch grows like p; the largest share of a stretch ever covered from its
+square is 0.32 at p = 19 and never a tenth above 1000 (entry 107).
+
 ## 2. Two-prime products (the plugs)
 
 **Statement.** A run that the base gears (up to p) cannot finish is continued only by squares of
@@ -100,6 +104,15 @@ work through 1 to 3.
 
 **Stop criterion.** Already met: concept 4 is the accounting of concepts 1 to 3, not a separate
 mechanism.
+
+**Status: CLOSED with 1 to 3.**
+
+## Outcome (round 101)
+
+All four concepts closed: 2 and 3 rest on a conjectural distribution law about primes outside the
+machine's rules (the consecutive-prime residue correlation and the placement of two-prime
+products); 1 rests on the growth exponent of the run a square can start; 4 is the identity that
+accounts for the others. No machine rule forces a kill and none forbids one.
 
 ## The proofs
 
