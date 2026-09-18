@@ -3530,3 +3530,54 @@ the pins' arithmetic, bilinear switching. The bilinear angle was already on reco
 What a proof must be, in one line: a use of the line's completeness that dies when the open
 columns are deleted and is neither a cover of free phases nor a count; nothing on record is such
 a use.
+
+### 115. The two layers of a stretch and the plug-run law (loop, 2026-09-19)
+
+Branch opened from the owner's interleave claim (the kill zones of the primes are predictable and
+interleave with the lower gears) and entry 108's program (a), (b), (c), now measured exactly on
+the stretch's own two layers. Scripts research/stack/r8/two_layer_census.py, plug_run_gears.py.
+
+**The two layers, exact.** In the stretch (p^2, q^2) every composite member is g x m with g its
+least prime factor, g <= p < m. With B = q^(2/3): a member whose least factor exceeds B has a
+PRIME cofactor (rough_member_form; m < q^2 / g < g^2). So the stretch splits into
+  * the BASE layer, gears 5..B: a periodic two-tooth pattern, leaving the base-open columns;
+  * the TOP layer, gears in (B, p]: each strike is a pinned product g x r with r prime in
+    [q, q^2 / g) - the straddling products of entry 108 - and a base-open column it lands on is
+    a plug.
+The survivors of both layers are the twins. A dead stretch is a plug run - a run of CONSECUTIVE
+base-open columns all plugged - as long as the whole base-open sequence. K(p) = the longest plug
+run.
+
+**Pre-registered and measured (every prime 7 <= p <= 20,000; 2,259 stretches).**
+  * Predicted killed fraction 5/9 = 1 - (log B / log q)^2. REFUTED: the top layer plugs 0.645 of
+    the base-open columns from p ~ 1,000 on (0.629 at 10^2, 0.643 at 10^3, 0.647 at 10^4), stable.
+    The twin share 0.355 is the sieve's value (log B / log q^2)^2 e^(2 gamma) = 0.35, not the
+    naive product - the base pattern's open columns are Mertens-thin, the twins are sieve-thin.
+  * Predicted K(p) <= 2 ln(#base-open) + 4 (independent kills at 0.556). REFUTED at p = 433
+    (21 against 13.8) and at every record after: K = 24 at 2477 (nb 1995), 25 at 3137, 32 at 5717
+    (nb 2830, bound 19.9). The plug runs are LONGER than independent plugging at the measured rate
+    would give: K(p) sits at 3 to 4 ln(nb), i.e. as if the per-column plug rate inside a run were
+    0.75, not 0.65 - the plugs cluster.
+  * No dead stretch (as at entry 107): K(p) / nb = 0.011 at p = 5717 and falling.
+
+**Inside the record plug runs (plug_run_gears.py).** p = 5717: 32 plugs by 32 DISTINCT top gears
+spanning 337..5639, 11 of 32 by gears below 2B; p = 2477: 22 distinct gears of 24, 7 below 2B;
+p = 433: 16 of 21, 13 below 2B. So the clustering is NOT the smallest top gears (whose pins are
+densest) - the whole top layer takes part, each gear once. That is the owner's "each kills once"
+made exact for a plug run: the run at 5717 spans 436 columns and every top gear above 1309 has its
+two teeth at least (g - 1)/3 > 436 columns apart (teeth_separation), so it can plug at most once
+inside the run; the gears below 1309 could plug twice and do not. A plug run of length K inside a
+window shorter than (B - 1)/3 columns needs K distinct top gears, each landing its one pinned
+product g x r on a base-open column.
+
+**What the law says.** The top layer's action on a stretch is a set of K(p) ~ 3.5 ln(nb) - length
+plug runs, made of distinct gears' single pinned products, against a base-open sequence of length
+nb ~ p x gap / (log p)^2. The clustering (3.5 against 2.3) is real and unexplained: it is the one
+new fact of the branch, and the next probe is its mechanism - whether consecutive plugs share the
+prime cofactor r (the same top prime r plugs g x r and g' x r for consecutive top gears g, g' - the
+interleave of consecutive primes the owner named), which the pin structure permits exactly when
+g' - g < (q^2 - p^2) / r.
+
+**Standing against the target.** FACT. The plug-run law is entry 107's run law read on the
+base-open subsequence: K(p) polylog against nb of exponent 1. Its clustering is a mechanism
+question about the top layer, open.
