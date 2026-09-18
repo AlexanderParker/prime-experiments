@@ -2728,3 +2728,42 @@ label, and one fact about them - the member side of odd powers - which is now pr
 about them changes any verdict: like the squares they are one column per power, and a gear's
 powers in the window number at most log base g of q^2, so the field of all pure powers together
 holds fewer columns than the squares field it extends.
+
+### 98. The owner's argument that no gear set kills forever, checked step by step (loop, 2026-09-19)
+
+The owner's argument, in the machine's terms, and the standing of each step.
+
+  1. A new prime gear's multiples alternate odd, even, odd, even, so only every second strike
+     can land on a member (the members are odd). TRUE. On the column line this is built in: the
+     gear's two teeth per cycle are exactly its odd multiples at the positions one either side of
+     a multiple of six.
+  2. No single gear kills forever, since it strikes only every second turning - on the column
+     line, two classes of columns out of g. TRUE: a gear's share is 2/g (`oneflip_teeth`), and no
+     gear strikes both members of one column (`no_gear_both_members`).
+  3. The longest open run of a gear set is one less than its smallest gear. TRUE and now PROVED
+     in both directions [proofs/AlignmentLimit.lean, round 92, 0 sorries]:
+     `open_run_lt_gear` - any g consecutive integers contain a multiple of g, so no open run
+     reaches g; `open_run_after_alignment` - right after any common multiple of the set, the
+     next g - 1 integers are open to every gear, since a gear dividing one of them would divide
+     an offset below itself. So the longest open run is exactly the smallest gear less one, and it
+     recurs at every common multiple.
+  4. Only 3 could shorten those runs to below a twin's width, and 3 is in the base, cannot kill
+     the fold it created, and has no later twin among the primes (no later gear shares a factor
+     with 3). TRUE: 2 and 3 are the only gears that could strike a member at every column, and
+     the fold removes them from the members. Every gear above them strikes 2 of g columns.
+  5. Therefore no finite set of gears above 3 kills every twin slot. TRUE and PROVED:
+     `open_columns_for_any_gears` (round 77) - for every finite gear set there are columns open
+     to all of them, as far out as one likes; they sit at the common multiples, which is step 3
+     seen on the column line.
+
+So the argument proves the infinite statement: no gear set, however large, can kill the twin
+slots forever, and the reason is exactly the one given - after every common multiple the machine
+returns to the home configuration and the next smallest-gear-less-one steps are open.
+
+What it does not reach is the window. The open run guaranteed by step 3 sits at the common
+multiple of the set, and for the machine q that multiple is the product of all its gears, far
+beyond q^2 (the carry wall, `silence_costs_primorial`). Inside one window the set may or may not
+leave a column open; that is the question the exact searches answer machine by machine (no
+placement kills, to q = 37) and that no argument yet answers for every q. The distinction is the
+quantifier of entry 82: for every gear set there is an open column (proved, and this is the
+owner's argument), against for every machine there is an open column inside its own window.

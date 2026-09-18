@@ -122,4 +122,37 @@ theorem window_has_prime {q : ℕ} (hq : 2 ≤ q) : ∃ p : ℕ, p.Prime ∧ q <
   have h2q : 2 * q ≤ q ^ 2 := by nlinarith
   omega
 
+/-- **The longest open run is the smallest gear less one, part 1: it is never longer.**  Any `g`
+consecutive integers contain a multiple of `g`, so a run with no multiple of any gear of `S` has
+fewer than `g` members for every `g` in `S`. -/
+theorem open_run_lt_gear {g : ℕ} (hg : 0 < g) (a : ℕ) :
+    ∃ j, j < g ∧ g ∣ a + j := by
+  refine ⟨(g - a % g) % g, Nat.mod_lt _ hg, ?_⟩
+  have h1 : a % g < g := Nat.mod_lt _ hg
+  rcases Nat.eq_zero_or_pos (a % g) with h0 | hpos
+  · rw [h0, Nat.sub_zero, Nat.mod_self, add_zero]
+    exact Nat.dvd_of_mod_eq_zero h0
+  · have hlt : g - a % g < g := by omega
+    rw [Nat.mod_eq_of_lt hlt]
+    have hsub : g ∣ a - a % g := Nat.dvd_sub_mod a
+    have hle : a % g ≤ a := Nat.mod_le a g
+    have e : a + (g - a % g) = (a - a % g) + g := by omega
+    rw [e]
+    exact Nat.dvd_add hsub (dvd_refl g)
+
+/-- **Part 2: it is attained right after every common multiple.**  If `M` is a multiple of every
+gear of `S` and every gear is at least `g`, the `g - 1` integers `M + 1, …, M + g - 1` are open to
+all of `S`: a gear dividing `M + j` would divide `j`, which is below it. -/
+theorem open_run_after_alignment {S : Finset ℕ} {M g : ℕ} (hM : ∀ h ∈ S, h ∣ M)
+    (hg : ∀ h ∈ S, g ≤ h) {j : ℕ} (hj1 : 1 ≤ j) (hjg : j < g) :
+    ∀ h ∈ S, ¬ (h ∣ M + j) := by
+  intro h hh hd
+  have hM' := hM h hh
+  have hj : h ∣ j := by
+    have := (Nat.dvd_add_right hM').mp hd
+    exact this
+  have := Nat.le_of_dvd (by omega) hj
+  have := hg h hh
+  omega
+
 end MirrorWalk
