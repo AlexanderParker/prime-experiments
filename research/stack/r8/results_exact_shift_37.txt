@@ -1,0 +1,3 @@
+q = 37: 10 gears, 221 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 21;  nodes 2598322871 in 3399.0 s

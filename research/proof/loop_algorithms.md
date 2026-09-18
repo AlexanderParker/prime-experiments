@@ -2680,13 +2680,15 @@ uncovered column, which some unfixed gear must cover through one of its two teet
       23      7        84    no residue vector kills                  8            525,427
       29      8       135    no residue vector kills                 14          7,958,761
       31      9       154    no residue vector kills                 14        138,157,831
-      37     10       221    still running in the background, about 45 minutes in Python; result appended when it lands
+      37     10       221    no residue vector kills                 21      2,598,322,871
 
 The rigid search is a thousand times cheaper than the free one (q = 23: 0.5 s against 708 s), so
 the exact frontier moves from 23 to 31 and beyond. The fewest uncovered columns any vector reaches
-GROWS with the machine - 6, 3, 7, 6, 8, 14, 14 - so the best adversary is falling further behind
-the window, not catching up.
+GROWS with the machine - 6, 3, 7, 6, 8, 14, 14, 21 - so the best adversary is falling further
+behind the window, not catching up. Machine 37 took 2.6 billion nodes and 57 minutes; machine 41
+would need about a day in Python and was stopped, so the exact frontier of the rigid search stands
+at 37 until the search is compiled.
 
 **So, in one sentence.** The vector would have to be a shift vector whose rigid tooth pairs cover
 the whole window, equivalently one whose truncation strays cancel the positive main term exactly;
-no such vector exists for any gear set up to 31, and the shortfall of the best one grows with q.
+no such vector exists for any gear set up to 37, and the shortfall of the best one grows with q.
