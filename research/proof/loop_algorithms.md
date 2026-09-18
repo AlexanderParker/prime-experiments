@@ -2254,3 +2254,64 @@ constant drifts up from 2 to 8 across the range, so the records sit between (ln 
 (ln q)^3, consistent with the Cramer-style expectation of (ln q)^3 for twins (density 1/(ln q)^2).
 The edge grows as q^2, so the ratio D/edge falls like (ln q)^3 / q^2: by a factor of about 10^7
 across the four decades measured, from 6 x 10^-4 at q = 347 to 1.8 x 10^-11 at q = 9923987.
+
+### 89. The hunt with prejudice, continued: exact covers, poison machines, worst stretches
+(loop, 2026-09-18)
+
+Three attacks, each aimed where a counterexample would have to be.
+
+**Attack 1 - exact search over the free configuration.** Annealing (entry 88) never covered a
+window. This decides it exactly for small machines: can two classes per gear, chosen freely, cover
+every column of (q, q^2]? Branch on the smallest uncovered column, capacity bound, bitmask columns
+(research/stack/r8/exact_cover_search.py):
+
+       q   gears   columns   exact answer                       fewest uncovered met   nodes
+      11      3        18    no free configuration covers            3                   68
+      13      4        25    no free configuration covers            1                2,115
+      17      5        45    no free configuration covers            4              100,061
+      19      6        56    no free configuration covers            4            7,634,683
+      23      7        87    no free configuration covers   5   634,932,505 (708 s)
+      29      8       135    still running in the background; the search grows about a hundredfold per gear, so this one is near a day in Python and is left to finish on its own
+
+So for every machine up to 19 the statement "some column of the window escapes every gear" is
+TRUE FOR EVERY CONFIGURATION OF THE TEETH, not only the one the integers take - it is a fact about
+two classes per prime and the window's length, verified exhaustively. That is the strongest form of
+the window statement, and it holds at the bottom of the range with no arithmetic in it at all. The
+search grows about a hundredfold per gear, which is the frontier of this method.
+
+**Attack 2 - poison machines.** The adversary's natural candidates: q just below a multiple of a
+primorial, where the numbers k P# - j for small j carry small factors
+(research/stack/r8/poison_machines.py). Every k from 1 to 7 for P# up to 23#, 49 machines:
+
+    worst: D = 684 at q = 223092827 (just below 6 x 23#), which is 1.85 (ln q)^2
+
+against the all-machine record 1722 at q = 9923987 (6.6 (ln q)^2). The poison machines are
+ordinary - below the records, and mostly below 1 (ln q)^2. The reason is the alignment: the
+neighbourhood of a primorial multiple is where small gears are AT zero, which is the opposite of
+dangerous.
+
+**Attack 3 - the machine's own worst stretches, exactly.** For the gears 5..P with their real
+teeth the struck pattern has period the product of the gears, and within it a longest run of
+struck columns - the paired Jacobsthal length of that gear set, in the machine's units
+(research/stack/r8/extremal_runs.py):
+
+     P      period      longest run (columns)    in numbers
+     7          35             4                     24
+    11         385             6                     36
+    13        5005            10                     60
+    17       85085            17                    102
+    19     1616615            24                    144
+    23    37182145            33                    198
+
+A machine placed at the start of each stretch, at three recurrences each, reaches its first twin
+at D between 76 and 538, never above 2.42 (ln q)^2 - ordinary again. And the rigid runs themselves
+are tiny: 33 columns for the gears to 23, against a free configuration that (by annealing at
+q = 29) can leave only 8 of 135 columns open. The rigid configuration is far weaker at building
+long runs than a free one, which is the same fact as entry 87's "half as efficient", seen from the
+run's side.
+
+**Standing after three attacks.** No configuration reachable by search, rigid or free, kills a
+window; the free configuration provably cannot for q up to 19; the adversary's natural candidates
+are ordinary; the machine's own worst stretches are polylogarithmic. The crack, if there is one,
+is above the exact frontier and inside the exponent-2 question, exactly where every other route
+put it.

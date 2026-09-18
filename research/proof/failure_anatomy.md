@@ -268,3 +268,15 @@ cover; no configuration found delivers one. The closest real calls to 10^7: the 
 from a machine to its first twin is 1722, at q = 9923987, which is 6.6 (ln q)^2 and 1.75 x 10^-11
 of the window; the largest share of a window ever needed is 0.0545, at q = 11. A counterexample
 would need a distance above q^2 against a record on the (ln q)^2 scale.
+
+
+## 15. Exact covers, poison machines, worst stretches (round 83)
+
+Exhaustive search over the free configuration - two classes per gear, chosen at will - shows that
+NO configuration covers the window for any machine up to 19 (and no free configuration covers   5   634,932,505 (708 s) at 23, still running in the background; the search grows about a hundredfold per gear, so this one is near a day in Python and is left to finish on its own at 29). At the
+bottom of the range the window statement therefore holds for every configuration of the teeth, not
+only the rigid one the integers take. The adversary's natural candidates, machines just below
+primorial multiples, are ordinary (worst 1.85 (ln q)^2 against the record 6.6). The machine's own
+worst stretches, the longest struck runs of the gears to P with their real teeth, are 4, 6, 10, 17,
+24, 33 columns for P = 7 to 23, and a machine placed at each reaches its first twin within
+2.42 (ln q)^2.

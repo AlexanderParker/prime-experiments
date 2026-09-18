@@ -1,0 +1,4 @@
+q = 23: 7 gears, 84 columns
+exact answer: NO free configuration covers the window
+fewest uncovered columns met during the search: 5
+nodes searched: 634932505 in 708.3 s
