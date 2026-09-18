@@ -2376,3 +2376,60 @@ on the small gears' survivors, growing without bound with the cut - and it is ab
 measured state, reversed at the top cut by a proved mechanism, and not constructible by a free
 adversary at any size reached. What is not on record is a proof that it is impossible at every q,
 and that proof would be the window statement.
+
+### 91. The share logic applied field by field (loop, 2026-09-18)
+
+Asked whether any field, by the fields explorer's ids, can gain a member that enters a blocking
+state. Apply the share logic of entry 90 to each.
+
+**The reduction.** A window is blocked only if every column is struck. Order the gears: a column
+is first struck by the smallest gear dividing one of its members, so a block is exactly the union
+over g of the kills of higher:g (composites whose smallest gear is g) covering every column. So
+the question is about higher:g, and the other fields are answered by how they feed it.
+
+**multiples (row g at every multiple of g).** A rigid lattice: two classes of columns modulo g,
+positions fixed by g alone (plus and minus the inverse of 6). On any union of R classes modulo a
+modulus coprime to g, consecutive members step by a unit modulo g and cycle through all of g's
+classes evenly, so the lattice takes its share 2/g of that set up to at most 2R strays. It cannot
+concentrate on anyone's survivors. Verdict: cannot enter a blocking state; the share is exact up
+to a bounded stray.
+
+**squares (row g at g^2).** PROVED: `square_is_upper_member` [proofs/FieldBlocking.lean, round 85]
+- a gear's square is 1 mod 6, so it is the upper member of exactly one column and never a lower
+member. One column per gear in (sqrt q, q]: measured 158 columns at q = 1009, 651 at q = 5003,
+against windows of 169,512 and 4.17 million. Verdict: cannot enter a blocking state.
+
+**lower:g and lower1:g (composites whose largest gear is g).** PROVED:
+`lower_on_survivor_is_power` - a member of lower:g that no gear below g strikes is a power of g.
+So lower:g reaches the survivors of the smaller gears only at g^2, g^3, ... - at most log q
+columns per gear - and everything else it strikes is already struck by a smaller gear. Verdict:
+cannot enter a blocking state; on survivors it is the squares field and its higher powers.
+
+**products:j (exactly j prime factors).** Every member is in exactly one higher:g, by its smallest
+factor, so products:j adds no coverage beyond the higher fields; in the window j runs only to about
+2 ln q / ln 5. Verdict: answered by higher:g.
+
+**higher:g and higher1:g (composites whose smallest gear is g).** This is the field that does the
+blocking, if anything does. It acts only on the survivors of the gears below g, and its kills
+there against the lattice share 2/g of those survivors (research/stack/r8/field_blocking.py):
+
+    q = 5003        gears   mean ratio   min     max     total kills
+    g <= q^0.25         2     1.000      1.000   1.000    2,383,332
+    q^0.25..q^0.5      15     1.001      1.000   1.004    1,231,029
+    q^0.5..q^0.75      89     1.029      0.944   1.199      304,457
+    q^0.75..q         562     1.001      0.000   1.532      121,473
+
+(q = 1009: 1.000, 1.000, 1.035, 0.956.) Below sqrt q the field takes its share to three decimal
+places; above it the per-gear ratio fluctuates only because the counts are small, and the band
+mean sits at 1.00. For g above q^(2/3) every kill's cofactor is 1 or a prime (sampled, no
+exception), which is `top_gear_cofactor` (round 84) in the field's own terms: higher1:g up there
+is exactly g times a prime. Verdict: higher:g is the lattice of g restricted to rough cofactors;
+it takes its share of the survivors and no more; for large g its members are pinned to g^2 and
+g p with p prime.
+
+**So no field, taken alone, has a member that can enter a blocking state.** Each is either a rigid
+lattice at share 2/g (multiples, and higher:g on survivors), a single column per gear (squares),
+the powers of one gear (lower:g on survivors), or a relabelling of the higher fields (products:j).
+What a block would need is not a field with a special member but the fields' shares failing to
+overlap - the many-body avoidance of entry 90 - and that is not a property any single field can
+carry.

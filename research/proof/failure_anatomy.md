@@ -294,3 +294,17 @@ other way for a proved reason: a gear in (q/2, q] strikes a survivor only throug
 the gear itself or the gear times one prime in (q/2, 2q) (`top_gear_cofactor`,
 proofs/FailureConditions.lean). The property is absent in every state measured, reversed where the
 requirement is largest, and not constructible by a free adversary at any size reached.
+
+
+## 17. Field by field (round 85)
+
+A block is the union over g of the kills of higher:g covering every column, so the question of a
+blocking member is a question about higher:g, and the other fields feed it. multiples is a rigid
+lattice at share 2/g with a bounded stray. squares is one column per gear, always the upper member
+(`square_is_upper_member`, proofs/FieldBlocking.lean). lower:g reaches the survivors of the smaller
+gears only at the powers of g (`lower_on_survivor_is_power`). products:j is a relabelling of the
+higher fields. higher:g takes its lattice share of the survivors of the gears below g - measured at
+1.000 to three decimals below sqrt q and a band mean of 1.00 above - and for g above q^(2/3) its
+members are g^2 and g times a prime (`top_gear_cofactor`). No field has a member that can enter a
+blocking state; a block would need the fields' shares to stop overlapping, which is not a property
+of any one field.

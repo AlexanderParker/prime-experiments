@@ -2331,3 +2331,6 @@ name = "AlignmentLimit"
 
 [[lean_lib]]
 name = "FailureConditions"
+
+[[lean_lib]]
+name = "FieldBlocking"
