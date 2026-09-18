@@ -1,0 +1,12 @@
+twins inside each stretch (p^2, q^2] for consecutive gears p < q below 5000 (666 stretches)
+   fewest twins in a stretch:
+     p=    5 q=    7  columns      4  twins    2  first twin at 29
+     p=   11 q=   13  columns      8  twins    2  first twin at 137
+     p=   17 q=   19  columns     12  twins    2  first twin at 311
+     p=   29 q=   31  columns     20  twins    2  first twin at 857
+     p=   41 q=   43  columns     28  twins    3  first twin at 1697
+     p=   71 q=   73  columns     48  twins    3  first twin at 5099
+     p=    7 q=   11  columns     12  twins    4  first twin at 59
+     p=   19 q=   23  columns     28  twins    4  first twin at 419
+   stretches with no twin at all: 0
+   twins per column, smallest ratio: 0.0216 (p = 3539)

@@ -2337,3 +2337,6 @@ name = "FieldBlocking"
 
 [[lean_lib]]
 name = "ManyBody"
+
+[[lean_lib]]
+name = "StretchRule"

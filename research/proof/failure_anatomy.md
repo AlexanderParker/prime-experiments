@@ -369,3 +369,16 @@ Legendre's identity. Exact search over shift vectors, the vectors that can exist
 vector kills any window for machines 11 to 37, and the fewest uncovered columns any vector
 reaches grows with the machine - 6, 3, 7, 6, 8, 14, 14, 21. The best adversary falls further
 behind the window as q grows.
+
+
+## 23. What a gear to come can do (round 93)
+
+For consecutive gears p < q, a member in (p^2, q^2] divisible by q is the square q^2 or already
+divisible by a gear at most p (`new_gear_only_square`, proofs/StretchRule.lean). So the arriving
+gear closes only its own square's column, every other column the gears up to p left open in that
+stretch is a twin of the machine q, and a slot near N is decided by the gears up to sqrt N with
+nothing later touching it. A kill therefore requires a specific configuration of present gears -
+their rigid tooth pairs covering a stretch of about p x gap / 3 columns just above p^2 except at
+the next square - and a permanent kill requires it at every consecutive pair beyond some point.
+Across all 666 consecutive-gear stretches below q = 5000, none is twin-free; the fewest twins in a
+stretch is 2.

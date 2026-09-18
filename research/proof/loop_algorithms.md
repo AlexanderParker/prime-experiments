@@ -2767,3 +2767,48 @@ leave a column open; that is the question the exact searches answer machine by m
 placement kills, to q = 37) and that no argument yet answers for every q. The distinction is the
 quantifier of entry 82: for every gear set there is an open column (proved, and this is the
 owner's argument), against for every machine there is an open column inside its own window.
+
+### 99. What a gear to come can do, exactly (loop, 2026-09-19)
+
+Asked to name the properties a future gear would need to kill a twin slot, specifically, so the
+requirement can be checked against the machine's rules.
+
+**The rule.** Let p < q be consecutive gears. The machine q extends the window from p^2 to q^2,
+and the new stretch (p^2, q^2] is the only place the new gear could matter for twins that were
+open before it arrived. PROVED: `new_gear_only_square` [proofs/StretchRule.lean, round 93, 0
+sorries] - a member n in (p^2, q^2] divisible by q is either q^2 itself or already divisible by a
+gear at most p. The reason is size: n = q k with k <= q; k = q is the square; k = 1 is q itself,
+below p^2; and 2 <= k < q gives k a prime factor below q, hence at most p, which already strikes n.
+
+**So a gear to come can do exactly one thing in the stretch it opens: close the column of its own
+square.** Every other column the gears up to p left open in (p^2, q^2] is a twin prime pair of the
+machine q, by the square-root rule. The "gears to come" cannot kill a slot near N; the slot is
+decided by the gears up to sqrt N, all of which are present when the window reaches N. Nothing
+later touches it.
+
+**What a kill would therefore require, stated in the machine's rules.** For the window of machine
+q to be twin-free, every consecutive-gear stretch (p_i^2, p_{i+1}^2] inside it must be twin-free,
+and in each one the gears up to p_i would have to leave open nothing but the next square's
+column - a stretch of about p_i x gap / 3 columns, covered by the gears below it with a single
+exception. That is not a nebulous future gear; it is a specific configuration of the present
+gears: their rigid tooth pairs covering a short stretch just above p_i^2 completely, except at one
+column that the next square then closes. For a permanent kill this would have to happen at every
+consecutive pair of gears beyond some point, without exception.
+
+**Does the machine forbid it?** Not outright by the rules on record: the open-run law
+(`open_run_after_alignment`) guarantees an open run only at common multiples, which lie far
+beyond q^2, and the exact searches (no placement covers a window, to q = 37) speak about whole
+windows, not single stretches. What the machine's rules do fix is the shape: the killers are the
+present gears' teeth, nothing new is admitted, no property beyond size and residue is available,
+and the one contribution of the arriving gear is its square.
+
+**Measured** (research/stack/r8/stretch_twins.py): all 666 consecutive-gear stretches below
+q = 5000. None is twin-free. The fewest twins in a stretch is 2, at the narrowest stretches
+(p, q) = (5, 7), (11, 13), (17, 19), (29, 31) with 4 to 20 columns; the smallest twins-per-column
+ratio is 0.0216 at p = 3539. The configuration a kill needs - a stretch covered completely by the
+gears below it - has not occurred once.
+
+**The question, sharpened one more step.** A twin-free window needs a twin-free stretch. So the
+whole conjecture, in the machine's terms, is: for every consecutive pair of gears p < q, the gears
+up to p leave an open column in (p^2, q^2] other than the square's. That is one stretch of about
+p x gap / 3 columns against the gears up to p, with nothing else in play.
