@@ -2325,3 +2325,6 @@ name = "JacobsthalWindow"
 
 [[lean_lib]]
 name = "ClassIndistinguishable"
+
+[[lean_lib]]
+name = "AlignmentLimit"

@@ -151,3 +151,23 @@ So "the columns of this class are twin columns" is never a true statement, and t
 only ever name a class. Whatever separates the twin columns from their neighbours inside a class is
 invisible to residues. That is the parity obstruction in the machine's own terms, and it is what
 requirement 3 was asking for without knowing it.
+
+
+## 8. The alignment at infinity, and the quantifier (round 77)
+
+The construction's origin is that at 0 every gear sits at residue 0 and the neighbours are
+unreachable - a gear striking them would divide 1. The same alignment recurs at every multiple of
+a primorial, which is what the mirror buys.
+
+Pushed to the limit the picture suggests a twin at "infinity plus or minus one". Two of the three
+steps hold, both proved in proofs/AlignmentLimit.lean:
+
+- `open_columns_for_any_gears`: for every finite gear set and every bound there are columns beyond
+  it open to all of them;
+- `no_column_open_to_all_gears`: no column is open to every gear, since the member above 1 has a
+  prime factor.
+
+The alignment therefore exists at every finite level and nowhere in the limit; the quantifiers do
+not commute. The window statement asks for the pattern in between - a column whose gear set is
+fixed by the column's own size - and that is exactly what neither fact supplies. Every failure in
+sections 1 to 7 is a different attempt to bridge those quantifiers.

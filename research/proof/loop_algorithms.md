@@ -1951,3 +1951,38 @@ Taken with entries 78 to 80 the position is complete and closed on every side:
     sifting floor of 4 (entry 80);
   * and now the impossibility itself: residues name classes, classes never separate twins
     (entry 81).
+
+### 82. The alignment at infinity: which two of the three steps are true (loop, 2026-09-18)
+
+The owner's observation: home is open because at 0 every gear sits at residue 0, and the two
+neighbours are the one place no gear can reach - a gear striking them would divide 1. Carried to
+the limit: the primorial of all gears would put every gear at 0 at once, so its neighbours would
+be open to everything, hence a twin.
+
+Two of the three steps are true, and both are now in the kernel
+[proofs/AlignmentLimit.lean, round 77, 0 sorries]:
+
+  `open_columns_for_any_gears`: for EVERY finite set of gears and every bound, there are columns
+  beyond that bound open to all of them - take the column to be a multiple of their product, so
+  each gear divides 6m and therefore misses 6m +- 1. This is the alignment at every finite level,
+  and it is exactly the primorial construction.
+
+  `no_column_open_to_all_gears`: NO column is open to every gear - the lower member is above 1,
+  so it has a prime factor, and that factor is a gear striking it.
+
+So the alignment exists at every finite level and nowhere in the limit: the quantifiers do not
+commute. "For every gear set there is an open column" is true; "there is a column open to every
+gear" is false. The window statement lives between them and is stated in the file as
+`WindowStatement`: for every machine q, some column in (q, q^2] is open to the gears up to q. The
+gear set is fixed by the column's own size, and that is the pattern neither of the two facts
+supplies.
+
+The measured form of the same thing (entry from the previous exchange): the pair either side of
+the primorial is open to every gear up to P by construction, but its members are of size about
+e^P, whose primality is decided by the gears up to e^(P/2) - a set that is not aligned. It is a
+genuine twin only at P = 3, 5 and 11 up to P = 53; at P = 7 the lower member is 209 = 11 x 19, and
+at P = 13 the upper is 30031 = 59 x 509.
+
+So the intuition is sound and it is the reason the construction works at all; what it cannot do is
+close the gap, because closing it would need the alignment to hold for a gear set that grows with
+the number it is aligning.
