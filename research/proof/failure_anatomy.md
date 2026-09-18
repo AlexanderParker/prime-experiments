@@ -248,7 +248,12 @@ outside one window, which is the run-length question of section 6.
 The adversarial form - could the teeth be CHOSEN to cover a window? - is the extremal problem
 behind the paired Jacobsthal function, whose known bounds straddle q^2. Measured
 (research/stack/r8/adversarial_window.py): a greedy adversary leaves 5 to 9 percent of the window
-uncovered at every size tested, while the real arithmetic leaves about twice that. So the machine's
-actual teeth are roughly half as efficient at killing twins as a deliberate attempt, and the
-question of whether a better arrangement could ever close the window is the same exponent-2 knife
-edge as before.
+uncovered at every size tested, while the configuration the residues actually take leaves about
+twice that.
+
+The comparison is between two configurations of the same object, not between structure and
+arithmetic: the machine's structure is the arithmetic of the actual residues viewed a different
+way. In the real configuration every gear reads the same consecutive line, so its two classes are
+tied to every other gear's; in the adversarial one each gear's classes are chosen independently.
+Rigidity against independence, and the rigid configuration kills about half as well. Whether a
+freer arrangement could ever close a window is the same exponent-2 knife edge as before.

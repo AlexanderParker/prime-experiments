@@ -2147,10 +2147,18 @@ its two best classes:
      149          3676                    196  (5.3%)                365  (10%)
 
 Two readings. The adversary never manages a complete cover at these sizes, so the window is not
-merely lucky - even chosen teeth leave 5 to 9 percent of it open. And the real arithmetic leaves
-about twice as much room as the best adversarial arrangement, so the actual residues are
-noticeably WORSE at killing twins than a deliberate attempt would be. Both fractions fall slowly
-with q, which is what a proof would have to control.
+merely lucky - even chosen teeth leave 5 to 9 percent of it open. And the machine's own teeth leave
+about twice as much room as the best arrangement greedy finds, so the configuration the residues
+actually take is noticeably WORSE at killing twins than a deliberate one would be. Both fractions
+fall slowly with q, which is what a proof would have to control.
+
+(Correction of framing, on the owner's note: the comparison is not structure against arithmetic.
+The machine's structure IS the arithmetic of the actual residues, looked at a different way - the
+same object, manipulated differently. What the experiment compares is two CONFIGURATIONS of the
+same residues: the one the integers actually take, where each gear's two classes are fixed by the
+same consecutive line every other gear reads, and an arbitrary one, where each gear's classes are
+chosen independently of the rest. The difference measured is rigidity against independence, and
+the rigid configuration is the weaker killer.)
 
 **What the adversarial question is, named.** Covering a run of consecutive columns with two classes
 per gear is the extremal problem behind the paired Jacobsthal function - the same object as entry
@@ -2162,5 +2170,6 @@ entry 80 identified, which is why no amount of rearranging the gears settles it 
 **What this exercise rules out.** It rules out the hope that some conspiracy of gears could be
 exhibited - a total cover is impossible by density, and a local cover is the Jacobsthal problem, so
 a counterexample is not something one constructs but something one would have to find. And it rules
-in a measured fact worth keeping: the machine's real teeth are about half as efficient at killing
-twins as a deliberate adversary, at every size tested.
+in a measured fact worth keeping: the configuration the residues actually take is about half as
+efficient at killing twins as an independently chosen one, at every size tested. That gap between
+the rigid configuration and the free one is where a proof would have to live.
