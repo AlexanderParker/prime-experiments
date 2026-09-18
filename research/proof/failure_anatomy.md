@@ -421,3 +421,15 @@ stretch: the killer configurations of round 94 obey all six and cover. What keep
 alive is that its configuration at each stretch is p's own residue vector, and no rule ties that
 vector away from the killers. An impossibility proof would be a seventh rule - a relation among
 one prime's residues against its own gears - and the machine's interactions carry none.
+
+
+## 27. How long a dead run can be (round 97)
+
+A dead stretch is finite by definition, about p x gap / 3 columns. A dead run of a fixed gear set
+is finite and proved so: every multiple of the product is an open column
+(`open_at_multiple_of_product`), so no run spans a period; the actual longest runs are the paired
+Jacobsthal lengths, 33 columns for the gears to 23. From P = 17 those runs are long enough to
+cover a twin-gear stretch, so length does not protect the stretch - position does: the run would
+have to begin at p^2, a point square modulo every gear. An infinite dead run is not a run of any
+gear set but an unending sequence of stretch-to-stretch handovers, each a finite event; the rules
+bound each link and do not forbid the sequence.

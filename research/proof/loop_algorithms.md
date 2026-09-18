@@ -2987,3 +2987,45 @@ not among the six.
 machine's mechanics are known, every rule is in the kernel, and the set is consistent with a dead
 stretch. The machine's survival at every stretch measured is therefore not yet a consequence of
 its rules; it is a fact about which point of its residue space each prime occupies.
+
+### 103. How long is a dead stretch, and can it be infinite (loop, 2026-09-19)
+
+**A dead stretch is finite by definition.** It is (p^2, q^2] for consecutive gears p < q: q^2 - p^2
+numbers, about 2 p x gap, which is about p x gap / 3 columns. For twin gears (gap 2) that is
+4p + 4 numbers, (2p + 2)/3 columns: 12 columns at 17..19, 20 at 29..31, 40 at 59..61.
+
+**A dead run of a fixed gear set is finite, and proved so.** Every column that is a multiple of
+the gears' product is open to all of them - the gear would have to divide 1
+(`open_at_multiple_of_product`, proofs/StretchRule.lean, round 97, 0 sorries) - so no run of
+struck columns can span a full period; every dead run of the gears up to p is shorter than their
+product. The actual bound is far smaller: the longest run of the rigid teeth of the gears to P,
+measured over a full period (entry 89), is 4, 6, 10, 17, 24, 33 columns for P = 7, 11, 13, 17,
+19, 23 - the paired Jacobsthal length of that gear set.
+
+**What a dead stretch would need, in those terms.** By the stretch rule the gears up to p must
+do all the killing in (p^2, q^2] except at the square, so the rigid pattern of the gears up to p
+must contain a run at least p x gap / 3 columns long, AND that run must begin exactly at p^2.
+Comparing the two:
+
+      P     longest rigid run (columns)    twin-gear stretch would need
+      13             10                            9
+      17             17                           12
+      19             24                           13
+      23             33                           16
+
+From P = 17 the rigid pattern's longest runs are long enough to cover a twin-gear stretch. So
+length is not what protects the stretch; POSITION is. The long runs sit at the pattern's extremal
+phases, spaced a full period apart, and a dead stretch needs one of them to start at p^2 - a point
+that is a square modulo every gear at once (the location law, entry 102). The killer search of
+entry 100 shows such starts exist in the residue space; the measurements show p^2 has never been
+one.
+
+**Can a dead run be infinite?** Not for any fixed gear set - that is the theorem above. An
+infinite dead run in the growing machine would have to be handed from stretch to stretch: the
+gears up to p_1 kill (p_1^2, p_2^2], then the gears up to p_2 kill (p_2^2, p_3^2], and so on
+forever, each handover being one of the coincidences of position just described, at every
+consecutive pair of gears without exception. Each link is a finite event decided by finitely many
+gears; the infinite chain of them is exactly the negation of the twin prime conjecture. So the
+answer is: a dead run has a proved finite bound at every fixed level, an infinite one is not a run
+of any gear set but an unending sequence of handovers, and the machine's rules bound each link
+without forbidding the sequence.

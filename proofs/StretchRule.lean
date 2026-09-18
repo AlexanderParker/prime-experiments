@@ -58,4 +58,28 @@ theorem new_gear_only_square {p q n : ℕ} (hq : q.Prime) (hpq : p < q)
   · left; rw [hk, heq, pow_two]
   · exfalso; omega
 
+/-- **A dead run of a fixed gear set is finite: shorter than the product of the gears.**  Every
+column that is a multiple of the product `P` is open to every gear dividing `P` - the gear would
+have to divide 1 - so no run of struck columns can span a full period.  (The measured runs are far
+shorter: the paired Jacobsthal length, 33 columns for the gears to 23.) -/
+theorem open_at_multiple_of_product {h P t : ℕ} (hh : 1 < h) (hP : h ∣ P) (ht : 1 ≤ t)
+    (hP0 : 1 ≤ P) :
+    ¬ (h ∣ 6 * (P * t) - 1) ∧ ¬ (h ∣ 6 * (P * t) + 1) := by
+  have hdvd : h ∣ 6 * (P * t) := Dvd.dvd.mul_left (hP.mul_right t) 6
+  have hpos : 1 ≤ 6 * (P * t) := by
+    have : 1 ≤ P * t := Nat.one_le_iff_ne_zero.mpr (by positivity)
+    omega
+  constructor
+  · intro hd
+    have := Nat.dvd_sub hdvd hd
+    rw [Nat.sub_sub_self hpos] at this
+    have := Nat.le_of_dvd one_pos this
+    omega
+  · intro hd
+    have h1 := Nat.dvd_sub hd hdvd
+    have e : 6 * (P * t) + 1 - 6 * (P * t) = 1 := by omega
+    rw [e] at h1
+    have := Nat.le_of_dvd one_pos h1
+    omega
+
 end MirrorWalk
