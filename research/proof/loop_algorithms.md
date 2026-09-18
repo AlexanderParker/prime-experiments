@@ -2017,3 +2017,41 @@ true? The answer depends on which system, and none of them makes it true for fre
 What converts "the factor is above B" into "there is no factor" is the square-root rule, and it
 applies only below B squared. That is the window, and it is why the whole problem is the window
 rather than the alignment.
+
+### 84. A top number, and its mirror side: why the exercise defeats itself (loop, 2026-09-18)
+
+The owner's thought experiment: zero was accepted as a number and the negatives are the concept on
+its far side, so by the same standard admit a top number and a mirror side beyond it; then the
+neighbours of that top number would be open to every gear, with no new gears above it, and a twin
+would exist there. And the owner's own observation: that would also stop the positive integers, so
+the mirror-side member would not be a prime at all, and the conjecture would come out false.
+
+Both halves are right, and the reason is worth recording because it applies to every attempt of
+this shape.
+
+**Adjoining zero and the negatives keeps the arithmetic; adjoining a top number does not.** The
+extension from the counting numbers to the integers adds inverses and keeps every law - addition,
+multiplication, divisibility, primality all survive unchanged. Every extension that adds a top
+element loses one of the three things the machine needs:
+
+  * the one-point extension (the projective line) makes the two neighbours of the top the same
+    object, so the pair collapses;
+  * the ordinals give a top-like element with a successor but no predecessor - there is no "omega
+    minus one" - so the lower member does not exist;
+  * the surreals and other fields give both neighbours but make every nonzero element invertible,
+    so no element is prime and primality is vacuous;
+  * the nonstandard integers keep everything, and by transfer also keep Euclid: there are
+    hyperprimes above every infinite element, so "no new gears above it" is false there too.
+
+**"No new gears above the top" is exactly what cannot be arranged.** PROVED, trivially and for the
+record: `gears_above_every_bound` [proofs/AlignmentLimit.lean, round 78] - above every bound there
+is another gear. The successor that builds the gear set forbids a last gear, and that is Euclid.
+
+**And the self-defeat the owner spotted is the general shape.** If the positives stop at the top
+number, the successor axiom fails, and the successor axiom is what generates the gears whose
+alignment the argument was using. A framework with a largest number cannot also be the framework
+that has the primes. So the exercise decides the answer by choosing the axioms, in either
+direction, which is why it cannot be a route to a proof or a disproof.
+
+The salvageable content is the part already proved in entry 82: the alignment is real at every
+finite level, and the quantifiers are what fail in the limit.

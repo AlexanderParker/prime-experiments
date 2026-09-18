@@ -95,4 +95,11 @@ theorem aligned_neighbour_factor {n B : ℕ} (hn : 1 < n)
   push_neg at hle
   exact hopen p hp hle hpd
 
+/-- **There is no top gear.**  Above every bound there is another gear.  This is Euclid, and it is
+why "no new gears above the alignment" fails in any system that keeps enough arithmetic for
+primality to mean anything: the same successor that builds the gears forbids a last one. -/
+theorem gears_above_every_bound (B : ℕ) : ∃ p : ℕ, B < p ∧ p.Prime := by
+  obtain ⟨p, hle, hp⟩ := Nat.exists_infinite_primes (B + 1)
+  exact ⟨p, by omega, hp⟩
+
 end MirrorWalk

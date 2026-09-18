@@ -188,3 +188,19 @@ The finite shadow is proved: `aligned_neighbour_factor` - if no gear up to B div
 then n has a prime factor above B. Alignment never removes the factor; it pushes it above the
 aligned set. Only the square-root rule turns that into primality, and only below B squared. The
 problem is the window, not the alignment.
+
+
+## 10. A top number and its mirror side (round 78)
+
+Zero and the negatives are a good precedent for extending the number concept, but they are the
+precedent for an extension that KEEPS the arithmetic. Every extension that adds a top element
+loses something the machine needs: the projective line makes the top's two neighbours the same
+object; the ordinals give a successor but no predecessor, so the lower member does not exist; the
+surreals and other fields make every nonzero element a unit, so primality is vacuous; and the
+nonstandard integers keep everything, including Euclid, so there are gears above every infinite
+element and "no new gears above the top" is false there too.
+
+`gears_above_every_bound` [proofs/AlignmentLimit.lean] states the last point in the machine's own
+terms: above every bound there is another gear. A framework with a largest number is not the
+framework that has the primes, so an argument of this shape decides the answer by choosing its
+axioms - in either direction.
