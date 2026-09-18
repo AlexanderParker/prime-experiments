@@ -1,0 +1,301 @@
+<title>Gear Strike Explorer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+  :root {
+    --paper: #fbfaf7;
+    --panel: #f1eee7;
+    --ink: #1f2328;
+    --muted: #6b6f76;
+    --line: #d9d4ca;
+    --strike: #b3412c;
+    --open: #dfeedb;
+    --open-ink: #2e5a2a;
+    --band-a: #f6dc9a;
+    --band-b: #cfe0f5;
+    --band-c: #e6d6f3;
+    --band-d: #f7c9c0;
+    --run: #f0b8ad;
+    --accent: #2f5d8a;
+    --control: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #16181c;
+      --panel: #1f2329;
+      --ink: #e7e4dd;
+      --muted: #9aa0a8;
+      --line: #343a42;
+      --strike: #e5765f;
+      --open: #24382a;
+      --open-ink: #a8d8a0;
+      --band-a: #5a4a16;
+      --band-b: #24405e;
+      --band-c: #453058;
+      --band-d: #5c2f29;
+      --run: #6b3028;
+      --accent: #8fb6de;
+      --control: #262b32;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #16181c;
+    --panel: #1f2329;
+    --ink: #e7e4dd;
+    --muted: #9aa0a8;
+    --line: #343a42;
+    --strike: #e5765f;
+    --open: #24382a;
+    --open-ink: #a8d8a0;
+    --band-a: #5a4a16;
+    --band-b: #24405e;
+    --band-c: #453058;
+    --band-d: #5c2f29;
+    --run: #6b3028;
+    --accent: #8fb6de;
+    --control: #262b32;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 14px;
+    padding-inline: 16px;
+    padding-block: 16px;
+  }
+  h1 { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 14px; max-width: 65ch; }
+  .wrap { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+    padding: 12px 14px; width: 300px; max-width: 100%; box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .group { display: flex; flex-direction: column; gap: 6px; }
+  .group h2 { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0; font-weight: 600; }
+  label { display: flex; align-items: center; gap: 8px; }
+  label.stack { flex-direction: column; align-items: stretch; gap: 3px; }
+  input[type=text], input[type=number], select {
+    font: inherit; font-family: "IBM Plex Mono", monospace; padding: 5px 7px;
+    border: 1px solid var(--line); border-radius: 4px; background: var(--control); color: var(--ink);
+    width: 100%; box-sizing: border-box;
+  }
+  input[type=number] { width: 84px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  button {
+    font: inherit; padding: 5px 10px; border-radius: 4px; border: 1px solid var(--line);
+    background: var(--control); color: var(--ink); cursor: pointer;
+  }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+  .presets button { padding: 3px 8px; font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+  .rule { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: center; font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+  .rule .sw { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--line); display: inline-block; }
+  .rule button { padding: 2px 6px; font-size: 11px; }
+  .table-wrap { flex: 1 1 420px; min-width: 0; overflow: auto; max-height: 82vh; border: 1px solid var(--line); border-radius: 6px; background: var(--control); }
+  table { border-collapse: collapse; font-family: "IBM Plex Mono", monospace; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 3px 10px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
+  th { position: sticky; top: 0; background: var(--panel); z-index: 1; font-weight: 600; }
+  td.n { text-align: right; color: var(--muted); }
+  td.pair { text-align: right; color: var(--muted); }
+  td.mark { color: var(--strike); font-weight: 600; }
+  tr.open td.state { color: var(--open-ink); font-weight: 600; }
+  tr.open { background: var(--open); }
+  tr.band-a { box-shadow: inset 6px 0 0 var(--band-a); }
+  tr.band-b { box-shadow: inset 6px 0 0 var(--band-b); }
+  tr.band-c { box-shadow: inset 6px 0 0 var(--band-c); }
+  tr.band-d { box-shadow: inset 6px 0 0 var(--band-d); }
+  tr.fill-a { background: var(--band-a); }
+  tr.fill-b { background: var(--band-b); }
+  tr.fill-c { background: var(--band-c); }
+  tr.fill-d { background: var(--band-d); }
+  tr.run td.state { background: var(--run); border-radius: 3px; }
+  .foot { color: var(--muted); font-size: 12px; margin-top: 8px; font-family: "IBM Plex Mono", monospace; }
+  .hint { color: var(--muted); font-size: 12px; }
+  @media (max-width: 700px) { .panel { width: 100%; } .table-wrap { max-height: none; } }
+</style>
+
+<h1>Gear Strike Explorer</h1>
+<p class="sub">Choose a set of gears and a line, and read the strikes step by step. Add highlight rules for row intervals and toggle them on and off.</p>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="group">
+      <h2>Gears</h2>
+      <label class="stack"><span class="hint">comma separated</span><input type="text" id="gears" value="3, 5, 7, 11, 13"></label>
+      <div class="presets">
+        <button data-g="2, 4">2, 4</button>
+        <button data-g="3, 5">3, 5</button>
+        <button data-g="3, 7">3, 7</button>
+        <button data-g="3, 11">3, 11</button>
+        <button data-g="3, 5, 7">3, 5, 7</button>
+        <button data-g="3, 5, 7, 11, 13">3, 5, 7, 11, 13</button>
+        <button data-g="5, 7">5, 7</button>
+        <button data-g="5, 7, 11, 13">5, 7, 11, 13</button>
+      </div>
+    </div>
+    <div class="group">
+      <h2>Line</h2>
+      <select id="mode">
+        <option value="int">integer line: a gear strikes its multiples</option>
+        <option value="odd">odd steps only (2 carried)</option>
+        <option value="col">column line (2 and 3 carried): pair 6m−1, 6m+1</option>
+      </select>
+      <div class="row">
+        <label>rows <input type="number" id="rows" value="100" min="1" max="5000"></label>
+        <label>from <input type="number" id="start" value="1" min="1"></label>
+      </div>
+      <button class="primary" id="build">Build table</button>
+    </div>
+    <div class="group">
+      <h2>Highlight rules</h2>
+      <div class="row">
+        <select id="ruleType">
+          <option value="period">every k-th row, offset r</option>
+          <option value="range">rows a to b</option>
+          <option value="odd">odd rows</option>
+          <option value="even">even rows</option>
+          <option value="mult">multiples of k</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>k / a <input type="number" id="p1" value="2" min="1"></label>
+        <label>r / b <input type="number" id="p2" value="0" min="0"></label>
+      </div>
+      <div class="row">
+        <label>style
+          <select id="ruleStyle">
+            <option value="band">edge band</option>
+            <option value="fill">row fill</option>
+          </select>
+        </label>
+        <button id="addRule">Add rule</button>
+      </div>
+      <div id="rules"></div>
+    </div>
+    <div class="group">
+      <h2>Toggles</h2>
+      <label><input type="checkbox" id="showOpen" checked> tint open rows</label>
+      <label><input type="checkbox" id="showRuns"> mark runs of consecutive struck rows</label>
+      <label><input type="checkbox" id="showPair" checked> show the pair on the column line</label>
+    </div>
+  </div>
+
+  <div>
+    <div class="table-wrap"><table id="t"></table></div>
+    <div class="foot" id="foot"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const colours = ['a', 'b', 'c', 'd'];
+  let rules = [];
+  let rows = [];
+
+  function parseGears() {
+    return $('gears').value.split(/[,\s]+/).map(s => parseInt(s, 10)).filter(v => Number.isInteger(v) && v >= 2);
+  }
+
+  function computeRows() {
+    const gears = parseGears();
+    const mode = $('mode').value;
+    const N = Math.max(1, Math.min(5000, parseInt($('rows').value, 10) || 100));
+    const start = Math.max(1, parseInt($('start').value, 10) || 1);
+    const out = [];
+    for (let i = 0; i < N; i++) {
+      let n, label, pair = '', marks = [], struck = false;
+      if (mode === 'int') {
+        n = start + i; label = n;
+        marks = gears.map(g => (n % g === 0) ? 'x' : '');
+      } else if (mode === 'odd') {
+        n = 2 * (start + i) - 1; label = n;
+        marks = gears.map(g => (n % g === 0) ? 'x' : '');
+      } else {
+        n = start + i; label = n;
+        const lo = 6 * n - 1, hi = 6 * n + 1;
+        pair = lo + ', ' + hi;
+        marks = gears.map(g => (lo % g === 0) ? 'L' : ((hi % g === 0) ? 'U' : ''));
+      }
+      struck = marks.some(m => m !== '');
+      out.push({ n, label, pair, marks, struck, idx: i + 1 });
+    }
+    return { gears, mode, out };
+  }
+
+  function ruleMatches(rule, r) {
+    const k = r.label; // the step number shown in the first column
+    switch (rule.type) {
+      case 'period': return rule.p1 > 0 && ((k - rule.p2) % rule.p1 + rule.p1) % rule.p1 === 0;
+      case 'range': return k >= rule.p1 && k <= rule.p2;
+      case 'odd': return k % 2 === 1;
+      case 'even': return k % 2 === 0;
+      case 'mult': return rule.p1 > 0 && k % rule.p1 === 0;
+    }
+    return false;
+  }
+
+  function render() {
+    const { gears, mode, out } = computeRows();
+    rows = out;
+    const showOpen = $('showOpen').checked, showRuns = $('showRuns').checked, showPair = $('showPair').checked && mode === 'col';
+    // runs of consecutive struck rows (length >= 2)
+    const inRun = new Array(out.length).fill(false);
+    let i = 0;
+    while (i < out.length) {
+      if (!out[i].struck) { i++; continue; }
+      let j = i; while (j < out.length && out[j].struck) j++;
+      if (j - i >= 2) for (let t = i; t < j; t++) inRun[t] = true;
+      i = j;
+    }
+    const head = ['<tr><th>' + (mode === 'col' ? 'm' : 'n') + '</th>' + (showPair ? '<th>pair</th>' : '') +
+      gears.map(g => '<th>' + g + '</th>').join('') + '<th>open?</th></tr>'];
+    const body = out.map((r, idx) => {
+      const cls = [];
+      if (showOpen && !r.struck) cls.push('open');
+      if (showRuns && inRun[idx]) cls.push('run');
+      rules.forEach(rule => { if (rule.on && ruleMatches(rule, r)) cls.push((rule.style === 'fill' ? 'fill-' : 'band-') + rule.colour); });
+      return '<tr class="' + cls.join(' ') + '"><td class="n">' + r.label + '</td>' +
+        (showPair ? '<td class="pair">' + r.pair + '</td>' : '') +
+        r.marks.map(m => '<td class="mark">' + m + '</td>').join('') +
+        '<td class="state">' + (r.struck ? 'struck' : 'open') + '</td></tr>';
+    });
+    $('t').innerHTML = head.join('') + body.join('');
+    const opens = out.filter(r => !r.struck).length;
+    let longest = 0, run = 0;
+    out.forEach(r => { run = r.struck ? run + 1 : 0; if (run > longest) longest = run; });
+    $('foot').textContent = out.length + ' rows, ' + opens + ' open, longest run of struck rows ' + longest;
+  }
+
+  function renderRules() {
+    const box = $('rules');
+    box.innerHTML = '';
+    rules.forEach((rule, i) => {
+      const div = document.createElement('div');
+      div.className = 'rule';
+      const desc = rule.type === 'period' ? 'every ' + rule.p1 + ', offset ' + rule.p2 :
+        rule.type === 'range' ? 'rows ' + rule.p1 + ' to ' + rule.p2 :
+        rule.type === 'mult' ? 'multiples of ' + rule.p1 : rule.type + ' rows';
+      div.innerHTML = '<label><input type="checkbox" ' + (rule.on ? 'checked' : '') + ' data-i="' + i + '"><span class="sw" style="background:var(--band-' + rule.colour + ')"></span></label>' +
+        '<span>' + desc + (rule.style === 'fill' ? ' (fill)' : '') + '</span><button data-del="' + i + '">remove</button>';
+      box.appendChild(div);
+    });
+    box.querySelectorAll('input[type=checkbox]').forEach(cb => cb.addEventListener('change', e => { rules[+e.target.dataset.i].on = e.target.checked; render(); }));
+    box.querySelectorAll('button[data-del]').forEach(b => b.addEventListener('click', e => { rules.splice(+e.target.dataset.del, 1); renderRules(); render(); }));
+  }
+
+  $('addRule').addEventListener('click', () => {
+    const type = $('ruleType').value;
+    rules.push({ type, p1: parseInt($('p1').value, 10) || 0, p2: parseInt($('p2').value, 10) || 0,
+      style: $('ruleStyle').value, colour: colours[rules.length % colours.length], on: true });
+    renderRules(); render();
+  });
+  $('build').addEventListener('click', render);
+  ['showOpen', 'showRuns', 'showPair', 'mode'].forEach(id => $(id).addEventListener('change', render));
+  $('gears').addEventListener('keydown', e => { if (e.key === 'Enter') render(); });
+  document.querySelectorAll('.presets button').forEach(b => b.addEventListener('click', () => { $('gears').value = b.dataset.g; render(); }));
+  renderRules();
+  render();
+})();
+</script>
