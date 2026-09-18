@@ -121,3 +121,14 @@ the name in the entry, zero sorries, standard axioms. Lemmas targeted: `kill_nee
 `plug_law` (2). Concept 3's lemma exists only if a new mechanic is found; concept 4 has none. The
 plan closes when each concept is either reduced to the exponent of concept 1 or shown to be
 outside the machine's rules.
+
+
+## Addendum (round 104): the record, and the split the record forces
+
+Most of the ground was covered before this plan (entry 110). The consequence that matters: the
+layered Erdos-Rankin theorem on record gives free two-class runs of length x (log x)^(3 - o(1)),
+longer than a twin-gear stretch, so the survival lemma at the stretch is false in the free model
+and provable only from the rigid configuration. The window form is the free-compatible one and is
+where parity stops sieves. The rigid tools on record are the record rule, the loaded record rule
+(an exact iff via domino cost against the tail count) and the position frontier; the next work is
+the domino cost at the actual square-residue core phase vector, computed exactly per machine.

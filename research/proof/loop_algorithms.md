@@ -3312,3 +3312,73 @@ fixed; the square is an ordinary position. A proof is a bound on the runs of tha
 exponent 1, and the attack from here is on the pattern itself: its runs, their positions, and why
 they stay polylogarithmic - which is the paired Jacobsthal question, in the machine's own units,
 with the machine's own name on it.
+
+### 110. The survival lemma placed in the work already on record (loop, 2026-09-19)
+
+The owner is right that most of the ground under the survival lemma was covered earlier. Pulling
+the record together against the lemma, with what it settles and the one new consequence.
+
+**Already on record, and not to be re-derived.**
+  * The reduction of the window statement to a run bound is proved (`window_of_column_gap`, entry
+    80), and the exponent map is exact (research/proof/length_face.md): a bound F(q) < C q^2 with
+    C < 1/6 IS the twin prime conjecture and more; C >= 1/6 or any exponent in (2, 4.27) implies
+    nothing parity-sensitive.
+  * The upper ladder for the two-class run record j_2 (docs/novel/j2-upper-bound.md, section 11a):
+    elementary 3^(n+1) log^2 p_n; Brun quasi-polynomial p_n^(9.30 loglog p_n); explicit
+    fundamental-lemma rungs at exponents 19, 17, 15 and the beta-sieve rung at 8.04162 (2G-inf
+    7.93727); the non-explicit sifting-limit rung at 4.266. Fifteen is the least integer FI 7.7 can
+    deliver at dimension 2; ODC's beta-sieve lower bound has constant B = 0 for kappa >= 1/2.
+  * The ceiling, corrected in round 23: exponent 2 is the PARITY barrier, not an arithmetic fact
+    about the sifting limit; 4.266 is what the best constructed dimension-2 sieve reaches, 4 is
+    Selberg's conjectural optimum, about 1.47 is the best proved floor, and whether beta_2 < 4 is
+    open and independent of parity.
+  * The rigid record is strictly below the free one: F(M) - 1 <= A072753, equal at {5,7} only and
+    strictly below from {5,7,11} on (87 against 117 at {5..37}) - research/proof/law_register.md.
+  * Exact rigid tools: the record rule (F(M') is a maximum over g phases of gaps on one period of
+    the lower machine, kernel-checked at 17), the loaded record rule (F_top(G) = max{L : minimum
+    domino cost over core phase vectors <= tail count}, an iff, kernel `loaded_record_rule`), the
+    position frontier (R_min >= 3L at 8375 cells, the mirror law at 88 of 88), and the record frame
+    (DEAD as a route: one corridor, one word, size-two frame set and any nameable break decider all
+    refuted). No location rule for the gap exists on the record (research/proof/location_rules.md).
+  * Lower bounds, parity-free: h_2(P(z)) >= (1.349 + o(1)) z log z by greedy matching, and the
+    layered Erdos-Rankin theorem j_2(P(x)) >= (1/(18 c_1) + o(1)) x A^3 C^2 / B^4, so any
+    h_2 = O(z (log z)^a) forces a >= 3 (docs/novel/layered-erdos-rankin.md).
+  * Measured laws: the window's longest struck run tracks (ln q)^2; the record distance to the
+    first twin above q tracks between (ln q)^2 and (ln q)^3 to 10^7; the rigid worst stretches
+    are 4, 6, 10, 17, 24, 33 columns for the gears to 7..23.
+
+**The one consequence that is new, and it is decisive about method.** The survival lemma at the
+stretch (entry 108) needs a run bound of exponent 1: no struck run of the gears up to p as long as
+the twin-gear stretch, about 4p in integers, at the position p^2. The layered Erdos-Rankin theorem
+on record says the FREE two-class pattern has runs of length x (log x)^(3 - o(1)) - longer than 4x
+for large x. So in the free model the stretch-level survival is FALSE asymptotically: there exist
+free residue vectors whose runs exceed a twin-gear stretch. Hence:
+
+    no argument that treats the gears' phases as free can prove the survival lemma at the
+    stretch; any proof at that level must use the rigid configuration - the actual teeth at
+    +-inv(6), the actual residues of p - which is precisely the machine's own mechanism and
+    nothing else.
+
+The window-level statement (exponent 2, C < 1/6) is the one the free model does not refute
+(Ziller-Morack Conjecture 6, open), and it is where sieve methods could in principle act and
+where parity stops them at 4.266 against 2. So the two forms split cleanly:
+
+    window form   - exponent 2 - free-model-compatible - blocked by parity for sieves;
+    stretch form  - exponent 1 - free model FALSE      - needs the rigid mechanism.
+
+The owner's thesis that the mechanism is everything therefore has an exact statement: the
+survival lemma is provable, if at all, only from the rigid configuration, and the tools on record
+for the rigid configuration are the record rule, the loaded record rule, and the position
+frontier. What they give today are exact characterisations of F(M) and no bound of exponent
+below 2; the record's own falsification target stands: one exact rigid record beyond q = 59
+(F(59) is pinned to [161, 178]; the certified ladder ends at F(47) = 118), and one exact
+h_2(p_n#) beyond p_n = 73.
+
+**Program from here, using only rigid tools.** The loaded record rule is an exact iff: a run of
+length L is coverable iff the minimum domino cost over core phase vectors is at most the tail
+count. Its closed-form corollary F_top(G) <= Lcap(G) is the counting bound and too weak. The
+rigid question is whether the ACTUAL core phase vector at p^2 - fixed by the location law, square
+residues at every core gear - has domino cost above the tail count for every L reaching the
+stretch's end. That is a statement about square residues against the domino cost, computable
+exactly at each p, and it is the form of the survival lemma that lives entirely inside the kernel's
+own rigid machinery.
