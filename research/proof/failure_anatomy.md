@@ -234,3 +234,21 @@ number and two classes of a pair. From that follows the free-regime cut at n aga
 reciprocal-sum deficit of log against log squared, and sifting dimension 1 against 2 - and parity
 bites only at dimension 2. The machine proves every single-member statement it can express and no
 two-member one, and the same 1-against-2 stops Chen at almost primes and the Maynard-Tao line at 6.
+
+
+## 13. The counterexample hunt (round 81)
+
+Asked the inverse question: what could stop the machine producing twins as q grows?
+
+A total kill is impossible by density - each gear takes two classes, so the columns no gear touches
+have density the product of (1 - 2/h), which is positive, and the uncovered set is a union of
+classes modulo the primorial. Any counterexample is therefore local: the uncovered columns pushed
+outside one window, which is the run-length question of section 6.
+
+The adversarial form - could the teeth be CHOSEN to cover a window? - is the extremal problem
+behind the paired Jacobsthal function, whose known bounds straddle q^2. Measured
+(research/stack/r8/adversarial_window.py): a greedy adversary leaves 5 to 9 percent of the window
+uncovered at every size tested, while the real arithmetic leaves about twice that. So the machine's
+actual teeth are roughly half as efficient at killing twins as a deliberate attempt, and the
+question of whether a better arrangement could ever close the window is the same exponent-2 knife
+edge as before.

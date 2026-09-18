@@ -1,0 +1,12 @@
+adversarial arrangement of the gears' teeth against the real arithmetic
+     q   columns in window   gears   uncovered if teeth are CHOSEN   twins actually there
+    29                136       8                              12                    29
+    37                222      10                              19                    41
+    47                361      13                              22                    61
+    59                571      15                              39                    87
+    71                829      18                              55                   121
+   101               1684      24                              93                   202
+   149               3676      33                             196                   365
+
+uncovered = 0 means an adversary could kill every twin slot in that window,
+so the machine's protection there is arithmetic and not structural.

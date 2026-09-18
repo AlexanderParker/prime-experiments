@@ -2120,3 +2120,47 @@ The machine is therefore not silent on infinitude - it proves the single-prime f
 statement it can express. What it cannot do is carry two members at once, and that is the same
 1-against-2 that stops Chen at almost-primes, stops the Maynard-Tao line at 6 under the strongest
 hypotheses, and stops our run bound at exponent 4 instead of 2 (entry 80).
+
+### 87. The counterexample hunt, asked structurally (loop, 2026-09-18)
+
+New exercise: instead of proving the machine works, look for what could stop it - a machine whose
+window has every twin slot killed. Asked structurally first, because that question has an answer.
+
+**A total kill is impossible, and cheaply so.** Each gear takes two classes of columns, so over a
+full period the columns no gear touches have density the product of (1 - 2/h) over the gears, which
+is positive. The uncovered set is never empty; it is a union of classes modulo the primorial. So
+any counterexample must be LOCAL - the uncovered columns all pushed outside one window - which is
+exactly the run-length question of entry 80.
+
+**So the sharp question is the adversarial one:** if the two classes of every gear could be CHOSEN
+rather than being fixed by arithmetic, could they be arranged to cover a whole window? Measured by
+greedy adversary (research/stack/r8/adversarial_window.py), gears in increasing order, each taking
+its two best classes:
+
+       q    columns in window    uncovered with chosen teeth    twins actually present
+      29           136                     12  (8.8%)                 29  (21%)
+      37           222                     19  (8.6%)                 41  (18%)
+      47           361                     22  (6.1%)                 61  (17%)
+      59           571                     39  (6.8%)                 87  (15%)
+      71           829                     55  (6.6%)                121  (15%)
+     101          1684                     93  (5.5%)                202  (12%)
+     149          3676                    196  (5.3%)                365  (10%)
+
+Two readings. The adversary never manages a complete cover at these sizes, so the window is not
+merely lucky - even chosen teeth leave 5 to 9 percent of it open. And the real arithmetic leaves
+about twice as much room as the best adversarial arrangement, so the actual residues are
+noticeably WORSE at killing twins than a deliberate attempt would be. Both fractions fall slowly
+with q, which is what a proof would have to control.
+
+**What the adversarial question is, named.** Covering a run of consecutive columns with two classes
+per gear is the extremal problem behind the paired Jacobsthal function - the same object as entry
+80. Its known bounds straddle the window: Rankin-type constructions give runs much longer than q,
+and the best upper bounds are around q^(2+o(1)), with the window at q^2. So structure alone neither
+forbids nor permits a twin-free window; the question sits exactly at the exponent-2 knife edge that
+entry 80 identified, which is why no amount of rearranging the gears settles it either way.
+
+**What this exercise rules out.** It rules out the hope that some conspiracy of gears could be
+exhibited - a total cover is impossible by density, and a local cover is the Jacobsthal problem, so
+a counterexample is not something one constructs but something one would have to find. And it rules
+in a measured fact worth keeping: the machine's real teeth are about half as efficient at killing
+twins as a deliberate adversary, at every size tested.
