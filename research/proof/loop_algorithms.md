@@ -2929,3 +2929,61 @@ The machine's rules supply exactly one property of that class - its lift is belo
 of two gears - and nothing on record turns that into an exclusion. The 17..19 exclusion shows the
 shape such an argument would have (every killer there needs a gear to divide p); it does not
 persist at 29..31.
+
+### 102. Structure, location, relative kill positions: the rules that govern a kill, and whether they forbid it (loop, 2026-09-19)
+
+The owner's redirection: not counts, structure - what set of rules could kill the machine's
+ability to continue, and are those rules achievable. Here is the rule set as it now stands, all of
+it proved, and the honest answer to whether it forbids a kill.
+
+**The rules a kill must obey, in the machine.**
+  1. The rigid pair: each gear's two teeth are one welded part, one third of a turn apart
+     (`teeth_separation`). The window's start slides the pair, never opens it.
+  2. Coprimality: no gear strikes both members of a column (`no_gear_both_members`); a column
+     dies by one strike on one member.
+  3. Size: three gears whose product exceeds q^2 cannot share a member (`no_three_large_on_member`);
+     above q/2 a gear strikes a survivor only through one large prime cofactor (`top_gear_cofactor`).
+  4. Joint strikes are one class modulo the product (`joint_strike_class`): the lattices carry no
+     interaction; only truncation by the window's edges deviates from the shares.
+  5. The stretch rule: an arriving gear closes only its own square's column
+     (`new_gear_only_square`); every slot is decided by the gears below its square root.
+  6. The location law, NEW this round [proofs/KillPositions.lean, round 96, 0 sorries]: a gear h
+     strikes the member p^2 + a only if -a is a square modulo h
+     (`strike_after_square_isSquare`). So each position after a square admits killers only from
+     the gears in the residue classes where -a is a square:
+       - the square's own neighbour p^2 - 2: only gears congruent to 1 or 7 modulo 8
+         (`square_neighbour_killers`);
+       - the next column's lower member p^2 + 4: only gears congruent to 1 modulo 4
+         (`next_lower_killers`);
+       - the next upper member p^2 + 6: only gears with -6 a square; and so on down the stretch,
+         one class condition per position, decided by the offset and not by the gear's size.
+
+**The location law, read off real machines** (research/stack/r8/kill_positions_after_square.py):
+at every position in the first eight columns above 29^2, 101^2 and 1009^2, about half the gears
+are eligible (4 of 8, 11 to 15 of 24, 77 to 87 of 167), and every actual killer lies in its
+eligible class, as it must. The square's neighbours: 839 is prime; 10199 = 7 x 31 x 47, all three
+congruent to 7 modulo 8; 1018079 = 17 x 59887, with 17 congruent to 1 modulo 8. The law holds
+exactly and it is a statement about position.
+
+**Do these rules forbid a dead stretch?** No - and this is the point to be clear about. The
+killer configurations found in entry 100 were built from square-residue shifts, which is
+precisely the location law; they obey rules 1 to 6 in full, and they cover the stretch. From
+p = 17 the residue space contains configurations that satisfy every rule on record and kill;
+from p = 29 some of those are prime-compatible (no zero residue below p). So the mechanics as
+identified do NOT make a dead stretch impossible. What keeps the machine alive at each stretch is
+that its actual configuration is p's own residue vector, and no rule on record ties p's vector
+away from the killers of its own stretch. The rules constrain WHICH gears can act at each
+location; they do not constrain whether the one realisable configuration lands on a killer.
+
+**What an impossibility proof would therefore have to contain.** A seventh rule: a relation
+among the residues of one prime, p, against its own gears, holding for every p, strong enough to
+exclude the killer classes of its stretch. Entry 95 showed the machine's interactions carry no
+such relation - the residues of one integer are free apart from size - and the exact and sampled
+searches confirm the rules on record permit killers. If the owner's claim that a permanent kill
+is impossible given the mechanics is to be a theorem, that seventh rule is the theorem, and it is
+not among the six.
+
+**Standing after the location law.** The rule set governing a kill is complete as far as the
+machine's mechanics are known, every rule is in the kernel, and the set is consistent with a dead
+stretch. The machine's survival at every stretch measured is therefore not yet a consequence of
+its rules; it is a fact about which point of its residue space each prime occupies.

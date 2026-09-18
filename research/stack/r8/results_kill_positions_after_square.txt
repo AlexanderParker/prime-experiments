@@ -1,0 +1,71 @@
+C:\dev\primes\research\stack\r8\kill_positions_after_square.py:31: SymPyDeprecationWarning: 
+
+The `sympy.ntheory.residue_ntheory.legendre_symbol` has been moved to `sympy.functions.combinatorial.numbers.legendre_symbol`.
+
+See https://docs.sympy.org/latest/explanation/active-deprecations.html#deprecated-ntheory-symbolic-functions
+for details.
+
+This has been deprecated since SymPy version 1.13. It
+will be removed in a future version of SymPy.
+
+  elig = [h for h in primerange(5, p+1) if legendre_symbol((-a) % h, h) == 1]
+machine 29 -> 31: the first columns above 29^2 = 841
+   column   member          offset a   eligible killers (-a a square mod h)   actual killer   its class ok?
+   L141    845                  4       4 of 8 gears eligible                 5,13            yes
+   U141    847                  6       4 of 8 gears eligible                 7,11            yes
+   L142    851                 10       5 of 8 gears eligible                 23              yes
+   U142    853                 12       3 of 8 gears eligible                 prime           -
+   L143    857                 16       4 of 8 gears eligible                 prime           -
+   U143    859                 18       3 of 8 gears eligible                 prime           -
+   L144    863                 22       4 of 8 gears eligible                 prime           -
+   U144    865                 24       4 of 8 gears eligible                 5               yes
+   L145    869                 28       3 of 8 gears eligible                 11              yes
+   U145    871                 30       5 of 8 gears eligible                 13              yes
+   L146    875                 34       5 of 8 gears eligible                 5,7             yes
+   U146    877                 36       4 of 8 gears eligible                 prime           -
+   L147    881                 40       5 of 8 gears eligible                 prime           -
+   U147    883                 42       4 of 8 gears eligible                 prime           -
+   L148    887                 46       3 of 8 gears eligible                 prime           -
+   U148    889                 48       3 of 8 gears eligible                 7               yes
+   the square's neighbour p^2 - 2 = 839: factors {839: 1}; eligible gears are those = 1 or 7 mod 8
+
+machine 101 -> 103: the first columns above 101^2 = 10201
+   column   member          offset a   eligible killers (-a a square mod h)   actual killer   its class ok?
+   L1701   10205                4      12 of 24 gears eligible                 5,13            yes
+   U1701   10207                6      12 of 24 gears eligible                 59              yes
+   L1702   10211               10      11 of 24 gears eligible                 prime           -
+   U1702   10213               12      11 of 24 gears eligible                 7               yes
+   L1703   10217               16      12 of 24 gears eligible                 17              yes
+   U1703   10219               18      11 of 24 gears eligible                 11              yes
+   L1704   10223               22      13 of 24 gears eligible                 prime           -
+   U1704   10225               24      12 of 24 gears eligible                 5               yes
+   L1705   10229               28       9 of 24 gears eligible                 53              yes
+   U1705   10231               30      13 of 24 gears eligible                 13              yes
+   L1706   10235               34      15 of 24 gears eligible                 5,23,89         yes
+   U1706   10237               36      12 of 24 gears eligible                 29              yes
+   L1707   10241               40      11 of 24 gears eligible                 7,11,19         yes
+   U1707   10243               42      14 of 24 gears eligible                 prime           -
+   L1708   10247               46      14 of 24 gears eligible                 prime           -
+   U1708   10249               48      11 of 24 gears eligible                 37              yes
+   the square's neighbour p^2 - 2 = 10199: factors {7: 1, 31: 1, 47: 1}; eligible gears are those = 1 or 7 mod 8
+
+machine 1009 -> 1013: the first columns above 1009^2 = 1018081
+   column   member          offset a   eligible killers (-a a square mod h)   actual killer   its class ok?
+   L169681   1018085              4      81 of 167 gears eligible                 5               yes
+   U169681   1018087              6      77 of 167 gears eligible                 7               yes
+   L169682   1018091             10      82 of 167 gears eligible                 prime           -
+   U169682   1018093             12      81 of 167 gears eligible                 571             yes
+   L169683   1018097             16      81 of 167 gears eligible                 prime           -
+   U169683   1018099             18      81 of 167 gears eligible                 883             yes
+   L169684   1018103             22      87 of 167 gears eligible                 29              yes
+   U169684   1018105             24      77 of 167 gears eligible                 5,11,107,173    yes
+   L169685   1018109             28      81 of 167 gears eligible                 prime           -
+   U169685   1018111             30      79 of 167 gears eligible                 43              yes
+   L169686   1018115             34      81 of 167 gears eligible                 5,7,19          yes
+   U169686   1018117             36      81 of 167 gears eligible                 149             yes
+   L169687   1018121             40      82 of 167 gears eligible                 13              yes
+   U169687   1018123             42      80 of 167 gears eligible                 prime           -
+   L169688   1018127             46      84 of 167 gears eligible                 11              yes
+   U169688   1018129             48      81 of 167 gears eligible                 7,37            yes
+   the square's neighbour p^2 - 2 = 1018079: factors {17: 1, 59887: 1}; eligible gears are those = 1 or 7 mod 8
+

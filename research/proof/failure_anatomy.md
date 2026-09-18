@@ -407,3 +407,17 @@ prime-compatible killer fraction at twin-gear stretches falls like exp(-c p / ln
 stretches grow only like p / ln p - a Cramer-style heuristic, recorded as one, not a proof. A proof
 would need a property separating the class of a prime of the gear set's own size from the killer
 classes, and the machine supplies only that the class's lift is small.
+
+
+## 26. The location law, and whether the rules forbid a kill (round 96)
+
+A gear strikes p^2 + a only if -a is a square modulo it (`strike_after_square_isSquare`,
+proofs/KillPositions.lean): the square's neighbour p^2 - 2 admits only gears 1 or 7 mod 8, the
+next lower member p^2 + 4 only gears 1 mod 4, and so on, one class condition per position. Read on
+real machines, about half the gears are eligible at each position and every actual killer lies in
+its class. The rule set governing a kill is now six rules, all proved: rigid pair, coprimality,
+size, one-class joint strikes, the stretch rule, the location law. They do not forbid a dead
+stretch: the killer configurations of round 94 obey all six and cover. What keeps the machine
+alive is that its configuration at each stretch is p's own residue vector, and no rule ties that
+vector away from the killers. An impossibility proof would be a seventh rule - a relation among
+one prime's residues against its own gears - and the machine's interactions carry none.

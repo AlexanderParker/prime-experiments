@@ -2340,3 +2340,6 @@ name = "ManyBody"
 
 [[lean_lib]]
 name = "StretchRule"
+
+[[lean_lib]]
+name = "KillPositions"
