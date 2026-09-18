@@ -320,3 +320,13 @@ strike has members g1 p and g2 p' with p, p' prime, a solution of g2 p' - g1 p =
 on an overlap term of about 4/(g1 g2) of the survivors, negligible against them. The one exact
 pair, squares against everything else, combines on the square's column exactly when g^2 - 2 is
 composite (`square_lone_killer_iff`). No pair of fields can combine into a blocking state.
+
+
+## 19. Triples of fields (round 87)
+
+Against independence and against the pairwise-consistent baseline, 20,000 stratified triples per
+machine: with all three gears below sqrt q both ratios are 1.000; with one large gear 0.998 and
+0.997; with two large gears 1.03, a slight excess of overlap; with three large gears 0.72 to 0.85
+against independence but 0.90 to 0.97 against the pairs, on counts of 42 and 31. Everything a
+triple does is explained by its pairs, and the pure three-body term shrinks toward 1 with q. No
+triple of fields can combine into a blocking state.

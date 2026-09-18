@@ -1,0 +1,14 @@
+q = 1009: 20000 triples (stratified by gears above sqrt q), columns of the survivors below g1 struck by all three
+   gears above sqrt q   triples   actual   independence   ratio   pairwise-consistent   ratio
+          0               5000  2466244      2466383.1   1.000            2466480.0   1.000
+          1               5000   118326       118471.2   0.999             118649.7   0.997
+          2               5000     5478         5307.7   1.032               5309.2   1.032
+          3               5000       42           58.5   0.718                 46.5   0.903
+
+q = 2003: 20000 triples (stratified by gears above sqrt q), columns of the survivors below g1 struck by all three
+   gears above sqrt q   triples   actual   independence   ratio   pairwise-consistent   ratio
+          0               5000  5255834      5255176.8   1.000            5255053.5   1.000
+          1               5000   163966       164235.7   0.998             164494.3   0.997
+          2               5000     5373         5234.4   1.026               5254.6   1.023
+          3               5000       31           36.7   0.845                 31.9   0.971
+

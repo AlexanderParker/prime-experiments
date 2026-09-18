@@ -2486,3 +2486,46 @@ percent, on an overlap term that is itself negligible against the survivors, thr
 pattern (two large-prime products two apart) that is the pair's own version of the cofactor
 constraint. The many-body property, split into pairs, shows one bounded interaction and nothing
 that grows.
+
+### 93. Triples of fields (loop, 2026-09-18)
+
+The next part of the many-body property: three fields at once. For gears g1 < g2 < g3, on the
+survivors of the gears below g1, the columns all three strike are compared with two baselines
+(research/stack/r8/field_triples.py, 20,000 triples per machine, stratified by how many of the
+three gears lie above sqrt q):
+  * independence of the three fields - the product of each gear's own measured kill rate;
+  * the pairwise-consistent baseline, built from the three measured pair overlaps (Kirkwood's
+    superposition), which removes what the pairs already explain and leaves the pure three-body
+    term.
+
+    q = 1009   gears above sqrt q   triple-struck   vs independence   vs pairs   (pure three-body)
+                     0                2,466,244          1.000           1.000
+                     1                  118,326          0.999           0.997
+                     2                    5,478          1.032           1.032
+                     3                       42          0.718           0.903
+    q = 2003
+                     0                5,255,834          1.000           1.000
+                     1                  163,966          0.998           0.997
+                     2                    5,373          1.026           1.023
+                     3                       31          0.845           0.971
+
+Reading it.
+  * Triples with all three gears below sqrt q: no interaction at any level - independence and the
+    pairwise baseline both at 1.000 over millions of coincidences.
+  * One large gear: 0.998 to 0.999; two large gears: 1.02 to 1.03, a slight EXCESS of overlap,
+    which is the wrong direction for a block.
+  * Three large gears: against independence 0.72 and 0.85, but against the pairs 0.90 and 0.97.
+    So most of the three-large avoidance is the pair avoidance of entry 92 counted three times,
+    and the pure three-body term is small, shrinks from q = 1009 to 2003, and sits on counts of
+    42 and 31 where the statistical noise is itself about 15 percent.
+
+**Verdict on triples.** No triple of fields can combine into a blocking state. Everything a
+triple does is explained by its pairs, to a tenth of a percent when any gear is small, and to
+within noise when all three are large. The pure three-body term goes toward 1 with q, not away
+from it. Nothing at the third level grows.
+
+**The pattern across the levels.** Singles take their share (entry 91). Pairs are independent
+except for an 11 percent avoidance between two large gears, on a negligible term, through the
+rigid pattern of two large-prime products two apart (entry 92). Triples add nothing beyond their
+pairs. The many-body property, split into its first three parts, shows one bounded interaction at
+the second level and none at the third.
