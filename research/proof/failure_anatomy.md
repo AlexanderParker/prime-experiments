@@ -94,3 +94,23 @@ The search produced objects that stand on their own and do not depend on the con
   this construction.
 
 The open statement is unchanged and remains the twin prime conjecture in the machine's words.
+
+
+## 5. Requirement 3, made precise (round 74)
+
+Arithmetic supplies reasons about named candidates, and they divide sharply.
+
+**Naming a candidate closed is free.** `perfect_power_landing` [proofs/LandingForms.lean]: the only
+landing that is a perfect power is 4. The proof is the template - x - 1 divides x^k - 1, so the
+lower member is composite unless x = 2; then k must be prime, and for odd k the upper member is
+divisible by 3. Identities of this kind are plentiful and all negative.
+
+**Naming a candidate open costs the primorial, by either route.** There are two ways to know a
+candidate escapes a gear without testing it: make the gear divide the mirror (`silence_costs_primorial`),
+or choose the period so the candidate misses its teeth. The second is the same object as the
+first: openness to a gear set depends only on the column modulo the product of that set
+(`openness_periodic`, round 74), so a congruence choice over the gears up to X names a class of
+period X# and needs X# <= q^2 - q to meet the window. Both levers stop at about 2 log2 q gears.
+
+So requirement 3 has an exact statement: every gear from there up to sqrt(N) - all but
+logarithmically many of them - has no naming mechanism in this machine, and a proof needs one.

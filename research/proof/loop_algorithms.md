@@ -1836,3 +1836,42 @@ separately as two teeth.
 Requirement (3) is the one no route has met, and (1), (2), (4) say why the obvious substitutes
 fail. That is the shape of the hole, drawn tightly enough to recognise a genuine idea - or a
 re-run of rounds 40 to 72 - immediately.
+
+### 79. Requirement three attempted: what arithmetic can name (loop, 2026-09-18)
+
+Entry 78 left one requirement unmet: a proof must name a candidate rather than a population, with
+the reason coming from the candidate's own arithmetic. This round establishes what arithmetic can
+and cannot name here.
+
+Arithmetic names candidates CLOSED, freely. The sharpest instance, now in the kernel
+[proofs/LandingForms.lean, round 74, 0 sorries]:
+
+  `perfect_power_landing`: the only landing that is a perfect power is 4, the pair (3, 5).
+
+The proof is the shape of every argument of this kind. If the landing is x^k with k >= 2 then
+x - 1 divides the lower member, so it is composite unless x = 2; then the lower member 2^k - 1
+being prime forces k prime, and for odd k the upper member 2^k + 1 is divisible by 3
+(`three_dvd_two_pow_add_one`). Only k = 2 survives. Supporting: `not_prime_of_pow` removes the
+other obvious shape, a member that is a proper power.
+
+Arithmetic names candidates OPEN only up to the wall, and it has exactly two ways of doing it -
+which turn out to cost the same.
+
+  * By divisibility: a candidate 2 M k +- 1 is coprime to every gear dividing M, by construction
+    (`mirror_gear_never_strikes`). Silencing every gear up to X this way costs X#
+    (`silence_costs_primorial`, round 73).
+  * By congruence: instead of making gears divide the landing, choose the period so the candidate
+    misses their teeth. PROVED this round that this is the same kind of object:
+    `openness_periodic` [proofs/MirrorWalkCarry.lean] - whether a column's members escape a gear
+    set depends only on the column modulo the product of that set. So a congruence choice over the
+    gears up to X names a class of period X#, and to meet the window it needs X# <= q^2 - q.
+
+Same price, different mechanism. That matters because the carry wall could have looked like an
+artifact of insisting on divisibility; it is not. Both levers are bounded by the primorial against
+a quadratic window, so both reach only the gears up to about 2 log2 q.
+
+So the position on requirement three is exact: arithmetic can name any number of candidates as
+closed, and can name a candidate open only to the gears below a primorial that fits the window.
+The gears from there to sqrt(N) - which is all but logarithmically many - have no naming
+mechanism at all in this machine. That is the hole, and it is now described by what is in it
+rather than by what has failed.

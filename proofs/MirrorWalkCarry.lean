@@ -103,4 +103,27 @@ theorem primorial_le_of_silence {M X : ℕ} (hM : 0 < M)
     (hsil : ∀ p, p.Prime → p ≤ X → p ∣ M) : primorial X ≤ M :=
   Nat.le_of_dvd hM (silence_costs_primorial hM hsil)
 
+/-- **Openness to a gear set is periodic.**  Whether a column's two members escape the gears of
+`S` depends only on the column modulo the product of `S`.  So choosing a candidate by congruence -
+the period rule - names a class of period `∏ S`, exactly as carrying names a divisor. -/
+theorem openness_periodic {S : Finset ℕ} {n m P : ℕ} (hP : P = ∏ g ∈ S, g)
+    (hnm : n ≡ m [MOD P]) (hS : ∀ g ∈ S, 0 < g) :
+    ((∀ g ∈ S, ¬ g ∣ (n + 1) ∧ ¬ g ∣ (n + 3)) ↔ (∀ g ∈ S, ¬ g ∣ (m + 1) ∧ ¬ g ∣ (m + 3))) := by
+  have key : ∀ g ∈ S, (g ∣ (n + 1) ↔ g ∣ (m + 1)) ∧ (g ∣ (n + 3) ↔ g ∣ (m + 3)) := by
+    intro g hg
+    have hgP : g ∣ P := hP ▸ Finset.dvd_prod_of_mem _ hg
+    have hmod : n ≡ m [MOD g] := Nat.ModEq.of_dvd hgP hnm
+    constructor
+    · constructor
+      · intro h; exact (Nat.modEq_zero_iff_dvd).mp (((hmod.add_right 1).symm).trans ((Nat.modEq_zero_iff_dvd).mpr h))
+      · intro h; exact (Nat.modEq_zero_iff_dvd).mp ((hmod.add_right 1).trans ((Nat.modEq_zero_iff_dvd).mpr h))
+    · constructor
+      · intro h; exact (Nat.modEq_zero_iff_dvd).mp (((hmod.add_right 3).symm).trans ((Nat.modEq_zero_iff_dvd).mpr h))
+      · intro h; exact (Nat.modEq_zero_iff_dvd).mp ((hmod.add_right 3).trans ((Nat.modEq_zero_iff_dvd).mpr h))
+  constructor
+  · intro h g hg
+    exact ⟨fun hd => (h g hg).1 (((key g hg).1).mpr hd), fun hd => (h g hg).2 (((key g hg).2).mpr hd)⟩
+  · intro h g hg
+    exact ⟨fun hd => (h g hg).1 (((key g hg).1).mp hd), fun hd => (h g hg).2 (((key g hg).2).mp hd)⟩
+
 end MirrorWalk
