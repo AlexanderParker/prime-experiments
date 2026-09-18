@@ -612,3 +612,42 @@ the four requirements any proof must meet. The root is that the machine's only l
 divisibility - priced exactly by `silence_costs_primorial` - and the measured test of whether a
 landing carries anything beyond its factorisation says it does not (structured landings 2^a 3^b
 need mean multiplier 38.4 against 15.2 for shapeless controls carrying twice as many gears).
+
+
+## The survival lemma, weighed and placed (2026-09-19, rounds 102-106)
+
+The owner's four-line argument is in the kernel end to end (proofs/OwnerArgument.lean,
+proofs/CounterMachine.lean, 0 sorries), and the wall now has its exact shape around the one line
+that is not a theorem.
+
+- **Line 3, weak form, IS the conjecture.** `SurvivalInf` (some stretch above every bound holds
+  a column no gear up to `p` strikes) is equivalent to twins unbounded, both directions
+  (`survivalInf_iff_twins_unbounded`). The strong form `Survival` (every stretch survives) is
+  Legendre-type for twins - strictly stronger, measured true to 200,000.
+- **Line 3 is independent of the mechanics of striking.** On the abstract line (a multiplicative
+  set of fold survivors, gears its irreducibles) the square-root rule and "a surviving column is a
+  twin gear pair" are theorems for every line. The real line's survival is `SurvivalInf`; the
+  counter line - the twin lowers removed from the generators - never survives any stretch
+  (`counter_never_survives`). Same mechanics, every stretch dead forever. The only difference is
+  `real_column`: every `j` is a column of the real line.
+- **Admissibility test for any argument.** Delete the open columns from the line and rerun it.
+  If it still goes through, it is wrong. This rules out every free-phase cover and every count,
+  and every argument from a property of the gear set alone.
+
+**The angles, each closed on record, with its pointer:**
+
+| angle | where closed | how |
+|---|---|---|
+| free-phase cover / run bound | length_face.md, entry 80, entry 110 | exponent 2 needed, 4.266 proved, parity at 2; stretch form (exponent 1) is FALSE in the free model (layered Erdos-Rankin) |
+| rigid record tools (record rule, loaded record rule, position frontier) | entry 111 | the stretch is longer than every gear, so the tail is empty and the rule is the survival statement itself |
+| mechanics of striking alone | fold_mechanic.md, entries 112-113, kernel `counter_never_survives` | the counter line has them all and never survives |
+| analytic (Chen pair, explicit bounds) | the_wall.md round 72, proofs/WindowFromCount.lean | parity blocks 2 under every distribution hypothesis; explicit thresholds start at exp(exp(32.7)) |
+| chain / certificate | proofs/MirrorWalkChain.lean, MirrorWalkCertificate.lean | covers all machines to 2.76e32; beyond that needs twin gaps `t_{i+1} < t_i^2`, a stronger statement |
+| the pins' arithmetic (which multiples exist) | origin_mechanic.md 3, 6.2 | one instance at p = 29; no general form; each instance is "which composites exist", the conjecture locally |
+| bilinear / Type II switching | period_scale.md 3.10, objects_ledger.md C14 | the `g-m` switching is an exact identity `E = 2D + Q`, not an inequality; no Type II lever |
+
+**What a proof must be.** A use of the completeness of the line - every `6j +- 1` is on it -
+that dies when the open columns are deleted, and that is neither a cover of free phases nor a
+count. Nothing on record is such a use. The record's five reformulations (window <-> exponent 2;
+stretch <-> exponent 1; weak survival <-> conjecture; strong survival -> conjecture; chain <- twin-gap
+growth) are each equivalent to or stronger than the target; none lowers its weight.

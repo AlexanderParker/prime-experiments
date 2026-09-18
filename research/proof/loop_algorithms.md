@@ -3518,3 +3518,15 @@ lemma proved equivalent to the conjecture (entry 111) and proved independent of 
 (this entry). The proof, if one exists in the machine's terms, is a use of the completeness of the
 line - every 6j +- 1 is on it - that is neither cover nor count. The record's only exhibited
 non-count use is the pin at p = 29 (which multiples exist), with no general form found.
+
+### 114. The wall map updated: seven angles, each closed on record, and the form a proof must take (loop, 2026-09-19)
+
+research/proof/the_wall.md gains the section "The survival lemma, weighed and placed": entries
+111-113 as the wall's new edges (line 3 weak form is the conjecture; line 3 independent of the
+mechanics; the admissibility test), and a table of the seven angles with the pointer to where each
+is closed - free-phase cover / run bound, rigid record tools, mechanics alone, analytic, chain,
+the pins' arithmetic, bilinear switching. The bilinear angle was already on record
+(period_scale.md 3.10: the g-m switching is an exact identity E = 2D + Q, not an inequality).
+What a proof must be, in one line: a use of the line's completeness that dies when the open
+columns are deleted and is neither a cover of free phases nor a count; nothing on record is such
+a use.
