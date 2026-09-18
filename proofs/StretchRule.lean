@@ -140,4 +140,77 @@ theorem rough_member_form {p n : ℕ} (hp : 1 ≤ p) (hlo : p ^ 2 < n) (hhi : n 
             exact Nat.mul_le_mul h1 h1
       omega
 
+/-- **The plug law.**  Let `p₁ < p₂ < p₃` be consecutive gears.  In the stretch `(p₂², p₃²]`, a
+member that the gears up to `p₁` leave open and that `p₂` strikes is `p₂ k` with `k` a prime at
+least `p₃`.  So the newly established gear plugs the base's holes only at the products of itself
+with the next primes - a sparse set fixed in advance by the primes themselves. -/
+theorem plug_law {p₁ p₂ p₃ n : ℕ} (hp₂ : p₂.Prime)
+    (hcons₁ : ∀ r : ℕ, r.Prime → r < p₂ → r ≤ p₁)
+    (hcons₂ : ∀ r : ℕ, r.Prime → p₂ < r → p₃ ≤ r)
+    (hrough : ∀ r : ℕ, r.Prime → r ≤ p₁ → ¬ (r ∣ n))
+    (hlo : p₂ ^ 2 < n) (hhi : n ≤ p₃ ^ 2) (hsize : p₃ ^ 2 < p₂ ^ 3) (hdvd : p₂ ∣ n) :
+    ∃ k : ℕ, k.Prime ∧ p₃ ≤ k ∧ n = p₂ * k := by
+  obtain ⟨k, hk⟩ := hdvd
+  have hp0 : 0 < p₂ := hp₂.pos
+  have hp2 : 2 ≤ p₂ := hp₂.two_le
+  have hkbig : p₂ < k := by
+    by_contra h; push_neg at h
+    have : p₂ * k ≤ p₂ * p₂ := Nat.mul_le_mul_left _ h
+    rw [← hk] at this; nlinarith
+  -- every prime factor of k exceeds p₂
+  have hfac : ∀ r : ℕ, r.Prime → r ∣ k → p₂ < r := by
+    intro r hr hrk
+    have hrn : r ∣ n := by rw [hk]; exact Dvd.dvd.mul_left hrk p₂
+    rcases Nat.lt_trichotomy r p₂ with hlt | heq | hgt
+    · exact absurd hrn (hrough r hr (hcons₁ r hr hlt))
+    · exfalso
+      rw [heq] at hrk
+      obtain ⟨j, hj⟩ := hrk
+      by_cases hj' : j = 1
+      · rw [hj', mul_one] at hj; omega
+      · obtain ⟨s, hs, hsj⟩ := Nat.exists_prime_and_dvd hj'
+        have hsn : s ∣ n := by
+          rw [hk, hj]
+          exact Dvd.dvd.mul_left (Dvd.dvd.mul_left hsj p₂) p₂
+        have hs_big : p₂ ≤ s := by
+          by_contra hlt; push_neg at hlt
+          exact hrough s hs (hcons₁ s hs hlt) hsn
+        have hj0 : 0 < j := by
+          rcases Nat.eq_zero_or_pos j with h0 | hpos
+          · exfalso; rw [h0, mul_zero] at hj; omega
+          · exact hpos
+        have hsle : s ≤ j := Nat.le_of_dvd hj0 hsj
+        have : p₂ * (p₂ * p₂) ≤ n := by
+          calc p₂ * (p₂ * p₂) ≤ p₂ * (p₂ * j) := by
+                apply Nat.mul_le_mul_left; apply Nat.mul_le_mul_left; omega
+            _ = n := by rw [hk, hj]
+        nlinarith
+    · exact hgt
+  -- k has no prime factor at most p₂ and is below p₃², so k is prime
+  have hk1 : k ≠ 1 := by omega
+  obtain ⟨a, ha, hak⟩ := Nat.exists_prime_and_dvd hk1
+  have ha_big : p₂ < a := hfac a ha hak
+  have ha3 : p₃ ≤ a := hcons₂ a ha ha_big
+  obtain ⟨j, hj⟩ := hak
+  by_cases hj1 : j = 1
+  · refine ⟨k, ?_, ?_, hk⟩
+    · rw [hj, hj1, mul_one]; exact ha
+    · rw [hj, hj1, mul_one]; exact ha3
+  · exfalso
+    obtain ⟨b, hb, hbj⟩ := Nat.exists_prime_and_dvd hj1
+    have hbk : b ∣ k := by rw [hj]; exact Dvd.dvd.mul_left hbj a
+    have hb_big : p₂ < b := hfac b hb hbk
+    have hb3 : p₃ ≤ b := hcons₂ b hb hb_big
+    have hj0 : 0 < j := by
+      rcases Nat.eq_zero_or_pos j with h0 | hpos
+      · exfalso; rw [h0, mul_zero] at hj; omega
+      · exact hpos
+    have hble : b ≤ j := Nat.le_of_dvd hj0 hbj
+    have hk3 : p₃ * p₃ ≤ k := by
+      calc p₃ * p₃ ≤ a * b := Nat.mul_le_mul ha3 hb3
+        _ ≤ a * j := Nat.mul_le_mul_left a hble
+        _ = k := hj.symm
+    have : p₂ * (p₃ * p₃) ≤ n := by rw [hk]; exact Nat.mul_le_mul_left p₂ hk3
+    nlinarith
+
 end MirrorWalk

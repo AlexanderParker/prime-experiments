@@ -3079,3 +3079,46 @@ combinations of the residues of the later primes, restricted to the primes that 
 each size range, cover every open residue of the base in every period of the span. That is the
 structural content of "the later gears kill adjacent stretches", and it is exactly what no rule on
 record forces or forbids.
+
+### 105. The plan of attack on the four remaining killers, and its first two results (loop, 2026-09-19)
+
+The four concepts not ruled out (killer residue vectors, two-prime products, multiplicative
+interleave, truncation strays) now have a written plan: research/proof/killer_attack_plan.md -
+for each, the statement, what is proved, the structural experiment paired with the lemma it aims
+at, the proof route, and the stop criterion. Order of work 3, 2, 1, 4. Two results already.
+
+**Concept 2, the plugs: the plug law, proved.** Let p_1 < p_2 < p_3 be consecutive gears. In the
+stretch (p_2^2, p_3^2] a member that the gears up to p_1 leave open and that p_2 strikes is
+p_2 k with k a prime at least p_3 (`plug_law`, proofs/StretchRule.lean, round 99, 0 sorries; the
+size condition p_3^2 < p_2^3 holds for every consecutive pair from 5 on). So the newly established
+gear plugs the base's holes only at products of itself with the next primes - p_2 p_3, and p_2 p_4
+when that fits - a sparse set fixed in advance by the primes themselves. Across a run of stretches
+the plugs are exactly the squares and the products of near-consecutive primes. Concept 2 reduces
+to concept 3: whether those products land on the base's open columns.
+
+**Concept 1, killer vectors: small lifts do kill short runs.** Scanning integers x rather than free
+residue vectors (research/stack/r8/killer_lift_scan.py), so that every vector tested is the vector
+of an actual small number: the squares x^2 that start a run of L columns fully struck by the gears
+up to P, with L the twin-gear stretch length for P, x up to 2,000,000:
+
+      P    L     hits    first hits
+     17   12    4701    55, 158, 488, 715, 1423 (prime), 1467, ...
+     29   20    2229    1638, 2117, 2947, 3272, ...
+     41   28     971    1052, 1366, 6756, 10074, ...
+     59   40     323    8899, 12561, 24922, 26987 (prime), ...
+     71   48     281    24922, 30798, 33969, 41682, ..., 52951 (prime)
+
+So a real prime's square does start covered runs of fixed length - 26987^2 begins 40 columns
+struck by the gears up to 59 alone. The realisability barrier is not absolute: position permits.
+What 26987 does not do is kill its own stretch, which is (26987^2, 26993^2], 53,980 columns long,
+against the 40 it has covered. That is the whole of concept 1 in one line: a square can start a
+covered run of any fixed length, and the length a kill needs grows like p x gap / 3 while the runs
+a square can start grow only polylogarithmically (entry 88: the record first-twin distance to
+10^7 is 1722, on the (ln q)^2 to (ln q)^3 scale). Reduction lemma to add next: a kill needs the run
+above p^2 to reach the stretch's end, `kill_needs_run`.
+
+**Standing on the plan.** Concept 2 is closed into 3 by the plug law. Concept 1 is position
+permitted, length forbidden, and the length is the exponent gap - the same one as the run bound
+of entry 80, now stated at the stretch: need exponent 1 in p, achieved polylog. Concepts 3 and 4
+are next: 3 asks whether products of near-consecutive primes carry any relation to the base's
+residues, and 4 is the accounting of the others.

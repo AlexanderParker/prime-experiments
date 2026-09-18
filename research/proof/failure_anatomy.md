@@ -444,3 +444,14 @@ plugged by squares and two-prime products of later primes, and the interleave is
 the product of two later primes' residues against the base must hit the residue of each open
 column's member, in every period, using primes that exist at the right sizes. No rule on record
 forces or forbids that covering.
+
+
+## 29. The plan of attack, and its first results (round 99)
+
+research/proof/killer_attack_plan.md sets out the four concepts not ruled out. The plug law is
+proved (`plug_law`, proofs/StretchRule.lean): in the stretch above p_2^2 the newly established gear
+plugs the base's holes only at p_2 times a prime at least p_3, so across stretches the plugs are
+exactly the squares and products of near-consecutive primes - concept 2 reduces to concept 3. And
+small lifts do kill short runs: the square of the prime 26987 starts a run of 40 columns fully
+struck by the gears up to 59 alone (its own stretch is 53,980 columns). Position permits a kill;
+the length needed grows like p x gap / 3 and the runs a square can start grow polylogarithmically.
