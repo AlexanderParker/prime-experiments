@@ -2578,3 +2578,58 @@ above the second either adds nothing or makes the coincidences rarer. A block ne
 coincidences that thin out FASTER than independence at every level so the union grows, and the
 fields do that only among the large gears, by a bounded amount, on terms that are already
 negligible.
+
+### 95. The many-body interactions, by logic (loop, 2026-09-18)
+
+Asked, with the reminder to use logic rather than counting: what many-body interactions exist
+that can kill the machine's ability to generate twins?
+
+A body is a gear; an interaction among gears is a relation between where their teeth fall - a
+relation among their phases at a column N = 6m with members N - 1 and N + 1. Going through the
+mechanics, the machine has exactly five, and each is now a kernel statement or a named mechanism
+[proofs/ManyBody.lean, round 89, 0 sorries]:
+
+  1. **Member coprimality.** No gear strikes both members of one column, since it would divide
+     their difference 2 (`no_gear_both_members`). A column's killers split into two disjoint sets,
+     one per member. Two-body, bounded to one sentence, and it works FOR a block (no strike is
+     wasted on a column already struck by the same gear) - but it caps at one member per gear.
+  2. **Stacking is bounded by size.** Three gears whose product exceeds q^2 cannot all divide one
+     member at most q^2 (`no_three_large_on_member`); with `top_gear_cofactor` (round 84), above
+     q/2 at most one can. Large gears cannot pile onto a member. Works AGAINST a block, and it is
+     a statement about size, not about any count.
+  3. **Joint strikes are one class.** Two coprime gears striking chosen members of the same column
+     do so on exactly one residue class modulo their product (`joint_strike_class`, the Chinese
+     remainder theorem in the machine's words). So the lattices carry no interaction at all: over
+     a full joint period, coincidences are exactly the product of the shares. This is the level at
+     which the pair and triple measurements (entries 92, 93) came out at 1.000 for the small
+     gears - not approximately, but because there is nothing there.
+  4. **Truncation.** The window is shorter than a joint period, so a joint class appears in it a
+     whole number of times, one more or one fewer than its share. This is the ONLY source of
+     deviation between coincidence and share, and it is fixed, tuple by tuple, by the window's
+     endpoints modulo the tuple's period - by q's residues - not by anything the gears do to each
+     other. The 11 percent pair avoidance among large gears (entry 92) lives here, on tuples whose
+     period exceeds the window.
+  5. **The cofactor recursion.** A gear's strike lands on a survivor of the smaller gears exactly
+     when its cofactor is free of them, so the kills of a field on the survivors are indexed by
+     the rough cofactors, which are the survivors of a smaller machine. Self-similar; it is the
+     descent of round 54 seen from the killer's side. It relates a gear to the set of smaller
+     gears through the cofactor, and to no other gear directly.
+
+**Which of these can kill?** None can coordinate gears across a window. Interactions 1, 2 and 4
+are bounded per column or per tuple; 3 is exactly zero; 5 is a recursion into the same structure
+one level down. A block would need a sixth kind of interaction: a relation between the residues
+of ONE integer - the window's start q - modulo different gears, holding across enough gears to
+arrange every tuple's truncation stray coherently. There is no such relation. The residues of an
+integer below the joint period are free (CRT surjectivity, `class_has_closed_column` and
+`open_columns_for_any_gears` are both instances); the only thing that distinguishes q's residue
+vector from an arbitrary one is that q is small - below the joint period of the gears it must
+coordinate.
+
+So the whole many-body question reduces, by logic, to one statement: **can a small integer have
+an adversarial residue vector?** Small means below the window's own scale, adversarial means its
+truncation strays over the gears cover a run as long as the window. That is precisely the free-
+configuration question of entries 88 and 89 - decided exactly and negatively for every machine up
+to 23, unreachable by annealing beyond, and open in general as the exponent-2 question of entry
+80. It is not a counting statement; it is a statement about which residue vectors small integers
+can carry, and the machine's five interactions are silent on it because none of them looks at q
+itself.

@@ -2334,3 +2334,6 @@ name = "FailureConditions"
 
 [[lean_lib]]
 name = "FieldBlocking"
+
+[[lean_lib]]
+name = "ManyBody"

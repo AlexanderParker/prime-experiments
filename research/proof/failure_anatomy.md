@@ -342,3 +342,18 @@ and none at 2003, below measurability. No quadruple of fields can combine into a
 At four levels the pattern is: singles at share, pairs independent but for an 11 percent avoidance
 among large gears on a negligible term, triples and quadruples explained by their pairs, and
 coincidences among large fields vanishing at about one per window.
+
+
+## 21. The many-body interactions, by logic (round 89)
+
+The machine has five interactions among gears, all now stated: member coprimality (no gear
+strikes both members of a column, `no_gear_both_members`); stacking bounded by size (three gears
+whose product exceeds q^2 cannot share a member, `no_three_large_on_member`); joint strikes are one
+class modulo the product (`joint_strike_class`, the Chinese remainder theorem, so lattices carry
+no interaction); truncation (a joint class appears in the window a whole number of times, fixed by
+q's residues, the only source of deviation); and the cofactor recursion (a field's kills on the
+survivors are indexed by rough cofactors, the survivors of a smaller machine). None can coordinate
+gears across a window. A block needs a relation among the residues of one integer, q, modulo
+different gears, and there is none beyond size: the question is whether a small integer can carry
+an adversarial residue vector, which is the free-configuration question, exact and negative to
+q = 23, open beyond as exponent 2.
