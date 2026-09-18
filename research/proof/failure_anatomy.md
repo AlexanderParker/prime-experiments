@@ -433,3 +433,14 @@ cover a twin-gear stretch, so length does not protect the stretch - position doe
 have to begin at p^2, a point square modulo every gear. An infinite dead run is not a run of any
 gear set but an unending sequence of stretch-to-stretch handovers, each a finite event; the rules
 bound each link and do not forbid the sequence.
+
+
+## 28. How the later gears kill (round 98)
+
+Above p^2 and below p^3 a member no gear up to p strikes is a prime, a prime square, or a product
+of two primes above p (`rough_member_form`, proofs/StretchRule.lean). So later gears never kill
+singly: a dead run across adjacent stretches is the base pattern's struck run with its holes
+plugged by squares and two-prime products of later primes, and the interleave is multiplicative -
+the product of two later primes' residues against the base must hit the residue of each open
+column's member, in every period, using primes that exist at the right sizes. No rule on record
+forces or forbids that covering.

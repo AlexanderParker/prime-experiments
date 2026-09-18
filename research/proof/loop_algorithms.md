@@ -3029,3 +3029,53 @@ gears; the infinite chain of them is exactly the negation of the twin prime conj
 answer is: a dead run has a proved finite bound at every fixed level, an infinite one is not a run
 of any gear set but an unending sequence of handovers, and the machine's rules bound each link
 without forbidding the sequence.
+
+### 104. How the later gears kill adjacent stretches: only in pairs (loop, 2026-09-19)
+
+Asked how the gears up to subsequent primes would kill adjacent stretches, given that their kill
+zones are predictable and interleave with the lower gears' slip and congruence.
+
+**The mechanism, proved.** Fix a base p. A member above p^2 and below p^3 that no gear up to p
+strikes is a prime, the square of a prime above p, or the product of two primes above p
+(`rough_member_form`, proofs/StretchRule.lean, round 98, 0 sorries). The reason is size: its
+least prime factor a exceeds p, so it is a, or a times a prime, or at least a^3 > p^3. So across
+the stretches above p^2 the gears above p never kill singly. A later gear kills a column the base
+could not only as one factor of a two-prime product, or as its own square. The stretch rule
+(entry 99) is the first case of this - in (p^2, q^2] the only product available is q^2 - and this
+is the general law up to p^3.
+
+**What a dead run across adjacent stretches therefore is.** Take the base p_1 and the run from
+p_1^2 through the stretches of p_2, p_3, ... up to p_1^3. The gears up to p_1 - a FIXED set - do
+all the killing except at the columns whose member is a square p_i^2 or a product p_i p_j of two
+primes above p_1. Those exception columns are the interleave points the owner describes: their
+positions are set by the residues of the later primes against the base pattern, and for a product
+the residue is multiplicative - p_i p_j modulo the base product is the product of the two
+residues. So a dead run across k stretches requires:
+
+    every column that the base pattern leaves open in the whole span carries a member that is a
+    square or a two-prime product of primes above p_1.
+
+The base pattern's open columns are a fixed periodic set (a union of classes modulo the product of
+the gears up to p_1), recurring at every common multiple (`open_at_multiple_of_product`). The
+requirement is that the two-prime products of the later primes land on every one of them, in
+every period, using only primes that exist in the right ranges - a covering of a periodic set by
+the products a x b of later primes, phase by phase.
+
+**Why the base cannot do it alone, and the pairs are the whole story.** The base's own longest
+run is the paired Jacobsthal length, finite and proved shorter than the period; so any run longer
+than that must have its holes plugged, and by the theorem the only plugs are squares and pairs of
+later primes. Squares are one column per prime and always upper members (`square_is_upper_member`,
+`power_member_side`). So the plugs are, to within one column per prime, the products of two primes
+above the base: the field higher1:g restricted to prime cofactors, the same object as
+`top_gear_cofactor` (round 84) and the large-pair avoidance of entry 92.
+
+**The interleave, made specific.** For the base pattern's open column at m and a later product
+a b to plug it, a b must equal 6m - 1 or 6m + 1. Modulo the base product P, that reads
+a b = 6m -+ 1 (mod P): the product of the two later primes' residues must hit the residue of the
+open column's member. The later primes' residues are free (CRT), their products are free, but the
+primes themselves must exist at the right sizes - a b must lie in the span - and there are only
+about (span / ln) of them per size. A dead run is therefore a statement that the multiplicative
+combinations of the residues of the later primes, restricted to the primes that actually exist in
+each size range, cover every open residue of the base in every period of the span. That is the
+structural content of "the later gears kill adjacent stretches", and it is exactly what no rule on
+record forces or forbids.

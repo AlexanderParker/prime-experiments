@@ -82,4 +82,62 @@ theorem open_at_multiple_of_product {h P t : ℕ} (hh : 1 < h) (hP : h ∣ P) (h
     have := Nat.le_of_dvd one_pos h1
     omega
 
+/-- **How the later primes kill, exactly.**  A member above `p²` and below `p³` that no gear up
+to `p` strikes is a prime, the square of a prime above `p`, or the product of two primes above `p`.
+So in a run that the gears up to `p` cannot finish, every remaining kill is a square or a product
+of two later primes: the later primes act only in pairs, never singly. -/
+theorem rough_member_form {p n : ℕ} (hp : 1 ≤ p) (hlo : p ^ 2 < n) (hhi : n < p ^ 3)
+    (hrough : ∀ r : ℕ, r.Prime → r ≤ p → ¬ (r ∣ n)) :
+    n.Prime ∨ (∃ a b : ℕ, a.Prime ∧ b.Prime ∧ p < a ∧ p < b ∧ n = a * b) := by
+  have hn1 : n ≠ 1 := by
+    intro h; rw [h] at hlo; nlinarith
+  have hn0 : n ≠ 0 := by
+    intro h; rw [h] at hlo; omega
+  set a := n.minFac with ha
+  have hap : a.Prime := Nat.minFac_prime hn1
+  have hadvd : a ∣ n := Nat.minFac_dvd n
+  have hpa : p < a := by
+    by_contra hle; push_neg at hle
+    exact hrough a hap hle hadvd
+  obtain ⟨k, hk⟩ := hadvd
+  by_cases hk1 : k = 1
+  · left; rw [hk, hk1, mul_one]; exact hap
+  · right
+    have hk0 : k ≠ 0 := by intro h; apply hn0; rw [hk, h, mul_zero]
+    -- every prime factor of k is at least a, since a is the least prime factor of n
+    have hkmin : ∀ r : ℕ, r.Prime → r ∣ k → a ≤ r := by
+      intro r hr hrk
+      have hrn : r ∣ n := ⟨a * (k / r), by
+        obtain ⟨j, hj⟩ := hrk
+        rw [hk, hj]; rw [Nat.mul_div_cancel_left j hr.pos]; ring⟩
+      rw [ha]; exact Nat.minFac_le_of_dvd hr.two_le hrn
+    by_cases hkp : k.Prime
+    · exact ⟨a, k, hap, hkp, hpa, by have := hkmin k hkp (dvd_refl k); omega, hk⟩
+    · exfalso
+      -- k composite with all prime factors ≥ a gives k ≥ a², hence n ≥ a³ > p³
+      obtain ⟨r, hr, hrk⟩ := Nat.exists_prime_and_dvd hk1
+      obtain ⟨j, hj⟩ := hrk
+      have hj1 : j ≠ 1 := by
+        intro h; apply hkp; rw [hj, h, mul_one]; exact hr
+      have hj0 : j ≠ 0 := by intro h; apply hk0; rw [hj, h, mul_zero]
+      obtain ⟨s, hs, hsj⟩ := Nat.exists_prime_and_dvd hj1
+      have har : a ≤ r := hkmin r hr ⟨j, hj⟩
+      have has : a ≤ s := hkmin s hs (by
+        obtain ⟨t, ht⟩ := hsj
+        exact ⟨r * t, by rw [hj, ht]; ring⟩)
+      have hsle : s ≤ j := Nat.le_of_dvd (by omega) hsj
+      have hk2 : a * a ≤ k := by
+        calc a * a ≤ r * s := Nat.mul_le_mul har has
+          _ ≤ r * j := Nat.mul_le_mul_left r hsle
+          _ = k := hj.symm
+      have hn3 : a * (a * a) ≤ n := by rw [hk]; exact Nat.mul_le_mul_left a hk2
+      have : p ^ 3 < a * (a * a) := by
+        have h1 : p + 1 ≤ a := hpa
+        calc p ^ 3 = p * (p * p) := by ring
+          _ < (p + 1) * ((p + 1) * (p + 1)) := by nlinarith
+          _ ≤ a * (a * a) := by
+            apply Nat.mul_le_mul h1
+            exact Nat.mul_le_mul h1 h1
+      omega
+
 end MirrorWalk
