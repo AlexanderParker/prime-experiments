@@ -2346,3 +2346,6 @@ name = "KillPositions"
 
 [[lean_lib]]
 name = "OwnerArgument"
+
+[[lean_lib]]
+name = "CounterMachine"
