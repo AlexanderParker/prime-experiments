@@ -73,4 +73,16 @@ theorem joint_strike_class {g₁ g₂ a b : ℕ} (hc : Nat.Coprime g₁ g₂) :
     have e2 : N ≡ M [MOD g₂] := hN2.trans hM2.symm
     exact (Nat.modEq_and_modEq_iff_modEq_mul hc).mp ⟨e1, e2⟩
 
+/-- **The residue vector has one free entry per gear: the two teeth are a rigid pair.**  A gear
+`h` coprime to 6 strikes the columns `m ≡ 6⁻¹` (lower member) and `m ≡ -6⁻¹` (upper member); the
+distance between the two classes is fixed by `h` alone - three times it is `-1` modulo `h`, so it
+is `-3⁻¹`.  The window's start fixes where the pair sits; it cannot open or close the pair. -/
+theorem teeth_separation {h : ℕ} [Fact h.Prime] (h6 : ((6 : ℕ) : ZMod h) ≠ 0) :
+    (3 : ZMod h) * ((-(6 : ZMod h)⁻¹) - (6 : ZMod h)⁻¹) = -1 := by
+  have h6' : (6 : ZMod h) ≠ 0 := by simpa using h6
+  have key : (6 : ZMod h) * (6 : ZMod h)⁻¹ = 1 := mul_inv_cancel₀ h6'
+  calc (3 : ZMod h) * ((-(6 : ZMod h)⁻¹) - (6 : ZMod h)⁻¹)
+      = -((6 : ZMod h) * (6 : ZMod h)⁻¹) := by ring
+    _ = -1 := by rw [key]
+
 end MirrorWalk

@@ -1,0 +1,28 @@
+q = 11: 3 gears, 18 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 6;  nodes 19 in 0.0 s
+
+q = 13: 4 gears, 25 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 3;  nodes 213 in 0.0 s
+
+q = 17: 5 gears, 45 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 7;  nodes 3009 in 0.0 s
+
+q = 19: 6 gears, 56 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 6;  nodes 35883 in 0.0 s
+
+q = 23: 7 gears, 84 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 8;  nodes 525427 in 0.5 s
+
+q = 29: 8 gears, 135 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 14;  nodes 7958761 in 8.8 s
+
+q = 31: 9 gears, 154 columns, one free shift per gear with the tooth pair rigid
+exact answer: NO residue vector kills the window
+fewest uncovered columns met: 14;  nodes 138157831 in 160.1 s
+

@@ -357,3 +357,15 @@ gears across a window. A block needs a relation among the residues of one intege
 different gears, and there is none beyond size: the question is whether a small integer can carry
 an adversarial residue vector, which is the free-configuration question, exact and negative to
 q = 23, open beyond as exponent 2.
+
+
+## 22. The adversarial residue vector (round 90)
+
+The vector has one free entry per gear - the shift of the window's start against the gear's first
+tooth - and the tooth pair is rigid: three times its separation is -1 modulo the gear
+(`teeth_separation`). To kill, the shifts' rigid pairs must cover the whole window, equivalently
+the truncation strays of every tuple must sum to exactly minus the positive main term of
+Legendre's identity. Exact search over shift vectors, the vectors that can exist: no residue
+vector kills any window for machines 11 to 31 (still running in the background, about 45 minutes in Python; result appended when it lands at 37), and the fewest uncovered columns any
+vector reaches grows with the machine - 6, 3, 7, 6, 8, 14, 14. The best adversary falls further
+behind the window as q grows.

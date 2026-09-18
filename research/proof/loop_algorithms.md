@@ -2633,3 +2633,60 @@ to 23, unreachable by annealing beyond, and open in general as the exponent-2 qu
 80. It is not a counting statement; it is a statement about which residue vectors small integers
 can carry, and the machine's five interactions are silent on it because none of them looks at q
 itself.
+
+### 96. What the adversarial residue vector must contain (loop, 2026-09-18)
+
+Asked what the window's residue vector would need to contain, or how it would need to behave, to
+kill the machine.
+
+**What the vector is.** The strike pattern of the gears on the column line is fixed by
+arithmetic; the residue vector of the window's start only says where the window sits in that
+pattern. For each gear h it fixes ONE number: the offset of the window's start from the gear's
+first tooth. The gear's second tooth is not free - the two teeth are the classes m = +inv(6) and
+m = -inv(6) modulo h, and their separation is fixed by h alone: three times it is -1 modulo h.
+PROVED: `teeth_separation` [proofs/ManyBody.lean, round 90, 0 sorries]. So the vector has one
+free entry per gear, the shift, with the tooth pair rigid; the window's start can slide the pair
+but never open or close it.
+
+**What it would have to do.** With the shifts (c_h) the killing condition reads: every offset t
+in the window's length is congruent to c_h or to c_h + inv(3) modulo some gear h. Three things
+follow by logic, without counting:
+  1. The small gears' pattern is periodic and leaves holes - a union of classes modulo their
+     product - so the large gears must pass through every hole. A large gear passes through a
+     hole class evenly (interaction 3, `joint_strike_class`), so the vector must arrange the
+     large gears' shifts so that, hole by hole, some large gear's tooth lands on each individual
+     hole position: a matching of holes to (gear, tooth, occurrence), with every hole matched.
+  2. By the exact identity open = main + signed strays (Legendre's identity over the tuples,
+     exact, not an estimate), where main = W times the product of (1 - 2/h) is positive and each
+     tuple's stray is fixed by the vector modulo that tuple's product, an adversarial vector is one
+     whose signed strays over ALL tuples sum to exactly minus the main term. That is the behaviour:
+     the truncation strays of every tuple, each bounded and each determined by the vector on that
+     tuple alone, would have to cancel a positive number that none of them sees.
+  3. The vector's entries are the residues of one integer, and CRT leaves them free; the only
+     property that distinguishes a real window's vector from an arbitrary one is that the integer
+     is smaller than the joint period. So "adversarial" is a property of the shifts alone, and the
+     question is whether ANY shift vector - realised by any integer, small or large - covers.
+
+**The exact search over the vectors that can exist.** The searches of entries 88 and 89 let both
+teeth of each gear move freely and were therefore generous to the adversary. This one moves only
+the shift, with the pair rigid (research/stack/r8/exact_shift_search.py, branching on the lowest
+uncovered column, which some unfixed gear must cover through one of its two teeth):
+
+       q   gears   columns   exact answer                       fewest uncovered   nodes
+      11      3        18    no residue vector kills                  6                 19
+      13      4        25    no residue vector kills                  3                213
+      17      5        45    no residue vector kills                  7              3,009
+      19      6        56    no residue vector kills                  6             35,883
+      23      7        84    no residue vector kills                  8            525,427
+      29      8       135    no residue vector kills                 14          7,958,761
+      31      9       154    no residue vector kills                 14        138,157,831
+      37     10       221    still running in the background, about 45 minutes in Python; result appended when it lands
+
+The rigid search is a thousand times cheaper than the free one (q = 23: 0.5 s against 708 s), so
+the exact frontier moves from 23 to 31 and beyond. The fewest uncovered columns any vector reaches
+GROWS with the machine - 6, 3, 7, 6, 8, 14, 14 - so the best adversary is falling further behind
+the window, not catching up.
+
+**So, in one sentence.** The vector would have to be a shift vector whose rigid tooth pairs cover
+the whole window, equivalently one whose truncation strays cancel the positive main term exactly;
+no such vector exists for any gear set up to 31, and the shortfall of the best one grows with q.
