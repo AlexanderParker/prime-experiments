@@ -3101,6 +3101,63 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         residues (forced-open sets growing level to level); consecutive twin centres with
         overlapping stretches; T(s) against the arithmetic of s. Verdict OPEN until the lane
         reports; each route becomes its own child node with the claim's result.
+        RESULT (received 01:10; scripts research/stack/r8/lib_twins.py, route1_consecutive_
+        product.py, route2_product_forest.py, route3_near_gear_confinement.py, route3b_top_band_
+        law.py). Three routes returned; children below. The lane touched seed (b) in one line:
+        forced-open residues level to level reduce to universal clearance (R5.f.xiii); the
+        self-improving structure it found is the product forest (xxiv.b). VERDICT: one new
+        structure (xxiv.b, kernel), one generic fact (xxiv.a), one rediscovery (xxiv.c).
+        - R5.f.xxiv.a. THE CONSECUTIVE-PRODUCT WINDOW (route 1). Consecutive twin centres
+          s < t have disjoint square stretches exactly ((t-1)^2 - (s+1)^2 = (t-s-2)(t+s) > 0),
+          so the seed's "overlapping stretches" is empty; their phases meet in the product
+          window W(s,t) = ((s-1)(t-1), (s+1)(t+1)), members st + 6j -+ 1, length 2(s+t), which
+          sits strictly between the two stretches. CLAIM (pre-registered): every consecutive
+          pair 30 <= s < t <= 30,000 has W(s,t) non-empty, count law 2(s+t) 1.3203/ln^2(st)
+          within 3%. RESULT: 462 pairs, 0 empty windows, min count 2 at (42, 60), mean ratio
+          0.9953 by band (0.997 / 0.980 / 0.997 / 0.997), spread 1.02 x Poisson; the centre st
+          is a twin centre 3 times against 12.3 generic (mod 5 the products of the admissible
+          residues {2,3} all land on +-1, so st -+ 1 is dead unless 5 | st). HOLDS; FACT (generic
+          count law; the only non-generic number is the centre's phase product).
+        - R5.f.xxiv.b. THE PRODUCT FOREST (route 2; kernel proofs/LadderProduct.lean, 0
+          sorries, axioms propext / Classical.choice / Quot.sound, built and audited by the
+          manager 01:15). For twin centres s <= t the product window W(s,t) holds product-rungs;
+          s = t is the square ladder, s = 6 is (5(t-1), 7(t+1)), s ~ t^a gives localisation
+          exponent 1/(1+a) at height t^(1+a): the product forest interpolates from the square
+          ladder (exponent 1/2) to a constant-ratio window (exponent 1), every node a twin
+          centre. KERNEL: ProductRung s t u; ProductHyp (every twin centre t has a product-rung
+          with some twin centre s <= t); productRung_gt (u >= t + 2, since (s-1)(t-1) >= 5t - 5);
+          productRung_of_rung; productHyp_of_ladderHyp; twinCentre_unbounded_of_product;
+          twins_unbounded_of_product; SixHyp (a twin centre in (5(t-1), 7(t+1)) for every twin
+          centre t) -> ProductHyp. So LadderHyp -> ProductHyp -> twins unbounded and SixHyp ->
+          ProductHyp: the weakest window hypothesis on record is a twin centre within the
+          constant ratio 7/5 of every twin centre. CLAIMS (pre-registered): (A) all pairs
+          42 <= s <= t <= 10^4 non-empty, minimum 3 on the diagonal; (B) the product forest has
+          exactly three roots (6, 12, 18) to 10^6; (C) the multiplier-6 window never empty to
+          10^6; (D) the centre st is a twin centre at K x generic, K = prod r_p. RESULTS: (A)
+          20,100 pairs, 0 empty, min 2 at (42,60) and (108,138) - off the diagonal (the placed
+          number failed, never-empty held); (B) roots exactly [6, 12, 18], in-degree min 1 from
+          u >= 30, median 392, ~823 at 10^6; (C) 0 exceptions, min count 5 at t = 108; (D)
+          498 observed / 653.8 generic / K = 0.8243 (r_5 = 0.926, r_7 = 0.952) / predicted
+          538.9, ratio 0.924. MIXED on the numbers, the structure holds. The supply of windows at
+          t is the number of twins already found - the structure improves itself as it climbs.
+          FACT (kernel) and the weakest hypothesis form; next claim: W(s,t) with s the smallest
+          twin centre >= sqrt(t) is non-empty for every t <= 10^6 (exponent 2/3 with every node
+          a twin), and the correlation between T(t) and N(pred(t), t) is below 0.05.
+        - R5.f.xxiv.c. NEAR-GEAR CONFINEMENT (route 3). CLAIM (pre-registered): a prime
+          p = s - e with e^2 <= 2s - 5 strikes exactly one column of the stretch of s, the
+          lower member at j = (1 - e^2)/6, at every twin centre s <= 10^5. RESULT: FAILS -
+          15,393 exceptions among 32,757 near-band gears (s = 42, p = 37 strikes j = -4 lower
+          and j = 8 upper = 37 x 49). Corrected law (post hoc, route3b): a top gear
+          p = s - e strikes exactly the columns (s+k)^2 - (e+k)^2 inside the window, k = 0 mod 3
+          on the lower member, k = -e mod 3 on the upper, k = e mod 3 never; every top gear
+          (2s/3 < p <= s+1) strikes 1 or 2 columns, never 0; in the near band only k = 0 and
+          k = 1 occur, k = 1 iff e = 5 mod 6 - 0 exceptions over 1,688,382 gears. The k = 0
+          and k = 1 columns are the two composite-forcing difference-of-squares families of
+          R5.f.xv already on the record, and "1 or 2 strikes" is the count of multiples p m,
+          m = +-1 mod 6, in an interval of length 4s/p in (4, 6). REDISCOVERY of closed route 2;
+          DEAD as a route. What survived: the top band is idle on every live column (its
+          strikes are all identity-composite), which is the record's statement that plugs of
+          base-open columns come from the moving families only.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4593,3 +4650,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxii: kernel LadderAlmostAll.lean (0 sorries, standard axioms) - AlmostAll c delta eta (twin count >= X^(1-eta), exceptional rung-poor twin centres <= X^(1-delta)) implies ChainHyp, hence twins unbounded; the almost-all -> chain theorem of the conditional map is formal.
 - 2026-09-20, R5.f.xxiii: kernel LadderShortInterval.lean (0 sorries, standard axioms) - a twin pair in every (x, x + x^theta] with theta <= 1 - 1/e gives every large twin centre an exponent-e rung, chains of every length and twins unbounded; the cube ladder rests on the standard short-interval twin conjecture.
 - 2026-09-20, R5.f.xiv addendum: kernel LadderInfinite.lean - the (5,7) rung tree is infinite iff it has a node at every depth (no Koenig), so twins unbounded follows from an infinite (5,7) tree; 0 sorries.
+- 2026-09-20, R5.f.xxiv (routes lane, Fable): the product forest - windows ((s-1)(t-1), (s+1)(t+1)) for twin centres s <= t, exactly three roots (6, 12, 18) to 10^6, never empty over 20,100 pairs; kernel LadderProduct.lean: LadderHyp -> ProductHyp -> twins unbounded, SixHyp (a twin centre within ratio 7/5) -> ProductHyp. Consecutive-product windows generic (0 empty of 462). Near-gear confinement refuted as stated, corrected k-rule is the difference-of-squares families again (rediscovery, closed).

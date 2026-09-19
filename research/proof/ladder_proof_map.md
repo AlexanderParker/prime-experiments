@@ -269,3 +269,14 @@ almost-all rung-count bound gives the chain form. The square ladder alone would 
 has a node at every depth - a node at depth k is below 8^(2^k) and a missing level empties all
 levels above it, so a finite tree is exactly one with an empty level; no Koenig argument.
 `twins_unbounded_of_infinite`. Standard axioms; 0 sorries.
+
+## 16. Kernel: the product forest (2026-09-20, proofs/LadderProduct.lean)
+
+`ProductRung s t u`: a twin centre `u` strictly inside `((s-1)(t-1), (s+1)(t+1))`. `ProductHyp`: every
+twin centre `t` has a product-rung with some twin centre `s <= t`. `productRung_gt` (u >= t + 2),
+`productHyp_of_ladderHyp` (s = t is the square rung), `twins_unbounded_of_product`, and `SixHyp`
+(a twin centre in `(5(t-1), 7(t+1))` for every twin centre `t`) implies `ProductHyp`. So the chain of
+hypotheses reads LadderHyp -> ProductHyp -> twins unbounded, with SixHyp - a twin centre within
+constant ratio 7/5 of every twin centre - the weakest window form on record. Standard axioms; 0
+sorries. Measured: the product forest has exactly three roots (6, 12, 18) to 10^6 and no empty
+window over 20,100 pairs.

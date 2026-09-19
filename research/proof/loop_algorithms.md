@@ -3980,3 +3980,13 @@ proofs/LadderShortInterval.lean (formalist lane; manager re-built and audited; 0
 axioms): a twin pair in every interval (x, x + x^theta] with theta <= 1 - 1/e gives every large twin
 centre a rung in the exponent-e window (e >= 3), chains of every length, and twins unbounded. With
 LadderAlmostAll.lean the conditional map is formal at both ends.
+
+### 133. The routes lane and the product forest (2026-09-20)
+
+A fifth fresh lane (Fable) returned three routes built from the machine's interactions. The
+consecutive-product window (route 1) is generic and never empty. The product forest (route 2) is a
+new structure: windows ((s-1)(t-1), (s+1)(t+1)) for twin centres s <= t interpolate from the
+square ladder to a constant-ratio window, the forest has exactly three roots to 10^6, and the
+kernel now has LadderHyp -> ProductHyp -> twins unbounded with SixHyp -> ProductHyp
+(proofs/LadderProduct.lean, 0 sorries). Near-gear confinement (route 3) was refuted as stated and
+its corrected law is the difference-of-squares families again, so it is closed as a rediscovery.
