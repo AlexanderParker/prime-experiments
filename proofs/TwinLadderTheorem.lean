@@ -74,4 +74,49 @@ theorem ladderHyp_of_nearTwin {rankOf : ℕ → ℕ → ℕ} {B : ℕ → ℕ}
     (h : NearTwinHyp rankOf B) : LadderHyp :=
   fun s hs => let ⟨s', hr, _⟩ := h s hs; ⟨s', hr⟩
 
+/-! ### The weakest form that composes: a path (lane round 10)
+
+The induction never uses a rung at every twin centre above a bound - only at the centres it
+reaches.  `twins_unbounded_of_path` consumes exactly a path: a sequence of twin centres each a
+rung of the previous.  `path_of_ladderHyp_above` builds one from the universal hypothesis by
+dependent choice, so the certified prefix and any tail hypothesis compose through the path. -/
+
+/-- **Twins unbounded from a path** of rungs starting at any twin centre. -/
+theorem twins_unbounded_of_path (f : ℕ → ℕ) (h0 : TwinCentre (f 0))
+    (hstep : ∀ k : ℕ, Rung (f k) (f (k + 1))) :
+    ∀ N : ℕ, ∃ m : ℕ, N < 6 * m - 1 ∧ (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
+  have htc : ∀ k : ℕ, TwinCentre (f k) := by
+    intro k
+    induction k with
+    | zero => exact h0
+    | succ k ih => exact (hstep k).1
+  have hgrow : ∀ k : ℕ, k ≤ f k := by
+    intro k
+    induction k with
+    | zero => exact Nat.zero_le _
+    | succ k ih => have := rung_gt (htc k) (hstep k); omega
+  intro N
+  obtain ⟨⟨m, hm⟩, hp1, hp2⟩ := htc (N + 2)
+  have := hgrow (N + 2)
+  rw [hm] at this hp1 hp2
+  exact ⟨m, by omega, hp1, hp2⟩
+
+/-- **A path from the universal hypothesis above a bound**, by dependent choice: if every twin
+centre at least `S₀` has a rung, any twin centre `s₀ ≥ S₀` starts an infinite path. -/
+theorem path_of_ladderHyp_above (S₀ s₀ : ℕ) (hs₀ : TwinCentre s₀) (hS : S₀ ≤ s₀)
+    (hL : ∀ s : ℕ, TwinCentre s → S₀ ≤ s → ∃ s' : ℕ, Rung s s') :
+    ∃ f : ℕ → ℕ, f 0 = s₀ ∧ ∀ k : ℕ, Rung (f k) (f (k + 1)) := by
+  classical
+  -- the state carries the twin-centre and bound facts along
+  let next : {s : ℕ // TwinCentre s ∧ S₀ ≤ s} → {s : ℕ // TwinCentre s ∧ S₀ ≤ s} :=
+    fun p =>
+      let h := hL p.1 p.2.1 p.2.2
+      ⟨Classical.choose h, (Classical.choose_spec h).1,
+        by have := rung_gt p.2.1 (Classical.choose_spec h); omega⟩
+  let g : ℕ → {s : ℕ // TwinCentre s ∧ S₀ ≤ s} := fun k => Nat.rec ⟨s₀, hs₀, hS⟩ (fun _ p => next p) k
+  refine ⟨fun k => (g k).1, rfl, ?_⟩
+  intro k
+  show Rung (g k).1 (next (g k)).1
+  exact Classical.choose_spec (hL (g k).1 (g k).2.1 (g k).2.2)
+
 end TwinLadder
