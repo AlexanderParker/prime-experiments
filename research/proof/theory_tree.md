@@ -2759,6 +2759,31 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         held by 0.002, so the constant is at the edge and the principled maximum law (mean times
         the log of the sample) is the lane's round-10 item. MEASURED-HELD; the supply inequality
         (4c - 1)/180 >= 0.6 (ln s)^2 holds from s ~ 3 x 10^4 (c ~ 5,000) on.
+      - R5.f.xii. THE MAP AT FIXED DEPTH, THE CUBE BOUND, THE NAME, THE PATH FORM (lane round
+        10, received 14:10). (1) With depth 61 the supply lemma is instantiated by the exact
+        record (L3@61) and L3a leaves the map; exact rate from W(61) = 0.137565 and 3 C_2:
+        mean index = 0.0695 (ln s)^2 (the asymptotic Mertens form 0.0746 overshoots by 7%).
+        THE BOUND MUST BE A CUBE: the index is geometric, its maximum over N twins is the mean
+        times ln N ~ ln s, so B(s) = ceil(0.0695 (ln s)^3); predicted maximum to 10^6: index
+        85-120 and i/(ln s)^2 in [0.45, 0.63] - OBSERVED 107 and 0.598 (both inside);
+        refutation line i > 0.07 (ln s)^3 - CHECKED, no twin to 10^6 breaches it; calibration
+        by ln-s bin: observed mean / 0.0695 (ln s)^2 = 0.85-0.94 from ln s >= 7 (10% low,
+        stable). Supply inequality 0.0695 (ln s)^3 <= (2s/3 - 1)/180 holds from s ~ 1.8 x 10^4;
+        the prefix ends at 1.34 x 10^47, forty orders of slack. THE NAME: the first B(s) 61-rough
+        offsets span an interval of length 43.6 B = 3.03 (ln s)^3 = 0.379 (log N)^3 at N = s^2, so
+        NTH_61 is the twin analogue of Cramer's conjecture (consecutive twin pairs near N are
+        O((log N)^3) apart) restricted to N = s^2, s a twin centre; the mean tier 0.76 (log N)^2
+        matches the average twin gap (log N)^2/(2 C_2) = 0.757 (log N)^2 to three digits - the
+        calibration check. Depth cancels: interval length H = 6B/W(x) is independent of x, so no
+        depth, ordering, steering or one-level-down choice moves anything from measured to
+        proved - the reduction is complete as a reduction. (2) The weakest form that composes is
+        a PATH (Konig: the rung tree is finitely branching with >= 3 children measured): kernel
+        twins_unbounded_of_path and path_of_ladderHyp_above added (build in progress). (3) Kernel
+        audit: Rung's strict inequalities are exactly |j| <= 2c - 1 (both ends, no off-by-one;
+        strictness not load-bearing since the boundary values are prime squares); rung_gt takes
+        TwinCentre s (s >= 6) as it must; Rung alone does not carry TwinCentre s (fine inside a
+        chain from 6). VERDICT: the ladder programme is a completed REDUCTION with its open node
+        named in both vocabularies; CANDIDATE form of the answer: the path from 1.34 x 10^47.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4231,3 +4256,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.ix full run: the reuse deficit was the statistic (sum C(k,2) = 2,057 vs 1,929 expected, +6.6%); the pigeonhole supply side of the index bound holds at every twin from s = 12,162 to 10^6, with eight small exceptions verified directly; the remaining hypothesis stated in the literature's words (twin pair between P^2 and (P+2)^2, or in [s^2 - H, s^2 + H] with H ~ N^(1/4) log N).
 - 2026-09-19, R5.f.x: the lane's audit of rounds 1-8 (statuses, the serious flag that the candidate supply is conditional on a run bound F(x) < 2x^2/3), the proof map (critical path LadderHyp -> twins unbounded; L3, L4, L5 off it) and the certificate design; research/proof/ladder_proof_map.md; six-rung Pratt certificate to a 48-digit twin centre building.
 - 2026-09-19, R5.f.xi: the fixed-depth rung (depth 61, F exact) measured to 10^6 - first-twin index among the 61-rough offsets is 0.064 (ln s)^2 on average, flat by decade, max 0.598 (ln s)^2 (line 0.6 held by a hair); the candidate supply is unconditional at this depth.
+- 2026-09-19, R5.f.xii: at fixed depth 61 the bound function must be a cube, B = 0.0695 (ln s)^3 (maximum to 10^6 predicted 85-120, observed 107; no breach of 0.07 (ln s)^3); NTH_61 = the twin analogue of Cramer's conjecture at N = s^2 (interval 0.38 (log N)^3); the mean tier reproduces the average twin gap to three digits; depth cancels; the reduction is complete; path form added to the kernel.

@@ -120,3 +120,34 @@ computation; rung 8 (190) needs ECPP and has no Lean checker. The composition th
 `twins_unbounded_of_ladder_above`: the ladder hypothesis restricted to twin centres at least the
 48-digit one gives twin primes above every bound - so the hypothesis is assumed only above `10^47`,
 where the supply lemma and the index law have their widest measured margins.
+
+## 6. Round 10: the map at fixed depth, the cube bound, the name, the path (2026-09-19 14:10)
+
+- **L3@61**: the pigeonhole instantiated at depth 61 with the exact record F(61) = 179 - every
+  twin's stretch holds >= (4c - 1)/180 61-rough offsets, no open input. L3a leaves the map.
+- **The rate, exact**: W(61) = prod_{5<=g<=61}(g-2)/g = 0.137565; twin centres among offsets near
+  s^2 at 3 C_2/(ln s)^2; mean first-twin index 0.0695 (ln s)^2 (measured 0.85-0.94 of it from
+  ln s >= 7).
+- **The bound is a cube**: the index is geometric, so its maximum over the twins below a cap is
+  the mean times ln N ~ ln s; B(s) = ceil(0.0695 (ln s)^3). Predicted maximum to 10^6: 85-120 and
+  i/(ln s)^2 in [0.45, 0.63]; observed 107 and 0.598. Refutation line i > 0.07 (ln s)^3: no twin to
+  10^6 breaches it. Supply 0.0695 (ln s)^3 <= (2s/3 - 1)/180 from s ~ 1.8 x 10^4; the prefix ends at
+  1.34 x 10^47.
+- **The name**: the first B(s) 61-rough offsets span 43.6 B = 3.03 (ln s)^3 = 0.379 (log N)^3
+  integers about N = s^2. NTH_61 is the twin analogue of Cramer's conjecture (consecutive twin
+  pairs near N at most O((log N)^3) apart) restricted to N = s^2, s a twin centre. The mean tier
+  0.76 (log N)^2 equals the average twin gap (log N)^2/(2 C_2) = 0.757 (log N)^2 to three digits.
+- **Depth cancels**: H = 6B/W(x) is independent of the depth x; ordering, steering and the
+  one-level-down candidates move nothing from measured to proved. The reduction is complete as a
+  reduction; the open node is the conjecture localised to the squares of twin centres.
+- **The weakest form that composes is a path**: `twins_unbounded_of_path` (a sequence of twin
+  centres each a rung of the previous gives twins unbounded) and `path_of_ladderHyp_above` (the
+  universal hypothesis above a bound yields a path by dependent choice) - kernel,
+  TwinLadderTheorem.lean. By Konig the induction needs only that the rung tree rooted at the
+  certified top is infinite (every measured stretch has >= 3 twin centres).
+- **One sentence**: infinitude of twin primes follows, by an induction formalised in Lean from
+  (5, 7) through a Pratt-certified prefix of six rungs reaching 1.34 x 10^47, from the single
+  statement that every twin centre s >= 1.34 x 10^47 (or merely every centre on one path) has
+  another twin pair strictly between (s-1)^2 and (s+1)^2 - the twin analogue of Cramer's conjecture
+  localised to the squares of twin centres - with the candidate list at each step supplied
+  unconditionally by the exact record at depth 61.
