@@ -2961,6 +2961,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         can be attacked with many independent parameters. VERDICT: FACT (the route yields the
         existential-per-level form and a level-by-level certification programme); the
         contradiction itself needs exactly what a direct proof needs.
+      - R5.f.xviii. THE INDEX LAWS AT DEPTH 5, s ~ 10^24-10^26 (PM, pre-registered 21:05 before
+        the run; research/stack/r8/depth5_sample.py; 20 depth-5 nodes, each the nearest rung of
+        a random depth-4 node). Predictions: ratio 6|j|/(ln P)^2 mean about 1.5-2, max below 20;
+        the 61-rough index near the mean law 0.0695 (ln s)^2 ~ 230 and below the cube
+        0.07 (ln s)^3 ~ 13,000 at every node. Refuted by a node above the cube. Every depth-5 node
+        found is a twin pair with 50-digit members (BPSW), extending the certified-by-search
+        depth of the (5, 7) tree to 5.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
