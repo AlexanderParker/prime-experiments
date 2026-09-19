@@ -2972,6 +2972,12 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         205.0 against the mean law 203-247 (on the nose), max 894 against the cube 11,000-14,800.
         Every sampled depth-5 node has a rung. The index laws hold at s ~ 10^25, eighteen orders
         beyond their measurement range. FACT.
+      - R5.f.xix. THE INDEX LAWS AT DEPTHS 6 AND 7, s ~ 10^50 and 10^100 (PM, pre-registered
+        20:50 before the run; research/stack/r8/depth_n_sample.py; 6 descents by nearest rungs
+        from random depth-4 nodes). Predictions: at depth 6 (100-digit members) the 61-rough
+        index near 0.0695 (ln s)^2 ~ 920, below the cube ~ 1.1 x 10^5; at depth 7 (200-digit)
+        near ~3,700, below ~ 8.6 x 10^5; ratios below 20; every node has a rung. Refuted by a
+        node above the cube or a descent that finds no rung.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
