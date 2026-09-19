@@ -2559,6 +2559,35 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         (209 digits): j = -6965, ratio 0.18, 4.6 s; the ninth twin lower has 417 digits
         (members probable primes by BPSW). Nine rungs from 5 to 10^416 in eight seconds of
         search. OPEN: the offset law and the certificate form per rung.
+      - R5.f.vi. THE TWO HALVES OF THE SIEVE-FORM RUNG (lane round 5, received 13:30;
+        pre-registered before the run; test research/stack/r8/ladder_round5.py). Base gears
+        5..x, x = floor(sqrt s); top gears (x, P]. CLAIM A (base half): (i) PROVED FROM THE
+        RECORD - no F(x)+1 consecutive offsets of the window are all base-struck, so the window
+        holds >= (4c-1)/(F(x)+1) base-open offsets, a guarantee growing like 4.7 sqrt c / ln(6c)
+        with no density input; (ii) the base-open count within |j| <= F(x) is >= 0.3 * 2F(x) W(x)
+        and the N-th base-open offset has |j| <= 3N/(2W(x)); (iii) the longest base-struck run
+        inside the window is <= 0.7 x ln x (the record's growth law at the window's own
+        position). CLAIM B (top half): under the span condition S_N < (x-1)/3 every top gear
+        plugs at most one of the first N base-open offsets (min-gap); no top gear plugs two of
+        them; the first twin among the base-open offsets is within the first 24 (the PM notes
+        round 4 already saw index 34 at 10^5, so the constant is refuted and the bounded
+        growth of the maximum is the question). CLAIM C (canonical ladder): ratio 6|j|/(ln P)^2
+        mean ~1.5 with no drift; signs balanced; ln ln P_k ~ k ln 2; the small-gear phases are
+        NOT a squaring orbit on the canonical path (only when g | 6j, rate ~1/g); certificate
+        per rung = two primality certificates + the containment inequalities. Predictions and
+        refutations as stated by the lane.
+        RESULT (13:31; every twin lower to 10^5, 1,223 twins). CLAIM A HOLDS WITH MARGIN: the
+        longest base-struck run inside the window is at most 0.43 of 0.7 x ln x (worst P = 191);
+        the base-open count within |j| <= F(x) is at least 2.25 times the 0.3-heuristic (worst
+        P = 227); the N-th base-open offset sits at most 0.71, 0.57, 0.48 of 3N/(2W) for N = 8,
+        16, 32. CLAIM B: the first twin among the base-open offsets is at index 4.00 on average,
+        max 29 (4 twins beyond 24: the constant 24 is refuted; the maximum grows like the log of
+        the sample, a geometric tail at rate ~3/4); the span condition S_N < (x-1)/3 holds at
+        232 of 1,221 twins for N = 8 and never for N = 16, 32 at these sizes, and under it no top
+        gear plugs two of the first N (0 cases), 8.9 distinct gears for 8 offsets. VERDICT: A is
+        FACT (its part (i) is a theorem from the record, to be put in the kernel); B's rigid
+        mechanism (min-gap distinctness) does not bind at N >= 16 below 10^5 - the top half
+        stays a bounded-index law, OPEN in mechanism.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4024,3 +4053,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.iii: the rung in centre coordinates - the locator (small gears pre-cleared by a congruence on the offset, phases from s^2 mod g) contains a twin centre at every twin lower to 200,000 under the y-rule; clean rungs from P = 271; the exact-count ratio min 0.472 at P = 71. FACT.
 - 2026-09-19, R5.d.i.c: F({5..61}) = 179 exact (180, 181 proved uncoverable; 179 certified). R5.f.v: the canonical twin ladder from (5, 7) reaches a 417-digit twin lower in nine rungs, offsets 1, 4, 6, 77, 44, -829, 3605, 28145, -6965, ratio 6|j|/(ln P)^2 in [0.18, 2.9].
 - 2026-09-19, R5.f.iv full run: the sieve-form rung law (first twin among the sqrt(s)-rough offsets at index ~4, max 34, never absent) holds to 10^5; steering by 35 from P = 2,383; progression form DEAD as stated; forced offsets closed.
+- 2026-09-19, R5.f.vi: base half of the sieve-form rung holds with margin (base-struck runs at most 0.43 of 0.7 x ln x; base-open counts 2.25x the heuristic); top half: first twin index mean 4.00, max 29 to 10^5, constant 24 refuted, geometric tail; min-gap distinctness does not bind at N >= 16. A FACT, B OPEN in mechanism.
