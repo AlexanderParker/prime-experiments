@@ -3952,3 +3952,15 @@ leaf_is_sieve_data), violates no exact law, is untouched by every proved theorem
 twin-free interval of length 4 sqrt N on a square, 10^2 to 10^7 times the extreme-value twin gap at
 its height; its one asset is the per-level existential form. Tree nodes R5.f.xvi-xvii; map
 research/proof/ladder_proof_map.md sections 7-9.
+
+### 130. The conditional map of the ladder (laboratory, 2026-09-19 night)
+
+Tree node R5.f.xxi; map section 12. The ladder theorem is unconditional and now sits under the
+standard conjectures exactly: the cube ladder (window ((s-1)^3, (s+1)^3), kernel RungPow) follows
+from the Hardy-Littlewood short-interval lower bound with theta <= 2/3; the square ladder needs the
+Legendre-strength endpoint (twin Cramer); the chain form (chains of every length anywhere, kernel
+ChainHyp) follows from an almost-all power-saving hypothesis - the variance of pi_2 at length
+x^(1/2) - which is what the measured Poisson law for the child counts asserts. The pointwise /
+almost-all line falls between DepthHyp and ChainHyp; nothing about primes alone reaches any form;
+almost-prime rungs exist unconditionally for large windows but do not iterate. Next kernel target:
+the almost-all hypothesis as one Prop implying ChainHyp.

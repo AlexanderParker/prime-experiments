@@ -221,3 +221,23 @@ LadderHyp above a bound -> DepthHyp -> ChainHyp -> twins unbounded. ChainHyp in 
 there are twin prime pairs P_0, ..., P_n, each strictly between the squares of the previous. It is
 the weakest ladder-type statement on record; the (5, 7) tree realises chains of length 8 by search
 (400-digit members) and 6 by certificate.
+
+## 12. The conditional map (2026-09-19 23:30, fourth lane)
+
+The ladder theorem is unconditional; the hypotheses sit as follows.
+- **Cube window (e = 3), pointwise**: LadderHyp follows from the standard Hardy-Littlewood
+  short-interval conjecture in lower-bound form (a twin centre in (x, x + x^theta] for some
+  theta <= 2/3, implied by the usual y >= x^(1/2+eps) form). Hence DepthHyp, ChainHyp and twins.
+- **Square window (e = 2), pointwise**: needs the endpoint y = 4 sqrt(x) - the twin analogue of
+  Legendre/Oppermann; follows from twin-Cramer ((log x)^A gaps) or Bateman-Horn with error
+  o(sqrt(x)/(log x)^2). The measured envelope 0.07 (log s)^3 is the Cramer shape.
+- **Chain form, almost-all - the crux**: ChainHyp follows from a power-saving almost-all hypothesis
+  (exceptional x in [X, 2X] at most X^(1-delta)), equivalently a power-saving variance bound for
+  pi_2 at length x^(1/2) - what the Poisson law for T(s) asserts empirically; proof by disjoint
+  stretches and a finite self-improving induction; formalisable.
+- **The line**: LadderHyp and DepthHyp cannot follow from any almost-all statement; root-freeness
+  is the whole difference. No primes-only hypothesis (RH, density, pair correlation, variance)
+  reaches any form; EH/GEH give 12 and 6; Chen-type almost-prime rungs exist for large e but do
+  not iterate (an almost-prime centre has no stretch) - the parity wall's exact shape here.
+- Every conditional theorem gives "exists S_1, LadderHyp above S_1"; the certified prefix closes
+  the gap only with an effective x_0. Next kernel target: the almost-all -> ChainHyp theorem.

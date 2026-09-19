@@ -3010,6 +3010,40 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         depth-3 node below 10^6 lies in the (5, 7) tree (6 -> 30 -> 858 -> 734472, ...): the (5, 7)
         tree is the deepest tree of the forest in that range. No free-certificate rung at the
         certified top (neither s(s+1) nor s(s-1) is a twin centre at s = 1.34 x 10^47).
+      - R5.f.xxi. THE CONDITIONAL MAP: WHICH STANDARD CONJECTURE IMPLIES WHICH LADDER FORM
+        (conditional lane, a fourth fresh Opus lane, received 23:30). Record entries, in
+        decreasing strength: (i) CUBE WINDOW, pointwise - LadderHyp for e = 3 follows from the
+        standard Hardy-Littlewood short-interval conjecture in lower-bound form: for some theta
+        <= 2/3 and all large x, (x, x + x^theta] holds a twin centre (implied by the usual
+        y >= x^(1/2 + eps) form); hence DepthHyp and ChainHyp for cubes and the twin prime
+        conjecture. (ii) SQUARE WINDOW, pointwise - needs the endpoint y = 4 sqrt(x), the twin
+        analogue of Legendre/Oppermann, not supplied by the standard conjecture; follows from a
+        Cramer-type conjecture for twin gaps ((log x)^A for any fixed A) or from Bateman-Horn for
+        (n - 1, n + 1) with error o(sqrt(x)/(log x)^2), one log beyond square-root cancellation;
+        the measured envelope 0.07 (log s)^3 is the Cramer shape. (iii) CHAIN FORM, almost-all -
+        THE CRUX: ChainHyp (root free) follows from an almost-all hypothesis with a power
+        saving (the exceptional x in [X, 2X] whose stretch-length interval holds fewer than
+        expected twin centres number at most X^(1 - delta)), equivalently a power-saving
+        variance bound for pi_2 in intervals of length x^(1/2), which the measured Poisson law
+        for T(s) asserts empirically; proof by disjointness of stretches (unique parents) and a
+        finite self-improving induction, formalisable as stated. (iv) THE DIVIDING LINE:
+        LadderHyp and DepthHyp cannot follow from any almost-all hypothesis (they deny any
+        rungless twin centre; DepthHyp names the node 6); root-freeness is exactly the strength
+        difference between ChainHyp and DepthHyp; no hypothesis about primes alone (RH, density,
+        Montgomery pair correlation, variance) implies any form - all are shift-averaged or
+        parity-blind; EH/GEH give 12 and 6, nothing here; almost-prime rungs (Chen in short
+        intervals) exist unconditionally for large e but do NOT iterate - an almost-prime centre
+        has no stretch - the exact shape of the parity wall against the construction. Known
+        unconditionally: T(s) << s/(log s)^2 (Selberg, factor 4), nothing in the lower direction
+        at any length, pointwise or almost-all (there is no shift to average over). Three facts
+        to carry: the binding parameter is localisation (theta), not the count's quality, so
+        e = 3 is the right window and e = 2 a Legendre-strength outlier; the sparse set {s^e}
+        costs x^(1 - 1/e), not x (the stretches are disjoint), and the singular series on the
+        stretch is the standard one; the pointwise/almost-all line falls exactly between
+        DepthHyp and ChainHyp. Every conditional theorem gives "exists S_1, LadderHyp above S_1";
+        the certified prefix closes the gap only with an effective x_0. VERDICT: FACT (the
+        record's conditional map); next kernel target: (iii) as a Lean theorem - an almost-all
+        hypothesis as one Prop implies ChainHyp.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4498,3 +4532,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xix depth 8 (seven nodes, 400-digit members): every node has a rung; index mean 23,140 against the law ~15,000 (+1.4 SE), all below the cube by two orders; the index laws hold from 10^2 to 10^200.
 - 2026-09-19, R5.f.xx: the chain form in the kernel - chains of every finite length anywhere in the rung forest give twins unbounded (twins_unbounded_of_chains); DepthHyp -> ChainHyp; the weakest ladder-type hypothesis on record.
 - 2026-09-19, R5.f.xv addendum: child counts of the 182 depth-3 nodes are Poisson about the twin-constant law (std 0.0092 = 1/sqrt(T)); no excess variance.
+- 2026-09-19, R5.f.xxi (conditional lane): the cube ladder follows from the standard short-interval Hardy-Littlewood lower bound (theta <= 2/3); the square ladder needs the Legendre-strength endpoint (twin Cramer); the CHAIN form follows from an almost-all power-saving hypothesis (variance of pi_2 at length x^(1/2)) - the pointwise/almost-all line falls between DepthHyp and ChainHyp; no primes-only hypothesis reaches any form.
