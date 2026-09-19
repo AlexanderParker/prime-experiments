@@ -3306,6 +3306,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         mean index 3.85 and 3.98, constant in s (Q61 has constant density among 61-rough
         columns), max 0.23 (ln s)^2, geometric tail. So the index law is the density of the rung
         set among rough offsets and nothing else - BLIND.
+      - R5.f.xxviii. THE PROVER LANE: THREE WRITTEN PROOF ATTEMPTS WITH EVERY STEP MARKED (Fable,
+        opened 2026-09-20 02:15; brief lane_prover/BRIEF.md). Parent observation: R5.f.xxvii
+        showed every listed law is sieve-visible, so an attempt must be written out to find
+        which exact step first needs the members' primality - the Conway workflow's "write the
+        proof, mark the gaps, let red attack". PRE-REGISTERED: attempt A (a leaf as a covering of
+        the 61-rough offsets by gears in (61, s-1], pushed with F1-F7 to a single quantified
+        integer statement as the GAP); attempt B (chains from "leaves are never consecutive" -
+        how t^2 and t'^2 mod each gear relate for consecutive twin centres); attempt C (the
+        lane's own). Output: a ranked GAP table, each gap one quantified sentence with a script
+        test. Expected: every attempt's gap is a lower bound on unstruck columns; the value is
+        in the exact form of the smallest such statement. Verdict OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
