@@ -3254,6 +3254,20 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           So the kernel now reads RegionHyp -> LadderHyp -> WindowHyp: the owner's window
           statement follows from the ladder, and the ladder is the gap-2 case of the region
           statement. FACT (kernel).
+      - R5.f.xxvii. THE PARITY-SENSITIVITY LANE: WHICH MACHINE LAWS SEE THE TWIN? (Fable, opened
+        2026-09-20 02:20; brief lane_parity/BRIEF.md). Parent observation: R5.f.xxv found the
+        forest exactly generic given residues; every exact law on record (two classes, universal
+        clearance, phase lock, uniform local factor, twin gears at the centre, top-band rule,
+        unique parents, region law) might hold equally for a parity-twisted companion set
+        (columns whose members both have even Omega and are composite) - a law that survives
+        the twist cannot separate the twins, a law that breaks is the kind a proof must use.
+        PRE-REGISTERED: build P (twins), Q (both members even Omega, composite), M' (both odd
+        Omega, composite) to 10^7; test L2, L3, L4, L7, L8 and the first-rung index law with
+        Q-centres and Q-rungs; decisive table law x {P, Q, M'} x parity-sensitive. Expected by
+        the manager: L1, L3, L7 identities (blind); L2 and L4 depend on s^2 being a square of an
+        admissible residue - Q-centres have no such restriction, so L2 changes form (sensitive
+        in form, not in mechanism); L8 and the index law hold for Q with its own constant
+        (blind). Verdict OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q

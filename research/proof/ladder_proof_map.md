@@ -31,6 +31,13 @@ ShortInterval theta (theta <= 1 - 1/e, e >= 3) ---> exponent-e chains ---> twins
 Certified: the (5,7) ladder has six rungs to a 48-digit twin centre (Pratt certificates)   LadderCertificate.lean
 ```
 
+A reading note on the two conditional theorems. `AlmostAll` contains the clause "twin centres up
+to X number at least X^(1-eta)", and `ShortInterval` asserts a twin pair in every short interval;
+each hypothesis already implies twins unbounded on its own. Those two theorems are therefore
+statements about the SHAPE of the twin set (chains, exponent-e rungs) under a quantitative
+count, not routes to infinitude. The routes to infinitude are the localisation forms alone:
+RegionHyp, LadderHyp, ProductHyp, SixHyp - each asks for a twin centre in one named window.
+
 The one open lemma, in the two vocabularies: *every twin centre has a rung* (the machine: the
 stretch between the squares of a twin pair is never fully struck by the gears below it); *for
 every twin pair (P, P+2) there is a twin pair between P^2 and (P+2)^2* (a twin analogue of
