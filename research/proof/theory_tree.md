@@ -3158,6 +3158,25 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           DEAD as a route. What survived: the top band is idle on every live column (its
           strikes are all identity-composite), which is the record's statement that plugs of
           base-open columns come from the moving families only.
+          - R5.f.xxiv.b.i. RED LANE ON THE PRODUCT FOREST (Opus, opened 2026-09-20 01:25;
+            brief lane_red2/BRIEF.md). PRE-REGISTERED: reproduce the three roots, the 20,100
+            non-empty pairs and the multiplier-6 minimum independently; test the manager's
+            reading that "three roots" is exactly "consecutive twin centres never exceed the
+            ratio 7/5" (u >= 30 is a non-root iff u < 7(prev(u)+1)); margins of W(6,t) against
+            its law next to T(t) against its law; the local factors r_5, r_7, r_11, r_13 and
+            whether 0.924 against 0.824 is within Poisson. Verdict OPEN.
+      - R5.f.xxv. THE INHERITANCE LANE: DOES A RUNG INHERIT ANYTHING FROM ITS PARENT? (Fable,
+        opened 2026-09-20 01:25; brief lane_inherit/BRIEF.md). Parent observation: the phase
+        lock s' = s^2 mod g for g | 6j (R5.f.vi) means a child's residues mod the gears dividing
+        its offset are the parent's squared, so the forest could carry structure beyond the
+        singular series - or exactly none. PRE-REGISTERED claims: (1) T(s') against the law
+        with the exact inherited local factor has Poisson spread and no slope on omega(6j) or
+        j mod 30 (slopes within 2 SE of 0); (2) rungs with 5 | j, 7 | j, 35 | j have the same
+        mean ratio as the rest within 2 SE; (3) consecutive chosen offsets along chains have
+        independent signs and residues mod 5 (chi-square p > 0.05); (4) every (s mod g, j mod g)
+        pair absent among rungs for g in {5, 7, 11, 13} is explained by s' -+ 1 being coprime to
+        g. If all hold the forest is exactly residues (a decisive mechanism result, FACT); any
+        failure is a new law. Verdict OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
