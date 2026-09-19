@@ -2420,6 +2420,28 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           [161, 178]); coverable halves CERTIFIED by CRT window positions on the real pattern,
           uncoverable halves by HiGHS infeasibility. F / (p ln p) rises 0.3 -> 0.7; from p = 37
           the record exceeds most stretches. FACT; growth law OPEN beyond 61.
+    - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
+      computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
+      Exact: the phase of gear g relative to the square shifts between the stretches of p and q
+      by -(q - p)(q + p) 6^-1 mod g, so the two adjacent stretches see IDENTICAL phases at every
+      gear g >= 5 dividing (q - p)(q + p), and unrelated phases elsewhere. Theory: adjacent
+      stretches interact only through those shared gears. Predictions: (i) the number of shared
+      gears is 0 to 3 at almost every p (the prime factors >= 5 of gap x (p + q)); (ii) the twin
+      density (twins / columns) of adjacent stretches is uncorrelated, |r| < 0.05 over all p to
+      20,000, and stays so conditional on 2 or more shared gears; (iii) a stretch's density is
+      unrelated to the number of shared gears. Refuted by |r| >= 0.1 anywhere, or a density
+      shift of 10% with shared gears. Stop line: if (ii) holds, FACT (the coupling is exactly the
+      shared gears and it carries no twin information); no follow-up.
+      RESULT (11:45; every p to 20,000, 2,259 stretches). (i) held: shared gears 0 at 12
+      stretches, 1 at 576, 2 at 1,207, 3 at 445, 4 at 18, 5 at 1. The raw density correlation
+      is 0.92 - a confound the pre-registration missed (both stretches sit at the same p, and
+      density falls like 1/(ln p)^2); detrended by the ratio to a rolling median of the 100
+      neighbouring stretches: (ii) r = -0.020 for p > 2,000 (n = 1,958); pairs with <= 1 shared
+      gear r = -0.024 (n = 446), with >= 3 shared gears r = -0.098 (n = 451, two standard errors,
+      below the refutation line and not pursued); (iii) residual 1.004, 0.999, 1.000, 0.997 at 1,
+      2, 3, 4 shared gears, no shift; residual by gap 0.996-1.006 at gaps 2-14, spread falling
+      with the gap as the stretch lengthens. FACT: adjacent stretches are coupled exactly at the
+      gears dividing (q - p)(q + p), and that coupling carries no twin information.
           - R5.d.i.b. RECORD WINDOWS AGAINST SQUARE WINDOWS (pre-registered 2026-09-19 11:35,
             before computing). Spawned by R5.d.i.a: the certified record windows x are known
             exactly at p = 43, 47, 53, 59, 61. Theory: if the squares' residue structure kept
@@ -3841,3 +3863,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, loop entry 122: square-class (location-law) shift vectors kill stretches exactly where unrestricted ones do, p = 7..83 (ILP); the location law removes no killer. DEAD as protection.
 - 2026-09-19, loop entry 123: F({5..59}) = 160 exact (161 in the ladder's convention, the bottom of the record's pinned [161, 178]; 161 and 162 proved uncoverable by HiGHS), F({5..61}) >= 179 certified at x = 13169725611018917022346, 210 uncoverable. The record's falsification target is met.
 - 2026-09-19, R5.d.i.b: record windows against square windows - the certified record windows' start residues lie in the square class at 37 of 70 gears (0.529), no gear systematically avoided. Prediction (no relation) held; DEAD.
+- 2026-09-19, R5.e: adjacent stretches share phases exactly at the gears dividing (q-p)(q+p) (0-5 of them); detrended twin-density residuals of adjacent stretches uncorrelated (r = -0.02, p > 2000) and unshifted by the number of shared gears (1.004 to 0.997). FACT; raw r = 0.92 was the 1/(ln p)^2 trend, a confound in the pre-registration.

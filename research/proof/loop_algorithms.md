@@ -3875,3 +3875,16 @@ them off the record runs, the certified record windows x (p = 43, 47, 53, 59, 61
 square class {(a^2 - 1) 6^-1 mod g} at some gear systematically; predicted instead a share ~0.5
 and no excluded gear. Measured: in the square class at 4/12, 10/13, 4/14, 11/15, 8/16 gears
 (overall 0.529); no gear avoided by every record window. DEAD in one line, as pre-registered.
+
+### 125. Adjacent stretches and their shared phases (tree node R5.e, loop, 2026-09-19)
+
+Pre-registered (theory_tree.md R5.e), then measured to p = 20,000. Exact: the phase of gear g
+relative to the square shifts between the stretches of p and q by -(q - p)(q + p) 6^-1 mod g, so
+adjacent stretches see identical phases at exactly the gears >= 5 dividing (q - p)(q + p) - 0 to 5
+of them (2 at 1,207 of 2,259 stretches) - and unrelated phases elsewhere. The raw correlation of
+adjacent twin densities is 0.92, which is only the 1/(ln p)^2 trend (a confound my
+pre-registration missed); detrended by the ratio to a rolling median of the 100 neighbouring
+stretches, adjacent residuals are uncorrelated (r = -0.020 for p > 2,000; -0.024 with <= 1 shared
+gear, -0.098 with >= 3, two standard errors, below the refutation line), and the residual is
+unshifted by the number of shared gears (1.004, 0.999, 1.000, 0.997). FACT: the owner's
+adjacent-stretch interaction is exactly the shared gears, and it carries no twin information.
