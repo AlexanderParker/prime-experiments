@@ -1,0 +1,4 @@
+ILP: feasible in 102s
+shifts: {5: 4, 7: 1, 11: 4, 13: 2, 17: 16, 19: 13, 23: 1, 29: 7, 31: 6, 37: 28, 41: 34, 43: 26}
+window start x = 2042071875419561 (period 2180460221945005); real pattern struck run from x = 102 (needed >= 102): CERTIFIED
+members at x: 6x-1 = 12252431252517365, 6x+1 = 12252431252517367

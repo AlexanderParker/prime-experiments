@@ -3826,3 +3826,16 @@ not one of those runs. The runs exist; their number per period is small (a run o
 about pi(p) gears in specific phases) and their positions are the extremal alignments of the
 pattern; the squares' positions are square residues. No relation between the two sets is on
 record, and entries 105 and 109 measured none.
+
+### 122. The location law removes no killer: square-class shift vectors kill exactly where any do (loop, 2026-09-19)
+
+research/stack/r8/square_class_killers.py. A window can be the stretch of some prime only if
+every gear's shift lies in its square class S_g = {-(a^2 - 1) 6^-1 mod g} - about half the
+residues per gear, the location law of KillPositions.lean in shift form. ILP feasibility at the
+stretch's length with shifts restricted to S_g, against unrestricted shifts, every p from 7 to 83:
+the two answers agree at every p - no killer at 7, 11, 13, 19, 23, 31 (stretch longer than the
+record, entry 121), a killer at 17, 29 and at every p from 37 on, in both cases. Halving every
+gear's freedom leaves the killers in place: the square residues are not a protected class of
+windows, in exact agreement with entry 105 (prime-compatible killers from 29) and entry 109 (the
+run at the square is an ordinary run). Closed: the location law is not where the stretch's
+survival lives.
