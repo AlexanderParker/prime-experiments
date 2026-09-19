@@ -2898,6 +2898,14 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         nodes at depths 0-4, every one a certified twin pair between the squares of its parent.
         FACT. KERNEL (19:03, TwinLadder.lean): upper_member_difference_of_squares and
         lower_member_difference_of_squares - both composite-forcing families as ring identities.
+      - R5.f.xvi. THE INDEX LAWS AT DEPTH 4, s ~ 10^12-10^13 (PM, pre-registered 19:40 before
+        the run; research/stack/r8/depth4_sample.py; 30 random depth-4 nodes of the (5, 7)
+        tree). Predictions: nearest-rung ratio 6|j|/(ln P)^2 mean about 1.5, max below 20; the
+        first-rung index among the 61-rough offsets near the mean law 0.0695 (ln s)^2 ~ 58 and
+        below the cube 0.07 (ln s)^3 ~ 1,700 at every node; the index among the sqrt(s)-rough
+        offsets mean about 4, max below 30. Refuted by a node breaching the cube bound or a
+        sqrt(s)-index above 60 (a jump of the law by six orders of magnitude in s). Also in the
+        kernel this tick: parent_unique (LadderDepth.lean) - the rung graph is a forest.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
