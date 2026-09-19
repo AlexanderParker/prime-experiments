@@ -3298,7 +3298,14 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         machine is that s - 1 and s + 1 are prime (L5 and the coprimality behind L2), which is
         the hypothesis, not a law about it. FACT (decisive): a proof cannot come from the
         listed laws alone; it must use the members' primality in a way that no sieve identity
-        reproduces.
+        reproduces. ADDENDUM (02:10, cross-set index runs): P-rungs at M'-centres (143,337
+        centres in [10^5, 10^7]): no centre without a rung, mean index 0.0690 (ln s)^2 (P-centres
+        0.0696), max 0.8305 (ln s)^2 at s = 9,360,306 (index 214), geometric tail to the last
+        bin (>200: 1 observed / 0.38 predicted) - the type of the centre is irrelevant to where
+        the first twin sits. Q-rungs at P-centres and at Q-centres (57,756 and 40,000 centres):
+        mean index 3.85 and 3.98, constant in s (Q61 has constant density among 61-rough
+        columns), max 0.23 (ln s)^2, geometric tail. So the index law is the density of the rung
+        set among rough offsets and nothing else - BLIND.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
