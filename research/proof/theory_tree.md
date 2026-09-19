@@ -2442,6 +2442,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       2, 3, 4 shared gears, no shift; residual by gap 0.996-1.006 at gaps 2-14, spread falling
       with the gap as the stretch lengthens. FACT: adjacent stretches are coupled exactly at the
       gears dividing (q - p)(q + p), and that coupling carries no twin information.
+          - R5.d.i.c. THE GROWTH OF THE RIGID RECORD BEYOND 61 (pre-registered 2026-09-19 11:45,
+            before computing; ILP bisection with CRT certificates, background). Spawned by
+            R5.d.i.a's OPEN growth law. Theory: the rigid record grows like the free one,
+            F ~ p (ln p)^(1+e) with e > 0 small at this scale, so F / (p ln p) keeps rising.
+            Predictions: F(61) in [179, 182] (bisecting); F(67) in [194, 215] (increments 15 to
+            30 per gear as from 43 to 61); F(71) in [209, 240]; F / (p ln p) at 67 and 71 at or
+            above 0.70. Refuted by an increment below 10 or above 40, or by F / (p ln p) falling
+            below 0.66. Stop line: three more exact values, the ratio's direction, then close as
+            FACT; no further values (the memory: larger tables are not a route).
           - R5.d.i.b. RECORD WINDOWS AGAINST SQUARE WINDOWS (pre-registered 2026-09-19 11:35,
             before computing). Spawned by R5.d.i.a: the certified record windows x are known
             exactly at p = 43, 47, 53, 59, 61. Theory: if the squares' residue structure kept
