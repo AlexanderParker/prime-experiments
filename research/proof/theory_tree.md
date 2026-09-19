@@ -2641,6 +2641,36 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         exceptions among all plugs of the first 32 base-open offsets of 1,223 twins, barred
         fraction 0.248; bands 7.4, 13.2, 20.3, 34.8 plugs; reuse 288 against 694 predicted
         (first 16) and 1,416 against 2,887 (first 32) - the factor 0.41-0.49 persists at 10^5.
+      - R5.f.viii. EXACT REUSE, THE UNIVERSAL LIST, NO IMPOSSIBLE BLOCK (lane round 7,
+        received 13:45; pre-registered before the run; test research/stack/r8/ladder_round7.py).
+        CLAIM 1 (exact reuse): a gear g > x strikes two base-open offsets at difference d only
+        if g | d, 3d-1 or 3d+1, with the common phase t = 1 - 6j_i or -1 - 6j_i; over the twins
+        T = s^2 mod g weighs 1/(g-2) at 0 and 2/(g-2) at each nonzero square != 1; the exact
+        expectation E from the difference set accounts for the observed factor 0.47 (the
+        earlier (2/g)^2 was the wrong object); refuted by a discrepancy beyond two Poisson
+        sigma - which would name a correlation between the base pattern and the top phases
+        that fact 3 excludes. PM note: the earlier observed count used least prime factors
+        only; the model's object is every prime factor > x of both members; both are counted.
+        CLAIM 2 (universal list): on steered rungs s = 0 mod Q the base-open offsets at the
+        gears dividing Q are j != +-u_g mod g at every level (Q = 35: 0, +-2, +-3, +-5, +-7,
+        ...); the steered first-twin index mean is 4.0, NOT below (steering fixes where the
+        candidates sit, not the hit rate); refuted by a mean below 3.6 or above 4.4. CLAIM 3
+        (no impossible block): for N = 2, 3, 4 every difference pattern of the first N base-open
+        offsets that occurs also occurs fully plugged - the plug conditions are congruences
+        s^2 = A_i on distinct prime moduli, jointly satisfiable by CRT, and min-gap binds only
+        beyond the span (x-1)/3; refuted by a pattern with >= 100 occurrences never fully
+        plugged. Division of labour fixed: the top half contributes proved constraints on which
+        gear plugs which offset, no existence statement; NTH stays the single hypothesis and the
+        remaining work is to bound the index.
+        FIRST RESULTS (13:46; twins to 30,000, steering to 200,000; full run in progress).
+        Claim 1: observed reuse counted by all prime factors > x is 313 (first 16) and 1,304
+        (first 32) against exact expectations 332.0 and 1,544.0 - the first within one Poisson
+        sigma, the second 16% below (about six sigma on a Poisson reading); by case the
+        expectation splits 536 (3d-1), 548 (3d+1), 461 (d). Claim 3: no impossible block -
+        every pattern of the first 2, 3, 4 base-open offsets with >= 100 occurrences also occurs
+        fully plugged (fully plugged shares 0.69, 0.55, 0.43). Claim 2: universal list exact
+        (0 violations at 136 steered twins for Q = 35, 15 for 385); steered index mean 4.79 +-
+        0.39 (Q = 35) and 4.13 +- 0.99 (Q = 385) - the full run decides.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
