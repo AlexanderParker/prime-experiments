@@ -3060,6 +3060,19 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         Real.log_le_rpow_div). The conditional theorem of R5.f.xxi (iii) is a kernel object: the
         chain form of the ladder follows from a power-saving almost-all lower bound on rung
         counts - what the Poisson child-count law asserts empirically. FACT (kernel).
+      - R5.f.xxiii. KERNEL: THE CUBE LADDER FROM A SHORT-INTERVAL TWIN LOWER BOUND (formalist
+        lane on Fable, 2026-09-20 00:30; proofs/LadderShortInterval.lean, 0 sorries, axioms
+        propext / Classical.choice / Quot.sound, re-built and audited by the manager).
+        ShortInterval theta := eventually in x, a twin pair with both members in (x, x + x^theta].
+        THEOREMS: rungPow_of_shortInterval - for e >= 3 and theta <= 1 - 1/e, every large twin
+        centre has a rung in the exponent-e window; chainsPow_of_shortInterval; twins_unbounded_
+        of_shortInterval. Mechanism: at x = (s-1)^e the hypothesis lands a twin pair within
+        (s-1)^(e theta) <= (s-1)^(e-1) of (s-1)^e, and the window (s+1)^e - (s-1)^e >= 2e (s-1)^(e-1)
+        holds it (binomial lower bound window_width; interval_length via rpow). So the cube
+        ladder (e = 3) rests on the standard short-interval twin conjecture at theta <= 2/3, in
+        lower-bound form only; the square ladder (e = 2) would need theta <= 1/2, the Legendre-
+        strength endpoint. FACT (kernel). The conditional map of R5.f.xxi is now formal at both
+        ends: pointwise short intervals -> cube ladder; almost-all rung counts -> chains.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4550,3 +4563,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xv addendum: child counts of the 182 depth-3 nodes are Poisson about the twin-constant law (std 0.0092 = 1/sqrt(T)); no excess variance.
 - 2026-09-19, R5.f.xxi (conditional lane): the cube ladder follows from the standard short-interval Hardy-Littlewood lower bound (theta <= 2/3); the square ladder needs the Legendre-strength endpoint (twin Cramer); the CHAIN form follows from an almost-all power-saving hypothesis (variance of pi_2 at length x^(1/2)) - the pointwise/almost-all line falls between DepthHyp and ChainHyp; no primes-only hypothesis reaches any form.
 - 2026-09-20, R5.f.xxii: kernel LadderAlmostAll.lean (0 sorries, standard axioms) - AlmostAll c delta eta (twin count >= X^(1-eta), exceptional rung-poor twin centres <= X^(1-delta)) implies ChainHyp, hence twins unbounded; the almost-all -> chain theorem of the conditional map is formal.
+- 2026-09-20, R5.f.xxiii: kernel LadderShortInterval.lean (0 sorries, standard axioms) - a twin pair in every (x, x + x^theta] with theta <= 1 - 1/e gives every large twin centre an exponent-e rung, chains of every length and twins unbounded; the cube ladder rests on the standard short-interval twin conjecture.

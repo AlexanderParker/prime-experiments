@@ -252,3 +252,13 @@ induction on chain depth whose saving does not erode with depth. Standard axioms
 So the crux of the conditional map (section 12, (iii)) is a kernel theorem: a power-saving
 almost-all lower bound on rung counts - the statement the measured Poisson child-count law makes
 empirically - yields chains of every finite length, and with them infinitely many twin primes.
+
+## 14. Kernel: short intervals give the cube ladder (2026-09-20, proofs/LadderShortInterval.lean)
+
+`ShortInterval theta`: eventually in x, a twin pair with both members in (x, x + x^theta].
+`rungPow_of_shortInterval` (e >= 3, theta <= 1 - 1/e): every large twin centre has a rung in the
+exponent-e window; `chainsPow_of_shortInterval`; `twins_unbounded_of_shortInterval`. At x = (s-1)^e
+the hypothesis lands a twin pair within (s-1)^(e-1) of (s-1)^e, inside the window of width at least
+2e (s-1)^(e-1). Standard axioms; 0 sorries. The conditional map is formal at both ends: the standard
+short-interval twin conjecture (theta <= 2/3) gives the cube ladder pointwise; a power-saving
+almost-all rung-count bound gives the chain form. The square ladder alone would need theta <= 1/2.

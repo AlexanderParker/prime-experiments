@@ -3973,3 +3973,10 @@ hypothesis: eventually, twin centres up to X number >= X^(1-eta) and those with 
 c s/(log s)^2 rungs number <= X^(1-delta), with 2 eta < delta < 1. This is the weakest conditional
 form on record: an almost-all, power-saving statement about rung counts (equivalently a variance
 bound for twin counts in intervals of length 4 sqrt N around N = s^2), not a pointwise one.
+
+### 132. Kernel: the cube ladder from short intervals (2026-09-20)
+
+proofs/LadderShortInterval.lean (formalist lane; manager re-built and audited; 0 sorries; standard
+axioms): a twin pair in every interval (x, x + x^theta] with theta <= 1 - 1/e gives every large twin
+centre a rung in the exponent-e window (e >= 3), chains of every length, and twins unbounded. With
+LadderAlmostAll.lean the conditional map is formal at both ends.

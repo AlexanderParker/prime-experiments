@@ -2376,3 +2376,6 @@ name = "LadderDepth"
 
 [[lean_lib]]
 name = "LadderAlmostAll"
+
+[[lean_lib]]
+name = "LadderShortInterval"
