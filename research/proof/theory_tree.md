@@ -2992,6 +2992,16 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         ~15,000 (+1.4 standard errors of a geometric sample), ratio mean 2.4, every node with a
         rung, every index below the cube by two orders. Fluctuation, not drift: the laws hold at
         s ~ 10^200. FACT.
+      - R5.f.xx. THE CHAIN FORM: THE WEAKEST LADDER HYPOTHESIS (PM, 21:25; kernel
+        proofs/LadderDepth.lean, 0 sorries). Chain n f: f 0 a twin centre and each f (k+1) a rung
+        of f k; ChainHyp: chains of every finite length exist SOMEWHERE in the forest (the root is
+        free). Chain.ge: the k-th node of a chain is a twin centre >= 6 + 2k; twins_unbounded_of_
+        chains: ChainHyp -> twin primes above every bound; chainHyp_of_depthHyp: the depth form
+        implies it. So the hypothesis ladder is LadderHyp above a bound -> DepthHyp (the (5, 7)
+        tree has a node at every depth) -> ChainHyp (arbitrarily long chains anywhere) -> twins
+        unbounded; ChainHyp is the weakest ladder-type statement on record, in words: for every
+        n there are twin prime pairs P_0, P_1, ..., P_n with each pair strictly between the
+        squares of the previous one. FACT (kernel).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4478,3 +4488,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xviii: at depth 5 (s ~ 10^25) the 61-rough index mean is 205 against the law's 203, max 894 against the cube ~11,000; ratio max 5.5; every sampled node has a rung.
 - 2026-09-19, R5.f.xix: at depths 6 and 7 (s ~ 10^50, 10^100) the 61-rough index sits on the mean law (854 vs 928; 3,959 vs 3,710), maxima two orders below the cube; every node has a rung; the laws hold to s ~ 10^100.
 - 2026-09-19, R5.f.xix depth 8 (seven nodes, 400-digit members): every node has a rung; index mean 23,140 against the law ~15,000 (+1.4 SE), all below the cube by two orders; the index laws hold from 10^2 to 10^200.
+- 2026-09-19, R5.f.xx: the chain form in the kernel - chains of every finite length anywhere in the rung forest give twins unbounded (twins_unbounded_of_chains); DepthHyp -> ChainHyp; the weakest ladder-type hypothesis on record.

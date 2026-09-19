@@ -60,6 +60,60 @@ theorem depthHyp_of_ladderHyp (hL : LadderHyp) : DepthHyp := by
     obtain ⟨s', hr⟩ := hL s hs.twinCentre
     exact ⟨s', Depth.step hs hr⟩
 
+/-! ### The weakest ladder hypothesis: chains of every length, from any root -/
+
+/-- A chain of `n` rungs: `f 0` a twin centre and each `f (k+1)` a rung of `f k`. -/
+def Chain (n : ℕ) (f : ℕ → ℕ) : Prop := TwinCentre (f 0) ∧ ∀ k, k < n → Rung (f k) (f (k + 1))
+
+/-- **The chain hypothesis**: chains of every finite length exist somewhere in the forest. -/
+def ChainHyp : Prop := ∀ n : ℕ, ∃ f : ℕ → ℕ, Chain n f
+
+/-- Along a chain every node is a twin centre and the `k`-th node is at least `6 + 2k`. -/
+theorem Chain.ge {n : ℕ} {f : ℕ → ℕ} (h : Chain n f) :
+    ∀ k, k ≤ n → TwinCentre (f k) ∧ 6 + 2 * k ≤ f k := by
+  intro k
+  induction k with
+  | zero => intro _; exact ⟨h.1, twinCentre_ge_six h.1⟩
+  | succ k ih =>
+    intro hk
+    obtain ⟨htc, hge⟩ := ih (by omega)
+    have hr := h.2 k (by omega)
+    exact ⟨hr.1, by have := rung_gt htc hr; omega⟩
+
+/-- **Twins unbounded from chains of every length, wherever they start.**  Weaker than the depth
+form (the root is free) and than the ladder hypothesis above any bound. -/
+theorem twins_unbounded_of_chains (hC : ChainHyp) :
+    ∀ N : ℕ, ∃ m : ℕ, N < 6 * m - 1 ∧ (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
+  intro N
+  obtain ⟨f, hf⟩ := hC N
+  obtain ⟨⟨⟨m, hm⟩, hp1, hp2⟩, hge⟩ := hf.ge N le_rfl
+  rw [hm] at hp1 hp2 hge
+  exact ⟨m, by omega, hp1, hp2⟩
+
+theorem chainHyp_of_depthHyp (hD : DepthHyp) : ChainHyp := by
+  intro n
+  -- a node at depth n has a chain of n rungs below it: reconstruct it by induction on the depth
+  have key : ∀ k s, Depth k s → ∃ f : ℕ → ℕ, Chain k f ∧ f k = s := by
+    intro k s h
+    induction h with
+    | root => exact ⟨fun _ => 6, ⟨twinCentre_six, fun k hk => by omega⟩, rfl⟩
+    | @step k s s' _ hr ih =>
+      obtain ⟨f, hf, hfk⟩ := ih
+      refine ⟨fun i => if i ≤ k then f i else s', ⟨by simpa using hf.1, ?_⟩, by simp⟩
+      intro i hi
+      by_cases hik : i < k
+      · have h1 : i ≤ k := by omega
+        have h2 : i + 1 ≤ k := by omega
+        simp only [h1, h2, if_true]
+        exact hf.2 i hik
+      · have hik' : i = k := by omega
+        subst hik'
+        simp only [le_refl, if_true, show ¬ (i + 1 ≤ i) by omega, if_false, hfk]
+        exact hr
+  obtain ⟨s, hs⟩ := hD n
+  obtain ⟨f, hf, _⟩ := key n s hs
+  exact ⟨f, hf⟩
+
 /-! ### The rung graph is a forest: parents are unique (random lane, angle 2) -/
 
 /-- **Unique parent.**  Two twin centres with a common rung are equal: both lie in the interval

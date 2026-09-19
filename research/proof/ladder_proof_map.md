@@ -211,3 +211,13 @@ nodes) - every node has a rung; the 61-rough index mean 80 and 205 against the m
 203-247, maxima 430 and 894 against the cube bounds ~1,850 and ~11,000; offset ratios max 10.6 and
 5.5; the sqrt(s)-rough index mean 5.8 at depth 4. The canonical chain from (5, 7) has ten rungs to a
 756-digit twin lower (BPSW), six Pratt-certified.
+
+## 11. The chain form (2026-09-19 21:25, proofs/LadderDepth.lean)
+
+`Chain n f` (a twin centre and n successive rungs), `ChainHyp` (chains of every finite length exist
+somewhere - the root is free), `Chain.ge` (the k-th node is >= 6 + 2k), `twins_unbounded_of_chains`
+(ChainHyp gives twin primes above every bound), `chainHyp_of_depthHyp`. The hypothesis ladder:
+LadderHyp above a bound -> DepthHyp -> ChainHyp -> twins unbounded. ChainHyp in words: for every n
+there are twin prime pairs P_0, ..., P_n, each strictly between the squares of the previous. It is
+the weakest ladder-type statement on record; the (5, 7) tree realises chains of length 8 by search
+(400-digit members) and 6 by certificate.
