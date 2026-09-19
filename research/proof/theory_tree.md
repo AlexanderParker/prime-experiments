@@ -2634,6 +2634,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         ignores that a reuse needs g to divide one of three fixed differences of the offsets and
         then one phase condition, so the exact expectation from the difference set is the next
         item before reading rigidity into it.
+        FULL RUN (13:42; index law over all 8,168 twin lowers to 10^6, the rest to 10^5): index
+        law HOLDS - max index 44 at P = 646,421 with i / ln P = 3.29 (< 4), no twin above 4 ln P,
+        mean 4.11; decade maxima 19, 21, 29, 44 (the last step +15, above the +8 the geometric
+        tail predicts per decade - one extreme twin, within the law's slack); eligibility: 0
+        exceptions among all plugs of the first 32 base-open offsets of 1,223 twins, barred
+        fraction 0.248; bands 7.4, 13.2, 20.3, 34.8 plugs; reuse 288 against 694 predicted
+        (first 16) and 1,416 against 2,887 (first 32) - the factor 0.41-0.49 persists at 10^5.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4101,3 +4108,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.iv full run: the sieve-form rung law (first twin among the sqrt(s)-rough offsets at index ~4, max 34, never absent) holds to 10^5; steering by 35 from P = 2,383; progression form DEAD as stated; forced offsets closed.
 - 2026-09-19, R5.f.vi: base half of the sieve-form rung holds with margin (base-struck runs at most 0.43 of 0.7 x ln x; base-open counts 2.25x the heuristic); top half: first twin index mean 4.00, max 29 to 10^5, constant 24 refuted, geometric tail; min-gap distinctness does not bind at N >= 16. A FACT, B OPEN in mechanism.
 - 2026-09-19, R5.f.vi claim C: the canonical ladder under the lane's rule reaches a 378-digit twin lower in nine rungs; ratio 6|j|/(ln P)^2 without drift; phase locks exactly at the gears dividing 6j. FACT.
+- 2026-09-19, R5.f.vii full run: index law i <= 4 ln P holds at all 8,168 twin lowers to 10^6 (max i/ln P = 3.29 at 646,421); square-phase eligibility exact; gear reuse at 0.41-0.49 of the crude independent estimate to 10^5.

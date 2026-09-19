@@ -1,0 +1,7 @@
+Claim 1 (index law), twins 8168 to 1000000: max index 44, max i/ln P = 3.289 at P = 646421 (i = 44); mean index 4.11
+   decade maxima: 10^0: 1, 10^1: 6, 10^2: 19, 10^3: 21, 10^4: 29, 10^5: 44
+   twins with i > 4 ln P: 0
+Claim 2 (eligibility), twins 1223 to 100000: exceptions to the square-phase law among all plugs of the first 32 base-open offsets: 0; barred fraction mean 0.248 (predicted 0.25)
+Claim 3 (bands): mean plugs of the first 32 base-open offsets by gears in (x,2x]: 7.4, (x,4x]: 13.2, (x,x^1.5]: 20.3, (x,x^2]: 34.8
+   reuse of a plugging gear among the first 16: observed 288, independent prediction 694.3
+   reuse of a plugging gear among the first 32: observed 1416, independent prediction 2886.8
