@@ -2420,6 +2420,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           [161, 178]); coverable halves CERTIFIED by CRT window positions on the real pattern,
           uncoverable halves by HiGHS infeasibility. F / (p ln p) rises 0.3 -> 0.7; from p = 37
           the record exceeds most stretches. FACT; growth law OPEN beyond 61.
+    - R5.f. THE LABORATORY (owner's redirection 2026-09-19 12:20, after the Conway vibe-proof
+      page). Roles: PM (manager) restates the goal - SurvivalInf from the completeness of the
+      line - and the gate (delete the open columns and rerun; a count or a free-phase cover
+      fails); MATH lanes with fresh context (Fable / Opus) propose small plain claims each with a
+      test; RED lane attacks; Lean closes behind. First cycle: three claims requested from a
+      fresh Opus lane given the kernel's exact assets and the closed angles as one-line facts.
+      OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -3255,6 +3262,12 @@ proofs are closed-form statements from proven mechanics); formalise in the same 
 strategy (the valves are built), budget mode (limits lifted 2026-09-11), the breadth rule (depth
 only, on step 8's three faces). Lanes are judged by one question: does the deliverable change
 Part III or Part IV of the proof document?
+
+- 2026-09-19 (owner): no "honest" difficulty statements or onus-shifting in chat or records - they
+  poison the context and compound; work the proof as in the Conway-conjecture vibe-proof workflow
+  (https://overreacted.io/how-i-vibed-a-proof-of-conways-conjecture/): fresh-context lanes in math /
+  red / Lean roles, small plain claims in standard terminology each with a test, Lean closing behind
+  the maths, audit-and-salvage rather than accumulate, objections read as inputs to reformulation.
 
 ## Log
 - 2026-09-04: tree opened. Lanes running: prover A (branch 1), prover B (branch 2), SAT instrument
