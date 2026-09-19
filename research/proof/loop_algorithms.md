@@ -4001,3 +4001,12 @@ with the window exponent (0.93 at x^0.3 to 0.74 at x^0.7). Region census (R5.f.x
 regions between consecutive prime squares to 10^9 none is empty and the gap-2 regions - the twin
 stretches - have the smallest counts and ratios, so LadderHyp is the binding case of the machine's
 window statement. A formalist lane is putting RegionHyp -> LadderHyp -> WindowHyp into the kernel.
+
+### 135. Every exact law is parity-blind (2026-09-20)
+
+Parity lane (R5.f.xxvii): the machine's exact laws were re-tested with centres and rungs drawn from
+the parity-twisted companion sets (both members even Omega and composite; both odd Omega and
+composite). Every law holds for them in the same form with its own density constant; universal
+clearance is exactly "the members are coprime to the gear"; the only fact that separates the twins
+is that the members of a twin centre are prime (they strike only the centre). Index law to 10^7:
+maximum 0.6885 (ln s)^2, geometric tail, cube envelope intact.

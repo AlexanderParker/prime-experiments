@@ -3267,7 +3267,38 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         the manager: L1, L3, L7 identities (blind); L2 and L4 depend on s^2 being a square of an
         admissible residue - Q-centres have no such restriction, so L2 changes form (sensitive
         in form, not in mechanism); L8 and the index law hold for Q with its own constant
-        (blind). Verdict OPEN.
+        (blind). RESULT (received 02:35, lane stopped twice on background waits; scripts
+        research/stack/r8/parity_sets.py, parity_laws.py, parity_index.py; sets to 10^7:
+        |P| = 58,979, |Q| = 415,284 (density 0.2492 of columns - a positive-density set, so its
+        count has no C x/ln^2 x form), |M'| = 144,050, Q61 (both members 61-rough) = 48,974;
+        per-centre laws on 1,216 / 4,019 / 713 / 179 centres in [100, 10^5]). L1: two struck
+        classes per gear at every centre of every set - BLIND. L2: at P the never-struck
+        classes are [3] mod 5, [4] mod 7, [4,8] mod 11, [1,12] mod 13; at Q and M' the
+        never-struck set is EMPTY overall but splits exactly by whether g | s^2 - 1: centres
+        with g not dividing s^2 - 1 have the twin's classes exactly, centres with g | s^2 - 1
+        strike everything but a fixed set; Q61 restores the twin's classes for g <= 13. So L2 is
+        the statement "s -+ 1 are coprime to g" - visible to any sieve, BLIND in mechanism.
+        L3: 34,142,893 checks, 100% - an identity, BLIND. L4: mean count / law = 1.00 for every
+        (centre set, rung set) pair except M'-rungs (1.33-1.40, the density of M' rising with
+        height, a constant not a residue effect); by residue of s mod 5, 7, 11, 13 the maximum
+        deviation is 2.4 SE in 40 classes for every set - BLIND. L5: P centres have exactly 2
+        strikes from the prime factors of s^2 - 1 (j = 0 only, 1,216 of 1,216); Q centres 45 to
+        73,190 strikes, Q61 333 to 3,297 - L5 is the primality of s -+ 1 itself and nothing
+        more; SENSITIVE only in that sense. L6: 1 or 2 strikes per top-band prime at every
+        centre of every set - BLIND. L7: no overlapping stretches in any set - BLIND (an
+        interval fact). L8: every set follows its own density law region by region (P 1.0035,
+        Q 0.9999, M' 0.9985, Q61 0.9985 overall) - BLIND. INDEX LAW at P to 10^7 (57,756 twin
+        centres above 10^5): no centre without a rung; max index/ln^2 s = 0.6885 at
+        s = 5,042,928 (index 164, j = -617), seven centres above 0.6 (the 10^6 line of R5.f.xi
+        is a sample maximum, not a law); the tail is geometric to the last bin (>160: 2
+        observed / 1.68 predicted; >200: 0 / 0.12); the cube envelope 0.07 (ln s)^3 = 256
+        holds (164 < 256). Cross-set index runs (Q-rungs at P-centres, P-rungs at Q-centres and
+        M'-centres, Q-rungs at Q-centres) re-launched by the manager, see addendum. VERDICT:
+        EVERY EXACT LAW ON THE RECORD IS PARITY-BLIND; the only twin-specific fact in the
+        machine is that s - 1 and s + 1 are prime (L5 and the coprimality behind L2), which is
+        the hypothesis, not a law about it. FACT (decisive): a proof cannot come from the
+        listed laws alone; it must use the members' primality in a way that no sieve identity
+        reproduces.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4766,3 +4797,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxv.a: dispersion index of twin counts in windows x^delta falls 0.926 -> 0.742 from delta 0.3 to 0.7 (Montgomery-Soundararajan shape; stopped as known).
 - 2026-09-20, R5.f.xxvi: 3,398 regions between consecutive prime squares to 10^9, none empty; the gap-2 regions (twin stretches) carry the smallest counts and ratios (0.573 at p = 29) - the stretches are the binding case of the window statement; formalist lane opened for RegionHyp / WindowHyp.
 - 2026-09-20, R5.f.xxvi.a: kernel LadderRegion.lean (0 sorries) - RegionHyp (a twin centre between every pair of consecutive prime squares) -> LadderHyp -> WindowHyp (a twin centre in [q, (q+1)^2) for every q >= 6): the owner's window statement is a kernel consequence of the ladder.
+- 2026-09-20, R5.f.xxvii (parity lane, Fable): every exact law on the record (two classes, universal clearance as coprimality, phase lock, uniform local factor, top-band rule, unique parents, region law) holds equally for the parity-twisted sets Q and M'; only 'the members of a twin centre are prime' separates the twins. Index law to 10^7: max 0.6885 (ln s)^2 at s = 5,042,928, the 0.6 line breached as a geometric tail predicts, the cube envelope holds.
