@@ -2900,7 +2900,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         counts of the 182 depth-3 nodes min 5,172, mean 14,390.4, max 19,113 against the generic
         mean 14,377.6 - branching generic to 0.1%. So the (5, 7) tree has 1, 2, 5, 182, 2,619,059
         nodes at depths 0-4, every one a certified twin pair between the squares of its parent.
-        FACT. KERNEL (19:03, TwinLadder.lean): upper_member_difference_of_squares and
+        FACT. CHILD-COUNT VARIANCE (23:02, the 182 depth-3 nodes): T / (1.3203 s/(ln s)^2) has
+        mean 0.9999 and standard deviation 0.0092, exactly the Poisson value 1/sqrt(T) = 0.0092
+        (ratio 1.00; range 0.971 to 1.025) - the twin counts in the stretches around the squares
+        of twin centres are Poisson about the twin-constant law, no excess variance, no
+        arithmetic signature. FACT. KERNEL (19:03, TwinLadder.lean): upper_member_difference_of_squares and
         lower_member_difference_of_squares - both composite-forcing families as ring identities;
         (20:10) two_strike_classes - for a prime g >= 5 and any centre s the offsets g strikes
         are exactly two distinct classes modulo g (the conservation law: selection redistributes
@@ -4493,3 +4497,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xix: at depths 6 and 7 (s ~ 10^50, 10^100) the 61-rough index sits on the mean law (854 vs 928; 3,959 vs 3,710), maxima two orders below the cube; every node has a rung; the laws hold to s ~ 10^100.
 - 2026-09-19, R5.f.xix depth 8 (seven nodes, 400-digit members): every node has a rung; index mean 23,140 against the law ~15,000 (+1.4 SE), all below the cube by two orders; the index laws hold from 10^2 to 10^200.
 - 2026-09-19, R5.f.xx: the chain form in the kernel - chains of every finite length anywhere in the rung forest give twins unbounded (twins_unbounded_of_chains); DepthHyp -> ChainHyp; the weakest ladder-type hypothesis on record.
+- 2026-09-19, R5.f.xv addendum: child counts of the 182 depth-3 nodes are Poisson about the twin-constant law (std 0.0092 = 1/sqrt(T)); no excess variance.
