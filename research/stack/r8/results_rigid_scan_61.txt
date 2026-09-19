@@ -1,0 +1,10 @@
+== L=165
+ILP: feasible in 48s
+window start x = 10744146669740013452242 (period 19548063559901161830545); real pattern struck run from x = 165 (needed >= 165): CERTIFIED
+== L=172
+ILP: feasible in 166s
+window start x = 10792416817247023285889 (period 19548063559901161830545); real pattern struck run from x = 176 (needed >= 172): CERTIFIED
+== L=178
+ILP: feasible in 161s
+window start x = 13169725611018917022346 (period 19548063559901161830545); real pattern struck run from x = 179 (needed >= 178): CERTIFIED
+== L=183

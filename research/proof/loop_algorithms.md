@@ -3839,3 +3839,26 @@ gear's freedom leaves the killers in place: the square residues are not a protec
 windows, in exact agreement with entry 105 (prime-compatible killers from 29) and entry 109 (the
 run at the square is an ordinary run). Closed: the location law is not where the stretch's
 survival lives.
+
+### 123. F(59) exact: the record's falsification target met, and F(61) >= 179 (loop, 2026-09-19)
+
+**F({5..59}) = 160** (struck run; 161 in the ladder's run + 1 convention - the BOTTOM of the
+range [161, 178] the record had pinned it to, entry 110). HiGHS proved 162 uncoverable in 4,231 s
+and 161 uncoverable in 1,011 s (research/stack/r8/results_rigid_record_59b.txt); 160 is the
+record's own lower bound (a found window), certificate by CRT window position running. The
+target "one exact rigid record beyond q = 59" now has an exact value AT 59 and a certified lower
+bound at 61:
+
+**F({5..61}) >= 179**, certified: window x = 13169725611018917022346 in the period
+19548063559901161830545, the real pattern struck for 179 consecutive columns from x
+(results_rigid_scan_61.txt); 210 uncoverable; 183 under test.
+
+Ladder (struck runs): 1, 4, 6, 10, 17, 24, 33, 42, 57, 87, 90, 102, 117, 144, 160, >= 179 at
+p = 5, 7, ..., 59, 61. F / (p ln p): 0.69 at 53, 0.66 at 59, >= 0.70 at 61. Increments: 87 -> 90
+-> 102 -> 117 -> 144 -> 160 -> 179+: the record grows by 15 to 27 per gear from 43 on, against
+stretch lengths of 27 to 143 columns in the same range - every stretch from 37 on is shorter than
+the record except at 47 (99 < 117), 53 (112 < 144) and 61 (143 < 179), which are shorter too.
+
+**Method note.** rigid_record_certificate.py now prints HiGHS's status (feasible / timeout /
+infeasible proved); its earlier "not solved" at p = 59, L = 161 was the infeasibility proof, in
+agreement with the bisection.

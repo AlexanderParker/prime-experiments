@@ -35,7 +35,8 @@ t = time.time()
 res = milp(c=np.zeros(nv), constraints=[LinearConstraint(A_cov, lb=1, ub=np.inf),
                                         LinearConstraint(A_one, lb=1, ub=1)],
            integrality=np.ones(nv), bounds=Bounds(0, 1), options={"time_limit": 7200})
-print(f"ILP: {'feasible' if res.success else 'not solved'} in {time.time()-t:.0f}s")
+STATUS = {0: 'feasible (optimal)', 1: 'TIMEOUT (iteration/time limit)', 2: 'INFEASIBLE (proved)', 3: 'unbounded', 4: 'numerical'}
+print(f"ILP: {STATUS.get(res.status, res.status)} in {time.time()-t:.0f}s")
 if not res.success:
     sys.exit(1)
 shift = {g: s for j, (g, s) in enumerate(var) if res.x[j] > 0.5}

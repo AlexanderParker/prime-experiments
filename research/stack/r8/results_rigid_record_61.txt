@@ -1,0 +1,5 @@
+p=61 gears=[5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]
+  L=210: UNCOVERABLE  (575s)
+  L=185: TIMEOUT  (3600s)
+  stopping at timeout; bounds so far 160 210
+F({5..61}) in [160, 209]
