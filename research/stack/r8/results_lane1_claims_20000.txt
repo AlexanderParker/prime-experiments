@@ -1,0 +1,6 @@
+stretches tested: 2251 (p = 37..19997)
+Claim 1 (partners P^2-2, 36c^2+1, (P+2)^2-2 p-rough for some twin): failures []
+        first clearing twin index: mean 1.41, max 13
+Claim 1 as written (P^2+2, 36c^2+1, (P+2)^2+2): failures []
+Claim 2 (a base-open column with exactly one plug): failures []; composite cofactors: 0
+Claim 3 (two base-open columns closer than B/6): failures []; separation-law violations: 0

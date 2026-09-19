@@ -2442,7 +2442,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         level short; to be an inductive step it must be restated so its conclusion is at the
         level of its input; (2) and (3) hold by the plug counts and separation law and their
         use is a matching formulation, to be pushed to a statement with a finite step.
-        VERDICT: pending the full run; then the lane is asked to lift (1) to the right level.
+        RESULT (12:56, every p from 37 to 19,997, 2,251 stretches): all three HOLD with no
+        failure - (1) the first twin of the stretch clears at the mean (1.41), worst the 14th;
+        (2) a single-plug base-open column in every stretch, 0 composite cofactors among all
+        plugs (the plug law exact to 20,000); (3) near pairs in every stretch, 0 separation-law
+        violations. FACT (three exact laws). Lane resumed 12:54 with the results and the
+        reframing: lift (1) so its conclusion sits at the level where it is used; make (3)'s
+        matching statement a finite check per p.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -3902,3 +3908,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, loop entry 123: F({5..59}) = 160 exact (161 in the ladder's convention, the bottom of the record's pinned [161, 178]; 161 and 162 proved uncoverable by HiGHS), F({5..61}) >= 179 certified at x = 13169725611018917022346, 210 uncoverable. The record's falsification target is met.
 - 2026-09-19, R5.d.i.b: record windows against square windows - the certified record windows' start residues lie in the square class at 37 of 70 gears (0.529), no gear systematically avoided. Prediction (no relation) held; DEAD.
 - 2026-09-19, R5.e: adjacent stretches share phases exactly at the gears dividing (q-p)(q+p) (0-5 of them); detrended twin-density residuals of adjacent stretches uncorrelated (r = -0.02, p > 2000) and unshifted by the number of shared gears (1.004 to 0.997). FACT; raw r = 0.92 was the 1/(ln p)^2 trend, a confound in the pre-registration.
+- 2026-09-19, R5.f.i: the first lane's three claims hold at every p from 37 to 19,997 - square-scale transfer (a p-rough partner of P^2, P(P+2) or (P+2)^2 for the first twin of the stretch at the mean), single-plug column in every stretch with every cofactor prime, near pairs with the separation law exact. FACT; the lane is lifting claim 1 to the level where it is used.
