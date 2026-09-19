@@ -2449,6 +2449,23 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         violations. FACT (three exact laws). Lane resumed 12:54 with the results and the
         reframing: lift (1) so its conclusion sits at the level where it is used; make (3)'s
         matching statement a finite check per p.
+      - R5.f.ii. THE TWIN LADDER (lane round 2, received 13:02; pre-registered here before
+        the run; test research/stack/r8/twin_ladder.py). Normal form (lane, elementary): for a
+        twin (P, P+2), P = 6c-1, the stretch of P is the 4c-1 columns 6c^2 + j, |j| <= 2c-1,
+        centred on the column of P(P+2), and gear P strikes it only at the centre; any two
+        strikes of one gear g are >= (g-1)/3 columns apart. CLAIM 1 (the ladder): every twin's
+        own stretch (P^2, (P+2)^2) contains a twin - the strong survival lemma at twin levels,
+        which by induction from (5, 7) gives SurvivalInf with a finite interval of 4P+4 integers
+        at every rung. Gate: hypothesis and conclusion are twins; empty on the counter-model.
+        CLAIM 2 (short step): the nearest twin to the centre has 6|j| < 20 (ln P)^2. CLAIM 3
+        (branching): for P >= 41 the stretch holds >= 2 twins. Predictions (lane): all hold for
+        every twin lower P <= 10^6 (8,169 of them). Refuted by one twin stretch without a twin
+        (claim 1), a ratio >= 20 (claim 2), a twin stretch with one twin at P >= 41 (claim 3).
+        PM reading before the run: claim 1 is the strong Survival of R5.a at p = P twin, so
+        entry 107's scan already gives it to P = 200,000; the new content is the induction shape
+        (input and output the same object) and the exact normal form of a twin's stretch. Lane's
+        red note on the matching route (c): supply of top gears exceeds demand by (ln p)^2 at
+        every window length; closed.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
