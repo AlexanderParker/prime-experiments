@@ -2734,7 +2734,8 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         6 -> 30 -> 882 -> 777978 -> 605249768610 -> 3.66 x 10^23 -> 1.34 x 10^47 with Pratt
         certificates for all members (the 48-digit p - 1 factored in a second each) and the
         composition theorem twins_unbounded_of_ladder_above (LadderHyp needed only above
-        10^47), proofs/LadderCertificate.lean + LadderPratt.lean (build in progress at 14:00).
+        10^47), proofs/LadderCertificate.lean + LadderPratt.lean - BUILT 14:07, 0 sorries
+        (canonical_ladder_six_rungs, twins_unbounded_of_ladder_above).
         VERDICT: the ladder programme is a REDUCTION - infinitude of twins to one localised
         short-interval statement (twin between P^2 and (P+2)^2; bounded form: among the first
         ceil(4 ln s) base-open offsets) - with everything around it proved or measured and the

@@ -3904,3 +3904,23 @@ fixed by s^2 mod g; the offsets rough to the gears <= sqrt s hold the rung's twi
 average (the lane's 1/delta^2 law), never beyond 23 to 10^5. The canonical path (nearest twin each
 rung, positive first): 5, 41, 1787, 3196327, ... reaches a 417-digit twin lower in nine rungs and
 eight seconds, offsets 1, 4, 6, 77, 44, -829, 3605, 28145, -6965.
+
+### 127. The twin ladder in the kernel: theorem, certificate, map and audit (laboratory, 2026-09-19)
+
+Tree nodes R5.f.i-xi; research/proof/ladder_proof_map.md holds the map, the statement and the
+audit. Kernel, all 0 sorries:
+  * proofs/TwinLadder.lean - stretch_normal_form, members_of_column, twin_gear_strikes_centre_only;
+  * proofs/LadderBase.lean - open_in_every_block, card_open_ge (the record pigeonhole);
+  * proofs/TwinLadderTheorem.lean - TwinCentre, Rung, LadderHyp, rung_gt, twinCentre_unbounded,
+    twins_unbounded_of_ladder, NearTwinHyp -> LadderHyp;
+  * proofs/LadderCertificate.lean + LadderPratt.lean - canonical_ladder_six_rungs (6 -> 30 -> 882
+    -> 777978 -> 605249768610 -> 366327282402458541331692 ->
+    134195677832370611289419659133121237872763586710, Pratt certificates for every member) and
+    twins_unbounded_of_ladder_above (the ladder hypothesis needed only for twin centres >= 10^47).
+Measured: the rung at every twin lower to 10^6; the first twin among the sqrt(s)-rough offsets at
+index ~4 and <= 4 ln P; at fixed depth 61 (F(61) = 179 exact, supply unconditional) at index
+0.064 (ln s)^2 on average, max 0.598 (ln s)^2. Audit: the depth-sqrt(s) supply is conditional on
+F(x) < 2x^2/3 (open); fitted constants and two wrong models withdrawn; min-gap and eligibility
+load nothing. The open node in both vocabularies: every twin centre s has a twin among its first
+C (ln s)^2 61-rough offsets (a twin pair within ~(ln s)^2 columns of s^2 at fixed sieve level 61);
+weakest: a twin pair between P^2 and (P+2)^2.
