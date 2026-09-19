@@ -2968,6 +2968,10 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         0.07 (ln s)^3 ~ 13,000 at every node. Refuted by a node above the cube. Every depth-5 node
         found is a twin pair with 50-digit members (BPSW), extending the certified-by-search
         depth of the (5, 7) tree to 5.
+        RESULT (20:47; 20 nodes, 24-26 digits): ratio mean 1.32, max 5.5; 61-rough index mean
+        205.0 against the mean law 203-247 (on the nose), max 894 against the cube 11,000-14,800.
+        Every sampled depth-5 node has a rung. The index laws hold at s ~ 10^25, eighteen orders
+        beyond their measurement range. FACT.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4451,3 +4455,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xv (random lane round 3): in-window polynomial offsets classified (k in {0, +-1, +-2}); a second composite-forcing family found (upper member (s +- 1)^2 - v^2 at j = +-2c - 6t^2); every irreducible family priced by a finite Chebotarev constant; conservation law - each gear strikes exactly two of every g consecutive offsets, so offset selection cannot raise the expected rung count; the (5,7) tree enumerated to depth 3 (1, 2, 5, 182 nodes), child counts generic; the depth form is the weakest hypothesis, in words: an infinite chain of twin pairs each between the squares of the preceding pair.
 - 2026-09-19, R5.f.xvi: at depth 4 of the (5,7) tree (s ~ 10^12-10^13, 30 nodes) the offset ratio (max 10.6), the 61-rough index (max 430 against the cube ~1,850) and the sqrt(s)-rough index (mean 5.8, max 24) all hold - the index laws extend six orders of magnitude in s.
 - 2026-09-19, R5.f.xvii (contradiction lane): a leaf of a finite (5,7) tree is exactly sieve data (every composite member has a factor <= s-1), violates no exact law, is untouched by every proved theorem (BHP silent - the stretch is shorter than N^0.525; Legendre open even under RH; parity applies in full), and would be 10^2-10^7 times the extreme-value twin gap at its height; the route's one asset is the existential-per-level form (twins in the union of a level's stretches).
+- 2026-09-19, R5.f.xviii: at depth 5 (s ~ 10^25) the 61-rough index mean is 205 against the law's 203, max 894 against the cube ~11,000; ratio max 5.5; every sampled node has a rung.

@@ -203,3 +203,11 @@ count identity carries the singleton (s+1)^2 - 2, and Baker-Harman-Pintz points 
 route's one asset: the existential-per-level form - a lower bound for twins in the union of a
 level's ~10^16 stretches, one parameter per node - which is where a proof would have room the direct
 statement lacks.
+
+## 10. The laws far out (2026-09-19 evening)
+
+Sampled nodes of the (5, 7) tree: depth 4 (s ~ 10^12-10^13, 30 nodes) and depth 5 (s ~ 10^25, 20
+nodes) - every node has a rung; the 61-rough index mean 80 and 205 against the mean law 51-62 and
+203-247, maxima 430 and 894 against the cube bounds ~1,850 and ~11,000; offset ratios max 10.6 and
+5.5; the sqrt(s)-rough index mean 5.8 at depth 4. The canonical chain from (5, 7) has ten rungs to a
+756-digit twin lower (BPSW), six Pratt-certified.
