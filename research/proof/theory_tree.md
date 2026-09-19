@@ -3417,7 +3417,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         the semiprime share by half. The ledger is exact and sieve-visible: any lower bound for
         T through it must separate the primes from the semiprimes among the rough members, which
         is the statement R5.f.xxvii found no machine law makes. FACT (the two placed numbers
-        refuted; the identity and the measured share stand).
+        refuted; the identity and the measured share stand). ADDENDUM (06:00, the share priced):
+        a member near N = s^2 that is (s/3)-rough is prime with density 1/ln N or a product pq
+        with s/3 < p <= s, density about 4 ln 3 / ln^2 N, so the semiprime-to-prime ratio per
+        member is 4 ln 3 / ln N = 0.26 at s = 5000 and a column with both members rough carries
+        a semiprime with probability 1 - (1/1.26)^2 = 0.37 - the measured 0.405. The share falls
+        like 8.8 / ln N: the level-(s/3) sieve isolates the rungs up to a contamination that
+        vanishes as 1/ln s, and the prediction for s = 10^6 is 0.28. FACT (priced).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
