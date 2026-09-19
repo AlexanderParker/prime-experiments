@@ -168,3 +168,22 @@ certified top unconditionally (4 x 10^30 guaranteed 109-rough candidates against
 forest with unique parents and the exact accounting identity; generic branching (the plain twin
 constant); and the cyclotomic offsets j = +-c, whose identity-forced roughness at a quarter of all
 gears is priced exactly by the singular series (0.89 measured, 0.878 predicted) - no gain.
+
+## 8. Round 3 of the random lane: pricing, conservation, the tree (2026-09-19 19:00)
+
+- **Classification of in-window offsets**: f(c) = kc + r, k in {0, +-1, +-2}; members s^2 + ks + 6r -+ 1.
+  Reducible: k = 0 lower (s - u)(s + u) [known]; k = +-2 upper (s +- 1 - v)(s +- 1 + v) at
+  j = +-2c - 6t^2 [new, to be excluded in the universal-list statement]; k = +-1 never.
+- **Pricing theorem**: for irreducible pairs the rung density at the family is K_f x 1.98/(ln X)^2 with
+  K_f a finite Chebotarev constant; no fixed family or finite union yields a rung at all but finitely
+  many twin centres.
+- **Conservation law**: every gear strikes exactly two of every g consecutive offsets, so the singular
+  series averages exactly 1 over the window; offset selection redistributes E[T(s)] = 1.32 s/(ln s)^2
+  and cannot raise it (the cyclotomic 0.878, flat neighbour phases and dead steering are one fact).
+  The only escape is an offset set growing with s (A_B) as a uniform guarantee. Moving offsets closed.
+- **The (5, 7) tree**: depths 0-3 hold 1, 2, 5, 182 nodes; child counts match the generic
+  1.32 s/(ln s)^2; depth 4 (~1.3 million nodes near 10^12) computing.
+- **The open node in words**: there is an infinite chain of twin prime centres 6 = s_0 < s_1 < ... with
+  s_{n+1} strictly between (s_n - 1)^2 and (s_n + 1)^2 - the twin primes contain an infinite chain in
+  which each pair lies between the squares of the preceding pair; the finite-level form (chains of
+  every length from (5, 7)) is equivalent and is what the kernel assumes (`DepthHyp`).

@@ -2868,6 +2868,32 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         every depth), twins_unbounded_of_depth (DepthHyp -> twins unbounded, directly, no Konig),
         depthHyp_of_path, depthHyp_of_ladderHyp. The weakest form on record: the rung tree from
         (5, 7) has a node at every depth.
+      - R5.f.xv. THE PRICING THEOREM, THE CONSERVATION LAW, AND THE (5, 7) TREE ENUMERATED
+        (random lane round 3, received 19:00; research/stack/r8/rung_tree.py). PRICING: an
+        in-window polynomial offset is f(c) = kc + r with k in {0, +-1, +-2} (degree >= 2
+        outgrows 2c - 1), so the members are the monic quadratic pairs s^2 + ks + 6r -+ 1 - a
+        classification; reducibility complete: k = 0 lower member (s - u)(s + u) (the known
+        difference-of-squares family), k = +-2 UPPER member (s +- 1 - v)(s +- 1 + v) at j = +-2c - 6t^2
+        (a second composite-forcing family, previously unrecorded, to be excluded alongside the
+        first), k = +-1 both members always irreducible (the cyclotomic band); for irreducible
+        pairs the rung density is K_f x 1.98/(ln X)^2 with K_f a finite Chebotarev constant
+        (root counts of each quadratic average 1). CONSERVATION: every gear 5 <= g <= s - 2 strikes
+        exactly two of every g consecutive offsets, so the singular series averages exactly 1
+        over the window: selecting offsets redistributes a fixed total E[T(s)] = 1.32 s/(ln s)^2,
+        it cannot raise it - the cyclotomic 0.878, the flat neighbour phases and the dead
+        steering are one statement. The only object escaping the corollary is an offset SET
+        growing with s (A_B), as a uniform guarantee, not a rate. Moving offsets CLOSED with a
+        reason. DEPTH FORM confirmed: Konig not needed; strictly weaker than LadderHyp; equivalent
+        to an infinite path (finite branching, T(s) <= 4c - 1); parent is a partial function, so
+        "node at depth n" = parent^n(s) = 6. THE STATEMENT IN WORDS: there is an infinite chain of
+        twin prime centres 6 = s_0 < s_1 < ... with s_{n+1} strictly between (s_n - 1)^2 and
+        (s_n + 1)^2 - twin primes contain an infinite chain in which each pair lies between the
+        squares of the preceding pair (finite-level form: chains of every finite length from
+        (5, 7)). THE TREE ENUMERATED (19:01): depth 0 {6}; depth 1 {30, 42}; depth 2: 5 nodes
+        (858 .. 1788); depth 3: 182 nodes (734,472 .. 3,200,358); child counts 2 | 2, 3 | 27, 25,
+        35, 47, 48 against the generic 2.5 | 3.4, 4.0 | 24.8, 25.3, 40.5, 40.9, 42.1; depth 4
+        (about 1.3 million nodes near 10^12-10^13) computing. FACT; the classification and the
+        conservation law are theorem-shaped and go to the kernel next.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4348,3 +4374,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.ii to 10^6: every twin lower's stretch holds a twin (8,168 twins, 0 failures); worst nearest-twin ratio 13.27 at P = 646,421; at least 3 twins per stretch from 41. The ladder hypothesis holds at every twin below 10^6.
 - 2026-09-19, R5.f.xiii (random lane): universal clearance classes U_g (offsets no gear strikes at any twin centre) exact to 61 with 0 violations, rung rate inside A_13 enhanced 3.21x; the rung graph is a forest with unique parents (identity 440 = 440 at 10^6); neighbour-forced phases carry no rung information. F(67) >= 213 certified.
 - 2026-09-19, R5.f.xiv (random lane round 2): the universal list carries the cube bound at the certified top (4 x 10^30 guaranteed 109-rough candidates against 8.9 x 10^4); parenthood and child counts are generic (the twin constant); the cyclotomic offsets j = +-c have identity-forced roughness at a quarter of all gears but enhancement 0.89 = the singular series' 0.878 - no gain; F(67) in [213, 217].
+- 2026-09-19, R5.f.xv (random lane round 3): in-window polynomial offsets classified (k in {0, +-1, +-2}); a second composite-forcing family found (upper member (s +- 1)^2 - v^2 at j = +-2c - 6t^2); every irreducible family priced by a finite Chebotarev constant; conservation law - each gear strikes exactly two of every g consecutive offsets, so offset selection cannot raise the expected rung count; the (5,7) tree enumerated to depth 3 (1, 2, 5, 182 nodes), child counts generic; the depth form is the weakest hypothesis, in words: an infinite chain of twin pairs each between the squares of the preceding pair.
