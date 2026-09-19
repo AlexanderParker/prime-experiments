@@ -1,0 +1,7 @@
+p=43 gears=[5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]
+  L=103: UNCOVERABLE  (101s)
+  L=96: coverable  (3s)
+  L=99: coverable  (8s)
+  L=101: coverable  (60s)
+  L=102: coverable  (99s)
+F({5..43}) in [102, 102]  EXACT

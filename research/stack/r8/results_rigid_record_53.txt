@@ -1,0 +1,7 @@
+p=53 gears=[5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]
+  L=141: coverable  (167s)
+  L=153: UNCOVERABLE  (185s)
+  L=147: UNCOVERABLE  (370s)
+  L=144: coverable  (215s)
+  L=145: UNCOVERABLE  (340s)
+F({5..53}) in [144, 144]  EXACT

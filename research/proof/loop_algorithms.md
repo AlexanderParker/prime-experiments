@@ -3776,3 +3776,53 @@ re-phasing adversary is a walk along the real pattern's period: the kill distanc
 number of gears in which the square's window differs, in residue, from the nearest fully struck
 window of the same pattern. F(47) bisection: 120 uncoverable, 117 coverable (118 certified on
 record; 118, 119 pending); F(59) queued.
+
+### 121. The exact rigid ladder to 53, a new record certified, and the record against the stretch (loop, 2026-09-19)
+
+By the CRT identity (entries 119-120) the ILP over shift vectors computes the machine's record
+F(M) exactly; the coverable half is CERTIFIED by turning the ILP's shift vector into a window
+position x by CRT and checking the real pattern's run at x directly
+(research/stack/r8/rigid_record_certificate.py); the uncoverable half is HiGHS's proof of
+infeasibility. Values are the struck run (the record's certified ladder counts run + 1: 118 at
+47 is this 117, 88 at 37 is this 87).
+
+      p    run F   p ln p   F / p ln p   stretch (q^2-p^2)/6   stretch / F
+      5      1
+      7      4       14      0.29           11                  2.8
+     11      6       26      0.23            7                  1.2
+     13     10       33      0.30           19                  1.9
+     17     17       48      0.35           11                  0.65
+     19     24       56      0.43           27                  1.1
+     23     33       72      0.46           51                  1.5
+     29     42       98      0.43           19                  0.45
+     31     57      106      0.54           67                  1.2
+     37     87      134      0.65           51                  0.59
+     41     90      152      0.59           27                  0.30
+     43    102      162      0.63           59                  0.58
+     47    117      181      0.65           99                  0.85
+     53    144      210      0.69          112                  0.78   NEW, certified
+     59  [161,164]  241      ~0.67          39                  0.24   bisecting
+     61   <= 209    251                    143                          bisecting
+
+**The new record.** F({5..53}) = 144: window x = 1249461754311661376 in the period
+5431526412865007455, members 7496770525869968255 and ...257 at the start, the real pattern struck
+for exactly 144 consecutive columns from x (certificate run = 144). Shift vector
+5:4, 7:4, 11:9, 13:8, 17:4, 19:12, 23:15, 29:22, 31:9, 37:36, 41:30, 43:9, 47:26, 53:30.
+The record's own target (entry 110: one exact rigid record beyond q = 59) is within reach of
+the same computation; F(59) is pinned to [161, 164] against the record's [160, 177].
+
+**The growth.** F / (p ln p) rises from 0.3 at p = 13 to 0.69 at 53 - the rigid record grows
+faster than p ln p, as the free one must (Erdos-Rankin type: the layered lower bound gives
+p (ln p)^(3 - o(1)) eventually). The stretch length (q^2 - p^2)/6 = p gap/3 + gap^2/6 is
+p ln p / 3 on average and at most about p (ln p)^2 / 3 (Cramer). So from p = 37 the record
+exceeds most stretches (stretch / F below 1 at 37, 41, 43, 47, 53, 59), i.e. the pattern of the
+gears up to p has fully struck windows longer than the stretch - the killers of entry 118 - and
+the ratio falls: the killers grow relative to the stretch. The survival of the stretch is never
+a matter of the pattern lacking a run long enough; from 37 on it has them, and increasingly so.
+
+**Standing.** FACT (new exact values, a certified record, and the comparison that places the
+killers' length against the stretch's). The survival lemma is exactly: the square's window is
+not one of those runs. The runs exist; their number per period is small (a run of length F needs
+about pi(p) gears in specific phases) and their positions are the extremal alignments of the
+pattern; the squares' positions are square residues. No relation between the two sets is on
+record, and entries 105 and 109 measured none.
