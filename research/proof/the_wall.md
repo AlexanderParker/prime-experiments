@@ -651,3 +651,30 @@ that dies when the open columns are deleted, and that is neither a cover of free
 count. Nothing on record is such a use. The record's five reformulations (window <-> exponent 2;
 stretch <-> exponent 1; weak survival <-> conjecture; strong survival -> conjecture; chain <- twin-gap
 growth) are each equivalent to or stronger than the target; none lowers its weight.
+
+
+## The ladder (2026-09-19, laboratory rounds 1-10 and the random lane; research/proof/ladder_proof_map.md)
+
+The conjecture is now a ladder. For a twin (P, P+2), s = P + 1, its own stretch is the columns
+strictly between P^2 and (P+2)^2, centred on P(P+2) = s^2 - 1 (kernel); a rung is a twin centre in
+it. Kernel, 0 sorries: the ladder theorem (every twin centre has a rung -> twins unbounded), the path
+form, the depth form (the rung tree from (5, 7) has a node at every depth -> twins unbounded, no
+Konig), the record pigeonhole (a window of L columns holds >= L/(F+1) base-open ones), the
+universal clearance classes (offsets no gear strikes at any twin centre), both composite-forcing
+identity families, and the certified prefix: six rungs from (5, 7) to a 48-digit twin centre with
+Pratt certificates, composing with the hypothesis above 10^47.
+
+Measured: every twin below 10^6 has a rung; the (5, 7) tree has 1, 2, 5, 182, 2,619,059 nodes at
+depths 0-4 with generic branching 1.32 s/(ln s)^2; the first rung among the sqrt(s)-rough offsets
+sits at index ~4 (<= 4 ln P); at fixed depth 61, where the supply is unconditional, at index
+0.064 (ln s)^2 on average, never above 0.07 (ln s)^3.
+
+The wall's edge here, in one sentence: the depth hypothesis - twin primes contain an infinite chain
+in which each pair lies between the squares of the preceding pair; in bounded form, a twin pair
+within 0.38 (log N)^3 of N = s^2 at every twin centre s, the twin analogue of Cramer's conjecture at
+the squares of twin centres. Closed around it with reasons: offset selection cannot raise the
+expected rung count (the conservation law - each gear strikes exactly two of every g consecutive
+offsets); every polynomial offset family is priced by a finite Chebotarev constant; the candidate
+supply at depth sqrt(s) is conditional on F(x) < 2x^2/3 (open) but at depth 61 is a theorem; the
+top layer's plugging is the phase model to 5% with no rigidity (no band insufficient, no block
+impossible, reuse exact).
