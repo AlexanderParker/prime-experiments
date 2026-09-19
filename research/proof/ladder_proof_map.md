@@ -280,3 +280,13 @@ hypotheses reads LadderHyp -> ProductHyp -> twins unbounded, with SixHyp - a twi
 constant ratio 7/5 of every twin centre - the weakest window form on record. Standard axioms; 0
 sorries. Measured: the product forest has exactly three roots (6, 12, 18) to 10^6 and no empty
 window over 20,100 pairs.
+
+## 17. Kernel: regions and the window statement (2026-09-20, proofs/LadderRegion.lean)
+
+`Consecutive p q`; `RegionHyp`: a twin centre strictly between `p^2` and `q^2` for every consecutive
+prime pair with `p >= 5`. `consecutive_of_twinCentre` (a twin centre's members are consecutive
+primes), `ladderHyp_of_regionHyp` (the ladder is the gap-2 case), `twins_unbounded_of_region`.
+`WindowHyp`: for every `q >= 6` a twin centre `u` with `q <= u - 1` and `u + 1 < (q+1)^2` - the
+owner's window statement on `[q, (q+1)^2)`. `windowHyp_of_ladderHyp` (the largest twin centre
+`<= q` has a rung past `q` below `(q+1)^2`), `windowHyp_of_regionHyp`. Standard axioms; 0 sorries.
+Measured (region_census.py): 3,398 regions to 10^9, none empty, the gap-2 regions binding.

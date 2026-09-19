@@ -2385,3 +2385,6 @@ name = "LadderInfinite"
 
 [[lean_lib]]
 name = "LadderProduct"
+
+[[lean_lib]]
+name = "LadderRegion"

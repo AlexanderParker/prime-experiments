@@ -3245,8 +3245,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           stronger than LadderHyp: its gap-2 case), twins_unbounded_of_region, WindowHyp (for
           every q >= 6 a twin centre u with q <= u - 1 and u + 1 < (q+1)^2 - the owner's window
           statement with window [q, (q+1)^2)), windowHyp_of_ladderHyp (the ladder from 6 climbs
-          past every q by less than a squaring), windowHyp_of_regionHyp. 0 sorries expected.
-          Verdict OPEN.
+          past every q by less than a squaring), windowHyp_of_regionHyp. RESULT (received
+          02:05; re-built and audited by the manager: 0 sorries, axioms propext /
+          Classical.choice / Quot.sound). All seven objects as briefed; the window is [q, (q+1)^2)
+          (q <= u - 1, since for q = 5 mod 6 the next twin centre can be q + 1). The lane's
+          proof of windowHyp_of_ladderHyp takes s = Nat.findGreatest TwinCentre q, the largest
+          twin centre <= q; its rung exceeds q by maximality and lies below (s+1)^2 <= (q+1)^2.
+          So the kernel now reads RegionHyp -> LadderHyp -> WindowHyp: the owner's window
+          statement follows from the ladder, and the ladder is the gap-2 case of the region
+          statement. FACT (kernel).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4744,3 +4751,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxv (inheritance lane, Fable): the forest is exactly residues - inherited local factor identically 1, no slope on omega(6j) or j mod 30, mod-5 dependence of consecutive offsets is the two-block residue rule with independence inside, every absent residue pair forced; sub-Poisson spread 0.82 matched by non-stretch windows 0.79.
 - 2026-09-20, R5.f.xxv.a: dispersion index of twin counts in windows x^delta falls 0.926 -> 0.742 from delta 0.3 to 0.7 (Montgomery-Soundararajan shape; stopped as known).
 - 2026-09-20, R5.f.xxvi: 3,398 regions between consecutive prime squares to 10^9, none empty; the gap-2 regions (twin stretches) carry the smallest counts and ratios (0.573 at p = 29) - the stretches are the binding case of the window statement; formalist lane opened for RegionHyp / WindowHyp.
+- 2026-09-20, R5.f.xxvi.a: kernel LadderRegion.lean (0 sorries) - RegionHyp (a twin centre between every pair of consecutive prime squares) -> LadderHyp -> WindowHyp (a twin centre in [q, (q+1)^2) for every q >= 6): the owner's window statement is a kernel consequence of the ladder.
