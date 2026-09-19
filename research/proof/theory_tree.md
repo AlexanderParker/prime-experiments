@@ -3044,6 +3044,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         the certified prefix closes the gap only with an effective x_0. VERDICT: FACT (the
         record's conditional map); next kernel target: (iii) as a Lean theorem - an almost-all
         hypothesis as one Prop implies ChainHyp.
+      - R5.f.xxii. KERNEL: AN ALMOST-ALL HYPOTHESIS IMPLIES CHAINS OF EVERY LENGTH (formalist
+        lane on Fable, 2026-09-20 00:05; proofs/LadderAlmostAll.lean, 0 sorries, axioms propext /
+        Classical.choice / Quot.sound, re-built and audited by the manager). rungs s = the twin
+        centres strictly inside ((s-1)^2, (s+1)^2); twinsUpTo X; the exceptional set = twin
+        centres s <= X with fewer than c s/(log s)^2 rungs; AlmostAll c delta eta := (twin
+        centres up to X number at least X^(1-eta)) and (the exceptional set up to X has at most
+        X^(1-delta) elements), eventually in X. THEOREM chainHyp_of_almostAll: for 0 < c,
+        0 < eta, 2 eta < delta < 1, AlmostAll c delta eta -> ChainHyp; twins_unbounded_of_almostAll
+        composes with twins_unbounded_of_chains. Proof: Roots k s (s roots a chain of length k),
+        bad k X, rungs_subset_bad (the rungs of a bad node at depth k+1 are bad at depth k, below
+        (X+1)^2), rungs_disjoint from parent_unique, sum_rungs_le (the disjoint-union count),
+        lower_bound_of_ge, the split lemmas, bad_card_le (the induction: |Bad_k(X)| <= C_k X^(1-gamma)
+        for every gamma < delta - the depth does not erode the saving; logs absorbed by
+        Real.log_le_rpow_div). The conditional theorem of R5.f.xxi (iii) is a kernel object: the
+        chain form of the ladder follows from a power-saving almost-all lower bound on rung
+        counts - what the Poisson child-count law asserts empirically. FACT (kernel).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4533,3 +4549,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xx: the chain form in the kernel - chains of every finite length anywhere in the rung forest give twins unbounded (twins_unbounded_of_chains); DepthHyp -> ChainHyp; the weakest ladder-type hypothesis on record.
 - 2026-09-19, R5.f.xv addendum: child counts of the 182 depth-3 nodes are Poisson about the twin-constant law (std 0.0092 = 1/sqrt(T)); no excess variance.
 - 2026-09-19, R5.f.xxi (conditional lane): the cube ladder follows from the standard short-interval Hardy-Littlewood lower bound (theta <= 2/3); the square ladder needs the Legendre-strength endpoint (twin Cramer); the CHAIN form follows from an almost-all power-saving hypothesis (variance of pi_2 at length x^(1/2)) - the pointwise/almost-all line falls between DepthHyp and ChainHyp; no primes-only hypothesis reaches any form.
+- 2026-09-20, R5.f.xxii: kernel LadderAlmostAll.lean (0 sorries, standard axioms) - AlmostAll c delta eta (twin count >= X^(1-eta), exceptional rung-poor twin centres <= X^(1-delta)) implies ChainHyp, hence twins unbounded; the almost-all -> chain theorem of the conditional map is formal.

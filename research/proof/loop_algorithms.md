@@ -3964,3 +3964,12 @@ x^(1/2) - which is what the measured Poisson law for the child counts asserts. T
 almost-all line falls between DepthHyp and ChainHyp; nothing about primes alone reaches any form;
 almost-prime rungs exist unconditionally for large windows but do not iterate. Next kernel target:
 the almost-all hypothesis as one Prop implying ChainHyp.
+
+### 131. Kernel: the almost-all hypothesis implies the chain form (2026-09-20)
+
+proofs/LadderAlmostAll.lean (formalist lane; re-built and axiom-audited by the manager; 0 sorries;
+propext, Classical.choice, Quot.sound): AlmostAll c delta eta -> ChainHyp -> twins unbounded. The
+hypothesis: eventually, twin centres up to X number >= X^(1-eta) and those with fewer than
+c s/(log s)^2 rungs number <= X^(1-delta), with 2 eta < delta < 1. This is the weakest conditional
+form on record: an almost-all, power-saving statement about rung counts (equivalently a variance
+bound for twin counts in intervals of length 4 sqrt N around N = s^2), not a pointwise one.

@@ -2373,3 +2373,6 @@ name = "UniversalClearance"
 
 [[lean_lib]]
 name = "LadderDepth"
+
+[[lean_lib]]
+name = "LadderAlmostAll"

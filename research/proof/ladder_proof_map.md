@@ -241,3 +241,14 @@ The ladder theorem is unconditional; the hypotheses sit as follows.
   not iterate (an almost-prime centre has no stretch) - the parity wall's exact shape here.
 - Every conditional theorem gives "exists S_1, LadderHyp above S_1"; the certified prefix closes
   the gap only with an effective x_0. Next kernel target: the almost-all -> ChainHyp theorem.
+
+## 13. Kernel: almost-all implies chains (2026-09-20, proofs/LadderAlmostAll.lean)
+
+`AlmostAll c delta eta` - eventually in X, the twin centres up to X number at least X^(1-eta) and the
+twin centres up to X with fewer than c s/(log s)^2 rungs number at most X^(1-delta). THEOREM
+`chainHyp_of_almostAll` (0 < c, 0 < eta, 2 eta < delta < 1): AlmostAll implies ChainHyp, hence
+`twins_unbounded_of_almostAll`. Proof by the disjointness of rung sets (parent_unique) and an
+induction on chain depth whose saving does not erode with depth. Standard axioms only; 0 sorries.
+So the crux of the conditional map (section 12, (iii)) is a kernel theorem: a power-saving
+almost-all lower bound on rung counts - the statement the measured Poisson child-count law makes
+empirically - yields chains of every finite length, and with them infinitely many twin primes.
