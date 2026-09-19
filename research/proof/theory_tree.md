@@ -2981,8 +2981,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         RESULT (20:49; 6 descents): depth 6 (47-53 digits) - 61-rough index mean 854 against the
         law 928, max 1,634 against the cube ~108,000, ratio max 3.05; depth 7 (94-105 digits) -
         index mean 3,959 against 3,710, max 7,454 against ~863,000, ratio max 3.49; every node
-        has a rung. The laws hold at s ~ 10^100. FACT. Depth 8 (200-digit s, 400-digit members;
-        3 descents; predicted index ~14,700 against the cube ~6.8 x 10^6) launched 20:50.
+        has a rung. The laws hold at s ~ 10^100. FACT. DEPTH 8 (20:51; 188-208-digit s, 3 nodes):
+        every node has a rung; 61-rough index 60,686, 26,736, 41,717 against the mean law
+        13,000-15,800 (1.8x to 3.9x, all three above) and the cube 5.7-7.6 x 10^6 (held with two
+        orders to spare); ratios 5.8, 3.1, 4.0 (below 20). The cube bound holds; the mean law at
+        this depth sits high on three samples (chance about 0.5% under the geometric reading) -
+        four more descents launched with a fresh seed to decide between fluctuation and a drift
+        of the constant at 400 digits.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
