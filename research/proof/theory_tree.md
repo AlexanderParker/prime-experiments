@@ -2593,6 +2593,14 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         and a window of L columns holds at least L / (F + 1) open ones (one per full block,
         injectively). Claim A (i) is a theorem: the base half of the rung follows from the
         record of the base gears with no density input.
+        CLAIM C RESULT (13:33, canonical_ladder2.py, the lane's rule - nearest centre, negative
+        tie): 5 -> 29 -> 881 -> ... nine rungs to a 378-digit twin lower in 24 s; offsets -1, -3,
+        9, 21, -68, 641, -1682, -4187, -2086; 6|j|/(ln P)^2 = 2.3, 1.6, 1.2, 0.7, 0.55, 1.3, 0.86,
+        0.53, 0.07 - no drift (prediction (i) held); signs 6 negative of 9; phase locks
+        s_{k+1} = s_k^2 mod g for g <= 100 observed 6, exactly the gears dividing 6 j_k
+        (prediction (iv) held: not a squaring orbit); the index among the 10^6-rough offsets
+        (the sqrt(s)-sieve is out of reach past rung 3) is 1, 3, 4, 2, 1, 10, 38, 126, 58,
+        growing with (ln s / ln 10^6)^2 as a proxy base must. FACT.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4059,3 +4067,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.d.i.c: F({5..61}) = 179 exact (180, 181 proved uncoverable; 179 certified). R5.f.v: the canonical twin ladder from (5, 7) reaches a 417-digit twin lower in nine rungs, offsets 1, 4, 6, 77, 44, -829, 3605, 28145, -6965, ratio 6|j|/(ln P)^2 in [0.18, 2.9].
 - 2026-09-19, R5.f.iv full run: the sieve-form rung law (first twin among the sqrt(s)-rough offsets at index ~4, max 34, never absent) holds to 10^5; steering by 35 from P = 2,383; progression form DEAD as stated; forced offsets closed.
 - 2026-09-19, R5.f.vi: base half of the sieve-form rung holds with margin (base-struck runs at most 0.43 of 0.7 x ln x; base-open counts 2.25x the heuristic); top half: first twin index mean 4.00, max 29 to 10^5, constant 24 refuted, geometric tail; min-gap distinctness does not bind at N >= 16. A FACT, B OPEN in mechanism.
+- 2026-09-19, R5.f.vi claim C: the canonical ladder under the lane's rule reaches a 378-digit twin lower in nine rungs; ratio 6|j|/(ln P)^2 without drift; phase locks exactly at the gears dividing 6j. FACT.
