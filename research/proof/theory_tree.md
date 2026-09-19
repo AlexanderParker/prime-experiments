@@ -3164,7 +3164,28 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             reading that "three roots" is exactly "consecutive twin centres never exceed the
             ratio 7/5" (u >= 30 is a non-root iff u < 7(prev(u)+1)); margins of W(6,t) against
             its law next to T(t) against its law; the local factors r_5, r_7, r_11, r_13 and
-            whether 0.924 against 0.824 is within Poisson. Verdict OPEN.
+            whether 0.924 against 0.824 is within Poisson. RESULT (received 01:40; scripts
+            research/stack/r8/red2_1.py .. red2_4.py; exact sieve to 10^8, 440,395 twin centres).
+            Roots {6, 12, 18} CONFIRMED; 20,100 pairs, 0 empty, min 2 at exactly (42,60) and
+            (108,138) CONFIRMED; 498 against 653.797 CONFIRMED to the digit. Claim 3 half wrong:
+            W(6,t) never empty, but the minimum is 2 at t = 6, 12, 18 ("5 at 108" holds only
+            from t >= 108). THE MANAGER'S READING REFUTED: the multiplier-6 family does NOT cover
+            everything - u = 138 is a non-root only through (12,12) (W = (121,169); W(6,18) =
+            (85,133) and W(6,30) = (145,217) leave the gap [133,145]); the exact overlap
+            condition is t' < (7t+12)/5, not t'/t < 7/5; max consecutive ratio 2.000 (6 -> 12),
+            1.4286 (42 -> 60) for t >= 30; six ratios exceed 7/5, two leave an uncovered
+            interval ([49,55] and [133,145]), one of which holds a twin centre. Margins: W(6,t)
+            min ratio 0.5364 at t = 72 (0.8233 at t = 2238 for t >= 1000), mean 1.0033; square
+            stretch (computed to t <= 10^5) min 0.5772 at t = 72 (0.6861 at t = 1152 for
+            t >= 1000), mean 0.9997 - away from small t the square stretch is the thinner
+            margin. Local factor exact: r_p = p(p^2 - 6p + 10)/(p-2)^3 (25/27, 119/125,
+            715/729, 1313/1331), K converged = 0.823103 (the lane's 0.8243 was a truncated
+            product); residual 0.92541, z = -1.73 (p = 0.084), inside Poisson; the diagonal
+            s = t is a structural zero (s^2 - 1 = (s-1)(s+1)) the model omits. Worst t is 72 for
+            both windows, series correlation 0.07-0.12, a small-argument bias of the ln^2 law,
+            not arithmetic. VERDICT: the product forest's numbers stand; SixHyp's "never
+            empty" stands with minimum 2; the forest's three roots need one pair beyond
+            multiplier 6. FACT.
       - R5.f.xxv. THE INHERITANCE LANE: DOES A RUNG INHERIT ANYTHING FROM ITS PARENT? (Fable,
         opened 2026-09-20 01:25; brief lane_inherit/BRIEF.md). Parent observation: the phase
         lock s' = s^2 mod g for g | 6j (R5.f.vi) means a child's residues mod the gears dividing
@@ -4670,3 +4691,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxiii: kernel LadderShortInterval.lean (0 sorries, standard axioms) - a twin pair in every (x, x + x^theta] with theta <= 1 - 1/e gives every large twin centre an exponent-e rung, chains of every length and twins unbounded; the cube ladder rests on the standard short-interval twin conjecture.
 - 2026-09-20, R5.f.xiv addendum: kernel LadderInfinite.lean - the (5,7) rung tree is infinite iff it has a node at every depth (no Koenig), so twins unbounded follows from an infinite (5,7) tree; 0 sorries.
 - 2026-09-20, R5.f.xxiv (routes lane, Fable): the product forest - windows ((s-1)(t-1), (s+1)(t+1)) for twin centres s <= t, exactly three roots (6, 12, 18) to 10^6, never empty over 20,100 pairs; kernel LadderProduct.lean: LadderHyp -> ProductHyp -> twins unbounded, SixHyp (a twin centre within ratio 7/5) -> ProductHyp. Consecutive-product windows generic (0 empty of 462). Near-gear confinement refuted as stated, corrected k-rule is the difference-of-squares families again (rediscovery, closed).
+- 2026-09-20, R5.f.xxiv.b.i (red lane): product-forest numbers reproduced exactly; multiplier-6 windows never empty (min 2 at 6, 12, 18); the multiplier-6 family does not cover u = 138 (needs (12,12)); r_p = p(p^2-6p+10)/(p-2)^3 exact, K = 0.823103, residual z = -1.73 inside Poisson.
