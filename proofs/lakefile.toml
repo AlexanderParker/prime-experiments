@@ -2388,3 +2388,6 @@ name = "LadderProduct"
 
 [[lean_lib]]
 name = "LadderRegion"
+
+[[lean_lib]]
+name = "LadderDichotomy"

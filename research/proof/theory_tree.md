@@ -3316,7 +3316,48 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         how t^2 and t'^2 mod each gear relate for consecutive twin centres); attempt C (the
         lane's own). Output: a ranked GAP table, each gap one quantified sentence with a script
         test. Expected: every attempt's gap is a lower bound on unstruck columns; the value is
-        in the exact form of the smallest such statement. Verdict OPEN.
+        in the exact form of the smallest such statement. RESULT (received 02:40;
+        research/proof/ladder_attempts.md, scripts research/stack/r8/attempts_measure.py,
+        attempts_measure2.py). ATTEMPT A (covering): the leaf ledger is the exact identity
+        r(s) = |R_61(s)| - T_61(s) + X_61(s) (rungs = 61-rough columns - strikes on them by
+        gears > 61 + excess from multiple strikes), checked at all 199 twin centres in
+        [60, 10^4]; per-gear counts (A7) and pair-intersection bounds (A8) are FALSE as closers
+        (T_61 = 1,350 > 910 and 305 < 440 at s = 10,008); the top band and the difference-of-
+        squares columns carry 6% of the covering at s = 10,008, the work is in the gears
+        (61, s/3]. Sharpest sufficient integer statement, GAP A-2: the gears above s/3 strike
+        the (s/3)-rough columns fewer times than there are such columns (holds at every twin
+        centre in [60, 10^4], margin 256 against 100 at s = 10,008); its two halves A-2a
+        (|R_{s/3}| >= N/ln^2 s) and A-2b (big-gear strikes on R_{s/3} <= 5|R|/ln s) measured
+        3.26 and 3.6 at s = 10,008. The manager's reading: A-2a is a lower bound for a set
+        sifted to level s/3 in an interval of length 4s - the sieve limit in integer form;
+        A-2b is equidistribution of the sifted set modulo the big gears - the same. ATTEMPT B
+        (chains): B4 PROVED - NC_2 (consecutive twin centres never both leaves) and Dich_2 (no
+        twin centre has exactly one rung) give an infinite chain from every twin centre with a
+        rung: two distinct rungs a < b of s, the first twin centre t after a is a rung of s and
+        consecutive with a, so one of a, t has a rung. Measured: no leaf to 10^4, minimum
+        positive rung count 2 (s <= 30), >= 21 on [1000, 8000]. FALSE: chains through parents
+        (a run of 14,201 consecutive parentless twin centres below 10^8). Consecutive leaves
+        t, t + 6d: the extra gears t -+ 1 strike exactly three free columns of the second
+        stretch, both stretches would be covered by the same gear set - no joint constraint
+        from F1-F7 beyond the shift 2d(t + 3d). ATTEMPT C (the Six window (5(t-1), 7(t+1))):
+        strike classes are t-independent (k = +-1/6 mod p), primorial-multiple columns are rough
+        on both members unconditionally; GAP C-3 (per-gear discrepancy of the sequentially
+        sifted set <= 2|R|/p + 2 sqrt(|R|/p) + 2) with C-4 (prod (1 - 2/p) ln^2 x >= 1, measured
+        2.33 at x = 61) closes SixHyp for t >= 10^15; the same ledger provably fails in the
+        square window (s/ln s gears above sqrt(2s)). C-2: multiples of 210 in the Six window
+        with 210m -+ 1 both prime - last failure t = 828, none in (828, 10^7]. F7 extended: a
+        gear never strikes the lower member at an offset it divides, the upper iff p | s^2 + 1.
+        KERNEL (manager, 02:50; proofs/LadderDichotomy.lean, 0 sorries, axioms propext /
+        Classical.choice / Quot.sound): Good s (a twin centre with a rung); NoConsecutiveLeaves;
+        NoSingleRung; good_step (the dichotomy lemma, via Nat.find for the first twin centre
+        after a); chain_of_good; chainHyp_of_dichotomy; good_six (6 -> 30);
+        twins_unbounded_of_dichotomy; depthHyp_of_dichotomy (from 6 the two hypotheses give a
+        node at every depth). VERDICT: the attempts locate the first primality-dependent step in
+        every route as a lower bound or equidistribution for a sifted set (A-2a/b, C-3) - the
+        integer forms of the sieve limit; attempt B yields a new kernel object whose two
+        hypotheses are local (two consecutive twin centres; one twin centre's rung count) and
+        both far weaker in appearance than LadderHyp. FACT (kernel) for B4; the gaps are the
+        open lemma's sharpest integer forms.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4816,3 +4857,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxvi: 3,398 regions between consecutive prime squares to 10^9, none empty; the gap-2 regions (twin stretches) carry the smallest counts and ratios (0.573 at p = 29) - the stretches are the binding case of the window statement; formalist lane opened for RegionHyp / WindowHyp.
 - 2026-09-20, R5.f.xxvi.a: kernel LadderRegion.lean (0 sorries) - RegionHyp (a twin centre between every pair of consecutive prime squares) -> LadderHyp -> WindowHyp (a twin centre in [q, (q+1)^2) for every q >= 6): the owner's window statement is a kernel consequence of the ladder.
 - 2026-09-20, R5.f.xxvii (parity lane, Fable): every exact law on the record (two classes, universal clearance as coprimality, phase lock, uniform local factor, top-band rule, unique parents, region law) holds equally for the parity-twisted sets Q and M'; only 'the members of a twin centre are prime' separates the twins. Index law to 10^7: max 0.6885 (ln s)^2 at s = 5,042,928, the 0.6 line breached as a geometric tail predicts, the cube envelope holds.
+- 2026-09-20, R5.f.xxviii (prover lane, Fable): three written attempts; leaf ledger identity r = |R_61| - T_61 + X_61; gap A-2 (big gears strike the s/3-rough columns fewer times than their number, 256 vs 100 at 10^4); the dichotomy lemma proved and put in the kernel (LadderDichotomy.lean): no consecutive leaves + no single rung -> chains of every length, node at every depth from 6, twins unbounded; Six-window ledger closes SixHyp for t >= 10^15 under a per-gear discrepancy bound; the same ledger fails in the square window.

@@ -22,6 +22,7 @@ DepthHyp   (the (5,7) tree has a node at every depth)  <==>  treeNodes.Infinite 
    v
 ChainHyp   (chains of every finite length, any root)   <---  AlmostAll c delta eta   LadderAlmostAll.lean
    |  twins_unbounded_of_chains                             (power-saving almost-all rung counts)
+   |                     <---  NoConsecutiveLeaves + NoSingleRung (+ 6 -> 30)   LadderDichotomy.lean
    v
 twins unbounded
 
@@ -343,3 +344,16 @@ primes), `ladderHyp_of_regionHyp` (the ladder is the gap-2 case), `twins_unbound
 owner's window statement on `[q, (q+1)^2)`. `windowHyp_of_ladderHyp` (the largest twin centre
 `<= q` has a rung past `q` below `(q+1)^2`), `windowHyp_of_regionHyp`. Standard axioms; 0 sorries.
 Measured (region_census.py): 3,398 regions to 10^9, none empty, the gap-2 regions binding.
+
+## 18. Kernel: the dichotomy theorem (2026-09-20, proofs/LadderDichotomy.lean)
+
+`NoConsecutiveLeaves`: of two consecutive twin centres one has a rung. `NoSingleRung`: a twin centre
+with a rung has a second. `good_step`: under both, a twin centre with a rung has a rung that has a
+rung (two distinct rungs a < b; the first twin centre after a is a rung and consecutive with a).
+`chainHyp_of_dichotomy`, `depthHyp_of_dichotomy` (from 6 -> 30), `twins_unbounded_of_dichotomy`.
+Standard axioms; 0 sorries. Both hypotheses are local statements about at most two twin centres;
+measured: no leaf to 10^7, minimum positive rung count 2 (s <= 30), at least 21 on [1000, 8000].
+The written attempts (research/proof/ladder_attempts.md) put the first primality-dependent step
+of every route in integer form: gap A-2 (the gears above s/3 strike the (s/3)-rough columns fewer
+times than there are of them) for the square window; gap C-3 (a per-gear discrepancy bound for the
+sequentially sifted Six window) for SixHyp at t >= 10^15.

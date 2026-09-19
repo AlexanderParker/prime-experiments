@@ -4010,3 +4010,14 @@ composite). Every law holds for them in the same form with its own density const
 clearance is exactly "the members are coprime to the gear"; the only fact that separates the twins
 is that the members of a twin centre are prime (they strike only the centre). Index law to 10^7:
 maximum 0.6885 (ln s)^2, geometric tail, cube envelope intact.
+
+### 136. The prover lane and the dichotomy theorem (2026-09-20)
+
+A Fable lane wrote three proof attempts with every step marked (research/proof/ladder_attempts.md).
+The covering attempt reduces a leaf to the exact ledger r = |R_61| - T_61 + X_61 and locates the gap
+as an integer statement about the gears above s/3 (they strike the (s/3)-rough columns fewer times
+than there are of them - 256 against 100 at s = 10,008). The chain attempt proved a dichotomy lemma,
+now kernel (proofs/LadderDichotomy.lean): "consecutive twin centres are never both leaves" and "no
+twin centre has exactly one rung" give chains of every length and a node at every depth from 6.
+The Six-window attempt closes SixHyp for t >= 10^15 under a per-gear discrepancy bound that
+provably cannot be summed in the square window.
