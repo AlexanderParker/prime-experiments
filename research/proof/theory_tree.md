@@ -2740,6 +2740,18 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         ceil(4 ln s) base-open offsets) - with everything around it proved or measured and the
         open ingredients named in both vocabularies. CANDIDATE for the answer's form: not yet
         shown (the hypothesis is the conjecture localised).
+      - R5.f.xi. THE FIXED-DEPTH RUNG: THE SUPPLY SIDE MADE UNCONDITIONAL (PM, 14:05, from the
+        audit's serious flag; research/stack/r8/ladder_depth61.py; registered with the first
+        measurement, the run to 10^6 in progress). Take the base depth x = 61, where the record
+        is EXACT (F(61) = 179, certified both ways): the pigeonhole then gives, unconditionally,
+        at least (4c - 1)/180 base-open offsets in every twin's stretch - the open run bound L3a
+        leaves the map. The cost: the first twin among the 61-rough offsets sits deeper - index
+        mean 1.7, 4.4, 7.0, 8.6 for P ~ 10^2..10^5 (max 58), i.e. i ~ C (ln s)^2 with i/(ln s)^2
+        mean 0.06-0.09 and max 0.43 to 200,000 (the sieve reading: (2 ln s / ln 61)^2 / e^(2 gamma)
+        ~ 0.075 (ln s)^2). Prediction: i <= 0.6 (ln s)^2 at every twin to 10^6; refuted by a
+        larger ratio. The hypothesis in this form: a twin among the first ceil(0.6 (ln s)^2)
+        61-rough offsets of the stretch - a twin prime pair within about 2 (ln s)^2 columns of
+        s^2 - with the candidate list proved to exist from F(61) alone.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
