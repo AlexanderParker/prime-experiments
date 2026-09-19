@@ -1,0 +1,5 @@
+Claim 1 (recount, first 32, twins to 100000): sum C(k,2) = 2057, sum (k-1) = 1730, pair expectation 1929.2 (Poisson sigma 44)
+   multiplicity histogram k: 1: 87468, 2: 1296, 3: 149, 4: 24, 5: 11, 6: 4
+   observed pairs by case: 3d+1: 749, 3d-1: 752, d: 556 | expected: 3d+1: 713, 3d-1: 699, d: 517
+Claim 2 (supply), twins to 1000000: i > ceil(4 ln s): [] (count 0)
+   i >= pigeonhole guarantee G: count 8, last failing s = 12162; first few [(5, 6, 1, 1), (809, 810, 19, 15), (1289, 1290, 19, 14), (1451, 1452, 10, 10), (2657, 2658, 18, 15), (5021, 5022, 16, 16), (6359, 6360, 21, 17), (12161, 12162, 23, 22)]

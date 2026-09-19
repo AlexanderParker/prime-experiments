@@ -2709,6 +2709,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         no twin to 200,000 with i > ceil(4 ln s); i >= the pigeonhole guarantee at 8 twins, the
         last at s = 12,162 (P = 12,161: i = 23 against G = 22), all below the predicted
         s0 ~ 6.8 x 10^4 - the finitely many exceptions the lane named, verified directly.
+        FULL RUN (13:55): recount to 10^5 - sum C(k_g, 2) = 2,057 against 1,929 expected (+6.6%,
+        three sigma ABOVE; k = 2: 1,296, 3: 149, 4: 24, 5: 11, 6: 4; by case 749 / 752 / 556
+        against 713 / 699 / 517); supply to 10^6 - no twin with i > ceil(4 ln s), the same 8
+        exceptions to the pigeonhole guarantee, none above s = 12,162. VERDICT: claim 1 FACT
+        (the top half is the phase model, slightly over rather than under); claim 2 FACT (the
+        supply side holds from s = 12,162 on, with the eight small exceptions verified). The
+        ladder's remaining hypothesis is stated in both vocabularies (node text above).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4178,3 +4185,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.vi claim C: the canonical ladder under the lane's rule reaches a 378-digit twin lower in nine rungs; ratio 6|j|/(ln P)^2 without drift; phase locks exactly at the gears dividing 6j. FACT.
 - 2026-09-19, R5.f.vii full run: index law i <= 4 ln P holds at all 8,168 twin lowers to 10^6 (max i/ln P = 3.29 at 646,421); square-phase eligibility exact; gear reuse at 0.41-0.49 of the crude independent estimate to 10^5.
 - 2026-09-19, R5.f.viii: exact reuse expectation accounts for most of the crude factor 0.47 but a deficit growing with the block (7% at 16, 10% at 32, 4.5 sigma) remains, open; steering does not lower the first-twin index (4.53 +- 0.21); no impossible block of 2, 3, 4 base-open offsets.
+- 2026-09-19, R5.f.ix full run: the reuse deficit was the statistic (sum C(k,2) = 2,057 vs 1,929 expected, +6.6%); the pigeonhole supply side of the index bound holds at every twin from s = 12,162 to 10^6, with eight small exceptions verified directly; the remaining hypothesis stated in the literature's words (twin pair between P^2 and (P+2)^2, or in [s^2 - H, s^2 + H] with H ~ N^(1/4) log N).
