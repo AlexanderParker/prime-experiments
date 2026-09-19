@@ -80,6 +80,43 @@ theorem upper_member_difference_of_squares (c t : ℤ) :
     (6 * c) ^ 2 + 6 * (-(2 * c) - 6 * t ^ 2) + 1 = (6 * c - 1 - 6 * t) * (6 * c - 1 + 6 * t) := by
   constructor <;> ring
 
+/-- **Every gear strikes exactly two classes of offsets** (the conservation law of the random lane,
+round 3).  For a prime `g ≥ 5` and any centre `s`, the offsets `j` at which `g` divides a member
+`s² + 6j ∓ 1` are exactly two residue classes modulo `g` - `6j ≡ 1 - s²` and `6j ≡ -1 - s²` - and
+they are distinct.  Hence in any `g` consecutive offsets `g` strikes exactly two, whatever the
+phase: selecting offsets redistributes strikes, it cannot remove them. -/
+theorem two_strike_classes (g : ℕ) (hg : g.Prime) (hg5 : 5 ≤ g) (s : ℤ) :
+    ∃ a b : ZMod g, a ≠ b ∧ ∀ j : ℤ,
+      (((s ^ 2 + 6 * j - 1 : ℤ) : ZMod g) = 0 ∨ ((s ^ 2 + 6 * j + 1 : ℤ) : ZMod g) = 0) ↔
+        ((j : ZMod g) = a ∨ (j : ZMod g) = b) := by
+  haveI : Fact g.Prime := ⟨hg⟩
+  have hdvd : ∀ n : ℕ, ((n : ℤ) : ZMod g) = 0 → g ∣ n := by
+    intro n h
+    have : (g : ℤ) ∣ (n : ℤ) := (ZMod.intCast_zmod_eq_zero_iff_dvd n g).mp h
+    exact_mod_cast this
+  have h6 : (6 : ZMod g) ≠ 0 := by
+    intro h
+    have h' : g ∣ 6 := hdvd 6 (by exact_mod_cast h)
+    have := Nat.le_of_dvd (by norm_num) h'
+    interval_cases g <;> first | (norm_num at h'; done) | (norm_num at hg; done)
+  refine ⟨(1 - (s : ZMod g) ^ 2) / 6, (-1 - (s : ZMod g) ^ 2) / 6, ?_, ?_⟩
+  · intro h
+    rw [div_left_inj' h6] at h
+    have h2 : (2 : ZMod g) = 0 := by linear_combination h
+    have h' : g ∣ 2 := hdvd 2 (by exact_mod_cast h2)
+    have := Nat.le_of_dvd (by norm_num) h'
+    omega
+  · intro j
+    push_cast
+    rw [eq_div_iff h6, eq_div_iff h6]
+    constructor
+    · rintro (h | h)
+      · left; linear_combination h
+      · right; linear_combination h
+    · rintro (h | h)
+      · left; linear_combination h
+      · right; linear_combination h
+
 theorem lower_member_difference_of_squares (c u : ℤ) (hu : (u ^ 2 - 1) % 6 = 0) :
     (6 * c) ^ 2 + 6 * (-((u ^ 2 - 1) / 6)) - 1 = (6 * c - u) * (6 * c + u) := by
   have h : 6 * ((u ^ 2 - 1) / 6) = u ^ 2 - 1 := Int.mul_ediv_cancel' (Int.dvd_of_emod_eq_zero hu)

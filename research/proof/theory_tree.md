@@ -2897,7 +2897,10 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         mean 14,377.6 - branching generic to 0.1%. So the (5, 7) tree has 1, 2, 5, 182, 2,619,059
         nodes at depths 0-4, every one a certified twin pair between the squares of its parent.
         FACT. KERNEL (19:03, TwinLadder.lean): upper_member_difference_of_squares and
-        lower_member_difference_of_squares - both composite-forcing families as ring identities.
+        lower_member_difference_of_squares - both composite-forcing families as ring identities;
+        (20:10) two_strike_classes - for a prime g >= 5 and any centre s the offsets g strikes
+        are exactly two distinct classes modulo g (the conservation law: selection redistributes
+        strikes, it cannot remove them).
       - R5.f.xvi. THE INDEX LAWS AT DEPTH 4, s ~ 10^12-10^13 (PM, pre-registered 19:40 before
         the run; research/stack/r8/depth4_sample.py; 30 random depth-4 nodes of the (5, 7)
         tree). Predictions: nearest-rung ratio 6|j|/(ln P)^2 mean about 1.5, max below 20; the
