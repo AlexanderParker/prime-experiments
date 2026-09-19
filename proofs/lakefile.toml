@@ -2355,3 +2355,6 @@ name = "RigidShift"
 
 [[lean_lib]]
 name = "TwinLadder"
+
+[[lean_lib]]
+name = "LadderBase"

@@ -2588,6 +2588,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         FACT (its part (i) is a theorem from the record, to be put in the kernel); B's rigid
         mechanism (min-gap distinctness) does not bind at N >= 16 below 10^5 - the top half
         stays a bounded-index law, OPEN in mechanism.
+        KERNEL (13:36, proofs/LadderBase.lean, 0 sorries): open_in_every_block and card_open_ge -
+        if no F + 1 consecutive columns are all struck, every block of F + 1 holds an open column
+        and a window of L columns holds at least L / (F + 1) open ones (one per full block,
+        injectively). Claim A (i) is a theorem: the base half of the rung follows from the
+        record of the base gears with no density input.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
