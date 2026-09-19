@@ -2601,6 +2601,27 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         (prediction (iv) held: not a squaring orbit); the index among the 10^6-rough offsets
         (the sqrt(s)-sieve is out of reach past rung 3) is 1, 3, 4, 2, 1, 10, 38, 126, 58,
         growing with (ln s / ln 10^6)^2 as a proxy base must. FACT.
+      - R5.f.vii. THE LADDER THEOREM AND ITS ONE HYPOTHESIS (lane round 6, received 13:40;
+        kernel proofs/TwinLadderTheorem.lean, 0 sorries; test research/stack/r8/
+        ladder_round6.py, pre-registered before the run). KERNEL: TwinCentre s (6 | s, s-1 and
+        s+1 prime); Rung s s' (a twin centre strictly inside ((s-1)^2, (s+1)^2)); LadderHyp
+        (every twin centre has a rung); rung_gt (a rung climbs, s' >= s + 2);
+        twinCentre_unbounded and twins_unbounded_of_ladder (LadderHyp -> twin primes above every
+        bound, the kernel's standard form); NearTwinHyp (the lane's NTH: a rung among the first
+        B(s) base-open offsets) -> LadderHyp. So SurvivalInf = the ladder from (5, 7) never
+        terminates, one named hypothesis plus proved lemmas (normal form, twin gears strike only
+        the centre, record pigeonhole). CLAIM 1 (index law): the first twin among the base-open
+        offsets has index <= ceil(4 ln P) for every twin lower to 10^6 (geometric tail at rate
+        3/4; the decade maxima should rise by about 8 per decade, not accelerate). CLAIM 2
+        (eligibility filter): members s^2 - A, s^2 - B with A = 1 - 6j, B = -1 - 6j; a gear
+        divides a member only if A or B is a square mod g (the location law in centre
+        coordinates); exactly a quarter of the gears are barred from each non-square offset;
+        difference-of-squares offsets have A square and bar none. CLAIM 3 (no band is
+        insufficient): a band (x, y] plugs at most 4s ln(ln y / ln x) + pi(y) - pi(x) members,
+        insufficient only for y < x^(1 + W(x)/6); direction (a) closed with a number; reuse of a
+        plugging gear among the first 16, 32 offsets at the independent rate (~0.1 per twin at
+        N = 32). Predictions: index law holds (max 46 at 10^5, 55 at 10^6 allowed); zero
+        eligibility exceptions; barred fraction 1/4; reuse within a factor 2 of the prediction.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q

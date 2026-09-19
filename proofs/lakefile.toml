@@ -2358,3 +2358,6 @@ name = "TwinLadder"
 
 [[lean_lib]]
 name = "LadderBase"
+
+[[lean_lib]]
+name = "TwinLadderTheorem"
