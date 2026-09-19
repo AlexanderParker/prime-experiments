@@ -4,6 +4,52 @@ Laboratory rounds 1-9 (tree nodes R5.f.i-x; math lane on Opus with fresh context
 Lean closing behind). This page is the map a reader should hold: what is proved, what is measured,
 what is open, and what was withdrawn.
 
+## 0. State of the proof (2026-09-20 02:00)
+
+Everything below the line is a kernel theorem (Lean 4 / Mathlib, 0 sorries, axioms propext /
+Classical.choice / Quot.sound only). Arrows are proved implications; the target is twin primes
+above every bound (`N < 6m - 1`, both `6m -+ 1` prime).
+
+```
+RegionHyp  (a twin centre between every pair of consecutive prime squares, p >= 5)
+   |  ladderHyp_of_regionHyp                       LadderRegion.lean
+   v
+LadderHyp  (every twin centre has a rung)  ------> WindowHyp (twin centre in [q,(q+1)^2), all q >= 6)
+   |  depthHyp_of_ladderHyp                        LadderDepth.lean  /  LadderRegion.lean
+   v
+DepthHyp   (the (5,7) tree has a node at every depth)  <==>  treeNodes.Infinite   LadderInfinite.lean
+   |  chainHyp_of_depthHyp
+   v
+ChainHyp   (chains of every finite length, any root)   <---  AlmostAll c delta eta   LadderAlmostAll.lean
+   |  twins_unbounded_of_chains                             (power-saving almost-all rung counts)
+   v
+twins unbounded
+
+LadderHyp  ---> ProductHyp (a product-rung for every twin centre) ---> twins unbounded   LadderProduct.lean
+SixHyp (a twin centre in (5(t-1), 7(t+1)) for every twin centre t) ---> ProductHyp
+ShortInterval theta (theta <= 1 - 1/e, e >= 3) ---> exponent-e chains ---> twins unbounded   LadderShortInterval.lean
+Certified: the (5,7) ladder has six rungs to a 48-digit twin centre (Pratt certificates)   LadderCertificate.lean
+```
+
+The one open lemma, in the two vocabularies: *every twin centre has a rung* (the machine: the
+stretch between the squares of a twin pair is never fully struck by the gears below it); *for
+every twin pair (P, P+2) there is a twin pair between P^2 and (P+2)^2* (a twin analogue of
+Legendre at the squares of twin centres, interval length 4 sqrt N). Its weakest kernel form is
+ChainHyp; its weakest window form is SixHyp.
+
+What is measured (exact, every twin centre in range): every twin centre to 10^6 has a rung; the
+rung count is 1.3203 s / ln^2 s on the mean with sub-Poisson spread that belongs to the interval,
+not the ladder; the rung-poor set at c = 1.0 is empty above s = 3,540 (to 10^5); the first rung
+sits within 0.6 (ln s)^2 of the centre among the 61-rough offsets from 10^2 to 10^200; the forest
+carries no structure beyond residues (the inherited local factor is identically 1); the regions
+between consecutive prime squares to 10^9 are never empty and the gap-2 regions (the stretches)
+are the binding case; the product forest has three roots to 10^6.
+
+What is closed: free covering (Jacobsthal beats the stretch length), composite-forcing offset
+families and cyclotomic offsets (priced by the singular series), almost-prime rungs (do not
+iterate), a finite tree by contradiction (a leaf is sieve data), primes-only hypotheses (none
+reaches any form), near-gear confinement (the difference-of-squares families again).
+
 ## 1. The objects
 
 - **Twin centre** `s`: `6 | s`, `s - 1` and `s + 1` both prime (the twin `(P, P+2)`, `s = P + 1 = 6c`).
