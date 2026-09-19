@@ -2511,6 +2511,35 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         1st percentile 0.665 to 10^5. PM reading: with the rule M <= c/50 the progression has
         about 4c/M >= 200 candidates; for the rung to land in it at every c the progression
         must lengthen with c (M ~ c^(1-e)), which is the next round's first item.
+      - R5.f.iv. LENGTHENING, STEERING, FORCED OFFSETS (lane round 4, received 13:22;
+        pre-registered before the run; test research/stack/r8/ladder_round4.py). CAPTURE
+        IDENTITY (lane): forcing j = 0 mod g keeps 1/(g-2) of the twin centres, so
+        N_L ~ T(c) / prod (g-2), |L| ~ 4c/M, first index ~ |L|/N_L (reproduces round 3's 24).
+        CLAIM 1 (lengthening): with M <= 4 sqrt c the progression has |L| >= sqrt c, holds a twin
+        centre at every twin lower to 10^6, N_L >= half the capture prediction, first index <=
+        12 |L|/N_L^pred; in the sieve form (offsets rough to the gears <= sqrt s) the first
+        index is bounded (<= 40) with no trend in c. CLAIM 2 (steering): for Q = 35, 385, 5005
+        some twin centre of the stretch has s' = 0 mod Q above a threshold P0(Q), fixing the
+        small gears' classes at +-u_g for every later rung. CLAIM 3 (forced offsets): (a) the
+        offsets j = -6t^2 -+ 2t have lower member (s-a)(s+a), a = 6t +- 1 - never twin centres;
+        these and j = 0 are the only identity-governed offsets; (b) at j = +-c and +-(2c-1) the
+        twin rate is the singular-series value (about 0.86 and 0.56 of base), nothing above 3.
+        Predictions: all hold; refuted by a twin-free L, N_L below half the prediction, a rising
+        sieve-form index, a twin above P0 with no steered successor, a twin centre at a
+        difference-of-squares offset, or an enhancement above 3.
+        RESULT (13:23; twins to 200,000, full-window parts to 30,000; run to 10^6 / 3 x 10^5 in
+        progress). CLAIM 1 progression form: 19 twin-free L of 2,159 (short L at small c - list
+        below); N_L against the capture prediction min 0.19, mean 1.02 (the identity is exact on
+        average); index/(|L|/N_L^pred) max 7.5 (< 12). CLAIM 1 SIEVE FORM HOLDS AND MATCHES THE
+        LAW: first twin among the sqrt(s)-rough offsets at index 3.6, 4.3, 3.9 for P ~ 10^2,
+        10^3, 10^4 (max 23), no trend - the predicted constant 1/delta^2 = 4. CLAIM 2: steered
+        successors exist from P0(35) = 2,383; for Q = 385 and 5,005 the last failures sit at
+        28,619 and 29,879, at the run's cap - thresholds pending the longer run. CLAIM 3: (a) 0
+        twin centres at the difference-of-squares offsets; (b) ratios to base 0.97 (+c), 0.82
+        (-c), 0.72 (+(2c-1)), 0.03 (-(2c-1)): the bottom edge column of a twin's stretch has
+        members P^2 + 4 and P^2 + 6, one of which 5 divides for every P != 5 - an exact forced
+        failure (the square-neighbour law of KillPositions.lean), the single hit being P = 5.
+        No enhancement above 1.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
