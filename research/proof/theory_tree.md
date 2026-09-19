@@ -2415,7 +2415,8 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         - R5.d.i.a. THE EXACT RIGID LADDER BY ILP (rounds 112-113; shift_rigid_record.py,
           rigid_record_bisect.py, rigid_record_certificate.py). Struck runs 1, 4, 6, 10, 17, 24,
           33, 42, 57, 87, 90, 102, 117, 144, 160, >= 179 at p = 5..61; 144 at 53 and 160 at 59
-          NEW (the record's target met: 161 in its run + 1 convention, the bottom of its pinned
+          NEW and CERTIFIED (x = 1249461754311661376 and x = 247344541058571239023; the
+          record's target met: 161 in its run + 1 convention, the bottom of its pinned
           [161, 178]); coverable halves CERTIFIED by CRT window positions on the real pattern,
           uncoverable halves by HiGHS infeasibility. F / (p ln p) rises 0.3 -> 0.7; from p = 37
           the record exceeds most stretches. FACT; growth law OPEN beyond 61.

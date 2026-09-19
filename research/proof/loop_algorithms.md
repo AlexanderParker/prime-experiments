@@ -3862,3 +3862,8 @@ the record except at 47 (99 < 117), 53 (112 < 144) and 61 (143 < 179), which are
 **Method note.** rigid_record_certificate.py now prints HiGHS's status (feasible / timeout /
 infeasible proved); its earlier "not solved" at p = 59, L = 161 was the infeasibility proof, in
 agreement with the bisection.
+
+**Addendum to 123 (11:29).** F({5..59}) = 160 CERTIFIED: window x = 247344541058571239023 in the
+period 320460058359035439845, the real pattern struck for exactly 160 consecutive columns from x
+(research/stack/r8/results_rigid_cert_59.txt, ILP 1,067 s). Both halves of F(59) are now
+independent of the record's earlier bound.
