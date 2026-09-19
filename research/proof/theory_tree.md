@@ -2684,6 +2684,31 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         steering does NOT lower the index (the lane's prediction of 4.0 held in direction, the
         value sits 0.6 sigma above its 4.4 line). VERDICT: claims 2 and 3 FACT; claim 1 OPEN at
         the 10% level.
+      - R5.f.ix. THE REUSE RECOUNT AND THE INDEX BOUND'S SUPPLY SIDE (lane round 8, received
+        13:52; pre-registered before the run; test research/stack/r8/ladder_round8.py). CLAIM 1:
+        the 10% deficit is the statistic - the observed sum (k_g - 1) against the expectation's
+        sum C(k_g, 2) differ by sum (k_g - 1)(k_g - 2)/2, about N/(3x) of the pair sum, linear in
+        N and inverse in x (the pattern 7% -> 10% with N 16 -> 32, 10% -> 16% with the cap 10^5
+        -> 3 x 10^4); the g | d case generates the multiplicity; roughness conditioning is +1%
+        (Buchstab), wrong sign; real correlation predicted 0. Refuted by sum C(k,2) below the
+        pair expectation by two Poisson sigma after the recount. CLAIM 2: the weakest admissible
+        bound is B(s) = floor((2s/3 - 1)/(F(sqrt s) + 1)) ~ 1.9 sqrt(s)/ln s (the record pigeonhole's
+        guarantee); the measured B = ceil(4 ln s) is certified by the pigeonhole only above
+        s0 ~ 6.8 x 10^4, the finitely many twins below being verified directly. THE REMAINING
+        HYPOTHESIS IN THE LITERATURE'S WORDS: a twin prime pair in [N - H, N + H] around N = s^2
+        with H ~ N^(1/4) log N (weakest admissible B), H ~ (log N)^3 (measured B), or simply
+        between P^2 and (P + 2)^2 (full window) - the twin-prime analogue of Oppermann's
+        conjecture, which is all the ladder needs. Predictions: recount matches; no twin with
+        i >= the pigeonhole guarantee (that would break the supply side); no twin above s0 with
+        i > 4 ln s.
+        FIRST RESULTS (13:54; recount to 30,000, supply to 200,000; full run in progress). CLAIM 1
+        HELD: sum C(k_g, 2) = 1,623 against the pair expectation 1,544 (+5%, two sigma above;
+        sum (k_g - 1) = 1,304 is the earlier deficit); multiplicities k = 2: 886, 3: 141, 4: 24,
+        5: 11, 6: 4; by case observed 556 / 574 / 493 against expected 548 / 536 / 461 - the
+        deficit was the statistic, the phase model stands, no rigidity in the top half. CLAIM 2:
+        no twin to 200,000 with i > ceil(4 ln s); i >= the pigeonhole guarantee at 8 twins, the
+        last at s = 12,162 (P = 12,161: i = 23 against G = 22), all below the predicted
+        s0 ~ 6.8 x 10^4 - the finitely many exceptions the lane named, verified directly.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
