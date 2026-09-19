@@ -2671,6 +2671,19 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         fully plugged (fully plugged shares 0.69, 0.55, 0.43). Claim 2: universal list exact
         (0 violations at 136 steered twins for Q = 35, 15 for 385); steered index mean 4.79 +-
         0.39 (Q = 35) and 4.13 +- 0.99 (Q = 385) - the full run decides.
+        FULL RUN (13:47; twins to 10^5 for reuse and blocks, to 10^6 for steering). Claim 1:
+        observed reuse by all prime factors > x 355 (first 16) and 1,730 (first 32) against
+        exact expectations 380.7 and 1,929.2 - a 7% deficit (about 1.3 Poisson sigma) at 16 and
+        a 10% deficit (about 4.5 sigma) at 32, reproducing the 16% deficit at 32 seen to 30,000;
+        by case 699 (3d-1), 713 (3d+1), 517 (d). The exact model removes most of the crude
+        factor 0.47 but a deficit that grows with the block length remains; located for the
+        lane (round 8). Claim 3 HOLDS: no pattern of the first 2, 3, 4 base-open offsets with
+        >= 100 occurrences is never fully plugged (1,223 twins; fully plugged shares 0.66, 0.52,
+        0.42). Claim 2: universal list exact (0 violations, 542 steered twins for Q = 35, 66 for
+        385); steered first-twin index mean 4.53 +- 0.21 (Q = 35) and 5.14 +- 0.69 (Q = 385):
+        steering does NOT lower the index (the lane's prediction of 4.0 held in direction, the
+        value sits 0.6 sigma above its 4.4 line). VERDICT: claims 2 and 3 FACT; claim 1 OPEN at
+        the 10% level.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4139,3 +4152,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.vi: base half of the sieve-form rung holds with margin (base-struck runs at most 0.43 of 0.7 x ln x; base-open counts 2.25x the heuristic); top half: first twin index mean 4.00, max 29 to 10^5, constant 24 refuted, geometric tail; min-gap distinctness does not bind at N >= 16. A FACT, B OPEN in mechanism.
 - 2026-09-19, R5.f.vi claim C: the canonical ladder under the lane's rule reaches a 378-digit twin lower in nine rungs; ratio 6|j|/(ln P)^2 without drift; phase locks exactly at the gears dividing 6j. FACT.
 - 2026-09-19, R5.f.vii full run: index law i <= 4 ln P holds at all 8,168 twin lowers to 10^6 (max i/ln P = 3.29 at 646,421); square-phase eligibility exact; gear reuse at 0.41-0.49 of the crude independent estimate to 10^5.
+- 2026-09-19, R5.f.viii: exact reuse expectation accounts for most of the crude factor 0.47 but a deficit growing with the block (7% at 16, 10% at 32, 4.5 sigma) remains, open; steering does not lower the first-twin index (4.53 +- 0.21); no impossible block of 2, 3, 4 base-open offsets.

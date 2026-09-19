@@ -1,0 +1,11 @@
+Claim 1 (exact reuse), twins to 100000:
+   first 16: observed reuse by least factors 288, by all factors > x 355; exact expectation 380.7
+   first 32: observed reuse by least factors 1416, by all factors > x 1730; exact expectation 1929.2
+   expectation by case (first 32): 3d-1: 699.0, 3d+1: 713.4, d: 516.8
+Claim 3 (blocks):
+   N=2: patterns 87, occurrences 1223, fully plugged 809 (0.661); patterns with >= 100 occurrences never fully plugged: []
+   N=3: patterns 698, occurrences 1223, fully plugged 640 (0.523); patterns with >= 100 occurrences never fully plugged: []
+   N=4: patterns 1126, occurrences 1222, fully plugged 510 (0.417); patterns with >= 100 occurrences never fully plugged: []
+Claim 2 (steered universal list):
+   Q=35: steered twins 542; universal-list violations 0; first-twin index mean 4.53 (se 0.21), max 32
+   Q=385: steered twins 66; universal-list violations 0; first-twin index mean 5.14 (se 0.69), max 25
