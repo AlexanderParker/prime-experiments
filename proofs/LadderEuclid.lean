@@ -3,8 +3,8 @@ LadderEuclid (2026-09-20, prover lane F7 extended): the twin's primality propaga
 stretch.  At an offset `j` divisible by a gear `p` other than the twin gears, the lower member
 `s^2 + 6j - 1` is never struck by `p` (it is `(s-1)(s+1)` mod `p`, and `p` divides neither prime),
 and the upper member `s^2 + 6j + 1` is struck by `p` exactly when `p ∣ s^2 + 1`.  So at offsets
-divisible by every gear up to `x` the lower member is `x`-rough unconditionally - the Euclid device
-inside the stretch.  (Tree node R5.f.xxviii.)
+divisible by every gear up to `x < s - 1` the lower member is `x`-rough (`lower_member_rough_upto`)
+- the Euclid device inside the stretch.  (Tree node R5.f.xxviii; audited 2026-09-20.)
 -/
 import TwinLadderTheorem
 
@@ -30,6 +30,14 @@ theorem lower_member_rough {s p j : ℕ} (hs : TwinCentre s) (hp : p.Prime)
   rcases (Nat.Prime.dvd_mul hp).mp hprod with h | h
   · exact hne1 ((Nat.prime_dvd_prime_iff_eq hp hp1).mp h)
   · exact hne2 ((Nat.prime_dvd_prime_iff_eq hp hp2).mp h)
+
+/-- **The Euclid device, level form**: if every prime `p ≤ x` divides `j` and `x < s - 1`, no
+prime `p ≤ x` strikes the lower member of column `j`. -/
+theorem lower_member_rough_upto {s x j : ℕ} (hs : TwinCentre s) (hx : x < s - 1)
+    (hj : ∀ p, p.Prime → p ≤ x → p ∣ j) :
+    ∀ p, p.Prime → p ≤ x → ¬ p ∣ s ^ 2 + 6 * j - 1 := by
+  intro p hp hpx
+  exact lower_member_rough hs hp (by omega) (by omega) (hj p hp hpx)
 
 /-- The upper member at an offset divisible by `p` is struck by `p` iff `p ∣ s^2 + 1`. -/
 theorem upper_member_iff {s p j : ℕ} (hj : p ∣ j) :

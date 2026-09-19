@@ -4,9 +4,10 @@ LadderDepth (round 119, 2026-09-19): the weakest hypothesis - a node at every de
 The rung tree from the twin (5, 7): depth 0 holds `6`; depth `n + 1` holds the rungs of the nodes
 at depth `n`.  If the tree has a node at every depth, twin primes are unbounded - directly, since a
 rung climbs by at least 2 so a node at depth `n` is a twin centre `≥ 6 + 2n`; no König argument is
-needed.  This is weaker than the ladder hypothesis above any bound (a childless node does not
-kill it) and, the tree being finitely branching, equivalent to the existence of an infinite path.
-(Random lane round 2 (b); tree node R5.f.xiv.)
+needed.  It is implied by the ladder hypothesis (`depthHyp_of_ladderHyp`) and by any infinite
+path from `6` (`depthHyp_of_path`); the converse direction to a path would need König's lemma and
+is not proved here.  `LadderInfinite.lean` proves it equivalent to the tree being infinite.
+(Random lane round 2 (b); tree node R5.f.xiv; audited 2026-09-20.)
 -/
 import TwinLadderTheorem
 
@@ -80,8 +81,9 @@ theorem Chain.ge {n : ℕ} {f : ℕ → ℕ} (h : Chain n f) :
     have hr := h.2 k (by omega)
     exact ⟨hr.1, by have := rung_gt htc hr; omega⟩
 
-/-- **Twins unbounded from chains of every length, wherever they start.**  Weaker than the depth
-form (the root is free) and than the ladder hypothesis above any bound. -/
+/-- **Twins unbounded from chains of every length, wherever they start.**  Implied by the depth
+form (`chainHyp_of_depthHyp`) and, given one twin centre above the bound, by the ladder
+hypothesis above that bound (`chainHyp_of_ladderHyp_above`); the root is free. -/
 theorem twins_unbounded_of_chains (hC : ChainHyp) :
     ∀ N : ℕ, ∃ m : ℕ, N < 6 * m - 1 ∧ (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
   intro N
@@ -174,10 +176,11 @@ theorem parent_unique {s t s' : ℕ} (hs : TwinCentre s) (ht : TwinCentre t)
 
 /-! ### A leaf is sieve data (contradiction lane, M2) -/
 
-/-- **Every composite member of a twin's stretch has a prime factor at most `s - 1`.**  A composite
-`m < (s+1)²` has least prime factor `p` with `p² ≤ m < (s+1)²`, so `p ≤ s`; and `p ≠ s` because
-`6 ∣ s`.  Hence a twin centre with no rung ("a leaf") is exactly a two-class covering of its window
-by the gears `5..s-1`: there is no plug from above and no analytic remainder. -/
+/-- **Every composite below `(s+1)²` has a prime factor at most `s - 1`** (in particular every
+composite member of the stretch of `s`).  A composite `m < (s+1)²` has least prime factor `p` with
+`p² ≤ m < (s+1)²`, so `p ≤ s`; and `p ≠ s` because `6 ∣ s`.  Hence at a twin centre with no rung
+every column of the stretch is struck by a gear in `5..s-1` (the covering reading; the converse,
+that such a covering is a leaf, is the definition). -/
 theorem leaf_is_sieve_data {s m : ℕ} (hs : TwinCentre s) (hm : m < (s + 1) ^ 2)
     (hcomp : ¬ m.Prime) (h2 : 2 ≤ m) :
     ∃ p : ℕ, p.Prime ∧ p ∣ m ∧ p ≤ s - 1 := by
@@ -196,5 +199,20 @@ theorem leaf_is_sieve_data {s m : ℕ} (hs : TwinCentre s) (hm : m < (s + 1) ^ 2
     have h2d : (2 : ℕ) ∣ 6 * k := ⟨3 * k, by ring⟩
     rcases hp.eq_one_or_self_of_dvd 2 h2d with h' | h' <;> omega
   omega
+
+/-! ### Chains from a path, and from the ladder hypothesis above a bound (audit 2026-09-20) -/
+
+/-- A path of rungs from any twin centre gives chains of every length. -/
+theorem chainHyp_of_path (f : ℕ → ℕ) (h0 : TwinCentre (f 0))
+    (hstep : ∀ k : ℕ, Rung (f k) (f (k + 1))) : ChainHyp :=
+  fun n => ⟨f, h0, fun k _ => hstep k⟩
+
+/-- The ladder hypothesis above a bound, together with one twin centre at or above the bound,
+gives chains of every length.  (Without the starting twin centre the statement would presuppose
+the conclusion.) -/
+theorem chainHyp_of_ladderHyp_above (S₀ s₀ : ℕ) (hs₀ : TwinCentre s₀) (hS : S₀ ≤ s₀)
+    (hL : ∀ s : ℕ, TwinCentre s → S₀ ≤ s → ∃ s' : ℕ, Rung s s') : ChainHyp := by
+  obtain ⟨f, hf0, hstep⟩ := path_of_ladderHyp_above S₀ s₀ hs₀ hS hL
+  exact chainHyp_of_path f (hf0 ▸ hs₀) hstep
 
 end TwinLadder

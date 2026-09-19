@@ -39,6 +39,14 @@ statements about the SHAPE of the twin set (chains, exponent-e rungs) under a qu
 count, not routes to infinitude. The routes to infinitude are the localisation forms alone:
 RegionHyp, LadderHyp, ProductHyp, SixHyp - each asks for a twin centre in one named window.
 
+Audit note (2026-09-20 03:05, statements only): every hypothesis Prop in the lattice above implies
+twins unbounded by itself (that is what a route is); the pair NoConsecutiveLeaves + NoSingleRung
+does so only together with the unconditional `good_six`. `NearTwinHyp` in TwinLadderTheorem.lean
+takes a free rank function and is therefore a scaffold - `ladderHyp_of_nearTwin` is trivial - and
+the lane's bounded NTH (a rung among the first `⌈4 ln s⌉` base-open offsets) is not formalised.
+`RungPow e` is unsatisfiable for `e ≤ 1`. No vacuous hypothesis, misplaced endpoint, unsafe
+subtraction or reversed implication was found in the nine ladder files.
+
 The one open lemma, in the two vocabularies: *every twin centre has a rung* (the machine: the
 stretch between the squares of a twin pair is never fully struck by the gears below it); *for
 every twin pair (P, P+2) there is a twin pair between P^2 and (P+2)^2* (a twin analogue of

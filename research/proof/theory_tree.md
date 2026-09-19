@@ -3371,6 +3371,30 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         ln s against the level s a rung needs. Both dichotomy hypotheses hold to 10^5 on the
         red lane's data (R5.f.xxiv.b.i): no leaf, and no twin centre above 30 with exactly one
         rung (minimum positive count 2 at s = 30, 3 at s = 72). FACT (kernel).
+      - R5.f.xxix. THE STATEMENT AUDIT OF THE KERNEL (Opus audit lane, 2026-09-20 03:05; nine
+        ladder files, statements only). No defect of type (a) vacuous hypothesis, (b) natural
+        subtraction, (c) window endpoints or (e) reversed direction in any new file. Findings and
+        the manager's fixes (03:15, all rebuilt, 0 sorries): (1) hypotheses that contain the
+        conclusion, now labelled in the map: LadderHyp, DepthHyp, ChainHyp, ProductHyp, SixHyp,
+        RegionHyp, WindowHyp, treeNodes.Infinite, the pair NoConsecutiveLeaves + NoSingleRung
+        (with good_six), AlmostAll (its first conjunct alone), ShortInterval (alone) - each
+        implies twins unbounded by itself, as intended; the content of LadderAlmostAll and
+        LadderShortInterval is the SHAPE (chains, exponent-e rungs), already noted in the map's
+        reading note. (2) NearTwinHyp (TwinLadderTheorem.lean) is parameterised by a free rank
+        function, so ladderHyp_of_nearTwin is a triviality - it is a scaffold, not the lane's
+        bounded NTH; recorded in the map, not changed (a change would rebuild the certificate
+        chain). (3) Docstring overclaims corrected in LadderDepth.lean: "equivalent to an
+        infinite path" (only path -> DepthHyp is proved; the converse needs Koenig) and "weaker
+        than the ladder hypothesis above any bound" (needs a starting twin centre, else it
+        presupposes the conclusion) - the theorems chainHyp_of_path and
+        chainHyp_of_ladderHyp_above (with a start s_0 >= S_0) added; leaf_is_sieve_data's
+        docstring now says what it proves (every composite below (s+1)^2 has a factor <= s-1).
+        (4) twins_unbounded_of_windowHyp added to LadderRegion.lean so the window statement's
+        strength is explicit. (5) LadderEuclid.lean: the header's "unconditionally" replaced by
+        the level form lower_member_rough_upto (x < s - 1), added and proved. (6) Minor, left as
+        is: RungPow e is unsatisfiable for e <= 1 so two lemmas admitting e = 1 are vacuous
+        there; redundant hypotheses h_delta and h_theta0; isExc divides by log^2 s (harmless at
+        s >= 6). VERDICT: the kernel's statements say what the tree says; FACT.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4872,3 +4896,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxvii (parity lane, Fable): every exact law on the record (two classes, universal clearance as coprimality, phase lock, uniform local factor, top-band rule, unique parents, region law) holds equally for the parity-twisted sets Q and M'; only 'the members of a twin centre are prime' separates the twins. Index law to 10^7: max 0.6885 (ln s)^2 at s = 5,042,928, the 0.6 line breached as a geometric tail predicts, the cube envelope holds.
 - 2026-09-20, R5.f.xxviii (prover lane, Fable): three written attempts; leaf ledger identity r = |R_61| - T_61 + X_61; gap A-2 (big gears strike the s/3-rough columns fewer times than their number, 256 vs 100 at 10^4); the dichotomy lemma proved and put in the kernel (LadderDichotomy.lean): no consecutive leaves + no single rung -> chains of every length, node at every depth from 6, twins unbounded; Six-window ledger closes SixHyp for t >= 10^15 under a per-gear discrepancy bound; the same ledger fails in the square window.
 - 2026-09-20, R5.f.xxviii addendum: kernel LadderEuclid.lean - the Euclid device: a gear dividing the offset never strikes the lower member (it would divide a twin prime), strikes the upper iff it divides s^2 + 1; the one exact law that uses the members' primality; unconditional base-open supply at level ln s.
+- 2026-09-20, R5.f.xxix (audit lane): kernel statements audited - no vacuous, subtraction, endpoint or direction defects; every hypothesis that contains the conclusion labelled; NearTwinHyp is a scaffold; docstring overclaims in LadderDepth fixed with two new theorems (chainHyp_of_path, chainHyp_of_ladderHyp_above); twins_unbounded_of_windowHyp and lower_member_rough_upto added.

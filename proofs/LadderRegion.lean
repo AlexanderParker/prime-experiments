@@ -74,6 +74,14 @@ theorem windowHyp_of_ladderHyp (hL : LadderHyp) : WindowHyp := by
   have h2 : (s + 1) ^ 2 ≤ (q + 1) ^ 2 := Nat.pow_le_pow_left (by omega) 2
   omega
 
+/-- The window statement alone puts a twin centre at or above every `q`, so twins are unbounded
+(the hypothesis contains the conclusion; recorded so its strength is explicit). -/
+theorem twins_unbounded_of_windowHyp (hW : WindowHyp) :
+    ∀ N : ℕ, ∃ m : ℕ, N < 6 * m - 1 ∧ (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
+  intro N
+  obtain ⟨u, ⟨⟨m, rfl⟩, hp1, hp2⟩, hq, _⟩ := hW (N + 6) (by omega)
+  exact ⟨m, by omega, hp1, hp2⟩
+
 /-- **Region implies window.** -/
 theorem windowHyp_of_regionHyp (h : RegionHyp) : WindowHyp :=
   windowHyp_of_ladderHyp (ladderHyp_of_regionHyp h)
