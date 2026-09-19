@@ -1,0 +1,32 @@
+depth 3: 182 nodes
+  s = 604401537108 (12 digits): j_min = -414, 6|j|/(ln P)^2 = 3.375, index among 61-rough 115 (mean law 51, cube 1397), index among sqrt(s)-rough 8
+  s = 542387741298 (12 digits): j_min = -134, 6|j|/(ln P)^2 = 1.101, index among 61-rough 38 (mean law 51, cube 1381), index among sqrt(s)-rough 3
+  s = 603748370088 (12 digits): j_min = -36, 6|j|/(ln P)^2 = 0.294, index among 61-rough 7 (mean law 51, cube 1397), index among sqrt(s)-rough 0
+  s = 8800708115778 (13 digits): j_min = -106, 6|j|/(ln P)^2 = 0.716, index among 61-rough 25 (mean law 62, cube 1854), index among sqrt(s)-rough 1
+  s = 10229815666878 (14 digits): j_min = -51, 6|j|/(ln P)^2 = 0.341, index among 61-rough 13 (mean law 62, cube 1882), index among sqrt(s)-rough 2
+  s = 8295364019358 (13 digits): j_min = 109, 6|j|/(ln P)^2 = 0.739, index among 61-rough 31 (mean law 61, cube 1843), index among sqrt(s)-rough 2
+  s = 8805504939060 (13 digits): j_min = -10, 6|j|/(ln P)^2 = 0.068, index among 61-rough 2 (mean law 62, cube 1854), index among sqrt(s)-rough 0
+  s = 8785015038222 (13 digits): j_min = 404, 6|j|/(ln P)^2 = 2.729, index among 61-rough 107 (mean law 62, cube 1853), index among sqrt(s)-rough 5
+  s = 10220866590330 (14 digits): j_min = -705, 6|j|/(ln P)^2 = 4.714, index among 61-rough 188 (mean law 62, cube 1882), index among sqrt(s)-rough 11
+  s = 10239952218918 (14 digits): j_min = -181, 6|j|/(ln P)^2 = 1.210, index among 61-rough 53 (mean law 62, cube 1882), index among sqrt(s)-rough 4
+  s = 8308505608632 (13 digits): j_min = -334, 6|j|/(ln P)^2 = 2.265, index among 61-rough 94 (mean law 62, cube 1843), index among sqrt(s)-rough 8
+  s = 10215882087882 (14 digits): j_min = 279, 6|j|/(ln P)^2 = 1.866, index among 61-rough 79 (mean law 62, cube 1882), index among sqrt(s)-rough 7
+  s = 8324662507170 (13 digits): j_min = -987, 6|j|/(ln P)^2 = 6.691, index among 61-rough 254 (mean law 62, cube 1843), index among sqrt(s)-rough 24
+  s = 540532387728 (12 digits): j_min = -281, 6|j|/(ln P)^2 = 2.310, index among 61-rough 71 (mean law 51, cube 1380), index among sqrt(s)-rough 5
+  s = 10229819266662 (14 digits): j_min = -131, 6|j|/(ln P)^2 = 0.876, index among 61-rough 32 (mean law 62, cube 1882), index among sqrt(s)-rough 4
+  s = 540163533660 (12 digits): j_min = -395, 6|j|/(ln P)^2 = 3.247, index among 61-rough 106 (mean law 51, cube 1380), index among sqrt(s)-rough 12
+  s = 10237374671940 (14 digits): j_min = -52, 6|j|/(ln P)^2 = 0.348, index among 61-rough 14 (mean law 62, cube 1882), index among sqrt(s)-rough 0
+  s = 8794078206300 (13 digits): j_min = -47, 6|j|/(ln P)^2 = 0.317, index among 61-rough 12 (mean law 62, cube 1853), index among sqrt(s)-rough 2
+  s = 10198517357322 (14 digits): j_min = -257, 6|j|/(ln P)^2 = 1.719, index among 61-rough 65 (mean law 62, cube 1881), index among sqrt(s)-rough 5
+  s = 8797647360498 (13 digits): j_min = 919, 6|j|/(ln P)^2 = 6.207, index among 61-rough 253 (mean law 62, cube 1853), index among sqrt(s)-rough 20
+  s = 10204075223388 (14 digits): j_min = -246, 6|j|/(ln P)^2 = 1.645, index among 61-rough 64 (mean law 62, cube 1881), index among sqrt(s)-rough 5
+  s = 8773383984792 (13 digits): j_min = 184, 6|j|/(ln P)^2 = 1.243, index among 61-rough 49 (mean law 62, cube 1853), index among sqrt(s)-rough 4
+  s = 10234418349930 (14 digits): j_min = -703, 6|j|/(ln P)^2 = 4.700, index among 61-rough 190 (mean law 62, cube 1882), index among sqrt(s)-rough 12
+  s = 8801950155072 (13 digits): j_min = -54, 6|j|/(ln P)^2 = 0.365, index among 61-rough 14 (mean law 62, cube 1854), index among sqrt(s)-rough 1
+  s = 540534142320 (12 digits): j_min = 5, 6|j|/(ln P)^2 = 0.041, index among 61-rough 2 (mean law 51, cube 1380), index among sqrt(s)-rough 0
+  s = 10204570529598 (14 digits): j_min = -72, 6|j|/(ln P)^2 = 0.481, index among 61-rough 15 (mean law 62, cube 1881), index among sqrt(s)-rough 0
+  s = 607353501282 (12 digits): j_min = 161, 6|j|/(ln P)^2 = 1.312, index among 61-rough 43 (mean law 51, cube 1398), index among sqrt(s)-rough 8
+  s = 8318329730412 (13 digits): j_min = 1568, 6|j|/(ln P)^2 = 10.630, index among 61-rough 430 (mean law 62, cube 1843), index among sqrt(s)-rough 16
+  s = 8330455780290 (13 digits): j_min = 82, 6|j|/(ln P)^2 = 0.556, index among 61-rough 18 (mean law 62, cube 1843), index among sqrt(s)-rough 2
+  s = 8794088628552 (13 digits): j_min = 111, 6|j|/(ln P)^2 = 0.750, index among 61-rough 32 (mean law 62, cube 1853), index among sqrt(s)-rough 2
+sample 30 depth-4 nodes: ratio 6|j|/(ln P)^2 mean 2.10 max 10.63; 61-rough index mean 80.5 max 430 (mean law ~ 51); sqrt(s)-rough index mean 5.77 max 24 (predicted mean 4)

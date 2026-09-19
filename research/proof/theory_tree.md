@@ -2906,6 +2906,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         offsets mean about 4, max below 30. Refuted by a node breaching the cube bound or a
         sqrt(s)-index above 60 (a jump of the law by six orders of magnitude in s). Also in the
         kernel this tick: parent_unique (LadderDepth.lean) - the rung graph is a forest.
+        RESULT (19:27; 30 nodes, s from 5.4 x 10^11 to 1.02 x 10^13): ratio 6|j|/(ln P)^2 mean 2.10,
+        max 10.6 (held); 61-rough index mean 80.5 against the mean law 51-62 (1.3x, within a
+        30-sample's spread), max 430 against the cube 1,380-1,882 (held at every node);
+        sqrt(s)-rough index mean 5.8, max 24 (held). All three laws hold six orders of magnitude
+        beyond their measurement range. FACT.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4387,3 +4392,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xiii (random lane): universal clearance classes U_g (offsets no gear strikes at any twin centre) exact to 61 with 0 violations, rung rate inside A_13 enhanced 3.21x; the rung graph is a forest with unique parents (identity 440 = 440 at 10^6); neighbour-forced phases carry no rung information. F(67) >= 213 certified.
 - 2026-09-19, R5.f.xiv (random lane round 2): the universal list carries the cube bound at the certified top (4 x 10^30 guaranteed 109-rough candidates against 8.9 x 10^4); parenthood and child counts are generic (the twin constant); the cyclotomic offsets j = +-c have identity-forced roughness at a quarter of all gears but enhancement 0.89 = the singular series' 0.878 - no gain; F(67) in [213, 217].
 - 2026-09-19, R5.f.xv (random lane round 3): in-window polynomial offsets classified (k in {0, +-1, +-2}); a second composite-forcing family found (upper member (s +- 1)^2 - v^2 at j = +-2c - 6t^2); every irreducible family priced by a finite Chebotarev constant; conservation law - each gear strikes exactly two of every g consecutive offsets, so offset selection cannot raise the expected rung count; the (5,7) tree enumerated to depth 3 (1, 2, 5, 182 nodes), child counts generic; the depth form is the weakest hypothesis, in words: an infinite chain of twin pairs each between the squares of the preceding pair.
+- 2026-09-19, R5.f.xvi: at depth 4 of the (5,7) tree (s ~ 10^12-10^13, 30 nodes) the offset ratio (max 10.6), the 61-rough index (max 430 against the cube ~1,850) and the sqrt(s)-rough index (mean 5.8, max 24) all hold - the index laws extend six orders of magnitude in s.
