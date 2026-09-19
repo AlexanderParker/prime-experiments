@@ -3402,6 +3402,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         is: RungPow e is unsatisfiable for e <= 1 so two lemmas admitting e = 1 are vacuous
         there; redundant hypotheses h_delta and h_theta0; isExc divides by log^2 s (harmless at
         s >= 6). VERDICT: the kernel's statements say what the tree says; FACT.
+      - R5.f.xxx. THE CHEN LEDGER OF A STRETCH (PM, pre-registered 2026-09-20 05:00 before the run;
+        research/stack/r8/chen_ledger.py). Parent observation: the prover lane's ledger (R5.f.xxviii
+        A-2) counts the (s/3)-rough columns; a member below (s+1)^2 with no prime factor <= s/3
+        has at most two prime factors, so every (s/3)-rough column is a rung or has a member that
+        is a product of two primes in (s/3, 3s + 6): T(s) = |R_{s/3}(s)| - N_semi(s) exactly, the
+        stretch's form of Chen's prime / semiprime dichotomy. PRE-REGISTERED: (1) the
+        decomposition is exact; (2) N_semi / |R| < 0.4 at every twin centre in [100, 5000]; (3)
+        |R| / T has mean near 1.25 and never exceeds 2 above s = 500. RESULT (118 twin centres):
+        (1) HOLDS, exact at every centre. (2) FAILS: mean 0.405, min 0.283, max 0.667 at s = 270
+        (0.548 above 500). (3) FAILS: mean 1.708, max 3.000 at s = 270, 2.211 above 500 (e.g.
+        s = 4968: |R| = 146, T = 100, N_semi = 46). So at level s/3 the rough columns are about
+        60% rungs and 40% columns carrying a large semiprime; the Buchstab guess underestimated
+        the semiprime share by half. The ledger is exact and sieve-visible: any lower bound for
+        T through it must separate the primes from the semiprimes among the rough members, which
+        is the statement R5.f.xxvii found no machine law makes. FACT (the two placed numbers
+        refuted; the identity and the measured share stand).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4910,3 +4926,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxix (audit lane): kernel statements audited - no vacuous, subtraction, endpoint or direction defects; every hypothesis that contains the conclusion labelled; NearTwinHyp is a scaffold; docstring overclaims in LadderDepth fixed with two new theorems (chainHyp_of_path, chainHyp_of_ladderHyp_above); twins_unbounded_of_windowHyp and lower_member_rough_upto added.
 - 2026-09-20, F(67) = 213 EXACT (two-class covering record for the gears 5..67; 214 and 215 uncoverable in 9,981 s and 11,285 s); increment 34 from F(61) = 179; F/(p ln p) = 0.756.
 - 2026-09-20, correction: the Euclid device is the universal clearance class j = 0 (lower member) in kernel form, not a new primality-using law; both dichotomy hypotheses hold to 10^6 (minimum 3 rungs from s = 42). F(71) >= 222 (coverable in 3,227 s), bisection continuing.
+- 2026-09-20, R5.f.xxx: the Chen ledger T = |R_{s/3}| - N_semi exact at 118 twin centres to 5000; rough columns are about 60% rungs, 40% large-semiprime columns (share 0.28-0.67); two placed numbers refuted.
