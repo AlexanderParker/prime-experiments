@@ -3197,7 +3197,56 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         independent signs and residues mod 5 (chi-square p > 0.05); (4) every (s mod g, j mod g)
         pair absent among rungs for g in {5, 7, 11, 13} is explained by s' -+ 1 being coprime to
         g. If all hold the forest is exactly residues (a decisive mechanism result, FACT); any
-        failure is a new law. Verdict OPEN.
+        failure is a new law. RESULT (received 01:50; scripts research/stack/r8/sieve_rungs.py,
+        analyse.py, control_windows.py, control_analyse.py, chains.py, census_pairs.py; 81 twin
+        centres s <= 3000, 2,441 rungs to 9.0 x 10^6, every stretch sieved exactly). (1) The
+        inherited local factor is identically 1 - gear g strikes two classes of offsets whatever
+        s'^2 mod g is, so residues decide WHICH offsets are struck, never how many; fitted
+        constant 1.3204 (the parents' 1.3203); slopes on omega(6j) and j mod 30 within 1.4 SE of
+        0; ANOVA over j mod 30 p = 0.44. Poisson spread FAILS: dispersion index 0.824 +- 0.029
+        (sub-Poisson), but same-length windows at the same heights that are not stretches give
+        0.788 +- 0.029 - the spread belongs to the interval, not the rung. (2) HOLDS: 5 | j,
+        7 | j, 35 | j subsets within 1.6 SE of the rest. (3) MIXED: signs of consecutive chosen
+        offsets independent (p = 0.55; 0.98 on 2,437 census pairs); residues mod 5 dependent
+        (chi^2 536) exactly by the two-block rule - child residue s' = 0 mod 5 allows next
+        offsets {0,2,3}, s' = +-2 allows {1,3,4}; zero entries outside the blocks and
+        independence inside them (p = 0.86, 0.92 on the census); nearest-offset classes for
+        g = 5, 7, 11, 13 never in a forbidden class (16 of 16). (4) HOLDS: for g in {5, 7, 11,
+        13} every absent (s mod g, j mod g) pair is forced by the parent or the rung being a
+        twin centre; (g-2)^2 allowed pairs, every one occurs. VERDICT: THE FOREST IS EXACTLY
+        RESIDUES - phase lock and universal clearance are the whole inheritance; no hidden
+        invariant at the small gears; the one non-generic number (sub-Poisson spread) is an
+        interval property. FACT (decisive between mechanisms). Child below.
+        - R5.f.xxv.a. THE DISPERSION OF TWIN COUNTS IN SHORT WINDOWS (PM, 01:55,
+          dispersion_delta.py; 4,000 random windows of length x^delta at heights x in
+          [2, 4] x 10^8, index = mean((count - law)^2 / law)). PRE-REGISTERED: the index falls
+          with delta. RESULT: delta 0.3 / 0.4 / 0.5 / 0.6 / 0.7 -> 0.926 / 0.854 / 0.829 / 0.834
+          / 0.742 (SE 0.02), mean count/law 0.99-1.00 throughout. HOLDS: sub-Poisson, falling
+          with the window exponent; the lane's 0.79-0.82 at 4 sqrt(x) is the delta = 1/2 point.
+          Prior art (one line): this is the shape of the Montgomery-Soundararajan variance of
+          primes in short intervals, here for twin centres; a variance statement is the
+          almost-all quantity of R5.f.xxi (iii). FACT; stopped as a known shape.
+      - R5.f.xxvi. THE REGIONS BETWEEN CONSECUTIVE PRIME SQUARES (PM, pre-registered 01:58 before
+        the run, region_census.py). Parent observation: a twin's stretch is the region (p^2, q^2)
+        between consecutive primes with gap 2; the machine's window (q, q^2] is a union of such
+        regions, so "a twin in every region" (the window statement region by region) contains
+        LadderHyp as its gap-2 case. PRE-REGISTERED: (1) no region with q^2 <= 10^9 is empty;
+        (2) the minimum count over regions of gap g grows with g, so the stretches are the
+        binding case; (3) counts follow 1.3203 (q^2 - p^2)/ln^2(p^2) with mean ratio 1 within
+        1%. RESULT: 3,398 regions, 0 empty, mean ratio 0.9989; by gap: g = 2 min count 2 (at
+        p = 5, 11, 17, 29), min ratio 0.573 (p = 29); g = 4 min 4, ratio 0.625; g = 6 min 8,
+        0.686; g = 8 min 21, 0.861; g >= 16 min ratio >= 0.925; the eight smallest counts are
+        all gap 2 and gap 4 regions. ALL THREE HOLD: the twin stretches are exactly the binding
+        case of the machine's window statement. FACT. Children: the formalist lane below.
+        - R5.f.xxvi.a. KERNEL LANE: REGIONS AND THE WINDOW STATEMENT (Fable formalist lane,
+          opened 02:00; brief lane_region/BRIEF.md). PRE-REGISTERED: proofs/LadderRegion.lean
+          with Consecutive p q, RegionHyp (a twin centre strictly between consecutive prime
+          squares, p >= 5), consecutive_of_twinCentre, ladderHyp_of_regionHyp (RegionHyp is
+          stronger than LadderHyp: its gap-2 case), twins_unbounded_of_region, WindowHyp (for
+          every q >= 6 a twin centre u with q <= u - 1 and u + 1 < (q+1)^2 - the owner's window
+          statement with window [q, (q+1)^2)), windowHyp_of_ladderHyp (the ladder from 6 climbs
+          past every q by less than a squaring), windowHyp_of_regionHyp. 0 sorries expected.
+          Verdict OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4692,3 +4741,6 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xiv addendum: kernel LadderInfinite.lean - the (5,7) rung tree is infinite iff it has a node at every depth (no Koenig), so twins unbounded follows from an infinite (5,7) tree; 0 sorries.
 - 2026-09-20, R5.f.xxiv (routes lane, Fable): the product forest - windows ((s-1)(t-1), (s+1)(t+1)) for twin centres s <= t, exactly three roots (6, 12, 18) to 10^6, never empty over 20,100 pairs; kernel LadderProduct.lean: LadderHyp -> ProductHyp -> twins unbounded, SixHyp (a twin centre within ratio 7/5) -> ProductHyp. Consecutive-product windows generic (0 empty of 462). Near-gear confinement refuted as stated, corrected k-rule is the difference-of-squares families again (rediscovery, closed).
 - 2026-09-20, R5.f.xxiv.b.i (red lane): product-forest numbers reproduced exactly; multiplier-6 windows never empty (min 2 at 6, 12, 18); the multiplier-6 family does not cover u = 138 (needs (12,12)); r_p = p(p^2-6p+10)/(p-2)^3 exact, K = 0.823103, residual z = -1.73 inside Poisson.
+- 2026-09-20, R5.f.xxv (inheritance lane, Fable): the forest is exactly residues - inherited local factor identically 1, no slope on omega(6j) or j mod 30, mod-5 dependence of consecutive offsets is the two-block residue rule with independence inside, every absent residue pair forced; sub-Poisson spread 0.82 matched by non-stretch windows 0.79.
+- 2026-09-20, R5.f.xxv.a: dispersion index of twin counts in windows x^delta falls 0.926 -> 0.742 from delta 0.3 to 0.7 (Montgomery-Soundararajan shape; stopped as known).
+- 2026-09-20, R5.f.xxvi: 3,398 regions between consecutive prime squares to 10^9, none empty; the gap-2 regions (twin stretches) carry the smallest counts and ratios (0.573 at p = 29) - the stretches are the binding case of the window statement; formalist lane opened for RegionHyp / WindowHyp.

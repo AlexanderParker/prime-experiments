@@ -3990,3 +3990,14 @@ square ladder to a constant-ratio window, the forest has exactly three roots to 
 kernel now has LadderHyp -> ProductHyp -> twins unbounded with SixHyp -> ProductHyp
 (proofs/LadderProduct.lean, 0 sorries). Near-gear confinement (route 3) was refuted as stated and
 its corrected law is the difference-of-squares families again, so it is closed as a rediscovery.
+
+### 134. The forest is exactly residues; the stretches are the binding regions (2026-09-20)
+
+Inheritance lane (R5.f.xxv): a rung inherits from its parent only which offset classes are struck
+(phase lock, universal clearance), never how many - the local factor is identically 1, no slope on
+the smoothness of the offset, and every absent residue pair is forced by the twin conditions. The
+sub-Poisson spread of rung counts (0.82) is an interval property (control windows 0.79), falling
+with the window exponent (0.93 at x^0.3 to 0.74 at x^0.7). Region census (R5.f.xxvi): among 3,398
+regions between consecutive prime squares to 10^9 none is empty and the gap-2 regions - the twin
+stretches - have the smallest counts and ratios, so LadderHyp is the binding case of the machine's
+window statement. A formalist lane is putting RegionHyp -> LadderHyp -> WindowHyp into the kernel.
