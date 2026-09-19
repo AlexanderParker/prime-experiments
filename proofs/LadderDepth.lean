@@ -114,6 +114,42 @@ theorem chainHyp_of_depthHyp (hD : DepthHyp) : ChainHyp := by
   obtain ⟨f, hf, _⟩ := key n s hs
   exact ⟨f, hf⟩
 
+/-! ### Wider windows: the ladder with any exponent (cubes give the twin analogue of Mills) -/
+
+/-- A rung with window exponent `e`: a twin centre strictly between `(s-1)^e` and `(s+1)^e`. -/
+def RungPow (e s s' : ℕ) : Prop := TwinCentre s' ∧ (s - 1) ^ e < s' - 1 ∧ s' + 1 < (s + 1) ^ e
+
+/-- A chain of `n` rungs with exponent `e`. -/
+def ChainPow (e n : ℕ) (f : ℕ → ℕ) : Prop :=
+  TwinCentre (f 0) ∧ ∀ k, k < n → RungPow e (f k) (f (k + 1))
+
+/-- **Chains of every length, any exponent `e ≥ 2`, give twins unbounded.**  A rung climbs by at
+least 2 whatever the exponent: `s' > (s-1)^e ≥ (s-1)^2 ≥ s + 2` for `s ≥ 6`. -/
+theorem twins_unbounded_of_chainsPow (e : ℕ) (he : 2 ≤ e)
+    (hC : ∀ n : ℕ, ∃ f : ℕ → ℕ, ChainPow e n f) :
+    ∀ N : ℕ, ∃ m : ℕ, N < 6 * m - 1 ∧ (6 * m - 1).Prime ∧ (6 * m + 1).Prime := by
+  intro N
+  obtain ⟨f, hf⟩ := hC N
+  have climb : ∀ k, k ≤ N → TwinCentre (f k) ∧ 6 + 2 * k ≤ f k := by
+    intro k
+    induction k with
+    | zero => intro _; exact ⟨hf.1, twinCentre_ge_six hf.1⟩
+    | succ k ih =>
+      intro hk
+      obtain ⟨htc, hge⟩ := ih (by omega)
+      have hr := hf.2 k (by omega)
+      refine ⟨hr.1, ?_⟩
+      have h6 := twinCentre_ge_six htc
+      have hpow : (f k - 1) ^ 2 ≤ (f k - 1) ^ e := Nat.pow_le_pow_right (by omega) he
+      have hsq : f k + 2 ≤ (f k - 1) ^ 2 := by
+        obtain ⟨t, ht⟩ : ∃ t, f k = t + 1 := ⟨f k - 1, by omega⟩
+        rw [ht, Nat.add_sub_cancel]; nlinarith
+      have := hr.2.1
+      omega
+  obtain ⟨⟨⟨m, hm⟩, hp1, hp2⟩, hge⟩ := climb N le_rfl
+  rw [hm] at hp1 hp2 hge
+  exact ⟨m, by omega, hp1, hp2⟩
+
 /-! ### The rung graph is a forest: parents are unique (random lane, angle 2) -/
 
 /-- **Unique parent.**  Two twin centres with a common rung are equal: both lie in the interval
