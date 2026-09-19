@@ -2473,6 +2473,40 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         (-2g, 2g) and +-g is 1 or 5 mod 6 while 6j + e is 0 or 2). Run to P = 200,000: claims 1-3
         hold, max step ratio 10.3 at P = 58,169, minimum twin count 3 at P = 41; run to 10^6 in
         progress.
+      - R5.f.iii. THE RUNG IN CENTRE COORDINATES: LOCATOR, CLEAN RUNGS, EXACT COUNT (lane
+        round 3, received 13:20; pre-registered here before the run; test research/stack/r8/
+        ladder_locator.py). s = P + 1 = 6c; centre member s^2 - 1; offset j has members
+        s^2 + 6j -+ 1; new centre s' = s^2 + 6j; gear g strikes offset j iff s^2 + 6j = +-1 mod g;
+        s != +-1 mod g for every gear g < P (column c is a twin), so s^2 != 1 and g strikes the
+        centre iff g | s^2 + 1 (forcing g = 1 mod 4). INHERITANCE LEMMA (lane, elementary): if
+        j = 0 mod g and g does not divide s^2 + 1, gear g misses offset j and s' = s^2 mod g.
+        CLAIM 1 (locator): with y maximal such that the product of the gears 5..y is <= c/50,
+        D = {g <= y : g | s^2 + 1}, the progression L = {j : |j| <= 2c-1, j = 0 mod prod of the
+        gears <= y outside D, j != 0, 2u mod g for g in D} contains a twin centre for every twin
+        lower P <= 10^6 (also reported at fixed y = 7, 13). CLAIM 2 (clean rung): for P <= 10^5
+        the stretch holds a twin centre s' with no gear <= 13 dividing s'^2 + 1, so the next
+        rung's locator has the full modulus; along locator rungs s' = s^2 mod g (squaring orbit).
+        CLAIM 3 (exact count): T(c) >= (1/2) T0(c) prod_{sqrt P < g <= P} (1 - 2/g), T0 the offsets
+        surviving the gears <= sqrt P. Predictions: all hold. Refuted by a non-empty L without
+        a twin centre; a twin with no clean rung at y = 13; a ratio below 1/2. PM reading: the
+        locator pre-clears the gears <= y by a congruence on j with modulus prod g <= c/50 - the
+        carry wall's accounting (log-many gears cleared inside the window), now with the
+        clearing done by the twin's own residues s^2 mod g rather than by divisibility; the
+        search inside L is a twin search on one progression.
+        RESULT (13:14; twin lowers to 200,000 for claim 1, to 30,000 for 2 and 3; runs to 10^6 /
+        10^5 in progress). CLAIM 1 with the y-rule HOLDS at all 2,159 twins, no empty L: |L| min 3,
+        median 1,002, max 6,593; first success at index 24 on average, 201 at worst. At fixed
+        y = 7 it fails at 11 small twins (P = 5 .. 1,949, |L| <= 37), at fixed y = 13 at 634
+        (|L| median 27): the rung lands in the progression when the progression is long enough,
+        and the y-rule keeps it so. CLAIM 2 fails only at P = 17, 29, 41 (every twin centre s'
+        of those stretches has 5 | s'^2 + 1) and P = 269 (13 divides all; clean to y = 11);
+        from P = 271 every twin has a clean rung at 13, median largest clean y 211. CLAIM 3
+        REFUTED at the constant 1/2 by one twin, P = 71 (ratio 0.472); 1st percentile 0.565,
+        mean 0.797 - the large gears beat their independent effect by at most 2.1 at any twin
+        to 30,000. VERDICT: FACT (locator law with the y-rule; clean rungs from 271; the
+        count ratio in [0.47, 1]). PM reading: with the rule M <= c/50 the progression has
+        about 4c/M >= 200 candidates; for the rung to land in it at every c the progression
+        must lengthen with c (M ~ c^(1-e)), which is the next round's first item.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -3933,3 +3967,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.d.i.b: record windows against square windows - the certified record windows' start residues lie in the square class at 37 of 70 gears (0.529), no gear systematically avoided. Prediction (no relation) held; DEAD.
 - 2026-09-19, R5.e: adjacent stretches share phases exactly at the gears dividing (q-p)(q+p) (0-5 of them); detrended twin-density residuals of adjacent stretches uncorrelated (r = -0.02, p > 2000) and unshifted by the number of shared gears (1.004 to 0.997). FACT; raw r = 0.92 was the 1/(ln p)^2 trend, a confound in the pre-registration.
 - 2026-09-19, R5.f.i: the first lane's three claims hold at every p from 37 to 19,997 - square-scale transfer (a p-rough partner of P^2, P(P+2) or (P+2)^2 for the first twin of the stretch at the mean), single-plug column in every stretch with every cofactor prime, near pairs with the separation law exact. FACT; the lane is lifting claim 1 to the level where it is used.
+- 2026-09-19, R5.f.iii: the rung in centre coordinates - the locator (small gears pre-cleared by a congruence on the offset, phases from s^2 mod g) contains a twin centre at every twin lower to 200,000 under the y-rule; clean rungs from P = 271; the exact-count ratio min 0.472 at P = 71. FACT.
