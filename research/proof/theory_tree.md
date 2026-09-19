@@ -2918,6 +2918,49 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         30-sample's spread), max 430 against the cube 1,380-1,882 (held at every node);
         sqrt(s)-rough index mean 5.8, max 24 (held). All three laws hold six orders of magnitude
         beyond their measurement range. FACT.
+      - R5.f.xvii. THE CONTRADICTION ROUTE: A FINITE TREE (contradiction lane, a third fresh
+        Opus lane, received 20:45). Suppose the (5, 7) tree is finite; every leaf s is a twin
+        centre whose stretch of length 4s around s^2 holds no twin. MECHANICAL: (M2) a leaf is
+        EXACTLY sieve data - every composite member of the stretch has a prime factor <= s - 1
+        (its least factor is < s + 1 and s is not prime), so there is no plug from above and the
+        leaf is a two-class covering of the window by the gears 5..s-1 with no analytic
+        remainder; (M1) count identity corrected: pi((s+1)^2) - pi((s-1)^2) = primes among the
+        2(4c-1) members + [s^2 + 2s - 1 prime] (the singleton (s+1)^2 - 2 at j = 2c); (M3)
+        counting never refutes a leaf - the two-class capacity exceeds the window from s = 19 on
+        by 2(ln ln s - 0.572) (5.65 at 10^13) and the leaf's own prime ceiling 2s/3 sits (ln s)/3
+        above the truth, so even an exact short-interval prime asymptotic would not contradict a
+        leaf; (M4) the fundamental-lemma split leaves slack (log s)(log log s); (M5) 1 - 1/ln s of
+        the window must be covered by gears <= 2s/3, the periodic part; (M6) j = 0 and j = +-2c
+        are forced dead, the free columns number 4c - 2; (M7) universal clearance is exact (j = 3
+        mod 5) and a leaf must cover those columns from gears >= 7 - a real constraint, not a
+        contradiction; (M8) no exact law of the machine is violated by a leaf; the only proved
+        bound on a leaf is s > 10^6. LITERATURE: no unconditional theorem asserts one twin pair
+        anywhere, so none refutes a leaf; Baker-Harman-Pintz is SILENT (the brief's inference was
+        backwards: for s > 2^40 the stretch, length 4 sqrt N, is SHORTER than the BHP window
+        N^0.525 and inside it; below, BHP is ineffective; and a prime in the stretch is not a
+        twin anyway); Legendre is open and not implied by RH (Cramer's sqrt(p) log p is a log too
+        weak) - the rung sits exactly at the RH barrier; Brun-Titchmarsh is an upper bound;
+        Selberg's parity obstruction applies with full force since a leaf IS sieve data; Chen,
+        Zhang-Maynard-Tao (246; 6 under GEH), GPY give no gap 2 and no localisation to length
+        4 sqrt N; Erdos-Rankin type constructions show free coverings of the required length are
+        over-supplied by 2 ln ln s, so a leaf is not impossible on construction grounds - the
+        rigidity (2s/3 constraints on one parameter of log s bits) is the whole content.
+        STRUCTURAL: s_n ~ 6^(2^n), T(s) = 2 C_2 s/(ln s)^2 with 2 C_2 = 1.320323 (the measured 1.32
+        is the twin constant); the smallest finite tree has depth >= 4 and needs all 2,619,059
+        depth-4 nodes to be leaves, else >= 4.6 x 10^9 leaves at depth 5, >= 3.4 x 10^21 at 6;
+        refuting depth n costs one rung search of 0.4 x 2^(3n) 61-rough candidates on 1.56 x 2^n-
+        digit numbers, so certified depth grows logarithmically in the work; a single leaf in the
+        literature's words: a twin-free interval of length 4 sqrt N on a square, 10^2 to 10^7
+        times the extreme-value prediction (log N)^3/(2 C_2) at its height, the ratio growing like
+        sqrt N; model probability of a leaf anywhere above 10^6 below exp(-6,900); finiteness of
+        the (5, 7) component does not bound the twins (other roots), so no largest-counterexample
+        machinery applies. THE ONE ASSET: the change of quantifier - the tree needs, per level,
+        that at least one of its ~10^16, ~10^37, ... nodes has a rung, i.e. a lower bound for twins
+        in the UNION of the level-n stretches (one parameter s per node) rather than in one
+        interval - strictly more room than the direct statement, and the only place the rigidity
+        can be attacked with many independent parameters. VERDICT: FACT (the route yields the
+        existential-per-level form and a level-by-level certification programme); the
+        contradiction itself needs exactly what a direct proof needs.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4400,3 +4443,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xiv (random lane round 2): the universal list carries the cube bound at the certified top (4 x 10^30 guaranteed 109-rough candidates against 8.9 x 10^4); parenthood and child counts are generic (the twin constant); the cyclotomic offsets j = +-c have identity-forced roughness at a quarter of all gears but enhancement 0.89 = the singular series' 0.878 - no gain; F(67) in [213, 217].
 - 2026-09-19, R5.f.xv (random lane round 3): in-window polynomial offsets classified (k in {0, +-1, +-2}); a second composite-forcing family found (upper member (s +- 1)^2 - v^2 at j = +-2c - 6t^2); every irreducible family priced by a finite Chebotarev constant; conservation law - each gear strikes exactly two of every g consecutive offsets, so offset selection cannot raise the expected rung count; the (5,7) tree enumerated to depth 3 (1, 2, 5, 182 nodes), child counts generic; the depth form is the weakest hypothesis, in words: an infinite chain of twin pairs each between the squares of the preceding pair.
 - 2026-09-19, R5.f.xvi: at depth 4 of the (5,7) tree (s ~ 10^12-10^13, 30 nodes) the offset ratio (max 10.6), the 61-rough index (max 430 against the cube ~1,850) and the sqrt(s)-rough index (mean 5.8, max 24) all hold - the index laws extend six orders of magnitude in s.
+- 2026-09-19, R5.f.xvii (contradiction lane): a leaf of a finite (5,7) tree is exactly sieve data (every composite member has a factor <= s-1), violates no exact law, is untouched by every proved theorem (BHP silent - the stretch is shorter than N^0.525; Legendre open even under RH; parity applies in full), and would be 10^2-10^7 times the extreme-value twin gap at its height; the route's one asset is the existential-per-level form (twins in the union of a level's stretches).

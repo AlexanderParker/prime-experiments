@@ -82,4 +82,29 @@ theorem parent_unique {s t s' : ℕ} (hs : TwinCentre s) (ht : TwinCentre t)
     have := h2.2.2; have := h1.2.1
     omega
 
+/-! ### A leaf is sieve data (contradiction lane, M2) -/
+
+/-- **Every composite member of a twin's stretch has a prime factor at most `s - 1`.**  A composite
+`m < (s+1)²` has least prime factor `p` with `p² ≤ m < (s+1)²`, so `p ≤ s`; and `p ≠ s` because
+`6 ∣ s`.  Hence a twin centre with no rung ("a leaf") is exactly a two-class covering of its window
+by the gears `5..s-1`: there is no plug from above and no analytic remainder. -/
+theorem leaf_is_sieve_data {s m : ℕ} (hs : TwinCentre s) (hm : m < (s + 1) ^ 2)
+    (hcomp : ¬ m.Prime) (h2 : 2 ≤ m) :
+    ∃ p : ℕ, p.Prime ∧ p ∣ m ∧ p ≤ s - 1 := by
+  obtain ⟨⟨k, rfl⟩, _, _⟩ := hs
+  have hmin : (Nat.minFac m).Prime := Nat.minFac_prime (by omega)
+  have hsq : Nat.minFac m ^ 2 ≤ m := Nat.minFac_sq_le_self (by omega) hcomp
+  refine ⟨Nat.minFac m, hmin, Nat.minFac_dvd m, ?_⟩
+  have hlt : Nat.minFac m < 6 * k + 1 := by
+    by_contra h; push_neg at h
+    have : (6 * k + 1) ^ 2 ≤ Nat.minFac m ^ 2 := Nat.pow_le_pow_left h 2
+    omega
+  -- minFac m ≤ 6k and minFac m ≠ 6k (6k is not prime unless k = 0, excluded by 2 ≤ m < 1)
+  have hne : Nat.minFac m ≠ 6 * k := by
+    intro h
+    have hp : (6 * k).Prime := h ▸ hmin
+    have h2d : (2 : ℕ) ∣ 6 * k := ⟨3 * k, by ring⟩
+    rcases hp.eq_one_or_self_of_dvd 2 h2d with h' | h' <;> omega
+  omega
+
 end TwinLadder

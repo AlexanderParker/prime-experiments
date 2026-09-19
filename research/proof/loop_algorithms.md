@@ -3941,3 +3941,14 @@ and every irreducible family priced by a finite Chebotarev constant; the conserv
 gear strikes exactly two of every g consecutive offsets) shows offset selection cannot raise the
 expected rung count - the cyclotomic offsets' 0.878 is the predicted instance. The full map with the
 audit: research/proof/ladder_proof_map.md.
+
+### 129. The contradiction route and the state of the ladder (laboratory, 2026-09-19 evening)
+
+The canonical ladder reaches its tenth rung (a 756-digit twin lower, j = -321,634); the (5, 7)
+tree's index laws hold at depth 4 (s ~ 10^13); the conservation law (two_strike_classes), the
+forest (parent_unique), the depth form (DepthHyp) and both composite-forcing families are in the
+kernel. A third lane took the contradiction route: a leaf is exactly sieve data (kernel
+leaf_is_sieve_data), violates no exact law, is untouched by every proved theorem, and would be a
+twin-free interval of length 4 sqrt N on a square, 10^2 to 10^7 times the extreme-value twin gap at
+its height; its one asset is the per-level existential form. Tree nodes R5.f.xvi-xvii; map
+research/proof/ladder_proof_map.md sections 7-9.

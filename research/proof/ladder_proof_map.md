@@ -187,3 +187,19 @@ gears is priced exactly by the singular series (0.89 measured, 0.878 predicted) 
   s_{n+1} strictly between (s_n - 1)^2 and (s_n + 1)^2 - the twin primes contain an infinite chain in
   which each pair lies between the squares of the preceding pair; the finite-level form (chains of
   every length from (5, 7)) is equivalent and is what the kernel assumes (`DepthHyp`).
+
+## 9. The contradiction route (2026-09-19 20:45, third lane)
+
+A leaf of a finite (5, 7) tree - a twin centre s whose stretch holds no twin - is exactly sieve data:
+every composite member has a prime factor <= s - 1 (kernel `leaf_is_sieve_data`), so the leaf is a
+two-class covering of the window by the gears 5..s-1 with no analytic remainder. Counting never
+refutes it (capacity exceeds the window from s = 19; the prime ceiling 2s/3 sits (ln s)/3 above the
+truth); no exact law of the machine is violated; no proved theorem touches it (BHP is silent - the
+stretch, length 4 sqrt N, is shorter than N^0.525; Legendre is open even under RH; Selberg's parity
+obstruction applies in full; bounded-gap results give neither gap 2 nor localisation); a single
+leaf would be a twin-free interval 10^2-10^7 times the extreme-value twin gap at its height; the
+smallest finite tree needs all 2,619,059 depth-4 nodes to be leaves. Corrections to the brief: the
+count identity carries the singleton (s+1)^2 - 2, and Baker-Harman-Pintz points the other way. The
+route's one asset: the existential-per-level form - a lower bound for twins in the union of a
+level's ~10^16 stretches, one parameter per node - which is where a proof would have room the direct
+statement lacks.
