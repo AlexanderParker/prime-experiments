@@ -60,4 +60,26 @@ theorem depthHyp_of_ladderHyp (hL : LadderHyp) : DepthHyp := by
     obtain ⟨s', hr⟩ := hL s hs.twinCentre
     exact ⟨s', Depth.step hs hr⟩
 
+/-! ### The rung graph is a forest: parents are unique (random lane, angle 2) -/
+
+/-- **Unique parent.**  Two twin centres with a common rung are equal: both lie in the interval
+`(√s' - 1, √s' + 1)` of length 2, which holds at most one multiple of 6. -/
+theorem parent_unique {s t s' : ℕ} (hs : TwinCentre s) (ht : TwinCentre t)
+    (h1 : Rung s s') (h2 : Rung t s') : s = t := by
+  have h6s := twinCentre_ge_six hs
+  have h6t := twinCentre_ge_six ht
+  obtain ⟨⟨a, rfl⟩, _, _⟩ := hs
+  obtain ⟨⟨b, rfl⟩, _, _⟩ := ht
+  by_contra hne
+  rcases Nat.lt_or_gt_of_ne hne with hlt | hlt
+  · -- 6a < 6b, so 6a + 1 ≤ 6b - 1, so (6a+1)² ≤ (6b-1)² < s' - 1 < s' + 1 < (6a+1)²
+    have hle : 6 * a + 1 ≤ 6 * b - 1 := by omega
+    have hsq : (6 * a + 1) ^ 2 ≤ (6 * b - 1) ^ 2 := Nat.pow_le_pow_left hle 2
+    have := h1.2.2; have := h2.2.1
+    omega
+  · have hle : 6 * b + 1 ≤ 6 * a - 1 := by omega
+    have hsq : (6 * b + 1) ^ 2 ≤ (6 * a - 1) ^ 2 := Nat.pow_le_pow_left hle 2
+    have := h2.2.2; have := h1.2.1
+    omega
+
 end TwinLadder
