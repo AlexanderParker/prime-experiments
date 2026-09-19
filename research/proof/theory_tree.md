@@ -2591,8 +2591,10 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         KERNEL (13:36, proofs/LadderBase.lean, 0 sorries): open_in_every_block and card_open_ge -
         if no F + 1 consecutive columns are all struck, every block of F + 1 holds an open column
         and a window of L columns holds at least L / (F + 1) open ones (one per full block,
-        injectively). Claim A (i) is a theorem: the base half of the rung follows from the
-        record of the base gears with no density input.
+        injectively). Claim A (i) is a theorem CONDITIONAL on the run bound: instantiating it
+        at depth x = sqrt s needs F(x) < 2x^2/3 to give even one candidate - exact to x = 61,
+        measured 0.7 x ln x beyond, best proved two-class exponent 4.266 (the lane's audit flag,
+        R5.f.x). No density input, but an open run-bound input.
         CLAIM C RESULT (13:33, canonical_ladder2.py, the lane's rule - nearest centre, negative
         tie): 5 -> 29 -> 881 -> ... nine rungs to a 378-digit twin lower in 24 s; offsets -1, -3,
         9, 21, -68, 641, -1682, -4187, -2086; 6|j|/(ln P)^2 = 2.3, 1.6, 1.2, 0.7, 0.55, 1.3, 0.86,
@@ -2716,6 +2718,28 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         (the top half is the phase model, slightly over rather than under); claim 2 FACT (the
         supply side holds from s = 12,162 on, with the eight small exceptions verified). The
         ladder's remaining hypothesis is stated in both vocabularies (node text above).
+      - R5.f.x. THE AUDIT, THE PROOF MAP AND THE CERTIFICATE (lane round 9, received 14:00;
+        research/proof/ladder_proof_map.md). Every claim of rounds 1-8 with its final status
+        (table in the map): PROVED and in the kernel - normal form, twin gears at the centre
+        only, record pigeonhole (conditional), rung_gt, twinCentre_unbounded,
+        twins_unbounded_of_ladder, NearTwinHyp -> LadderHyp, square-phase eligibility, top-band
+        idleness, difference-of-squares failure, universal list; MEASURED-HELD - the ladder to
+        10^6, the index law i <= 4 ln P, steering thresholds, the exact reuse model (+5-7%
+        residual open), no impossible block; REFUTED - fixed-y locators, clean rungs at 13 as
+        stated, count ratio 1/2, the sqrt(c) progression form, index <= 24, reuse (2/g)^2, the
+        steered-index band; WITHDRAWN - round 1's transfer as an inductive step. THE SERIOUS
+        FLAG: the candidate supply is not unconditional - it needs F(x) < 2x^2/3 (L3a, OPEN).
+        THE MAP: critical path H (LadderHyp) -> L8 -> twins unbounded; L3 off the path (makes
+        the rung a bounded check, drags in L3a); L4, L5 load nothing. THE CERTIFICATE: six rungs
+        6 -> 30 -> 882 -> 777978 -> 605249768610 -> 3.66 x 10^23 -> 1.34 x 10^47 with Pratt
+        certificates for all members (the 48-digit p - 1 factored in a second each) and the
+        composition theorem twins_unbounded_of_ladder_above (LadderHyp needed only above
+        10^47), proofs/LadderCertificate.lean + LadderPratt.lean (build in progress at 14:00).
+        VERDICT: the ladder programme is a REDUCTION - infinitude of twins to one localised
+        short-interval statement (twin between P^2 and (P+2)^2; bounded form: among the first
+        ceil(4 ln s) base-open offsets) - with everything around it proved or measured and the
+        open ingredients named in both vocabularies. CANDIDATE for the answer's form: not yet
+        shown (the hypothesis is the conjecture localised).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4186,3 +4210,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.vii full run: index law i <= 4 ln P holds at all 8,168 twin lowers to 10^6 (max i/ln P = 3.29 at 646,421); square-phase eligibility exact; gear reuse at 0.41-0.49 of the crude independent estimate to 10^5.
 - 2026-09-19, R5.f.viii: exact reuse expectation accounts for most of the crude factor 0.47 but a deficit growing with the block (7% at 16, 10% at 32, 4.5 sigma) remains, open; steering does not lower the first-twin index (4.53 +- 0.21); no impossible block of 2, 3, 4 base-open offsets.
 - 2026-09-19, R5.f.ix full run: the reuse deficit was the statistic (sum C(k,2) = 2,057 vs 1,929 expected, +6.6%); the pigeonhole supply side of the index bound holds at every twin from s = 12,162 to 10^6, with eight small exceptions verified directly; the remaining hypothesis stated in the literature's words (twin pair between P^2 and (P+2)^2, or in [s^2 - H, s^2 + H] with H ~ N^(1/4) log N).
+- 2026-09-19, R5.f.x: the lane's audit of rounds 1-8 (statuses, the serious flag that the candidate supply is conditional on a run bound F(x) < 2x^2/3), the proof map (critical path LadderHyp -> twins unbounded; L3, L4, L5 off it) and the certificate design; research/proof/ladder_proof_map.md; six-rung Pratt certificate to a 48-digit twin centre building.
