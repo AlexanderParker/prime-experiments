@@ -3761,3 +3761,18 @@ of the pattern's dead windows - and the dead windows of the pattern of gears <= 
 F(p) = 57 at 31, 87 at 37, 118 at 47, against stretches of length 2 p gap / 6 which exceed
 F(p) from p = 37 on (stretch 51 at 37 < 87 - the square's window is short enough to be killable
 in principle; and it is not killed).
+
+### 120. Kernel: every shift vector is a window of the real pattern (loop, 2026-09-19)
+
+[proofs/RigidShift.lean, round 112, 0 sorries]
+  * `window_realises_shift`: for distinct primes G and any shifts s, there is a window position x
+    such that for every gear g in G, every tooth offset t and every relative column i, the real
+    tooth t strikes x + i iff the shifted tooth s g + t strikes i (Chinese remainder theorem,
+    x = (g - 1) s g mod g for every g).
+  * `shifted_pattern_is_window`: the shifted rigid pair of every gear, read at window x, is the
+    real pair - the shifted machine IS the real machine at another window.
+So entry 119's identity F_shift = F(M) is kernel-backed at its mechanism, and entries 117-118's
+re-phasing adversary is a walk along the real pattern's period: the kill distance d(p) is the
+number of gears in which the square's window differs, in residue, from the nearest fully struck
+window of the same pattern. F(47) bisection: 120 uncoverable, 117 coverable (118 certified on
+record; 118, 119 pending); F(59) queued.

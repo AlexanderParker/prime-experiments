@@ -2349,3 +2349,6 @@ name = "OwnerArgument"
 
 [[lean_lib]]
 name = "CounterMachine"
+
+[[lean_lib]]
+name = "RigidShift"
