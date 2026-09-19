@@ -1,0 +1,5 @@
+depth 0: 1 node: [6]
+depth 1: 2 nodes; min 30, max 42 (2 digits); child counts of depth 0: [2]; predicted 1.32 s/(ln s)^2: 2.5
+depth 2: 5 nodes; min 858, max 1788 (4 digits); child counts of depth 1: [2, 3]; predicted 1.32 s/(ln s)^2: 3.4, 4.0
+depth 3: 182 nodes; min 734472, max 3200358 (7 digits); child counts of depth 2: [27, 25, 35, 47, 48]; predicted 1.32 s/(ln s)^2: 24.8, 25.3, 40.5, 40.9, 42.1
+depth 4: 2619059 nodes; min 539447650518, max 10242297728700 (14 digits); child counts of depth 3: min 5172, mean 14390.4, max 19113; predicted 1.32 s/(ln s)^2: mean 14377.6

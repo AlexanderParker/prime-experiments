@@ -3924,3 +3924,20 @@ F(x) < 2x^2/3 (open); fitted constants and two wrong models withdrawn; min-gap a
 load nothing. The open node in both vocabularies: every twin centre s has a twin among its first
 C (ln s)^2 61-rough offsets (a twin pair within ~(ln s)^2 columns of s^2 at fixed sieve level 61);
 weakest: a twin pair between P^2 and (P+2)^2.
+
+### 128. The (5, 7) rung tree to depth 4, the depth form, and the pricing of offsets (laboratory, 2026-09-19)
+
+Tree nodes R5.f.xiii-xv. The rung tree from the twin (5, 7) - children of a twin centre s are the
+twin centres strictly between (s-1)^2 and (s+1)^2 - has 1, 2, 5, 182 and 2,619,059 nodes at depths
+0 to 4 (depth 4 spans 5.4 x 10^11 to 1.0 x 10^13), with child counts matching the generic
+1.32 s/(ln s)^2 to 0.1% at depth 3 (mean 14,390 against 14,378). The weakest hypothesis on record,
+kernel LadderDepth.lean: the tree has a node at every depth (DepthHyp) - then twin primes are
+unbounded directly, no Konig; in words, twin primes contain an infinite chain in which each pair
+lies between the squares of the preceding pair. Around it, from the random lane: the universal
+clearance classes (kernel UniversalClearance.lean) carry the cube bound at the certified top
+unconditionally; the rung graph is a forest with unique parents; in-window polynomial offsets are
+classified (k in {0, +-1, +-2}) with two composite-forcing identity families (kernel, TwinLadder.lean)
+and every irreducible family priced by a finite Chebotarev constant; the conservation law (each
+gear strikes exactly two of every g consecutive offsets) shows offset selection cannot raise the
+expected rung count - the cyclotomic offsets' 0.878 is the predicted instance. The full map with the
+audit: research/proof/ladder_proof_map.md.

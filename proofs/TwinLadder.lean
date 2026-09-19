@@ -71,4 +71,18 @@ theorem twin_gear_strikes_centre_only (c j e : ℤ) (hc : 1 ≤ c)
   · exfalso
     rcases hg with rfl | rfl <;> rcases he with rfl | rfl <;> omega
 
+/-- **The two composite-forcing offset families** (random lane round 3).  With `s = 6c`, the lower
+member at `j = -(u² - 1)/6` is `s² - u²` (`u ≡ ±1 mod 6`, the known difference of squares), and the
+upper member at `j = ±2c - 6t²` is `(s ± 1)² - (6t)²` - a second family, previously unrecorded.  Both
+force a composite member, so both offsets are excluded from any rung. -/
+theorem upper_member_difference_of_squares (c t : ℤ) :
+    (6 * c) ^ 2 + 6 * (2 * c - 6 * t ^ 2) + 1 = (6 * c + 1 - 6 * t) * (6 * c + 1 + 6 * t) ∧
+    (6 * c) ^ 2 + 6 * (-(2 * c) - 6 * t ^ 2) + 1 = (6 * c - 1 - 6 * t) * (6 * c - 1 + 6 * t) := by
+  constructor <;> ring
+
+theorem lower_member_difference_of_squares (c u : ℤ) (hu : (u ^ 2 - 1) % 6 = 0) :
+    (6 * c) ^ 2 + 6 * (-((u ^ 2 - 1) / 6)) - 1 = (6 * c - u) * (6 * c + u) := by
+  have h : 6 * ((u ^ 2 - 1) / 6) = u ^ 2 - 1 := Int.mul_ediv_cancel' (Int.dvd_of_emod_eq_zero hu)
+  linear_combination -h
+
 end TwinLadder

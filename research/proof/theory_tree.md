@@ -2891,9 +2891,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         squares of the preceding pair (finite-level form: chains of every finite length from
         (5, 7)). THE TREE ENUMERATED (19:01): depth 0 {6}; depth 1 {30, 42}; depth 2: 5 nodes
         (858 .. 1788); depth 3: 182 nodes (734,472 .. 3,200,358); child counts 2 | 2, 3 | 27, 25,
-        35, 47, 48 against the generic 2.5 | 3.4, 4.0 | 24.8, 25.3, 40.5, 40.9, 42.1; depth 4
-        (about 1.3 million nodes near 10^12-10^13) computing. FACT; the classification and the
-        conservation law are theorem-shaped and go to the kernel next.
+        35, 47, 48 against the generic 2.5 | 3.4, 4.0 | 24.8, 25.3, 40.5, 40.9, 42.1; DEPTH 4
+        (19:03): 2,619,059 nodes, from 539,447,650,518 to 10,242,297,728,700 (14 digits); child
+        counts of the 182 depth-3 nodes min 5,172, mean 14,390.4, max 19,113 against the generic
+        mean 14,377.6 - branching generic to 0.1%. So the (5, 7) tree has 1, 2, 5, 182, 2,619,059
+        nodes at depths 0-4, every one a certified twin pair between the squares of its parent.
+        FACT. KERNEL (19:03, TwinLadder.lean): upper_member_difference_of_squares and
+        lower_member_difference_of_squares - both composite-forcing families as ring identities.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
