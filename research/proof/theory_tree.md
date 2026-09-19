@@ -2787,6 +2787,37 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         TwinCentre s (s >= 6) as it must; Rung alone does not carry TwinCentre s (fine inside a
         chain from 6). VERDICT: the ladder programme is a completed REDUCTION with its open node
         named in both vocabularies; CANDIDATE form of the answer: the path from 1.34 x 10^47.
+      - R5.f.xiii. THE RANDOM LANE'S THREE ANGLES (a second fresh Opus lane, received 14:25;
+        pre-registered before the run; test research/stack/r8/random_lane1.py). ANGLE 1
+        (universal clearance): a twin centre has s != +-1 mod g, so s^2 mod g lies in
+        Q_g = {x^2 : x != +-1}; the offset classes U_g = {j : 1 - 6j and -1 - 6j both outside Q_g}
+        are struck by gear g at NO twin centre and NO level (U_5 = {3}, U_7 = {0, 2, 4},
+        |U_g| ~ (g-3)/4); their CRT intersection A_B is a fixed class set, the same forever -
+        the ladder's pre-cleared list without any dependence on s. Predictions: every U_g
+        nonempty to 61; 0 violations; the rung rate inside A_13 exceeds the overall rate by
+        about prod 1/(1-2/g) = 3.3 (naive). ANGLE 2 (forest): a twin centre has at most one
+        parent (the interval (sqrt(s') - 1, sqrt(s') + 1) holds at most one multiple of 6), so
+        the rung graph is a forest with unique parents; accounting identity #{s' <= Y with a
+        parent} = sum over s of #{rungs of s <= Y}, exact. Predictions: 0 twin centres with two
+        parents; identity holds at Y = 10^6. ANGLE 3 (neighbours): t^2 - s^2 = (t-s)(t+s)
+        translates the strike pattern between consecutive twin centres; the six exclusions
+        s != +-1, +-1 - d+, +-1 + d- (mod g) can force s mod g from the gaps alone. Predictions:
+        0 translation violations; every forced congruence agrees with the actual s; the
+        first-rung index partitioned by the forced s^2 mod 7 differs between phase classes if
+        the neighbourhood carries information (the lane's payoff question).
+        RESULT (14:34; twin centres to 10^6, full census to 10^4). ANGLE 1 EXACT: every U_g
+        nonempty (sizes 1, 3, 3, 2, 5, 6, 6, 7, 9, 8, 11, 12, 12, 13, 15, 14 for g = 5..61); 0
+        violations in 2,419,097 checks; A_13 has 18 of 5,005 classes and the rung rate inside it
+        is 0.0871 against 0.0271 overall - enhancement 3.21 (naive 3.37). A FIXED pre-cleared list
+        at every level, s-independent: FACT; kernel lemma UniversalClearance.lean (the general
+        clearance lemma and the g = 5 instance) in progress. ANGLE 2 EXACT: 0 twin centres with
+        two parents (the rung graph is a forest); accounting identity at Y = 10^6: descent 440 =
+        ascent 440; parents are rare (7,728 of 8,168 twin centres to 10^6 are roots; the fraction
+        with a parent 4.5% in the 10^5 decade); child counts of parents up to 27. FACT. ANGLE 3:
+        translation exact (0 violations); s mod 5 forced by the neighbours' gaps at 3,877 twin
+        centres and mod 7 at 451, every forced value agreeing (0 violations); but the first-rung
+        index by forced s^2 mod 7 is 6.86 / 6.29 / 6.55 - flat: the neighbourhood's phases carry
+        no rung information. FACT for (a), (b); DEAD as a selection rule.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -2815,7 +2846,9 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             F ~ p (ln p)^(1+e) with e > 0 small at this scale, so F / (p ln p) keeps rising.
             Predictions: F(61) in [179, 182] (bisecting); F(67) in [194, 215] (increments 15 to
             [RESULT 13:27: F(61) = 179 EXACT - 180 and 181 uncoverable (4,032 s, 2,779 s), 179
-            certified at x = 13169725611018917022346; prediction held; F(67) >= 209, bisecting.]
+            certified at x = 13169725611018917022346; prediction held. 14:33: F(67) >= 213,
+            certified at x = 57893748420785405877249 (run exactly 213), inside the predicted
+            [194, 215]; 224 timed out, 215 under test.]
             30 per gear as from 43 to 61); F(71) in [209, 240]; F / (p ln p) at 67 and 71 at or
             above 0.70. Refuted by an increment below 10 or above 40, or by F / (p ln p) falling
             below 0.66. Stop line: three more exact values, the ratio's direction, then close as
@@ -4261,3 +4294,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xi: the fixed-depth rung (depth 61, F exact) measured to 10^6 - first-twin index among the 61-rough offsets is 0.064 (ln s)^2 on average, flat by decade, max 0.598 (ln s)^2 (line 0.6 held by a hair); the candidate supply is unconditional at this depth.
 - 2026-09-19, R5.f.xii: at fixed depth 61 the bound function must be a cube, B = 0.0695 (ln s)^3 (maximum to 10^6 predicted 85-120, observed 107; no breach of 0.07 (ln s)^3); NTH_61 = the twin analogue of Cramer's conjecture at N = s^2 (interval 0.38 (log N)^3); the mean tier reproduces the average twin gap to three digits; depth cancels; the reduction is complete; path form added to the kernel.
 - 2026-09-19, R5.f.ii to 10^6: every twin lower's stretch holds a twin (8,168 twins, 0 failures); worst nearest-twin ratio 13.27 at P = 646,421; at least 3 twins per stretch from 41. The ladder hypothesis holds at every twin below 10^6.
+- 2026-09-19, R5.f.xiii (random lane): universal clearance classes U_g (offsets no gear strikes at any twin centre) exact to 61 with 0 violations, rung rate inside A_13 enhanced 3.21x; the rung graph is a forest with unique parents (identity 440 = 440 at 10^6); neighbour-forced phases carry no rung information. F(67) >= 213 certified.

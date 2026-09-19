@@ -1,0 +1,10 @@
+Angle 1 (universal clearance): |U_g| for g = 5..61: 5:1, 7:3, 11:3, 13:2, 17:5, 19:6, 23:6, 29:7, 31:9, 37:8, 41:11, 43:12, 47:12, 53:13, 59:15, 61:14
+   verification (twin centres <= 10^4, all offsets in U_g): checks 2419097, violations 0
+   |A_13| = 18 of 5005 classes (density 0.0036); twin centres <= 10000: rung rate overall 0.02710 (15588/575264), inside A_13 0.08711 (171/1963); enhancement 3.21 (naive prod 1/(1-2/g) over 5,7,11,13 = 3.37)
+Angle 2 (forest): twin centres 8168; with two parents: 0; fraction with a parent by decade: 10^0: 0/1, 10^1: 2/6, 10^2: 6/27, 10^3: 11/170, 10^4: 112/1019, 10^5: 309/6945
+   accounting identity at Y = 1000000: descent 440, ascent 440, EQUAL
+   child counts among parents <= 1000000: 2 children: 4, 3 children: 2, 5 children: 1, 6 children: 2, 7 children: 3, 8 children: 1, 9 children: 2, 10 children: 2, 12 children: 1, 13 children: 1, 14 children: 1, 18 children: 1, 19 children: 3, 20 children: 2, 21 children: 2, 22 children: 1, 24 children: 3, 25 children: 1, 27 children: 1
+   roots (no parent) among twin centres <= 1000000: 7728; first roots [6, 12, 18, 60, 72, 102, 108, 180, 192, 198, 228, 240]
+Angle 3 (neighbours): translation violations 0; s mod g forced by the six exclusions (count, all agree?): g=5: 3877, g=7: 451; agreements 4328, violations 0
+   s^2 mod g forced: g=5: 3877, g=7: 719
+   first-rung index (61-rough list) by s^2 mod 7 (twin centres <= 10^5): 0: mean 6.86 (n=239), 2: mean 6.29 (n=471), 4: mean 6.55 (n=512)
