@@ -2324,6 +2324,101 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             gears in reach 0.028; the smallest passing h is 1.85 sqrt q at the median, at
             most 14.6 sqrt q. OPEN: that a passing high gear always exists, the second-sieve
             statement on the high gears with classes fixed by E.
+            - R4.d.i.i.n.i. THE ONE-FLIP LOCATOR AS THE KERNEL'S FINAL FORM (2026-09-17, rounds
+              60-62; proofs/OneFlipLocator.lean; loop entries 66-68). Spawned by phase 2: one flip
+              about the mirror {2, 3, g} from home lands on column 2 g k d, members 12 g k d +- 1.
+              PROVED: oneflip_twin, window_statement_of_oneflip, mirror_gear_never_strikes. FACT
+              (the locator's exact form); the openness of the landing is the second sieve, OPEN.
+              - R4.d.i.i.n.i.a. THE CHAIN OF LANDINGS (rounds 63-70; proofs/MirrorWalkChain.lean,
+                MirrorWalkCertificate.lean, PrattCertificates.lean). A landing t serves every
+                machine sqrt t <= q < t - 1; overlapping bands cover all machines. PROVED
+                chain_covers, window_statement_upto, mult_chain_window; CERTIFIED every machine
+                11 to 2.76 x 10^32 (six Lucas-certified links). STRONG as a certificate, not a
+                route beyond it: the next link is a twin above 10^32, a fact about the primes.
+              - R4.d.i.i.n.i.b. THE CARRY WALL (rounds 64, 71-74; proofs/MirrorWalkCarry.lean,
+                MirrorWalkSettleFree.lean). A mirror that fits the window carries at most
+                log2(q^2) gears (carried_le_log); silencing the gears to X costs X#
+                (silence_costs_primorial); the free-regime hypothesis is unreachable
+                (free_regime_unreachable) and sharp (keeping_move_free_sharp). DEAD as a route:
+                divisibility is the machine's only lever on a gear and it is priced exactly.
+              - R4.d.i.i.n.i.c. THE ANATOMY OF FAILURE (round 73; research/proof/
+                failure_anatomy.md sections 1-31). The four stops, the single lever, the four
+                requirements any proof must meet. FACT (the wall's shape from the walk's side).
+            - R4.d.i.i.o. THE COUNTEREXAMPLE HUNT WITH PREJUDICE (owner, 2026-09-18; rounds
+              77-101; proofs/AlignmentLimit.lean, ManyBody.lean, FieldBlocking.lean,
+              StretchRule.lean, KillPositions.lean; research/proof/killer_attack_plan.md).
+              Spawned by the anatomy: name the conditions that would kill the machine forever
+              and test whether they can exist. PROVED: open columns recur at every level
+              (open_columns_for_any_gears, open_run_after_alignment); the stretch rule (the
+              arriving gear adds only its square, rough_member_form, plug_law); the location law
+              (strike_after_square_isSquare: a gear strikes p^2 + a only if -a is a square mod
+              it); kill_needs_run (a dead stretch is a struck run from the square as long as the
+              stretch). Fields, pairs, triples, quads of fields: no field combination forms a
+              blocking state on its own. Four killer concepts (killer residue vectors, two-prime
+              products, multiplicative interleave, truncation strays): all CLOSED - position
+              permits, length forbids, and the length is the conjecture. DEAD as a route (every
+              killer reduces to the run-length exponent or to a distribution law outside the
+              rules); FACTS kept in the kernel.
+  - **R5. THE OWNER'S ARGUMENT AS THE SPINE (owner, 2026-09-19; rounds 102-113; proofs/
+    OwnerArgument.lean, CounterMachine.lean, RigidShift.lean; loop entries 108-123).** Lines:
+    1 the machine always generates twin gaps; 2 sometimes a gap is blocked; 3 no mechanic
+    blocks the gaps permanently; 4 therefore twins without end. Lines 1, 2 PROVED for every
+    gear set; 4 PROVED from 3 (twins_unbounded_of_survival). Line 3 is the SURVIVAL LEMMA.
+    - R5.a. THE SURVIVAL LEMMA WEIGHED (rounds 102-104). Survival (every stretch (p^2, q^2)
+      holds a column no gear <= p strikes) is Legendre-type for twins, strictly stronger than
+      the conjecture; SurvivalInf (some stretch above every bound survives) is EQUIVALENT to
+      twins unbounded, both directions (survivalInf_iff_twins_unbounded; converse by the largest
+      prime below the twin's square root and Bertrand). survival_of_family: on 30 t +- 1 the
+      gears 7..p lay one fixed pattern and the machine selects the range [p^2/30, q^2/30].
+      FACT: line 3 in the form line 4 needs IS the conjecture; no reformulation lowers its
+      weight (five on record: window <-> exponent 2, stretch <-> exponent 1, weak survival <->
+      conjecture, strong survival -> conjecture, chain <- twin-gap growth).
+      - R5.a.i. THE RUN AT THE SQUARE IS ORDINARY (round 103, survival_family.py). The struck
+        run from the square's position is inside the spread of runs from random positions of
+        the same pattern at every p (18 vs 6-21 at 1009; 1 vs 25-54 at 19997). DEAD: the
+        location law does not shorten or lengthen the run at the square.
+      - R5.a.ii. THE LOADED RECORD RULE AT THE STRETCH (entries 110-111). WITHDRAWN: the stretch
+        is longer than every gear, the rule's tail is empty, the rule reduces to the survival
+        statement itself. DEAD.
+    - R5.b. THE COUNTER-MACHINE (rounds 105-106; proofs/CounterMachine.lean; from
+      fold_mechanic.md 2026-09-11). Abstract LINES (multiplicative sets of fold survivors),
+      gears = irreducibles; the square-root rule and "a surviving column is a twin gear pair"
+      PROVED for every line; the real line's survival IS SurvivalInf; the counter line (twin
+      lowers removed from the generators) never survives any stretch (counter_never_survives).
+      VERDICT: line 3 is INDEPENDENT of the mechanics of striking; the only difference between
+      the lines is real_column (every j is a column). ADMISSIBILITY TEST for any argument: delete
+      the open columns and rerun; if it still goes through it is wrong. DEAD as a derivation
+      from mechanics; the test is kept as the gate for every later branch.
+    - R5.c. THE TWO LAYERS OF A STRETCH (rounds 107-108; two_layer_census.py,
+      plug_rate_by_neighbour.py). Base gears <= q^(2/3) leave base-open columns; top gears in
+      (B, p] plug them with pinned products g x r, r prime; twins are the unplugged. Plug rate
+      0.646 stable; twin share 0.355 = the sieve's (log B / log q^2)^2 e^(2 gamma). THE
+      INDEPENDENCE LAW: the plug rate on a base-open column is independent of the base pattern
+      around it (12 distance buckets, 13 neighbour patterns, all within 1.5 sigma over 4.27 M
+      columns); the record plug run 32 at 5717 is below the whole-sample independent
+      expectation 35. FACT: the layers do not interact; survival at the stretch is carried by
+      independence, the sieve's picture on the rigid teeth. (Entry 115's clustering claim
+      withdrawn in 116.)
+    - R5.d. THE PINS UNDER THE RIGID PAIR (rounds 109-111; single_gear_killers.py,
+      kill_distance.py, kill_distance_ilp.py, square_class_killers.py). Single-gear killers of a
+      stretch exist only at p = 17, 41 (the record's p = 29 killer was a free tooth). THE KILL
+      DISTANCE d(p) (least number of gears re-phased, abandoned lone kills re-covered) exact by
+      ILP to 109: stretches at 7, 11, 13, 19, 23, 31 UNKILLABLE by any rigid re-phasing; from 37
+      on d = twins/2 (0.33-0.67, mean 0.50). Square-class (location-law) shifts kill exactly
+      where unrestricted ones do (7..83). FACT (d ~ twins/2, the survival margin in gears);
+      location law DEAD as protection; base case d >= 1 is the conjecture.
+      - R5.d.i. EVERY SHIFT VECTOR IS A WINDOW OF THE REAL PATTERN (round 112;
+        proofs/RigidShift.lean, 0 sorries: window_realises_shift, shifted_pattern_is_window).
+        By CRT the re-phasing adversary never leaves the machine; F_shift = F(M); a stretch is
+        killable in residue space iff its length is below the record (all nine cases agree).
+        FACT (kernel).
+        - R5.d.i.a. THE EXACT RIGID LADDER BY ILP (rounds 112-113; shift_rigid_record.py,
+          rigid_record_bisect.py, rigid_record_certificate.py). Struck runs 1, 4, 6, 10, 17, 24,
+          33, 42, 57, 87, 90, 102, 117, 144, 160, >= 179 at p = 5..61; 144 at 53 and 160 at 59
+          NEW (the record's target met: 161 in its run + 1 convention, the bottom of its pinned
+          [161, 178]); coverable halves CERTIFIED by CRT window positions on the real pattern,
+          uncoverable halves by HiGHS infeasibility. F / (p ln p) rises 0.3 -> 0.7; from p = 37
+          the record exceeds most stretches. FACT; growth law OPEN beyond 61.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
