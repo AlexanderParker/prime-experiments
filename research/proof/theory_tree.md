@@ -2987,7 +2987,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         orders to spare); ratios 5.8, 3.1, 4.0 (below 20). The cube bound holds; the mean law at
         this depth sits high on three samples (chance about 0.5% under the geometric reading) -
         four more descents launched with a fresh seed to decide between fluctuation and a drift
-        of the constant at 400 digits.
+        of the constant at 400 digits. FOUR MORE (20:52): indices 723, 3,474, 22,988, 5,657
+        against the law ~15,000; over all seven depth-8 nodes the mean index is 23,140 against
+        ~15,000 (+1.4 standard errors of a geometric sample), ratio mean 2.4, every node with a
+        rung, every index below the cube by two orders. Fluctuation, not drift: the laws hold at
+        s ~ 10^200. FACT.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4473,3 +4477,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xvii (contradiction lane): a leaf of a finite (5,7) tree is exactly sieve data (every composite member has a factor <= s-1), violates no exact law, is untouched by every proved theorem (BHP silent - the stretch is shorter than N^0.525; Legendre open even under RH; parity applies in full), and would be 10^2-10^7 times the extreme-value twin gap at its height; the route's one asset is the existential-per-level form (twins in the union of a level's stretches).
 - 2026-09-19, R5.f.xviii: at depth 5 (s ~ 10^25) the 61-rough index mean is 205 against the law's 203, max 894 against the cube ~11,000; ratio max 5.5; every sampled node has a rung.
 - 2026-09-19, R5.f.xix: at depths 6 and 7 (s ~ 10^50, 10^100) the 61-rough index sits on the mean law (854 vs 928; 3,959 vs 3,710), maxima two orders below the cube; every node has a rung; the laws hold to s ~ 10^100.
+- 2026-09-19, R5.f.xix depth 8 (seven nodes, 400-digit members): every node has a rung; index mean 23,140 against the law ~15,000 (+1.4 SE), all below the cube by two orders; the index laws hold from 10^2 to 10^200.
