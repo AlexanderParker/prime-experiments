@@ -151,3 +151,20 @@ where the supply lemma and the index law have their widest measured margins.
   another twin pair strictly between (s-1)^2 and (s+1)^2 - the twin analogue of Cramer's conjecture
   localised to the squares of twin centres - with the candidate list at each step supplied
   unconditionally by the exact record at depth 61.
+
+## 7. The depth form (2026-09-19 19:00, proofs/LadderDepth.lean)
+
+`Depth n s`: the nodes of the rung tree from 6 by depth. `DepthHyp`: a node at every depth.
+`twins_unbounded_of_depth`: DepthHyp gives twin primes above every bound, directly - a node at depth
+n is a twin centre >= 6 + 2n (`Depth.ge`), so no Konig argument is needed. `depthHyp_of_path` and
+`depthHyp_of_ladderHyp` place it below the path and ladder forms. The tree is finitely branching
+(the window is finite), so by Konig the depth form is equivalent to the existence of an infinite
+path and strictly weaker than the ladder hypothesis above any bound: a childless node does not
+kill it. This is the weakest form of the open node on record.
+
+Also on record from the random lane (nodes R5.f.xiii-xiv): the universal clearance classes U_g
+(exact, kernel `UniversalClearance.lean`) whose CRT intersection carries the cube bound at the
+certified top unconditionally (4 x 10^30 guaranteed 109-rough candidates against 8.9 x 10^4); the rung
+forest with unique parents and the exact accounting identity; generic branching (the plain twin
+constant); and the cyclotomic offsets j = +-c, whose identity-forced roughness at a quarter of all
+gears is priced exactly by the singular series (0.89 measured, 0.878 predicted) - no gain.

@@ -2863,6 +2863,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         form); (c) DEAD as an enhancement - the identity-forced roughness at moving offsets is
         priced by the singular series like everything else; its free certificates stand as a
         tool.
+        KERNEL (19:00, proofs/LadderDepth.lean, 0 sorries): Depth n s (the rung tree from 6 by
+        depth), Depth.twinCentre, Depth.ge (a node at depth n is >= 6 + 2n), DepthHyp (a node at
+        every depth), twins_unbounded_of_depth (DepthHyp -> twins unbounded, directly, no Konig),
+        depthHyp_of_path, depthHyp_of_ladderHyp. The weakest form on record: the rung tree from
+        (5, 7) has a node at every depth.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q

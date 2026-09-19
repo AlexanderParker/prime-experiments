@@ -2370,3 +2370,6 @@ name = "LadderCertificate"
 
 [[lean_lib]]
 name = "UniversalClearance"
+
+[[lean_lib]]
+name = "LadderDepth"
