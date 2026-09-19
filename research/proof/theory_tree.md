@@ -3460,7 +3460,10 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             (9,981 s): F(67) = 213 EXACT, certified both ways (rigid_record_bisect.py,
             results_rigid_record_67b.txt). Increment 61 -> 67 is 34, above the predicted 15-30;
             F/(p ln p) = 213/(67 x 4.205) = 0.756 at 67 against 0.713 at 61 - the ratio rises,
-            prediction "at or above 0.70" held.]
+            prediction "at or above 0.70" held. F(71): L = 222 coverable (3,227 s), so
+            F(71) >= 222, inside the predicted [209, 240]; the L = 241 check was killed after
+            three hours by the system for memory (16 GB machine) - the ILP at 18 gears and
+            L ~ 240 exceeds the memory budget; F(71) in [222, 259] stands, upper half open.]
             30 per gear as from 43 to 61); F(71) in [209, 240]; F / (p ln p) at 67 and 71 at or
             above 0.70. Refuted by an increment below 10 or above 40, or by F / (p ln p) falling
             below 0.66. Stop line: three more exact values, the ratio's direction, then close as
@@ -4933,3 +4936,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, F(67) = 213 EXACT (two-class covering record for the gears 5..67; 214 and 215 uncoverable in 9,981 s and 11,285 s); increment 34 from F(61) = 179; F/(p ln p) = 0.756.
 - 2026-09-20, correction: the Euclid device is the universal clearance class j = 0 (lower member) in kernel form, not a new primality-using law; both dichotomy hypotheses hold to 10^6 (minimum 3 rungs from s = 42). F(71) >= 222 (coverable in 3,227 s), bisection continuing.
 - 2026-09-20, R5.f.xxx: the Chen ledger T = |R_{s/3}| - N_semi exact at 118 twin centres to 5000; rough columns are about 60% rungs, 40% large-semiprime columns (share 0.28-0.67); two placed numbers refuted.
+- 2026-09-20, F(71) >= 222 (coverable); the L = 241 ILP killed for memory after 3 h; F(71) in [222, 259].
