@@ -2622,6 +2622,18 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         plugging gear among the first 16, 32 offsets at the independent rate (~0.1 per twin at
         N = 32). Predictions: index law holds (max 46 at 10^5, 55 at 10^6 allowed); zero
         eligibility exceptions; barred fraction 1/4; reuse within a factor 2 of the prediction.
+        RESULT (13:40; index law to 200,000, the rest to 30,000; full runs in progress). CLAIM 1
+        HOLDS: max index 31, max i / ln P = 2.84 (P = 809, i = 19), no twin above 4 ln P; decade
+        maxima 19, 21, 29, 31 at 10^2..10^5 - rising slowly, no acceleration. CLAIM 2 HOLDS:
+        0 exceptions to the square-phase eligibility among all plugs of the first 32 base-open
+        offsets; barred fraction 0.245 (predicted 0.25). CLAIM 3: the first 32 base-open
+        offsets receive 8.3, 14.3, 20.1, 34.5 plugs from (x, 2x], (x, 4x], (x, x^1.5], (x, x^2]
+        (no band insufficient, as computed); REUSE BELOW PREDICTION: observed 247 against 551
+        predicted among the first 16, 1,041 against 2,100 among the first 32 - a factor 0.45-0.5,
+        at the lane's own refutation line ("less than half"); the prediction (2/g)^2 per pair
+        ignores that a reuse needs g to divide one of three fixed differences of the offsets and
+        then one phase condition, so the exact expectation from the difference set is the next
+        item before reading rigidity into it.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
