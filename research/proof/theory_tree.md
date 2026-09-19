@@ -2504,7 +2504,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         REFUTED at the constant 1/2 by one twin, P = 71 (ratio 0.472); 1st percentile 0.565,
         mean 0.797 - the large gears beat their independent effect by at most 2.1 at any twin
         to 30,000. VERDICT: FACT (locator law with the y-rule; clean rungs from 271; the
-        count ratio in [0.47, 1]). PM reading: with the rule M <= c/50 the progression has
+        count ratio in [0.47, 1]). FULL RUN (13:16): the y-rule locator holds at all 8,168
+        twin lowers to 10^6, no empty L, |L| median 1,704, first success at index 28 on average
+        and 273 at worst; fixed y = 7 fails at the same 11 small twins only; fixed y = 13 at 779
+        (short L); clean rungs: the same four exceptions to 10^5; count ratio min 0.472 at 71,
+        1st percentile 0.665 to 10^5. PM reading: with the rule M <= c/50 the progression has
         about 4c/M >= 200 candidates; for the rung to land in it at every c the progression
         must lengthen with c (M ~ c^(1-e)), which is the next round's first item.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before

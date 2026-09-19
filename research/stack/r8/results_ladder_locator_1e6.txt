@@ -1,0 +1,11 @@
+Claim 1 (locator):
+  y = rule: twins 8168, vacuous (empty L) 0, failures 0 []
+     |L| min/median/max 3/1704/6593; first-success index mean 28.27 max 273
+  y = 7: twins 8168, vacuous (empty L) 2, failures 11 [(5, 7, 1, 0), (29, 7, 1, 0), (59, 7, 1, 0), (149, 7, 3, 0), (239, 7, 5, 0), (269, 7, 5, 0), (569, 7, 11, 0), (599, 7, 11, 0), (809, 7, 15, 0), (1619, 7, 31, 0), (1949, 7, 37, 0)]
+     |L| min/median/max 1/15398/57120; first-success index mean 33.86 max 303
+  y = 13: twins 8168, vacuous (empty L) 47, failures 779 [(5, 13, 1, 0), (29, 13, 1, 0), (149, 13, 1, 0), (179, 13, 1, 0), (239, 13, 1, 0), (269, 13, 1, 0), (419, 13, 1, 0), (569, 13, 1, 0), (599, 13, 1, 0), (659, 13, 1, 0), (809, 13, 1, 0), (1019, 13, 1, 0)]
+     |L| min/median/max 1/132/4393; first-success index mean 21.99 max 231
+
+Claims 2 and 3 (full sieve of each twin's stretch):
+  Claim 2: twins 1223; no clean rung at y = 13: [(17, 0), (29, 0), (41, 0), (269, 11)] (count 4); largest clean y: min 0, median 211
+  Claim 3: ratio T / (T0 prod(1-2/g)): min 0.472 at P = 71; mean 0.795; 1st pct 0.665
