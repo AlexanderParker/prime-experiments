@@ -2427,6 +2427,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
       test; RED lane attacks; Lean closes behind. First cycle: three claims requested from a
       fresh Opus lane given the kernel's exact assets and the closed angles as one-line facts.
       OPEN.
+      - R5.f.i. THE FIRST LANE'S THREE CLAIMS (received 12:50; tests research/stack/r8/
+        lane1_claims.py; registered here before the full run to 20,000, after a 6-second run to
+        4,000 that found no failure). (1) SQUARE-SCALE TRANSFER: for a twin (P, P+2) of the
+        stretch, P = 6c-1, the columns of P^2, P(P+2), (P+2)^2 are 6c^2-2c, 6c^2, 6c^2+2c; some
+        twin of every stretch (p >= 37) has one of the partner members P^2-2, 36c^2+1,
+        (P+2)^2-2 free of every prime factor <= p. Gate: the three columns exist only because
+        both P and P+2 are on the line. (2) SINGLE PLUG: every stretch has a base-open column
+        struck by exactly one top gear, and every top-gear cofactor is prime. (3) NEAR PAIRS:
+        every stretch has two base-open columns closer than q^(2/3)/6, and no top gear g plugs
+        two base-open columns closer than (g-2)/6. Predictions (lane's): all three hold at
+        every p to 20,000. Red reading (PM, before the run): (1) delivers roughness to the
+        gears <= p at the scale P^2, where primality needs the gears <= P - the step lands one
+        level short; to be an inductive step it must be restated so its conclusion is at the
+        level of its input; (2) and (3) hold by the plug counts and separation law and their
+        use is a matching formulation, to be pushed to a statement with a finite step.
+        VERDICT: pending the full run; then the lane is asked to lift (1) to the right level.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
