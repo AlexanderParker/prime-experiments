@@ -2,3 +2,7 @@
 ILP: feasible (optimal) in 2284s
 window start x = 57893748420785405877249 (period 1309720258513377842646515); real pattern struck run from x = 213 (needed >= 212): CERTIFIED
 == L=215
+ILP: TIMEOUT (iteration/time limit) in 7200s
+== L=218
+ILP: INFEASIBLE (proved) in 4176s
+== L=221

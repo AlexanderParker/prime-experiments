@@ -2820,6 +2820,49 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         centres and mod 7 at 451, every forced value agreeing (0 violations); but the first-rung
         index by forced s^2 mod 7 is 6.86 / 6.29 / 6.55 - flat: the neighbourhood's phases carry
         no rung information. FACT for (a), (b); DEAD as a selection rule.
+      - R5.f.xiv. THE RANDOM LANE'S ROUND 2: WHAT THE UNIVERSAL LIST BUYS, THE FOREST'S LAW,
+        AND THE CYCLOTOMIC OFFSETS (received 14:50; pre-registered before the run; test
+        research/stack/r8/cyclotomic_offsets.py). (a) A_B: |A_B| = 1, 3, 9, 18, 90, 540, ... at
+        B = 5..19, density delta_B = |A_B|/M_B, enhancement E(B) = prod 1/(1-2/g) (3.37 at 13,
+        measured 3.21); the count of universal offsets in the window is a theorem while M_B <=
+        4c - 1, i.e. B <= 109 at s = 10^47, giving 4 x 10^30 guaranteed 109-rough candidates
+        against the 8.9 x 10^4 the cube bound asks - the universal list alone carries the
+        bounded hypothesis at the certified top; the smallest universal offset at B = 61 is
+        ~2.8 x 10^9, so A_B never holds the FIRST rung; the difference-of-squares offsets do
+        enter A_B in bulk at large s (u = +-1 mod every g <= B), fraction 7 x 10^-33 - the Lean
+        statement must exclude them; the gear-exclusion at a constant offset is exactly a
+        congruence mod the conductor of the biquadratic field Q(sqrt(1-6a), sqrt(-1-6a)) (abelian,
+        Kronecker-Weber) - a hard ceiling for constant offsets. (b) Parenthood has no arithmetic
+        signature: the non-root fraction is (1/3) x (twin-centre density among multiples of 6
+        near sqrt s'), predicting 4.4% for the 10^5 decade against the measured 4.5%; T(s), the
+        child count, is an exact inclusion-exclusion whose every gear g <= s-2 strikes exactly two
+        classes, main term 1.32 s/(ln s)^2 with the plain twin constant - generic branching; the
+        diagnosis: the gear range (to s-2) exceeds the window (2s/3) by 1.5, so no lower bound on
+        T by dimension-2 sieving; Konig: the hypothesis weakens to "the tree rooted at the
+        certified top has a node at every depth", and a finite tree would exhibit an explicit
+        finite set of twin centres with T = 0. (c) THE CYCLOTOMIC OFFSETS j = +-c: s' = s(s +- 1),
+        members s^2 +- s - 1 and Phi_3(s) = s^2 + s + 1 / Phi_6(s) = s^2 - s + 1; every prime factor
+        of Phi_3(s) is 1 mod 3, of Phi_6(s) 1 mod 6, of s^2 +- s - 1 is +-1 mod 5 - a quarter of
+        all gears, of every size, inert at these offsets (the first mechanism reaching the gears
+        above the window); Pocklington/Lucas certificates for free (N - 1 = s(s+1) with s + 1
+        prime); the recursion s -> s(s +- 1) is search-free. Predictions: identities exact (0
+        violations); hits at +-c about 170 to 10^6 with enhancement K > 1 over a random offset;
+        the pure cyclotomic ladder dies at finite depth (sum 1/(ln s_n)^2 converges) - depths
+        systematically beyond that would be new structure.
+        RESULT (18:54; twin centres to 200,000; identities to 30,000; ladders from <= 3,000).
+        Hits at +c: 38, at -c: 32, total 70 against a base-rate expectation 78.2 - measured
+        enhancement 0.89; the lane's own singular series gives K = 0.878: the quarter of inert
+        gears is EXACTLY compensated by the higher density of roots at the other gears - the
+        cyclotomic offsets are no better than a random offset (the "K > 1 definitely" prediction
+        refuted, by the lane's own formula). Identities exact with one stated exception: all 313
+        "violations" among 4,563 prime factors are the prime 5 itself dividing s^2 +- s - 1 (when
+        5 | 2s +- 1); every other factor obeys 1 mod 3, 1 mod 6, +-1 mod 5. The pure cyclotomic
+        ladder dies at once: depth 0 at 74 of 81 twin centres, depth 1 at 6, depth 2 at 1. VERDICT:
+        (a) FACT (the universal list carries the cube bound at the certified top, with the
+        exclusion of the identity offsets to be stated); (b) FACT (generic branching; Konig
+        form); (c) DEAD as an enhancement - the identity-forced roughness at moving offsets is
+        priced by the singular series like everything else; its free certificates stand as a
+        tool.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -2850,7 +2893,9 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             [RESULT 13:27: F(61) = 179 EXACT - 180 and 181 uncoverable (4,032 s, 2,779 s), 179
             certified at x = 13169725611018917022346; prediction held. 14:33: F(67) >= 213,
             certified at x = 57893748420785405877249 (run exactly 213), inside the predicted
-            [194, 215]; 224 timed out, 215 under test.]
+            [194, 215]; 224 timed out; 218 PROVED uncoverable (4,176 s), 215 timed out (2 h):
+            F(67) in [213, 217]. Prediction [194, 215] holds at the lower end and is open at the
+            upper by two.]
             30 per gear as from 43 to 61); F(71) in [209, 240]; F / (p ln p) at 67 and 71 at or
             above 0.70. Refuted by an increment below 10 or above 40, or by F / (p ln p) falling
             below 0.66. Stop line: three more exact values, the ratio's direction, then close as
@@ -4297,3 +4342,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xii: at fixed depth 61 the bound function must be a cube, B = 0.0695 (ln s)^3 (maximum to 10^6 predicted 85-120, observed 107; no breach of 0.07 (ln s)^3); NTH_61 = the twin analogue of Cramer's conjecture at N = s^2 (interval 0.38 (log N)^3); the mean tier reproduces the average twin gap to three digits; depth cancels; the reduction is complete; path form added to the kernel.
 - 2026-09-19, R5.f.ii to 10^6: every twin lower's stretch holds a twin (8,168 twins, 0 failures); worst nearest-twin ratio 13.27 at P = 646,421; at least 3 twins per stretch from 41. The ladder hypothesis holds at every twin below 10^6.
 - 2026-09-19, R5.f.xiii (random lane): universal clearance classes U_g (offsets no gear strikes at any twin centre) exact to 61 with 0 violations, rung rate inside A_13 enhanced 3.21x; the rung graph is a forest with unique parents (identity 440 = 440 at 10^6); neighbour-forced phases carry no rung information. F(67) >= 213 certified.
+- 2026-09-19, R5.f.xiv (random lane round 2): the universal list carries the cube bound at the certified top (4 x 10^30 guaranteed 109-rough candidates against 8.9 x 10^4); parenthood and child counts are generic (the twin constant); the cyclotomic offsets j = +-c have identity-forced roughness at a quarter of all gears but enhancement 0.89 = the singular series' 0.878 - no gain; F(67) in [213, 217].
