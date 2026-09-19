@@ -2540,6 +2540,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         members P^2 + 4 and P^2 + 6, one of which 5 divides for every P != 5 - an exact forced
         failure (the square-neighbour law of KillPositions.lean), the single hit being P = 5.
         No enhancement above 1.
+      - R5.f.v. THE CANONICAL LADDER (opened 13:25; research/stack/r8/canonical_ladder.py).
+        From (5, 7) take at each rung the twin of the stretch nearest the centre (smallest |j|,
+        positive first): s_0 = 6, s_{k+1} = s_k^2 + 6 j_k. Registered before the lane's
+        prediction of its offset law arrives (round 5 (c)); the PM's prior: 6|j_k| < 20 (ln P_k)^2
+        at every rung (R5.f.ii claim 2). FIRST RUNGS (13:26): P = 5, 41, 1787, 3196327 (7 digits),
+        14 digits, 27, 53, 105 digits, with j = 1, 4, 6, 77, 44, -829, 3605, 28145 and
+        6|j|/(ln P)^2 = 2.3, 1.7, 0.6, 2.1, 0.3, 1.4, 1.5, 2.9 - bounded, no trend; rung 8
+        (210 digits) computing. The ladder reaches 10^105 in three seconds of search. OPEN:
+        the offset law and the certificate form per rung.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
