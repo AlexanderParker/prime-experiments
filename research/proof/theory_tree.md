@@ -2558,7 +2558,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         6|j|/(ln P)^2 = 2.3, 1.7, 0.6, 2.1, 0.3, 1.4, 1.5, 2.9 - bounded, no trend; rung 8
         (209 digits): j = -6965, ratio 0.18, 4.6 s; the ninth twin lower has 417 digits
         (members probable primes by BPSW). Nine rungs from 5 to 10^416 in eight seconds of
-        search. OPEN: the offset law and the certificate form per rung.
+        search. RUNG 10 (20:32, the lane's rule, canonical_ladder2.py): from the 378-digit centre
+        the nearest twin is at j = -321,634 (ratio 2.56, 8,379 10^6-rough candidates passed,
+        643,267 rejected, 47 minutes) - a 756-digit twin lower; the chain from (5, 7) now has ten
+        rungs with BPSW-probable members, six of them Pratt-certified. The 1,500-digit rung would
+        cost days and is not funded. OPEN: the offset law and the certificate form per rung.
       - R5.f.vi. THE TWO HALVES OF THE SIEVE-FORM RUNG (lane round 5, received 13:30;
         pre-registered before the run; test research/stack/r8/ladder_round5.py). Base gears
         5..x, x = floor(sqrt s); top gears (x, P]. CLAIM A (base half): (i) PROVED FROM THE
