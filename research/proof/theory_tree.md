@@ -2809,8 +2809,10 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         nonempty (sizes 1, 3, 3, 2, 5, 6, 6, 7, 9, 8, 11, 12, 12, 13, 15, 14 for g = 5..61); 0
         violations in 2,419,097 checks; A_13 has 18 of 5,005 classes and the rung rate inside it
         is 0.0871 against 0.0271 overall - enhancement 3.21 (naive 3.37). A FIXED pre-cleared list
-        at every level, s-independent: FACT; kernel lemma UniversalClearance.lean (the general
-        clearance lemma and the g = 5 instance) in progress. ANGLE 2 EXACT: 0 twin centres with
+        at every level, s-independent: FACT; KERNEL 14:40 proofs/UniversalClearance.lean, 0
+        sorries: not_dvd_of_not_square (if s != +-1 mod g and a is no square of a residue other
+        than +-1 then g does not divide s^2 - a) and clear_five (gear 5 never strikes an offset
+        j = 3 mod 5 at any twin centre). ANGLE 2 EXACT: 0 twin centres with
         two parents (the rung graph is a forest); accounting identity at Y = 10^6: descent 440 =
         ascent 440; parents are rare (7,728 of 8,168 twin centres to 10^6 are roots; the fraction
         with a parent 4.5% in the 10^5 decade); child counts of parents up to 27. FACT. ANGLE 3:
