@@ -3427,7 +3427,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             certified at x = 57893748420785405877249 (run exactly 213), inside the predicted
             [194, 215]; 224 timed out; 218 PROVED uncoverable (4,176 s), 215 timed out (2 h):
             F(67) in [213, 217]. Prediction [194, 215] holds at the lower end and is open at the
-            upper by two.]
+            upper by two. 2026-09-20 02:45: L = 215 UNCOVERABLE (11,285 s), L = 214 UNCOVERABLE
+            (9,981 s): F(67) = 213 EXACT, certified both ways (rigid_record_bisect.py,
+            results_rigid_record_67b.txt). Increment 61 -> 67 is 34, above the predicted 15-30;
+            F/(p ln p) = 213/(67 x 4.205) = 0.756 at 67 against 0.713 at 61 - the ratio rises,
+            prediction "at or above 0.70" held.]
             30 per gear as from 43 to 61); F(71) in [209, 240]; F / (p ln p) at 67 and 71 at or
             above 0.70. Refuted by an increment below 10 or above 40, or by F / (p ln p) falling
             below 0.66. Stop line: three more exact values, the ratio's direction, then close as
@@ -4897,3 +4901,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxviii (prover lane, Fable): three written attempts; leaf ledger identity r = |R_61| - T_61 + X_61; gap A-2 (big gears strike the s/3-rough columns fewer times than their number, 256 vs 100 at 10^4); the dichotomy lemma proved and put in the kernel (LadderDichotomy.lean): no consecutive leaves + no single rung -> chains of every length, node at every depth from 6, twins unbounded; Six-window ledger closes SixHyp for t >= 10^15 under a per-gear discrepancy bound; the same ledger fails in the square window.
 - 2026-09-20, R5.f.xxviii addendum: kernel LadderEuclid.lean - the Euclid device: a gear dividing the offset never strikes the lower member (it would divide a twin prime), strikes the upper iff it divides s^2 + 1; the one exact law that uses the members' primality; unconditional base-open supply at level ln s.
 - 2026-09-20, R5.f.xxix (audit lane): kernel statements audited - no vacuous, subtraction, endpoint or direction defects; every hypothesis that contains the conclusion labelled; NearTwinHyp is a scaffold; docstring overclaims in LadderDepth fixed with two new theorems (chainHyp_of_path, chainHyp_of_ladderHyp_above); twins_unbounded_of_windowHyp and lower_member_rough_upto added.
+- 2026-09-20, F(67) = 213 EXACT (two-class covering record for the gears 5..67; 214 and 215 uncoverable in 9,981 s and 11,285 s); increment 34 from F(61) = 179; F/(p ln p) = 0.756.
