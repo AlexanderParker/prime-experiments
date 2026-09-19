@@ -2466,6 +2466,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         (input and output the same object) and the exact normal form of a twin's stretch. Lane's
         red note on the matching route (c): supply of top gears exceeds demand by (ln p)^2 at
         every window length; closed.
+        KERNEL (13:10, proofs/TwinLadder.lean, 0 sorries): stretch_normal_form (the stretch of
+        a twin P = 6c-1 is exactly the columns 6c^2 + j, |j| <= 2c-1), members_of_column
+        (members P(P+2) + 6j and P(P+2) + 6j + 2), twin_gear_strikes_centre_only (a multiple of
+        P or of P+2 inside the stretch is P(P+2) itself: the offset 6j + e is a multiple of g in
+        (-2g, 2g) and +-g is 1 or 5 mod 6 while 6j + e is 0 or 2). Run to P = 200,000: claims 1-3
+        hold, max step ratio 10.3 at P = 58,169, minimum twin count 3 at P = 41; run to 10^6 in
+        progress.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
