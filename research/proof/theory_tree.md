@@ -2752,6 +2752,12 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         larger ratio. The hypothesis in this form: a twin among the first ceil(0.6 (ln s)^2)
         61-rough offsets of the stretch - a twin prime pair within about 2 (ln s)^2 columns of
         s^2 - with the candidate list proved to exist from F(61) alone.
+        RESULT (14:06; every twin lower 67 <= P <= 10^6, 8,162 twins): index mean 10.3 (1.7, 4.4,
+        7.0, 11.0 by decade), max 107; i/(ln s)^2 mean 0.064 (0.079, 0.092, 0.083, 0.083 by
+        decade - flat, the sieve reading 0.075 holds), max 0.598 - the pre-registered line 0.6
+        held by 0.002, so the constant is at the edge and the principled maximum law (mean times
+        the log of the sample) is the lane's round-10 item. MEASURED-HELD; the supply inequality
+        (4c - 1)/180 >= 0.6 (ln s)^2 holds from s ~ 3 x 10^4 (c ~ 5,000) on.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4223,3 +4229,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.viii: exact reuse expectation accounts for most of the crude factor 0.47 but a deficit growing with the block (7% at 16, 10% at 32, 4.5 sigma) remains, open; steering does not lower the first-twin index (4.53 +- 0.21); no impossible block of 2, 3, 4 base-open offsets.
 - 2026-09-19, R5.f.ix full run: the reuse deficit was the statistic (sum C(k,2) = 2,057 vs 1,929 expected, +6.6%); the pigeonhole supply side of the index bound holds at every twin from s = 12,162 to 10^6, with eight small exceptions verified directly; the remaining hypothesis stated in the literature's words (twin pair between P^2 and (P+2)^2, or in [s^2 - H, s^2 + H] with H ~ N^(1/4) log N).
 - 2026-09-19, R5.f.x: the lane's audit of rounds 1-8 (statuses, the serious flag that the candidate supply is conditional on a run bound F(x) < 2x^2/3), the proof map (critical path LadderHyp -> twins unbounded; L3, L4, L5 off it) and the certificate design; research/proof/ladder_proof_map.md; six-rung Pratt certificate to a 48-digit twin centre building.
+- 2026-09-19, R5.f.xi: the fixed-depth rung (depth 61, F exact) measured to 10^6 - first-twin index among the 61-rough offsets is 0.064 (ln s)^2 on average, flat by decade, max 0.598 (ln s)^2 (line 0.6 held by a hair); the candidate supply is unconditional at this depth.

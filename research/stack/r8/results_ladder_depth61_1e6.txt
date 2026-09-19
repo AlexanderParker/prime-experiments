@@ -1,0 +1,6 @@
+twins 8162 (67 <= P <= 1000000); depth 61 (F = 179 exact): first-twin index among 61-rough offsets mean 10.33, max 107; i/(ln s)^2 mean 0.0641 max 0.5978
+   P ~ 10^1: n=1 mean index 0.00 max 0  mean i/(ln s)^2 0.0000
+   P ~ 10^2: n=27 mean index 1.67 max 9  mean i/(ln s)^2 0.0786
+   P ~ 10^3: n=170 mean index 4.37 max 24  mean i/(ln s)^2 0.0916
+   P ~ 10^4: n=1019 mean index 7.03 max 52  mean i/(ln s)^2 0.0829
+   P ~ 10^5: n=6945 mean index 11.00 max 107  mean i/(ln s)^2 0.0830
