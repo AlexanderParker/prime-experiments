@@ -1,0 +1,20 @@
+Claim 1, progression form (M <= 4 sqrt c):
+  twins 8168; L twin-free: 19; |L| min/median/max 1/394/3105; first index mean 25.5 max 263
+  (P <= 300000) N_L / capture prediction: min 0.14 mean 1.00; index / (|L|/N_L^pred): max 7.5 mean 0.93
+Claim 1, sieve form (offsets rough to the gears <= sqrt s):
+  P ~ 10^0: twins 1, first-index mean 1.00, max 1, no twin among survivors: 0
+  P ~ 10^1: twins 6, first-index mean 3.50, max 6, no twin among survivors: 0
+  P ~ 10^2: twins 27, first-index mean 3.63, max 19, no twin among survivors: 0
+  P ~ 10^3: twins 170, first-index mean 4.28, max 21, no twin among survivors: 0
+  P ~ 10^4: twins 1019, first-index mean 3.96, max 29, no twin among survivors: 0
+  P ~ 10^5: twins 1770, first-index mean 4.07, max 34, no twin among survivors: 0
+Claim 2, steering s' = 0 mod Q:
+  Q = 35: twins without a steered successor: 21; last failing P = 2381
+  Q = 385: twins without a steered successor: 171; last failing P = 110321
+  Q = 5005: twins without a steered successor: 1434; last failing P = 299681
+Claim 3, forced offsets:
+  (a) twin centres at difference-of-squares offsets j = -6t^2 -+ 2t: 0 (expected 0)
+  (b) offset j = +c: twin hits 101 of 8168; base-rate expectation 107.8; ratio 0.94
+  (b) offset j = -c: twin hits 85 of 8168; base-rate expectation 107.8; ratio 0.79
+  (b) offset j = +(2c-1): twin hits 73 of 8168; base-rate expectation 107.8; ratio 0.68
+  (b) offset j = -(2c-1): twin hits 1 of 8168; base-rate expectation 107.8; ratio 0.01

@@ -2540,6 +2540,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         members P^2 + 4 and P^2 + 6, one of which 5 divides for every P != 5 - an exact forced
         failure (the square-neighbour law of KillPositions.lean), the single hit being P = 5.
         No enhancement above 1.
+        FULL RUN (13:27; twins to 10^6, full-window parts to 3 x 10^5): SIEVE FORM - first twin
+        among the sqrt(s)-rough offsets at index 3.6, 4.3, 4.0, 4.1 for P ~ 10^2..10^5 (1,770
+        twins in the last decade), max 34, never absent: the 1/delta^2 = 4 law holds with no
+        trend to 10^5. Progression form: the same 19 short-L failures of 8,168; capture identity
+        mean 1.00 (min 0.14). Steering: P0(35) = 2,383; last failures 110,321 for Q = 385 and
+        299,681 for Q = 5,005 (the latter at the cap). Forced offsets: 0 hits at the
+        difference-of-squares offsets; ratios 0.94, 0.79, 0.68, 0.01. VERDICT: the sieve-form
+        rung is a LAW (FACT); the progression form is DEAD as stated (short progressions fail);
+        steering with Q = 35 is a FACT from 2,383; forced offsets closed.
       - R5.f.v. THE CANONICAL LADDER (opened 13:25; research/stack/r8/canonical_ladder.py).
         From (5, 7) take at each rung the twin of the stretch nearest the centre (smallest |j|,
         positive first): s_0 = 6, s_{k+1} = s_k^2 + 6 j_k. Registered before the lane's
@@ -4014,3 +4023,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.i: the first lane's three claims hold at every p from 37 to 19,997 - square-scale transfer (a p-rough partner of P^2, P(P+2) or (P+2)^2 for the first twin of the stretch at the mean), single-plug column in every stretch with every cofactor prime, near pairs with the separation law exact. FACT; the lane is lifting claim 1 to the level where it is used.
 - 2026-09-19, R5.f.iii: the rung in centre coordinates - the locator (small gears pre-cleared by a congruence on the offset, phases from s^2 mod g) contains a twin centre at every twin lower to 200,000 under the y-rule; clean rungs from P = 271; the exact-count ratio min 0.472 at P = 71. FACT.
 - 2026-09-19, R5.d.i.c: F({5..61}) = 179 exact (180, 181 proved uncoverable; 179 certified). R5.f.v: the canonical twin ladder from (5, 7) reaches a 417-digit twin lower in nine rungs, offsets 1, 4, 6, 77, 44, -829, 3605, 28145, -6965, ratio 6|j|/(ln P)^2 in [0.18, 2.9].
+- 2026-09-19, R5.f.iv full run: the sieve-form rung law (first twin among the sqrt(s)-rough offsets at index ~4, max 34, never absent) holds to 10^5; steering by 35 from P = 2,383; progression form DEAD as stated; forced offsets closed.
