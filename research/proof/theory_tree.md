@@ -3060,6 +3060,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         Real.log_le_rpow_div). The conditional theorem of R5.f.xxi (iii) is a kernel object: the
         chain form of the ladder follows from a power-saving almost-all lower bound on rung
         counts - what the Poisson child-count law asserts empirically. FACT (kernel).
+        THE HYPOTHESIS MEASURED (00:20, almost_all_census.py, every twin centre s <= 10^5, 1,223
+        of them): mean T/(1.3203 s/ln^2 s) = 0.9997; exceptional set {T < c s/ln^2 s}: EMPTY at
+        c = 0.66; 4 at c = 0.9 (largest s = 462); 8 at c = 1.0 (largest 3,540); 18 at c = 1.1
+        (largest 3,930); 54 at c = 1.2 (11 above 10^4, the Poisson tail at 91% of the mean). So
+        AlmostAll holds in range with an exceptional set that is literally empty above
+        s = 3,540 for c = 1.0 - pointwise, not merely almost-all - and the power saving asked of
+        it is vacuous to 10^5.
       - R5.f.xxiii. KERNEL: THE CUBE LADDER FROM A SHORT-INTERVAL TWIN LOWER BOUND (formalist
         lane on Fable, 2026-09-20 00:30; proofs/LadderShortInterval.lean, 0 sorries, axioms
         propext / Classical.choice / Quot.sound, re-built and audited by the manager).
