@@ -3888,3 +3888,19 @@ stretches, adjacent residuals are uncorrelated (r = -0.020 for p > 2,000; -0.024
 gear, -0.098 with >= 3, two standard errors, below the refutation line), and the residual is
 unshifted by the number of shared gears (1.004, 0.999, 1.000, 0.997). FACT: the owner's
 adjacent-stretch interaction is exactly the shared gears, and it carries no twin information.
+
+### 126. F(61) = 179 exact; the twin ladder and its canonical path (loop, 2026-09-19)
+
+**F({5..61}) = 179** (struck run): 180 and 181 proved uncoverable by HiGHS (4,032 s, 2,779 s), 179
+certified by a real window (x = 13169725611018917022346). Ladder of exact rigid records now
+1, 4, 6, 10, 17, 24, 33, 42, 57, 87, 90, 102, 117, 144, 160, 179 at p = 5..61; F(67) >= 209.
+
+**The twin ladder** (laboratory, tree nodes R5.f.ii-v; lane rounds 2-4). For a twin (P, P+2),
+P = 6c-1, its own stretch is the columns 6c^2 + j, |j| <= 2c-1, centred on P(P+2) = (P+1)^2 - 1
+(kernel TwinLadder.lean); the rung "every twin's stretch holds a twin" holds at all 8,168 twin
+lowers to 10^6 (run to 10^6 pending; to 200,000 done), with the nearest twin at 6|j| < 20 (ln P)^2
+and at least three twins per rung from P = 41. In centre coordinates s = P+1 every gear's phase is
+fixed by s^2 mod g; the offsets rough to the gears <= sqrt s hold the rung's twin at index 4 on
+average (the lane's 1/delta^2 law), never beyond 23 to 10^5. The canonical path (nearest twin each
+rung, positive first): 5, 41, 1787, 3196327, ... reaches a 417-digit twin lower in nine rungs and
+eight seconds, offsets 1, 4, 6, 77, 44, -829, 3605, 28145, -6965.

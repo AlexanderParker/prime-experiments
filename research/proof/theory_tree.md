@@ -2547,8 +2547,9 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         at every rung (R5.f.ii claim 2). FIRST RUNGS (13:26): P = 5, 41, 1787, 3196327 (7 digits),
         14 digits, 27, 53, 105 digits, with j = 1, 4, 6, 77, 44, -829, 3605, 28145 and
         6|j|/(ln P)^2 = 2.3, 1.7, 0.6, 2.1, 0.3, 1.4, 1.5, 2.9 - bounded, no trend; rung 8
-        (210 digits) computing. The ladder reaches 10^105 in three seconds of search. OPEN:
-        the offset law and the certificate form per rung.
+        (209 digits): j = -6965, ratio 0.18, 4.6 s; the ninth twin lower has 417 digits
+        (members probable primes by BPSW). Nine rungs from 5 to 10^416 in eight seconds of
+        search. OPEN: the offset law and the certificate form per rung.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -2576,6 +2577,8 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             R5.d.i.a's OPEN growth law. Theory: the rigid record grows like the free one,
             F ~ p (ln p)^(1+e) with e > 0 small at this scale, so F / (p ln p) keeps rising.
             Predictions: F(61) in [179, 182] (bisecting); F(67) in [194, 215] (increments 15 to
+            [RESULT 13:27: F(61) = 179 EXACT - 180 and 181 uncoverable (4,032 s, 2,779 s), 179
+            certified at x = 13169725611018917022346; prediction held; F(67) >= 209, bisecting.]
             30 per gear as from 43 to 61); F(71) in [209, 240]; F / (p ln p) at 67 and 71 at or
             above 0.70. Refuted by an increment below 10 or above 40, or by F / (p ln p) falling
             below 0.66. Stop line: three more exact values, the ratio's direction, then close as
@@ -4010,3 +4013,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.e: adjacent stretches share phases exactly at the gears dividing (q-p)(q+p) (0-5 of them); detrended twin-density residuals of adjacent stretches uncorrelated (r = -0.02, p > 2000) and unshifted by the number of shared gears (1.004 to 0.997). FACT; raw r = 0.92 was the 1/(ln p)^2 trend, a confound in the pre-registration.
 - 2026-09-19, R5.f.i: the first lane's three claims hold at every p from 37 to 19,997 - square-scale transfer (a p-rough partner of P^2, P(P+2) or (P+2)^2 for the first twin of the stretch at the mean), single-plug column in every stretch with every cofactor prime, near pairs with the separation law exact. FACT; the lane is lifting claim 1 to the level where it is used.
 - 2026-09-19, R5.f.iii: the rung in centre coordinates - the locator (small gears pre-cleared by a congruence on the offset, phases from s^2 mod g) contains a twin centre at every twin lower to 200,000 under the y-rule; clean rungs from P = 271; the exact-count ratio min 0.472 at P = 71. FACT.
+- 2026-09-19, R5.d.i.c: F({5..61}) = 179 exact (180, 181 proved uncoverable; 179 certified). R5.f.v: the canonical twin ladder from (5, 7) reaches a 417-digit twin lower in nine rungs, offsets 1, 4, 6, 77, 44, -829, 3605, 28145, -6965, ratio 6|j|/(ln P)^2 in [0.18, 2.9].
