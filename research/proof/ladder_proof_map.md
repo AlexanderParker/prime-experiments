@@ -370,7 +370,8 @@ sequentially sifted Six window) for SixHyp at t >= 10^15.
 
 `lower_member_rough`: a gear `p` dividing the offset `j`, other than the twin gears, never strikes
 the lower member `s^2 + 6j - 1 = (s-1)(s+1) + 6j`; `upper_member_iff`: at such an offset `p` strikes
-the upper member iff `p ∣ s^2 + 1`. The only exact law on the record that uses the primality of the
-twin's members (every other law holds for the parity-twisted companion sets, section 0). It supplies
-base-open offsets unconditionally at level about `ln s`; a rung needs level `s`. Standard axioms;
-0 sorries.
+the upper member iff `p ∣ s^2 + 1`. This is the universal clearance class `j ≡ 0` of the lower
+member (section 8's `U_p`), proved for every gear at once; like all universal clearance it is the
+coprimality of the twin's members to the gears, and an `x`-rough column exists in any interval of
+length `∏_{p ≤ x} p` at any position by CRT. It supplies base-open offsets at level about `ln s`; a
+rung needs level `s`. Standard axioms; 0 sorries.

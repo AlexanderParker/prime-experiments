@@ -3366,11 +3366,18 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         x-rough unconditionally, and both members are x-rough at offsets divisible by the gears
         up to x that do not divide s^2 + 1 and avoiding one class for each that does: an
         unconditional supply of base-open offsets at level x whenever the primorial of x is
-        below the stretch length (x about ln s) - the first exact law on the record that uses
-        the members' primality (R5.f.xxvii found none among the others). Its reach is level
-        ln s against the level s a rung needs. Both dichotomy hypotheses hold to 10^5 on the
+        below the stretch length (x about ln s). CORRECTION (03:55): this is not a new law - it
+        is the universal clearance class j = 0 mod p of the lower member (R5.f.xiii's U_p),
+        now proved in the kernel for every gear at once; and the existence of an x-rough column
+        in any interval of length prod(p <= x) holds for ANY position by CRT (each gear leaves
+        p - 2 >= 3 free classes), so the twin condition only names which class is free. It is
+        L2 in kernel form, sieve-visible like L2. Its reach is level ln s against the level s a
+        rung needs. Both dichotomy hypotheses hold to 10^5 on the
         red lane's data (R5.f.xxiv.b.i): no leaf, and no twin centre above 30 with exactly one
-        rung (minimum positive count 2 at s = 30, 3 at s = 72). FACT (kernel).
+        rung (minimum positive count 2 at s = 30, 3 at s = 72); to 10^6 on twin_ladder.py's data
+        (R5.f.vi): no leaf and at least 3 rungs at every twin centre from s = 42, so both
+        dichotomy hypotheses hold to 10^6 with the single-rung case never occurring above 30.
+        FACT (kernel).
       - R5.f.xxix. THE STATEMENT AUDIT OF THE KERNEL (Opus audit lane, 2026-09-20 03:05; nine
         ladder files, statements only). No defect of type (a) vacuous hypothesis, (b) natural
         subtraction, (c) window endpoints or (e) reversed direction in any new file. Findings and
@@ -4902,3 +4909,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxviii addendum: kernel LadderEuclid.lean - the Euclid device: a gear dividing the offset never strikes the lower member (it would divide a twin prime), strikes the upper iff it divides s^2 + 1; the one exact law that uses the members' primality; unconditional base-open supply at level ln s.
 - 2026-09-20, R5.f.xxix (audit lane): kernel statements audited - no vacuous, subtraction, endpoint or direction defects; every hypothesis that contains the conclusion labelled; NearTwinHyp is a scaffold; docstring overclaims in LadderDepth fixed with two new theorems (chainHyp_of_path, chainHyp_of_ladderHyp_above); twins_unbounded_of_windowHyp and lower_member_rough_upto added.
 - 2026-09-20, F(67) = 213 EXACT (two-class covering record for the gears 5..67; 214 and 215 uncoverable in 9,981 s and 11,285 s); increment 34 from F(61) = 179; F/(p ln p) = 0.756.
+- 2026-09-20, correction: the Euclid device is the universal clearance class j = 0 (lower member) in kernel form, not a new primality-using law; both dichotomy hypotheses hold to 10^6 (minimum 3 rungs from s = 42). F(71) >= 222 (coverable in 3,227 s), bisection continuing.
