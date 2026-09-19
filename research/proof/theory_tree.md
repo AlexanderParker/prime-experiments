@@ -3001,7 +3001,11 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         tree has a node at every depth) -> ChainHyp (arbitrarily long chains anywhere) -> twins
         unbounded; ChainHyp is the weakest ladder-type statement on record, in words: for every
         n there are twin prime pairs P_0, P_1, ..., P_n with each pair strictly between the
-        squares of the previous one. FACT (kernel).
+        squares of the previous one. FACT (kernel). FOREST BELOW 10^6 (21:57): chain depths of
+        the 8,168 twin centres - 7,728 roots, 335 at depth 1, 53 at depth 2, 52 at depth 3; every
+        depth-3 node below 10^6 lies in the (5, 7) tree (6 -> 30 -> 858 -> 734472, ...): the (5, 7)
+        tree is the deepest tree of the forest in that range. No free-certificate rung at the
+        certified top (neither s(s+1) nor s(s-1) is a twin centre at s = 1.34 x 10^47).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
