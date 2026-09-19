@@ -262,3 +262,10 @@ the hypothesis lands a twin pair within (s-1)^(e-1) of (s-1)^e, inside the windo
 2e (s-1)^(e-1). Standard axioms; 0 sorries. The conditional map is formal at both ends: the standard
 short-interval twin conjecture (theta <= 2/3) gives the cube ladder pointwise; a power-saving
 almost-all rung-count bound gives the chain form. The square ladder alone would need theta <= 1/2.
+
+## 15. Kernel: the infinite-tree form (2026-09-20, proofs/LadderInfinite.lean)
+
+`treeNodes` = the nodes of the (5,7) rung tree. `infinite_iff_depthHyp`: the tree is infinite iff it
+has a node at every depth - a node at depth k is below 8^(2^k) and a missing level empties all
+levels above it, so a finite tree is exactly one with an empty level; no Koenig argument.
+`twins_unbounded_of_infinite`. Standard axioms; 0 sorries.

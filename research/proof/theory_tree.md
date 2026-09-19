@@ -3080,6 +3080,27 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         lower-bound form only; the square ladder (e = 2) would need theta <= 1/2, the Legendre-
         strength endpoint. FACT (kernel). The conditional map of R5.f.xxi is now formal at both
         ends: pointwise short intervals -> cube ladder; almost-all rung counts -> chains.
+      - R5.f.xiv addendum (kernel, 2026-09-20 00:45; proofs/LadderInfinite.lean, 0 sorries,
+        axioms propext / Classical.choice / Quot.sound). treeNodes = the nodes of the (5,7) rung
+        tree. Depth.bound: a node at depth k is below 8^(2^k) (a rung is below (s+1)^2);
+        Depth.none_above: a missing level empties every level above it; depthHyp_of_infinite
+        and infinite_of_depthHyp: THE (5,7) TREE IS INFINITE IFF IT HAS A NODE AT EVERY DEPTH
+        (infinite_iff_depthHyp), with no Koenig argument in either direction - the levels are
+        finite and bounded, so a finite tree is exactly a tree with an empty level;
+        twins_unbounded_of_infinite. The random lane's equivalence (path form) needed Koenig;
+        this form does not. FACT (kernel).
+      - R5.f.xxiv. THE ROUTES LANE: THREE NEW ROUTES FROM THE MACHINE'S INTERACTIONS (fifth
+        fresh lane, on Fable, opened 2026-09-20 00:25; brief in the session scratchpad
+        lane_routes/BRIEF.md). Parent observation: R5.f.xxi-xxiii closed the conditional map at
+        both ends, so the next node must be a route built from residues, offsets, gears and the
+        forest, not from counting. PRE-REGISTERED: the lane returns three routes not on the
+        closed list (free covering, composite-forcing families, almost-prime rungs, finite-tree
+        contradiction, primes-only hypotheses, sieve lower bounds), each with one falsifiable
+        numerical claim tested by an exact script. Seeds offered: forest identities (ancestor
+        chains, roots, s^2 mod p along a chain); the rung relation as a dynamical system on
+        residues (forced-open sets growing level to level); consecutive twin centres with
+        overlapping stretches; T(s) against the arithmetic of s. Verdict OPEN until the lane
+        reports; each route becomes its own child node with the claim's result.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4571,3 +4592,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.xxi (conditional lane): the cube ladder follows from the standard short-interval Hardy-Littlewood lower bound (theta <= 2/3); the square ladder needs the Legendre-strength endpoint (twin Cramer); the CHAIN form follows from an almost-all power-saving hypothesis (variance of pi_2 at length x^(1/2)) - the pointwise/almost-all line falls between DepthHyp and ChainHyp; no primes-only hypothesis reaches any form.
 - 2026-09-20, R5.f.xxii: kernel LadderAlmostAll.lean (0 sorries, standard axioms) - AlmostAll c delta eta (twin count >= X^(1-eta), exceptional rung-poor twin centres <= X^(1-delta)) implies ChainHyp, hence twins unbounded; the almost-all -> chain theorem of the conditional map is formal.
 - 2026-09-20, R5.f.xxiii: kernel LadderShortInterval.lean (0 sorries, standard axioms) - a twin pair in every (x, x + x^theta] with theta <= 1 - 1/e gives every large twin centre an exponent-e rung, chains of every length and twins unbounded; the cube ladder rests on the standard short-interval twin conjecture.
+- 2026-09-20, R5.f.xiv addendum: kernel LadderInfinite.lean - the (5,7) rung tree is infinite iff it has a node at every depth (no Koenig), so twins unbounded follows from an infinite (5,7) tree; 0 sorries.

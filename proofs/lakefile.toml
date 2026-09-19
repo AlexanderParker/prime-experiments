@@ -2379,3 +2379,6 @@ name = "LadderAlmostAll"
 
 [[lean_lib]]
 name = "LadderShortInterval"
+
+[[lean_lib]]
+name = "LadderInfinite"
