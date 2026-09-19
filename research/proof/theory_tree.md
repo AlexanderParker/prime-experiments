@@ -3357,7 +3357,20 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         integer forms of the sieve limit; attempt B yields a new kernel object whose two
         hypotheses are local (two consecutive twin centres; one twin centre's rung count) and
         both far weaker in appearance than LadderHyp. FACT (kernel) for B4; the gaps are the
-        open lemma's sharpest integer forms.
+        open lemma's sharpest integer forms. KERNEL ADDENDUM (02:55; proofs/LadderEuclid.lean,
+        0 sorries, standard axioms): lower_member_eq (the lower member at offset j is
+        (s-1)(s+1) + 6j); lower_member_rough - THE EUCLID DEVICE: a gear p dividing the offset
+        j, other than the twin gears, never strikes the lower member of column j (it would have
+        to divide s - 1 or s + 1); upper_member_iff - at such an offset p strikes the upper
+        member iff p | s^2 + 1. So at offsets divisible by every gear up to x the lower member is
+        x-rough unconditionally, and both members are x-rough at offsets divisible by the gears
+        up to x that do not divide s^2 + 1 and avoiding one class for each that does: an
+        unconditional supply of base-open offsets at level x whenever the primorial of x is
+        below the stretch length (x about ln s) - the first exact law on the record that uses
+        the members' primality (R5.f.xxvii found none among the others). Its reach is level
+        ln s against the level s a rung needs. Both dichotomy hypotheses hold to 10^5 on the
+        red lane's data (R5.f.xxiv.b.i): no leaf, and no twin centre above 30 with exactly one
+        rung (minimum positive count 2 at s = 30, 3 at s = 72). FACT (kernel).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4858,3 +4871,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxvi.a: kernel LadderRegion.lean (0 sorries) - RegionHyp (a twin centre between every pair of consecutive prime squares) -> LadderHyp -> WindowHyp (a twin centre in [q, (q+1)^2) for every q >= 6): the owner's window statement is a kernel consequence of the ladder.
 - 2026-09-20, R5.f.xxvii (parity lane, Fable): every exact law on the record (two classes, universal clearance as coprimality, phase lock, uniform local factor, top-band rule, unique parents, region law) holds equally for the parity-twisted sets Q and M'; only 'the members of a twin centre are prime' separates the twins. Index law to 10^7: max 0.6885 (ln s)^2 at s = 5,042,928, the 0.6 line breached as a geometric tail predicts, the cube envelope holds.
 - 2026-09-20, R5.f.xxviii (prover lane, Fable): three written attempts; leaf ledger identity r = |R_61| - T_61 + X_61; gap A-2 (big gears strike the s/3-rough columns fewer times than their number, 256 vs 100 at 10^4); the dichotomy lemma proved and put in the kernel (LadderDichotomy.lean): no consecutive leaves + no single rung -> chains of every length, node at every depth from 6, twins unbounded; Six-window ledger closes SixHyp for t >= 10^15 under a per-gear discrepancy bound; the same ledger fails in the square window.
+- 2026-09-20, R5.f.xxviii addendum: kernel LadderEuclid.lean - the Euclid device: a gear dividing the offset never strikes the lower member (it would divide a twin prime), strikes the upper iff it divides s^2 + 1; the one exact law that uses the members' primality; unconditional base-open supply at level ln s.

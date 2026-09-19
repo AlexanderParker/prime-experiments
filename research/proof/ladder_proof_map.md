@@ -357,3 +357,12 @@ The written attempts (research/proof/ladder_attempts.md) put the first primality
 of every route in integer form: gap A-2 (the gears above s/3 strike the (s/3)-rough columns fewer
 times than there are of them) for the square window; gap C-3 (a per-gear discrepancy bound for the
 sequentially sifted Six window) for SixHyp at t >= 10^15.
+
+## 19. Kernel: the Euclid device (2026-09-20, proofs/LadderEuclid.lean)
+
+`lower_member_rough`: a gear `p` dividing the offset `j`, other than the twin gears, never strikes
+the lower member `s^2 + 6j - 1 = (s-1)(s+1) + 6j`; `upper_member_iff`: at such an offset `p` strikes
+the upper member iff `p ∣ s^2 + 1`. The only exact law on the record that uses the primality of the
+twin's members (every other law holds for the parity-twisted companion sets, section 0). It supplies
+base-open offsets unconditionally at level about `ln s`; a rung needs level `s`. Standard axioms;
+0 sorries.
