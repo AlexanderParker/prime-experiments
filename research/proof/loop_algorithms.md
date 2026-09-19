@@ -3867,3 +3867,11 @@ agreement with the bisection.
 period 320460058359035439845, the real pattern struck for exactly 160 consecutive columns from x
 (research/stack/r8/results_rigid_cert_59.txt, ILP 1,067 s). Both halves of F(59) are now
 independent of the record's earlier bound.
+
+### 124. Record windows against square windows (tree node R5.d.i.b, loop, 2026-09-19)
+
+Pre-registered before computing (theory_tree.md R5.d.i.b): if the squares' residue structure kept
+them off the record runs, the certified record windows x (p = 43, 47, 53, 59, 61) would avoid the
+square class {(a^2 - 1) 6^-1 mod g} at some gear systematically; predicted instead a share ~0.5
+and no excluded gear. Measured: in the square class at 4/12, 10/13, 4/14, 11/15, 8/16 gears
+(overall 0.529); no gear avoided by every record window. DEAD in one line, as pre-registered.

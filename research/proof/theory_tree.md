@@ -2420,6 +2420,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           [161, 178]); coverable halves CERTIFIED by CRT window positions on the real pattern,
           uncoverable halves by HiGHS infeasibility. F / (p ln p) rises 0.3 -> 0.7; from p = 37
           the record exceeds most stretches. FACT; growth law OPEN beyond 61.
+          - R5.d.i.b. RECORD WINDOWS AGAINST SQUARE WINDOWS (pre-registered 2026-09-19 11:35,
+            before computing). Spawned by R5.d.i.a: the certified record windows x are known
+            exactly at p = 43, 47, 53, 59, 61. Theory: if the squares' residue structure kept
+            them off the record runs, the record windows' start residues x mod g would avoid
+            the square class {(a^2 - 1) 6^-1 mod g} systematically. Prediction (no relation,
+            entries 105, 109, 122): the share of gears at which x mod g lies in the square class
+            is about (g + 1)/(2g) ~ 0.5 per gear, so 6 to 9 of 12-16 gears, with no gear
+            excluded at every p. Refuted by a gear (or a class of gears) at which every record
+            window avoids the square class, or by a share below 0.25 or above 0.75 at every p.
+            Stop line: if the share is ~0.5, DEAD in one line, no follow-up.
+            RESULT (11:36): shares 0.33, 0.77, 0.29, 0.73, 0.50 at p = 43, 47, 53, 59, 61;
+            overall 0.529 (37 of 70 gears); no gear at which every record window avoids the
+            square class. Prediction held. DEAD: the record windows sit in the square class as
+            often as any window would; the squares' residue structure is unrelated to where the
+            record runs are.
        - R4.d.ii. THE MACHINE'S CLOSED FORMS FOR THE NEXT GAP AND THE nth PRIME (owner's
          requests 2026-09-10 and 2026-09-11; research/proof/next_gap_closed_form.md,
          research/proof/nth_prime_closed_form.md; script research/stack/r7/nth_prime.py).
@@ -3825,3 +3840,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, loop entry 121: exact rigid ladder by ILP + CRT certificates - runs 1, 4, 6, 10, 17, 24, 33, 42, 57, 87, 90, 102, 117, 144 at p = 5..53 (144 at 53 NEW, certified at window x = 1249461754311661376); F(59) in [161, 164]; F / (p ln p) rising 0.3 to 0.69; from p = 37 the record exceeds most stretches, so the pattern has fully struck windows longer than the stretch and the squares are never at them. FACT.
 - 2026-09-19, loop entry 122: square-class (location-law) shift vectors kill stretches exactly where unrestricted ones do, p = 7..83 (ILP); the location law removes no killer. DEAD as protection.
 - 2026-09-19, loop entry 123: F({5..59}) = 160 exact (161 in the ladder's convention, the bottom of the record's pinned [161, 178]; 161 and 162 proved uncoverable by HiGHS), F({5..61}) >= 179 certified at x = 13169725611018917022346, 210 uncoverable. The record's falsification target is met.
+- 2026-09-19, R5.d.i.b: record windows against square windows - the certified record windows' start residues lie in the square class at 37 of 70 gears (0.529), no gear systematically avoided. Prediction (no relation) held; DEAD.
