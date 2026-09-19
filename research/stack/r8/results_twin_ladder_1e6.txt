@@ -1,0 +1,4 @@
+twin lowers tested: 8168 (P <= 1000000)
+Claim 1 (every twin's stretch holds a twin): failures []
+Claim 2 (6|j_min| / (ln P)^2 < 20): max ratio 13.274 at P = 646421 (j = 396); mean ratio 1.509; 99th pct 6.922
+Claim 3 (>= 2 twins in the stretch for P >= 41): failures []; minimum twin count (3, 41)

@@ -2595,6 +2595,9 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         at depth x = sqrt s needs F(x) < 2x^2/3 to give even one candidate - exact to x = 61,
         measured 0.7 x ln x beyond, best proved two-class exponent 4.266 (the lane's audit flag,
         R5.f.x). No density input, but an open run-bound input.
+        LADDER TO 10^6 (14:13, twin_ladder.py, 8,168 twin lowers): every twin's stretch holds a
+        twin (0 failures); nearest twin ratio 6|j|/(ln P)^2 max 13.27 at P = 646,421 (j = 396),
+        mean 1.51, 99th percentile 6.9; at least 3 twins per stretch from P = 41 (minimum 3).
         CLAIM C RESULT (13:33, canonical_ladder2.py, the lane's rule - nearest centre, negative
         tie): 5 -> 29 -> 881 -> ... nine rungs to a 378-digit twin lower in 24 s; offsets -1, -3,
         9, 21, -68, 641, -1682, -4187, -2086; 6|j|/(ln P)^2 = 2.3, 1.6, 1.2, 0.7, 0.55, 1.3, 0.86,
@@ -4257,3 +4260,4 @@ Part III or Part IV of the proof document?
 - 2026-09-19, R5.f.x: the lane's audit of rounds 1-8 (statuses, the serious flag that the candidate supply is conditional on a run bound F(x) < 2x^2/3), the proof map (critical path LadderHyp -> twins unbounded; L3, L4, L5 off it) and the certificate design; research/proof/ladder_proof_map.md; six-rung Pratt certificate to a 48-digit twin centre building.
 - 2026-09-19, R5.f.xi: the fixed-depth rung (depth 61, F exact) measured to 10^6 - first-twin index among the 61-rough offsets is 0.064 (ln s)^2 on average, flat by decade, max 0.598 (ln s)^2 (line 0.6 held by a hair); the candidate supply is unconditional at this depth.
 - 2026-09-19, R5.f.xii: at fixed depth 61 the bound function must be a cube, B = 0.0695 (ln s)^3 (maximum to 10^6 predicted 85-120, observed 107; no breach of 0.07 (ln s)^3); NTH_61 = the twin analogue of Cramer's conjecture at N = s^2 (interval 0.38 (log N)^3); the mean tier reproduces the average twin gap to three digits; depth cancels; the reduction is complete; path form added to the kernel.
+- 2026-09-19, R5.f.ii to 10^6: every twin lower's stretch holds a twin (8,168 twins, 0 failures); worst nearest-twin ratio 13.27 at P = 646,421; at least 3 twins per stretch from 41. The ladder hypothesis holds at every twin below 10^6.
