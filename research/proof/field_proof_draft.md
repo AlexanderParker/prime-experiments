@@ -332,6 +332,41 @@ stretch. The lemma is a comparison of two counts that the shapes define exactly;
 is accessible, the count of base-open columns in a stretch is the sifted-set lower bound that the
 whole record turns on.
 
+## 5g. The products field of the stretch is Goldbach (2026-09-20 20:30)
+
+**Identity (exact).** A member of the stretch that is a product of two primes h <= p equals
+m^2 - d^2 with m = (h + p)/2 and d = (p - h)/2: it is a Goldbach partition of the even number 2m,
+and it lies in the stretch iff (s-1)^2 < m^2 - d^2 < (s+1)^2, at offset j = (m^2 - d^2 - s^2 -+ 1)/6.
+By AM-GM, s - 1 < m <= (h + (s+1)^2/h)/2, so the partitioned numbers 2m run from 2s up to about
+s^2/B for the smallest gear h = B in play. Verified on all 54,027 two-prime members of the stretches
+of the 74 twin centres in [102, 3000] (research/stack/r8/stretch_goldbach.py), 0 violations.
+
+**The top band is the short Goldbach problem of the twin centre.** The two-prime members with
+m = s are exactly the partitions 2s = (s - d) + (s + d) with 1 <= d < sqrt(2s), lying at the lower
+member of offset j = (1 - d^2)/6 - the record's difference-of-squares family, now read as the
+Goldbach partitions of 2s whose parts lie within sqrt(2s) of s; d = 1 is the twin pair itself,
+plugging the centre column with s^2 - 1 (the twin gears strike only the centre). The members with
+m = s + 1 are the partitions of 2s + 2 with d = 6t, at the upper member of offset j = c - 6t^2;
+2s - 2 contributes nothing (its products fall below the stretch). Verified exactly at every one of
+the 74 twin centres: the set of such members equals the set of such partitions, 0 violations; per
+centre 2 to 4 short partitions of 2s and 0 to 2 of 2s + 2.
+
+**What the structure says.** The stretch is the Goldbach-partition graph of the even numbers 2m
+between 2s and s^2/B: each column is plugged by the partitions (h, p) whose product falls on it
+(and by three-prime products); the twins are the columns no partition reaches while both members
+stay rough. The twin problem in the stretch and the Goldbach problem for the numbers just above 2s
+are the two faces of one machine: the composite-forcing families of the record are Goldbach
+partitions of 2s and 2s + 2, and the base-open count against the partition count is the region
+lemma. The partition count of 2s carries the factorisation of s through its singular series
+(prod (p-1)/(p-2) over p | s), while the twin count of the stretch carries none (the inherited
+local factor is identically 1, section 5 of the tree): the plugs know the arithmetic of s, the
+survivors do not.
+
+**Relationship to establish (the lemma, third field form).** For every twin centre s and
+B = floor(sqrt(2s)): the number of Goldbach partitions (h, p), B < h <= p, of the even numbers
+2m in (2s - 2, s^2/B] whose product lies in the stretch with a B-rough partner, plus the
+three-prime plugs, is smaller than the number of base-open columns.
+
 ## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
 
 `StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns

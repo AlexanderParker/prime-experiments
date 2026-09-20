@@ -3915,6 +3915,23 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           sieve in a stretch of length 4s only below level (4s)^{1/4.27} - Chen's switching frame,
           which is why Chen holds on the line and not in the stretch. FACT (split exact, shares
           measured); the region lemma open as the comparison of the two counts.
+        - R5.f.xxxiv.o. THE PRODUCTS FIELD OF THE STRETCH IS GOLDBACH (owner's "push ahead", PM
+          20:30; research/stack/r8/stretch_goldbach.py). IDENTITY: a two-prime member h p of the
+          stretch is m^2 - d^2 with m = (h+p)/2, d = (p-h)/2 - a Goldbach partition of 2m - in the
+          stretch iff (s-1)^2 < m^2 - d^2 < (s+1)^2, at offset (m^2 - d^2 - s^2 -+ 1)/6, with
+          s - 1 < m <= (h + (s+1)^2/h)/2. PREDICTIONS: (1) the identity and bound hold for every
+          two-prime member (s <= 3000); (2) the lower members with m = s are exactly the
+          partitions 2s = (s-d) + (s+d), 1 <= d < sqrt(2s), at j = (1 - d^2)/6 (d = 1 the twin
+          itself at the centre); (3) upper members with m = s+1 are the partitions of 2s+2 with
+          d = 6t at j = c - 6t^2, and 2s-2 gives nothing. RESULT: 54,027 members, 0 violations
+          (after correcting the bound to include h/2); claims 2 and 3 exact at all 74 twin
+          centres; 2-4 short partitions of 2s and 0-2 of 2s+2 per centre. So the record's
+          composite-forcing families (R5.f.xv) are the short Goldbach partitions of 2s and 2s+2,
+          and the stretch is the partition graph of the even numbers 2m in (2s-2, s^2/B]: plugs =
+          partitions with a rough partner (+ three-prime products), twins = the columns no
+          partition reaches. The plugs carry s's factorisation (singular series of 2s); the
+          twins carry none (R5.f.xxv). LEMMA, third field form: partitions with rough partner +
+          P_3 plugs < base-open columns. FACT (identity and the two families exact).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5451,3 +5468,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.l: twisted translates - F(q') <= q'(F_T + 1) proved, vacuous (F_T is F's size); the form re-encodes the joint alignment; step 1's shape routes exhausted at the same point as 5a and 5b.
 - 2026-09-20, R5.f.xxxiv.m: origin square lemma proved (the next gear fills only the square column among old holes, 75 pairs verified) and the window count law T(q') = T(q) - [q'+2 prime] + N(q^2, q'^2]; the field programme meets RegionHyp; the lemma left is a twin between consecutive prime squares.
 - 2026-09-20, R5.f.xxxiv.n: the twin stretch in the products field - base-open = twins + plugs, plugs share 0.63-0.81 at B = sqrt(2s), P_2 dominant; the region lemma is the comparison plugs < base-open, Chen's switching frame at a level where the stretch has no lower-bound sieve.
+- 2026-09-20, R5.f.xxxiv.o: the products field of the stretch is Goldbach - two-prime members are partitions of 2m (m from s to s^2/B), the top band the short partitions of 2s and 2s+2 (exact, 74 centres); the twin problem in the stretch and the Goldbach problem above 2s are two faces of one machine.
