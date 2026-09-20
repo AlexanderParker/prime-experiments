@@ -4173,6 +4173,19 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             (the alignable chain of E4), so each new gear can add a filled hole at once. FACT.
             The centre is the run at phase 0, a lower bound for the record for every q (record
             >= 2m(q)), exact only at q = 11.
+          - R5.f.xxxv.c.vii. THE STAIRCASE RULE (2026-09-21; research/stack/r8/
+            machine5_staircase.py). Spawned by c.iii (13 in every hole of every chain). PROVED: for
+            a gear g >= 11 other than 13 the hole step 7^{-1} mod g is at least 3 from 0 (it is +-1
+            or +-2 only for g | 6, 8, 13, 15), so one class hits at most one of any three consecutive
+            holes and the gear at most two of their fifteen laps; 13 alone hits ten consecutive
+            holes (11, 12, 0 mod 13 are 13-free). PRE-REGISTERED floors (Q4): a chain of 13 holes
+            holds three consecutive 13-free holes and needs at least eight gears other than 7, 13
+            (so none for q < 41); a chain of 12 needs at least five (q >= 29). TEST (partial
+            periods, first 2e8 laps): longest chain 4 at q = 31 (hole 19728987) and 4 at q = 37
+            (hole 3180257), both inside the staircase, no 13-free hole in either. Not refuted; the
+            chains observed so far (q <= 37) all lie inside 13's ten-hole staircase with 13 in
+            every hole. FACT (rule) + observation; the floors alone do not bound the record below
+            the window (chain <= 12 gives record <= 94 laps against 55 window laps at q = 37).
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5737,3 +5750,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.iv: Q1-Q6 carry to the laps (30 for 6, 15 for 3); mirror k -> -k fixes every class pair; range with machine 5 as cycle = tower of lap-window statements.
 - 2026-09-21, R5.f.xxxv.c.v: centre of the lap period - lap at offset j/2 struck by g iff g | 15j-+1; centre pair always 7's adjacent pair; central run 4 / 10 / 16 / 34 laps for q = 11..17 / 19..37 / 41..113 / 127; at q = 11 the record is the central run; origin always open, centre always struck.
 - 2026-09-21, R5.f.xxxv.c.vi: centre run vs record (laps) 4/4, 4/5, 4/7, 10/12, 10/18, 10/25 for q = 11..29; centre is the phase-0 run, a lower bound, exact only at q = 11.
+- 2026-09-21, R5.f.xxxv.c.vii: staircase rule - gears other than 13 hit at most one of three consecutive holes per class; chains of 13 holes need 8 gears (q >= 41); observed chains 4 at q = 31, 37 (partial), all inside 13's staircase.
