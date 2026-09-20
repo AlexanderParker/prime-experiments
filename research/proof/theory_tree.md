@@ -3576,7 +3576,14 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           hypothesis OPEN. Next: the F sequence's own law - F(q)/(q ln q) rises 0.71 -> 0.76 from
           61 to 67; the one-class Jacobsthal grows like P ln P ln_3 P / ln_2 P (FGKMT), so the
           rigid F should too; a fit decides whether the rigid pairs lose a log factor to the free
-          classes.
+          classes. FIT (10:40, nine exact values 23..67): F/(q ln q) = 0.47, 0.66, 0.60, 0.64,
+          0.65, 0.69, 0.67, 0.71, 0.76 (rising); F/(q ln^2 q) = 0.150, 0.182, 0.161, 0.169,
+          0.169, 0.174, 0.163, 0.174, 0.180 (flat at 0.17 +- 0.01); F/(q ln q ln_3 q / ln_2 q) =
+          4.0 -> 3.0 (falling). On this range the record grows like 0.17 q ln^2 q, the
+          Maier-Pomerance shape for the one-class function, faster than q ln q; the range is too
+          short to separate ln^2 q from ln q times a slow function. Either way F/window ~
+          ln^2 q / q -> 0. FACT (fit). F(71): the 241 check ended TIMEOUT at 14,400 s (the
+          process wrote its bounds before the system killed it): F(71) in [222, 259].
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q

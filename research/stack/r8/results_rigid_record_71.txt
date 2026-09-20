@@ -1,2 +1,5 @@
 p=71 gears=[5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71]
   L=222: coverable  (3227s)
+  L=241: TIMEOUT  (14400s)
+  stopping at timeout; bounds so far 222 260
+F({5..71}) in [222, 259]
