@@ -3860,6 +3860,14 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           five_consecutive and four_consecutive (E2 including the {5,7} exception, a 16-way case
           split). No statement weakened. Not yet in the kernel: Lemma B (widening) and the lower
           half of the sandwich. FACT (kernel).
+        - R5.f.xxxiv.k. KERNEL: LEMMA B AND THE SANDWICH'S LOWER HALF (owner's order 18:00;
+          Fable formalist lane opened 18:05, brief lane_widen/BRIEF.md). PRE-REGISTERED:
+          proofs/LadderWidening.lean with widening (below its own square a gear strikes only its
+          home column or a column a smaller gear strikes), twin_column_strikers, twin_slot_persists
+          (a twin slot is unstruck in every machine whose gears stay below its members),
+          struck_periodic, tooth_of_class, align_single_hole (a run of the old machine with one
+          hole becomes a fully struck run of the next machine at a translate - G_1(q) <= F(q'), by
+          periodicity and CRT), not_maxGapBelow_of_single_hole. Verdict OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
