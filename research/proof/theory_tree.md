@@ -4075,6 +4075,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           the same shape of question as the root, one base gear higher (the machine with base
           2, 3, 5 in place of 2, 3). FACT (the overlay's shape on the copies, exact); the range
           statement for every q follows from the copies' family being unbounded, not yet shown.
+          - R5.f.xxxv.c.i. THE LAP MACHINE'S WINDOW (2026-09-21; research/stack/r8/
+            machine5_lap_window.py). Spawned by the reading of R5.f.xxxv.c: the overlay gears 7..q
+            on the laps k form a machine (two classes of k per gear); by the square-root rule an
+            open lap k with q < 30k-1 and 30k+1 < q'^2 (q' the next prime) is a twin, so the range
+            statement for q follows from "the lap machine 7..q has an open lap in its window
+            (q/30, q'^2/30)". PRE-REGISTERED: prediction, an open lap in every such window;
+            refuted by a q whose window laps are all struck. RESULT q <= 300: never refuted;
+            first open lap k = 1 (q <= 23), 2 (29..53), 5 (59..137), 8 (139..~199), 14 (..293).
+            Lap-machine record (longest struck run of laps over a full period, exact): 2, 4, 5,
+            7, 12, 18 laps for q = 7, 11, 13, 17, 19, 23 (the 6n+-1 machine's runs on the same q:
+            4, 6, 10, 17, 24, 33); longest struck run inside the window: 12 laps at q = 101 of a
+            350-lap window, 37 at q = 199 of 1477, 41 at q = 293 of 3132. READING: the lap machine
+            is machine q read on the columns 5k only; its window statement has the same shape as
+            E4 (record below the window length), one base gear higher. FACT (holds to 300, exact
+            records to 23); the lemma "lap record < window length" is E4 for base 2, 3, 5, open.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5633,3 +5648,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.a (range lane): one gear of T reads q's cycle re-indexed by g (twisted machine); two per run only at the leg distances, bound 3F+4; pairs of large gears coincide on four residues mod gg'; a run needs mu_T(w) gears; the twins of each tier of the range are exactly the openings of the tier-root machine (13 / 167 / 173 at q = 13) - the range statement is the disjunction of the tower's window statements.
 - 2026-09-21, R5.f.xxxv.b: the known opening's copies k P_L (k < q) hold no twin at q = 43, 71, 79, 113; the family has about 3 ln^2 q / q twin copies; refuted as a guaranteed survivor.
 - 2026-09-21, R5.f.xxxv.c: machine 5 as the cycle, overlay every gear above 5: overlay gear g strikes copies (30k-+1) at k = +-30^-1 mod g (two classes, distance 15^-1 mod g) - a machine of the same shape with 5 in the base; every range (q, q#] to q = 79 holds a twin copy, the first at k = 1, 2 or 5.
+- 2026-09-21, R5.f.xxxv.c.i: lap machine 7..q on the copies 30k+-1 has an open lap in its window (q/30, q'^2/30) for every q <= 300 (first open lap k <= 14); lap records 2, 4, 5, 7, 12, 18 for q = 7..23; same E4 shape with 5 in the base.
