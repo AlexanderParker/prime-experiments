@@ -3947,6 +3947,19 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           a non-sieve lower bound for pairs of prime-or-P_2 members in the stretch at level
           sqrt(2s) plus EH-level equidistribution of the bilinear partner sequence. FACT (law and
           analysis); the lemma stands.
+        - R5.f.xxxiv.q. THE BASE-OPEN COUNT IS THE HOLE UNIFORMITY OF MACHINE sqrt(2s) AT SCALE
+          B^2 (PM 21:30). U (base-open columns of the stretch at level B = sqrt(2s)) = holes of
+          machine B in a window of about B^2/3 columns at a generic phase; U >= k iff G_{k-1}(B)
+          < 4c - 1; with the measured G_k law (linear in k at the mean spacing, xxxiv.e) this gives
+          U ~ 6.6 s/ln^2 s = its mean, exactly the lower bound the comparison of xxxiv.p needs. So
+          the region lemma in the products frame = (a) hole uniformity of machine B at scale B^2
+          (no window of B^2/3 columns with fewer than half the mean holes) + (b) an EH-level bound
+          for the bilinear partner sequence. (a) is the joint alignment of xxxiv.h-l in density
+          form (E4 asks one hole per B^2/6 window; (a) asks proportionally many per B^2/3
+          window); Montgomery-Vaughan 1986 control the one-class analogue for almost every window,
+          not the worst. VERDICT: the field programme has carried the lemma through four exact
+          forms and located the obstruction in each as the same statement about one sifted set at
+          the scale of its own square; the draft is complete with that one lemma open. FACT.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5485,3 +5498,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.n: the twin stretch in the products field - base-open = twins + plugs, plugs share 0.63-0.81 at B = sqrt(2s), P_2 dominant; the region lemma is the comparison plugs < base-open, Chen's switching frame at a level where the stretch has no lower-bound sieve.
 - 2026-09-20, R5.f.xxxiv.o: the products field of the stretch is Goldbach - two-prime members are partitions of 2m (m from s to s^2/B), the top band the short partitions of 2s and 2s+2 (exact, 74 centres); the twin problem in the stretch and the Goldbach problem above 2s are two faces of one machine.
 - 2026-09-20, R5.f.xxxiv.p: plug share law 1 - 0.79 ln^2 B/ln^2 s verified; the base/plug comparison has no admissible level (base lower bound only below s^0.234, plug constant e^gamma at level x^1/2); the lemma's exact obstruction in the products frame.
+- 2026-09-20, R5.f.xxxiv.q: the base-open count is the hole uniformity of machine sqrt(2s) at scale B^2 (via the G_k law); region lemma = uniformity (a) + EH-level plug bound (b); the field draft is complete with the one lemma open in four exact forms.

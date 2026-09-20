@@ -401,6 +401,40 @@ frame with the interval too short, quantified: the twin conjecture would follow 
 for U(sqrt(2s)) that beats 1.98 s/(0.79 ln^2 s) x (1 - 1/1.02) - a non-sieve lower bound for
 pairs of numbers both prime-or-P_2 in the stretch - together with an EH-level bound for the plugs.
 
+## 5i. Where the base-open count comes from: the machine at level sqrt(2s) (2026-09-20 21:30)
+
+The base-open columns U of the stretch at level B = sqrt(2s) are the holes of machine B (gears
+5..B) in a window of 4c - 1 ~ B^2/3 columns at a generic phase (the stretch sits at height s^2 ~
+B^4/4, far from machine B's origin, so no square-lemma simplification applies). Two exact facts
+about that count, from the sandwich functions of section 5 (E3'):
+
+- U >= k whenever G_{k-1}(B) < 4c - 1, where G_k(B) is the longest window of machine B with at most
+  k holes. So a lower bound for U is a statement about the k-hole windows of machine B at scale B^2.
+- Measured on the machines 5..23, G_k grows linearly in k at the mean hole spacing (slope 4-5 at
+  q = 19, mean spacing 4.27): G_k(B) ~ F(B) + k x ln^2 B / 2.5. If that law held as a theorem up to
+  k ~ B^2 / ln^2 B, it would give U >= (B^2/3 - F(B)) x 2.5 / ln^2 B ~ 6.6 s / ln^2 s, which is the
+  mean of U (6.7 s/ln^2 s) - the lower bound the comparison of 5h needs at level sqrt(2s).
+
+So the region lemma, in the products frame, rests on two statements: (a) the holes of machine B are
+uniform at scale B^2 - no window of about B^2/3 columns holds fewer than half the mean number of
+holes (the G_k law for large k); (b) the plugs, a one-class sieve on the bilinear partner sequence
+h p -+ 2, are bounded with constant near 1, which needs an Elliott-Halberstam-type level of
+distribution for that sequence. Statement (a) is the joint alignment of sections 5a-5d in density
+form: E4 asks for one hole in a window of B^2/6, (a) asks for a proportional number in a window of
+B^2/3. Both are statements about one sifted set at one scale, and neither follows from the rows'
+individual shapes. Known in the direction of (a): for one class per prime Montgomery-Vaughan (1986)
+bound the moments of the count of reduced residues in short intervals, which controls almost every
+window but not the worst window; the two-class analogue would say the same.
+
+**State of the lemma after the field programme.** Every proved line of the draft is in the kernel.
+The one lemma has been carried through four exact forms (sparse stretch, alternating window, twisted
+translates, base-open against plugs) and its obstruction has been located in each: the joint
+alignment of a sifted set at the scale of its own square. The products frame adds the structure that
+the plugs are Goldbach partitions and gives the comparison a number (share 1 - 0.79 ln^2 B/ln^2 s)
+and a level analysis (no admissible level for the sieve). What would finish the proof is either a
+lower bound for the holes of machine B in every window of length B^2/3 proportional to the mean, or
+a direct argument for a hole in the window of length B^2/6 - the same statement at two strengths.
+
 ## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
 
 `StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns
