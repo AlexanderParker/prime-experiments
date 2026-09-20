@@ -150,6 +150,55 @@ If E4 is proved, Lemma E follows (the window is a run of the pattern, so it is n
 Lemma A makes the unstruck column a twin pair, Lemma B keeps it a twin pair in every larger
 machine, and the theorem follows.
 
+## 5a. The numerator from the shapes (owner's direction, 2026-09-20 16:30)
+
+The stretch is built from the rows, whose shapes we know; this section derives what can be derived
+from the shapes alone, verifying only endpoints by table.
+
+**Self-similarity of the fields (exact).** In the window of q every painted member is a composite
+coprime to 6, and `higher:g` (composites whose smallest gear factor is g) is exactly g times the
+set of numbers in [g, q^2/g] coprime to 6 and to every gear below g - g times the rough set of the
+machine below g. So the painted set of the window is the union over gears of scaled copies of the
+smaller machines' own hole patterns: the fields are self-similar, and the count of holes of
+machine q is the Buchstab identity read column by column. This is the shape calculation of the
+painted set; it is exact and it is the sieve's identity, no more and no less.
+
+**The thin-band bound (PROVED from the shapes).** Split the gears into a base 5..B, whose pattern
+is held exactly, and a top band (B, q]. Let h_B(L) be the least number of base holes in any window
+of length L (from one base period). A covered stretch of length L must have every base hole inside
+it painted by a top gear, and a top gear g paints at most 2 ceil(L/g) columns of the stretch. Hence
+
+    F(q) <= max{ L : 2 sum_{B < g <= q} ceil(L/g) >= h_B(L) }.
+
+Evaluated (research/stack/r8/thin_band_bound.py, table used only for h_B): base 17, top {19}:
+F(19) <= 42 (true 24), and 42 < 57 = window of 19, so the window statement for machine 19 follows
+from shapes alone; base 23, top {29}: F(29) <= 89 (true 42), 89 < 135, likewise for 29. With a band
+two gears thick the bound is 143 for q = 23 (true 33, window 84) and above 160 for q = 31 (true 57):
+useless. The bound is exactly the upper half of the sandwich (E3') with the base's sparsity
+function written as h_B, and it is the union bound on the band.
+
+**Why it loses, in shape terms.** The bound charges every tooth of a top gear as a hit on a base
+hole. In a stretch of length L the gear has 2 ceil(L/g) teeth, but the base holes are a fraction
+h_B(L)/L of the stretch, and only those teeth that fall on holes do any work: the true number of
+hits is the number of base holes in the two classes of g, about 2 h_B(L)/g when the holes are
+spread over the classes. The bound is tight only if the holes of the base inside the stretch all sit
+in the two classes of the new gear - which is the alternation law of E4c, i.e. a covered window.
+So every bound the row shapes give on their own charges the overlap at its worst case, and the
+worst case is the statement to be excluded. The alternation attempt reduces to the same point:
+the holes of machine q inside a covered window lie in two classes mod q', every second one in the
+same class; excluding a stretch of q^2/6 columns with that property from the shapes of the rows
+5..q is E4, and the rows' individual shapes constrain gaps between holes (each residue class of
+each row leaves g - 2 free classes, whose differences cover every residue) but not their joint
+residues modulo a gear that is not in the machine.
+
+**What the shapes have given, and what they have not.** Given: the two-row and three-row records by
+position analysis (E2, and F({5,7,g}) = 6 for every g); the alternation and spacing laws of a
+covered window (E4c); the sandwich and the recursion (E3'); the thin-band bound and with it the
+window statement for machines 19 and 29 without any table of the machine itself. Not given: any
+bound on the record that does not charge the new gears' overlap at its worst case. The lemma E4 is
+that overlap statement and nothing else; the direct counting form of it (the number of covering
+phase vectors is at most P (1 - d)^L) was tried in docs/covering-bound-route.md and refuted.
+
 ## 6. The theorem
 
 **Theorem (conditional on Lemma E).** For every prime q >= 5 the window of q holds a twin prime
@@ -174,6 +223,7 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (2026-09-20) |
 | E4c | in a covered window of q' the interior hole gaps of q are >= (q'-1)/3 and alternate in two residues | PROVED (2026-09-20) |
 | E4d | F(q') <= S_t*(q), the longest stretch of q with hole gaps >= (q'-1)/3 | PROVED (2026-09-20) |
+| E4e | thin-band bound F(q) <= max{L : 2 sum_top ceil(L/g) >= h_B(L)}; window statement for 19 and 29 by shapes | PROVED (2026-09-20) |
 | E4 | S_t*(q) < (q'^2 - q')/6 for consecutive primes q < q' (implies `MaxGapHyp`) | LEMMA |
 | E | the window is never painted over | LEMMA (follows from E4) |
 

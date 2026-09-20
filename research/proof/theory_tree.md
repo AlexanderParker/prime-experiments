@@ -3824,6 +3824,23 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           isolated twin candidates of level q (both neighbours at least q'/3 away); E4 says such
           isolated candidates never line up densely enough for the stretch to span the window.
           FACT (F(q') <= S_t*(q) proved, table exact); E4 open in this form.
+        - R5.f.xxxiv.h. THE NUMERATOR FROM THE SHAPES: THE THIN-BAND BOUND (owner's direction
+          16:20: derive the stretches from the fields, tables only to verify; PM 16:30,
+          research/stack/r8/thin_band_bound.py). Self-similarity (exact): higher:g in the window
+          is g times the rough set of the machine below g, so the painted set is a union of
+          scaled copies of the smaller machines' hole patterns (Buchstab, column by column).
+          THIN-BAND BOUND (PROVED): with base 5..B held exactly and h_B(L) its least hole count in
+          a window of length L, F(q) <= max{L : 2 sum_{B<g<=q} ceil(L/g) >= h_B(L)}. Evaluated:
+          base 17 / top 19: F(19) <= 42 (true 24; window 57 - the window statement for machine 19
+          from shapes); base 23 / top 29: F(29) <= 89 (true 42; window 135 - likewise for 29);
+          band of two gears: 143 at 23 (true 33, window 84), above 160 at 31 (true 57) - vacuous.
+          Why it loses: it charges every top tooth as a hit on a base hole; the true hit rate is
+          the share of base holes in the gear's two classes, 2/g of them unless the holes are
+          concentrated in those classes - which is the covered-window configuration itself. The
+          alternation attempt reduces to the same concentration statement: individual rows
+          constrain nothing about hole residues modulo a gear outside the machine. VERDICT: FACT
+          (bound proved; window statement for 19 and 29 by shapes); E4 is exactly the overlap
+          statement, and every bound from the rows alone charges the overlap at its worst case.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5353,3 +5370,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.f: E4c proved - in a covered window of q' the interior hole gaps of machine q are at least (q'-1)/3 (tooth distance inv3 = (q'+-1)/3 or (2q'+-1)/3) and alternate between two residues; a covered window is a sparse-hole stretch of density at most 3/q'.
 - 2026-09-20, F(71): second bisection reached 229 coverable (10,403 s) before the system killed it for memory; F(71) in [229, 259] (run convention 229).
 - 2026-09-20, R5.f.xxxiv.g: E4d proved - F(q') <= S_t*(q), the longest stretch of machine q with hole gaps >= (q'-1)/3; ratios S_t*/window 0.39-0.73 on 5..23, no fall yet; E4 = S_(q'/3)(q) < q'^2/6.
+- 2026-09-20, R5.f.xxxiv.h: thin-band bound proved from the shapes - F(19) <= 42, F(29) <= 89 with one top gear (window statement for machines 19 and 29 by shapes alone); vacuous with a two-gear band; E4 = the overlap statement.
