@@ -61,8 +61,11 @@ primes below it). "No future state can prevent them" is this lemma, and it is ex
 ## 3. The shapes of the fields - PROVED (elementary)
 
 **Lemma C1 (multiples).** In every run of g consecutive columns, row g marks exactly two columns
-(the classes n = +-6^{-1} mod g), and it never marks two adjacent columns unless g = 5. Kernel:
-`two_strike_classes` (proofs/TwinLadder.lean), `struck_classes` (LadderCovering.lean).
+(the classes n = +-6^{-1} mod g, at distance 3^{-1} mod g from each other), and it never marks two
+adjacent columns: adjacency would need 3^{-1} = +-1 mod g, i.e. g | 2 or g | 4. (In the 12k
+coordinates of research/proof/walk_fields.md gear 5 has adjacent teeth 2, 3 mod 5; in the 6n
+coordinates used here its teeth are 1, 4 mod 5, at distance 2.) Kernel: `two_strike_classes`
+(proofs/TwinLadder.lean), `struck_classes` (LadderCovering.lean).
 
 **Lemma C2 (squares).** Row g marks the column of g^2 exactly once in the window, at
 n = (g^2 - 1)/6 (the right member; 6n - 1 is never a square), and only when g^2 <= q^2, i.e.
@@ -114,8 +117,8 @@ q = 23..67 against windows of 84..737 columns.
 
 **Sub-lemmas proposed for E, one field at a time** (the owner's programme):
 
-- **E1 (one row).** Row g alone paints at most one column of any run of g - 1 columns, except g = 5
-  which paints two adjacent columns (2, 3 mod 5) once per period. PROVED (Lemma C1).
+- **E1 (one row).** Row g alone never paints two adjacent columns, so its longest run is 1.
+  PROVED (Lemma C1).
 - **E2 (two rows).** For gears g < h the longest run both rows together can paint is exactly 4 if
   {g, h} = {5, 7}, 3 if exactly one of g, h is 5 or 7, and 2 otherwise. *Proof.* A gear's two teeth
   sit at distance 3^{-1} mod g (or g minus it); this distance is 2 exactly when 6 = +-1 mod g, i.e.
