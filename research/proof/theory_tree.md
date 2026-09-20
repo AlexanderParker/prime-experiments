@@ -3604,6 +3604,16 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           short to separate ln^2 q from ln q times a slow function. Either way F/window ~
           ln^2 q / q -> 0. FACT (fit). F(71): the 241 check ended TIMEOUT at 14,400 s (the
           process wrote its bounds before the system killed it): F(71) in [222, 259].
+      - R5.f.xxxiii. THE IDEAS LANE: A FIRST STEP THAT IS NOT A SIFTED-SET LOWER BOUND (Fable,
+        opened 2026-09-20 11:20 on the owner's "Find the proof"; brief lane_ideas2/BRIEF.md,
+        which requires reading the map's section 0 and grepping the novel index before
+        proposing). Parent observation: every route on the record (R5.f.vii-xxxii) has as its
+        first unproved step a lower bound or equidistribution for a set sifted to the square root
+        of its height. PRE-REGISTERED: the lane returns one route whose first unproved step is a
+        different kind of statement (a finiteness-contradiction identity, a bootstrap in the gear
+        role, an exact counting identity with a finite check), as one quantified sentence, with
+        one numerical test; or reports that each candidate is a sifted-set bound in disguise.
+        F(71): a second bisection (222..231, three-hour checks) launched 11:15. Verdict OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
