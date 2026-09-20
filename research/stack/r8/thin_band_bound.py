@@ -28,14 +28,14 @@ def h_B(painted, Lmax):
         out[L] = int((pref[L:L + P] - pref[:P]).min())
     return out
 
-cases = [(17, [19, 23], {19: 24, 23: 33}), (23, [29, 31], {29: 42, 31: 57})]
+cases = [(11, [13], {13: 10}), (13, [17], {17: 17}), (17, [19], {19: 24}), (19, [23], {23: 33}), (23, [29], {29: 42})]
 for B, qs, truth in cases:
     base = [g for g in [5, 7, 11, 13, 17, 19, 23] if g <= B]
     P = prod(base); pat = paint(base, P)
     density = 1 - pat.sum() / P
     hb = h_B(pat, 160)
     for q in qs:
-        top = [g for g in [19, 23, 29, 31] if B < g <= q]
+        top = [g for g in [7, 11, 13, 17, 19, 23, 29, 31] if B < g <= q]
         cap = 2 * sum(1 / g for g in top)
         bound = max((L for L in range(1, 161) if 2 * sum(ceil(L / g) for g in top) >= hb[L]), default=None)
         print(f"base 5..{B} (hole density {density:.4f}), top {top} (2 sum 1/g = {cap:.4f}): "
