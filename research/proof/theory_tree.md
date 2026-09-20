@@ -3424,6 +3424,39 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         a semiprime with probability 1 - (1/1.26)^2 = 0.37 - the measured 0.405. The share falls
         like 8.8 / ln N: the level-(s/3) sieve isolates the rungs up to a contamination that
         vanishes as 1/ln s, and the prediction for s = 10^6 is 0.28. FACT (priced).
+      - R5.f.xxxi. THE LITERATURE REGISTER FOR THE WINDOW HYPOTHESES (Opus lane with web search,
+        2026-09-20 08:30; prior-art lines only, no new mathematics). Q1 Chen-type pairs (p prime,
+        p + 2 = P_2) in short intervals (x - x^theta, x]: theta down to about 0.97 (Ross 1978;
+        Salerno-Vitolo 1993; Cai-Lu 1999; Cai) - PROVED, an almost-prime surrogate far from
+        theta = 1/2. Q2 twin pairs in almost all short intervals: NO RESULT for any theta < 1
+        (it would imply the conjecture); the shift-averaged theorems (Lavrik 1961, Mikawa 1992,
+        Perelli-Pintz 1992: the Hardy-Littlewood asymptotic for all but H L^-A shifts h <= H,
+        H > X^(1/3+eps)) are a different statement and exclude the fixed shift 2 - confirms
+        R5.f.xxi. Q3 bounded gaps in short intervals: for every delta >= 0.525, [x - x^delta, x]
+        holds pairs of consecutive primes at bounded distance (Alweiss-Luo 2018, gap not
+        explicit); full range H_1 <= 246 (Polymath8b 2014), 240 (Stadlmann 2026) - PROVED; the
+        0.525 is Baker-Harman-Pintz. Q4 under GEH the gap is 6 and Polymath8b proved 6 is
+        parity-optimal even under GEH - no EH/GEH-type hypothesis reaches the twins; only a
+        Hardy-Littlewood / Bateman-Horn statement with power-saving error gives H1-H3, trivially
+        - confirms R5.f.xxi exactly. Q5 COMPUTATION: 82 maximal twin gaps known, the largest
+        35,640 after the pair at p = 70,478,530,884,377,381 (7.05 x 10^16; Kourbatov 2013,
+        Oliveira e Silva, Raab; OEIS A113274/A113275); pi_2(10^16) = 10,304,195,697,298 - so
+        SixHyp (window length 2t/5) and LadderHyp (length 4 sqrt N) hold throughout the searched
+        range with margins 10^12 and 10^4. Q6 OEIS A288815, the "paired Jacobsthal function"
+        (Ziller-Morack 2017, arXiv:1706.00317 and 1706.03668), 21 terms, tagged hard, with the
+        conjecture that a(n) < p_n^2 - p_n implies both Goldbach and twins; its values ((a-6)/6
+        = 60 at p = 23, 316 at p = 61) differ from our F (34, 179), so the objects are not the
+        same - comparison of definitions requested; no Iwaniec- or Rankin-type bound for the
+        paired function found. Q7 no result on prime pairs in intervals of length c sqrt x, none
+        under RH or Lindelof; Cramer-Granville analogue for twins: maximal twin gap
+        G ~ a (ln(p/a) - 1.2) with a = 0.76 (ln p)^2, i.e. O(ln^3 x), Gumbel-distributed maxima
+        (Kourbatov 2013, Kourbatov-Wolf 2019) - the record's cube envelope (R5.f.xii) is this
+        shape. Q8 OEIS A192870: 122 is the largest M with no twin pair between M^2 and (M+1)^2
+        (conjectural, computed) - a twin-Legendre statement STRONGER than LadderHyp and RegionHyp
+        (the stretch of s contains the block [s^2, (s+1)^2)); Brocard's conjecture is the prime
+        relative. VERDICT: every "open" label in the map stands; the closest published objects
+        are A192870 (the statement) and A288815 (the covering function); the machine's F(p)
+        table may be new data - pending the definition check. FACT (register).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4937,3 +4970,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, correction: the Euclid device is the universal clearance class j = 0 (lower member) in kernel form, not a new primality-using law; both dichotomy hypotheses hold to 10^6 (minimum 3 rungs from s = 42). F(71) >= 222 (coverable in 3,227 s), bisection continuing.
 - 2026-09-20, R5.f.xxx: the Chen ledger T = |R_{s/3}| - N_semi exact at 118 twin centres to 5000; rough columns are about 60% rungs, 40% large-semiprime columns (share 0.28-0.67); two placed numbers refuted.
 - 2026-09-20, F(71) >= 222 (coverable); the L = 241 ILP killed for memory after 3 h; F(71) in [222, 259].
+- 2026-09-20, R5.f.xxxi (literature register): no twin-pair result in any short interval, not even almost all; Chen pairs at theta 0.97, bounded gaps at theta 0.525, GEH gives 6 (parity-optimal); maximal twin gap 35,640 at 7 x 10^16 so SixHyp/LadderHyp hold to 10^16; OEIS A192870 (twin-Legendre, last failure 122) and A288815 (paired Jacobsthal) are the nearest published objects.

@@ -47,6 +47,15 @@ the lane's bounded NTH (a rung among the first `⌈4 ln s⌉` base-open offsets)
 `RungPow e` is unsatisfiable for `e ≤ 1`. No vacuous hypothesis, misplaced endpoint, unsafe
 subtraction or reversed implication was found in the nine ladder files.
 
+Prior art (register 2026-09-20, tree node R5.f.xxxi): no published theorem places a twin pair in
+any interval (x, x + x^theta], theta < 1, not even in almost all such intervals; the surrogates are
+Chen pairs (p, p+2 = P_2) at theta about 0.97 and bounded prime gaps at theta >= 0.525; under GEH
+the reachable gap is 6 and that is parity-optimal (Polymath8b). Computation: the largest known
+maximal twin gap is 35,640 near 7 x 10^16, so SixHyp and LadderHyp hold to 10^16. The nearest
+published statements are OEIS A192870 (a twin pair between M^2 and (M+1)^2 for every M > 122,
+conjectural) and OEIS A288815 (a paired Jacobsthal function; definition differs from the machine's
+F, comparison pending).
+
 The one open lemma, in the two vocabularies: *every twin centre has a rung* (the machine: the
 stretch between the squares of a twin pair is never fully struck by the gears below it); *for
 every twin pair (P, P+2) there is a twin pair between P^2 and (P+2)^2* (a twin analogue of
