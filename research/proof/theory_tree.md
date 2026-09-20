@@ -3874,6 +3874,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           the widening rule holds for any g once the member is below g^2 (the primality of g is
           unused). Every proved line of the field draft is now in the kernel; E4 is the only lemma
           outside it. FACT (kernel).
+        - R5.f.xxxiv.l. THE TWISTED TRANSLATES (owner's step 1 continued, PM 18:40;
+          research/stack/r8/twisted_record.py). Along each class c mod q' the machine q is one
+          two-class pattern T (tooth distances (3q')^{-1} mod g) translated by c q'^{-1} mod P; a
+          covered window of q' is T painted on about L/q' consecutive terms at q' - 2 of q'
+          translates in an arithmetic progression of shifts (exact, CRT). PROVED: F(q') <= q'
+          (F_T(q;q') + 1). PREDICTION: F_T is of F(q)'s size so the bound is q' times too weak.
+          RESULT: F_T = 3, 7, 10, 16, 28 against F(q) = 4, 6, 10, 17, 24 (q = 7..19); bounds 44,
+          104, 187, 323, 667 against windows 18, 26, 45, 57, 84 - HELD, the bound is vacuous. The
+          shifts are equidistributed mod every gear. VERDICT: FACT (a proved but vacuous bound);
+          the twisted form is E4's third coordinate system and re-encodes the joint alignment -
+          the row shapes fix every individual constraint and none of the simultaneous one.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5407,3 +5418,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.i: residue-collapse census exact (14 of 14 checks) - covered windows of q' counted from machine q's windows by hole residues; F(q') = max(G_1(q), largest alternating window).
 - 2026-09-20, R5.f.xxxiv.j: kernel LadderFields.lean - E1, E2 (4 / 3 / 2 with the {5,7} exception), E4c, the sandwich upper half and the thin-band bound, 0 sorries.
 - 2026-09-20, R5.f.xxxiv.k: kernel LadderWidening.lean - Lemma B (widening, twin slots persist) and the sandwich's lower half (a single hole is always alignable, by periodicity and CRT); every proved line of the field draft is kernel-checked.
+- 2026-09-20, R5.f.xxxiv.l: twisted translates - F(q') <= q'(F_T + 1) proved, vacuous (F_T is F's size); the form re-encodes the joint alignment; step 1's shape routes exhausted at the same point as 5a and 5b.

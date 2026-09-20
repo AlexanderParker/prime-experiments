@@ -232,6 +232,29 @@ alternating window through the smallest gear fails because the holes in a class 
 consecutive terms of the progression (a gap that is a multiple of q' is allowed), so gear 5's
 free arcs along the progression bound nothing.
 
+## 5d. The twisted translates (shape calculation, 2026-09-20 18:40)
+
+Write a column as n = c + k q' (c its class mod q'). Gear g strikes it iff k lies in two classes mod g
+at distance (3q')^{-1} mod g; so along each class c the machine q appears as one two-class pattern T
+(the twisted machine, same gears, tooth distances (3q')^{-1} mod g) translated by c times q'^{-1}
+mod the period. A covered window of q' of length L is therefore: T fully painted on about L/q'
+consecutive terms at q' - 2 of q' translates, the translates forming an arithmetic progression of
+shifts with difference q'^{-1} (exact, by CRT).
+
+**Proved consequence.** Each non-tooth class alone gives F(q') <= q' (F_T(q; q') + 1), F_T the record
+of the twisted machine. Measured (research/stack/r8/twisted_record.py): F_T = 3, 7, 10, 16, 28 against
+F(q) = 4, 6, 10, 17, 24 for q = 7..19 - the twisted record is the ordinary record's size - so the
+bound is 44, 104, 187, 323, 667 against windows 18, 26, 45, 57, 84: q' times too weak. The shifts are
+equidistributed modulo every gear (as c runs over q' consecutive values, c q'^{-1} mod g covers each
+residue floor(q'/g) or ceil(q'/g) times), which fixes how often each translate meets each tooth of
+each gear but not whether the runs coincide.
+
+**What the form shows.** The single-class constraint is as weak as one row's shape: it charges one
+class and ignores that the q' - 2 runs are runs of one pattern at coupled positions. The coupling
+is the whole content of E4, exactly as the overlap statement in 5a and the alternating window in 5b:
+three coordinate systems, one fact. The row shapes fix every individual constraint exactly; they do
+not fix the simultaneous one.
+
 ## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
 
 `StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns
@@ -271,6 +294,7 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | E4c | in a covered window of q' the interior hole gaps of q are >= (q'-1)/3 and alternate in two residues | PROVED (kernel `strike_distance`, `strike_distance_ge`) |
 | E4d | F(q') <= S_t*(q), the longest stretch of q with hole gaps >= (q'-1)/3 | PROVED (2026-09-20) |
 | E4e | thin-band bound F(q) <= max{L : 2 sum_top ceil(L/g) >= h_B(L)}; window statement for 19 and 29 by shapes | PROVED (kernel `thin_band`) |
+| E4f | per-class bound F(q') <= q' (F_T(q;q') + 1), F_T the twisted record (too weak by a factor q') | PROVED (2026-09-20) |
 | E4 | S_t*(q) < (q'^2 - q')/6 for consecutive primes q < q' (implies `MaxGapHyp`) | LEMMA |
 | E | the window is never painted over | LEMMA (follows from E4) |
 
