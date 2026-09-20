@@ -4014,7 +4014,47 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           when g g' > P; Q4 the least number of distinct gears of T needed to strike a whole run
           of k consecutive openings, from the gap word and its leg primes; Q5 the tiers of the
           range at q = 13 with the exhaust cap exact; Q6 a further rule (openings of q no gear of
-          T can strike; the mirror; the leg primes' distribution). Verdict OPEN.
+          T can strike; the mirror; the leg primes' distribution). RESULT (received 2026-09-21;
+          scripts research/stack/r8/lane_range/, all assertions pass). Q1 PROVED: the openings of q
+          in the class +c_g of a gear g of T are exactly c_g + j g with j an opening of the
+          twisted machine M_g (teeth (3g)^{-1}-spaced), read over j in [0, P/g); the other class is
+          the same cycle read backwards from j = 0, so one gear reads q's own cycle re-indexed by
+          multiplier g over a symmetric window of about 2P/g centred on its home column; widen /
+          cluster / widen = the twisted machine's gap word times g (cluster = twisted gap 1, hits
+          every g columns). Q2 PROVED, threshold sharpened: a gear above a run's span strikes at
+          most two of its openings, two only at distance d_g or g - d_g (g | 3D -+ 1); two
+          openings at distance D < g are both struck only if g <= 3D + 1, so no gear above 3F + 4
+          strikes both ends of an adjacent pair (bound 3F + 4, not 3F + 3; at q = 23, 103 is prime
+          and strikes no 34-gap by absence); REFUTED as stated: "one per run above 3F+3" - the
+          correct form is one per run of span S for g > 3S + 1 (q = 13, g = 37 strikes 105 and
+          117 of the run 105-117); and the leg rule must add "or g | d" for g <= F + 1 (q = 19,
+          g = 23 strikes two openings 23 apart). Q3 PROVED: g < g' coincide exactly on four
+          residues mod g g' (two = the composite gear's own classes, two crossed), so at most
+          4 ceil(P/(g g')) coincidences per period and at most four once g g' > P (325 of 561 pairs
+          at q = 13); a coincidence lies on an opening iff its index is an opening of the twisted
+          machine for g g'. Q4 PROVED as a floor: closing a run with gap word w needs at least
+          mu_T(w) distinct gears - the least number of alignable blocks (a pair at distance D is a
+          block iff some g in T divides 3D - 1, 3D + 1 or D; a block of three or more has two
+          positions exactly g apart so g <= span); exhaustive at q = 13 for runs of 2..6 (mu = 1
+          iff the chain rule; mu ranges up to 6 with (2,2,1,2,2) the unique mu = 6 word); equality
+          is a residue fact, not a word fact, and over half of all runs hold a twin. Q5 PROVED:
+          tiers of q = 13 - (q, q^2] no deciding prime, (q^2, q^4] primes 17..167, the top 245
+          columns add 173; the exhaust cap exact (173's 16 strikes on tier-2 openings are all
+          echoes); THE TWINS OF EACH TIER ARE EXACTLY THE OPENINGS OF THE MACHINE WHOSE TOP GEAR IS
+          THE LARGEST PRIME AT OR BELOW THE TIER'S ROOT, restricted to the tier (13 on tier 1: its
+          nine openings 3, 5, 7, 10, 12, 17, 18, 23, 25; 167 on tier 2; 173 on tier 3) - T's
+          complement in the range is a nested sequence of machine windows. Q6 PROVED (own rule):
+          the mirror n -> P - n carries the class +-c_g of g in T onto itself iff g | 3P -+ 1 (the
+          leg rule at the gap P), else onto a class g never strikes; no gear fixes both classes;
+          so for g not dividing (3P-1)(3P+1) the mirror image of every opening g strikes is one it
+          does not. JOINT ACTION: large gears' strike sets are nearly disjoint (four columns per
+          period once g g' > P), a run needs mu_T(w) gears, on each tier T acts exactly as the
+          machine up to the tier root. CAN T STRIKE EVERY OPENING OF q IN THE RANGE: no - tier 1
+          is q's window and receives no deciding strike, and on the higher tiers the survivors are
+          the openings of the tier-root machine; so the range statement for q is the disjunction
+          of the window statements of the tower of roots q, ~q^2, ~q^4, ... within the range,
+          each fixed by residues, none forced by the gap word alone. FACT (Q1-Q6); the range
+          statement reduces exactly to the windows of the tower's root machines.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5556,3 +5596,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.q: the base-open count is the hole uniformity of machine sqrt(2s) at scale B^2 (via the G_k law); region lemma = uniformity (a) + EH-level plug bound (b); the field draft is complete with the one lemma open in four exact forms.
 - 2026-09-20, R5.f.xxxiv.q measured: worst-window hole share 0.87 at scale B^2, 0.7 at B^2/3, 0.43-0.64 at B^2/6 where the worst window keeps 4-8 holes for B <= 23.
 - 2026-09-20, R5.f.xxxiv.r: whole-range form (U') - every window of q'^2/6 columns of machine q with more than 2 ceil(q'/6) holes gives E4(q') by the one-gear thin band; verified 19, 23, 29; (U') asks q/3 holes against a mean of q^2/(2.4 ln^2 q).
+- 2026-09-21, R5.f.xxxv.a (range lane): one gear of T reads q's cycle re-indexed by g (twisted machine); two per run only at the leg distances, bound 3F+4; pairs of large gears coincide on four residues mod gg'; a run needs mu_T(w) gears; the twins of each tier of the range are exactly the openings of the tier-root machine (13 / 167 / 173 at q = 13) - the range statement is the disjunction of the tower's window statements.
