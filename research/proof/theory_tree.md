@@ -3488,8 +3488,28 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         window_twin_of_free_uncoverable and twins_unbounded_of_coveringHyp (formalist lane open,
         proofs/LadderCovering.lean); (ii) register: an o(P^2) bound for any Jacobsthal-type
         function is not in the literature (prediction: not known; Iwaniec's constant not
-        explicit); (iii) our rigid F(p) ~ 0.75 p ln p is a new sequence. Verdict OPEN; CANDIDATE
-        route to the window statement.
+        explicit); (iii) our rigid F(p) ~ 0.75 p ln p is a new sequence. REGISTER (Opus lane,
+        09:05): (ii) HELD - Iwaniec 1978 (Demonstratio Math. 11) proves h(k) <= C (k log k)^2,
+        i.e. j(P#) << P^2, with an unknown, ineffective C, one class only, and FGKMT 2018 confirm
+        it is still the best upper bound; no o(P^2) bound is known for any Jacobsthal-type
+        function; for TWO classes no published upper bound exists at all (Ziller-Morack prove
+        none; the 2-dimensional beta-sieve gives only P^4.27, folklore). Ziller-Morack's
+        Conjecture 6 is exactly j_2(P) < P^2/6 - P/6 and their theorem is the implication to
+        twins (and to Goldbach) - the covering route is theirs (2017 preprint), not new to the
+        literature; new to the tree. Lower bounds transfer from one class: j_2(P) >= j(P#) - 1
+        >> P ln P ln_3 P / ln_2 P (FGKMT), so the conjectured order is P (ln P)^{O(1)} (Maier-
+        Pomerance analogue); the data sit at 1.4 P ln P. Explicit constants: Costello-Watts 2015
+        verify h(k) <= 0.2775 k^2 ln k only for k <= 10^4; unconditional explicit bounds are
+        exponential (Kanold 2^k, Stevens 2 k^{2 + 2e ln k}). Mercer 2018: the one-class o(p_n^2)
+        would give an elementary Dirichlet; Kanold 1965: C p_n^{2-eps} would give Linnik; neither
+        gives Legendre (which needs j(P#) < 2P, refuted by Rankin). (iii) HELD: F values not in
+        OEIS. VERDICT: the route stands as a proved implication (Ziller-Morack; kernel form in
+        preparation) whose hypothesis is a Jacobsthal-type upper bound at Iwaniec's order with
+        constant below 1/6 - a wall of large-sieve constants, not of parity; proving even
+        j_2 = o(P^2) is harder than the open one-class problem. CANDIDATE (the only route on the
+        tree whose obstruction is not the parity phenomenon); its next test is any explicit
+        Iwaniec-type argument for two classes, and the rigid variant F(P) < P^2/6 (our classes
+        are antipodal pairs with free shifts, F ~ 0.75 P ln P) as the weaker target.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5005,3 +5025,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, F(71) >= 222 (coverable); the L = 241 ILP killed for memory after 3 h; F(71) in [222, 259].
 - 2026-09-20, R5.f.xxxi (literature register): no twin-pair result in any short interval, not even almost all; Chen pairs at theta 0.97, bounded gaps at theta 0.525, GEH gives 6 (parity-optimal); maximal twin gap 35,640 at 7 x 10^16 so SixHyp/LadderHyp hold to 10^16; OEIS A192870 (twin-Legendre, last failure 122) and A288815 (paired Jacobsthal) are the nearest published objects.
 - 2026-09-20, R5.f.xxxii: THE FREE COVERING ROUTE - if two free classes per gear cannot cover the q^2/6 columns of the window of q (OEIS A072753 < window at every known q <= 73, tightest 24 vs 26 at q = 13), the window holds a twin by the square-root rule alone; the open lemma is an Iwaniec-type bound j_2(q) < (q^2-q)/6; its wall is the large sieve's P^2 constant, not parity. Kernel and register lanes opened.
+- 2026-09-20, R5.f.xxxii register: no o(P^2) upper bound is known for any Jacobsthal-type function; Iwaniec's P^2 constant is ineffective; two-class upper bound unpublished; the covering route is Ziller-Morack's 2017 conjecture 6 with proved implication; CANDIDATE - the one route whose wall is not parity.

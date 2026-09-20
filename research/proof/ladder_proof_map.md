@@ -56,6 +56,17 @@ published statements are OEIS A192870 (a twin pair between M^2 and (M+1)^2 for e
 conjectural) and OEIS A288815 (a paired Jacobsthal function; definition differs from the machine's
 F, comparison pending).
 
+A second route (tree node R5.f.xxxii, from the register): the window of machine q has about q^2/6
+columns; the largest run that two FREE residue classes per gear 5..q can cover is OEIS A072753
+(436 at q = 73, about 1.4 q ln q), below the window at every known q (tightest 24 against 26 at
+q = 13). Whenever the free covering number is below the window, the actual gears cannot strike
+every column, and the unstruck column's members are prime by the square-root rule: the window
+statement from a covering bound alone (Ziller-Morack 2017, Conjecture 6 and its theorem; kernel
+form proofs/LadderCovering.lean). Its open lemma is an Iwaniec-type upper bound j_2(q) < (q^2 - q)/6;
+Iwaniec's one-class bound is O(P^2) with an ineffective constant, nothing o(P^2) is known for any
+class count, and no two-class upper bound is published. This is the one route on the tree whose
+obstruction is a large-sieve constant rather than parity.
+
 The one open lemma, in the two vocabularies: *every twin centre has a rung* (the machine: the
 stretch between the squares of a twin pair is never fully struck by the gears below it); *for
 every twin pair (P, P+2) there is a twin pair between P^2 and (P+2)^2* (a twin analogue of
