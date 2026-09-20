@@ -3992,6 +3992,18 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         return by smaller primorials to land in the window carrying q's full set. Verdict OPEN;
         the next lane is the owner's choice between the range analysis (how T's classes sit on
         q's openings across one full period, pattern only) and the spiral variant.
+        SPIRAL VARIANT CHECKED (2026-09-21, research/stack/r8/spiral_variant.py): a mirror about
+        an axis a sends column n to 2a - n and carries the openness of every gear dividing a; a
+        walk whose axes are all multiples of q's product P (any mixture of the larger gear's
+        product and the smaller ones, up to four mirrors, multipliers 1..6) lands only at
+        multiples of P - landings mod P = {0} at every q = 7..23 - and the window (q, q^2] holds a
+        positive multiple of P only when P < q^2/6, i.e. never beyond q = 7. So the variant as
+        stated cannot land in the window while carrying q's full set: the carry wall (kernel
+        carried_le_log, free_regime_unreachable) met by construction. The only tweak that lands
+        drops gears from the axes so the carried product fits the window - at most 1 gear of
+        2..4 (q = 7..13) and 2 gears of 5..7 (q = 17..23) - which certifies openness for those
+        gears only and leaves the rest to the value: the island / corridor locator of R4, already
+        refuted (the wall's face B). DEAD as stated; survives only as the known corridor form.
         - R5.f.xxxv.a. THE RANGE ANALYSIS: HOW THE GEARS ABOVE q SIT ON q'S OPENINGS (owner's
           choice 2026-09-21; Fable lane opened, brief lane_range/BRIEF.md; pattern rules only).
           PRE-REGISTERED questions: Q1 one gear g of T on one period = a 1/g sample of the
