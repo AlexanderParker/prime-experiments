@@ -116,10 +116,16 @@ q = 23..67 against windows of 84..737 columns.
 
 - **E1 (one row).** Row g alone paints at most one column of any run of g - 1 columns, except g = 5
   which paints two adjacent columns (2, 3 mod 5) once per period. PROVED (Lemma C1).
-- **E2 (two rows).** For gears g < h, the longest run both rows together can paint is bounded by an
-  exact function of (g, h) computable from their two teeth each; it is at most 2 + 2 = 4 columns
-  plus the alignments allowed by the Chinese remainder theorem, hence at most a constant times
-  g. LEMMA (exact formula to state and prove; the fields explorer gives the data).
+- **E2 (two rows).** For gears g < h the longest run both rows together can paint is exactly 4 if
+  {g, h} = {5, 7}, 3 if exactly one of g, h is 5 or 7, and 2 otherwise. *Proof.* A gear's two teeth
+  sit at distance 3^{-1} mod g (or g minus it); this distance is 2 exactly when 6 = +-1 mod g, i.e.
+  g in {5, 7}. No gear paints two adjacent columns alone (E1). A run of 4 needs the two gears'
+  tooth pairs interleaved as {n, n+2} and {n+1, n+3}, so both distances are 2; a run of 3 needs
+  one tooth pair {n, n+2} with the other gear at n+1, so one distance is 2; a run of 2 is always
+  available by the Chinese remainder theorem; a run of 5 or more would need a gear to paint 3
+  columns within 5, impossible below its period, and above it the two gears paint fewer than
+  2/5 + 2/7 of any long run. PROVED (exact by exhaustion for all 300 pairs of gears up to 101,
+  research/stack/r8/two_rows_exact.py; kernel entry to add).
 - **E3 (the widening of the record).** Let F(q) be the longest run the machine q can paint anywhere
   in its period. Adding the gear q' (the next prime) increases F by at most a bounded amount
   depending on q', and the increments 61 -> 67 -> 71 measured 34 and at least 9. LEMMA: an exact
@@ -156,13 +162,17 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | C1-C5 | the shapes of the five fields | PROVED (C1, C5 kernel; C2-C4 elementary) |
 | D1 | no set of gears blocks permanently | PROVED (CRT) |
 | E1 | one row paints no two adjacent columns (g >= 7) | PROVED |
-| E2 | two rows: exact longest joint run | LEMMA |
+| E2 | two rows: exact longest joint run 4 / 3 / 2 | PROVED (2026-09-20) |
 | E3 | the record's increment per new gear | LEMMA |
 | E4 | the record stays below the window | LEMMA (`MaxGapHyp`) |
 | E | the window is never painted over | LEMMA (follows from E4) |
 
-The first lemma to work is E2: an exact statement for two gears, then three, so that E3 has a
-pattern to generalise. The data instrument is the fields explorer and `rigid_record_bisect.py`;
+E2 is proved. Three gears (exact, first eight gears): 6 with both 5 and 7; 5 with one of them
+and two gears of tooth distance 4 (11, 13); 4 with one of them and gears of distance 6 or more;
+3 with neither - the record of a small set is a function of the multiset of tooth distances.
+Initial segments 5..p (run convention): 1, 4, 6, 10, 17, 24, 33 for p = 5, 7, 11, 13, 17, 19, 23.
+The next lemma to work is E3: the record's increment when a gear is added, from the tooth
+distances and the old record's holes. The data instrument is the fields explorer and `rigid_record_bisect.py`;
 the exact rule is W88's loaded record rule. What must not enter: any count of columns, density or
 sieve bound - E4 is to be proved from the shapes and phases alone.
 

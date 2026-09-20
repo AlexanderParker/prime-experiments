@@ -3669,6 +3669,26 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         rows, exact longest joint run - LEMMA), E3 (the record's increment per new gear via the
         loaded record rule W88 - LEMMA), E4 (the record below the window, = MaxGapHyp - LEMMA);
         the theorem from E + A + B + Euclid. Verdict: DRAFT; the first lemma to work is E2.
+        - R5.f.xxxiv.a. E2: TWO ROWS, THE EXACT LONGEST JOINT RUN (PM, pre-registered 11:40
+          before the run; research/stack/r8/two_rows_exact.py). Mechanism: a gear's two teeth
+          sit at distance inv3 mod g (or g - inv3); inv3 = +-2 mod g iff 3 x 2 = +-1 mod g iff
+          g in {5, 7}; a run of 4 needs two interleaved tooth pairs at distance 2, a run of 3
+          needs one tooth pair at distance 2 around a third tooth, and no gear paints two
+          adjacent columns alone (E1). PREDICTION: F({g,h}) = 4 iff {g,h} = {5,7}; 3 iff exactly
+          one of g, h is 5 or 7; 2 otherwise. RESULT: all 300 pairs among the first 25 gears
+          (5..101) agree, 0 violations; exhaustive phase search and the period scan (RigidShift)
+          agree on {5,7}, {5,11}, {7,13}, {11,13}. E2 PROVED (elementary argument above, exact
+          to 101; kernel entry to add). TRIPLES (first 8 gears, exact): with 5 and 7 both: 6;
+          with one of them and two gears of tooth distance 4 (11, 13): 5; with one of them and
+          gears of distance >= 6 (17, 19, 23, 29): 4; no 5 or 7: 3 - the record of a small set is
+          a function of the multiset of tooth distances, the third gear adding 2 columns when its
+          distance is 4 and 1 otherwise. INITIAL SEGMENTS (period scan, run convention): F(5) =
+          1, F(7) = 4, F(11) = 6, F(13) = 10, F(17) = 17, F(19) = 24, F(23) = 33 (the record's
+          F(23) = 34 counts the gap, one more than the run - conventions differ by 1
+          throughout: 88, 91, 103, ... are gaps). INCREMENTS per new gear (run convention): +3,
+          +2, +4, +7, +7, +9 for 7, 11, 13, 17, 19, 23, then (gap convention) 37: 88, 41: +3, 43:
+          +12, 47: +15, 53: +27, 59: +15, 61: +19, 67: +34 - irregular, growing slowly; F(29),
+          F(31) being computed (ILP) to close the table. FACT (E2 proved); E3 open with its data.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5191,3 +5211,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxii REDISCOVERY: the covering route is the project's rounds 21-27 line (docs/covering-bound-route.md, Ladder.lean's (D) ladder, novel j2-upper-bound with the beta_2 ceiling and Ziller-Morack Conjecture 6, j2-lower-ladder); the standing rule to grep docs/novel first was not followed; closed as a route, kernel files kept as the general form of the (D) step.
 - 2026-09-20, R5.f.xxxiii (ideas lane): no route whose first step is not a sifted-set bound; every candidate traced to one; new exact gear-role composition law 36c*^2 - 1 = (36c^2-1)(36(2c)^2-1)^2 at c* = 3c(48c^2-1) (Chebyshev cube), G(c*) = G(c) + G(2c), 0 violations to 3000 - upward only, not a route.
 - 2026-09-20, R5.f.xxxiv: the field proof draft written as lemmas A-E (research/proof/field_proof_draft.md); A, B, C1-C5, D1, E1 proved, E2-E4 the lemmas to establish, E4 = MaxGapHyp; first target E2 (two rows exact).
+- 2026-09-20, R5.f.xxxiv.a: E2 PROVED - F({g,h}) = 4 iff {5,7}, 3 iff one of them is 5 or 7, else 2 (tooth distance inv3 = +-2 only at 5, 7); exact to 101, 0 violations; triples follow the tooth-distance multiset; initial segments F = 1, 4, 6, 10, 17, 24, 33 (run convention) for p = 5..23.
