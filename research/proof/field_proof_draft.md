@@ -173,7 +173,8 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | E3 | a record is old runs joined at the new gear's teeth, F(q') <= (h+1)F(q) + h | PROVED (2026-09-20) |
 | E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (2026-09-20) |
 | E4c | in a covered window of q' the interior hole gaps of q are >= (q'-1)/3 and alternate in two residues | PROVED (2026-09-20) |
-| E4 | the record stays below the window = no sparse-hole stretch of length q'^2/6 | LEMMA (`MaxGapHyp`) |
+| E4d | F(q') <= S_t*(q), the longest stretch of q with hole gaps >= (q'-1)/3 | PROVED (2026-09-20) |
+| E4 | S_t*(q) < (q'^2 - q')/6 for consecutive primes q < q' (implies `MaxGapHyp`) | LEMMA |
 | E | the window is never painted over | LEMMA (follows from E4) |
 
 E2 is proved. Three gears (exact, first eight gears): 6 with both 5 and 7; 5 with one of them
@@ -227,7 +228,20 @@ consecutive holes closer than (q'-1)/3, or two consecutive gaps that do not alte
 the lemma the field programme must now establish; it asks for about q'/2 holes in a window that
 generically holds q'^2/(2.4 ln^2 q'). The counting form of it is a sifted-set lower bound; the
 field form asks why the small gaps 1, 2, 3, 5 of machine q - the most common gaps it has - can
-never all be absent from a stretch of q'^2/6 columns. The data instrument is the fields explorer and `rigid_record_bisect.py`;
+never all be absent from a stretch of q'^2/6 columns.
+
+**E4d (PROVED) and the number.** Let S_t(q) be the longest stretch of machine q whose interior
+consecutive hole gaps are all at least t. By E4c, F(q') <= S_t*(q) with t* = ceil((q'-1)/3).
+Measured (exact, q -> q'): S_t*(q) = 5, 7, 19, 22, 33, 37 against windows 7, 18, 26, 45, 57, 84
+(ratios 0.71, 0.39, 0.73, 0.49, 0.58, 0.44) and against F(q') = 4, 6, 10, 17, 24, 33. The S_t
+table falls fast to t about 6 and then sits on a plateau near F(q) plus one or two isolated
+flanks. So the lemma to establish, with its number, is
+
+    E4:  S_ceil((q'-1)/3)(q) < (q'^2 - q')/6   for every pair of consecutive primes q < q' >= 7,
+
+the longest stretch of machine q whose holes are all at least q'/3 apart is shorter than the
+window of q'. Its holes are the isolated twin candidates of level q; E4 says isolated candidates
+never line up sparsely enough, for long enough, to span the window. The data instrument is the fields explorer and `rigid_record_bisect.py`;
 the exact rule is W88's loaded record rule. What must not enter: any count of columns, density or
 sieve bound - E4 is to be proved from the shapes and phases alone.
 

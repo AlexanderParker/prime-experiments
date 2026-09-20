@@ -3802,6 +3802,28 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           classes. FACT (exact shape); E4 open in this form (a lower bound of about q'/2 holes in
           every window of length q'^2/6 of machine q, i.e. at most a fraction 3/q' of the
           window's columns may be gaps of that size).
+        - R5.f.xxxiv.g. E4d: THE SPARSE-STRETCH BOUND (PM, pre-registered 15:55 before the run;
+          research/stack/r8/e4_sparse_stretch.py, exact period scans 5..23). Define S_t(q) = the
+          longest stretch of columns of machine q whose interior consecutive hole gaps are all at
+          least t (a stretch runs from just after a hole to just before a hole). By E4c the record
+          run of q' is such a stretch of machine q with t* = ceil((q'-1)/3), so F(q') <= S_t*(q):
+          PROVED. PREDICTION: S_t*(q) is below a third of the window q'^2/6 for q <= 19 and the
+          ratio falls with q. RESULT (q -> q': F(q'), S_t*(q), window, ratio): 5 -> 7: 4, 5, 7, 0.71;
+          7 -> 11: 6, 7, 18, 0.39; 11 -> 13: 10, 19, 26, 0.73; 13 -> 17: 17, 22, 45, 0.49; 17 -> 19:
+          24, 33, 57, 0.58; 19 -> 23: 33, 37, 84, 0.44; 23 -> 29: 42, 59, 135, 0.44 (S_t at 23: 2: 385, 3: 134, 4: 108, 5: 83, 6: 72, 8: 61, 9-10: 59, 11: 44, 16-26: 39). F(q') <= S_t*(q) holds at every step (the
+          new bound is tighter than G_k: 37 against 46 at 19 -> 23); "below a third" FAILS (ratios
+          0.4-0.7), "falls with q" MIXED (no monotone fall on this range). The S_t table (t ->
+          S_t) at 19: 2: 210, 3: 94, 4: 69, 5: 64, 6: 41, 7: 38, 8: 37, 9-10: 36, 11-13: 33, 14-21:
+          32, 22-25: 31, 26: 30 - a fast fall to t = 6 and a long plateau: past t = 8 the longest
+          sparse stretch is the record (24) plus one or two isolated flanks, i.e. S_t(q) is about
+          F(q) + a few gaps of size >= t; heuristically S_t*(q) is about F(q) + c q'/3 against a
+          window of q'^2/6, so the ratio should fall like ln^2 q / q eventually, but the measured
+          range does not show it yet. E4 IN THIS FORM: S_ceil((q'-1)/3)(q) < (q'^2 - q')/6 for every
+          consecutive pair of primes q < q'; in words, the longest stretch of machine q whose holes
+          are all at least q'/3 apart is shorter than the window of q'. The stretch's holes are the
+          isolated twin candidates of level q (both neighbours at least q'/3 away); E4 says such
+          isolated candidates never line up densely enough for the stretch to span the window.
+          FACT (F(q') <= S_t*(q) proved, table exact); E4 open in this form.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5330,3 +5352,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.d-e: aligned hole pairs = the hole-gap census at inv3 and q'-inv3 divided by q' (exact by CRT); the record sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q) proved and exact at every step 7..23 (equality F(q') = G_1(q) at 11, 13, 19); E4 = the overlap statement - the new gear's teeth never fill all holes of a window of length q'^2/6.
 - 2026-09-20, R5.f.xxxiv.f: E4c proved - in a covered window of q' the interior hole gaps of machine q are at least (q'-1)/3 (tooth distance inv3 = (q'+-1)/3 or (2q'+-1)/3) and alternate between two residues; a covered window is a sparse-hole stretch of density at most 3/q'.
 - 2026-09-20, F(71): second bisection reached 229 coverable (10,403 s) before the system killed it for memory; F(71) in [229, 259] (run convention 229).
+- 2026-09-20, R5.f.xxxiv.g: E4d proved - F(q') <= S_t*(q), the longest stretch of machine q with hole gaps >= (q'-1)/3; ratios S_t*/window 0.39-0.73 on 5..23, no fall yet; E4 = S_(q'/3)(q) < q'^2/6.
