@@ -4032,3 +4032,12 @@ with no primes-in-intervals input (Ziller-Morack 2017, Conjecture 6). Kernel:
 proofs/LadderCovering.lean, CoveringHyp -> window statement -> twins unbounded. The open lemma is an
 Iwaniec-type bound with constant below 1/6; Iwaniec's constant is ineffective and nothing o(P^2) is
 known for any class count. This is the one route on the tree whose obstruction is not parity.
+
+### 138. The field proof draft (2026-09-20)
+
+At the owner's direction the argument "the machine always produces twin slots and no larger machine
+can kill them" is written as a lemma chain (research/proof/field_proof_draft.md): the square-root
+rule, the widening rule (later gears never reach back), the exact shapes of the five fields, the
+no-permanent-covering rule with its reach, and the one lemma to establish - the window is never
+painted over - decomposed one field at a time: one row, two rows, the record's increment per gear,
+the record below the window. Next: an exact statement for two rows (E2).

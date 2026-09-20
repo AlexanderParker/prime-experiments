@@ -3652,6 +3652,23 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         other member of the family and is not of column form. VERDICT: FACT for the composition
         law (exact, kernel-ready: a polynomial identity); the route question DEAD within
         Pell/Chebyshev, OPEN as stated for other identity families.
+      - R5.f.xxxiv. THE FIELD PROOF DRAFT (owner's direction 2026-09-20 11:20, written 11:30;
+        research/proof/field_proof_draft.md). The owner's argument as a chain of lemmas, each
+        marked: A the square-root rule (PROVED, kernel); B the widening rule - a gear strikes no
+        column below its square except its home column and columns a smaller gear already
+        strikes, so a twin slot stays a twin slot in every larger machine (PROVED, elementary;
+        kernel entry to add); C1-C5 the shapes of the fields multiples / squares / products:j /
+        higher:g / lower:g - two teeth per period, never adjacent unless g = 5, one square column
+        per gear at (g^2 - 1)/6, a two-factor product between the squares of its pair, j >= 3
+        factors already painted by the smallest factor, higher/lower are relabellings, no blind
+        gear (PROVED); D1 no set of gears blocks permanently - the joint period is coprime to 6
+        and each period holds prod (g - 2) unstruck columns (PROVED, CRT) - with its reach stated:
+        the period exceeds e^(q/2), the window is q^2/6, so D1 does not place an unstruck column
+        in the window; E the window is never painted over (LEMMA - the one to establish), with
+        the owner's one-field-at-a-time programme as sub-lemmas E1 (one row, PROVED), E2 (two
+        rows, exact longest joint run - LEMMA), E3 (the record's increment per new gear via the
+        loaded record rule W88 - LEMMA), E4 (the record below the window, = MaxGapHyp - LEMMA);
+        the theorem from E + A + B + Euclid. Verdict: DRAFT; the first lemma to work is E2.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5173,3 +5190,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxii.a: kernel LadderMaxGap.lean - MaxGapHyp (the machine's longest struck run of gears 5..q is shorter than the window of q) -> window statement -> twins unbounded; the rigid F table beats the window by 2.5x or more at every computed q <= 67; the weakest covering-type hypothesis on the tree.
 - 2026-09-20, R5.f.xxxii REDISCOVERY: the covering route is the project's rounds 21-27 line (docs/covering-bound-route.md, Ladder.lean's (D) ladder, novel j2-upper-bound with the beta_2 ceiling and Ziller-Morack Conjecture 6, j2-lower-ladder); the standing rule to grep docs/novel first was not followed; closed as a route, kernel files kept as the general form of the (D) step.
 - 2026-09-20, R5.f.xxxiii (ideas lane): no route whose first step is not a sifted-set bound; every candidate traced to one; new exact gear-role composition law 36c*^2 - 1 = (36c^2-1)(36(2c)^2-1)^2 at c* = 3c(48c^2-1) (Chebyshev cube), G(c*) = G(c) + G(2c), 0 violations to 3000 - upward only, not a route.
+- 2026-09-20, R5.f.xxxiv: the field proof draft written as lemmas A-E (research/proof/field_proof_draft.md); A, B, C1-C5, D1, E1 proved, E2-E4 the lemmas to establish, E4 = MaxGapHyp; first target E2 (two rows exact).
