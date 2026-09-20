@@ -3613,7 +3613,45 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         different kind of statement (a finiteness-contradiction identity, a bootstrap in the gear
         role, an exact counting identity with a finite check), as one quantified sentence, with
         one numerical test; or reports that each candidate is a sifted-set bound in disguise.
-        F(71): a second bisection (222..231, three-hour checks) launched 11:15. Verdict OPEN.
+        F(71): a second bisection (222..231, three-hour checks) launched 11:15. RESULT (received
+        11:35; script research/stack/r8/ideas2_composition_law.py; the lane read map section 0,
+        sections 9 and 16-21, ladder_attempts.md, and 19 novel-index entries by line). NO ROUTE
+        MEETS THE CRITERION: (a) every consequence of a finite twin set above S (for every prime
+        q > S the open set of the machine 5..q meets (0, q^2/6] only at 0; the first open column
+        is above q^2/6; F(q) >= q^2/3; the open set below the next machine's window sits inside
+        the next gear's two classes) has as its negation "the set sifted by 5..q' has an element
+        in the window of q'" - the sifted lower bound in disguise; measured against it, machine
+        101's open columns in (0, 1768] occupy 95 of 103 classes mod 103, machine 211: 215 of
+        223, machine 307: 309 of 311 (finiteness would force <= 2). (c) Two-sided identities:
+        the ledger's unknown side is the distribution of a sifted set across the big gears
+        (equidistribution, gap A-2); Legendre/W98 censuses evaluate the sifted count itself;
+        responsible-strike double counting gives (q^2/3) ln ln q strikes against q^2/6 columns, so
+        pigeonhole is satisfied never contradicted; whole-set statements (a finite twin set
+        makes Brun's constant or prod (s-3)/(s+1) rational) are content-free - the complement has
+        no independent evaluation; do not open. (b) Twin gears in the gear role: phase lock and
+        the four double-kill classes are on the record (tooth-sharing-pinning); "twin gears never
+        strike another twin's column" is primality restated. WHAT FELL OUT - AN EXACT GEAR-ROLE
+        COMPOSITION LAW (new to the index): for every column c with s = 6c and c* = 3c(48c^2 - 1)
+        (so 6c* = T_3(s) = 4s^3 - 3s, the Chebyshev cube), 36c*^2 - 1 = (36c^2 - 1)(36(2c)^2 - 1)^2,
+        members (s-1)(2s+1)^2 and (s+1)(2s-1)^2, hence the gear set G(c*) = G(c) disjoint-union
+        G(2c) and omega(c*) = omega(c) + omega(2c); verified by full factorisation for c <= 3000,
+        0 violations; 16 columns c* with exactly four gears, 11 of them with c and 2c both twin
+        centres (c = 1, 5, 110, 135, 355, 425, 555, 565, 975, 1045, 1755); the record held only
+        the instance (845, 847) = (5 x 13^2, 7 x 11^2) (docs/pair-anatomy.md). General odd k:
+        T_k(s) - 1 = (s-1) W_m(s)^2 and T_k(s) + 1 = (s+1) V_m(s)^2 (Chebyshev third and fourth
+        kinds), strike sets governed by the rank of apparition of the Lucas pair (2s, 1), the twin
+        gears being ranks 1 and 2. Not a route: the law moves strike sets UPWARD (members
+        composite by construction), and 36X^2 - 1 = (36c^2 - 1) Y^2 has Y = 1 only at X = +-c
+        (Pell), so no member of the family is a twin; a downward law would be a polynomial prime
+        infinitely often (Bunyakovsky, a sifted bound again); primitive-divisor theorems
+        (Zsigmondy, Bilu-Hanrot-Voutier) give a prime dividing a number, never a prime. The one
+        route-shaped question left undisguised: does any exact law transfer strike sets DOWNWARD -
+        from a column with known composite members to a smaller column whose strike set is
+        provably confined to gears above its square root? Within Chebyshev/Pell identities, no;
+        the product-forest identity (s-1)(t-1)(s+1)(t+1) = (st+1)^2 - (s+t)^2 is the record's only
+        other member of the family and is not of column form. VERDICT: FACT for the composition
+        law (exact, kernel-ready: a polynomial identity); the route question DEAD within
+        Pell/Chebyshev, OPEN as stated for other identity families.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5134,3 +5172,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxii correction (Iwaniec lane): Iwaniec's P^2 is the linear sieve's limit s = 2, not the large sieve; two classes give only P^4.27 (beta_2 = 4.266); the covering route's wall is parity in covering clothes - 'not parity' withdrawn; the implication stands in the kernel and the window statement holds by covering alone for q <= 73.
 - 2026-09-20, R5.f.xxxii.a: kernel LadderMaxGap.lean - MaxGapHyp (the machine's longest struck run of gears 5..q is shorter than the window of q) -> window statement -> twins unbounded; the rigid F table beats the window by 2.5x or more at every computed q <= 67; the weakest covering-type hypothesis on the tree.
 - 2026-09-20, R5.f.xxxii REDISCOVERY: the covering route is the project's rounds 21-27 line (docs/covering-bound-route.md, Ladder.lean's (D) ladder, novel j2-upper-bound with the beta_2 ceiling and Ziller-Morack Conjecture 6, j2-lower-ladder); the standing rule to grep docs/novel first was not followed; closed as a route, kernel files kept as the general form of the (D) step.
+- 2026-09-20, R5.f.xxxiii (ideas lane): no route whose first step is not a sifted-set bound; every candidate traced to one; new exact gear-role composition law 36c*^2 - 1 = (36c^2-1)(36(2c)^2-1)^2 at c* = 3c(48c^2-1) (Chebyshev cube), G(c*) = G(c) + G(2c), 0 violations to 3000 - upward only, not a route.
