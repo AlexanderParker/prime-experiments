@@ -4249,6 +4249,18 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             of the consistent diagrams; the two densest words, 11 and 13, must place their cells
             disjointly (or waste a coincidence), and that relation is a residue rule between h mod
             11 and h mod 13, not a density. FACT (exact).
+          - R5.f.xxxv.c.xii. THE LAP RECORD FROM THE WORDS ALONE (2026-09-21; research/stack/r8/
+            machine5_word_solver.py). Spawned by c.xi's tiling rule. Solver: walk the laps; a fixed
+            gear striking the lap advances it; otherwise branch over the free gears and their two
+            classes, each fixing k0 mod g; the longest walk is the record (every phase tuple occurs,
+            CRT). PRE-REGISTERED: 2, 4, 5, 7, 12, 18, 25 for q = 7..29 - all reproduced with no
+            lap scan; q = 31: 31 laps (new exact value; the partial-period scan had chain 4, i.e.
+            at least 30). Phases of the q = 31 record: k0 = 3, 2, 12, 12, 6, 10, 18, 11 mod 7, 11,
+            13, 17, 19, 23, 29, 31. Lap record against the lap window (q'^2/30 laps): 4/5, 5/9,
+            7/12, 12/17, 18/28, 25/32, 31/45 for q = 11..31. FACT (exact): the lap record is a
+            finite word puzzle, and the lemma "record < window" on laps is a statement about
+            which class choices can be made consistently along a walk - the alignable-chain
+            recursion of E4, now with the tiling structure (c.viii-c.xi) as its shape.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5818,3 +5830,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.ix: hole words per gear - five holes per class at step 7^-1 with positions 5..1, 5 - d doubles when d <= 4, g - 10 + doubles empties, palindromic under the lap mirror; words for 11..31 written out.
 - 2026-09-21, R5.f.xxxv.c.x: stacking the hole words - forced fills confirmed exactly at q = 19 (11 doubles in every filled hole) and q = 23 (11 in a 3-window in 34 of 36 chains); word bound 1, 2, 5, 7, 10, 15, 28 for q = 19..43, no bound from q = 47: only phases limit chains beyond.
 - 2026-09-21, R5.f.xxxv.c.xi: phases of 11 and 13 - q = 19 filled holes = 12 diagrams x 8 CRT classes (11 at 3 or 6, 13 avoiding 11's pair); q = 23 chains: 11 in its two mirror 3-windows, 13's phase in a 5-set each; chains come in mirror pairs; the tiling rule stated.
+- 2026-09-21, R5.f.xxxv.c.xii: word solver reproduces the lap records 2..25 for q = 7..29 with no scan and gives 31 laps at q = 31 (new exact); record/window on laps 4/5 .. 31/45.
