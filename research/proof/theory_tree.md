@@ -4186,6 +4186,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             chains observed so far (q <= 37) all lie inside 13's ten-hole staircase with 13 in
             every hole. FACT (rule) + observation; the floors alone do not bound the record below
             the window (chain <= 12 gives record <= 94 laps against 55 window laps at q = 37).
+          - R5.f.xxxv.c.viii. HOLE FILLS INSIDE THE STAIRCASE (2026-09-21; research/stack/r8/
+            machine5_hole_fills.py). Spawned by c.vii. With 13 at position p the other four
+            positions are filled by doublers at their lap distance (11, 23: 3; 29, 31: 2; 59, 61:
+            4) or by singles. RULE (exact): admissible doubler pairs avoid p - p = 5: (1,3), (2,4)
+            for 29/31, (1,4) for 11/23; p = 4: (1,3), (3,5), (2,5), (1,5); p = 3: (2,4), (1,4),
+            (2,5), (1,5); p = 2 and 1 mirror p = 4 and 5. A 2+2 fill (two doublers + 13) exists
+            only as: p = 5 or 1: 29 with 31; p = 4 or 2: one of 11/23 with one of 29/31; p = 3:
+            11 with 23, or 59/61 with 29/31. READ on all 14 observed chain holes (q = 19, 23, 29,
+            31, 37): 13's position as predicted every time; every doubler at an admissible pair;
+            the only 2+2 fill seen is p = 3 with 11 at (1,4) and 23 at (2,5) (q = 37, hole = 5 mod
+            13), exactly the table's 11-with-23 case; most holes are 2+1+1 (one doubler, two
+            singles) or four singles; coincidences (two gears on one lap, Q3) appear in six holes
+            (13&29, 11&13, 17&23, 13&31, 11&19, 13&17). FACT (exact). Next: each doubler's word
+            across consecutive holes (class a at p, hole h+2 at p again for 11 by its hole distance
+            2) - the tiling of a chain by the gears' fixed hole words.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5751,3 +5766,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.v: centre of the lap period - lap at offset j/2 struck by g iff g | 15j-+1; centre pair always 7's adjacent pair; central run 4 / 10 / 16 / 34 laps for q = 11..17 / 19..37 / 41..113 / 127; at q = 11 the record is the central run; origin always open, centre always struck.
 - 2026-09-21, R5.f.xxxv.c.vi: centre run vs record (laps) 4/4, 4/5, 4/7, 10/12, 10/18, 10/25 for q = 11..29; centre is the phase-0 run, a lower bound, exact only at q = 11.
 - 2026-09-21, R5.f.xxxv.c.vii: staircase rule - gears other than 13 hit at most one of three consecutive holes per class; chains of 13 holes need 8 gears (q >= 41); observed chains 4 at q = 31, 37 (partial), all inside 13's staircase.
+- 2026-09-21, R5.f.xxxv.c.viii: hole fills inside the staircase - admissible doubler pairs per position of 13; 2+2 fills only 29+31 (p = 1, 5), 11/23 + 29/31 (p = 2, 4), 11+23 or 59/61+29/31 (p = 3); all 14 observed holes obey; one 2+2 seen (q = 37, 11 with 23 at p = 3).
