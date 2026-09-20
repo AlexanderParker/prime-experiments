@@ -3901,6 +3901,20 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           LadderRegion.lean), and the products field g p in (q^2, q'^2] is its mechanism. FACT
           (E5 and the count law proved); the lemma left is N >= 1 per consecutive pair, or "T never
           reaches 0" in walk form.
+        - R5.f.xxxiv.n. THE TWIN STRETCH IN THE PRODUCTS FIELD (owner's "go", PM 19:50;
+          research/stack/r8/stretch_products_split.py, twin centres 102..2970, exact). Base level
+          B = floor(sqrt(2s)); base-open = twins + plugged, a plug being a column with a P_2 or P_3
+          member (all factors above B) and a B-rough partner. PREDICTIONS: share plugged in
+          [0.6, 0.9] rising slowly; no P_4 plug; top band (s/2, s] paints about 1.8 s/ln s columns
+          with a base-open fraction 3.6/ln s. RESULT: share 0.63 -> 0.81 (HOLDS); P_2 dominant, P_3
+          a few percent, no P_4 (HOLDS); top band paints 233 of 1,247 at s = 1872 (half the
+          estimate, MIXED) with base-open fraction 0.16 = e^{-gamma}/ln B (the 3.6/ln s was wrong;
+          the partner's roughness gives e^{-gamma}/ln B). REGION LEMMA IN FIELD TERMS: the products
+          h p (B < h <= p) with B-rough partner number fewer than the base-open columns. The plug
+          count has an upper-bound sieve at any level; the base-open count has a lower-bound
+          sieve in a stretch of length 4s only below level (4s)^{1/4.27} - Chen's switching frame,
+          which is why Chen holds on the line and not in the stretch. FACT (split exact, shares
+          measured); the region lemma open as the comparison of the two counts.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5436,3 +5450,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.k: kernel LadderWidening.lean - Lemma B (widening, twin slots persist) and the sandwich's lower half (a single hole is always alignable, by periodicity and CRT); every proved line of the field draft is kernel-checked.
 - 2026-09-20, R5.f.xxxiv.l: twisted translates - F(q') <= q'(F_T + 1) proved, vacuous (F_T is F's size); the form re-encodes the joint alignment; step 1's shape routes exhausted at the same point as 5a and 5b.
 - 2026-09-20, R5.f.xxxiv.m: origin square lemma proved (the next gear fills only the square column among old holes, 75 pairs verified) and the window count law T(q') = T(q) - [q'+2 prime] + N(q^2, q'^2]; the field programme meets RegionHyp; the lemma left is a twin between consecutive prime squares.
+- 2026-09-20, R5.f.xxxiv.n: the twin stretch in the products field - base-open = twins + plugs, plugs share 0.63-0.81 at B = sqrt(2s), P_2 dominant; the region lemma is the comparison plugs < base-open, Chen's switching frame at a level where the stretch has no lower-bound sieve.

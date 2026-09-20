@@ -293,6 +293,45 @@ as a conservation law for slots, and the products field is the mechanism that fi
 region. The lemma left is N(q^2, q'^2] >= 1 for every consecutive pair, or the weaker
 "T never descends to 0", which is the same lemma in walk form.
 
+## 5f. The shortest region: the twin stretch in the products field (2026-09-20 19:50)
+
+The region between consecutive prime squares with gap 2 is the stretch of the twin centre s = q + 1:
+columns 6c^2 + j, |j| <= 2c - 1, members s^2 + 6j -+ 1, 4c - 1 columns at height s^2. Its
+shapes are on the record (normal form; the twin gears strike only the centre; every gear strikes
+two classes of offsets; the top-band k-rule; the composite-forcing difference-of-squares families;
+universal clearance). In the products field the region lemma reads as follows.
+
+**Base and plugs (exact).** Fix a base level B (here B = floor(sqrt(2s))). A column is base-open
+when both members are B-rough. A base-open column is a twin unless a member is a product of primes
+above B - a P_2 = h p with B < h <= p, or a P_3 (no P_4 fits below (s+1)^2 with all factors above
+sqrt(2s)). So
+
+    base-open = twins + plugged,   plugged = columns with a P_2 or P_3 member and a B-rough partner.
+
+The region lemma (a rung exists) is: the plugs do not exhaust the base-open columns. Measured
+(research/stack/r8/stretch_products_split.py, twin centres 102..2970, exact factorisation): plugged
+share 0.63, 0.72, 0.71, 0.73, 0.76, 0.70, 0.76, 0.71, 0.76, 0.75, 0.77, 0.81, 0.77 - rising slowly;
+plug members almost all P_2 (P_3 a few percent), never P_4; the top band h in (s/2, s] paints 233 of
+1,247 columns at s = 1872, of which 38 are base-open - a share e^{-gamma}/ln B of its paint lands
+on base-open columns, as the partner's roughness predicts.
+
+**What the shapes give here.** A plug is a pair (h p, h p -+ 2) with h p a product of two primes above
+B and the partner B-rough: the products field lands h p at one column between h^2 and p^2 (the
+owner's law), and the partner condition is a roughness condition on a shifted prime product. The
+number of plugs is therefore bounded ABOVE by a sieve on the partner (an upper-bound sieve, which
+exists at every level), and the number of base-open columns is bounded BELOW only by a lower-bound
+sieve, which exists in a stretch of length 4s only for levels below (4s)^{1/4.27}, far below
+sqrt(2s). This is exactly Chen's switching frame, and it is why Chen's theorem holds on the whole
+line and not in a stretch: the plugs can be counted, the base cannot be bounded from below at the
+level where the plugs are few. The measured share 0.7-0.8 says the plugs take about three quarters
+of the base-open columns and leave a quarter, uniformly in s.
+
+**Region lemma in field terms.** For every twin centre s and B = floor(sqrt(2s)): the products h p
+(B < h <= p) whose partner h p -+ 2 is B-rough number fewer than the base-open columns of the
+stretch. The lemma is a comparison of two counts that the shapes define exactly; the count of plugs
+is accessible, the count of base-open columns in a stretch is the sifted-set lower bound that the
+whole record turns on.
+
 ## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
 
 `StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns
