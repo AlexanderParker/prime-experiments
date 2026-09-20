@@ -4055,6 +4055,26 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           of the window statements of the tower of roots q, ~q^2, ~q^4, ... within the range,
           each fixed by residues, none forced by the gap word alone. FACT (Q1-Q6); the range
           statement reduces exactly to the windows of the tower's root machines.
+        - R5.f.xxxv.c. MACHINE 5 AS THE CYCLE, OVERLAY = EVERY GEAR ABOVE 5 (owner 2026-09-21;
+          research/stack/r8/machine5_cycle.py). Machine 5 = base 2, 3 with gear 5, period 30; its
+          known opening (-1, 1) recurs at every multiple of 30, copies (30k-1, 30k+1), k = 1, 2, ...
+          PRE-REGISTERED: gear g >= 7 strikes copy k iff k = +-30^{-1} mod g, two classes of k per
+          gear at distance 15^{-1} mod g, so the overlay on the copies is a machine of the same
+          shape as the 6n+-1 machine with 5 folded into the base; copy k is a twin iff no gear up
+          to sqrt(30k+1) strikes k; prediction: every range (q, q#] holds a twin copy; refuted by
+          a q with none. RESULT: classes verified (7: k = 3, 4 mod 7, distance 1; 11: 4, 7 mod 11;
+          13: 3, 10; 17: 4, 13; 19: 7, 12; 23: 10, 13). Twin copies k <= 200: 1, 2, 5, 6, 8, 9,
+          14, 19, 20, 22, 27, 34, 35, 41, 43, 44, 54, 65, 71, 77, 78, 85, 91, 93, 99, 100, 104,
+          110, 111, 112, 113, 118, 131, 134, 135, ... (gaps 1..13). First failures: k = 3 (91 =
+          7 x 13), 4 (119 = 7 x 17, 121 = 11^2), 7 (209 = 11 x 19) - each the two classes of the
+          first gears. For every q <= 79 the range (q, q#] holds a twin copy, and the first one
+          above q is tiny: k = 1 (29, 31) for q <= 23, k = 2 (59, 61) for 29 <= q <= 53, k = 5
+          (149, 151) for 59 <= q <= 79. READING: the copies (30k-1, 30k+1) are the twins whose
+          middle is a multiple of 30; the range check for machine q asks that this family reach
+          past q, so "a twin copy in every range" is the statement that the family never stops -
+          the same shape of question as the root, one base gear higher (the machine with base
+          2, 3, 5 in place of 2, 3). FACT (the overlay's shape on the copies, exact); the range
+          statement for every q follows from the copies' family being unbounded, not yet shown.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5612,3 +5632,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.r: whole-range form (U') - every window of q'^2/6 columns of machine q with more than 2 ceil(q'/6) holes gives E4(q') by the one-gear thin band; verified 19, 23, 29; (U') asks q/3 holes against a mean of q^2/(2.4 ln^2 q).
 - 2026-09-21, R5.f.xxxv.a (range lane): one gear of T reads q's cycle re-indexed by g (twisted machine); two per run only at the leg distances, bound 3F+4; pairs of large gears coincide on four residues mod gg'; a run needs mu_T(w) gears; the twins of each tier of the range are exactly the openings of the tier-root machine (13 / 167 / 173 at q = 13) - the range statement is the disjunction of the tower's window statements.
 - 2026-09-21, R5.f.xxxv.b: the known opening's copies k P_L (k < q) hold no twin at q = 43, 71, 79, 113; the family has about 3 ln^2 q / q twin copies; refuted as a guaranteed survivor.
+- 2026-09-21, R5.f.xxxv.c: machine 5 as the cycle, overlay every gear above 5: overlay gear g strikes copies (30k-+1) at k = +-30^-1 mod g (two classes, distance 15^-1 mod g) - a machine of the same shape with 5 in the base; every range (q, q#] to q = 79 holds a twin copy, the first at k = 1, 2 or 5.
