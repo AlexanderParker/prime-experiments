@@ -443,3 +443,13 @@ in a run of L), `holes_in_covered_run` (a run covered by the next machine holds 
 holes of the old one - the record sandwich's upper half), `thin_band` (the thin-band bound),
 `five_consecutive` and `four_consecutive` (two gears never paint five consecutive columns, nor four
 unless they are 5 and 7). Standard axioms; 0 sorries.
+
+## 23. Kernel: widening and the sandwich's lower half (2026-09-20, proofs/LadderWidening.lean)
+
+`widening`: below its own square a gear strikes only its home column or a column a smaller gear
+already strikes. `twin_slot_persists`: a twin slot is unstruck in every machine whose gears stay
+below its members. `struck_periodic`, `tooth_of_class`, `align_single_hole`: a run of machine q with
+a single hole becomes a fully struck run of the next machine q' at a translate (periodicity and the
+Chinese remainder theorem), so G_1(q) <= F(q'); `not_maxGapBelow_of_single_hole` states it in the
+max-gap vocabulary. Standard axioms; 0 sorries. With LadderFields.lean every proved line of the
+field proof draft is kernel-checked; the draft's one open lemma is E4.

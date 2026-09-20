@@ -44,7 +44,7 @@ composite, its least prime factor f would satisfy f^2 <= m <= q^2, so f <= q, an
 gcd(m, 6) = 1; then f is a gear of the machine dividing m, so the column is struck. Kernel:
 `prime_of_unstruck_member`, `window_twin_of_maxGap` (proofs/LadderMaxGap.lean, LadderCovering.lean).
 
-## 2. Widening never reaches back - PROVED (elementary; kernel entry to add)
+## 2. Widening never reaches back - PROVED (kernel: proofs/LadderWidening.lean, `widening`, `twin_slot_persists`)
 
 **Lemma B (the widening rule).** Let g be a gear and n a column with 6n + 1 < g^2. If g strikes
 column n, then either 6n - 1 = g or 6n + 1 = g (the gear's home column), or a gear h < g already
@@ -240,8 +240,11 @@ struck by one gear are congruent mod p or at least (p-1)/3 apart); `class_count`
 `holes_in_covered_run` (E3' upper half: a run covered by machine q' holds at most 2 ceil(L/q')
 holes of machine q, q' the next prime); `thin_band` (E4e); `five_consecutive`, `four_consecutive`
 (E2, with the {5, 7} exception). 0 sorries; axioms propext, Classical.choice, Quot.sound; built and
-audited by the manager. Lemma B (the widening rule) and the lower half of the sandwich (a single
-hole is always alignable) are not yet in the kernel.
+audited by the manager. proofs/LadderWidening.lean (2026-09-20 18:20) adds Lemma B (`widening`,
+`twin_column_strikers`, `twin_slot_persists`) and the sandwich's lower half (`struck_periodic`,
+`tooth_of_class`, `align_single_hole`, `not_maxGapBelow_of_single_hole`): a run of the old machine
+with one hole becomes a fully struck run of the next machine at a translate found by CRT. Every
+proved line of this draft is now kernel-checked; the only lemma outside the kernel is E4.
 
 ## 6. The theorem
 
@@ -258,13 +261,13 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | part | statement | standing |
 |---|---|---|
 | A | an unstruck window column is a twin pair | PROVED (kernel) |
-| B | a later gear never strikes a twin slot | PROVED (elementary); kernel entry to add |
+| B | a later gear never strikes a twin slot | PROVED (kernel `widening`, `twin_slot_persists`) |
 | C1-C5 | the shapes of the five fields | PROVED (C1, C5 kernel; C2-C4 elementary) |
 | D1 | no set of gears blocks permanently | PROVED (CRT) |
 | E1 | one row paints no two adjacent columns | PROVED (kernel `no_adjacent`) |
 | E2 | two rows: exact longest joint run 4 / 3 / 2 | PROVED (kernel `five_consecutive`, `four_consecutive`) |
 | E3 | a record is old runs joined at the new gear's teeth, F(q') <= (h+1)F(q) + h | PROVED (2026-09-20) |
-| E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (upper half kernel `holes_in_covered_run`) |
+| E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (kernel: upper `holes_in_covered_run`, lower `align_single_hole`) |
 | E4c | in a covered window of q' the interior hole gaps of q are >= (q'-1)/3 and alternate in two residues | PROVED (kernel `strike_distance`, `strike_distance_ge`) |
 | E4d | F(q') <= S_t*(q), the longest stretch of q with hole gaps >= (q'-1)/3 | PROVED (2026-09-20) |
 | E4e | thin-band bound F(q) <= max{L : 2 sum_top ceil(L/g) >= h_B(L)}; window statement for 19 and 29 by shapes | PROVED (kernel `thin_band`) |

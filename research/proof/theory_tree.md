@@ -3867,7 +3867,13 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           (a twin slot is unstruck in every machine whose gears stay below its members),
           struck_periodic, tooth_of_class, align_single_hole (a run of the old machine with one
           hole becomes a fully struck run of the next machine at a translate - G_1(q) <= F(q'), by
-          periodicity and CRT), not_maxGapBelow_of_single_hole. Verdict OPEN.
+          periodicity and CRT), not_maxGapBelow_of_single_hole. RESULT (received 18:15; re-built
+          and audited by the manager: 0 sorries, axioms propext / Classical.choice / Quot.sound;
+          twin_slot_persists needs only propext / Quot.sound). All eight statements as briefed;
+          struck_periodic carries 1 <= n (necessary: column 0 is a natural-subtraction artefact);
+          the widening rule holds for any g once the member is below g^2 (the primality of g is
+          unused). Every proved line of the field draft is now in the kernel; E4 is the only lemma
+          outside it. FACT (kernel).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5400,3 +5406,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.h: thin-band bound proved from the shapes - F(19) <= 42, F(29) <= 89 with one top gear (window statement for machines 19 and 29 by shapes alone); vacuous with a two-gear band; E4 = the overlap statement.
 - 2026-09-20, R5.f.xxxiv.i: residue-collapse census exact (14 of 14 checks) - covered windows of q' counted from machine q's windows by hole residues; F(q') = max(G_1(q), largest alternating window).
 - 2026-09-20, R5.f.xxxiv.j: kernel LadderFields.lean - E1, E2 (4 / 3 / 2 with the {5,7} exception), E4c, the sandwich upper half and the thin-band bound, 0 sorries.
+- 2026-09-20, R5.f.xxxiv.k: kernel LadderWidening.lean - Lemma B (widening, twin slots persist) and the sandwich's lower half (a single hole is always alignable, by periodicity and CRT); every proved line of the field draft is kernel-checked.
