@@ -433,3 +433,13 @@ links it to the free form. Standard axioms; 0 sorries. The hypothesis says the t
 Jacobsthal function (the maximal gap between columns both of whose members are coprime to the
 primorial of `q`) stays below `q^2/6`; the machine's exact record `F(q)` does so with margin at
 least 2.5 at every computed `q ≤ 67`.
+
+## 22. Kernel: the field lemmas (2026-09-20, proofs/LadderFields.lean)
+
+The proved half of the field proof draft (research/proof/field_proof_draft.md): `no_adjacent` (a gear
+never strikes adjacent columns), `strike_distance` / `strike_distance_ge` (two columns struck by the
+same gear are congruent mod p or at least (p-1)/3 apart), `gear_count` (at most 2 ceil(L/p) strikes
+in a run of L), `holes_in_covered_run` (a run covered by the next machine holds at most 2 ceil(L/q')
+holes of the old one - the record sandwich's upper half), `thin_band` (the thin-band bound),
+`five_consecutive` and `four_consecutive` (two gears never paint five consecutive columns, nor four
+unless they are 5 and 7). Standard axioms; 0 sorries.

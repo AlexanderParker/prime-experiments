@@ -3852,6 +3852,14 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           The rows constrain hole residues mod q' not at all; the attempt to bound alternating
           windows by gear 5's free arcs along the progression fails (class members need not be
           consecutive terms). FACT (exact census); E4 open as "no alternating window".
+        - R5.f.xxxiv.j. KERNEL: THE FIELD LEMMAS (owner's step 2; Fable formalist lane, received
+          17:35; re-built and audited by the manager: 0 sorries, axioms propext / Classical.choice
+          / Quot.sound; proofs/LadderFields.lean). StrikesBy; no_adjacent (E1); strike_distance and
+          strike_distance_ge (E4c); class_count, gear_count, gear_count_prime; holes_in_covered_run
+          (E3' upper half, with q' the next prime as hypothesis); thin_band (E4e);
+          five_consecutive and four_consecutive (E2 including the {5,7} exception, a 16-way case
+          split). No statement weakened. Not yet in the kernel: Lemma B (widening) and the lower
+          half of the sandwich. FACT (kernel).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5383,3 +5391,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.g: E4d proved - F(q') <= S_t*(q), the longest stretch of machine q with hole gaps >= (q'-1)/3; ratios S_t*/window 0.39-0.73 on 5..23, no fall yet; E4 = S_(q'/3)(q) < q'^2/6.
 - 2026-09-20, R5.f.xxxiv.h: thin-band bound proved from the shapes - F(19) <= 42, F(29) <= 89 with one top gear (window statement for machines 19 and 29 by shapes alone); vacuous with a two-gear band; E4 = the overlap statement.
 - 2026-09-20, R5.f.xxxiv.i: residue-collapse census exact (14 of 14 checks) - covered windows of q' counted from machine q's windows by hole residues; F(q') = max(G_1(q), largest alternating window).
+- 2026-09-20, R5.f.xxxiv.j: kernel LadderFields.lean - E1, E2 (4 / 3 / 2 with the {5,7} exception), E4c, the sandwich upper half and the thin-band bound, 0 sorries.

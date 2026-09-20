@@ -232,6 +232,17 @@ alternating window through the smallest gear fails because the holes in a class 
 consecutive terms of the progression (a gap that is a multiple of q' is allowed), so gear 5's
 free arcs along the progression bound nothing.
 
+## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
+
+`StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns
+struck by one gear are congruent mod p or at least (p-1)/3 apart); `class_count`, `gear_count`,
+`gear_count_prime` (a gear strikes at most 2 ceil(L/p) columns of a run of length L);
+`holes_in_covered_run` (E3' upper half: a run covered by machine q' holds at most 2 ceil(L/q')
+holes of machine q, q' the next prime); `thin_band` (E4e); `five_consecutive`, `four_consecutive`
+(E2, with the {5, 7} exception). 0 sorries; axioms propext, Classical.choice, Quot.sound; built and
+audited by the manager. Lemma B (the widening rule) and the lower half of the sandwich (a single
+hole is always alignable) are not yet in the kernel.
+
 ## 6. The theorem
 
 **Theorem (conditional on Lemma E).** For every prime q >= 5 the window of q holds a twin prime
@@ -250,13 +261,13 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | B | a later gear never strikes a twin slot | PROVED (elementary); kernel entry to add |
 | C1-C5 | the shapes of the five fields | PROVED (C1, C5 kernel; C2-C4 elementary) |
 | D1 | no set of gears blocks permanently | PROVED (CRT) |
-| E1 | one row paints no two adjacent columns (g >= 7) | PROVED |
-| E2 | two rows: exact longest joint run 4 / 3 / 2 | PROVED (2026-09-20) |
+| E1 | one row paints no two adjacent columns | PROVED (kernel `no_adjacent`) |
+| E2 | two rows: exact longest joint run 4 / 3 / 2 | PROVED (kernel `five_consecutive`, `four_consecutive`) |
 | E3 | a record is old runs joined at the new gear's teeth, F(q') <= (h+1)F(q) + h | PROVED (2026-09-20) |
-| E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (2026-09-20) |
-| E4c | in a covered window of q' the interior hole gaps of q are >= (q'-1)/3 and alternate in two residues | PROVED (2026-09-20) |
+| E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (upper half kernel `holes_in_covered_run`) |
+| E4c | in a covered window of q' the interior hole gaps of q are >= (q'-1)/3 and alternate in two residues | PROVED (kernel `strike_distance`, `strike_distance_ge`) |
 | E4d | F(q') <= S_t*(q), the longest stretch of q with hole gaps >= (q'-1)/3 | PROVED (2026-09-20) |
-| E4e | thin-band bound F(q) <= max{L : 2 sum_top ceil(L/g) >= h_B(L)}; window statement for 19 and 29 by shapes | PROVED (2026-09-20) |
+| E4e | thin-band bound F(q) <= max{L : 2 sum_top ceil(L/g) >= h_B(L)}; window statement for 19 and 29 by shapes | PROVED (kernel `thin_band`) |
 | E4 | S_t*(q) < (q'^2 - q')/6 for consecutive primes q < q' (implies `MaxGapHyp`) | LEMMA |
 | E | the window is never painted over | LEMMA (follows from E4) |
 
