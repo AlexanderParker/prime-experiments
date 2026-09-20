@@ -4127,6 +4127,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             in the three holes. FACT (exact); the self-similar shape: laps -> gear 7 cuts adjacent
             pairs with 5-holes; holes -> gear 13 cuts adjacent hole pairs; the record at each
             level is the longest chain the remaining gears can fill.
+          - R5.f.xxxv.c.iv. THE RANGE RULES Q1-Q6 ON THE LAPS (owner 2026-09-21: the earlier
+            range-check rules for the gears above q should carry over). They do, with 30 in place
+            of 6 and 15 in place of 3. Q1 (twisted read): gear g strikes laps k = +-30^{-1} mod g,
+            two classes at distance 15^{-1} mod g (node c). Q2 (leg rule): g strikes two laps D
+            apart iff g | D, 15D - 1 or 15D + 1; a gear above 15 x span + 1 strikes at most one lap
+            of a run (node c.ii). Q3 (coincidence): two gears strike the same lap on exactly four
+            residues mod g g' (checked 7..19; seen at q = 23, lap 30600 struck by 7 and 23).
+            Q4 (closing floor): a run of laps needs at least mu gears, a 5-hole at least three
+            (doublers 11, 23, 29, 31, 59, 61 only) (node c.ii). Q5 (tiers): on tier (q, q'^2] the
+            surviving laps are the openings of the lap machine 7..q (node c.i, every q <= 300).
+            Q6 (mirror): on laps the mirror k -> -k fixes every gear's class pair, so the lap
+            machine's openings are symmetric about lap 0 (the origin copy) - stronger than on
+            columns, where a gear's pair is fixed only if g | 3P -+ 1. JOINT ACTION: the gears
+            above 5 strike every lap of a range only if every tier's root lap machine fills its
+            tier; tier 1 is the lap window (c.i). FACT; the range statement with machine 5 as the
+            cycle is the tower of lap-window statements, the first of which is c.i.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5688,3 +5704,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.i: lap machine 7..q on the copies 30k+-1 has an open lap in its window (q/30, q'^2/30) for every q <= 300 (first open lap k <= 14); lap records 2, 4, 5, 7, 12, 18 for q = 7..23; same E4 shape with 5 in the base.
 - 2026-09-21, R5.f.xxxv.c.ii: leg rule on laps g | D, 15D-1 or 15D+1; gear 7 cuts adjacent lap pairs every 7 laps with 5-lap holes; a run is 7's pairs with holes filled by 11..q (doublers only 11, 23, 29, 31, 59, 61); record runs as words for q = 11..23; the record is the longest chain of filled holes.
 - 2026-09-21, R5.f.xxxv.c.iii: hole machine - each class of gear g hits five of every g holes in a progression with step 7^-1 mod g, positions descending; gear 13 is the holes' adjacent gear (ten consecutive holes as a staircase); longest chain of filled holes 0, 1, 2, 3 at q <= 17, 19, 23, 29; lap record 25 at q = 29 = 15 + 8 + 2.
+- 2026-09-21, R5.f.xxxv.c.iv: Q1-Q6 carry to the laps (30 for 6, 15 for 3); mirror k -> -k fixes every class pair; range with machine 5 as cycle = tower of lap-window statements.
