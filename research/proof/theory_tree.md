@@ -4109,6 +4109,24 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             hole needs at least three gears of 11..q (at most two doublers), and the record is
             the longest chain of consecutive filled holes. FACT (exact); the open question "lap
             record < window" becomes "how many consecutive 5-holes can the gears 11..q fill".
+          - R5.f.xxxv.c.iii. THE HOLE MACHINE (2026-09-21; research/stack/r8/machine5_holes.py,
+            machine5_holes_np.py). Spawned by c.ii: the lap record is a chain of filled 5-lap
+            holes. Hole h = laps 7h+5..7h+9, positions p = 1..5. PRE-REGISTERED and PROVED: gear
+            g >= 11, class a, strikes hole h at position p iff h = 7^{-1}(a - 4 - p) mod g, so over
+            g holes each class hits five holes, an arithmetic progression of holes with step 7^{-1}
+            mod g and the position stepping down by one; at a fixed position the two classes sit at
+            hole distance d_g 7^{-1} mod g (predicted 11:2, 13:1, 17:6, 19:2, 23:7, 29:8, 31:13;
+            confirmed on the data: 13 at holes 5, 6; 11 at 0, 9; 19 at 0, 17). Gear 13 is the
+            hole machine's adjacent gear: its two classes hit ten consecutive holes 1..10 mod 13 at
+            positions 5, 5, 4, 4, 3, 3, 2, 2, 1, 1 (a descending staircase), the way gear 7 hits
+            adjacent laps (7 x 13 = 91 = 15 x 6 + 1, the D = 6 leg). Longest chain of filled holes
+            per period: 0 for q <= 17, 1 at q = 19, 2 at q = 23, 3 at q = 29; lap record = 5 x
+            chain + 2 x (chain + 1) + ends: 12 = 5 + 4 + 3, 18 = 10 + 6 + 2, 25 = 15 + 8 + 2 at
+            q = 19, 23, 29 (record 25 for gears 7..29 computed exact). The q = 29 chain: positions
+            struck by (17 19 29 13 29 | 11 17 13 11 23 | 23 19 13 17 11) - 13 at position 4, 3, 3
+            in the three holes. FACT (exact); the self-similar shape: laps -> gear 7 cuts adjacent
+            pairs with 5-holes; holes -> gear 13 cuts adjacent hole pairs; the record at each
+            level is the longest chain the remaining gears can fill.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5669,3 +5687,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c: machine 5 as the cycle, overlay every gear above 5: overlay gear g strikes copies (30k-+1) at k = +-30^-1 mod g (two classes, distance 15^-1 mod g) - a machine of the same shape with 5 in the base; every range (q, q#] to q = 79 holds a twin copy, the first at k = 1, 2 or 5.
 - 2026-09-21, R5.f.xxxv.c.i: lap machine 7..q on the copies 30k+-1 has an open lap in its window (q/30, q'^2/30) for every q <= 300 (first open lap k <= 14); lap records 2, 4, 5, 7, 12, 18 for q = 7..23; same E4 shape with 5 in the base.
 - 2026-09-21, R5.f.xxxv.c.ii: leg rule on laps g | D, 15D-1 or 15D+1; gear 7 cuts adjacent lap pairs every 7 laps with 5-lap holes; a run is 7's pairs with holes filled by 11..q (doublers only 11, 23, 29, 31, 59, 61); record runs as words for q = 11..23; the record is the longest chain of filled holes.
+- 2026-09-21, R5.f.xxxv.c.iii: hole machine - each class of gear g hits five of every g holes in a progression with step 7^-1 mod g, positions descending; gear 13 is the holes' adjacent gear (ten consecutive holes as a staircase); longest chain of filled holes 0, 1, 2, 3 at q <= 17, 19, 23, 29; lap record 25 at q = 29 = 15 + 8 + 2.
