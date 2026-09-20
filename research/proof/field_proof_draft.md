@@ -172,7 +172,8 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | E2 | two rows: exact longest joint run 4 / 3 / 2 | PROVED (2026-09-20) |
 | E3 | a record is old runs joined at the new gear's teeth, F(q') <= (h+1)F(q) + h | PROVED (2026-09-20) |
 | E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (2026-09-20) |
-| E4 | the record stays below the window = the overlap statement | LEMMA (`MaxGapHyp`) |
+| E4c | in a covered window of q' the interior hole gaps of q are >= (q'-1)/3 and alternate in two residues | PROVED (2026-09-20) |
+| E4 | the record stays below the window = no sparse-hole stretch of length q'^2/6 | LEMMA (`MaxGapHyp`) |
 | E | the window is never painted over | LEMMA (follows from E4) |
 
 E2 is proved. Three gears (exact, first eight gears): 6 with both 5 and 7; 5 with one of them
@@ -209,7 +210,24 @@ mostly on painted columns. So the lemma to establish is the OVERLAP statement: i
 length q'^2/6, the teeth of the new gear q' cover fewer than all the holes left by 5..q. That is
 the window statement for q' itself, now with the machine's exact growth law beside it: the record
 never jumps past the old machine's k-hole windows, and the alignment of a chain is decided by the
-hole-gap census at two residues. The data instrument is the fields explorer and `rigid_record_bisect.py`;
+hole-gap census at two residues.
+
+**E4c (PROVED).** Since 3 x 3^{-1} = 1 mod q', the tooth distance 3^{-1} mod q' is (q'+1)/3 or
+(2q'+1)/3, so the two gaps at which consecutive holes can both be filled by q' are {(q'+1)/3,
+(2q'-1)/3} or {(q'-1)/3, (2q'+1)/3}, up to multiples of q', and along a chain they alternate
+(every second hole is in the same class). Hence in a window fully painted by machine q', every
+interior gap between consecutive holes of machine q is at least (q'-1)/3, every interior run of
+machine q is at least (q'-4)/3 long, and the holes inside number at most 3L/(q'-1) + 1. A covered
+window is a stretch of machine q with hole density at most 3/q', against the machine's 2.5/ln^2 q.
+
+**E4, final form for this draft.** Machine q has no stretch of q'^2/6 columns in which every
+interior hole gap is at least (q'-1)/3 and the gaps alternate between the two residues 3^{-1} and
+-3^{-1} modulo q'. Equivalently: every window of machine q of length q'^2/6 has a pair of
+consecutive holes closer than (q'-1)/3, or two consecutive gaps that do not alternate. This is
+the lemma the field programme must now establish; it asks for about q'/2 holes in a window that
+generically holds q'^2/(2.4 ln^2 q'). The counting form of it is a sifted-set lower bound; the
+field form asks why the small gaps 1, 2, 3, 5 of machine q - the most common gaps it has - can
+never all be absent from a stretch of q'^2/6 columns. The data instrument is the fields explorer and `rigid_record_bisect.py`;
 the exact rule is W88's loaded record rule. What must not enter: any count of columns, density or
 sieve bound - E4 is to be proved from the shapes and phases alone.
 

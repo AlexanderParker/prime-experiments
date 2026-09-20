@@ -3782,6 +3782,26 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           proved; recursion exact); E4 open as the overlap statement, which is the window statement
           for q' itself. The exact recursion is kernel-ready and is the machine's law for how the
           record grows; it does not by itself bound the growth.
+        - R5.f.xxxiv.f. E4c: THE SHAPE OF A COVERED WINDOW (PM, 15:40; elementary, exact). The
+          tooth distance of a gear q' is inv3 mod q'; since 3 inv3 = 1 mod q', inv3 is (q'+1)/3 or
+          (2q'+1)/3, so the two allowed gaps between consecutive aligned holes are {(q'+1)/3,
+          (2q'-1)/3} or {(q'-1)/3, (2q'+1)/3} (plus multiples of q'), and along a chain they
+          ALTERNATE (partial sums stay in {0, d}: a gap = d is followed by a gap = -d mod q' or by a
+          multiple of q'), so every second hole of a covered window lies in the same class mod q'.
+          PROVED (from the alignability criterion of xxxiv.e): in a window fully painted by machine
+          q', every gap between consecutive holes of machine q strictly inside it is at least
+          (q'-1)/3, every interior run of machine q is at least (q'-4)/3 long, the holes inside
+          number at most 3L/(q'-1) + 1 for a window of length L, and the interior gaps alternate
+          between the two values modulo q'. Checked on the record of 23 (holes at 3, 11, 26 inside
+          the run of 33: interior gaps 8 = (23+1)/3 and 15 = (2 x 23 - 1)/3, interior runs 7 and
+          14 >= 6.33; the end runs 3 and 6 are not constrained). CONSEQUENCE FOR E4: a covered
+          window of q' is a stretch of machine q of length q'^2/6 whose interior holes are spaced at
+          least (q'-1)/3 apart in two alternating residue classes - hole density at most 3/q'
+          against the machine's 2.5/ln^2 q - so E4 is the statement that machine q has no stretch
+          of length q'^2/6 with all interior hole gaps at least (q'-1)/3 in the two alternating
+          classes. FACT (exact shape); E4 open in this form (a lower bound of about q'/2 holes in
+          every window of length q'^2/6 of machine q, i.e. at most a fraction 3/q' of the
+          window's columns may be gaps of that size).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5308,3 +5328,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.b: E3 exact - a new record is old runs joined at the new gear's teeth (h <= 2 ceil(F/p) holes filled, 1-3 observed), F(q') <= (h+1)F(q) + h; the old runs used are well below the old record; F(29) = 42.
 - 2026-09-20, R5.f.xxxiv.c: the record recursion verified exactly for q' = 7..23 - F(q') is the longest chain of consecutive holes of machine q lying in q' tooth classes plus its flanks; aligned pairs 3-5x rarer than (2/q')^2 because alignment needs the hole gap to equal inv3 mod q' exactly; E4 = a statement about the hole-gap spectrum at two residues.
 - 2026-09-20, R5.f.xxxiv.d-e: aligned hole pairs = the hole-gap census at inv3 and q'-inv3 divided by q' (exact by CRT); the record sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q) proved and exact at every step 7..23 (equality F(q') = G_1(q) at 11, 13, 19); E4 = the overlap statement - the new gear's teeth never fill all holes of a window of length q'^2/6.
+- 2026-09-20, R5.f.xxxiv.f: E4c proved - in a covered window of q' the interior hole gaps of machine q are at least (q'-1)/3 (tooth distance inv3 = (q'+-1)/3 or (2q'+-1)/3) and alternate between two residues; a covered window is a sparse-hole stretch of density at most 3/q'.
