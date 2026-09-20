@@ -3552,7 +3552,27 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         the free covering function j_2 (data to 73) against the window q^2/6 is the cleanest
         integer form of the whole problem on record: the twin prime conjecture is implied by the
         two-class Jacobsthal function being o(P^2), a statement about coverings with no primes in
-        it beyond the gears.
+        it beyond the gears. REDISCOVERY (10:50, on reading docs/novel/README.md as the standing
+        rule requires - not done before opening this node): the covering route IS the project's
+        own line of rounds 21-27 (August 2026): docs/covering-bound-route.md (the window (y, y^2]
+        as a covering, F_h(y) against y^2/6 in twin-slot coordinates, a counting lemma later
+        refuted), the (D) ladder proofs/Ladder.lean (the window statement for consecutive
+        machines 11 -> 13 -> 17 -> 19 -> 23 from exact F records, hypothesis-free) and
+        CoveringCert.lean / CoveringCert2.lean (F(19) <= 37 by LP duality), and the novel
+        entries paired-jacobsthal-values (exact h_2 = A288815 values 18, 30, 66, 150, 192, ...,
+        h_2(29) = 450), j2-upper-bound (three proved upper rungs for j_2, quasi-polynomial
+        p_n^(O(log log p_n)), polynomial p_n^(4.266+eps) by the fundamental lemma, THE CEILING:
+        beta_2 is the dimension-2 sifting limit and Ziller-Morack Conjecture 6's exponent 2 sits
+        below Selberg's conjectural floor 2 kappa = 4, "the gap is parity, not technology",
+        checked 2026-08-24), j2-lower-ladder (h_2(P(z)) >= (1.349 + o(1)) z log z, round 24),
+        jk-family (round 27), and open problems P3 "paired-Iwaniec upper" and P4 "Conj. 6
+        true-with-room". Every conclusion of R5.f.xxxii and of the two register lanes was already
+        on the record there, in the anchor/machine vocabulary. NEW tonight, in the twin-ladder
+        vocabulary only: LadderCovering.lean and LadderMaxGap.lean (the window pigeonhole as
+        general theorems over any q, with FreeUncoverable / MaxGapBelow as hypotheses), the F
+        values 145, 160, 179, 213 (q = 53..67) and the fit 0.17 q ln^2 q. VERDICT: REDISCOVERY,
+        closed as a route (the record's j2-upper-bound ceiling already says why); the kernel
+        files stay as the general form of the (D) ladder's step.
         - R5.f.xxxii.a. THE RIGID FORM: THE MACHINE'S OWN RECORD AGAINST THE WINDOW (PM, 10:30;
           kernel proofs/LadderMaxGap.lean, 0 sorries, axioms propext / Classical.choice /
           Quot.sound). Parent observation: the free classes of R5.f.xxxii overstate what the
@@ -5103,3 +5123,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxii kernel: LadderCovering.lean (0 sorries) - CoveringHyp (no two classes per gear cover the window of q) -> a twin in the window of every prime machine q -> twins unbounded; the free covering route is formal.
 - 2026-09-20, R5.f.xxxii correction (Iwaniec lane): Iwaniec's P^2 is the linear sieve's limit s = 2, not the large sieve; two classes give only P^4.27 (beta_2 = 4.266); the covering route's wall is parity in covering clothes - 'not parity' withdrawn; the implication stands in the kernel and the window statement holds by covering alone for q <= 73.
 - 2026-09-20, R5.f.xxxii.a: kernel LadderMaxGap.lean - MaxGapHyp (the machine's longest struck run of gears 5..q is shorter than the window of q) -> window statement -> twins unbounded; the rigid F table beats the window by 2.5x or more at every computed q <= 67; the weakest covering-type hypothesis on the tree.
+- 2026-09-20, R5.f.xxxii REDISCOVERY: the covering route is the project's rounds 21-27 line (docs/covering-bound-route.md, Ladder.lean's (D) ladder, novel j2-upper-bound with the beta_2 ceiling and Ziller-Morack Conjecture 6, j2-lower-ladder); the standing rule to grep docs/novel first was not followed; closed as a route, kernel files kept as the general form of the (D) step.

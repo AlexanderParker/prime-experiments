@@ -4,11 +4,19 @@ Laboratory rounds 1-9 (tree nodes R5.f.i-x; math lane on Opus with fresh context
 Lean closing behind). This page is the map a reader should hold: what is proved, what is measured,
 what is open, and what was withdrawn.
 
-## 0. State of the proof (2026-09-20 02:00)
+## 0. State of the proof (2026-09-20 11:00)
 
-Everything below the line is a kernel theorem (Lean 4 / Mathlib, 0 sorries, axioms propext /
-Classical.choice / Quot.sound only). Arrows are proved implications; the target is twin primes
-above every bound (`N < 6m - 1`, both `6m -+ 1` prime).
+**Plain words.** The twin prime conjecture is not proved. What is proved, in the Lean kernel with
+no sorries and only the standard axioms, is a lattice of implications: several plainly stated
+hypotheses about the machine each imply twin primes above every bound, and they are ordered by
+strength. Every hypothesis has been measured exactly as far as computation reaches and holds with
+a large margin. Every route to proving one of them meets the same obstruction: a lower bound for
+a set sifted by all gears up to the square root of its height, which sieve methods cannot give
+(the parity phenomenon; in covering form, the dimension-2 sifting limit). The night's work added
+five kernel files, one written proof attempt with its gaps in integer form, a literature register,
+and one rediscovery of the project's own August covering line.
+
+**The kernel lattice** (arrows are proved implications; target: `N < 6m - 1` with both `6m ∓ 1` prime).
 
 ```
 RegionHyp  (a twin centre between every pair of consecutive prime squares, p >= 5)
@@ -33,70 +41,65 @@ Certified: the (5,7) ladder has six rungs to a 48-digit twin centre (Pratt certi
 
 CoveringHyp (two free classes per gear 5..q never cover the q^2/6 columns of the window of q)
    ---> a twin centre in the window of every prime machine q ---> twins unbounded   LadderCovering.lean
-   (the free covering route; its hypothesis is a Jacobsthal-type bound, OEIS A072753 < window at every known q)
 MaxGapHyp (the machine's own longest struck run of gears 5..q is shorter than the window of q)
-   ---> window statement ---> twins unbounded   LadderMaxGap.lean   (weaker than CoveringHyp for every run;
-   F(q) = 34, 88, 91, 103, 118, 145, 160, 179, 213 at q = 23..67 against windows 84..737)
+   ---> window statement ---> twins unbounded   LadderMaxGap.lean
+   (the general form of the (D) ladder step of Ladder.lean, rounds 21-23; see the rediscovery note)
 ```
 
-A reading note on the two conditional theorems. `AlmostAll` contains the clause "twin centres up
-to X number at least X^(1-eta)", and `ShortInterval` asserts a twin pair in every short interval;
-each hypothesis already implies twins unbounded on its own. Those two theorems are therefore
-statements about the SHAPE of the twin set (chains, exponent-e rungs) under a quantitative
-count, not routes to infinitude. The routes to infinitude are the localisation forms alone:
-RegionHyp, LadderHyp, ProductHyp, SixHyp - each asks for a twin centre in one named window.
+**The one open lemma, in three vocabularies.** (i) The machine: the stretch between the squares
+of a twin pair is never fully struck by the gears below it (every twin centre has a rung). (ii)
+Primes: for every twin pair (P, P+2) there is a twin pair between P^2 and (P+2)^2 - a twin
+analogue of Legendre at the squares of twin centres, interval length 4 sqrt N. (iii) Covering: the
+gears up to q, with the phases they actually have, never strike every column of a run as long as
+the window of q (q^2/6 columns) - the twin sieve's Jacobsthal function is below q^2/6. Weakest
+kernel form: ChainHyp; weakest window form: SixHyp; weakest covering form: MaxGapHyp.
 
-Audit note (2026-09-20 03:05, statements only): every hypothesis Prop in the lattice above implies
-twins unbounded by itself (that is what a route is); the pair NoConsecutiveLeaves + NoSingleRung
-does so only together with the unconditional `good_six`. `NearTwinHyp` in TwinLadderTheorem.lean
-takes a free rank function and is therefore a scaffold - `ladderHyp_of_nearTwin` is trivial - and
-the lane's bounded NTH (a rung among the first `⌈4 ln s⌉` base-open offsets) is not formalised.
-`RungPow e` is unsatisfiable for `e ≤ 1`. No vacuous hypothesis, misplaced endpoint, unsafe
-subtraction or reversed implication was found in the nine ladder files.
+**What is measured** (exact, every object in range). Every twin centre to 10^6 has a rung, at
+least 3 from s = 42; the rung count is 1.3203 s / ln^2 s on the mean with a sub-Poisson spread
+(0.82) that belongs to any window of that length, not to the ladder; the rung-poor set at c = 1.0
+is empty above s = 3,540 (to 10^5); the first rung sits within 0.69 (ln s)^2 of the centre among
+the 61-rough offsets to 10^7 with a geometric tail, and within the cube envelope 0.07 (ln s)^3 to
+s ~ 10^200; the forest carries no structure beyond residues (inherited local factor identically
+1; every absent residue pair forced); every exact law on the record holds equally for the
+parity-twisted companion sets - only "the members are prime" separates the twins; the 3,398
+regions between consecutive prime squares to 10^9 are never empty and the twin stretches are the
+binding case; the product forest has three roots to 10^6; at level s/3 the rough columns of a
+stretch are about 60% rungs and 40% large-semiprime columns, share falling as 8.8/ln N; the rigid
+covering record F(q) = 34, 88, 91, 103, 118, 145, 160, 179, 213 at q = 23..67 (F(71) in [222,
+259]) fits 0.17 q ln^2 q and beats the window q^2/6 by 2.5x or more at every computed q.
 
-Prior art (register 2026-09-20, tree node R5.f.xxxi): no published theorem places a twin pair in
-any interval (x, x + x^theta], theta < 1, not even in almost all such intervals; the surrogates are
-Chen pairs (p, p+2 = P_2) at theta about 0.97 and bounded prime gaps at theta >= 0.525; under GEH
-the reachable gap is 6 and that is parity-optimal (Polymath8b). Computation: the largest known
-maximal twin gap is 35,640 near 7 x 10^16, so SixHyp and LadderHyp hold to 10^16. The nearest
-published statements are OEIS A192870 (a twin pair between M^2 and (M+1)^2 for every M > 122,
-conjectural) and OEIS A288815 (a paired Jacobsthal function; definition differs from the machine's
-F, comparison pending).
+**Prior art** (register, tree node R5.f.xxxi). No published theorem places a twin pair in any
+interval (x, x + x^theta], theta < 1, not even in almost all such intervals; the surrogates are
+Chen pairs at theta about 0.97 and bounded prime gaps at theta >= 0.525; under GEH the reachable
+gap is 6 and that is parity-optimal (Polymath8b). The largest known maximal twin gap is 35,640
+near 7 x 10^16, so SixHyp and LadderHyp hold to 10^16 by computation. Nearest published statements:
+OEIS A192870 (a twin pair between M^2 and (M+1)^2 for every M > 122, conjectural) and the paired
+Jacobsthal function (OEIS A072753 / A288815, Ziller-Morack 2017, Conjecture 6 and its theorem);
+Iwaniec's one-class bound is O(P^2) with an uncomputed constant, its P^2 the linear sieve's limit;
+two classes give P^4.27; nothing o(P^2) is known for any class count.
 
-A second route (tree node R5.f.xxxii, from the register): the window of machine q has about q^2/6
-columns; the largest run that two FREE residue classes per gear 5..q can cover is OEIS A072753
-(436 at q = 73, about 1.4 q ln q), below the window at every known q (tightest 24 against 26 at
-q = 13). Whenever the free covering number is below the window, the actual gears cannot strike
-every column, and the unstruck column's members are prime by the square-root rule: the window
-statement from a covering bound alone (Ziller-Morack 2017, Conjecture 6 and its theorem; kernel
-form proofs/LadderCovering.lean). Its open lemma is an Iwaniec-type upper bound j_2(q) < (q^2 - q)/6;
-Iwaniec's one-class bound is O(P^2) with an uncomputed constant, and its P^2 is the linear sieve's
-sieving limit s = 2 (Rosser weights, trivial remainder; no large sieve is involved); for two classes
-the same method gives only P^4.27 (the dimension-2 limit 4.266). Nothing o(P^2) is known for any
-class count and no two-class upper bound is published. So this route's hypothesis sits at the
-sieving limit like the others: the same obstruction in covering clothes. What it adds is the
-cleanest integer form of the problem: twins follow from the two-class Jacobsthal function being
-o(P^2), a covering statement with no primes in it beyond the gears; and the window statement is
-proved by covering alone for every prime machine q <= 73.
+**Rediscovery note** (tree node R5.f.xxxii). The covering route - the window (q, q^2] against
+the paired covering record - is the project's own line of rounds 21-27 (docs/covering-bound-route.md,
+the (D) ladder in proofs/Ladder.lean, CoveringCert.lean, the novel entries paired-jacobsthal-values,
+j2-upper-bound with its beta_2 ceiling, j2-lower-ladder, jk-family); it was re-derived on
+2026-09-20 from the literature register without first reading the novel index. Its conclusions
+were already on the record, including that Conjecture 6's exponent 2 sits below the dimension-2
+sifting limit. Kept from the re-derivation: the two general kernel files and the F values to 67.
 
-The one open lemma, in the two vocabularies: *every twin centre has a rung* (the machine: the
-stretch between the squares of a twin pair is never fully struck by the gears below it); *for
-every twin pair (P, P+2) there is a twin pair between P^2 and (P+2)^2* (a twin analogue of
-Legendre at the squares of twin centres, interval length 4 sqrt N). Its weakest kernel form is
-ChainHyp; its weakest window form is SixHyp.
+**Reading notes.** Every hypothesis Prop in the lattice implies twins unbounded by itself (that is
+what a route is); NoConsecutiveLeaves + NoSingleRung need the unconditional `good_six`. `AlmostAll`
+and `ShortInterval` contain a twin count and are therefore theorems about the SHAPE of the twin set
+(chains, exponent-e rungs), not routes to infinitude. `NearTwinHyp` in TwinLadderTheorem.lean is a
+scaffold with a free rank function. No vacuous hypothesis, misplaced endpoint, unsafe subtraction or
+reversed implication was found in the eleven ladder files (audit 2026-09-20).
 
-What is measured (exact, every twin centre in range): every twin centre to 10^6 has a rung; the
-rung count is 1.3203 s / ln^2 s on the mean with sub-Poisson spread that belongs to the interval,
-not the ladder; the rung-poor set at c = 1.0 is empty above s = 3,540 (to 10^5); the first rung
-sits within 0.6 (ln s)^2 of the centre among the 61-rough offsets from 10^2 to 10^200; the forest
-carries no structure beyond residues (the inherited local factor is identically 1); the regions
-between consecutive prime squares to 10^9 are never empty and the gap-2 regions (the stretches)
-are the binding case; the product forest has three roots to 10^6.
-
-What is closed: free covering (Jacobsthal beats the stretch length), composite-forcing offset
-families and cyclotomic offsets (priced by the singular series), almost-prime rungs (do not
-iterate), a finite tree by contradiction (a leaf is sieve data), primes-only hypotheses (none
-reaches any form), near-gear confinement (the difference-of-squares families again).
+**What is closed.** Free covering against the STRETCH (the record F(s) ~ 0.17 s ln^2 s exceeds the
+stretch's 2s/3 columns from s ~ 40 on); composite-forcing offset families and cyclotomic offsets
+(priced by the singular series); almost-prime rungs (do not iterate); a finite tree by
+contradiction (a leaf is sieve data); primes-only hypotheses (none reaches any form); near-gear
+confinement (the difference-of-squares families again); the Euclid device (universal clearance
+class 0 in kernel form, level ln s); the covering route to the WINDOW (rediscovery; its
+hypothesis sits at the dimension-2 sifting limit).
 
 ## 1. The objects
 
