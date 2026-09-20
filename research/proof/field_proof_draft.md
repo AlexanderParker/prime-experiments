@@ -171,7 +171,8 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | E1 | one row paints no two adjacent columns (g >= 7) | PROVED |
 | E2 | two rows: exact longest joint run 4 / 3 / 2 | PROVED (2026-09-20) |
 | E3 | a record is old runs joined at the new gear's teeth, F(q') <= (h+1)F(q) + h | PROVED (2026-09-20) |
-| E4 | the record stays below the window | LEMMA (`MaxGapHyp`) |
+| E3' | the sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q); exact recursion by alignable chains | PROVED (2026-09-20) |
+| E4 | the record stays below the window = the overlap statement | LEMMA (`MaxGapHyp`) |
 | E | the window is never painted over | LEMMA (follows from E4) |
 
 E2 is proved. Three gears (exact, first eight gears): 6 with both 5 and 7; 5 with one of them
@@ -188,11 +189,27 @@ the runs flanking those gaps. Measured: aligned consecutive pairs are 0.1 to 0.3
 holes at q' = 13..23, three to five times rarer than independence would give; chains of at most 3
 holes; the hole-gap spectrum is the project's wheel gap census (docs/novel, W11, W22-W26, W45).
 
-**E4 in its sharpest form.** For every prime q' with predecessor q: no chain of consecutive holes
-of machine q at the gaps 3^{-1} mod q' and q' - 3^{-1} mod q' (modulo q') has span plus flanking
-runs reaching (q'^2 - q')/6. The next lemma to work: E4a - the longest run flanking an aligned
-gap is far below F(q) (measured: the runs used are 14 of 24 at q' = 23, 12 of 17 at 19); E4b - the
-number of consecutive aligned gaps in a chain is bounded (measured: at most 3 to 23). The data instrument is the fields explorer and `rigid_record_bisect.py`;
+**The sandwich (PROVED).** Let G_k(q) be the longest window of machine q holding at most k
+holes (G_0 = F(q); G_1 the largest run-hole-run). A single hole can always be aligned with the
+next gear q', and q' fills at most 2 ceil(L/q') columns of any run of length L; hence
+
+    G_1(q) <= F(q') <= G_k(q),  k = 2 ceil(F(q')/q').
+
+Exact at every step 7..23: G_1 = 3, 6, 10, 15, 24, 30 against F(q') = 4, 6, 10, 17, 24, 33, with
+equality at 11, 13, 19 - the next record is often just the largest run-hole-run of the current
+machine. The exact recursion: F(q') is the largest span-plus-flanks of a chain of consecutive
+holes whose partial gap sums all lie in {0, +3^{-1}} or all in {0, -3^{-1}} modulo q'; verified at
+all six steps. Aligned pairs are counted exactly by the hole-gap census at the two values 3^{-1}
+and q' - 3^{-1} divided by q'.
+
+**E4 in its sharpest form.** E4 for q' follows from G_k(q) < q'^2/6 with k about q'/3: every window
+of machine q of length q'^2/6 holds more than q'/3 holes. Iterating the worst case per gear (each
+gear removes at most 2 ceil(L/g) holes) is the union bound and loses, because new paint lands
+mostly on painted columns. So the lemma to establish is the OVERLAP statement: in every window of
+length q'^2/6, the teeth of the new gear q' cover fewer than all the holes left by 5..q. That is
+the window statement for q' itself, now with the machine's exact growth law beside it: the record
+never jumps past the old machine's k-hole windows, and the alignment of a chain is decided by the
+hole-gap census at two residues. The data instrument is the fields explorer and `rigid_record_bisect.py`;
 the exact rule is W88's loaded record rule. What must not enter: any count of columns, density or
 sieve bound - E4 is to be proved from the shapes and phases alone.
 

@@ -3742,6 +3742,46 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           consecutive hole gaps can hit those two values in a row and how long the runs beside
           them can be - a statement about the gap spectrum of machine q at two residues mod q',
           not about counts of twins. FACT (recursion verified exactly); E4 open in this form.
+        - R5.f.xxxiv.d. E4a / E4b: FLANKS AND CHAINS OF ALIGNED HOLES (PM, pre-registered 15:20
+          before the run; research/stack/r8/e4_flanks.py, exact over the joint period, 5..19 ->
+          23). PREDICTIONS: flanks beside aligned pairs have the same distribution as beside all
+          pairs; chain lengths fall geometrically. RESULT: aligned pairs occur ONLY at the gaps
+          inv3 and q' - inv3 (and multiples of q'): 13: gap 4 x 6; 17: gap 6 x 60, gap 11 x 12;
+          19: gap 6 x 1,022, gap 13 x 66; 23: gap 8 x 10,462, gap 15 x 1,236, gap 23 x 172 - and
+          each count is EXACTLY the census of that gap divided by q' (240,626 gaps of 8 in machine
+          5..19, 240,626/23 = 10,462): the alignment count is the hole-gap census at two values
+          over q', by CRT. Flanks: the maximum flank beside an aligned PAIR is below F(q) (2 vs 6,
+          6 vs 10, 11 vs 17, 19 vs 24) while the mean is 10-15% above the mean over all pairs (the
+          aligned gaps 6, 8 are long gaps and long gaps neighbour long runs slightly more). Chains:
+          1-chains 258 / 2,826 / 42,374 / 733,672, 2-chains 6 / 72 / 1,088 / 11,746, 3-chains 0 /
+          0 / 0 / 62 at q' = 13, 17, 19, 23 - geometric with ratio 1-3%. FACT.
+        - R5.f.xxxiv.e. THE SANDWICH: THE RECORD BETWEEN TWO SPARSITY VALUES OF THE OLD MACHINE
+          (PM, pre-registered 15:30 before the run; research/stack/r8/e4_gk.py, exact 5..19 -> 23).
+          Define G_k(q) = the longest window of machine q holding at most k holes (G_0 = F(q); G_1
+          = the largest run-hole-run). ALIGNABILITY (exact, by CRT over the joint period): k
+          consecutive holes with gaps d_1..d_{k-1} can all be filled by q' iff every partial sum
+          d_1 + .. + d_j is 0 or +inv3 mod q', or every one is 0 or -inv3 (one sign per chain - a
+          first version allowing both signs overshot at 17, 19, 23 by 3, 3, 1); a single hole is
+          always alignable. PREDICTIONS: (1) F(q') >= G_1(q) always, with equality at some steps;
+          (2) F(q') equals the largest alignable chain span; (3) G_k grows roughly linearly in k.
+          RESULT: (1) HOLDS - G_1 = 3, 6, 10, 15, 24, 30 against F(q') = 4, 6, 10, 17, 24, 33:
+          equality at 11, 13, 19 (the next record IS the largest run-hole-run of the machine);
+          (2) HOLDS at all six steps with the one-sign criterion (4, 6, 10, 17, 24, 33 exactly);
+          (3) HOLDS - G_1..G_6 at 19: 30, 34, 37, 46, 49, 57, slope about 5 per hole (the mean
+          hole spacing), far below (k+1)(F+1). THE SANDWICH (PROVED, elementary): G_1(q) <= F(q')
+          <= G_k(q) with k = 2 ceil(F(q')/q') - the lower half because a single hole can always be
+          aligned, the upper because the new gear fills at most 2 ceil(L/q') columns of a run of
+          length L, so a record run of q' is a window of q with at most that many holes. WHERE E4
+          STANDS: E4 for q' follows from G_k(q) < q'^2/6 with k about q'/3, i.e. every window of
+          machine q of length q'^2/6 holds more than q'/3 holes - a lower bound on holes in
+          windows, of size q'/3 against the generic q'^2 / (2.4 ln^2 q'). Iterating the worst-case
+          loss per gear (each new gear removes at most 2 ceil(L/g) holes from a window of length
+          L) is the union bound, which loses because it ignores that new paint lands mostly on
+          painted columns; so E4 is exactly the OVERLAP statement: in every window of length
+          q'^2/6 the new gear's teeth cover fewer than all the holes of machine q. FACT (sandwich
+          proved; recursion exact); E4 open as the overlap statement, which is the window statement
+          for q' itself. The exact recursion is kernel-ready and is the machine's law for how the
+          record grows; it does not by itself bound the growth.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5267,3 +5307,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.a: E2 PROVED - F({g,h}) = 4 iff {5,7}, 3 iff one of them is 5 or 7, else 2 (tooth distance inv3 = +-2 only at 5, 7); exact to 101, 0 violations; triples follow the tooth-distance multiset; initial segments F = 1, 4, 6, 10, 17, 24, 33 (run convention) for p = 5..23.
 - 2026-09-20, R5.f.xxxiv.b: E3 exact - a new record is old runs joined at the new gear's teeth (h <= 2 ceil(F/p) holes filled, 1-3 observed), F(q') <= (h+1)F(q) + h; the old runs used are well below the old record; F(29) = 42.
 - 2026-09-20, R5.f.xxxiv.c: the record recursion verified exactly for q' = 7..23 - F(q') is the longest chain of consecutive holes of machine q lying in q' tooth classes plus its flanks; aligned pairs 3-5x rarer than (2/q')^2 because alignment needs the hole gap to equal inv3 mod q' exactly; E4 = a statement about the hole-gap spectrum at two residues.
+- 2026-09-20, R5.f.xxxiv.d-e: aligned hole pairs = the hole-gap census at inv3 and q'-inv3 divided by q' (exact by CRT); the record sandwich G_1(q) <= F(q') <= G_{2 ceil(F/q')}(q) proved and exact at every step 7..23 (equality F(q') = G_1(q) at 11, 13, 19); E4 = the overlap statement - the new gear's teeth never fill all holes of a window of length q'^2/6.
