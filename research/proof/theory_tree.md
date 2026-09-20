@@ -3457,6 +3457,39 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         relative. VERDICT: every "open" label in the map stands; the closest published objects
         are A192870 (the statement) and A288815 (the covering function); the machine's F(p)
         table may be new data - pending the definition check. FACT (register).
+      - R5.f.xxxii. THE FREE COVERING ROUTE TO THE WINDOW STATEMENT (PM, 2026-09-20 08:55, from the
+        register's Q6 follow-up). Parent observation: R5.f.xxxi found OEIS A072753 - the largest
+        run of consecutive integers that two FREELY chosen residue classes per prime 5..p can
+        cover (2, 4, 10, 24, 31, 42, 60, 74, 94, 117, 148, 173, 213, 236, 275, 316, 364, 409, 436
+        for p = 5..73; Ziller-Morack 2017) - and our rigid F(p) sits strictly below it (34 vs 60
+        at 23, 179 vs 316 at 61, 213 vs 364 at 67), our F values not in OEIS. THE ROUTE: the
+        window of machine q has (q^2 - 1)/6 - (q + 7)/6 + 1 columns; if the free covering number
+        j_2(q) = A072753 is smaller than that, no choice of two classes per gear covers the
+        window, so the actual classes do not, so an unstruck column exists, and by the
+        square-root rule (members coprime to 6, above q, at most q^2, no factor in [5, q]) both
+        its members are prime: A TWIN IN THE WINDOW OF q. This is the owner's window statement
+        from a covering bound alone - no primes-in-intervals input, no sieve lower bound, no
+        parity; the machine's one-line argument, which failed for the STRETCH (R5.f closed route
+        1: the stretch has 2s/3 columns against F(s) ~ 0.75 s ln s) works for the WINDOW because
+        the window has q^2/6 columns against j_2(q) ~ 1.4 q ln q. TABLE (q, j_2, window columns,
+        margin, j_2/(q ln q), j_2/window): 5: 2, 3, 1, 0.25, 0.67; 7: 4, 7, 3; 11: 10, 18, 8;
+        13: 24, 26, 2, 0.72, 0.92 (THE TIGHTEST); 17: 31, 45, 14; 19: 42, 57, 15; 23: 60, 84, 24;
+        29: 74, 135, 61; 31: 94, 155, 61; 37: 117, 222, 105; 41: 148, 273, 125; 43: 173, 301,
+        128; 47: 213, 360, 147; 53: 236, 459, 223; 59: 275, 570, 295; 61: 316, 610, 294, 1.26,
+        0.52; 67: 364, 737, 373, 1.29, 0.49; 71: 409, 828, 419, 1.35, 0.49; 73: 436, 876, 440,
+        1.39, 0.50. So the window statement is PROVED by covering alone for every prime machine
+        q <= 73, and the ratio j_2/window = 8.4 ln q / q falls to 0.06 by q = 1000. THE OPEN
+        LEMMA IN THIS ROUTE: CoveringHyp - j_2(q) < (q^2 - q)/6 for every prime q, i.e. the
+        gears up to q with ANY phases cannot strike every column of a run of q^2/6 columns.
+        Known shape: the one-class Jacobsthal function has Iwaniec's upper bound O(P^2) (1978)
+        with a large constant, and nothing o(P^2); the two-class bound is being registered
+        (lane open). This route's wall is the large-sieve P^2 term with its constant, not
+        parity - a different wall from every route above. PRE-REGISTERED: (i) kernel theorem
+        window_twin_of_free_uncoverable and twins_unbounded_of_coveringHyp (formalist lane open,
+        proofs/LadderCovering.lean); (ii) register: an o(P^2) bound for any Jacobsthal-type
+        function is not in the literature (prediction: not known; Iwaniec's constant not
+        explicit); (iii) our rigid F(p) ~ 0.75 p ln p is a new sequence. Verdict OPEN; CANDIDATE
+        route to the window statement.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -4971,3 +5004,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxx: the Chen ledger T = |R_{s/3}| - N_semi exact at 118 twin centres to 5000; rough columns are about 60% rungs, 40% large-semiprime columns (share 0.28-0.67); two placed numbers refuted.
 - 2026-09-20, F(71) >= 222 (coverable); the L = 241 ILP killed for memory after 3 h; F(71) in [222, 259].
 - 2026-09-20, R5.f.xxxi (literature register): no twin-pair result in any short interval, not even almost all; Chen pairs at theta 0.97, bounded gaps at theta 0.525, GEH gives 6 (parity-optimal); maximal twin gap 35,640 at 7 x 10^16 so SixHyp/LadderHyp hold to 10^16; OEIS A192870 (twin-Legendre, last failure 122) and A288815 (paired Jacobsthal) are the nearest published objects.
+- 2026-09-20, R5.f.xxxii: THE FREE COVERING ROUTE - if two free classes per gear cannot cover the q^2/6 columns of the window of q (OEIS A072753 < window at every known q <= 73, tightest 24 vs 26 at q = 13), the window holds a twin by the square-root rule alone; the open lemma is an Iwaniec-type bound j_2(q) < (q^2-q)/6; its wall is the large sieve's P^2 constant, not parity. Kernel and register lanes opened.
