@@ -255,6 +255,44 @@ is the whole content of E4, exactly as the overlap statement in 5a and the alter
 three coordinate systems, one fact. The row shapes fix every individual constraint exactly; they do
 not fix the simultaneous one.
 
+## 5e. The structure at the origin: squares are the only new kills (owner's "find the structure", 2026-09-20 19:20)
+
+The record F(q) is a maximum over every phase of the pattern; the window of q sits at one phase,
+the origin, where the fields have their factorisation meaning. There the shapes give an exact law
+the generic phase does not have.
+
+**Lemma E5 (origin square lemma, PROVED, elementary).** Let q < q' be consecutive primes. A member
+m <= q'^2 of a column of the window of q' with no prime factor <= q is either prime or equal to
+q'^2 (a product of two primes above q is at least q'^2, with equality only for q' x q'). Hence the
+columns of the window of q' left unstruck by machine q are exactly the twin columns of that window,
+plus the single column (q'^2 - 1)/6 when q'^2 - 2 is prime. The new gear q' therefore fills at most
+ONE hole of machine q inside the window of q', and that hole was never a twin slot. Verified for
+all 75 consecutive prime pairs to q' = 400 (research/stack/r8/origin_square_lemma.py): 0
+violations, 26 square columns present, no other extra hole.
+
+**The window count law (exact).** Write T(q) for the number of twin slots of machine q (twin pairs
+with lower member in (q, q^2]). Then
+
+    T(q') = T(q) - [q' + 2 prime] + N(q^2, q'^2],
+
+N the number of twin pairs with lower member in (q^2, q'^2]: the only slot a machine can lose is
+the pair (q', q'+2) at the bottom boundary, and every slot gained is a new twin at the top. The
+squares field (E5) contributes no loss; the products field (composites g p with q < g <= p) paints
+the new region (q^2, q'^2] and decides N. So at the origin the overlap of the new gear with the
+old holes is total but for the square column, and the covering question of sections 5a-5d does not
+arise: the window statement fails at q' only if T(q) <= 1 and N(q^2, q'^2] = 0, i.e. only after a
+descent of the walk T by one per prime step with no new twin at the top over the whole descent -
+a twin-free interval (q_0^2, q'^2] at least 4 q_0 (T(q_0) - 1) long past the last healthy window.
+
+**What the structure says about the two targets.** MaxGapHyp (E4) asks that the record beat the
+window at every phase; the window statement asks it at the origin only, where the shapes reduce
+the new gear's action to one square column and put all the content into N(q^2, q'^2] - twins
+between consecutive prime squares, RegionHyp of the ladder proof map. The field programme and the
+ladder programme meet here exactly: the window count law is the ladder's region statement written
+as a conservation law for slots, and the products field is the mechanism that fills the new
+region. The lemma left is N(q^2, q'^2] >= 1 for every consecutive pair, or the weaker
+"T never descends to 0", which is the same lemma in walk form.
+
 ## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
 
 `StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns
@@ -295,6 +333,7 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | E4d | F(q') <= S_t*(q), the longest stretch of q with hole gaps >= (q'-1)/3 | PROVED (2026-09-20) |
 | E4e | thin-band bound F(q) <= max{L : 2 sum_top ceil(L/g) >= h_B(L)}; window statement for 19 and 29 by shapes | PROVED (kernel `thin_band`) |
 | E4f | per-class bound F(q') <= q' (F_T(q;q') + 1), F_T the twisted record (too weak by a factor q') | PROVED (2026-09-20) |
+| E5 | origin square lemma: the next gear fills at most one hole in the window, the square column; window count law T(q') = T(q) - [q'+2 prime] + N(q^2, q'^2] | PROVED (elementary; kernel entry to add) |
 | E4 | S_t*(q) < (q'^2 - q')/6 for consecutive primes q < q' (implies `MaxGapHyp`) | LEMMA |
 | E | the window is never painted over | LEMMA (follows from E4) |
 

@@ -3885,6 +3885,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           shifts are equidistributed mod every gear. VERDICT: FACT (a proved but vacuous bound);
           the twisted form is E4's third coordinate system and re-encodes the joint alignment -
           the row shapes fix every individual constraint and none of the simultaneous one.
+        - R5.f.xxxiv.m. THE STRUCTURE AT THE ORIGIN: THE SQUARE LEMMA AND THE WINDOW COUNT LAW
+          (owner's "find the structure", PM 19:20; research/stack/r8/origin_square_lemma.py).
+          PREDICTION (from the squares field and the square-root rule): in the window of q' the
+          holes of machine q are exactly the twin columns plus the column of q'^2 when q'^2 - 2 is
+          prime. RESULT: 75 consecutive prime pairs to 400, 0 violations, 26 square columns, no
+          other extra hole. LEMMA E5 PROVED (elementary): a member <= q'^2 with no factor <= q is
+          prime or q'^2. WINDOW COUNT LAW (exact): T(q') = T(q) - [q'+2 prime] + N(q^2, q'^2] -
+          the only loss is the bottom-boundary pair (q', q'+2), every gain is a new twin between
+          the squares; the new gear's action on old holes is the square column only. So at the
+          origin the covering question of xxxiv.h-l does not arise; the window statement fails at
+          q' only after T descends to 1 by one per step with N = 0 throughout, i.e. after a
+          twin-free interval (q_0^2, q'^2] at least 4 q_0 (T(q_0) - 1) long. The field programme
+          meets the ladder programme here: N(q^2, q'^2] >= 1 is RegionHyp (R5.f.xxvi, kernel
+          LadderRegion.lean), and the products field g p in (q^2, q'^2] is its mechanism. FACT
+          (E5 and the count law proved); the lemma left is N >= 1 per consecutive pair, or "T never
+          reaches 0" in walk form.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5419,3 +5435,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.j: kernel LadderFields.lean - E1, E2 (4 / 3 / 2 with the {5,7} exception), E4c, the sandwich upper half and the thin-band bound, 0 sorries.
 - 2026-09-20, R5.f.xxxiv.k: kernel LadderWidening.lean - Lemma B (widening, twin slots persist) and the sandwich's lower half (a single hole is always alignable, by periodicity and CRT); every proved line of the field draft is kernel-checked.
 - 2026-09-20, R5.f.xxxiv.l: twisted translates - F(q') <= q'(F_T + 1) proved, vacuous (F_T is F's size); the form re-encodes the joint alignment; step 1's shape routes exhausted at the same point as 5a and 5b.
+- 2026-09-20, R5.f.xxxiv.m: origin square lemma proved (the next gear fills only the square column among old holes, 75 pairs verified) and the window count law T(q') = T(q) - [q'+2 prime] + N(q^2, q'^2]; the field programme meets RegionHyp; the lemma left is a twin between consecutive prime squares.
