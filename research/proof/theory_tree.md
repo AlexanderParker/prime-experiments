@@ -3992,6 +3992,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         return by smaller primorials to land in the window carrying q's full set. Verdict OPEN;
         the next lane is the owner's choice between the range analysis (how T's classes sit on
         q's openings across one full period, pattern only) and the spiral variant.
+        - R5.f.xxxv.a. THE RANGE ANALYSIS: HOW THE GEARS ABOVE q SIT ON q'S OPENINGS (owner's
+          choice 2026-09-21; Fable lane opened, brief lane_range/BRIEF.md; pattern rules only).
+          PRE-REGISTERED questions: Q1 one gear g of T on one period = a 1/g sample of the
+          twisted machine (tooth distances (3g)^{-1} mod h) - the widen/cluster/widen dynamics as
+          the twisted gaps; Q2 a gear above the span of a run strikes at most two of its openings
+          and exactly two only at gap 3^{-1} or g - 3^{-1}, so gears above 3F(q)+3 strike one per
+          run; Q3 two gears coincide at four residues mod g g', at most four times in the range
+          when g g' > P; Q4 the least number of distinct gears of T needed to strike a whole run
+          of k consecutive openings, from the gap word and its leg primes; Q5 the tiers of the
+          range at q = 13 with the exhaust cap exact; Q6 a further rule (openings of q no gear of
+          T can strike; the mirror; the leg primes' distribution). Verdict OPEN.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
