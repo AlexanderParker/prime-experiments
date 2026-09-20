@@ -3932,6 +3932,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           partition reaches. The plugs carry s's factorisation (singular series of 2s); the
           twins carry none (R5.f.xxv). LEMMA, third field form: partitions with rough partner +
           P_3 plugs < base-open columns. FACT (identity and the two families exact).
+        - R5.f.xxxiv.p. THE LEVEL ANALYSIS OF THE PLUG COMPARISON (PM 21:00;
+          research/stack/r8/share_by_level.py). Share law share(B) = 1 - T/U(B) = 1 - 1.98/(ln^2 s
+          prod_{g<=B}(1-2/g)) ~ 1 - 0.79 ln^2 B/ln^2 s (a first version lost the factor 6 per
+          column and predicted 0.97 at s^0.5 against the measured 0.80; corrected law verified:
+          0.96 / 0.80 / 0.50 predicted at s^0.234 / s^0.5 / s^0.8 against 0.94-0.95 / 0.78-0.80 /
+          0.46-0.56 at s = 1302, 2082, 2970). Proof requirements by level: a lower bound for U(B)
+          exists only for B <= s^0.234 (dimension-2 limit 4.266 in an interval of length 4s,
+          intrinsic, not a remainder issue); the plug upper bound has constant F(ln D/ln B): 1.78
+          at D = x^{1/2}, B = s^0.5 (needs < 1.25); about 1.02 at an EH-type level D = x^{1-eps}
+          (would do at B = s^0.5, where (i) is missing); at B = s^0.234 the share 0.96 needs a
+          constant below 1.04, which no level gives. VERDICT: the comparison has no admissible
+          level - Chen's switching with the interval too short, quantified. What would close it:
+          a non-sieve lower bound for pairs of prime-or-P_2 members in the stretch at level
+          sqrt(2s) plus EH-level equidistribution of the bilinear partner sequence. FACT (law and
+          analysis); the lemma stands.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5469,3 +5484,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.m: origin square lemma proved (the next gear fills only the square column among old holes, 75 pairs verified) and the window count law T(q') = T(q) - [q'+2 prime] + N(q^2, q'^2]; the field programme meets RegionHyp; the lemma left is a twin between consecutive prime squares.
 - 2026-09-20, R5.f.xxxiv.n: the twin stretch in the products field - base-open = twins + plugs, plugs share 0.63-0.81 at B = sqrt(2s), P_2 dominant; the region lemma is the comparison plugs < base-open, Chen's switching frame at a level where the stretch has no lower-bound sieve.
 - 2026-09-20, R5.f.xxxiv.o: the products field of the stretch is Goldbach - two-prime members are partitions of 2m (m from s to s^2/B), the top band the short partitions of 2s and 2s+2 (exact, 74 centres); the twin problem in the stretch and the Goldbach problem above 2s are two faces of one machine.
+- 2026-09-20, R5.f.xxxiv.p: plug share law 1 - 0.79 ln^2 B/ln^2 s verified; the base/plug comparison has no admissible level (base lower bound only below s^0.234, plug constant e^gamma at level x^1/2); the lemma's exact obstruction in the products frame.

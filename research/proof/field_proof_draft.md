@@ -367,6 +367,40 @@ B = floor(sqrt(2s)): the number of Goldbach partitions (h, p), B < h <= p, of th
 2m in (2s - 2, s^2/B] whose product lies in the stretch with a B-rough partner, plus the
 three-prime plugs, is smaller than the number of base-open columns.
 
+## 5h. The level analysis of the comparison (2026-09-20 21:00)
+
+The lemma of 5f-5g compares two counts at a base level B. Both sides are known exactly in law:
+twins per column 6 x 1.3203/(4 ln^2 s) = 1.98/ln^2 s; base-open columns per column
+prod_{g<=B}(1 - 2/g) ~ 2.5/ln^2 B. Hence the plug share is
+
+    share(B) = 1 - T/U(B) ~ 1 - 0.79 ln^2 B / ln^2 s,
+
+verified (research/stack/r8/share_by_level.py, three twin centres near 1300-3000): B = s^0.234:
+measured 0.94-0.95, law 0.96; s^0.5: 0.78-0.80, law 0.80; s^0.8: 0.46-0.56, law 0.49-0.51 (the
+exact product in place of 2.5/ln^2 B).
+
+**What a proof through this comparison would need, by level.** To conclude plugs < U(B) one needs
+(i) a lower bound for U(B) and (ii) an upper bound for the plugs with constant below 1/share(B).
+- (i) U(B) is a set sifted by two classes per gear up to B in an interval of length 4s; a
+  lower-bound sieve exists only for B <= (4s)^{1/4.266} ~ s^0.234 (the dimension-2 sifting limit),
+  and there its constant is small. At B = sqrt(2s) there is no lower bound for U by any sieve,
+  whatever equidistribution is assumed: the interval has perfect remainders already and the limit
+  is intrinsic (Selberg's examples).
+- (ii) The plug bound is a one-class sieve on the partners h p -+ 2 over the products; at level of
+  distribution D the constant is F(ln D / ln B): with D = x^{1/2} (Bombieri-Vinogradov range,
+  x = s^2) and B = s^0.5 that is F(2) = e^gamma = 1.78; the share 0.80 needs a constant below
+  1.25. With D = x^{1-eps} (an Elliott-Halberstam-type level for the bilinear sequence) F(4) ~ 1.02
+  would do at B = s^0.5 - but (i) is then missing. At B = s^0.234 where (i) exists, the share is
+  0.96 and (ii) needs a constant below 1.04, which no level gives.
+
+So the two requirements never hold at the same level: the comparison has no admissible B. This is
+the exact shape of the obstruction in the products frame - not a missing idea about any one field,
+but the fact that the base must be counted from below at the level where the plugs are counted
+from above, and the two counts sit on opposite sides of the sifting limit. It is Chen's switching
+frame with the interval too short, quantified: the twin conjecture would follow from a lower bound
+for U(sqrt(2s)) that beats 1.98 s/(0.79 ln^2 s) x (1 - 1/1.02) - a non-sieve lower bound for
+pairs of numbers both prime-or-P_2 in the stretch - together with an EH-level bound for the plugs.
+
 ## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
 
 `StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns
