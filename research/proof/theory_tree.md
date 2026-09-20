@@ -4055,6 +4055,20 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           of the window statements of the tower of roots q, ~q^2, ~q^4, ... within the range,
           each fixed by residues, none forced by the gap word alone. FACT (Q1-Q6); the range
           statement reduces exactly to the windows of the tower's root machines.
+        - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
+          research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
+          5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
+          k P_L, k = 1..q-1, members 6 k P_L -+ 1 - Euclid-type numbers coprime to every gear below
+          q; each overlay gear g >= q strikes at most two copies (the k with 6 k P_L = +-1 mod g).
+          QUESTION: does some copy always have both members prime? RESULT: no - twin copies 4, 2,
+          4, 6, 2, 1, 7, 1, 1, 2, 0, 1, 1, 1, 3, 1, 0, 4, 0, 2, 1, 1, 2, 1, 1, 1, 0 for q = 7..113:
+          empty at q = 43, 71, 79, 113. The prime members number about 3.6 ln q of the 2(q-1)
+          (12-23 observed), the Euclid enhancement e^gamma ln q_- / ln(k P_L) per member, so the
+          family holds about 3 ln^2 q / q twin copies and empties as q grows. REFUTED as a
+          guaranteed survivor. The tweak with a smaller lower machine y << q gives more copies
+          (P/P_y of them) but the fair-rate rule (structured_families.md:64, PROVED) says a family
+          defined modulo the lower machine's period is struck by every gear above y at exactly its
+          share, so the family carries no advantage over the range as a whole.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5597,3 +5611,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.q measured: worst-window hole share 0.87 at scale B^2, 0.7 at B^2/3, 0.43-0.64 at B^2/6 where the worst window keeps 4-8 holes for B <= 23.
 - 2026-09-20, R5.f.xxxiv.r: whole-range form (U') - every window of q'^2/6 columns of machine q with more than 2 ceil(q'/6) holes gives E4(q') by the one-gear thin band; verified 19, 23, 29; (U') asks q/3 holes against a mean of q^2/(2.4 ln^2 q).
 - 2026-09-21, R5.f.xxxv.a (range lane): one gear of T reads q's cycle re-indexed by g (twisted machine); two per run only at the leg distances, bound 3F+4; pairs of large gears coincide on four residues mod gg'; a run needs mu_T(w) gears; the twins of each tier of the range are exactly the openings of the tier-root machine (13 / 167 / 173 at q = 13) - the range statement is the disjunction of the tower's window statements.
+- 2026-09-21, R5.f.xxxv.b: the known opening's copies k P_L (k < q) hold no twin at q = 43, 71, 79, 113; the family has about 3 ln^2 q / q twin copies; refuted as a guaranteed survivor.
