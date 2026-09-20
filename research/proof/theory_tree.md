@@ -4201,6 +4201,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             (13&29, 11&13, 17&23, 13&31, 11&19, 13&17). FACT (exact). Next: each doubler's word
             across consecutive holes (class a at p, hole h+2 at p again for 11 by its hole distance
             2) - the tiling of a chain by the gears' fixed hole words.
+          - R5.f.xxxv.c.ix. HOLE WORDS (2026-09-21; research/stack/r8/machine5_hole_words.py).
+            Spawned by c.viii. Gear g's hole word = positions struck in holes 0..g-1, one period.
+            PRE-REGISTERED and PROVED (checked g = 11..61): each class gives five holes, step 7^{-1}
+            mod g, positions 5, 4, 3, 2, 1 along the progression; the two classes share a hole
+            exactly at the position pairs (p, p + d_g), so the word has 5 - d_g double holes when
+            the lap distance d_g <= 4 (11, 23: two; 29, 31: three; 59, 61: one) and none otherwise;
+            it has g - 10 + doubles empty holes; and it is a palindrome under the lap mirror
+            (hole h -> -h-2, position p -> 6-p). Words: 11: 3|4|-|14|5|1|25|-|2|3|-; 13:
+            -|5|5|4|4|3|3|2|2|1|1|-|-; 17: -|2|3|5|-|-|1|2|4|5|-|-|1|3|4|-|-; 19:
+            3|1|-|1|-|-|4|-|4|2|-|2|-|-|5|-|5|3|-; 23: -|2|-|-|14|-|-|3|-|-|5|1|-|-|3|-|-|25|-|-|4|-|-;
+            29: doubles 35, 13, 24 at holes 3, 24, 28, singles 4, 5, 1, 2; 31: doubles 13, 35, 24 at
+            holes 8, 21, 30. So the whole lap machine above 7 is the superposition of these fixed
+            periodic words, one per gear, each set by two numbers (7^{-1} mod g and 15^{-1} mod g);
+            a chain of filled holes is a window where the superposed words cover every position.
+            FACT (exact).
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5767,3 +5782,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.vi: centre run vs record (laps) 4/4, 4/5, 4/7, 10/12, 10/18, 10/25 for q = 11..29; centre is the phase-0 run, a lower bound, exact only at q = 11.
 - 2026-09-21, R5.f.xxxv.c.vii: staircase rule - gears other than 13 hit at most one of three consecutive holes per class; chains of 13 holes need 8 gears (q >= 41); observed chains 4 at q = 31, 37 (partial), all inside 13's staircase.
 - 2026-09-21, R5.f.xxxv.c.viii: hole fills inside the staircase - admissible doubler pairs per position of 13; 2+2 fills only 29+31 (p = 1, 5), 11/23 + 29/31 (p = 2, 4), 11+23 or 59/61+29/31 (p = 3); all 14 observed holes obey; one 2+2 seen (q = 37, 11 with 23 at p = 3).
+- 2026-09-21, R5.f.xxxv.c.ix: hole words per gear - five holes per class at step 7^-1 with positions 5..1, 5 - d doubles when d <= 4, g - 10 + doubles empties, palindromic under the lap mirror; words for 11..31 written out.
