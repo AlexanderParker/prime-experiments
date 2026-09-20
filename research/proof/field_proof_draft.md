@@ -199,6 +199,39 @@ bound on the record that does not charge the new gears' overlap at its worst cas
 that overlap statement and nothing else; the direct counting form of it (the number of covering
 phase vectors is at most P (1 - d)^L) was tried in docs/covering-bound-route.md and refuted.
 
+## 5b. The residue-collapse census (shape calculation, verified 2026-09-20 17:10)
+
+Take a window W of machine q of length L, and a new gear q' with teeth t_1, t_2 (t_2 - t_1 =
+3^{-1} mod q'). Over the joint period every translate of W by a multiple of the period of q
+appears with every residue mod q', so by CRT the number of translates in which q' paints every
+hole of W is exactly: q' if W has no hole; 2 if all holes of W are congruent mod q'; 1 if the holes
+occupy exactly two residues at difference +-3^{-1} mod q'; 0 otherwise. Summing over the windows of
+one period of q gives the number C_{q'}(L) of covered windows of length L of machine q', and
+
+    F(q') = max{ L : C_{q'}(L) > 0 }.
+
+Verified exactly (research/stack/r8/residue_collapse.py) at q = 11 -> 13 and 13 -> 17 for
+L = 6..20 (e.g. 20 covered windows of length 17 for machine 17, from the census: 20). For L above
+F(q) the first term is empty, and the second needs every hole gap to be a multiple of q' - with
+gaps at most F(q) + 1 that means a single hole - so
+
+    C_{q'}(L) = 2 W_1(q, L) + N_alt(q, q', L)      (L > F(q)),
+
+W_1 the number of windows of q with exactly one hole, N_alt the number whose holes form two
+interleaved sub-progressions of difference q' at offset 3^{-1} mod q' (gaps alternating between
+3^{-1} and q' - 3^{-1} modulo q'). Hence F(q') = max(G_1(q), largest alternating window), which is
+the sandwich again, now as an equality, and E4 for q' reads: G_1(q) < (q'^2 - q')/6 and machine q
+has no alternating window of that length.
+
+What this settles about shapes. The census is the complete shape calculation of the record of
+the next gear: nothing about q' enters except its teeth, and everything else is a census of
+machine q's windows by the residues of their holes. Each row of machine q constrains those
+residues not at all (a row leaves g - 2 free classes whose differences cover every residue), so
+the alternating windows are governed by the joint pattern only. The attempt to bound an
+alternating window through the smallest gear fails because the holes in a class of q' need not be
+consecutive terms of the progression (a gap that is a multiple of q' is allowed), so gear 5's
+free arcs along the progression bound nothing.
+
 ## 6. The theorem
 
 **Theorem (conditional on Lemma E).** For every prime q >= 5 the window of q holds a twin prime

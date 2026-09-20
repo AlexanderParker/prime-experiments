@@ -3841,6 +3841,17 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           constrain nothing about hole residues modulo a gear outside the machine. VERDICT: FACT
           (bound proved; window statement for 19 and 29 by shapes); E4 is exactly the overlap
           statement, and every bound from the rows alone charges the overlap at its worst case.
+        - R5.f.xxxiv.i. THE RESIDUE-COLLAPSE CENSUS (owner's step 1, PM 17:10; research/stack/
+          r8/residue_collapse.py). By CRT, the number of covered windows of length L of machine q'
+          equals the sum over windows W of machine q of: q' if W has no hole, 2 if all holes are
+          congruent mod q', 1 if the holes occupy exactly two residues at difference +-inv3 mod
+          q', 0 otherwise. VERIFIED exactly at 11 -> 13 and 13 -> 17 for L = 6..20 (14 of 14, e.g.
+          C_17(17) = 20). For L > F(q): C = 2 W_1 + N_alt (one-hole windows, alternating windows),
+          so F(q') = max(G_1(q), largest alternating window) - the sandwich as an equality - and
+          E4(q') = [G_1(q) < window] and [no alternating window of length window in machine q].
+          The rows constrain hole residues mod q' not at all; the attempt to bound alternating
+          windows by gear 5's free arcs along the progression fails (class members need not be
+          consecutive terms). FACT (exact census); E4 open as "no alternating window".
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5371,3 +5382,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, F(71): second bisection reached 229 coverable (10,403 s) before the system killed it for memory; F(71) in [229, 259] (run convention 229).
 - 2026-09-20, R5.f.xxxiv.g: E4d proved - F(q') <= S_t*(q), the longest stretch of machine q with hole gaps >= (q'-1)/3; ratios S_t*/window 0.39-0.73 on 5..23, no fall yet; E4 = S_(q'/3)(q) < q'^2/6.
 - 2026-09-20, R5.f.xxxiv.h: thin-band bound proved from the shapes - F(19) <= 42, F(29) <= 89 with one top gear (window statement for machines 19 and 29 by shapes alone); vacuous with a two-gear band; E4 = the overlap statement.
+- 2026-09-20, R5.f.xxxiv.i: residue-collapse census exact (14 of 14 checks) - covered windows of q' counted from machine q's windows by hole residues; F(q') = max(G_1(q), largest alternating window).
