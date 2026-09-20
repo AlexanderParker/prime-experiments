@@ -1,0 +1,8 @@
+p=29 gears=[5, 7, 11, 13, 17, 19, 23, 29]
+  L=61: UNCOVERABLE  (1s)
+  L=47: UNCOVERABLE  (1s)
+  L=40: coverable  (0s)
+  L=43: UNCOVERABLE  (4s)
+  L=41: coverable  (2s)
+  L=42: coverable  (3s)
+F({5..29}) in [42, 42]  EXACT

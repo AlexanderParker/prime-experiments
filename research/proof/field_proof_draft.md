@@ -129,18 +129,22 @@ q = 23..67 against windows of 84..737 columns.
   columns within 5, impossible below its period, and above it the two gears paint fewer than
   2/5 + 2/7 of any long run. PROVED (exact by exhaustion for all 300 pairs of gears up to 101,
   research/stack/r8/two_rows_exact.py; kernel entry to add).
-- **E3 (the widening of the record).** Let F(q) be the longest run the machine q can paint anywhere
-  in its period. Adding the gear q' (the next prime) increases F by at most a bounded amount
-  depending on q', and the increments 61 -> 67 -> 71 measured 34 and at least 9. LEMMA: an exact
-  recurrence or bound for F(q') - F(q) in terms of the new gear's two teeth and the runs of the
-  old record (the loaded record rule of round W88, kernel `loaded_record_rule`, is the exact
-  instrument: [0, L) is coverable iff the minimum domino cost over core phase vectors is at most
-  the tail count).
+- **E3 (how a new gear extends the record).** Let F(q) be the longest run the machine q can paint
+  anywhere in its period. A record run of machine q' consists of runs of machine q joined at
+  columns painted only by q' (holes of the old machine filled by the new gear's teeth). If h such
+  columns lie in the run, the run minus them is at most h + 1 old runs, each at most F(q), so
+  F(q') <= (h + 1) F(q) + h, with h <= 2 ceil(F(q')/q') and the h teeth at mutual distances 0 or
+  +-3^{-1} modulo q'. PROVED (elementary). Measured (exact scans, 5..23): h = 2, 1, 1, 2, 1-2, 3
+  for q' = 7, 11, 13, 17, 19, 23; the old runs used are 1, 4, 5, 10, 17, 14 against old records
+  1, 4, 6, 10, 17, 24 - from 17 on the record is assembled from several medium runs, not from the
+  old record extended. The inequality alone allows F to triple per gear; E4 needs the spacing
+  structure of the old machine's holes.
 - **E4 (the record is below the window).** F(q) < (q^2 - q)/6 for every prime q. LEMMA. This is
-  `MaxGapHyp`; with E3 as an inductive step it reduces to: the record's increment per new gear
-  stays below the window's increment, (q'^2 - q^2)/6 = (q' - q)(q' + q)/6, which is at least
-  2(q' + q)/6 > q'/3 per step. Measured: F grows like 0.17 q ln^2 q, the window like q^2/6; the
-  ratio falls as 1/q.
+  `MaxGapHyp`. By E3 it is a statement about the holes of machine q (its twin candidates): the
+  gear q' can join old runs only at holes spaced 0 or +-3^{-1} mod q' apart; E4 says no chain of
+  such joins reaches the window's length. Measured: F = 1, 4, 6, 10, 17, 24, 33, 42, 57 (run
+  convention, q = 5..31), then 88, 91, 103, 118, 145, 160, 179, 213 (gap convention, q = 37..67),
+  about 0.17 q ln^2 q, against a window of q^2/6; the ratio falls as 1/q.
 
 If E4 is proved, Lemma E follows (the window is a run of the pattern, so it is not fully painted),
 Lemma A makes the unstruck column a twin pair, Lemma B keeps it a twin pair in every larger
@@ -166,7 +170,7 @@ this from the stronger form E4; the E-form needs only the two lines of Lemma A.
 | D1 | no set of gears blocks permanently | PROVED (CRT) |
 | E1 | one row paints no two adjacent columns (g >= 7) | PROVED |
 | E2 | two rows: exact longest joint run 4 / 3 / 2 | PROVED (2026-09-20) |
-| E3 | the record's increment per new gear | LEMMA |
+| E3 | a record is old runs joined at the new gear's teeth, F(q') <= (h+1)F(q) + h | PROVED (2026-09-20) |
 | E4 | the record stays below the window | LEMMA (`MaxGapHyp`) |
 | E | the window is never painted over | LEMMA (follows from E4) |
 
@@ -174,8 +178,10 @@ E2 is proved. Three gears (exact, first eight gears): 6 with both 5 and 7; 5 wit
 and two gears of tooth distance 4 (11, 13); 4 with one of them and gears of distance 6 or more;
 3 with neither - the record of a small set is a function of the multiset of tooth distances.
 Initial segments 5..p (run convention): 1, 4, 6, 10, 17, 24, 33 for p = 5, 7, 11, 13, 17, 19, 23.
-The next lemma to work is E3: the record's increment when a gear is added, from the tooth
-distances and the old record's holes. The data instrument is the fields explorer and `rigid_record_bisect.py`;
+E3 is proved in its exact form. The remaining lemma is E4, now a statement about hole spacing:
+which holes of machine q sit at the tooth spacing of q' between long runs. The next step is to
+measure, for each machine 5..p, the multiset of distances between consecutive holes and the run
+lengths beside them, and to state the joinability condition exactly. The data instrument is the fields explorer and `rigid_record_bisect.py`;
 the exact rule is W88's loaded record rule. What must not enter: any count of columns, density or
 sieve bound - E4 is to be proved from the shapes and phases alone.
 

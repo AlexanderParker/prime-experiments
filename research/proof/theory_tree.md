@@ -3689,6 +3689,28 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           +2, +4, +7, +7, +9 for 7, 11, 13, 17, 19, 23, then (gap convention) 37: 88, 41: +3, 43:
           +12, 47: +15, 53: +27, 59: +15, 61: +19, 67: +34 - irregular, growing slowly; F(29),
           F(31) being computed (ILP) to close the table. FACT (E2 proved); E3 open with its data.
+        - R5.f.xxxiv.b. E3: HOW A NEW GEAR EXTENDS THE RECORD (PM, pre-registered 11:50 before the
+          run; research/stack/r8/e3_increment.py, exact period scans for 5..23). PREDICTION: the
+          new record run contains at most 2 ceil(F/p) columns painted only by the new gear p (the
+          holes of the old machine it fills), in practice 1 or 2 for p <= 23, and the old runs
+          inside it are at or near the old record. RESULT (p: F, holes filled by p inside the
+          record, longest old run inside): 7: 4, {0,2} or {1,3}, 1; 11: 6, one hole, 4; 13: 10,
+          one hole, 5; 17: 17, two holes, 10 or 6; 19: 24, one or two holes, 17 or 12; 23: 33,
+          THREE holes at positions {3, 11, 26} (tooth distance 8 and 15 = 23 - 8), 14. The
+          ceiling 2 ceil(F/p) holds (23: 4 allowed, 3 used); "1 or 2" FAILS at 23 (F = 33 > 23,
+          so a third tooth enters); "old runs near the old record" FAILS from 17 on (6 of 10, 12
+          of 17, 14 of 24): the record is built from several medium old runs, not from the old
+          record extended. E3 IN EXACT FORM (PROVED, one line): the new record minus the new
+          gear's teeth splits into at most h + 1 old runs, each at most F(q), where h is the
+          number of teeth of q' inside the record, h <= 2 ceil(F(q')/q'); so F(q') <= (h + 1) F(q)
+          + h, and the h teeth sit at mutual distances 0 or +-inv3 modulo q'. What this leaves
+          for E4: the joinable holes of machine q are those at the new gear's tooth spacing that
+          are flanked by long runs - a statement about the spacing of the old machine's holes (its
+          twin candidates), i.e. about the old pattern's own run structure; the inequality alone
+          allows F to triple per gear and cannot give E4 by itself. F(29) = 42 EXACT (ILP, 43
+          uncoverable; increment +9 over F(23) = 33 in the run convention); F(31) = 57 EXACT (+15);
+          F(71) >= 228 (228 coverable in 2,129 s). FACT (E3 exact form
+          proved; E4 sharpened to a hole-spacing statement).
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5212,3 +5234,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiii (ideas lane): no route whose first step is not a sifted-set bound; every candidate traced to one; new exact gear-role composition law 36c*^2 - 1 = (36c^2-1)(36(2c)^2-1)^2 at c* = 3c(48c^2-1) (Chebyshev cube), G(c*) = G(c) + G(2c), 0 violations to 3000 - upward only, not a route.
 - 2026-09-20, R5.f.xxxiv: the field proof draft written as lemmas A-E (research/proof/field_proof_draft.md); A, B, C1-C5, D1, E1 proved, E2-E4 the lemmas to establish, E4 = MaxGapHyp; first target E2 (two rows exact).
 - 2026-09-20, R5.f.xxxiv.a: E2 PROVED - F({g,h}) = 4 iff {5,7}, 3 iff one of them is 5 or 7, else 2 (tooth distance inv3 = +-2 only at 5, 7); exact to 101, 0 violations; triples follow the tooth-distance multiset; initial segments F = 1, 4, 6, 10, 17, 24, 33 (run convention) for p = 5..23.
+- 2026-09-20, R5.f.xxxiv.b: E3 exact - a new record is old runs joined at the new gear's teeth (h <= 2 ceil(F/p) holes filled, 1-3 observed), F(q') <= (h+1)F(q) + h; the old runs used are well below the old record; F(29) = 42.
