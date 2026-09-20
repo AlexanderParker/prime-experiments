@@ -4143,6 +4143,23 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             above 5 strike every lap of a range only if every tier's root lap machine fills its
             tier; tier 1 is the lap window (c.i). FACT; the range statement with machine 5 as the
             cycle is the tower of lap-window statements, the first of which is c.i.
+          - R5.f.xxxv.c.v. THE CENTRE OF THE LAP PERIOD (2026-09-21; research/stack/r8/
+            machine5_centre.py). Spawned by c.iv's Q6: the lap machine is symmetric about lap 0,
+            hence about the half period P_L/2 (P_L = prod 7..q, odd). PRE-REGISTERED and PROVED:
+            the lap at offset j/2 from the centre (j odd) has members 15 P_L +- 15j -+ 1, and every
+            gear divides P_L, so gear g strikes it iff g | 15j - 1 or g | 15j + 1 - the leg rule read
+            from the centre, as 30k -+ 1 is read from the origin. So the centre pair (P_L -+ 1)/2 is
+            always 7's adjacent pair (14 = 2 x 7); the offsets are struck by j = 3: 11 or 23; 5: 19
+            or 37; 7: 13 or 53; 9: 17 or 67; 11: 41 or 83; 13: 7 or 97; 15: 7 or 113; 17: 127 only;
+            19: 11, 13, 71. Central struck run = 2m laps with m the consecutive odd j from 1 whose
+            15j -+ 1 has a factor in [7, q]: 4 laps for q = 11, 13, 17; 10 for q = 19..37; 16 for
+            q = 41..113; 34 for q = 127 (j = 17 needs 127). All confirmed on the periods q = 11..23
+            (centre words: q = 11: 11 7 7 11; q = 19: 17 13 19 11 7 7 11 19 13 17; q = 23 the same
+            with 11+23 doubling). At q = 11 the record run is the central run. The origin and the
+            centre are the two known objects of every lap machine: the origin lap is always open
+            (members -1, 1), the centre pair always struck by 7; the origin's neighbourhood is the
+            lap window itself (lap k open iff 30k -+ 1 both free of gears <= q), the centre's
+            neighbourhood is the half-leg word 15j -+ 1. FACT (exact, every q).
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5705,3 +5722,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.ii: leg rule on laps g | D, 15D-1 or 15D+1; gear 7 cuts adjacent lap pairs every 7 laps with 5-lap holes; a run is 7's pairs with holes filled by 11..q (doublers only 11, 23, 29, 31, 59, 61); record runs as words for q = 11..23; the record is the longest chain of filled holes.
 - 2026-09-21, R5.f.xxxv.c.iii: hole machine - each class of gear g hits five of every g holes in a progression with step 7^-1 mod g, positions descending; gear 13 is the holes' adjacent gear (ten consecutive holes as a staircase); longest chain of filled holes 0, 1, 2, 3 at q <= 17, 19, 23, 29; lap record 25 at q = 29 = 15 + 8 + 2.
 - 2026-09-21, R5.f.xxxv.c.iv: Q1-Q6 carry to the laps (30 for 6, 15 for 3); mirror k -> -k fixes every class pair; range with machine 5 as cycle = tower of lap-window statements.
+- 2026-09-21, R5.f.xxxv.c.v: centre of the lap period - lap at offset j/2 struck by g iff g | 15j-+1; centre pair always 7's adjacent pair; central run 4 / 10 / 16 / 34 laps for q = 11..17 / 19..37 / 41..113 / 127; at q = 11 the record is the central run; origin always open, centre always struck.
