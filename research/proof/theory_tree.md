@@ -3529,7 +3529,30 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         (OEIS marks A072753 "hard"); the extension past P = 73 is parked; the known 19 values
         carry the route's empirics. Next: an explicit two-class version of Iwaniec's argument
         (Fable lane opened 09:40) to see what constant the large-sieve method gives against the
-        needed 1/6.
+        needed 1/6. RESULT (received 10:00; the lane read Iwaniec 1978 in full, plus Granville
+        2020, Banks-Ford-Tao 2019, Mercer, Costello-Watts, FGKMT): THE MANAGER'S READING WAS
+        WRONG - Iwaniec's argument uses NO large sieve; it is Rosser's linear sieve with the
+        trivial remainder |r_d| < 1 and a sparse-support lemma for the Rosser weights (Iwaniec
+        1971), and the P^2 is the LINEAR SIEVE'S SIEVING LIMIT s = 2 (f(2) = 0): the level y
+        must exceed z^2, the interval length is about e^gamma y. Iwaniec: "by the sieve method
+        the exponent 2 cannot be reduced"; Granville 2020: with Siegel zeros the linear-sieve
+        bounds are best possible even for intervals. The constant is e^gamma C with C
+        "sufficiently large", not computed. FOR TWO CLASSES the same method needs dimension-2
+        weights (Diamond-Halberstam-Richert), positive only beyond the sieving limit beta_2 =
+        4.266, so j_2(P) << P^(4.266 + delta) (log P)^3 with an uncomputable constant: the method
+        misses the Ziller-Morack target (exponent 2, constant 1/6) by a factor P^2.27, not by a
+        constant. Large-sieve refinements (Montgomery-Vaughan, Selberg, Gallagher) are upper-
+        bound devices and change nothing here. Ziller-Morack's own data: j_2/window ratio 0.545,
+        0.516, 0.495, 0.499 at p = 41, 53, 67, 73. CORRECTED VERDICT: the covering route is a
+        proved implication (kernel) whose hypothesis sits at the sieving limit like every other
+        route on the tree - its wall is the same parity phenomenon in covering clothes, not a
+        large-sieve constant; the claim "the one route whose obstruction is not parity" is
+        withdrawn. FACT (implication, kernel); hypothesis OPEN at the sieve limit. What survived:
+        the window statement is proved by covering alone for every prime machine q <= 73, and
+        the free covering function j_2 (data to 73) against the window q^2/6 is the cleanest
+        integer form of the whole problem on record: the twin prime conjecture is implied by the
+        two-class Jacobsthal function being o(P^2), a statement about coverings with no primes in
+        it beyond the gears.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5047,3 +5070,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxii: THE FREE COVERING ROUTE - if two free classes per gear cannot cover the q^2/6 columns of the window of q (OEIS A072753 < window at every known q <= 73, tightest 24 vs 26 at q = 13), the window holds a twin by the square-root rule alone; the open lemma is an Iwaniec-type bound j_2(q) < (q^2-q)/6; its wall is the large sieve's P^2 constant, not parity. Kernel and register lanes opened.
 - 2026-09-20, R5.f.xxxii register: no o(P^2) upper bound is known for any Jacobsthal-type function; Iwaniec's P^2 constant is ineffective; two-class upper bound unpublished; the covering route is Ziller-Morack's 2017 conjecture 6 with proved implication; CANDIDATE - the one route whose wall is not parity.
 - 2026-09-20, R5.f.xxxii kernel: LadderCovering.lean (0 sorries) - CoveringHyp (no two classes per gear cover the window of q) -> a twin in the window of every prime machine q -> twins unbounded; the free covering route is formal.
+- 2026-09-20, R5.f.xxxii correction (Iwaniec lane): Iwaniec's P^2 is the linear sieve's limit s = 2, not the large sieve; two classes give only P^4.27 (beta_2 = 4.266); the covering route's wall is parity in covering clothes - 'not parity' withdrawn; the implication stands in the kernel and the window statement holds by covering alone for q <= 73.

@@ -67,9 +67,14 @@ q = 13). Whenever the free covering number is below the window, the actual gears
 every column, and the unstruck column's members are prime by the square-root rule: the window
 statement from a covering bound alone (Ziller-Morack 2017, Conjecture 6 and its theorem; kernel
 form proofs/LadderCovering.lean). Its open lemma is an Iwaniec-type upper bound j_2(q) < (q^2 - q)/6;
-Iwaniec's one-class bound is O(P^2) with an ineffective constant, nothing o(P^2) is known for any
-class count, and no two-class upper bound is published. This is the one route on the tree whose
-obstruction is a large-sieve constant rather than parity.
+Iwaniec's one-class bound is O(P^2) with an uncomputed constant, and its P^2 is the linear sieve's
+sieving limit s = 2 (Rosser weights, trivial remainder; no large sieve is involved); for two classes
+the same method gives only P^4.27 (the dimension-2 limit 4.266). Nothing o(P^2) is known for any
+class count and no two-class upper bound is published. So this route's hypothesis sits at the
+sieving limit like the others: the same obstruction in covering clothes. What it adds is the
+cleanest integer form of the problem: twins follow from the two-class Jacobsthal function being
+o(P^2), a covering statement with no primes in it beyond the gears; and the window statement is
+proved by covering alone for every prime machine q <= 73.
 
 The one open lemma, in the two vocabularies: *every twin centre has a rung* (the machine: the
 stretch between the squares of a twin pair is never fully struck by the gears below it); *for
