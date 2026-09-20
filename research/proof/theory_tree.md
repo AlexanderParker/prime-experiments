@@ -3978,6 +3978,20 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           The record alone gives q/ln^2 q holes, short by ln^2 q/3; (U') says record-sized gaps
           do not cluster (at most a fraction 3/ln^2 q of consecutive gaps near the record). FACT
           (reduction proved; verified to 29); (U') open.
+      - R5.f.xxxv. THE RANGE STATEMENT AND THE SPIRAL VARIANT (owner, 2026-09-20 late / 09-21).
+        The owner's distinction, accepted: the range (q, q#] holds one full period of machine q -
+        every phase combination of its gears once, mirrored - and asks only that a twin exist
+        somewhere in it, with the deciding gears all above q (T = primes in (q, sqrt(q#)]); the
+        window holds a shrinking fraction of the cycle and needs a location. Exact fact for the
+        range (from strike_distance, LadderFields.lean): a gear g > q kills two openings of q in
+        one pass only at gaps 3^{-1} mod g or g - 3^{-1}, both at least (g-1)/3, while consecutive
+        openings of q are at most F(q)+1 apart; so every gear above 3F(q)+3 kills q's openings
+        one at a time, never two neighbours, and only the band (q, 3F(q)] can merge gaps. TO TRY
+        (owner's spiral variant, not yet run): add a larger gear (or gears) to the machine, mirror
+        across the larger gear's primorial, then remove the top gears one by one, never q, and
+        return by smaller primorials to land in the window carrying q's full set. Verdict OPEN;
+        the next lane is the owner's choice between the range analysis (how T's classes sit on
+        q's openings across one full period, pattern only) and the spiral variant.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
