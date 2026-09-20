@@ -178,10 +178,21 @@ E2 is proved. Three gears (exact, first eight gears): 6 with both 5 and 7; 5 wit
 and two gears of tooth distance 4 (11, 13); 4 with one of them and gears of distance 6 or more;
 3 with neither - the record of a small set is a function of the multiset of tooth distances.
 Initial segments 5..p (run convention): 1, 4, 6, 10, 17, 24, 33 for p = 5, 7, 11, 13, 17, 19, 23.
-E3 is proved in its exact form. The remaining lemma is E4, now a statement about hole spacing:
-which holes of machine q sit at the tooth spacing of q' between long runs. The next step is to
-measure, for each machine 5..p, the multiset of distances between consecutive holes and the run
-lengths beside them, and to state the joinability condition exactly. The data instrument is the fields explorer and `rigid_record_bisect.py`;
+E3 is proved in its exact form, and the record obeys an exact recursion (verified for every step
+7..23 over the joint period): F(q') is the larger of F(q) and, over every maximal chain of
+consecutive holes of machine q that all lie in the two tooth classes of q', the span from the hole
+before the chain to the hole after it, less one. Two consecutive holes are both in the classes only
+when their gap is exactly 3^{-1} mod q' or q' minus it (or differs from these by a multiple of q');
+so the record is decided by the hole-gap spectrum of machine q at two specific gap values and by
+the runs flanking those gaps. Measured: aligned consecutive pairs are 0.1 to 0.3 percent of the
+holes at q' = 13..23, three to five times rarer than independence would give; chains of at most 3
+holes; the hole-gap spectrum is the project's wheel gap census (docs/novel, W11, W22-W26, W45).
+
+**E4 in its sharpest form.** For every prime q' with predecessor q: no chain of consecutive holes
+of machine q at the gaps 3^{-1} mod q' and q' - 3^{-1} mod q' (modulo q') has span plus flanking
+runs reaching (q'^2 - q')/6. The next lemma to work: E4a - the longest run flanking an aligned
+gap is far below F(q) (measured: the runs used are 14 of 24 at q' = 23, 12 of 17 at 19); E4b - the
+number of consecutive aligned gaps in a chain is bounded (measured: at most 3 to 23). The data instrument is the fields explorer and `rigid_record_bisect.py`;
 the exact rule is W88's loaded record rule. What must not enter: any count of columns, density or
 sieve bound - E4 is to be proved from the shapes and phases alone.
 

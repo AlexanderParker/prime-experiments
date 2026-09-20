@@ -3711,6 +3711,37 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           uncoverable; increment +9 over F(23) = 33 in the run convention); F(31) = 57 EXACT (+15);
           F(71) >= 228 (228 coverable in 2,129 s). FACT (E3 exact form
           proved; E4 sharpened to a hole-spacing statement).
+        - R5.f.xxxiv.c. E4 AS HOLE CHAINS: THE EXACT RECURSION FOR THE RECORD (PM, pre-registered
+          12:30 before the run; research/stack/r8/e4_hole_chains.py, exact scans over the joint
+          period P q' for 5..19 -> 23, up to 8.7 million holes). THE RECURSION: F(q') = max of F(q)
+          and, over every maximal chain of consecutive holes of machine q all lying in the two
+          tooth classes of q' (so that q' fills each of them), the span from the hole before the
+          chain to the hole after it, less one. PREDICTIONS: (1) the recursion reproduces F(q')
+          exactly; (2) exactly 2/q' of the holes lie in q''s classes over the joint period (CRT)
+          while aligned consecutive PAIRS are rarer than (2/q')^2; (3) chains use at most
+          2 ceil(F/q') holes. RESULT: (1) HOLDS at all six steps - 4, 6, 10, 17, 24, 33 for
+          q' = 7, 11, 13, 17, 19, 23 (a first scan over the OLD period alone missed at 7, 11 and
+          23: every hole class recurs q' times with distinct residues, so the joint period is
+          required); (2) HOLDS - aligned share 0.2857, 0.1818, 0.1538, 0.1176, 0.1053, 0.0870 =
+          2/q' to four decimals; aligned consecutive pairs 2, 0, 6, 72, 1088, 11870 = 9.5%, 0,
+          0.34%, 0.29%, 0.26%, 0.14% of the holes against (2/q')^2 = 8.2%, 3.3%, 2.4%, 1.4%,
+          1.1%, 0.76% - three to five times rarer, because consecutive holes sit at the small
+          gaps 1, 2, 3, 5 and a pair is aligned only when its gap is EXACTLY inv3 mod q' or
+          q' - inv3 (or wraps by a multiple of q'): the alignment is decided by the hole-gap
+          spectrum at two specific gap values; (3) HOLDS - chains of 2, 1, 1, 2, 1, 3 holes, the
+          3-chain at 23 alternating gaps 15 and 8 (= 23 - 8, 8) between the classes 4 and 19.
+          Hole-gap spectra (gap: count) 5..19: 1: 46,683; 2: 124,488; 3: 64,106; 4: 29,184;
+          5: 80,370; 6: 19,418; 7: 32,604; 8: 9,006; max gap 18 = F(19) + 1; the spectrum is
+          the project's wheel gap census (docs/novel wheels-gap-census W22-W26 and
+          wheels-run-spectrum-duality W11, W45: F_top = max{j : C(j) > 0}), and the recursion
+          here is the machine-vocabulary form of the loaded record rule W88 with the new gear as
+          the only tail. WHAT E4 NOW SAYS: the record of q' exceeds the window only if machine q
+          has a chain of consecutive holes at the exact gaps inv3(q') / q' - inv3(q') (mod q')
+          whose flanking runs and span together reach q'^2/6; since flanks are at most F(q)
+          and chains have at most 2 ceil(F(q')/q') holes, E4 reduces to bounding how many
+          consecutive hole gaps can hit those two values in a row and how long the runs beside
+          them can be - a statement about the gap spectrum of machine q at two residues mod q',
+          not about counts of twins. FACT (recursion verified exactly); E4 open in this form.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5235,3 +5266,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv: the field proof draft written as lemmas A-E (research/proof/field_proof_draft.md); A, B, C1-C5, D1, E1 proved, E2-E4 the lemmas to establish, E4 = MaxGapHyp; first target E2 (two rows exact).
 - 2026-09-20, R5.f.xxxiv.a: E2 PROVED - F({g,h}) = 4 iff {5,7}, 3 iff one of them is 5 or 7, else 2 (tooth distance inv3 = +-2 only at 5, 7); exact to 101, 0 violations; triples follow the tooth-distance multiset; initial segments F = 1, 4, 6, 10, 17, 24, 33 (run convention) for p = 5..23.
 - 2026-09-20, R5.f.xxxiv.b: E3 exact - a new record is old runs joined at the new gear's teeth (h <= 2 ceil(F/p) holes filled, 1-3 observed), F(q') <= (h+1)F(q) + h; the old runs used are well below the old record; F(29) = 42.
+- 2026-09-20, R5.f.xxxiv.c: the record recursion verified exactly for q' = 7..23 - F(q') is the longest chain of consecutive holes of machine q lying in q' tooth classes plus its flanks; aligned pairs 3-5x rarer than (2/q')^2 because alignment needs the hole gap to equal inv3 mod q' exactly; E4 = a statement about the hole-gap spectrum at two residues.
