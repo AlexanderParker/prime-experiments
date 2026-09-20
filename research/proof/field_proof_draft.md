@@ -1,0 +1,177 @@
+# The field proof: a draft in lemmas (owner's argument, 2026-09-20)
+
+Owner's direction (2026-09-20): the machine always produces twin slots; no future state can prevent
+them, because every field of residues has a fixed shape and phase that can never enter a permanent
+covering state, and no set of gears creates a cycle that always blocks. Write the proof as if these
+facts hold, as a draft hypothesis, then solidify each lemma one at a time.
+
+This page is that draft. Every statement is marked **PROVED** (with the kernel file), **PROVED
+(elementary, not yet in the kernel)**, or **LEMMA** (to be established). The chain from the lemmas to
+the theorem is complete: if every LEMMA is proved, the twin prime conjecture follows. Nothing here
+is a count, a density or a sieve bound; every statement is about which columns which gears strike.
+
+## Plain words
+
+Columns hold the pairs (6n-1, 6n+1). Gears are the primes from 5 up; a gear strikes a column when
+it divides one of the two members. Below the square of a gear, the only columns it can strike are
+ones a smaller gear already struck, or its own home column. So once a column has survived every
+gear below the square root of its members, it is a twin pair and stays one forever: later gears
+widen the machine but cannot reach back. The whole proof therefore rests on one thing: the gears up
+to q, with the phases they actually have, never paint every column of the window between q and
+q^2. The fields tell us exactly where each gear paints; the lemma to establish is that those
+paintings never close the window.
+
+## 0. Objects
+
+- **Column** n >= 1 holds the pair (6n - 1, 6n + 1). **Gear** g: a prime g >= 5. **Machine** q: the
+  gears 5..q (q prime). **Window** of q: the columns n with q < 6n - 1 and 6n + 1 <= q^2, i.e.
+  n from (q + 7)/6 to (q^2 - 1)/6, about q^2/6 columns.
+- **Strike**: gear g strikes column n when g | 6n - 1 or g | 6n + 1. **Twin slot** of machine q: a
+  column of the window that no gear of the machine strikes.
+- **Fields** (ids of the fields explorer): `multiples` (row g marks every multiple of g),
+  `squares` (row g marks g^2), `products:j` (members with exactly j prime factors, marked in the
+  row of each factor), `higher:g` (composite members whose smallest gear factor is g),
+  `lower:g` (composite members whose largest gear factor is g). The painted set of the window is
+  the union of the `multiples` rows; `squares`, `products:j`, `higher:g`, `lower:g` are
+  relabellings of that paint by the shape of the member (research/proof/walk_fields.md).
+
+## 1. The square-root rule - PROVED
+
+**Lemma A.** A twin slot of machine q is a twin prime pair: both members are prime.
+
+*Proof.* A member m of a window column satisfies q < m <= q^2 and gcd(m, 6) = 1. If m were
+composite, its least prime factor f would satisfy f^2 <= m <= q^2, so f <= q, and f >= 5 because
+gcd(m, 6) = 1; then f is a gear of the machine dividing m, so the column is struck. Kernel:
+`prime_of_unstruck_member`, `window_twin_of_maxGap` (proofs/LadderMaxGap.lean, LadderCovering.lean).
+
+## 2. Widening never reaches back - PROVED (elementary; kernel entry to add)
+
+**Lemma B (the widening rule).** Let g be a gear and n a column with 6n + 1 < g^2. If g strikes
+column n, then either 6n - 1 = g or 6n + 1 = g (the gear's home column), or a gear h < g already
+strikes column n.
+
+*Proof.* g divides a member m < g^2, so m = g k with 1 <= k < g. If k = 1, m = g: the home column.
+If k > 1, k is coprime to 6 (as m is) and k < g, so k has a prime factor h with 5 <= h <= k < g,
+and h divides m: gear h strikes the column.
+
+*Consequence.* A twin slot of machine q is a twin slot of every larger machine: no gear added later
+can strike it (its members are below the new gear's square and are not the new gear itself, being
+primes below it). "No future state can prevent them" is this lemma, and it is exact.
+
+## 3. The shapes of the fields - PROVED (elementary)
+
+**Lemma C1 (multiples).** In every run of g consecutive columns, row g marks exactly two columns
+(the classes n = +-6^{-1} mod g), and it never marks two adjacent columns unless g = 5. Kernel:
+`two_strike_classes` (proofs/TwinLadder.lean), `struck_classes` (LadderCovering.lean).
+
+**Lemma C2 (squares).** Row g marks the column of g^2 exactly once in the window, at
+n = (g^2 - 1)/6 (the right member; 6n - 1 is never a square), and only when g^2 <= q^2, i.e.
+always for g <= q. So `squares` contributes exactly one column per gear, at a known position.
+
+**Lemma C3 (products).** A composite member with exactly two prime factors g <= r (both gears) is
+g r, and g^2 <= g r <= r^2: the product of an odd pair strikes between the squares of the pair.
+Its column is (g r -+ 1)/6 according as g r = +-1 mod 6. A member with j >= 3 prime factors is a
+multiple of its smallest factor g with cofactor >= 25, so it lies in row g at a multiple g k,
+k >= 25 coprime to 6; it is already marked by the `multiples` row of g and adds no new paint.
+
+**Lemma C4 (higher and lower).** `higher:g` is row g restricted to members whose other factors
+are all >= g; `lower:g` is row g restricted to members whose other factors are all <= g. Their
+unions over g are each the whole painted set. They add no paint; they say which gear is
+responsible for each painted column (the smallest, or the largest).
+
+**Lemma C5 (no blind gears).** Every gear g >= 5 acts on the window: 6 is invertible mod g, so
+both classes of Lemma C1 exist. (Kernel: `invSix_spec`, LadderCovering.lean.)
+
+## 4. No permanent covering - PROVED, and where its reach ends
+
+**Lemma D1 (no blocking cycle).** For any finite set G of gears, the joint strike pattern has
+period P = product of G, P is coprime to 6, and each period contains exactly prod_{g in G} (g - 2)
+unstruck columns, at least one. In particular no set of gears blocks every column, and no joint
+period is congruent to 0 mod 2 or mod 3: the only gears whose period aligns with the column
+lattice are 2 and 3, which are not gears. *Proof.* Chinese remainder theorem: each gear leaves
+g - 2 classes free, and the classes combine independently. (Kernel: `window_realises_shift`,
+proofs/RigidShift.lean, for the phase statement.)
+
+**Where D1 stops.** D1 says a covering state is never permanent: within every full period there
+are unstruck columns. The window of q has about q^2/6 columns, while the period of the machine q
+is the product of its gears, larger than e^{q/2}. The unstruck columns that D1 guarantees may all
+lie outside the window. So D1 alone does not give a twin slot in the window. This is the exact
+point where the draft needs its one open lemma.
+
+## 5. The window lemma - LEMMA (the one to establish)
+
+**Lemma E (the window is never painted over).** For every prime q >= 5 the gears 5..q, at the
+phases they actually have, leave at least one column of the window of q unstruck.
+
+Kernel forms already available: `MaxGapHyp` (proofs/LadderMaxGap.lean) - "the longest run of
+struck columns anywhere in the pattern of the gears 5..q is shorter than the window" - implies
+Lemma E; `CoveringHyp` (LadderCovering.lean) - "no choice of two classes per gear covers the
+window" - implies it too. Both are stronger than E; E itself is exactly "machine q has a twin
+slot". Measured: E holds for every prime q up to 10^8 by the twin-gap tables (largest maximal
+twin gap 35,640 near 7 x 10^16 against a window of q^2/6 columns), and the stronger MaxGapHyp
+holds with the machine's exact record F(q) = 34, 88, 91, 103, 118, 145, 160, 179, 213 at
+q = 23..67 against windows of 84..737 columns.
+
+**Sub-lemmas proposed for E, one field at a time** (the owner's programme):
+
+- **E1 (one row).** Row g alone paints at most one column of any run of g - 1 columns, except g = 5
+  which paints two adjacent columns (2, 3 mod 5) once per period. PROVED (Lemma C1).
+- **E2 (two rows).** For gears g < h, the longest run both rows together can paint is bounded by an
+  exact function of (g, h) computable from their two teeth each; it is at most 2 + 2 = 4 columns
+  plus the alignments allowed by the Chinese remainder theorem, hence at most a constant times
+  g. LEMMA (exact formula to state and prove; the fields explorer gives the data).
+- **E3 (the widening of the record).** Let F(q) be the longest run the machine q can paint anywhere
+  in its period. Adding the gear q' (the next prime) increases F by at most a bounded amount
+  depending on q', and the increments 61 -> 67 -> 71 measured 34 and at least 9. LEMMA: an exact
+  recurrence or bound for F(q') - F(q) in terms of the new gear's two teeth and the runs of the
+  old record (the loaded record rule of round W88, kernel `loaded_record_rule`, is the exact
+  instrument: [0, L) is coverable iff the minimum domino cost over core phase vectors is at most
+  the tail count).
+- **E4 (the record is below the window).** F(q) < (q^2 - q)/6 for every prime q. LEMMA. This is
+  `MaxGapHyp`; with E3 as an inductive step it reduces to: the record's increment per new gear
+  stays below the window's increment, (q'^2 - q^2)/6 = (q' - q)(q' + q)/6, which is at least
+  2(q' + q)/6 > q'/3 per step. Measured: F grows like 0.17 q ln^2 q, the window like q^2/6; the
+  ratio falls as 1/q.
+
+If E4 is proved, Lemma E follows (the window is a run of the pattern, so it is not fully painted),
+Lemma A makes the unstruck column a twin pair, Lemma B keeps it a twin pair in every larger
+machine, and the theorem follows.
+
+## 6. The theorem
+
+**Theorem (conditional on Lemma E).** For every prime q >= 5 the window of q holds a twin prime
+pair; hence there are twin primes above every bound.
+
+*Proof.* By E the window has an unstruck column; by A its members are prime; by B nothing later
+changes that; the windows of the primes q are unbounded (Euclid), so the twins are unbounded.
+Kernel: `windowStatement_of_maxGapHyp`, `twins_unbounded_of_maxGapHyp` (LadderMaxGap.lean) give
+this from the stronger form E4; the E-form needs only the two lines of Lemma A.
+
+## 7. Standing of the parts
+
+| part | statement | standing |
+|---|---|---|
+| A | an unstruck window column is a twin pair | PROVED (kernel) |
+| B | a later gear never strikes a twin slot | PROVED (elementary); kernel entry to add |
+| C1-C5 | the shapes of the five fields | PROVED (C1, C5 kernel; C2-C4 elementary) |
+| D1 | no set of gears blocks permanently | PROVED (CRT) |
+| E1 | one row paints no two adjacent columns (g >= 7) | PROVED |
+| E2 | two rows: exact longest joint run | LEMMA |
+| E3 | the record's increment per new gear | LEMMA |
+| E4 | the record stays below the window | LEMMA (`MaxGapHyp`) |
+| E | the window is never painted over | LEMMA (follows from E4) |
+
+The first lemma to work is E2: an exact statement for two gears, then three, so that E3 has a
+pattern to generalise. The data instrument is the fields explorer and `rigid_record_bisect.py`;
+the exact rule is W88's loaded record rule. What must not enter: any count of columns, density or
+sieve bound - E4 is to be proved from the shapes and phases alone.
+
+## 8. What is already known about E4 from the record (for honesty, one paragraph)
+
+The record F(q) is the two-class Jacobsthal-type function of the twin sieve. Its free-class
+relative (any two classes per gear, OEIS A072753) is bounded above only by sieve methods, which
+give exponent 4.27 in q, and the one-class Jacobsthal function only by Iwaniec's exponent 2 with an
+uncomputed constant (docs/novel/j2-upper-bound.md, rounds 22-27). So E4 asks for an exponent-2
+bound with the constant 1/6 for the actual pattern - a bound no sieve gives. The draft's wager is
+that the shapes and phases of the actual pattern (not free classes) carry it; E2 and E3 are the
+places to test that wager, exactly, one gear at a time.
