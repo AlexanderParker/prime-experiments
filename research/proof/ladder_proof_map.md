@@ -34,6 +34,9 @@ Certified: the (5,7) ladder has six rungs to a 48-digit twin centre (Pratt certi
 CoveringHyp (two free classes per gear 5..q never cover the q^2/6 columns of the window of q)
    ---> a twin centre in the window of every prime machine q ---> twins unbounded   LadderCovering.lean
    (the free covering route; its hypothesis is a Jacobsthal-type bound, OEIS A072753 < window at every known q)
+MaxGapHyp (the machine's own longest struck run of gears 5..q is shorter than the window of q)
+   ---> window statement ---> twins unbounded   LadderMaxGap.lean   (weaker than CoveringHyp for every run;
+   F(q) = 34, 88, 91, 103, 118, 145, 160, 179, 213 at q = 23..67 against windows 84..737)
 ```
 
 A reading note on the two conditional theorems. `AlmostAll` contains the clause "twin centres up
@@ -417,3 +420,13 @@ The hypothesis is Ziller-Morack's Conjecture 6 (2017) in column units, `j_2(q) <
 measured: OEIS A072753 is below the window at every known `q <= 73` (tightest 24 against 26 at
 `q = 13`), ratio about `8.4 ln q / q`. Known bounds: Iwaniec `O(P^2)` for one class with an
 ineffective constant, nothing `o(P^2)`, no two-class upper bound published.
+
+## 21. Kernel: the rigid max-gap form (2026-09-20, proofs/LadderMaxGap.lean)
+
+`MaxGapBelow q L`: every run of `L` columns holds a column no gear `5..q` strikes. `MaxGapHyp`: for
+every prime machine `q` this holds with `L` the window's column count. `window_twin_of_maxGap`,
+`windowStatement_of_maxGapHyp`, `twins_unbounded_of_maxGapHyp`; `maxGapBelow_of_freeUncoverable`
+links it to the free form. Standard axioms; 0 sorries. The hypothesis says the twin sieve's own
+Jacobsthal function (the maximal gap between columns both of whose members are coprime to the
+primorial of `q`) stays below `q^2/6`; the machine's exact record `F(q)` does so with margin at
+least 2.5 at every computed `q ≤ 67`.

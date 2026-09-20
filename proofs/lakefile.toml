@@ -2397,3 +2397,6 @@ name = "LadderEuclid"
 
 [[lean_lib]]
 name = "LadderCovering"
+
+[[lean_lib]]
+name = "LadderMaxGap"

@@ -3553,6 +3553,30 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         integer form of the whole problem on record: the twin prime conjecture is implied by the
         two-class Jacobsthal function being o(P^2), a statement about coverings with no primes in
         it beyond the gears.
+        - R5.f.xxxii.a. THE RIGID FORM: THE MACHINE'S OWN RECORD AGAINST THE WINDOW (PM, 10:30;
+          kernel proofs/LadderMaxGap.lean, 0 sorries, axioms propext / Classical.choice /
+          Quot.sound). Parent observation: the free classes of R5.f.xxxii overstate what the
+          gears do; the rigid record F(q) - the longest struck run anywhere in the period of the
+          actual pattern (RigidShift.lean: every shift vector is a window of the real pattern) -
+          is what the window has to beat, and F(q) <= j_2(q). KERNEL: MaxGapBelow q L (every run
+          of L columns from a column >= 1 holds an unstruck column, i.e. the longest struck run is
+          below L); maxGapBelow_of_freeUncoverable; window_twin_of_maxGap; MaxGapHyp (for every
+          prime machine q the longest struck run of the gears 5..q is shorter than the window,
+          (q^2 - 1)/6 - (q + 7)/6 + 1 columns); windowStatement_of_maxGapHyp;
+          twins_unbounded_of_maxGapHyp. DATA (F exact, R5.d/R5.f.xiv, window columns): 23: 34 /
+          84 (0.40); 37: 88 / 222 (0.40); 41: 91 / 273 (0.33); 43: 103 / 301 (0.34); 47: 118 /
+          360 (0.33); 53: 145 / 459 (0.32); 59: 160 / 570 (0.28); 61: 179 / 610 (0.29); 67: 213 /
+          737 (0.29); 71: >= 222 / 828. So the window statement holds by the machine's own record
+          for every prime q <= 67 with margin at least 2.5x, the ratio falling like 4.5 ln q / q
+          (F ~ 0.75 q ln q against the free 1.4 q ln q). THE HYPOTHESIS IN WORDS: the twin sieve's
+          Jacobsthal function - the maximal gap between consecutive columns both of whose members
+          are coprime to the primorial of q - is below q^2/6. It is the weakest covering-type form
+          on the tree (MaxGapHyp <- CoveringHyp-for-every-run), its data are the F table (new to
+          OEIS), and its only known attack is the dimension-2 sieve at P^4.27. FACT (kernel);
+          hypothesis OPEN. Next: the F sequence's own law - F(q)/(q ln q) rises 0.71 -> 0.76 from
+          61 to 67; the one-class Jacobsthal grows like P ln P ln_3 P / ln_2 P (FGKMT), so the
+          rigid F should too; a fit decides whether the rigid pairs lose a log factor to the free
+          classes.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5071,3 +5095,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxii register: no o(P^2) upper bound is known for any Jacobsthal-type function; Iwaniec's P^2 constant is ineffective; two-class upper bound unpublished; the covering route is Ziller-Morack's 2017 conjecture 6 with proved implication; CANDIDATE - the one route whose wall is not parity.
 - 2026-09-20, R5.f.xxxii kernel: LadderCovering.lean (0 sorries) - CoveringHyp (no two classes per gear cover the window of q) -> a twin in the window of every prime machine q -> twins unbounded; the free covering route is formal.
 - 2026-09-20, R5.f.xxxii correction (Iwaniec lane): Iwaniec's P^2 is the linear sieve's limit s = 2, not the large sieve; two classes give only P^4.27 (beta_2 = 4.266); the covering route's wall is parity in covering clothes - 'not parity' withdrawn; the implication stands in the kernel and the window statement holds by covering alone for q <= 73.
+- 2026-09-20, R5.f.xxxii.a: kernel LadderMaxGap.lean - MaxGapHyp (the machine's longest struck run of gears 5..q is shorter than the window of q) -> window statement -> twins unbounded; the rigid F table beats the window by 2.5x or more at every computed q <= 67; the weakest covering-type hypothesis on the tree.
