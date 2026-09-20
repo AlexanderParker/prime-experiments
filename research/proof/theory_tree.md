@@ -4216,6 +4216,22 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             periodic words, one per gear, each set by two numbers (7^{-1} mod g and 15^{-1} mod g);
             a chain of filled holes is a window where the superposed words cover every position.
             FACT (exact).
+          - R5.f.xxxv.c.x. STACKING THE WORDS (2026-09-21; research/stack/r8/machine5_stacking.py).
+            Spawned by c.ix. A chain starting at hole h0 puts gear g at phase h0 mod g of its word;
+            every phase tuple occurs (hole periods coprime), so the longest chain is a puzzle on the
+            words alone. PRE-REGISTERED forced fills, both CONFIRMED exactly: q = 19 - densest
+            1-windows 11: 2, 13: 1, 17: 1, 19: 1 sum to 5, so every filled hole has 11 doubling and
+            13, 17, 19 once each with no coincidence (all 96 filled holes of the period); q = 23 -
+            densest 2-windows 3, 2, 2, 2, 2 sum to 11 against 10 needed, so every two-hole chain has
+            11 in a 3-window or every gear at its maximum (36 chains: 34 with 11 at 3, 2 with all
+            five gears at 2). WORD BOUND (longest chain <= largest m with the densest m-windows
+            summing to at least 5m): 1, 2, 5, 7, 10, 15, 28 for q = 19, 23, 29, 31, 37, 41, 43;
+            observed 1, 2, 3, >= 4, >= 4 - tight at 19 and 23, loose from 29. From q = 47 the
+            densest windows sum to 5 or more per hole for every m: NO BOUND from the words' densities
+            alone; from there only the phases (which windows of each word can sit side by side)
+            limit a chain. FACT (exact); the wall in word form: at q >= 47 the gears carry enough
+            teeth to fill every hole, and the proof must come from the words' relative phases, not
+            their densities - the same place E4 stands on columns.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5783,3 +5799,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.vii: staircase rule - gears other than 13 hit at most one of three consecutive holes per class; chains of 13 holes need 8 gears (q >= 41); observed chains 4 at q = 31, 37 (partial), all inside 13's staircase.
 - 2026-09-21, R5.f.xxxv.c.viii: hole fills inside the staircase - admissible doubler pairs per position of 13; 2+2 fills only 29+31 (p = 1, 5), 11/23 + 29/31 (p = 2, 4), 11+23 or 59/61+29/31 (p = 3); all 14 observed holes obey; one 2+2 seen (q = 37, 11 with 23 at p = 3).
 - 2026-09-21, R5.f.xxxv.c.ix: hole words per gear - five holes per class at step 7^-1 with positions 5..1, 5 - d doubles when d <= 4, g - 10 + doubles empties, palindromic under the lap mirror; words for 11..31 written out.
+- 2026-09-21, R5.f.xxxv.c.x: stacking the hole words - forced fills confirmed exactly at q = 19 (11 doubles in every filled hole) and q = 23 (11 in a 3-window in 34 of 36 chains); word bound 1, 2, 5, 7, 10, 15, 28 for q = 19..43, no bound from q = 47: only phases limit chains beyond.
