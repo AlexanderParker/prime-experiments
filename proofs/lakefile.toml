@@ -2394,3 +2394,6 @@ name = "LadderDichotomy"
 
 [[lean_lib]]
 name = "LadderEuclid"
+
+[[lean_lib]]
+name = "LadderCovering"

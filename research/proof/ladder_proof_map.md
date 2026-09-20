@@ -30,6 +30,10 @@ LadderHyp  ---> ProductHyp (a product-rung for every twin centre) ---> twins unb
 SixHyp (a twin centre in (5(t-1), 7(t+1)) for every twin centre t) ---> ProductHyp
 ShortInterval theta (theta <= 1 - 1/e, e >= 3) ---> exponent-e chains ---> twins unbounded   LadderShortInterval.lean
 Certified: the (5,7) ladder has six rungs to a 48-digit twin centre (Pratt certificates)   LadderCertificate.lean
+
+CoveringHyp (two free classes per gear 5..q never cover the q^2/6 columns of the window of q)
+   ---> a twin centre in the window of every prime machine q ---> twins unbounded   LadderCovering.lean
+   (the free covering route; its hypothesis is a Jacobsthal-type bound, OEIS A072753 < window at every known q)
 ```
 
 A reading note on the two conditional theorems. `AlmostAll` contains the clause "twin centres up
@@ -395,3 +399,16 @@ member (section 8's `U_p`), proved for every gear at once; like all universal cl
 coprimality of the twin's members to the gears, and an `x`-rough column exists in any interval of
 length `∏_{p ≤ x} p` at any position by CRT. It supplies base-open offsets at level about `ln s`; a
 rung needs level `s`. Standard axioms; 0 sorries.
+
+## 20. Kernel: the free covering route (2026-09-20, proofs/LadderCovering.lean)
+
+`Gear q p`, `Struck q n`, `FreeCovers q a L r s`, `FreeUncoverable q a L`. `struck_classes`: the
+columns gear `p` strikes lie in two residue classes (`invSix p`, `(p-1) invSix p`).
+`exists_unstruck`: a free-uncoverable run holds an unstruck column. `prime_of_unstruck_member`: a
+member coprime to 6, above `q`, at most `q^2`, with no gear factor is prime. `window_twin_of_free_
+uncoverable`; `CoveringHyp` (the window of every prime `q >= 5` is free-uncoverable);
+`windowStatement_of_coveringHyp`; `twins_unbounded_of_coveringHyp`. Standard axioms; 0 sorries.
+The hypothesis is Ziller-Morack's Conjecture 6 (2017) in column units, `j_2(q) < (q^2 - q)/6`;
+measured: OEIS A072753 is below the window at every known `q <= 73` (tightest 24 against 26 at
+`q = 13`), ratio about `8.4 ln q / q`. Known bounds: Iwaniec `O(P^2)` for one class with an
+ineffective constant, nothing `o(P^2)`, no two-class upper bound published.

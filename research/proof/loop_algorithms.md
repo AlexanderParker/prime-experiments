@@ -4021,3 +4021,14 @@ now kernel (proofs/LadderDichotomy.lean): "consecutive twin centres are never bo
 twin centre has exactly one rung" give chains of every length and a node at every depth from 6.
 The Six-window attempt closes SixHyp for t >= 10^15 under a per-gear discrepancy bound that
 provably cannot be summed in the square window.
+
+### 137. The free covering route (2026-09-20)
+
+From the literature register: the largest run two freely chosen residue classes per gear 5..q can
+cover (OEIS A072753, about 1.4 q ln q) is below the q^2/6 columns of the window of q at every known
+q. Whenever that holds, the actual gears cannot strike every column of the window and the unstruck
+column is a twin by the square-root rule - the owner's window statement from a covering bound alone,
+with no primes-in-intervals input (Ziller-Morack 2017, Conjecture 6). Kernel:
+proofs/LadderCovering.lean, CoveringHyp -> window statement -> twins unbounded. The open lemma is an
+Iwaniec-type bound with constant below 1/6; Iwaniec's constant is ineffective and nothing o(P^2) is
+known for any class count. This is the one route on the tree whose obstruction is not parity.

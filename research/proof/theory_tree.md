@@ -3509,7 +3509,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         j_2 = o(P^2) is harder than the open one-class problem. CANDIDATE (the only route on the
         tree whose obstruction is not the parity phenomenon); its next test is any explicit
         Iwaniec-type argument for two classes, and the rigid variant F(P) < P^2/6 (our classes
-        are antipodal pairs with free shifts, F ~ 0.75 P ln P) as the weaker target.
+        are antipodal pairs with free shifts, F ~ 0.75 P ln P) as the weaker target. KERNEL
+        (formalist lane, received 09:20; re-built and audited by the manager: 0 sorries, axioms
+        propext / Classical.choice / Quot.sound; proofs/LadderCovering.lean): Gear q p; Struck q n;
+        FreeCovers q a L r s (two classes r p, s p per gear cover the run [a, a+L)); FreeUncoverable
+        q a L (no choice of classes covers it); invSix (the inverse of 6 mod p by Classical.choose
+        on Nat.exists_mul_mod_eq_one_of_coprime) and struck_classes (the actual strikes of gear p
+        lie in the classes invSix p and (p-1) invSix p, for columns n >= 1 - column 0 is the one
+        degenerate case of natural subtraction); exists_unstruck; prime_of_unstruck_member (a
+        member coprime to 6, above q, at most q^2, with no gear factor is prime - minFac);
+        window_twin_of_free_uncoverable (a free-uncoverable run inside the window of q holds a
+        twin centre); CoveringHyp (the window of every prime q >= 5, columns (q+7)/6 ..
+        (q^2-1)/6, is free-uncoverable); windowStatement_of_coveringHyp;
+        twins_unbounded_of_coveringHyp (via Nat.exists_infinite_primes). So the kernel now has
+        the Ziller-Morack implication in the machine's vocabulary: CoveringHyp -> the owner's
+        window statement -> twins unbounded. Prediction (i) held. FACT (kernel); route CANDIDATE.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5026,3 +5040,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxi (literature register): no twin-pair result in any short interval, not even almost all; Chen pairs at theta 0.97, bounded gaps at theta 0.525, GEH gives 6 (parity-optimal); maximal twin gap 35,640 at 7 x 10^16 so SixHyp/LadderHyp hold to 10^16; OEIS A192870 (twin-Legendre, last failure 122) and A288815 (paired Jacobsthal) are the nearest published objects.
 - 2026-09-20, R5.f.xxxii: THE FREE COVERING ROUTE - if two free classes per gear cannot cover the q^2/6 columns of the window of q (OEIS A072753 < window at every known q <= 73, tightest 24 vs 26 at q = 13), the window holds a twin by the square-root rule alone; the open lemma is an Iwaniec-type bound j_2(q) < (q^2-q)/6; its wall is the large sieve's P^2 constant, not parity. Kernel and register lanes opened.
 - 2026-09-20, R5.f.xxxii register: no o(P^2) upper bound is known for any Jacobsthal-type function; Iwaniec's P^2 constant is ineffective; two-class upper bound unpublished; the covering route is Ziller-Morack's 2017 conjecture 6 with proved implication; CANDIDATE - the one route whose wall is not parity.
+- 2026-09-20, R5.f.xxxii kernel: LadderCovering.lean (0 sorries) - CoveringHyp (no two classes per gear cover the window of q) -> a twin in the window of every prime machine q -> twins unbounded; the free covering route is formal.
