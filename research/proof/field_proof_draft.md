@@ -445,6 +445,36 @@ and a level analysis (no admissible level for the sieve). What would finish the 
 lower bound for the holes of machine B in every window of length B^2/3 proportional to the mean, or
 a direct argument for a hole in the window of length B^2/6 - the same statement at two strengths.
 
+## 5j. The whole-range form (owner's direction, 2026-09-20 22:10)
+
+Beyond q^2/6 an unstruck column of machine q is a twin candidate, not a twin (its members exceed q^2
+and may have prime factors above q); the window is where the machine's verdict is final. But the
+owner's instinct to use the whole period is right in this form: for consecutive primes q < q' the
+new band is one gear, and the proved thin-band bound (kernel `thin_band`) reads
+
+    F(q') <= max{ L : 2 ceil(L/q') >= h_q(L) },
+
+h_q(L) the least number of holes of machine q in ANY window of length L over its whole period.
+Hence
+
+    (U')  every window of (q'^2 - q')/6 columns of machine q holds more than 2 ceil(q'/6) holes
+          ==>  E4(q')  ==>  the window statement for q'.
+
+(U') is a statement about machine q across its entire range, and it asks for about q'/3 holes
+where the mean is q^2/(2.4 ln^2 q): a factor q/ln^2 q of slack. Verified at every computable
+consecutive pair (research/stack/r8/thin_band_bound.py, base = the previous machine): F(19) <= 42
+< 57, F(23) <= 57 < 84, F(29) <= 89 < 135 (true records 24, 33, 42). So the window statement for
+machines 19, 23, 29 follows from the shapes plus the previous machine's worst-window counts.
+
+**What (U') needs.** The record alone gives h_q(L) >= L/(F(q)+1) ~ q/ln^2 q holes in a window of
+q^2/6, short of q/3 by ln^2 q/3. (U') is therefore the statement that record-sized gaps do not
+cluster: over any q^2/6 columns the gaps average at most q/2, i.e. at most a fraction about 3/ln^2 q
+of consecutive gaps can be near the record. Measured to q = 23 the worst window at scale q^2/6 holds
+4 to 8 holes against the needed 2 ceil(q'/6) = 4 to 10 - the margin is real but thin at these
+sizes, and the mean sits far above. This is the sharpest whole-range form on record: it removes the
+window from the hypothesis and leaves a statement about how the machine's long gaps space
+themselves over its period.
+
 ## 5c. Kernel status of the field lemmas (2026-09-20 17:40, proofs/LadderFields.lean)
 
 `StrikesBy p n`; `no_adjacent` (E1); `strike_distance`, `strike_distance_ge` (E4c: two columns

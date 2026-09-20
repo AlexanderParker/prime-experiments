@@ -3966,6 +3966,18 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           against means 7-19 - the worst E4-scale window keeps a flat handful of holes while the
           mean grows. Prediction "at least a quarter of the mean" HELD; "ratio rises with L" HELD.
           Statement (a) holds proportionally at the stretch's scale with constant about 0.7 here.
+        - R5.f.xxxiv.r. THE WHOLE-RANGE FORM (U') (owner's direction "use the whole range", PM
+          22:10). Beyond q^2/6 a hole of machine q is a candidate, not a twin (members above q^2);
+          but for consecutive primes the new band is one gear, so the kernel's thin_band gives
+          F(q') <= max{L : 2 ceil(L/q') >= h_q(L)} and hence (U') [every window of (q'^2-q')/6
+          columns of machine q holds more than 2 ceil(q'/6) holes] ==> E4(q') ==> window statement
+          for q'. (U') is a whole-period statement asking for about q/3 holes against a mean of
+          q^2/(2.4 ln^2 q). VERIFIED at every computable consecutive pair with base = previous
+          machine: F(19) <= 42 < 57, F(23) <= 57 < 84, F(29) <= 89 < 135 (true 24, 33, 42) - the
+          window statement for 19, 23, 29 from shapes plus the previous machine's worst windows.
+          The record alone gives q/ln^2 q holes, short by ln^2 q/3; (U') says record-sized gaps
+          do not cluster (at most a fraction 3/ln^2 q of consecutive gaps near the record). FACT
+          (reduction proved; verified to 29); (U') open.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5506,3 +5518,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.p: plug share law 1 - 0.79 ln^2 B/ln^2 s verified; the base/plug comparison has no admissible level (base lower bound only below s^0.234, plug constant e^gamma at level x^1/2); the lemma's exact obstruction in the products frame.
 - 2026-09-20, R5.f.xxxiv.q: the base-open count is the hole uniformity of machine sqrt(2s) at scale B^2 (via the G_k law); region lemma = uniformity (a) + EH-level plug bound (b); the field draft is complete with the one lemma open in four exact forms.
 - 2026-09-20, R5.f.xxxiv.q measured: worst-window hole share 0.87 at scale B^2, 0.7 at B^2/3, 0.43-0.64 at B^2/6 where the worst window keeps 4-8 holes for B <= 23.
+- 2026-09-20, R5.f.xxxiv.r: whole-range form (U') - every window of q'^2/6 columns of machine q with more than 2 ceil(q'/6) holes gives E4(q') by the one-gear thin band; verified 19, 23, 29; (U') asks q/3 holes against a mean of q^2/(2.4 ln^2 q).
