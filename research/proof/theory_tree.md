@@ -4160,6 +4160,19 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             (members -1, 1), the centre pair always struck by 7; the origin's neighbourhood is the
             lap window itself (lap k open iff 30k -+ 1 both free of gears <= q), the centre's
             neighbourhood is the half-leg word 15j -+ 1. FACT (exact, every q).
+          - R5.f.xxxv.c.vi. CENTRE RUN VERSUS RECORD (2026-09-21; data of c.i, c.iii, c.v).
+            PRE-REGISTERED: is the record run the centre's shape for every q, or does the record
+            outgrow the centre by more than one filled hole? RESULT: centre / record in laps:
+            q = 11: 4 / 4; 13: 4 / 5; 17: 4 / 7; 19: 10 / 12; 23: 10 / 18; 29: 10 / 25. In filled
+            holes: 0/0, 0/0, 0/0, 1/1, 1/2, 1/3. REFUTED beyond q = 11: the record outgrows the
+            centre from q = 23 on, by a filled hole per new gear (23 fills a second hole, 29 a
+            third) while the centre stays at 10 laps until q = 41 (offset j = 11 needs 41 or 83).
+            MECHANISM: at the centre every gear sits at phase 0 (all divide P_L), so the centre
+            word is fixed by the least factors of the fixed numbers 15j -+ 1 and grows only when
+            q passes one of them; a record run sits where the gears' phases are chosen freely
+            (the alignable chain of E4), so each new gear can add a filled hole at once. FACT.
+            The centre is the run at phase 0, a lower bound for the record for every q (record
+            >= 2m(q)), exact only at q = 11.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5723,3 +5736,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.iii: hole machine - each class of gear g hits five of every g holes in a progression with step 7^-1 mod g, positions descending; gear 13 is the holes' adjacent gear (ten consecutive holes as a staircase); longest chain of filled holes 0, 1, 2, 3 at q <= 17, 19, 23, 29; lap record 25 at q = 29 = 15 + 8 + 2.
 - 2026-09-21, R5.f.xxxv.c.iv: Q1-Q6 carry to the laps (30 for 6, 15 for 3); mirror k -> -k fixes every class pair; range with machine 5 as cycle = tower of lap-window statements.
 - 2026-09-21, R5.f.xxxv.c.v: centre of the lap period - lap at offset j/2 struck by g iff g | 15j-+1; centre pair always 7's adjacent pair; central run 4 / 10 / 16 / 34 laps for q = 11..17 / 19..37 / 41..113 / 127; at q = 11 the record is the central run; origin always open, centre always struck.
+- 2026-09-21, R5.f.xxxv.c.vi: centre run vs record (laps) 4/4, 4/5, 4/7, 10/12, 10/18, 10/25 for q = 11..29; centre is the phase-0 run, a lower bound, exact only at q = 11.
