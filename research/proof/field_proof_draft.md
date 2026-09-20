@@ -426,6 +426,16 @@ individual shapes. Known in the direction of (a): for one class per prime Montgo
 bound the moments of the count of reduced residues in short intervals, which controls almost every
 window but not the worst window; the two-class analogue would say the same.
 
+**Statement (a) measured at small scale** (research/stack/r8/hole_uniformity.py, machines 11..23,
+exact over the period; worst window's holes against the mean delta L). At L = B^2: 0.92, 0.88,
+0.89, 0.88, 0.87 - the worst window holds seven eighths of the mean, stable in B. At L = B^2/3 (the
+stretch's scale at level B): 0.86, 0.72, 0.72, 0.71, 0.69 - two thirds, falling slowly. At L = B^2/6
+(the E4 scale): 0.57, 0.60, 0.64, 0.50, 0.43 in ratio, but 4, 5, 8, 7, 8 in holes against means 7,
+8, 13, 14, 19: the worst window at the E4 scale keeps a nearly flat handful of holes while the mean
+grows. So (a) holds in proportional form at the stretch's scale with constant about 0.7 on this
+range, and E4's margin in absolute holes at scale B^2/6 is small and slow-growing - the record
+F(B) ~ 0.17 B ln^2 B against B^2/6 is the same fact seen from the gap side.
+
 **State of the lemma after the field programme.** Every proved line of the draft is in the kernel.
 The one lemma has been carried through four exact forms (sparse stretch, alternating window, twisted
 translates, base-open against plugs) and its obstruction has been located in each: the joint

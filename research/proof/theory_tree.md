@@ -3960,6 +3960,12 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
           not the worst. VERDICT: the field programme has carried the lemma through four exact
           forms and located the obstruction in each as the same statement about one sifted set at
           the scale of its own square; the draft is complete with that one lemma open. FACT.
+          MEASURED (21:45, hole_uniformity.py, machines 11..23, exact): worst window / mean holes
+          at L = B^2: 0.92, 0.88, 0.89, 0.88, 0.87 (stable); at B^2/3: 0.86, 0.72, 0.72, 0.71, 0.69
+          (slowly falling); at B^2/6: 0.57, 0.60, 0.64, 0.50, 0.43 in ratio but 4, 5, 8, 7, 8 holes
+          against means 7-19 - the worst E4-scale window keeps a flat handful of holes while the
+          mean grows. Prediction "at least a quarter of the mean" HELD; "ratio rises with L" HELD.
+          Statement (a) holds proportionally at the stretch's scale with constant about 0.7 here.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
@@ -5499,3 +5505,4 @@ Part III or Part IV of the proof document?
 - 2026-09-20, R5.f.xxxiv.o: the products field of the stretch is Goldbach - two-prime members are partitions of 2m (m from s to s^2/B), the top band the short partitions of 2s and 2s+2 (exact, 74 centres); the twin problem in the stretch and the Goldbach problem above 2s are two faces of one machine.
 - 2026-09-20, R5.f.xxxiv.p: plug share law 1 - 0.79 ln^2 B/ln^2 s verified; the base/plug comparison has no admissible level (base lower bound only below s^0.234, plug constant e^gamma at level x^1/2); the lemma's exact obstruction in the products frame.
 - 2026-09-20, R5.f.xxxiv.q: the base-open count is the hole uniformity of machine sqrt(2s) at scale B^2 (via the G_k law); region lemma = uniformity (a) + EH-level plug bound (b); the field draft is complete with the one lemma open in four exact forms.
+- 2026-09-20, R5.f.xxxiv.q measured: worst-window hole share 0.87 at scale B^2, 0.7 at B^2/3, 0.43-0.64 at B^2/6 where the worst window keeps 4-8 holes for B <= 23.
