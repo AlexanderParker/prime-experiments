@@ -3524,6 +3524,12 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
         twins_unbounded_of_coveringHyp (via Nat.exists_infinite_primes). So the kernel now has
         the Ziller-Morack implication in the machine's vocabulary: CoveringHyp -> the owner's
         window statement -> twins unbounded. Prediction (i) held. FACT (kernel); route CANDIDATE.
+        FIRST TEST (09:35, free_cover_ilp.py): the free covering record as a set-cover ILP (707
+        binaries at P = 73, 19 cardinality rows) - HiGHS could not decide L = 436 in 600 s
+        (OEIS marks A072753 "hard"); the extension past P = 73 is parked; the known 19 values
+        carry the route's empirics. Next: an explicit two-class version of Iwaniec's argument
+        (Fable lane opened 09:40) to see what constant the large-sieve method gives against the
+        needed 1/6.
     - R5.e. ADJACENT STRETCHES AND THEIR SHARED PHASES (pre-registered 2026-09-19 11:40, before
       computing; the owner's question of 2026-09-18, how the gears kill adjacent stretches).
       Exact: the phase of gear g relative to the square shifts between the stretches of p and q
