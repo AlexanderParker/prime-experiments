@@ -4288,6 +4288,50 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             The rule that survives: a gear g must strike any run longer than g - d_g, and a run
             longer than g + d_g holds both its classes. FACT (the forced-gear rule); the waste
             sequence is not linear in the gear count and is not a route.
+          - R5.f.xxxv.c.xv. THE TILING LANE: TWO LOCKS AND THE CHAIN LADDER (lane received
+            2026-09-21; scripts in the lane scratchpad, results reproduced below). Spawned by
+            c.xiii: state the chain question on the hole words. FIVE RULES, all PROVED with checks.
+            (1) CLASH RULE (11 against 13): gear 11 strikes position p exactly at holes 3p and
+            3p + 2 mod 11, gear 13 staircase at -2p - 2 and -2p - 1 mod 13; in general a gear two
+            holes for one position are delta_g = 2 x 7^{-1} a_g apart, INDEPENDENT OF p (checked
+            11..61; nearest delta 11:2, 13:1, 17:6, 19:2, 23:7, 29:8, 31:13, 53:1). The 11/13
+            overlap holes are exactly 20 of the 143 residues mod 143, gaps only 3, 5, 7, 8, 13,
+            longest clash-free run 12 holes. Disjoint phase pairs fall 123, 103, 83, 66, 49, 38,
+            27, 20, 16, 12 of 143 for m = 1..10; with 13 full in its staircase they reach 0 at
+            m = 9 - the first length at which EVERY phase pair clashes; the last two survivors at
+            m = 8 are (5, 3) and (8, 1) mod (11, 13), a palindrome pair. (2) DOUBLERS: the only
+            two-doubler fills are p = 1 or 5 with 29 and 31; p = 2 or 4 with one of 11/23 and one
+            of 29/31; p = 3 with 11 and 23, or one of 59/61 with one of 29/31; and THE LONGEST RUN
+            OF HOLES FILLED BY 13 PLUS TWO DOUBLES EACH IS EXACTLY 2, because the smallest window
+            holding two double holes of one gear is 4 (11), 11 (23), 5 (29), 10 (31) - no doubler
+            doubles twice inside three consecutive holes - and 59, 61 do not help (both offer only
+            positions 1 and 5). (3) SINGLES: longest stretch of consecutive non-empty holes 17: 4
+            (1|2|4|5), 19: 2, 37: 2, 41: 2, 43: 1, 47: 1, 53: 2; a single gear puts two cells in an
+            m-window only if delta_g <= m - 1 (same position twice) or one class meets it twice at
+            hole distance k 7^{-1}, k <= 4; over three consecutive holes only 17 reaches three
+            cells, and 43, 47 reach one. (4) THE DOUBLE-WINDOW LOCK: with slack S = sum of the best
+            m-windows minus 5m, every gear must give at least cap(g, m) - S; at small slack this
+            forces a doubler onto the unique window carrying two of its double holes, fixing both
+            its offsets and its positions, and the rows it leaves exceed what the singles of (3)
+            can supply. The lock bites for 11 from m = 4, 29 from m = 5, 31 from m = 10, 23 from
+            m = 11. Proofs by this route: chain 4 impossible at q = 29 (only four phase pairs
+            survive the forcing, all with 11 on its unique 6-cell window 14|5|1|25, and 17, 19,
+            23, 29 cannot partition the residual), chain 5 impossible at q = 31 (killed at gear 29,
+            whose only 4-cell 5-window puts cells in the two end holes only). (5) THE DEAD BLOCK:
+            13 is silent exactly at holes 0, 11, 12 mod 13, one block of three, so every chain of
+            11 holes meets a silent hole and every chain of 13 holes meets all three; a silent hole
+            needs at least three gears, three only if all double there - the covering triples are
+            (11,23,29), (11,23,31), (11,29,31), (23,29,31), (29,31,59), (29,31,61) - and since no
+            doubler doubles twice in three consecutive holes the three silent holes take at most
+            four doubles in total, so at most one is a three-gear hole and the other two need four
+            gears each. THE CHAIN LADDER (words only, two independent engines agreeing, first four
+            matching the known chains): chain = 1, 2, 3, 4, 5, 6, 8, 9 for q = 19, 23, 29, 31, 37,
+            41, 43, 47; window in holes q'^2/210 = 2.52, 4.00, 4.58, 6.52, 8.00, 8.80, 10.52,
+            13.38; margins 1.52, 2.00, 1.58, 2.52, 3.00, 2.80, 2.52, 4.38. "Each new gear adds one
+            hole" PROVED for 19 <= q <= 41 and REFUTED at q = 43 (6 to 8). STRONG (rules proved,
+            ladder computed); the lemma now rests on making one of the two locks hold for every q
+            rather than gear by gear - the density bound dies at q = 47 (c.x) and beyond it only
+            the phase relations of (1)-(5) carry the weight.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5860,3 +5904,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xii: word solver reproduces the lap records 2..25 for q = 7..29 with no scan and gives 31 laps at q = 31 (new exact); record/window on laps 4/5 .. 31/45.
 - 2026-09-21, R5.f.xxxv.c.xiii: all record runs - 4, 22, 2 per period at q = 19, 23, 29, mirror-closed; waste exactly 0, 1, 2 in every record run; ends on 13 or 7; no single gear stops a run.
 - 2026-09-21, R5.f.xxxv.c.xiv: waste prediction (gears above 7 minus 4) REFUTED at q = 31 - minimal waste 6, not 3; what survives is the forced-gear rule: gear g must strike any run longer than g - d_g.
+- 2026-09-21, R5.f.xxxv.c.xv (tiling lane): clash rule 11 vs 13 (20 of 143 residues, every phase pair clashes at m = 9); 13 plus two doubles each runs at most 2 holes; the dead block of three silent holes needs four gears twice over; the double-window lock proves chain 3 at q = 29 and 4 at q = 31 from the words; chain ladder 1, 2, 3, 4, 5, 6, 8, 9 for q = 19..47 against window 2.52..13.38 holes, +1-per-gear refuted at q = 43.
