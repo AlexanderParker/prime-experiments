@@ -4461,6 +4461,40 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             STRONG, CANDIDATE: the lemma for every q >= 13 now rests on the single q-free statement
             of step 7. What would have to break it: N(k) growing slower than about 29 sqrt(k)/ln(210k),
             which the measured values do not do; not yet shown for k >= 12.
+          - R5.f.xxxv.c.xx. PRIOR-ART CHECK: THE DEAD-PAIR REDUCTION IS THE WALL'S W2 IN NEW
+            COORDINATES (manager, 2026-09-22; research/proof/the_wall.md W1-W2, docs/novel/
+            island-witness-integers.md section 1(d), docs/handover.md sections 3 and 7.3). Run
+            before funding further work on c.xix's open step, per the standing rule to grep the
+            novel index first. FINDING: the project already holds the statement c.xix reduced to.
+            the_wall.md W2 reads "the family is a finite combinatorial object at every d: the
+            minimum number of primes whose fixed-separation pairs can cover d consecutive columns",
+            names it K_columns(d), records its first values (5, 7, 11, 18, 25, 34, 43, 58, 88, 91,
+            103, 118, 145, 161 at 2..15 gears - the F ladder read backwards), and states the target
+            as K_columns(d) > pi(sqrt(6d)), which it says "is exactly F < W for every member of the
+            one-phase fixed-separation family". docs/novel/island-witness-integers.md 1(d) defines
+            the same quantity as K(d) on islands with a table to d = 2240 and the key separation:
+            the gears needed to PAY for a cover are bounded (about a dozen, the reciprocal sum)
+            while the gears needed to BUILD one grow. the_wall.md section 4 records the constant:
+            "the tight quantity is the constant c in K(d) ~ pi(sqrt(c d)): 6 is the target, 24 is
+            measured for whole columns, 7 to 11 for islands". SO c.xix's N(k) IS K restricted to
+            the dead-pair cells, and its requirement N(ceil(q'^2/210) - 1) > pi(q) - 4 is W2's
+            K_columns(d) > pi(sqrt(6d)) transported by d = 35k (210 = 6 x 35). The transport is
+            exact and was not noticed by the lane or by the manager when c.xix was written; the
+            claim there that the lemma "reduces to one q-free statement" is CORRECT BUT NOT NEW -
+            the project posed that statement itself and has measured its constant. WORSE FOR THE
+            NEW COORDINATES: N(k) covers only the dead-pair cells, a subset of the span, so
+            N(k) <= K(35k) and a lower bound on N is a STRONGER statement than W2 asks for.
+            WHAT IS GENUINELY NEW IN c.xvii-c.xix AND SURVIVES: the block decomposition read as
+            three rows (gear 5 as cutter is project vocabulary - the anchor 2,3,5 - but the row
+            reading is new); the LEG RULE ON BLOCKS of c.xviii (exact, q-free, checked to gear
+            500); the ORPHAN LAW (exact, checked from columns to gear 2000); the fact that only
+            gear 7 doubles in a block; that no gear from 29 up reaches a neighbouring block; the
+            measured N table 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12; the chain ladder 0, 1, 1, 3, 4,
+            6, 8, 11, 17 for q = 7..37; and the exact statement that counting is closed (the
+            reciprocal sums cross one half at q = 29 and q = 47). REDISCOVERY, recorded; the branch
+            is NOT closed, because W2 is the project's own OPEN statement rather than a known
+            result - working it is legitimate - but it must be worked as W2, with the new exact
+            rules as tools, and the manager's framing of c.xix is corrected here.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6039,3 +6073,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xvii: word construction on the full opening set - gear 5 cuts blocks of three, ONLY gear 7 can double (positions 1, 2 at b = 4 mod 7), every gear from 29 up misses neighbouring blocks; chain ladder 0, 1, 1, 3, 4, 6, 8, 11 for q = 7..31 against window 4.0..45.6 blocks (ratio 0.10 to 0.25); F(q) = 5 x chain + ends confirmed; density proves the lemma to q = 23 and dies at q = 29.
 - 2026-09-21, R5.f.xxxv.c.xviii: leg rule on blocks PROVED - g strikes two blocks D apart iff g divides one of 5D +- 1, 2, 3 or 15D +- 1, 2, 4, 5, 7, 8, 10 (plus 7 when 7 | D); checked against direct search to gear 500 for D = 0..12; the bridging set is finite and independent of q, and a gear above 15m - 5 puts at most one cell into a chain of m blocks.
 - 2026-09-22, R5.f.xxxv.c.xix (six-dimension workflow): the dead-pair reduction - gear 7 is silent on adjacent blocks 6, 0 mod 7, the orphan law (verified from columns to gear 2000) gives N(1) = 4, and chain(q) <= 7 k_max + 7 with k_max = max{k : N(k) <= pi(q) - 4}. The lemma for every q >= 13 reduces to ONE q-free statement, N(k) >= pi(sqrt(210(k+1))) - 3; measured N = 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12 for k = 1..11; q = 53 needs only N(16) >= 13. Chain ladder extends to 17 at q = 37. Counting closed: the reciprocal sums cross one half at q = 29 and q = 47.
+- 2026-09-22, R5.f.xxxv.c.xx: PRIOR-ART CHECK - c.xix's N(k) reduction is the wall's W2 (K_columns(d) > pi(sqrt(6d))) transported by d = 35k; the project already posed it and measured its constant at 24 against a target 6 (7 to 11 on islands). The dead-pair version asks for a STRONGER statement than W2. What survives as new: the leg rule on blocks, the orphan law, the row reading of the block, the N table and the chain ladder. Branch continues, but as W2.
