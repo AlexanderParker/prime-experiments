@@ -4331,7 +4331,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             hole" PROVED for 19 <= q <= 41 and REFUTED at q = 43 (6 to 8). STRONG (rules proved,
             ladder computed); the lemma now rests on making one of the two locks hold for every q
             rather than gear by gear - the density bound dies at q = 47 (c.x) and beyond it only
-            the phase relations of (1)-(5) carry the weight.
+            the phase relations of (1)-(5) carry the weight. INDEPENDENT CHECK (manager,
+            research/stack/r8/machine5_chain_exists.py): the existence half of every ladder entry
+            confirmed by direct construction - a phase tuple covering all 5m cells found for every
+            (q, m) of the ladder, by a set-cover search written from the cell rule alone and not
+            from the lane's engines; e.g. q = 43, m = 8 at h0 = 1, 1, 7, 10, 4, 24, 7, 31, 36, 7
+            mod 11, 13, 17, 19, 23, 29, 31, 37, 41, 43. Two of the constructed chains (q = 37 and
+            q = 47) place 13 at h0 = 0 mod 13, i.e. they OPEN on a dead-block hole, so the dead
+            block does not bar a chain from starting in it. The impossibility half (no chain of
+            m + 1) rests on the lane's two engines and is not independently rechecked here.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5905,3 +5913,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xiii: all record runs - 4, 22, 2 per period at q = 19, 23, 29, mirror-closed; waste exactly 0, 1, 2 in every record run; ends on 13 or 7; no single gear stops a run.
 - 2026-09-21, R5.f.xxxv.c.xiv: waste prediction (gears above 7 minus 4) REFUTED at q = 31 - minimal waste 6, not 3; what survives is the forced-gear rule: gear g must strike any run longer than g - d_g.
 - 2026-09-21, R5.f.xxxv.c.xv (tiling lane): clash rule 11 vs 13 (20 of 143 residues, every phase pair clashes at m = 9); 13 plus two doubles each runs at most 2 holes; the dead block of three silent holes needs four gears twice over; the double-window lock proves chain 3 at q = 29 and 4 at q = 31 from the words; chain ladder 1, 2, 3, 4, 5, 6, 8, 9 for q = 19..47 against window 2.52..13.38 holes, +1-per-gear refuted at q = 43.
+- 2026-09-21, manager check of c.xv: every chain-ladder entry constructed explicitly by an independent set-cover search (phase tuples recorded); the chains at q = 37 and 47 open on a dead-block hole.
