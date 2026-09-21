@@ -4361,6 +4361,34 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             cutter and the block is the three open columns 0, 2, 3 of each five. FACT (the
             restriction and its cost); c..c.xv are kept as the worked example of the method on the
             hardest sub-case, and the method now moves to the full object.
+          - R5.f.xxxv.c.xvii. THE WORD CONSTRUCTION ON THE FULL OPENING SET (2026-09-21;
+            research/stack/r8/full_blocks.py, full_chain_ladder.py). The method of c..c.xv applied
+            to the object c.xvi says it should be applied to. Gear 5 is the cutter: it strikes
+            columns 1 and 4 mod 5, leaving a BLOCK of three open columns per five, positions
+            p = 1, 2, 3 at columns 5b, 5b + 2, 5b + 3. Gear g >= 7 strikes block b at position p
+            iff b = 5^{-1}(+-6^{-1} - e_p) mod g with (e_1, e_2, e_3) = (0, 2, 3).
+            PRE-REGISTERED and PROVED: the open columns of a block sit at distances 1, 2, 3, and
+            3D -+ 1 is 2, 4 for D = 1, 5, 7 for D = 2, 8, 10 for D = 3, so BY THE LEG RULE ONLY
+            GEAR 7 CAN STRIKE TWO CELLS OF ONE BLOCK, at positions 1 and 2, exactly at the blocks
+            b = 4 mod 7 (checked over all gears to 200). Every gear >= 11 gives AT MOST ONE CELL
+            PER BLOCK and exactly six cells per period of g blocks, two classes by three positions.
+            Gear 7 block word: - | 3 | 3 | 1 | 12 | 2 | -. Longest run of consecutive non-empty
+            blocks: 2 for the gears 11..23, 1 for every gear from 29 up - a gear of 29 or more
+            never strikes two neighbouring blocks. Class steps within a gear (p1 to p2, p2 to p3)
+            are -2 x 5^{-1} and -5^{-1} mod g. THE CHAIN LADDER (set cover on the words, same
+            engine as the independent check of c.xv): chain = 0, 1, 1, 3, 4, 6, 8, 11 for q = 7,
+            11, 13, 17, 19, 23, 29, 31; the column record follows as F(q) = 5 x chain + ends with
+            ends in [0, 6], confirmed against the recorded F(q) = 4, 6, 10, 17, 24, 33, 42, 57
+            (differences 4, 1, 5, 2, 4, 3, 2, 2). Window in blocks q'^2/30 = 4.0, 5.6, 9.6, 12.0,
+            17.6, 28.0, 32.0, 45.6, so chain over window runs 0.00, 0.18, 0.10, 0.25, 0.23, 0.21,
+            0.25, 0.24 - three to four times the room the lap route had. WORD BOUND (largest m
+            whose densest m-windows sum to at least 3m): 0, 1, 2, 5, 9, 20, and then none, because
+            a gear contributes about 6m/g cells to an m-window and the bound exists only while the
+            gears' reciprocals sum below one half (7 to 23 give 0.466, adding 29 gives 0.500,
+            adding 31 gives 0.532). So density proves the lemma outright for q <= 23 and dies at
+            q = 29. STRONG; the locks of c.xv now have a much simpler object to bite on - one
+            doubler at one residue, every other gear one cell per block, nothing above 29 touching
+            two neighbouring blocks.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5936,3 +5964,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xv (tiling lane): clash rule 11 vs 13 (20 of 143 residues, every phase pair clashes at m = 9); 13 plus two doubles each runs at most 2 holes; the dead block of three silent holes needs four gears twice over; the double-window lock proves chain 3 at q = 29 and 4 at q = 31 from the words; chain ladder 1, 2, 3, 4, 5, 6, 8, 9 for q = 19..47 against window 2.52..13.38 holes, +1-per-gear refuted at q = 43.
 - 2026-09-21, manager check of c.xv: every chain-ladder entry constructed explicitly by an independent set-cover search (phase tuples recorded); the chains at q = 37 and 47 open on a dead-block hole.
 - 2026-09-21, R5.f.xxxv.c.xvi: machine 5 leaves three open classes (n = 0, 2, 3 mod 5) and the lap route follows only n = 0, so it is a strict restriction of the range statement - measured 2.7 times tighter on every q from 7 to 31; the word method survives and moves to the full opening set with gear 5 as the cutter.
+- 2026-09-21, R5.f.xxxv.c.xvii: word construction on the full opening set - gear 5 cuts blocks of three, ONLY gear 7 can double (positions 1, 2 at b = 4 mod 7), every gear from 29 up misses neighbouring blocks; chain ladder 0, 1, 1, 3, 4, 6, 8, 11 for q = 7..31 against window 4.0..45.6 blocks (ratio 0.10 to 0.25); F(q) = 5 x chain + ends confirmed; density proves the lemma to q = 23 and dies at q = 29.
