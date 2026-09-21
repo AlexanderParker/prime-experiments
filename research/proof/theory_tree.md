@@ -4261,6 +4261,21 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             finite word puzzle, and the lemma "record < window" on laps is a statement about
             which class choices can be made consistently along a walk - the alignable-chain
             recursion of E4, now with the tiling structure (c.viii-c.xi) as its shape.
+          - R5.f.xxxv.c.xiii. ALL RECORD RUNS OF A PERIOD (2026-09-21; research/stack/r8/
+            machine5_record_diagrams.py, machine5_all_records.py). Spawned by c.xii: the solver's
+            walk was one record run; the scan at q = 23 showed another. Full-period scans: q = 19:
+            4 record runs (two mirror pairs), q = 23: 22 (mirror-closed), q = 29: 2 (one mirror
+            pair). What all of them share: WASTE - the strikes landing inside the run beyond one
+            per lap are exactly 0 at q = 19, 1 at q = 23, 2 at q = 29, the same for every record
+            run of the period (the record is where the words stack with least overlap; the solver's
+            q = 31 walk wastes 6, so other q = 31 record runs may exist with less); ENDS - the run
+            begins and ends on a strike by 13 or 7 (q = 19: 13, 7, 17; q = 23: 13 in 10, 7 in 9,
+            11 in 2, 13+19 in 1; q = 29: 7 and 13, mirrored), the laps just outside are open and
+            every gear's next strike is 2 to 5 laps away - no single gear ends a run, the walk
+            stops where all the fixed classes miss together; 7's pairs inside the run: two at
+            q = 19, three at q = 23, four at q = 29, always aligned so the run holds whole 7-pairs
+            with a partial hole at each end. FACT (exact). The stopping constraint is not one
+            gear's; it is the joint miss of all classes once fixed - the phase relation again.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5831,3 +5846,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.x: stacking the hole words - forced fills confirmed exactly at q = 19 (11 doubles in every filled hole) and q = 23 (11 in a 3-window in 34 of 36 chains); word bound 1, 2, 5, 7, 10, 15, 28 for q = 19..43, no bound from q = 47: only phases limit chains beyond.
 - 2026-09-21, R5.f.xxxv.c.xi: phases of 11 and 13 - q = 19 filled holes = 12 diagrams x 8 CRT classes (11 at 3 or 6, 13 avoiding 11's pair); q = 23 chains: 11 in its two mirror 3-windows, 13's phase in a 5-set each; chains come in mirror pairs; the tiling rule stated.
 - 2026-09-21, R5.f.xxxv.c.xii: word solver reproduces the lap records 2..25 for q = 7..29 with no scan and gives 31 laps at q = 31 (new exact); record/window on laps 4/5 .. 31/45.
+- 2026-09-21, R5.f.xxxv.c.xiii: all record runs - 4, 22, 2 per period at q = 19, 23, 29, mirror-closed; waste exactly 0, 1, 2 in every record run; ends on 13 or 7; no single gear stops a run.
