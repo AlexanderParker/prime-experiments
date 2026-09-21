@@ -4340,6 +4340,27 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             q = 47) place 13 at h0 = 0 mod 13, i.e. they OPEN on a dead-block hole, so the dead
             block does not bar a chain from starting in it. The impossibility half (no chain of
             m + 1) rests on the lane's two engines and is not independently rechecked here.
+          - R5.f.xxxv.c.xvi. THE LAP ROUTE IS A RESTRICTION, NOT THE RANGE STATEMENT
+            (2026-09-21; research/stack/r8/machine5_three_classes.py). Checked while looking for a
+            lock that holds for every q. Gear 5 strikes columns n = 1 and 4 mod 5, so MACHINE 5
+            LEAVES THREE OPEN CLASSES PER PERIOD: n = 0, 2, 3 mod 5, arranged as a lone column and
+            an adjacent pair. The laps of nodes c..c.xv follow n = 0 mod 5 only - the copies
+            30k -+ 1 of the known opening - and discard the classes n = 2, 3 mod 5, which machine 5
+            carries round its period just as well. So the lap statement is a restriction of the
+            range statement to one of three opening classes, and is strictly harder. MEASURED on
+            the same windows (record against window, both in their own units): full machine 5..q
+            0.20, 0.21, 0.21, 0.28, 0.27, 0.24, 0.26, 0.25 for q = 7, 11, 13, 17, 19, 23, 29, 31;
+            lap machine 7..q 0.50, 0.71, 0.52, 0.58, 0.68, 0.64, 0.78, 0.68 on the same q. The lap
+            route runs about 2.7 times tighter throughout - the margin the tiling lane was fighting
+            for (1.52 holes at q = 19) is an artefact of throwing away two thirds of the openings,
+            not a feature of the range statement. WHAT SURVIVES: the word structure itself, which
+            was never about the choice of class - a cutter gear leaving fixed blocks, a staircase
+            gear walking down them, doublers admissible only at their own class distance, singles
+            limited to one cell in three blocks, and the two locks (double-window, dead block).
+            The same construction applies to the full opening set of machine 5, where gear 5 is the
+            cutter and the block is the three open columns 0, 2, 3 of each five. FACT (the
+            restriction and its cost); c..c.xv are kept as the worked example of the method on the
+            hardest sub-case, and the method now moves to the full object.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5914,3 +5935,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xiv: waste prediction (gears above 7 minus 4) REFUTED at q = 31 - minimal waste 6, not 3; what survives is the forced-gear rule: gear g must strike any run longer than g - d_g.
 - 2026-09-21, R5.f.xxxv.c.xv (tiling lane): clash rule 11 vs 13 (20 of 143 residues, every phase pair clashes at m = 9); 13 plus two doubles each runs at most 2 holes; the dead block of three silent holes needs four gears twice over; the double-window lock proves chain 3 at q = 29 and 4 at q = 31 from the words; chain ladder 1, 2, 3, 4, 5, 6, 8, 9 for q = 19..47 against window 2.52..13.38 holes, +1-per-gear refuted at q = 43.
 - 2026-09-21, manager check of c.xv: every chain-ladder entry constructed explicitly by an independent set-cover search (phase tuples recorded); the chains at q = 37 and 47 open on a dead-block hole.
+- 2026-09-21, R5.f.xxxv.c.xvi: machine 5 leaves three open classes (n = 0, 2, 3 mod 5) and the lap route follows only n = 0, so it is a strict restriction of the range statement - measured 2.7 times tighter on every q from 7 to 31; the word method survives and moves to the full opening set with gear 5 as the cutter.
