@@ -4409,6 +4409,58 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             CELL INTO A CHAIN OF m BLOCKS - the block analogue of the window rule that a gear above
             3F + 4 strikes at most one opening of a run. FACT (exact, q-independent); this is the
             first rule of the line that does not have to be re-verified gear by gear as q grows.
+          - R5.f.xxxv.c.xix. THE DEAD-PAIR REDUCTION: THE LEMMA BECOMES ONE q-FREE STATEMENT
+            (six-dimension workflow with adversarial refutation, received 2026-09-22; thirteen
+            agents, scripts in the run scratchpad; manager spot-checks in research/stack/r8/
+            full_orphan_law.py). Six dimensions were derived and then attacked by separate workers;
+            what survived is assembled here.
+            THE DEAD PAIR. Gear 7 is silent exactly at blocks b = 6 and b = 0 mod 7, and those are
+            ADJACENT: a dead pair, six cells that gears >= 11 must take alone. Every m consecutive
+            blocks hold at least floor((m-1)/7) complete dead pairs, and k consecutive dead pairs
+            span 7k - 5 blocks. ORPHAN LAW (PROVED; re-verified by the manager straight from the
+            column definition over every gear to 2000): the only adjacent-block cell pairs any gear
+            >= 11 has are row 1 to row 2 (gear 11), row 1 to row 3 (23), row 2 to row 3 (17, 19),
+            row 3 to row 2 (11, 13) - NONE lands its right cell in row 1, and no gear >= 11 supplies
+            more than two cells of a dead pair. Hence N(1) = 4, where N(k) is the least number of
+            distinct gears >= 11 that can cover k consecutive dead pairs; re-verified exhaustively.
+            THE REDUCTION (PROVED): chain(q) <= 7 k_max(q) + 7 with k_max = max{k : N(k) <= pi(q) - 4}.
+            The 7-block spacing of the dead pairs turns the QUADRATIC window q'^2/30 into a LINEAR
+            demand on N, and N is a function of k alone - no q in it.
+            PROOF SKELETON. 1 columns to blocks to cells, exact - PROVED. 2 a chain is a phase
+            covering problem, every phase tuple occurring by CRT and no gear's phase normalisable -
+            PROVED (an attempted normalisation is recorded refuted). 3 the lemma is exactly
+            chain(q) < q'^2/30 - PROVED. 4 base q <= 23 by the capacity bound 0, 1, 2, 5, 9, 20
+            against windows 4.03, 5.63, 9.63, 12.03, 17.63, 28.03 - PROVED. 5 q = 29..47 by the
+            row-3 relaxation, chain(q) <= R(q) with R = 25, 31, 38, 49, 59, <=93 against 32.03,
+            45.63, 56.03, 61.63, 73.63, 93.63 - PROVED as six finite certificates. 6 every q via the
+            dead-pair skeleton - PROVED as a reduction. 7 THE ONLY OPEN STEP: N(k) >= pi(sqrt(210(k+1))) - 3
+            for every k, equivalently N(ceil(q'^2/210) - 1) > pi(q) - 4 - OPEN. 8 q <= 11 directly -
+            PROVED.
+            MEASURED N: 4, 5, 6, 7 for k = 1..4 (exhaustive, two independent engines), 8, 9, 10, 10,
+            11, 12, 12 for k = 5..11 (one engine). The next machines each need one finite covering
+            computation: q = 53 needs N(16) >= 13, q = 59 needs N(17) >= 14, q = 61 needs N(21) >= 15,
+            q = 67 needs N(24) >= 16, q = 71 needs N(25) >= 17, each over the bounded pool
+            g <= 105k - 80. The required growth is far weaker than the measured one - about
+            29 sqrt(k) / ln(210k), so the required marginal TENDS TO ZERO while the measured margin
+            grows like sqrt(q/ln q)/4.26.
+            ALSO SETTLED: the chain ladder extends to chain = 0, 1, 1, 3, 4, 6, 8, 11, 17 for
+            q = 7..37 (q = 37 verified by two engines; 41 -> 17 and 43 -> 20 inherited from one).
+            CORRECTIONS TO THE BRIEF: the class separation is t_g = min(d_g, g - d_g) with
+            t_g = t iff g divides 15t -+ 1, giving t = 1: {7}, 2: {29, 31}, 3: {11, 23}, 4: {59, 61},
+            5: {19, 37}, 6: {13}, 7: {53}, 8: {17} - the manager's list in c.xviii had 13 at 7, and
+            6 is correct (13 divides 15 x 6 + 1 = 91). "A gear doubles inside one row iff
+            g <= 15m - 14" is only an implication, not an equivalence (gear 43, m = 4).
+            REFUTED along the way: the constraint-concentration claim at short sub-windows; the
+            "41 per cent of dead pairs carry a doubling" claim (six consecutive doubling-carrying
+            dead pairs exist); the two-row ordering; a constant one-gear ceiling K (K = 6 at q = 31);
+            the gap-insensitive sufficient condition.
+            COUNTING IS CLOSED. Every count in the pile - word bound, per-row, row-vector, dead-cell,
+            orphan-row, segmented and k-refined capacity - is bounded by the gears' reciprocal sums,
+            which cross one half at q = 29 (gears from 7) and q = 47 (gears from 11). The dead-cell
+            count stands above the window from q = 17 on. No counting argument can finish this.
+            STRONG, CANDIDATE: the lemma for every q >= 13 now rests on the single q-free statement
+            of step 7. What would have to break it: N(k) growing slower than about 29 sqrt(k)/ln(210k),
+            which the measured values do not do; not yet shown for k >= 12.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5986,3 +6038,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xvi: machine 5 leaves three open classes (n = 0, 2, 3 mod 5) and the lap route follows only n = 0, so it is a strict restriction of the range statement - measured 2.7 times tighter on every q from 7 to 31; the word method survives and moves to the full opening set with gear 5 as the cutter.
 - 2026-09-21, R5.f.xxxv.c.xvii: word construction on the full opening set - gear 5 cuts blocks of three, ONLY gear 7 can double (positions 1, 2 at b = 4 mod 7), every gear from 29 up misses neighbouring blocks; chain ladder 0, 1, 1, 3, 4, 6, 8, 11 for q = 7..31 against window 4.0..45.6 blocks (ratio 0.10 to 0.25); F(q) = 5 x chain + ends confirmed; density proves the lemma to q = 23 and dies at q = 29.
 - 2026-09-21, R5.f.xxxv.c.xviii: leg rule on blocks PROVED - g strikes two blocks D apart iff g divides one of 5D +- 1, 2, 3 or 15D +- 1, 2, 4, 5, 7, 8, 10 (plus 7 when 7 | D); checked against direct search to gear 500 for D = 0..12; the bridging set is finite and independent of q, and a gear above 15m - 5 puts at most one cell into a chain of m blocks.
+- 2026-09-22, R5.f.xxxv.c.xix (six-dimension workflow): the dead-pair reduction - gear 7 is silent on adjacent blocks 6, 0 mod 7, the orphan law (verified from columns to gear 2000) gives N(1) = 4, and chain(q) <= 7 k_max + 7 with k_max = max{k : N(k) <= pi(q) - 4}. The lemma for every q >= 13 reduces to ONE q-free statement, N(k) >= pi(sqrt(210(k+1))) - 3; measured N = 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12 for k = 1..11; q = 53 needs only N(16) >= 13. Chain ladder extends to 17 at q = 37. Counting closed: the reciprocal sums cross one half at q = 29 and q = 47.
