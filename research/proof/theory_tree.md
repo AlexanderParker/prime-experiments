@@ -4389,6 +4389,26 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             q = 29. STRONG; the locks of c.xv now have a much simpler object to bite on - one
             doubler at one residue, every other gear one cell per block, nothing above 29 touching
             two neighbouring blocks.
+          - R5.f.xxxv.c.xviii. THE LEG RULE ON BLOCKS (manager, 2026-09-21; research/stack/r8/
+            full_block_leg_rule.py). Spawned by c.xvii: generalise "only gear 7 doubles in a block"
+            and "no gear from 29 up reaches a neighbouring block" to every block distance.
+            DERIVATION: a gear's six cells sit at blocks s(+-c - e_p), s = 5^{-1}, c = 6^{-1} mod g,
+            (e_1, e_2, e_3) = (0, 2, 3). Two cells lie D blocks apart either in one class, where
+            D = +-s(e_p - e_p') and multiplying by 5 gives 5D = +-1, +-2, +-3 mod g, or across the
+            classes, where D = +-(2sc + sj) with j in {0, +-1, +-2, +-3} and multiplying by 15 and
+            using 5s = 1, 6c = 1 gives 15D = +-(1 + 3j). RULE (PROVED): gear g strikes two blocks D
+            apart iff g divides one of 5D +- 1, 5D +- 2, 5D +- 3, 15D +- 1, 15D +- 2, 15D +- 4,
+            15D +- 5, 15D +- 7, 15D +- 8, 15D +- 10 - plus gear 7 when 7 divides D, since only gear
+            7 has two cells in one block. CHECKED exactly against direct search over every gear to
+            500, for D = 0..12, agreeing on every gear: D = 0 gives 7 alone; D = 1 gives 7, 11, 13,
+            17, 19, 23 and nothing above; D = 2 adds 29, 31, 37; D = 3 gives 7, 11, 13, 17, 19, 23,
+            37, 41, 43, 47, 53. THE BRIDGING SET FOR EACH D IS FINITE AND INDEPENDENT OF q - 6, 9,
+            11, 12, 13, 14, 14, 15, 15, 16, 16, 17 gears for D = 1..12, always the prime factors of
+            twenty numbers of size at most 15D + 10. COROLLARY (PROVED): a gear larger than
+            15D + 10 cannot bridge the distance D, so A GEAR LARGER THAN 15m - 5 PUTS AT MOST ONE
+            CELL INTO A CHAIN OF m BLOCKS - the block analogue of the window rule that a gear above
+            3F + 4 strikes at most one opening of a run. FACT (exact, q-independent); this is the
+            first rule of the line that does not have to be re-verified gear by gear as q grows.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5965,3 +5985,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, manager check of c.xv: every chain-ladder entry constructed explicitly by an independent set-cover search (phase tuples recorded); the chains at q = 37 and 47 open on a dead-block hole.
 - 2026-09-21, R5.f.xxxv.c.xvi: machine 5 leaves three open classes (n = 0, 2, 3 mod 5) and the lap route follows only n = 0, so it is a strict restriction of the range statement - measured 2.7 times tighter on every q from 7 to 31; the word method survives and moves to the full opening set with gear 5 as the cutter.
 - 2026-09-21, R5.f.xxxv.c.xvii: word construction on the full opening set - gear 5 cuts blocks of three, ONLY gear 7 can double (positions 1, 2 at b = 4 mod 7), every gear from 29 up misses neighbouring blocks; chain ladder 0, 1, 1, 3, 4, 6, 8, 11 for q = 7..31 against window 4.0..45.6 blocks (ratio 0.10 to 0.25); F(q) = 5 x chain + ends confirmed; density proves the lemma to q = 23 and dies at q = 29.
+- 2026-09-21, R5.f.xxxv.c.xviii: leg rule on blocks PROVED - g strikes two blocks D apart iff g divides one of 5D +- 1, 2, 3 or 15D +- 1, 2, 4, 5, 7, 8, 10 (plus 7 when 7 | D); checked against direct search to gear 500 for D = 0..12; the bridging set is finite and independent of q, and a gear above 15m - 5 puts at most one cell into a chain of m blocks.
