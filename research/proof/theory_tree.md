@@ -4276,6 +4276,18 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             q = 19, three at q = 23, four at q = 29, always aligned so the run holds whole 7-pairs
             with a partial hole at each end. FACT (exact). The stopping constraint is not one
             gear's; it is the joint miss of all classes once fixed - the phase relation again.
+          - R5.f.xxxv.c.xiv. THE WASTE PREDICTION (2026-09-21; research/stack/r8/
+            machine5_waste.py). Spawned by c.xiii's waste figures 0, 1, 2 at q = 19, 23, 29, whose
+            machines carry 4, 5, 6 gears above 7. PRE-REGISTERED: waste = (gears above 7) - 4, so 3
+            at q = 31. REFUTED: the minimal waste over every record walk at q = 31 is 6, not 3 (the
+            walk enumeration reproduces 0, 1, 2 exactly at q = 19, 23, 29, so the method is sound).
+            MECHANISM of the jump: at a 31-lap run both close-distance gears are forced inside - a
+            gear with lap distance d cannot avoid a run longer than its larger class gap g - d, and
+            29 (gap 27) and 31 (gap 29) are both under 31 - so their six strikes land in a run that
+            the other five gears already cover, and every extra forced gear adds its own overlap.
+            The rule that survives: a gear g must strike any run longer than g - d_g, and a run
+            longer than g + d_g holds both its classes. FACT (the forced-gear rule); the waste
+            sequence is not linear in the gear count and is not a route.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -5847,3 +5859,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xi: phases of 11 and 13 - q = 19 filled holes = 12 diagrams x 8 CRT classes (11 at 3 or 6, 13 avoiding 11's pair); q = 23 chains: 11 in its two mirror 3-windows, 13's phase in a 5-set each; chains come in mirror pairs; the tiling rule stated.
 - 2026-09-21, R5.f.xxxv.c.xii: word solver reproduces the lap records 2..25 for q = 7..29 with no scan and gives 31 laps at q = 31 (new exact); record/window on laps 4/5 .. 31/45.
 - 2026-09-21, R5.f.xxxv.c.xiii: all record runs - 4, 22, 2 per period at q = 19, 23, 29, mirror-closed; waste exactly 0, 1, 2 in every record run; ends on 13 or 7; no single gear stops a run.
+- 2026-09-21, R5.f.xxxv.c.xiv: waste prediction (gears above 7 minus 4) REFUTED at q = 31 - minimal waste 6, not 3; what survives is the forced-gear rule: gear g must strike any run longer than g - d_g.
