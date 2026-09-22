@@ -4630,6 +4630,75 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             elementary count pi(q) - 4 < k_req(q) that finishes the lemma for every q. The measured
             surplus column is the evidence that this is the right shape; enumeration cannot supply
             it. STRONG, CANDIDATE.
+          - R5.f.xxxv.c.xxiv. THE MARGINAL LAW: TARGET REFUTED, REPLACEMENT FOUND, AND THE
+            SKELETON CLOSED EXCEPT FOR GROWTH (2026-09-22; 25 agents in the owner's four-stage
+            shape - derive, refute, defend, adjudicate - plus assembly; every figure re-derived
+            from the raw column test; manager verification in research/stack/r8/window_boundary.py).
+            THE TARGET N(k) >= k - c IS REFUTED, with proof rather than instances. Each cell is
+            struck at exactly two phases of each gear and phases are independent, so the mean
+            number of uncovered cells over phase vectors is exactly 6k prod(1 - 2/p); some vector
+            attains the floor, and each residual cell is bought with one fresh gear above the pool.
+            Taking the gears to 4219 gives 6 prod < 1/2, hence N(k) <= 574 + k/2 FOR EVERY k, so
+            N(k) - k tends to minus infinity. Confirmed by raw certificates, each a single start
+            integer with all 6k columns rebuilt and tested by real divisibility: N(100) <= 49 (a
+            101-digit start) and N(200) <= 70 (154 digits). Also N(16) = 15, so the stall set
+            through k = 15 is {7, 10, 11, 15} and the surplus is already negative at k = 16.
+            THE CORRECT REPLACEMENT, and it is enough: N(k) >= 3.23 sqrt(k) for k >= 23 suffices
+            for every machine. The constant is sharp - (pi(q) - 4)/sqrt(k_req(q)) is maximised over
+            all primes below a million uniquely at q = 109 (k_req = 60, pi - 4 = 25, ratio
+            25/sqrt(60) = 3.2274861) and falls below 3 for every prime above 137. The reduction is
+            EFFECTIVE AND UNCONDITIONAL: with Rosser-Schoenfeld it holds for every q >= 168 and the
+            primes below 168 are checked directly, no unchecked range.
+            THE SKELETON IS NOW CLOSED EXCEPT FOR ONE STEP. S1 cells and the dead-pair coordinates,
+            S2 the machine owns exactly pi(q) - 4 gears, S3 the window holds k_req(q) >= (q^2 - q -
+            272)/210 complete dead pairs, S4 every cell is 5- and 7-silent, S5 an uncovered cell is
+            a twin pair (with the boundary repair below), S6 the machine is one configuration so
+            N(k_req) > pi(q) - 4 suffices, S7 every machine to q = 61, S9 the reduction for all q
+            at once - ALL PROVED. S8, every machine from q = 67 up, is OPEN, and what it needs is
+            not a sharper constant but A GROWTH MECHANISM: the first open machine is q = 67, which
+            needs N(23) >= 16 where the standing bound gives 15.
+            THE STRONGEST PROVED LOWER BOUND IS EVENTUALLY CONSTANT: N(k) >= 15 for k >= 15 and
+            N(k) >= 16 for k >= 85 (the latter from the orphan row, N_orph(85) = 16 solved exactly).
+            N(k) tending to infinity IS NOT PROVED anywhere in this machine. Capacity gives 12 and
+            stops dead; capacity with the period law gives 13 only beyond k about 2 x 10^20.
+            COUNTING IS NOW CLOSED FROM A FIFTH DIRECTION, and this one is new: adding the
+            difference-SUPPLY constraints, which no cell weighting can see, the row linear
+            programme grows from 5.5 to 11.55 and then FLATTENS at 11.746 (k = 120) and 11.771
+            (k = 200) - the same fractional ceiling as the full grid - while the integer optimum is
+            already 16 at k = 85. So the growth in N is integral: it comes from one-phase-per-gear
+            and no weighting can produce it. That is the signature a proof must have - an exchange
+            or parity argument on the chosen classes, never a weight.
+            BOUNDARY REPAIR (R17), NEW AND VERIFIED BY THE MANAGER INDEPENDENTLY: the rule "an
+            unstruck column of the window is a twin pair" is FALSE at exactly one column of the
+            CLOSED window (q, q'^2], namely n0 = (q'^2 - 1)/6 where 6n + 1 = q'^2 is a square with
+            no prime factor at or below q. Verified over q = 7..113: the set of non-twin openings
+            is always either empty or exactly that column, and it is non-empty precisely when
+            q'^2 - 2 has no prime factor <= q (q = 43: column 368, with 2207 prime and 2209 = 47^2;
+            also q = 11, 17, 23, 31, 41, 59, 67, 83, 101, 103, 113). Taking the window OPEN at the
+            top removes it, and the exceptional column never lies in a fully contained dead pair,
+            so k_req is unchanged and every deduction above is safe. THE PROJECT'S SQUARE-ROOT RULE
+            MUST BE STATED WITH THE STRICT INEQUALITY.
+            OTHER CORRECTIONS, raw: k_req(61) = 21, not 20, so the margins at q = 43..61 are 2, 4,
+            4, 4, 7.
+            NEXT STEP NAMED: the row growth lemma - prove N_orph(k) grows, via the difference-supply
+            law (a gear serves two row cells at distance D only if g divides 105D +- 1, so the
+            supply at each difference is a bounded computable quantity), with the exact row oracle
+            as the test (N_orph = 7, 9, 11, 13, 16 at k = 15, 24, 40, 60, 85, ratio to sqrt(k) flat
+            at 1.735 to 1.837 across that range). The row optima are a near-initial segment of
+            gears plus exactly three or four far gears and NO singleton payments; the unbroken
+            prefix version is refuted (k = 40 skips 23, 41, 43). The invariant to prove is "no
+            payment, O(1) far gears", which turns N_orph(k) into pi(G(k)) - 4 + O(1) and reduces
+            growth to the growth of the threshold G(k). Ruled out by measurement: another
+            enumeration rung (each buys +1 on a constant against a requirement of 16 at k = 23 and
+            85 at k = 1000); any counting, capacity, density or linear-programming argument (capped
+            at 6, 11, 11.7708, 12, and now capped even with supply constraints); the row alone
+            finishing the statement (N_orph(23) = 8 against a needed 16 - the row is where growth
+            can be found cheaply, the constant lives in row interaction, and each extra row costs
+            at least one: the 1/2/3/6-row ladder gives 3, 4, 5, 8 at k = 5 and 6, 8, 9, 12 at
+            k = 12, the six-row column reproducing N(5), N(8), N(12)); and the dual of the first
+            moment, measured weakest exactly where the window lives.
+            STRONG (the rules and the refutation); the window statement now rests on a single named
+            open step with an effective reduction behind it.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6212,3 +6281,4 @@ Part III or Part IV of the proof document?
 - 2026-09-22, R5.f.xxxv.c.xxi: N exhaustive to k = 14 (4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12, 12, 13, 14) and N(k) >= 15 for k >= 18 (cut-free); the lemma at q is exactly K(pi(q)-4) < k_req(q); the q-free surrogate is refuted; counting closed by LP measurement (root saturates at 10.6, every rung is enumeration). The route reaches q = 61 while the project's F ladder already reaches q = 67, so its per-q verdicts add nothing and its value is the structure. K(14) is the one measurement that decides whether the margin widens or closes.
 - 2026-09-22, R5.f.xxxv.c.xxii: counterpoint pass on the owner's instruction - NINE OF TWELVE refutations were wrong or partly wrong. The N(15) certificate was killed by a three-gear transcription error and is valid; four-gears was a confirmation not a refutation; the q-free statement lives with 210k + 79 in place of 210(k+1), the reduction proved; the two-cells-in-an-m-window rule is now a theorem (g <= 15m - 5) and contains the orphan law's gear list; the doubler pool is frozen at 11, 13, 17, 19, 23 forever with longest doubled run exactly 6. Method now derive-refute-defend-adjudicate.
 - 2026-09-22, R5.f.xxxv.c.xxiii: K(14) = 14 exactly - N(15) = 15 proved by twelve cut-free exhaustive cases and re-decided by a second engine. The margin k_req - K runs 2, 4, 4, 4, 6 at q = 43..61 and is WIDENING. Surplus N(k) - k is 0 from k = 12 through k = 15. Enumeration is closed as a route to a theorem; the target is now one sentence: N(k) >= k - c for every k.
+- 2026-09-22, R5.f.xxxv.c.xxiv: N(k) >= k - c REFUTED by proof and raw certificates (N(k) <= 574 + k/2 for every k; N(100) <= 49, N(200) <= 70). Replacement N(k) >= 3.23 sqrt(k) for k >= 23, constant sharp at q = 109, reduction effective and unconditional. Skeleton S1-S7, S9 proved; S8 open and needs GROWTH, first failing at q = 67 (N(23) >= 16 against a standing 15). Counting closed from a fifth direction (supply-constrained LP flattens at 11.77 while the integer optimum is 16) - the growth is integral. BOUNDARY REPAIR: the square-root rule fails at exactly one column of the closed window, 6n+1 = q'^2, verified q = 7..113; state it with the strict inequality. k_req(61) = 21, not 20.
