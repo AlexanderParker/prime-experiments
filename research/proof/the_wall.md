@@ -678,3 +678,57 @@ offsets); every polynomial offset family is priced by a finite Chebotarev consta
 supply at depth sqrt(s) is conditional on F(x) < 2x^2/3 (open) but at depth 61 is a theorem; the
 top layer's plugging is the phase model to 5% with no rigidity (no band insufficient, no block
 impossible, reuse exact).
+
+
+## W2 in block coordinates, and what the enumeration route is worth (manager, 2026-09-22; tree R5.f.xxxv.c.xvi-xxi)
+
+W2 named the object to prove: the minimum number of primes whose fixed-separation pairs can cover
+d consecutive columns, K_columns(d), with the target K > pi(sqrt(6d)) and the constant measured at
+24 against a target 6 (7 to 11 on islands). A round on the range statement arrived at the same
+object from the other side and is recorded here so W2 carries what it now knows.
+
+**The coordinates.** Gear 5 leaves a BLOCK of three open columns per five (columns 5b, 5b+2,
+5b+3, called rows 1, 2, 3). Gear 7 is silent exactly at blocks 6 and 0 mod 7, and those are
+ADJACENT: a DEAD PAIR, six cells that the gears from 11 up must take alone. Dead pairs recur every
+7 blocks, so a stretch of 35 columns is one dead pair and W2's d = 35 k. N(k) = the least number of
+distinct gears >= 11 covering k consecutive dead pairs; N(k) <= K_columns(35k), so a lower bound on
+N is a STRONGER statement than W2 asks for.
+
+**New exact rules, all q-free, all checked against raw divisibility.**
+- LEG RULE ON BLOCKS: gear g strikes two blocks D apart iff g divides one of 5D +- 1, 5D +- 2,
+  5D +- 3, 15D +- 1, 15D +- 2, 15D +- 4, 15D +- 5, 15D +- 7, 15D +- 8, 15D +- 10, plus gear 7 when
+  7 divides D. Checked against direct search over every gear to 500 for D = 0..12. The bridging set
+  for each D is finite and independent of q: 6 gears at D = 1 (7, 11, 13, 17, 19, 23), 9 at D = 2,
+  17 at D = 12. COROLLARY: a gear above 15m - 5 puts at most one cell into any span of m blocks.
+- ONLY GEAR 7 doubles inside a block (rows 1 and 2, at b = 4 mod 7); every gear >= 11 puts at most
+  one cell in a block (raw, all gears to 2000). No gear from 29 up reaches a neighbouring block.
+- ORPHAN LAW: the only adjacent-block cell pairs of a gear >= 11 are row1->row2 (11 alone),
+  row1->row3 (23 alone), row2->row3 (17, 19), row3->row2 (11, 13). None lands its right-hand cell
+  in row 1. The only two-cell sets inside one dead pair are {L1,R2} (11), {L3,R2} (11, 13),
+  {L2,R3} (17, 19), {L1,R3} (23) - never three cells, never R1. Hence N(1) = 4 by hand.
+
+**The exact reformulation.** With W(q) the blocks wholly inside (q, q'^2] and k_req(q) =
+floor((W - 7)/7), the window statement at q is EXACTLY K(pi(q) - 4) < k_req(q), where
+K(n) = max{k : N(k) <= n}.
+
+**The tables.** N(k) = 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12, 12, 13, 14 for k = 1..14, exhaustive,
+five independent engines agreeing. N(k) >= 15 for every k >= 18, from budget-14 infeasibility at
+k = 19 and k = 20 with no cuts. K(n) = 8, 9, 12, 13 at n = 10, 11, 12, 13, against k_req = 10, 13,
+16, 17; at n = 14 the window asks k_req = 20 and K(14) is known only in [14, 17].
+
+**Counting is closed, now measured rather than argued.** Phase averaging caps any capacity bound at
+twelve gears with no k in it. The cut-free linear-programming root of the full model saturates at
+9.18 and reaches only 10.63 over k = 13..25; with window cuts it returns precisely the value fed
+in. Every rung in the N table is pure branch-and-bound. No bound, linear-programming or
+combinatorial, contributes anything.
+
+**What the route is worth, measured honestly.** It settles the window statement for every machine
+from q = 13 to q = 61 and stops, needing N(23) >= 16 for q = 67. THE PROJECT'S OWN F LADDER ALREADY
+DOES BETTER - the exact record F(q) = 34, 88, 91, 103, 118, 145, 160, 179, 213 at q = 23..67 settles
+it directly to q = 67, one machine further. So the per-q verdicts add nothing; the value is the
+structure above. Further rungs are bigger iterations and are not funded.
+
+**The wall's edge here, in one sentence:** the adversarial covering constant is still the whole
+problem, W2 is unmoved in strength, and the one measurement that decides whether enumerating K can
+keep pace is K(14) - the window's demand rose by three from n = 13 to n = 14, so K(14) = 14 means
+the margin widens and K(14) = 17 means it is closing and the enumeration family is finished.
