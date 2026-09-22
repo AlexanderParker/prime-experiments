@@ -4533,6 +4533,103 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             forbids funding. The one measurement that would decide between mechanisms is K(14)
             exactly: k_req rose 17 to 20 from n = 13 to n = 14, so K(14) = 14 means the margin
             widens and K(14) = 17 means it is closing.
+          - R5.f.xxxv.c.xxii. THE COUNTERPOINT PASS: NINE OF TWELVE REFUTATIONS WERE WRONG
+            (owner's instruction 2026-09-22 that every refutation needs a defence and an
+            adjudication; 25 agents, twelve disputes each defended then adjudicated then
+            ledgered, every disputed figure recomputed from the raw column test). The owner's
+            reason was exactly right: a refuter primed to default to FALSE over-refutes, and a
+            refutation that sounds right may not refute. NINE OF TWELVE CLOSURES WERE BAD.
+            REVIVED IN FULL. (1) THE N(15) CERTIFICATE. The refuter reported "8 of its 90 cells
+            unstruck"; with the certificate's own gear list 0 of 90 are unstruck. Substituting
+            67, 103, 163 for 41, 157, 251 reproduces exactly those 8 cells - a three-gear
+            transcription error in the checker, not a defect. B0 = 3305274386976800617230207 with
+            gears 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 53, 73, 107, 157, 251 is a valid
+            raw-verified object and exactly 15 gears are needed at that location. THE TREE LINE IN
+            c.xxi CALLING IT REFUTED IS STRUCK. (2) FOURGEARS. "Four gears force two doublers" is
+            a lower bound and the refuter's three-doubler witness satisfies it; over all 372
+            four-gear covers of a dead pair the doubler count is 2 (336 times) or 3 (36), never 1,
+            never 4. Upgrade: the minimum cover of a dead pair is 6 - nu with nu the largest set
+            of disjoint doubler footprints present, so always 4, 5 or 6, and N(1) = 4 becomes
+            mechanism rather than search. (3) THE q-FREE STATEMENT, revived with ONE CONSTANT
+            CHANGED: not 210(k+1) but 210k + 79. S79 = "N(k) >= pi(sqrt(210k + 79)) - 3 for every
+            k", with the PROVED reduction 210 k_req(q) + 79 >= q^2 for every prime q >= 13 (the
+            excess q^2 - 210 k_req(q) is positive only at q = 17 (+79), 29 (+1), 41 (+1), checked
+            over primes to 100000). The machinery the refuter attacked was sound; only b was wrong.
+            Rider: S79 is a repair, not an advance - at q = 61 it demands N(21) >= 16 where the
+            window needs only 15. (4) ROWDOUBLE, revived one word away and UPGRADED TO A THEOREM:
+            a gear has two cells inside some window of m consecutive blocks IFF g <= 15m - 5
+            (minD(7) = 0, minD(g) = ceil((g-10)/15) for g >= 11, 0 exceptions over 301 gears to
+            2003, set equality for every m = 1..20). At m = 2 this set is exactly {7, 11, 13, 17,
+            19, 23} - the orphan law's gear list, previously a raw check to gear 2000, is now the
+            m = 2 case of a theorem. This confirms the manager's corollary in c.xviii.
+            REVIVED IN PART. (5) CONCENTRATION: the refuter's own positive assertion is refuted -
+            the three families it named as carrying the mass have 0, 0 and 858 minimal violations
+            and deleting them costs the search no kill; the surviving content is a method rule,
+            rank constraints by minimal violation, never by raw count. (6) The GAP-INSENSITIVE
+            general clause ("any proof of the step must know the gap above q") does not follow
+            from one counterexample and is FALSE where the lemma binds: at a lower twin the
+            statement is chain(q) < (q+2)^2/30, which contains no gap. (7) ORPHANCEILING: the
+            refuter's arithmetic was wrong (CB(24) = 7, not 6, over-crediting gears 11 and 23) but
+            its conclusion survives for a different reason; what stands is that CB(k) <= 12 for
+            every k, so NO counting bound on the orphan row can ever certify a 13th gear.
+            (8) DOUBLINGDENSITY: the mechanism revived, the number withdrawn. The doubler supply is
+            FROZEN FOR EVERY MACHINE - only 11, 13, 17, 19, 23 can ever take two cells of a dead
+            pair, and no gear >= 29 ever does (raw to 3000) - and the refuter's "six consecutive
+            doubled dead pairs" is the proved extremum, not a breach: the longest run is exactly 6,
+            with ninety-six 6-runs and zero 7-runs per period. The true proportion is 0.3559, not
+            0.414. (9) CEILING: the refutation's inference from eight non-monotone values to "no
+            constant exists" is invalid; what survives is a decidability law (K(q) is a maximum
+            over an explicitly finite set, since a gear above 15 L_1(q) + 10 adds nothing) plus
+            K >= 6 at q = 31, verified at two independent certificate lifts.
+            UPHELD, and double-computed: the two-row ordering; the two-pair rule (N of two dead
+            pairs is 4 at separation 19, so N is not a function of the pair count); the
+            (d_g mod 7, g mod 7) type invariant as made.
+            FACT (the ledger). METHOD CHANGE, standing from now: derive, refute, DEFEND,
+            adjudicate; the synthesis takes the adjudicated form, never the refuter's verdict
+            alone. Saved to memory as derive-refute-defend.
+          - R5.f.xxxv.c.xxiii. K(14) = 14, AND THE MARGIN IS WIDENING (2026-09-22; thirteen
+            agents, twelve exhaustive cases of a split on gear 11's phase, plus an independent
+            verdict agent that re-decided all twelve). The one measurement c.xxi named as deciding
+            between mechanisms. RESULT: N(15) = 15 EXACTLY. All twelve cases of the split - gear 11
+            unused, or used at one of its 11 phases, mutually exclusive and jointly exhaustive -
+            returned INFEASIBLE at budget 14, none undecided, and EVERY DECISION WAS CUT-FREE: no
+            inherited N value entered any deciding run, so the verdict rests only on the cell
+            formula and the pool bound, both re-verified raw. The verdict agent then re-decided all
+            twelve itself with a second engine (HiGHS), obtaining model status Infeasible - not a
+            time limit - on every case, 912.9 seconds in total. The upper side is a fresh 15-gear
+            cover found and lifted independently: gears 11, 13, 17, 19, 23, 29, 37, 41, 43, 53, 89,
+            101, 103, 263, 751 at B0 = 22475808932511699377319069, all 90 columns struck. So
+            K(14) = 14 exactly, and the interval [14, 17] collapses to a point.
+            INDEPENDENT VERIFICATION done by the verdict agent from scratch: the cell formula
+            against raw divisibility in 1,970,280 comparisons, 0 mismatches; gear 7's silent blocks
+            come out as {0, 6} mod 7 raw; the pool bound checked over all 879 primes in (1495,
+            9000) at every phase, maximum 1 cell; and its own engine reproduced N(1..9) as optima.
+            THE RACE, with k_req counted directly as the dead pairs the window holds:
+              n = pi(q) - 4:   10    11    12    13    14
+              q:               43    47    53    59    61
+              K(n):             8     9    12    13    14 (new)
+              k_req:           10    13    16    17    20
+              margin:           2     4     4     4     6
+            Over the four steps K gained 6 and k_req gained 10, so THE MARGIN IS WIDENING, and it
+            has just opened from a flat 4 to 6. The mechanism is sharper than the trend: the
+            surplus N(k) - k runs 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 0, 0, 0 for k = 1..14 and the
+            new point makes it 0 at k = 15 too - zero surplus is exactly K(n) = n, so the left side
+            of the race now advances by exactly one per machine while the right side advances by
+            one to three and its increments grow with the window.
+            VERDICT ON THE ROUTE, honest: as a route to a theorem enumeration is CLOSED - one
+            value of K cost twelve exhaustive integer programmes and the two next instances would
+            not decide in 240 seconds each, while the pool grows like 105k/log(105k) gears and the
+            cells like 6k. As evidence it is working and the lemma is winning by a widening margin.
+            The fragility is stated too: K(n) = n is five data points, the surplus slid 3 to 0
+            between k = 7 and k = 12, and N stalled three times (k = 7 to 8, 10 to 11, 11 to 12);
+            one stall at k = 16 makes K(15) >= 16. The margin at q = 61 absorbs about six stalls,
+            and a stall costs 1 while the machine gains about 2.5, so even a stalling K loses the
+            race - but nothing proves the surplus cannot go negative and stay there.
+            THE TARGET IS NOW ONE SENTENCE: N(k) >= k - c for every k and some constant c, i.e.
+            past k = 12 each extra dead pair forces another gear up to a constant. With the
+            elementary count pi(q) - 4 < k_req(q) that finishes the lemma for every q. The measured
+            surplus column is the evidence that this is the right shape; enumeration cannot supply
+            it. STRONG, CANDIDATE.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6113,3 +6210,5 @@ Part III or Part IV of the proof document?
 - 2026-09-22, R5.f.xxxv.c.xix (six-dimension workflow): the dead-pair reduction - gear 7 is silent on adjacent blocks 6, 0 mod 7, the orphan law (verified from columns to gear 2000) gives N(1) = 4, and chain(q) <= 7 k_max + 7 with k_max = max{k : N(k) <= pi(q) - 4}. The lemma for every q >= 13 reduces to ONE q-free statement, N(k) >= pi(sqrt(210(k+1))) - 3; measured N = 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12 for k = 1..11; q = 53 needs only N(16) >= 13. Chain ladder extends to 17 at q = 37. Counting closed: the reciprocal sums cross one half at q = 29 and q = 47.
 - 2026-09-22, R5.f.xxxv.c.xx: PRIOR-ART CHECK - c.xix's N(k) reduction is the wall's W2 (K_columns(d) > pi(sqrt(6d))) transported by d = 35k; the project already posed it and measured its constant at 24 against a target 6 (7 to 11 on islands). The dead-pair version asks for a STRONGER statement than W2. What survives as new: the leg rule on blocks, the orphan law, the row reading of the block, the N table and the chain ladder. Branch continues, but as W2.
 - 2026-09-22, R5.f.xxxv.c.xxi: N exhaustive to k = 14 (4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12, 12, 13, 14) and N(k) >= 15 for k >= 18 (cut-free); the lemma at q is exactly K(pi(q)-4) < k_req(q); the q-free surrogate is refuted; counting closed by LP measurement (root saturates at 10.6, every rung is enumeration). The route reaches q = 61 while the project's F ladder already reaches q = 67, so its per-q verdicts add nothing and its value is the structure. K(14) is the one measurement that decides whether the margin widens or closes.
+- 2026-09-22, R5.f.xxxv.c.xxii: counterpoint pass on the owner's instruction - NINE OF TWELVE refutations were wrong or partly wrong. The N(15) certificate was killed by a three-gear transcription error and is valid; four-gears was a confirmation not a refutation; the q-free statement lives with 210k + 79 in place of 210(k+1), the reduction proved; the two-cells-in-an-m-window rule is now a theorem (g <= 15m - 5) and contains the orphan law's gear list; the doubler pool is frozen at 11, 13, 17, 19, 23 forever with longest doubled run exactly 6. Method now derive-refute-defend-adjudicate.
+- 2026-09-22, R5.f.xxxv.c.xxiii: K(14) = 14 exactly - N(15) = 15 proved by twelve cut-free exhaustive cases and re-decided by a second engine. The margin k_req - K runs 2, 4, 4, 4, 6 at q = 43..61 and is WIDENING. Surplus N(k) - k is 0 from k = 12 through k = 15. Enumeration is closed as a route to a theorem; the target is now one sentence: N(k) >= k - c for every k.
