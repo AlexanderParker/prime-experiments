@@ -4699,6 +4699,47 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             moment, measured weakest exactly where the window lives.
             STRONG (the rules and the refutation); the window statement now rests on a single named
             open step with an effective reduction behind it.
+          - R5.f.xxxv.c.xxv. DRIFT CORRECTION: c.xvii TO c.xxiv ARE WINDOW WORK, NOT RANGE WORK
+            (owner, 2026-09-23; research/stack/r8/range_tiers.py). The owner noticed the manager had
+            drifted off the range statement and back onto the window. He is right, and the exact
+            place is identified here. Nodes c to c.xv ARE range work: machine 5 as the cycle, the
+            copies of the known opening (-1, 1) at every multiple of 30, the overlay acting on those
+            laps. At c.xvi the manager observed that the laps follow only one of machine 5's three
+            open classes, called that a restriction, and moved to "the full opening set" - and IN
+            THE SAME MOVE, WITHOUT FLAGGING IT, replaced the range statement by the window
+            statement. Everything from c.xvii to c.xxiv (blocks, dead pairs, N(k), K(n), the
+            covering number, the marginal law) answers whether a twin lies in (q, q^2]. The owner
+            asked whether one lies anywhere in (q, q#]. Those are different objects and the owner
+            has said so twice.
+            THE RANGE OBJECT, RESTATED CORRECTLY. Cycle = machine 5 (base 2, 3 and gear 5, period
+            30); its known opening recurs at every multiple of 30, so the LAPS are the pairs
+            (30k - 1, 30k + 1). Overlay = every gear above 5 and below sqrt(q#), which is exactly
+            the set that can decide any lap of the range. Gear g strikes lap k iff k = +-30^{-1}
+            mod g. RANGE STATEMENT for machine q: some lap with 30k - 1 > q and 30k + 1 <= q# is
+            struck by no gear at or below sqrt(30k + 1). WINDOW STATEMENT: the same with the extra
+            demand 30k + 1 < q'^2.
+            THE RANGE IS A DISJUNCTION OVER TIERS, and this is the structural difference. A lap is
+            decided by the gears up to sqrt(30k), so the range splits: tier 0 is the laps in
+            (q/30, q^2/30], decided by the gears up to q; tier t is the laps in
+            (q^(2^t)/30, q^(2^(t+1))/30], decided by the gears up to q^(2^t); the top of the range
+            is q#/30. THE RANGE STATEMENT HOLDS IF ANY ONE TIER HOLDS. TIER 0 IS THE WINDOW
+            STATEMENT. So the window statement is one disjunct of the range statement, never the
+            whole of it, and the manager's substitution threw away every other disjunct.
+            MEASURED: the range holds 2, 3, 4, 5 tiers at q = 5..11, 13..31, 37..73, 79..89, growing
+            like log(q/log q); the range spans 10^1.5 to 10^34 at those q against windows of 1 to
+            311 laps. The first twin lap above q is k = 1 for q <= 23, 2 for 29..53, 5 for 59..89,
+            and in every case it lands in tier 0 - SO EVERY HIGHER TIER IS UNUSED SLACK, and the
+            range statement has never yet had to call on one.
+            HONEST READ ON THE DISJUNCTION, stated so it is not oversold: each tier is a window
+            statement for a larger machine, and the measured record-to-window ratio is flat near
+            0.25 at every scale, so the tiers are not individually easier. The gain is that the
+            range needs only one of them and the window needs the first. What the range does NOT
+            need, and the window does, is a LOCATION: the range statement asks only that a surviving
+            lap exist somewhere in the period.
+            CORRECTION RECORDED; the window results of c.xvii to c.xxiv stand as window results and
+            are not withdrawn - the leg rule on blocks, the orphan law, the frozen doubler pool, the
+            covering number and its refutation of N(k) >= k - c are all true and all about the
+            window. They are re-filed as such. The active line returns to the range.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6282,3 +6323,4 @@ Part III or Part IV of the proof document?
 - 2026-09-22, R5.f.xxxv.c.xxii: counterpoint pass on the owner's instruction - NINE OF TWELVE refutations were wrong or partly wrong. The N(15) certificate was killed by a three-gear transcription error and is valid; four-gears was a confirmation not a refutation; the q-free statement lives with 210k + 79 in place of 210(k+1), the reduction proved; the two-cells-in-an-m-window rule is now a theorem (g <= 15m - 5) and contains the orphan law's gear list; the doubler pool is frozen at 11, 13, 17, 19, 23 forever with longest doubled run exactly 6. Method now derive-refute-defend-adjudicate.
 - 2026-09-22, R5.f.xxxv.c.xxiii: K(14) = 14 exactly - N(15) = 15 proved by twelve cut-free exhaustive cases and re-decided by a second engine. The margin k_req - K runs 2, 4, 4, 4, 6 at q = 43..61 and is WIDENING. Surplus N(k) - k is 0 from k = 12 through k = 15. Enumeration is closed as a route to a theorem; the target is now one sentence: N(k) >= k - c for every k.
 - 2026-09-22, R5.f.xxxv.c.xxiv: N(k) >= k - c REFUTED by proof and raw certificates (N(k) <= 574 + k/2 for every k; N(100) <= 49, N(200) <= 70). Replacement N(k) >= 3.23 sqrt(k) for k >= 23, constant sharp at q = 109, reduction effective and unconditional. Skeleton S1-S7, S9 proved; S8 open and needs GROWTH, first failing at q = 67 (N(23) >= 16 against a standing 15). Counting closed from a fifth direction (supply-constrained LP flattens at 11.77 while the integer optimum is 16) - the growth is integral. BOUNDARY REPAIR: the square-root rule fails at exactly one column of the closed window, 6n+1 = q'^2, verified q = 7..113; state it with the strict inequality. k_req(61) = 21, not 20.
+- 2026-09-23, R5.f.xxxv.c.xxv: DRIFT CORRECTION on the owner's instruction - the manager swapped the range statement for the window statement at node c.xvi without flagging it, so c.xvii to c.xxiv are window work. The range object restated: laps (30k +- 1), overlay every gear above 5 below sqrt(q#). The range is a DISJUNCTION OVER TIERS (2 to 5 tiers at q = 5..89, growing like log q) of which the window is only tier 0, and the range needs no location. Active line returns to the range.
