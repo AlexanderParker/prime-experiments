@@ -4718,13 +4718,15 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             mod g. RANGE STATEMENT for machine q: some lap with 30k - 1 > q and 30k + 1 <= q# is
             struck by no gear at or below sqrt(30k + 1). WINDOW STATEMENT: the same with the extra
             demand 30k + 1 < q'^2.
-            THE RANGE IS A DISJUNCTION OVER TIERS, and this is the structural difference. A lap is
-            decided by the gears up to sqrt(30k), so the range splits: tier 0 is the laps in
-            (q/30, q^2/30], decided by the gears up to q; tier t is the laps in
-            (q^(2^t)/30, q^(2^(t+1))/30], decided by the gears up to q^(2^t); the top of the range
-            is q#/30. THE RANGE STATEMENT HOLDS IF ANY ONE TIER HOLDS. TIER 0 IS THE WINDOW
-            STATEMENT. So the window statement is one disjunct of the range statement, never the
-            whole of it, and the manager's substitution threw away every other disjunct.
+            THE TIER FRAMING WRITTEN HERE WAS ITSELF WRONG AND IS WITHDRAWN (owner 2026-09-23,
+            proved in c.xxvi). Splitting the range into tiers, each "a window statement for a
+            larger machine", is the pull back to the window in another costume: it re-imposes a
+            location and converts the problem into the one we already cannot do. The scale
+            disjunction is an EXACT COVERING IDENTITY - for any height h the cut "largest prime
+            below h" certifies it, so the bands chain automatically - which QUANTIFIES the slack
+            and adds NO leverage. There is one machine running to its period. The correct statement
+            of the difference is in c.xxvi: the range is weaker than the window by exactly one
+            thing, that the certifying gear set is chosen AFTER the lap.
             MEASURED: the range holds 2, 3, 4, 5 tiers at q = 5..11, 13..31, 37..73, 79..89, growing
             like log(q/log q); the range spans 10^1.5 to 10^34 at those q against windows of 1 to
             311 laps. The first twin lap above q is k = 1 for q <= 23, 2 for 29..53, 5 for 59..89,
@@ -4740,6 +4742,69 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             are not withdrawn - the leg rule on blocks, the orphan law, the frozen doubler pool, the
             covering number and its refutation of N(k) >= k - c are all true and all about the
             window. They are re-filed as such. The active line returns to the range.
+          - R5.f.xxxv.c.xxvi. THE RANGE, ANSWERED: BOTH OBVIOUS PATHS CLOSED, THE REAL SLACK
+            LOCATED, AND THE WALL REDUCED TO ONE INEQUALITY (2026-09-23; 25 agents in the
+            derive-refute-defend-adjudicate shape on the owner's two paths and his method).
+            PATH A CLOSED, and not by difficulty: "for every q some lap of the range is struck by
+            no gear of [7, sqrt(q#)]" IS EXACTLY THE WINDOW STATEMENT at the cut X = isqrt(q#).
+            PROVED both ways - a lap surviving every gear up to X with 30j + 1 <= q# has its lower
+            member above X, so its square exceeds q#, so the copy is a twin above sqrt(q#); and
+            any such twin has its lower member above X. Enumerated whole at q = 13, 17, 19 (149,
+            1507, 18991 survivors): zero non-twins, zero below the floor, zero twins above the
+            floor missed. Taking path A re-imposes a location, which is the thing the owner has
+            twice said to stop doing.
+            PATH B PROVED FALSE at a fixed gear set. For any gear set with modulus M the blocked
+            sets - and the open sets - at the lower set's three open offsets are EXACT TRANSLATES
+            of one another by the single integer -e x 5^{-1} mod M (set equality at M = 77, 1001,
+            17017, 323323). The three segments of the 2,3,5 cycle are ONE PATTERN IN THREE
+            POSITIONS. There is no differentiation across the cycle to harvest, and any map moving
+            the known opening off offset 0 costs at least (M - 3)/5 laps.
+            WHAT IS LIVE, and it is path B's repair: the variation across laps is real but it is
+            NOT in the gear pattern - it is in WHICH GEARS MATTER. Gear g decides lap j only once
+            g^2 <= 30j + 1. THAT LAP-DEPENDENT DECIDING SET IS THE ONLY NON-CONGRUENCE INGREDIENT
+            IN THE WHOLE OBJECT, and it is exactly what separates range from window.
+            THE RANGE IS WEAKER THAN THE WINDOW BY EXACTLY ONE THING: the certifying gear set is
+            chosen AFTER the lap. The window fixes the cut and the interval in advance; the range
+            certifies lap j with [7, sqrt(30j + 1)], a set that is a function of j. EVERYTHING ELSE
+            THAT LOOKS LIKE SLACK IS NOT. (i) Extra length is not freedom: the range is exactly ONE
+            period of the machine's own gears, so each survivor class has exactly one
+            representative - a survivor's height IS its class, and there is no room to move one
+            down. In-range survivors = prod(g - 2) - 1 exactly at q = 7..23. (ii) The scale
+            disjunction is a restatement, an exact covering identity that quantifies the slack and
+            adds no leverage. (iii) MEASURED: for every prime q in [7, 3000] the first twin lap
+            above q sits below q^2 - inside the window - so the slack has never once been drawn on.
+            NO INSTRUMENT IS CAPPED FOR THE WINDOW BUT NOT FOR THE RANGE. Two candidates fail: the
+            Euclid family j = 0 mod P(y) is uncapped in reach but dies on certification at the fair
+            rate 2/g (measured 1.0015 and 0.9990 of 2/g); and the covering-number instrument is the
+            wall's W2, banned and capped anyway.
+            NEW THEOREM, and it closes a whole family at once - THE CONGRUENCE-LOCATOR CLOSURE: if
+            every lap of the class j = r mod N is silent against gear g, then g divides N (else j
+            runs over every residue mod g inside the class and meets +-a_g; 0 escapes in 920 tested
+            triples). Hence a class silent against [7, X] has N divisible by X#/30, so N exceeds
+            X'^2/30, so THE CLASS HOLDS AT MOST ONE MEMBER IN THE CERTIFIED BAND. Every congruence
+            locator therefore certifies at most one lap, and only inside the window. That closes the
+            known-opening copies of R5.f.xxxv.b, the centre construction, and every relative, with
+            ONE argument instead of one instance each.
+            NEW FORM, exact and q-free - THE SQUARING LAW: gear g strikes lap j iff j^2 = a_g^2
+            mod g, a_g = 30^{-1} mod g (0 failures, gears 7..5000, every residue). So survival
+            against any gear set depends on j ONLY THROUGH j^2 mod P; the mirror j -> -j needs no
+            side condition; the survivor set is a union of fibres of the squaring map.
+            THE PRICE TAG ON THE OWNER'S TRADE, proved - THE SUPPLY LAW: dropping a prime p from the
+            lower set into the gears multiplies the RAW copies by p but the LIVE copies by exactly
+            p - 2, since p rejoins as a gear and takes two classes. Free only at p = 2 and 3. And
+            the UNIT TWIST: the class geometry at lower-set rung y' is the geometry at rung y
+            multiplied by the single unit (P'/P)^{-1} mod g, so all rungs are ONE machine under an
+            index change, with the smallest lower set the weakest sufficient rung. Shrinking the
+            lower set buys prod(p - 2) parallel copies of the IDENTICAL upper-set problem - the
+            extra iterations are real, the extra structure is not, and no locator comes with them.
+            SAME WALL: YES, and it is now ONE INEQUALITY in every coordinate tried - X# >
+            nextprime(X)^2 for every prime X >= 7 (verified to X = 4000, vacuous only at X = 5).
+            Silence against all gears up to X costs a modulus of at least X#/30; certification at a
+            height demands silence up to that height's square root. THE ONE PLACE THE RANGE HAS
+            SLACK THE WINDOW DOES NOT: the cut moves with the lap. It is currently unexploited -
+            every instrument on the tree has demand monotone increasing in certification depth.
+            STRONG (the theorems); the two obvious range routes are closed with proofs, the single
+            real difference is located exactly, and the next work must exploit a moving cut.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6324,3 +6389,4 @@ Part III or Part IV of the proof document?
 - 2026-09-22, R5.f.xxxv.c.xxiii: K(14) = 14 exactly - N(15) = 15 proved by twelve cut-free exhaustive cases and re-decided by a second engine. The margin k_req - K runs 2, 4, 4, 4, 6 at q = 43..61 and is WIDENING. Surplus N(k) - k is 0 from k = 12 through k = 15. Enumeration is closed as a route to a theorem; the target is now one sentence: N(k) >= k - c for every k.
 - 2026-09-22, R5.f.xxxv.c.xxiv: N(k) >= k - c REFUTED by proof and raw certificates (N(k) <= 574 + k/2 for every k; N(100) <= 49, N(200) <= 70). Replacement N(k) >= 3.23 sqrt(k) for k >= 23, constant sharp at q = 109, reduction effective and unconditional. Skeleton S1-S7, S9 proved; S8 open and needs GROWTH, first failing at q = 67 (N(23) >= 16 against a standing 15). Counting closed from a fifth direction (supply-constrained LP flattens at 11.77 while the integer optimum is 16) - the growth is integral. BOUNDARY REPAIR: the square-root rule fails at exactly one column of the closed window, 6n+1 = q'^2, verified q = 7..113; state it with the strict inequality. k_req(61) = 21, not 20.
 - 2026-09-23, R5.f.xxxv.c.xxv: DRIFT CORRECTION on the owner's instruction - the manager swapped the range statement for the window statement at node c.xvi without flagging it, so c.xvii to c.xxiv are window work. The range object restated: laps (30k +- 1), overlay every gear above 5 below sqrt(q#). The range is a DISJUNCTION OVER TIERS (2 to 5 tiers at q = 5..89, growing like log q) of which the window is only tier 0, and the range needs no location. Active line returns to the range.
+- 2026-09-23, R5.f.xxxv.c.xxvi: the range answered. Path A is EXACTLY the window statement at the cut isqrt(q#); path B is FALSE (the three offsets of the 2,3,5 cycle are one pattern in three positions, exact translates by -e x 5^-1). The range is weaker by exactly one thing - the certifying gear set is chosen after the lap - and extra length is not freedom since the range is exactly one period. NEW: the congruence-locator closure (a class silent against [7,X] has modulus divisible by X#/30, so it certifies at most one lap, inside the window) kills the whole locator family at once; the squaring law j^2 = a_g^2; the supply law (dropping p multiplies live copies by p - 2, not p). Same wall, now one inequality X# > nextprime(X)^2. The manager's own tier framing in c.xxv is withdrawn.
