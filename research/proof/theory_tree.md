@@ -4495,6 +4495,44 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             is NOT closed, because W2 is the project's own OPEN statement rather than a known
             result - working it is legitimate - but it must be worked as W2, with the new exact
             rules as tools, and the manager's framing of c.xix is corrected here.
+          - R5.f.xxxv.c.xxi. THE N AND K TABLES, AND WHAT THE ENUMERATION ROUTE IS WORTH
+            (six-angle workflow with adversarial refutation, received 2026-09-22; thirteen agents,
+            five independent engines, scripts in the run scratchpad). Worked as the wall's W2 per
+            c.xx. RESULTS. (1) N(k) EXHAUSTIVE for k = 1..14: 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12,
+            12, 13, 14 - every value with dual bound equal to objective, five engines agreeing, and
+            k = 14 confirmed separately by a budget-13 INFEASIBLE run. (2) NEW RUNGS: budget-14
+            INFEASIBLE at k = 19 and k = 20 with NO cuts at all, and at k = 18 with cuts, so
+            N(k) >= 15 for every k >= 18; the upper side is an 18-gear cover of 20 dead pairs,
+            lifted by CRT to a 30-digit start and verified raw column by column. N(15) is
+            undecided in {14, 15} and one worker's k = 15 certificate was REFUTED (8 of 90 cells
+            unstruck). (3) THE EXACT REFORMULATION (R11): with W(q) the blocks wholly inside
+            (q, q'^2] and k_req(q) = floor((W - 7)/7), the lemma at q is EXACTLY
+            K(pi(q) - 4) < k_req(q), where K(n) = max{k : N(k) <= n}. The q-free surrogate
+            N(k) >= pi(sqrt(210(k+1))) - 3 of c.xix is REFUTED outright (N(1) = 4 against 5); the
+            per-q form is the operative one and the exact-window k_req beats the q'^2/30
+            approximation at 28 of the 42 primes below 200. (4) THE RACE: K(n) = 8, 9, 12, 13,
+            14..17 against k_req = 10, 13, 16, 17, 20 at n = pi(q) - 4 = 10..14, margins 2, 4, 4,
+            4, at least 3. (5) COUNTING IS CLOSED, NOW MEASURED NOT ARGUED (R9): phase averaging
+            caps any capacity bound at twelve gears with no k in it, and the cut-free LP root of
+            the full model saturates at 9.18 rising only to 10.63 over k = 13..25, while with
+            window cuts the LP returns precisely the value fed in. EVERY RUNG IS PURE
+            BRANCH-AND-BOUND; no bound, linear-programming or combinatorial, contributes anything.
+            (6) Structure re-derived from raw divisibility by a fourth engine: gear 7's word, block
+            uniqueness to gear 2000, the orphan law, and the complete list of two-cell sets inside
+            one dead pair - {L1,R2} (11), {L3,R2} (11, 13), {L2,R3} (17, 19), {L1,R3} (23), never
+            three cells and never R1.
+            WHAT IT IS WORTH, MEASURED HONESTLY: the route proves the window statement for every
+            machine from q = 13 to q = 61 and stops, needing N(23) >= 16 for q = 67. THE PROJECT'S
+            OWN F LADDER ALREADY DOES BETTER: the exact covering record F(q) = 34, 88, 91, 103,
+            118, 145, 160, 179, 213 at q = 23..67 (ladder_proof_map.md:68) settles the window
+            statement directly to q = 67, one machine further, and F(71) is boxed. So the per-q
+            verdicts of this route ADD NOTHING; its value is entirely in the structure - R1 to R11,
+            the N and K tables as a new exact object, and the measured proof that counting is
+            exhausted. FACT (the tables and rules); the enumeration route is NOT a road to the
+            general lemma and further rungs are bigger iterations, which the standing rule
+            forbids funding. The one measurement that would decide between mechanisms is K(14)
+            exactly: k_req rose 17 to 20 from n = 13 to n = 14, so K(14) = 14 means the margin
+            widens and K(14) = 17 means it is closing.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6074,3 +6112,4 @@ Part III or Part IV of the proof document?
 - 2026-09-21, R5.f.xxxv.c.xviii: leg rule on blocks PROVED - g strikes two blocks D apart iff g divides one of 5D +- 1, 2, 3 or 15D +- 1, 2, 4, 5, 7, 8, 10 (plus 7 when 7 | D); checked against direct search to gear 500 for D = 0..12; the bridging set is finite and independent of q, and a gear above 15m - 5 puts at most one cell into a chain of m blocks.
 - 2026-09-22, R5.f.xxxv.c.xix (six-dimension workflow): the dead-pair reduction - gear 7 is silent on adjacent blocks 6, 0 mod 7, the orphan law (verified from columns to gear 2000) gives N(1) = 4, and chain(q) <= 7 k_max + 7 with k_max = max{k : N(k) <= pi(q) - 4}. The lemma for every q >= 13 reduces to ONE q-free statement, N(k) >= pi(sqrt(210(k+1))) - 3; measured N = 4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12 for k = 1..11; q = 53 needs only N(16) >= 13. Chain ladder extends to 17 at q = 37. Counting closed: the reciprocal sums cross one half at q = 29 and q = 47.
 - 2026-09-22, R5.f.xxxv.c.xx: PRIOR-ART CHECK - c.xix's N(k) reduction is the wall's W2 (K_columns(d) > pi(sqrt(6d))) transported by d = 35k; the project already posed it and measured its constant at 24 against a target 6 (7 to 11 on islands). The dead-pair version asks for a STRONGER statement than W2. What survives as new: the leg rule on blocks, the orphan law, the row reading of the block, the N table and the chain ladder. Branch continues, but as W2.
+- 2026-09-22, R5.f.xxxv.c.xxi: N exhaustive to k = 14 (4, 5, 6, 7, 8, 9, 10, 10, 11, 12, 12, 12, 13, 14) and N(k) >= 15 for k >= 18 (cut-free); the lemma at q is exactly K(pi(q)-4) < k_req(q); the q-free surrogate is refuted; counting closed by LP measurement (root saturates at 10.6, every rung is enumeration). The route reaches q = 61 while the project's F ladder already reaches q = 67, so its per-q verdicts add nothing and its value is the structure. K(14) is the one measurement that decides whether the margin widens or closes.
