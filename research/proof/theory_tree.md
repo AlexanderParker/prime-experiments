@@ -4915,6 +4915,51 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             both prime); survivor density over all h < g equal to the product of local factors (only
             fixed H is proved; raw/product ratios 1.283 and 1.317 at 200,000); which acting-based
             statement forbids a total blame assignment; the remaining items in section 4 of the record.
+          - R5.f.xxxv.c.xxix. THE TWO RANGE PATHS, SEVEN ANGLES (2026-09-23; 28 agents,
+            derive-refute-defend-adjudicate; full record research/proof/range_two_paths_2026-09-23.md).
+            CORRECTION TO THE BRIEF: survivor class 0 has no copy in the range; each of the prod(g-2) - 1
+            NONZERO classes has exactly one.
+            PATH A - the missed copies c_g of the upper gears. PROVED:
+            - Exclusion tables. A gear h < g strikes c_g iff g mod h lies in E_h, the unit roots of
+              x^2 = -28 or -30 (case 1) or -10 or -12 (case 19); |E_h| = 2 + (h/7) + chi_{-30}(h) and
+              2 + chi_{-10}(h) + (h/3); full table to h = 61. The four characters chi_{-7}, chi_{-30},
+              chi_{-10}, chi_{-3} are independent; each reach state is exactly a quarter of the unit
+              classes; the jointly inert classes are 12 classes mod 840 (83, 227, 311, ...). E^(1) and
+              E^(19) are disjoint; at least two classes of g stay free at every h.
+            - Escape classes at every finite level: 4 prod(h - 1 - e_h) classes mod 30 prod h, refined
+              (h - 1 - e_h)-to-1 by each new row, never lost; each holds infinitely many gears (Dirichlet)
+              whose c_g escapes every row of the level.
+            - HAND-OFF EQUIVALENCE: the target "every range holds a revealed c_g" holds for all q iff the
+              revealed gears 7 = g_0 < g_1 < ... form an infinite sequence with
+              g_{i+1}^2 + B <= (g_i^2 + A)#. All 327 hand-offs below 200,000 hold; gear 198437 alone
+              serves every prime q from 31 to 39,377,242,978.
+            - Dormancy: row h is silent on g within sqrt(2h - B') of a multiple of h; for h to strike the
+              next gear's c needs (gap)^2 >= 2h - B'; among all consecutive gears to 10^7 this happens
+              exactly twice (13 kills c_17, 17 kills c_19).
+            - NEIGHBOUR KILL RULE: h kills c_{h+d} iff h divides d^2 + A' (A' = 28 or 30 in case 1, 10 or
+              12 in case 19); complete lists of kills by the r-th lower neighbour to 10^8 for r <= 12, the
+              largest killed gear being 4517. Every range holds a c_g not killed by its r nearest lower
+              gears, r <= 12, every q >= 7 (the tail q >= 10^15 uses Rosser-Schoenfeld and a pigeonhole on
+              prime counts - a counting residue, flagged).
+            - The n-th missed copy: legs g^2 + 2K_n, g^2 + 2K_n + 2; reach states period h in n; the case-19
+              states are the case-1 states shifted by 3 x 5^{-1}; no gear is inert on every copy of a run;
+              the inert set recurs along Pell families (15s^2 - 14r^2 = 1 in case 1, 5s^2 - 6y^2 = -1 in
+              case 19); the pairs with h inert on the WHOLE silent run are exactly (11,7), (29,7), (29,19).
+            - Silent run and protected stretch in closed form by g mod 30; the stretch l = min(p1, L) is
+              at least 3 for every g >= 31; no single gear covers a stretch of 3 or more (leg rule).
+            PATH B - the translation law with acting built in. REFUTED, each with instances: the least
+            translate of an exposure is revealed ((6,2) -> copy 607, 18209 = 131 x 139); the class holds a
+            revealed copy in the range (q = 41, exposure (47,3): all 41 class copies struck); the full
+            stabiliser orbit holds one (q = 17 lap 14; q = 29 lap 35, 12 copies all struck); every exposure
+            transfers exactly into the range (87 sources in laps 2..399 do not). PROVED: the exact
+            downward transfer (targets reach at most copy 27 for sources to 5 x 10^6); transfer cost
+            floor 6k* M; forced stabiliser pairs preserve exposure (0 counterexamples, q = 7..23), a pair
+            being forced iff every gear in (q, sh(j')] divides t, and forced pairs never go upward.
+            MEASURED, not proved: every window exposure has a revealed orbit copy in the range, q = 7..67.
+            NOT ESTABLISHED: the hand-off sequence is infinite (the R14 target); whether the range
+            statement implies it; boundedness of the inert run; finiteness of the empty head stretches
+            (17, 29, 37, 41, 149 below 10^6) and of the equality families; S3 for window sources; a
+            closed bound on k*; the remaining items in section 4 of the record.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6502,3 +6547,4 @@ Part III or Part IV of the proof document?
 - 2026-09-23, R5.f.xxxv.c.xxvi: the range answered. Path A is EXACTLY the window statement at the cut isqrt(q#); path B is FALSE (the three offsets of the 2,3,5 cycle are one pattern in three positions, exact translates by -e x 5^-1). The range is weaker by exactly one thing - the certifying gear set is chosen after the lap - and extra length is not freedom since the range is exactly one period. NEW: the congruence-locator closure (a class silent against [7,X] has modulus divisible by X#/30, so it certifies at most one lap, inside the window) kills the whole locator family at once; the squaring law j^2 = a_g^2; the supply law (dropping p multiplies live copies by p - 2, not p). Same wall, now one inequality X# > nextprime(X)^2. The manager's own tier framing in c.xxv is withdrawn.
 - 2026-09-23, R5.f.xxxv.c.xxvii: blame-assignment round. PROVED: acting is cofactor order (the gear is the smaller factor of its leg); the first-strike law (k0 = min(u, 30-u) in {1,7,11,13}, every gear strikes below its square except 7 and 11); the exact separation law with four slopes by p mod 15; the fibre value is always a square so no quadratic character gates striking; THE BARRIER (the untruncated machine satisfies every strike-relation rule and admits a total blame map b(j) = lpf(30j-1), so no strike-relation rule can forbid one); the MACHINE-GEARS-ONLY THEOREM (some copy of the range is struck by no gear at or below q, verified q = 7..17); the c_g family; the symmetry closure; complete own-shelf silence. CORRECTION: 'a gear does not strike below its square' is FALSE (gear 13 strikes copy 3, 91 = 7 x 13 < 169); only acting is bounded below by the square. NOT PROVED: any property forbidding a total blame assignment.
 - 2026-09-23, R5.f.xxxv.c.xxviii: shelves round. PROVED: missed-copy law with reciprocity reach per leg; own-shelf silence as a theorem with the deferral law; silent runs <= 2; cofactor spokes {1,7,11,13} and the properties of the base-30 machine that trial division does not imply; survivor classes, their stabiliser and the (p-2)-to-1 refinement by the next gear; gears above q refine and never delete a class; gear-pair joint classes. REFUTED: silence propagation, a revealed copy on every shelf, and others listed. NOT ESTABLISHED: infinitely many revealed c_g; full-range density; an acting-based blame obstruction. Record in research/proof/shelves_cofactors_2026-09-23.md.
+- 2026-09-23, R5.f.xxxv.c.xxix: two range paths. Path A PROVED: exclusion tables and independent characters, escape classes non-empty at every finite level, the hand-off equivalence (range for all q via missed copies iff the revealed gears form an infinite chain with g_{i+1}^2 + B <= (g_i^2 + A)#; 327 hand-offs hold below 200,000), the neighbour kill rule h | d^2 + A', dormancy, Pell recurrences of the inert set. Path B: four transfer statements REFUTED with instances; forced stabiliser pairs preserve exposure. NOT ESTABLISHED: the hand-off chain is infinite. Record research/proof/range_two_paths_2026-09-23.md.
