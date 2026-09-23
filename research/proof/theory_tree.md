@@ -4805,6 +4805,65 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             every instrument on the tree has demand monotone increasing in certification depth.
             STRONG (the theorems); the two obvious range routes are closed with proofs, the single
             real difference is located exactly, and the next work must exploit a moving cut.
+          - R5.f.xxxv.c.xxvii. THE BLAME ASSIGNMENT ROUND (2026-09-23; 25 agents,
+            derive-refute-defend-adjudicate, locating and counting banned in the brief). Setup: a
+            copy j is REVEALED when no gear that can act at its height strikes it; a gear can act
+            on copy j only when g^2 <= 30j + 1. If no copy of the range is revealed there is a
+            TOTAL BLAME ASSIGNMENT sending each copy to a gear that both strikes it and can act
+            there. The round attacked the existence of such a map.
+            CORRECTION TO THE MANAGER'S BRIEF, FIRST. "Gear g strikes no copy j with
+            30j + 1 < g^2" is FALSE as written and was listed as proved. 1043 counterexamples among
+            gears below 500 with j < 3000; the least is gear 13 on copy 3, since 91 = 7 x 13 and
+            91 < 169. Only gears 7 and 11 have no sub-square strike, and that is forced by the
+            first-strike law below. The correct statement is that a gear cannot ACT below its
+            square, not that it does not strike there. Two angles used the false version.
+            PROVED THIS ROUND.
+            - ACTING IS COFACTOR ORDER: writing the struck leg as g x h, the condition
+              g^2 <= 30j + 1 is exactly h >= g - the gear is the SMALLER factor of the leg it
+              divides. 42,529 strike incidences, 0 failures.
+            - FIRST-STRIKE LAW (new): the least cofactor is k0 = min(u, 30 - u) with u = g^{-1}
+              mod 30, so k0 lies in {1, 7, 11, 13}, and every gear's first strike is below its
+              square except gears 7 and 11. Checked over 2000 gears, distribution 488 / 507 / 497 /
+              508, exceptions exactly {7, 11}.
+            - SEPARATION LAW, exact form (the brief's sandwich was loose and is repaired):
+              15 t_p = k p + s with four slopes 1/15, 2/15, 4/15, 7/15 fixed by p mod 15, and
+              (p - 1)/15 <= t_p <= (7p + 1)/15.
+            - THE FIBRE VALUE IS ALWAYS A SQUARE: struck iff j^2 = a_g^2 mod g, and a_g^2 is a
+              square for every gear without exception, so its Legendre symbol is +1 always. No
+              quadratic character can gate which gears strike.
+            - THE BARRIER: let U be the untruncated machine - same gears, same classes, acting
+              dropped. Every rule in the round's proved list except acting is a statement about the
+              strike relation alone, so each holds verbatim in U. U ADMITS A TOTAL BLAME
+              ASSIGNMENT, namely b(j) = the least prime factor of 30j - 1, which is always a gear
+              and always divides a leg (30j - 1 is coprime to 30 and exceeds 1; checked to
+              j = 50000, 0 failures). Therefore no combination of strike-relation rules can forbid
+              a total blame assignment.
+            - MACHINE-GEARS-ONLY THEOREM: some copy of the range is struck by no gear at or below
+              q. Proof by a nonzero CRT survivor modulo P = q#/30, with the survivor set
+              mirror-symmetric and the range covering every class but the bottom block. Verified at
+              q = 7, 11, 13, 17: survivors 5, 45, 495, 7425, meeting the range in 4, 44, 494, 7424,
+              mirror symmetry holding in all four. Free of both prohibitions.
+            - THE c_g FAMILY: c_g is the lowest copy of height at or above g^2 that gear g does not
+              strike, and it is (g^2 + 10, g^2 + 12) when g^2 = 19 mod 30 and (g^2 + 28, g^2 + 30)
+              when g^2 = 1 mod 30 - gear squares being 1 or 19 mod 30 only. No gear strikes its own
+              c_g, and no larger gear can act there. 0 exceptions on either count over every gear
+              below 200,000. Non-vacuous: c_g is a twin copy for 95 gears in the 19-case and 233 in
+              the 1-case.
+            - SYMMETRY CLOSURE: the affine symmetries of one machine's strike configuration are
+              exactly j -> +-j per gear, 2^k of them, all fixing the origin, and none preserves
+              acting since 30j + 1 is injective.
+            - OWN-SHELF SILENCE, complete: a gear is silent on its own shelf never for
+              g = 1, 7, 11, 19, 29 mod 30; for g = 17 mod 30 iff g + 2 is prime; for g = 13 mod 30
+              iff g + 4 is prime; for g = 23 mod 30 iff g + 6 or g + 8 is prime. 3242 gears below
+              30000, 576 silent, 0 mismatches.
+            - TWO-CLAUSE CONDITION ON ANY FUTURE CANDIDATE PROPERTY P that would forbid a total
+              blame assignment: (a) P must fail in U, hence must mention acting essentially; and
+              (b) P must not be a consequence of "a composite leg has a prime factor at or below
+              its square root", which by the cofactor-order rule IS acting.
+            NOT PROVED: no property forbidding a total blame assignment was established. The
+            property stated with copies eliminated - the gear set contains two gears differing by 2
+            whose midpoint is divisible by 30, the lower above q and the upper at most q# - is the
+            range statement restated in gear terms.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6390,3 +6449,4 @@ Part III or Part IV of the proof document?
 - 2026-09-22, R5.f.xxxv.c.xxiv: N(k) >= k - c REFUTED by proof and raw certificates (N(k) <= 574 + k/2 for every k; N(100) <= 49, N(200) <= 70). Replacement N(k) >= 3.23 sqrt(k) for k >= 23, constant sharp at q = 109, reduction effective and unconditional. Skeleton S1-S7, S9 proved; S8 open and needs GROWTH, first failing at q = 67 (N(23) >= 16 against a standing 15). Counting closed from a fifth direction (supply-constrained LP flattens at 11.77 while the integer optimum is 16) - the growth is integral. BOUNDARY REPAIR: the square-root rule fails at exactly one column of the closed window, 6n+1 = q'^2, verified q = 7..113; state it with the strict inequality. k_req(61) = 21, not 20.
 - 2026-09-23, R5.f.xxxv.c.xxv: DRIFT CORRECTION on the owner's instruction - the manager swapped the range statement for the window statement at node c.xvi without flagging it, so c.xvii to c.xxiv are window work. The range object restated: laps (30k +- 1), overlay every gear above 5 below sqrt(q#). The range is a DISJUNCTION OVER TIERS (2 to 5 tiers at q = 5..89, growing like log q) of which the window is only tier 0, and the range needs no location. Active line returns to the range.
 - 2026-09-23, R5.f.xxxv.c.xxvi: the range answered. Path A is EXACTLY the window statement at the cut isqrt(q#); path B is FALSE (the three offsets of the 2,3,5 cycle are one pattern in three positions, exact translates by -e x 5^-1). The range is weaker by exactly one thing - the certifying gear set is chosen after the lap - and extra length is not freedom since the range is exactly one period. NEW: the congruence-locator closure (a class silent against [7,X] has modulus divisible by X#/30, so it certifies at most one lap, inside the window) kills the whole locator family at once; the squaring law j^2 = a_g^2; the supply law (dropping p multiplies live copies by p - 2, not p). Same wall, now one inequality X# > nextprime(X)^2. The manager's own tier framing in c.xxv is withdrawn.
+- 2026-09-23, R5.f.xxxv.c.xxvii: blame-assignment round. PROVED: acting is cofactor order (the gear is the smaller factor of its leg); the first-strike law (k0 = min(u, 30-u) in {1,7,11,13}, every gear strikes below its square except 7 and 11); the exact separation law with four slopes by p mod 15; the fibre value is always a square so no quadratic character gates striking; THE BARRIER (the untruncated machine satisfies every strike-relation rule and admits a total blame map b(j) = lpf(30j-1), so no strike-relation rule can forbid one); the MACHINE-GEARS-ONLY THEOREM (some copy of the range is struck by no gear at or below q, verified q = 7..17); the c_g family; the symmetry closure; complete own-shelf silence. CORRECTION: 'a gear does not strike below its square' is FALSE (gear 13 strikes copy 3, 91 = 7 x 13 < 169); only acting is bounded below by the square. NOT PROVED: any property forbidding a total blame assignment.
