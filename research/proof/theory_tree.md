@@ -4960,6 +4960,52 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             statement implies it; boundedness of the inert run; finiteness of the empty head stretches
             (17, 29, 37, 41, 149 below 10^6) and of the equality families; S3 for window sources; a
             closed bound on k*; the remaining items in section 4 of the record.
+          - R5.f.xxxv.c.xxx. THE DERIVED MACHINE, ITS ESCAPES, THE HAND-OFF, THE STRETCH FIELD,
+            KILLS, FORCED PAIRS (2026-09-24; 25 agents, derive-refute-defend-adjudicate; record in
+            research/proof/derived_machine_2026-09-24.md).
+            PROVED:
+            - DERIVED MACHINE, built beside the original (table in the record, section 2.1). Columns are
+              x with x^2 = 1 or 19 mod 30; J(x) = (x^2 + c)/30 is injective and increasing, the two cases'
+              images disjoint; a striker h takes |E_h| = 2 + (-A/h) + (-B/h) in {0, 2, 4} classes (four reach
+              states: inert, A-only, B-only, both); the pair rule is quadratic and quartic, not linear:
+              N(D) = e_h[h|D] + [h|D^2+4A] + [h|D^2+4B] + 2[h|D^4+2(A+B)D^2+4]; separation
+              (v-u)(v+u) = tau_v - tau_u in {0, +-2} same case, {+-16, +-18, +-20} cross case; stabiliser
+              {+-x} except striker 29 in case 1, where {+-1, +-12} swaps the legs; special strikers
+              {11, 37} / {7, 13}; twin gears share killers only from {11, 29, 31} or {13, 23, 37}. Acting in
+              x is h <= x, the same relation as the original's square root in copy terms. Composite columns
+              can be revealed (221, 451, ...; 427, 517, ...).
+            - ESCAPE AGAINST THE CUTOFF: every striker of c_g is live, so with lambda(g) the top live row,
+              c_g is revealed iff g lies in an escape class of level {7..lambda(g)}; lambda(g) = h*, the
+              largest non-inert prime at or below g - d0(g), and lambda(g) > 2g/3 for every gear g >= 41
+              (the tail above 1.26 x 10^12 uses the BMOR 2018 prime-count estimate - counting residue,
+              flagged); hence the gears capped at level P lie in (P, max(37, 3P/2)]. Entering law: row
+              lambda(g) strikes c_g iff g - lambda is an even root of x^2 = -A' mod lambda, with the
+              factorisation 4(g^2 + B') = (d^2 + B')((d + 2)^2 + B') on the kappa = 2 kills. Every escape
+              class at levels 7, 11, 13, 17, 19 in both cases holds a gear whose c_g is revealed (largest
+              witness 42,561,936,551).
+            - HAND-OFF: a revealed copy with legs (p, p+2) serves exactly the machines q in [sigma(p+2), p),
+              sigma(y) the least prime with primorial >= y; so RANGE <=> the chain over ALL revealed copies
+              (p_{k+1} + 2 <= p_k#). The chain over missed copies alone implies RANGE; the converse is open.
+              Strong hand-offs increase the slack (monotone slack theorem); all 6,547 hand-offs below 10^7 are
+              strong. Among 72 binding machines below 200 the witness is a missed copy only at q = 59, 149.
+            - STRETCH FIELD: each striker's teeth on a stretch form a comb with gaps alternating m_h and
+              h - m_h; three consecutive cells need three distinct strikers unless 7 takes an adjacent pair or
+              29/31 take the ends; the fully covered stretches to 10^8 are exactly those of 17, 29, 37, 41,
+              149. No fixed finite striker set forces a revealed cell at a fixed depth (CRT + Shiu).
+            - KILLS: every shared prime factor >= 7 of the legs of two gears D apart lies in a finite set
+              S(D) (members below (D^2 + 58)^2/4); a prime above H(w) divides a leg of at most one gear in
+              any window of width w (H(2) = 37, H(4..6) = 449, H(8..12) = 601, ...). Arbitrarily long runs of
+              consecutive gears with every missed copy killed exist (gears = 301 mod 330, Shiu).
+            - PATH B: the forced-pair criterion, forced pairs never go upward and preserve exposure; the
+              orbit of a window exposure has size 2^(k-w) and splits over machine q into prod (g+1)/2 orbits.
+            REFUTED, with instances: the reduction to the capped strip (Cap(13) = {17, 23}, neither revealed;
+            fails at 50,139 of 148,930 prime levels to 2 x 10^6); every window exposure has a revealed orbit
+            copy (q = 19, exposure (6,3): all 16 orbit copies in the range struck); heredity of the chain;
+            at most two teeth per stretch outside 7, 29, 31 (g = 43, striker 11 takes cells 1, 9, 12); the
+            fixed-depth statement for every N, K; and others listed in section 3 of the record.
+            NOT ESTABLISHED: RANGE => chain over missed copies; whether any escape class is doomed; whether
+            Cap(q) and Esc(q) are disjoint for infinitely many q; finiteness of fully covered stretches and of
+            the kappa = 4 entering kills; the orbit statement beyond measurement (exact to q = 61).
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6548,3 +6594,4 @@ Part III or Part IV of the proof document?
 - 2026-09-23, R5.f.xxxv.c.xxvii: blame-assignment round. PROVED: acting is cofactor order (the gear is the smaller factor of its leg); the first-strike law (k0 = min(u, 30-u) in {1,7,11,13}, every gear strikes below its square except 7 and 11); the exact separation law with four slopes by p mod 15; the fibre value is always a square so no quadratic character gates striking; THE BARRIER (the untruncated machine satisfies every strike-relation rule and admits a total blame map b(j) = lpf(30j-1), so no strike-relation rule can forbid one); the MACHINE-GEARS-ONLY THEOREM (some copy of the range is struck by no gear at or below q, verified q = 7..17); the c_g family; the symmetry closure; complete own-shelf silence. CORRECTION: 'a gear does not strike below its square' is FALSE (gear 13 strikes copy 3, 91 = 7 x 13 < 169); only acting is bounded below by the square. NOT PROVED: any property forbidding a total blame assignment.
 - 2026-09-23, R5.f.xxxv.c.xxviii: shelves round. PROVED: missed-copy law with reciprocity reach per leg; own-shelf silence as a theorem with the deferral law; silent runs <= 2; cofactor spokes {1,7,11,13} and the properties of the base-30 machine that trial division does not imply; survivor classes, their stabiliser and the (p-2)-to-1 refinement by the next gear; gears above q refine and never delete a class; gear-pair joint classes. REFUTED: silence propagation, a revealed copy on every shelf, and others listed. NOT ESTABLISHED: infinitely many revealed c_g; full-range density; an acting-based blame obstruction. Record in research/proof/shelves_cofactors_2026-09-23.md.
 - 2026-09-23, R5.f.xxxv.c.xxix: two range paths. Path A PROVED: exclusion tables and independent characters, escape classes non-empty at every finite level, the hand-off equivalence (range for all q via missed copies iff the revealed gears form an infinite chain with g_{i+1}^2 + B <= (g_i^2 + A)#; 327 hand-offs hold below 200,000), the neighbour kill rule h | d^2 + A', dormancy, Pell recurrences of the inert set. Path B: four transfer statements REFUTED with instances; forced stabiliser pairs preserve exposure. NOT ESTABLISHED: the hand-off chain is infinite. Record research/proof/range_two_paths_2026-09-23.md.
+- 2026-09-24, R5.f.xxxv.c.xxx: derived machine built beside the original (0/2/4-class strikers, quartic pair rule, special strikers); c_g revealed iff g in the escape classes up to its top live row lambda(g) > 2g/3; RANGE <=> chain over all revealed copies, each serving [sigma(p+2), p); monotone slack; comb structure of the stretch field; sharing law S(D) and privacy H(w). REFUTED: capped-strip reduction, the orbit statement (q = 19). NOT ESTABLISHED: RANGE => missed-copy chain, doomed classes. Record research/proof/derived_machine_2026-09-24.md.
