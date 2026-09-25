@@ -5161,6 +5161,37 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             43, all acting); the one-gear bound 2 at q = 47 (gear 53 strikes four consecutive survivors 247507649335490 +
             {0, 7, 53, 60}); three gears on 7 consecutive survivors at q = 37. So bounds of the form 2k are refuted at
             k = 1, 2, 3. NOT ESTABLISHED: any bound in k alone.
+          - R5.f.xxxv.c.xxxv. ONE-GEAR RUNS, THE TWO-PRIME LEGS (GAIN), KERNEL BATCH 4 (2026-09-26; 13 agents; record
+            research/proof/runs_gain_2026-09-26.md).
+            KERNEL (0 sorries, standard axioms, reviewer-checked, rebuilt by the manager):
+            - RangeActPair: Acts g j := g^2 <= 30j + 1; distance_law (one gear on copies x < y forces
+              g | (y - x)(225(y - x)^2 - 1)); acting_pair_law; acts_mono.
+            - RangeMirror: the mirror pair s = (M - d)/2, s' = (M + d)/2 for odd d < M, M = q#/30; legs_sum (cross legs sum
+              to q#), legs_diff (q# - 2, q# + 2); shared_striker (a gear striking both members divides q# - 2, q#, or q# + 2;
+              a gear above q divides q# - 2 or q# + 2); height_split and acts_on_at_most_one (2g^2 > q# + 2 acts on at most
+              one member); four_leg_product over Int.
+            - RangeWindowForm: range_copy_iff, copy_range_implies_rangeStatement, no_copy_blame - the blame test on the range
+              window (q < 30j - 1, 30j + 1 <= q#), which fixes the vacuity of total_blame_iff_primorial. Scope: covers only
+              twin pairs of the form 30j +- 1, so it implies RangeStatement one way only.
+            ONE-GEAR RUNS. PROVED: exact run conditions (formula 1) including acting and placement; the lane rule; the gear-7
+            lane law f(K) = K - 2a - max(0, r - 5), K(n) = n + 2 floor((n - 1)/5); runs on consecutive teeth have N <= 10;
+            the ladder N <= 2 floor((H - 1)/G) + 1 + [(H - 1) mod G >= sigma_G] against h2(q), the longest all-struck stretch
+            (4, 5, 7, 12, 18, 25, 31, 38, 49, 59, 69, 86 at q = 11..53, exact to 41). MEASURED: B_1 = 2 at q = 11..31, 3 at
+            37, 41, 43, 4 at 47, 53; and longer maximal acting runs in range: 5 at q = 89 (gear 97), 97 (101), 101 (103), 6 at
+            q = 137 (gear 139), 7 at q = 293 (gear 307 on {0, 41, 307, 348, 614, 655, 921}). So no bound B_1(q) <= c with
+            c <= 6 holds for all q. NOT ESTABLISHED: B_1 unbounded (no N-run construction for every N); the first q with
+            B_1 >= 5. Placement (whether a class mod M G lands in [1, M - 1]) is what separates relaxed patterns from runs
+            (q = 43, gear 53: relaxed 4-run pattern exists, none lands in range).
+            GAIN. PROVED: G_q = (S_Q minus S_Q*) in the high half, Q* the largest prime <= sqrt(q#); on each leg of a G_q copy a
+            band prime divides the leg iff the leg is composite and the cofactor is then prime; exact pair enumeration
+            (band prime h, prime cofactor c < 2h); a copy arises from two pairs iff both legs are products of two band primes;
+            band-gear teeth law with acting iff c >= h; three-class rule (classes distinct iff p does not divide q# +- 2);
+            mirror trichotomy for the mirror of a G_q copy (no U- strike: revealed; strikes none acting: revealed, in Loss;
+            an acting strike: not revealed). not-Range(q) <=> Loss_q empty, S_Q misses the low half and S_Q* misses the high
+            half. Acting enters only as trial division on one copy; the two copies of a mirror pair are linked only through
+            legs(M - j) = q# - legs(j).
+            REFUTED with instances: four band-teeth and multiplicity wordings (repaired forms stand); a Gain_full class form
+            for q >= 13 (q = 13, j = 505); the shared-class lemma off S_q.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6754,3 +6785,4 @@ Part III or Part IV of the proof document?
 - 2026-09-25, R5.f.xxxv.c.xxxii: kernel batch 2 (missed-copy reveal rule, the copy map J, chain => range => unbounded twins, all 0 sorries); live anchors: chain(S_1) given RANGE <=> m_r > r at every live r, transport and fixed-row laws, base-6 rule-level refutation; tower limit as a digit shift on {1,4,11,14}^N with fixed points 1 and 29; range-line map written and source-checked.
 - 2026-09-25, R5.f.xxxv.c.xxxiii: field kernel carried to the range - total blame iff every copy's least prime factor is a machine gear or acts; joint redundancy of non-acting strikes; translate/phase bijection with C_7^free and C_11^free empty; tooth, pair, comb and E2-record laws on copies; centre law and Gamma_k; node chain (RANGE <=> reach from 29 unbounded, scratch Lean); mirror height split. Acting enters only through trial division; no standing statement forbids a total blame map. Record research/proof/field_to_range_2026-09-25.md.
 - 2026-09-25, R5.f.xxxv.c.xxxiv: kernel batch 3 (region law via minFac, centre law, the twin-node reach chain: RANGE iff every node good iff reach from 29 unbounded); mirror pairs: class form, acting windows, four-leg product, the mean-height identity (not-Range iff Loss empty and unstruck survivors lie in Gain); run laws: acting pair law exact; the 2k run bounds REFUTED at k = 1 (q = 47), 2 and 3 (q = 37).
+- 2026-09-26, R5.f.xxxv.c.xxxv: kernel batch 4 (acting pair law, mirror pair legs/shared striker/height split, range-window blame form); one-gear runs: exact run conditions, gear-7 lane law, ladder against h2(q); runs of 5, 6, 7 at q = 89..293, so no constant bound c <= 6 on B_1; Gain = (S_Q minus S_Q*) in the high half, not-Range iff Loss empty, S_Q misses the low half and S_Q* the high half.

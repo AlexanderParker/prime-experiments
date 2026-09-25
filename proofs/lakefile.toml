@@ -2436,3 +2436,12 @@ name = "RangeCentre"
 
 [[lean_lib]]
 name = "RangeReach"
+
+[[lean_lib]]
+name = "RangeActPair"
+
+[[lean_lib]]
+name = "RangeMirror"
+
+[[lean_lib]]
+name = "RangeWindowForm"
