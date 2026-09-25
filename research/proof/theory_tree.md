@@ -5085,6 +5085,49 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             whether any limit column is revealed at every level.
             MAP: research/proof/range_line_map.md drafted from the records, checked line by line against its sources
             (27 findings, all fixed, no prospect-judging sentences), then extended by the manager with this round.
+          - R5.f.xxxv.c.xxxiii. THE FIELD KERNEL CARRIED TO THE RANGE (2026-09-25; 26 agents; inventory then six
+            rule groups, derive-refute-defend-adjudicate; record research/proof/field_to_range_2026-09-25.md). Owner's
+            direction: generalise the lower and upper set formulas from the proved field rules. DICTIONARY: copy j is
+            column 5j; a column distance 5D is a copy distance D; the field condition 3m = +-1 mod p becomes
+            15D = +-1 mod g.
+            PROVED on the range object, by group:
+            - G1 widening/persistence: the negation of the range statement (a total blame) holds iff every copy j in
+              [1, q#/30) has lpf(900j^2 - 1) <= q or lpf^2 <= 30j + 1; revealed iff lpf(900j^2 - 1)^2 > 30j + 1;
+              JOINT REDUNDANCY: every non-acting strike of an upper gear on a survivor is shadowed by an acting strike
+              or is a home strike, at most one non-acting striker per leg; the non-revealed survivors are the disjoint
+              union over upper gears g of F_g = {j : lpf = g, not a home copy}.
+            - G2 covered runs and alignment: Range(q) <=> 0 not in C_q^act; the translate kM + [1, M-1] is fully deleted
+              by acting gears iff (-kM mod g)_g lies in C_q^free, a bijection mod prod(U_q); the acting and acting-free
+              deletion patterns differ exactly on the twin copies with a leg among the gears; C_7^free and C_11^free
+              are EMPTY (exhaustive; best cover 42 of 44 at q = 11, realised at translate k = 22370436767022);
+              F_g = min(a_g, g - a_g) = (m g +- 1)/30.
+            - G3 two-gear freedom and records: tooth law sigma_g = (kappa g +- 1)/15, kappa = 1, 2, 4, 7 for
+              g = +-1, +-7, +-11, +-13 mod 30; pair law (g strikes j and j + D, 0 < D < g, iff D in {sigma_g,
+              g - sigma_g}, on opposite legs); comb count; copy E2 record R(g,h) = 2 + [{g,h} meets {7,29,31}] +
+              [{g,h} in {{7,11},{7,23},{29,31}}]; the only alternating two-gear cover is (29, 31). MEASURED: no two upper
+              gears strike 5 consecutive survivors at q = 11..29.
+            - G4 E4c and chain: centre law (g strikes x < y iff [g | y - x and g | 900x^2 - 1] or [g | x + y and
+              g | 225(y - x)^2 - 1]); interior gaps = 0 or +-t_g, alternating; the Gamma_k depth formula; Gamma_3 = 0 at
+              q = 7..31; mirror law, the only common centre is copy 0.
+            - G5 node chain: V_q (revealed copies in the range) = twins in (q, q# - 2]; transport between machines holds
+              with acting and fails at every pair without it; scratch Lean (not yet in the repo): RANGE <=> every node
+              good <=> the reach from 29 is unbounded; machine 29 settles |V_s| >= 2 at every node below 6,469,692,809.
+            - G6 mirror/periodic: three-term mirror striker law; height split T(s)^2 + T(M - s)^2 = q# + 2; the
+              palindrome's central gap d* = min{d odd : gcd(225d^2 - 1, M) = 1}; Range(q) <=> some mirror pair of
+              survivors is not doubly deleted; revealed status has no period.
+            ACTING: every standing statement that uses acting uses it only through the trial-division rule or its
+            consequences (acting iff cofactor >= gear; revealed iff both legs prime) or as a pointwise height
+            inequality; none forbids a total blame map.
+            REFUTED with instances: the literal widening header on copies (q = 11, j = 17: 511 = 7 x 73 unstruck by
+            U yet not revealed); persistence read with upper gears (copy 1 struck by 29 and 31 in U_11); three
+            consecutive g-struck survivors span exactly g (q = 11, g = 13: 16, 23, 36, span 20); unrestricted
+            strike-set equality (q = 107..139, gear 241 strikes consecutive survivors 1197, 1213 acting on neither);
+            revealed status P-periodic (29, 31 act on copy 1 + P, not on copy 1); mirror-closure of V_29.
+            NOT ESTABLISHED: which acting-based statement forbids a total blame map; whether C_q^free is empty for
+            every q (undecided at q = 13); a two-gear bound on consecutive survivors from q = 17 and a k-gear bound in
+            k alone; NS and NC; an exposure-preserving involution.
+            ENVIRONMENT: a stray tower-limit script (b2_twoadic.py) from c.xxxii held 20 GB since 10:14; stopped by the
+            manager.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6676,3 +6719,4 @@ Part III or Part IV of the proof document?
 - 2026-09-24, R5.f.xxxv.c.xxx: derived machine built beside the original (0/2/4-class strikers, quartic pair rule, special strikers); c_g revealed iff g in the escape classes up to its top live row lambda(g) > 2g/3; RANGE <=> chain over all revealed copies, each serving [sigma(p+2), p); monotone slack; comb structure of the stretch field; sharing law S(D) and privacy H(w). REFUTED: capped-strip reduction, the orbit statement (q = 19). NOT ESTABLISHED: RANGE => missed-copy chain, doomed classes. Record research/proof/derived_machine_2026-09-24.md.
 - 2026-09-25, R5.f.xxxv.c.xxxi: kernel for the range line - RangeCopies, RangeLocator, RangeMissed, RangeHandoff, 0 sorries, reviewer-checked, including range_implies_unbounded. Open items: RANGE <=> chain over missed copies plus the non-dominated tails, converse reduced to live anchors; doomed classes <=> classes with no prime g having both legs prime, doom has no finite-row certificate; the derivation operator is idempotent with D the least fixed point. Record research/proof/range_kernel_2026-09-25.md.
 - 2026-09-25, R5.f.xxxv.c.xxxii: kernel batch 2 (missed-copy reveal rule, the copy map J, chain => range => unbounded twins, all 0 sorries); live anchors: chain(S_1) given RANGE <=> m_r > r at every live r, transport and fixed-row laws, base-6 rule-level refutation; tower limit as a digit shift on {1,4,11,14}^N with fixed points 1 and 29; range-line map written and source-checked.
+- 2026-09-25, R5.f.xxxv.c.xxxiii: field kernel carried to the range - total blame iff every copy's least prime factor is a machine gear or acts; joint redundancy of non-acting strikes; translate/phase bijection with C_7^free and C_11^free empty; tooth, pair, comb and E2-record laws on copies; centre law and Gamma_k; node chain (RANGE <=> reach from 29 unbounded, scratch Lean); mirror height split. Acting enters only through trial division; no standing statement forbids a total blame map. Record research/proof/field_to_range_2026-09-25.md.
