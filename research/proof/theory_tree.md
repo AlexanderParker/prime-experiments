@@ -5128,6 +5128,39 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             k alone; NS and NC; an exposure-preserving involution.
             ENVIRONMENT: a stray tower-limit script (b2_twoadic.py) from c.xxxii held 20 GB since 10:14; stopped by the
             manager.
+          - R5.f.xxxv.c.xxxiv. KERNEL BATCH 3, MIRROR PAIRS UNDER ACTING, RUN LAWS (2026-09-25; 13 agents; record
+            research/proof/mirror_runs_2026-09-25.md).
+            KERNEL (0 sorries, standard axioms, reviewer-checked, rebuilt by the manager):
+            - RangeRegion: revealed_iff_minFac (both legs of copy j prime iff 30j + 1 < minFac(900j^2 - 1)^2),
+              blamed_iff_minFac, total_blame_iff. Reviewer: total_blame_iff_primorial is true but vacuous for q >= 7
+              (copy 1 lies inside the bound); the range-window form is a one-line corollary not yet in the file.
+            - RangeCentre: centre_law - a prime g >= 7 strikes copies x < y iff (g | y - x and g | 900x^2 - 1) or
+              (g | x + y and g | 225(y - x)^2 - 1); centre_law_field over any field with 30, 4 invertible.
+            - RangeReach (ported from scratch): range_iff_all_good (RANGE iff every twin node s >= 29 has its successor
+              below s#), good_iff_rangeStatement, range_iff_reach_unbounded (RANGE iff the good-step reach from 29 is
+              unbounded), ns_iff_two_rungs, range_of_ns, twins_unbounded_of_ns, not_parent_unique (149 is a rung of both
+              29 and 59), and 30 more. Corrections: nodes are twin nodes; no_node_region_17 dropped as false for twin
+              nodes ((311, 313) lies between 17^2 and 19^2).
+            MIRROR PAIRS (pair P_d = {(M - d)/2, (M + d)/2}, a = q#/2, rho = a + 1). PROVED: class form (g strikes the low
+            member iff d = M +- t_g, the high iff d = -M +- t_g, mod g); ACTING WINDOWS (low deleted iff some upper g in a
+            low class has 15d <= rho - g^2, high iff some h in a high class has 15d >= h^2 - rho; joint acting forces
+            g^2 + h^2 < q# + 2); the four legs' product is (a^2 - (15d + 1)^2)(a^2 - (15d - 1)^2), four root classes
+            unless g | q# -+ 2 (then {0, +-2t}); a gear strikes both members iff g | (q# - 2)(q# + 2) and g | d, and acts
+            on both iff also 15d <= rho - g^2; the empty-band condition (no multiple of g in [1, w_g] iff 2q# -+ 4 + e^2 is
+            a square, e odd <= 13; only q = 7 below 3000, with g = 8 not prime); on the core d <= R both members face
+            exactly the gears up to sqrt(rho); THE MEAN-HEIGHT IDENTITY: Revealed_q = Loss_q union (S_Q in [1, M - 1]
+            minus Gain_q), so not-Range(q) iff Loss_q is empty and every survivor unstruck by the gears below sqrt(rho) is
+            in Gain_q (high survivors with a leg h h', sqrt(rho) < h <= h'). REFUTED: the image in the sandwich is not
+            "exactly onto" (q = 13, d = 143: 17161 = 131^2); high-member deletion always by a gear <= sqrt(rho)
+            (q = 23, d = 38699: 10589^2); the central pair P_{d*} always doubly deleted (not at q = 7, 11, 17, 19); no pair
+            with one shared sole striker (q = 17, d = 3059, gear 23). Acting enters per member only.
+            RUN LAWS. PROVED: distance law (one gear on x and x + D forces g | D(225D^2 - 1)); triple law; exact comb and
+            span formulas c_g, tau_g; ACTING PAIR LAW (g strikes and acts on j and j + D, 0 < D < g, iff D in {sigma_g,
+            g - sigma_g}, g | 2j + D and 30j + 1 >= g^2). MEASURED: no two upper gears strike 5 consecutive survivors at
+            q = 11..31. REFUTED: that bound at q = 37 (five instances, e.g. 2749631283 + {0, 9, 29, 30, 41}, gears 41 and
+            43, all acting); the one-gear bound 2 at q = 47 (gear 53 strikes four consecutive survivors 247507649335490 +
+            {0, 7, 53, 60}); three gears on 7 consecutive survivors at q = 37. So bounds of the form 2k are refuted at
+            k = 1, 2, 3. NOT ESTABLISHED: any bound in k alone.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6720,3 +6753,4 @@ Part III or Part IV of the proof document?
 - 2026-09-25, R5.f.xxxv.c.xxxi: kernel for the range line - RangeCopies, RangeLocator, RangeMissed, RangeHandoff, 0 sorries, reviewer-checked, including range_implies_unbounded. Open items: RANGE <=> chain over missed copies plus the non-dominated tails, converse reduced to live anchors; doomed classes <=> classes with no prime g having both legs prime, doom has no finite-row certificate; the derivation operator is idempotent with D the least fixed point. Record research/proof/range_kernel_2026-09-25.md.
 - 2026-09-25, R5.f.xxxv.c.xxxii: kernel batch 2 (missed-copy reveal rule, the copy map J, chain => range => unbounded twins, all 0 sorries); live anchors: chain(S_1) given RANGE <=> m_r > r at every live r, transport and fixed-row laws, base-6 rule-level refutation; tower limit as a digit shift on {1,4,11,14}^N with fixed points 1 and 29; range-line map written and source-checked.
 - 2026-09-25, R5.f.xxxv.c.xxxiii: field kernel carried to the range - total blame iff every copy's least prime factor is a machine gear or acts; joint redundancy of non-acting strikes; translate/phase bijection with C_7^free and C_11^free empty; tooth, pair, comb and E2-record laws on copies; centre law and Gamma_k; node chain (RANGE <=> reach from 29 unbounded, scratch Lean); mirror height split. Acting enters only through trial division; no standing statement forbids a total blame map. Record research/proof/field_to_range_2026-09-25.md.
+- 2026-09-25, R5.f.xxxv.c.xxxiv: kernel batch 3 (region law via minFac, centre law, the twin-node reach chain: RANGE iff every node good iff reach from 29 unbounded); mirror pairs: class form, acting windows, four-leg product, the mean-height identity (not-Range iff Loss empty and unstruck survivors lie in Gain); run laws: acting pair law exact; the 2k run bounds REFUTED at k = 1 (q = 47), 2 and 3 (q = 37).

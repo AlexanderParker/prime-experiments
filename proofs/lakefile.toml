@@ -2427,3 +2427,12 @@ name = "RangeDerived"
 
 [[lean_lib]]
 name = "RangeChain"
+
+[[lean_lib]]
+name = "RangeRegion"
+
+[[lean_lib]]
+name = "RangeCentre"
+
+[[lean_lib]]
+name = "RangeReach"
