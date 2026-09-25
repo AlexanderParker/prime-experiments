@@ -2406,3 +2406,15 @@ name = "LadderFields"
 
 [[lean_lib]]
 name = "LadderWidening"
+
+[[lean_lib]]
+name = "RangeCopies"
+
+[[lean_lib]]
+name = "RangeLocator"
+
+[[lean_lib]]
+name = "RangeMissed"
+
+[[lean_lib]]
+name = "RangeHandoff"

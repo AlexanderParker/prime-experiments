@@ -5006,6 +5006,51 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             NOT ESTABLISHED: RANGE => chain over missed copies; whether any escape class is doomed; whether
             Cap(q) and Esc(q) are disjoint for infinitely many q; finiteness of fully covered stretches and of
             the kappa = 4 entering kills; the orbit statement beyond measurement (exact to q = 61).
+          - R5.f.xxxv.c.xxxi. KERNEL FOR THE RANGE LINE, AND THREE OPEN ITEMS (2026-09-25; 18 agents;
+            Lean lanes sequential; record in research/proof/range_kernel_2026-09-25.md).
+            KERNEL (Lean 4 / Mathlib, namespace RangeLine, each module built on its own by the lane, by an
+            independent reviewer, and again by the manager; 0 sorry / admit / axiom / native_decide; axioms
+            only propext, Classical.choice, Quot.sound; reviewer found no unfaithful or vacuous statement):
+            - RangeCopies: copy_product, copy_strike_iff(_legs), copy_strike_class (30j = +-1 mod g), the four
+              leg rules as iffs (same-sign legs: g | D; minus then plus: g | 15D + 1; plus then minus:
+              g | 15D - 1), copy_leg_rule, and its full converse copy_pair_iff.
+            - RangeLocator: class_meets_every_residue, class_residues_distinct, locator_closure,
+              locator_closure_contra (a class of copies silent against g forces g | N), locator_modulus,
+              locator_modulus_prod (the product of the primes 7..X divides N) and locator_modulus_le.
+            - RangeMissed: sq_mod30_cases (a prime g >= 7 has g^2 = 1 or 19 mod 30, exactly one),
+              missed_copy_legs (legs g^2 + 28, 30 or g^2 + 10, 12), gear_misses_own_copy,
+              larger_gear_sq (g^2 + 30 < h^2 for primes 7 <= g < h), no_larger_gear_acts.
+            - RangeHandoff: RangeStatement q := exists p, q < p, p + 2 <= primorial q, p and p + 2 prime;
+              range_implies_unbounded (the range statement at every prime q >= 7 gives twins above every N),
+              twin_serves, serves_interval, small_cases (every q in [7, 23], witness 29).
+            OPEN ITEM 1 - does RANGE force the missed-copy chain. PROVED: domination criterion
+            (service(M) contains service(R) iff p_R <= p_M <= sigma(p_R + 2)# - 2); the non-dominated set
+            N = union of the tails Rev in (m_r, r# - 2] and RANGE <=> chain(S_1 union N); the crossing form;
+            the two-copy cover law; given RANGE, chain(S_1) <=> the S_1 hand-off at every live anchor, and the
+            exact form of a converse failure. REFUTED: a service-preserving map from revealed copies to
+            revealed missed copies (copy 8 = (239, 241) serves [11, 239) and no missed copy lies in
+            [239, 2308]; it is covered only by c_13 and c_79 together); the status of a region copy
+            determining c_g or c_g' (all four combinations occur: copies 14, 184, 8, 267). NOT ESTABLISHED:
+            the converse itself; whether RANGE excludes a finite S_1.
+            OPEN ITEM 2 - doomed classes. PROVED: the child structure (1 zero child, e_h struck, h - 1 - e_h
+            escaping); a class is doomed iff it holds no revealed gear iff every prime g in it has a
+            composite leg; non-doom is inherited upward, doom downward; the leg polynomials are irreducible
+            and have no fixed prime divisor on any escape class; for every finite row set some subclass
+            free of it holds infinitely many gears (Dirichlet), so doom has no finite-row certificate; with
+            the acting bound removed every class is doomed and the tree is unchanged, so the tree alone does
+            not determine doom. R: no class is doomed <=> every escape class holds a prime g with g^2 + A and
+            g^2 + B both prime <=> every class holds infinitely many. Every class at levels 11, 13, 17 holds
+            a revealed gear (measurement). REFUTED: "only fixed-least-residue chains meet a window" (13 mod
+            2310 -> 4633 -> 64693 -> ...). NOT ESTABLISHED: whether any class is doomed.
+            OPEN ITEM 3 - the derivation as an operator. PROVED: Der(O) = D and Der(D) = D, Der o Der = Der
+            for every machine; the fixed points are exactly the f_C for unbounded copy families, D the least
+            of them and the unique one with each lower leg in (h^2, h^2 + 30); the tower P^k = (J^k)* O has
+            2^(2k+1) column classes mod 2 x 15^k, J mapping them 4-to-1; J's fixed columns are 1 and 29
+            (30(J(y) - y) = (y - 1)(y - 29)); class counts run {2} -> {0,2,4} -> {0,...,8} -> {0,...,16};
+            acting stays diagonal (h acts on column y of P^k iff h <= J^(k-1)(y)); striker persistence is
+            eventually periodic, with seed-period-1 strikers {11, 13, 29, 31, 67, 79} (branch 1) and
+            {11, 13, 23, 37, 853} (branch 19). NOT ESTABLISHED: class counts from level 4; the converse arrows
+            down the tower.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6595,3 +6640,4 @@ Part III or Part IV of the proof document?
 - 2026-09-23, R5.f.xxxv.c.xxviii: shelves round. PROVED: missed-copy law with reciprocity reach per leg; own-shelf silence as a theorem with the deferral law; silent runs <= 2; cofactor spokes {1,7,11,13} and the properties of the base-30 machine that trial division does not imply; survivor classes, their stabiliser and the (p-2)-to-1 refinement by the next gear; gears above q refine and never delete a class; gear-pair joint classes. REFUTED: silence propagation, a revealed copy on every shelf, and others listed. NOT ESTABLISHED: infinitely many revealed c_g; full-range density; an acting-based blame obstruction. Record in research/proof/shelves_cofactors_2026-09-23.md.
 - 2026-09-23, R5.f.xxxv.c.xxix: two range paths. Path A PROVED: exclusion tables and independent characters, escape classes non-empty at every finite level, the hand-off equivalence (range for all q via missed copies iff the revealed gears form an infinite chain with g_{i+1}^2 + B <= (g_i^2 + A)#; 327 hand-offs hold below 200,000), the neighbour kill rule h | d^2 + A', dormancy, Pell recurrences of the inert set. Path B: four transfer statements REFUTED with instances; forced stabiliser pairs preserve exposure. NOT ESTABLISHED: the hand-off chain is infinite. Record research/proof/range_two_paths_2026-09-23.md.
 - 2026-09-24, R5.f.xxxv.c.xxx: derived machine built beside the original (0/2/4-class strikers, quartic pair rule, special strikers); c_g revealed iff g in the escape classes up to its top live row lambda(g) > 2g/3; RANGE <=> chain over all revealed copies, each serving [sigma(p+2), p); monotone slack; comb structure of the stretch field; sharing law S(D) and privacy H(w). REFUTED: capped-strip reduction, the orbit statement (q = 19). NOT ESTABLISHED: RANGE => missed-copy chain, doomed classes. Record research/proof/derived_machine_2026-09-24.md.
+- 2026-09-25, R5.f.xxxv.c.xxxi: kernel for the range line - RangeCopies, RangeLocator, RangeMissed, RangeHandoff, 0 sorries, reviewer-checked, including range_implies_unbounded. Open items: RANGE <=> chain over missed copies plus the non-dominated tails, converse reduced to live anchors; doomed classes <=> classes with no prime g having both legs prime, doom has no finite-row certificate; the derivation operator is idempotent with D the least fixed point. Record research/proof/range_kernel_2026-09-25.md.
