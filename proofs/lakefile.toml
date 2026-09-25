@@ -2418,3 +2418,12 @@ name = "RangeMissed"
 
 [[lean_lib]]
 name = "RangeHandoff"
+
+[[lean_lib]]
+name = "RangeMissedReveal"
+
+[[lean_lib]]
+name = "RangeDerived"
+
+[[lean_lib]]
+name = "RangeChain"

@@ -5051,6 +5051,40 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             eventually periodic, with seed-period-1 strikers {11, 13, 29, 31, 67, 79} (branch 1) and
             {11, 13, 23, 37, 853} (branch 19). NOT ESTABLISHED: class counts from level 4; the converse arrows
             down the tower.
+          - R5.f.xxxv.c.xxxii. KERNEL BATCH 2, THE LIVE ANCHORS, THE TOWER LIMIT, AND THE RANGE-LINE MAP
+            (2026-09-25; 16 agents; record research/proof/range_kernel2_2026-09-25.md; map
+            research/proof/range_line_map.md).
+            KERNEL (0 sorry/admit/axiom/native_decide, standard axioms, reviewer-checked, rebuilt by the manager):
+            - RangeMissedReveal: legs_coprime_30; composite_leg_small_factor; missed_copy_revealed_iff - both legs of
+              c_g prime iff no prime h with 7 <= h < g divides a leg. (The brief's proof step g^2 + 30 < (g+1)^2 is
+              false at g = 7, 11, 13; the Lean proof uses larger_gear_sq instead.)
+            - RangeDerived: J1_exact, J19_exact, copy_map_on_gear; 30(J1(y) - y) = (y - 1)(y - 29) and J1 fixed exactly
+              at 1, 29; J19 has no fixed column; J strictly increasing; J below self exactly at {11, 19} and
+              {7, 13, 17, 23}.
+            - RangeChain: chain_implies_range_all, chain_implies_range, chain_implies_unbounded - a strictly increasing
+              sequence of twin lower legs from 29 with p_{k+1} + 2 <= primorial(p_k) gives the range statement at every
+              q >= 7 and twins above every bound.
+            LIVE ANCHORS. PROVED: given RANGE, chain(S_1) <=> m_r > r at every live r <=> at each such r some prime h
+            has r < h^2 + A_h, h^2 + B_h <= r# and no prime 7 <= f < h dividing a leg; the pair form for consecutive
+            S_1 gears; failure at r <=> g_r^2 + A <= r, and then the anchor pair straddles all of (r, r# - 2];
+            TRANSPORT: c_h is revealed iff some revealed (p, p + 2) with p > h has p = h^2 + A_h mod (h-)#, and for
+            h > r that class meets (r, r# - 2] only in c_h; FIXED ROW: a row kills every unit class of
+            (x^2 + a)(x^2 + a + 2) iff (f, a) = (5, 4) or (3, 0 or 2) - never in base 30. MEASURED: anchors to r = 61
+            (m_r > r at r = 7..61; tail(7) empty, tail(r) non-empty at r = 11..61). REFUTED at the level of rules: in
+            base 6 (missed column (g^2 + 4, g^2 + 6), always divisible by 5) S_1 = {29}, (41, 43) lies in every tail and
+            the anchor form fails at every r >= 29 - so "a non-empty tail forces m_r > r" does not follow from any rules
+            that also hold in base 6. NOT ESTABLISHED: the base-30 converse.
+            TOWER LIMIT. PROVED: repaired tower form P^(k+1) = {y in L_k : gcd(J^k(y), 15) = 1} (the written form
+            15 does not divide J^k(y) is REFUTED: y = 11, J(11) = 5); J: P^(m+1) -> P^m onto, fibres of size 4; the
+            next-digit law J^k(r + 15^k s) = J^k(r) + s prod_{i<k} J^i(r) mod 15; the limit L is Z_2^x times the
+            preimage of {1, 4, 11, 14}^N under the digit map, with J acting as the shift; 3 and 5 repel the fixed point
+            1, 2 is neutral; the only real periodic points are 1 and 29; 2-adic periods are powers of 2; N_h is
+            non-empty for every prime h >= 7. MEASURED: no natural number other than 1 and 29 lies in the limit below
+            2 x 15^10; the deepest columns (delta 22 at 360,329,223,301); no column below 10^6 other than 1 is revealed
+            at more than two consecutive levels. NOT ESTABLISHED: whether the limit holds another natural number,
+            whether any limit column is revealed at every level.
+            MAP: research/proof/range_line_map.md drafted from the records, checked line by line against its sources
+            (27 findings, all fixed, no prospect-judging sentences), then extended by the manager with this round.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6641,3 +6675,4 @@ Part III or Part IV of the proof document?
 - 2026-09-23, R5.f.xxxv.c.xxix: two range paths. Path A PROVED: exclusion tables and independent characters, escape classes non-empty at every finite level, the hand-off equivalence (range for all q via missed copies iff the revealed gears form an infinite chain with g_{i+1}^2 + B <= (g_i^2 + A)#; 327 hand-offs hold below 200,000), the neighbour kill rule h | d^2 + A', dormancy, Pell recurrences of the inert set. Path B: four transfer statements REFUTED with instances; forced stabiliser pairs preserve exposure. NOT ESTABLISHED: the hand-off chain is infinite. Record research/proof/range_two_paths_2026-09-23.md.
 - 2026-09-24, R5.f.xxxv.c.xxx: derived machine built beside the original (0/2/4-class strikers, quartic pair rule, special strikers); c_g revealed iff g in the escape classes up to its top live row lambda(g) > 2g/3; RANGE <=> chain over all revealed copies, each serving [sigma(p+2), p); monotone slack; comb structure of the stretch field; sharing law S(D) and privacy H(w). REFUTED: capped-strip reduction, the orbit statement (q = 19). NOT ESTABLISHED: RANGE => missed-copy chain, doomed classes. Record research/proof/derived_machine_2026-09-24.md.
 - 2026-09-25, R5.f.xxxv.c.xxxi: kernel for the range line - RangeCopies, RangeLocator, RangeMissed, RangeHandoff, 0 sorries, reviewer-checked, including range_implies_unbounded. Open items: RANGE <=> chain over missed copies plus the non-dominated tails, converse reduced to live anchors; doomed classes <=> classes with no prime g having both legs prime, doom has no finite-row certificate; the derivation operator is idempotent with D the least fixed point. Record research/proof/range_kernel_2026-09-25.md.
+- 2026-09-25, R5.f.xxxv.c.xxxii: kernel batch 2 (missed-copy reveal rule, the copy map J, chain => range => unbounded twins, all 0 sorries); live anchors: chain(S_1) given RANGE <=> m_r > r at every live r, transport and fixed-row laws, base-6 rule-level refutation; tower limit as a digit shift on {1,4,11,14}^N with fixed points 1 and 29; range-line map written and source-checked.
