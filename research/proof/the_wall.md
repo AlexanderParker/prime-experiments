@@ -756,3 +756,22 @@ the window; every standing statement that uses acting uses it through trial divi
 2k are refuted at k = 1, 2, 3 (one gear strikes seven consecutive survivors at q = 293).
 
 The full status of every statement is in `research/proof/range_generality_ledger.md`; the owner decides what is pursued.
+
+## The keystone (2026-09-27, node R5.f.xxxv.c.xxxviii)
+
+The range line reduces, by kernel theorems only, to one statement K: every twin node s >= 29 has its next twin node t
+with t + 2 <= s#. K is equivalent to the range statement at every q, at every prime q, and at every twin node; to the
+good-step reach being unbounded; to the chain of successive twins; and to "no terminal node". Every statement the line
+has worked on copies (RANGE on copies, the missed-copy chain, the fixed cut, NS) implies K and none is proved equivalent
+to it. Nothing strictly weaker than K still gives unbounded twins except K minus a finite certificate, or the conjecture
+itself.
+
+Six strategies attacked K (period, missed copies, mirror pairs, contradiction from total blame, twin gears, chain
+transfer): 0 proofs, 6 partials. Five stop at RANGE on copies at twin-node sizes; one stops at K. Each stop is an exact
+statement in `research/proof/range_proof.md` section 4. What every stop has in common: the kernel's existence theorems
+produce struck or deleted copies and one prime at a time; the barrier requires acting; every use of acting is trial
+division on one copy up to its square root; no published theorem places a twin pair in any interval (x, f(x)] for all x.
+
+`range_proof.md` is the complete chain: Lemmas 1-28 proved with kernel names, the final theorem in the form "if K then
+there are infinitely many twin primes" (kernel term `twins_unbounded_of_rangeAll (rangeAll_of_all_good hK)`), and
+RangeStatement q proved for every 7 <= q <= 39,377,242,978.

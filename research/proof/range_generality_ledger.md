@@ -1028,7 +1028,7 @@ For every prime q ≥ 7, s = ±1 and U⁻ prime g of q# − 2s: N_s = q#/2 − s
 
 ### 3A. Statements claimed for every q, with what is missing
 
-**3.1 RANGE itself.** It is not established for all q.
+**3.1 RANGE itself.** It is not established for all q. The keystone round of 2026-09-27 (node c.xxxviii, `range_proof.md`) isolated the weakest form the kernel reductions allow: K, every twin node s ≥ 29 has its next twin node t with t + 2 ≤ s# (kernel-equivalent to RangeAll; strictly stronger than "twins unbounded"; weaker, as far as proved, than RANGE on copies). Six strategies each stop at RANGE-on-copies at twin-node sizes or at K itself; the exact stops are in `range_proof.md` section 4. The full chain from K to "infinitely many twin primes" is proved (`range_proof.md` section 5).
 
 **3.2 Acting-both set equals the primes of (q# − 2)(q# + 2) in U⁻** (C1, C1E, mirror_runs A8), for every q ≥ 11.
 - Proved for all q:

@@ -5239,6 +5239,36 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
               Checked at every prime q <= 257, where no top gear falls in the open case.
             REFUTED as general this round: C7's small-case remark, the C11 acting clause (17, 31) and mirror clause (29, 31), a
             cited import for X10, three C1E statements.
+          - R5.f.xxxv.c.xxxviii. THE KEYSTONE AND THE PROOF DOCUMENT (owner 2026-09-27: "review everything and finish the
+            proof"; 9 agents: one keystone lane, six provers on independent strategies, one document lane, one checker; the
+            three-verifier stage received no claimed proof). Parent: c.xxxvii and the whole range line; spawned by the owner's
+            direction to close rather than explore. Pre-registered: isolate the single unproved statement K the kernel chain
+            reduces the range line to; attack K by six strategies (period, missed copies, mirror pairs, contradiction from
+            total blame, twin gears, chain transfer), each writing a PROOF or a PARTIAL with an exact first unjustified step;
+            verify any claimed proof three ways; write research/proof/range_proof.md as the full chain. Refuter of the round:
+            a proof that hides a gap.
+            RESULT: the KEYSTONE is K: for every twin node s >= 29 the next twin node t satisfies t + 2 <= s# (Lean
+            `forall s, TwinNode s -> 29 <= s -> Good s`, RangeReach); kernel-equivalent to RangeAll, to the prime-size and
+            twin-node-size forms, to the reach form, to the chain of successive twins and to "no terminal node" (E1-E10 in
+            the document); strictly stronger than "twins unbounded" (it adds the gap bound) and, as far as proved, strictly
+            weaker than the copy form S1 (RANGE on copies), the missed-copy chain S2, the fixed cut S3 and NS S4.
+            Anything weaker than K that still gives unbounded twins is K minus a finite certificate or the conjecture itself.
+            PROVERS: 0 PROOF, 6 PARTIAL. Five strategies stop at S1 restricted to twin-node sizes (a revealed copy in the
+            range of machine s for every twin node s); the sixth stops at K itself. Each stop is written as an exact
+            statement in range_proof.md section 4 with its proved part, all steps justified by named kernel theorems.
+            PROVED THIS ROUND (paper, every q, in the document): the range in index form; one range copy per nonzero
+            survivor class (2B.2 written in full); the twin-node classes 11, 17, 29 mod 30; an explicit survivor mirror pair
+            at every q >= 7 (15d* = +-2 mod M); the window above a twin node is covered by the machine gears alone under
+            not-Good s; a witness for machine s serves s + 1 and s + 2; the gears s and s + 2 remove no survivor below
+            (s + 2)^2; the hand-off is automatic whenever g' <= 2(g^2 + A_g); c_q is a range copy of machine q from the
+            kernel wall; the finite part: RangeStatement q for every 7 <= q <= 39,377,242,978 (three copy witnesses,
+            certificate research/proof/range_proof_certs.py).
+            DOCUMENT: research/proof/range_proof.md (definitions; Lemmas 1-28 all PROVED with kernel names; the keystone
+            with its equivalents; the six stops; the final theorem in the conditional form "if K then there are infinitely
+            many twin primes", kernel term `twins_unbounded_of_rangeAll (rangeAll_of_all_good hK)`). Checker: 226 kernel
+            names all exist and say what is claimed; 8 misstatements found (a Mathlib name, two hypothesis nuances, one
+            conflated pair, one interval, one cross-reference, two appendix rows), all corrected by the manager.
+            VERDICT: OPEN. K is not proved; the final theorem stands conditional. The owner decides what is pursued.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6835,3 +6865,4 @@ Part III or Part IV of the proof document?
 - 2026-09-26, R5.f.xxxv.c.xxxv: kernel batch 4 (acting pair law, mirror pair legs/shared striker/height split, range-window blame form); one-gear runs: exact run conditions, gear-7 lane law, ladder against h2(q); runs of 5, 6, 7 at q = 89..293, so no constant bound c <= 6 on B_1; Gain = (S_Q minus S_Q*) in the high half, not-Range iff Loss empty, S_Q misses the low half and S_Q* the high half.
 - 2026-09-26, R5.f.xxxv.c.xxxvi: generality ledger on the owner's rule - 18 general kernel entries (RangeGen1-5 new: height split, Gain, mirror under acting, total-blame anatomy, acting vs acting-free, all for every q), general scratch-Lean results (the wall nextprime(X)^2 < X# for X >= 7, cofactor floor and kill-free windows), 11 claimed-general items with their gaps, 43 refuted-as-general with counterexamples, instance data separated as checks.
 - 2026-09-26, R5.f.xxxv.c.xxxvii: second general round - the wall nextprime(X)^2 < X# (X >= 7), near-kill windows and top-band law now kernel theorems; C7 (M(G) >= G'^4), C8 (below-square count), C11 (mod 15d), C12 (twin strikers) proved for every q/g; X10 strict increase proved only under Legendre; C1E reduced to the top gear per side.
+- 2026-09-27, R5.f.xxxv.c.xxxviii: keystone round on the owner's direction to finish - K (every twin node s >= 29 has its next twin below s#) isolated as the single unproved statement; six strategies, 0 proofs, 6 partials each stopping at S1 at twin-node sizes or at K; range_proof.md written: Lemmas 1-28 proved, final theorem conditional on K.
