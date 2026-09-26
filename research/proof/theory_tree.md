@@ -5269,6 +5269,36 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             names all exist and say what is claimed; 8 misstatements found (a Mathlib name, two hypothesis nuances, one
             conflated pair, one interval, one cross-reference, two appendix rows), all corrected by the manager.
             VERDICT: OPEN. K is not proved; the final theorem stands conditional. The owner decides what is pursued.
+          - R5.f.xxxv.c.xxxix. KEYSTONE, BOTH ROUTES: HYPOTHESIS AND TEST (owner 2026-09-27 "do both"; 26 agents: 8
+            hypothesis lanes, 8 test lanes, 8 prover lanes, document, check; no defence lane convened since no test refuted
+            its statement; no claimed proof, so no verifier ran). Parent: c.xxxviii. Pre-registered: eight mechanism
+            hypotheses, four on the COPY route (S1 at twin-node sizes: A1 mirror exchange, A2 missed family, A3 high half,
+            A4 blame floor) and four on the TWIN route (K directly, classes 11/17/29 admitted: B1 three-class lap, B2 shelf of
+            the twin gears, B3 isolated twin / predecessor mirror class, B4 cross-class mirror); each stated exactly with its
+            chain to K, tested by exact computation, then proved or stopped at an exact statement.
+            RESULT: 0 proofs of K; 8 PARTIAL. Seven lanes marked their own statement COLLAPSES (proved content plus an
+            existence statement of the kind of the six stops); B3 stated a genuinely new hypothesis H_t. New stops beyond
+            the six: (*)+ (missed copy of a gear in [s, sqrt(s# - 30)] revealed), (TB) = W(s) [locating], W2 (window at
+            q = s + 2) [locating], H3 (a twin in [s^2, (s+2)^2), stronger than K), H_t (a lift k*a# - t - 2, k*a# - t of the
+            twin's mirror class in its predecessor machine a is a twin inside (t, t#]; implies S1 and K), T (the off-copy
+            track statement: Good s <-> S1_s or T_s). A1 stops at S1_s; B1 at K (column form C0 <-> K).
+            REFUTED THIS ROUND (exact, each with factorisations): W_E0 (some Stormer pair has a twin member) at s = 41; the
+            missed-family band existence at s = 29, 41; "mirror of a window twin is a twin" at s = 41; H_zone at s = 29; the
+            centre-pair twin W_c (s#/2 -+ 2, -+ 4 a twin) at s = 29; the universal-column twin at s = 41; a three-lift law by
+            exact count. NARROWED: the Stormer shared-blamer bound 9396 -> 6148; the cofactor bound gh < s''^2 - 2; the
+            near condition 4d^2 + 10d - 2 < s; eleven universal classes; the head reveal rule [7, g] / [7, g).
+            PROVED FOR EVERY s (prover-lane arguments, not in the kernel, N1-N28 in range_proof.md 4.10.10): among them the
+            Stormer pairs (E0 = {2,3,4,5,7,9,11,17,19,26,31,49,161}, the survivor pairs whose class is the same at every
+            size, with the distinct-blamer law g <= 15e + 14); the missed-family band D_s on which only machine rows kill;
+            the acting floor and top-band transport; the exact own-shelf teeth of s + 2 by s mod 30; the {2,3}-machine
+            survivor count 3 prod (g - 2) with the centre quadruplet slot s#/2 -+ 2, -+ 4 surviving every gear; the shelf of a
+            twin node has 4k columns and the twin gears strike exactly the left end and the midpoint; the predecessor
+            mirror-class lifts with the forced hand-off of classes 29 -> 29, 11 -> 17, 17 -> 11; the off-copy tracks as
+            translates of the copy track with no Euclid class.
+            DOCUMENT: range_proof.md 4.10 (eight subsections, end-state table 4.10.9, N1-N28 in 4.10.10), 4.9 second table,
+            section 5 updated; checker: 109 of 112 kernel names exact (three schematic placeholders corrected by the
+            manager), 27 Mathlib names exist, counterexamples recomputed, 12 misstatements corrected by the manager.
+            VERDICT: OPEN. K not proved; final theorem stands conditional. Owner decides.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6866,3 +6896,4 @@ Part III or Part IV of the proof document?
 - 2026-09-26, R5.f.xxxv.c.xxxvi: generality ledger on the owner's rule - 18 general kernel entries (RangeGen1-5 new: height split, Gain, mirror under acting, total-blame anatomy, acting vs acting-free, all for every q), general scratch-Lean results (the wall nextprime(X)^2 < X# for X >= 7, cofactor floor and kill-free windows), 11 claimed-general items with their gaps, 43 refuted-as-general with counterexamples, instance data separated as checks.
 - 2026-09-26, R5.f.xxxv.c.xxxvii: second general round - the wall nextprime(X)^2 < X# (X >= 7), near-kill windows and top-band law now kernel theorems; C7 (M(G) >= G'^4), C8 (below-square count), C11 (mod 15d), C12 (twin strikers) proved for every q/g; X10 strict increase proved only under Legendre; C1E reduced to the top gear per side.
 - 2026-09-27, R5.f.xxxv.c.xxxviii: keystone round on the owner's direction to finish - K (every twin node s >= 29 has its next twin below s#) isolated as the single unproved statement; six strategies, 0 proofs, 6 partials each stopping at S1 at twin-node sizes or at K; range_proof.md written: Lemmas 1-28 proved, final theorem conditional on K.
+- 2026-09-27, R5.f.xxxv.c.xxxix: both routes on the keystone - eight mechanism hypotheses (four copy, four twin), all tested exact, 0 proofs, 8 partials; new stops (*)+, W2, H3, H_t, T; W_E0, W_c and five sub-claims refuted with counterexamples; N1-N28 general statements proved by argument; range_proof.md 4.10.

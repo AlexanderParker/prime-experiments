@@ -775,3 +775,15 @@ division on one copy up to its square root; no published theorem places a twin p
 `range_proof.md` is the complete chain: Lemmas 1-28 proved with kernel names, the final theorem in the form "if K then
 there are infinitely many twin primes" (kernel term `twins_unbounded_of_rangeAll (rangeAll_of_all_good hK)`), and
 RangeStatement q proved for every 7 <= q <= 39,377,242,978.
+
+## Both routes on the keystone (2026-09-27, node R5.f.xxxv.c.xxxix)
+
+Eight mechanism hypotheses, four on copies (mirror exchange, missed family, high half, blame floor) and four on off-copy
+twins (three-class lap, shelf of the twin gears, predecessor mirror class, cross-class mirror), each tested exactly and
+then proved as far as it goes. 0 proofs of K, 8 partials. Seven collapsed to an existence statement of the kind of the six
+stops; one (the predecessor mirror class H_t: some lift k*a# - t - 2, k*a# - t of the twin's mirror in its predecessor
+machine a is a twin inside (t, t#]) is a new statement that implies S1 and K and is open. Refuted with counterexamples:
+the Stormer-pair witness (s = 41), the missed-family band existence (s = 29, 41), the centre-pair twin s#/2 -+ 2, -+ 4
+(s = 29), the universal-column twin (s = 41). What every stop has in common is unchanged: the proved content is
+equivalences, exact strike sets, size-independent bounds and constraints under not-S1_s; the existence of a clear copy or
+column at a general size is never produced. Full record: `research/proof/range_proof.md` 4.10.
