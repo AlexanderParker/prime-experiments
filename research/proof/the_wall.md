@@ -732,3 +732,27 @@ structure above. Further rungs are bigger iterations and are not funded.
 problem, W2 is unmoved in strength, and the one measurement that decides whether enumerating K can
 keep pace is K(14) - the window's demand rose by three from n = 13 to n = 14, so K(14) = 14 means
 the margin widens and K(14) = 17 means it is closing and the enumeration family is finished.
+
+## The range line, 2026-09-21 to 2026-09-27 (manager; tree R5.f.xxxv.c to c.xxxvii)
+
+The owner set the target as the RANGE statement: for every machine q, some copy (30j - 1, 30j + 1) in (q, q#] has
+both legs prime. It needs no location, and at every q it gives a twin above q, so it gives the conjecture.
+
+**What holds for every machine size and is checked by the Lean kernel** (21 modules, `proofs/Range*.lean`, 0 sorries):
+the range statement at every q gives unbounded twins; a chain of twins from 29, each below the primorial of the last,
+gives the range statement; the range statement holds exactly when the good-step reach from 29 never stops; the strike,
+leg, centre and acting-pair laws on copies; the locator closure (a class silent against the gears up to X has modulus
+at least X#/30, so it carries at most one copy per period); the missed copy of each gear and its reveal rule; the
+mirror-pair algebra and the height split of the range; the wall nextprime(X)^2 < X# for every X >= 7.
+
+**What is proved on paper for every q:** the barrier (with acting dropped the same gears admit a total blame, so any
+obstruction must use acting); the below-square strike count; the twin-gear striker sets; M(G) >= G'^4 for G >= 19.
+
+**What is not proved for every q:** the range statement itself; the missed-copy chain; the mirror-pair existence clause
+at the top gear; strict growth of the hand-off reach at every gear pair (it follows from Legendre's conjecture).
+
+**Measured edges, as data only:** counting and linear-programming bounds cap at 6, 11, 11.77 and 12 and cannot reach
+the window; every standing statement that uses acting uses it through trial division on one copy; run bounds of the form
+2k are refuted at k = 1, 2, 3 (one gear strikes seven consecutive survivors at q = 293).
+
+The full status of every statement is in `research/proof/range_generality_ledger.md`; the owner decides what is pursued.

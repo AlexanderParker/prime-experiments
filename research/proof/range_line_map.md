@@ -2,6 +2,8 @@
 
 This map covers theory-tree nodes R5.f.xxxv.c.xxv to R5.f.xxxv.c.xxxi (2026-09-23 to 2026-09-25), the four round records and the Lean kernel. Every statement and number is taken from those sources.
 
+**Current status of every statement: see `range_generality_ledger.md`.** Rounds after this map (nodes c.xxxii to c.xxxvii, 2026-09-25 to 2026-09-26) are recorded there and in the tree. Under the owner's rule of 2026-09-26, only statements holding for every machine size count; the ledger sorts every statement of the range line into general-in-Lean (21 kernel modules), general on paper, claimed but not proved, refuted as general, and instance data.
+
 Brackets give the source of each item:
 - [shelves X]: `research/proof/shelves_cofactors_2026-09-23.md`, item X (node c.xxviii).
 - [two-paths X]: `research/proof/range_two_paths_2026-09-23.md`, item X (node c.xxix).
