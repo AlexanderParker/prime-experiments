@@ -1,13 +1,14 @@
 # Range line: generality ledger
 
-Date: 2026-09-26. This ledger covers the range line up to node R5.f.xxxv.c.xxxv. It includes the Lean kernel (the 13 Range modules and the new RangeGen1 to RangeGen5) and this round's adjudications of the claimed items C1 to C6.
+Date: 2026-09-26, updated the same day for the second round. This ledger covers the range line up to node R5.f.xxxv.c.xxxv. It includes the Lean kernel (21 Range modules: the 13 earlier ones, RangeGen1 to RangeGen5, and RangeWall, RangeNearKill and RangeTopBand) and the adjudications of the claimed items C1 to C6 (first round) and C7, C8, C11, C12, X10 and C1E (second round).
 
 **The owner's rule.** A result counts only if it holds for every machine size q, and for every gear g, copy j and gap d that the statement quantifies. A statement proved or checked only at particular q is instance data. Computation at particular q is used only to check a general statement or to refute one.
 
 **Sources.** Every entry comes from one of these:
 - the generality audit of 2026-09-26;
-- this round's adjudications of C1 to C6;
+- the first round's adjudications of C1 to C6;
 - the Lean lane reports and the review of RangeGen1 to RangeGen5;
+- the second round: the port reports and the review of RangeWall, RangeNearKill and RangeTopBand, and the adjudications of C7, C8, C11, C12, X10 and C1E;
 - `range_line_map.md`;
 - the round records in this folder: `shelves_cofactors_2026-09-23.md`, `range_two_paths_2026-09-23.md`, `derived_machine_2026-09-24.md`, `range_kernel_2026-09-25.md`, `range_kernel2_2026-09-25.md`, `field_to_range_2026-09-25.md`, `mirror_runs_2026-09-25.md` and `runs_gain_2026-09-26.md`.
 
@@ -17,17 +18,25 @@ No entry is new.
 
 | Section | Contents | Entries |
 |---|---|---|
-| 1 | Holds for every q and is a kernel theorem in Lean | 18 (5 of them new this round: RangeGen1 to RangeGen5) |
-| 2 | Holds for every q, proved on paper or in a scratch Lean file, not yet in the kernel | 4 scratch-Lean groups, 13 paper groups, 1 list of counting or locating results |
-| 3 | Stated for every q, not proved | 11 claimed statements, plus the open items recorded this round |
-| 4 | False as a general statement, with a counterexample | 43 |
-| 5 | Instance data: checks only, not proofs | 12 groups |
+| 1 | Holds for every q and is a kernel theorem in Lean | 21 (RangeGen1 to RangeGen5 added in the first round, RangeWall, RangeNearKill and RangeTopBand in the second) |
+| 2 | Holds for every q, proved on paper or in a scratch Lean file, not yet in the kernel | 1 scratch-Lean group, 19 paper groups (2B.14 also has scratch Lean), 1 list of counting or locating results |
+| 3 | Stated for every q, not proved | 7 claimed statements, plus the open items recorded by the two rounds |
+| 4 | False as a general statement, with a counterexample | 50 |
+| 5 | Instance data: checks only, not proofs | 13 groups |
 
-What moved this round:
+What moved in the first round (2026-09-26):
 - P1 to P5 (height split, gain, mirror pairs under acting, total-blame anatomy, acting against acting-free) moved from paper to the kernel.
 - C4 and C6 moved from claimed to proved.
 - C1, C2, C3 and C5 were split into proved parts, refuted parts and open parts.
-- C7 to C12 were not examined this round and stay in section 3.
+- C7 to C12 were not examined in that round and stayed in section 3.
+
+What moved in the second round (2026-09-26):
+- The scratch-Lean groups 2A.1 (wall), 2A.2 (near-neighbour kills) and 2A.3 (top band) passed review and moved into the kernel as RangeWall, RangeNearKill and RangeTopBand (1.19 to 1.21). 2A.4 stays in scratch Lean.
+- C7 (3.4), C8 (3.5) and C12 (3.9) moved from claimed to proved (2B.14, 2B.15, 2B.17). C7's small-case remark is refuted (row 44) and replaced by a repaired finite form (2B.14 (6)). The realisations of C12's striker sets are instance data (5.13).
+- C11 (3.8) moved to proved (2B.16). The mod-15d constancy is proved. The acting clause "both act on the least split copy ⇔ c > d" is refuted in general (section 4, row 46) and proved for every twin, cousin and sexy gear pair. The mirror clause is repaired.
+- X10 (3.10) was split: monotonicity, the exact step law and the span laws are proved (2B.18); the attribution of one cited import is refuted (row 47); strict increase at every consecutive gear pair stays open (3.10).
+- C1E (the existence clause of 3.2) was split: the identities, the survivor bijection and the top-gear uniqueness are proved (2B.19); the clause at every non-top gear is proved by a counting argument (2C); three statements are refuted (rows 48 to 50); the top gear stays open (3.2).
+- C9 (3.6) and C10 (3.7) were not examined and stay in section 3.
 
 ---
 
@@ -134,6 +143,7 @@ What moved this round:
 
 **Status words and flags**
 - **GENERAL-PROVED**: the argument is valid for every q, and for every gear, copy and gap as the statement quantifies.
+- **GENERAL-REPAIRED**: the statement as written is false, and a weaker general form is proved; the entry states that form.
 - **GENERAL-CLAIMED**: stated for every q, but the argument is incomplete.
 - **INSTANCE**: holds at particular q only. It is a check, not a proof.
 - Where each proof lives:
@@ -151,10 +161,12 @@ What moved this round:
 Every entry holds for all q from the stated lower bound. None has an upper bound on q or needs q to be prime.
 
 The kernel checks:
-- 0 sorry, admit, axiom or native_decide in the 18 Range modules.
+- 0 sorry, admit, axiom or native_decide in the 21 Range modules.
 - Axioms used: only propext, Classical.choice and Quot.sound.
 
 The reviewer rebuilt RangeGen1 to RangeGen5 one module at a time, re-elaborated each from source, and checked axioms on all 59, 90, 90, 50 and 54 declarations. Each module is registered as a `[[lean_lib]]` block in `proofs/lakefile.toml`.
+
+In the second round the reviewer rebuilt RangeWall, RangeNearKill and RangeTopBand the same way (`lake build` and a fresh `lake env lean`, zero errors and zero warnings) and checked axioms on all 32, 73 and 8 declarations. A scratch file importing all 21 Range modules together compiled. The three modules are registered at the end of `proofs/lakefile.toml` and are not in defaultTargets.
 
 ### 1.1 The range statement gives unbounded twins (RangeHandoff)
 - If RangeStatement q holds at every prime q ≥ 7, then twin pairs exist above every N.
@@ -449,6 +461,88 @@ The statements hold for every prime g ≥ 7.
 ### 1.18 Node bookkeeping (RangeReach)
 - nextNode_unique, exists_nextNode, exists_prevNode.
 
+### 1.19 The wall and its uses (RangeWall, new in the second round; was 2A.1, C6)
+The statements hold for every natural number as quantified, in namespace RangeLine. Where a statement has "p at most every prime above X", p = nextprime(X) is the main case; p need not be prime.
+- **Wall.**
+  - For every X ≥ 7 and every p at most every prime above X: p² < X#.
+  - For every X < 7 and every p > X: X# ≤ p².
+  - So nextprime(X)² < X# ⇔ X ≥ 7.
+  - For prime X ≥ 11, 15X(X + 1) ≤ X#. For every X ≥ 1, the least prime above X is ≤ 2X (Bertrand).
+  - Lean: wall_inequality_nat, wall_fails_below_seven, wall_iff, nextprime_sq_lt_primorial, wall_inequality (prime X), le_two_mul_of_least, fifteen_mul_le_primorial, four_sq_lt_primorial_of_prime ((2X)² < X# for prime X ≥ 7).
+  - nextprime_sq_lt_primorial keeps two unused hypotheses; it is a special case of wall_inequality_nat.
+- **Doubled wall.** (2X)² < X# ⇔ X = 0, X = 7 or X ≥ 11, for every natural X. Lean: four_sq_lt_primorial_iff, four_sq_lt_primorial_of_ge_eleven, four_sq_lt_primorial_large (X ≥ 44), four_sq_lt_primorial_mid (11 ≤ X ≤ 43).
+- **Acting from one period.** For every q ≥ 7, every g at most every prime above q (so every gear g ≤ q') and every j ≥ q#/30 = M: g² ≤ 30j + 1. Lean: acts_from_period, thirty_mul_period (30·(X#/30) = X# for X ≥ 5).
+- **Window and range top.** For q ≥ 7 and q' the next prime:
+  - 30j + 1 < q'² gives 30j + 1 < q# and j < M (window_below_primorial);
+  - such a j is in the range ⇔ q < 30j − 1 (window_mem_range_iff, in the range-copy form of RangeWindowForm.range_copy_iff).
+  - For every q < q', with no lower bound on q: (1 ≤ j, 30j + 1 < q'², 30j − 1 ≤ q) ⇔ 1 ≤ j ≤ ⌊(q + 1)/30⌋ (below_range_iff), and such a j exists ⇔ q ≥ 29 (below_range_exists_iff).
+- **Lap bound.** For every q ≥ 7, every residue r and M = q#/30:
+  - some k with 1 ≤ k ≤ q' has q' dividing the lower leg of copy r + kM, and q' acts on it (lap_bound);
+  - some k with 1 ≤ k ≤ q' − 1 has q' dividing a leg of copy r + kM, and q' acts on it (lap_bound_sharp). This bound is attained (section 4, row 13).
+  - For prime g ≥ 7 with g ∤ N and any r, some k < g has g | 30(r + kN) + 1 (locator_closure_plus).
+- **Silent classes.** Take N ≥ 1, any r and X ≥ 5, and a class j ≡ r (mod N) in which no prime of [7, X] divides a leg of any copy j ≥ 1.
+  - X# ≤ 30N (silent_class_period).
+  - For X ≥ 7 and p at most every prime above X: p² < 30N (silent_class_beyond_wall).
+  - The class has at most one member j ≥ 1 with 30j ≤ X# (silent_class_one_per_period), and at most one with 30j + 1 < p² (silent_class_one_in_band).
+  - 30·∏_{7≤p≤X} p = X# for X ≥ 5 (thirty_mul_prod_Icc).
+- **Constants and helpers:** wall_primorial_five (5# = 30), wall_primorial_seven (7# = 210), wall_primorial_eleven (11# = 2310), wall_primorial_twentythree (23# = 223092870), wall_thirty_dvd_primorial (30 | X# for X ≥ 5), coprime_thirty_of_prime.
+- Lean: 32 theorems, all listed above. Names were changed from the scratch files only to avoid clashes: the wall_ prefix on the constants and on thirty_dvd_primorial, and the two scratch theorems called four_sq_lt_primorial became four_sq_lt_primorial_of_prime (prime X ≥ 7) and four_sq_lt_primorial_of_ge_eleven (X ≥ 11). No statement was weakened.
+
+### 1.20 Near-neighbour kills: floors, kill-free windows, class windows (RangeNearKill, new in the second round; was 2A.2, C5)
+The statements hold for all naturals g, h, h', a, b, c, K, t, κ, d. No machine size appears. Write d = g − h. The constants 28, 30, 10 and 12 are the case legs, and the classes 1, 7, 11, 13, 17, 19, 23, 29 are the units mod 30.
+- **Shift and parity floors.**
+  - For h ≤ g: h | g² + a ⇔ h | (g − h)² + a (dvd_shift).
+  - For odd g, odd h < g, even a > 0 and h | g² + a: 2h ≤ (g − h)² + a (kill_floor). With 4 | a: 4h ≤ (g − h)² + a (kill_floor4).
+- **Kill-free windows.** For odd g, even a > 0, odd h with h' ≤ h < g, and (g − h')² + a + 2 < 2h': h divides neither g² + a nor g² + a + 2 (near_immune).
+  - Case 1, legs g² + 28 and g² + 30: the window is (g − h')² + 30 < 2h' (near_immune_case1).
+  - Case 19, legs g² + 10 and g² + 12: the window is (g − h')² + 10 < 2h' (near_immune_case19).
+- **Exact boundary**, for g odd and prime to 3 and 5, and every odd h < g. The kernel drops the scratch hypothesis 3 ≤ h, so these statements are stronger than the scratch ones.
+  - Case 1 (g ≡ ±1 mod 5): h divides a leg with (g − h)² + 30 ≤ 2h ⇔ t² + 29 = 2g, h + t = g + 1 and 5 ∤ t for some t (boundary30_iff).
+  - Case 19 (g ≡ ±2 mod 5): h divides a leg with (g − h)² + 10 ≤ 2h ⇔ t² + 9 = 2g, h + t = g + 1 and 5 | t for some t (boundary10_iff).
+  - t² + 29 = 2g gives g ≡ 19 (mod 30) with 5 ∤ t, or g ≡ 7 (mod 30) with 5 | t (sq29_class). t² + 9 = 2g gives g ≡ 17 (mod 30) with 5 | t, or g ≡ 29 (mod 30) with 5 ∤ t (sq9_class). So the boundary kills are at g ≡ 19 (case 1) and g ≡ 17 (case 19), and the other square solutions give no kill.
+  - For h < g, (g − h)² + 30 = 2h gives h | g² + 30 and h ∤ g² + 28: only the upper leg is killed (boundary30_upper_only).
+- **Residue certificates.** The definitions resOK, excluded and allExcluded check every residue of d mod 30κ.
+  - excluded_sound, and floor_of_allExcluded: if allExcluded K b c = true, 0 < b, h < g, gcd(h, 30) = 1, g ≡ c (mod 30) and h | g² + b, then K·h ≤ (g − h)² + b.
+  - Sixteen certificates cert_b_c, each allExcluded K b c = true, checked by `decide +kernel` (kernel reduction, not native_decide), and sixteen floors floor_b_c: K(b, c)·h ≤ (g − h)² + b. The values K(b, c):
+
+    | Leg b | classes and K |
+    |---|---|
+    | 28 | c = 1: 4; 11: 32; 19: 28; 29: 32 |
+    | 30 | c = 1: 26; 11: 6; 19: 2; 29: 22 |
+    | 10 | c = 7: 22; 13: 70; 17: 2; 23: 14 |
+    | 12 | c = 7: 48; 13: 12; 17: 4; 23: 4 |
+
+- **Class windows.** For g ≡ c (mod 30), h < g and gcd(h, 30) = 1: h misses both legs of c_g whenever (g − h)² + b_c < K_c·h (window_c, one per class).
+
+  | g mod 30 | 1 | 11 | 19 | 29 | 7 | 13 | 17 | 23 |
+  |---|---|---|---|---|---|---|---|---|
+  | b_c | 28 | 30 | 30 | 30 | 10 | 12 | 10 | 12 |
+  | K_c | 4 | 6 | 2 | 22 | 22 | 12 | 2 | 4 |
+
+- **Sharpness.** Each class window has a prime kill h of a prime gear g exactly on its boundary (sharp_c): class 1: 23 of 31; 11: 29 of 41; 19: 17 of 19; 29: 13 of 29; 7: 11093 of 11587; 13: 3469 of 3673; 17: 13 of 17; 23: 67 of 83.
+- **Neighbour rule.**
+  - For all b and K: h' ≤ h < g and (g − h')² + b < K·h' give (g − h)² + b < K·h (window_mono).
+  - neighbour_1 to neighbour_23: for g ≡ c (mod 30), the class window at h', h' ≤ h < g and gcd(h, 30) = 1, h misses both legs.
+  - So with g = p_n, h' = p_{n−r} ≥ 7 and c = p_n mod 30: if (p_n − p_{n−r})² + b_c < K_c·p_{n−r}, none of p_{n−1}, …, p_{n−r} kills c_{p_n}.
+- Lean: 73 declarations (70 theorems and the 3 definitions): dvd_shift, kill_floor, kill_floor4, near_immune, near_immune_case1, near_immune_case19, sq29_class, sq9_class, boundary30_iff, boundary30_upper_only, boundary10_iff, resOK, excluded, allExcluded, excluded_sound, floor_of_allExcluded, the 16 cert_b_c, the 16 floor_b_c, the 8 window_c, the 8 sharp_c, window_mono and the 8 neighbour_c.
+- Axioms: the 16 cert_b_c and the 3 definitions use propext only; dvd_shift and window_mono use propext and Quot.sound; every other theorem uses propext, Classical.choice and Quot.sound.
+- The paper-only parts of the former 2A.2 (the cofactor κ, the 2-adic classes, no h dividing both legs, the case-19 boundary leg) are now in 2B.12.
+
+### 1.21 Top band of λ (RangeTopBand, new in the second round; was 2A.3, C4)
+All variables range over the integers. The only hypotheses are the band conditions written below.
+- Definitions:
+  - balRho g h: the balanced residue of g mod h (g mod h, or g mod h − h when 2(g mod h) ≥ h). It is the scratch `rho`, renamed because RangeLine.rho is ρ = q#/2 + 1.
+  - Dormant g h B B': balRho² < h − B, or balRho is even and balRho² < 2h − B'. This is the dormancy test of derived_machine 2.2.
+- For h < g and 2g < 3h: balRho g h = g − h (rho_top_band).
+- Top-band row law. For odd g and h with h < g, 2g < 3h and B' − B ≤ h:
+  - Dormant ⇔ (g − h + 1)² < 2g + 1 − B' (top_band_dormant_iff);
+  - for any proposition ni (standing for e_h > 0): (ni and not Dormant) ⇔ (ni and 2g + 1 − B' ≤ (g − h + 1)²) (top_band_live_iff).
+- The d0 test is up-closed: for 0 ≤ d ≤ d', T ≤ (d + 1)² gives T ≤ (d' + 1)² (pass_mono).
+- Window form: 2x + 1 − B' ≤ (x − h + 1)² ⇔ 2h − B' ≤ (x − h)², for all x, h, B' (window_form).
+- The case constants meet B' − B ≤ h for every h ≥ 0: B' − B = 0 in case 1 and −2 in case 19 (top_band_constants).
+- Lean: 6 theorems (rho_top_band, top_band_dormant_iff, top_band_live_iff, pass_mono, window_form, top_band_constants) and 2 definitions (balRho, Dormant).
+- Scope: the module proves the per-row law in the band 2g/3 < h < g and the up-closure of the d0 test. It has no formal λ(g) and no theorem λ(g) = h\* (derived_machine B2, B5); that step combines top_band_live_iff and pass_mono on paper (2B.11).
+
 **Kernel caveats**
 - RangeStatement admits twin pairs off the copies. So the reach equivalences in 1.2 and 1.3 are about twin nodes, not copies. The copy form implies RangeStatement in one direction only (1.5).
 - `small_cases` (RangeStatement at q = 7..23, with witness p = 29) is an instance, listed in section 5.
@@ -460,63 +554,15 @@ The statements hold for every prime g ≥ 7.
   - Uminus = uMinusSet;
   - Uminus ∨ Band = InU for q ≥ 7;
   - RangeCopy = RangeCopyWindow for q ≥ 7.
+- RangeWall, RangeNearKill and RangeTopBand share no declaration name with any other Range module. In the joint import check the new names resolve beside the old ones (rho and balRho, primorial_five and wall_primorial_five, thirty_dvd_primorial and wall_thirty_dvd_primorial), and unqualified uses inside `namespace RangeLine` and under `open RangeLine` elaborate without ambiguity.
 
 ---
 
 ## 2. General, proved on paper or in scratch Lean, not yet in the kernel
 
-### 2A. Checked in scratch Lean files this round (GENERAL-PROVED; not in the kernel)
+### 2A. Checked in scratch Lean files (GENERAL-PROVED; not in the kernel)
 
-**2A.1 The wall inequality and its uses** (C6). [Lean scratch: `RangeWall.lean` and `C6Defence.lean`, recompiled as `adj_c6/C6AdjWall.lean` and `adj_c6/C6AdjDef.lean`]
-- **Wall.** nextprime(X)² < X# for every natural X ≥ 7, and the inequality fails at every X ≤ 6.
-  - For prime X ≥ 11, X# ≥ 15X(X + 1).
-  - Proof: Bertrand (Mathlib) and divisibility by distinct primes.
-  - Lean: wall_iff, wall_inequality_nat, wall_fails_below_seven, nextprime_sq_lt_primorial.
-- **Doubled wall.** (2X)² < X# ⇔ X = 0, X = 7 or X ≥ 11, for every natural X. Lean: four_sq_lt_primorial_iff.
-- **Acting from one period.** For every q ≥ 7 and every gear g ≤ q', g acts on every copy j ≥ M. In fact q'² < q#. Lean: acts_from_period.
-- **Window and range top.**
-  - Every j with 30j + 1 < q'² has j < M.
-  - Such a j ≥ 1 is in the range ⇔ 30j − 1 > q.
-  - The copies cut by the window below the range are 1 ≤ j ≤ ⌊(q + 1)/30⌋, and there are some ⇔ q ≥ 29.
-  - Lean: window_below_primorial, window_mem_range_iff, below_range_iff, below_range_exists_iff.
-- **Lap bound.** For every q ≥ 7 and residue r, let h(r) be the least j ≡ r (mod M) on which q' strikes and acts (field_to_range G1 row 13).
-  - h(r) ≤ r + q'M, with q' dividing the lower leg.
-  - h(r) ≤ r + (q' − 1)M, with q' dividing either leg.
-  - The second bound is attained (see section 4, row 13).
-  - Lean: lap_bound, lap_bound_sharp, locator_closure_plus.
-- **Silent classes.** Take X ≥ 5, N ≥ 1 and a class mod N struck by no prime in [7, X].
-  - ∏_{7≤p≤X} p divides N, so 30N ≥ X#. With the wall this gives N > X'²/30 for X ≥ 7, where X' is the next prime after X.
-  - The class has at most one member j ≥ 1 with 30j ≤ X#, and at most one in the window band.
-  - Lean: silent_class_period, silent_class_beyond_wall, silent_class_one_per_period, silent_class_one_in_band.
-
-**2A.2 Near-neighbour kills: cofactor floor and kill-free windows** (C5). [Lean scratch: `c5/NearKill.lean`, `c5_defend/C5Defence.lean`]
-- **Cofactor floor.** Take odd h < g, both prime to 30, with d = g − h and leg constant b.
-  - h divides the leg g² + b ⇔ h divides d² + b.
-  - Write d² + b = κh. Then κ is even and carries the whole {2, 3, 5}-part of d² + b.
-  - The 2-adic classes are exact: v2(d² + 12) = 4; v2(d² + 28) ≥ 5 when d ≡ 2 (mod 4); v2 = 1 for b = 10 and b = 30.
-  - No h divides both legs.
-  - Lean: kill_floor and kill_floor4 (the 2h and 4h floors).
-- **Kill-free window (W).** Case 1: d² + 30 < 2h ⇒ h misses both legs of c_g. Case 19: the same with d² + 10 < 2h. Lean: near_immune_case1, near_immune_case19.
-- **Boundary (E).** Here h only needs to be odd.
-  - Case 1: h divides a leg with d² + 30 ≤ 2h ⇔ 2g − 29 = t² with 5 ∤ t and h = g − t + 1. Then g ≡ 19 (mod 30), κ = 2, and only the upper leg is killed.
-  - Case 19: h divides a leg with d² + 10 ≤ 2h ⇔ 2g − 9 = t² with 5 | t and h = g − t + 1. Then g ≡ 17 (mod 30), κ = 2, and the lower leg is killed.
-  - The other square solutions give no kill: g ≡ 7 (mod 30) on leg 30, and g ≡ 29 (mod 30) on leg 10.
-  - Lean: sq29_class, sq9_class, boundary30_iff, boundary10_iff, boundary30_upper_only.
-- **Class windows (R).** For g ≡ c (mod 30), h misses both legs whenever d² + b_c < K_c·h. Each class window is sharp: there is a prime kill on the boundary in every class. Lean: cert_b_c, floor_b_c, window_c, sharp_c.
-
-  | g mod 30 | 1 | 11 | 19 | 29 | 7 | 13 | 17 | 23 |
-  |---|---|---|---|---|---|---|---|---|
-  | b_c | 28 | 30 | 30 | 30 | 10 | 12 | 10 | 12 |
-  | K_c | 4 | 6 | 2 | 22 | 22 | 12 | 2 | 4 |
-
-- **Neighbour rule.** Take r ≥ 1 and n with p_{n−r} ≥ 7, and let c = p_n mod 30. If (p_n − p_{n−r})² + b_c < K_c·p_{n−r}, then none of p_{n−1}, …, p_{n−r} kills c_{p_n}. Lean: window_mono with window_c.
-
-**2A.3 Top band of λ** (C4). [Lean scratch: `c4_0926/TopBand.lean`]
-- Proved in Lean:
-  - the algebra of the top-band law;
-  - monotonicity of the d0 test;
-  - the window inequality (window_form).
-- The statements are in 2B.11.
+2A.1 (the wall and its uses), 2A.2 (near-neighbour kills) and 2A.3 (top band of λ) passed review in the second round of 2026-09-26 and are now kernel theorems: see 1.19 (RangeWall), 1.20 (RangeNearKill) and 1.21 (RangeTopBand). The paper-only parts of 2A.2 moved to 2B.12. C7 is also checked in scratch Lean; its entry is 2B.14.
 
 **2A.4 Signed landing rule** (C2). [Lean scratch: `C2CoincideAx.lean`]
 - For every modulus r coprime to 30, (d, e) and (d', e') land together (d a window offset, e = ±1 a leg) ⇔ one of:
@@ -526,7 +572,7 @@ The statements hold for every prime g ≥ 7.
 - At gap level: the gaps d and d' give a cross-leg coincidence for some choice of legs ⇔ 15(d − d') ≡ ±1 (mod r).
 - Lean: land_together_iff_zmod, gap_cross_iff.
 
-### 2B. Proved on paper (GENERAL-PROVED; not in Lean)
+### 2B. Proved on paper (GENERAL-PROVED or GENERAL-REPAIRED; not in the kernel)
 
 **2B.1 Phase and translate form of the whole period** (P6; field_to_range G2 formulas (1)–(3), items 5, 6; G6 items 4, 6). For every q ≥ 7:
 - (i) For k ≥ 1, the translate kM + [1, M − 1] is fully deleted by the acting gears 7..isqrt(q#) ⇔ the phase vector (−kM mod g) over g ∈ U_q lies in C_q^free.
@@ -622,7 +668,7 @@ Range membership and hand-off:
   - g'² ≤ P − 41;
   - J_{g'} < P/30;
   - σ(g'² + B') ≤ g² + A_g.
-- X(g) = isqrt(P − 41) is non-decreasing.
+- X(g) = isqrt(P − 41) is non-decreasing. The exact step law and the spans that force a strict increase are in 2B.18.
 - Slack step: u_{i+2} < p_{i+1}·u_{i+1} ⇒ Δ_{i+1} > Δ_i.
 
 Escape classes:
@@ -724,7 +770,7 @@ The laws:
 - **R7 Jacobsthal link**, for every q: h2(q) ≥ Y_7(q) ≥ ⌊(j(q#) − 1)/30⌋.
 
 **2B.11 λ(g) and the top band** (C4 adjudication, items 1–4, 6–8).
-- **Top-band law.** For every gear g and every row h with 2g/3 < h < g, in both cases: h is live on g ⇔ e_h > 0 and (g − h + 1)² ≥ 2g + 1 − B', i.e. g − h ≥ d0(g). The algebra is in Lean scratch (2A.3).
+- **Top-band law.** For every gear g and every row h with 2g/3 < h < g, in both cases: h is live on g ⇔ e_h > 0 and (g − h + 1)² ≥ 2g + 1 − B', i.e. g − h ≥ d0(g). The per-row law and the up-closure of the d0 test are kernel theorems (1.21, top_band_live_iff and pass_mono); the step to λ(g) is on paper.
 - **λ characterisation**, for every gear g ≥ 7 and every c in [2/3, 1): λ(g) > cg ⇔ some non-inert row lies in (cg, g − d0(g)].
   - If the largest non-inert prime h\* ≤ g − d0 exceeds 2g/3, then λ(g) = h\*.
   - A quarter of the unit classes are inert: 144 of 192 unit classes mod 840 are non-inert in case 1, and 24 of 32 mod 120 in case 19.
@@ -740,7 +786,12 @@ The laws:
 - **Distance to the top row.** g − λ(g) ≥ d0(g) for every gear g ≥ 19.
 - By the λ characterisation, the bound λ(g) > 2g/3 for g ≥ 41 is equivalent to this: every interval (2g/3, g − d0(g)] with g ≥ 41 holds a non-inert prime.
 
-**2B.12 Near-neighbour kills: paper parts** (C5 adjudication, items 3–7).
+**2B.12 Near-neighbour kills: paper parts** (C5 adjudication, items 3–7; the cofactor detail was in 2A.2). The floors, windows, boundary laws and class windows are kernel theorems (1.20).
+- **Cofactor detail**, for odd h < g, both prime to 30, with d = g − h and leg constant b:
+  - write d² + b = κh (h divides the leg g² + b ⇔ h divides d² + b, kernel dvd_shift); then κ is even and carries the whole {2, 3, 5}-part of d² + b;
+  - the 2-adic classes are exact: v2(d² + 12) = 4; v2(d² + 28) ≥ 5 when d ≡ 2 (mod 4); v2 = 1 for b = 10 and b = 30;
+  - no h divides both legs;
+  - the case-19 boundary kill (g ≡ 17 mod 30, κ = 2) is on the lower leg g² + 10.
 - **Killer ordering**, for every gear g:
   - ordered by distance d = g − h, the killers of c_g have strictly increasing cofactor κ, over both legs together;
   - so the least-κ killer is the nearest.
@@ -796,6 +847,138 @@ The laws:
   - Path B translation B1.2, exact transfer B1.7, preservation of forced pairs, and orbit sizes F7.
 - **First-strike separations** of twin, cousin and sexy pairs (F4, F5). The record only checks them; the audit derives them from the closed forms of a_g, for example p ≡ 11 gives F_q − F_p = (7 − 2p)/15.
 
+**2B.14 M(G) ≥ G'⁴ for every gear G ≥ 19** (C7, second round; was 3.4; two-paths B1.3, B1.4(v); derived F2, F7). [imports Bertrand's postulate: for every n ≥ 1 there is a prime p with n < p ≤ 2n; Mathlib `Nat.exists_prime_lt_and_le_two_mul`] [Lean scratch: `c7_0926/C7Fourth.lean` (c7_fourth, c7_iff, c7_fails_below) and `c7_adjud_0926/C7Adjud.lean` (c7_fourth re-proved, step_iff, fifth, fifth_iff, remark_a, remark_a_tight, remark_a_unique, remark_b, remark_b_tight, remark_b_unique); both compile with the standard axioms only]
+Here M(X) = ∏ of the primes in [7, X], so M(q) = M for machine q, and G' = nextprime(G). Bertrand is the only import; no Rosser–Schoenfeld or prime-number-theorem bound is used.
+- **(1) Fourth-power law.** For every gear G ≥ 19, M(G) ≥ G'⁴. Used in Path B (B1.3, the j ≥ 12 shelf of B1.4(v), since 30·12 + 1 = 19²).
+  - Base: 7·11·13·17·19 = 323323 ≥ 279841 = 23⁴.
+  - Step: M(G) ≥ G'⁴ gives M(G') = G'·M(G) ≥ G'⁵. Bertrand at n = G' gives G'' ≤ 2G'. G' ≥ 23 ≥ 16 gives G'⁵ ≥ 16G'⁴ = (2G')⁴ ≥ G''⁴.
+  - Every prime ≥ 19 is reached from 19 by finitely many next-prime steps, so no step uses a small case or a sweep.
+- **(2) Every natural X ≥ 19:** M(X) ≥ nextprime(X)⁴. With p the largest prime ≤ X, the prime sets of M(p) and M(X) agree and nextprime(X) = nextprime(p). c7_fourth quantifies over every natural X ≥ 19 directly.
+- **(3) Exact domain.** For every natural X: M(X) ≥ nextprime(X)⁴ ⇔ X ≥ 19 (c7_iff, c7_fails_below).
+  - The "only if" side is a finite statement over X ≤ 18, decided value by value: M = 1 on [0, 6], 7 on [7, 10], 77 on [11, 12], 1001 on [13, 16] and 17017 on [17, 18], and M(X) < max(X + 1, 2)⁴ ≤ nextprime(X)⁴ there.
+  - Among gears, M(G) < G'⁴ exactly at G = 7, 11, 13, 17.
+- **(4) Step law.** For consecutive primes a < b: b⁴ ≤ a⁵ ⇔ a ≥ 5 (step_iff). For a ≥ 16 Bertrand gives b⁴ ≤ 16a⁴ ≤ a⁵. The primes 5, 7, 11, 13 pass (2401 ≤ 3125, 14641 ≤ 16807, 28561 ≤ 161051, 83521 ≤ 371293), and 2, 3 fail (81 > 32, 625 > 243). This is the step G'' ≤ G'^{5/4} that 3.4 lacked.
+- **(5) Fifth-power law.** M(G) ≥ G⁵ for every prime G ≥ 23 (from C7 at X = G − 1). Among gears, M(G) ≥ G⁵ ⇔ G ≥ 23, and the failure set is exactly {7, 11, 13, 17, 19} (fifth, fifth_iff).
+- **(6) Small-X ratio (GENERAL-REPAIRED; replaces the refuted remark, section 4 row 44).** A finite statement, decided completely, with no import. For every X ≤ 18:
+  - 6·M(X) < p⁴ for every natural p > X with p ≥ 2; 7·M(X) ≥ p⁴ only at (X, p) = (17, 18), where 102102 < 104976 < 119119 (remark_a, remark_a_tight, remark_a_unique);
+  - 7·M(X) < p⁴ for every prime p > X; 8·M(X) ≥ p⁴ only at X = 17, 18 with p = 19, where 119119 < 130321 < 136136 (remark_b, remark_b_tight, remark_b_unique).
+  - Equivalently: the maximum of M(X)/max(X + 1, 2)⁴ is 17017/18⁴, at X = 17 only; the maximum of M(X)/nextprime(X)⁴ is 17017/19⁴, at X = 17 and X = 18; among the gears 7, 11, 13, 17 it is at G = 17. The smallest gap nextprime(X)⁴ − M(X) is 15, at X = 0 and 1.
+
+**2B.15 Below-square strike count** (C8, second round; was 3.5; shelves A1, A4, D1, D2). No import: only the division algorithm and the inverse of a unit mod 30. No theorem about primes is used, and no step depends on a finite check.
+For every integer g ≥ 7 coprime to 30, prime or composite. Write r = g mod 30, u = g⁻¹ mod 30 as its least positive residue in [1, 29], and Q = ⌊g/30⌋, so g − 1 = 30Q + (r − 1). The struck legs are those of copies j ≥ 1.
+- **(1) Cofactor bijection** (record D1, and the below-square half of A1, for every gear).
+  - g divides at most one leg of any copy.
+  - The struck legs correspond one to one to the cofactors h ≥ 1 with h ≡ ±u (mod 30): 30j + 1 = gh ⇔ h ≡ u, and 30j − 1 = gh ⇔ h ≡ −u (mod 30). The two classes are disjoint.
+  - The correspondence is strictly increasing: h < h' ⇔ the copy of h is below the copy of h'.
+  - g acts on the struck copy ⇔ h ≥ g. So g does not act ⇔ h ≤ g − 1, with no boundary case.
+- **(2) Count.** The number of copies j ≥ 1 with 30j + 1 < g² that g strikes is 2Q + [u < r] + [30 − u < r] = 2⌊g/30⌋ + c(r), a complete evaluation over the 8 units mod 30:
+
+  | r | 1 | 7 | 11 | 13 | 17 | 19 | 23 | 29 |
+  |---|---|---|---|---|---|---|---|---|
+  | u | 1 | 13 | 11 | 7 | 23 | 19 | 17 | 29 |
+  | c(r) | 0 | 0 | 0 | 1 | 1 | 1 | 2 | 1 |
+  | upper-leg part [u < r] | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 |
+  | lower-leg part [30 − u < r] | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 |
+
+  - Block lemma: for k in [1, 29] and N = 30Q + s with 0 ≤ s ≤ 29, #{h ∈ [1, N] : h ≡ k (mod 30)} = Q + [k ≤ s].
+- **(3) Per leg.** Below the square, g strikes Q + [u < r] upper legs and Q + [30 − u < r] lower legs (the last two rows of the table).
+- **(4) Zero set.** The count is 0 ⇔ g ∈ {7, 11}. So every gear other than 7 and 11 strikes a copy below its own square. Witnesses: 13 at j = 3 (91 = 7·13); 17 at j = 4 (119 = 7·17); 19 at j = 7 (209 = 11·19); 23 at j = 10 and 13 (299 = 13·23, 391 = 17·23); 29 at j = 1 (29 = 29·1).
+- This is the exact form behind section 4 row 28.
+
+**2B.16 Split copies of a gear pair** (C11, second round; was 3.8; shelves F3, F6, section 4 items 5–6). No import: only the Chinese remainder theorem and inverses of units mod n.
+For gears p < q with d = q − p. A split copy j ≥ 1 has p dividing one leg and q the other. ε = +1 when p divides the upper leg, h_p and h_q are the cofactors, and c = h_p − h_q. R = 1/p + 1/q mod 30d, and R̄ is its least non-negative residue.
+- **(1) Correspondence** (every pair p < q; no condition d < p).
+  - d·h_q = pc − 2ε, d·h_p = qc − 2ε, and 30dj = pqc − ε(p + q).
+  - Conversely, every c and ε = ±1 with 30d | pqc − ε(p + q) give a split copy with these cofactors, since d | pc − 2ε (q ≡ p mod d and gcd(p, d) = 1). j ≥ 1 exactly when c ≥ 1, or c = 0 and ε = −1. c is even.
+  - j is strictly increasing in c across both signs.
+  - On the least split copy, ε = +1 ⇔ 0 < R̄ < 15d. R̄ = 15d never occurs. R̄ = 0 ⇔ d = 2 and p ≡ 29 (mod 30).
+  - A split copy fixes ε, h_p, h_q and c, so the correspondence is injective.
+- **(2) Constancy mod 15d** (every even d and every integer x). N(x) = 2x + d and D(x) = x(x + d) are 15d-periodic mod 30d. So R, and with it c, ε and [c ≤ d] of the least split copy, are constant on each class of p mod 15d. This is the argument 3.8 lacked (the record had only mod 30d).
+- **(3) Least modulus, class level.** With T(d) = 15d, divided by 2 when d ≡ 2 (mod 4) and by 3 when 3 ∤ d: c factors through T(d), and for every prime l | T(d) it does not factor through T(d)/l. The valid moduli are closed under gcd. T(d) = 15d ⇔ 12 | d, and the admissible classes mod 15d and mod T(d) correspond one to one. This is a statement about classes; minimality over actual prime pairs would need every class to hold a prime pair (open, 3B).
+- **(4) Mirror (GENERAL-REPAIRED).** Let p\* be the class of −q mod 15d. Then R(p\*) = −R(p), so:
+  - c(p\*) = c(p) for every class;
+  - ε(p\*) = −ε(p) for every class except the single self-mirror class d = 2, p ≡ 29 (mod 30);
+  - in that class c = 0 and ε = −1 on both sides, and the least split copy is j = (p + 1)/30 with legs (p, q).
+  - The literal "the orientation flips" is refuted by (29, 31) (section 4, row 45).
+- **(5) Acting at every split copy.** A gear g on its struck leg g·h acts ⇔ g ≤ h. So p acts ⇔ dp ≤ qc − 2ε, and q acts ⇔ p(c − d) ≥ d² + 2ε.
+  - q acts ⇒ p acts.
+  - Both act ⇒ c > d.
+  - c > d ⇒ both act, when 2p ≥ d² + 2.
+  - Nothing depends on q, on d < p, or on size. The unconditional "both act on the least split copy ⇔ c > d" is refuted by (17, 31) (section 4, row 46).
+- **(6) Twin, cousin and sexy pairs.** For d ∈ {2, 4, 6}, d² + 2 > 2p leaves exactly (7, 11), (7, 13), (11, 17), (13, 19) and (17, 23), settled completely [certificate]: (7, 11) has c = 6, ε = −1 and both act; (11, 17) has c = 4 ≤ d and q does not act; (7, 13), (13, 19), (17, 23) have c = 20, 64, 80 and both act; every other split copy of these pairs has larger c and both acting. So "both act ⇔ c > d" holds at every split copy of every twin, cousin and sexy gear pair.
+- **(7) The c ≤ d copy.** c = d never occurs. [c ≤ d] ⇔ 30j < pq. At most one split copy per pair has c ≤ d; it is the least, and q does not act on it.
+- **(8) Local law for c ≤ d** (c ≡ ±R mod 30d).
+  - mod 4: c ≡ 0 when d ≡ 2 (mod 4), and c ≡ 2 when 4 | d.
+  - mod 3: 3 | c ⇔ 3 ∤ d.
+  - mod 5: 5 | c ⇔ 5 | 2p + d. When 5 ∤ d, c mod 5 ∈ {0, d, −d}.
+  - mod l^e, for primes l ≥ 7 with l^e ∥ d: c ≡ ±2/p.
+  - Root rule: c ≤ d ⇔ x(x + d)c' ≡ ε(2x + d) (mod 30d) for some even c' < d; this is class-invariant by (2).
+  - Exclusions: no class has c ≤ d when d = 4, 8, 10 or 14. For d = 2 the only such class is p ≡ 29 (mod 30), with c = 0.
+- **(9) Sexy pairs (F6).** For d = 6, c ≤ 6 forces c = 4, which occurs exactly in the classes p ≡ 11 (ε = +1) and p ≡ 73 (ε = −1) mod 90, mirrors of each other. The cofactors are h_p = (2p + 11)/3, h_q = (2p − 1)/3 (ε = +1) and h_p = (2p + 13)/3, h_q = (2p + 1)/3 (ε = −1). This is the only split copy below pq/30, and none exists in other classes. q never acts on it; p acts ⇔ p ≤ 12 − ε, which holds only at p = 11. The record's wording "exactly one split copy" is false as written, since every pair has two split copies per period pq; the proved form is "the only split copy below pq/30".
+
+**2B.17 Twin-gear striker sets** (C12, second round; was 3.9; derived A6, E7–E10). No import: only a polynomial identity, invertibility of 4 mod an odd prime, Euclid's lemma, the factorisations of seven fixed integers and the squares mod 7.
+Twin gears (g, g + 2). A shared striker is a prime p dividing a leg u = g² + a of c_g and a leg v = (g + 2)² + b of c_{g+2}, with a, b the leg offsets of the two cases. R_ab(2) = (a + b + 4)² − 4ab, and x0 = (a − b − 4)/4 mod p.
+- **(0) Classes.** Twin gears lie in g ≡ 11, 17 or 29 (mod 30), with cases (1, 19), (19, 1) and (1, 1). No twin pair has both members in case 19.
+- **(1) Inclusion**, for every twin gear pair, and for every integer g ≡ 11, 17 or 29 (mod 30) whose case-1 member is prime to 7.
+  - Identity in Z[g, a, b]: with w = v − u = 4g − (a − b − 4), 16u − w(w + 2(a − b − 4)) = R_ab(2). So an odd prime p dividing u and v has 4g ≡ a − b − 4 (mod p) and p | R_ab(2).
+  - The values: R = 464 = 2⁴·29 at (28, 28); 484 = 2²·11² at (28, 30); 496 = 2⁴·31 at (30, 30); 644 = 2²·7·23 at (28, 10); 592 = 2⁴·37 at (28, 12); 736 = 2⁵·23 at (30, 10); 676 = 2²·13² at (30, 12). R is symmetric in a and b.
+  - So the shared strikers lie in {11, 29, 31} for g ≡ 29 and in {13, 23, 37} for g ≡ 11, 17 (mod 30), and 7 is never shared.
+- **(2) Exact residue law**, for every odd prime p, every integer g and all integers a, b: p divides g² + a and (g + 2)² + b ⇔ p | R_ab(2) and 4g ≡ a − b − 4 (mod p). This is the D = 2 case of E7.
+  - Residues x0 of g: class 29: 11 at 4 for (28, 30) and at 5 for (30, 28); 29 at −1; 31 at −1. Class 11: 13 at 10; 23 at 15 for (28, 10) and at 4 for (30, 10); 37 at 3; 7 at 0. Class 17: 13 at 1; 23 at 6 for (10, 28) and at 17 for (10, 30); 37 at 32; 7 at 5.
+  - The twelve non-7 residues avoid 0 and −2 mod p. The two 7-residues are 0 and −2, the zero class on the case-1 member.
+- **(3) 7 is never shared.** Mod 7, x² + 28 ≡ 0 only when 7 | x, and x² + 30 is never 0. Every twin pair has a case-1 member, and that member is not 7.
+- **(4) Mirror.** g ↦ −g − 2 maps the classes 11 ↔ 17 and 29 ↔ 29, swaps (a, b) ↦ (b, a), and x0(b, a) = −x0(a, b) − 2.
+- **(5) H(2) = 37.** S(2) = {7, 11, 13, 23, 29, 31, 37}, and at gear level the set is {11, 13, 23, 29, 31, 37} for every twin pair. H(2) = 37 lies below the E8 bound (4 + 58)²/4 = 961. Every prime above 37 is private at w = 2. Case-19/case-19 pairs add nothing: R(10, 10) = 176 = 2⁴·11, R(10, 12) = 196 = 2²·7², R(12, 12) = 208 = 2⁴·13.
+  - This supplies the case analysis of R_ab(2) that 3.9 lacked, and proves derived A6, E9 and the E10 entry H(2) = 37 for every twin pair.
+  - That each member of the per-class sets is attained rests on single witnesses (5.13). That each recurs infinitely often is not claimed.
+
+**2B.18 The hand-off reach X: step law and strict-increase spans** (X10, second round; audit; range_line_map section 6). Imports named per item.
+X(g) = isqrt(P − 41) with P = (g² + A_g)# (2B.6), g' is the next gear, and I(g) = (g² + A_g, g'² + A_{g'}].
+- **R1 Monotone.** X(g) ≤ X(h) for any gears g < h: g'² + A_{g'} ≥ (g + 2)² + 10 > g² + 28. No import.
+- **R2 Exact step law.** X(g') > X(g) ⇔ some prime lies in I(g); with no prime in I(g), P' = P. The same holds for any later gear h in place of g', with (g² + A_g, h² + A_h]. The primes in I(g) are ≥ 61, so a prime there gives P' ≥ 61P and X(g') ≥ X(g) + 1. No import.
+- **R3 Field form.** For every n in (g² + A_g, g'²): n is prime ⇔ no prime ≤ g divides n. The rows are every prime ≤ g, including 2, 3 and 5; with the gear rows 7..g alone the statement needs n prime to 30 (n = 60 in the g = 7 window is struck by no gear row and is composite). The top part [g'², g'² + A_{g'}] of I(g) is kept apart.
+- **R4 Lengths and legs.**
+  - For twin gears the classes are g ≡ 11, 17, 29 (mod 30), with |I(g)| = 4g − 14, 4g + 22 and 4g + 4. For d = g' − g ≥ 4, |I(g)| ≥ 8g − 2.
+  - The upper leg g² + B_g of c_g lies in I(g), and the lower leg g'² + A_{g'} of c_{g'} is its right end. So either leg prime gives X(g') > X(g), and a failure has every integer of I(g) composite.
+  - Along revealed gears g_i < g_{i+1} (not necessarily consecutive primes) X increases strictly, by the any-later-h form of R2.
+- **R5 Bertrand spans.** [imports Bertrand's postulate (Chebyshev 1852; Mathlib `Nat.exists_prime_lt_and_le_two_mul`) and Nagura's theorem (J. Nagura, Proc. Japan Acad. 28 (1952) 177–181: for n ≥ 25 there is a prime in [n, 6n/5]; not in Mathlib)]
+  - X(h) > X(g) for every later gear h with h² + A_h ≥ 2(g² + A_g) (Bertrand).
+  - This holds for every gear h ≥ √2·g + 5.
+  - For every gear g, some consecutive step inside the run of gears from g to the largest gear ≤ √2·g + 5 is strict. For g ≥ 19 this uses Nagura twice; g = 7, 11, 13, 17 are computed exactly (primes 61, 151, 181, 307 inside (59, 179], (149, 389], (179, 539], (299, 869]). This clause does not follow from the first two alone (g = 59, 5.13).
+  - (7, 11) is the only consecutive gear pair with g'² + A_{g'} ≥ 2(g² + A_g) (Nagura at n = g + 1, and a check of g < 25).
+  - The run to the least gear meeting the Bertrand hypothesis and the run to √2·g + 5 are different statements, both valid: their endpoints differ at 1097 of the gears ≤ 20000, first at g = 7 (11 against 17).
+- **R6 Dusart spans.** [imports P. Dusart, Ramanujan J. 45 (2018) 227–251, Prop. 5.4: for x ≥ 89693 there is a prime in (x, x(1 + 1/ln³ x)]; the 2010 preprint arXiv:1002.0442 has only a weaker form, so the citation is to the journal version]
+  - For every gear g ≥ 307 and every later gear h ≥ g + g/(16 ln³ g) + 1: X(h) > X(g).
+  - The import's own form is equally general: X(h) > X(g) whenever h² + A_h ≥ x + x/ln³ x with x = g² + A_g ≥ 89693. It covers every consecutive gear pair with 307 ≤ g < 37361.
+  - The first consecutive pair outside the stated condition is (13901, 13903); the first outside the import's own form is (37361, 37363).
+- **R7 Legendre.** If every interval (n², (n + 1)²) holds a prime (Legendre's conjecture, open; a hypothesis here, not an import), then L(g) holds for every gear g, and X increases strictly at every consecutive gear pair. L(g) says a prime lies in (g² + A_g, g² + 4g + 14]; it follows from Legendre at n = g + 1 because (g + 1)² ≥ g² + A_g for every case-19 gear and every case-1 gear ≥ 14 (the one other case-1 gear, 11, has c_11 = (149, 151) revealed), and g² + 4g + 14 ≤ g'² + A_{g'}.
+- **R10 Short-interval spans.** [imports R. C. Baker, G. Harman, J. Pintz, Proc. London Math. Soc. (3) 83 (2001) 532–562: for all x beyond a non-explicit threshold, [x − x^0.525, x] holds a prime] For gears g < h with y = h² + A_h beyond that threshold and y − y^0.525 > g² + A_g: X(h) > X(g). The threshold is not explicit, so this gives nothing at any particular g. For consecutive gears it needs d > h^0.05/2, so twin gears drop out once h^0.05 > 4.
+- Strict increase at every consecutive gear pair (R8) is not proved: see 3.10.
+
+**2B.19 The acting-both existence clause: identities, survivor bijection, top gear** (C1E, second round; C1; mirror_runs A8). No import.
+For every prime q ≥ 7, s = ±1 and U⁻ prime g of q# − 2s: N_s = q#/2 − s = 15M − s = g·m, E = E_g = m − g and P = m + g. q = 7 is vacuous, because U⁻ is empty there.
+- **(1) Identities.**
+  - m is even, and no odd p ≤ q divides m.
+  - E and P are odd, and P² − E² = 4gm = 2q# − 4s.
+  - ρ − g² = gE + s + 1.
+  - The band {odd d = gk : 15d ≤ ρ − g²} equals {odd k : 15k ≤ E}, with ⌊(⌊E/15⌋ + 1)/2⌋ members.
+  - E ≤ T ⇔ m ≤ g + T.
+  - 15M/g − E = g + s/g > 0, so gk < M on the band.
+  - At each gear p ≤ q, the mirror pair at d = gk survives ⇔ 15gk ≢ ±1 (mod p) ⇔ p ∤ m² − 225k². These are two distinct classes of k mod p.
+- **(2) Survivor bijection.** x ↦ k = (M − 2x)/g is a bijection from the low-half survivors x with x ≡ s·a_g (mod g) and 30x − s ≥ g² onto the good k: the odd k with 15k ≤ E and gcd(m² − 225k², M) = 1. The inverse is k ↦ (M − gk)/2.
+  - 30x − s = g(m − 15k), and 900x² − 1 ≡ −g²(m² − 225k²) (mod p) for every p | M.
+  - The mirror is struck on the same leg type, 30(M − x) − s = g(m + 15k) ≥ g², so g acts on it.
+  - x ≥ 1 holds because gk ≤ gE/15 < M with gk and M odd, so gk ≤ M − 2.
+- **(3) Top gear.** Call g a top gear of its side when E_g ≤ g, equivalently g ≥ √(N_s/2).
+  - If g1 < g2 are U⁻ primes of q# − 2s, then 2g1g2 | N_s, so g1 is not top. So each side has at most one top gear, the largest U⁻ prime of that side, and it lies in [√(N_s/2), √N_s).
+  - Every non-top U⁻ prime has g < √(N_s/2), m > √(2N_s) and E_g > √(N_s/2) = √(q# − 2s)/2.
+  - The argument uses only that N_s is even and that g1, g2 are distinct odd primes dividing it.
+- **(4) Size of the capacity value.** For every prime q ≥ 23 and s = ±1: 2Λ(q)² ≤ q#/2 − s, where Λ(q) is the capacity value of 2C. Among primes q ≥ 7 it fails exactly at q = 7, 11, 13, 17, 19, for both s. So Λ(q) ≤ √(N_s/2) for every prime q ≥ 23.
+  - Proof, with n = π(q): L = 2n − 5 is admissible and 15R_L(2L − 1) is non-decreasing in L; R_L ≤ 4^(L−1)/30, so 2Λ² < 8n²·256^(n−3); for n ≥ 98, q# ≥ 509#·521^(n−97), and the sufficient condition 509#·2^(n−853) ≥ n² + 1 holds at n = 166 (q = 983) and passes from n to n + 1.
+  - It uses x# ≤ 4^x (Erdős; in Mathlib as `Nat.primorial_le_4_pow`), proved inline in the adjudication by the binomial argument.
+  - [certificate] the exact check at every prime 23 ≤ q ≤ 1297, and the value at n = 166.
+- The clause itself is proved at every non-top U⁻ prime only by a counting argument (2C). The top gear is open (3.2).
+
 ### 2C. General, but counting or locating type (not results under the working rules)
 - **B8 alignment count** (C2 item 5). [counting]
   - Hypotheses: the B8 configuration, H1 and H2, full allowed sets on the k + 1 free gears, distinct upper gears > q, and W < m.
@@ -823,6 +1006,21 @@ The laws:
 - **Density law 2^(−r_L).** [imports Dirichlet] [counting] range_line_map section 6 lists it as checked only for h ≤ 200000 and L ≤ 13.
 - **Budget bounds:** B2(b), B2(c), B10(c), capacity, holes ≤ 2⌈L/g⌉, and R ≤ G_{2⌈R/g1⌉}. [counting]
 - **"Range as a power"** (kernel 2.3 item 18) and the orbit-chain LOCATED item (kernel2 2B). [locating]
+- **Capacity criterion for the existence clause** (C1E item 4, second round). [counting] No import. For every q ≥ 7, s = ±1 and U⁻ prime g of q# − 2s (notation of 2B.19):
+  - Take any set Y of primes in 7..q, R = ∏Y, and L' ≥ 1 with Σ 2⌈L'/p⌉ < L' over the primes p in 7..q outside Y.
+  - If E_g ≥ Λ' = 15R(2L' − 1), then some k = R(2i − 1) with 1 ≤ i ≤ L' is a good odd k ≤ E_g/15. For p in Y, p | k and p ∤ m; for p outside Y, p excludes exactly two classes of i, each meeting at most ⌈L'/p⌉ of the L' values.
+  - The capacity value Λ(q) = 15·R_L·(2L − 1), where L is the least L ≥ 7 with 2·#{primes p in 7..q, p ≥ L} < L and R_L = ∏_{7≤p<L} p. L ≤ q + 1, so R_L uses only primes ≤ q.
+  - The refined value Λ\*(q) is the least certified value over initial segments Y = 7..y.
+  - Its size against q# is 2B.19 (4).
+- **Existence clause at every non-top gear** (C1E item 6, second round). [counting] [certificate: q = 11..19 by full factorisation] For every prime q ≥ 11 and s = ±1, every U⁻ prime g of q# − 2s with E_g > g has a good odd k ≤ E_g/15.
+  - q ≥ 23: 2B.19 (3) gives E_g > √(N_s/2), 2B.19 (4) gives √(N_s/2) ≥ Λ(q), and the capacity criterion applies.
+  - Consequence for 3.2, under the same tag: AB_q = the U⁻ primes of (q# − 2)(q# + 2) at every q ≥ 11, except possibly at a top gear with E_g < Λ(q), of which there is at most one per side.
+- **Capacity form of the clause** (C1E item 7, GENERAL-REPAIRED, second round). [counting] For every q ≥ 7, s = ±1 and every Λ' certified as in the capacity criterion:
+  - the clause holds at every U⁻ prime g with E_g ≥ Λ';
+  - any other U⁻ prime gives an odd E = E_g < Λ' with 2q# − 4s + E² = P², where P = m + g, and g = (P − E)/2;
+  - such an exception is a top gear, and so the unique top gear of its side, whenever Λ' ≤ √(N_s/2). This includes every Λ' ≤ Λ(q) at every q ≥ 23;
+  - if every odd E < Λ' has an odd p ≤ q with (E² − 4s | p) = −1, there is no exception, since P² ≡ E² − 4s (mod p).
+  - The literal form, with the exception always top (E ≤ g) for any certified Λ' or for q ≥ 11, is refuted (section 4, rows 48 and 49).
 
 ---
 
@@ -832,14 +1030,20 @@ The laws:
 
 **3.1 RANGE itself.** It is not established for all q.
 
-**3.2 Acting-both set equals the primes of (q# − 2)(q# + 2) in U⁻** (C1, mirror_runs A8), for every q ≥ 11.
+**3.2 Acting-both set equals the primes of (q# − 2)(q# + 2) in U⁻** (C1, C1E, mirror_runs A8), for every q ≥ 11.
 - Proved for all q:
   - the inclusion AB_q ⊆ {those primes};
-  - equality ⇔ the existence clause below (2B.8 with RangeGen3).
-- Missing: the existence clause. For every U⁻ prime g of q# ∓ 2, some odd k ≤ E_g/15 must have both cofactors m_g ∓ 15k free of the primes 7..q. Equivalently, the odd k in [1, E_g/15] must not all be covered by the two classes 15k ≡ ±m_g (mod p), p in 7..q.
-- No residue-level argument was found. The band-width result gives only E_g > 10⁸, a constant, so the band length does not grow with q.
+  - equality ⇔ the existence clause below (2B.8 with RangeGen3);
+  - the identities, the survivor bijection x ↦ (M − 2x)/g onto the good k, and the uniqueness of the top gear: each side has at most one U⁻ prime of q# − 2s with E_g ≤ g, the largest one (2B.19).
+- Proved only by a counting argument (2C; not a result under the working rules, and whether it counts is the owner's decision): the existence clause at every non-top U⁻ prime, for every prime q ≥ 11.
+- Missing: the existence clause at the top gear. For every U⁻ prime g of q# ∓ 2, some odd k ≤ E_g/15 must have both cofactors m_g ∓ 15k free of the primes 7..q. Equivalently, the odd k in [1, E_g/15] must not all be covered by the two classes 15k ≡ ±m_g (mod p), p in 7..q.
+  - For the top gear of a side the clause is not proved for every q when E_g < Λ(q), or when E_g < Λ\*(q) with the refined value.
+  - What would close it: a general proof that 2q# − 4s + E² is never a square for odd E below the capacity bound (a pseudosquare-type statement growing with q), or a way to place a survivor in a band shorter than the capacity bound.
+  - Residues mod the primes ≤ q alone cannot exclude E < Λ(q) (section 4, row 50).
+- Also missing: a residue-level (non-counting) argument for any gear.
+- The only general lower bounds on E_g are E_g ≥ 51 for q ≥ 11 and E_g > 10⁸ for q ≥ 43, constants that do not grow with q.
 - No counterexample is known.
-- Checked at q = 11..79, and this round at q ≤ 197 except q = 157, 163, 173, 181 and 191.
+- Checked (instance, 5.13): the clause holds at every U⁻ prime for every prime q in 11..257. At every prime q ≤ 257 no top gear has E_g < Λ(q), so those checks do not test the open case.
 
 **3.3 Alignment of a relaxed covering pattern into the period** (C2, mirror_runs B8, runs_gain unresolved (v)).
 - Missing: an argument that an aligned copy exists when a box has spare free gears. Such a copy exists exactly when the landing positions (at most 2n per free gear) plus at most two edge positions do not fill the line [0, T).
@@ -849,15 +1053,9 @@ The laws:
   - landings of different free gears at the same position.
 - runs_gain records that no general lemma aligns a relaxed pattern into [1, M − 1].
 
-**3.4 M(G) ≥ G'^4 for every shelf gear G ≥ 19** (C7; two-paths B1.3, B1.4(v); derived F2, F7). Here M(G) = ∏_{7≤g≤G} g and G' = nextprime(G). It is used in Path B.
-- Only the base case M(19) = 323323 ≥ 23⁴ is recorded, with a computation over shelves ≤ 30000.
-- Missing: the induction step, G'' ≤ G'^{5/4}.
-- Route recorded by the audit, not adjudicated: Bertrand gives G'' < 2G' ≤ G'^{5/4} once G' ≥ 16.
+**3.4** M(G) ≥ G'⁴ for every gear G ≥ 19 (C7) moved to 2B.14 in the second round: proved, with Bertrand as the only import.
 
-**3.5 Below-square strike count** (C8; shelves A4, D1, D2).
-- Claim: gear g strikes exactly 2⌊g/30⌋ + c(r) copies j ≥ 1 with 30j + 1 < g², where r = g mod 30 and c = 0, 0, 0, 1, 1, 1, 2, 1 for r = 1, 7, 11, 13, 17, 19, 23, 29. Hence every gear except 7 and 11 strikes below its own square.
-- Missing: a written argument. The records give checks only, for gears ≤ 2000.
-- Route recorded by the audit, not adjudicated: via shelves A1 and D1, a non-acting strike corresponds to a cofactor h ∈ [1, g − 1] with h ≡ ±u (mod 30), u = g⁻¹ mod 30, and that count is 2⌊g/30⌋ + [k0 < r] + [30 − k0 < r].
+**3.5** Below-square strike count (C8) moved to 2B.15 in the second round: proved for every integer g ≥ 7 coprime to 30, with no import.
 
 **3.6 Derived period and range** (C9; derived A11, N6).
 - Claim: the derived period is q#, the derived range is x ∈ (√(q − A), √(q# − B)], and "each nonzero survivor class occurs once".
@@ -869,24 +1067,25 @@ The laws:
   - a striker h > W⁴/4 + (A + B)W²/2 + 1 strikes at most 1.
 - Missing: a full argument. Only a sketch is recorded.
 
-**3.8 Least split copy of a gear pair** (C11; shelves F3, F6, section 4 items 5–6).
-- Claim: c is constant on each class of p mod 15d, and both gears act on the least split copy ⇔ c > d.
-- Missing: the argument for mod 15d. The recorded argument gives constancy only mod 30d, and mod 15d is measured only for p < 6000.
+**3.8** Least split copy of a gear pair (C11) moved to 2B.16 in the second round. The constancy of c mod 15d is proved. "Both act on the least split copy ⇔ c > d" is refuted in general (section 4, row 46); the proved general forms are 2B.16 (5) and (6).
 
-**3.9 Twin strikers** (C12; derived A6, E7–E9).
-- Claim: twin gears (g, g + 2) share leg strikers only from {11, 29, 31} (same case, g ≡ 29 mod 30) or {13, 23, 37} (cross case, g ≡ 11, 17 mod 30), and 7 never occurs.
-- Missing: a case analysis of R_ab(2). The sharing law E7/E8 puts every shared factor in the finite set S(2), with H(2) = 37. The claim is checked on all twin gears ≤ 10⁶.
+**3.9** Twin strikers (C12) moved to 2B.17 in the second round: proved for every twin gear pair, with no import.
 
-**3.10 Strict increase of X at every consecutive gear pair** (audit; range_line_map section 6).
-- The iff "X increases strictly ⇔ a prime lies in (g² + A, g'² + A']" is elementary.
-- Strict increase at every pair is proved only for revealed g.
+**3.10 Strict increase of X at every consecutive gear pair** (X10; audit; range_line_map section 6).
+- Claim: X(g') > X(g) for every gear g. Equivalently, the least prime above g² + A_g is ≤ g'² + A_{g'}.
+- Proved (2B.18): monotonicity; the exact step law (strict ⇔ a prime lies in (g² + A_g, g'² + A_{g'}]); the field form; strict increase whenever the upper leg of c_g or the lower leg of c_{g'} is prime, so along revealed gears; strict increase over every span from g to √2·g + 5 [Bertrand, Nagura]; for g ≥ 307 over every step d ≥ g/(16 ln³ g) + 1, and in the import's own form at every consecutive pair with 307 ≤ g < 37361 [Dusart]; beyond a non-explicit threshold for long enough spans [BHP]; and at every pair if Legendre's conjecture holds.
+- Missing: consecutive pairs with a small gap where neither leg is prime.
+  - The tightest shape is twin gears with g ≡ 11 (mod 30), which need a prime in (g² + 28, g² + 4g + 14], of length 4g − 14. It is the tightest remaining shape for g ≥ 37361 with Dusart's own form, and for g ≥ 13901 under the stated R6 condition.
+  - Closing it needs either a proof of L(g) for every gear g (a prime in (g² + A_g, g² + 4g + 14]; in field terms, the rows 2, 3, 5, 7..g never strike every integer of that window), or a counterexample.
+  - No imported theorem closes it: Dusart, Baker–Harman–Pintz and RH–Cramér each fail for large g at d = 2, and no published unconditional short-interval theorem reaches length 4√x.
+- No counterexample is known for g ≤ 10⁸ (instance, 5.13).
 
 **3.11 Type-C twins below about q²** (audit). The bound is stated imprecisely.
 
-### 3B. Open items recorded by this round (no general statement claimed)
-- **C1:**
+### 3B. Open items recorded by the two rounds (no general statement claimed)
+- **C1 and C1E:**
   - The growth in q of min{E : E² − 4s is a square mod every odd p ≤ q}, a quantity of pseudosquare type. It is certified only as E_g > 10⁸ for q ≥ 43.
-  - Checks not run: q = 157, 163, 173, 181, 191, and every q above 197.
+  - No check above q = 257. At q = 181 (q# + 2) and q = 191 (q# − 2) the composite cofactors (70 and 72 digits) remain unfactored; the clause there is certified through the Fermat sieve and the capacity criterion, not through the factors.
 - **C2:** h(43 + {53}) = 66 was not recomputed.
 - **C3:**
   - There is no general explicit upper bound on h2(q); the trivial bound is h2(q) < ∏_{7≤p≤q} p.
@@ -896,7 +1095,15 @@ The laws:
   - R8(q, r) for every q at a fixed r ≥ 1 by an argument without counting: not found, even for r = 1.
   - For every r at once, R8 is equivalent to the missed-copy hand-off target (R14, open).
   - Finiteness of the kill list at fixed r follows if the class condition (p_n − p_{n−r})² + b_c < K_c·p_{n−r} holds for all large n. That condition is open.
-- **Lean:** the scratch files named in 2A are not in the kernel. The C1 parts, the chain-covering lemma and the bound d0 < √(2g) + 1 for C4, and the killer ordering, first lap, reduction, anchor and all-r equivalence for C5 are not formalised.
+- **C11:**
+  - Realisation: it is not proved that every admissible class mod 15d holds a prime pair (p, p + d). So the least modulus T(d) is proved for classes; for actual pairs it is checked only for d ≤ 60 and p < 200,000.
+  - Which gaps d have some class with c ≤ d: the local law and the exclusions d = 4, 8, 10, 14 are proved; the converse (every other even d has such a class) is checked only at residue level for d ≤ 200, with no general construction.
+  - Consecutive gears: "both act on the least split copy ⇔ c > d" holds whenever d² + 2 ≤ 2p. That inequality for all consecutive gears p ≥ 11 would be a gap bound of size √(2p), which is not a theorem; it is checked for p < 10⁷.
+- **C12:** whether each member of the per-class striker sets recurs infinitely often is open, alongside the derived record's open question on the members of S(D). Realisation is instance data below 10⁸.
+- **Lean:**
+  - The scratch files for C2 (2A.4) and C7 (2B.14) are not in the kernel. `c7_0926/C7Fourth.lean` builds with two deprecation warnings (if_pos and if_neg).
+  - RangeTopBand has no formal λ(g) and no theorem λ(g) = h\*.
+  - Not formalised: the C1 and C1E parts; the chain-covering lemma and the bound d0 < √(2g) + 1 for C4; the killer ordering, first lap, reduction, anchor, all-r equivalence and the cofactor detail for C5; C8, C11 and C12 (C12 would need only the identity, the seven factorisations and the squares mod 7); X10.
 - The open questions of the earlier nodes are listed in `range_line_map.md` section 6.
 
 ---
@@ -905,7 +1112,19 @@ The laws:
 
 Each row is a statement that was stated or used for all q, or for all gears, together with the instance that makes it false.
 
-**This round**
+**Second round, 2026-09-26**
+
+| # | Statement | Counterexample | Source |
+|---|---|---|---|
+| 44 | C7, small cases: the remark placing the tightest case of M(X) against p⁴, 17017 < 130321, at X = 18. | In the reading M(X) < (X + 1)⁴ that the case split uses, the largest ratio over X ≥ 1 is 17017/104976 = 0.16210, at X = 17 only (0.13058 at X = 18; over X ≥ 0 the ratio reaches 1 at X = 0). In the nextprime(X)⁴ reading the maximum 17017/130321 is attained at X = 17 and at X = 18, since M(17) = M(18) and nextprime(17) = nextprime(18) = 19. The inequality is true; the location is exact in neither reading. The remark carries no weight in C7. The repaired form is 2B.14 (6). | C7 |
+| 45 | C11 mirror: under p ↦ p\* (the class of −q mod 15d), c is kept and the orientation ε flips. | (29, 31): p\* = 29 itself (or 59, since −31 ≡ 29 mod 30). Both least split copies have c = 0 and ε = −1: j = 1 with legs (29, 31), and j = 2 with legs (59, 61). This is the only self-mirror class (d = 2, p ≡ 29 mod 30). The repaired form is 2B.16 (4). | C11 |
+| 46 | C11 (ledger 3.8): both gears act on the least split copy ⇔ c > d, for every gear pair, even under shelf F's hypothesis d < p. | (17, 31), d = 14 < 17: the least split copy is j = 30, with legs 899 = 29·31 and 901 = 17·53, so ε = +1, h_p = 53, h_q = 29 and c = 24 > 14. 31² = 961 > 901, so gear 31 does not act, while 17 acts. Only "both act ⇒ c > d" holds unconditionally; the general forms are 2B.16 (5) and (6). | C11 |
+| 47 | X10 import (4): Jaeschke, Math. Comp. 61 (1993) 915–926, makes strong probable-prime tests to bases 2..23 deterministic below 3,825,123,056,546,413,051. | Jaeschke 1993 determines ψ5..ψ8 exactly and gives only upper bounds for ψ9..ψ11. ψ9 = ψ10 = ψ11 = 3,825,123,056,546,413,051 is proved by Jiang and Deng, Math. Comp. 83 (2014) 2915–2924. Jaeschke covers bases 2..19 below ψ8 = 341,550,071,728,321. The fact itself is true, and every check that relies on it stays valid once re-cited. | X10 |
+| 48 | C1E capacity form: an exception to the clause (a U⁻ prime with E_g below a certified Λ') has E = E_g ≤ g, for any certified Λ' or for every q ≥ 11. | q = 11, s = −1: g = 17, E = 51 < Λ\*(11) = 135 < Λ(11) = 195, and E > g. q = 17, s = +1: g = 179, E = 1247 < Λ(17) = 1575, and E > g. At every q, Y = all gears with L' = 1 certifies Λ' = 15M, which exceeds every E_g. The repaired form (the exception is the unique top gear whenever Λ' ≤ √(N_s/2)) is in 2C. | C1E |
+| 49 | C1E: the capacity form generalises the no-empty-band case (E ≤ 13) to "no band shorter than Λ'", read as unconditional. | q = 11 and q = 17 have U⁻ primes with E_g < Λ(q): g = 17 (E = 51) and g = 179 (E = 1247). | C1E |
+| 50 | C1E route: every odd E < Λ(q) has an odd p ≤ q with (E² − 4s \| p) = −1, which would exclude every top gear with E_g < Λ(q). | q = 23, s = +1, E = 113 < Λ\*(23) = 1875 < Λ(23) = 2205: E² − 4 = 12765 = 3·5·23·37, with symbol 0 or +1 at every odd p ≤ 23. On the s = −1 side at q = 23, E = 1605 < 2205 also passes every p. With Λ\* the hypothesis also fails at q = 29, 43, 59, 71 and 101 (s = +1). The implication is valid; its hypothesis is false, so residues mod the primes ≤ q alone cannot exclude E < Λ(q). | C1E |
+
+**First round, 2026-09-26**
 
 | # | Statement | Counterexample | Source |
 |---|---|---|---|
@@ -919,7 +1138,7 @@ Each row is a statement that was stated or used for all q, or for all gears, tog
 | 8 | Kill-free window as an "iff" (the reverse direction without the case condition). | g = 127 (case 19): 113 divides 127² + 30 but misses c_127 = (16139, 16141). g = 29 (case 1): 23 divides 29² + 10 but c_29 = (869, 871) = (11·79, 13·67). | C5 |
 | 9 | R8 is "settled in full by the window". | q = 7, r = 2: c_13 = (179, 181) is revealed, yet no gear of {7, 11, 13} meets the r = 2 window. At q = 7, R8 holds with no window witness at 49 of the 50 values r ≤ 50. | C5 |
 | 10 | RS block law without the hypothesis X² ≥ q, or read at the fixed X = X_max(179). | When q > 4X² + 30, every block witness lies below q. At the fixed X_max(179), the witnesses' lower legs fall below q for q above about 7.45·10⁶⁹. | C5 |
-| 11 | (2X)² < X# for every natural X ≥ 7. | X = 8, 9, 10: X# = 210 < 256, 324, 400. The exact domain is X = 0, X = 7 or X ≥ 11. | C6 |
+| 11 | (2X)² < X# for every natural X ≥ 7. | X = 8, 9, 10: X# = 210 < 256, 324, 400. The exact domain is X = 0, X = 7 or X ≥ 11 (kernel 1.19, four_sq_lt_primorial_iff). | C6 |
 | 12 | The window's lower end, read as every j ≥ 1 with 30j + 1 < q'². | Every q ≥ 29. For q = 31, q' = 37, j = 1: the legs 29 and 31 are ≤ q. | C6 |
 | 13 | A uniform lap bound h(r) ≤ r + (q' − 2)M for every q. | q = 269, r = 262: h(r) = r + 270M. q = 277, r = 178: h(r) = r + 280M. | C6 |
 | 14 | Window form W, clause 3, with "descendant" read as any class ≡ r_C (mod M_P). | 121 mod 210 at P' = 113 passes the criterion vacuously, but 121 = 11² is not a gear. With the record's Desc_C(P') the clause stands. | C4 |
@@ -941,7 +1160,7 @@ Each row is a statement that was stated or used for all q, or for all gears, tog
 | 25 | No survivor pair has A(low) = A(high) = {g}. | q = 17, d = 3059: gear 23 on 209369 and 301139. More at q = 19 and 23. | mirror_runs A8 |
 | 26 | The palindrome pair P_{d*} is doubly deleted. | Not doubly deleted at q = 7, 11, 17, 19. At q = 7 the legs are 59, 61 and 149, 151. | mirror_runs A10 |
 | 27 | Acting pair law, literal ⇐ direction (record B9 form). | g = 41, j = 2749631283, D = 11: copy j + 11 is not struck. | mirror_runs B9 |
-| 28 | Gear g strikes no copy j with 30j + 1 < g². | Gear 13 strikes copy 3 (91 = 7·13 < 169). There are 1043 counterexamples among gears < 500 with j < 3000. | map 5 |
+| 28 | Gear g strikes no copy j with 30j + 1 < g². | Gear 13 strikes copy 3 (91 = 7·13 < 169). There are 1043 counterexamples among gears < 500 with j < 3000. The exact count, and the zero set {7, 11}, are in 2B.15. | map 5 |
 | 29 | Every shelf contains a revealed copy. | Shelf 17 = {10, 11} and shelf 29 = {28, 29, 30, 31} contain none. | shelves |
 | 30 | Every head stretch holds a revealed copy. | g = 37: every copy in 46..52 has a composite leg. Also g = 17, 29, 41 and 149. | two-paths |
 | 31 | Each survivor class has exactly one copy in the range. | Class 0 has none (q = 7..19). The repaired form is 2B.2. | two-paths |
@@ -1053,7 +1272,7 @@ Wordings refuted without a general statement at stake (miscounts, sign slips, li
   - {587, 4801} at q = 23 (mirror_runs);
   - each equals the primes of q# ∓ 2 in U⁻.
 - **Sole-striker equality** is measured at q = 13..23 and fails at q = 11.
-- **Band existence clause:** holds at q = 11..79, and this round at q ≤ 197 except 157, 163, 173, 181, 191.
+- **Band existence clause:** holds at q = 11..79, in the first round at q ≤ 197 except 157, 163, 173, 181, 191, and in the second round at every prime q in 11..257 (5.13).
   - Example: 761 divides 79# + 2, E ≈ 2.114·10²⁷, and the first survivor is at k = 41.
 - **Band-width certificate:** the 12 factorisations with g an odd prime and E ≤ 10⁸, as (q, side, E, g):
   - (11, q# + 2, 51, 17)
@@ -1150,7 +1369,7 @@ The largest number of laps for q' to strike and act at q = 7..23:
 - The exact all-r maxima at q = 29, 31, 37, 41, 43 are 26, 20, 27, 33, 39.
 - Every value is below q' − 1.
 
-### 5.12 Checks run this round on general statements
+### 5.12 Checks run in the first round on general statements
 These checks confirm general statements; they do not prove them.
 
 - **P1 split:** q = 7..19, 0 mismatches.
@@ -1179,3 +1398,43 @@ These checks confirm general statements; they do not prove them.
   - all laws on gears ≤ 3·10⁵;
   - the 16 κ certificates;
   - the 8 sharp witnesses.
+
+### 5.13 Second round (2026-09-26): checks and instance data
+These checks confirm general statements or record data at particular q; they do not prove anything.
+
+- **C7** (exact integers, trial-division primality):
+  - gears G in [7, 60000]: M(G) < G'⁴ exactly at 7, 11, 13, 17, and M(G) < G⁵ exactly at 7, 11, 13, 17, 19;
+  - X in [0, 6000]: M(X) ≥ nextprime(X)⁴ ⇔ X ≥ 19, with 0 mismatches;
+  - consecutive primes a ≤ 60000: [b⁴ ≤ a⁵] and [a ≥ 5] agree everywhere;
+  - shelf-gear ratios M(G)/G'⁴ at G = 7, 11, 13, 17: 7/14641, 77/28561, 1001/83521, 17017/130321;
+  - over p < 500: c = 6 gives no violation of c·M(X) < p⁴, c = 7 fails only at (17, 18), and c = 8 over primes fails only at (17, 19) and (18, 19).
+- **C8:** all 799 integers g in [7, 3000] coprime to 30, composites included, over every copy j from 1 to past (g(g + 3) + 1)/30: 0 copies with both legs struck, 0 cofactors off h ≡ ±u (mod 30), 0 acting mismatches, 0 order violations, 0 failures of the bijection; the count 2Q + [u < r] + [30 − u < r] and the per-leg split with 0 mismatches; the zero set is {7, 11}.
+- **C11:**
+  - all 1,984 split copies with j ≤ 2pq of the 496 gear pairs 7 ≤ p < q ≤ 150, by raw scan with no use of R: the correspondence, the h and j formulas, c even, the least copy against R̄, the acting criterion and the c ≤ d rule, with 0 failures;
+  - every admissible class for even d ≤ 120: the 15d-periodicity, the minimality of T(d) at each prime, and the mirror law (the only class with no flip, the only self-mirror class and the only class with R̄ = 0 is (d, p) = (2, 29); R̄ = 15d never occurs);
+  - every admissible class for even d ≤ 200: the local laws hold, and the d with no class having c ≤ d are exactly {4, 8, 10, 14};
+  - the five pairs with d ≤ 6 and d² + 2 > 2p, all split copies with j ≤ 3pq: 0 failures; least copies at j = 4, 10, 4, 88, 174;
+  - consecutive gears below 10⁷: (7, 11) is the only pair with d² + 2 > 2p, and the acting clause holds there; the largest d/√(2p) is 1.0690, at (7, 11);
+  - for d ≤ 60 and p < 200,000, every admissible class holds a prime pair;
+  - the self-mirror class: (29, 31), (59, 61), (149, 151), (179, 181), (239, 241), (269, 271) have least split copies j = 1, 2, 5, 6, 8, 9, each with legs (p, q), ε = −1 and c = 0;
+  - (11, 17): j = 4, legs (119, 121) = (7·17, 11²), c = 4; p acts and q does not.
+- **C12:**
+  - the identity on the grid |g| ≤ 50, a, b in [−20, 40], and the residue law for every odd prime p ≤ 3000, all 16 offset pairs and every g mod p: 0 mismatches;
+  - all four leg pairs of all 440,310 twin gear pairs 7 ≤ g < 10⁸: 0 violations; the shared primes per class were exactly {11, 29, 31}, {13, 23, 37} and {13, 23, 37}; no prime above 37 and no 7 was shared;
+  - integers |g| < 1.5·10⁶ in classes 11, 17, 29: the gcd of the legs always divides R_ab(2);
+  - first realisations of the twelve table entries, as (class, p, a, b): g: (29, 11, 28, 30): 59; (29, 11, 30, 28): 269; (29, 29, 28, 28): 6089; (29, 31, 30, 30): 2789; (11, 13, 30, 12): 101; (11, 23, 28, 10): 521; (11, 23, 30, 10): 5501; (11, 37, 28, 12): 521; (17, 13, 12, 30): 2237; (17, 23, 10, 28): 857; (17, 23, 10, 30): 17; (17, 37, 12, 28): 1697. Each entry defines an admissible class mod 30p for twin gears (general); whether and where it is realised is data.
+- **X10:**
+  - strict increase holds at every consecutive gear pair with g ≤ 10⁸ (the largest gear is 99999989, the next is 100000007, and g'² + A' = 10000001400000059). The primality tests are certified by Jiang–Deng 2014 (bases 2..23 below ψ9), not by Jaeschke 1993 (row 47). An independent raw check to g ≤ 3·10⁶ found 0 failures.
+  - The scan script's comment that bases 2..37 are deterministic below 3.3·10²⁴ is wrong: the bound is ψ12 = 318665857834031151167461, about 3.19·10²³ (Sorenson–Webster, Math. Comp. 86 (2017)). This does not affect tests near 10¹⁶.
+  - R1 and R2 at all 106 consecutive pairs with g' ≤ 601: 0 violations; X(7) = isqrt(59# − 41) = 43,849,291,330. R3 on every n of every window up to g' = 601: 0 violations. R4 at every consecutive pair with g ≤ 10⁶: 0 violations.
+  - R5 at g = 59: the run to √2·59 + 5 = 88.4386 is 59, 61, 67, 71, 73, 79, 83, and 83² + 10 = 6899 < 7018 = 2(59² + 28); the first gear meeting the Bertrand hypothesis is 89. 1162 gears g ≤ 20000 are of this kind. The literal-run clause holds for g ≤ 2·10⁵, and Nagura's integer form for 25 ≤ n ≤ 10⁷, with 0 failures.
+  - R6: 16 ln³ 13883 = 13885.11 ≥ 13883 and 16 ln³ 13901 = 13890.77 < 13901; at (37361, 37363), x/ln³ x = 149507.2 > |I| = 149430.
+  - The open case at (17, 19): the window is (299, 389] and its least prime is 307. There are 216,813 gears in 7..3·10⁶.
+- **C1E:**
+  - identities (a)–(h) of 2B.19 at every U⁻ prime for every prime q = 11..89, both s: 0 violations. The survivor bijection by direct enumeration at q = 11..23. AB_q from the leg factorisations at q = 11, 13, 17, 19: {17}, {}, {23, 31, 179}, {29, 109}, each the U⁻ primes of (q# − 2)(q# + 2).
+  - the only top gears for q ≤ 89: q = 59, s = +1: g = 22053749593, E = 21538845445; q = 71, s = −1: g = 12327997408847, E = 10301015707521; first good k 5 and 7. Their E_g lie far above Λ(59) = 189143955 and Λ(71) = 5242682445.
+  - Λ(q): 195 at q = 7, 11, 13 (L = 7); 1575 at 17 (L = 8); 1785 at 19 (L = 9); 2205 at 23 (L = 11); 26565 at 29; 495495 at 43; 189143955 at 59 (L = 20); 5242682445 at 71 (L = 24). Λ\* certificates: q = 181: y = 19, L' = 601, value 5824663845; q = 191: y = 19, L' = 771, value 7473611145.
+  - 2Λ(q)² ≤ q#/2 − s, exact at every prime q = 7..1301: fails exactly at q = 7..19, both s.
+  - P-iteration below Λ(q) at every prime q = 7..257, both s (P-ranges up to 3,971,858, all run): the only squares were E = 51 (q = 11, g = 17), E = 1247 (q = 17, g = 179), E = 355 (q = 17, g = 358, not prime) and E = 2015 (q = 23, s = +1, g = 9602, not prime). So no top gear has E_g < Λ(q) at any prime q ≤ 257, and every U⁻ prime has E_g ≥ Λ\*(q) for q in 13..257.
+  - the clause holds at every U⁻ prime of q# ∓ 2 for every prime q in 11..257. Quoted gears: q = 157, s = −1, g = 23477085574346691092152147, first k 1; q = 163, s = −1, g = 70116870577808125700472691, first k 5; 1019 | 181# + 2, first k 1; 1103 | 191# − 2, first k 15. The largest first k at q ≤ 89 is 41, at q = 79, s = −1, g = 761.
+  - odd E < Λ(q) passing every odd p ≤ q: s = +1: 14 at q = 23, 80 at 29, 102 at 43, 4322 at 59; s = −1: 1, 16, 21, 920. The least passing E for s = +1 lies below Λ\*(q) at q = 29 (113 < 3465), 43 (587 < 22785), 59 (60607 < 185955), 71 (104953 < 643335) and 101 (923663 < 8363355); none lies below Λ\* at q = 139 and 173.

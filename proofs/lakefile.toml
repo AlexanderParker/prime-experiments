@@ -2460,3 +2460,12 @@ name = "RangeGen4"
 
 [[lean_lib]]
 name = "RangeGen5"
+
+[[lean_lib]]
+name = "RangeWall"
+
+[[lean_lib]]
+name = "RangeNearKill"
+
+[[lean_lib]]
+name = "RangeTopBand"

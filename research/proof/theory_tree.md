@@ -5214,6 +5214,31 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             M(G) >= G'^4 for G >= 19 (induction step missing; a Bertrand route recorded); the below-square strike count; the
             derived period statement; derived window thresholds; least-split-copy constancy mod 15d; the twin-striker sets;
             strict increase of X at every gear pair; a Type-C twins bound.
+          - R5.f.xxxv.c.xxxvii. CLAIMED-GENERAL ITEMS PROVED FOR EVERY q, AND THE WALL IN THE KERNEL (2026-09-26, second
+            general round; 27 agents; ledger research/proof/range_generality_ledger.md updated: 21 kernel modules, 50 refuted
+            rows).
+            KERNEL (reviewer-checked, rebuilt by the manager, 0 sorries, standard axioms; all 21 Range modules import together):
+            - RangeWall (32 theorems): nextprime(X)^2 < X# for every natural X >= 7, failing at every X <= 6; (2X)^2 < X# iff
+              X = 0, 7 or X >= 11; every gear <= q' acts on every copy j >= M; window and range-top lemmas; lap bounds; silent
+              classes (30N >= X#, at most one member per period and one in the window band).
+            - RangeNearKill (70 theorems + 3 defs): cofactor floor, kill-free windows, exact boundary cases (hypothesis 3 <= h
+              dropped - stronger), sharp class windows, neighbour rule.
+            - RangeTopBand: the top-band law per row and up-closure of the d0 test (no formal lambda(g) yet).
+            PROVED FOR EVERY q/g THIS ROUND:
+            - C7: M(G) >= G'^4 for every gear G >= 19 (Bertrand; scratch Lean c7_fourth).
+            - C8: the below-square strike count 2 floor(g/30) + c(g mod 30) for every g >= 7 coprime to 30, no import.
+            - C11: least split copy constant mod 15d for every gear pair; "both act iff c > d" REFUTED in general (counterexample
+              (17, 31)), proved for every twin, cousin and sexy pair.
+            - C12: twin gears share leg strikers only from {11, 29, 31} or {13, 23, 37}, never 7, for every twin gear pair.
+            - X10: X(g) non-decreasing; exact step law (X increases iff a prime lies in (g^2 + A, g'^2 + A']); strict increase
+              along revealed gears; Bertrand/Nagura/Dusart spans; strict increase at EVERY consecutive pair follows from
+              Legendre's conjecture (a hypothesis) and is NOT proved.
+            - C1E: identities for the acting-both clause, the survivor bijection x -> (M - 2x)/g onto the good k, and uniqueness
+              of the top gear per side (at most one U- prime of q# -+ 2 with E_g <= g). The existence clause at every non-top
+              gear is proved only by a counting argument (not a result under the working rules); at the top gear it is OPEN.
+              Checked at every prime q <= 257, where no top gear falls in the open case.
+            REFUTED as general this round: C7's small-case remark, the C11 acting clause (17, 31) and mirror clause (29, 31), a
+            cited import for X10, three C1E statements.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6809,3 +6834,4 @@ Part III or Part IV of the proof document?
 - 2026-09-25, R5.f.xxxv.c.xxxiv: kernel batch 3 (region law via minFac, centre law, the twin-node reach chain: RANGE iff every node good iff reach from 29 unbounded); mirror pairs: class form, acting windows, four-leg product, the mean-height identity (not-Range iff Loss empty and unstruck survivors lie in Gain); run laws: acting pair law exact; the 2k run bounds REFUTED at k = 1 (q = 47), 2 and 3 (q = 37).
 - 2026-09-26, R5.f.xxxv.c.xxxv: kernel batch 4 (acting pair law, mirror pair legs/shared striker/height split, range-window blame form); one-gear runs: exact run conditions, gear-7 lane law, ladder against h2(q); runs of 5, 6, 7 at q = 89..293, so no constant bound c <= 6 on B_1; Gain = (S_Q minus S_Q*) in the high half, not-Range iff Loss empty, S_Q misses the low half and S_Q* the high half.
 - 2026-09-26, R5.f.xxxv.c.xxxvi: generality ledger on the owner's rule - 18 general kernel entries (RangeGen1-5 new: height split, Gain, mirror under acting, total-blame anatomy, acting vs acting-free, all for every q), general scratch-Lean results (the wall nextprime(X)^2 < X# for X >= 7, cofactor floor and kill-free windows), 11 claimed-general items with their gaps, 43 refuted-as-general with counterexamples, instance data separated as checks.
+- 2026-09-26, R5.f.xxxv.c.xxxvii: second general round - the wall nextprime(X)^2 < X# (X >= 7), near-kill windows and top-band law now kernel theorems; C7 (M(G) >= G'^4), C8 (below-square count), C11 (mod 15d), C12 (twin strikers) proved for every q/g; X10 strict increase proved only under Legendre; C1E reduced to the top gear per side.
