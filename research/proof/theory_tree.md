@@ -5192,6 +5192,28 @@ Back pressure = the manifold's strikes (owner, 2026-09-06).
             legs(M - j) = q# - legs(j).
             REFUTED with instances: four band-teeth and multiplicity wordings (repaired forms stand); a Gain_full class form
             for q >= 13 (q = 13, j = 505); the shared-class lemma off S_q.
+          - R5.f.xxxv.c.xxxvi. THE GENERALITY LEDGER (owner 2026-09-26: only proofs that hold for every machine size count;
+            29 agents; ledger research/proof/range_generality_ledger.md). Every standing statement of the range line classified:
+            general and in Lean (18 entries), general on paper or in scratch Lean (4 + 13 groups, plus one list of general
+            counting/locating results excluded by the rules), claimed general but not proved (11), refuted as general (43, each
+            with a counterexample), instance data (12 groups, marked as checks only).
+            KERNEL, five new modules, all quantified over every q from a fixed lower bound (q >= 5 or 7, or any q), no primality
+            or size restriction on q (reviewer-checked, rebuilt by the manager, 0 sorries, standard axioms): RangeGen1 (the
+            height split of the range), RangeGen2 (Gain), RangeGen3 (mirror pairs under acting), RangeGen4 (total-blame
+            anatomy), RangeGen5 (acting against acting-free with a fixed cut, proved for an arbitrary cut X before being read at
+            X = isqrt(q#)). Corrections carried: Loss_q must use the lower leg; the four-class rules hold for primes above q (and
+            in a general form with the q# factor), not for primes dividing q#; RangeCopy -> RangeStatement one way only, since
+            RangeStatement also counts twin pairs = 11, 17 mod 30.
+            PROVED GENERAL THIS ROUND (scratch Lean, not yet in the kernel): the WALL nextprime(X)^2 < X# for every natural X >= 7,
+            failing at every X <= 6 (and (2X)^2 < X# iff X = 0, 7 or X >= 11); every gear <= q' acts on every copy j >= M; silent
+            classes have at most one member per period and one in the window band; the near-neighbour cofactor floor and
+            kill-free windows with exact boundary cases and sharp class windows (K_c by g mod 30); the top-band algebra of
+            lambda.
+            STILL CLAIMED GENERAL, NOT PROVED: RANGE itself; the acting-both equality (missing: an existence clause, checked to
+            q = 197 with gaps); alignment of a relaxed covering pattern into the period (only a counting argument exists);
+            M(G) >= G'^4 for G >= 19 (induction step missing; a Bertrand route recorded); the below-square strike count; the
+            derived period statement; derived window thresholds; least-split-copy constancy mod 15d; the twin-striker sets;
+            strict increase of X at every gear pair; a Type-C twins bound.
         - R5.f.xxxv.b. THE KNOWN OPENING'S COPIES (owner's construction 2026-09-21;
           research/stack/r8/known_opening_copies.py). Drop q from the machine; the lower machine
           5..q_- cycles q times inside the range, carrying the known opening (-1, 1) to the copies
@@ -6786,3 +6808,4 @@ Part III or Part IV of the proof document?
 - 2026-09-25, R5.f.xxxv.c.xxxiii: field kernel carried to the range - total blame iff every copy's least prime factor is a machine gear or acts; joint redundancy of non-acting strikes; translate/phase bijection with C_7^free and C_11^free empty; tooth, pair, comb and E2-record laws on copies; centre law and Gamma_k; node chain (RANGE <=> reach from 29 unbounded, scratch Lean); mirror height split. Acting enters only through trial division; no standing statement forbids a total blame map. Record research/proof/field_to_range_2026-09-25.md.
 - 2026-09-25, R5.f.xxxv.c.xxxiv: kernel batch 3 (region law via minFac, centre law, the twin-node reach chain: RANGE iff every node good iff reach from 29 unbounded); mirror pairs: class form, acting windows, four-leg product, the mean-height identity (not-Range iff Loss empty and unstruck survivors lie in Gain); run laws: acting pair law exact; the 2k run bounds REFUTED at k = 1 (q = 47), 2 and 3 (q = 37).
 - 2026-09-26, R5.f.xxxv.c.xxxv: kernel batch 4 (acting pair law, mirror pair legs/shared striker/height split, range-window blame form); one-gear runs: exact run conditions, gear-7 lane law, ladder against h2(q); runs of 5, 6, 7 at q = 89..293, so no constant bound c <= 6 on B_1; Gain = (S_Q minus S_Q*) in the high half, not-Range iff Loss empty, S_Q misses the low half and S_Q* the high half.
+- 2026-09-26, R5.f.xxxv.c.xxxvi: generality ledger on the owner's rule - 18 general kernel entries (RangeGen1-5 new: height split, Gain, mirror under acting, total-blame anatomy, acting vs acting-free, all for every q), general scratch-Lean results (the wall nextprime(X)^2 < X# for X >= 7, cofactor floor and kill-free windows), 11 claimed-general items with their gaps, 43 refuted-as-general with counterexamples, instance data separated as checks.

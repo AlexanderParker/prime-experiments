@@ -2445,3 +2445,18 @@ name = "RangeMirror"
 
 [[lean_lib]]
 name = "RangeWindowForm"
+
+[[lean_lib]]
+name = "RangeGen1"
+
+[[lean_lib]]
+name = "RangeGen2"
+
+[[lean_lib]]
+name = "RangeGen3"
+
+[[lean_lib]]
+name = "RangeGen4"
+
+[[lean_lib]]
+name = "RangeGen5"
